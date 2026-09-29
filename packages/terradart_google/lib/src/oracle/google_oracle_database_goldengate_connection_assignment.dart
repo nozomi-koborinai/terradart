@@ -57,12 +57,11 @@ final class GoogleOracleDatabaseGoldengateConnectionAssignment
            'goldengate_connection_assignment_id':
                goldengateConnectionAssignmentId,
            'properties': properties,
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

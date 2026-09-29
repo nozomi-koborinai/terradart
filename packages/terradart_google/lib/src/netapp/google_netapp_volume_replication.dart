@@ -42,11 +42,11 @@ final class NetappVolumeReplicationDestinationVolumeParameters {
   tieringPolicy;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (shareName != null) 'share_name': shareName!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'share_name': ?shareName?.toTfJson(),
     'storage_pool': storagePool.toTfJson(),
-    if (volumeId != null) 'volume_id': volumeId!.toTfJson(),
-    if (tieringPolicy != null) 'tiering_policy': tieringPolicy!.encode(),
+    'volume_id': ?volumeId?.toTfJson(),
+    'tiering_policy': ?tieringPolicy?.encode(),
   };
 }
 
@@ -67,9 +67,8 @@ final class NetappVolumeReplicationDestinationVolumeParametersTieringPolicy {
   tierAction;
 
   Map<String, Object?> encode() => {
-    if (coolingThresholdDays != null)
-      'cooling_threshold_days': coolingThresholdDays!.toTfJson(),
-    if (tierAction != null) 'tier_action': tierAction!.toTfJson(),
+    'cooling_threshold_days': ?coolingThresholdDays?.toTfJson(),
+    'tier_action': ?tierAction?.toTfJson(),
   };
 }
 
@@ -146,16 +145,14 @@ final class GoogleNetappVolumeReplication extends Resource {
              'destination_volume_parameters': TfArg.literal(
                destinationVolumeParameters.encode(),
              ),
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (replicationEnabled != null)
-             'replication_enabled': replicationEnabled,
-           if (waitForMirror != null) 'wait_for_mirror': waitForMirror,
-           if (forceStopping != null) 'force_stopping': forceStopping,
-           if (deleteDestinationVolume != null)
-             'delete_destination_volume': deleteDestinationVolume,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'labels': ?labels,
+           'replication_enabled': ?replicationEnabled,
+           'wait_for_mirror': ?waitForMirror,
+           'force_stopping': ?forceStopping,
+           'delete_destination_volume': ?deleteDestinationVolume,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -29,7 +29,7 @@ final class VpclatticeListenerDefaultAction {
   final List<VpclatticeListenerDefaultActionForward>? forward;
 
   Map<String, Object?> encode() => {
-    if (fixedResponse != null) 'fixed_response': fixedResponse!.encode(),
+    'fixed_response': ?fixedResponse?.encode(),
     if (forward != null) 'forward': [for (final e in forward!) e.encode()],
   };
 }
@@ -75,9 +75,8 @@ final class VpclatticeListenerDefaultActionForwardTargetGroups {
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (targetGroupIdentifier != null)
-      'target_group_identifier': targetGroupIdentifier!.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'target_group_identifier': ?targetGroupIdentifier?.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -103,13 +102,12 @@ final class AwsVpclatticeListener extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (port != null) 'port': port,
+           'port': ?port,
            'protocol': protocol,
-           if (region != null) 'region': region,
-           if (serviceArn != null) 'service_arn': serviceArn,
-           if (serviceIdentifier != null)
-             'service_identifier': serviceIdentifier,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'service_arn': ?serviceArn,
+           'service_identifier': ?serviceIdentifier,
+           'tags': ?tags,
            'default_action': TfArg.literal(defaultAction.encode()),
          },
        );

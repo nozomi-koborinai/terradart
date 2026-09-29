@@ -23,7 +23,7 @@ final class DataGoogleActiveFolder extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (apiMethod != null) 'api_method': apiMethod,
+           'api_method': ?apiMethod,
            'display_name': displayName,
            'parent': parent,
          },

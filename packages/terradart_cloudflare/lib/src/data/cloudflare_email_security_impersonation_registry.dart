@@ -30,10 +30,10 @@ final class DataEmailSecurityImpersonationRegistryFilter {
   final TfArg<String>? search;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
-    if (provenance != null) 'provenance': provenance!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'provenance': ?provenance?.toTfJson(),
+    'search': ?search?.toTfJson(),
   };
 }
 
@@ -96,9 +96,8 @@ final class DataCloudflareEmailSecurityImpersonationRegistry extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (impersonationRegistryId != null)
-             'impersonation_registry_id': impersonationRegistryId,
+           'account_id': ?accountId,
+           'impersonation_registry_id': ?impersonationRegistryId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

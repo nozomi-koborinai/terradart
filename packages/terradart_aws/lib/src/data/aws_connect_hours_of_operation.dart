@@ -23,12 +23,11 @@ final class DataAwsConnectHoursOfOperation extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (hoursOfOperationId != null)
-             'hours_of_operation_id': hoursOfOperationId,
+           'hours_of_operation_id': ?hoursOfOperationId,
            'instance_id': instanceId,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

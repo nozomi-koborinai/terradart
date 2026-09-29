@@ -24,7 +24,7 @@ final class AwsSesv2DedicatedIpAssignment extends Resource {
          argMap: {
            'destination_pool_name': destinationPoolName,
            'ip': ip,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

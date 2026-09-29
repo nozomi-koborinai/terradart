@@ -23,7 +23,7 @@ final class AwsWorkspaceswebTrustStoreAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'portal_arn': portalArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'trust_store_arn': trustStoreArn,
          },
        );

@@ -22,7 +22,7 @@ final class DataGoogleProjectIamCustomRole extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {if (project != null) 'project': project, 'role_id': roleId},
+         argMap: {'project': ?project, 'role_id': roleId},
        );
 
   @override

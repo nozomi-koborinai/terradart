@@ -24,11 +24,9 @@ final class ModelArmorFloorsettingAiPlatformFloorSetting {
   final TfArg<bool>? inspectOnly;
 
   Map<String, Object?> encode() => {
-    if (enableCloudLogging != null)
-      'enable_cloud_logging': enableCloudLogging!.toTfJson(),
-    if (inspectAndBlock != null)
-      'inspect_and_block': inspectAndBlock!.toTfJson(),
-    if (inspectOnly != null) 'inspect_only': inspectOnly!.toTfJson(),
+    'enable_cloud_logging': ?enableCloudLogging?.toTfJson(),
+    'inspect_and_block': ?inspectAndBlock?.toTfJson(),
+    'inspect_only': ?inspectOnly?.toTfJson(),
   };
 }
 
@@ -54,13 +52,10 @@ final class ModelArmorFloorsettingFilterConfig {
   final ModelArmorFloorsettingFilterConfigSdpSettings? sdpSettings;
 
   Map<String, Object?> encode() => {
-    if (maliciousUriFilterSettings != null)
-      'malicious_uri_filter_settings': maliciousUriFilterSettings!.encode(),
-    if (piAndJailbreakFilterSettings != null)
-      'pi_and_jailbreak_filter_settings': piAndJailbreakFilterSettings!
-          .encode(),
-    if (raiSettings != null) 'rai_settings': raiSettings!.encode(),
-    if (sdpSettings != null) 'sdp_settings': sdpSettings!.encode(),
+    'malicious_uri_filter_settings': ?maliciousUriFilterSettings?.encode(),
+    'pi_and_jailbreak_filter_settings': ?piAndJailbreakFilterSettings?.encode(),
+    'rai_settings': ?raiSettings?.encode(),
+    'sdp_settings': ?sdpSettings?.encode(),
   };
 }
 
@@ -75,8 +70,7 @@ final class ModelArmorFloorsettingFilterConfigMaliciousUriFilterSettings {
   final TfArg<String>? filterEnforcement;
 
   Map<String, Object?> encode() => {
-    if (filterEnforcement != null)
-      'filter_enforcement': filterEnforcement!.toTfJson(),
+    'filter_enforcement': ?filterEnforcement?.toTfJson(),
   };
 }
 
@@ -94,10 +88,8 @@ final class ModelArmorFloorsettingFilterConfigPiAndJailbreakFilterSettings {
   final TfArg<String>? filterEnforcement;
 
   Map<String, Object?> encode() => {
-    if (confidenceLevel != null)
-      'confidence_level': confidenceLevel!.toTfJson(),
-    if (filterEnforcement != null)
-      'filter_enforcement': filterEnforcement!.toTfJson(),
+    'confidence_level': ?confidenceLevel?.toTfJson(),
+    'filter_enforcement': ?filterEnforcement?.toTfJson(),
   };
 }
 
@@ -131,8 +123,7 @@ final class ModelArmorFloorsettingFilterConfigRaiSettingsRaiFilters {
   final TfArg<String> filterType;
 
   Map<String, Object?> encode() => {
-    if (confidenceLevel != null)
-      'confidence_level': confidenceLevel!.toTfJson(),
+    'confidence_level': ?confidenceLevel?.toTfJson(),
     'filter_type': filterType.toTfJson(),
   };
 }
@@ -152,8 +143,8 @@ final class ModelArmorFloorsettingFilterConfigSdpSettings {
   final ModelArmorFloorsettingFilterConfigSdpSettingsBasicConfig? basicConfig;
 
   Map<String, Object?> encode() => {
-    if (advancedConfig != null) 'advanced_config': advancedConfig!.encode(),
-    if (basicConfig != null) 'basic_config': basicConfig!.encode(),
+    'advanced_config': ?advancedConfig?.encode(),
+    'basic_config': ?basicConfig?.encode(),
   };
 }
 
@@ -171,10 +162,8 @@ final class ModelArmorFloorsettingFilterConfigSdpSettingsAdvancedConfig {
   final TfArg<String>? inspectTemplate;
 
   Map<String, Object?> encode() => {
-    if (deidentifyTemplate != null)
-      'deidentify_template': deidentifyTemplate!.toTfJson(),
-    if (inspectTemplate != null)
-      'inspect_template': inspectTemplate!.toTfJson(),
+    'deidentify_template': ?deidentifyTemplate?.toTfJson(),
+    'inspect_template': ?inspectTemplate?.toTfJson(),
   };
 }
 
@@ -189,8 +178,7 @@ final class ModelArmorFloorsettingFilterConfigSdpSettingsBasicConfig {
   final TfArg<String>? filterEnforcement;
 
   Map<String, Object?> encode() => {
-    if (filterEnforcement != null)
-      'filter_enforcement': filterEnforcement!.toTfJson(),
+    'filter_enforcement': ?filterEnforcement?.toTfJson(),
   };
 }
 
@@ -206,8 +194,7 @@ final class ModelArmorFloorsettingFloorSettingMetadata {
   multiLanguageDetection;
 
   Map<String, Object?> encode() => {
-    if (multiLanguageDetection != null)
-      'multi_language_detection': multiLanguageDetection!.encode(),
+    'multi_language_detection': ?multiLanguageDetection?.encode(),
   };
 }
 
@@ -243,11 +230,9 @@ final class ModelArmorFloorsettingGoogleMcpServerFloorSetting {
   final TfArg<bool>? inspectOnly;
 
   Map<String, Object?> encode() => {
-    if (enableCloudLogging != null)
-      'enable_cloud_logging': enableCloudLogging!.toTfJson(),
-    if (inspectAndBlock != null)
-      'inspect_and_block': inspectAndBlock!.toTfJson(),
-    if (inspectOnly != null) 'inspect_only': inspectOnly!.toTfJson(),
+    'enable_cloud_logging': ?enableCloudLogging?.toTfJson(),
+    'inspect_and_block': ?inspectAndBlock?.toTfJson(),
+    'inspect_only': ?inspectOnly?.toTfJson(),
   };
 }
 
@@ -280,10 +265,8 @@ final class GoogleModelArmorFloorsetting extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enableFloorSettingEnforcement != null)
-             'enable_floor_setting_enforcement': enableFloorSettingEnforcement,
-           if (integratedServices != null)
-             'integrated_services': integratedServices,
+           'enable_floor_setting_enforcement': ?enableFloorSettingEnforcement,
+           'integrated_services': ?integratedServices,
            'location': location,
            'parent': parent,
            if (aiPlatformFloorSetting != null)

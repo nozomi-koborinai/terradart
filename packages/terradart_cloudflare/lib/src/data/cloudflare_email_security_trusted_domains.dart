@@ -34,12 +34,12 @@ final class DataEmailSecurityTrustedDomainsFilter {
   final TfArg<String>? search;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (isRecent != null) 'is_recent': isRecent!.toTfJson(),
-    if (isSimilarity != null) 'is_similarity': isSimilarity!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
-    if (pattern != null) 'pattern': pattern!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'is_recent': ?isRecent?.toTfJson(),
+    'is_similarity': ?isSimilarity?.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'pattern': ?pattern?.toTfJson(),
+    'search': ?search?.toTfJson(),
   };
 }
 
@@ -81,8 +81,8 @@ final class DataCloudflareEmailSecurityTrustedDomains extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (trustedDomainId != null) 'trusted_domain_id': trustedDomainId,
+           'account_id': ?accountId,
+           'trusted_domain_id': ?trustedDomainId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

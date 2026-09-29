@@ -18,10 +18,7 @@ final class DataAwsWafSubscribedRuleGroup extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (metricName != null) 'metric_name': metricName,
-           if (name != null) 'name': name,
-         },
+         argMap: {'metric_name': ?metricName, 'name': ?name},
        );
 
   @override

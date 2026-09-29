@@ -28,7 +28,7 @@ final class DataGoogleOracleDatabaseCloudExadataInfrastructure extends Data {
          argMap: {
            'cloud_exadata_infrastructure_id': cloudExadataInfrastructureId,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

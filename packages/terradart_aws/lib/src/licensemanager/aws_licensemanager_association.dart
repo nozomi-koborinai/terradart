@@ -23,7 +23,7 @@ final class AwsLicensemanagerAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'license_configuration_arn': licenseConfigurationArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_arn': resourceArn,
          },
        );

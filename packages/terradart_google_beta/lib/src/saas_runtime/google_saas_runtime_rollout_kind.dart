@@ -31,9 +31,8 @@ final class SaasRuntimeRolloutKindErrorBudget {
   final TfArg<num>? allowedPercentage;
 
   Map<String, Object?> encode() => {
-    if (allowedCount != null) 'allowed_count': allowedCount!.toTfJson(),
-    if (allowedPercentage != null)
-      'allowed_percentage': allowedPercentage!.toTfJson(),
+    'allowed_count': ?allowedCount?.toTfJson(),
+    'allowed_percentage': ?allowedPercentage?.toTfJson(),
   };
 }
 
@@ -67,18 +66,16 @@ final class GoogleSaasRuntimeRolloutKind extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (annotations != null) 'annotations': annotations,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (labels != null) 'labels': labels,
+           'annotations': ?annotations,
+           'deletion_policy': ?deletionPolicy,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'rollout_kind_id': rolloutKindId,
-           if (rolloutOrchestrationStrategy != null)
-             'rollout_orchestration_strategy': rolloutOrchestrationStrategy,
-           if (unitFilter != null) 'unit_filter': unitFilter,
+           'rollout_orchestration_strategy': ?rolloutOrchestrationStrategy,
+           'unit_filter': ?unitFilter,
            'unit_kind': unitKind,
-           if (updateUnitKindStrategy != null)
-             'update_unit_kind_strategy': updateUnitKindStrategy,
+           'update_unit_kind_strategy': ?updateUnitKindStrategy,
            if (errorBudget != null)
              'error_budget': TfArg.literal(errorBudget.encode()),
          },

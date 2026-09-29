@@ -27,11 +27,10 @@ final class AwsIotRoleAlias extends Resource {
          terraformType: tfType,
          argMap: {
            'alias': alias,
-           if (credentialDuration != null)
-             'credential_duration': credentialDuration,
-           if (region != null) 'region': region,
+           'credential_duration': ?credentialDuration,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

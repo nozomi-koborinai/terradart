@@ -32,13 +32,11 @@ final class GkeHubFeatureMembershipConfigmanagement {
   policyController;
 
   Map<String, Object?> encode() => {
-    if (management != null) 'management': management!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
-    if (configSync != null) 'config_sync': configSync!.encode(),
-    if (hierarchyController != null)
-      'hierarchy_controller': hierarchyController!.encode(),
-    if (policyController != null)
-      'policy_controller': policyController!.encode(),
+    'management': ?management?.toTfJson(),
+    'version': ?version?.toTfJson(),
+    'config_sync': ?configSync?.encode(),
+    'hierarchy_controller': ?hierarchyController?.encode(),
+    'policy_controller': ?policyController?.encode(),
   };
 }
 
@@ -77,19 +75,18 @@ final class GkeHubFeatureMembershipConfigmanagementConfigSync {
   final GkeHubFeatureMembershipConfigmanagementConfigSyncOci? oci;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (metricsGcpServiceAccountEmail != null)
-      'metrics_gcp_service_account_email': metricsGcpServiceAccountEmail!
-          .toTfJson(),
-    if (preventDrift != null) 'prevent_drift': preventDrift!.toTfJson(),
-    if (sourceFormat != null) 'source_format': sourceFormat!.toTfJson(),
-    if (stopSyncing != null) 'stop_syncing': stopSyncing!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'metrics_gcp_service_account_email': ?metricsGcpServiceAccountEmail
+        ?.toTfJson(),
+    'prevent_drift': ?preventDrift?.toTfJson(),
+    'source_format': ?sourceFormat?.toTfJson(),
+    'stop_syncing': ?stopSyncing?.toTfJson(),
     if (deploymentOverrides != null)
       'deployment_overrides': [
         for (final e in deploymentOverrides!) e.encode(),
       ],
-    if (git != null) 'git': git!.encode(),
-    if (oci != null) 'oci': oci!.encode(),
+    'git': ?git?.encode(),
+    'oci': ?oci?.encode(),
   };
 }
 
@@ -113,9 +110,8 @@ final class GkeHubFeatureMembershipConfigmanagementConfigSyncDeploymentOverrides
   containers;
 
   Map<String, Object?> encode() => {
-    if (deploymentName != null) 'deployment_name': deploymentName!.toTfJson(),
-    if (deploymentNamespace != null)
-      'deployment_namespace': deploymentNamespace!.toTfJson(),
+    'deployment_name': ?deploymentName?.toTfJson(),
+    'deployment_namespace': ?deploymentNamespace?.toTfJson(),
     if (containers != null)
       'containers': [for (final e in containers!) e.encode()],
   };
@@ -144,11 +140,11 @@ final class GkeHubFeatureMembershipConfigmanagementConfigSyncDeploymentOverrides
   final TfArg<String>? memoryRequest;
 
   Map<String, Object?> encode() => {
-    if (containerName != null) 'container_name': containerName!.toTfJson(),
-    if (cpuLimit != null) 'cpu_limit': cpuLimit!.toTfJson(),
-    if (cpuRequest != null) 'cpu_request': cpuRequest!.toTfJson(),
-    if (memoryLimit != null) 'memory_limit': memoryLimit!.toTfJson(),
-    if (memoryRequest != null) 'memory_request': memoryRequest!.toTfJson(),
+    'container_name': ?containerName?.toTfJson(),
+    'cpu_limit': ?cpuLimit?.toTfJson(),
+    'cpu_request': ?cpuRequest?.toTfJson(),
+    'memory_limit': ?memoryLimit?.toTfJson(),
+    'memory_request': ?memoryRequest?.toTfJson(),
   };
 }
 
@@ -184,15 +180,14 @@ final class GkeHubFeatureMembershipConfigmanagementConfigSyncGit {
   final TfArg<String>? syncWaitSecs;
 
   Map<String, Object?> encode() => {
-    if (gcpServiceAccountEmail != null)
-      'gcp_service_account_email': gcpServiceAccountEmail!.toTfJson(),
-    if (httpsProxy != null) 'https_proxy': httpsProxy!.toTfJson(),
-    if (policyDir != null) 'policy_dir': policyDir!.toTfJson(),
-    if (secretType != null) 'secret_type': secretType!.toTfJson(),
-    if (syncBranch != null) 'sync_branch': syncBranch!.toTfJson(),
-    if (syncRepo != null) 'sync_repo': syncRepo!.toTfJson(),
-    if (syncRev != null) 'sync_rev': syncRev!.toTfJson(),
-    if (syncWaitSecs != null) 'sync_wait_secs': syncWaitSecs!.toTfJson(),
+    'gcp_service_account_email': ?gcpServiceAccountEmail?.toTfJson(),
+    'https_proxy': ?httpsProxy?.toTfJson(),
+    'policy_dir': ?policyDir?.toTfJson(),
+    'secret_type': ?secretType?.toTfJson(),
+    'sync_branch': ?syncBranch?.toTfJson(),
+    'sync_repo': ?syncRepo?.toTfJson(),
+    'sync_rev': ?syncRev?.toTfJson(),
+    'sync_wait_secs': ?syncWaitSecs?.toTfJson(),
   };
 }
 
@@ -219,12 +214,11 @@ final class GkeHubFeatureMembershipConfigmanagementConfigSyncOci {
   final TfArg<String>? syncWaitSecs;
 
   Map<String, Object?> encode() => {
-    if (gcpServiceAccountEmail != null)
-      'gcp_service_account_email': gcpServiceAccountEmail!.toTfJson(),
-    if (policyDir != null) 'policy_dir': policyDir!.toTfJson(),
-    if (secretType != null) 'secret_type': secretType!.toTfJson(),
-    if (syncRepo != null) 'sync_repo': syncRepo!.toTfJson(),
-    if (syncWaitSecs != null) 'sync_wait_secs': syncWaitSecs!.toTfJson(),
+    'gcp_service_account_email': ?gcpServiceAccountEmail?.toTfJson(),
+    'policy_dir': ?policyDir?.toTfJson(),
+    'secret_type': ?secretType?.toTfJson(),
+    'sync_repo': ?syncRepo?.toTfJson(),
+    'sync_wait_secs': ?syncWaitSecs?.toTfJson(),
   };
 }
 
@@ -245,12 +239,10 @@ final class GkeHubFeatureMembershipConfigmanagementHierarchyController {
   final TfArg<bool>? enabled;
 
   Map<String, Object?> encode() => {
-    if (enableHierarchicalResourceQuota != null)
-      'enable_hierarchical_resource_quota': enableHierarchicalResourceQuota!
-          .toTfJson(),
-    if (enablePodTreeLabels != null)
-      'enable_pod_tree_labels': enablePodTreeLabels!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enable_hierarchical_resource_quota': ?enableHierarchicalResourceQuota
+        ?.toTfJson(),
+    'enable_pod_tree_labels': ?enablePodTreeLabels?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
   };
 }
 
@@ -287,20 +279,14 @@ final class GkeHubFeatureMembershipConfigmanagementPolicyController {
   monitoring;
 
   Map<String, Object?> encode() => {
-    if (auditIntervalSeconds != null)
-      'audit_interval_seconds': auditIntervalSeconds!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (exemptableNamespaces != null)
-      'exemptable_namespaces': exemptableNamespaces!.toTfJson(),
-    if (logDeniesEnabled != null)
-      'log_denies_enabled': logDeniesEnabled!.toTfJson(),
-    if (mutationEnabled != null)
-      'mutation_enabled': mutationEnabled!.toTfJson(),
-    if (referentialRulesEnabled != null)
-      'referential_rules_enabled': referentialRulesEnabled!.toTfJson(),
-    if (templateLibraryInstalled != null)
-      'template_library_installed': templateLibraryInstalled!.toTfJson(),
-    if (monitoring != null) 'monitoring': monitoring!.encode(),
+    'audit_interval_seconds': ?auditIntervalSeconds?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'exemptable_namespaces': ?exemptableNamespaces?.toTfJson(),
+    'log_denies_enabled': ?logDeniesEnabled?.toTfJson(),
+    'mutation_enabled': ?mutationEnabled?.toTfJson(),
+    'referential_rules_enabled': ?referentialRulesEnabled?.toTfJson(),
+    'template_library_installed': ?templateLibraryInstalled?.toTfJson(),
+    'monitoring': ?monitoring?.encode(),
   };
 }
 
@@ -314,9 +300,7 @@ final class GkeHubFeatureMembershipConfigmanagementPolicyControllerMonitoring {
 
   final TfArg<List<Object?>>? backends;
 
-  Map<String, Object?> encode() => {
-    if (backends != null) 'backends': backends!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'backends': ?backends?.toTfJson()};
 }
 
 /// Typed helper for the `mesh` block of
@@ -330,8 +314,8 @@ final class GkeHubFeatureMembershipMesh {
   final TfArg<GkeHubFeatureMembershipMeshManagement>? management;
 
   Map<String, Object?> encode() => {
-    if (controlPlane != null) 'control_plane': controlPlane!.toTfJson(),
-    if (management != null) 'management': management!.toTfJson(),
+    'control_plane': ?controlPlane?.toTfJson(),
+    'management': ?management?.toTfJson(),
   };
 }
 
@@ -372,7 +356,7 @@ final class GkeHubFeatureMembershipPolicycontroller {
   policyControllerHubConfig;
 
   Map<String, Object?> encode() => {
-    if (version != null) 'version': version!.toTfJson(),
+    'version': ?version?.toTfJson(),
     'policy_controller_hub_config': policyControllerHubConfig.encode(),
   };
 }
@@ -423,23 +407,17 @@ final class GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfig {
   policyContent;
 
   Map<String, Object?> encode() => {
-    if (auditIntervalSeconds != null)
-      'audit_interval_seconds': auditIntervalSeconds!.toTfJson(),
-    if (constraintViolationLimit != null)
-      'constraint_violation_limit': constraintViolationLimit!.toTfJson(),
-    if (exemptableNamespaces != null)
-      'exemptable_namespaces': exemptableNamespaces!.toTfJson(),
-    if (installSpec != null) 'install_spec': installSpec!.toTfJson(),
-    if (logDeniesEnabled != null)
-      'log_denies_enabled': logDeniesEnabled!.toTfJson(),
-    if (mutationEnabled != null)
-      'mutation_enabled': mutationEnabled!.toTfJson(),
-    if (referentialRulesEnabled != null)
-      'referential_rules_enabled': referentialRulesEnabled!.toTfJson(),
+    'audit_interval_seconds': ?auditIntervalSeconds?.toTfJson(),
+    'constraint_violation_limit': ?constraintViolationLimit?.toTfJson(),
+    'exemptable_namespaces': ?exemptableNamespaces?.toTfJson(),
+    'install_spec': ?installSpec?.toTfJson(),
+    'log_denies_enabled': ?logDeniesEnabled?.toTfJson(),
+    'mutation_enabled': ?mutationEnabled?.toTfJson(),
+    'referential_rules_enabled': ?referentialRulesEnabled?.toTfJson(),
     if (deploymentConfigs != null)
       'deployment_configs': [for (final e in deploymentConfigs!) e.encode()],
-    if (monitoring != null) 'monitoring': monitoring!.encode(),
-    if (policyContent != null) 'policy_content': policyContent!.encode(),
+    'monitoring': ?monitoring?.encode(),
+    'policy_content': ?policyContent?.encode(),
   };
 }
 
@@ -490,10 +468,9 @@ final class GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigDepl
 
   Map<String, Object?> encode() => {
     'component_name': componentName.toTfJson(),
-    if (podAffinity != null) 'pod_affinity': podAffinity!.toTfJson(),
-    if (replicaCount != null) 'replica_count': replicaCount!.toTfJson(),
-    if (containerResources != null)
-      'container_resources': containerResources!.encode(),
+    'pod_affinity': ?podAffinity?.toTfJson(),
+    'replica_count': ?replicaCount?.toTfJson(),
+    'container_resources': ?containerResources?.encode(),
     if (podTolerations != null)
       'pod_tolerations': [for (final e in podTolerations!) e.encode()],
   };
@@ -529,8 +506,8 @@ final class GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigDepl
   requests;
 
   Map<String, Object?> encode() => {
-    if (limits != null) 'limits': limits!.encode(),
-    if (requests != null) 'requests': requests!.encode(),
+    'limits': ?limits?.encode(),
+    'requests': ?requests?.encode(),
   };
 }
 
@@ -548,8 +525,8 @@ final class GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigDepl
   final TfArg<String>? memory;
 
   Map<String, Object?> encode() => {
-    if (cpu != null) 'cpu': cpu!.toTfJson(),
-    if (memory != null) 'memory': memory!.toTfJson(),
+    'cpu': ?cpu?.toTfJson(),
+    'memory': ?memory?.toTfJson(),
   };
 }
 
@@ -567,8 +544,8 @@ final class GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigDepl
   final TfArg<String>? memory;
 
   Map<String, Object?> encode() => {
-    if (cpu != null) 'cpu': cpu!.toTfJson(),
-    if (memory != null) 'memory': memory!.toTfJson(),
+    'cpu': ?cpu?.toTfJson(),
+    'memory': ?memory?.toTfJson(),
   };
 }
 
@@ -592,10 +569,10 @@ final class GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigDepl
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (effect != null) 'effect': effect!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (operator != null) 'operator': operator!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'effect': ?effect?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'operator': ?operator?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -609,9 +586,7 @@ final class GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigMoni
 
   final TfArg<List<Object?>>? backends;
 
-  Map<String, Object?> encode() => {
-    if (backends != null) 'backends': backends!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'backends': ?backends?.toTfJson()};
 }
 
 /// Typed helper for the `policycontroller.policy_controller_hub_config.policy_content` block of
@@ -633,7 +608,7 @@ final class GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigPoli
 
   Map<String, Object?> encode() => {
     if (bundles != null) 'bundles': [for (final e in bundles!) e.encode()],
-    if (templateLibrary != null) 'template_library': templateLibrary!.encode(),
+    'template_library': ?templateLibrary?.encode(),
   };
 }
 
@@ -652,8 +627,7 @@ final class GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigPoli
 
   Map<String, Object?> encode() => {
     'bundle_name': bundleName.toTfJson(),
-    if (exemptedNamespaces != null)
-      'exempted_namespaces': exemptedNamespaces!.toTfJson(),
+    'exempted_namespaces': ?exemptedNamespaces?.toTfJson(),
   };
 }
 
@@ -670,9 +644,7 @@ final class GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigPoli
   >?
   installation;
 
-  Map<String, Object?> encode() => {
-    if (installation != null) 'installation': installation!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'installation': ?installation?.toTfJson()};
 }
 
 /// `installation` — derived from the provider schema description.
@@ -718,13 +690,12 @@ final class GoogleGkeHubFeatureMembership extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'feature': feature,
            'location': location,
            'membership': membership,
-           if (membershipLocation != null)
-             'membership_location': membershipLocation,
-           if (project != null) 'project': project,
+           'membership_location': ?membershipLocation,
+           'project': ?project,
            if (configmanagement != null)
              'configmanagement': TfArg.literal(configmanagement.encode()),
            if (mesh != null) 'mesh': TfArg.literal(mesh.encode()),

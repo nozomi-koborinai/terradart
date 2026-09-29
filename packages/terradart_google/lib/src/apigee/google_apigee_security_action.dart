@@ -128,18 +128,17 @@ final class ApigeeSecurityActionConditionConfig {
   final TfArg<List<Object?>>? userAgents;
 
   Map<String, Object?> encode() => {
-    if (accessTokens != null) 'access_tokens': accessTokens!.toTfJson(),
-    if (apiKeys != null) 'api_keys': apiKeys!.toTfJson(),
-    if (apiProducts != null) 'api_products': apiProducts!.toTfJson(),
-    if (asns != null) 'asns': asns!.toTfJson(),
-    if (botReasons != null) 'bot_reasons': botReasons!.toTfJson(),
-    if (developerApps != null) 'developer_apps': developerApps!.toTfJson(),
-    if (developers != null) 'developers': developers!.toTfJson(),
-    if (httpMethods != null) 'http_methods': httpMethods!.toTfJson(),
-    if (ipAddressRanges != null)
-      'ip_address_ranges': ipAddressRanges!.toTfJson(),
-    if (regionCodes != null) 'region_codes': regionCodes!.toTfJson(),
-    if (userAgents != null) 'user_agents': userAgents!.toTfJson(),
+    'access_tokens': ?accessTokens?.toTfJson(),
+    'api_keys': ?apiKeys?.toTfJson(),
+    'api_products': ?apiProducts?.toTfJson(),
+    'asns': ?asns?.toTfJson(),
+    'bot_reasons': ?botReasons?.toTfJson(),
+    'developer_apps': ?developerApps?.toTfJson(),
+    'developers': ?developers?.toTfJson(),
+    'http_methods': ?httpMethods?.toTfJson(),
+    'ip_address_ranges': ?ipAddressRanges?.toTfJson(),
+    'region_codes': ?regionCodes?.toTfJson(),
+    'user_agents': ?userAgents?.toTfJson(),
   };
 }
 
@@ -151,9 +150,7 @@ final class ApigeeSecurityActionDeny {
 
   final TfArg<num>? responseCode;
 
-  Map<String, Object?> encode() => {
-    if (responseCode != null) 'response_code': responseCode!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'response_code': ?responseCode?.toTfJson()};
 }
 
 /// Typed helper for the `flag` block of
@@ -180,8 +177,8 @@ final class ApigeeSecurityActionFlagHeaders {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -220,9 +217,9 @@ final class GoogleApigeeSecurityAction extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (apiProxies != null) 'api_proxies': apiProxies,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'api_proxies': ?apiProxies,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'env_id': envId,
            ...?expiration?.argMap,
            'org_id': orgId,

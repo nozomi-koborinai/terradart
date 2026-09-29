@@ -30,14 +30,14 @@ final class DataCloudflareCloudforceOneRequestMessage extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (after != null) 'after': after,
-           if (before != null) 'before': before,
+           'account_id': ?accountId,
+           'after': ?after,
+           'before': ?before,
            'page': page,
            'per_page': perPage,
            'request_id': requestId,
-           if (sortBy != null) 'sort_by': sortBy,
-           if (sortOrder != null) 'sort_order': sortOrder,
+           'sort_by': ?sortBy,
+           'sort_order': ?sortOrder,
          },
        );
 

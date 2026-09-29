@@ -29,9 +29,9 @@ final class GoogleServiceDirectoryNamespace extends Resource {
          argMap: {
            'namespace_id': namespaceId,
            'location': location,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -23,11 +23,7 @@ final class DataGoogleComputeNetworkAttachment extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (project != null) 'project': project,
-           'region': region,
-         },
+         argMap: {'name': name, 'project': ?project, 'region': region},
        );
 
   @override

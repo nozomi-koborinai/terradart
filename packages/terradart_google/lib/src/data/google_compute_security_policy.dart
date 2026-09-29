@@ -23,11 +23,7 @@ final class DataGoogleComputeSecurityPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (name != null) 'name': name,
-           if (project != null) 'project': project,
-           if (selfLink != null) 'self_link': selfLink,
-         },
+         argMap: {'name': ?name, 'project': ?project, 'self_link': ?selfLink},
        );
 
   @override

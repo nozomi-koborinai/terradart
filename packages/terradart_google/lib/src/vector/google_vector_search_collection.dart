@@ -40,8 +40,8 @@ final class VectorSearchCollectionVectorSchema {
 
   Map<String, Object?> encode() => {
     'field_name': fieldName.toTfJson(),
-    if (denseVector != null) 'dense_vector': denseVector!.encode(),
-    if (sparseVector != null) 'sparse_vector': sparseVector!.encode(),
+    'dense_vector': ?denseVector?.encode(),
+    'sparse_vector': ?sparseVector?.encode(),
   };
 }
 
@@ -60,9 +60,8 @@ final class VectorSearchCollectionVectorSchemaDenseVector {
   vertexEmbeddingConfig;
 
   Map<String, Object?> encode() => {
-    if (dimensions != null) 'dimensions': dimensions!.toTfJson(),
-    if (vertexEmbeddingConfig != null)
-      'vertex_embedding_config': vertexEmbeddingConfig!.encode(),
+    'dimensions': ?dimensions?.toTfJson(),
+    'vertex_embedding_config': ?vertexEmbeddingConfig?.encode(),
   };
 }
 
@@ -156,18 +155,18 @@ final class GoogleVectorSearchCollection extends Resource {
          argMap: {
            'location': location,
            'collection_id': collectionId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (dataSchema != null) 'data_schema': dataSchema,
+           'display_name': ?displayName,
+           'description': ?description,
+           'data_schema': ?dataSchema,
            if (vectorSchema != null)
              'vector_schema': TfArg.literal([
                for (final e in vectorSchema) e.encode(),
              ]),
            if (encryptionSpec != null)
              'encryption_spec': TfArg.literal(encryptionSpec.encode()),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

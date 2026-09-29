@@ -139,45 +139,37 @@ final class ZeroTrustAccessIdentityProviderConfig {
   headerAttributes;
 
   Map<String, Object?> encode() => {
-    if (appsDomain != null) 'apps_domain': appsDomain!.toTfJson(),
-    if (attributes != null) 'attributes': attributes!.toTfJson(),
-    if (authUrl != null) 'auth_url': authUrl!.toTfJson(),
-    if (authorizationServerId != null)
-      'authorization_server_id': authorizationServerId!.toTfJson(),
-    if (centrifyAccount != null)
-      'centrify_account': centrifyAccount!.toTfJson(),
-    if (centrifyAppId != null) 'centrify_app_id': centrifyAppId!.toTfJson(),
-    if (certsUrl != null) 'certs_url': certsUrl!.toTfJson(),
-    if (claims != null) 'claims': claims!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (conditionalAccessEnabled != null)
-      'conditional_access_enabled': conditionalAccessEnabled!.toTfJson(),
-    if (directoryId != null) 'directory_id': directoryId!.toTfJson(),
-    if (emailAttributeName != null)
-      'email_attribute_name': emailAttributeName!.toTfJson(),
-    if (emailClaimName != null) 'email_claim_name': emailClaimName!.toTfJson(),
-    if (enableEncryption != null)
-      'enable_encryption': enableEncryption!.toTfJson(),
-    if (forceAuthn != null) 'force_authn': forceAuthn!.toTfJson(),
-    if (idpPublicCerts != null) 'idp_public_certs': idpPublicCerts!.toTfJson(),
-    if (issuerUrl != null) 'issuer_url': issuerUrl!.toTfJson(),
-    if (maxSsoUrlLength != null)
-      'max_sso_url_length': maxSsoUrlLength!.toTfJson(),
-    if (oktaAccount != null) 'okta_account': oktaAccount!.toTfJson(),
-    if (oneloginAccount != null)
-      'onelogin_account': oneloginAccount!.toTfJson(),
-    if (pingEnvId != null) 'ping_env_id': pingEnvId!.toTfJson(),
-    if (pkceEnabled != null) 'pkce_enabled': pkceEnabled!.toTfJson(),
-    if (prompt != null) 'prompt': prompt!.toTfJson(),
-    if (restrictToAccountMembers != null)
-      'restrict_to_account_members': restrictToAccountMembers!.toTfJson(),
-    if (scopes != null) 'scopes': scopes!.toTfJson(),
-    if (signRequest != null) 'sign_request': signRequest!.toTfJson(),
-    if (ssoTargetUrl != null) 'sso_target_url': ssoTargetUrl!.toTfJson(),
-    if (supportGroups != null) 'support_groups': supportGroups!.toTfJson(),
-    if (tokenUrl != null) 'token_url': tokenUrl!.toTfJson(),
-    if (useLoginHint != null) 'use_login_hint': useLoginHint!.toTfJson(),
+    'apps_domain': ?appsDomain?.toTfJson(),
+    'attributes': ?attributes?.toTfJson(),
+    'auth_url': ?authUrl?.toTfJson(),
+    'authorization_server_id': ?authorizationServerId?.toTfJson(),
+    'centrify_account': ?centrifyAccount?.toTfJson(),
+    'centrify_app_id': ?centrifyAppId?.toTfJson(),
+    'certs_url': ?certsUrl?.toTfJson(),
+    'claims': ?claims?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'conditional_access_enabled': ?conditionalAccessEnabled?.toTfJson(),
+    'directory_id': ?directoryId?.toTfJson(),
+    'email_attribute_name': ?emailAttributeName?.toTfJson(),
+    'email_claim_name': ?emailClaimName?.toTfJson(),
+    'enable_encryption': ?enableEncryption?.toTfJson(),
+    'force_authn': ?forceAuthn?.toTfJson(),
+    'idp_public_certs': ?idpPublicCerts?.toTfJson(),
+    'issuer_url': ?issuerUrl?.toTfJson(),
+    'max_sso_url_length': ?maxSsoUrlLength?.toTfJson(),
+    'okta_account': ?oktaAccount?.toTfJson(),
+    'onelogin_account': ?oneloginAccount?.toTfJson(),
+    'ping_env_id': ?pingEnvId?.toTfJson(),
+    'pkce_enabled': ?pkceEnabled?.toTfJson(),
+    'prompt': ?prompt?.toTfJson(),
+    'restrict_to_account_members': ?restrictToAccountMembers?.toTfJson(),
+    'scopes': ?scopes?.toTfJson(),
+    'sign_request': ?signRequest?.toTfJson(),
+    'sso_target_url': ?ssoTargetUrl?.toTfJson(),
+    'support_groups': ?supportGroups?.toTfJson(),
+    'token_url': ?tokenUrl?.toTfJson(),
+    'use_login_hint': ?useLoginHint?.toTfJson(),
     if (headerAttributes != null)
       'header_attributes': [for (final e in headerAttributes!) e.encode()],
   };
@@ -209,8 +201,8 @@ final class ZeroTrustAccessIdentityProviderConfigHeaderAttributes {
   final TfArg<String>? headerName;
 
   Map<String, Object?> encode() => {
-    if (attributeName != null) 'attribute_name': attributeName!.toTfJson(),
-    if (headerName != null) 'header_name': headerName!.toTfJson(),
+    'attribute_name': ?attributeName?.toTfJson(),
+    'header_name': ?headerName?.toTfJson(),
   };
 }
 
@@ -235,13 +227,10 @@ final class ZeroTrustAccessIdentityProviderScimConfig {
   final TfArg<bool>? userDeprovision;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (identityUpdateBehavior != null)
-      'identity_update_behavior': identityUpdateBehavior!.toTfJson(),
-    if (seatDeprovision != null)
-      'seat_deprovision': seatDeprovision!.toTfJson(),
-    if (userDeprovision != null)
-      'user_deprovision': userDeprovision!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'identity_update_behavior': ?identityUpdateBehavior?.toTfJson(),
+    'seat_deprovision': ?seatDeprovision?.toTfJson(),
+    'user_deprovision': ?userDeprovision?.toTfJson(),
   };
 }
 
@@ -285,13 +274,12 @@ final class CloudflareZeroTrustAccessIdentityProvider extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId.encodeAs('id'),
+           'account_id': ?accountId?.encodeAs('id'),
            'name': name,
-           if (readOnly != null) 'read_only': readOnly,
-           if (samlCertificateSetId != null)
-             'saml_certificate_set_id': samlCertificateSetId,
+           'read_only': ?readOnly,
+           'saml_certificate_set_id': ?samlCertificateSetId,
            'type': type,
-           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
+           'zone_id': ?zoneId?.encodeAs('id'),
            'config': TfArg.literal(config.encode()),
            if (scimConfig != null)
              'scim_config': TfArg.literal(scimConfig.encode()),

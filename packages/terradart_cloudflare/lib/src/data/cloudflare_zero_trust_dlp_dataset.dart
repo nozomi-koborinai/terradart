@@ -23,10 +23,7 @@ final class DataCloudflareZeroTrustDlpDataset extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'dataset_id': datasetId,
-         },
+         argMap: {'account_id': ?accountId, 'dataset_id': datasetId},
        );
 
   @override

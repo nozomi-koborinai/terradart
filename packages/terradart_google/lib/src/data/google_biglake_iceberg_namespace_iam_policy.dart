@@ -26,7 +26,7 @@ final class DataGoogleBiglakeIcebergNamespaceIamPolicy extends Data {
          argMap: {
            'catalog': catalog,
            'namespace_id': namespaceId,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

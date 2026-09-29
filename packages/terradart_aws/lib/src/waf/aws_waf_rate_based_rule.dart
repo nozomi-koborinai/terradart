@@ -68,7 +68,7 @@ final class AwsWafRateBasedRule extends Resource {
            'name': name,
            'rate_key': rateKey,
            'rate_limit': rateLimit,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (predicates != null)
              'predicates': TfArg.literal([
                for (final e in predicates) e.encode(),

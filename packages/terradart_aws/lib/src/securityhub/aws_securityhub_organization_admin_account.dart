@@ -20,10 +20,7 @@ final class AwsSecurityhubOrganizationAdminAccount extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'admin_account_id': adminAccountId,
-           if (region != null) 'region': region,
-         },
+         argMap: {'admin_account_id': adminAccountId, 'region': ?region},
        );
 
   @override

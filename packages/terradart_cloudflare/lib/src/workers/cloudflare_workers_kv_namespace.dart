@@ -40,7 +40,7 @@ final class CloudflareWorkersKvNamespace extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (jurisdiction != null) 'jurisdiction': jurisdiction,
+           'jurisdiction': ?jurisdiction,
            'title': title,
          },
        );

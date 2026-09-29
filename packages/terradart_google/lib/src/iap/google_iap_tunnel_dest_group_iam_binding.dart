@@ -31,11 +31,11 @@ final class GoogleIapTunnelDestGroupIamBinding extends Resource {
          terraformType: tfType,
          argMap: {
            'dest_group': destGroup,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role': role,
            'members': members,
-           if (project != null) 'project': project,
-           if (condition != null) 'condition': condition,
+           'project': ?project,
+           'condition': ?condition,
          },
        );
 

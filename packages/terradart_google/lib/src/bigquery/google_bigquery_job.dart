@@ -911,10 +911,10 @@ final class GoogleBigqueryJob extends Resource {
          terraformType: tfType,
          argMap: {
            'job_id': jobId,
-           if (location != null) 'location': location,
-           if (jobTimeoutMs != null) 'job_timeout_ms': jobTimeoutMs,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'job_timeout_ms': ?jobTimeoutMs,
+           'labels': ?labels,
+           'project': ?project,
            jobConfiguration.blockKey: TfArg.literal(jobConfiguration.encode()),
          },
        );

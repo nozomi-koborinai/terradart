@@ -25,9 +25,9 @@ final class DataGooglePrivilegedAccessManagerEntitlement extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (entitlementId != null) 'entitlement_id': entitlementId,
-           if (location != null) 'location': location,
-           if (parent != null) 'parent': parent,
+           'entitlement_id': ?entitlementId,
+           'location': ?location,
+           'parent': ?parent,
          },
        );
 

@@ -87,21 +87,17 @@ final class NetworkServicesLbRouteExtensionExtensionChainsExtensions {
   final TfArg<String>? timeout;
 
   Map<String, Object?> encode() => {
-    if (authority != null) 'authority': authority!.toTfJson(),
-    if (failOpen != null) 'fail_open': failOpen!.toTfJson(),
-    if (forwardAttributes != null)
-      'forward_attributes': forwardAttributes!.toTfJson(),
-    if (forwardHeaders != null) 'forward_headers': forwardHeaders!.toTfJson(),
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
+    'authority': ?authority?.toTfJson(),
+    'fail_open': ?failOpen?.toTfJson(),
+    'forward_attributes': ?forwardAttributes?.toTfJson(),
+    'forward_headers': ?forwardHeaders?.toTfJson(),
+    'metadata': ?metadata?.toTfJson(),
     'name': name.toTfJson(),
-    if (observabilityMode != null)
-      'observability_mode': observabilityMode!.toTfJson(),
-    if (requestBodySendMode != null)
-      'request_body_send_mode': requestBodySendMode!.toTfJson(),
+    'observability_mode': ?observabilityMode?.toTfJson(),
+    'request_body_send_mode': ?requestBodySendMode?.toTfJson(),
     'service': service.toTfJson(),
-    if (supportedEvents != null)
-      'supported_events': supportedEvents!.toTfJson(),
-    if (timeout != null) 'timeout': timeout!.toTfJson(),
+    'supported_events': ?supportedEvents?.toTfJson(),
+    'timeout': ?timeout?.toTfJson(),
   };
 }
 
@@ -181,10 +177,10 @@ final class GoogleNetworkServicesLbRouteExtension extends Resource {
            'extension_chains': TfArg.literal([
              for (final e in extensionChains) e.encode(),
            ]),
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -21,10 +21,7 @@ final class DataGoogleCertificateManagerCertificates extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (filter != null) 'filter': filter,
-           if (region != null) 'region': region,
-         },
+         argMap: {'filter': ?filter, 'region': ?region},
        );
 
   @override

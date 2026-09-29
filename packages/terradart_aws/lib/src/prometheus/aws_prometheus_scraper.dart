@@ -89,9 +89,8 @@ final class PrometheusScraperRoleConfiguration {
   final TfArg<String>? targetRoleArn;
 
   Map<String, Object?> encode() => {
-    if (sourceRoleArn != null)
-      'source_role_arn': sourceRoleArn!.encodeAs('arn').toTfJson(),
-    if (targetRoleArn != null) 'target_role_arn': targetRoleArn!.toTfJson(),
+    'source_role_arn': ?sourceRoleArn?.encodeAs('arn').toTfJson(),
+    'target_role_arn': ?targetRoleArn?.toTfJson(),
   };
 }
 
@@ -129,8 +128,7 @@ final class PrometheusScraperSourceEks {
 
   Map<String, Object?> encode() => {
     'cluster_arn': clusterArn.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
@@ -175,10 +173,10 @@ final class AwsPrometheusScraper extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (alias != null) 'alias': alias,
-           if (region != null) 'region': region,
+           'alias': ?alias,
+           'region': ?region,
            'scrape_configuration': scrapeConfiguration,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (destination != null)
              'destination': TfArg.literal([
                for (final e in destination) e.encode(),

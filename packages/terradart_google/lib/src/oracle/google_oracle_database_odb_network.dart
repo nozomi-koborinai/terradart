@@ -51,12 +51,11 @@ final class GoogleOracleDatabaseOdbNetwork extends Resource {
            'location': location,
            'odb_network_id': odbNetworkId,
            'network': network.encodeAs('id'),
-           if (gcpOracleZone != null) 'gcp_oracle_zone': gcpOracleZone,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'gcp_oracle_zone': ?gcpOracleZone,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

@@ -19,10 +19,7 @@ final class DataAwsCodecommitRepository extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'repository_name': repositoryName,
-         },
+         argMap: {'region': ?region, 'repository_name': repositoryName},
        );
 
   @override

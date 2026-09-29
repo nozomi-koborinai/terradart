@@ -140,11 +140,10 @@ final class GoogleDataLossPreventionStoredInfoType extends Resource {
          terraformType: tfType,
          argMap: {
            'parent': parent,
-           if (storedInfoTypeId != null)
-             'stored_info_type_id': storedInfoTypeId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'stored_info_type_id': ?storedInfoTypeId,
+           'display_name': ?displayName,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
            definition.blockKey: TfArg.literal(definition.encode()),
          },
        );

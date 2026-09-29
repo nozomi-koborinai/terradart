@@ -27,8 +27,8 @@ final class DataGoogleBigqueryAnalyticsHubDataExchangeIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'data_exchange_id': dataExchangeId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

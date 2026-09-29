@@ -52,20 +52,15 @@ final class DataAwsIamPrincipalPolicySimulation extends Data {
          terraformType: tfType,
          argMap: {
            'action_names': actionNames,
-           if (additionalPoliciesJson != null)
-             'additional_policies_json': additionalPoliciesJson,
-           if (callerArn != null) 'caller_arn': callerArn,
-           if (permissionsBoundaryPoliciesJson != null)
-             'permissions_boundary_policies_json':
-                 permissionsBoundaryPoliciesJson,
+           'additional_policies_json': ?additionalPoliciesJson,
+           'caller_arn': ?callerArn,
+           'permissions_boundary_policies_json':
+               ?permissionsBoundaryPoliciesJson,
            'policy_source_arn': policySourceArn,
-           if (resourceArns != null) 'resource_arns': resourceArns,
-           if (resourceHandlingOption != null)
-             'resource_handling_option': resourceHandlingOption,
-           if (resourceOwnerAccountId != null)
-             'resource_owner_account_id': resourceOwnerAccountId,
-           if (resourcePolicyJson != null)
-             'resource_policy_json': resourcePolicyJson,
+           'resource_arns': ?resourceArns,
+           'resource_handling_option': ?resourceHandlingOption,
+           'resource_owner_account_id': ?resourceOwnerAccountId,
+           'resource_policy_json': ?resourcePolicyJson,
            if (context != null)
              'context': TfArg.literal([for (final e in context) e.encode()]),
          },

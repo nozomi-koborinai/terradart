@@ -73,9 +73,8 @@ final class WorkspacesDirectoryCertificateBasedAuthProperties {
   final TfArg<WorkspacesDirectoryCertificateBasedAuthPropertiesStatus>? status;
 
   Map<String, Object?> encode() => {
-    if (certificateAuthorityArn != null)
-      'certificate_authority_arn': certificateAuthorityArn!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'certificate_authority_arn': ?certificateAuthorityArn?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -109,10 +108,9 @@ final class WorkspacesDirectorySamlProperties {
   final TfArg<String>? userAccessUrl;
 
   Map<String, Object?> encode() => {
-    if (relayStateParameterName != null)
-      'relay_state_parameter_name': relayStateParameterName!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
-    if (userAccessUrl != null) 'user_access_url': userAccessUrl!.toTfJson(),
+    'relay_state_parameter_name': ?relayStateParameterName?.toTfJson(),
+    'status': ?status?.toTfJson(),
+    'user_access_url': ?userAccessUrl?.toTfJson(),
   };
 }
 
@@ -150,16 +148,11 @@ final class WorkspacesDirectorySelfServicePermissions {
   final TfArg<bool>? switchRunningMode;
 
   Map<String, Object?> encode() => {
-    if (changeComputeType != null)
-      'change_compute_type': changeComputeType!.toTfJson(),
-    if (increaseVolumeSize != null)
-      'increase_volume_size': increaseVolumeSize!.toTfJson(),
-    if (rebuildWorkspace != null)
-      'rebuild_workspace': rebuildWorkspace!.toTfJson(),
-    if (restartWorkspace != null)
-      'restart_workspace': restartWorkspace!.toTfJson(),
-    if (switchRunningMode != null)
-      'switch_running_mode': switchRunningMode!.toTfJson(),
+    'change_compute_type': ?changeComputeType?.toTfJson(),
+    'increase_volume_size': ?increaseVolumeSize?.toTfJson(),
+    'rebuild_workspace': ?rebuildWorkspace?.toTfJson(),
+    'restart_workspace': ?restartWorkspace?.toTfJson(),
+    'switch_running_mode': ?switchRunningMode?.toTfJson(),
   };
 }
 
@@ -207,21 +200,15 @@ final class WorkspacesDirectoryWorkspaceAccessProperties {
   accessEndpointConfig;
 
   Map<String, Object?> encode() => {
-    if (deviceTypeAndroid != null)
-      'device_type_android': deviceTypeAndroid!.toTfJson(),
-    if (deviceTypeChromeos != null)
-      'device_type_chromeos': deviceTypeChromeos!.toTfJson(),
-    if (deviceTypeIos != null) 'device_type_ios': deviceTypeIos!.toTfJson(),
-    if (deviceTypeLinux != null)
-      'device_type_linux': deviceTypeLinux!.toTfJson(),
-    if (deviceTypeOsx != null) 'device_type_osx': deviceTypeOsx!.toTfJson(),
-    if (deviceTypeWeb != null) 'device_type_web': deviceTypeWeb!.toTfJson(),
-    if (deviceTypeWindows != null)
-      'device_type_windows': deviceTypeWindows!.toTfJson(),
-    if (deviceTypeZeroclient != null)
-      'device_type_zeroclient': deviceTypeZeroclient!.toTfJson(),
-    if (accessEndpointConfig != null)
-      'access_endpoint_config': accessEndpointConfig!.encode(),
+    'device_type_android': ?deviceTypeAndroid?.toTfJson(),
+    'device_type_chromeos': ?deviceTypeChromeos?.toTfJson(),
+    'device_type_ios': ?deviceTypeIos?.toTfJson(),
+    'device_type_linux': ?deviceTypeLinux?.toTfJson(),
+    'device_type_osx': ?deviceTypeOsx?.toTfJson(),
+    'device_type_web': ?deviceTypeWeb?.toTfJson(),
+    'device_type_windows': ?deviceTypeWindows?.toTfJson(),
+    'device_type_zeroclient': ?deviceTypeZeroclient?.toTfJson(),
+    'access_endpoint_config': ?accessEndpointConfig?.encode(),
   };
 }
 
@@ -428,16 +415,12 @@ final class WorkspacesDirectoryWorkspaceCreationProperties {
   final TfArg<bool>? userEnabledAsLocalAdministrator;
 
   Map<String, Object?> encode() => {
-    if (customSecurityGroupId != null)
-      'custom_security_group_id': customSecurityGroupId!.toTfJson(),
-    if (defaultOu != null) 'default_ou': defaultOu!.toTfJson(),
-    if (enableInternetAccess != null)
-      'enable_internet_access': enableInternetAccess!.toTfJson(),
-    if (enableMaintenanceMode != null)
-      'enable_maintenance_mode': enableMaintenanceMode!.toTfJson(),
-    if (userEnabledAsLocalAdministrator != null)
-      'user_enabled_as_local_administrator': userEnabledAsLocalAdministrator!
-          .toTfJson(),
+    'custom_security_group_id': ?customSecurityGroupId?.toTfJson(),
+    'default_ou': ?defaultOu?.toTfJson(),
+    'enable_internet_access': ?enableInternetAccess?.toTfJson(),
+    'enable_maintenance_mode': ?enableMaintenanceMode?.toTfJson(),
+    'user_enabled_as_local_administrator': ?userEnabledAsLocalAdministrator
+        ?.toTfJson(),
   };
 }
 
@@ -471,18 +454,16 @@ final class AwsWorkspacesDirectory extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (directoryId != null) 'directory_id': directoryId,
-           if (ipGroupIds != null) 'ip_group_ids': ipGroupIds,
-           if (region != null) 'region': region,
-           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (tenancy != null) 'tenancy': tenancy,
-           if (userIdentityType != null) 'user_identity_type': userIdentityType,
-           if (workspaceDirectoryDescription != null)
-             'workspace_directory_description': workspaceDirectoryDescription,
-           if (workspaceDirectoryName != null)
-             'workspace_directory_name': workspaceDirectoryName,
-           if (workspaceType != null) 'workspace_type': workspaceType,
+           'directory_id': ?directoryId,
+           'ip_group_ids': ?ipGroupIds,
+           'region': ?region,
+           'subnet_ids': ?subnetIds?.encodeAs('id'),
+           'tags': ?tags,
+           'tenancy': ?tenancy,
+           'user_identity_type': ?userIdentityType,
+           'workspace_directory_description': ?workspaceDirectoryDescription,
+           'workspace_directory_name': ?workspaceDirectoryName,
+           'workspace_type': ?workspaceType,
            if (activeDirectoryConfig != null)
              'active_directory_config': TfArg.literal(
                activeDirectoryConfig.encode(),

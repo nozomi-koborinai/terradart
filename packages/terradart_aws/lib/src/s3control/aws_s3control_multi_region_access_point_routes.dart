@@ -50,9 +50,9 @@ final class AwsS3controlMultiRegionAccessPointRoutes extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'mrap': mrap,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (route != null)
              'route': TfArg.literal([for (final e in route) e.encode()]),
          },

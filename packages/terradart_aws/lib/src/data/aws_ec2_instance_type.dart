@@ -18,10 +18,7 @@ final class DataAwsEc2InstanceType extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'instance_type': instanceType,
-           if (region != null) 'region': region,
-         },
+         argMap: {'instance_type': instanceType, 'region': ?region},
        );
 
   @override

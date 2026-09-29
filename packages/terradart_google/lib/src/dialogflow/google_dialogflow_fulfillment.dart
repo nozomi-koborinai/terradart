@@ -38,10 +38,10 @@ final class DialogflowFulfillmentGenericWebService {
   final TfArg<String>? username;
 
   Map<String, Object?> encode() => {
-    if (password != null) 'password': password!.toTfJson(),
-    if (requestHeaders != null) 'request_headers': requestHeaders!.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'request_headers': ?requestHeaders?.toTfJson(),
     'uri': uri.toTfJson(),
-    if (username != null) 'username': username!.toTfJson(),
+    'username': ?username?.toTfJson(),
   };
 }
 
@@ -88,13 +88,13 @@ final class GoogleDialogflowFulfillment extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (enabled != null) 'enabled': enabled,
+           'enabled': ?enabled,
            if (features != null)
              'features': TfArg.literal([for (final e in features) e.encode()]),
            if (genericWebService != null)
              'generic_web_service': TfArg.literal(genericWebService.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

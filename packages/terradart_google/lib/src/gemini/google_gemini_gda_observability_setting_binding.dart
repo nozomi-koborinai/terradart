@@ -32,12 +32,12 @@ final class GoogleGeminiGdaObservabilitySettingBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'gda_observability_setting_id': gdaObservabilitySettingId,
-           if (labels != null) 'labels': labels,
-           if (location != null) 'location': location,
-           if (product != null) 'product': product,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'location': ?location,
+           'product': ?product,
+           'project': ?project,
            'setting_binding_id': settingBindingId,
            'target': target,
          },

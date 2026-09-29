@@ -26,8 +26,8 @@ final class DataGoogleGeminiRepositoryGroupIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'code_repository_index': codeRepositoryIndex,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
            'repository_group_id': repositoryGroupId,
          },
        );

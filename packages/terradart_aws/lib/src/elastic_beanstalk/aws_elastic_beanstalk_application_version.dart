@@ -32,13 +32,13 @@ final class AwsElasticBeanstalkApplicationVersion extends Resource {
          argMap: {
            'application': application,
            'bucket': bucket.encodeAs('id'),
-           if (description != null) 'description': description,
-           if (forceDelete != null) 'force_delete': forceDelete,
+           'description': ?description,
+           'force_delete': ?forceDelete,
            'key': key,
            'name': name,
-           if (process != null) 'process': process,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'process': ?process,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

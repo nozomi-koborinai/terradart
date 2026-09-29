@@ -23,11 +23,7 @@ final class DataGoogleDataCatalogTaxonomyIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-           'taxonomy': taxonomy,
-         },
+         argMap: {'project': ?project, 'region': ?region, 'taxonomy': taxonomy},
        );
 
   @override

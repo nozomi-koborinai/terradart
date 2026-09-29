@@ -160,8 +160,7 @@ final class BedrockagentcoreMemoryStrategyConfigurationSelfManagedConfiguration 
   triggerConditions;
 
   Map<String, Object?> encode() => {
-    if (historicalContextWindowSize != null)
-      'historical_context_window_size': historicalContextWindowSize!.toTfJson(),
+    'historical_context_window_size': ?historicalContextWindowSize?.toTfJson(),
     if (invocationConfiguration != null)
       'invocation_configuration': [
         for (final e in invocationConfiguration!) e.encode(),
@@ -312,9 +311,9 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchema {
   extractionConfig;
 
   Map<String, Object?> encode() => {
-    if (extractionType != null) 'extraction_type': extractionType!.toTfJson(),
+    'extraction_type': ?extractionType?.toTfJson(),
     'key': key.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
     if (extractionConfig != null)
       'extraction_config': [for (final e in extractionConfig!) e.encode()],
   };
@@ -389,8 +388,7 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtrac
 
   Map<String, Object?> encode() => {
     'definition': definition.toTfJson(),
-    if (llmExtractionInstruction != null)
-      'llm_extraction_instruction': llmExtractionInstruction!.toTfJson(),
+    'llm_extraction_instruction': ?llmExtractionInstruction?.toTfJson(),
     if (validation != null)
       'validation': [for (final e in validation!) e.encode()],
   };
@@ -447,8 +445,8 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtrac
   final TfArg<num>? minValue;
 
   Map<String, Object?> encode() => {
-    if (maxValue != null) 'max_value': maxValue!.toTfJson(),
-    if (minValue != null) 'min_value': minValue!.toTfJson(),
+    'max_value': ?maxValue?.toTfJson(),
+    'min_value': ?minValue?.toTfJson(),
   };
 }
 
@@ -466,8 +464,8 @@ final class BedrockagentcoreMemoryStrategyMemoryRecordSchemaMetadataSchemaExtrac
   final TfArg<num>? maxItems;
 
   Map<String, Object?> encode() => {
-    if (allowedValues != null) 'allowed_values': allowedValues!.toTfJson(),
-    if (maxItems != null) 'max_items': maxItems!.toTfJson(),
+    'allowed_values': ?allowedValues?.toTfJson(),
+    'max_items': ?maxItems?.toTfJson(),
   };
 }
 
@@ -524,15 +522,13 @@ final class AwsBedrockagentcoreMemoryStrategy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (memoryExecutionRoleArn != null)
-             'memory_execution_role_arn': memoryExecutionRoleArn,
+           'description': ?description,
+           'memory_execution_role_arn': ?memoryExecutionRoleArn,
            'memory_id': memoryId,
            'name': name,
-           if (namespaceTemplates != null)
-             'namespace_templates': namespaceTemplates,
-           if (namespaces != null) 'namespaces': namespaces,
-           if (region != null) 'region': region,
+           'namespace_templates': ?namespaceTemplates,
+           'namespaces': ?namespaces,
+           'region': ?region,
            'type': type,
            if (configuration != null)
              'configuration': TfArg.literal([

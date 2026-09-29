@@ -684,16 +684,15 @@ final class GoogleMonitoringAlertPolicy extends Resource {
            'conditions': TfArg.literal(
              conditions.map((c) => c.toArgMap()).toList(),
            ),
-           if (notificationChannels != null)
-             'notification_channels': notificationChannels,
+           'notification_channels': ?notificationChannels,
            if (alertStrategy != null)
              'alert_strategy': TfArg.literal([alertStrategy.toArgMap()]),
            if (documentation != null)
              'documentation': TfArg.literal([documentation.toArgMap()]),
-           if (enabled != null) 'enabled': enabled,
-           if (severity != null) 'severity': severity,
-           if (userLabels != null) 'user_labels': userLabels,
-           if (project != null) 'project': project,
+           'enabled': ?enabled,
+           'severity': ?severity,
+           'user_labels': ?userLabels,
+           'project': ?project,
          },
        );
 

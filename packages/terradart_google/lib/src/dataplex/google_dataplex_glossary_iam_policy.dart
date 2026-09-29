@@ -30,8 +30,8 @@ final class GoogleDataplexGlossaryIamPolicy extends Resource {
          argMap: {
            'glossary_id': glossaryId,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

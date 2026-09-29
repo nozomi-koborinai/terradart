@@ -21,8 +21,8 @@ final class DataAwsPrometheusWorkspace extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'workspace_id': workspaceId,
          },
        );

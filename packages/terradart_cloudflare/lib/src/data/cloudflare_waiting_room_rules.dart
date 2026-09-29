@@ -23,10 +23,7 @@ final class DataCloudflareWaitingRoomRules extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'waiting_room_id': waitingRoomId,
-           if (zoneId != null) 'zone_id': zoneId,
-         },
+         argMap: {'waiting_room_id': waitingRoomId, 'zone_id': ?zoneId},
        );
 
   @override

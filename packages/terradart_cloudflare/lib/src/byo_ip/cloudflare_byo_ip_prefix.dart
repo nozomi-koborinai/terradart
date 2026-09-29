@@ -36,10 +36,9 @@ final class CloudflareByoIpPrefix extends Resource {
            'account_id': accountId.encodeAs('id'),
            'asn': asn,
            'cidr': cidr,
-           if (delegateLoaCreation != null)
-             'delegate_loa_creation': delegateLoaCreation,
-           if (description != null) 'description': description,
-           if (loaDocumentId != null) 'loa_document_id': loaDocumentId,
+           'delegate_loa_creation': ?delegateLoaCreation,
+           'description': ?description,
+           'loa_document_id': ?loaDocumentId,
          },
        );
 

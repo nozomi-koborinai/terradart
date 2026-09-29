@@ -83,8 +83,7 @@ final class CloudflareImageVariant extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'id': id,
-           if (neverRequireSignedUrls != null)
-             'never_require_signed_urls': neverRequireSignedUrls,
+           'never_require_signed_urls': ?neverRequireSignedUrls,
            'options': TfArg.literal(options.encode()),
          },
        );

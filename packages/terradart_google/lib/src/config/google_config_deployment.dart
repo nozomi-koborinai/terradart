@@ -192,19 +192,16 @@ final class GoogleConfigDeployment extends Resource {
            'terraform_blueprint': TfArg.literal([
              terraformBlueprint.toArgMap(),
            ]),
-           if (labels != null) 'labels': labels,
-           if (annotations != null) 'annotations': annotations,
-           if (tfVersionConstraint != null)
-             'tf_version_constraint': tfVersionConstraint,
-           if (artifactsGcsBucket != null)
-             'artifacts_gcs_bucket': artifactsGcsBucket,
-           if (workerPool != null) 'worker_pool': workerPool,
-           if (importExistingResources != null)
-             'import_existing_resources': importExistingResources,
-           if (quotaValidation != null) 'quota_validation': quotaValidation,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'annotations': ?annotations,
+           'tf_version_constraint': ?tfVersionConstraint,
+           'artifacts_gcs_bucket': ?artifactsGcsBucket,
+           'worker_pool': ?workerPool,
+           'import_existing_resources': ?importExistingResources,
+           'quota_validation': ?quotaValidation,
+           'force_destroy': ?forceDestroy,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

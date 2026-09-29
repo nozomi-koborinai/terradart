@@ -25,9 +25,8 @@ final class CloudflareZeroTrustGatewayCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (activate != null) 'activate': activate,
-           if (validityPeriodDays != null)
-             'validity_period_days': validityPeriodDays,
+           'activate': ?activate,
+           'validity_period_days': ?validityPeriodDays,
          },
        );
 

@@ -31,10 +31,7 @@ final class DataCloudflareZoneHold extends Data {
     TfArg<String>? zoneId,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (zoneId != null) 'zone_id': zoneId},
-       );
+  }) : super(terraformType: tfType, argMap: {'zone_id': ?zoneId});
 
   @override
   Set<String> get sensitiveFields => _cloudflareZoneHoldSensitive;

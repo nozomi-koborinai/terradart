@@ -101,7 +101,7 @@ final class Macie2ClassificationJobS3JobDefinition {
 
   Map<String, Object?> encode() => {
     ...?bucket?.encode(),
-    if (scoping != null) 'scoping': scoping!.encode(),
+    'scoping': ?scoping?.encode(),
   };
 }
 
@@ -179,8 +179,8 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteria {
   final Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludes? includes;
 
   Map<String, Object?> encode() => {
-    if (excludes != null) 'excludes': excludes!.encode(),
-    if (includes != null) 'includes': includes!.encode(),
+    'excludes': ?excludes?.encode(),
+    'includes': ?includes?.encode(),
   };
 }
 
@@ -216,8 +216,8 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAnd {
   tagCriterion;
 
   Map<String, Object?> encode() => {
-    if (simpleCriterion != null) 'simple_criterion': simpleCriterion!.encode(),
-    if (tagCriterion != null) 'tag_criterion': tagCriterion!.encode(),
+    'simple_criterion': ?simpleCriterion?.encode(),
+    'tag_criterion': ?tagCriterion?.encode(),
   };
 }
 
@@ -241,9 +241,9 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpl
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (comparator != null) 'comparator': comparator!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'comparator': ?comparator?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -286,7 +286,7 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCr
   tagValues;
 
   Map<String, Object?> encode() => {
-    if (comparator != null) 'comparator': comparator!.toTfJson(),
+    'comparator': ?comparator?.toTfJson(),
     if (tagValues != null)
       'tag_values': [for (final e in tagValues!) e.encode()],
   };
@@ -325,8 +325,8 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndTagCr
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -362,8 +362,8 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAnd {
   tagCriterion;
 
   Map<String, Object?> encode() => {
-    if (simpleCriterion != null) 'simple_criterion': simpleCriterion!.encode(),
-    if (tagCriterion != null) 'tag_criterion': tagCriterion!.encode(),
+    'simple_criterion': ?simpleCriterion?.encode(),
+    'tag_criterion': ?tagCriterion?.encode(),
   };
 }
 
@@ -387,9 +387,9 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndSimpl
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (comparator != null) 'comparator': comparator!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'comparator': ?comparator?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -432,7 +432,7 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCr
   tagValues;
 
   Map<String, Object?> encode() => {
-    if (comparator != null) 'comparator': comparator!.toTfJson(),
+    'comparator': ?comparator?.toTfJson(),
     if (tagValues != null)
       'tag_values': [for (final e in tagValues!) e.encode()],
   };
@@ -471,8 +471,8 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCr
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -509,8 +509,8 @@ final class Macie2ClassificationJobS3JobDefinitionScoping {
   final Macie2ClassificationJobS3JobDefinitionScopingIncludes? includes;
 
   Map<String, Object?> encode() => {
-    if (excludes != null) 'excludes': excludes!.encode(),
-    if (includes != null) 'includes': includes!.encode(),
+    'excludes': ?excludes?.encode(),
+    'includes': ?includes?.encode(),
   };
 }
 
@@ -543,8 +543,8 @@ final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAnd {
   tagScopeTerm;
 
   Map<String, Object?> encode() => {
-    if (simpleScopeTerm != null) 'simple_scope_term': simpleScopeTerm!.encode(),
-    if (tagScopeTerm != null) 'tag_scope_term': tagScopeTerm!.encode(),
+    'simple_scope_term': ?simpleScopeTerm?.encode(),
+    'tag_scope_term': ?tagScopeTerm?.encode(),
   };
 }
 
@@ -571,9 +571,9 @@ final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAndSimpleScopeT
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (comparator != null) 'comparator': comparator!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'comparator': ?comparator?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -643,9 +643,9 @@ final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTerm
   tagValues;
 
   Map<String, Object?> encode() => {
-    if (comparator != null) 'comparator': comparator!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (target != null) 'target': target!.toTfJson(),
+    'comparator': ?comparator?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'target': ?target?.toTfJson(),
     if (tagValues != null)
       'tag_values': [for (final e in tagValues!) e.encode()],
   };
@@ -708,8 +708,8 @@ final class Macie2ClassificationJobS3JobDefinitionScopingExcludesAndTagScopeTerm
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -742,8 +742,8 @@ final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAnd {
   tagScopeTerm;
 
   Map<String, Object?> encode() => {
-    if (simpleScopeTerm != null) 'simple_scope_term': simpleScopeTerm!.encode(),
-    if (tagScopeTerm != null) 'tag_scope_term': tagScopeTerm!.encode(),
+    'simple_scope_term': ?simpleScopeTerm?.encode(),
+    'tag_scope_term': ?tagScopeTerm?.encode(),
   };
 }
 
@@ -764,9 +764,9 @@ final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAndSimpleScopeT
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (comparator != null) 'comparator': comparator!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'comparator': ?comparator?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -799,9 +799,9 @@ final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTerm
   tagValues;
 
   Map<String, Object?> encode() => {
-    if (comparator != null) 'comparator': comparator!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (target != null) 'target': target!.toTfJson(),
+    'comparator': ?comparator?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'target': ?target?.toTfJson(),
     if (tagValues != null)
       'tag_values': [for (final e in tagValues!) e.encode()],
   };
@@ -845,8 +845,8 @@ final class Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTerm
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -966,17 +966,15 @@ final class AwsMacie2ClassificationJob extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customDataIdentifierIds != null)
-             'custom_data_identifier_ids': customDataIdentifierIds,
-           if (description != null) 'description': description,
-           if (initialRun != null) 'initial_run': initialRun,
-           if (jobStatus != null) 'job_status': jobStatus,
+           'custom_data_identifier_ids': ?customDataIdentifierIds,
+           'description': ?description,
+           'initial_run': ?initialRun,
+           'job_status': ?jobStatus,
            'job_type': jobType,
            ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (samplingPercentage != null)
-             'sampling_percentage': samplingPercentage,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'sampling_percentage': ?samplingPercentage,
+           'tags': ?tags,
            's3_job_definition': TfArg.literal(s3JobDefinition.encode()),
            if (scheduleFrequency != null)
              'schedule_frequency': TfArg.literal(scheduleFrequency.encode()),

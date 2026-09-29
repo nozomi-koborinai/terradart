@@ -27,9 +27,9 @@ final class DataCloudflareZeroTrustAccessMtlsCertificate extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'certificate_id': certificateId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'zone_id': ?zoneId,
          },
        );
 

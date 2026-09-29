@@ -24,9 +24,8 @@ final class AppstreamDirectoryConfigCertificateBasedAuthProperties {
   status;
 
   Map<String, Object?> encode() => {
-    if (certificateAuthorityArn != null)
-      'certificate_authority_arn': certificateAuthorityArn!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'certificate_authority_arn': ?certificateAuthorityArn?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -86,7 +85,7 @@ final class AwsAppstreamDirectoryConfig extends Resource {
            'directory_name': directoryName,
            'organizational_unit_distinguished_names':
                organizationalUnitDistinguishedNames,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (certificateBasedAuthProperties != null)
              'certificate_based_auth_properties': TfArg.literal(
                certificateBasedAuthProperties.encode(),

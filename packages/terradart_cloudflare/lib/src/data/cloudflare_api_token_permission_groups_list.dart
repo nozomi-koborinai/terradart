@@ -23,11 +23,7 @@ final class DataCloudflareApiTokenPermissionGroupsList extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (maxItems != null) 'max_items': maxItems,
-           if (name != null) 'name': name,
-           if (scope != null) 'scope': scope,
-         },
+         argMap: {'max_items': ?maxItems, 'name': ?name, 'scope': ?scope},
        );
 
   @override

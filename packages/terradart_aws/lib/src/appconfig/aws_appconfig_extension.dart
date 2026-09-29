@@ -66,9 +66,9 @@ final class AppconfigExtensionActionPointAction {
   final TfArg<String> uri;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
     'uri': uri.toTfJson(),
   };
 }
@@ -90,9 +90,9 @@ final class AppconfigExtensionParameter {
   final TfArg<bool>? required;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
+    'required': ?required?.toTfJson(),
   };
 }
 
@@ -115,10 +115,10 @@ final class AwsAppconfigExtension extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'action_point': TfArg.literal([
              for (final e in actionPoint) e.encode(),
            ]),

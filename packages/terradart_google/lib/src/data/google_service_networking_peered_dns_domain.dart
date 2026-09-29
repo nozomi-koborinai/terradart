@@ -26,7 +26,7 @@ final class DataGoogleServiceNetworkingPeeredDnsDomain extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'name': name,
            'network': network,
            'project': project,

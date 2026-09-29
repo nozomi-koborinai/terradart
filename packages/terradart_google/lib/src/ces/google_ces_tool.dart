@@ -20,8 +20,8 @@ final class CesToolAgentTool {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (agent != null) 'agent': agent!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'agent': ?agent?.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -46,10 +46,10 @@ final class CesToolClientFunction {
   final CesToolClientFunctionResponse? response;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.encode(),
-    if (response != null) 'response': response!.encode(),
+    'parameters': ?parameters?.encode(),
+    'response': ?response?.encode(),
   };
 }
 
@@ -118,26 +118,25 @@ final class CesToolClientFunctionParameters {
   final TfArg<bool>? uniqueItems;
 
   Map<String, Object?> encode() => {
-    if (additionalProperties != null)
-      'additional_properties': additionalProperties!.toTfJson(),
-    if (anyOf != null) 'any_of': anyOf!.toTfJson(),
-    if (defaultCase != null) 'default': defaultCase!.toTfJson(),
-    if (defs != null) 'defs': defs!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (enumCase != null) 'enum': enumCase!.toTfJson(),
-    if (items != null) 'items': items!.toTfJson(),
-    if (maxItems != null) 'max_items': maxItems!.toTfJson(),
-    if (maximum != null) 'maximum': maximum!.toTfJson(),
-    if (minItems != null) 'min_items': minItems!.toTfJson(),
-    if (minimum != null) 'minimum': minimum!.toTfJson(),
-    if (nullable != null) 'nullable': nullable!.toTfJson(),
-    if (prefixItems != null) 'prefix_items': prefixItems!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (ref != null) 'ref': ref!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'additional_properties': ?additionalProperties?.toTfJson(),
+    'any_of': ?anyOf?.toTfJson(),
+    'default': ?defaultCase?.toTfJson(),
+    'defs': ?defs?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'enum': ?enumCase?.toTfJson(),
+    'items': ?items?.toTfJson(),
+    'max_items': ?maxItems?.toTfJson(),
+    'maximum': ?maximum?.toTfJson(),
+    'min_items': ?minItems?.toTfJson(),
+    'minimum': ?minimum?.toTfJson(),
+    'nullable': ?nullable?.toTfJson(),
+    'prefix_items': ?prefixItems?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'ref': ?ref?.toTfJson(),
+    'required': ?required?.toTfJson(),
+    'title': ?title?.toTfJson(),
     'type': type.toTfJson(),
-    if (uniqueItems != null) 'unique_items': uniqueItems!.toTfJson(),
+    'unique_items': ?uniqueItems?.toTfJson(),
   };
 }
 
@@ -206,26 +205,25 @@ final class CesToolClientFunctionResponse {
   final TfArg<bool>? uniqueItems;
 
   Map<String, Object?> encode() => {
-    if (additionalProperties != null)
-      'additional_properties': additionalProperties!.toTfJson(),
-    if (anyOf != null) 'any_of': anyOf!.toTfJson(),
-    if (defaultCase != null) 'default': defaultCase!.toTfJson(),
-    if (defs != null) 'defs': defs!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (enumCase != null) 'enum': enumCase!.toTfJson(),
-    if (items != null) 'items': items!.toTfJson(),
-    if (maxItems != null) 'max_items': maxItems!.toTfJson(),
-    if (maximum != null) 'maximum': maximum!.toTfJson(),
-    if (minItems != null) 'min_items': minItems!.toTfJson(),
-    if (minimum != null) 'minimum': minimum!.toTfJson(),
-    if (nullable != null) 'nullable': nullable!.toTfJson(),
-    if (prefixItems != null) 'prefix_items': prefixItems!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (ref != null) 'ref': ref!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'additional_properties': ?additionalProperties?.toTfJson(),
+    'any_of': ?anyOf?.toTfJson(),
+    'default': ?defaultCase?.toTfJson(),
+    'defs': ?defs?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'enum': ?enumCase?.toTfJson(),
+    'items': ?items?.toTfJson(),
+    'max_items': ?maxItems?.toTfJson(),
+    'maximum': ?maximum?.toTfJson(),
+    'min_items': ?minItems?.toTfJson(),
+    'minimum': ?minimum?.toTfJson(),
+    'nullable': ?nullable?.toTfJson(),
+    'prefix_items': ?prefixItems?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'ref': ?ref?.toTfJson(),
+    'required': ?required?.toTfJson(),
+    'title': ?title?.toTfJson(),
     'type': type.toTfJson(),
-    if (uniqueItems != null) 'unique_items': uniqueItems!.toTfJson(),
+    'unique_items': ?uniqueItems?.toTfJson(),
   };
 }
 
@@ -259,10 +257,9 @@ final class CesToolDataStoreTool {
   final List<CesToolDataStoreToolModalityConfigs>? modalityConfigs;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (filterParameterBehavior != null)
-      'filter_parameter_behavior': filterParameterBehavior!.toTfJson(),
-    if (maxResults != null) 'max_results': maxResults!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'filter_parameter_behavior': ?filterParameterBehavior?.toTfJson(),
+    'max_results': ?maxResults?.toTfJson(),
     'name': name.toTfJson(),
     if (boostSpecs != null)
       'boost_specs': [for (final e in boostSpecs!) e.encode()],
@@ -388,10 +385,9 @@ final class CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecs {
   boostControlSpec;
 
   Map<String, Object?> encode() => {
-    if (boost != null) 'boost': boost!.toTfJson(),
+    'boost': ?boost?.toTfJson(),
     'condition': condition.toTfJson(),
-    if (boostControlSpec != null)
-      'boost_control_spec': boostControlSpec!.encode(),
+    'boost_control_spec': ?boostControlSpec?.encode(),
   };
 }
 
@@ -418,10 +414,9 @@ final class CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecsBoostControlSpe
   controlPoints;
 
   Map<String, Object?> encode() => {
-    if (attributeType != null) 'attribute_type': attributeType!.toTfJson(),
-    if (fieldName != null) 'field_name': fieldName!.toTfJson(),
-    if (interpolationType != null)
-      'interpolation_type': interpolationType!.toTfJson(),
+    'attribute_type': ?attributeType?.toTfJson(),
+    'field_name': ?fieldName?.toTfJson(),
+    'interpolation_type': ?interpolationType?.toTfJson(),
     if (controlPoints != null)
       'control_points': [for (final e in controlPoints!) e.encode()],
   };
@@ -441,8 +436,8 @@ final class CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecsBoostControlSpe
   final TfArg<num>? boostAmount;
 
   Map<String, Object?> encode() => {
-    if (attributeValue != null) 'attribute_value': attributeValue!.toTfJson(),
-    if (boostAmount != null) 'boost_amount': boostAmount!.toTfJson(),
+    'attribute_value': ?attributeValue?.toTfJson(),
+    'boost_amount': ?boostAmount?.toTfJson(),
   };
 }
 
@@ -457,8 +452,8 @@ final class CesToolDataStoreToolDataStoreSource {
   final CesToolDataStoreToolDataStoreSourceDataStore? dataStore;
 
   Map<String, Object?> encode() => {
-    if (filter != null) 'filter': filter!.toTfJson(),
-    if (dataStore != null) 'data_store': dataStore!.encode(),
+    'filter': ?filter?.toTfJson(),
+    'data_store': ?dataStore?.encode(),
   };
 }
 
@@ -492,7 +487,7 @@ final class CesToolDataStoreToolEngineSource {
 
   Map<String, Object?> encode() => {
     'engine': engine.toTfJson(),
-    if (filter != null) 'filter': filter!.toTfJson(),
+    'filter': ?filter?.toTfJson(),
     if (dataStoreSources != null)
       'data_store_sources': [for (final e in dataStoreSources!) e.encode()],
   };
@@ -512,8 +507,8 @@ final class CesToolDataStoreToolEngineSourceDataStoreSources {
   final CesToolDataStoreToolEngineSourceDataStoreSourcesDataStore? dataStore;
 
   Map<String, Object?> encode() => {
-    if (filter != null) 'filter': filter!.toTfJson(),
-    if (dataStore != null) 'data_store': dataStore!.encode(),
+    'filter': ?filter?.toTfJson(),
+    'data_store': ?dataStore?.encode(),
   };
 }
 
@@ -555,11 +550,10 @@ final class CesToolDataStoreToolModalityConfigs {
 
   Map<String, Object?> encode() => {
     'modality_type': modalityType.toTfJson(),
-    if (groundingConfig != null) 'grounding_config': groundingConfig!.encode(),
-    if (rewriterConfig != null) 'rewriter_config': rewriterConfig!.encode(),
-    if (snippetsConfig != null) 'snippets_config': snippetsConfig!.encode(),
-    if (summarizationConfig != null)
-      'summarization_config': summarizationConfig!.encode(),
+    'grounding_config': ?groundingConfig?.encode(),
+    'rewriter_config': ?rewriterConfig?.encode(),
+    'snippets_config': ?snippetsConfig?.encode(),
+    'summarization_config': ?summarizationConfig?.encode(),
   };
 }
 
@@ -577,8 +571,8 @@ final class CesToolDataStoreToolModalityConfigsGroundingConfig {
   final TfArg<num>? groundingLevel;
 
   Map<String, Object?> encode() => {
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (groundingLevel != null) 'grounding_level': groundingLevel!.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'grounding_level': ?groundingLevel?.toTfJson(),
   };
 }
 
@@ -600,8 +594,8 @@ final class CesToolDataStoreToolModalityConfigsRewriterConfig {
   modelSettings;
 
   Map<String, Object?> encode() => {
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (prompt != null) 'prompt': prompt!.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'prompt': ?prompt?.toTfJson(),
     'model_settings': modelSettings.encode(),
   };
 }
@@ -620,8 +614,8 @@ final class CesToolDataStoreToolModalityConfigsRewriterConfigModelSettings {
   final TfArg<num>? temperature;
 
   Map<String, Object?> encode() => {
-    if (model != null) 'model': model!.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
+    'model': ?model?.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
   };
 }
 
@@ -636,7 +630,7 @@ final class CesToolDataStoreToolModalityConfigsSnippetsConfig {
   final TfArg<bool>? enableSnippets;
 
   Map<String, Object?> encode() => {
-    if (enableSnippets != null) 'enable_snippets': enableSnippets!.toTfJson(),
+    'enable_snippets': ?enableSnippets?.toTfJson(),
   };
 }
 
@@ -658,9 +652,9 @@ final class CesToolDataStoreToolModalityConfigsSummarizationConfig {
   modelSettings;
 
   Map<String, Object?> encode() => {
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (prompt != null) 'prompt': prompt!.toTfJson(),
-    if (modelSettings != null) 'model_settings': modelSettings!.encode(),
+    'disabled': ?disabled?.toTfJson(),
+    'prompt': ?prompt?.toTfJson(),
+    'model_settings': ?modelSettings?.encode(),
   };
 }
 
@@ -678,8 +672,8 @@ final class CesToolDataStoreToolModalityConfigsSummarizationConfigModelSettings 
   final TfArg<num>? temperature;
 
   Map<String, Object?> encode() => {
-    if (model != null) 'model': model!.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
+    'model': ?model?.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
   };
 }
 
@@ -703,9 +697,9 @@ final class CesToolFileSearchTool {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (corpusType != null) 'corpus_type': corpusType!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (fileCorpus != null) 'file_corpus': fileCorpus!.toTfJson(),
+    'corpus_type': ?corpusType?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'file_corpus': ?fileCorpus?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -747,13 +741,12 @@ final class CesToolGoogleSearchTool {
   final CesToolGoogleSearchToolPromptConfig? promptConfig;
 
   Map<String, Object?> encode() => {
-    if (contextUrls != null) 'context_urls': contextUrls!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (excludeDomains != null) 'exclude_domains': excludeDomains!.toTfJson(),
+    'context_urls': ?contextUrls?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'exclude_domains': ?excludeDomains?.toTfJson(),
     'name': name.toTfJson(),
-    if (preferredDomains != null)
-      'preferred_domains': preferredDomains!.toTfJson(),
-    if (promptConfig != null) 'prompt_config': promptConfig!.encode(),
+    'preferred_domains': ?preferredDomains?.toTfJson(),
+    'prompt_config': ?promptConfig?.encode(),
   };
 }
 
@@ -771,8 +764,8 @@ final class CesToolGoogleSearchToolPromptConfig {
   final TfArg<String>? voicePrompt;
 
   Map<String, Object?> encode() => {
-    if (textPrompt != null) 'text_prompt': textPrompt!.toTfJson(),
-    if (voicePrompt != null) 'voice_prompt': voicePrompt!.toTfJson(),
+    'text_prompt': ?textPrompt?.toTfJson(),
+    'voice_prompt': ?voicePrompt?.toTfJson(),
   };
 }
 
@@ -793,10 +786,9 @@ final class CesToolPythonFunction {
   final CesToolPythonFunctionServiceDirectoryConfig? serviceDirectoryConfig;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (pythonCode != null) 'python_code': pythonCode!.toTfJson(),
-    if (serviceDirectoryConfig != null)
-      'service_directory_config': serviceDirectoryConfig!.encode(),
+    'name': ?name?.toTfJson(),
+    'python_code': ?pythonCode?.toTfJson(),
+    'service_directory_config': ?serviceDirectoryConfig?.encode(),
   };
 }
 
@@ -822,8 +814,8 @@ final class CesToolToolFakeConfig {
   final CesToolToolFakeConfigCodeBlock? codeBlock;
 
   Map<String, Object?> encode() => {
-    if (enableFakeMode != null) 'enable_fake_mode': enableFakeMode!.toTfJson(),
-    if (codeBlock != null) 'code_block': codeBlock!.encode(),
+    'enable_fake_mode': ?enableFakeMode?.toTfJson(),
+    'code_block': ?codeBlock?.encode(),
   };
 }
 
@@ -867,14 +859,13 @@ final class CesToolWidgetTool {
   final CesToolWidgetToolTextResponseConfig? textResponseConfig;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
-    if (uiConfig != null) 'ui_config': uiConfig!.toTfJson(),
-    if (widgetType != null) 'widget_type': widgetType!.toTfJson(),
-    if (dataMapping != null) 'data_mapping': dataMapping!.encode(),
-    if (parameters != null) 'parameters': parameters!.encode(),
-    if (textResponseConfig != null)
-      'text_response_config': textResponseConfig!.encode(),
+    'ui_config': ?uiConfig?.toTfJson(),
+    'widget_type': ?widgetType?.toTfJson(),
+    'data_mapping': ?dataMapping?.encode(),
+    'parameters': ?parameters?.encode(),
+    'text_response_config': ?textResponseConfig?.encode(),
   };
 }
 
@@ -919,10 +910,10 @@ final class CesToolWidgetToolDataMapping {
   final CesToolWidgetToolDataMappingPythonFunction? pythonFunction;
 
   Map<String, Object?> encode() => {
-    if (fieldMappings != null) 'field_mappings': fieldMappings!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (sourceToolName != null) 'source_tool_name': sourceToolName!.toTfJson(),
-    if (pythonFunction != null) 'python_function': pythonFunction!.encode(),
+    'field_mappings': ?fieldMappings?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'source_tool_name': ?sourceToolName?.toTfJson(),
+    'python_function': ?pythonFunction?.encode(),
   };
 }
 
@@ -951,8 +942,8 @@ final class CesToolWidgetToolDataMappingPythonFunction {
   final TfArg<String>? pythonCode;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (pythonCode != null) 'python_code': pythonCode!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'python_code': ?pythonCode?.toTfJson(),
   };
 }
 
@@ -1021,26 +1012,25 @@ final class CesToolWidgetToolParameters {
   final TfArg<bool>? uniqueItems;
 
   Map<String, Object?> encode() => {
-    if (additionalProperties != null)
-      'additional_properties': additionalProperties!.toTfJson(),
-    if (anyOf != null) 'any_of': anyOf!.toTfJson(),
-    if (defaultCase != null) 'default': defaultCase!.toTfJson(),
-    if (defs != null) 'defs': defs!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (enumCase != null) 'enum': enumCase!.toTfJson(),
-    if (items != null) 'items': items!.toTfJson(),
-    if (maxItems != null) 'max_items': maxItems!.toTfJson(),
-    if (maximum != null) 'maximum': maximum!.toTfJson(),
-    if (minItems != null) 'min_items': minItems!.toTfJson(),
-    if (minimum != null) 'minimum': minimum!.toTfJson(),
-    if (nullable != null) 'nullable': nullable!.toTfJson(),
-    if (prefixItems != null) 'prefix_items': prefixItems!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (ref != null) 'ref': ref!.toTfJson(),
-    if (required != null) 'required': required!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'additional_properties': ?additionalProperties?.toTfJson(),
+    'any_of': ?anyOf?.toTfJson(),
+    'default': ?defaultCase?.toTfJson(),
+    'defs': ?defs?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'enum': ?enumCase?.toTfJson(),
+    'items': ?items?.toTfJson(),
+    'max_items': ?maxItems?.toTfJson(),
+    'maximum': ?maximum?.toTfJson(),
+    'min_items': ?minItems?.toTfJson(),
+    'minimum': ?minimum?.toTfJson(),
+    'nullable': ?nullable?.toTfJson(),
+    'prefix_items': ?prefixItems?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'ref': ?ref?.toTfJson(),
+    'required': ?required?.toTfJson(),
+    'title': ?title?.toTfJson(),
     'type': type.toTfJson(),
-    if (uniqueItems != null) 'unique_items': uniqueItems!.toTfJson(),
+    'unique_items': ?uniqueItems?.toTfJson(),
   };
 }
 
@@ -1061,10 +1051,9 @@ final class CesToolWidgetToolTextResponseConfig {
   final TfArg<CesToolWidgetToolTextResponseConfigType>? type;
 
   Map<String, Object?> encode() => {
-    if (staticText != null) 'static_text': staticText!.toTfJson(),
-    if (textResponseInstruction != null)
-      'text_response_instruction': textResponseInstruction!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'static_text': ?staticText?.toTfJson(),
+    'text_response_instruction': ?textResponseInstruction?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -1139,8 +1128,8 @@ final class GoogleCesTool extends Resource {
            'location': location,
            'app': app,
            'tool_id': toolId,
-           if (executionType != null) 'execution_type': executionType,
-           if (timeout != null) 'timeout': timeout,
+           'execution_type': ?executionType,
+           'timeout': ?timeout,
            if (googleSearchTool != null)
              'google_search_tool': TfArg.literal(googleSearchTool.encode()),
            if (pythonFunction != null)
@@ -1157,8 +1146,8 @@ final class GoogleCesTool extends Resource {
              'agent_tool': TfArg.literal(agentTool.encode()),
            if (toolFakeConfig != null)
              'tool_fake_config': TfArg.literal(toolFakeConfig.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

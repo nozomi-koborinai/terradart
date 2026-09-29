@@ -32,18 +32,17 @@ final class DataCloudflareZoneLockdowns extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (createdOn != null) 'created_on': createdOn,
-           if (description != null) 'description': description,
-           if (descriptionSearch != null)
-             'description_search': descriptionSearch,
-           if (ip != null) 'ip': ip,
-           if (ipRangeSearch != null) 'ip_range_search': ipRangeSearch,
-           if (ipSearch != null) 'ip_search': ipSearch,
-           if (maxItems != null) 'max_items': maxItems,
-           if (modifiedOn != null) 'modified_on': modifiedOn,
-           if (priority != null) 'priority': priority,
-           if (uriSearch != null) 'uri_search': uriSearch,
-           if (zoneId != null) 'zone_id': zoneId,
+           'created_on': ?createdOn,
+           'description': ?description,
+           'description_search': ?descriptionSearch,
+           'ip': ?ip,
+           'ip_range_search': ?ipRangeSearch,
+           'ip_search': ?ipSearch,
+           'max_items': ?maxItems,
+           'modified_on': ?modifiedOn,
+           'priority': ?priority,
+           'uri_search': ?uriSearch,
+           'zone_id': ?zoneId,
          },
        );
 

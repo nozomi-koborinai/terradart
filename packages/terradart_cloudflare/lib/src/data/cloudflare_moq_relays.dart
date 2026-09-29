@@ -24,11 +24,11 @@ final class DataCloudflareMoqRelays extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (asc != null) 'asc': asc,
-           if (createdAfter != null) 'created_after': createdAfter,
-           if (createdBefore != null) 'created_before': createdBefore,
-           if (maxItems != null) 'max_items': maxItems,
-           if (perPage != null) 'per_page': perPage,
+           'asc': ?asc,
+           'created_after': ?createdAfter,
+           'created_before': ?createdBefore,
+           'max_items': ?maxItems,
+           'per_page': ?perPage,
          },
        );
 

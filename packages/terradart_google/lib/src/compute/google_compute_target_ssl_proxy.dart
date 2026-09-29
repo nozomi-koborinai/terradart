@@ -40,13 +40,13 @@ final class GoogleComputeTargetSslProxy extends Resource {
          terraformType: tfType,
          argMap: {
            'backend_service': backendService,
-           if (certificateMap != null) 'certificate_map': certificateMap,
-           if (description != null) 'description': description,
+           'certificate_map': ?certificateMap,
+           'description': ?description,
            'name': name,
-           if (project != null) 'project': project,
-           if (proxyHeader != null) 'proxy_header': proxyHeader,
-           if (sslCertificates != null) 'ssl_certificates': sslCertificates,
-           if (sslPolicy != null) 'ssl_policy': sslPolicy,
+           'project': ?project,
+           'proxy_header': ?proxyHeader,
+           'ssl_certificates': ?sslCertificates,
+           'ssl_policy': ?sslPolicy,
          },
        );
 

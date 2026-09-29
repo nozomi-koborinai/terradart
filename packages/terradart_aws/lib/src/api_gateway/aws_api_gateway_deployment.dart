@@ -24,11 +24,11 @@ final class AwsApiGatewayDeployment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
+           'description': ?description,
+           'region': ?region,
            'rest_api_id': restApiId,
-           if (triggers != null) 'triggers': triggers,
-           if (variables != null) 'variables': variables,
+           'triggers': ?triggers,
+           'variables': ?variables,
          },
        );
 

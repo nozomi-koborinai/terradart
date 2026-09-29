@@ -20,10 +20,7 @@ final class AwsSesReceiptRuleSet extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'rule_set_name': ruleSetName,
-         },
+         argMap: {'region': ?region, 'rule_set_name': ruleSetName},
        );
 
   @override

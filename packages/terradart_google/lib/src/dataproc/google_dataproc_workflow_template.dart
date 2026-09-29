@@ -21,7 +21,7 @@ final class DataprocWorkflowTemplateEncryptionConfig {
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -69,19 +69,18 @@ final class DataprocWorkflowTemplateJobs {
   final DataprocWorkflowTemplateJobsSparkSqlJob? sparkSqlJob;
 
   Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (prerequisiteStepIds != null)
-      'prerequisite_step_ids': prerequisiteStepIds!.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'prerequisite_step_ids': ?prerequisiteStepIds?.toTfJson(),
     'step_id': stepId.toTfJson(),
-    if (hadoopJob != null) 'hadoop_job': hadoopJob!.encode(),
-    if (hiveJob != null) 'hive_job': hiveJob!.encode(),
-    if (pigJob != null) 'pig_job': pigJob!.encode(),
-    if (prestoJob != null) 'presto_job': prestoJob!.encode(),
-    if (pysparkJob != null) 'pyspark_job': pysparkJob!.encode(),
-    if (scheduling != null) 'scheduling': scheduling!.encode(),
-    if (sparkJob != null) 'spark_job': sparkJob!.encode(),
-    if (sparkRJob != null) 'spark_r_job': sparkRJob!.encode(),
-    if (sparkSqlJob != null) 'spark_sql_job': sparkSqlJob!.encode(),
+    'hadoop_job': ?hadoopJob?.encode(),
+    'hive_job': ?hiveJob?.encode(),
+    'pig_job': ?pigJob?.encode(),
+    'presto_job': ?prestoJob?.encode(),
+    'pyspark_job': ?pysparkJob?.encode(),
+    'scheduling': ?scheduling?.encode(),
+    'spark_job': ?sparkJob?.encode(),
+    'spark_r_job': ?sparkRJob?.encode(),
+    'spark_sql_job': ?sparkSqlJob?.encode(),
   };
 }
 
@@ -117,14 +116,14 @@ final class DataprocWorkflowTemplateJobsHadoopJob {
   final DataprocWorkflowTemplateJobsHadoopJobLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
-    if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
-    if (args != null) 'args': args!.toTfJson(),
-    if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
-    if (mainClass != null) 'main_class': mainClass!.toTfJson(),
-    if (mainJarFileUri != null) 'main_jar_file_uri': mainJarFileUri!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (loggingConfig != null) 'logging_config': loggingConfig!.encode(),
+    'archive_uris': ?archiveUris?.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'file_uris': ?fileUris?.toTfJson(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
+    'main_class': ?mainClass?.toTfJson(),
+    'main_jar_file_uri': ?mainJarFileUri?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'logging_config': ?loggingConfig?.encode(),
   };
 }
 
@@ -139,8 +138,7 @@ final class DataprocWorkflowTemplateJobsHadoopJobLoggingConfig {
   final TfArg<Map<String, String>>? driverLogLevels;
 
   Map<String, Object?> encode() => {
-    if (driverLogLevels != null)
-      'driver_log_levels': driverLogLevels!.toTfJson(),
+    'driver_log_levels': ?driverLogLevels?.toTfJson(),
   };
 }
 
@@ -170,14 +168,12 @@ final class DataprocWorkflowTemplateJobsHiveJob {
   final DataprocWorkflowTemplateJobsHiveJobQueryList? queryList;
 
   Map<String, Object?> encode() => {
-    if (continueOnFailure != null)
-      'continue_on_failure': continueOnFailure!.toTfJson(),
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (queryFileUri != null) 'query_file_uri': queryFileUri!.toTfJson(),
-    if (scriptVariables != null)
-      'script_variables': scriptVariables!.toTfJson(),
-    if (queryList != null) 'query_list': queryList!.encode(),
+    'continue_on_failure': ?continueOnFailure?.toTfJson(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'query_file_uri': ?queryFileUri?.toTfJson(),
+    'script_variables': ?scriptVariables?.toTfJson(),
+    'query_list': ?queryList?.encode(),
   };
 }
 
@@ -221,15 +217,13 @@ final class DataprocWorkflowTemplateJobsPigJob {
   final DataprocWorkflowTemplateJobsPigJobQueryList? queryList;
 
   Map<String, Object?> encode() => {
-    if (continueOnFailure != null)
-      'continue_on_failure': continueOnFailure!.toTfJson(),
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (queryFileUri != null) 'query_file_uri': queryFileUri!.toTfJson(),
-    if (scriptVariables != null)
-      'script_variables': scriptVariables!.toTfJson(),
-    if (loggingConfig != null) 'logging_config': loggingConfig!.encode(),
-    if (queryList != null) 'query_list': queryList!.encode(),
+    'continue_on_failure': ?continueOnFailure?.toTfJson(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'query_file_uri': ?queryFileUri?.toTfJson(),
+    'script_variables': ?scriptVariables?.toTfJson(),
+    'logging_config': ?loggingConfig?.encode(),
+    'query_list': ?queryList?.encode(),
   };
 }
 
@@ -242,8 +236,7 @@ final class DataprocWorkflowTemplateJobsPigJobLoggingConfig {
   final TfArg<Map<String, String>>? driverLogLevels;
 
   Map<String, Object?> encode() => {
-    if (driverLogLevels != null)
-      'driver_log_levels': driverLogLevels!.toTfJson(),
+    'driver_log_levels': ?driverLogLevels?.toTfJson(),
   };
 }
 
@@ -287,14 +280,13 @@ final class DataprocWorkflowTemplateJobsPrestoJob {
   final DataprocWorkflowTemplateJobsPrestoJobQueryList? queryList;
 
   Map<String, Object?> encode() => {
-    if (clientTags != null) 'client_tags': clientTags!.toTfJson(),
-    if (continueOnFailure != null)
-      'continue_on_failure': continueOnFailure!.toTfJson(),
-    if (outputFormat != null) 'output_format': outputFormat!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (queryFileUri != null) 'query_file_uri': queryFileUri!.toTfJson(),
-    if (loggingConfig != null) 'logging_config': loggingConfig!.encode(),
-    if (queryList != null) 'query_list': queryList!.encode(),
+    'client_tags': ?clientTags?.toTfJson(),
+    'continue_on_failure': ?continueOnFailure?.toTfJson(),
+    'output_format': ?outputFormat?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'query_file_uri': ?queryFileUri?.toTfJson(),
+    'logging_config': ?loggingConfig?.encode(),
+    'query_list': ?queryList?.encode(),
   };
 }
 
@@ -309,8 +301,7 @@ final class DataprocWorkflowTemplateJobsPrestoJobLoggingConfig {
   final TfArg<Map<String, String>>? driverLogLevels;
 
   Map<String, Object?> encode() => {
-    if (driverLogLevels != null)
-      'driver_log_levels': driverLogLevels!.toTfJson(),
+    'driver_log_levels': ?driverLogLevels?.toTfJson(),
   };
 }
 
@@ -357,14 +348,14 @@ final class DataprocWorkflowTemplateJobsPysparkJob {
   final DataprocWorkflowTemplateJobsPysparkJobLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
-    if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
-    if (args != null) 'args': args!.toTfJson(),
-    if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
+    'archive_uris': ?archiveUris?.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'file_uris': ?fileUris?.toTfJson(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
     'main_python_file_uri': mainPythonFileUri.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (pythonFileUris != null) 'python_file_uris': pythonFileUris!.toTfJson(),
-    if (loggingConfig != null) 'logging_config': loggingConfig!.encode(),
+    'properties': ?properties?.toTfJson(),
+    'python_file_uris': ?pythonFileUris?.toTfJson(),
+    'logging_config': ?loggingConfig?.encode(),
   };
 }
 
@@ -379,8 +370,7 @@ final class DataprocWorkflowTemplateJobsPysparkJobLoggingConfig {
   final TfArg<Map<String, String>>? driverLogLevels;
 
   Map<String, Object?> encode() => {
-    if (driverLogLevels != null)
-      'driver_log_levels': driverLogLevels!.toTfJson(),
+    'driver_log_levels': ?driverLogLevels?.toTfJson(),
   };
 }
 
@@ -398,10 +388,8 @@ final class DataprocWorkflowTemplateJobsScheduling {
   final TfArg<num>? maxFailuresTotal;
 
   Map<String, Object?> encode() => {
-    if (maxFailuresPerHour != null)
-      'max_failures_per_hour': maxFailuresPerHour!.toTfJson(),
-    if (maxFailuresTotal != null)
-      'max_failures_total': maxFailuresTotal!.toTfJson(),
+    'max_failures_per_hour': ?maxFailuresPerHour?.toTfJson(),
+    'max_failures_total': ?maxFailuresTotal?.toTfJson(),
   };
 }
 
@@ -437,14 +425,14 @@ final class DataprocWorkflowTemplateJobsSparkJob {
   final DataprocWorkflowTemplateJobsSparkJobLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
-    if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
-    if (args != null) 'args': args!.toTfJson(),
-    if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
-    if (mainClass != null) 'main_class': mainClass!.toTfJson(),
-    if (mainJarFileUri != null) 'main_jar_file_uri': mainJarFileUri!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (loggingConfig != null) 'logging_config': loggingConfig!.encode(),
+    'archive_uris': ?archiveUris?.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'file_uris': ?fileUris?.toTfJson(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
+    'main_class': ?mainClass?.toTfJson(),
+    'main_jar_file_uri': ?mainJarFileUri?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'logging_config': ?loggingConfig?.encode(),
   };
 }
 
@@ -459,8 +447,7 @@ final class DataprocWorkflowTemplateJobsSparkJobLoggingConfig {
   final TfArg<Map<String, String>>? driverLogLevels;
 
   Map<String, Object?> encode() => {
-    if (driverLogLevels != null)
-      'driver_log_levels': driverLogLevels!.toTfJson(),
+    'driver_log_levels': ?driverLogLevels?.toTfJson(),
   };
 }
 
@@ -490,12 +477,12 @@ final class DataprocWorkflowTemplateJobsSparkRJob {
   final DataprocWorkflowTemplateJobsSparkRJobLoggingConfig? loggingConfig;
 
   Map<String, Object?> encode() => {
-    if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
-    if (args != null) 'args': args!.toTfJson(),
-    if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
+    'archive_uris': ?archiveUris?.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'file_uris': ?fileUris?.toTfJson(),
     'main_r_file_uri': mainRFileUri.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (loggingConfig != null) 'logging_config': loggingConfig!.encode(),
+    'properties': ?properties?.toTfJson(),
+    'logging_config': ?loggingConfig?.encode(),
   };
 }
 
@@ -510,8 +497,7 @@ final class DataprocWorkflowTemplateJobsSparkRJobLoggingConfig {
   final TfArg<Map<String, String>>? driverLogLevels;
 
   Map<String, Object?> encode() => {
-    if (driverLogLevels != null)
-      'driver_log_levels': driverLogLevels!.toTfJson(),
+    'driver_log_levels': ?driverLogLevels?.toTfJson(),
   };
 }
 
@@ -541,13 +527,12 @@ final class DataprocWorkflowTemplateJobsSparkSqlJob {
   final DataprocWorkflowTemplateJobsSparkSqlJobQueryList? queryList;
 
   Map<String, Object?> encode() => {
-    if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (queryFileUri != null) 'query_file_uri': queryFileUri!.toTfJson(),
-    if (scriptVariables != null)
-      'script_variables': scriptVariables!.toTfJson(),
-    if (loggingConfig != null) 'logging_config': loggingConfig!.encode(),
-    if (queryList != null) 'query_list': queryList!.encode(),
+    'jar_file_uris': ?jarFileUris?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
+    'query_file_uri': ?queryFileUri?.toTfJson(),
+    'script_variables': ?scriptVariables?.toTfJson(),
+    'logging_config': ?loggingConfig?.encode(),
+    'query_list': ?queryList?.encode(),
   };
 }
 
@@ -562,8 +547,7 @@ final class DataprocWorkflowTemplateJobsSparkSqlJobLoggingConfig {
   final TfArg<Map<String, String>>? driverLogLevels;
 
   Map<String, Object?> encode() => {
-    if (driverLogLevels != null)
-      'driver_log_levels': driverLogLevels!.toTfJson(),
+    'driver_log_levels': ?driverLogLevels?.toTfJson(),
   };
 }
 
@@ -600,10 +584,10 @@ final class DataprocWorkflowTemplateParameters {
   final DataprocWorkflowTemplateParametersValidation? validation;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'fields': fields.toTfJson(),
     'name': name.toTfJson(),
-    if (validation != null) 'validation': validation!.encode(),
+    'validation': ?validation?.encode(),
   };
 }
 
@@ -618,8 +602,8 @@ final class DataprocWorkflowTemplateParametersValidation {
   final DataprocWorkflowTemplateParametersValidationValues? values;
 
   Map<String, Object?> encode() => {
-    if (regex != null) 'regex': regex!.encode(),
-    if (values != null) 'values': values!.encode(),
+    'regex': ?regex?.encode(),
+    'values': ?values?.encode(),
   };
 }
 
@@ -663,8 +647,8 @@ final class DataprocWorkflowTemplatePlacement {
   final DataprocWorkflowTemplatePlacementManagedCluster? managedCluster;
 
   Map<String, Object?> encode() => {
-    if (clusterSelector != null) 'cluster_selector': clusterSelector!.encode(),
-    if (managedCluster != null) 'managed_cluster': managedCluster!.encode(),
+    'cluster_selector': ?clusterSelector?.encode(),
+    'managed_cluster': ?managedCluster?.encode(),
   };
 }
 
@@ -683,7 +667,7 @@ final class DataprocWorkflowTemplatePlacementClusterSelector {
 
   Map<String, Object?> encode() => {
     'cluster_labels': clusterLabels.toTfJson(),
-    if (zone != null) 'zone': zone!.toTfJson(),
+    'zone': ?zone?.toTfJson(),
   };
 }
 
@@ -705,7 +689,7 @@ final class DataprocWorkflowTemplatePlacementManagedCluster {
 
   Map<String, Object?> encode() => {
     'cluster_name': clusterName.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
+    'labels': ?labels?.toTfJson(),
     'config': config.encode(),
   };
 }
@@ -770,26 +754,22 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfig {
   workerConfig;
 
   Map<String, Object?> encode() => {
-    if (stagingBucket != null) 'staging_bucket': stagingBucket!.toTfJson(),
-    if (tempBucket != null) 'temp_bucket': tempBucket!.toTfJson(),
-    if (autoscalingConfig != null)
-      'autoscaling_config': autoscalingConfig!.encode(),
-    if (encryptionConfig != null)
-      'encryption_config': encryptionConfig!.encode(),
-    if (endpointConfig != null) 'endpoint_config': endpointConfig!.encode(),
-    if (gceClusterConfig != null)
-      'gce_cluster_config': gceClusterConfig!.encode(),
+    'staging_bucket': ?stagingBucket?.toTfJson(),
+    'temp_bucket': ?tempBucket?.toTfJson(),
+    'autoscaling_config': ?autoscalingConfig?.encode(),
+    'encryption_config': ?encryptionConfig?.encode(),
+    'endpoint_config': ?endpointConfig?.encode(),
+    'gce_cluster_config': ?gceClusterConfig?.encode(),
     if (initializationActions != null)
       'initialization_actions': [
         for (final e in initializationActions!) e.encode(),
       ],
-    if (lifecycleConfig != null) 'lifecycle_config': lifecycleConfig!.encode(),
-    if (masterConfig != null) 'master_config': masterConfig!.encode(),
-    if (secondaryWorkerConfig != null)
-      'secondary_worker_config': secondaryWorkerConfig!.encode(),
-    if (securityConfig != null) 'security_config': securityConfig!.encode(),
-    if (softwareConfig != null) 'software_config': softwareConfig!.encode(),
-    if (workerConfig != null) 'worker_config': workerConfig!.encode(),
+    'lifecycle_config': ?lifecycleConfig?.encode(),
+    'master_config': ?masterConfig?.encode(),
+    'secondary_worker_config': ?secondaryWorkerConfig?.encode(),
+    'security_config': ?securityConfig?.encode(),
+    'software_config': ?softwareConfig?.encode(),
+    'worker_config': ?workerConfig?.encode(),
   };
 }
 
@@ -803,9 +783,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigAutoscalingConf
 
   final TfArg<String>? policy;
 
-  Map<String, Object?> encode() => {
-    if (policy != null) 'policy': policy!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'policy': ?policy?.toTfJson()};
 }
 
 /// Typed helper for the `placement.managed_cluster.config.encryption_config` block of
@@ -819,8 +797,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigEncryptionConfi
   final TfArg<String>? gcePdKmsKeyName;
 
   Map<String, Object?> encode() => {
-    if (gcePdKmsKeyName != null)
-      'gce_pd_kms_key_name': gcePdKmsKeyName!.toTfJson(),
+    'gce_pd_kms_key_name': ?gcePdKmsKeyName?.toTfJson(),
   };
 }
 
@@ -835,8 +812,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigEndpointConfig 
   final TfArg<bool>? enableHttpPortAccess;
 
   Map<String, Object?> encode() => {
-    if (enableHttpPortAccess != null)
-      'enable_http_port_access': enableHttpPortAccess!.toTfJson(),
+    'enable_http_port_access': ?enableHttpPortAccess?.toTfJson(),
   };
 }
 
@@ -890,24 +866,18 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfi
   shieldedInstanceConfig;
 
   Map<String, Object?> encode() => {
-    if (internalIpOnly != null) 'internal_ip_only': internalIpOnly!.toTfJson(),
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
-    if (privateIpv6GoogleAccess != null)
-      'private_ipv6_google_access': privateIpv6GoogleAccess!.toTfJson(),
-    if (serviceAccount != null)
-      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
-    if (serviceAccountScopes != null)
-      'service_account_scopes': serviceAccountScopes!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-    if (zone != null) 'zone': zone!.toTfJson(),
-    if (nodeGroupAffinity != null)
-      'node_group_affinity': nodeGroupAffinity!.encode(),
-    if (reservationAffinity != null)
-      'reservation_affinity': reservationAffinity!.encode(),
-    if (shieldedInstanceConfig != null)
-      'shielded_instance_config': shieldedInstanceConfig!.encode(),
+    'internal_ip_only': ?internalIpOnly?.toTfJson(),
+    'metadata': ?metadata?.toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'private_ipv6_google_access': ?privateIpv6GoogleAccess?.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
+    'service_account_scopes': ?serviceAccountScopes?.toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
+    'tags': ?tags?.toTfJson(),
+    'zone': ?zone?.toTfJson(),
+    'node_group_affinity': ?nodeGroupAffinity?.encode(),
+    'reservation_affinity': ?reservationAffinity?.encode(),
+    'shielded_instance_config': ?shieldedInstanceConfig?.encode(),
   };
 }
 
@@ -959,10 +929,9 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfi
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (consumeReservationType != null)
-      'consume_reservation_type': consumeReservationType!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'consume_reservation_type': ?consumeReservationType?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -998,11 +967,9 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfi
   final TfArg<bool>? enableVtpm;
 
   Map<String, Object?> encode() => {
-    if (enableIntegrityMonitoring != null)
-      'enable_integrity_monitoring': enableIntegrityMonitoring!.toTfJson(),
-    if (enableSecureBoot != null)
-      'enable_secure_boot': enableSecureBoot!.toTfJson(),
-    if (enableVtpm != null) 'enable_vtpm': enableVtpm!.toTfJson(),
+    'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
+    'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
+    'enable_vtpm': ?enableVtpm?.toTfJson(),
   };
 }
 
@@ -1020,9 +987,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigInitializationA
   final TfArg<String>? executionTimeout;
 
   Map<String, Object?> encode() => {
-    if (executableFile != null) 'executable_file': executableFile!.toTfJson(),
-    if (executionTimeout != null)
-      'execution_timeout': executionTimeout!.toTfJson(),
+    'executable_file': ?executableFile?.toTfJson(),
+    'execution_timeout': ?executionTimeout?.toTfJson(),
   };
 }
 
@@ -1043,9 +1009,9 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigLifecycleConfig
   final TfArg<String>? idleDeleteTtl;
 
   Map<String, Object?> encode() => {
-    if (autoDeleteTime != null) 'auto_delete_time': autoDeleteTime!.toTfJson(),
-    if (autoDeleteTtl != null) 'auto_delete_ttl': autoDeleteTtl!.toTfJson(),
-    if (idleDeleteTtl != null) 'idle_delete_ttl': idleDeleteTtl!.toTfJson(),
+    'auto_delete_time': ?autoDeleteTime?.toTfJson(),
+    'auto_delete_ttl': ?autoDeleteTtl?.toTfJson(),
+    'idle_delete_ttl': ?idleDeleteTtl?.toTfJson(),
   };
 }
 
@@ -1089,16 +1055,15 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfig {
   instanceFlexibilityPolicy;
 
   Map<String, Object?> encode() => {
-    if (image != null) 'image': image!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform!.toTfJson(),
-    if (numInstances != null) 'num_instances': numInstances!.toTfJson(),
-    if (preemptibility != null) 'preemptibility': preemptibility!.toTfJson(),
+    'image': ?image?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'min_cpu_platform': ?minCpuPlatform?.toTfJson(),
+    'num_instances': ?numInstances?.toTfJson(),
+    'preemptibility': ?preemptibility?.toTfJson(),
     if (accelerators != null)
       'accelerators': [for (final e in accelerators!) e.encode()],
-    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
-    if (instanceFlexibilityPolicy != null)
-      'instance_flexibility_policy': instanceFlexibilityPolicy!.encode(),
+    'disk_config': ?diskConfig?.encode(),
+    'instance_flexibility_policy': ?instanceFlexibilityPolicy?.encode(),
   };
 }
 
@@ -1130,10 +1095,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigAcc
   final TfArg<String>? acceleratorType;
 
   Map<String, Object?> encode() => {
-    if (acceleratorCount != null)
-      'accelerator_count': acceleratorCount!.toTfJson(),
-    if (acceleratorType != null)
-      'accelerator_type': acceleratorType!.toTfJson(),
+    'accelerator_count': ?acceleratorCount?.toTfJson(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
   };
 }
 
@@ -1169,16 +1132,13 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDis
   attachedDiskConfig;
 
   Map<String, Object?> encode() => {
-    if (bootDiskProvisionedIops != null)
-      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
-    if (bootDiskProvisionedThroughput != null)
-      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
-          .toTfJson(),
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
-    if (localSsdInterface != null)
-      'local_ssd_interface': localSsdInterface!.toTfJson(),
-    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
+    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
+        ?.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'boot_disk_type': ?bootDiskType?.toTfJson(),
+    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
+    'num_local_ssds': ?numLocalSsds?.toTfJson(),
     if (attachedDiskConfig != null)
       'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
   };
@@ -1204,12 +1164,10 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDis
   final TfArg<num>? provisionedThroughput;
 
   Map<String, Object?> encode() => {
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (provisionedIops != null)
-      'provisioned_iops': provisionedIops!.toTfJson(),
-    if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'provisioned_iops': ?provisionedIops?.toTfJson(),
+    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
   };
 }
 
@@ -1252,9 +1210,9 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigIns
   diskConfig;
 
   Map<String, Object?> encode() => {
-    if (machineTypes != null) 'machine_types': machineTypes!.toTfJson(),
-    if (rank != null) 'rank': rank!.toTfJson(),
-    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+    'machine_types': ?machineTypes?.toTfJson(),
+    'rank': ?rank?.toTfJson(),
+    'disk_config': ?diskConfig?.encode(),
   };
 }
 
@@ -1290,16 +1248,13 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigIns
   attachedDiskConfig;
 
   Map<String, Object?> encode() => {
-    if (bootDiskProvisionedIops != null)
-      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
-    if (bootDiskProvisionedThroughput != null)
-      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
-          .toTfJson(),
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
-    if (localSsdInterface != null)
-      'local_ssd_interface': localSsdInterface!.toTfJson(),
-    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
+    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
+        ?.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'boot_disk_type': ?bootDiskType?.toTfJson(),
+    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
+    'num_local_ssds': ?numLocalSsds?.toTfJson(),
     if (attachedDiskConfig != null)
       'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
   };
@@ -1325,12 +1280,10 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigIns
   final TfArg<num>? provisionedThroughput;
 
   Map<String, Object?> encode() => {
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (provisionedIops != null)
-      'provisioned_iops': provisionedIops!.toTfJson(),
-    if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'provisioned_iops': ?provisionedIops?.toTfJson(),
+    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
   };
 }
 
@@ -1374,16 +1327,15 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
   instanceFlexibilityPolicy;
 
   Map<String, Object?> encode() => {
-    if (image != null) 'image': image!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform!.toTfJson(),
-    if (numInstances != null) 'num_instances': numInstances!.toTfJson(),
-    if (preemptibility != null) 'preemptibility': preemptibility!.toTfJson(),
+    'image': ?image?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'min_cpu_platform': ?minCpuPlatform?.toTfJson(),
+    'num_instances': ?numInstances?.toTfJson(),
+    'preemptibility': ?preemptibility?.toTfJson(),
     if (accelerators != null)
       'accelerators': [for (final e in accelerators!) e.encode()],
-    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
-    if (instanceFlexibilityPolicy != null)
-      'instance_flexibility_policy': instanceFlexibilityPolicy!.encode(),
+    'disk_config': ?diskConfig?.encode(),
+    'instance_flexibility_policy': ?instanceFlexibilityPolicy?.encode(),
   };
 }
 
@@ -1415,10 +1367,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
   final TfArg<String>? acceleratorType;
 
   Map<String, Object?> encode() => {
-    if (acceleratorCount != null)
-      'accelerator_count': acceleratorCount!.toTfJson(),
-    if (acceleratorType != null)
-      'accelerator_type': acceleratorType!.toTfJson(),
+    'accelerator_count': ?acceleratorCount?.toTfJson(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
   };
 }
 
@@ -1454,16 +1404,13 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
   attachedDiskConfig;
 
   Map<String, Object?> encode() => {
-    if (bootDiskProvisionedIops != null)
-      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
-    if (bootDiskProvisionedThroughput != null)
-      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
-          .toTfJson(),
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
-    if (localSsdInterface != null)
-      'local_ssd_interface': localSsdInterface!.toTfJson(),
-    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
+    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
+        ?.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'boot_disk_type': ?bootDiskType?.toTfJson(),
+    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
+    'num_local_ssds': ?numLocalSsds?.toTfJson(),
     if (attachedDiskConfig != null)
       'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
   };
@@ -1489,12 +1436,10 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
   final TfArg<num>? provisionedThroughput;
 
   Map<String, Object?> encode() => {
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (provisionedIops != null)
-      'provisioned_iops': provisionedIops!.toTfJson(),
-    if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'provisioned_iops': ?provisionedIops?.toTfJson(),
+    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
   };
 }
 
@@ -1520,8 +1465,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
       'instance_selection_list': [
         for (final e in instanceSelectionList!) e.encode(),
       ],
-    if (provisioningModelMix != null)
-      'provisioning_model_mix': provisioningModelMix!.encode(),
+    'provisioning_model_mix': ?provisioningModelMix?.encode(),
   };
 }
 
@@ -1543,9 +1487,9 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
   diskConfig;
 
   Map<String, Object?> encode() => {
-    if (machineTypes != null) 'machine_types': machineTypes!.toTfJson(),
-    if (rank != null) 'rank': rank!.toTfJson(),
-    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+    'machine_types': ?machineTypes?.toTfJson(),
+    'rank': ?rank?.toTfJson(),
+    'disk_config': ?diskConfig?.encode(),
   };
 }
 
@@ -1581,16 +1525,13 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
   attachedDiskConfig;
 
   Map<String, Object?> encode() => {
-    if (bootDiskProvisionedIops != null)
-      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
-    if (bootDiskProvisionedThroughput != null)
-      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
-          .toTfJson(),
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
-    if (localSsdInterface != null)
-      'local_ssd_interface': localSsdInterface!.toTfJson(),
-    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
+    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
+        ?.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'boot_disk_type': ?bootDiskType?.toTfJson(),
+    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
+    'num_local_ssds': ?numLocalSsds?.toTfJson(),
     if (attachedDiskConfig != null)
       'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
   };
@@ -1616,12 +1557,10 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
   final TfArg<num>? provisionedThroughput;
 
   Map<String, Object?> encode() => {
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (provisionedIops != null)
-      'provisioned_iops': provisionedIops!.toTfJson(),
-    if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'provisioned_iops': ?provisionedIops?.toTfJson(),
+    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
   };
 }
 
@@ -1639,11 +1578,9 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorker
   final TfArg<num>? standardCapacityPercentAboveBase;
 
   Map<String, Object?> encode() => {
-    if (standardCapacityBase != null)
-      'standard_capacity_base': standardCapacityBase!.toTfJson(),
-    if (standardCapacityPercentAboveBase != null)
-      'standard_capacity_percent_above_base': standardCapacityPercentAboveBase!
-          .toTfJson(),
+    'standard_capacity_base': ?standardCapacityBase?.toTfJson(),
+    'standard_capacity_percent_above_base': ?standardCapacityPercentAboveBase
+        ?.toTfJson(),
   };
 }
 
@@ -1659,7 +1596,7 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecurityConfig 
   kerberosConfig;
 
   Map<String, Object?> encode() => {
-    if (kerberosConfig != null) 'kerberos_config': kerberosConfig!.encode(),
+    'kerberos_config': ?kerberosConfig?.encode(),
   };
 }
 
@@ -1716,30 +1653,22 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSecurityConfigK
   final TfArg<String>? truststorePassword;
 
   Map<String, Object?> encode() => {
-    if (crossRealmTrustAdminServer != null)
-      'cross_realm_trust_admin_server': crossRealmTrustAdminServer!.toTfJson(),
-    if (crossRealmTrustKdc != null)
-      'cross_realm_trust_kdc': crossRealmTrustKdc!.toTfJson(),
-    if (crossRealmTrustRealm != null)
-      'cross_realm_trust_realm': crossRealmTrustRealm!.toTfJson(),
-    if (crossRealmTrustSharedPassword != null)
-      'cross_realm_trust_shared_password': crossRealmTrustSharedPassword!
-          .toTfJson(),
-    if (enableKerberos != null) 'enable_kerberos': enableKerberos!.toTfJson(),
-    if (kdcDbKey != null) 'kdc_db_key': kdcDbKey!.toTfJson(),
-    if (keyPassword != null) 'key_password': keyPassword!.toTfJson(),
-    if (keystore != null) 'keystore': keystore!.toTfJson(),
-    if (keystorePassword != null)
-      'keystore_password': keystorePassword!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
-    if (realm != null) 'realm': realm!.toTfJson(),
-    if (rootPrincipalPassword != null)
-      'root_principal_password': rootPrincipalPassword!.toTfJson(),
-    if (tgtLifetimeHours != null)
-      'tgt_lifetime_hours': tgtLifetimeHours!.toTfJson(),
-    if (truststore != null) 'truststore': truststore!.toTfJson(),
-    if (truststorePassword != null)
-      'truststore_password': truststorePassword!.toTfJson(),
+    'cross_realm_trust_admin_server': ?crossRealmTrustAdminServer?.toTfJson(),
+    'cross_realm_trust_kdc': ?crossRealmTrustKdc?.toTfJson(),
+    'cross_realm_trust_realm': ?crossRealmTrustRealm?.toTfJson(),
+    'cross_realm_trust_shared_password': ?crossRealmTrustSharedPassword
+        ?.toTfJson(),
+    'enable_kerberos': ?enableKerberos?.toTfJson(),
+    'kdc_db_key': ?kdcDbKey?.toTfJson(),
+    'key_password': ?keyPassword?.toTfJson(),
+    'keystore': ?keystore?.toTfJson(),
+    'keystore_password': ?keystorePassword?.toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
+    'realm': ?realm?.toTfJson(),
+    'root_principal_password': ?rootPrincipalPassword?.toTfJson(),
+    'tgt_lifetime_hours': ?tgtLifetimeHours?.toTfJson(),
+    'truststore': ?truststore?.toTfJson(),
+    'truststore_password': ?truststorePassword?.toTfJson(),
   };
 }
 
@@ -1760,10 +1689,9 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigSoftwareConfig 
   final TfArg<Map<String, String>>? properties;
 
   Map<String, Object?> encode() => {
-    if (imageVersion != null) 'image_version': imageVersion!.toTfJson(),
-    if (optionalComponents != null)
-      'optional_components': optionalComponents!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
+    'image_version': ?imageVersion?.toTfJson(),
+    'optional_components': ?optionalComponents?.toTfJson(),
+    'properties': ?properties?.toTfJson(),
   };
 }
 
@@ -1807,16 +1735,15 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfig {
   instanceFlexibilityPolicy;
 
   Map<String, Object?> encode() => {
-    if (image != null) 'image': image!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform!.toTfJson(),
-    if (numInstances != null) 'num_instances': numInstances!.toTfJson(),
-    if (preemptibility != null) 'preemptibility': preemptibility!.toTfJson(),
+    'image': ?image?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'min_cpu_platform': ?minCpuPlatform?.toTfJson(),
+    'num_instances': ?numInstances?.toTfJson(),
+    'preemptibility': ?preemptibility?.toTfJson(),
     if (accelerators != null)
       'accelerators': [for (final e in accelerators!) e.encode()],
-    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
-    if (instanceFlexibilityPolicy != null)
-      'instance_flexibility_policy': instanceFlexibilityPolicy!.encode(),
+    'disk_config': ?diskConfig?.encode(),
+    'instance_flexibility_policy': ?instanceFlexibilityPolicy?.encode(),
   };
 }
 
@@ -1848,10 +1775,8 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigAcc
   final TfArg<String>? acceleratorType;
 
   Map<String, Object?> encode() => {
-    if (acceleratorCount != null)
-      'accelerator_count': acceleratorCount!.toTfJson(),
-    if (acceleratorType != null)
-      'accelerator_type': acceleratorType!.toTfJson(),
+    'accelerator_count': ?acceleratorCount?.toTfJson(),
+    'accelerator_type': ?acceleratorType?.toTfJson(),
   };
 }
 
@@ -1887,16 +1812,13 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDis
   attachedDiskConfig;
 
   Map<String, Object?> encode() => {
-    if (bootDiskProvisionedIops != null)
-      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
-    if (bootDiskProvisionedThroughput != null)
-      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
-          .toTfJson(),
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
-    if (localSsdInterface != null)
-      'local_ssd_interface': localSsdInterface!.toTfJson(),
-    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
+    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
+        ?.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'boot_disk_type': ?bootDiskType?.toTfJson(),
+    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
+    'num_local_ssds': ?numLocalSsds?.toTfJson(),
     if (attachedDiskConfig != null)
       'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
   };
@@ -1922,12 +1844,10 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDis
   final TfArg<num>? provisionedThroughput;
 
   Map<String, Object?> encode() => {
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (provisionedIops != null)
-      'provisioned_iops': provisionedIops!.toTfJson(),
-    if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'provisioned_iops': ?provisionedIops?.toTfJson(),
+    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
   };
 }
 
@@ -1970,9 +1890,9 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigIns
   diskConfig;
 
   Map<String, Object?> encode() => {
-    if (machineTypes != null) 'machine_types': machineTypes!.toTfJson(),
-    if (rank != null) 'rank': rank!.toTfJson(),
-    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+    'machine_types': ?machineTypes?.toTfJson(),
+    'rank': ?rank?.toTfJson(),
+    'disk_config': ?diskConfig?.encode(),
   };
 }
 
@@ -2008,16 +1928,13 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigIns
   attachedDiskConfig;
 
   Map<String, Object?> encode() => {
-    if (bootDiskProvisionedIops != null)
-      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
-    if (bootDiskProvisionedThroughput != null)
-      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
-          .toTfJson(),
-    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
-    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
-    if (localSsdInterface != null)
-      'local_ssd_interface': localSsdInterface!.toTfJson(),
-    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    'boot_disk_provisioned_iops': ?bootDiskProvisionedIops?.toTfJson(),
+    'boot_disk_provisioned_throughput': ?bootDiskProvisionedThroughput
+        ?.toTfJson(),
+    'boot_disk_size_gb': ?bootDiskSizeGb?.toTfJson(),
+    'boot_disk_type': ?bootDiskType?.toTfJson(),
+    'local_ssd_interface': ?localSsdInterface?.toTfJson(),
+    'num_local_ssds': ?numLocalSsds?.toTfJson(),
     if (attachedDiskConfig != null)
       'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
   };
@@ -2043,12 +1960,10 @@ final class DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigIns
   final TfArg<num>? provisionedThroughput;
 
   Map<String, Object?> encode() => {
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (provisionedIops != null)
-      'provisioned_iops': provisionedIops!.toTfJson(),
-    if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'provisioned_iops': ?provisionedIops?.toTfJson(),
+    'provisioned_throughput': ?provisionedThroughput?.toTfJson(),
   };
 }
 
@@ -2127,13 +2042,13 @@ final class GoogleDataprocWorkflowTemplate extends Resource {
              'parameters': TfArg.literal([
                for (final e in parameters) e.encode(),
              ]),
-           if (dagTimeout != null) 'dag_timeout': dagTimeout,
+           'dag_timeout': ?dagTimeout,
            if (encryptionConfig != null)
              'encryption_config': TfArg.literal(encryptionConfig.encode()),
-           if (labels != null) 'labels': labels,
-           if (version != null) 'version': version,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'version': ?version,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

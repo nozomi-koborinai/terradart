@@ -114,15 +114,14 @@ final class GoogleBigtableInstance extends Resource {
              'cluster': TfArg.literal(
                cluster.map((c) => c.toArgMap()).toList(),
              ),
-           if (displayName != null) 'display_name': displayName,
-           if (instanceType != null) 'instance_type': instanceType,
-           if (edition != null) 'edition': edition,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'instance_type': ?instanceType,
+           'edition': ?edition,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'force_destroy': ?forceDestroy,
+           'project': ?project,
          },
        );
 

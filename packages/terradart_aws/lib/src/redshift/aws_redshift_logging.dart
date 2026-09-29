@@ -49,16 +49,15 @@ final class AwsRedshiftLogging extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bucketName != null) 'bucket_name': bucketName.encodeAs('id'),
+           'bucket_name': ?bucketName?.encodeAs('id'),
            'cluster_identifier': clusterIdentifier,
-           if (logDestinationType != null)
-             'log_destination_type': logDestinationType,
+           'log_destination_type': ?logDestinationType,
            if (logExports != null)
              'log_exports': TfArg.literal([
                for (final e in logExports) e.toTfJson(),
              ]),
-           if (region != null) 'region': region,
-           if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix,
+           'region': ?region,
+           's3_key_prefix': ?s3KeyPrefix,
          },
        );
 

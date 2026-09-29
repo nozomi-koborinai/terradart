@@ -36,10 +36,10 @@ final class AwsPinpointsmsvoicev2Keyword extends Resource {
          terraformType: tfType,
          argMap: {
            'keyword': keyword,
-           if (keywordAction != null) 'keyword_action': keywordAction,
+           'keyword_action': ?keywordAction,
            'keyword_message': keywordMessage,
            'origination_identity_arn': originationIdentityArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

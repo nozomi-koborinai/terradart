@@ -18,9 +18,8 @@ final class IotThingTypeProperties {
   final TfArg<List<Object?>>? searchableAttributes;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (searchableAttributes != null)
-      'searchable_attributes': searchableAttributes!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'searchable_attributes': ?searchableAttributes?.toTfJson(),
   };
 }
 
@@ -42,10 +41,10 @@ final class AwsIotThingType extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deprecated != null) 'deprecated': deprecated,
+           'deprecated': ?deprecated,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (properties != null)
              'properties': TfArg.literal(properties.encode()),
          },

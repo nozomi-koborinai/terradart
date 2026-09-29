@@ -85,17 +85,17 @@ final class GoogleComputeRegionDisk extends Resource {
          argMap: {
            'name': name,
            'replica_zones': replicaZones,
-           if (type != null) 'type': type,
-           if (size != null) 'size': size,
-           if (image != null) 'image': image,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'type': ?type,
+           'size': ?size,
+           'image': ?image,
+           'description': ?description,
+           'labels': ?labels,
            if (guestOsFeatures != null)
              'guest_os_features': TfArg.literal(
                guestOsFeatures.map((f) => f.toArgMap()).toList(),
              ),
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'project': ?project,
          },
        );
 

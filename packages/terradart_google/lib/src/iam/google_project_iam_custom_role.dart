@@ -73,9 +73,9 @@ final class GoogleProjectIamCustomRole extends Resource {
            'role_id': roleId,
            'title': title,
            'permissions': permissions,
-           if (description != null) 'description': description,
-           if (stage != null) 'stage': stage,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'stage': ?stage,
+           'project': ?project,
          },
        );
 

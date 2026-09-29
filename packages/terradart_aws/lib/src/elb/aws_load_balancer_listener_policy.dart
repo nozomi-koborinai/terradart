@@ -26,9 +26,9 @@ final class AwsLoadBalancerListenerPolicy extends Resource {
          argMap: {
            'load_balancer_name': loadBalancerName,
            'load_balancer_port': loadBalancerPort,
-           if (policyNames != null) 'policy_names': policyNames,
-           if (region != null) 'region': region,
-           if (triggers != null) 'triggers': triggers,
+           'policy_names': ?policyNames,
+           'region': ?region,
+           'triggers': ?triggers,
          },
        );
 

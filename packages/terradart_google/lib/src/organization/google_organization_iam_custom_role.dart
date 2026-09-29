@@ -33,12 +33,12 @@ final class GoogleOrganizationIamCustomRole extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'org_id': orgId,
            'permissions': permissions,
            'role_id': roleId,
-           if (stage != null) 'stage': stage,
+           'stage': ?stage,
            'title': title,
          },
        );

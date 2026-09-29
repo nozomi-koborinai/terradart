@@ -20,10 +20,7 @@ final class GoogleVertexAiCacheConfig extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'disable_cache': disableCache,
-           if (project != null) 'project': project,
-         },
+         argMap: {'disable_cache': disableCache, 'project': ?project},
        );
 
   @override

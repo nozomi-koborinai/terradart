@@ -32,9 +32,9 @@ final class GoogleSecretManagerRegionalSecretIamPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'secret_id': secretId,
-           if (location != null) 'location': location,
+           'location': ?location,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

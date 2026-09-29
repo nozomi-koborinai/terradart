@@ -19,10 +19,7 @@ final class AwsCostoptimizationhubEnrollmentStatus extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (includeMemberAccounts != null)
-             'include_member_accounts': includeMemberAccounts,
-         },
+         argMap: {'include_member_accounts': ?includeMemberAccounts},
        );
 
   @override

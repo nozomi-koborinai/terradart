@@ -122,7 +122,7 @@ final class GoogleFirebaseAppHostingDomain extends Resource {
            'location': location,
            'domain_id': domainId,
            if (serve != null) 'serve': TfArg.literal([serve.toArgMap()]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -298,16 +298,14 @@ final class GoogleBigqueryRoutine extends Resource {
            'routine_id': routineId,
            'routine_type': routineType,
            'definition_body': definitionBody,
-           if (language != null) 'language': language,
-           if (description != null) 'description': description,
-           if (determinismLevel != null) 'determinism_level': determinismLevel,
-           if (dataGovernanceType != null)
-             'data_governance_type': dataGovernanceType,
-           if (securityMode != null) 'security_mode': securityMode,
-           if (importedLibraries != null)
-             'imported_libraries': importedLibraries,
-           if (returnType != null) 'return_type': returnType,
-           if (returnTableType != null) 'return_table_type': returnTableType,
+           'language': ?language,
+           'description': ?description,
+           'determinism_level': ?determinismLevel,
+           'data_governance_type': ?dataGovernanceType,
+           'security_mode': ?securityMode,
+           'imported_libraries': ?importedLibraries,
+           'return_type': ?returnType,
+           'return_table_type': ?returnTableType,
            if (arguments != null)
              'arguments': TfArg.literal(
                arguments.map((a) => a.toArgMap()).toList(),
@@ -318,7 +316,7 @@ final class GoogleBigqueryRoutine extends Resource {
              ]),
            if (sparkOptions != null)
              'spark_options': TfArg.literal([sparkOptions.toArgMap()]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

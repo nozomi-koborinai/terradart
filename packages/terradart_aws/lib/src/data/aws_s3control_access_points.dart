@@ -22,11 +22,11 @@ final class DataAwsS3controlAccessPoints extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (bucket != null) 'bucket': bucket,
-           if (dataSourceId != null) 'data_source_id': dataSourceId,
-           if (dataSourceType != null) 'data_source_type': dataSourceType,
-           if (region != null) 'region': region,
+           'account_id': ?accountId,
+           'bucket': ?bucket,
+           'data_source_id': ?dataSourceId,
+           'data_source_type': ?dataSourceType,
+           'region': ?region,
          },
        );
 

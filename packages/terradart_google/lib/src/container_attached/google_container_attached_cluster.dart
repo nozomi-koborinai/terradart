@@ -21,8 +21,8 @@ final class ContainerAttachedClusterAuthorization {
   final TfArg<List<Object?>>? adminUsers;
 
   Map<String, Object?> encode() => {
-    if (adminGroups != null) 'admin_groups': adminGroups!.toTfJson(),
-    if (adminUsers != null) 'admin_users': adminUsers!.toTfJson(),
+    'admin_groups': ?adminGroups?.toTfJson(),
+    'admin_users': ?adminUsers?.toTfJson(),
   };
 }
 
@@ -36,7 +36,7 @@ final class ContainerAttachedClusterBinaryAuthorization {
   evaluationMode;
 
   Map<String, Object?> encode() => {
-    if (evaluationMode != null) 'evaluation_mode': evaluationMode!.toTfJson(),
+    'evaluation_mode': ?evaluationMode?.toTfJson(),
   };
 }
 
@@ -73,7 +73,7 @@ final class ContainerAttachedClusterLoggingConfig {
   final ContainerAttachedClusterLoggingConfigComponentConfig? componentConfig;
 
   Map<String, Object?> encode() => {
-    if (componentConfig != null) 'component_config': componentConfig!.encode(),
+    'component_config': ?componentConfig?.encode(),
   };
 }
 
@@ -121,8 +121,7 @@ final class ContainerAttachedClusterMonitoringConfig {
   managedPrometheusConfig;
 
   Map<String, Object?> encode() => {
-    if (managedPrometheusConfig != null)
-      'managed_prometheus_config': managedPrometheusConfig!.encode(),
+    'managed_prometheus_config': ?managedPrometheusConfig?.encode(),
   };
 }
 
@@ -136,9 +135,7 @@ final class ContainerAttachedClusterMonitoringConfigManagedPrometheusConfig {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `oidc_config` block of
@@ -156,7 +153,7 @@ final class ContainerAttachedClusterOidcConfig {
 
   Map<String, Object?> encode() => {
     'issuer_url': issuerUrl.toTfJson(),
-    if (jwks != null) 'jwks': jwks!.toTfJson(),
+    'jwks': ?jwks?.toTfJson(),
   };
 }
 
@@ -169,8 +166,7 @@ final class ContainerAttachedClusterProxyConfig {
   final ContainerAttachedClusterProxyConfigKubernetesSecret? kubernetesSecret;
 
   Map<String, Object?> encode() => {
-    if (kubernetesSecret != null)
-      'kubernetes_secret': kubernetesSecret!.encode(),
+    'kubernetes_secret': ?kubernetesSecret?.encode(),
   };
 }
 
@@ -288,9 +284,9 @@ final class GoogleContainerAttachedCluster extends Resource {
              'security_posture_config': TfArg.literal(
                securityPostureConfig.encode(),
              ),
-           if (description != null) 'description': description,
-           if (annotations != null) 'annotations': annotations,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'annotations': ?annotations,
+           'project': ?project,
          },
        );
 

@@ -27,7 +27,7 @@ final class AwsServicecatalogappregistryAttributeGroupAssociation
          argMap: {
            'application_id': applicationId,
            'attribute_group_id': attributeGroupId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

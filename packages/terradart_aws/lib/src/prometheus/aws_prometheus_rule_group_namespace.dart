@@ -26,8 +26,8 @@ final class AwsPrometheusRuleGroupNamespace extends Resource {
          argMap: {
            'data': data,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'workspace_id': workspaceId,
          },
        );

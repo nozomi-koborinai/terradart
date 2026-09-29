@@ -35,9 +35,9 @@ final class AwsResiliencehubv2ServiceFunction extends Resource {
          terraformType: tfType,
          argMap: {
            'criticality': criticality,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'service_arn': serviceArn,
          },
        );

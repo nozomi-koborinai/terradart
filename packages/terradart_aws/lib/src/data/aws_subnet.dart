@@ -45,16 +45,15 @@ final class DataAwsSubnet extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (availabilityZoneId != null)
-             'availability_zone_id': availabilityZoneId,
-           if (cidrBlock != null) 'cidr_block': cidrBlock,
-           if (defaultForAz != null) 'default_for_az': defaultForAz,
-           if (ipv6CidrBlock != null) 'ipv6_cidr_block': ipv6CidrBlock,
-           if (region != null) 'region': region,
-           if (state != null) 'state': state,
-           if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId,
+           'availability_zone': ?availabilityZone,
+           'availability_zone_id': ?availabilityZoneId,
+           'cidr_block': ?cidrBlock,
+           'default_for_az': ?defaultForAz,
+           'ipv6_cidr_block': ?ipv6CidrBlock,
+           'region': ?region,
+           'state': ?state,
+           'tags': ?tags,
+           'vpc_id': ?vpcId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

@@ -29,7 +29,7 @@ final class CloudflareWorkersRoute extends Resource {
          terraformType: tfType,
          argMap: {
            'pattern': pattern,
-           if (script != null) 'script': script,
+           'script': ?script,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

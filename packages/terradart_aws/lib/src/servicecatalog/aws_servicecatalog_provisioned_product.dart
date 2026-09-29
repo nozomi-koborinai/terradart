@@ -232,9 +232,8 @@ final class ServicecatalogProvisionedProductProvisioningParameters {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (usePreviousValue != null)
-      'use_previous_value': usePreviousValue!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'use_previous_value': ?usePreviousValue?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -260,10 +259,10 @@ final class ServicecatalogProvisionedProductStackSetProvisioningPreferences {
   final TfArg<List<Object?>>? regions;
 
   Map<String, Object?> encode() => {
-    if (accounts != null) 'accounts': accounts!.toTfJson(),
+    'accounts': ?accounts?.toTfJson(),
     ...failureTolerance.encode(),
     ...maxConcurrency.encode(),
-    if (regions != null) 'regions': regions!.toTfJson(),
+    'regions': ?regions?.toTfJson(),
   };
 }
 
@@ -417,17 +416,16 @@ final class AwsServicecatalogProvisionedProduct extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acceptLanguage != null) 'accept_language': acceptLanguage,
-           if (ignoreErrors != null) 'ignore_errors': ignoreErrors,
+           'accept_language': ?acceptLanguage,
+           'ignore_errors': ?ignoreErrors,
            'name': name,
-           if (notificationArns != null) 'notification_arns': notificationArns,
+           'notification_arns': ?notificationArns,
            ...?path?.argMap,
            ...product.argMap,
            ...provisioningArtifact.argMap,
-           if (region != null) 'region': region,
-           if (retainPhysicalResources != null)
-             'retain_physical_resources': retainPhysicalResources,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'retain_physical_resources': ?retainPhysicalResources,
+           'tags': ?tags,
            if (provisioningParameters != null)
              'provisioning_parameters': TfArg.literal([
                for (final e in provisioningParameters) e.encode(),

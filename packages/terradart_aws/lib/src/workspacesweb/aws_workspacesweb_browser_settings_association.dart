@@ -25,7 +25,7 @@ final class AwsWorkspaceswebBrowserSettingsAssociation extends Resource {
          argMap: {
            'browser_settings_arn': browserSettingsArn,
            'portal_arn': portalArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

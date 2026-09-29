@@ -20,11 +20,7 @@ final class DataAwsAthenaNamedQuery extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (region != null) 'region': region,
-           if (workgroup != null) 'workgroup': workgroup,
-         },
+         argMap: {'name': name, 'region': ?region, 'workgroup': ?workgroup},
        );
 
   @override

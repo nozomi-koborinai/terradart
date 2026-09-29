@@ -19,8 +19,8 @@ final class DataWorkerFilter {
   final TfArg<DataWorkerFilterOrderBy>? orderBy;
 
   Map<String, Object?> encode() => {
-    if (order != null) 'order': order!.toTfJson(),
-    if (orderBy != null) 'order_by': orderBy!.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'order_by': ?orderBy?.toTfJson(),
   };
 }
 
@@ -64,8 +64,8 @@ final class DataCloudflareWorker extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (workerId != null) 'worker_id': workerId,
+           'account_id': ?accountId,
+           'worker_id': ?workerId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

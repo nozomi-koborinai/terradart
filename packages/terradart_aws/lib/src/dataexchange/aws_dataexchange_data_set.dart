@@ -40,8 +40,8 @@ final class AwsDataexchangeDataSet extends Resource {
            'asset_type': assetType,
            'description': description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -25,12 +25,12 @@ final class AwsConnectSecurityProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'instance_id': instanceId,
            'name': name,
-           if (permissions != null) 'permissions': permissions,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'permissions': ?permissions,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -25,14 +25,13 @@ final class DataAwsRoute53ResolverRule extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (domainName != null) 'domain_name': domainName,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (resolverEndpointId != null)
-             'resolver_endpoint_id': resolverEndpointId,
-           if (resolverRuleId != null) 'resolver_rule_id': resolverRuleId,
-           if (ruleType != null) 'rule_type': ruleType,
-           if (tags != null) 'tags': tags,
+           'domain_name': ?domainName,
+           'name': ?name,
+           'region': ?region,
+           'resolver_endpoint_id': ?resolverEndpointId,
+           'resolver_rule_id': ?resolverRuleId,
+           'rule_type': ?ruleType,
+           'tags': ?tags,
          },
        );
 

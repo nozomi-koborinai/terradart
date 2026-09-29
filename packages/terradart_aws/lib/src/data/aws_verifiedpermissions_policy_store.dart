@@ -17,10 +17,7 @@ final class DataAwsVerifiedpermissionsPolicyStore extends Data {
     TfArg<String>? region,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {'id': id, if (region != null) 'region': region},
-       );
+  }) : super(terraformType: tfType, argMap: {'id': id, 'region': ?region});
 
   @override
   Set<String> get sensitiveFields =>

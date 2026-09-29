@@ -20,11 +20,7 @@ final class DataAwsWafv2RegexPatternSet extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (region != null) 'region': region,
-           'scope': scope,
-         },
+         argMap: {'name': name, 'region': ?region, 'scope': scope},
        );
 
   @override

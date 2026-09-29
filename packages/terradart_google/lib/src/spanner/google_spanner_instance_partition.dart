@@ -126,10 +126,8 @@ final class SpannerInstancePartitionAutoscalingConfig {
   autoscalingTargets;
 
   Map<String, Object?> encode() => {
-    if (autoscalingLimits != null)
-      'autoscaling_limits': autoscalingLimits!.encode(),
-    if (autoscalingTargets != null)
-      'autoscaling_targets': autoscalingTargets!.encode(),
+    'autoscaling_limits': ?autoscalingLimits?.encode(),
+    'autoscaling_targets': ?autoscalingTargets?.encode(),
   };
 }
 
@@ -289,13 +287,10 @@ final class SpannerInstancePartitionAutoscalingConfigAutoscalingTargets {
   final TfArg<num>? totalCpuUtilizationPercent;
 
   Map<String, Object?> encode() => {
-    if (highPriorityCpuUtilizationPercent != null)
-      'high_priority_cpu_utilization_percent':
-          highPriorityCpuUtilizationPercent!.toTfJson(),
-    if (storageUtilizationPercent != null)
-      'storage_utilization_percent': storageUtilizationPercent!.toTfJson(),
-    if (totalCpuUtilizationPercent != null)
-      'total_cpu_utilization_percent': totalCpuUtilizationPercent!.toTfJson(),
+    'high_priority_cpu_utilization_percent': ?highPriorityCpuUtilizationPercent
+        ?.toTfJson(),
+    'storage_utilization_percent': ?storageUtilizationPercent?.toTfJson(),
+    'total_cpu_utilization_percent': ?totalCpuUtilizationPercent?.toTfJson(),
   };
 }
 
@@ -342,8 +337,8 @@ final class GoogleSpannerInstancePartition extends Resource {
            'config': config,
            'display_name': displayName,
            ...capacity.argMap,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

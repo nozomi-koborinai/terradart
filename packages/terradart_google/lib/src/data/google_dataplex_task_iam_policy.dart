@@ -26,8 +26,8 @@ final class DataGoogleDataplexTaskIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'lake': lake,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
            'task_id': taskId,
          },
        );

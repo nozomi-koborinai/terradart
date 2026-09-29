@@ -16,9 +16,7 @@ final class DataWorkflowFilter {
 
   final TfArg<String>? search;
 
-  Map<String, Object?> encode() => {
-    if (search != null) 'search': search!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'search': ?search?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_workflow`.
@@ -39,8 +37,8 @@ final class DataCloudflareWorkflow extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (workflowName != null) 'workflow_name': workflowName,
+           'account_id': ?accountId,
+           'workflow_name': ?workflowName,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

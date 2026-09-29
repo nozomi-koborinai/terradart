@@ -56,20 +56,13 @@ final class DatastreamStreamBackfillAll {
   sqlServerExcludedObjects;
 
   Map<String, Object?> encode() => {
-    if (mongodbExcludedObjects != null)
-      'mongodb_excluded_objects': mongodbExcludedObjects!.encode(),
-    if (mysqlExcludedObjects != null)
-      'mysql_excluded_objects': mysqlExcludedObjects!.encode(),
-    if (oracleExcludedObjects != null)
-      'oracle_excluded_objects': oracleExcludedObjects!.encode(),
-    if (postgresqlExcludedObjects != null)
-      'postgresql_excluded_objects': postgresqlExcludedObjects!.encode(),
-    if (salesforceExcludedObjects != null)
-      'salesforce_excluded_objects': salesforceExcludedObjects!.encode(),
-    if (spannerExcludedObjects != null)
-      'spanner_excluded_objects': spannerExcludedObjects!.encode(),
-    if (sqlServerExcludedObjects != null)
-      'sql_server_excluded_objects': sqlServerExcludedObjects!.encode(),
+    'mongodb_excluded_objects': ?mongodbExcludedObjects?.encode(),
+    'mysql_excluded_objects': ?mysqlExcludedObjects?.encode(),
+    'oracle_excluded_objects': ?oracleExcludedObjects?.encode(),
+    'postgresql_excluded_objects': ?postgresqlExcludedObjects?.encode(),
+    'salesforce_excluded_objects': ?salesforceExcludedObjects?.encode(),
+    'spanner_excluded_objects': ?spannerExcludedObjects?.encode(),
+    'sql_server_excluded_objects': ?sqlServerExcludedObjects?.encode(),
   };
 }
 
@@ -144,9 +137,7 @@ final class DatastreamStreamBackfillAllMongodbExcludedObjectsDatabasesCollection
 
   final TfArg<String>? field;
 
-  Map<String, Object?> encode() => {
-    if (field != null) 'field': field!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'field': ?field?.toTfJson()};
 }
 
 /// Typed helper for the `backfill_all.mysql_excluded_objects` block of
@@ -237,13 +228,12 @@ final class DatastreamStreamBackfillAllMysqlExcludedObjectsMysqlDatabasesMysqlTa
   final TfArg<bool>? primaryKey;
 
   Map<String, Object?> encode() => {
-    if (collation != null) 'collation': collation!.toTfJson(),
-    if (column != null) 'column': column!.toTfJson(),
-    if (dataType != null) 'data_type': dataType!.toTfJson(),
-    if (nullable != null) 'nullable': nullable!.toTfJson(),
-    if (ordinalPosition != null)
-      'ordinal_position': ordinalPosition!.toTfJson(),
-    if (primaryKey != null) 'primary_key': primaryKey!.toTfJson(),
+    'collation': ?collation?.toTfJson(),
+    'column': ?column?.toTfJson(),
+    'data_type': ?dataType?.toTfJson(),
+    'nullable': ?nullable?.toTfJson(),
+    'ordinal_position': ?ordinalPosition?.toTfJson(),
+    'primary_key': ?primaryKey?.toTfJson(),
   };
 }
 
@@ -323,8 +313,8 @@ final class DatastreamStreamBackfillAllOracleExcludedObjectsOracleSchemasOracleT
   final TfArg<String>? dataType;
 
   Map<String, Object?> encode() => {
-    if (column != null) 'column': column!.toTfJson(),
-    if (dataType != null) 'data_type': dataType!.toTfJson(),
+    'column': ?column?.toTfJson(),
+    'data_type': ?dataType?.toTfJson(),
   };
 }
 
@@ -415,12 +405,11 @@ final class DatastreamStreamBackfillAllPostgresqlExcludedObjectsPostgresqlSchema
   final TfArg<bool>? primaryKey;
 
   Map<String, Object?> encode() => {
-    if (column != null) 'column': column!.toTfJson(),
-    if (dataType != null) 'data_type': dataType!.toTfJson(),
-    if (nullable != null) 'nullable': nullable!.toTfJson(),
-    if (ordinalPosition != null)
-      'ordinal_position': ordinalPosition!.toTfJson(),
-    if (primaryKey != null) 'primary_key': primaryKey!.toTfJson(),
+    'column': ?column?.toTfJson(),
+    'data_type': ?dataType?.toTfJson(),
+    'nullable': ?nullable?.toTfJson(),
+    'ordinal_position': ?ordinalPosition?.toTfJson(),
+    'primary_key': ?primaryKey?.toTfJson(),
   };
 }
 
@@ -455,7 +444,7 @@ final class DatastreamStreamBackfillAllSalesforceExcludedObjectsObjects {
   fields;
 
   Map<String, Object?> encode() => {
-    if (objectName != null) 'object_name': objectName!.toTfJson(),
+    'object_name': ?objectName?.toTfJson(),
     if (fields != null) 'fields': [for (final e in fields!) e.encode()],
   };
 }
@@ -470,7 +459,7 @@ final class DatastreamStreamBackfillAllSalesforceExcludedObjectsObjectsFields {
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Typed helper for the `backfill_all.spanner_excluded_objects` block of
@@ -615,8 +604,8 @@ final class DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemasTablesColu
   final TfArg<String>? dataType;
 
   Map<String, Object?> encode() => {
-    if (column != null) 'column': column!.toTfJson(),
-    if (dataType != null) 'data_type': dataType!.toTfJson(),
+    'column': ?column?.toTfJson(),
+    'data_type': ?dataType?.toTfJson(),
   };
 }
 
@@ -733,9 +722,9 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfig {
   dataset;
 
   Map<String, Object?> encode() => {
-    if (dataFreshness != null) 'data_freshness': dataFreshness!.toTfJson(),
+    'data_freshness': ?dataFreshness?.toTfJson(),
     ...?writeMode?.encode(),
-    if (blmtConfig != null) 'blmt_config': blmtConfig!.encode(),
+    'blmt_config': ?blmtConfig?.encode(),
     ...dataset.encode(),
   };
 }
@@ -898,7 +887,7 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigBlmtConfig
     'bucket': bucket.encodeAs('name').toTfJson(),
     'connection_name': connectionName.toTfJson(),
     'file_format': fileFormat.toTfJson(),
-    if (rootPath != null) 'root_path': rootPath!.toTfJson(),
+    'root_path': ?rootPath?.toTfJson(),
     'table_format': tableFormat.toTfJson(),
   };
 }
@@ -942,7 +931,7 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHier
   datasetTemplate;
 
   Map<String, Object?> encode() => {
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
     'dataset_template': datasetTemplate.encode(),
   };
 }
@@ -964,10 +953,8 @@ final class DatastreamStreamDestinationConfigBigqueryDestinationConfigSourceHier
   final TfArg<String> location;
 
   Map<String, Object?> encode() => {
-    if (datasetIdPrefix != null)
-      'dataset_id_prefix': datasetIdPrefix!.toTfJson(),
-    if (kmsKeyName != null)
-      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
+    'dataset_id_prefix': ?datasetIdPrefix?.toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
     'location': location.toTfJson(),
   };
 }
@@ -993,10 +980,9 @@ final class DatastreamStreamDestinationConfigGcsDestinationConfig {
   fileFormat;
 
   Map<String, Object?> encode() => {
-    if (fileRotationInterval != null)
-      'file_rotation_interval': fileRotationInterval!.toTfJson(),
-    if (fileRotationMb != null) 'file_rotation_mb': fileRotationMb!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'file_rotation_interval': ?fileRotationInterval?.toTfJson(),
+    'file_rotation_mb': ?fileRotationMb?.toTfJson(),
+    'path': ?path?.toTfJson(),
     ...fileFormat.encode(),
   };
 }
@@ -1093,9 +1079,8 @@ final class DatastreamStreamDestinationConfigGcsDestinationConfigJsonFileFormat 
   schemaFileFormat;
 
   Map<String, Object?> encode() => {
-    if (compression != null) 'compression': compression!.toTfJson(),
-    if (schemaFileFormat != null)
-      'schema_file_format': schemaFileFormat!.toTfJson(),
+    'compression': ?compression?.toTfJson(),
+    'schema_file_format': ?schemaFileFormat?.toTfJson(),
   };
 }
 
@@ -1160,10 +1145,8 @@ final class DatastreamStreamRuleSetsCustomizationRules {
   bigqueryPartitioning;
 
   Map<String, Object?> encode() => {
-    if (bigqueryClustering != null)
-      'bigquery_clustering': bigqueryClustering!.encode(),
-    if (bigqueryPartitioning != null)
-      'bigquery_partitioning': bigqueryPartitioning!.encode(),
+    'bigquery_clustering': ?bigqueryClustering?.encode(),
+    'bigquery_partitioning': ?bigqueryPartitioning?.encode(),
   };
 }
 
@@ -1203,14 +1186,10 @@ final class DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioning {
   timeUnitPartition;
 
   Map<String, Object?> encode() => {
-    if (requirePartitionFilter != null)
-      'require_partition_filter': requirePartitionFilter!.toTfJson(),
-    if (ingestionTimePartition != null)
-      'ingestion_time_partition': ingestionTimePartition!.encode(),
-    if (integerRangePartition != null)
-      'integer_range_partition': integerRangePartition!.encode(),
-    if (timeUnitPartition != null)
-      'time_unit_partition': timeUnitPartition!.encode(),
+    'require_partition_filter': ?requirePartitionFilter?.toTfJson(),
+    'ingestion_time_partition': ?ingestionTimePartition?.encode(),
+    'integer_range_partition': ?integerRangePartition?.encode(),
+    'time_unit_partition': ?timeUnitPartition?.encode(),
   };
 }
 
@@ -1228,8 +1207,7 @@ final class DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningIngest
   partitioningTimeGranularity;
 
   Map<String, Object?> encode() => {
-    if (partitioningTimeGranularity != null)
-      'partitioning_time_granularity': partitioningTimeGranularity!.toTfJson(),
+    'partitioning_time_granularity': ?partitioningTimeGranularity?.toTfJson(),
   };
 }
 
@@ -1296,8 +1274,7 @@ final class DatastreamStreamRuleSetsCustomizationRulesBigqueryPartitioningTimeUn
 
   Map<String, Object?> encode() => {
     'column': column.toTfJson(),
-    if (partitioningTimeGranularity != null)
-      'partitioning_time_granularity': partitioningTimeGranularity!.toTfJson(),
+    'partitioning_time_granularity': ?partitioningTimeGranularity?.toTfJson(),
   };
 }
 
@@ -1329,8 +1306,7 @@ final class DatastreamStreamRuleSetsObjectFilter {
   sourceObjectIdentifier;
 
   Map<String, Object?> encode() => {
-    if (sourceObjectIdentifier != null)
-      'source_object_identifier': sourceObjectIdentifier!.encode(),
+    'source_object_identifier': ?sourceObjectIdentifier?.encode(),
   };
 }
 
@@ -1370,19 +1346,13 @@ final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifier {
   sqlServerIdentifier;
 
   Map<String, Object?> encode() => {
-    if (mongodbIdentifier != null)
-      'mongodb_identifier': mongodbIdentifier!.encode(),
-    if (mysqlIdentifier != null) 'mysql_identifier': mysqlIdentifier!.encode(),
-    if (oracleIdentifier != null)
-      'oracle_identifier': oracleIdentifier!.encode(),
-    if (postgresqlIdentifier != null)
-      'postgresql_identifier': postgresqlIdentifier!.encode(),
-    if (salesforceIdentifier != null)
-      'salesforce_identifier': salesforceIdentifier!.encode(),
-    if (spannerIdentifier != null)
-      'spanner_identifier': spannerIdentifier!.encode(),
-    if (sqlServerIdentifier != null)
-      'sql_server_identifier': sqlServerIdentifier!.encode(),
+    'mongodb_identifier': ?mongodbIdentifier?.encode(),
+    'mysql_identifier': ?mysqlIdentifier?.encode(),
+    'oracle_identifier': ?oracleIdentifier?.encode(),
+    'postgresql_identifier': ?postgresqlIdentifier?.encode(),
+    'salesforce_identifier': ?salesforceIdentifier?.encode(),
+    'spanner_identifier': ?spannerIdentifier?.encode(),
+    'sql_server_identifier': ?sqlServerIdentifier?.encode(),
   };
 }
 
@@ -1489,7 +1459,7 @@ final class DatastreamStreamRuleSetsObjectFilterSourceObjectIdentifierSpannerIde
   final TfArg<String> table;
 
   Map<String, Object?> encode() => {
-    if (schema != null) 'schema': schema!.toTfJson(),
+    'schema': ?schema?.toTfJson(),
     'table': table.toTfJson(),
   };
 }
@@ -1727,10 +1697,9 @@ final class DatastreamStreamSourceConfigMongodbSourceConfig {
   includeObjects;
 
   Map<String, Object?> encode() => {
-    if (maxConcurrentBackfillTasks != null)
-      'max_concurrent_backfill_tasks': maxConcurrentBackfillTasks!.toTfJson(),
-    if (excludeObjects != null) 'exclude_objects': excludeObjects!.encode(),
-    if (includeObjects != null) 'include_objects': includeObjects!.encode(),
+    'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
+    'exclude_objects': ?excludeObjects?.encode(),
+    'include_objects': ?includeObjects?.encode(),
   };
 }
 
@@ -1770,7 +1739,7 @@ final class DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjectsDatabas
   collections;
 
   Map<String, Object?> encode() => {
-    if (database != null) 'database': database!.toTfJson(),
+    'database': ?database?.toTfJson(),
     if (collections != null)
       'collections': [for (final e in collections!) e.encode()],
   };
@@ -1793,7 +1762,7 @@ final class DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjectsDatabas
   fields;
 
   Map<String, Object?> encode() => {
-    if (collection != null) 'collection': collection!.toTfJson(),
+    'collection': ?collection?.toTfJson(),
     if (fields != null) 'fields': [for (final e in fields!) e.encode()],
   };
 }
@@ -1808,9 +1777,7 @@ final class DatastreamStreamSourceConfigMongodbSourceConfigExcludeObjectsDatabas
 
   final TfArg<String>? field;
 
-  Map<String, Object?> encode() => {
-    if (field != null) 'field': field!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'field': ?field?.toTfJson()};
 }
 
 /// Typed helper for the `source_config.mongodb_source_config.include_objects` block of
@@ -1849,7 +1816,7 @@ final class DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjectsDatabas
   collections;
 
   Map<String, Object?> encode() => {
-    if (database != null) 'database': database!.toTfJson(),
+    'database': ?database?.toTfJson(),
     if (collections != null)
       'collections': [for (final e in collections!) e.encode()],
   };
@@ -1872,7 +1839,7 @@ final class DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjectsDatabas
   fields;
 
   Map<String, Object?> encode() => {
-    if (collection != null) 'collection': collection!.toTfJson(),
+    'collection': ?collection?.toTfJson(),
     if (fields != null) 'fields': [for (final e in fields!) e.encode()],
   };
 }
@@ -1887,9 +1854,7 @@ final class DatastreamStreamSourceConfigMongodbSourceConfigIncludeObjectsDatabas
 
   final TfArg<String>? field;
 
-  Map<String, Object?> encode() => {
-    if (field != null) 'field': field!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'field': ?field?.toTfJson()};
 }
 
 /// Typed helper for the `source_config.mysql_source_config` block of
@@ -1917,13 +1882,11 @@ final class DatastreamStreamSourceConfigMysqlSourceConfig {
   includeObjects;
 
   Map<String, Object?> encode() => {
-    if (maxConcurrentBackfillTasks != null)
-      'max_concurrent_backfill_tasks': maxConcurrentBackfillTasks!.toTfJson(),
-    if (maxConcurrentCdcTasks != null)
-      'max_concurrent_cdc_tasks': maxConcurrentCdcTasks!.toTfJson(),
+    'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
+    'max_concurrent_cdc_tasks': ?maxConcurrentCdcTasks?.toTfJson(),
     ...?cdcMethod?.encode(),
-    if (excludeObjects != null) 'exclude_objects': excludeObjects!.encode(),
-    if (includeObjects != null) 'include_objects': includeObjects!.encode(),
+    'exclude_objects': ?excludeObjects?.encode(),
+    'include_objects': ?includeObjects?.encode(),
   };
 }
 
@@ -2084,13 +2047,12 @@ final class DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjectsMysqlData
   final TfArg<bool>? primaryKey;
 
   Map<String, Object?> encode() => {
-    if (collation != null) 'collation': collation!.toTfJson(),
-    if (column != null) 'column': column!.toTfJson(),
-    if (dataType != null) 'data_type': dataType!.toTfJson(),
-    if (nullable != null) 'nullable': nullable!.toTfJson(),
-    if (ordinalPosition != null)
-      'ordinal_position': ordinalPosition!.toTfJson(),
-    if (primaryKey != null) 'primary_key': primaryKey!.toTfJson(),
+    'collation': ?collation?.toTfJson(),
+    'column': ?column?.toTfJson(),
+    'data_type': ?dataType?.toTfJson(),
+    'nullable': ?nullable?.toTfJson(),
+    'ordinal_position': ?ordinalPosition?.toTfJson(),
+    'primary_key': ?primaryKey?.toTfJson(),
   };
 }
 
@@ -2193,13 +2155,12 @@ final class DatastreamStreamSourceConfigMysqlSourceConfigIncludeObjectsMysqlData
   final TfArg<bool>? primaryKey;
 
   Map<String, Object?> encode() => {
-    if (collation != null) 'collation': collation!.toTfJson(),
-    if (column != null) 'column': column!.toTfJson(),
-    if (dataType != null) 'data_type': dataType!.toTfJson(),
-    if (nullable != null) 'nullable': nullable!.toTfJson(),
-    if (ordinalPosition != null)
-      'ordinal_position': ordinalPosition!.toTfJson(),
-    if (primaryKey != null) 'primary_key': primaryKey!.toTfJson(),
+    'collation': ?collation?.toTfJson(),
+    'column': ?column?.toTfJson(),
+    'data_type': ?dataType?.toTfJson(),
+    'nullable': ?nullable?.toTfJson(),
+    'ordinal_position': ?ordinalPosition?.toTfJson(),
+    'primary_key': ?primaryKey?.toTfJson(),
   };
 }
 
@@ -2233,16 +2194,12 @@ final class DatastreamStreamSourceConfigOracleSourceConfig {
   streamLargeObjects;
 
   Map<String, Object?> encode() => {
-    if (maxConcurrentBackfillTasks != null)
-      'max_concurrent_backfill_tasks': maxConcurrentBackfillTasks!.toTfJson(),
-    if (maxConcurrentCdcTasks != null)
-      'max_concurrent_cdc_tasks': maxConcurrentCdcTasks!.toTfJson(),
-    if (dropLargeObjects != null)
-      'drop_large_objects': dropLargeObjects!.encode(),
-    if (excludeObjects != null) 'exclude_objects': excludeObjects!.encode(),
-    if (includeObjects != null) 'include_objects': includeObjects!.encode(),
-    if (streamLargeObjects != null)
-      'stream_large_objects': streamLargeObjects!.encode(),
+    'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
+    'max_concurrent_cdc_tasks': ?maxConcurrentCdcTasks?.toTfJson(),
+    'drop_large_objects': ?dropLargeObjects?.encode(),
+    'exclude_objects': ?excludeObjects?.encode(),
+    'include_objects': ?includeObjects?.encode(),
+    'stream_large_objects': ?streamLargeObjects?.encode(),
   };
 }
 
@@ -2333,8 +2290,8 @@ final class DatastreamStreamSourceConfigOracleSourceConfigExcludeObjectsOracleSc
   final TfArg<String>? dataType;
 
   Map<String, Object?> encode() => {
-    if (column != null) 'column': column!.toTfJson(),
-    if (dataType != null) 'data_type': dataType!.toTfJson(),
+    'column': ?column?.toTfJson(),
+    'data_type': ?dataType?.toTfJson(),
   };
 }
 
@@ -2416,8 +2373,8 @@ final class DatastreamStreamSourceConfigOracleSourceConfigIncludeObjectsOracleSc
   final TfArg<String>? dataType;
 
   Map<String, Object?> encode() => {
-    if (column != null) 'column': column!.toTfJson(),
-    if (dataType != null) 'data_type': dataType!.toTfJson(),
+    'column': ?column?.toTfJson(),
+    'data_type': ?dataType?.toTfJson(),
   };
 }
 
@@ -2455,12 +2412,11 @@ final class DatastreamStreamSourceConfigPostgresqlSourceConfig {
   includeObjects;
 
   Map<String, Object?> encode() => {
-    if (maxConcurrentBackfillTasks != null)
-      'max_concurrent_backfill_tasks': maxConcurrentBackfillTasks!.toTfJson(),
+    'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
     'publication': publication.toTfJson(),
     'replication_slot': replicationSlot.toTfJson(),
-    if (excludeObjects != null) 'exclude_objects': excludeObjects!.encode(),
-    if (includeObjects != null) 'include_objects': includeObjects!.encode(),
+    'exclude_objects': ?excludeObjects?.encode(),
+    'include_objects': ?includeObjects?.encode(),
   };
 }
 
@@ -2551,12 +2507,11 @@ final class DatastreamStreamSourceConfigPostgresqlSourceConfigExcludeObjectsPost
   final TfArg<bool>? primaryKey;
 
   Map<String, Object?> encode() => {
-    if (column != null) 'column': column!.toTfJson(),
-    if (dataType != null) 'data_type': dataType!.toTfJson(),
-    if (nullable != null) 'nullable': nullable!.toTfJson(),
-    if (ordinalPosition != null)
-      'ordinal_position': ordinalPosition!.toTfJson(),
-    if (primaryKey != null) 'primary_key': primaryKey!.toTfJson(),
+    'column': ?column?.toTfJson(),
+    'data_type': ?dataType?.toTfJson(),
+    'nullable': ?nullable?.toTfJson(),
+    'ordinal_position': ?ordinalPosition?.toTfJson(),
+    'primary_key': ?primaryKey?.toTfJson(),
   };
 }
 
@@ -2647,12 +2602,11 @@ final class DatastreamStreamSourceConfigPostgresqlSourceConfigIncludeObjectsPost
   final TfArg<bool>? primaryKey;
 
   Map<String, Object?> encode() => {
-    if (column != null) 'column': column!.toTfJson(),
-    if (dataType != null) 'data_type': dataType!.toTfJson(),
-    if (nullable != null) 'nullable': nullable!.toTfJson(),
-    if (ordinalPosition != null)
-      'ordinal_position': ordinalPosition!.toTfJson(),
-    if (primaryKey != null) 'primary_key': primaryKey!.toTfJson(),
+    'column': ?column?.toTfJson(),
+    'data_type': ?dataType?.toTfJson(),
+    'nullable': ?nullable?.toTfJson(),
+    'ordinal_position': ?ordinalPosition?.toTfJson(),
+    'primary_key': ?primaryKey?.toTfJson(),
   };
 }
 
@@ -2676,8 +2630,8 @@ final class DatastreamStreamSourceConfigSalesforceSourceConfig {
 
   Map<String, Object?> encode() => {
     'polling_interval': pollingInterval.toTfJson(),
-    if (excludeObjects != null) 'exclude_objects': excludeObjects!.encode(),
-    if (includeObjects != null) 'include_objects': includeObjects!.encode(),
+    'exclude_objects': ?excludeObjects?.encode(),
+    'include_objects': ?includeObjects?.encode(),
   };
 }
 
@@ -2716,7 +2670,7 @@ final class DatastreamStreamSourceConfigSalesforceSourceConfigExcludeObjectsObje
   fields;
 
   Map<String, Object?> encode() => {
-    if (objectName != null) 'object_name': objectName!.toTfJson(),
+    'object_name': ?objectName?.toTfJson(),
     if (fields != null) 'fields': [for (final e in fields!) e.encode()],
   };
 }
@@ -2731,7 +2685,7 @@ final class DatastreamStreamSourceConfigSalesforceSourceConfigExcludeObjectsObje
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Typed helper for the `source_config.salesforce_source_config.include_objects` block of
@@ -2769,7 +2723,7 @@ final class DatastreamStreamSourceConfigSalesforceSourceConfigIncludeObjectsObje
   fields;
 
   Map<String, Object?> encode() => {
-    if (objectName != null) 'object_name': objectName!.toTfJson(),
+    'object_name': ?objectName?.toTfJson(),
     if (fields != null) 'fields': [for (final e in fields!) e.encode()],
   };
 }
@@ -2784,7 +2738,7 @@ final class DatastreamStreamSourceConfigSalesforceSourceConfigIncludeObjectsObje
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Typed helper for the `source_config.spanner_source_config` block of
@@ -2824,19 +2778,14 @@ final class DatastreamStreamSourceConfigSpannerSourceConfig {
   includeObjects;
 
   Map<String, Object?> encode() => {
-    if (backfillDataBoostEnabled != null)
-      'backfill_data_boost_enabled': backfillDataBoostEnabled!.toTfJson(),
-    if (changeStreamName != null)
-      'change_stream_name': changeStreamName!.toTfJson(),
-    if (fgacRole != null) 'fgac_role': fgacRole!.toTfJson(),
-    if (maxConcurrentBackfillTasks != null)
-      'max_concurrent_backfill_tasks': maxConcurrentBackfillTasks!.toTfJson(),
-    if (maxConcurrentCdcTasks != null)
-      'max_concurrent_cdc_tasks': maxConcurrentCdcTasks!.toTfJson(),
-    if (spannerRpcPriority != null)
-      'spanner_rpc_priority': spannerRpcPriority!.toTfJson(),
-    if (excludeObjects != null) 'exclude_objects': excludeObjects!.encode(),
-    if (includeObjects != null) 'include_objects': includeObjects!.encode(),
+    'backfill_data_boost_enabled': ?backfillDataBoostEnabled?.toTfJson(),
+    'change_stream_name': ?changeStreamName?.toTfJson(),
+    'fgac_role': ?fgacRole?.toTfJson(),
+    'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
+    'max_concurrent_cdc_tasks': ?maxConcurrentCdcTasks?.toTfJson(),
+    'spanner_rpc_priority': ?spannerRpcPriority?.toTfJson(),
+    'exclude_objects': ?excludeObjects?.encode(),
+    'include_objects': ?includeObjects?.encode(),
   };
 }
 
@@ -2926,9 +2875,7 @@ final class DatastreamStreamSourceConfigSpannerSourceConfigExcludeObjectsSchemas
 
   final TfArg<String>? column;
 
-  Map<String, Object?> encode() => {
-    if (column != null) 'column': column!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'column': ?column?.toTfJson()};
 }
 
 /// Typed helper for the `source_config.spanner_source_config.include_objects` block of
@@ -3003,9 +2950,7 @@ final class DatastreamStreamSourceConfigSpannerSourceConfigIncludeObjectsSchemas
 
   final TfArg<String>? column;
 
-  Map<String, Object?> encode() => {
-    if (column != null) 'column': column!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'column': ?column?.toTfJson()};
 }
 
 /// Typed helper for the `source_config.sql_server_source_config` block of
@@ -3038,14 +2983,12 @@ final class DatastreamStreamSourceConfigSqlServerSourceConfig {
   transactionLogs;
 
   Map<String, Object?> encode() => {
-    if (maxConcurrentBackfillTasks != null)
-      'max_concurrent_backfill_tasks': maxConcurrentBackfillTasks!.toTfJson(),
-    if (maxConcurrentCdcTasks != null)
-      'max_concurrent_cdc_tasks': maxConcurrentCdcTasks!.toTfJson(),
-    if (changeTables != null) 'change_tables': changeTables!.encode(),
-    if (excludeObjects != null) 'exclude_objects': excludeObjects!.encode(),
-    if (includeObjects != null) 'include_objects': includeObjects!.encode(),
-    if (transactionLogs != null) 'transaction_logs': transactionLogs!.encode(),
+    'max_concurrent_backfill_tasks': ?maxConcurrentBackfillTasks?.toTfJson(),
+    'max_concurrent_cdc_tasks': ?maxConcurrentCdcTasks?.toTfJson(),
+    'change_tables': ?changeTables?.encode(),
+    'exclude_objects': ?excludeObjects?.encode(),
+    'include_objects': ?includeObjects?.encode(),
+    'transaction_logs': ?transactionLogs?.encode(),
   };
 }
 
@@ -3134,8 +3077,8 @@ final class DatastreamStreamSourceConfigSqlServerSourceConfigExcludeObjectsSchem
   final TfArg<String>? dataType;
 
   Map<String, Object?> encode() => {
-    if (column != null) 'column': column!.toTfJson(),
-    if (dataType != null) 'data_type': dataType!.toTfJson(),
+    'column': ?column?.toTfJson(),
+    'data_type': ?dataType?.toTfJson(),
   };
 }
 
@@ -3215,8 +3158,8 @@ final class DatastreamStreamSourceConfigSqlServerSourceConfigIncludeObjectsSchem
   final TfArg<String>? dataType;
 
   Map<String, Object?> encode() => {
-    if (column != null) 'column': column!.toTfJson(),
-    if (dataType != null) 'data_type': dataType!.toTfJson(),
+    'column': ?column?.toTfJson(),
+    'data_type': ?dataType?.toTfJson(),
   };
 }
 
@@ -3264,16 +3207,14 @@ final class GoogleDatastreamStream extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (createWithoutValidation != null)
-             'create_without_validation': createWithoutValidation,
-           if (customerManagedEncryptionKey != null)
-             'customer_managed_encryption_key': customerManagedEncryptionKey,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (desiredState != null) 'desired_state': desiredState,
+           'create_without_validation': ?createWithoutValidation,
+           'customer_managed_encryption_key': ?customerManagedEncryptionKey,
+           'deletion_policy': ?deletionPolicy,
+           'desired_state': ?desiredState,
            'display_name': displayName,
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'stream_id': streamId,
            if (backfillNone != null)
              'backfill_none': TfArg.literal(backfillNone.encode()),

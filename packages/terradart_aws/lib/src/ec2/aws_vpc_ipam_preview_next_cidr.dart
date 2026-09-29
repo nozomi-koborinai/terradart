@@ -23,10 +23,10 @@ final class AwsVpcIpamPreviewNextCidr extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (disallowedCidrs != null) 'disallowed_cidrs': disallowedCidrs,
+           'disallowed_cidrs': ?disallowedCidrs,
            'ipam_pool_id': ipamPoolId,
-           if (netmaskLength != null) 'netmask_length': netmaskLength,
-           if (region != null) 'region': region,
+           'netmask_length': ?netmaskLength,
+           'region': ?region,
          },
        );
 

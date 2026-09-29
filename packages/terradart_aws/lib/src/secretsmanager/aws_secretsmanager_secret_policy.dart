@@ -23,10 +23,9 @@ final class AwsSecretsmanagerSecretPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (blockPublicPolicy != null)
-             'block_public_policy': blockPublicPolicy,
+           'block_public_policy': ?blockPublicPolicy,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
            'secret_arn': secretArn,
          },
        );

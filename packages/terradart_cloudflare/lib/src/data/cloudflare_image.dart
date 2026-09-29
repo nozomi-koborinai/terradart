@@ -23,10 +23,7 @@ final class DataCloudflareImage extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'image_id': imageId,
-         },
+         argMap: {'account_id': ?accountId, 'image_id': imageId},
        );
 
   @override

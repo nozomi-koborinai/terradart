@@ -22,8 +22,7 @@ final class IamWorkforcePoolAccessRestrictions {
   allowedServices;
 
   Map<String, Object?> encode() => {
-    if (disableProgrammaticSignin != null)
-      'disable_programmatic_signin': disableProgrammaticSignin!.toTfJson(),
+    'disable_programmatic_signin': ?disableProgrammaticSignin?.toTfJson(),
     if (allowedServices != null)
       'allowed_services': [for (final e in allowedServices!) e.encode()],
   };
@@ -37,9 +36,7 @@ final class IamWorkforcePoolAccessRestrictionsAllowedServices {
 
   final TfArg<String>? domain;
 
-  Map<String, Object?> encode() => {
-    if (domain != null) 'domain': domain!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'domain': ?domain?.toTfJson()};
 }
 
 /// Factory wrapper for `google_iam_workforce_pool`.
@@ -73,13 +70,13 @@ final class GoogleIamWorkforcePool extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
-           if (displayName != null) 'display_name': displayName,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'disabled': ?disabled,
+           'display_name': ?displayName,
            'location': location,
            'parent': parent,
-           if (sessionDuration != null) 'session_duration': sessionDuration,
+           'session_duration': ?sessionDuration,
            'workforce_pool_id': workforcePoolId,
            if (accessRestrictions != null)
              'access_restrictions': TfArg.literal(accessRestrictions.encode()),

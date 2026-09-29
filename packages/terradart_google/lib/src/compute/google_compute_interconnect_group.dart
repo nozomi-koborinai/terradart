@@ -17,8 +17,7 @@ final class ComputeInterconnectGroupIntent {
   topologyCapability;
 
   Map<String, Object?> encode() => {
-    if (topologyCapability != null)
-      'topology_capability': topologyCapability!.toTfJson(),
+    'topology_capability': ?topologyCapability?.toTfJson(),
   };
 }
 
@@ -48,7 +47,7 @@ final class ComputeInterconnectGroupInterconnects {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (interconnect != null) 'interconnect': interconnect!.toTfJson(),
+    'interconnect': ?interconnect?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -91,8 +90,8 @@ final class GoogleComputeInterconnectGroup extends Resource {
              'interconnects': TfArg.literal([
                for (final e in interconnects) e.encode(),
              ]),
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

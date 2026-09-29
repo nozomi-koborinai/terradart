@@ -21,9 +21,9 @@ final class DataAwsSagemakerPrebuiltEcrImage extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dnsSuffix != null) 'dns_suffix': dnsSuffix,
-           if (imageTag != null) 'image_tag': imageTag,
-           if (region != null) 'region': region,
+           'dns_suffix': ?dnsSuffix,
+           'image_tag': ?imageTag,
+           'region': ?region,
            'repository_name': repositoryName,
          },
        );

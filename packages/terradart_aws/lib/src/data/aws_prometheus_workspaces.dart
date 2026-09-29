@@ -18,10 +18,7 @@ final class DataAwsPrometheusWorkspaces extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (aliasPrefix != null) 'alias_prefix': aliasPrefix,
-           if (region != null) 'region': region,
-         },
+         argMap: {'alias_prefix': ?aliasPrefix, 'region': ?region},
        );
 
   @override

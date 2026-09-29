@@ -27,8 +27,8 @@ final class AwsFinspaceKxUser extends Resource {
            'environment_id': environmentId,
            'iam_role': iamRole,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

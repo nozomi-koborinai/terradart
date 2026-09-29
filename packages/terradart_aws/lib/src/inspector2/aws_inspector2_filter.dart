@@ -786,8 +786,8 @@ final class Inspector2FilterFilterCriteriaEcrImageLastInUseAt {
   final TfArg<String>? startInclusive;
 
   Map<String, Object?> encode() => {
-    if (endInclusive != null) 'end_inclusive': endInclusive!.toTfJson(),
-    if (startInclusive != null) 'start_inclusive': startInclusive!.toTfJson(),
+    'end_inclusive': ?endInclusive?.toTfJson(),
+    'start_inclusive': ?startInclusive?.toTfJson(),
   };
 }
 
@@ -805,8 +805,8 @@ final class Inspector2FilterFilterCriteriaEcrImagePushedAt {
   final TfArg<String>? startInclusive;
 
   Map<String, Object?> encode() => {
-    if (endInclusive != null) 'end_inclusive': endInclusive!.toTfJson(),
-    if (startInclusive != null) 'start_inclusive': startInclusive!.toTfJson(),
+    'end_inclusive': ?endInclusive?.toTfJson(),
+    'start_inclusive': ?startInclusive?.toTfJson(),
   };
 }
 
@@ -1075,8 +1075,8 @@ final class Inspector2FilterFilterCriteriaFirstObservedAt {
   final TfArg<String>? startInclusive;
 
   Map<String, Object?> encode() => {
-    if (endInclusive != null) 'end_inclusive': endInclusive!.toTfJson(),
-    if (startInclusive != null) 'start_inclusive': startInclusive!.toTfJson(),
+    'end_inclusive': ?endInclusive?.toTfJson(),
+    'start_inclusive': ?startInclusive?.toTfJson(),
   };
 }
 
@@ -1182,8 +1182,8 @@ final class Inspector2FilterFilterCriteriaLambdaFunctionLastModifiedAt {
   final TfArg<String>? startInclusive;
 
   Map<String, Object?> encode() => {
-    if (endInclusive != null) 'end_inclusive': endInclusive!.toTfJson(),
-    if (startInclusive != null) 'start_inclusive': startInclusive!.toTfJson(),
+    'end_inclusive': ?endInclusive?.toTfJson(),
+    'start_inclusive': ?startInclusive?.toTfJson(),
   };
 }
 
@@ -1303,8 +1303,8 @@ final class Inspector2FilterFilterCriteriaLastObservedAt {
   final TfArg<String>? startInclusive;
 
   Map<String, Object?> encode() => {
-    if (endInclusive != null) 'end_inclusive': endInclusive!.toTfJson(),
-    if (startInclusive != null) 'start_inclusive': startInclusive!.toTfJson(),
+    'end_inclusive': ?endInclusive?.toTfJson(),
+    'start_inclusive': ?startInclusive?.toTfJson(),
   };
 }
 
@@ -1568,8 +1568,8 @@ final class Inspector2FilterFilterCriteriaUpdatedAt {
   final TfArg<String>? startInclusive;
 
   Map<String, Object?> encode() => {
-    if (endInclusive != null) 'end_inclusive': endInclusive!.toTfJson(),
-    if (startInclusive != null) 'start_inclusive': startInclusive!.toTfJson(),
+    'end_inclusive': ?endInclusive?.toTfJson(),
+    'start_inclusive': ?startInclusive?.toTfJson(),
   };
 }
 
@@ -2015,11 +2015,11 @@ final class AwsInspector2Filter extends Resource {
          terraformType: tfType,
          argMap: {
            'action': action,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (reason != null) 'reason': reason,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'reason': ?reason,
+           'region': ?region,
+           'tags': ?tags,
            if (filterCriteria != null)
              'filter_criteria': TfArg.literal([
                for (final e in filterCriteria) e.encode(),

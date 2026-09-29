@@ -115,8 +115,7 @@ final class AppsyncApiEventConfigAuthProviderCognitoConfig {
   final TfArg<String> userPoolId;
 
   Map<String, Object?> encode() => {
-    if (appIdClientRegex != null)
-      'app_id_client_regex': appIdClientRegex!.toTfJson(),
+    'app_id_client_regex': ?appIdClientRegex?.toTfJson(),
     'aws_region': awsRegion.toTfJson(),
     'user_pool_id': userPoolId.toTfJson(),
   };
@@ -139,13 +138,10 @@ final class AppsyncApiEventConfigAuthProviderLambdaAuthorizerConfig {
   final TfArg<String>? identityValidationExpression;
 
   Map<String, Object?> encode() => {
-    if (authorizerResultTtlInSeconds != null)
-      'authorizer_result_ttl_in_seconds': authorizerResultTtlInSeconds!
-          .toTfJson(),
+    'authorizer_result_ttl_in_seconds': ?authorizerResultTtlInSeconds
+        ?.toTfJson(),
     'authorizer_uri': authorizerUri.toTfJson(),
-    if (identityValidationExpression != null)
-      'identity_validation_expression': identityValidationExpression!
-          .toTfJson(),
+    'identity_validation_expression': ?identityValidationExpression?.toTfJson(),
   };
 }
 
@@ -169,9 +165,9 @@ final class AppsyncApiEventConfigAuthProviderOpenidConnectConfig {
   final TfArg<String> issuer;
 
   Map<String, Object?> encode() => {
-    if (authTtl != null) 'auth_ttl': authTtl!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (iatTtl != null) 'iat_ttl': iatTtl!.toTfJson(),
+    'auth_ttl': ?authTtl?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'iat_ttl': ?iatTtl?.toTfJson(),
     'issuer': issuer.toTfJson(),
   };
 }
@@ -305,9 +301,9 @@ final class AwsAppsyncApi extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (ownerContact != null) 'owner_contact': ownerContact,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'owner_contact': ?ownerContact,
+           'region': ?region,
+           'tags': ?tags,
            if (eventConfig != null)
              'event_config': TfArg.literal([
                for (final e in eventConfig) e.encode(),

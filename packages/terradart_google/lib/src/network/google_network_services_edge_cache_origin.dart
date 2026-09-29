@@ -91,8 +91,8 @@ final class NetworkServicesEdgeCacheOriginOriginOverrideAction {
   urlRewrite;
 
   Map<String, Object?> encode() => {
-    if (headerAction != null) 'header_action': headerAction!.encode(),
-    if (urlRewrite != null) 'url_rewrite': urlRewrite!.encode(),
+    'header_action': ?headerAction?.encode(),
+    'url_rewrite': ?urlRewrite?.encode(),
   };
 }
 
@@ -136,7 +136,7 @@ final class NetworkServicesEdgeCacheOriginOriginOverrideActionHeaderActionReques
   Map<String, Object?> encode() => {
     'header_name': headerName.toTfJson(),
     'header_value': headerValue.toTfJson(),
-    if (replace != null) 'replace': replace!.toTfJson(),
+    'replace': ?replace?.toTfJson(),
   };
 }
 
@@ -150,9 +150,7 @@ final class NetworkServicesEdgeCacheOriginOriginOverrideActionUrlRewrite {
 
   final TfArg<String>? hostRewrite;
 
-  Map<String, Object?> encode() => {
-    if (hostRewrite != null) 'host_rewrite': hostRewrite!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'host_rewrite': ?hostRewrite?.toTfJson()};
 }
 
 /// Typed helper for the `origin_redirect` block of
@@ -164,8 +162,7 @@ final class NetworkServicesEdgeCacheOriginOriginRedirect {
   final TfArg<List<Object?>>? redirectConditions;
 
   Map<String, Object?> encode() => {
-    if (redirectConditions != null)
-      'redirect_conditions': redirectConditions!.toTfJson(),
+    'redirect_conditions': ?redirectConditions?.toTfJson(),
   };
 }
 
@@ -189,12 +186,10 @@ final class NetworkServicesEdgeCacheOriginTimeout {
   final TfArg<String>? responseTimeout;
 
   Map<String, Object?> encode() => {
-    if (connectTimeout != null) 'connect_timeout': connectTimeout!.toTfJson(),
-    if (maxAttemptsTimeout != null)
-      'max_attempts_timeout': maxAttemptsTimeout!.toTfJson(),
-    if (readTimeout != null) 'read_timeout': readTimeout!.toTfJson(),
-    if (responseTimeout != null)
-      'response_timeout': responseTimeout!.toTfJson(),
+    'connect_timeout': ?connectTimeout?.toTfJson(),
+    'max_attempts_timeout': ?maxAttemptsTimeout?.toTfJson(),
+    'read_timeout': ?readTimeout?.toTfJson(),
+    'response_timeout': ?responseTimeout?.toTfJson(),
   };
 }
 
@@ -244,12 +239,12 @@ final class GoogleNetworkServicesEdgeCacheOrigin extends Resource {
          argMap: {
            'name': name,
            'origin_address': originAddress,
-           if (description != null) 'description': description,
-           if (protocol != null) 'protocol': protocol,
-           if (port != null) 'port': port,
-           if (maxAttempts != null) 'max_attempts': maxAttempts,
-           if (retryConditions != null) 'retry_conditions': retryConditions,
-           if (failoverOrigin != null) 'failover_origin': failoverOrigin,
+           'description': ?description,
+           'protocol': ?protocol,
+           'port': ?port,
+           'max_attempts': ?maxAttempts,
+           'retry_conditions': ?retryConditions,
+           'failover_origin': ?failoverOrigin,
            if (timeout != null) 'timeout': TfArg.literal(timeout.encode()),
            if (awsV4Authentication != null)
              'aws_v4_authentication': TfArg.literal(
@@ -263,9 +258,9 @@ final class GoogleNetworkServicesEdgeCacheOrigin extends Resource {
              ),
            if (originRedirect != null)
              'origin_redirect': TfArg.literal(originRedirect.encode()),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

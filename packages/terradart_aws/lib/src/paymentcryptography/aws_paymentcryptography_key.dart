@@ -155,15 +155,15 @@ final class PaymentcryptographyKeyKeyAttributesKeyModesOfUse {
   final TfArg<bool>? wrap;
 
   Map<String, Object?> encode() => {
-    if (decrypt != null) 'decrypt': decrypt!.toTfJson(),
-    if (deriveKey != null) 'derive_key': deriveKey!.toTfJson(),
-    if (encrypt != null) 'encrypt': encrypt!.toTfJson(),
-    if (generate != null) 'generate': generate!.toTfJson(),
-    if (noRestrictions != null) 'no_restrictions': noRestrictions!.toTfJson(),
-    if (sign != null) 'sign': sign!.toTfJson(),
-    if (unwrap != null) 'unwrap': unwrap!.toTfJson(),
-    if (verify != null) 'verify': verify!.toTfJson(),
-    if (wrap != null) 'wrap': wrap!.toTfJson(),
+    'decrypt': ?decrypt?.toTfJson(),
+    'derive_key': ?deriveKey?.toTfJson(),
+    'encrypt': ?encrypt?.toTfJson(),
+    'generate': ?generate?.toTfJson(),
+    'no_restrictions': ?noRestrictions?.toTfJson(),
+    'sign': ?sign?.toTfJson(),
+    'unwrap': ?unwrap?.toTfJson(),
+    'verify': ?verify?.toTfJson(),
+    'wrap': ?wrap?.toTfJson(),
   };
 }
 
@@ -187,14 +187,12 @@ final class AwsPaymentcryptographyKey extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionWindowInDays != null)
-             'deletion_window_in_days': deletionWindowInDays,
-           if (enabled != null) 'enabled': enabled,
+           'deletion_window_in_days': ?deletionWindowInDays,
+           'enabled': ?enabled,
            'exportable': exportable,
-           if (keyCheckValueAlgorithm != null)
-             'key_check_value_algorithm': keyCheckValueAlgorithm,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'key_check_value_algorithm': ?keyCheckValueAlgorithm,
+           'region': ?region,
+           'tags': ?tags,
            if (keyAttributes != null)
              'key_attributes': TfArg.literal([
                for (final e in keyAttributes) e.encode(),

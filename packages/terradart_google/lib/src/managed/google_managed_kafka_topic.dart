@@ -53,10 +53,10 @@ final class GoogleManagedKafkaTopic extends Resource {
            'cluster': cluster,
            'location': location,
            'replication_factor': replicationFactor,
-           if (partitionCount != null) 'partition_count': partitionCount,
-           if (configs != null) 'configs': configs,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'partition_count': ?partitionCount,
+           'configs': ?configs,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

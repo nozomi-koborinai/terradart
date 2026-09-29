@@ -65,10 +65,10 @@ final class GoogleNetworkConnectivityDestination extends Resource {
            'multicloud_data_transfer_config': multicloudDataTransferConfig,
            'ip_prefix': ipPrefix,
            'endpoints': TfArg.literal([for (final e in endpoints) e.encode()]),
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

@@ -77,8 +77,8 @@ final class MqBrokerConfiguration {
   final TfArg<num>? revision;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (revision != null) 'revision': revision!.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'revision': ?revision?.toTfJson(),
   };
 }
 
@@ -93,8 +93,8 @@ final class MqBrokerEncryptionOptions {
   final TfArg<bool>? useAwsOwnedKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (useAwsOwnedKey != null) 'use_aws_owned_key': useAwsOwnedKey!.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'use_aws_owned_key': ?useAwsOwnedKey?.toTfJson(),
   };
 }
 
@@ -139,23 +139,17 @@ final class MqBrokerLdapServerMetadata {
   final TfArg<bool>? userSearchSubtree;
 
   Map<String, Object?> encode() => {
-    if (hosts != null) 'hosts': hosts!.toTfJson(),
-    if (roleBase != null) 'role_base': roleBase!.toTfJson(),
-    if (roleName != null) 'role_name': roleName!.toTfJson(),
-    if (roleSearchMatching != null)
-      'role_search_matching': roleSearchMatching!.toTfJson(),
-    if (roleSearchSubtree != null)
-      'role_search_subtree': roleSearchSubtree!.toTfJson(),
-    if (serviceAccountPassword != null)
-      'service_account_password': serviceAccountPassword!.toTfJson(),
-    if (serviceAccountUsername != null)
-      'service_account_username': serviceAccountUsername!.toTfJson(),
-    if (userBase != null) 'user_base': userBase!.toTfJson(),
-    if (userRoleName != null) 'user_role_name': userRoleName!.toTfJson(),
-    if (userSearchMatching != null)
-      'user_search_matching': userSearchMatching!.toTfJson(),
-    if (userSearchSubtree != null)
-      'user_search_subtree': userSearchSubtree!.toTfJson(),
+    'hosts': ?hosts?.toTfJson(),
+    'role_base': ?roleBase?.toTfJson(),
+    'role_name': ?roleName?.toTfJson(),
+    'role_search_matching': ?roleSearchMatching?.toTfJson(),
+    'role_search_subtree': ?roleSearchSubtree?.toTfJson(),
+    'service_account_password': ?serviceAccountPassword?.toTfJson(),
+    'service_account_username': ?serviceAccountUsername?.toTfJson(),
+    'user_base': ?userBase?.toTfJson(),
+    'user_role_name': ?userRoleName?.toTfJson(),
+    'user_search_matching': ?userSearchMatching?.toTfJson(),
+    'user_search_subtree': ?userSearchSubtree?.toTfJson(),
   };
 }
 
@@ -170,8 +164,8 @@ final class MqBrokerLogs {
   final TfArg<bool>? general;
 
   Map<String, Object?> encode() => {
-    if (audit != null) 'audit': audit!.toTfJson(),
-    if (general != null) 'general': general!.toTfJson(),
+    'audit': ?audit?.toTfJson(),
+    'general': ?general?.toTfJson(),
   };
 }
 
@@ -236,11 +230,10 @@ final class MqBrokerUser {
   final TfArg<String> username;
 
   Map<String, Object?> encode() => {
-    if (consoleAccess != null) 'console_access': consoleAccess!.toTfJson(),
-    if (groups != null) 'groups': groups!.toTfJson(),
+    'console_access': ?consoleAccess?.toTfJson(),
+    'groups': ?groups?.toTfJson(),
     'password': password.toTfJson(),
-    if (replicationUser != null)
-      'replication_user': replicationUser!.toTfJson(),
+    'replication_user': ?replicationUser?.toTfJson(),
     'username': username.toTfJson(),
   };
 }
@@ -281,31 +274,24 @@ final class AwsMqBroker extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applyImmediately != null) 'apply_immediately': applyImmediately,
-           if (authenticationStrategy != null)
-             'authentication_strategy': authenticationStrategy,
-           if (autoMinorVersionUpgrade != null)
-             'auto_minor_version_upgrade': autoMinorVersionUpgrade,
+           'apply_immediately': ?applyImmediately,
+           'authentication_strategy': ?authenticationStrategy,
+           'auto_minor_version_upgrade': ?autoMinorVersionUpgrade,
            'broker_name': brokerName,
-           if (dataReplicationMode != null)
-             'data_replication_mode': dataReplicationMode,
-           if (dataReplicationPrimaryBrokerArn != null)
-             'data_replication_primary_broker_arn':
-                 dataReplicationPrimaryBrokerArn,
-           if (deploymentMode != null) 'deployment_mode': deploymentMode,
+           'data_replication_mode': ?dataReplicationMode,
+           'data_replication_primary_broker_arn':
+               ?dataReplicationPrimaryBrokerArn,
+           'deployment_mode': ?deploymentMode,
            'engine_type': engineType,
            'engine_version': engineVersion,
            'host_instance_type': hostInstanceType,
-           if (publiclyAccessible != null)
-             'publicly_accessible': publiclyAccessible,
-           if (region != null) 'region': region,
-           if (resourceShareArns != null)
-             'resource_share_arns': resourceShareArns,
-           if (securityGroups != null)
-             'security_groups': securityGroups.encodeAs('id'),
-           if (storageType != null) 'storage_type': storageType,
-           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'publicly_accessible': ?publiclyAccessible,
+           'region': ?region,
+           'resource_share_arns': ?resourceShareArns,
+           'security_groups': ?securityGroups?.encodeAs('id'),
+           'storage_type': ?storageType,
+           'subnet_ids': ?subnetIds?.encodeAs('id'),
+           'tags': ?tags,
            if (configuration != null)
              'configuration': TfArg.literal(configuration.encode()),
            if (encryptionOptions != null)

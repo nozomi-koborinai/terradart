@@ -41,8 +41,8 @@ final class GoogleIamWorkforcePoolProviderScimToken extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
            'location': location,
            'provider_id': providerId,
            'scim_tenant_id': scimTenantId,

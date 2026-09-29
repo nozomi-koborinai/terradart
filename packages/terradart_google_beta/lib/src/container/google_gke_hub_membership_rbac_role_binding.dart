@@ -57,11 +57,11 @@ final class GoogleGkeHubMembershipRbacRoleBinding extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'location': location,
            'membership_id': membershipId,
            'membership_rbac_role_binding_id': membershipRbacRoleBindingId,
-           if (project != null) 'project': project,
+           'project': ?project,
            'user': user,
            'role': TfArg.literal(role.encode()),
          },

@@ -27,12 +27,11 @@ final class DataGoogleSecretManagerRegionalSecretVersionAccess extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (isSecretDataBase64 != null)
-             'is_secret_data_base64': isSecretDataBase64,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'is_secret_data_base64': ?isSecretDataBase64,
+           'location': ?location,
+           'project': ?project,
            'secret': secret,
-           if (version != null) 'version': version,
+           'version': ?version,
          },
        );
 

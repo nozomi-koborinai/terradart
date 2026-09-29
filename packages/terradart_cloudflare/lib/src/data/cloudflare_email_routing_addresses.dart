@@ -25,10 +25,10 @@ final class DataCloudflareEmailRoutingAddresses extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (direction != null) 'direction': direction,
-           if (maxItems != null) 'max_items': maxItems,
-           if (verified != null) 'verified': verified,
+           'account_id': ?accountId,
+           'direction': ?direction,
+           'max_items': ?maxItems,
+           'verified': ?verified,
          },
        );
 

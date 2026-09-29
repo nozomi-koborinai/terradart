@@ -53,24 +53,20 @@ final class SagemakerModelContainer {
   final SagemakerModelContainerMultiModelConfig? multiModelConfig;
 
   Map<String, Object?> encode() => {
-    if (containerHostname != null)
-      'container_hostname': containerHostname!.toTfJson(),
-    if (environment != null) 'environment': environment!.toTfJson(),
-    if (image != null) 'image': image!.toTfJson(),
-    if (inferenceSpecificationName != null)
-      'inference_specification_name': inferenceSpecificationName!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (modelDataUrl != null) 'model_data_url': modelDataUrl!.toTfJson(),
-    if (modelPackageName != null)
-      'model_package_name': modelPackageName!.toTfJson(),
+    'container_hostname': ?containerHostname?.toTfJson(),
+    'environment': ?environment?.toTfJson(),
+    'image': ?image?.toTfJson(),
+    'inference_specification_name': ?inferenceSpecificationName?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'model_data_url': ?modelDataUrl?.toTfJson(),
+    'model_package_name': ?modelPackageName?.toTfJson(),
     if (additionalModelDataSource != null)
       'additional_model_data_source': [
         for (final e in additionalModelDataSource!) e.encode(),
       ],
-    if (imageConfig != null) 'image_config': imageConfig!.encode(),
-    if (modelDataSource != null) 'model_data_source': modelDataSource!.encode(),
-    if (multiModelConfig != null)
-      'multi_model_config': multiModelConfig!.encode(),
+    'image_config': ?imageConfig?.encode(),
+    'model_data_source': ?modelDataSource?.encode(),
+    'multi_model_config': ?multiModelConfig?.encode(),
   };
 }
 
@@ -134,8 +130,7 @@ final class SagemakerModelContainerAdditionalModelDataSourceS3DataSource {
     'compression_type': compressionType.toTfJson(),
     's3_data_type': s3DataType.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
-    if (modelAccessConfig != null)
-      'model_access_config': modelAccessConfig!.encode(),
+    'model_access_config': ?modelAccessConfig?.encode(),
   };
 }
 
@@ -195,8 +190,7 @@ final class SagemakerModelContainerImageConfig {
 
   Map<String, Object?> encode() => {
     'repository_access_mode': repositoryAccessMode.toTfJson(),
-    if (repositoryAuthConfig != null)
-      'repository_auth_config': repositoryAuthConfig!.encode(),
+    'repository_auth_config': ?repositoryAuthConfig?.encode(),
   };
 }
 
@@ -268,8 +262,7 @@ final class SagemakerModelContainerModelDataSourceS3DataSource {
     'compression_type': compressionType.toTfJson(),
     's3_data_type': s3DataType.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
-    if (modelAccessConfig != null)
-      'model_access_config': modelAccessConfig!.encode(),
+    'model_access_config': ?modelAccessConfig?.encode(),
   };
 }
 
@@ -322,8 +315,7 @@ final class SagemakerModelContainerMultiModelConfig {
   modelCacheSetting;
 
   Map<String, Object?> encode() => {
-    if (modelCacheSetting != null)
-      'model_cache_setting': modelCacheSetting!.toTfJson(),
+    'model_cache_setting': ?modelCacheSetting?.toTfJson(),
   };
 }
 
@@ -403,24 +395,20 @@ final class SagemakerModelPrimaryContainer {
   final SagemakerModelPrimaryContainerMultiModelConfig? multiModelConfig;
 
   Map<String, Object?> encode() => {
-    if (containerHostname != null)
-      'container_hostname': containerHostname!.toTfJson(),
-    if (environment != null) 'environment': environment!.toTfJson(),
-    if (image != null) 'image': image!.toTfJson(),
-    if (inferenceSpecificationName != null)
-      'inference_specification_name': inferenceSpecificationName!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (modelDataUrl != null) 'model_data_url': modelDataUrl!.toTfJson(),
-    if (modelPackageName != null)
-      'model_package_name': modelPackageName!.toTfJson(),
+    'container_hostname': ?containerHostname?.toTfJson(),
+    'environment': ?environment?.toTfJson(),
+    'image': ?image?.toTfJson(),
+    'inference_specification_name': ?inferenceSpecificationName?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'model_data_url': ?modelDataUrl?.toTfJson(),
+    'model_package_name': ?modelPackageName?.toTfJson(),
     if (additionalModelDataSource != null)
       'additional_model_data_source': [
         for (final e in additionalModelDataSource!) e.encode(),
       ],
-    if (imageConfig != null) 'image_config': imageConfig!.encode(),
-    if (modelDataSource != null) 'model_data_source': modelDataSource!.encode(),
-    if (multiModelConfig != null)
-      'multi_model_config': multiModelConfig!.encode(),
+    'image_config': ?imageConfig?.encode(),
+    'model_data_source': ?modelDataSource?.encode(),
+    'multi_model_config': ?multiModelConfig?.encode(),
   };
 }
 
@@ -486,8 +474,7 @@ final class SagemakerModelPrimaryContainerAdditionalModelDataSourceS3DataSource 
     'compression_type': compressionType.toTfJson(),
     's3_data_type': s3DataType.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
-    if (modelAccessConfig != null)
-      'model_access_config': modelAccessConfig!.encode(),
+    'model_access_config': ?modelAccessConfig?.encode(),
   };
 }
 
@@ -547,8 +534,7 @@ final class SagemakerModelPrimaryContainerImageConfig {
 
   Map<String, Object?> encode() => {
     'repository_access_mode': repositoryAccessMode.toTfJson(),
-    if (repositoryAuthConfig != null)
-      'repository_auth_config': repositoryAuthConfig!.encode(),
+    'repository_auth_config': ?repositoryAuthConfig?.encode(),
   };
 }
 
@@ -627,8 +613,7 @@ final class SagemakerModelPrimaryContainerModelDataSourceS3DataSource {
     'compression_type': compressionType.toTfJson(),
     's3_data_type': s3DataType.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
-    if (modelAccessConfig != null)
-      'model_access_config': modelAccessConfig!.encode(),
+    'model_access_config': ?modelAccessConfig?.encode(),
   };
 }
 
@@ -683,8 +668,7 @@ final class SagemakerModelPrimaryContainerMultiModelConfig {
   modelCacheSetting;
 
   Map<String, Object?> encode() => {
-    if (modelCacheSetting != null)
-      'model_cache_setting': modelCacheSetting!.toTfJson(),
+    'model_cache_setting': ?modelCacheSetting?.toTfJson(),
   };
 }
 
@@ -742,12 +726,11 @@ final class AwsSagemakerModel extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enableNetworkIsolation != null)
-             'enable_network_isolation': enableNetworkIsolation,
+           'enable_network_isolation': ?enableNetworkIsolation,
            'execution_role_arn': executionRoleArn.encodeAs('arn'),
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
            if (container != null)
              'container': TfArg.literal([
                for (final e in container) e.encode(),

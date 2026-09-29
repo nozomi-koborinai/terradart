@@ -26,7 +26,7 @@ final class AwsSsoadminApplicationAssignmentConfiguration extends Resource {
          argMap: {
            'application_arn': applicationArn,
            'assignment_required': assignmentRequired,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

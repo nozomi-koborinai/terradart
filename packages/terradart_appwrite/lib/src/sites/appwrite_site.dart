@@ -42,33 +42,27 @@ final class AppwriteSite extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (adapter != null) 'adapter': adapter,
-           if (buildCommand != null) 'build_command': buildCommand,
+           'adapter': ?adapter,
+           'build_command': ?buildCommand,
            'build_runtime': buildRuntime,
-           if (buildSpecification != null)
-             'build_specification': buildSpecification,
-           if (deploymentRetention != null)
-             'deployment_retention': deploymentRetention,
-           if (enabled != null) 'enabled': enabled,
-           if (fallbackFile != null) 'fallback_file': fallbackFile,
+           'build_specification': ?buildSpecification,
+           'deployment_retention': ?deploymentRetention,
+           'enabled': ?enabled,
+           'fallback_file': ?fallbackFile,
            'framework': framework,
-           if (installCommand != null) 'install_command': installCommand,
-           if (installationId != null) 'installation_id': installationId,
-           if (logging != null) 'logging': logging,
+           'install_command': ?installCommand,
+           'installation_id': ?installationId,
+           'logging': ?logging,
            'name': name,
-           if (outputDirectory != null) 'output_directory': outputDirectory,
-           if (projectId != null) 'project_id': projectId,
-           if (providerBranch != null) 'provider_branch': providerBranch,
-           if (providerRepositoryId != null)
-             'provider_repository_id': providerRepositoryId,
-           if (providerRootDirectory != null)
-             'provider_root_directory': providerRootDirectory,
-           if (providerSilentMode != null)
-             'provider_silent_mode': providerSilentMode,
-           if (runtimeSpecification != null)
-             'runtime_specification': runtimeSpecification,
-           if (startCommand != null) 'start_command': startCommand,
-           if (timeout != null) 'timeout': timeout,
+           'output_directory': ?outputDirectory,
+           'project_id': ?projectId,
+           'provider_branch': ?providerBranch,
+           'provider_repository_id': ?providerRepositoryId,
+           'provider_root_directory': ?providerRootDirectory,
+           'provider_silent_mode': ?providerSilentMode,
+           'runtime_specification': ?runtimeSpecification,
+           'start_command': ?startCommand,
+           'timeout': ?timeout,
          },
        );
 

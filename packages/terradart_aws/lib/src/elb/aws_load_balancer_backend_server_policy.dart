@@ -25,8 +25,8 @@ final class AwsLoadBalancerBackendServerPolicy extends Resource {
          argMap: {
            'instance_port': instancePort,
            'load_balancer_name': loadBalancerName,
-           if (policyNames != null) 'policy_names': policyNames,
-           if (region != null) 'region': region,
+           'policy_names': ?policyNames,
+           'region': ?region,
          },
        );
 

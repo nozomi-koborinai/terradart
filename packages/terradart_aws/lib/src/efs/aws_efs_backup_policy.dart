@@ -45,7 +45,7 @@ final class AwsEfsBackupPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'file_system_id': fileSystemId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'backup_policy': TfArg.literal(backupPolicy.encode()),
          },
        );

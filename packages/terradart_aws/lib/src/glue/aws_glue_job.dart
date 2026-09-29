@@ -52,9 +52,9 @@ final class GlueJobCommand {
   final TfArg<String> scriptLocation;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (pythonVersion != null) 'python_version': pythonVersion!.toTfJson(),
-    if (runtime != null) 'runtime': runtime!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'python_version': ?pythonVersion?.toTfJson(),
+    'runtime': ?runtime?.toTfJson(),
     'script_location': scriptLocation.toTfJson(),
   };
 }
@@ -88,8 +88,7 @@ final class GlueJobExecutionProperty {
   final TfArg<num>? maxConcurrentRuns;
 
   Map<String, Object?> encode() => {
-    if (maxConcurrentRuns != null)
-      'max_concurrent_runs': maxConcurrentRuns!.toTfJson(),
+    'max_concurrent_runs': ?maxConcurrentRuns?.toTfJson(),
   };
 }
 
@@ -102,8 +101,7 @@ final class GlueJobNotificationProperty {
   final TfArg<num>? notifyDelayAfter;
 
   Map<String, Object?> encode() => {
-    if (notifyDelayAfter != null)
-      'notify_delay_after': notifyDelayAfter!.toTfJson(),
+    'notify_delay_after': ?notifyDelayAfter?.toTfJson(),
   };
 }
 
@@ -139,14 +137,14 @@ final class GlueJobSourceControlDetails {
   final TfArg<String>? repository;
 
   Map<String, Object?> encode() => {
-    if (authStrategy != null) 'auth_strategy': authStrategy!.toTfJson(),
-    if (authToken != null) 'auth_token': authToken!.toTfJson(),
-    if (branch != null) 'branch': branch!.toTfJson(),
-    if (folder != null) 'folder': folder!.toTfJson(),
-    if (lastCommitId != null) 'last_commit_id': lastCommitId!.toTfJson(),
-    if (owner != null) 'owner': owner!.toTfJson(),
-    if (provider != null) 'provider': provider!.toTfJson(),
-    if (repository != null) 'repository': repository!.toTfJson(),
+    'auth_strategy': ?authStrategy?.toTfJson(),
+    'auth_token': ?authToken?.toTfJson(),
+    'branch': ?branch?.toTfJson(),
+    'folder': ?folder?.toTfJson(),
+    'last_commit_id': ?lastCommitId?.toTfJson(),
+    'owner': ?owner?.toTfJson(),
+    'provider': ?provider?.toTfJson(),
+    'repository': ?repository?.toTfJson(),
   };
 }
 
@@ -208,29 +206,25 @@ final class AwsGlueJob extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (connections != null) 'connections': connections,
-           if (defaultArguments != null) 'default_arguments': defaultArguments,
-           if (description != null) 'description': description,
-           if (executionClass != null) 'execution_class': executionClass,
-           if (glueVersion != null) 'glue_version': glueVersion,
-           if (jobMode != null) 'job_mode': jobMode,
-           if (jobRunQueuingEnabled != null)
-             'job_run_queuing_enabled': jobRunQueuingEnabled,
-           if (maintenanceWindow != null)
-             'maintenance_window': maintenanceWindow,
-           if (maxCapacity != null) 'max_capacity': maxCapacity,
-           if (maxRetries != null) 'max_retries': maxRetries,
+           'connections': ?connections,
+           'default_arguments': ?defaultArguments,
+           'description': ?description,
+           'execution_class': ?executionClass,
+           'glue_version': ?glueVersion,
+           'job_mode': ?jobMode,
+           'job_run_queuing_enabled': ?jobRunQueuingEnabled,
+           'maintenance_window': ?maintenanceWindow,
+           'max_capacity': ?maxCapacity,
+           'max_retries': ?maxRetries,
            'name': name,
-           if (nonOverridableArguments != null)
-             'non_overridable_arguments': nonOverridableArguments,
-           if (numberOfWorkers != null) 'number_of_workers': numberOfWorkers,
-           if (region != null) 'region': region,
+           'non_overridable_arguments': ?nonOverridableArguments,
+           'number_of_workers': ?numberOfWorkers,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (securityConfiguration != null)
-             'security_configuration': securityConfiguration,
-           if (tags != null) 'tags': tags,
-           if (timeout != null) 'timeout': timeout,
-           if (workerType != null) 'worker_type': workerType,
+           'security_configuration': ?securityConfiguration,
+           'tags': ?tags,
+           'timeout': ?timeout,
+           'worker_type': ?workerType,
            'command': TfArg.literal(command.encode()),
            if (executionProperty != null)
              'execution_property': TfArg.literal(executionProperty.encode()),

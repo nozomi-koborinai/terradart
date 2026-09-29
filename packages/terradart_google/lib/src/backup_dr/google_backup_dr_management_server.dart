@@ -33,7 +33,7 @@ final class BackupDrManagementServerNetworks {
 
   Map<String, Object?> encode() => {
     'network': network.encodeAs('id').toTfJson(),
-    if (peeringMode != null) 'peering_mode': peeringMode!.toTfJson(),
+    'peering_mode': ?peeringMode?.toTfJson(),
   };
 }
 
@@ -88,11 +88,11 @@ final class GoogleBackupDrManagementServer extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           if (type != null) 'type': type,
+           'type': ?type,
            if (networks != null)
              'networks': TfArg.literal([for (final e in networks) e.encode()]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

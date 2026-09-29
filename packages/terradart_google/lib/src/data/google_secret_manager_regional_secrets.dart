@@ -22,11 +22,7 @@ final class DataGoogleSecretManagerRegionalSecrets extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (filter != null) 'filter': filter,
-           'location': location,
-           if (project != null) 'project': project,
-         },
+         argMap: {'filter': ?filter, 'location': location, 'project': ?project},
        );
 
   @override

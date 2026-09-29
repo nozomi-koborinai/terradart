@@ -20,10 +20,7 @@ final class AwsDetectiveOrganizationAdminAccount extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'account_id': accountId,
-           if (region != null) 'region': region,
-         },
+         argMap: {'account_id': accountId, 'region': ?region},
        );
 
   @override

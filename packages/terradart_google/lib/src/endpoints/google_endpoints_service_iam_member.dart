@@ -26,7 +26,7 @@ final class GoogleEndpointsServiceIamMember extends Resource {
            'service_name': serviceName,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

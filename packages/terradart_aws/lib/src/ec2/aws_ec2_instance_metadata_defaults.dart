@@ -24,13 +24,11 @@ final class AwsEc2InstanceMetadataDefaults extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (httpEndpoint != null) 'http_endpoint': httpEndpoint,
-           if (httpPutResponseHopLimit != null)
-             'http_put_response_hop_limit': httpPutResponseHopLimit,
-           if (httpTokens != null) 'http_tokens': httpTokens,
-           if (instanceMetadataTags != null)
-             'instance_metadata_tags': instanceMetadataTags,
-           if (region != null) 'region': region,
+           'http_endpoint': ?httpEndpoint,
+           'http_put_response_hop_limit': ?httpPutResponseHopLimit,
+           'http_tokens': ?httpTokens,
+           'instance_metadata_tags': ?instanceMetadataTags,
+           'region': ?region,
          },
        );
 

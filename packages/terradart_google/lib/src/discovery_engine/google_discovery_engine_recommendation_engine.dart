@@ -29,9 +29,7 @@ final class DiscoveryEngineRecommendationEngineCommonConfig {
 
   final TfArg<String>? companyName;
 
-  Map<String, Object?> encode() => {
-    if (companyName != null) 'company_name': companyName!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'company_name': ?companyName?.toTfJson()};
 }
 
 /// Typed helper for the `media_recommendation_engine_config` block of
@@ -62,14 +60,11 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig {
   optimizationObjectiveConfig;
 
   Map<String, Object?> encode() => {
-    if (optimizationObjective != null)
-      'optimization_objective': optimizationObjective!.toTfJson(),
-    if (trainingState != null) 'training_state': trainingState!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (engineFeaturesConfig != null)
-      'engine_features_config': engineFeaturesConfig!.encode(),
-    if (optimizationObjectiveConfig != null)
-      'optimization_objective_config': optimizationObjectiveConfig!.encode(),
+    'optimization_objective': ?optimizationObjective?.toTfJson(),
+    'training_state': ?trainingState?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'engine_features_config': ?engineFeaturesConfig?.encode(),
+    'optimization_objective_config': ?optimizationObjectiveConfig?.encode(),
   };
 }
 
@@ -102,10 +97,8 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEn
   recommendedForYouConfig;
 
   Map<String, Object?> encode() => {
-    if (mostPopularConfig != null)
-      'most_popular_config': mostPopularConfig!.encode(),
-    if (recommendedForYouConfig != null)
-      'recommended_for_you_config': recommendedForYouConfig!.encode(),
+    'most_popular_config': ?mostPopularConfig?.encode(),
+    'recommended_for_you_config': ?recommendedForYouConfig?.encode(),
   };
 }
 
@@ -120,7 +113,7 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEn
   final TfArg<num>? timeWindowDays;
 
   Map<String, Object?> encode() => {
-    if (timeWindowDays != null) 'time_window_days': timeWindowDays!.toTfJson(),
+    'time_window_days': ?timeWindowDays?.toTfJson(),
   };
 }
 
@@ -135,8 +128,7 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEn
   final TfArg<String>? contextEventType;
 
   Map<String, Object?> encode() => {
-    if (contextEventType != null)
-      'context_event_type': contextEventType!.toTfJson(),
+    'context_event_type': ?contextEventType?.toTfJson(),
   };
 }
 
@@ -154,9 +146,8 @@ final class DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigOp
   final TfArg<num>? targetFieldValueFloat;
 
   Map<String, Object?> encode() => {
-    if (targetField != null) 'target_field': targetField!.toTfJson(),
-    if (targetFieldValueFloat != null)
-      'target_field_value_float': targetFieldValueFloat!.toTfJson(),
+    'target_field': ?targetField?.toTfJson(),
+    'target_field_value_float': ?targetFieldValueFloat?.toTfJson(),
   };
 }
 
@@ -200,15 +191,15 @@ final class GoogleDiscoveryEngineRecommendationEngine extends Resource {
            'engine_id': engineId,
            'display_name': displayName,
            'data_store_ids': dataStoreIds,
-           if (industryVertical != null) 'industry_vertical': industryVertical,
+           'industry_vertical': ?industryVertical,
            if (mediaRecommendationEngineConfig != null)
              'media_recommendation_engine_config': TfArg.literal(
                mediaRecommendationEngineConfig.encode(),
              ),
            if (commonConfig != null)
              'common_config': TfArg.literal(commonConfig.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

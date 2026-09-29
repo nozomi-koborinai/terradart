@@ -38,9 +38,8 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInput {
 
   Map<String, Object?> encode() => {
     'metadata_operation': metadataOperation.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
-    if (icebergTableInput != null)
-      'iceberg_table_input': icebergTableInput!.encode(),
+    'version': ?version?.toTfJson(),
+    'iceberg_table_input': ?icebergTableInput?.encode(),
   };
 }
 
@@ -83,10 +82,10 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInput {
 
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
-    if (partitionSpec != null) 'partition_spec': partitionSpec!.encode(),
+    'properties': ?properties?.toTfJson(),
+    'partition_spec': ?partitionSpec?.encode(),
     'schema': schema.encode(),
-    if (sortOrder != null) 'sort_order': sortOrder!.encode(),
+    'sort_order': ?sortOrder?.encode(),
   };
 }
 
@@ -107,7 +106,7 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputPar
   fields;
 
   Map<String, Object?> encode() => {
-    if (specId != null) 'spec_id': specId!.toTfJson(),
+    'spec_id': ?specId?.toTfJson(),
     'fields': [for (final e in fields) e.encode()],
   };
 }
@@ -132,7 +131,7 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputPar
   final TfArg<String> transform;
 
   Map<String, Object?> encode() => {
-    if (fieldId != null) 'field_id': fieldId!.toTfJson(),
+    'field_id': ?fieldId?.toTfJson(),
     'name': name.toTfJson(),
     'source_id': sourceId.toTfJson(),
     'transform': transform.toTfJson(),
@@ -165,10 +164,9 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSch
   fields;
 
   Map<String, Object?> encode() => {
-    if (identifierFieldIds != null)
-      'identifier_field_ids': identifierFieldIds!.toTfJson(),
-    if (schemaId != null) 'schema_id': schemaId!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'identifier_field_ids': ?identifierFieldIds?.toTfJson(),
+    'schema_id': ?schemaId?.toTfJson(),
+    'type': ?type?.toTfJson(),
     'fields': [for (final e in fields) e.encode()],
   };
 }
@@ -214,13 +212,13 @@ final class GlueCatalogTableOpenTableFormatInputIcebergInputIcebergTableInputSch
   final TfArg<String>? writeDefault;
 
   Map<String, Object?> encode() => {
-    if (doc != null) 'doc': doc!.toTfJson(),
+    'doc': ?doc?.toTfJson(),
     'id': id.toTfJson(),
-    if (initialDefault != null) 'initial_default': initialDefault!.toTfJson(),
+    'initial_default': ?initialDefault?.toTfJson(),
     'name': name.toTfJson(),
     'required': required.toTfJson(),
     'type': type.toTfJson(),
-    if (writeDefault != null) 'write_default': writeDefault!.toTfJson(),
+    'write_default': ?writeDefault?.toTfJson(),
   };
 }
 
@@ -344,10 +342,10 @@ final class GlueCatalogTablePartitionKeys {
   final TfArg<String>? type;
 
   Map<String, Object?> encode() => {
-    if (comment != null) 'comment': comment!.toTfJson(),
+    'comment': ?comment?.toTfJson(),
     'name': name.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -401,22 +399,19 @@ final class GlueCatalogTableStorageDescriptor {
   final List<GlueCatalogTableStorageDescriptorSortColumns>? sortColumns;
 
   Map<String, Object?> encode() => {
-    if (additionalLocations != null)
-      'additional_locations': additionalLocations!.toTfJson(),
-    if (bucketColumns != null) 'bucket_columns': bucketColumns!.toTfJson(),
-    if (compressed != null) 'compressed': compressed!.toTfJson(),
-    if (inputFormat != null) 'input_format': inputFormat!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (numberOfBuckets != null)
-      'number_of_buckets': numberOfBuckets!.toTfJson(),
-    if (outputFormat != null) 'output_format': outputFormat!.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (storedAsSubDirectories != null)
-      'stored_as_sub_directories': storedAsSubDirectories!.toTfJson(),
+    'additional_locations': ?additionalLocations?.toTfJson(),
+    'bucket_columns': ?bucketColumns?.toTfJson(),
+    'compressed': ?compressed?.toTfJson(),
+    'input_format': ?inputFormat?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'number_of_buckets': ?numberOfBuckets?.toTfJson(),
+    'output_format': ?outputFormat?.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'stored_as_sub_directories': ?storedAsSubDirectories?.toTfJson(),
     if (columns != null) 'columns': [for (final e in columns!) e.encode()],
-    if (schemaReference != null) 'schema_reference': schemaReference!.encode(),
-    if (serDeInfo != null) 'ser_de_info': serDeInfo!.encode(),
-    if (skewedInfo != null) 'skewed_info': skewedInfo!.encode(),
+    'schema_reference': ?schemaReference?.encode(),
+    'ser_de_info': ?serDeInfo?.encode(),
+    'skewed_info': ?skewedInfo?.encode(),
     if (sortColumns != null)
       'sort_columns': [for (final e in sortColumns!) e.encode()],
   };
@@ -442,10 +437,10 @@ final class GlueCatalogTableStorageDescriptorColumns {
   final TfArg<String>? type;
 
   Map<String, Object?> encode() => {
-    if (comment != null) 'comment': comment!.toTfJson(),
+    'comment': ?comment?.toTfJson(),
     'name': name.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -539,7 +534,7 @@ final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId {
   final GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema schema;
 
   Map<String, Object?> encode() => {
-    if (registryName != null) 'registry_name': registryName!.toTfJson(),
+    'registry_name': ?registryName?.toTfJson(),
     ...schema.encode(),
   };
 }
@@ -616,10 +611,9 @@ final class GlueCatalogTableStorageDescriptorSerDeInfo {
   final TfArg<String>? serializationLibrary;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (serializationLibrary != null)
-      'serialization_library': serializationLibrary!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'serialization_library': ?serializationLibrary?.toTfJson(),
   };
 }
 
@@ -640,13 +634,10 @@ final class GlueCatalogTableStorageDescriptorSkewedInfo {
   final TfArg<List<Object?>>? skewedColumnValues;
 
   Map<String, Object?> encode() => {
-    if (skewedColumnNames != null)
-      'skewed_column_names': skewedColumnNames!.toTfJson(),
-    if (skewedColumnValueLocationMaps != null)
-      'skewed_column_value_location_maps': skewedColumnValueLocationMaps!
-          .toTfJson(),
-    if (skewedColumnValues != null)
-      'skewed_column_values': skewedColumnValues!.toTfJson(),
+    'skewed_column_names': ?skewedColumnNames?.toTfJson(),
+    'skewed_column_value_location_maps': ?skewedColumnValueLocationMaps
+        ?.toTfJson(),
+    'skewed_column_values': ?skewedColumnValues?.toTfJson(),
   };
 }
 
@@ -692,7 +683,7 @@ final class GlueCatalogTableTargetTable {
     'catalog_id': catalogId.toTfJson(),
     'database_name': databaseName.toTfJson(),
     'name': name.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
+    'region': ?region?.toTfJson(),
   };
 }
 
@@ -731,17 +722,14 @@ final class GlueCatalogTableViewDefinition {
   final List<GlueCatalogTableViewDefinitionRepresentations>? representations;
 
   Map<String, Object?> encode() => {
-    if (definer != null) 'definer': definer!.toTfJson(),
-    if (isProtected != null) 'is_protected': isProtected!.toTfJson(),
-    if (lastRefreshType != null)
-      'last_refresh_type': lastRefreshType!.toTfJson(),
-    if (refreshSeconds != null) 'refresh_seconds': refreshSeconds!.toTfJson(),
-    if (subObjectVersionIds != null)
-      'sub_object_version_ids': subObjectVersionIds!.toTfJson(),
-    if (subObjects != null) 'sub_objects': subObjects!.toTfJson(),
-    if (viewVersionId != null) 'view_version_id': viewVersionId!.toTfJson(),
-    if (viewVersionToken != null)
-      'view_version_token': viewVersionToken!.toTfJson(),
+    'definer': ?definer?.toTfJson(),
+    'is_protected': ?isProtected?.toTfJson(),
+    'last_refresh_type': ?lastRefreshType?.toTfJson(),
+    'refresh_seconds': ?refreshSeconds?.toTfJson(),
+    'sub_object_version_ids': ?subObjectVersionIds?.toTfJson(),
+    'sub_objects': ?subObjects?.toTfJson(),
+    'view_version_id': ?viewVersionId?.toTfJson(),
+    'view_version_token': ?viewVersionToken?.toTfJson(),
     if (representations != null)
       'representations': [for (final e in representations!) e.encode()],
   };
@@ -780,14 +768,11 @@ final class GlueCatalogTableViewDefinitionRepresentations {
   final TfArg<String>? viewOriginalText;
 
   Map<String, Object?> encode() => {
-    if (dialect != null) 'dialect': dialect!.toTfJson(),
-    if (dialectVersion != null) 'dialect_version': dialectVersion!.toTfJson(),
-    if (validationConnection != null)
-      'validation_connection': validationConnection!.toTfJson(),
-    if (viewExpandedText != null)
-      'view_expanded_text': viewExpandedText!.toTfJson(),
-    if (viewOriginalText != null)
-      'view_original_text': viewOriginalText!.toTfJson(),
+    'dialect': ?dialect?.toTfJson(),
+    'dialect_version': ?dialectVersion?.toTfJson(),
+    'validation_connection': ?validationConnection?.toTfJson(),
+    'view_expanded_text': ?viewExpandedText?.toTfJson(),
+    'view_original_text': ?viewOriginalText?.toTfJson(),
   };
 }
 
@@ -835,17 +820,17 @@ final class AwsGlueCatalogTable extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (catalogId != null) 'catalog_id': catalogId,
+           'catalog_id': ?catalogId,
            'database_name': databaseName,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (owner != null) 'owner': owner,
-           if (parameters != null) 'parameters': parameters,
-           if (region != null) 'region': region,
-           if (retention != null) 'retention': retention,
-           if (tableType != null) 'table_type': tableType,
-           if (viewExpandedText != null) 'view_expanded_text': viewExpandedText,
-           if (viewOriginalText != null) 'view_original_text': viewOriginalText,
+           'owner': ?owner,
+           'parameters': ?parameters,
+           'region': ?region,
+           'retention': ?retention,
+           'table_type': ?tableType,
+           'view_expanded_text': ?viewExpandedText,
+           'view_original_text': ?viewOriginalText,
            if (openTableFormatInput != null)
              'open_table_format_input': TfArg.literal(
                openTableFormatInput.encode(),

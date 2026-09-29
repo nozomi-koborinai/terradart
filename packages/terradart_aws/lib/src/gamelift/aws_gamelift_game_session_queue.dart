@@ -23,8 +23,7 @@ final class GameliftGameSessionQueuePlayerLatencyPolicy {
   Map<String, Object?> encode() => {
     'maximum_individual_player_latency_milliseconds':
         maximumIndividualPlayerLatencyMilliseconds.toTfJson(),
-    if (policyDurationSeconds != null)
-      'policy_duration_seconds': policyDurationSeconds!.toTfJson(),
+    'policy_duration_seconds': ?policyDurationSeconds?.toTfJson(),
   };
 }
 
@@ -49,14 +48,13 @@ final class AwsGameliftGameSessionQueue extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customEventData != null) 'custom_event_data': customEventData,
-           if (destinations != null) 'destinations': destinations,
+           'custom_event_data': ?customEventData,
+           'destinations': ?destinations,
            'name': name,
-           if (notificationTarget != null)
-             'notification_target': notificationTarget,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (timeoutInSeconds != null) 'timeout_in_seconds': timeoutInSeconds,
+           'notification_target': ?notificationTarget,
+           'region': ?region,
+           'tags': ?tags,
+           'timeout_in_seconds': ?timeoutInSeconds,
            if (playerLatencyPolicy != null)
              'player_latency_policy': TfArg.literal([
                for (final e in playerLatencyPolicy) e.encode(),

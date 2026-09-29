@@ -50,12 +50,10 @@ final class R2BucketLifecycleRules {
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
     'id': id.toTfJson(),
-    if (abortMultipartUploadsTransition != null)
-      'abort_multipart_uploads_transition': abortMultipartUploadsTransition!
-          .encode(),
+    'abort_multipart_uploads_transition': ?abortMultipartUploadsTransition
+        ?.encode(),
     'conditions': conditions.encode(),
-    if (deleteObjectsTransition != null)
-      'delete_objects_transition': deleteObjectsTransition!.encode(),
+    'delete_objects_transition': ?deleteObjectsTransition?.encode(),
     if (storageClassTransitions != null)
       'storage_class_transitions': [
         for (final e in storageClassTransitions!) e.encode(),
@@ -72,9 +70,7 @@ final class R2BucketLifecycleRulesAbortMultipartUploadsTransition {
   final R2BucketLifecycleRulesAbortMultipartUploadsTransitionCondition?
   condition;
 
-  Map<String, Object?> encode() => {
-    if (condition != null) 'condition': condition!.encode(),
-  };
+  Map<String, Object?> encode() => {'condition': ?condition?.encode()};
 }
 
 /// Typed helper for the `rules.abort_multipart_uploads_transition.condition` block of
@@ -130,9 +126,7 @@ final class R2BucketLifecycleRulesDeleteObjectsTransition {
 
   final R2BucketLifecycleRulesDeleteObjectsTransitionCondition? condition;
 
-  Map<String, Object?> encode() => {
-    if (condition != null) 'condition': condition!.encode(),
-  };
+  Map<String, Object?> encode() => {'condition': ?condition?.encode()};
 }
 
 /// Typed helper for the `rules.delete_objects_transition.condition` block of
@@ -152,8 +146,8 @@ final class R2BucketLifecycleRulesDeleteObjectsTransitionCondition {
   final TfArg<R2BucketLifecycleRulesDeleteObjectsTransitionConditionType> type;
 
   Map<String, Object?> encode() => {
-    if (date != null) 'date': date!.toTfJson(),
-    if (maxAge != null) 'max_age': maxAge!.toTfJson(),
+    'date': ?date?.toTfJson(),
+    'max_age': ?maxAge?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -220,8 +214,8 @@ final class R2BucketLifecycleRulesStorageClassTransitionsCondition {
   final TfArg<R2BucketLifecycleRulesStorageClassTransitionsConditionType> type;
 
   Map<String, Object?> encode() => {
-    if (date != null) 'date': date!.toTfJson(),
-    if (maxAge != null) 'max_age': maxAge!.toTfJson(),
+    'date': ?date?.toTfJson(),
+    'max_age': ?maxAge?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -258,7 +252,7 @@ final class CloudflareR2BucketLifecycle extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
-           if (jurisdiction != null) 'jurisdiction': jurisdiction,
+           'jurisdiction': ?jurisdiction,
            if (rules != null)
              'rules': TfArg.literal([for (final e in rules) e.encode()]),
          },

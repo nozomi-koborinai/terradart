@@ -15,10 +15,7 @@ final class DataAwsRedshiftDataShares extends Data {
     TfArg<String>? region,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (region != null) 'region': region},
-       );
+  }) : super(terraformType: tfType, argMap: {'region': ?region});
 
   @override
   Set<String> get sensitiveFields => _awsRedshiftDataSharesSensitive;

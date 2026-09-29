@@ -22,8 +22,8 @@ final class BigqueryAnalyticsHubQueryTemplateRoutine {
   final TfArg<String>? routineType;
 
   Map<String, Object?> encode() => {
-    if (definitionBody != null) 'definition_body': definitionBody!.toTfJson(),
-    if (routineType != null) 'routine_type': routineType!.toTfJson(),
+    'definition_body': ?definitionBody?.toTfJson(),
+    'routine_type': ?routineType?.toTfJson(),
   };
 }
 
@@ -84,13 +84,13 @@ final class GoogleBigqueryAnalyticsHubQueryTemplate extends Resource {
            'query_template_id': queryTemplateId,
            'location': location,
            'display_name': displayName,
-           if (description != null) 'description': description,
-           if (documentation != null) 'documentation': documentation,
-           if (primaryContact != null) 'primary_contact': primaryContact,
+           'description': ?description,
+           'documentation': ?documentation,
+           'primary_contact': ?primaryContact,
            if (routine != null) 'routine': TfArg.literal(routine.encode()),
-           if (submit != null) 'submit': submit,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'submit': ?submit,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

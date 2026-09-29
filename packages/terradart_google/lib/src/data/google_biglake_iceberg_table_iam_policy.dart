@@ -28,7 +28,7 @@ final class DataGoogleBiglakeIcebergTableIamPolicy extends Data {
            'catalog': catalog,
            'name': name,
            'namespace': namespace,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

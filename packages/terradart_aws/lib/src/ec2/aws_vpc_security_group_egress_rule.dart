@@ -32,20 +32,19 @@ final class AwsVpcSecurityGroupEgressRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cidrIpv4 != null) 'cidr_ipv4': cidrIpv4,
-           if (cidrIpv6 != null) 'cidr_ipv6': cidrIpv6,
-           if (description != null) 'description': description,
-           if (fromPort != null) 'from_port': fromPort,
+           'cidr_ipv4': ?cidrIpv4,
+           'cidr_ipv6': ?cidrIpv6,
+           'description': ?description,
+           'from_port': ?fromPort,
            'ip_protocol': ipProtocol,
-           if (prefixListId != null) 'prefix_list_id': prefixListId,
-           if (referencedSecurityGroupId != null)
-             'referenced_security_group_id': referencedSecurityGroupId.encodeAs(
-               'id',
-             ),
-           if (region != null) 'region': region,
+           'prefix_list_id': ?prefixListId,
+           'referenced_security_group_id': ?referencedSecurityGroupId?.encodeAs(
+             'id',
+           ),
+           'region': ?region,
            'security_group_id': securityGroupId.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (toPort != null) 'to_port': toPort,
+           'tags': ?tags,
+           'to_port': ?toPort,
          },
        );
 

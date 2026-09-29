@@ -27,11 +27,10 @@ final class AwsBedrockagentAgentAlias extends Resource {
          argMap: {
            'agent_alias_name': agentAliasName,
            'agent_id': agentId,
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (routingConfiguration != null)
-             'routing_configuration': routingConfiguration,
-           if (tags != null) 'tags': tags,
+           'description': ?description,
+           'region': ?region,
+           'routing_configuration': ?routingConfiguration,
+           'tags': ?tags,
          },
        );
 

@@ -23,8 +23,8 @@ final class AwsInspectorAssessmentTarget extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (resourceGroupArn != null) 'resource_group_arn': resourceGroupArn,
+           'region': ?region,
+           'resource_group_arn': ?resourceGroupArn,
          },
        );
 

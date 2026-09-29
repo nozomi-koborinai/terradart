@@ -42,13 +42,12 @@ final class AwsCloudwatchEventApiDestination extends Resource {
          terraformType: tfType,
          argMap: {
            'connection_arn': connectionArn,
-           if (description != null) 'description': description,
+           'description': ?description,
            'http_method': httpMethod,
            'invocation_endpoint': invocationEndpoint,
-           if (invocationRateLimitPerSecond != null)
-             'invocation_rate_limit_per_second': invocationRateLimitPerSecond,
+           'invocation_rate_limit_per_second': ?invocationRateLimitPerSecond,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

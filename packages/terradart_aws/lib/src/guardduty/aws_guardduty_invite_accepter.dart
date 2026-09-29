@@ -24,7 +24,7 @@ final class AwsGuarddutyInviteAccepter extends Resource {
          argMap: {
            'detector_id': detectorId,
            'master_account_id': masterAccountId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

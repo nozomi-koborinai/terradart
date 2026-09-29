@@ -15,9 +15,7 @@ final class DatasyncLocationSmbMountOptions {
 
   final TfArg<DatasyncLocationSmbMountOptionsVersion>? version;
 
-  Map<String, Object?> encode() => {
-    if (version != null) 'version': version!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'version': ?version?.toTfJson()};
 }
 
 /// `version` — derived from the provider schema description.
@@ -56,12 +54,12 @@ final class AwsDatasyncLocationSmb extends Resource {
          terraformType: tfType,
          argMap: {
            'agent_arns': agentArns,
-           if (domain != null) 'domain': domain,
+           'domain': ?domain,
            'password': password,
-           if (region != null) 'region': region,
+           'region': ?region,
            'server_hostname': serverHostname,
            'subdirectory': subdirectory,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'user': user,
            if (mountOptions != null)
              'mount_options': TfArg.literal(mountOptions.encode()),

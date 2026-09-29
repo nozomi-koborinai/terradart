@@ -50,11 +50,7 @@ final class GoogleFirebaseAppCheckAppAttestConfig extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'app_id': appId,
-           if (tokenTtl != null) 'token_ttl': tokenTtl,
-           if (project != null) 'project': project,
-         },
+         argMap: {'app_id': appId, 'token_ttl': ?tokenTtl, 'project': ?project},
        );
 
   @override

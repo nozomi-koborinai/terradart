@@ -37,11 +37,11 @@ final class AwsGuarddutyPublishingDestination extends Resource {
          terraformType: tfType,
          argMap: {
            'destination_arn': destinationArn,
-           if (destinationType != null) 'destination_type': destinationType,
+           'destination_type': ?destinationType,
            'detector_id': detectorId,
            'kms_key_arn': kmsKeyArn.encodeAs('arn'),
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

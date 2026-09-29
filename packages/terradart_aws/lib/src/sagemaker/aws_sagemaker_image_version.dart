@@ -63,17 +63,17 @@ final class AwsSagemakerImageVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (aliases != null) 'aliases': aliases,
+           'aliases': ?aliases,
            'base_image': baseImage,
-           if (horovod != null) 'horovod': horovod,
+           'horovod': ?horovod,
            'image_name': imageName,
-           if (jobType != null) 'job_type': jobType,
-           if (mlFramework != null) 'ml_framework': mlFramework,
-           if (processor != null) 'processor': processor,
-           if (programmingLang != null) 'programming_lang': programmingLang,
-           if (region != null) 'region': region,
-           if (releaseNotes != null) 'release_notes': releaseNotes,
-           if (vendorGuidance != null) 'vendor_guidance': vendorGuidance,
+           'job_type': ?jobType,
+           'ml_framework': ?mlFramework,
+           'processor': ?processor,
+           'programming_lang': ?programmingLang,
+           'region': ?region,
+           'release_notes': ?releaseNotes,
+           'vendor_guidance': ?vendorGuidance,
          },
        );
 

@@ -39,9 +39,9 @@ final class GoogleDiscoveryEngineSitemap extends Resource {
          argMap: {
            'location': location,
            'data_store_id': dataStoreId,
-           if (uri != null) 'uri': uri,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'uri': ?uri,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -378,11 +378,10 @@ final class SpotInstanceRequestCpuOptions {
   final TfArg<num>? threadsPerCore;
 
   Map<String, Object?> encode() => {
-    if (amdSevSnp != null) 'amd_sev_snp': amdSevSnp!.toTfJson(),
-    if (coreCount != null) 'core_count': coreCount!.toTfJson(),
-    if (nestedVirtualization != null)
-      'nested_virtualization': nestedVirtualization!.toTfJson(),
-    if (threadsPerCore != null) 'threads_per_core': threadsPerCore!.toTfJson(),
+    'amd_sev_snp': ?amdSevSnp?.toTfJson(),
+    'core_count': ?coreCount?.toTfJson(),
+    'nested_virtualization': ?nestedVirtualization?.toTfJson(),
+    'threads_per_core': ?threadsPerCore?.toTfJson(),
   };
 }
 
@@ -415,9 +414,7 @@ final class SpotInstanceRequestCreditSpecification {
 
   final TfArg<SpotInstanceRequestCreditSpecificationCpuCredits>? cpuCredits;
 
-  Map<String, Object?> encode() => {
-    if (cpuCredits != null) 'cpu_credits': cpuCredits!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'cpu_credits': ?cpuCredits?.toTfJson()};
 }
 
 /// `cpu_credits` — derived from the provider schema description.
@@ -471,18 +468,17 @@ final class SpotInstanceRequestEbsBlockDevice {
   final TfArg<SpotInstanceRequestEbsBlockDeviceVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
-    if (deleteOnTermination != null)
-      'delete_on_termination': deleteOnTermination!.toTfJson(),
+    'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_name': deviceName.toTfJson(),
-    if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (snapshotId != null) 'snapshot_id': snapshotId!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-    if (tagsAll != null) 'tags_all': tagsAll!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'encrypted': ?encrypted?.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'snapshot_id': ?snapshotId?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
+    'tags_all': ?tagsAll?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_size': ?volumeSize?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -509,9 +505,7 @@ final class SpotInstanceRequestEnclaveOptions {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `ephemeral_block_device` block of
@@ -532,8 +526,8 @@ final class SpotInstanceRequestEphemeralBlockDevice {
 
   Map<String, Object?> encode() => {
     'device_name': deviceName.toTfJson(),
-    if (noDevice != null) 'no_device': noDevice!.toTfJson(),
-    if (virtualName != null) 'virtual_name': virtualName!.toTfJson(),
+    'no_device': ?noDevice?.toTfJson(),
+    'virtual_name': ?virtualName?.toTfJson(),
   };
 }
 
@@ -552,7 +546,7 @@ final class SpotInstanceRequestLaunchTemplate {
 
   Map<String, Object?> encode() => {
     ...template.encode(),
-    if (version != null) 'version': version!.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -614,9 +608,7 @@ final class SpotInstanceRequestMaintenanceOptions {
 
   final TfArg<SpotInstanceRequestMaintenanceOptionsAutoRecovery>? autoRecovery;
 
-  Map<String, Object?> encode() => {
-    if (autoRecovery != null) 'auto_recovery': autoRecovery!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'auto_recovery': ?autoRecovery?.toTfJson()};
 }
 
 /// `auto_recovery` — derived from the provider schema description.
@@ -655,14 +647,11 @@ final class SpotInstanceRequestMetadataOptions {
   instanceMetadataTags;
 
   Map<String, Object?> encode() => {
-    if (httpEndpoint != null) 'http_endpoint': httpEndpoint!.toTfJson(),
-    if (httpProtocolIpv6 != null)
-      'http_protocol_ipv6': httpProtocolIpv6!.toTfJson(),
-    if (httpPutResponseHopLimit != null)
-      'http_put_response_hop_limit': httpPutResponseHopLimit!.toTfJson(),
-    if (httpTokens != null) 'http_tokens': httpTokens!.toTfJson(),
-    if (instanceMetadataTags != null)
-      'instance_metadata_tags': instanceMetadataTags!.toTfJson(),
+    'http_endpoint': ?httpEndpoint?.toTfJson(),
+    'http_protocol_ipv6': ?httpProtocolIpv6?.toTfJson(),
+    'http_put_response_hop_limit': ?httpPutResponseHopLimit?.toTfJson(),
+    'http_tokens': ?httpTokens?.toTfJson(),
+    'instance_metadata_tags': ?instanceMetadataTags?.toTfJson(),
   };
 }
 
@@ -727,8 +716,7 @@ final class SpotInstanceRequestNetworkInterface {
   final TfArg<String> networkInterfaceId;
 
   Map<String, Object?> encode() => {
-    if (deleteOnTermination != null)
-      'delete_on_termination': deleteOnTermination!.toTfJson(),
+    'delete_on_termination': ?deleteOnTermination?.toTfJson(),
     'device_index': deviceIndex.toTfJson(),
     'network_interface_id': networkInterfaceId.toTfJson(),
   };
@@ -752,13 +740,11 @@ final class SpotInstanceRequestPrivateDnsNameOptions {
   hostnameType;
 
   Map<String, Object?> encode() => {
-    if (enableResourceNameDnsARecord != null)
-      'enable_resource_name_dns_a_record': enableResourceNameDnsARecord!
-          .toTfJson(),
-    if (enableResourceNameDnsAaaaRecord != null)
-      'enable_resource_name_dns_aaaa_record': enableResourceNameDnsAaaaRecord!
-          .toTfJson(),
-    if (hostnameType != null) 'hostname_type': hostnameType!.toTfJson(),
+    'enable_resource_name_dns_a_record': ?enableResourceNameDnsARecord
+        ?.toTfJson(),
+    'enable_resource_name_dns_aaaa_record': ?enableResourceNameDnsAaaaRecord
+        ?.toTfJson(),
+    'hostname_type': ?hostnameType?.toTfJson(),
   };
 }
 
@@ -810,16 +796,15 @@ final class SpotInstanceRequestRootBlockDevice {
   final TfArg<SpotInstanceRequestRootBlockDeviceVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
-    if (deleteOnTermination != null)
-      'delete_on_termination': deleteOnTermination!.toTfJson(),
-    if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-    if (tagsAll != null) 'tags_all': tagsAll!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'delete_on_termination': ?deleteOnTermination?.toTfJson(),
+    'encrypted': ?encrypted?.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'tags': ?tags?.toTfJson(),
+    'tags_all': ?tagsAll?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_size': ?volumeSize?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -865,13 +850,11 @@ final class SpotInstanceRequestSecondaryNetworkInterface {
   final TfArg<String> secondarySubnetId;
 
   Map<String, Object?> encode() => {
-    if (deleteOnTermination != null)
-      'delete_on_termination': deleteOnTermination!.toTfJson(),
-    if (deviceIndex != null) 'device_index': deviceIndex!.toTfJson(),
-    if (interfaceType != null) 'interface_type': interfaceType!.toTfJson(),
+    'delete_on_termination': ?deleteOnTermination?.toTfJson(),
+    'device_index': ?deviceIndex?.toTfJson(),
+    'interface_type': ?interfaceType?.toTfJson(),
     'network_card_index': networkCardIndex.toTfJson(),
-    if (privateIpAddressCount != null)
-      'private_ip_address_count': privateIpAddressCount!.toTfJson(),
+    'private_ip_address_count': ?privateIpAddressCount?.toTfJson(),
     'secondary_subnet_id': secondarySubnetId.toTfJson(),
   };
 }
@@ -955,58 +938,46 @@ final class AwsSpotInstanceRequest extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (ami != null) 'ami': ami,
-           if (associatePublicIpAddress != null)
-             'associate_public_ip_address': associatePublicIpAddress,
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (disableApiStop != null) 'disable_api_stop': disableApiStop,
-           if (disableApiTermination != null)
-             'disable_api_termination': disableApiTermination,
-           if (ebsOptimized != null) 'ebs_optimized': ebsOptimized,
-           if (enablePrimaryIpv6 != null)
-             'enable_primary_ipv6': enablePrimaryIpv6,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (getPasswordData != null) 'get_password_data': getPasswordData,
-           if (hibernation != null) 'hibernation': hibernation,
-           if (hostId != null) 'host_id': hostId,
+           'ami': ?ami,
+           'associate_public_ip_address': ?associatePublicIpAddress,
+           'availability_zone': ?availabilityZone,
+           'disable_api_stop': ?disableApiStop,
+           'disable_api_termination': ?disableApiTermination,
+           'ebs_optimized': ?ebsOptimized,
+           'enable_primary_ipv6': ?enablePrimaryIpv6,
+           'force_destroy': ?forceDestroy,
+           'get_password_data': ?getPasswordData,
+           'hibernation': ?hibernation,
+           'host_id': ?hostId,
            ...?placement?.argMap,
-           if (iamInstanceProfile != null)
-             'iam_instance_profile': iamInstanceProfile,
-           if (instanceInitiatedShutdownBehavior != null)
-             'instance_initiated_shutdown_behavior':
-                 instanceInitiatedShutdownBehavior,
-           if (instanceInterruptionBehavior != null)
-             'instance_interruption_behavior': instanceInterruptionBehavior,
-           if (instanceType != null) 'instance_type': instanceType,
-           if (ipv6AddressCount != null) 'ipv6_address_count': ipv6AddressCount,
-           if (ipv6Addresses != null) 'ipv6_addresses': ipv6Addresses,
-           if (keyName != null) 'key_name': keyName,
-           if (launchGroup != null) 'launch_group': launchGroup,
-           if (monitoring != null) 'monitoring': monitoring,
-           if (placementPartitionNumber != null)
-             'placement_partition_number': placementPartitionNumber,
-           if (privateIp != null) 'private_ip': privateIp,
-           if (region != null) 'region': region,
-           if (secondaryPrivateIps != null)
-             'secondary_private_ips': secondaryPrivateIps,
-           if (securityGroups != null)
-             'security_groups': securityGroups.encodeAs('name'),
-           if (sourceDestCheck != null) 'source_dest_check': sourceDestCheck,
-           if (spotPrice != null) 'spot_price': spotPrice,
-           if (spotType != null) 'spot_type': spotType,
-           if (subnetId != null) 'subnet_id': subnetId.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (tenancy != null) 'tenancy': tenancy,
+           'iam_instance_profile': ?iamInstanceProfile,
+           'instance_initiated_shutdown_behavior':
+               ?instanceInitiatedShutdownBehavior,
+           'instance_interruption_behavior': ?instanceInterruptionBehavior,
+           'instance_type': ?instanceType,
+           'ipv6_address_count': ?ipv6AddressCount,
+           'ipv6_addresses': ?ipv6Addresses,
+           'key_name': ?keyName,
+           'launch_group': ?launchGroup,
+           'monitoring': ?monitoring,
+           'placement_partition_number': ?placementPartitionNumber,
+           'private_ip': ?privateIp,
+           'region': ?region,
+           'secondary_private_ips': ?secondaryPrivateIps,
+           'security_groups': ?securityGroups?.encodeAs('name'),
+           'source_dest_check': ?sourceDestCheck,
+           'spot_price': ?spotPrice,
+           'spot_type': ?spotType,
+           'subnet_id': ?subnetId?.encodeAs('id'),
+           'tags': ?tags,
+           'tenancy': ?tenancy,
            ...?userData?.argMap,
-           if (userDataReplaceOnChange != null)
-             'user_data_replace_on_change': userDataReplaceOnChange,
-           if (validFrom != null) 'valid_from': validFrom,
-           if (validUntil != null) 'valid_until': validUntil,
-           if (volumeTags != null) 'volume_tags': volumeTags,
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
-           if (waitForFulfillment != null)
-             'wait_for_fulfillment': waitForFulfillment,
+           'user_data_replace_on_change': ?userDataReplaceOnChange,
+           'valid_from': ?validFrom,
+           'valid_until': ?validUntil,
+           'volume_tags': ?volumeTags,
+           'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id'),
+           'wait_for_fulfillment': ?waitForFulfillment,
            if (capacityReservationSpecification != null)
              'capacity_reservation_specification': TfArg.literal(
                capacityReservationSpecification.encode(),

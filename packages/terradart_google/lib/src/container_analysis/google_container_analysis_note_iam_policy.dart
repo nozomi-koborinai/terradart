@@ -26,11 +26,7 @@ final class GoogleContainerAnalysisNoteIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'note': note,
-           'policy_data': policyData,
-           if (project != null) 'project': project,
-         },
+         argMap: {'note': note, 'policy_data': policyData, 'project': ?project},
        );
 
   @override

@@ -313,7 +313,7 @@ final class LakeformationPermissionsDataLocation {
 
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
   };
 }
 
@@ -328,7 +328,7 @@ final class LakeformationPermissionsDatabase {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -350,7 +350,7 @@ final class LakeformationPermissionsLfTag {
   final TfArg<List<Object?>> values;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
     'key': key.toTfJson(),
     'values': values.toTfJson(),
   };
@@ -373,7 +373,7 @@ final class LakeformationPermissionsLfTagPolicy {
   final List<LakeformationPermissionsLfTagPolicyExpression> expression;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
     'resource_type': resourceType.toTfJson(),
     'expression': [for (final e in expression) e.encode()],
   };
@@ -428,10 +428,10 @@ final class LakeformationPermissionsTable {
   final TfArg<bool>? wildcard;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
     'database_name': databaseName.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (wildcard != null) 'wildcard': wildcard!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'wildcard': ?wildcard?.toTfJson(),
   };
 }
 
@@ -461,13 +461,12 @@ final class LakeformationPermissionsTableWithColumns {
   final TfArg<bool>? wildcard;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
-    if (columnNames != null) 'column_names': columnNames!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
+    'column_names': ?columnNames?.toTfJson(),
     'database_name': databaseName.toTfJson(),
-    if (excludedColumnNames != null)
-      'excluded_column_names': excludedColumnNames!.toTfJson(),
+    'excluded_column_names': ?excludedColumnNames?.toTfJson(),
     'name': name.toTfJson(),
-    if (wildcard != null) 'wildcard': wildcard!.toTfJson(),
+    'wildcard': ?wildcard?.toTfJson(),
   };
 }
 
@@ -491,7 +490,7 @@ final class AwsLakeformationPermissions extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (catalogId != null) 'catalog_id': catalogId,
+           'catalog_id': ?catalogId,
            ...resource.argMap,
            'permissions': TfArg.literal([
              for (final e in permissions) e.toTfJson(),
@@ -501,7 +500,7 @@ final class AwsLakeformationPermissions extends Resource {
                for (final e in permissionsWithGrantOption) e.toTfJson(),
              ]),
            'principal': principal,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

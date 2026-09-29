@@ -24,8 +24,8 @@ final class CloudRunDomainMappingMetadata {
   final TfArg<String> namespace;
 
   Map<String, Object?> encode() => {
-    if (annotations != null) 'annotations': annotations!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
+    'annotations': ?annotations?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
     'namespace': namespace.toTfJson(),
   };
 }
@@ -47,9 +47,8 @@ final class CloudRunDomainMappingSpec {
   final TfArg<String> routeName;
 
   Map<String, Object?> encode() => {
-    if (certificateMode != null)
-      'certificate_mode': certificateMode!.toTfJson(),
-    if (forceOverride != null) 'force_override': forceOverride!.toTfJson(),
+    'certificate_mode': ?certificateMode?.toTfJson(),
+    'force_override': ?forceOverride?.toTfJson(),
     'route_name': routeName.toTfJson(),
   };
 }
@@ -92,10 +91,10 @@ final class GoogleCloudRunDomainMapping extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'location': location,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (metadata != null) 'metadata': TfArg.literal(metadata.encode()),
            'spec': TfArg.literal(spec.encode()),
          },

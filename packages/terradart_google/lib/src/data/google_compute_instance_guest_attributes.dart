@@ -27,11 +27,11 @@ final class DataGoogleComputeInstanceGuestAttributes extends Data {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (project != null) 'project': project,
-           if (queryPath != null) 'query_path': queryPath,
-           if (region != null) 'region': region,
-           if (variableKey != null) 'variable_key': variableKey,
-           if (zone != null) 'zone': zone,
+           'project': ?project,
+           'query_path': ?queryPath,
+           'region': ?region,
+           'variable_key': ?variableKey,
+           'zone': ?zone,
          },
        );
 

@@ -22,10 +22,10 @@ final class DataAwsMqBroker extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (brokerId != null) 'broker_id': brokerId,
-           if (brokerName != null) 'broker_name': brokerName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'broker_id': ?brokerId,
+           'broker_name': ?brokerName,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

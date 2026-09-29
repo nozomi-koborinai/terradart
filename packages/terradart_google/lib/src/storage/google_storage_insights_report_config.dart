@@ -176,7 +176,7 @@ final class StorageInsightsReportConfigObjectMetadataReportOptions {
   Map<String, Object?> encode() => {
     'metadata_fields': metadataFields.toTfJson(),
     'storage_destination_options': storageDestinationOptions.encode(),
-    if (storageFilters != null) 'storage_filters': storageFilters!.encode(),
+    'storage_filters': ?storageFilters?.encode(),
   };
 }
 
@@ -195,8 +195,7 @@ final class StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestina
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
-    if (destinationPath != null)
-      'destination_path': destinationPath!.toTfJson(),
+    'destination_path': ?destinationPath?.toTfJson(),
   };
 }
 
@@ -211,7 +210,7 @@ final class StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters
   final RefTo<GoogleStorageBucket>? bucket;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.encodeAs('name').toTfJson(),
+    'bucket': ?bucket?.encodeAs('name').toTfJson(),
   };
 }
 
@@ -289,16 +288,16 @@ final class GoogleStorageInsightsReportConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (displayName != null) 'display_name': displayName,
+           'display_name': ?displayName,
            if (frequencyOptions != null)
              'frequency_options': TfArg.literal(frequencyOptions.encode()),
            if (objectMetadataReportOptions != null)
              'object_metadata_report_options': TfArg.literal(
                objectMetadataReportOptions.encode(),
              ),
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'force_destroy': ?forceDestroy,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
            format.blockKey: TfArg.literal(format.encode()),
          },
        );

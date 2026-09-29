@@ -50,11 +50,11 @@ final class GoogleContactCenterInsightsQaScorecard extends Resource {
          argMap: {
            'location': location,
            'qa_scorecard_id': qaScorecardId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (source != null) 'source': source,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'display_name': ?displayName,
+           'description': ?description,
+           'source': ?source,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

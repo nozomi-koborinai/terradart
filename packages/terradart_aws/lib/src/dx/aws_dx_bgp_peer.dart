@@ -38,12 +38,12 @@ final class AwsDxBgpPeer extends Resource {
          terraformType: tfType,
          argMap: {
            'address_family': addressFamily,
-           if (amazonAddress != null) 'amazon_address': amazonAddress,
-           if (bgpAsn != null) 'bgp_asn': bgpAsn,
-           if (bgpAsnLong != null) 'bgp_asn_long': bgpAsnLong,
-           if (bgpAuthKey != null) 'bgp_auth_key': bgpAuthKey,
-           if (customerAddress != null) 'customer_address': customerAddress,
-           if (region != null) 'region': region,
+           'amazon_address': ?amazonAddress,
+           'bgp_asn': ?bgpAsn,
+           'bgp_asn_long': ?bgpAsnLong,
+           'bgp_auth_key': ?bgpAuthKey,
+           'customer_address': ?customerAddress,
+           'region': ?region,
            'virtual_interface_id': virtualInterfaceId,
          },
        );

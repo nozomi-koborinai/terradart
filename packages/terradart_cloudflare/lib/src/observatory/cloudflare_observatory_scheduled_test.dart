@@ -68,8 +68,8 @@ final class CloudflareObservatoryScheduledTest extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (frequency != null) 'frequency': frequency,
-           if (region != null) 'region': region,
+           'frequency': ?frequency,
+           'region': ?region,
            'url': url,
            'zone_id': zoneId.encodeAs('id'),
          },

@@ -34,10 +34,8 @@ final class StorageTransferJobEventStream {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (eventStreamExpirationTime != null)
-      'event_stream_expiration_time': eventStreamExpirationTime!.toTfJson(),
-    if (eventStreamStartTime != null)
-      'event_stream_start_time': eventStreamStartTime!.toTfJson(),
+    'event_stream_expiration_time': ?eventStreamExpirationTime?.toTfJson(),
+    'event_stream_start_time': ?eventStreamStartTime?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -59,12 +57,10 @@ final class StorageTransferJobLoggingConfig {
   final TfArg<List<Object?>>? logActions;
 
   Map<String, Object?> encode() => {
-    if (enableOnPremGcsTransferLogs != null)
-      'enable_on_prem_gcs_transfer_logs': enableOnPremGcsTransferLogs!
-          .toTfJson(),
-    if (logActionStates != null)
-      'log_action_states': logActionStates!.toTfJson(),
-    if (logActions != null) 'log_actions': logActions!.toTfJson(),
+    'enable_on_prem_gcs_transfer_logs': ?enableOnPremGcsTransferLogs
+        ?.toTfJson(),
+    'log_action_states': ?logActionStates?.toTfJson(),
+    'log_actions': ?logActions?.toTfJson(),
   };
 }
 
@@ -85,7 +81,7 @@ final class StorageTransferJobNotificationConfig {
   final RefTo<GooglePubsubTopic> pubsubTopic;
 
   Map<String, Object?> encode() => {
-    if (eventTypes != null) 'event_types': eventTypes!.toTfJson(),
+    'event_types': ?eventTypes?.toTfJson(),
     'payload_format': payloadFormat.toTfJson(),
     'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
   };
@@ -111,11 +107,10 @@ final class StorageTransferJobReplicationSpec {
   final StorageTransferJobReplicationSpecTransferOptions? transferOptions;
 
   Map<String, Object?> encode() => {
-    if (gcsDataSink != null) 'gcs_data_sink': gcsDataSink!.encode(),
-    if (gcsDataSource != null) 'gcs_data_source': gcsDataSource!.encode(),
-    if (objectConditions != null)
-      'object_conditions': objectConditions!.encode(),
-    if (transferOptions != null) 'transfer_options': transferOptions!.encode(),
+    'gcs_data_sink': ?gcsDataSink?.encode(),
+    'gcs_data_source': ?gcsDataSource?.encode(),
+    'object_conditions': ?objectConditions?.encode(),
+    'transfer_options': ?transferOptions?.encode(),
   };
 }
 
@@ -134,7 +129,7 @@ final class StorageTransferJobReplicationSpecGcsDataSink {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('name').toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -153,7 +148,7 @@ final class StorageTransferJobReplicationSpecGcsDataSource {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('name').toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -183,20 +178,14 @@ final class StorageTransferJobReplicationSpecObjectConditions {
   final TfArg<String>? minTimeElapsedSinceLastModification;
 
   Map<String, Object?> encode() => {
-    if (excludePrefixes != null)
-      'exclude_prefixes': excludePrefixes!.toTfJson(),
-    if (includePrefixes != null)
-      'include_prefixes': includePrefixes!.toTfJson(),
-    if (lastModifiedBefore != null)
-      'last_modified_before': lastModifiedBefore!.toTfJson(),
-    if (lastModifiedSince != null)
-      'last_modified_since': lastModifiedSince!.toTfJson(),
-    if (maxTimeElapsedSinceLastModification != null)
-      'max_time_elapsed_since_last_modification':
-          maxTimeElapsedSinceLastModification!.toTfJson(),
-    if (minTimeElapsedSinceLastModification != null)
-      'min_time_elapsed_since_last_modification':
-          minTimeElapsedSinceLastModification!.toTfJson(),
+    'exclude_prefixes': ?excludePrefixes?.toTfJson(),
+    'include_prefixes': ?includePrefixes?.toTfJson(),
+    'last_modified_before': ?lastModifiedBefore?.toTfJson(),
+    'last_modified_since': ?lastModifiedSince?.toTfJson(),
+    'max_time_elapsed_since_last_modification':
+        ?maxTimeElapsedSinceLastModification?.toTfJson(),
+    'min_time_elapsed_since_last_modification':
+        ?minTimeElapsedSinceLastModification?.toTfJson(),
   };
 }
 
@@ -224,16 +213,13 @@ final class StorageTransferJobReplicationSpecTransferOptions {
   metadataOptions;
 
   Map<String, Object?> encode() => {
-    if (deleteObjectsFromSourceAfterTransfer != null)
-      'delete_objects_from_source_after_transfer':
-          deleteObjectsFromSourceAfterTransfer!.toTfJson(),
-    if (deleteObjectsUniqueInSink != null)
-      'delete_objects_unique_in_sink': deleteObjectsUniqueInSink!.toTfJson(),
-    if (overwriteObjectsAlreadyExistingInSink != null)
-      'overwrite_objects_already_existing_in_sink':
-          overwriteObjectsAlreadyExistingInSink!.toTfJson(),
-    if (overwriteWhen != null) 'overwrite_when': overwriteWhen!.toTfJson(),
-    if (metadataOptions != null) 'metadata_options': metadataOptions!.encode(),
+    'delete_objects_from_source_after_transfer':
+        ?deleteObjectsFromSourceAfterTransfer?.toTfJson(),
+    'delete_objects_unique_in_sink': ?deleteObjectsUniqueInSink?.toTfJson(),
+    'overwrite_objects_already_existing_in_sink':
+        ?overwriteObjectsAlreadyExistingInSink?.toTfJson(),
+    'overwrite_when': ?overwriteWhen?.toTfJson(),
+    'metadata_options': ?metadataOptions?.encode(),
   };
 }
 
@@ -272,15 +258,15 @@ final class StorageTransferJobReplicationSpecTransferOptionsMetadataOptions {
   final TfArg<String>? uid;
 
   Map<String, Object?> encode() => {
-    if (acl != null) 'acl': acl!.toTfJson(),
-    if (gid != null) 'gid': gid!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (storageClass != null) 'storage_class': storageClass!.toTfJson(),
-    if (symlink != null) 'symlink': symlink!.toTfJson(),
-    if (temporaryHold != null) 'temporary_hold': temporaryHold!.toTfJson(),
-    if (timeCreated != null) 'time_created': timeCreated!.toTfJson(),
-    if (uid != null) 'uid': uid!.toTfJson(),
+    'acl': ?acl?.toTfJson(),
+    'gid': ?gid?.toTfJson(),
+    'kms_key': ?kmsKey?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'storage_class': ?storageClass?.toTfJson(),
+    'symlink': ?symlink?.toTfJson(),
+    'temporary_hold': ?temporaryHold?.toTfJson(),
+    'time_created': ?timeCreated?.toTfJson(),
+    'uid': ?uid?.toTfJson(),
   };
 }
 
@@ -304,10 +290,10 @@ final class StorageTransferJobSchedule {
   final StorageTransferJobScheduleStartTimeOfDay? startTimeOfDay;
 
   Map<String, Object?> encode() => {
-    if (repeatInterval != null) 'repeat_interval': repeatInterval!.toTfJson(),
-    if (scheduleEndDate != null) 'schedule_end_date': scheduleEndDate!.encode(),
+    'repeat_interval': ?repeatInterval?.toTfJson(),
+    'schedule_end_date': ?scheduleEndDate?.encode(),
     'schedule_start_date': scheduleStartDate.encode(),
-    if (startTimeOfDay != null) 'start_time_of_day': startTimeOfDay!.encode(),
+    'start_time_of_day': ?startTimeOfDay?.encode(),
   };
 }
 
@@ -436,27 +422,20 @@ final class StorageTransferJobTransferSpec {
   final StorageTransferJobTransferSpecTransferOptions? transferOptions;
 
   Map<String, Object?> encode() => {
-    if (sinkAgentPoolName != null)
-      'sink_agent_pool_name': sinkAgentPoolName!.toTfJson(),
-    if (sourceAgentPoolName != null)
-      'source_agent_pool_name': sourceAgentPoolName!.toTfJson(),
-    if (awsS3CompatibleDataSource != null)
-      'aws_s3_compatible_data_source': awsS3CompatibleDataSource!.encode(),
-    if (awsS3DataSource != null)
-      'aws_s3_data_source': awsS3DataSource!.encode(),
-    if (azureBlobStorageDataSource != null)
-      'azure_blob_storage_data_source': azureBlobStorageDataSource!.encode(),
-    if (gcsDataSink != null) 'gcs_data_sink': gcsDataSink!.encode(),
-    if (gcsDataSource != null) 'gcs_data_source': gcsDataSource!.encode(),
-    if (hdfsDataSource != null) 'hdfs_data_source': hdfsDataSource!.encode(),
-    if (httpDataSource != null) 'http_data_source': httpDataSource!.encode(),
-    if (objectConditions != null)
-      'object_conditions': objectConditions!.encode(),
-    if (posixDataSink != null) 'posix_data_sink': posixDataSink!.encode(),
-    if (posixDataSource != null) 'posix_data_source': posixDataSource!.encode(),
-    if (transferManifest != null)
-      'transfer_manifest': transferManifest!.encode(),
-    if (transferOptions != null) 'transfer_options': transferOptions!.encode(),
+    'sink_agent_pool_name': ?sinkAgentPoolName?.toTfJson(),
+    'source_agent_pool_name': ?sourceAgentPoolName?.toTfJson(),
+    'aws_s3_compatible_data_source': ?awsS3CompatibleDataSource?.encode(),
+    'aws_s3_data_source': ?awsS3DataSource?.encode(),
+    'azure_blob_storage_data_source': ?azureBlobStorageDataSource?.encode(),
+    'gcs_data_sink': ?gcsDataSink?.encode(),
+    'gcs_data_source': ?gcsDataSource?.encode(),
+    'hdfs_data_source': ?hdfsDataSource?.encode(),
+    'http_data_source': ?httpDataSource?.encode(),
+    'object_conditions': ?objectConditions?.encode(),
+    'posix_data_sink': ?posixDataSink?.encode(),
+    'posix_data_source': ?posixDataSource?.encode(),
+    'transfer_manifest': ?transferManifest?.encode(),
+    'transfer_options': ?transferOptions?.encode(),
   };
 }
 
@@ -486,9 +465,9 @@ final class StorageTransferJobTransferSpecAwsS3CompatibleDataSource {
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.toTfJson(),
     'endpoint': endpoint.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
-    if (s3Metadata != null) 's3_metadata': s3Metadata!.encode(),
+    'path': ?path?.toTfJson(),
+    'region': ?region?.toTfJson(),
+    's3_metadata': ?s3Metadata?.encode(),
   };
 }
 
@@ -512,10 +491,10 @@ final class StorageTransferJobTransferSpecAwsS3CompatibleDataSourceS3Metadata {
   final TfArg<String>? requestModel;
 
   Map<String, Object?> encode() => {
-    if (authMethod != null) 'auth_method': authMethod!.toTfJson(),
-    if (listApi != null) 'list_api': listApi!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (requestModel != null) 'request_model': requestModel!.toTfJson(),
+    'auth_method': ?authMethod?.toTfJson(),
+    'list_api': ?listApi?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
+    'request_model': ?requestModel?.toTfJson(),
   };
 }
 
@@ -549,15 +528,12 @@ final class StorageTransferJobTransferSpecAwsS3DataSource {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.toTfJson(),
-    if (cloudfrontDomain != null)
-      'cloudfront_domain': cloudfrontDomain!.toTfJson(),
-    if (credentialsSecret != null)
-      'credentials_secret': credentialsSecret!.toTfJson(),
-    if (managedPrivateNetwork != null)
-      'managed_private_network': managedPrivateNetwork!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
-    if (awsAccessKey != null) 'aws_access_key': awsAccessKey!.encode(),
+    'cloudfront_domain': ?cloudfrontDomain?.toTfJson(),
+    'credentials_secret': ?credentialsSecret?.toTfJson(),
+    'managed_private_network': ?managedPrivateNetwork?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'role_arn': ?roleArn?.toTfJson(),
+    'aws_access_key': ?awsAccessKey?.encode(),
   };
 }
 
@@ -612,16 +588,12 @@ final class StorageTransferJobTransferSpecAzureBlobStorageDataSource {
 
   Map<String, Object?> encode() => {
     'container': container.toTfJson(),
-    if (credentialsSecret != null)
-      'credentials_secret': credentialsSecret!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (privateNetworkService != null)
-      'private_network_service': privateNetworkService!.toTfJson(),
+    'credentials_secret': ?credentialsSecret?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'private_network_service': ?privateNetworkService?.toTfJson(),
     'storage_account': storageAccount.toTfJson(),
-    if (azureCredentials != null)
-      'azure_credentials': azureCredentials!.encode(),
-    if (federatedIdentityConfig != null)
-      'federated_identity_config': federatedIdentityConfig!.encode(),
+    'azure_credentials': ?azureCredentials?.encode(),
+    'federated_identity_config': ?federatedIdentityConfig?.encode(),
   };
 }
 
@@ -672,7 +644,7 @@ final class StorageTransferJobTransferSpecGcsDataSink {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('name').toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -691,7 +663,7 @@ final class StorageTransferJobTransferSpecGcsDataSource {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('name').toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -743,20 +715,14 @@ final class StorageTransferJobTransferSpecObjectConditions {
   final TfArg<String>? minTimeElapsedSinceLastModification;
 
   Map<String, Object?> encode() => {
-    if (excludePrefixes != null)
-      'exclude_prefixes': excludePrefixes!.toTfJson(),
-    if (includePrefixes != null)
-      'include_prefixes': includePrefixes!.toTfJson(),
-    if (lastModifiedBefore != null)
-      'last_modified_before': lastModifiedBefore!.toTfJson(),
-    if (lastModifiedSince != null)
-      'last_modified_since': lastModifiedSince!.toTfJson(),
-    if (maxTimeElapsedSinceLastModification != null)
-      'max_time_elapsed_since_last_modification':
-          maxTimeElapsedSinceLastModification!.toTfJson(),
-    if (minTimeElapsedSinceLastModification != null)
-      'min_time_elapsed_since_last_modification':
-          minTimeElapsedSinceLastModification!.toTfJson(),
+    'exclude_prefixes': ?excludePrefixes?.toTfJson(),
+    'include_prefixes': ?includePrefixes?.toTfJson(),
+    'last_modified_before': ?lastModifiedBefore?.toTfJson(),
+    'last_modified_since': ?lastModifiedSince?.toTfJson(),
+    'max_time_elapsed_since_last_modification':
+        ?maxTimeElapsedSinceLastModification?.toTfJson(),
+    'min_time_elapsed_since_last_modification':
+        ?minTimeElapsedSinceLastModification?.toTfJson(),
   };
 }
 
@@ -823,16 +789,13 @@ final class StorageTransferJobTransferSpecTransferOptions {
   metadataOptions;
 
   Map<String, Object?> encode() => {
-    if (deleteObjectsFromSourceAfterTransfer != null)
-      'delete_objects_from_source_after_transfer':
-          deleteObjectsFromSourceAfterTransfer!.toTfJson(),
-    if (deleteObjectsUniqueInSink != null)
-      'delete_objects_unique_in_sink': deleteObjectsUniqueInSink!.toTfJson(),
-    if (overwriteObjectsAlreadyExistingInSink != null)
-      'overwrite_objects_already_existing_in_sink':
-          overwriteObjectsAlreadyExistingInSink!.toTfJson(),
-    if (overwriteWhen != null) 'overwrite_when': overwriteWhen!.toTfJson(),
-    if (metadataOptions != null) 'metadata_options': metadataOptions!.encode(),
+    'delete_objects_from_source_after_transfer':
+        ?deleteObjectsFromSourceAfterTransfer?.toTfJson(),
+    'delete_objects_unique_in_sink': ?deleteObjectsUniqueInSink?.toTfJson(),
+    'overwrite_objects_already_existing_in_sink':
+        ?overwriteObjectsAlreadyExistingInSink?.toTfJson(),
+    'overwrite_when': ?overwriteWhen?.toTfJson(),
+    'metadata_options': ?metadataOptions?.encode(),
   };
 }
 
@@ -871,15 +834,15 @@ final class StorageTransferJobTransferSpecTransferOptionsMetadataOptions {
   final TfArg<String>? uid;
 
   Map<String, Object?> encode() => {
-    if (acl != null) 'acl': acl!.toTfJson(),
-    if (gid != null) 'gid': gid!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (storageClass != null) 'storage_class': storageClass!.toTfJson(),
-    if (symlink != null) 'symlink': symlink!.toTfJson(),
-    if (temporaryHold != null) 'temporary_hold': temporaryHold!.toTfJson(),
-    if (timeCreated != null) 'time_created': timeCreated!.toTfJson(),
-    if (uid != null) 'uid': uid!.toTfJson(),
+    'acl': ?acl?.toTfJson(),
+    'gid': ?gid?.toTfJson(),
+    'kms_key': ?kmsKey?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'storage_class': ?storageClass?.toTfJson(),
+    'symlink': ?symlink?.toTfJson(),
+    'temporary_hold': ?temporaryHold?.toTfJson(),
+    'time_created': ?timeCreated?.toTfJson(),
+    'uid': ?uid?.toTfJson(),
   };
 }
 
@@ -936,12 +899,11 @@ final class GoogleStorageTransferJob extends Resource {
            if (transferSpec != null)
              'transfer_spec': TfArg.literal(transferSpec.encode()),
            if (schedule != null) 'schedule': TfArg.literal(schedule.encode()),
-           if (status != null) 'status': status,
-           if (serviceAccount != null)
-             'service_account': serviceAccount.encodeAs('email'),
-           if (name != null) 'name': name,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'status': ?status,
+           'service_account': ?serviceAccount?.encodeAs('email'),
+           'name': ?name,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

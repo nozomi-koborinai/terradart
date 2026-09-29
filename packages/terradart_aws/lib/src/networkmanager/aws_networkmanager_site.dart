@@ -24,9 +24,9 @@ final class NetworkmanagerSiteLocation {
   final TfArg<String>? longitude;
 
   Map<String, Object?> encode() => {
-    if (address != null) 'address': address!.toTfJson(),
-    if (latitude != null) 'latitude': latitude!.toTfJson(),
-    if (longitude != null) 'longitude': longitude!.toTfJson(),
+    'address': ?address?.toTfJson(),
+    'latitude': ?latitude?.toTfJson(),
+    'longitude': ?longitude?.toTfJson(),
   };
 }
 
@@ -47,9 +47,9 @@ final class AwsNetworkmanagerSite extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'global_network_id': globalNetworkId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (location != null) 'location': TfArg.literal(location.encode()),
          },
        );

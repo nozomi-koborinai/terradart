@@ -54,8 +54,8 @@ final class NetworkServicesTlsRouteRulesActionDestinations {
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (serviceName != null) 'service_name': serviceName!.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'service_name': ?serviceName?.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -70,8 +70,8 @@ final class NetworkServicesTlsRouteRulesMatches {
   final TfArg<List<Object?>>? sniHost;
 
   Map<String, Object?> encode() => {
-    if (alpn != null) 'alpn': alpn!.toTfJson(),
-    if (sniHost != null) 'sni_host': sniHost!.toTfJson(),
+    'alpn': ?alpn?.toTfJson(),
+    'sni_host': ?sniHost?.toTfJson(),
   };
 }
 
@@ -107,13 +107,13 @@ final class GoogleNetworkServicesTlsRoute extends Resource {
          argMap: {
            'name': name,
            'rules': TfArg.literal([for (final e in rules) e.encode()]),
-           if (meshes != null) 'meshes': meshes,
-           if (gateways != null) 'gateways': gateways,
-           if (targetProxies != null) 'target_proxies': targetProxies,
-           if (location != null) 'location': location,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'meshes': ?meshes,
+           'gateways': ?gateways,
+           'target_proxies': ?targetProxies,
+           'location': ?location,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -44,7 +44,7 @@ final class WafregionalRegexMatchSetRegexMatchTupleFieldToMatch {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (data != null) 'data': data!.toTfJson(),
+    'data': ?data?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -66,7 +66,7 @@ final class AwsWafregionalRegexMatchSet extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (regexMatchTuple != null)
              'regex_match_tuple': TfArg.literal([
                for (final e in regexMatchTuple) e.encode(),

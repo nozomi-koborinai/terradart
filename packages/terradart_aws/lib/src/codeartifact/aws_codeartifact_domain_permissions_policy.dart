@@ -25,10 +25,10 @@ final class AwsCodeartifactDomainPermissionsPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'domain': domain,
-           if (domainOwner != null) 'domain_owner': domainOwner,
-           if (policyDocument != null) 'policy_document': policyDocument,
-           if (policyRevision != null) 'policy_revision': policyRevision,
-           if (region != null) 'region': region,
+           'domain_owner': ?domainOwner,
+           'policy_document': ?policyDocument,
+           'policy_revision': ?policyRevision,
+           'region': ?region,
          },
        );
 

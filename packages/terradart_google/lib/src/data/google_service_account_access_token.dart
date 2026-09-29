@@ -26,8 +26,8 @@ final class DataGoogleServiceAccountAccessToken extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (delegates != null) 'delegates': delegates,
-           if (lifetime != null) 'lifetime': lifetime,
+           'delegates': ?delegates,
+           'lifetime': ?lifetime,
            'scopes': scopes,
            'target_service_account': targetServiceAccount,
          },

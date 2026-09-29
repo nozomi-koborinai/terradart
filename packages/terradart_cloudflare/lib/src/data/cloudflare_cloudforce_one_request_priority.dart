@@ -23,10 +23,7 @@ final class DataCloudflareCloudforceOneRequestPriority extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'priority_id': priorityId,
-         },
+         argMap: {'account_id': ?accountId, 'priority_id': priorityId},
        );
 
   @override

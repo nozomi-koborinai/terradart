@@ -31,8 +31,8 @@ final class GoogleBigqueryTableIamMember extends Resource {
            'table_id': tableId,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

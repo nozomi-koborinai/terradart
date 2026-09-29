@@ -53,10 +53,9 @@ final class GoogleOsLoginSshPublicKey extends Resource {
          argMap: {
            'user': user,
            'key': key,
-           if (expirationTimeUsec != null)
-             'expiration_time_usec': expirationTimeUsec,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'expiration_time_usec': ?expirationTimeUsec,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

@@ -61,19 +61,14 @@ final class LightsailDistributionCacheBehaviorSettings {
   forwardedQueryStrings;
 
   Map<String, Object?> encode() => {
-    if (allowedHttpMethods != null)
-      'allowed_http_methods': allowedHttpMethods!.toTfJson(),
-    if (cachedHttpMethods != null)
-      'cached_http_methods': cachedHttpMethods!.toTfJson(),
-    if (defaultTtl != null) 'default_ttl': defaultTtl!.toTfJson(),
-    if (maximumTtl != null) 'maximum_ttl': maximumTtl!.toTfJson(),
-    if (minimumTtl != null) 'minimum_ttl': minimumTtl!.toTfJson(),
-    if (forwardedCookies != null)
-      'forwarded_cookies': forwardedCookies!.encode(),
-    if (forwardedHeaders != null)
-      'forwarded_headers': forwardedHeaders!.encode(),
-    if (forwardedQueryStrings != null)
-      'forwarded_query_strings': forwardedQueryStrings!.encode(),
+    'allowed_http_methods': ?allowedHttpMethods?.toTfJson(),
+    'cached_http_methods': ?cachedHttpMethods?.toTfJson(),
+    'default_ttl': ?defaultTtl?.toTfJson(),
+    'maximum_ttl': ?maximumTtl?.toTfJson(),
+    'minimum_ttl': ?minimumTtl?.toTfJson(),
+    'forwarded_cookies': ?forwardedCookies?.encode(),
+    'forwarded_headers': ?forwardedHeaders?.encode(),
+    'forwarded_query_strings': ?forwardedQueryStrings?.encode(),
   };
 }
 
@@ -91,9 +86,8 @@ final class LightsailDistributionCacheBehaviorSettingsForwardedCookies {
   final TfArg<String>? option;
 
   Map<String, Object?> encode() => {
-    if (cookiesAllowList != null)
-      'cookies_allow_list': cookiesAllowList!.toTfJson(),
-    if (option != null) 'option': option!.toTfJson(),
+    'cookies_allow_list': ?cookiesAllowList?.toTfJson(),
+    'option': ?option?.toTfJson(),
   };
 }
 
@@ -112,9 +106,8 @@ final class LightsailDistributionCacheBehaviorSettingsForwardedHeaders {
   option;
 
   Map<String, Object?> encode() => {
-    if (headersAllowList != null)
-      'headers_allow_list': headersAllowList!.toTfJson(),
-    if (option != null) 'option': option!.toTfJson(),
+    'headers_allow_list': ?headersAllowList?.toTfJson(),
+    'option': ?option?.toTfJson(),
   };
 }
 
@@ -146,9 +139,8 @@ final class LightsailDistributionCacheBehaviorSettingsForwardedQueryStrings {
   final TfArg<List<Object?>>? queryStringsAllowedList;
 
   Map<String, Object?> encode() => {
-    if (option != null) 'option': option!.toTfJson(),
-    if (queryStringsAllowedList != null)
-      'query_strings_allowed_list': queryStringsAllowedList!.toTfJson(),
+    'option': ?option?.toTfJson(),
+    'query_strings_allowed_list': ?queryStringsAllowedList?.toTfJson(),
   };
 }
 
@@ -181,7 +173,7 @@ final class LightsailDistributionOrigin {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (protocolPolicy != null) 'protocol_policy': protocolPolicy!.toTfJson(),
+    'protocol_policy': ?protocolPolicy?.toTfJson(),
     'region_name': regionName.toTfJson(),
   };
 }
@@ -211,12 +203,12 @@ final class AwsLightsailDistribution extends Resource {
          terraformType: tfType,
          argMap: {
            'bundle_id': bundleId,
-           if (certificateName != null) 'certificate_name': certificateName,
-           if (ipAddressType != null) 'ip_address_type': ipAddressType,
-           if (isEnabled != null) 'is_enabled': isEnabled,
+           'certificate_name': ?certificateName,
+           'ip_address_type': ?ipAddressType,
+           'is_enabled': ?isEnabled,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (cacheBehavior != null)
              'cache_behavior': TfArg.literal([
                for (final e in cacheBehavior) e.encode(),

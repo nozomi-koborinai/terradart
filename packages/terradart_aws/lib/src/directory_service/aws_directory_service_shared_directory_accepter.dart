@@ -22,10 +22,7 @@ final class AwsDirectoryServiceSharedDirectoryAccepter extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'shared_directory_id': sharedDirectoryId,
-         },
+         argMap: {'region': ?region, 'shared_directory_id': sharedDirectoryId},
        );
 
   @override

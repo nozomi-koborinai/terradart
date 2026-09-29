@@ -16,9 +16,7 @@ final class DataEmailRoutingRuleFilter {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_email_routing_rule`.
@@ -39,8 +37,8 @@ final class DataCloudflareEmailRoutingRule extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (ruleIdentifier != null) 'rule_identifier': ruleIdentifier,
-           if (zoneId != null) 'zone_id': zoneId,
+           'rule_identifier': ?ruleIdentifier,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

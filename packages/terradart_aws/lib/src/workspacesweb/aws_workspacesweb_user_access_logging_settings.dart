@@ -24,8 +24,8 @@ final class AwsWorkspaceswebUserAccessLoggingSettings extends Resource {
          terraformType: tfType,
          argMap: {
            'kinesis_stream_arn': kinesisStreamArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

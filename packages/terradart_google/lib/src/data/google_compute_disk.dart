@@ -23,11 +23,7 @@ final class DataGoogleComputeDisk extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (project != null) 'project': project,
-           if (zone != null) 'zone': zone,
-         },
+         argMap: {'name': name, 'project': ?project, 'zone': ?zone},
        );
 
   @override

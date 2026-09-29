@@ -32,7 +32,7 @@ final class AwsRoute53HostedZoneDnssec extends Resource {
          terraformType: tfType,
          argMap: {
            'hosted_zone_id': hostedZoneId,
-           if (signingStatus != null) 'signing_status': signingStatus,
+           'signing_status': ?signingStatus,
          },
        );
 

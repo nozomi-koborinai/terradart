@@ -353,17 +353,13 @@ final class ElasticacheReplicationGroupNodeGroupConfiguration {
   final TfArg<String>? slots;
 
   Map<String, Object?> encode() => {
-    if (nodeGroupId != null) 'node_group_id': nodeGroupId!.toTfJson(),
-    if (primaryAvailabilityZone != null)
-      'primary_availability_zone': primaryAvailabilityZone!.toTfJson(),
-    if (primaryOutpostArn != null)
-      'primary_outpost_arn': primaryOutpostArn!.toTfJson(),
-    if (replicaAvailabilityZones != null)
-      'replica_availability_zones': replicaAvailabilityZones!.toTfJson(),
-    if (replicaCount != null) 'replica_count': replicaCount!.toTfJson(),
-    if (replicaOutpostArns != null)
-      'replica_outpost_arns': replicaOutpostArns!.toTfJson(),
-    if (slots != null) 'slots': slots!.toTfJson(),
+    'node_group_id': ?nodeGroupId?.toTfJson(),
+    'primary_availability_zone': ?primaryAvailabilityZone?.toTfJson(),
+    'primary_outpost_arn': ?primaryOutpostArn?.toTfJson(),
+    'replica_availability_zones': ?replicaAvailabilityZones?.toTfJson(),
+    'replica_count': ?replicaCount?.toTfJson(),
+    'replica_outpost_arns': ?replicaOutpostArns?.toTfJson(),
+    'slots': ?slots?.toTfJson(),
   };
 }
 
@@ -424,63 +420,46 @@ final class AwsElasticacheReplicationGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applyImmediately != null) 'apply_immediately': applyImmediately,
-           if (atRestEncryptionEnabled != null)
-             'at_rest_encryption_enabled': atRestEncryptionEnabled,
+           'apply_immediately': ?applyImmediately,
+           'at_rest_encryption_enabled': ?atRestEncryptionEnabled,
            ...?auth?.argMap,
-           if (authTokenUpdateStrategy != null)
-             'auth_token_update_strategy': authTokenUpdateStrategy,
-           if (authTokenWoVersion != null)
-             'auth_token_wo_version': authTokenWoVersion,
-           if (autoMinorVersionUpgrade != null)
-             'auto_minor_version_upgrade': autoMinorVersionUpgrade,
-           if (automaticFailoverEnabled != null)
-             'automatic_failover_enabled': automaticFailoverEnabled,
-           if (clusterMode != null) 'cluster_mode': clusterMode,
-           if (dataTieringEnabled != null)
-             'data_tiering_enabled': dataTieringEnabled,
+           'auth_token_update_strategy': ?authTokenUpdateStrategy,
+           'auth_token_wo_version': ?authTokenWoVersion,
+           'auto_minor_version_upgrade': ?autoMinorVersionUpgrade,
+           'automatic_failover_enabled': ?automaticFailoverEnabled,
+           'cluster_mode': ?clusterMode,
+           'data_tiering_enabled': ?dataTieringEnabled,
            'description': description,
-           if (durability != null) 'durability': durability,
-           if (engine != null) 'engine': engine,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (finalSnapshotIdentifier != null)
-             'final_snapshot_identifier': finalSnapshotIdentifier,
-           if (globalReplicationGroupId != null)
-             'global_replication_group_id': globalReplicationGroupId,
-           if (ipDiscovery != null) 'ip_discovery': ipDiscovery,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (maintenanceWindow != null)
-             'maintenance_window': maintenanceWindow,
-           if (multiAzEnabled != null) 'multi_az_enabled': multiAzEnabled,
-           if (networkType != null) 'network_type': networkType,
-           if (nodeType != null) 'node_type': nodeType,
-           if (notificationTopicArn != null)
-             'notification_topic_arn': notificationTopicArn,
-           if (numCacheClusters != null) 'num_cache_clusters': numCacheClusters,
-           if (numNodeGroups != null) 'num_node_groups': numNodeGroups,
-           if (parameterGroupName != null)
-             'parameter_group_name': parameterGroupName,
-           if (port != null) 'port': port,
+           'durability': ?durability,
+           'engine': ?engine,
+           'engine_version': ?engineVersion,
+           'final_snapshot_identifier': ?finalSnapshotIdentifier,
+           'global_replication_group_id': ?globalReplicationGroupId,
+           'ip_discovery': ?ipDiscovery,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'maintenance_window': ?maintenanceWindow,
+           'multi_az_enabled': ?multiAzEnabled,
+           'network_type': ?networkType,
+           'node_type': ?nodeType,
+           'notification_topic_arn': ?notificationTopicArn,
+           'num_cache_clusters': ?numCacheClusters,
+           'num_node_groups': ?numNodeGroups,
+           'parameter_group_name': ?parameterGroupName,
+           'port': ?port,
            ...?topology?.argMap,
-           if (region != null) 'region': region,
-           if (replicasPerNodeGroup != null)
-             'replicas_per_node_group': replicasPerNodeGroup,
+           'region': ?region,
+           'replicas_per_node_group': ?replicasPerNodeGroup,
            'replication_group_id': replicationGroupId,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (securityGroupNames != null)
-             'security_group_names': securityGroupNames,
-           if (snapshotArns != null) 'snapshot_arns': snapshotArns,
-           if (snapshotName != null) 'snapshot_name': snapshotName,
-           if (snapshotRetentionLimit != null)
-             'snapshot_retention_limit': snapshotRetentionLimit,
-           if (snapshotWindow != null) 'snapshot_window': snapshotWindow,
-           if (subnetGroupName != null) 'subnet_group_name': subnetGroupName,
-           if (tags != null) 'tags': tags,
-           if (transitEncryptionEnabled != null)
-             'transit_encryption_enabled': transitEncryptionEnabled,
-           if (transitEncryptionMode != null)
-             'transit_encryption_mode': transitEncryptionMode,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
+           'security_group_names': ?securityGroupNames,
+           'snapshot_arns': ?snapshotArns,
+           'snapshot_name': ?snapshotName,
+           'snapshot_retention_limit': ?snapshotRetentionLimit,
+           'snapshot_window': ?snapshotWindow,
+           'subnet_group_name': ?subnetGroupName,
+           'tags': ?tags,
+           'transit_encryption_enabled': ?transitEncryptionEnabled,
+           'transit_encryption_mode': ?transitEncryptionMode,
            if (logDeliveryConfiguration != null)
              'log_delivery_configuration': TfArg.literal([
                for (final e in logDeliveryConfiguration) e.encode(),

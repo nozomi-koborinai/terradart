@@ -26,11 +26,11 @@ final class DataCloudflareUserAgentBlockingRules extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (maxItems != null) 'max_items': maxItems,
-           if (paused != null) 'paused': paused,
-           if (userAgent != null) 'user_agent': userAgent,
-           if (zoneId != null) 'zone_id': zoneId,
+           'description': ?description,
+           'max_items': ?maxItems,
+           'paused': ?paused,
+           'user_agent': ?userAgent,
+           'zone_id': ?zoneId,
          },
        );
 

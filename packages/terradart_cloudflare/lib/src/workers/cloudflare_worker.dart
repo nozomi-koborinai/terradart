@@ -32,12 +32,11 @@ final class WorkerObservability {
   final WorkerObservabilityTraces? traces;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (headSamplingRate != null)
-      'head_sampling_rate': headSamplingRate!.toTfJson(),
-    if (issues != null) 'issues': issues!.encode(),
-    if (logs != null) 'logs': logs!.encode(),
-    if (traces != null) 'traces': traces!.encode(),
+    'enabled': ?enabled?.toTfJson(),
+    'head_sampling_rate': ?headSamplingRate?.toTfJson(),
+    'issues': ?issues?.encode(),
+    'logs': ?logs?.encode(),
+    'traces': ?traces?.encode(),
   };
 }
 
@@ -49,9 +48,7 @@ final class WorkerObservabilityIssues {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `observability.logs` block of
@@ -77,12 +74,11 @@ final class WorkerObservabilityLogs {
   final TfArg<bool>? persist;
 
   Map<String, Object?> encode() => {
-    if (destinations != null) 'destinations': destinations!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (headSamplingRate != null)
-      'head_sampling_rate': headSamplingRate!.toTfJson(),
-    if (invocationLogs != null) 'invocation_logs': invocationLogs!.toTfJson(),
-    if (persist != null) 'persist': persist!.toTfJson(),
+    'destinations': ?destinations?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'head_sampling_rate': ?headSamplingRate?.toTfJson(),
+    'invocation_logs': ?invocationLogs?.toTfJson(),
+    'persist': ?persist?.toTfJson(),
   };
 }
 
@@ -109,13 +105,11 @@ final class WorkerObservabilityTraces {
   final TfArg<WorkerObservabilityTracesPropagationPolicy>? propagationPolicy;
 
   Map<String, Object?> encode() => {
-    if (destinations != null) 'destinations': destinations!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (headSamplingRate != null)
-      'head_sampling_rate': headSamplingRate!.toTfJson(),
-    if (persist != null) 'persist': persist!.toTfJson(),
-    if (propagationPolicy != null)
-      'propagation_policy': propagationPolicy!.toTfJson(),
+    'destinations': ?destinations?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'head_sampling_rate': ?headSamplingRate?.toTfJson(),
+    'persist': ?persist?.toTfJson(),
+    'propagation_policy': ?propagationPolicy?.toTfJson(),
   };
 }
 
@@ -158,13 +152,13 @@ final class WorkerPreviewsBaseConfig {
   final List<WorkerPreviewsBaseConfigTailConsumers>? tailConsumers;
 
   Map<String, Object?> encode() => {
-    if (logpush != null) 'logpush': logpush!.toTfJson(),
-    if (cacheOptions != null) 'cache_options': cacheOptions!.encode(),
+    'logpush': ?logpush?.toTfJson(),
+    'cache_options': ?cacheOptions?.encode(),
     if (env != null)
       'env': {for (final e in env!.entries) e.key: e.value.encode()},
-    if (limits != null) 'limits': limits!.encode(),
-    if (observability != null) 'observability': observability!.encode(),
-    if (placement != null) 'placement': placement!.encode(),
+    'limits': ?limits?.encode(),
+    'observability': ?observability?.encode(),
+    'placement': ?placement?.encode(),
     if (tailConsumers != null)
       'tail_consumers': [for (final e in tailConsumers!) e.encode()],
   };
@@ -184,9 +178,8 @@ final class WorkerPreviewsBaseConfigCacheOptions {
   final TfArg<bool>? enabled;
 
   Map<String, Object?> encode() => {
-    if (crossVersionCache != null)
-      'cross_version_cache': crossVersionCache!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'cross_version_cache': ?crossVersionCache?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
   };
 }
 
@@ -212,8 +205,8 @@ final class WorkerPreviewsBaseConfigLimits {
   final TfArg<num>? subrequests;
 
   Map<String, Object?> encode() => {
-    if (cpuMs != null) 'cpu_ms': cpuMs!.toTfJson(),
-    if (subrequests != null) 'subrequests': subrequests!.toTfJson(),
+    'cpu_ms': ?cpuMs?.toTfJson(),
+    'subrequests': ?subrequests?.toTfJson(),
   };
 }
 
@@ -243,14 +236,12 @@ final class WorkerPreviewsBaseConfigObservability {
   final WorkerPreviewsBaseConfigObservabilityTraces? traces;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (headSamplingRate != null)
-      'head_sampling_rate': headSamplingRate!.toTfJson(),
-    if (redactQueryString != null)
-      'redact_query_string': redactQueryString!.toTfJson(),
-    if (issues != null) 'issues': issues!.encode(),
-    if (logs != null) 'logs': logs!.encode(),
-    if (traces != null) 'traces': traces!.encode(),
+    'enabled': ?enabled?.toTfJson(),
+    'head_sampling_rate': ?headSamplingRate?.toTfJson(),
+    'redact_query_string': ?redactQueryString?.toTfJson(),
+    'issues': ?issues?.encode(),
+    'logs': ?logs?.encode(),
+    'traces': ?traces?.encode(),
   };
 }
 
@@ -262,9 +253,7 @@ final class WorkerPreviewsBaseConfigObservabilityIssues {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `previews_base_config.observability.logs` block of
@@ -290,12 +279,11 @@ final class WorkerPreviewsBaseConfigObservabilityLogs {
   final TfArg<bool>? persist;
 
   Map<String, Object?> encode() => {
-    if (destinations != null) 'destinations': destinations!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (headSamplingRate != null)
-      'head_sampling_rate': headSamplingRate!.toTfJson(),
-    if (invocationLogs != null) 'invocation_logs': invocationLogs!.toTfJson(),
-    if (persist != null) 'persist': persist!.toTfJson(),
+    'destinations': ?destinations?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'head_sampling_rate': ?headSamplingRate?.toTfJson(),
+    'invocation_logs': ?invocationLogs?.toTfJson(),
+    'persist': ?persist?.toTfJson(),
   };
 }
 
@@ -323,13 +311,11 @@ final class WorkerPreviewsBaseConfigObservabilityTraces {
   propagationPolicy;
 
   Map<String, Object?> encode() => {
-    if (destinations != null) 'destinations': destinations!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (headSamplingRate != null)
-      'head_sampling_rate': headSamplingRate!.toTfJson(),
-    if (persist != null) 'persist': persist!.toTfJson(),
-    if (propagationPolicy != null)
-      'propagation_policy': propagationPolicy!.toTfJson(),
+    'destinations': ?destinations?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'head_sampling_rate': ?headSamplingRate?.toTfJson(),
+    'persist': ?persist?.toTfJson(),
+    'propagation_policy': ?propagationPolicy?.toTfJson(),
   };
 }
 
@@ -369,10 +355,10 @@ final class WorkerPreviewsBaseConfigPlacement {
   final List<WorkerPreviewsBaseConfigPlacementTarget>? target;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'region': ?region?.toTfJson(),
     if (target != null) 'target': [for (final e in target!) e.encode()],
   };
 }
@@ -404,9 +390,9 @@ final class WorkerPreviewsBaseConfigPlacementTarget {
   final TfArg<String>? region;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'hostname': ?hostname?.toTfJson(),
+    'region': ?region?.toTfJson(),
   };
 }
 
@@ -432,9 +418,8 @@ final class WorkerSubdomain {
   final TfArg<bool>? previewsEnabled;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (previewsEnabled != null)
-      'previews_enabled': previewsEnabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'previews_enabled': ?previewsEnabled?.toTfJson(),
   };
 }
 
@@ -476,10 +461,10 @@ final class CloudflareWorker extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (force != null) 'force': force,
-           if (logpush != null) 'logpush': logpush,
+           'force': ?force,
+           'logpush': ?logpush,
            'name': name,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (observability != null)
              'observability': TfArg.literal(observability.encode()),
            if (previewsBaseConfig != null)

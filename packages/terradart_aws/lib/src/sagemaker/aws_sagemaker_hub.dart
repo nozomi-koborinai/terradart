@@ -16,7 +16,7 @@ final class SagemakerHubS3StorageConfig {
   final TfArg<String>? s3OutputPath;
 
   Map<String, Object?> encode() => {
-    if (s3OutputPath != null) 's3_output_path': s3OutputPath!.toTfJson(),
+    's3_output_path': ?s3OutputPath?.toTfJson(),
   };
 }
 
@@ -41,12 +41,11 @@ final class AwsSagemakerHub extends Resource {
          terraformType: tfType,
          argMap: {
            'hub_description': hubDescription,
-           if (hubDisplayName != null) 'hub_display_name': hubDisplayName,
+           'hub_display_name': ?hubDisplayName,
            'hub_name': hubName,
-           if (hubSearchKeywords != null)
-             'hub_search_keywords': hubSearchKeywords,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'hub_search_keywords': ?hubSearchKeywords,
+           'region': ?region,
+           'tags': ?tags,
            if (s3StorageConfig != null)
              's3_storage_config': TfArg.literal(s3StorageConfig.encode()),
          },

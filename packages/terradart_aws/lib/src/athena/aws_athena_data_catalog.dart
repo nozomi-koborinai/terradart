@@ -40,8 +40,8 @@ final class AwsAthenaDataCatalog extends Resource {
            'description': description,
            'name': name,
            'parameters': parameters,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'type': type,
          },
        );

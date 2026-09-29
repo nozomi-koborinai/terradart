@@ -33,12 +33,10 @@ final class NetworkConnectivityServiceConnectionPolicyPscConfig {
   final TfArg<List<Object?>> subnetworks;
 
   Map<String, Object?> encode() => {
-    if (allowedGoogleProducersResourceHierarchyLevel != null)
-      'allowed_google_producers_resource_hierarchy_level':
-          allowedGoogleProducersResourceHierarchyLevel!.toTfJson(),
-    if (limit != null) 'limit': limit!.toTfJson(),
-    if (producerInstanceLocation != null)
-      'producer_instance_location': producerInstanceLocation!.toTfJson(),
+    'allowed_google_producers_resource_hierarchy_level':
+        ?allowedGoogleProducersResourceHierarchyLevel?.toTfJson(),
+    'limit': ?limit?.toTfJson(),
+    'producer_instance_location': ?producerInstanceLocation?.toTfJson(),
     'subnetworks': subnetworks.toTfJson(),
   };
 }
@@ -102,10 +100,10 @@ final class GoogleNetworkConnectivityServiceConnectionPolicy extends Resource {
            'service_class': serviceClass,
            if (pscConfig != null)
              'psc_config': TfArg.literal(pscConfig.encode()),
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -42,14 +42,12 @@ final class SagemakerAlgorithmInferenceSpecification {
   final List<SagemakerAlgorithmInferenceSpecificationContainers>? containers;
 
   Map<String, Object?> encode() => {
-    if (supportedContentTypes != null)
-      'supported_content_types': supportedContentTypes!.toTfJson(),
+    'supported_content_types': ?supportedContentTypes?.toTfJson(),
     if (supportedRealtimeInferenceInstanceTypes != null)
       'supported_realtime_inference_instance_types': [
         for (final e in supportedRealtimeInferenceInstanceTypes!) e.toTfJson(),
       ],
-    if (supportedResponseMimeTypes != null)
-      'supported_response_mime_types': supportedResponseMimeTypes!.toTfJson(),
+    'supported_response_mime_types': ?supportedResponseMimeTypes?.toTfJson(),
     if (supportedTransformInstanceTypes != null)
       'supported_transform_instance_types': [
         for (final e in supportedTransformInstanceTypes!) e.toTfJson(),
@@ -533,20 +531,17 @@ final class SagemakerAlgorithmInferenceSpecificationContainers {
   modelInput;
 
   Map<String, Object?> encode() => {
-    if (containerHostname != null)
-      'container_hostname': containerHostname!.toTfJson(),
-    if (environment != null) 'environment': environment!.toTfJson(),
-    if (framework != null) 'framework': framework!.toTfJson(),
-    if (frameworkVersion != null)
-      'framework_version': frameworkVersion!.toTfJson(),
-    if (image != null) 'image': image!.toTfJson(),
-    if (imageDigest != null) 'image_digest': imageDigest!.toTfJson(),
-    if (isCheckpoint != null) 'is_checkpoint': isCheckpoint!.toTfJson(),
-    if (modelDataEtag != null) 'model_data_etag': modelDataEtag!.toTfJson(),
-    if (modelDataUrl != null) 'model_data_url': modelDataUrl!.toTfJson(),
-    if (nearestModelName != null)
-      'nearest_model_name': nearestModelName!.toTfJson(),
-    if (productId != null) 'product_id': productId!.toTfJson(),
+    'container_hostname': ?containerHostname?.toTfJson(),
+    'environment': ?environment?.toTfJson(),
+    'framework': ?framework?.toTfJson(),
+    'framework_version': ?frameworkVersion?.toTfJson(),
+    'image': ?image?.toTfJson(),
+    'image_digest': ?imageDigest?.toTfJson(),
+    'is_checkpoint': ?isCheckpoint?.toTfJson(),
+    'model_data_etag': ?modelDataEtag?.toTfJson(),
+    'model_data_url': ?modelDataUrl?.toTfJson(),
+    'nearest_model_name': ?nearestModelName?.toTfJson(),
+    'product_id': ?productId?.toTfJson(),
     if (additionalS3DataSource != null)
       'additional_s3_data_source': [
         for (final e in additionalS3DataSource!) e.encode(),
@@ -586,9 +581,8 @@ final class SagemakerAlgorithmInferenceSpecificationContainersAdditionalS3DataSo
   final TfArg<String> s3Uri;
 
   Map<String, Object?> encode() => {
-    if (compressionType != null)
-      'compression_type': compressionType!.toTfJson(),
-    if (etag != null) 'etag': etag!.toTfJson(),
+    'compression_type': ?compressionType?.toTfJson(),
+    'etag': ?etag?.toTfJson(),
     's3_data_type': s3DataType.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
   };
@@ -637,10 +631,9 @@ final class SagemakerAlgorithmInferenceSpecificationContainersBaseModel {
   final TfArg<String>? recipeName;
 
   Map<String, Object?> encode() => {
-    if (hubContentName != null) 'hub_content_name': hubContentName!.toTfJson(),
-    if (hubContentVersion != null)
-      'hub_content_version': hubContentVersion!.toTfJson(),
-    if (recipeName != null) 'recipe_name': recipeName!.toTfJson(),
+    'hub_content_name': ?hubContentName?.toTfJson(),
+    'hub_content_version': ?hubContentVersion?.toTfJson(),
+    'recipe_name': ?recipeName?.toTfJson(),
   };
 }
 
@@ -708,9 +701,9 @@ final class SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3D
 
   Map<String, Object?> encode() => {
     'compression_type': compressionType.toTfJson(),
-    if (etag != null) 'etag': etag!.toTfJson(),
-    if (manifestEtag != null) 'manifest_etag': manifestEtag!.toTfJson(),
-    if (manifestS3Uri != null) 'manifest_s3_uri': manifestS3Uri!.toTfJson(),
+    'etag': ?etag?.toTfJson(),
+    'manifest_etag': ?manifestEtag?.toTfJson(),
+    'manifest_s3_uri': ?manifestS3Uri?.toTfJson(),
     's3_data_type': s3DataType.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
     if (hubAccessConfig != null)
@@ -757,7 +750,7 @@ final class SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3D
   final TfArg<String>? hubContentArn;
 
   Map<String, Object?> encode() => {
-    if (hubContentArn != null) 'hub_content_arn': hubContentArn!.toTfJson(),
+    'hub_content_arn': ?hubContentArn?.toTfJson(),
   };
 }
 
@@ -771,9 +764,7 @@ final class SagemakerAlgorithmInferenceSpecificationContainersModelDataSourceS3D
 
   final TfArg<bool>? acceptEula;
 
-  Map<String, Object?> encode() => {
-    if (acceptEula != null) 'accept_eula': acceptEula!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'accept_eula': ?acceptEula?.toTfJson()};
 }
 
 /// Typed helper for the `inference_specification.containers.model_input` block of
@@ -787,8 +778,7 @@ final class SagemakerAlgorithmInferenceSpecificationContainersModelInput {
   final TfArg<String>? dataInputConfig;
 
   Map<String, Object?> encode() => {
-    if (dataInputConfig != null)
-      'data_input_config': dataInputConfig!.toTfJson(),
+    'data_input_config': ?dataInputConfig?.toTfJson(),
   };
 }
 
@@ -840,11 +830,9 @@ final class SagemakerAlgorithmTrainingSpecification {
     'supported_training_instance_types': [
       for (final e in supportedTrainingInstanceTypes) e.toTfJson(),
     ],
-    if (supportsDistributedTraining != null)
-      'supports_distributed_training': supportsDistributedTraining!.toTfJson(),
+    'supports_distributed_training': ?supportsDistributedTraining?.toTfJson(),
     'training_image': trainingImage.toTfJson(),
-    if (trainingImageDigest != null)
-      'training_image_digest': trainingImageDigest!.toTfJson(),
+    'training_image_digest': ?trainingImageDigest?.toTfJson(),
     if (additionalS3DataSource != null)
       'additional_s3_data_source': [
         for (final e in additionalS3DataSource!) e.encode(),
@@ -1052,9 +1040,8 @@ final class SagemakerAlgorithmTrainingSpecificationAdditionalS3DataSource {
   final TfArg<String> s3Uri;
 
   Map<String, Object?> encode() => {
-    if (compressionType != null)
-      'compression_type': compressionType!.toTfJson(),
-    if (etag != null) 'etag': etag!.toTfJson(),
+    'compression_type': ?compressionType?.toTfJson(),
+    'etag': ?etag?.toTfJson(),
     's3_data_type': s3DataType.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
   };
@@ -1140,10 +1127,10 @@ final class SagemakerAlgorithmTrainingSpecificationSupportedHyperParameters {
   range;
 
   Map<String, Object?> encode() => {
-    if (defaultValue != null) 'default_value': defaultValue!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (isRequired != null) 'is_required': isRequired!.toTfJson(),
-    if (isTunable != null) 'is_tunable': isTunable!.toTfJson(),
+    'default_value': ?defaultValue?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'is_required': ?isRequired?.toTfJson(),
+    'is_tunable': ?isTunable?.toTfJson(),
     'name': name.toTfJson(),
     'type': type.toTfJson(),
     if (range != null) 'range': [for (final e in range!) e.encode()],
@@ -1328,8 +1315,8 @@ final class SagemakerAlgorithmTrainingSpecificationTrainingChannels {
   supportedInputModes;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (isRequired != null) 'is_required': isRequired!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'is_required': ?isRequired?.toTfJson(),
     'name': name.toTfJson(),
     if (supportedCompressionTypes != null)
       'supported_compression_types': [
@@ -1466,8 +1453,7 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
   stoppingCondition;
 
   Map<String, Object?> encode() => {
-    if (hyperParameters != null)
-      'hyper_parameters': hyperParameters!.toTfJson(),
+    'hyper_parameters': ?hyperParameters?.toTfJson(),
     'training_input_mode': trainingInputMode.toTfJson(),
     if (inputDataConfig != null)
       'input_data_config': [for (final e in inputDataConfig!) e.encode()],
@@ -1539,12 +1525,10 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 
   Map<String, Object?> encode() => {
     'channel_name': channelName.toTfJson(),
-    if (compressionType != null)
-      'compression_type': compressionType!.toTfJson(),
-    if (contentType != null) 'content_type': contentType!.toTfJson(),
-    if (inputMode != null) 'input_mode': inputMode!.toTfJson(),
-    if (recordWrapperType != null)
-      'record_wrapper_type': recordWrapperType!.toTfJson(),
+    'compression_type': ?compressionType?.toTfJson(),
+    'content_type': ?contentType?.toTfJson(),
+    'input_mode': ?inputMode?.toTfJson(),
+    'record_wrapper_type': ?recordWrapperType?.toTfJson(),
     if (dataSource != null)
       'data_source': [for (final e in dataSource!) e.encode()],
     if (shuffleConfig != null)
@@ -1721,11 +1705,9 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
   modelAccessConfig;
 
   Map<String, Object?> encode() => {
-    if (attributeNames != null) 'attribute_names': attributeNames!.toTfJson(),
-    if (instanceGroupNames != null)
-      'instance_group_names': instanceGroupNames!.toTfJson(),
-    if (s3DataDistributionType != null)
-      's3_data_distribution_type': s3DataDistributionType!.toTfJson(),
+    'attribute_names': ?attributeNames?.toTfJson(),
+    'instance_group_names': ?instanceGroupNames?.toTfJson(),
+    's3_data_distribution_type': ?s3DataDistributionType?.toTfJson(),
     's3_data_type': s3DataType.toTfJson(),
     's3_uri': s3Uri.toTfJson(),
     if (hubAccessConfig != null)
@@ -1774,7 +1756,7 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
   final TfArg<String>? hubContentArn;
 
   Map<String, Object?> encode() => {
-    if (hubContentArn != null) 'hub_content_arn': hubContentArn!.toTfJson(),
+    'hub_content_arn': ?hubContentArn?.toTfJson(),
   };
 }
 
@@ -1788,9 +1770,7 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 
   final TfArg<bool>? acceptEula;
 
-  Map<String, Object?> encode() => {
-    if (acceptEula != null) 'accept_eula': acceptEula!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'accept_eula': ?acceptEula?.toTfJson()};
 }
 
 /// Typed helper for the `validation_specification.validation_profiles.training_job_definition.input_data_config.shuffle_config` block of
@@ -1826,9 +1806,8 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
   final TfArg<String> s3OutputPath;
 
   Map<String, Object?> encode() => {
-    if (compressionType != null)
-      'compression_type': compressionType!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'compression_type': ?compressionType?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
   };
 }
@@ -1887,14 +1866,12 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
   instancePlacementConfig;
 
   Map<String, Object?> encode() => {
-    if (instanceCount != null) 'instance_count': instanceCount!.toTfJson(),
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (keepAlivePeriodInSeconds != null)
-      'keep_alive_period_in_seconds': keepAlivePeriodInSeconds!.toTfJson(),
-    if (trainingPlanArn != null)
-      'training_plan_arn': trainingPlanArn!.toTfJson(),
-    if (volumeKmsKeyId != null) 'volume_kms_key_id': volumeKmsKeyId!.toTfJson(),
-    if (volumeSizeInGb != null) 'volume_size_in_gb': volumeSizeInGb!.toTfJson(),
+    'instance_count': ?instanceCount?.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'keep_alive_period_in_seconds': ?keepAlivePeriodInSeconds?.toTfJson(),
+    'training_plan_arn': ?trainingPlanArn?.toTfJson(),
+    'volume_kms_key_id': ?volumeKmsKeyId?.toTfJson(),
+    'volume_size_in_gb': ?volumeSizeInGb?.toTfJson(),
     if (instanceGroups != null)
       'instance_groups': [for (final e in instanceGroups!) e.encode()],
     if (instancePlacementConfig != null)
@@ -2271,8 +2248,7 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
   placementSpecifications;
 
   Map<String, Object?> encode() => {
-    if (enableMultipleJobs != null)
-      'enable_multiple_jobs': enableMultipleJobs!.toTfJson(),
+    'enable_multiple_jobs': ?enableMultipleJobs?.toTfJson(),
     if (placementSpecifications != null)
       'placement_specifications': [
         for (final e in placementSpecifications!) e.encode(),
@@ -2295,7 +2271,7 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
 
   Map<String, Object?> encode() => {
     'instance_count': instanceCount.toTfJson(),
-    if (ultraServerId != null) 'ultra_server_id': ultraServerId!.toTfJson(),
+    'ultra_server_id': ?ultraServerId?.toTfJson(),
   };
 }
 
@@ -2316,12 +2292,9 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTrainingJ
   final TfArg<num>? maxWaitTimeInSeconds;
 
   Map<String, Object?> encode() => {
-    if (maxPendingTimeInSeconds != null)
-      'max_pending_time_in_seconds': maxPendingTimeInSeconds!.toTfJson(),
-    if (maxRuntimeInSeconds != null)
-      'max_runtime_in_seconds': maxRuntimeInSeconds!.toTfJson(),
-    if (maxWaitTimeInSeconds != null)
-      'max_wait_time_in_seconds': maxWaitTimeInSeconds!.toTfJson(),
+    'max_pending_time_in_seconds': ?maxPendingTimeInSeconds?.toTfJson(),
+    'max_runtime_in_seconds': ?maxRuntimeInSeconds?.toTfJson(),
+    'max_wait_time_in_seconds': ?maxWaitTimeInSeconds?.toTfJson(),
   };
 }
 
@@ -2366,11 +2339,10 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
   transformResources;
 
   Map<String, Object?> encode() => {
-    if (batchStrategy != null) 'batch_strategy': batchStrategy!.toTfJson(),
-    if (environment != null) 'environment': environment!.toTfJson(),
-    if (maxConcurrentTransforms != null)
-      'max_concurrent_transforms': maxConcurrentTransforms!.toTfJson(),
-    if (maxPayloadInMb != null) 'max_payload_in_mb': maxPayloadInMb!.toTfJson(),
+    'batch_strategy': ?batchStrategy?.toTfJson(),
+    'environment': ?environment?.toTfJson(),
+    'max_concurrent_transforms': ?maxConcurrentTransforms?.toTfJson(),
+    'max_payload_in_mb': ?maxPayloadInMb?.toTfJson(),
     if (transformInput != null)
       'transform_input': [for (final e in transformInput!) e.encode()],
     if (transformOutput != null)
@@ -2422,10 +2394,9 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
   dataSource;
 
   Map<String, Object?> encode() => {
-    if (compressionType != null)
-      'compression_type': compressionType!.toTfJson(),
-    if (contentType != null) 'content_type': contentType!.toTfJson(),
-    if (splitType != null) 'split_type': splitType!.toTfJson(),
+    'compression_type': ?compressionType?.toTfJson(),
+    'content_type': ?contentType?.toTfJson(),
+    'split_type': ?splitType?.toTfJson(),
     if (dataSource != null)
       'data_source': [for (final e in dataSource!) e.encode()],
   };
@@ -2538,9 +2509,9 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
   final TfArg<String> s3OutputPath;
 
   Map<String, Object?> encode() => {
-    if (accept != null) 'accept': accept!.toTfJson(),
-    if (assembleWith != null) 'assemble_with': assembleWith!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'accept': ?accept?.toTfJson(),
+    'assemble_with': ?assembleWith?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
   };
 }
@@ -2583,9 +2554,8 @@ final class SagemakerAlgorithmValidationSpecificationValidationProfilesTransform
   Map<String, Object?> encode() => {
     'instance_count': instanceCount.toTfJson(),
     'instance_type': instanceType.toTfJson(),
-    if (transformAmiVersion != null)
-      'transform_ami_version': transformAmiVersion!.toTfJson(),
-    if (volumeKmsKeyId != null) 'volume_kms_key_id': volumeKmsKeyId!.toTfJson(),
+    'transform_ami_version': ?transformAmiVersion?.toTfJson(),
+    'volume_kms_key_id': ?volumeKmsKeyId?.toTfJson(),
   };
 }
 
@@ -2737,13 +2707,11 @@ final class AwsSagemakerAlgorithm extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (algorithmDescription != null)
-             'algorithm_description': algorithmDescription,
+           'algorithm_description': ?algorithmDescription,
            'algorithm_name': algorithmName,
-           if (certifyForMarketplace != null)
-             'certify_for_marketplace': certifyForMarketplace,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'certify_for_marketplace': ?certifyForMarketplace,
+           'region': ?region,
+           'tags': ?tags,
            if (inferenceSpecification != null)
              'inference_specification': TfArg.literal([
                for (final e in inferenceSpecification) e.encode(),

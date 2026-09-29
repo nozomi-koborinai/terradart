@@ -33,8 +33,8 @@ final class AccountSubscriptionRatePlan {
   final TfArg<String>? scope;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
   };
 }
 
@@ -76,8 +76,8 @@ final class CloudflareAccountSubscription extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId.encodeAs('id'),
-           if (frequency != null) 'frequency': frequency,
+           'account_id': ?accountId?.encodeAs('id'),
+           'frequency': ?frequency,
            if (ratePlan != null) 'rate_plan': TfArg.literal(ratePlan.encode()),
          },
        );

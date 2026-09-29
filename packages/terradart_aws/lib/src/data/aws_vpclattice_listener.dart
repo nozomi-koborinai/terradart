@@ -23,9 +23,9 @@ final class DataAwsVpclatticeListener extends Data {
          terraformType: tfType,
          argMap: {
            'listener_identifier': listenerIdentifier,
-           if (region != null) 'region': region,
+           'region': ?region,
            'service_identifier': serviceIdentifier,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

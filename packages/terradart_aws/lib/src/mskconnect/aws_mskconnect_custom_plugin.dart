@@ -49,7 +49,7 @@ final class MskconnectCustomPluginLocationS3 {
   Map<String, Object?> encode() => {
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'file_key': fileKey.toTfJson(),
-    if (objectVersion != null) 'object_version': objectVersion!.toTfJson(),
+    'object_version': ?objectVersion?.toTfJson(),
   };
 }
 
@@ -73,10 +73,10 @@ final class AwsMskconnectCustomPlugin extends Resource {
          terraformType: tfType,
          argMap: {
            'content_type': contentType,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'location': TfArg.literal(location.encode()),
          },
        );

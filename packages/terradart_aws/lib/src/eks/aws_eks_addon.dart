@@ -38,9 +38,7 @@ final class EksAddonNamespaceConfig {
 
   final TfArg<String>? namespace;
 
-  Map<String, Object?> encode() => {
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'namespace': ?namespace?.toTfJson()};
 }
 
 /// Typed helper for the `pod_identity_association` block of
@@ -88,19 +86,15 @@ final class AwsEksAddon extends Resource {
          terraformType: tfType,
          argMap: {
            'addon_name': addonName,
-           if (addonVersion != null) 'addon_version': addonVersion,
+           'addon_version': ?addonVersion,
            'cluster_name': clusterName,
-           if (configurationValues != null)
-             'configuration_values': configurationValues,
-           if (preserve != null) 'preserve': preserve,
-           if (region != null) 'region': region,
-           if (resolveConflictsOnCreate != null)
-             'resolve_conflicts_on_create': resolveConflictsOnCreate,
-           if (resolveConflictsOnUpdate != null)
-             'resolve_conflicts_on_update': resolveConflictsOnUpdate,
-           if (serviceAccountRoleArn != null)
-             'service_account_role_arn': serviceAccountRoleArn,
-           if (tags != null) 'tags': tags,
+           'configuration_values': ?configurationValues,
+           'preserve': ?preserve,
+           'region': ?region,
+           'resolve_conflicts_on_create': ?resolveConflictsOnCreate,
+           'resolve_conflicts_on_update': ?resolveConflictsOnUpdate,
+           'service_account_role_arn': ?serviceAccountRoleArn,
+           'tags': ?tags,
            if (namespaceConfig != null)
              'namespace_config': TfArg.literal(namespaceConfig.encode()),
            if (podIdentityAssociation != null)

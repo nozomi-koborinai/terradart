@@ -25,8 +25,8 @@ final class AgentRegistryBindingAuthProviderBinding {
 
   Map<String, Object?> encode() => {
     'auth_provider': authProvider.toTfJson(),
-    if (continueUri != null) 'continue_uri': continueUri!.toTfJson(),
-    if (scopes != null) 'scopes': scopes!.toTfJson(),
+    'continue_uri': ?continueUri?.toTfJson(),
+    'scopes': ?scopes?.toTfJson(),
   };
 }
 
@@ -91,10 +91,10 @@ final class GoogleAgentRegistryBinding extends Resource {
            'auth_provider_binding': TfArg.literal(authProviderBinding.encode()),
            'source': TfArg.literal(source.encode()),
            'target': TfArg.literal(target.encode()),
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

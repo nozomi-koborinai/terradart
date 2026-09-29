@@ -18,8 +18,8 @@ final class DialogflowCxGeneratorLlmModelSettings {
   final TfArg<String>? promptText;
 
   Map<String, Object?> encode() => {
-    if (model != null) 'model': model!.toTfJson(),
-    if (promptText != null) 'prompt_text': promptText!.toTfJson(),
+    'model': ?model?.toTfJson(),
+    'prompt_text': ?promptText?.toTfJson(),
   };
 }
 
@@ -43,10 +43,10 @@ final class DialogflowCxGeneratorModelParameter {
   final TfArg<num>? topP;
 
   Map<String, Object?> encode() => {
-    if (maxDecodeSteps != null) 'max_decode_steps': maxDecodeSteps!.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
-    if (topK != null) 'top_k': topK!.toTfJson(),
-    if (topP != null) 'top_p': topP!.toTfJson(),
+    'max_decode_steps': ?maxDecodeSteps?.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
+    'top_k': ?topK?.toTfJson(),
+    'top_p': ?topP?.toTfJson(),
   };
 }
 
@@ -61,8 +61,8 @@ final class DialogflowCxGeneratorPlaceholders {
   final TfArg<String>? name;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -74,7 +74,7 @@ final class DialogflowCxGeneratorPromptText {
 
   final TfArg<String>? text;
 
-  Map<String, Object?> encode() => {if (text != null) 'text': text!.toTfJson()};
+  Map<String, Object?> encode() => {'text': ?text?.toTfJson()};
 }
 
 /// Factory wrapper for `google_dialogflow_cx_generator`.
@@ -114,8 +114,8 @@ final class GoogleDialogflowCxGenerator extends Resource {
          argMap: {
            'display_name': displayName,
            'prompt_text': TfArg.literal(promptText.encode()),
-           if (parent != null) 'parent': parent,
-           if (languageCode != null) 'language_code': languageCode,
+           'parent': ?parent,
+           'language_code': ?languageCode,
            if (llmModelSettings != null)
              'llm_model_settings': TfArg.literal(llmModelSettings.encode()),
            if (modelParameter != null)
@@ -124,7 +124,7 @@ final class GoogleDialogflowCxGenerator extends Resource {
              'placeholders': TfArg.literal([
                for (final e in placeholders) e.encode(),
              ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

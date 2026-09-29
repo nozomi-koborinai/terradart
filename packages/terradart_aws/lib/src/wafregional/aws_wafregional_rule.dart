@@ -65,8 +65,8 @@ final class AwsWafregionalRule extends Resource {
          argMap: {
            'metric_name': metricName,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (predicate != null)
              'predicate': TfArg.literal([
                for (final e in predicate) e.encode(),

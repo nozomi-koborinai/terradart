@@ -24,9 +24,9 @@ final class AwsSecurityhubMember extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (email != null) 'email': email,
-           if (invite != null) 'invite': invite,
-           if (region != null) 'region': region,
+           'email': ?email,
+           'invite': ?invite,
+           'region': ?region,
          },
        );
 

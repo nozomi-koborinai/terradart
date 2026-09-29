@@ -89,8 +89,8 @@ final class AwsTranscribeVocabulary extends Resource {
          argMap: {
            'language_code': languageCode,
            ...terms.argMap,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'vocabulary_name': vocabularyName,
          },
        );

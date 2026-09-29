@@ -23,7 +23,7 @@ final class DataAwsTimestreamwriteTable extends Data {
          argMap: {
            'database_name': databaseName,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

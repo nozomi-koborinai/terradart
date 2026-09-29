@@ -24,9 +24,9 @@ final class DataGoogleVertexAiReasoningEngineIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (project != null) 'project': project,
+           'project': ?project,
            'reasoning_engine': reasoningEngine,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

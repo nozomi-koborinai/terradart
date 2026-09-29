@@ -25,12 +25,9 @@ final class SecurityhubConfigurationPolicyConfigurationPolicy {
   securityControlsConfiguration;
 
   Map<String, Object?> encode() => {
-    if (enabledStandardArns != null)
-      'enabled_standard_arns': enabledStandardArns!.toTfJson(),
+    'enabled_standard_arns': ?enabledStandardArns?.toTfJson(),
     'service_enabled': serviceEnabled.toTfJson(),
-    if (securityControlsConfiguration != null)
-      'security_controls_configuration': securityControlsConfiguration!
-          .encode(),
+    'security_controls_configuration': ?securityControlsConfiguration?.encode(),
   };
 }
 
@@ -192,14 +189,14 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'value_type': valueType.toTfJson(),
-    if (bool != null) 'bool': bool!.encode(),
-    if (double != null) 'double': double!.encode(),
-    if (enumCase != null) 'enum': enumCase!.encode(),
-    if (enumList != null) 'enum_list': enumList!.encode(),
-    if (int != null) 'int': int!.encode(),
-    if (intList != null) 'int_list': intList!.encode(),
-    if (string != null) 'string': string!.encode(),
-    if (stringList != null) 'string_list': stringList!.encode(),
+    'bool': ?bool?.encode(),
+    'double': ?double?.encode(),
+    'enum': ?enumCase?.encode(),
+    'enum_list': ?enumList?.encode(),
+    'int': ?int?.encode(),
+    'int_list': ?intList?.encode(),
+    'string': ?string?.encode(),
+    'string_list': ?stringList?.encode(),
   };
 }
 
@@ -325,9 +322,9 @@ final class AwsSecurityhubConfigurationPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'configuration_policy': TfArg.literal(configurationPolicy.encode()),
          },
        );

@@ -18,10 +18,7 @@ final class DataAwsRoute53Records extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (nameRegex != null) 'name_regex': nameRegex,
-           'zone_id': zoneId,
-         },
+         argMap: {'name_regex': ?nameRegex, 'zone_id': zoneId},
        );
 
   @override

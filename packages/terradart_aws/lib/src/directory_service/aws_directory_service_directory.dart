@@ -117,22 +117,20 @@ final class AwsDirectoryServiceDirectory extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (alias != null) 'alias': alias,
-           if (description != null) 'description': description,
-           if (desiredNumberOfDomainControllers != null)
-             'desired_number_of_domain_controllers':
-                 desiredNumberOfDomainControllers,
-           if (edition != null) 'edition': edition,
-           if (enableDirectoryDataAccess != null)
-             'enable_directory_data_access': enableDirectoryDataAccess,
-           if (enableSso != null) 'enable_sso': enableSso,
+           'alias': ?alias,
+           'description': ?description,
+           'desired_number_of_domain_controllers':
+               ?desiredNumberOfDomainControllers,
+           'edition': ?edition,
+           'enable_directory_data_access': ?enableDirectoryDataAccess,
+           'enable_sso': ?enableSso,
            'name': name,
            'password': password,
-           if (region != null) 'region': region,
-           if (shortName != null) 'short_name': shortName,
-           if (size != null) 'size': size,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
+           'region': ?region,
+           'short_name': ?shortName,
+           'size': ?size,
+           'tags': ?tags,
+           'type': ?type,
            if (connectSettings != null)
              'connect_settings': TfArg.literal(connectSettings.encode()),
            if (vpcSettings != null)

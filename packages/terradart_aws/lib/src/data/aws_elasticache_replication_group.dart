@@ -20,7 +20,7 @@ final class DataAwsElasticacheReplicationGroup extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'replication_group_id': replicationGroupId,
          },
        );

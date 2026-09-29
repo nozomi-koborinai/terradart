@@ -26,10 +26,10 @@ final class GoogleFirebaseHostingSite extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (appId != null) 'app_id': appId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
-           if (siteId != null) 'site_id': siteId,
+           'app_id': ?appId,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
+           'site_id': ?siteId,
          },
        );
 

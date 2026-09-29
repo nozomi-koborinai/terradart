@@ -55,9 +55,9 @@ final class GoogleDialogflowSipTrunk extends Resource {
          argMap: {
            'location': location,
            'expected_hostname': expectedHostname,
-           if (displayName != null) 'display_name': displayName,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

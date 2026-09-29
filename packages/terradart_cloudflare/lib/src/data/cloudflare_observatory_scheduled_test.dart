@@ -24,11 +24,7 @@ final class DataCloudflareObservatoryScheduledTest extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'url': url,
-           if (zoneId != null) 'zone_id': zoneId,
-         },
+         argMap: {'region': ?region, 'url': url, 'zone_id': ?zoneId},
        );
 
   @override

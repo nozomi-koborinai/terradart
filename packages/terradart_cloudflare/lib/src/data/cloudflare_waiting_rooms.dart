@@ -24,9 +24,9 @@ final class DataCloudflareWaitingRooms extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (zoneId != null) 'zone_id': zoneId,
+           'account_id': ?accountId,
+           'max_items': ?maxItems,
+           'zone_id': ?zoneId,
          },
        );
 

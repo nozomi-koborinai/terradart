@@ -21,11 +21,7 @@ final class AwsEcsAccountSettingDefault extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (region != null) 'region': region,
-           'value': value,
-         },
+         argMap: {'name': name, 'region': ?region, 'value': value},
        );
 
   @override

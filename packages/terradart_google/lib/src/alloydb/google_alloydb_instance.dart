@@ -79,8 +79,8 @@ final class GoogleAlloydbInstance extends Resource {
            'instance_type': instanceType,
            if (machineConfig != null)
              'machine_config': TfArg.literal([machineConfig.toArgMap()]),
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
+           'display_name': ?displayName,
+           'labels': ?labels,
          },
        );
 

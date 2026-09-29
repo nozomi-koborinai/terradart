@@ -37,7 +37,7 @@ final class DataAwsSsoadminPrincipalApplicationAssignments extends Data {
            'instance_arn': instanceArn,
            'principal_id': principalId,
            'principal_type': principalType,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (applicationAssignments != null)
              'application_assignments': TfArg.literal([
                for (final e in applicationAssignments) e.encode(),

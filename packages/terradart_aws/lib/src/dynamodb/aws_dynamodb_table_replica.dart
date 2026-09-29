@@ -38,16 +38,13 @@ final class AwsDynamodbTableReplica extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionProtectionEnabled != null)
-             'deletion_protection_enabled': deletionProtectionEnabled,
+           'deletion_protection_enabled': ?deletionProtectionEnabled,
            'global_table_arn': globalTableArn,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
-           if (pointInTimeRecovery != null)
-             'point_in_time_recovery': pointInTimeRecovery,
-           if (region != null) 'region': region,
-           if (tableClassOverride != null)
-             'table_class_override': tableClassOverride,
-           if (tags != null) 'tags': tags,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
+           'point_in_time_recovery': ?pointInTimeRecovery,
+           'region': ?region,
+           'table_class_override': ?tableClassOverride,
+           'tags': ?tags,
          },
        );
 

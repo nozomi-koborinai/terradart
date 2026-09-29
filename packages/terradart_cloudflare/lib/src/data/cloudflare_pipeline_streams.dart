@@ -25,10 +25,10 @@ final class DataCloudflarePipelineStreams extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (name != null) 'name': name,
-           if (pipelineId != null) 'pipeline_id': pipelineId,
+           'account_id': ?accountId,
+           'max_items': ?maxItems,
+           'name': ?name,
+           'pipeline_id': ?pipelineId,
          },
        );
 

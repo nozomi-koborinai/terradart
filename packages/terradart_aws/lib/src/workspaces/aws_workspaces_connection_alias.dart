@@ -23,8 +23,8 @@ final class AwsWorkspacesConnectionAlias extends Resource {
          terraformType: tfType,
          argMap: {
            'connection_string': connectionString,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

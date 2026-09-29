@@ -23,7 +23,7 @@ final class AwsLightsailStaticIpAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'instance_name': instanceName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'static_ip_name': staticIpName,
          },
        );

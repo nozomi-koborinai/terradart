@@ -20,10 +20,7 @@ final class DataAwsSesv2EmailIdentityMailFromAttributes extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'email_identity': emailIdentity,
-           if (region != null) 'region': region,
-         },
+         argMap: {'email_identity': emailIdentity, 'region': ?region},
        );
 
   @override

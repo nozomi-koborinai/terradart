@@ -47,7 +47,7 @@ final class S3BucketWebsiteConfigurationRedirectAllRequestsTo {
 
   Map<String, Object?> encode() => {
     'host_name': hostName.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
   };
 }
 
@@ -78,7 +78,7 @@ final class S3BucketWebsiteConfigurationRoutingRule {
   final S3BucketWebsiteConfigurationRoutingRuleRedirect redirect;
 
   Map<String, Object?> encode() => {
-    if (condition != null) 'condition': condition!.encode(),
+    'condition': ?condition?.encode(),
     'redirect': redirect.encode(),
   };
 }
@@ -97,11 +97,8 @@ final class S3BucketWebsiteConfigurationRoutingRuleCondition {
   final TfArg<String>? keyPrefixEquals;
 
   Map<String, Object?> encode() => {
-    if (httpErrorCodeReturnedEquals != null)
-      'http_error_code_returned_equals': httpErrorCodeReturnedEquals!
-          .toTfJson(),
-    if (keyPrefixEquals != null)
-      'key_prefix_equals': keyPrefixEquals!.toTfJson(),
+    'http_error_code_returned_equals': ?httpErrorCodeReturnedEquals?.toTfJson(),
+    'key_prefix_equals': ?keyPrefixEquals?.toTfJson(),
   };
 }
 
@@ -129,13 +126,11 @@ final class S3BucketWebsiteConfigurationRoutingRuleRedirect {
   final TfArg<String>? replaceKeyWith;
 
   Map<String, Object?> encode() => {
-    if (hostName != null) 'host_name': hostName!.toTfJson(),
-    if (httpRedirectCode != null)
-      'http_redirect_code': httpRedirectCode!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (replaceKeyPrefixWith != null)
-      'replace_key_prefix_with': replaceKeyPrefixWith!.toTfJson(),
-    if (replaceKeyWith != null) 'replace_key_with': replaceKeyWith!.toTfJson(),
+    'host_name': ?hostName?.toTfJson(),
+    'http_redirect_code': ?httpRedirectCode?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
+    'replace_key_prefix_with': ?replaceKeyPrefixWith?.toTfJson(),
+    'replace_key_with': ?replaceKeyWith?.toTfJson(),
   };
 }
 
@@ -174,10 +169,9 @@ final class AwsS3BucketWebsiteConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (region != null) 'region': region,
-           if (routingRules != null) 'routing_rules': routingRules,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'region': ?region,
+           'routing_rules': ?routingRules,
            if (errorDocument != null)
              'error_document': TfArg.literal(errorDocument.encode()),
            if (indexDocument != null)

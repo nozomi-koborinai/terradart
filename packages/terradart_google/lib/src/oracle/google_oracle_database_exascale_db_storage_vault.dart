@@ -52,11 +52,10 @@ final class GoogleOracleDatabaseExascaleDbStorageVault extends Resource {
            'exascale_db_storage_vault_id': exascaleDbStorageVaultId,
            'display_name': displayName,
            'properties': properties,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

@@ -28,16 +28,14 @@ final class AwsApiGatewayIntegrationResponse extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (contentHandling != null) 'content_handling': contentHandling,
+           'content_handling': ?contentHandling,
            'http_method': httpMethod,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_id': resourceId,
-           if (responseParameters != null)
-             'response_parameters': responseParameters,
-           if (responseTemplates != null)
-             'response_templates': responseTemplates,
+           'response_parameters': ?responseParameters,
+           'response_templates': ?responseTemplates,
            'rest_api_id': restApiId,
-           if (selectionPattern != null) 'selection_pattern': selectionPattern,
+           'selection_pattern': ?selectionPattern,
            'status_code': statusCode,
          },
        );

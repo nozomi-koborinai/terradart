@@ -21,10 +21,9 @@ final class DataAwsDbInstance extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dbInstanceIdentifier != null)
-             'db_instance_identifier': dbInstanceIdentifier,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'db_instance_identifier': ?dbInstanceIdentifier,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

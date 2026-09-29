@@ -37,11 +37,10 @@ final class GoogleLoggingFolderSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (disableDefaultSink != null)
-             'disable_default_sink': disableDefaultSink,
+           'disable_default_sink': ?disableDefaultSink,
            'folder': folder,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
-           if (storageLocation != null) 'storage_location': storageLocation,
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
+           'storage_location': ?storageLocation,
          },
        );
 

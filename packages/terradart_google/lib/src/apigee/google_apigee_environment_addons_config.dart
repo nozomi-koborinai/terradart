@@ -29,10 +29,7 @@ final class GoogleApigeeEnvironmentAddonsConfig extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'env_id': envId,
-           if (analyticsEnabled != null) 'analytics_enabled': analyticsEnabled,
-         },
+         argMap: {'env_id': envId, 'analytics_enabled': ?analyticsEnabled},
        );
 
   @override

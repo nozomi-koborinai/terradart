@@ -43,7 +43,7 @@ final class CloudflareSchemaValidationSchemas extends Resource {
          argMap: {
            'kind': kind,
            'name': name,
-           if (omitSource != null) 'omit_source': omitSource,
+           'omit_source': ?omitSource,
            'source': source,
            'validation_enabled': validationEnabled,
            'zone_id': zoneId.encodeAs('id'),

@@ -23,10 +23,8 @@ final class SagemakerWorkteamMemberDefinition {
   oidcMemberDefinition;
 
   Map<String, Object?> encode() => {
-    if (cognitoMemberDefinition != null)
-      'cognito_member_definition': cognitoMemberDefinition!.encode(),
-    if (oidcMemberDefinition != null)
-      'oidc_member_definition': oidcMemberDefinition!.encode(),
+    'cognito_member_definition': ?cognitoMemberDefinition?.encode(),
+    'oidc_member_definition': ?oidcMemberDefinition?.encode(),
   };
 }
 
@@ -75,8 +73,7 @@ final class SagemakerWorkteamNotificationConfiguration {
   final TfArg<String>? notificationTopicArn;
 
   Map<String, Object?> encode() => {
-    if (notificationTopicArn != null)
-      'notification_topic_arn': notificationTopicArn!.toTfJson(),
+    'notification_topic_arn': ?notificationTopicArn?.toTfJson(),
   };
 }
 
@@ -88,9 +85,7 @@ final class SagemakerWorkteamWorkerAccessConfiguration {
 
   final SagemakerWorkteamWorkerAccessConfigurationS3Presign? s3Presign;
 
-  Map<String, Object?> encode() => {
-    if (s3Presign != null) 's3_presign': s3Presign!.encode(),
-  };
+  Map<String, Object?> encode() => {'s3_presign': ?s3Presign?.encode()};
 }
 
 /// Typed helper for the `worker_access_configuration.s3_presign` block of
@@ -105,8 +100,7 @@ final class SagemakerWorkteamWorkerAccessConfigurationS3Presign {
   iamPolicyConstraints;
 
   Map<String, Object?> encode() => {
-    if (iamPolicyConstraints != null)
-      'iam_policy_constraints': iamPolicyConstraints!.encode(),
+    'iam_policy_constraints': ?iamPolicyConstraints?.encode(),
   };
 }
 
@@ -241,9 +235,9 @@ final class AwsSagemakerWorkteam extends Resource {
          terraformType: tfType,
          argMap: {
            'description': description,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (workforceName != null) 'workforce_name': workforceName,
+           'region': ?region,
+           'tags': ?tags,
+           'workforce_name': ?workforceName,
            'workteam_name': workteamName,
            'member_definition': TfArg.literal([
              for (final e in memberDefinition) e.encode(),

@@ -89,8 +89,7 @@ final class Apigatewayv2IntegrationTlsConfig {
   final TfArg<String>? serverNameToVerify;
 
   Map<String, Object?> encode() => {
-    if (serverNameToVerify != null)
-      'server_name_to_verify': serverNameToVerify!.toTfJson(),
+    'server_name_to_verify': ?serverNameToVerify?.toTfJson(),
   };
 }
 
@@ -128,30 +127,22 @@ final class AwsApigatewayv2Integration extends Resource {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (connectionId != null) 'connection_id': connectionId,
-           if (connectionType != null) 'connection_type': connectionType,
-           if (contentHandlingStrategy != null)
-             'content_handling_strategy': contentHandlingStrategy,
-           if (credentialsArn != null) 'credentials_arn': credentialsArn,
-           if (description != null) 'description': description,
-           if (integrationMethod != null)
-             'integration_method': integrationMethod,
-           if (integrationSubtype != null)
-             'integration_subtype': integrationSubtype,
+           'connection_id': ?connectionId,
+           'connection_type': ?connectionType,
+           'content_handling_strategy': ?contentHandlingStrategy,
+           'credentials_arn': ?credentialsArn,
+           'description': ?description,
+           'integration_method': ?integrationMethod,
+           'integration_subtype': ?integrationSubtype,
            'integration_type': integrationType,
-           if (integrationUri != null) 'integration_uri': integrationUri,
-           if (passthroughBehavior != null)
-             'passthrough_behavior': passthroughBehavior,
-           if (payloadFormatVersion != null)
-             'payload_format_version': payloadFormatVersion,
-           if (region != null) 'region': region,
-           if (requestParameters != null)
-             'request_parameters': requestParameters,
-           if (requestTemplates != null) 'request_templates': requestTemplates,
-           if (templateSelectionExpression != null)
-             'template_selection_expression': templateSelectionExpression,
-           if (timeoutMilliseconds != null)
-             'timeout_milliseconds': timeoutMilliseconds,
+           'integration_uri': ?integrationUri,
+           'passthrough_behavior': ?passthroughBehavior,
+           'payload_format_version': ?payloadFormatVersion,
+           'region': ?region,
+           'request_parameters': ?requestParameters,
+           'request_templates': ?requestTemplates,
+           'template_selection_expression': ?templateSelectionExpression,
+           'timeout_milliseconds': ?timeoutMilliseconds,
            if (responseParameters != null)
              'response_parameters': TfArg.literal([
                for (final e in responseParameters) e.encode(),

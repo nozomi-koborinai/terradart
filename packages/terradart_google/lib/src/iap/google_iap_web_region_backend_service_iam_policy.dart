@@ -32,8 +32,8 @@ final class GoogleIapWebRegionBackendServiceIamPolicy extends Resource {
          argMap: {
            'web_region_backend_service': webRegionBackendService,
            'policy_data': policyData,
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'project': ?project,
          },
        );
 

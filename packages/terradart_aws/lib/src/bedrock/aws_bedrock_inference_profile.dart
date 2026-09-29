@@ -36,10 +36,10 @@ final class AwsBedrockInferenceProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (modelSource != null)
              'model_source': TfArg.literal([
                for (final e in modelSource) e.encode(),

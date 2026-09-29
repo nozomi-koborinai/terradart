@@ -24,9 +24,8 @@ final class OrgPolicyPolicyDryRunSpec {
   final List<OrgPolicyPolicyDryRunSpecRules>? rules;
 
   Map<String, Object?> encode() => {
-    if (inheritFromParent != null)
-      'inherit_from_parent': inheritFromParent!.toTfJson(),
-    if (reset != null) 'reset': reset!.toTfJson(),
+    'inherit_from_parent': ?inheritFromParent?.toTfJson(),
+    'reset': ?reset?.toTfJson(),
     if (rules != null) 'rules': [for (final e in rules!) e.encode()],
   };
 }
@@ -57,12 +56,12 @@ final class OrgPolicyPolicyDryRunSpecRules {
   final OrgPolicyPolicyDryRunSpecRulesValues? values;
 
   Map<String, Object?> encode() => {
-    if (allowAll != null) 'allow_all': allowAll!.toTfJson(),
-    if (denyAll != null) 'deny_all': denyAll!.toTfJson(),
-    if (enforce != null) 'enforce': enforce!.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (condition != null) 'condition': condition!.encode(),
-    if (values != null) 'values': values!.encode(),
+    'allow_all': ?allowAll?.toTfJson(),
+    'deny_all': ?denyAll?.toTfJson(),
+    'enforce': ?enforce?.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'condition': ?condition?.encode(),
+    'values': ?values?.encode(),
   };
 }
 
@@ -86,10 +85,10 @@ final class OrgPolicyPolicyDryRunSpecRulesCondition {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (expression != null) 'expression': expression!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'expression': ?expression?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -107,8 +106,8 @@ final class OrgPolicyPolicyDryRunSpecRulesValues {
   final TfArg<List<Object?>>? deniedValues;
 
   Map<String, Object?> encode() => {
-    if (allowedValues != null) 'allowed_values': allowedValues!.toTfJson(),
-    if (deniedValues != null) 'denied_values': deniedValues!.toTfJson(),
+    'allowed_values': ?allowedValues?.toTfJson(),
+    'denied_values': ?deniedValues?.toTfJson(),
   };
 }
 
@@ -125,9 +124,8 @@ final class OrgPolicyPolicySpec {
   final List<OrgPolicyPolicySpecRules>? rules;
 
   Map<String, Object?> encode() => {
-    if (inheritFromParent != null)
-      'inherit_from_parent': inheritFromParent!.toTfJson(),
-    if (reset != null) 'reset': reset!.toTfJson(),
+    'inherit_from_parent': ?inheritFromParent?.toTfJson(),
+    'reset': ?reset?.toTfJson(),
     if (rules != null) 'rules': [for (final e in rules!) e.encode()],
   };
 }
@@ -158,12 +156,12 @@ final class OrgPolicyPolicySpecRules {
   final OrgPolicyPolicySpecRulesValues? values;
 
   Map<String, Object?> encode() => {
-    if (allowAll != null) 'allow_all': allowAll!.toTfJson(),
-    if (denyAll != null) 'deny_all': denyAll!.toTfJson(),
-    if (enforce != null) 'enforce': enforce!.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (condition != null) 'condition': condition!.encode(),
-    if (values != null) 'values': values!.encode(),
+    'allow_all': ?allowAll?.toTfJson(),
+    'deny_all': ?denyAll?.toTfJson(),
+    'enforce': ?enforce?.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'condition': ?condition?.encode(),
+    'values': ?values?.encode(),
   };
 }
 
@@ -187,10 +185,10 @@ final class OrgPolicyPolicySpecRulesCondition {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (expression != null) 'expression': expression!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'expression': ?expression?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -205,8 +203,8 @@ final class OrgPolicyPolicySpecRulesValues {
   final TfArg<List<Object?>>? deniedValues;
 
   Map<String, Object?> encode() => {
-    if (allowedValues != null) 'allowed_values': allowedValues!.toTfJson(),
-    if (deniedValues != null) 'denied_values': deniedValues!.toTfJson(),
+    'allowed_values': ?allowedValues?.toTfJson(),
+    'denied_values': ?deniedValues?.toTfJson(),
   };
 }
 
@@ -238,7 +236,7 @@ final class GoogleOrgPolicyPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'name': name,
            'parent': parent,
            if (dryRunSpec != null)

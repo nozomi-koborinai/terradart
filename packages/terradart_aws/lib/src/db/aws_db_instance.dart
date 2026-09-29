@@ -242,9 +242,7 @@ final class DbInstanceBlueGreenUpdate {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `restore_to_point_in_time` block of
@@ -268,13 +266,10 @@ final class DbInstanceRestoreToPointInTime {
 
   Map<String, Object?> encode() => {
     ...?time?.encode(),
-    if (sourceDbInstanceAutomatedBackupsArn != null)
-      'source_db_instance_automated_backups_arn':
-          sourceDbInstanceAutomatedBackupsArn!.toTfJson(),
-    if (sourceDbInstanceIdentifier != null)
-      'source_db_instance_identifier': sourceDbInstanceIdentifier!.toTfJson(),
-    if (sourceDbiResourceId != null)
-      'source_dbi_resource_id': sourceDbiResourceId!.toTfJson(),
+    'source_db_instance_automated_backups_arn':
+        ?sourceDbInstanceAutomatedBackupsArn?.toTfJson(),
+    'source_db_instance_identifier': ?sourceDbInstanceIdentifier?.toTfJson(),
+    'source_dbi_resource_id': ?sourceDbiResourceId?.toTfJson(),
   };
 }
 
@@ -358,7 +353,7 @@ final class DbInstanceS3Import {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
     'ingestion_role': ingestionRole.toTfJson(),
     'source_engine': sourceEngine.toTfJson(),
     'source_engine_version': sourceEngineVersion.toTfJson(),
@@ -449,114 +444,79 @@ final class AwsDbInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allocatedStorage != null) 'allocated_storage': allocatedStorage,
-           if (allowMajorVersionUpgrade != null)
-             'allow_major_version_upgrade': allowMajorVersionUpgrade,
-           if (applyImmediately != null) 'apply_immediately': applyImmediately,
-           if (autoMinorVersionUpgrade != null)
-             'auto_minor_version_upgrade': autoMinorVersionUpgrade,
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (backupRetentionPeriod != null)
-             'backup_retention_period': backupRetentionPeriod,
-           if (backupTarget != null) 'backup_target': backupTarget,
-           if (backupWindow != null) 'backup_window': backupWindow,
-           if (caCertIdentifier != null) 'ca_cert_identifier': caCertIdentifier,
-           if (characterSetName != null) 'character_set_name': characterSetName,
-           if (copyTagsToSnapshot != null)
-             'copy_tags_to_snapshot': copyTagsToSnapshot,
-           if (customIamInstanceProfile != null)
-             'custom_iam_instance_profile': customIamInstanceProfile,
-           if (customerOwnedIpEnabled != null)
-             'customer_owned_ip_enabled': customerOwnedIpEnabled,
-           if (databaseInsightsMode != null)
-             'database_insights_mode': databaseInsightsMode,
-           if (dbName != null) 'db_name': dbName,
-           if (dbSubnetGroupName != null)
-             'db_subnet_group_name': dbSubnetGroupName,
-           if (dedicatedLogVolume != null)
-             'dedicated_log_volume': dedicatedLogVolume,
-           if (deleteAutomatedBackups != null)
-             'delete_automated_backups': deleteAutomatedBackups,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (domain != null) 'domain': domain,
-           if (domainAuthSecretArn != null)
-             'domain_auth_secret_arn': domainAuthSecretArn,
-           if (domainDnsIps != null) 'domain_dns_ips': domainDnsIps,
-           if (domainFqdn != null) 'domain_fqdn': domainFqdn,
-           if (domainIamRoleName != null)
-             'domain_iam_role_name': domainIamRoleName,
-           if (domainOu != null) 'domain_ou': domainOu,
+           'allocated_storage': ?allocatedStorage,
+           'allow_major_version_upgrade': ?allowMajorVersionUpgrade,
+           'apply_immediately': ?applyImmediately,
+           'auto_minor_version_upgrade': ?autoMinorVersionUpgrade,
+           'availability_zone': ?availabilityZone,
+           'backup_retention_period': ?backupRetentionPeriod,
+           'backup_target': ?backupTarget,
+           'backup_window': ?backupWindow,
+           'ca_cert_identifier': ?caCertIdentifier,
+           'character_set_name': ?characterSetName,
+           'copy_tags_to_snapshot': ?copyTagsToSnapshot,
+           'custom_iam_instance_profile': ?customIamInstanceProfile,
+           'customer_owned_ip_enabled': ?customerOwnedIpEnabled,
+           'database_insights_mode': ?databaseInsightsMode,
+           'db_name': ?dbName,
+           'db_subnet_group_name': ?dbSubnetGroupName,
+           'dedicated_log_volume': ?dedicatedLogVolume,
+           'delete_automated_backups': ?deleteAutomatedBackups,
+           'deletion_protection': ?deletionProtection,
+           'domain': ?domain,
+           'domain_auth_secret_arn': ?domainAuthSecretArn,
+           'domain_dns_ips': ?domainDnsIps,
+           'domain_fqdn': ?domainFqdn,
+           'domain_iam_role_name': ?domainIamRoleName,
+           'domain_ou': ?domainOu,
            if (enabledCloudwatchLogsExports != null)
              'enabled_cloudwatch_logs_exports': TfArg.literal([
                for (final e in enabledCloudwatchLogsExports) e.toTfJson(),
              ]),
-           if (engine != null) 'engine': engine,
-           if (engineLifecycleSupport != null)
-             'engine_lifecycle_support': engineLifecycleSupport,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (finalSnapshotIdentifier != null)
-             'final_snapshot_identifier': finalSnapshotIdentifier,
-           if (iamDatabaseAuthenticationEnabled != null)
-             'iam_database_authentication_enabled':
-                 iamDatabaseAuthenticationEnabled,
+           'engine': ?engine,
+           'engine_lifecycle_support': ?engineLifecycleSupport,
+           'engine_version': ?engineVersion,
+           'final_snapshot_identifier': ?finalSnapshotIdentifier,
+           'iam_database_authentication_enabled':
+               ?iamDatabaseAuthenticationEnabled,
            ...?identifier?.argMap,
            'instance_class': instanceClass,
-           if (iops != null) 'iops': iops,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (licenseModel != null) 'license_model': licenseModel,
-           if (maintenanceWindow != null)
-             'maintenance_window': maintenanceWindow,
+           'iops': ?iops,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'license_model': ?licenseModel,
+           'maintenance_window': ?maintenanceWindow,
            ...?password?.argMap,
-           if (masterUserSecretKmsKeyId != null)
-             'master_user_secret_kms_key_id': masterUserSecretKmsKeyId,
-           if (maxAllocatedStorage != null)
-             'max_allocated_storage': maxAllocatedStorage,
-           if (monitoringInterval != null)
-             'monitoring_interval': monitoringInterval,
-           if (monitoringRoleArn != null)
-             'monitoring_role_arn': monitoringRoleArn,
-           if (multiAz != null) 'multi_az': multiAz,
-           if (ncharCharacterSetName != null)
-             'nchar_character_set_name': ncharCharacterSetName,
-           if (networkType != null) 'network_type': networkType,
-           if (optionGroupName != null) 'option_group_name': optionGroupName,
-           if (parameterGroupName != null)
-             'parameter_group_name': parameterGroupName,
-           if (passwordWoVersion != null)
-             'password_wo_version': passwordWoVersion,
-           if (performanceInsightsEnabled != null)
-             'performance_insights_enabled': performanceInsightsEnabled,
-           if (performanceInsightsKmsKeyId != null)
-             'performance_insights_kms_key_id': performanceInsightsKmsKeyId
-                 .encodeAs('arn'),
-           if (performanceInsightsRetentionPeriod != null)
-             'performance_insights_retention_period':
-                 performanceInsightsRetentionPeriod,
-           if (port != null) 'port': port,
-           if (publiclyAccessible != null)
-             'publicly_accessible': publiclyAccessible,
-           if (region != null) 'region': region,
-           if (replicaMode != null) 'replica_mode': replicaMode,
-           if (replicateSourceDb != null)
-             'replicate_source_db': replicateSourceDb,
-           if (skipFinalSnapshot != null)
-             'skip_final_snapshot': skipFinalSnapshot,
-           if (snapshotIdentifier != null)
-             'snapshot_identifier': snapshotIdentifier,
-           if (storageEncrypted != null) 'storage_encrypted': storageEncrypted,
-           if (storageThroughput != null)
-             'storage_throughput': storageThroughput,
-           if (storageType != null) 'storage_type': storageType,
-           if (tags != null) 'tags': tags,
-           if (timezone != null) 'timezone': timezone,
-           if (upgradeStorageConfig != null)
-             'upgrade_storage_config': upgradeStorageConfig,
-           if (username != null) 'username': username,
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
-           if (warningEventCategories != null)
-             'warning_event_categories': warningEventCategories,
+           'master_user_secret_kms_key_id': ?masterUserSecretKmsKeyId,
+           'max_allocated_storage': ?maxAllocatedStorage,
+           'monitoring_interval': ?monitoringInterval,
+           'monitoring_role_arn': ?monitoringRoleArn,
+           'multi_az': ?multiAz,
+           'nchar_character_set_name': ?ncharCharacterSetName,
+           'network_type': ?networkType,
+           'option_group_name': ?optionGroupName,
+           'parameter_group_name': ?parameterGroupName,
+           'password_wo_version': ?passwordWoVersion,
+           'performance_insights_enabled': ?performanceInsightsEnabled,
+           'performance_insights_kms_key_id': ?performanceInsightsKmsKeyId
+               ?.encodeAs('arn'),
+           'performance_insights_retention_period':
+               ?performanceInsightsRetentionPeriod,
+           'port': ?port,
+           'publicly_accessible': ?publiclyAccessible,
+           'region': ?region,
+           'replica_mode': ?replicaMode,
+           'replicate_source_db': ?replicateSourceDb,
+           'skip_final_snapshot': ?skipFinalSnapshot,
+           'snapshot_identifier': ?snapshotIdentifier,
+           'storage_encrypted': ?storageEncrypted,
+           'storage_throughput': ?storageThroughput,
+           'storage_type': ?storageType,
+           'tags': ?tags,
+           'timezone': ?timezone,
+           'upgrade_storage_config': ?upgradeStorageConfig,
+           'username': ?username,
+           'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id'),
+           'warning_event_categories': ?warningEventCategories,
            if (blueGreenUpdate != null)
              'blue_green_update': TfArg.literal(blueGreenUpdate.encode()),
            if (restoreToPointInTime != null)

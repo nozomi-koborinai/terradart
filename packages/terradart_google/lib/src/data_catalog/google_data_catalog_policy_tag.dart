@@ -42,9 +42,9 @@ final class GoogleDataCatalogPolicyTag extends Resource {
          argMap: {
            'display_name': displayName,
            'taxonomy': taxonomy,
-           if (description != null) 'description': description,
-           if (parentPolicyTag != null) 'parent_policy_tag': parentPolicyTag,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'parent_policy_tag': ?parentPolicyTag,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

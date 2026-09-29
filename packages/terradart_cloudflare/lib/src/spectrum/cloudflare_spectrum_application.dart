@@ -56,8 +56,8 @@ final class SpectrumApplicationDns {
   final TfArg<SpectrumApplicationDnsType>? type;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -84,9 +84,9 @@ final class SpectrumApplicationEdgeIps {
   final TfArg<SpectrumApplicationEdgeIpsType>? type;
 
   Map<String, Object?> encode() => {
-    if (connectivity != null) 'connectivity': connectivity!.toTfJson(),
-    if (ips != null) 'ips': ips!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'connectivity': ?connectivity?.toTfJson(),
+    'ips': ?ips?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -124,9 +124,9 @@ final class SpectrumApplicationOriginDns {
   final TfArg<SpectrumApplicationOriginDnsType>? type;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (ttl != null) 'ttl': ttl!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'ttl': ?ttl?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -173,16 +173,16 @@ final class CloudflareSpectrumApplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (argoSmartRouting != null) 'argo_smart_routing': argoSmartRouting,
-           if (ipFirewall != null) 'ip_firewall': ipFirewall,
-           if (originDirect != null) 'origin_direct': originDirect,
-           if (originPort != null) 'origin_port': originPort,
-           if (originWorkerId != null) 'origin_worker_id': originWorkerId,
+           'argo_smart_routing': ?argoSmartRouting,
+           'ip_firewall': ?ipFirewall,
+           'origin_direct': ?originDirect,
+           'origin_port': ?originPort,
+           'origin_worker_id': ?originWorkerId,
            'protocol': protocol,
-           if (proxyProtocol != null) 'proxy_protocol': proxyProtocol,
-           if (tls != null) 'tls': tls,
-           if (trafficType != null) 'traffic_type': trafficType,
-           if (virtualNetworkId != null) 'virtual_network_id': virtualNetworkId,
+           'proxy_protocol': ?proxyProtocol,
+           'tls': ?tls,
+           'traffic_type': ?trafficType,
+           'virtual_network_id': ?virtualNetworkId,
            'zone_id': zoneId.encodeAs('id'),
            'dns': TfArg.literal(dns.encode()),
            if (edgeIps != null) 'edge_ips': TfArg.literal(edgeIps.encode()),

@@ -31,7 +31,7 @@ final class GoogleEndpointsServiceIamBinding extends Resource {
            'service_name': serviceName,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

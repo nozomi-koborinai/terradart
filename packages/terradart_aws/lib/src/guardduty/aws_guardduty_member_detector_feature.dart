@@ -103,7 +103,7 @@ final class AwsGuarddutyMemberDetectorFeature extends Resource {
            'account_id': accountId,
            'detector_id': detectorId,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'status': status,
            if (additionalConfiguration != null)
              'additional_configuration': TfArg.literal([

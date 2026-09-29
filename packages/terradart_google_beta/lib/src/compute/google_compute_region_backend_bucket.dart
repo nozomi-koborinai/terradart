@@ -55,12 +55,11 @@ final class GoogleComputeRegionBackendBucket extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            'bucket_name': bucketName,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (loadBalancingScheme != null)
-             'load_balancing_scheme': loadBalancingScheme,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'load_balancing_scheme': ?loadBalancingScheme,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            'region': region,
          },
        );

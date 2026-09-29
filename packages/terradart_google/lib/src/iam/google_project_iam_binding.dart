@@ -31,7 +31,7 @@ final class GoogleProjectIamBinding extends Resource {
            'project': project,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

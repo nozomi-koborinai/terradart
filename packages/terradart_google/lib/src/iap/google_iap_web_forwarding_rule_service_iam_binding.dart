@@ -35,8 +35,8 @@ final class GoogleIapWebForwardingRuleServiceIamBinding extends Resource {
            'forwarding_rule_service_name': forwardingRuleServiceName,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'project': ?project,
          },
        );
 

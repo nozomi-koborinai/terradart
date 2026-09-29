@@ -67,14 +67,12 @@ final class AwsLambdaCapacityProvider extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (capacityProviderScalingConfig != null)
-             'capacity_provider_scaling_config': capacityProviderScalingConfig,
-           if (instanceRequirements != null)
-             'instance_requirements': instanceRequirements,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'capacity_provider_scaling_config': ?capacityProviderScalingConfig,
+           'instance_requirements': ?instanceRequirements,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (permissionsConfig != null)
              'permissions_config': TfArg.literal([
                for (final e in permissionsConfig) e.encode(),

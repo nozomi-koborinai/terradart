@@ -57,11 +57,9 @@ final class KendraDataSourceConfiguration {
   webCrawlerConfiguration;
 
   Map<String, Object?> encode() => {
-    if (s3Configuration != null) 's3_configuration': s3Configuration!.encode(),
-    if (templateConfiguration != null)
-      'template_configuration': templateConfiguration!.encode(),
-    if (webCrawlerConfiguration != null)
-      'web_crawler_configuration': webCrawlerConfiguration!.encode(),
+    's3_configuration': ?s3Configuration?.encode(),
+    'template_configuration': ?templateConfiguration?.encode(),
+    'web_crawler_configuration': ?webCrawlerConfiguration?.encode(),
   };
 }
 
@@ -94,18 +92,13 @@ final class KendraDataSourceConfigurationS3Configuration {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (exclusionPatterns != null)
-      'exclusion_patterns': exclusionPatterns!.toTfJson(),
-    if (inclusionPatterns != null)
-      'inclusion_patterns': inclusionPatterns!.toTfJson(),
-    if (inclusionPrefixes != null)
-      'inclusion_prefixes': inclusionPrefixes!.toTfJson(),
-    if (accessControlListConfiguration != null)
-      'access_control_list_configuration': accessControlListConfiguration!
-          .encode(),
-    if (documentsMetadataConfiguration != null)
-      'documents_metadata_configuration': documentsMetadataConfiguration!
-          .encode(),
+    'exclusion_patterns': ?exclusionPatterns?.toTfJson(),
+    'inclusion_patterns': ?inclusionPatterns?.toTfJson(),
+    'inclusion_prefixes': ?inclusionPrefixes?.toTfJson(),
+    'access_control_list_configuration': ?accessControlListConfiguration
+        ?.encode(),
+    'documents_metadata_configuration': ?documentsMetadataConfiguration
+        ?.encode(),
   };
 }
 
@@ -119,9 +112,7 @@ final class KendraDataSourceConfigurationS3ConfigurationAccessControlListConfigu
 
   final TfArg<String>? keyPath;
 
-  Map<String, Object?> encode() => {
-    if (keyPath != null) 'key_path': keyPath!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'key_path': ?keyPath?.toTfJson()};
 }
 
 /// Typed helper for the `configuration.s3_configuration.documents_metadata_configuration` block of
@@ -134,9 +125,7 @@ final class KendraDataSourceConfigurationS3ConfigurationDocumentsMetadataConfigu
 
   final TfArg<String>? s3Prefix;
 
-  Map<String, Object?> encode() => {
-    if (s3Prefix != null) 's3_prefix': s3Prefix!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'s3_prefix': ?s3Prefix?.toTfJson()};
 }
 
 /// Typed helper for the `configuration.template_configuration` block of
@@ -189,22 +178,15 @@ final class KendraDataSourceConfigurationWebCrawlerConfiguration {
   final KendraDataSourceConfigurationWebCrawlerConfigurationUrls urls;
 
   Map<String, Object?> encode() => {
-    if (crawlDepth != null) 'crawl_depth': crawlDepth!.toTfJson(),
-    if (maxContentSizePerPageInMegaBytes != null)
-      'max_content_size_per_page_in_mega_bytes':
-          maxContentSizePerPageInMegaBytes!.toTfJson(),
-    if (maxLinksPerPage != null)
-      'max_links_per_page': maxLinksPerPage!.toTfJson(),
-    if (maxUrlsPerMinuteCrawlRate != null)
-      'max_urls_per_minute_crawl_rate': maxUrlsPerMinuteCrawlRate!.toTfJson(),
-    if (urlExclusionPatterns != null)
-      'url_exclusion_patterns': urlExclusionPatterns!.toTfJson(),
-    if (urlInclusionPatterns != null)
-      'url_inclusion_patterns': urlInclusionPatterns!.toTfJson(),
-    if (authenticationConfiguration != null)
-      'authentication_configuration': authenticationConfiguration!.encode(),
-    if (proxyConfiguration != null)
-      'proxy_configuration': proxyConfiguration!.encode(),
+    'crawl_depth': ?crawlDepth?.toTfJson(),
+    'max_content_size_per_page_in_mega_bytes': ?maxContentSizePerPageInMegaBytes
+        ?.toTfJson(),
+    'max_links_per_page': ?maxLinksPerPage?.toTfJson(),
+    'max_urls_per_minute_crawl_rate': ?maxUrlsPerMinuteCrawlRate?.toTfJson(),
+    'url_exclusion_patterns': ?urlExclusionPatterns?.toTfJson(),
+    'url_inclusion_patterns': ?urlInclusionPatterns?.toTfJson(),
+    'authentication_configuration': ?authenticationConfiguration?.encode(),
+    'proxy_configuration': ?proxyConfiguration?.encode(),
     'urls': urls.encode(),
   };
 }
@@ -270,7 +252,7 @@ final class KendraDataSourceConfigurationWebCrawlerConfigurationProxyConfigurati
   final TfArg<num> port;
 
   Map<String, Object?> encode() => {
-    if (credentials != null) 'credentials': credentials!.toTfJson(),
+    'credentials': ?credentials?.toTfJson(),
     'host': host.toTfJson(),
     'port': port.toTfJson(),
   };
@@ -292,10 +274,8 @@ final class KendraDataSourceConfigurationWebCrawlerConfigurationUrls {
   siteMapsConfiguration;
 
   Map<String, Object?> encode() => {
-    if (seedUrlConfiguration != null)
-      'seed_url_configuration': seedUrlConfiguration!.encode(),
-    if (siteMapsConfiguration != null)
-      'site_maps_configuration': siteMapsConfiguration!.encode(),
+    'seed_url_configuration': ?seedUrlConfiguration?.encode(),
+    'site_maps_configuration': ?siteMapsConfiguration?.encode(),
   };
 }
 
@@ -317,7 +297,7 @@ final class KendraDataSourceConfigurationWebCrawlerConfigurationUrlsSeedUrlConfi
 
   Map<String, Object?> encode() => {
     'seed_urls': seedUrls.toTfJson(),
-    if (webCrawlerMode != null) 'web_crawler_mode': webCrawlerMode!.toTfJson(),
+    'web_crawler_mode': ?webCrawlerMode?.toTfJson(),
   };
 }
 
@@ -373,17 +353,15 @@ final class KendraDataSourceCustomDocumentEnrichmentConfiguration {
   preExtractionHookConfiguration;
 
   Map<String, Object?> encode() => {
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
     if (inlineConfigurations != null)
       'inline_configurations': [
         for (final e in inlineConfigurations!) e.encode(),
       ],
-    if (postExtractionHookConfiguration != null)
-      'post_extraction_hook_configuration': postExtractionHookConfiguration!
-          .encode(),
-    if (preExtractionHookConfiguration != null)
-      'pre_extraction_hook_configuration': preExtractionHookConfiguration!
-          .encode(),
+    'post_extraction_hook_configuration': ?postExtractionHookConfiguration
+        ?.encode(),
+    'pre_extraction_hook_configuration': ?preExtractionHookConfiguration
+        ?.encode(),
   };
 }
 
@@ -406,10 +384,9 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
   target;
 
   Map<String, Object?> encode() => {
-    if (documentContentDeletion != null)
-      'document_content_deletion': documentContentDeletion!.toTfJson(),
-    if (condition != null) 'condition': condition!.encode(),
-    if (target != null) 'target': target!.encode(),
+    'document_content_deletion': ?documentContentDeletion?.toTfJson(),
+    'condition': ?condition?.encode(),
+    'target': ?target?.encode(),
   };
 }
 
@@ -434,8 +411,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
     'condition_document_attribute_key': conditionDocumentAttributeKey
         .toTfJson(),
     'operator': operator.toTfJson(),
-    if (conditionOnValue != null)
-      'condition_on_value': conditionOnValue!.encode(),
+    'condition_on_value': ?conditionOnValue?.encode(),
   };
 }
 
@@ -459,11 +435,10 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
   final TfArg<String>? stringValue;
 
   Map<String, Object?> encode() => {
-    if (dateValue != null) 'date_value': dateValue!.toTfJson(),
-    if (longValue != null) 'long_value': longValue!.toTfJson(),
-    if (stringListValue != null)
-      'string_list_value': stringListValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    'date_value': ?dateValue?.toTfJson(),
+    'long_value': ?longValue?.toTfJson(),
+    'string_list_value': ?stringListValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
   };
 }
 
@@ -485,13 +460,10 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
   targetDocumentAttributeValue;
 
   Map<String, Object?> encode() => {
-    if (targetDocumentAttributeKey != null)
-      'target_document_attribute_key': targetDocumentAttributeKey!.toTfJson(),
-    if (targetDocumentAttributeValueDeletion != null)
-      'target_document_attribute_value_deletion':
-          targetDocumentAttributeValueDeletion!.toTfJson(),
-    if (targetDocumentAttributeValue != null)
-      'target_document_attribute_value': targetDocumentAttributeValue!.encode(),
+    'target_document_attribute_key': ?targetDocumentAttributeKey?.toTfJson(),
+    'target_document_attribute_value_deletion':
+        ?targetDocumentAttributeValueDeletion?.toTfJson(),
+    'target_document_attribute_value': ?targetDocumentAttributeValue?.encode(),
   };
 }
 
@@ -515,11 +487,10 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationInlineConfigura
   final TfArg<String>? stringValue;
 
   Map<String, Object?> encode() => {
-    if (dateValue != null) 'date_value': dateValue!.toTfJson(),
-    if (longValue != null) 'long_value': longValue!.toTfJson(),
-    if (stringListValue != null)
-      'string_list_value': stringListValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    'date_value': ?dateValue?.toTfJson(),
+    'long_value': ?longValue?.toTfJson(),
+    'string_list_value': ?stringListValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
   };
 }
 
@@ -543,8 +514,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionH
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
-    if (invocationCondition != null)
-      'invocation_condition': invocationCondition!.encode(),
+    'invocation_condition': ?invocationCondition?.encode(),
   };
 }
 
@@ -569,8 +539,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionH
     'condition_document_attribute_key': conditionDocumentAttributeKey
         .toTfJson(),
     'operator': operator.toTfJson(),
-    if (conditionOnValue != null)
-      'condition_on_value': conditionOnValue!.encode(),
+    'condition_on_value': ?conditionOnValue?.encode(),
   };
 }
 
@@ -594,11 +563,10 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPostExtractionH
   final TfArg<String>? stringValue;
 
   Map<String, Object?> encode() => {
-    if (dateValue != null) 'date_value': dateValue!.toTfJson(),
-    if (longValue != null) 'long_value': longValue!.toTfJson(),
-    if (stringListValue != null)
-      'string_list_value': stringListValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    'date_value': ?dateValue?.toTfJson(),
+    'long_value': ?longValue?.toTfJson(),
+    'string_list_value': ?stringListValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
   };
 }
 
@@ -622,8 +590,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHo
   Map<String, Object?> encode() => {
     'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
-    if (invocationCondition != null)
-      'invocation_condition': invocationCondition!.encode(),
+    'invocation_condition': ?invocationCondition?.encode(),
   };
 }
 
@@ -648,8 +615,7 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHo
     'condition_document_attribute_key': conditionDocumentAttributeKey
         .toTfJson(),
     'operator': operator.toTfJson(),
-    if (conditionOnValue != null)
-      'condition_on_value': conditionOnValue!.encode(),
+    'condition_on_value': ?conditionOnValue?.encode(),
   };
 }
 
@@ -673,11 +639,10 @@ final class KendraDataSourceCustomDocumentEnrichmentConfigurationPreExtractionHo
   final TfArg<String>? stringValue;
 
   Map<String, Object?> encode() => {
-    if (dateValue != null) 'date_value': dateValue!.toTfJson(),
-    if (longValue != null) 'long_value': longValue!.toTfJson(),
-    if (stringListValue != null)
-      'string_list_value': stringListValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    'date_value': ?dateValue?.toTfJson(),
+    'long_value': ?longValue?.toTfJson(),
+    'string_list_value': ?stringListValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
   };
 }
 
@@ -706,14 +671,14 @@ final class AwsKendraDataSource extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'index_id': indexId,
-           if (languageCode != null) 'language_code': languageCode,
+           'language_code': ?languageCode,
            'name': name,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
-           if (schedule != null) 'schedule': schedule,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
+           'schedule': ?schedule,
+           'tags': ?tags,
            'type': type,
            if (configuration != null)
              'configuration': TfArg.literal(configuration.encode()),

@@ -20,11 +20,7 @@ final class DataAwsLocationMap extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'map_name': mapName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'map_name': mapName, 'region': ?region, 'tags': ?tags},
        );
 
   @override

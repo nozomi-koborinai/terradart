@@ -26,10 +26,9 @@ final class ComputeMachineImageMachineImageEncryptionKey {
   final TfArg<String>? rawKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
-    if (kmsKeyServiceAccount != null)
-      'kms_key_service_account': kmsKeyServiceAccount!.toTfJson(),
-    if (rawKey != null) 'raw_key': rawKey!.toTfJson(),
+    'kms_key_name': ?kmsKeyName?.toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
   };
 }
 
@@ -42,8 +41,7 @@ final class ComputeMachineImageParams {
   final TfArg<Map<String, String>>? resourceManagerTags;
 
   Map<String, Object?> encode() => {
-    if (resourceManagerTags != null)
-      'resource_manager_tags': resourceManagerTags!.toTfJson(),
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
 }
 
@@ -73,11 +71,11 @@ final class GoogleComputeMachineImage extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (guestFlush != null) 'guest_flush': guestFlush,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'guest_flush': ?guestFlush,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            'source_instance': sourceInstance,
            if (machineImageEncryptionKey != null)
              'machine_image_encryption_key': TfArg.literal(

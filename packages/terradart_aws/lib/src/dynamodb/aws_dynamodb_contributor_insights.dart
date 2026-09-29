@@ -33,9 +33,9 @@ final class AwsDynamodbContributorInsights extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (indexName != null) 'index_name': indexName,
-           if (mode != null) 'mode': mode,
-           if (region != null) 'region': region,
+           'index_name': ?indexName,
+           'mode': ?mode,
+           'region': ?region,
            'table_name': tableName,
          },
        );

@@ -27,9 +27,9 @@ final class DataCloudflareLoadBalancer extends Data {
          terraformType: tfType,
          argMap: {
            'load_balancer_id': loadBalancerId,
-           if (popPools != null) 'pop_pools': popPools,
-           if (regionPools != null) 'region_pools': regionPools,
-           if (zoneId != null) 'zone_id': zoneId,
+           'pop_pools': ?popPools,
+           'region_pools': ?regionPools,
+           'zone_id': ?zoneId,
          },
        );
 

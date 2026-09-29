@@ -128,11 +128,11 @@ final class GoogleComputeSslPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (description != null) 'description': description,
-           if (profile != null) 'profile': profile,
-           if (minTlsVersion != null) 'min_tls_version': minTlsVersion,
-           if (customFeatures != null) 'custom_features': customFeatures,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'profile': ?profile,
+           'min_tls_version': ?minTlsVersion,
+           'custom_features': ?customFeatures,
+           'project': ?project,
          },
        );
 

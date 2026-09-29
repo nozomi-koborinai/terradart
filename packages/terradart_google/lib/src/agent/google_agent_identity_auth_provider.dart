@@ -120,9 +120,7 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsApiKey {
 
   final TfArg<String>? apiKey;
 
-  Map<String, Object?> encode() => {
-    if (apiKey != null) 'api_key': apiKey!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'api_key': ?apiKey?.toTfJson()};
 }
 
 /// Typed helper for the `auth_provider_type_params.three_legged_oauth` block of
@@ -157,17 +155,14 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth {
   final TfArg<String>? tokenUrl;
 
   Map<String, Object?> encode() => {
-    if (authorizationUrl != null)
-      'authorization_url': authorizationUrl!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (clientSecretWo != null) 'client_secret_wo': clientSecretWo!.toTfJson(),
-    if (clientSecretWoVersion != null)
-      'client_secret_wo_version': clientSecretWoVersion!.toTfJson(),
-    if (defaultContinueUri != null)
-      'default_continue_uri': defaultContinueUri!.toTfJson(),
-    if (enablePkce != null) 'enable_pkce': enablePkce!.toTfJson(),
-    if (tokenUrl != null) 'token_url': tokenUrl!.toTfJson(),
+    'authorization_url': ?authorizationUrl?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'client_secret_wo': ?clientSecretWo?.toTfJson(),
+    'client_secret_wo_version': ?clientSecretWoVersion?.toTfJson(),
+    'default_continue_uri': ?defaultContinueUri?.toTfJson(),
+    'enable_pkce': ?enablePkce?.toTfJson(),
+    'token_url': ?tokenUrl?.toTfJson(),
   };
 }
 
@@ -194,12 +189,11 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth {
   final TfArg<String>? tokenUrl;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (clientSecretWo != null) 'client_secret_wo': clientSecretWo!.toTfJson(),
-    if (clientSecretWoVersion != null)
-      'client_secret_wo_version': clientSecretWoVersion!.toTfJson(),
-    if (tokenUrl != null) 'token_url': tokenUrl!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'client_secret_wo': ?clientSecretWo?.toTfJson(),
+    'client_secret_wo_version': ?clientSecretWoVersion?.toTfJson(),
+    'token_url': ?tokenUrl?.toTfJson(),
   };
 }
 
@@ -247,13 +241,13 @@ final class GoogleAgentIdentityAuthProvider extends Resource {
            'auth_provider_type_params': TfArg.literal(
              authProviderTypeParams.encode(),
            ),
-           if (allowedScopes != null) 'allowed_scopes': allowedScopes,
-           if (blockedScopes != null) 'blocked_scopes': blockedScopes,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (workloadIds != null) 'workload_ids': workloadIds,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'allowed_scopes': ?allowedScopes,
+           'blocked_scopes': ?blockedScopes,
+           'description': ?description,
+           'labels': ?labels,
+           'workload_ids': ?workloadIds,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

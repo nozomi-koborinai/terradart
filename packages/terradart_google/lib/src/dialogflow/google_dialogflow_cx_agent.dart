@@ -30,11 +30,10 @@ final class DialogflowCxAgentAdvancedSettings {
   final DialogflowCxAgentAdvancedSettingsSpeechSettings? speechSettings;
 
   Map<String, Object?> encode() => {
-    if (audioExportGcsDestination != null)
-      'audio_export_gcs_destination': audioExportGcsDestination!.encode(),
-    if (dtmfSettings != null) 'dtmf_settings': dtmfSettings!.encode(),
-    if (loggingSettings != null) 'logging_settings': loggingSettings!.encode(),
-    if (speechSettings != null) 'speech_settings': speechSettings!.encode(),
+    'audio_export_gcs_destination': ?audioExportGcsDestination?.encode(),
+    'dtmf_settings': ?dtmfSettings?.encode(),
+    'logging_settings': ?loggingSettings?.encode(),
+    'speech_settings': ?speechSettings?.encode(),
   };
 }
 
@@ -46,7 +45,7 @@ final class DialogflowCxAgentAdvancedSettingsAudioExportGcsDestination {
 
   final TfArg<String>? uri;
 
-  Map<String, Object?> encode() => {if (uri != null) 'uri': uri!.toTfJson()};
+  Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
 }
 
 /// Typed helper for the `advanced_settings.dtmf_settings` block of
@@ -66,9 +65,9 @@ final class DialogflowCxAgentAdvancedSettingsDtmfSettings {
   final TfArg<num>? maxDigits;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (finishDigit != null) 'finish_digit': finishDigit!.toTfJson(),
-    if (maxDigits != null) 'max_digits': maxDigits!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'finish_digit': ?finishDigit?.toTfJson(),
+    'max_digits': ?maxDigits?.toTfJson(),
   };
 }
 
@@ -89,12 +88,9 @@ final class DialogflowCxAgentAdvancedSettingsLoggingSettings {
   final TfArg<bool>? enableStackdriverLogging;
 
   Map<String, Object?> encode() => {
-    if (enableConsentBasedRedaction != null)
-      'enable_consent_based_redaction': enableConsentBasedRedaction!.toTfJson(),
-    if (enableInteractionLogging != null)
-      'enable_interaction_logging': enableInteractionLogging!.toTfJson(),
-    if (enableStackdriverLogging != null)
-      'enable_stackdriver_logging': enableStackdriverLogging!.toTfJson(),
+    'enable_consent_based_redaction': ?enableConsentBasedRedaction?.toTfJson(),
+    'enable_interaction_logging': ?enableInteractionLogging?.toTfJson(),
+    'enable_stackdriver_logging': ?enableStackdriverLogging?.toTfJson(),
   };
 }
 
@@ -118,13 +114,10 @@ final class DialogflowCxAgentAdvancedSettingsSpeechSettings {
   final TfArg<bool>? useTimeoutBasedEndpointing;
 
   Map<String, Object?> encode() => {
-    if (endpointerSensitivity != null)
-      'endpointer_sensitivity': endpointerSensitivity!.toTfJson(),
-    if (models != null) 'models': models!.toTfJson(),
-    if (noSpeechTimeout != null)
-      'no_speech_timeout': noSpeechTimeout!.toTfJson(),
-    if (useTimeoutBasedEndpointing != null)
-      'use_timeout_based_endpointing': useTimeoutBasedEndpointing!.toTfJson(),
+    'endpointer_sensitivity': ?endpointerSensitivity?.toTfJson(),
+    'models': ?models?.toTfJson(),
+    'no_speech_timeout': ?noSpeechTimeout?.toTfJson(),
+    'use_timeout_based_endpointing': ?useTimeoutBasedEndpointing?.toTfJson(),
   };
 }
 
@@ -137,8 +130,7 @@ final class DialogflowCxAgentAnswerFeedbackSettings {
   final TfArg<bool>? enableAnswerFeedback;
 
   Map<String, Object?> encode() => {
-    if (enableAnswerFeedback != null)
-      'enable_answer_feedback': enableAnswerFeedback!.toTfJson(),
+    'enable_answer_feedback': ?enableAnswerFeedback?.toTfJson(),
   };
 }
 
@@ -159,7 +151,7 @@ final class DialogflowCxAgentClientCertificateSettings {
   final TfArg<String> sslCertificate;
 
   Map<String, Object?> encode() => {
-    if (passphrase != null) 'passphrase': passphrase!.toTfJson(),
+    'passphrase': ?passphrase?.toTfJson(),
     'private_key': privateKey.toTfJson(),
     'ssl_certificate': sslCertificate.toTfJson(),
   };
@@ -185,7 +177,7 @@ final class DialogflowCxAgentGitIntegrationSettings {
   final DialogflowCxAgentGitIntegrationSettingsGithubSettings? githubSettings;
 
   Map<String, Object?> encode() => {
-    if (githubSettings != null) 'github_settings': githubSettings!.encode(),
+    'github_settings': ?githubSettings?.encode(),
   };
 }
 
@@ -212,11 +204,11 @@ final class DialogflowCxAgentGitIntegrationSettingsGithubSettings {
   final TfArg<String>? trackingBranch;
 
   Map<String, Object?> encode() => {
-    if (accessToken != null) 'access_token': accessToken!.toTfJson(),
-    if (branches != null) 'branches': branches!.toTfJson(),
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (repositoryUri != null) 'repository_uri': repositoryUri!.toTfJson(),
-    if (trackingBranch != null) 'tracking_branch': trackingBranch!.toTfJson(),
+    'access_token': ?accessToken?.toTfJson(),
+    'branches': ?branches?.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
+    'repository_uri': ?repositoryUri?.toTfJson(),
+    'tracking_branch': ?trackingBranch?.toTfJson(),
   };
 }
 
@@ -229,8 +221,7 @@ final class DialogflowCxAgentPersonalizationSettings {
   final TfArg<String>? defaultEndUserMetadata;
 
   Map<String, Object?> encode() => {
-    if (defaultEndUserMetadata != null)
-      'default_end_user_metadata': defaultEndUserMetadata!.toTfJson(),
+    'default_end_user_metadata': ?defaultEndUserMetadata?.toTfJson(),
   };
 }
 
@@ -243,8 +234,7 @@ final class DialogflowCxAgentSpeechToTextSettings {
   final TfArg<bool>? enableSpeechAdaptation;
 
   Map<String, Object?> encode() => {
-    if (enableSpeechAdaptation != null)
-      'enable_speech_adaptation': enableSpeechAdaptation!.toTfJson(),
+    'enable_speech_adaptation': ?enableSpeechAdaptation?.toTfJson(),
   };
 }
 
@@ -257,8 +247,7 @@ final class DialogflowCxAgentTextToSpeechSettings {
   final TfArg<String>? synthesizeSpeechConfigs;
 
   Map<String, Object?> encode() => {
-    if (synthesizeSpeechConfigs != null)
-      'synthesize_speech_configs': synthesizeSpeechConfigs!.toTfJson(),
+    'synthesize_speech_configs': ?synthesizeSpeechConfigs?.toTfJson(),
   };
 }
 
@@ -321,19 +310,15 @@ final class GoogleDialogflowCxAgent extends Resource {
            'location': location,
            'default_language_code': defaultLanguageCode,
            'time_zone': timeZone,
-           if (description != null) 'description': description,
-           if (supportedLanguageCodes != null)
-             'supported_language_codes': supportedLanguageCodes,
-           if (securitySettings != null) 'security_settings': securitySettings,
-           if (startPlaybook != null) 'start_playbook': startPlaybook,
-           if (enableStackdriverLogging != null)
-             'enable_stackdriver_logging': enableStackdriverLogging,
-           if (enableSpellCorrection != null)
-             'enable_spell_correction': enableSpellCorrection,
-           if (enableMultiLanguageTraining != null)
-             'enable_multi_language_training': enableMultiLanguageTraining,
-           if (locked != null) 'locked': locked,
-           if (avatarUri != null) 'avatar_uri': avatarUri,
+           'description': ?description,
+           'supported_language_codes': ?supportedLanguageCodes,
+           'security_settings': ?securitySettings,
+           'start_playbook': ?startPlaybook,
+           'enable_stackdriver_logging': ?enableStackdriverLogging,
+           'enable_spell_correction': ?enableSpellCorrection,
+           'enable_multi_language_training': ?enableMultiLanguageTraining,
+           'locked': ?locked,
+           'avatar_uri': ?avatarUri,
            if (advancedSettings != null)
              'advanced_settings': TfArg.literal(advancedSettings.encode()),
            if (speechToTextSettings != null)
@@ -364,10 +349,9 @@ final class GoogleDialogflowCxAgent extends Resource {
              'client_certificate_settings': TfArg.literal(
                clientCertificateSettings.encode(),
              ),
-           if (deleteChatEngineOnDestroy != null)
-             'delete_chat_engine_on_destroy': deleteChatEngineOnDestroy,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'delete_chat_engine_on_destroy': ?deleteChatEngineOnDestroy,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

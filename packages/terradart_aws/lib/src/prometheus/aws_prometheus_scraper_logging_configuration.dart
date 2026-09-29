@@ -77,7 +77,7 @@ final class AwsPrometheusScraperLoggingConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (scraperComponents != null)
              'scraper_components': TfArg.literal([
                for (final e in scraperComponents) e.toTfJson(),

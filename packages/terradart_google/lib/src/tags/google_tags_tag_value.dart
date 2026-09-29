@@ -28,8 +28,8 @@ final class GoogleTagsTagValue extends Resource {
          argMap: {
            'short_name': shortName,
            'parent': parent,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

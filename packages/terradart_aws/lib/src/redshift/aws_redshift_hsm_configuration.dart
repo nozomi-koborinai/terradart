@@ -35,8 +35,8 @@ final class AwsRedshiftHsmConfiguration extends Resource {
            'hsm_partition_name': hsmPartitionName,
            'hsm_partition_password': hsmPartitionPassword,
            'hsm_server_public_certificate': hsmServerPublicCertificate,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -29,11 +29,9 @@ final class GoogleHealthcareConsentStore extends Resource {
          argMap: {
            'name': name,
            'dataset': dataset,
-           if (defaultConsentTtl != null)
-             'default_consent_ttl': defaultConsentTtl,
-           if (enableConsentCreateOnUpdate != null)
-             'enable_consent_create_on_update': enableConsentCreateOnUpdate,
-           if (labels != null) 'labels': labels,
+           'default_consent_ttl': ?defaultConsentTtl,
+           'enable_consent_create_on_update': ?enableConsentCreateOnUpdate,
+           'labels': ?labels,
          },
        );
 

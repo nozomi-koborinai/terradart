@@ -31,8 +31,8 @@ final class AppwriteFunctionVariable extends Resource {
          argMap: {
            'function_id': functionId,
            'key': key,
-           if (projectId != null) 'project_id': projectId,
-           if (secret != null) 'secret': secret,
+           'project_id': ?projectId,
+           'secret': ?secret,
            'value': value,
          },
        );

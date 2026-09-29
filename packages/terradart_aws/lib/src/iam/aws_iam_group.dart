@@ -18,10 +18,7 @@ final class AwsIamGroup extends Resource {
     super.dependsOn,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {'name': name, if (path != null) 'path': path},
-       );
+  }) : super(terraformType: tfType, argMap: {'name': name, 'path': ?path});
 
   @override
   Set<String> get sensitiveFields => _awsIamGroupSensitive;

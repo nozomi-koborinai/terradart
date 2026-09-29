@@ -27,7 +27,7 @@ final class WorkersDeploymentAnnotations {
   final TfArg<String>? workersMessage;
 
   Map<String, Object?> encode() => {
-    if (workersMessage != null) 'workers_message': workersMessage!.toTfJson(),
+    'workers_message': ?workersMessage?.toTfJson(),
   };
 }
 
@@ -74,7 +74,7 @@ final class CloudflareWorkersDeployment extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (force != null) 'force': force,
+           'force': ?force,
            'script_name': scriptName,
            'strategy': strategy,
            if (annotations != null)

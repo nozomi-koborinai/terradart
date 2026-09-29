@@ -18,9 +18,7 @@ final class DataAwsOrganizationsDelegatedAdministrators extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (servicePrincipal != null) 'service_principal': servicePrincipal,
-         },
+         argMap: {'service_principal': ?servicePrincipal},
        );
 
   @override

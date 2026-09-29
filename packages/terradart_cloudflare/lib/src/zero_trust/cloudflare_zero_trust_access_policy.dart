@@ -39,8 +39,8 @@ final class ZeroTrustAccessPolicyApprovalGroups {
 
   Map<String, Object?> encode() => {
     'approvals_needed': approvalsNeeded.toTfJson(),
-    if (emailAddresses != null) 'email_addresses': emailAddresses!.toTfJson(),
-    if (emailListUuid != null) 'email_list_uuid': emailListUuid!.toTfJson(),
+    'email_addresses': ?emailAddresses?.toTfJson(),
+    'email_list_uuid': ?emailListUuid?.toTfJson(),
   };
 }
 
@@ -52,7 +52,7 @@ final class ZeroTrustAccessPolicyConnectionRules {
 
   final ZeroTrustAccessPolicyConnectionRulesRdp? rdp;
 
-  Map<String, Object?> encode() => {if (rdp != null) 'rdp': rdp!.encode()};
+  Map<String, Object?> encode() => {'rdp': ?rdp?.encode()};
 }
 
 /// Typed helper for the `connection_rules.rdp` block of
@@ -201,36 +201,32 @@ final class ZeroTrustAccessPolicyExclude {
   final ZeroTrustAccessPolicyExcludeUserRiskScore? userRiskScore;
 
   Map<String, Object?> encode() => {
-    if (anyValidServiceToken != null)
-      'any_valid_service_token': anyValidServiceToken!.encode(),
-    if (authContext != null) 'auth_context': authContext!.encode(),
-    if (authMethod != null) 'auth_method': authMethod!.encode(),
-    if (azureAd != null) 'azure_ad': azureAd!.encode(),
-    if (certificate != null) 'certificate': certificate!.encode(),
-    if (cloudflareAccountMember != null)
-      'cloudflare_account_member': cloudflareAccountMember!.encode(),
-    if (commonName != null) 'common_name': commonName!.encode(),
-    if (devicePosture != null) 'device_posture': devicePosture!.encode(),
-    if (email != null) 'email': email!.encode(),
-    if (emailDomain != null) 'email_domain': emailDomain!.encode(),
-    if (emailList != null) 'email_list': emailList!.encode(),
-    if (everyone != null) 'everyone': everyone!.encode(),
-    if (externalEvaluation != null)
-      'external_evaluation': externalEvaluation!.encode(),
-    if (geo != null) 'geo': geo!.encode(),
-    if (githubOrganization != null)
-      'github_organization': githubOrganization!.encode(),
-    if (group != null) 'group': group!.encode(),
-    if (gsuite != null) 'gsuite': gsuite!.encode(),
-    if (ip != null) 'ip': ip!.encode(),
-    if (ipList != null) 'ip_list': ipList!.encode(),
-    if (linkedAppToken != null) 'linked_app_token': linkedAppToken!.encode(),
-    if (loginMethod != null) 'login_method': loginMethod!.encode(),
-    if (oidc != null) 'oidc': oidc!.encode(),
-    if (okta != null) 'okta': okta!.encode(),
-    if (saml != null) 'saml': saml!.encode(),
-    if (serviceToken != null) 'service_token': serviceToken!.encode(),
-    if (userRiskScore != null) 'user_risk_score': userRiskScore!.encode(),
+    'any_valid_service_token': ?anyValidServiceToken?.encode(),
+    'auth_context': ?authContext?.encode(),
+    'auth_method': ?authMethod?.encode(),
+    'azure_ad': ?azureAd?.encode(),
+    'certificate': ?certificate?.encode(),
+    'cloudflare_account_member': ?cloudflareAccountMember?.encode(),
+    'common_name': ?commonName?.encode(),
+    'device_posture': ?devicePosture?.encode(),
+    'email': ?email?.encode(),
+    'email_domain': ?emailDomain?.encode(),
+    'email_list': ?emailList?.encode(),
+    'everyone': ?everyone?.encode(),
+    'external_evaluation': ?externalEvaluation?.encode(),
+    'geo': ?geo?.encode(),
+    'github_organization': ?githubOrganization?.encode(),
+    'group': ?group?.encode(),
+    'gsuite': ?gsuite?.encode(),
+    'ip': ?ip?.encode(),
+    'ip_list': ?ipList?.encode(),
+    'linked_app_token': ?linkedAppToken?.encode(),
+    'login_method': ?loginMethod?.encode(),
+    'oidc': ?oidc?.encode(),
+    'okta': ?okta?.encode(),
+    'saml': ?saml?.encode(),
+    'service_token': ?serviceToken?.encode(),
+    'user_risk_score': ?userRiskScore?.encode(),
   };
 }
 
@@ -314,7 +310,7 @@ final class ZeroTrustAccessPolicyExcludeCloudflareAccountMember {
   final RefTo<CloudflareAccount>? accountId;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
+    'account_id': ?accountId?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -343,7 +339,7 @@ final class ZeroTrustAccessPolicyExcludeDevicePosture {
   final TfArg<String> integrationUid;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
+    'account_id': ?accountId?.encodeAs('id').toTfJson(),
     'integration_uid': integrationUid.toTfJson(),
   };
 }
@@ -439,7 +435,7 @@ final class ZeroTrustAccessPolicyExcludeGithubOrganization {
   Map<String, Object?> encode() => {
     'identity_provider_id': identityProviderId.toTfJson(),
     'name': name.toTfJson(),
-    if (team != null) 'team': team!.toTfJson(),
+    'team': ?team?.toTfJson(),
   };
 }
 
@@ -711,36 +707,32 @@ final class ZeroTrustAccessPolicyInclude {
   final ZeroTrustAccessPolicyIncludeUserRiskScore? userRiskScore;
 
   Map<String, Object?> encode() => {
-    if (anyValidServiceToken != null)
-      'any_valid_service_token': anyValidServiceToken!.encode(),
-    if (authContext != null) 'auth_context': authContext!.encode(),
-    if (authMethod != null) 'auth_method': authMethod!.encode(),
-    if (azureAd != null) 'azure_ad': azureAd!.encode(),
-    if (certificate != null) 'certificate': certificate!.encode(),
-    if (cloudflareAccountMember != null)
-      'cloudflare_account_member': cloudflareAccountMember!.encode(),
-    if (commonName != null) 'common_name': commonName!.encode(),
-    if (devicePosture != null) 'device_posture': devicePosture!.encode(),
-    if (email != null) 'email': email!.encode(),
-    if (emailDomain != null) 'email_domain': emailDomain!.encode(),
-    if (emailList != null) 'email_list': emailList!.encode(),
-    if (everyone != null) 'everyone': everyone!.encode(),
-    if (externalEvaluation != null)
-      'external_evaluation': externalEvaluation!.encode(),
-    if (geo != null) 'geo': geo!.encode(),
-    if (githubOrganization != null)
-      'github_organization': githubOrganization!.encode(),
-    if (group != null) 'group': group!.encode(),
-    if (gsuite != null) 'gsuite': gsuite!.encode(),
-    if (ip != null) 'ip': ip!.encode(),
-    if (ipList != null) 'ip_list': ipList!.encode(),
-    if (linkedAppToken != null) 'linked_app_token': linkedAppToken!.encode(),
-    if (loginMethod != null) 'login_method': loginMethod!.encode(),
-    if (oidc != null) 'oidc': oidc!.encode(),
-    if (okta != null) 'okta': okta!.encode(),
-    if (saml != null) 'saml': saml!.encode(),
-    if (serviceToken != null) 'service_token': serviceToken!.encode(),
-    if (userRiskScore != null) 'user_risk_score': userRiskScore!.encode(),
+    'any_valid_service_token': ?anyValidServiceToken?.encode(),
+    'auth_context': ?authContext?.encode(),
+    'auth_method': ?authMethod?.encode(),
+    'azure_ad': ?azureAd?.encode(),
+    'certificate': ?certificate?.encode(),
+    'cloudflare_account_member': ?cloudflareAccountMember?.encode(),
+    'common_name': ?commonName?.encode(),
+    'device_posture': ?devicePosture?.encode(),
+    'email': ?email?.encode(),
+    'email_domain': ?emailDomain?.encode(),
+    'email_list': ?emailList?.encode(),
+    'everyone': ?everyone?.encode(),
+    'external_evaluation': ?externalEvaluation?.encode(),
+    'geo': ?geo?.encode(),
+    'github_organization': ?githubOrganization?.encode(),
+    'group': ?group?.encode(),
+    'gsuite': ?gsuite?.encode(),
+    'ip': ?ip?.encode(),
+    'ip_list': ?ipList?.encode(),
+    'linked_app_token': ?linkedAppToken?.encode(),
+    'login_method': ?loginMethod?.encode(),
+    'oidc': ?oidc?.encode(),
+    'okta': ?okta?.encode(),
+    'saml': ?saml?.encode(),
+    'service_token': ?serviceToken?.encode(),
+    'user_risk_score': ?userRiskScore?.encode(),
   };
 }
 
@@ -824,7 +816,7 @@ final class ZeroTrustAccessPolicyIncludeCloudflareAccountMember {
   final RefTo<CloudflareAccount>? accountId;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
+    'account_id': ?accountId?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -853,7 +845,7 @@ final class ZeroTrustAccessPolicyIncludeDevicePosture {
   final TfArg<String> integrationUid;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
+    'account_id': ?accountId?.encodeAs('id').toTfJson(),
     'integration_uid': integrationUid.toTfJson(),
   };
 }
@@ -949,7 +941,7 @@ final class ZeroTrustAccessPolicyIncludeGithubOrganization {
   Map<String, Object?> encode() => {
     'identity_provider_id': identityProviderId.toTfJson(),
     'name': name.toTfJson(),
-    if (team != null) 'team': team!.toTfJson(),
+    'team': ?team?.toTfJson(),
   };
 }
 
@@ -1156,9 +1148,8 @@ final class ZeroTrustAccessPolicyMfaConfig {
       'allowed_authenticators': [
         for (final e in allowedAuthenticators!) e.toTfJson(),
       ],
-    if (mfaDisabled != null) 'mfa_disabled': mfaDisabled!.toTfJson(),
-    if (sessionDuration != null)
-      'session_duration': sessionDuration!.toTfJson(),
+    'mfa_disabled': ?mfaDisabled?.toTfJson(),
+    'session_duration': ?sessionDuration?.toTfJson(),
   };
 }
 
@@ -1263,36 +1254,32 @@ final class ZeroTrustAccessPolicyRequire {
   final ZeroTrustAccessPolicyRequireUserRiskScore? userRiskScore;
 
   Map<String, Object?> encode() => {
-    if (anyValidServiceToken != null)
-      'any_valid_service_token': anyValidServiceToken!.encode(),
-    if (authContext != null) 'auth_context': authContext!.encode(),
-    if (authMethod != null) 'auth_method': authMethod!.encode(),
-    if (azureAd != null) 'azure_ad': azureAd!.encode(),
-    if (certificate != null) 'certificate': certificate!.encode(),
-    if (cloudflareAccountMember != null)
-      'cloudflare_account_member': cloudflareAccountMember!.encode(),
-    if (commonName != null) 'common_name': commonName!.encode(),
-    if (devicePosture != null) 'device_posture': devicePosture!.encode(),
-    if (email != null) 'email': email!.encode(),
-    if (emailDomain != null) 'email_domain': emailDomain!.encode(),
-    if (emailList != null) 'email_list': emailList!.encode(),
-    if (everyone != null) 'everyone': everyone!.encode(),
-    if (externalEvaluation != null)
-      'external_evaluation': externalEvaluation!.encode(),
-    if (geo != null) 'geo': geo!.encode(),
-    if (githubOrganization != null)
-      'github_organization': githubOrganization!.encode(),
-    if (group != null) 'group': group!.encode(),
-    if (gsuite != null) 'gsuite': gsuite!.encode(),
-    if (ip != null) 'ip': ip!.encode(),
-    if (ipList != null) 'ip_list': ipList!.encode(),
-    if (linkedAppToken != null) 'linked_app_token': linkedAppToken!.encode(),
-    if (loginMethod != null) 'login_method': loginMethod!.encode(),
-    if (oidc != null) 'oidc': oidc!.encode(),
-    if (okta != null) 'okta': okta!.encode(),
-    if (saml != null) 'saml': saml!.encode(),
-    if (serviceToken != null) 'service_token': serviceToken!.encode(),
-    if (userRiskScore != null) 'user_risk_score': userRiskScore!.encode(),
+    'any_valid_service_token': ?anyValidServiceToken?.encode(),
+    'auth_context': ?authContext?.encode(),
+    'auth_method': ?authMethod?.encode(),
+    'azure_ad': ?azureAd?.encode(),
+    'certificate': ?certificate?.encode(),
+    'cloudflare_account_member': ?cloudflareAccountMember?.encode(),
+    'common_name': ?commonName?.encode(),
+    'device_posture': ?devicePosture?.encode(),
+    'email': ?email?.encode(),
+    'email_domain': ?emailDomain?.encode(),
+    'email_list': ?emailList?.encode(),
+    'everyone': ?everyone?.encode(),
+    'external_evaluation': ?externalEvaluation?.encode(),
+    'geo': ?geo?.encode(),
+    'github_organization': ?githubOrganization?.encode(),
+    'group': ?group?.encode(),
+    'gsuite': ?gsuite?.encode(),
+    'ip': ?ip?.encode(),
+    'ip_list': ?ipList?.encode(),
+    'linked_app_token': ?linkedAppToken?.encode(),
+    'login_method': ?loginMethod?.encode(),
+    'oidc': ?oidc?.encode(),
+    'okta': ?okta?.encode(),
+    'saml': ?saml?.encode(),
+    'service_token': ?serviceToken?.encode(),
+    'user_risk_score': ?userRiskScore?.encode(),
   };
 }
 
@@ -1376,7 +1363,7 @@ final class ZeroTrustAccessPolicyRequireCloudflareAccountMember {
   final RefTo<CloudflareAccount>? accountId;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
+    'account_id': ?accountId?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -1405,7 +1392,7 @@ final class ZeroTrustAccessPolicyRequireDevicePosture {
   final TfArg<String> integrationUid;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.encodeAs('id').toTfJson(),
+    'account_id': ?accountId?.encodeAs('id').toTfJson(),
     'integration_uid': integrationUid.toTfJson(),
   };
 }
@@ -1501,7 +1488,7 @@ final class ZeroTrustAccessPolicyRequireGithubOrganization {
   Map<String, Object?> encode() => {
     'identity_provider_id': identityProviderId.toTfJson(),
     'name': name.toTfJson(),
-    if (team != null) 'team': team!.toTfJson(),
+    'team': ?team?.toTfJson(),
   };
 }
 
@@ -1718,16 +1705,13 @@ final class CloudflareZeroTrustAccessPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (approvalRequired != null) 'approval_required': approvalRequired,
+           'approval_required': ?approvalRequired,
            'decision': decision,
-           if (isolationRequired != null)
-             'isolation_required': isolationRequired,
+           'isolation_required': ?isolationRequired,
            'name': name,
-           if (purposeJustificationPrompt != null)
-             'purpose_justification_prompt': purposeJustificationPrompt,
-           if (purposeJustificationRequired != null)
-             'purpose_justification_required': purposeJustificationRequired,
-           if (sessionDuration != null) 'session_duration': sessionDuration,
+           'purpose_justification_prompt': ?purposeJustificationPrompt,
+           'purpose_justification_required': ?purposeJustificationRequired,
+           'session_duration': ?sessionDuration,
            if (approvalGroups != null)
              'approval_groups': TfArg.literal([
                for (final e in approvalGroups) e.encode(),

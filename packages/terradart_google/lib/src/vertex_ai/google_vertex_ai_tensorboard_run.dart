@@ -42,10 +42,10 @@ final class GoogleVertexAiTensorboardRun extends Resource {
            'tensorboard': tensorboard,
            'location': location,
            'display_name': displayName,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

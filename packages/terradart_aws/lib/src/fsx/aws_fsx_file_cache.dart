@@ -44,11 +44,9 @@ final class FsxFileCacheDataRepositoryAssociation {
 
   Map<String, Object?> encode() => {
     'data_repository_path': dataRepositoryPath.toTfJson(),
-    if (dataRepositorySubdirectories != null)
-      'data_repository_subdirectories': dataRepositorySubdirectories!
-          .toTfJson(),
+    'data_repository_subdirectories': ?dataRepositorySubdirectories?.toTfJson(),
     'file_cache_path': fileCachePath.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     if (nfs != null) 'nfs': [for (final e in nfs!) e.encode()],
   };
 }
@@ -67,7 +65,7 @@ final class FsxFileCacheDataRepositoryAssociationNfs {
   final TfArg<FsxFileCacheDataRepositoryAssociationNfsVersion> version;
 
   Map<String, Object?> encode() => {
-    if (dnsIps != null) 'dns_ips': dnsIps!.toTfJson(),
+    'dns_ips': ?dnsIps?.toTfJson(),
     'version': version.toTfJson(),
   };
 }
@@ -104,8 +102,7 @@ final class FsxFileCacheLustreConfiguration {
   Map<String, Object?> encode() => {
     'deployment_type': deploymentType.toTfJson(),
     'per_unit_storage_throughput': perUnitStorageThroughput.toTfJson(),
-    if (weeklyMaintenanceStartTime != null)
-      'weekly_maintenance_start_time': weeklyMaintenanceStartTime!.toTfJson(),
+    'weekly_maintenance_start_time': ?weeklyMaintenanceStartTime?.toTfJson(),
     'metadata_configuration': [
       for (final e in metadataConfiguration) e.encode(),
     ],
@@ -160,18 +157,16 @@ final class AwsFsxFileCache extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (copyTagsToDataRepositoryAssociations != null)
-             'copy_tags_to_data_repository_associations':
-                 copyTagsToDataRepositoryAssociations,
+           'copy_tags_to_data_repository_associations':
+               ?copyTagsToDataRepositoryAssociations,
            'file_cache_type': fileCacheType,
            'file_cache_type_version': fileCacheTypeVersion,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (region != null) 'region': region,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'region': ?region,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
            'storage_capacity': storageCapacity,
            'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (dataRepositoryAssociation != null)
              'data_repository_association': TfArg.literal([
                for (final e in dataRepositoryAssociation) e.encode(),

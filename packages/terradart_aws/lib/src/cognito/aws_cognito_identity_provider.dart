@@ -40,12 +40,12 @@ final class AwsCognitoIdentityProvider extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (attributeMapping != null) 'attribute_mapping': attributeMapping,
-           if (idpIdentifiers != null) 'idp_identifiers': idpIdentifiers,
+           'attribute_mapping': ?attributeMapping,
+           'idp_identifiers': ?idpIdentifiers,
            'provider_details': providerDetails,
            'provider_name': providerName,
            'provider_type': providerType,
-           if (region != null) 'region': region,
+           'region': ?region,
            'user_pool_id': userPoolId,
          },
        );

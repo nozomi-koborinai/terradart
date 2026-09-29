@@ -18,9 +18,8 @@ final class RamResourceShareResourceShareConfiguration {
   final TfArg<bool>? retainSharingOnAccountLeaveOrganization;
 
   Map<String, Object?> encode() => {
-    if (retainSharingOnAccountLeaveOrganization != null)
-      'retain_sharing_on_account_leave_organization':
-          retainSharingOnAccountLeaveOrganization!.toTfJson(),
+    'retain_sharing_on_account_leave_organization':
+        ?retainSharingOnAccountLeaveOrganization?.toTfJson(),
   };
 }
 
@@ -43,12 +42,11 @@ final class AwsRamResourceShare extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowExternalPrincipals != null)
-             'allow_external_principals': allowExternalPrincipals,
+           'allow_external_principals': ?allowExternalPrincipals,
            'name': name,
-           if (permissionArns != null) 'permission_arns': permissionArns,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'permission_arns': ?permissionArns,
+           'region': ?region,
+           'tags': ?tags,
            if (resourceShareConfiguration != null)
              'resource_share_configuration': TfArg.literal(
                resourceShareConfiguration.encode(),

@@ -24,10 +24,9 @@ final class SpannerInstanceConfigReplicas {
   final TfArg<SpannerInstanceConfigReplicasType>? type;
 
   Map<String, Object?> encode() => {
-    if (defaultLeaderLocation != null)
-      'default_leader_location': defaultLeaderLocation!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'default_leader_location': ?defaultLeaderLocation?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -97,13 +96,13 @@ final class GoogleSpannerInstanceConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
+           'name': ?name,
            'display_name': displayName,
-           if (baseConfig != null) 'base_config': baseConfig,
+           'base_config': ?baseConfig,
            'replicas': TfArg.literal([for (final e in replicas) e.encode()]),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

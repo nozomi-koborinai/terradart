@@ -27,12 +27,12 @@ final class GoogleBiglakeHiveCatalog extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'location_uri': locationUri,
            'name': name,
            'primary_location': primaryLocation,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

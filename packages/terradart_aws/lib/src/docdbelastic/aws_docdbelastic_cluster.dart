@@ -53,23 +53,18 @@ final class AwsDocdbelasticCluster extends Resource {
            'admin_user_name': adminUserName,
            'admin_user_password': adminUserPassword,
            'auth_type': authType,
-           if (backupRetentionPeriod != null)
-             'backup_retention_period': backupRetentionPeriod,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'backup_retention_period': ?backupRetentionPeriod,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
-           if (preferredBackupWindow != null)
-             'preferred_backup_window': preferredBackupWindow,
-           if (preferredMaintenanceWindow != null)
-             'preferred_maintenance_window': preferredMaintenanceWindow,
-           if (region != null) 'region': region,
+           'preferred_backup_window': ?preferredBackupWindow,
+           'preferred_maintenance_window': ?preferredMaintenanceWindow,
+           'region': ?region,
            'shard_capacity': shardCapacity,
            'shard_count': shardCount,
-           if (shardInstanceCount != null)
-             'shard_instance_count': shardInstanceCount,
-           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
+           'shard_instance_count': ?shardInstanceCount,
+           'subnet_ids': ?subnetIds?.encodeAs('id'),
+           'tags': ?tags,
+           'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id'),
          },
        );
 

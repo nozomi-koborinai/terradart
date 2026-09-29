@@ -63,14 +63,13 @@ final class GoogleEventarcMessageBus extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (annotations != null) 'annotations': annotations,
-           if (cryptoKeyName != null)
-             'crypto_key_name': cryptoKeyName.encodeAs('id'),
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
+           'annotations': ?annotations,
+           'crypto_key_name': ?cryptoKeyName?.encodeAs('id'),
+           'display_name': ?displayName,
+           'labels': ?labels,
            'location': location,
            'message_bus_id': messageBusId,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (loggingConfig != null)
              'logging_config': TfArg.literal([loggingConfig.encode()]),
          },

@@ -40,9 +40,9 @@ final class GoogleApigeeFlowhook extends Resource {
            'environment': environment,
            'flow_hook_point': flowHookPoint,
            'sharedflow': sharedflow,
-           if (description != null) 'description': description,
-           if (continueOnError != null) 'continue_on_error': continueOnError,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'continue_on_error': ?continueOnError,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

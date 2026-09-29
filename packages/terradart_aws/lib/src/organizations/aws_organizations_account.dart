@@ -37,15 +37,14 @@ final class AwsOrganizationsAccount extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (closeOnDeletion != null) 'close_on_deletion': closeOnDeletion,
-           if (createGovcloud != null) 'create_govcloud': createGovcloud,
+           'close_on_deletion': ?closeOnDeletion,
+           'create_govcloud': ?createGovcloud,
            'email': email,
-           if (iamUserAccessToBilling != null)
-             'iam_user_access_to_billing': iamUserAccessToBilling,
+           'iam_user_access_to_billing': ?iamUserAccessToBilling,
            'name': name,
-           if (parentId != null) 'parent_id': parentId,
-           if (roleName != null) 'role_name': roleName,
-           if (tags != null) 'tags': tags,
+           'parent_id': ?parentId,
+           'role_name': ?roleName,
+           'tags': ?tags,
          },
        );
 

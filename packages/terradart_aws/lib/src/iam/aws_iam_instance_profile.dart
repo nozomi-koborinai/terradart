@@ -84,9 +84,9 @@ final class AwsIamInstanceProfile extends Resource {
          terraformType: tfType,
          argMap: {
            ...?name?.argMap,
-           if (path != null) 'path': path,
-           if (role != null) 'role': role.encodeAs('name'),
-           if (tags != null) 'tags': tags,
+           'path': ?path,
+           'role': ?role?.encodeAs('name'),
+           'tags': ?tags,
          },
        );
 

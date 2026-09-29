@@ -41,10 +41,9 @@ final class DataAwsEc2InstanceTypeOffering extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (locationType != null) 'location_type': locationType,
-           if (preferredInstanceTypes != null)
-             'preferred_instance_types': preferredInstanceTypes,
-           if (region != null) 'region': region,
+           'location_type': ?locationType,
+           'preferred_instance_types': ?preferredInstanceTypes,
+           'region': ?region,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

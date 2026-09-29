@@ -58,13 +58,12 @@ final class GoogleMigrationCenterAssetsExportJob extends Resource {
          argMap: {
            'location': location,
            'assets_export_job_id': assetsExportJobId,
-           if (condition != null) 'condition': condition,
-           if (performanceData != null) 'performance_data': performanceData,
-           if (signedUriDestination != null)
-             'signed_uri_destination': signedUriDestination,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'performance_data': ?performanceData,
+           'signed_uri_destination': ?signedUriDestination,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

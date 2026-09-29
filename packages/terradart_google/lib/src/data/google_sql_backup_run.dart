@@ -24,10 +24,10 @@ final class DataGoogleSqlBackupRun extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (backupId != null) 'backup_id': backupId,
+           'backup_id': ?backupId,
            'instance': instance,
-           if (mostRecent != null) 'most_recent': mostRecent,
-           if (project != null) 'project': project,
+           'most_recent': ?mostRecent,
+           'project': ?project,
          },
        );
 

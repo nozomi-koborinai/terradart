@@ -25,10 +25,10 @@ final class AwsS3controlObjectLambdaAccessPointPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'name': name,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

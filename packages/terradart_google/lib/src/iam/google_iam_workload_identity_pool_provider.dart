@@ -230,13 +230,12 @@ final class GoogleIamWorkloadIdentityPoolProvider extends Resource {
          argMap: {
            'workload_identity_pool_id': workloadIdentityPoolId,
            'workload_identity_pool_provider_id': workloadIdentityPoolProviderId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
-           if (attributeCondition != null)
-             'attribute_condition': attributeCondition,
-           if (attributeMapping != null) 'attribute_mapping': attributeMapping,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'description': ?description,
+           'disabled': ?disabled,
+           'attribute_condition': ?attributeCondition,
+           'attribute_mapping': ?attributeMapping,
+           'project': ?project,
            trustSource.blockKey: TfArg.literal(trustSource.encode()),
          },
        );

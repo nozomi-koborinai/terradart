@@ -31,7 +31,7 @@ final class GoogleBigqueryDatasetIamPolicy extends Resource {
          argMap: {
            'dataset_id': datasetId.encodeAs('dataset_id'),
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

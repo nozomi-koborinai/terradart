@@ -21,7 +21,7 @@ final class DataAwsRoute53ResolverFirewallRuleGroup extends Data {
          terraformType: tfType,
          argMap: {
            'firewall_rule_group_id': firewallRuleGroupId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

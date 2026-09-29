@@ -94,7 +94,7 @@ final class ZeroTrustDeviceDefaultProfileDnsSearchSuffixes {
   final TfArg<String> suffix;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'suffix': suffix.toTfJson(),
   };
 }
@@ -116,9 +116,9 @@ final class ZeroTrustDeviceDefaultProfileExclude {
   final TfArg<String>? host;
 
   Map<String, Object?> encode() => {
-    if (address != null) 'address': address!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (host != null) 'host': host!.toTfJson(),
+    'address': ?address?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'host': ?host?.toTfJson(),
   };
 }
 
@@ -166,9 +166,9 @@ final class ZeroTrustDeviceDefaultProfileInclude {
   final TfArg<String>? host;
 
   Map<String, Object?> encode() => {
-    if (address != null) 'address': address!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (host != null) 'host': host!.toTfJson(),
+    'address': ?address?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'host': ?host?.toTfJson(),
   };
 }
 
@@ -183,8 +183,8 @@ final class ZeroTrustDeviceDefaultProfileServiceModeV2 {
   final TfArg<num>? port;
 
   Map<String, Object?> encode() => {
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -246,26 +246,21 @@ final class CloudflareZeroTrustDeviceDefaultProfile extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (allowModeSwitch != null) 'allow_mode_switch': allowModeSwitch,
-           if (allowUpdates != null) 'allow_updates': allowUpdates,
-           if (allowedToLeave != null) 'allowed_to_leave': allowedToLeave,
-           if (autoConnect != null) 'auto_connect': autoConnect,
-           if (captivePortal != null) 'captive_portal': captivePortal,
-           if (disableAutoFallback != null)
-             'disable_auto_fallback': disableAutoFallback,
-           if (excludeOfficeIps != null) 'exclude_office_ips': excludeOfficeIps,
-           if (lanAllowMinutes != null) 'lan_allow_minutes': lanAllowMinutes,
-           if (lanAllowSubnetSize != null)
-             'lan_allow_subnet_size': lanAllowSubnetSize,
-           if (registerInterfaceIpWithDns != null)
-             'register_interface_ip_with_dns': registerInterfaceIpWithDns,
-           if (sccmVpnBoundarySupport != null)
-             'sccm_vpn_boundary_support': sccmVpnBoundarySupport,
-           if (supportUrl != null) 'support_url': supportUrl,
-           if (switchLocked != null) 'switch_locked': switchLocked,
-           if (tunnelProtocol != null) 'tunnel_protocol': tunnelProtocol,
-           if (uninstallProtection != null)
-             'uninstall_protection': uninstallProtection,
+           'allow_mode_switch': ?allowModeSwitch,
+           'allow_updates': ?allowUpdates,
+           'allowed_to_leave': ?allowedToLeave,
+           'auto_connect': ?autoConnect,
+           'captive_portal': ?captivePortal,
+           'disable_auto_fallback': ?disableAutoFallback,
+           'exclude_office_ips': ?excludeOfficeIps,
+           'lan_allow_minutes': ?lanAllowMinutes,
+           'lan_allow_subnet_size': ?lanAllowSubnetSize,
+           'register_interface_ip_with_dns': ?registerInterfaceIpWithDns,
+           'sccm_vpn_boundary_support': ?sccmVpnBoundarySupport,
+           'support_url': ?supportUrl,
+           'switch_locked': ?switchLocked,
+           'tunnel_protocol': ?tunnelProtocol,
+           'uninstall_protection': ?uninstallProtection,
            if (dnsSearchSuffixes != null)
              'dns_search_suffixes': TfArg.literal([
                for (final e in dnsSearchSuffixes) e.encode(),

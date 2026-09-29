@@ -66,16 +66,15 @@ final class BackupDrBackupPlanBackupRulesStandardSchedule {
   weekDayOfMonth;
 
   Map<String, Object?> encode() => {
-    if (daysOfMonth != null) 'days_of_month': daysOfMonth!.toTfJson(),
+    'days_of_month': ?daysOfMonth?.toTfJson(),
     if (daysOfWeek != null)
       'days_of_week': [for (final e in daysOfWeek!) e.toTfJson()],
-    if (hourlyFrequency != null)
-      'hourly_frequency': hourlyFrequency!.toTfJson(),
+    'hourly_frequency': ?hourlyFrequency?.toTfJson(),
     if (months != null) 'months': [for (final e in months!) e.toTfJson()],
     'recurrence_type': recurrenceType.toTfJson(),
     'time_zone': timeZone.toTfJson(),
-    if (backupWindow != null) 'backup_window': backupWindow!.encode(),
-    if (weekDayOfMonth != null) 'week_day_of_month': weekDayOfMonth!.encode(),
+    'backup_window': ?backupWindow?.encode(),
+    'week_day_of_month': ?weekDayOfMonth?.encode(),
   };
 }
 
@@ -152,7 +151,7 @@ final class BackupDrBackupPlanBackupRulesStandardScheduleBackupWindow {
   final TfArg<num> startHourOfDay;
 
   Map<String, Object?> encode() => {
-    if (endHourOfDay != null) 'end_hour_of_day': endHourOfDay!.toTfJson(),
+    'end_hour_of_day': ?endHourOfDay?.toTfJson(),
     'start_hour_of_day': startHourOfDay.toTfJson(),
   };
 }
@@ -289,11 +288,10 @@ final class GoogleBackupDrBackupPlan extends Resource {
              'backup_rules': TfArg.literal([
                for (final e in backupRules) e.encode(),
              ]),
-           if (description != null) 'description': description,
-           if (logRetentionDays != null) 'log_retention_days': logRetentionDays,
-           if (maxCustomOnDemandRetentionDays != null)
-             'max_custom_on_demand_retention_days':
-                 maxCustomOnDemandRetentionDays,
+           'description': ?description,
+           'log_retention_days': ?logRetentionDays,
+           'max_custom_on_demand_retention_days':
+               ?maxCustomOnDemandRetentionDays,
            if (computeInstanceBackupPlanProperties != null)
              'compute_instance_backup_plan_properties': TfArg.literal(
                computeInstanceBackupPlanProperties.encode(),
@@ -302,8 +300,8 @@ final class GoogleBackupDrBackupPlan extends Resource {
              'disk_backup_plan_properties': TfArg.literal(
                diskBackupPlanProperties.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

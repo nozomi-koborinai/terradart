@@ -33,9 +33,9 @@ final class GoogleBigqueryRowAccessPolicy extends Resource {
          argMap: {
            'dataset_id': datasetId.encodeAs('dataset_id'),
            'filter_predicate': filterPredicate,
-           if (grantees != null) 'grantees': grantees,
+           'grantees': ?grantees,
            'policy_id': policyId,
-           if (project != null) 'project': project,
+           'project': ?project,
            'table_id': tableId,
          },
        );

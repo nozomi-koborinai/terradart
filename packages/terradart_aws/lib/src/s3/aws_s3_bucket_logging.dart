@@ -59,10 +59,10 @@ final class S3BucketLoggingTargetGrantGrantee {
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (emailAddress != null) 'email_address': emailAddress!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
+    'email_address': ?emailAddress?.toTfJson(),
+    'id': ?id?.toTfJson(),
     'type': type.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -206,9 +206,8 @@ final class AwsS3BucketLogging extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (region != null) 'region': region,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'region': ?region,
            'target_bucket': targetBucket.encodeAs('id'),
            'target_prefix': targetPrefix,
            if (targetGrant != null)

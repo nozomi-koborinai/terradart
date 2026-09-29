@@ -384,19 +384,15 @@ final class GoogleStorageBucket extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           if (storageClass != null) 'storage_class': storageClass,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (publicAccessPrevention != null)
-             'public_access_prevention': publicAccessPrevention,
-           if (uniformBucketLevelAccess != null)
-             'uniform_bucket_level_access': uniformBucketLevelAccess,
-           if (defaultEventBasedHold != null)
-             'default_event_based_hold': defaultEventBasedHold,
-           if (enableObjectRetention != null)
-             'enable_object_retention': enableObjectRetention,
-           if (requesterPays != null) 'requester_pays': requesterPays,
-           if (rpo != null) 'rpo': rpo,
-           if (labels != null) 'labels': labels,
+           'storage_class': ?storageClass,
+           'force_destroy': ?forceDestroy,
+           'public_access_prevention': ?publicAccessPrevention,
+           'uniform_bucket_level_access': ?uniformBucketLevelAccess,
+           'default_event_based_hold': ?defaultEventBasedHold,
+           'enable_object_retention': ?enableObjectRetention,
+           'requester_pays': ?requesterPays,
+           'rpo': ?rpo,
+           'labels': ?labels,
            if (versioning != null)
              'versioning': TfArg.literal([versioning.toArgMap()]),
            if (cors != null)
@@ -425,7 +421,7 @@ final class GoogleStorageBucket extends Resource {
              'ip_filter': TfArg.literal([ipFilter.toArgMap()]),
            if (softDeletePolicy != null)
              'soft_delete_policy': TfArg.literal([softDeletePolicy.toArgMap()]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

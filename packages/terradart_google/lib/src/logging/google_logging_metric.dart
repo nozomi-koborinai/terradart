@@ -264,16 +264,16 @@ final class GoogleLoggingMetric extends Resource {
          argMap: {
            'name': name,
            'filter': filter,
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
-           if (valueExtractor != null) 'value_extractor': valueExtractor,
-           if (labelExtractors != null) 'label_extractors': labelExtractors,
+           'description': ?description,
+           'disabled': ?disabled,
+           'value_extractor': ?valueExtractor,
+           'label_extractors': ?labelExtractors,
            if (metricDescriptor != null)
              'metric_descriptor': TfArg.literal([metricDescriptor.toArgMap()]),
            if (bucketOptions != null)
              'bucket_options': TfArg.literal([bucketOptions.toArgMap()]),
-           if (bucketName != null) 'bucket_name': bucketName,
-           if (project != null) 'project': project,
+           'bucket_name': ?bucketName,
+           'project': ?project,
          },
        );
 

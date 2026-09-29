@@ -26,7 +26,7 @@ final class AwsS3BucketPolicy extends Resource {
          argMap: {
            'bucket': bucket.encodeAs('id'),
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

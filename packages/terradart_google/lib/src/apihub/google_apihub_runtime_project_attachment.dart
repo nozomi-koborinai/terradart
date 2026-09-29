@@ -43,8 +43,8 @@ final class GoogleApihubRuntimeProjectAttachment extends Resource {
            'location': location,
            'runtime_project_attachment_id': runtimeProjectAttachmentId,
            'runtime_project': runtimeProject,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

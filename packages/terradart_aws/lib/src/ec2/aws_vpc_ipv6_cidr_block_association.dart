@@ -28,14 +28,12 @@ final class AwsVpcIpv6CidrBlockAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (assignGeneratedIpv6CidrBlock != null)
-             'assign_generated_ipv6_cidr_block': assignGeneratedIpv6CidrBlock,
-           if (ipv6CidrBlock != null) 'ipv6_cidr_block': ipv6CidrBlock,
-           if (ipv6IpamPoolId != null) 'ipv6_ipam_pool_id': ipv6IpamPoolId,
-           if (ipv6NetmaskLength != null)
-             'ipv6_netmask_length': ipv6NetmaskLength,
-           if (ipv6Pool != null) 'ipv6_pool': ipv6Pool,
-           if (region != null) 'region': region,
+           'assign_generated_ipv6_cidr_block': ?assignGeneratedIpv6CidrBlock,
+           'ipv6_cidr_block': ?ipv6CidrBlock,
+           'ipv6_ipam_pool_id': ?ipv6IpamPoolId,
+           'ipv6_netmask_length': ?ipv6NetmaskLength,
+           'ipv6_pool': ?ipv6Pool,
+           'region': ?region,
            'vpc_id': vpcId.encodeAs('id'),
          },
        );

@@ -24,9 +24,9 @@ final class DataAwsImagebuilderInfrastructureConfiguration extends Data {
          terraformType: tfType,
          argMap: {
            'arn': arn,
-           if (region != null) 'region': region,
-           if (resourceTags != null) 'resource_tags': resourceTags,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'resource_tags': ?resourceTags,
+           'tags': ?tags,
          },
        );
 

@@ -26,9 +26,9 @@ final class ZeroTrustGatewayLoggingSettingsByRuleType {
   final ZeroTrustGatewayLoggingSettingsByRuleTypeL4? l4;
 
   Map<String, Object?> encode() => {
-    if (dns != null) 'dns': dns!.encode(),
-    if (http != null) 'http': http!.encode(),
-    if (l4 != null) 'l4': l4!.encode(),
+    'dns': ?dns?.encode(),
+    'http': ?http?.encode(),
+    'l4': ?l4?.encode(),
   };
 }
 
@@ -46,8 +46,8 @@ final class ZeroTrustGatewayLoggingSettingsByRuleTypeDns {
   final TfArg<bool>? logBlocks;
 
   Map<String, Object?> encode() => {
-    if (logAll != null) 'log_all': logAll!.toTfJson(),
-    if (logBlocks != null) 'log_blocks': logBlocks!.toTfJson(),
+    'log_all': ?logAll?.toTfJson(),
+    'log_blocks': ?logBlocks?.toTfJson(),
   };
 }
 
@@ -65,8 +65,8 @@ final class ZeroTrustGatewayLoggingSettingsByRuleTypeHttp {
   final TfArg<bool>? logBlocks;
 
   Map<String, Object?> encode() => {
-    if (logAll != null) 'log_all': logAll!.toTfJson(),
-    if (logBlocks != null) 'log_blocks': logBlocks!.toTfJson(),
+    'log_all': ?logAll?.toTfJson(),
+    'log_blocks': ?logBlocks?.toTfJson(),
   };
 }
 
@@ -84,8 +84,8 @@ final class ZeroTrustGatewayLoggingSettingsByRuleTypeL4 {
   final TfArg<bool>? logBlocks;
 
   Map<String, Object?> encode() => {
-    if (logAll != null) 'log_all': logAll!.toTfJson(),
-    if (logBlocks != null) 'log_blocks': logBlocks!.toTfJson(),
+    'log_all': ?logAll?.toTfJson(),
+    'log_blocks': ?logBlocks?.toTfJson(),
   };
 }
 
@@ -106,7 +106,7 @@ final class CloudflareZeroTrustGatewayLogging extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (redactPii != null) 'redact_pii': redactPii,
+           'redact_pii': ?redactPii,
            if (settingsByRuleType != null)
              'settings_by_rule_type': TfArg.literal(
                settingsByRuleType.encode(),

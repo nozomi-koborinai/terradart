@@ -80,11 +80,11 @@ final class AwsFinspaceKxVolume extends Resource {
          argMap: {
            'availability_zones': availabilityZones,
            'az_mode': azMode,
-           if (description != null) 'description': description,
+           'description': ?description,
            'environment_id': environmentId,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'type': type,
            if (nas1Configuration != null)
              'nas1_configuration': TfArg.literal([

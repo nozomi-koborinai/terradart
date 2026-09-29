@@ -34,7 +34,7 @@ final class GoogleBiglakeIcebergTableIamPolicy extends Resource {
            'namespace': namespace,
            'name': name,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

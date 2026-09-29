@@ -97,18 +97,14 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResource {
   rawFileResource;
 
   Map<String, Object?> encode() => {
-    if (displayLabel != null) 'display_label': displayLabel!.toTfJson(),
-    if (modelDescription != null)
-      'model_description': modelDescription!.toTfJson(),
-    if (useRag != null) 'use_rag': useRag!.toTfJson(),
-    if (bigqueryResource != null)
-      'bigquery_resource': bigqueryResource!.encode(),
-    if (f1Resource != null) 'f1_resource': f1Resource!.encode(),
-    if (googleCloudStorageResource != null)
-      'google_cloud_storage_resource': googleCloudStorageResource!.encode(),
-    if (googleDriveResource != null)
-      'google_drive_resource': googleDriveResource!.encode(),
-    if (rawFileResource != null) 'raw_file_resource': rawFileResource!.encode(),
+    'display_label': ?displayLabel?.toTfJson(),
+    'model_description': ?modelDescription?.toTfJson(),
+    'use_rag': ?useRag?.toTfJson(),
+    'bigquery_resource': ?bigqueryResource?.encode(),
+    'f1_resource': ?f1Resource?.encode(),
+    'google_cloud_storage_resource': ?googleCloudStorageResource?.encode(),
+    'google_drive_resource': ?googleDriveResource?.encode(),
+    'raw_file_resource': ?rawFileResource?.encode(),
   };
 }
 
@@ -129,11 +125,9 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceBigque
   final TfArg<Map<String, String>>? columnDescriptions;
 
   Map<String, Object?> encode() => {
-    if (bigqueryDataset != null)
-      'bigquery_dataset': bigqueryDataset!.toTfJson(),
-    if (bigqueryTable != null) 'bigquery_table': bigqueryTable!.toTfJson(),
-    if (columnDescriptions != null)
-      'column_descriptions': columnDescriptions!.toTfJson(),
+    'bigquery_dataset': ?bigqueryDataset?.toTfJson(),
+    'bigquery_table': ?bigqueryTable?.toTfJson(),
+    'column_descriptions': ?columnDescriptions?.toTfJson(),
   };
 }
 
@@ -147,9 +141,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceF1Reso
 
   final TfArg<String>? f1Table;
 
-  Map<String, Object?> encode() => {
-    if (f1Table != null) 'f1_table': f1Table!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'f1_table': ?f1Table?.toTfJson()};
 }
 
 /// Typed helper for the `artifact_examples.resource.google_cloud_storage_resource` block of
@@ -166,8 +158,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceGoogle
   final TfArg<String> googleCloudStorageObject;
 
   Map<String, Object?> encode() => {
-    if (fileExtensionRestrictions != null)
-      'file_extension_restrictions': fileExtensionRestrictions!.toTfJson(),
+    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
     'google_cloud_storage_object': googleCloudStorageObject.toTfJson(),
   };
 }
@@ -186,9 +177,8 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactExamplesResourceGoogle
   final TfArg<String>? fileReference;
 
   Map<String, Object?> encode() => {
-    if (fileExtensionRestrictions != null)
-      'file_extension_restrictions': fileExtensionRestrictions!.toTfJson(),
-    if (fileReference != null) 'file_reference': fileReference!.toTfJson(),
+    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
+    'file_reference': ?fileReference?.toTfJson(),
   };
 }
 
@@ -239,14 +229,10 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfig {
   visualizationOptions;
 
   Map<String, Object?> encode() => {
-    if (documentGenerationOptions != null)
-      'document_generation_options': documentGenerationOptions!.encode(),
-    if (methodologyExportOptions != null)
-      'methodology_export_options': methodologyExportOptions!.encode(),
-    if (slideGenerationOptions != null)
-      'slide_generation_options': slideGenerationOptions!.encode(),
-    if (visualizationOptions != null)
-      'visualization_options': visualizationOptions!.encode(),
+    'document_generation_options': ?documentGenerationOptions?.encode(),
+    'methodology_export_options': ?methodologyExportOptions?.encode(),
+    'slide_generation_options': ?slideGenerationOptions?.encode(),
+    'visualization_options': ?visualizationOptions?.encode(),
   };
 }
 
@@ -267,7 +253,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerat
   documentExamples;
 
   Map<String, Object?> encode() => {
-    if (exportFormat != null) 'export_format': exportFormat!.toTfJson(),
+    'export_format': ?exportFormat?.toTfJson(),
     if (documentExamples != null)
       'document_examples': [for (final e in documentExamples!) e.encode()],
   };
@@ -324,18 +310,14 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerat
   rawFileResource;
 
   Map<String, Object?> encode() => {
-    if (displayLabel != null) 'display_label': displayLabel!.toTfJson(),
-    if (modelDescription != null)
-      'model_description': modelDescription!.toTfJson(),
-    if (useRag != null) 'use_rag': useRag!.toTfJson(),
-    if (bigqueryResource != null)
-      'bigquery_resource': bigqueryResource!.encode(),
-    if (f1Resource != null) 'f1_resource': f1Resource!.encode(),
-    if (googleCloudStorageResource != null)
-      'google_cloud_storage_resource': googleCloudStorageResource!.encode(),
-    if (googleDriveResource != null)
-      'google_drive_resource': googleDriveResource!.encode(),
-    if (rawFileResource != null) 'raw_file_resource': rawFileResource!.encode(),
+    'display_label': ?displayLabel?.toTfJson(),
+    'model_description': ?modelDescription?.toTfJson(),
+    'use_rag': ?useRag?.toTfJson(),
+    'bigquery_resource': ?bigqueryResource?.encode(),
+    'f1_resource': ?f1Resource?.encode(),
+    'google_cloud_storage_resource': ?googleCloudStorageResource?.encode(),
+    'google_drive_resource': ?googleDriveResource?.encode(),
+    'raw_file_resource': ?rawFileResource?.encode(),
   };
 }
 
@@ -356,11 +338,9 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerat
   final TfArg<Map<String, String>>? columnDescriptions;
 
   Map<String, Object?> encode() => {
-    if (bigqueryDataset != null)
-      'bigquery_dataset': bigqueryDataset!.toTfJson(),
-    if (bigqueryTable != null) 'bigquery_table': bigqueryTable!.toTfJson(),
-    if (columnDescriptions != null)
-      'column_descriptions': columnDescriptions!.toTfJson(),
+    'bigquery_dataset': ?bigqueryDataset?.toTfJson(),
+    'bigquery_table': ?bigqueryTable?.toTfJson(),
+    'column_descriptions': ?columnDescriptions?.toTfJson(),
   };
 }
 
@@ -374,9 +354,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerat
 
   final TfArg<String>? f1Table;
 
-  Map<String, Object?> encode() => {
-    if (f1Table != null) 'f1_table': f1Table!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'f1_table': ?f1Table?.toTfJson()};
 }
 
 /// Typed helper for the `artifacts_config.document_generation_options.document_examples.resource.google_cloud_storage_resource` block of
@@ -393,8 +371,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerat
   final TfArg<String> googleCloudStorageObject;
 
   Map<String, Object?> encode() => {
-    if (fileExtensionRestrictions != null)
-      'file_extension_restrictions': fileExtensionRestrictions!.toTfJson(),
+    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
     'google_cloud_storage_object': googleCloudStorageObject.toTfJson(),
   };
 }
@@ -413,9 +390,8 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigDocumentGenerat
   final TfArg<String>? fileReference;
 
   Map<String, Object?> encode() => {
-    if (fileExtensionRestrictions != null)
-      'file_extension_restrictions': fileExtensionRestrictions!.toTfJson(),
-    if (fileReference != null) 'file_reference': fileReference!.toTfJson(),
+    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
+    'file_reference': ?fileReference?.toTfJson(),
   };
 }
 
@@ -459,11 +435,9 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigMethodologyExpo
   final TfArg<bool>? exportMethodologyArtifact;
 
   Map<String, Object?> encode() => {
-    if (appendMethodology != null)
-      'append_methodology': appendMethodology!.toTfJson(),
-    if (exportFormat != null) 'export_format': exportFormat!.toTfJson(),
-    if (exportMethodologyArtifact != null)
-      'export_methodology_artifact': exportMethodologyArtifact!.toTfJson(),
+    'append_methodology': ?appendMethodology?.toTfJson(),
+    'export_format': ?exportFormat?.toTfJson(),
+    'export_methodology_artifact': ?exportMethodologyArtifact?.toTfJson(),
   };
 }
 
@@ -484,7 +458,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGeneration
   slideExamples;
 
   Map<String, Object?> encode() => {
-    if (exportFormat != null) 'export_format': exportFormat!.toTfJson(),
+    'export_format': ?exportFormat?.toTfJson(),
     if (slideExamples != null)
       'slide_examples': [for (final e in slideExamples!) e.encode()],
   };
@@ -541,18 +515,14 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGeneration
   rawFileResource;
 
   Map<String, Object?> encode() => {
-    if (displayLabel != null) 'display_label': displayLabel!.toTfJson(),
-    if (modelDescription != null)
-      'model_description': modelDescription!.toTfJson(),
-    if (useRag != null) 'use_rag': useRag!.toTfJson(),
-    if (bigqueryResource != null)
-      'bigquery_resource': bigqueryResource!.encode(),
-    if (f1Resource != null) 'f1_resource': f1Resource!.encode(),
-    if (googleCloudStorageResource != null)
-      'google_cloud_storage_resource': googleCloudStorageResource!.encode(),
-    if (googleDriveResource != null)
-      'google_drive_resource': googleDriveResource!.encode(),
-    if (rawFileResource != null) 'raw_file_resource': rawFileResource!.encode(),
+    'display_label': ?displayLabel?.toTfJson(),
+    'model_description': ?modelDescription?.toTfJson(),
+    'use_rag': ?useRag?.toTfJson(),
+    'bigquery_resource': ?bigqueryResource?.encode(),
+    'f1_resource': ?f1Resource?.encode(),
+    'google_cloud_storage_resource': ?googleCloudStorageResource?.encode(),
+    'google_drive_resource': ?googleDriveResource?.encode(),
+    'raw_file_resource': ?rawFileResource?.encode(),
   };
 }
 
@@ -573,11 +543,9 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGeneration
   final TfArg<Map<String, String>>? columnDescriptions;
 
   Map<String, Object?> encode() => {
-    if (bigqueryDataset != null)
-      'bigquery_dataset': bigqueryDataset!.toTfJson(),
-    if (bigqueryTable != null) 'bigquery_table': bigqueryTable!.toTfJson(),
-    if (columnDescriptions != null)
-      'column_descriptions': columnDescriptions!.toTfJson(),
+    'bigquery_dataset': ?bigqueryDataset?.toTfJson(),
+    'bigquery_table': ?bigqueryTable?.toTfJson(),
+    'column_descriptions': ?columnDescriptions?.toTfJson(),
   };
 }
 
@@ -591,9 +559,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGeneration
 
   final TfArg<String>? f1Table;
 
-  Map<String, Object?> encode() => {
-    if (f1Table != null) 'f1_table': f1Table!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'f1_table': ?f1Table?.toTfJson()};
 }
 
 /// Typed helper for the `artifacts_config.slide_generation_options.slide_examples.resource.google_cloud_storage_resource` block of
@@ -610,8 +576,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGeneration
   final TfArg<String> googleCloudStorageObject;
 
   Map<String, Object?> encode() => {
-    if (fileExtensionRestrictions != null)
-      'file_extension_restrictions': fileExtensionRestrictions!.toTfJson(),
+    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
     'google_cloud_storage_object': googleCloudStorageObject.toTfJson(),
   };
 }
@@ -630,9 +595,8 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigSlideGeneration
   final TfArg<String>? fileReference;
 
   Map<String, Object?> encode() => {
-    if (fileExtensionRestrictions != null)
-      'file_extension_restrictions': fileExtensionRestrictions!.toTfJson(),
-    if (fileReference != null) 'file_reference': fileReference!.toTfJson(),
+    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
+    'file_reference': ?fileReference?.toTfJson(),
   };
 }
 
@@ -737,18 +701,14 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOp
   rawFileResource;
 
   Map<String, Object?> encode() => {
-    if (displayLabel != null) 'display_label': displayLabel!.toTfJson(),
-    if (modelDescription != null)
-      'model_description': modelDescription!.toTfJson(),
-    if (useRag != null) 'use_rag': useRag!.toTfJson(),
-    if (bigqueryResource != null)
-      'bigquery_resource': bigqueryResource!.encode(),
-    if (f1Resource != null) 'f1_resource': f1Resource!.encode(),
-    if (googleCloudStorageResource != null)
-      'google_cloud_storage_resource': googleCloudStorageResource!.encode(),
-    if (googleDriveResource != null)
-      'google_drive_resource': googleDriveResource!.encode(),
-    if (rawFileResource != null) 'raw_file_resource': rawFileResource!.encode(),
+    'display_label': ?displayLabel?.toTfJson(),
+    'model_description': ?modelDescription?.toTfJson(),
+    'use_rag': ?useRag?.toTfJson(),
+    'bigquery_resource': ?bigqueryResource?.encode(),
+    'f1_resource': ?f1Resource?.encode(),
+    'google_cloud_storage_resource': ?googleCloudStorageResource?.encode(),
+    'google_drive_resource': ?googleDriveResource?.encode(),
+    'raw_file_resource': ?rawFileResource?.encode(),
   };
 }
 
@@ -769,11 +729,9 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOp
   final TfArg<Map<String, String>>? columnDescriptions;
 
   Map<String, Object?> encode() => {
-    if (bigqueryDataset != null)
-      'bigquery_dataset': bigqueryDataset!.toTfJson(),
-    if (bigqueryTable != null) 'bigquery_table': bigqueryTable!.toTfJson(),
-    if (columnDescriptions != null)
-      'column_descriptions': columnDescriptions!.toTfJson(),
+    'bigquery_dataset': ?bigqueryDataset?.toTfJson(),
+    'bigquery_table': ?bigqueryTable?.toTfJson(),
+    'column_descriptions': ?columnDescriptions?.toTfJson(),
   };
 }
 
@@ -787,9 +745,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOp
 
   final TfArg<String>? f1Table;
 
-  Map<String, Object?> encode() => {
-    if (f1Table != null) 'f1_table': f1Table!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'f1_table': ?f1Table?.toTfJson()};
 }
 
 /// Typed helper for the `artifacts_config.visualization_options.visualization_examples.resource.google_cloud_storage_resource` block of
@@ -806,8 +762,7 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOp
   final TfArg<String> googleCloudStorageObject;
 
   Map<String, Object?> encode() => {
-    if (fileExtensionRestrictions != null)
-      'file_extension_restrictions': fileExtensionRestrictions!.toTfJson(),
+    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
     'google_cloud_storage_object': googleCloudStorageObject.toTfJson(),
   };
 }
@@ -826,9 +781,8 @@ final class AgenticApplicationsAnalystAgentPersonaArtifactsConfigVisualizationOp
   final TfArg<String>? fileReference;
 
   Map<String, Object?> encode() => {
-    if (fileExtensionRestrictions != null)
-      'file_extension_restrictions': fileExtensionRestrictions!.toTfJson(),
-    if (fileReference != null) 'file_reference': fileReference!.toTfJson(),
+    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
+    'file_reference': ?fileReference?.toTfJson(),
   };
 }
 
@@ -897,16 +851,14 @@ final class AgenticApplicationsAnalystAgentPersonaExternalDataSources {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (airQuality != null) 'air_quality': airQuality!.encode(),
-    if (bureauLaborStatistics != null)
-      'bureau_labor_statistics': bureauLaborStatistics!.encode(),
-    if (coindesk != null) 'coindesk': coindesk!.encode(),
-    if (finnhub != null) 'finnhub': finnhub!.encode(),
-    if (fred != null) 'fred': fred!.encode(),
-    if (secEdgar != null) 'sec_edgar': secEdgar!.encode(),
-    if (treasurySecuritiesAuctions != null)
-      'treasury_securities_auctions': treasurySecuritiesAuctions!.encode(),
-    if (usda != null) 'usda': usda!.encode(),
+    'air_quality': ?airQuality?.encode(),
+    'bureau_labor_statistics': ?bureauLaborStatistics?.encode(),
+    'coindesk': ?coindesk?.encode(),
+    'finnhub': ?finnhub?.encode(),
+    'fred': ?fred?.encode(),
+    'sec_edgar': ?secEdgar?.encode(),
+    'treasury_securities_auctions': ?treasurySecuritiesAuctions?.encode(),
+    'usda': ?usda?.encode(),
   };
 }
 
@@ -1020,15 +972,15 @@ final class AgenticApplicationsAnalystAgentPersonaMcpDataSources {
   final TfArg<String> serverUrl;
 
   Map<String, Object?> encode() => {
-    if (apiKey != null) 'api_key': apiKey!.toTfJson(),
-    if (apiKeyName != null) 'api_key_name': apiKeyName!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
+    'api_key': ?apiKey?.toTfJson(),
+    'api_key_name': ?apiKeyName?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
     'description': description.toTfJson(),
     'display_name': displayName.toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (oauthTokenUrl != null) 'oauth_token_url': oauthTokenUrl!.toTfJson(),
-    if (prompt != null) 'prompt': prompt!.toTfJson(),
+    'oauth_token_url': ?oauthTokenUrl?.toTfJson(),
+    'prompt': ?prompt?.toTfJson(),
     'server_url': serverUrl.toTfJson(),
   };
 }
@@ -1069,18 +1021,14 @@ final class AgenticApplicationsAnalystAgentPersonaResources {
   rawFileResource;
 
   Map<String, Object?> encode() => {
-    if (displayLabel != null) 'display_label': displayLabel!.toTfJson(),
-    if (modelDescription != null)
-      'model_description': modelDescription!.toTfJson(),
-    if (useRag != null) 'use_rag': useRag!.toTfJson(),
-    if (bigqueryResource != null)
-      'bigquery_resource': bigqueryResource!.encode(),
-    if (f1Resource != null) 'f1_resource': f1Resource!.encode(),
-    if (googleCloudStorageResource != null)
-      'google_cloud_storage_resource': googleCloudStorageResource!.encode(),
-    if (googleDriveResource != null)
-      'google_drive_resource': googleDriveResource!.encode(),
-    if (rawFileResource != null) 'raw_file_resource': rawFileResource!.encode(),
+    'display_label': ?displayLabel?.toTfJson(),
+    'model_description': ?modelDescription?.toTfJson(),
+    'use_rag': ?useRag?.toTfJson(),
+    'bigquery_resource': ?bigqueryResource?.encode(),
+    'f1_resource': ?f1Resource?.encode(),
+    'google_cloud_storage_resource': ?googleCloudStorageResource?.encode(),
+    'google_drive_resource': ?googleDriveResource?.encode(),
+    'raw_file_resource': ?rawFileResource?.encode(),
   };
 }
 
@@ -1101,11 +1049,9 @@ final class AgenticApplicationsAnalystAgentPersonaResourcesBigqueryResource {
   final TfArg<Map<String, String>>? columnDescriptions;
 
   Map<String, Object?> encode() => {
-    if (bigqueryDataset != null)
-      'bigquery_dataset': bigqueryDataset!.toTfJson(),
-    if (bigqueryTable != null) 'bigquery_table': bigqueryTable!.toTfJson(),
-    if (columnDescriptions != null)
-      'column_descriptions': columnDescriptions!.toTfJson(),
+    'bigquery_dataset': ?bigqueryDataset?.toTfJson(),
+    'bigquery_table': ?bigqueryTable?.toTfJson(),
+    'column_descriptions': ?columnDescriptions?.toTfJson(),
   };
 }
 
@@ -1119,9 +1065,7 @@ final class AgenticApplicationsAnalystAgentPersonaResourcesF1Resource {
 
   final TfArg<String>? f1Table;
 
-  Map<String, Object?> encode() => {
-    if (f1Table != null) 'f1_table': f1Table!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'f1_table': ?f1Table?.toTfJson()};
 }
 
 /// Typed helper for the `resources.google_cloud_storage_resource` block of
@@ -1138,8 +1082,7 @@ final class AgenticApplicationsAnalystAgentPersonaResourcesGoogleCloudStorageRes
   final TfArg<String> googleCloudStorageObject;
 
   Map<String, Object?> encode() => {
-    if (fileExtensionRestrictions != null)
-      'file_extension_restrictions': fileExtensionRestrictions!.toTfJson(),
+    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
     'google_cloud_storage_object': googleCloudStorageObject.toTfJson(),
   };
 }
@@ -1158,9 +1101,8 @@ final class AgenticApplicationsAnalystAgentPersonaResourcesGoogleDriveResource {
   final TfArg<String>? fileReference;
 
   Map<String, Object?> encode() => {
-    if (fileExtensionRestrictions != null)
-      'file_extension_restrictions': fileExtensionRestrictions!.toTfJson(),
-    if (fileReference != null) 'file_reference': fileReference!.toTfJson(),
+    'file_extension_restrictions': ?fileExtensionRestrictions?.toTfJson(),
+    'file_reference': ?fileReference?.toTfJson(),
   };
 }
 
@@ -1209,7 +1151,7 @@ final class AgenticApplicationsAnalystAgentPersonaSkills {
 
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'skill_id': skillId.toTfJson(),
     if (references != null)
       'references': [for (final e in references!) e.encode()],
@@ -1252,7 +1194,7 @@ final class AgenticApplicationsAnalystAgentPersonaTables {
   final List<AgenticApplicationsAnalystAgentPersonaTablesColumns>? columns;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
     if (columns != null) 'columns': [for (final e in columns!) e.encode()],
   };
@@ -1276,7 +1218,7 @@ final class AgenticApplicationsAnalystAgentPersonaTablesColumns {
 
   Map<String, Object?> encode() => {
     'data_type': dataType.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -1370,13 +1312,11 @@ final class GoogleAgenticApplicationsAnalystAgentPersona extends Resource {
            'location': location,
            'analyst_agent_persona_id': analystAgentPersonaId,
            'display_name': displayName,
-           if (role != null) 'role': role,
-           if (displayDescription != null)
-             'display_description': displayDescription,
-           if (modelDescription != null) 'model_description': modelDescription,
-           if (customerContext != null) 'customer_context': customerContext,
-           if (geminiEnterpriseEngine != null)
-             'gemini_enterprise_engine': geminiEnterpriseEngine,
+           'role': ?role,
+           'display_description': ?displayDescription,
+           'model_description': ?modelDescription,
+           'customer_context': ?customerContext,
+           'gemini_enterprise_engine': ?geminiEnterpriseEngine,
            if (resources != null)
              'resources': TfArg.literal([
                for (final e in resources) e.encode(),
@@ -1399,8 +1339,8 @@ final class GoogleAgenticApplicationsAnalystAgentPersona extends Resource {
              'mcp_data_sources': TfArg.literal([
                for (final e in mcpDataSources) e.encode(),
              ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

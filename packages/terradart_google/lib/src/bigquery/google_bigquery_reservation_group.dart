@@ -42,9 +42,9 @@ final class GoogleBigqueryReservationGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (location != null) 'location': location,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

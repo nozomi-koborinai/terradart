@@ -46,10 +46,8 @@ final class AppstreamFleetComputeCapacity {
   final TfArg<num>? desiredSessions;
 
   Map<String, Object?> encode() => {
-    if (desiredInstances != null)
-      'desired_instances': desiredInstances!.toTfJson(),
-    if (desiredSessions != null)
-      'desired_sessions': desiredSessions!.toTfJson(),
+    'desired_instances': ?desiredInstances?.toTfJson(),
+    'desired_sessions': ?desiredSessions?.toTfJson(),
   };
 }
 
@@ -67,10 +65,9 @@ final class AppstreamFleetDomainJoinInfo {
   final TfArg<String>? organizationalUnitDistinguishedName;
 
   Map<String, Object?> encode() => {
-    if (directoryName != null) 'directory_name': directoryName!.toTfJson(),
-    if (organizationalUnitDistinguishedName != null)
-      'organizational_unit_distinguished_name':
-          organizationalUnitDistinguishedName!.toTfJson(),
+    'directory_name': ?directoryName?.toTfJson(),
+    'organizational_unit_distinguished_name':
+        ?organizationalUnitDistinguishedName?.toTfJson(),
   };
 }
 
@@ -85,9 +82,8 @@ final class AppstreamFleetVpcConfig {
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   Map<String, Object?> encode() => {
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
+    'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -123,28 +119,23 @@ final class AwsAppstreamFleet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (disconnectTimeoutInSeconds != null)
-             'disconnect_timeout_in_seconds': disconnectTimeoutInSeconds,
-           if (displayName != null) 'display_name': displayName,
-           if (enableDefaultInternetAccess != null)
-             'enable_default_internet_access': enableDefaultInternetAccess,
-           if (fleetType != null) 'fleet_type': fleetType,
-           if (iamRoleArn != null) 'iam_role_arn': iamRoleArn.encodeAs('arn'),
-           if (idleDisconnectTimeoutInSeconds != null)
-             'idle_disconnect_timeout_in_seconds':
-                 idleDisconnectTimeoutInSeconds,
-           if (imageArn != null) 'image_arn': imageArn,
-           if (imageName != null) 'image_name': imageName,
+           'description': ?description,
+           'disconnect_timeout_in_seconds': ?disconnectTimeoutInSeconds,
+           'display_name': ?displayName,
+           'enable_default_internet_access': ?enableDefaultInternetAccess,
+           'fleet_type': ?fleetType,
+           'iam_role_arn': ?iamRoleArn?.encodeAs('arn'),
+           'idle_disconnect_timeout_in_seconds':
+               ?idleDisconnectTimeoutInSeconds,
+           'image_arn': ?imageArn,
+           'image_name': ?imageName,
            'instance_type': instanceType,
-           if (maxSessionsPerInstance != null)
-             'max_sessions_per_instance': maxSessionsPerInstance,
-           if (maxUserDurationInSeconds != null)
-             'max_user_duration_in_seconds': maxUserDurationInSeconds,
+           'max_sessions_per_instance': ?maxSessionsPerInstance,
+           'max_user_duration_in_seconds': ?maxUserDurationInSeconds,
            'name': name,
-           if (region != null) 'region': region,
-           if (streamView != null) 'stream_view': streamView,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'stream_view': ?streamView,
+           'tags': ?tags,
            'compute_capacity': TfArg.literal(computeCapacity.encode()),
            if (domainJoinInfo != null)
              'domain_join_info': TfArg.literal(domainJoinInfo.encode()),

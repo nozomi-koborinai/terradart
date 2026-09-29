@@ -34,12 +34,12 @@ final class GoogleServiceNetworkingPeeredDnsDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'dns_suffix': dnsSuffix,
            'name': name,
            'network': network.encodeAs('name'),
-           if (project != null) 'project': project,
-           if (service != null) 'service': service,
+           'project': ?project,
+           'service': ?service,
          },
        );
 

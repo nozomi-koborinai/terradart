@@ -29,10 +29,10 @@ final class GoogleEventarcPipelineIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
+           'location': ?location,
            'pipeline_id': pipelineId,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

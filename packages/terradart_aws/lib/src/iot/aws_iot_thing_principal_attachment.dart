@@ -34,10 +34,9 @@ final class AwsIotThingPrincipalAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'principal': principal,
-           if (region != null) 'region': region,
+           'region': ?region,
            'thing': thing,
-           if (thingPrincipalType != null)
-             'thing_principal_type': thingPrincipalType,
+           'thing_principal_type': ?thingPrincipalType,
          },
        );
 

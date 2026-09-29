@@ -24,10 +24,10 @@ final class AwsTransferWebAppCustomization extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (faviconFile != null) 'favicon_file': faviconFile,
-           if (logoFile != null) 'logo_file': logoFile,
-           if (region != null) 'region': region,
-           if (title != null) 'title': title,
+           'favicon_file': ?faviconFile,
+           'logo_file': ?logoFile,
+           'region': ?region,
+           'title': ?title,
            'web_app_id': webAppId,
          },
        );

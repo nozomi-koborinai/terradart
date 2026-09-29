@@ -43,10 +43,10 @@ final class GoogleComputeRouterNatAddress extends Resource {
            'router': router,
            'router_nat': routerNat,
            'nat_ips': natIps,
-           if (drainNatIps != null) 'drain_nat_ips': drainNatIps,
-           if (region != null) 'region': region,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'drain_nat_ips': ?drainNatIps,
+           'region': ?region,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

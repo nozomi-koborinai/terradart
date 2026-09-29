@@ -33,9 +33,9 @@ final class GoogleDialogflowVersion extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (parent != null) 'parent': parent,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'parent': ?parent,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

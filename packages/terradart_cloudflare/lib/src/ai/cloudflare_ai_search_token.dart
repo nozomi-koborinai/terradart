@@ -29,7 +29,7 @@ final class CloudflareAiSearchToken extends Resource {
            'account_id': accountId.encodeAs('id'),
            'cf_api_id': cfApiId,
            'cf_api_key': cfApiKey,
-           if (legacy != null) 'legacy': legacy,
+           'legacy': ?legacy,
            'name': name,
          },
        );

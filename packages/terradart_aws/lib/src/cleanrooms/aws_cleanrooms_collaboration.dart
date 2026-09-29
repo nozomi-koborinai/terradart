@@ -91,14 +91,14 @@ final class AwsCleanroomsCollaboration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (analyticsEngine != null) 'analytics_engine': analyticsEngine,
+           'analytics_engine': ?analyticsEngine,
            'creator_display_name': creatorDisplayName,
            'creator_member_abilities': creatorMemberAbilities,
            'description': description,
            'name': name,
            'query_log_status': queryLogStatus,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (dataEncryptionMetadata != null)
              'data_encryption_metadata': TfArg.literal(
                dataEncryptionMetadata.encode(),

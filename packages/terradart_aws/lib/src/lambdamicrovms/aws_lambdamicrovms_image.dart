@@ -78,16 +78,14 @@ final class AwsLambdamicrovmsImage extends Resource {
                for (final e in additionalOsCapabilities) e.toTfJson(),
              ]),
            'base_image_arn': baseImageArn,
-           if (baseImageVersion != null) 'base_image_version': baseImageVersion,
+           'base_image_version': ?baseImageVersion,
            'build_role_arn': buildRoleArn,
-           if (description != null) 'description': description,
-           if (egressNetworkConnectors != null)
-             'egress_network_connectors': egressNetworkConnectors,
-           if (environmentVariables != null)
-             'environment_variables': environmentVariables,
+           'description': ?description,
+           'egress_network_connectors': ?egressNetworkConnectors,
+           'environment_variables': ?environmentVariables,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (codeArtifact != null)
              'code_artifact': TfArg.literal([
                for (final e in codeArtifact) e.encode(),

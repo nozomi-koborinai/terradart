@@ -104,8 +104,7 @@ final class BigqueryAnalyticsHubListingBigqueryDataset {
 
   Map<String, Object?> encode() => {
     'dataset': dataset.toTfJson(),
-    if (replicaLocations != null)
-      'replica_locations': replicaLocations!.toTfJson(),
+    'replica_locations': ?replicaLocations?.toTfJson(),
     if (selectedResources != null)
       'selected_resources': [for (final e in selectedResources!) e.encode()],
   };
@@ -197,7 +196,7 @@ final class BigqueryAnalyticsHubListingDataProvider {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (primaryContact != null) 'primary_contact': primaryContact!.toTfJson(),
+    'primary_contact': ?primaryContact?.toTfJson(),
   };
 }
 
@@ -216,7 +215,7 @@ final class BigqueryAnalyticsHubListingPublisher {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (primaryContact != null) 'primary_contact': primaryContact!.toTfJson(),
+    'primary_contact': ?primaryContact?.toTfJson(),
   };
 }
 
@@ -234,8 +233,7 @@ final class BigqueryAnalyticsHubListingPubsubTopic {
   final RefTo<GooglePubsubTopic> topic;
 
   Map<String, Object?> encode() => {
-    if (dataAffinityRegions != null)
-      'data_affinity_regions': dataAffinityRegions!.toTfJson(),
+    'data_affinity_regions': ?dataAffinityRegions?.toTfJson(),
     'topic': topic.encodeAs('id').toTfJson(),
   };
 }
@@ -254,9 +252,8 @@ final class BigqueryAnalyticsHubListingRestrictedExportConfig {
   final TfArg<bool>? restrictQueryResult;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (restrictQueryResult != null)
-      'restrict_query_result': restrictQueryResult!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'restrict_query_result': ?restrictQueryResult?.toTfJson(),
   };
 }
 
@@ -294,24 +291,22 @@ final class GoogleBigqueryAnalyticsHubListing extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowOnlyMetadataSharing != null)
-             'allow_only_metadata_sharing': allowOnlyMetadataSharing,
-           if (categories != null) 'categories': categories,
+           'allow_only_metadata_sharing': ?allowOnlyMetadataSharing,
+           'categories': ?categories,
            'data_exchange_id': dataExchangeId,
-           if (deleteCommercial != null) 'delete_commercial': deleteCommercial,
-           if (description != null) 'description': description,
-           if (discoveryType != null) 'discovery_type': discoveryType,
+           'delete_commercial': ?deleteCommercial,
+           'description': ?description,
+           'discovery_type': ?discoveryType,
            'display_name': displayName,
-           if (documentation != null) 'documentation': documentation,
-           if (icon != null) 'icon': icon,
+           'documentation': ?documentation,
+           'icon': ?icon,
            'listing_id': listingId,
            'location': location,
-           if (logLinkedDatasetQueryUserEmail != null)
-             'log_linked_dataset_query_user_email':
-                 logLinkedDatasetQueryUserEmail,
-           if (primaryContact != null) 'primary_contact': primaryContact,
-           if (project != null) 'project': project,
-           if (requestAccess != null) 'request_access': requestAccess,
+           'log_linked_dataset_query_user_email':
+               ?logLinkedDatasetQueryUserEmail,
+           'primary_contact': ?primaryContact,
+           'project': ?project,
+           'request_access': ?requestAccess,
            ...source.argMap,
            if (dataProvider != null)
              'data_provider': TfArg.literal(dataProvider.encode()),

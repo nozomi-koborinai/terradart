@@ -41,12 +41,11 @@ final class AwsEfsMountTarget extends Resource {
          terraformType: tfType,
          argMap: {
            'file_system_id': fileSystemId,
-           if (ipAddress != null) 'ip_address': ipAddress,
-           if (ipAddressType != null) 'ip_address_type': ipAddressType,
-           if (ipv6Address != null) 'ipv6_address': ipv6Address,
-           if (region != null) 'region': region,
-           if (securityGroups != null)
-             'security_groups': securityGroups.encodeAs('id'),
+           'ip_address': ?ipAddress,
+           'ip_address_type': ?ipAddressType,
+           'ipv6_address': ?ipv6Address,
+           'region': ?region,
+           'security_groups': ?securityGroups?.encodeAs('id'),
            'subnet_id': subnetId.encodeAs('id'),
          },
        );

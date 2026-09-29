@@ -32,9 +32,9 @@ final class TokenValidationRulesPosition {
   final TfArg<num>? index;
 
   Map<String, Object?> encode() => {
-    if (after != null) 'after': after!.toTfJson(),
-    if (before != null) 'before': before!.toTfJson(),
-    if (index != null) 'index': index!.toTfJson(),
+    'after': ?after?.toTfJson(),
+    'before': ?before?.toTfJson(),
+    'index': ?index?.toTfJson(),
   };
 }
 
@@ -62,9 +62,7 @@ final class TokenValidationRulesSelectorExclude {
 
   final TfArg<List<Object?>>? operationIds;
 
-  Map<String, Object?> encode() => {
-    if (operationIds != null) 'operation_ids': operationIds!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'operation_ids': ?operationIds?.toTfJson()};
 }
 
 /// Typed helper for the `selector.include` block of
@@ -75,7 +73,7 @@ final class TokenValidationRulesSelectorInclude {
 
   final TfArg<List<Object?>>? host;
 
-  Map<String, Object?> encode() => {if (host != null) 'host': host!.toTfJson()};
+  Map<String, Object?> encode() => {'host': ?host?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_token_validation_rules`.

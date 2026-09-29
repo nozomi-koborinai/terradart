@@ -64,10 +64,10 @@ final class GoogleDiscoveryEngineTargetSite extends Resource {
            'location': location,
            'data_store_id': dataStoreId,
            'provided_uri_pattern': providedUriPattern,
-           if (type != null) 'type': type,
-           if (exactMatch != null) 'exact_match': exactMatch,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'type': ?type,
+           'exact_match': ?exactMatch,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

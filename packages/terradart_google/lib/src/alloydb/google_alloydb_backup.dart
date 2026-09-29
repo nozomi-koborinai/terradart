@@ -46,7 +46,7 @@ final class GoogleAlloydbBackup extends Resource {
            'backup_id': backupId,
            'cluster_name': clusterName,
            'location': location,
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
          },
        );
 

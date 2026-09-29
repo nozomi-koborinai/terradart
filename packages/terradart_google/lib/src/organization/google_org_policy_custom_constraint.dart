@@ -51,9 +51,9 @@ final class GoogleOrgPolicyCustomConstraint extends Resource {
          argMap: {
            'action_type': actionType,
            'condition': condition,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (displayName != null) 'display_name': displayName,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'display_name': ?displayName,
            'method_types': methodTypes,
            'name': name,
            'parent': parent,

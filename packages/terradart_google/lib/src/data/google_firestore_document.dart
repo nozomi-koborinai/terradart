@@ -28,7 +28,7 @@ final class DataGoogleFirestoreDocument extends Data {
            'collection': collection,
            'database': database,
            'document_id': documentId,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -30,10 +30,7 @@ final class AwsXrayTraceSegmentDestination extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'destination': destination,
-           if (region != null) 'region': region,
-         },
+         argMap: {'destination': destination, 'region': ?region},
        );
 
   @override

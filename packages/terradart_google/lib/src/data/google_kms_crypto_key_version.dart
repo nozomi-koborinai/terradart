@@ -22,10 +22,7 @@ final class DataGoogleKmsCryptoKeyVersion extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'crypto_key': cryptoKey,
-           if (version != null) 'version': version,
-         },
+         argMap: {'crypto_key': cryptoKey, 'version': ?version},
        );
 
   @override

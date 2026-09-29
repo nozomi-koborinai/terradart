@@ -26,9 +26,9 @@ final class DataCloudflareSecretsStores extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (direction != null) 'direction': direction,
-           if (maxItems != null) 'max_items': maxItems,
-           if (order != null) 'order': order,
+           'direction': ?direction,
+           'max_items': ?maxItems,
+           'order': ?order,
          },
        );
 

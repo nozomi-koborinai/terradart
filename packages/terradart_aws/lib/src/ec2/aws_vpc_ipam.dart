@@ -59,13 +59,13 @@ final class AwsVpcIpam extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cascade != null) 'cascade': cascade,
-           if (description != null) 'description': description,
-           if (enablePrivateGua != null) 'enable_private_gua': enablePrivateGua,
-           if (meteredAccount != null) 'metered_account': meteredAccount,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (tier != null) 'tier': tier,
+           'cascade': ?cascade,
+           'description': ?description,
+           'enable_private_gua': ?enablePrivateGua,
+           'metered_account': ?meteredAccount,
+           'region': ?region,
+           'tags': ?tags,
+           'tier': ?tier,
            'operating_regions': TfArg.literal([
              for (final e in operatingRegions) e.encode(),
            ]),

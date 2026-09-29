@@ -43,7 +43,7 @@ final class AwsChimeVoiceConnectorGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (connector != null)
              'connector': TfArg.literal([
                for (final e in connector) e.encode(),

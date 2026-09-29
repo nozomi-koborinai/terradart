@@ -22,8 +22,8 @@ final class DataAwsRdsCluster extends Data {
          terraformType: tfType,
          argMap: {
            'cluster_identifier': clusterIdentifier,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

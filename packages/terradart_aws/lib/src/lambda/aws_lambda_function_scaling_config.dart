@@ -23,10 +23,8 @@ final class LambdaFunctionScalingConfigFunctionScalingConfig {
   final TfArg<num>? minExecutionEnvironments;
 
   Map<String, Object?> encode() => {
-    if (maxExecutionEnvironments != null)
-      'max_execution_environments': maxExecutionEnvironments!.toTfJson(),
-    if (minExecutionEnvironments != null)
-      'min_execution_environments': minExecutionEnvironments!.toTfJson(),
+    'max_execution_environments': ?maxExecutionEnvironments?.toTfJson(),
+    'min_execution_environments': ?minExecutionEnvironments?.toTfJson(),
   };
 }
 
@@ -50,7 +48,7 @@ final class AwsLambdaFunctionScalingConfig extends Resource {
          argMap: {
            'function_name': functionName.encodeAs('function_name'),
            'qualifier': qualifier,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (functionScalingConfig != null)
              'function_scaling_config': TfArg.literal([
                for (final e in functionScalingConfig) e.encode(),

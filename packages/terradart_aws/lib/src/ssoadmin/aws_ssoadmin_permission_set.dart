@@ -26,13 +26,13 @@ final class AwsSsoadminPermissionSet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'instance_arn': instanceArn,
            'name': name,
-           if (region != null) 'region': region,
-           if (relayState != null) 'relay_state': relayState,
-           if (sessionDuration != null) 'session_duration': sessionDuration,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'relay_state': ?relayState,
+           'session_duration': ?sessionDuration,
+           'tags': ?tags,
          },
        );
 

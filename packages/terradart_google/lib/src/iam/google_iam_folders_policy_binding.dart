@@ -27,10 +27,10 @@ final class IamFoldersPolicyBindingCondition {
   final TfArg<String>? title;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (expression != null) 'expression': expression!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'expression': ?expression?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'title': ?title?.toTfJson(),
   };
 }
 
@@ -42,9 +42,7 @@ final class IamFoldersPolicyBindingTarget {
 
   final TfArg<String>? principalSet;
 
-  Map<String, Object?> encode() => {
-    if (principalSet != null) 'principal_set': principalSet!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'principal_set': ?principalSet?.toTfJson()};
 }
 
 /// Factory wrapper for `google_iam_folders_policy_binding`.
@@ -80,14 +78,14 @@ final class GoogleIamFoldersPolicyBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (annotations != null) 'annotations': annotations,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
+           'annotations': ?annotations,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
            'folder': folder,
            'location': location,
            'policy': policy,
            'policy_binding_id': policyBindingId,
-           if (policyKind != null) 'policy_kind': policyKind,
+           'policy_kind': ?policyKind,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
            'target': TfArg.literal(target.encode()),

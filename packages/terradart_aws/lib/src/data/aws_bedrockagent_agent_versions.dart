@@ -53,7 +53,7 @@ final class DataAwsBedrockagentAgentVersions extends Data {
          terraformType: tfType,
          argMap: {
            'agent_id': agentId,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (agentVersionSummaries != null)
              'agent_version_summaries': TfArg.literal([
                for (final e in agentVersionSummaries) e.encode(),

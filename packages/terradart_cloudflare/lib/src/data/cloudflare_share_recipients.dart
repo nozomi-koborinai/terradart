@@ -22,8 +22,8 @@ final class DataCloudflareShareRecipients extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (includeResources != null) 'include_resources': includeResources,
-           if (maxItems != null) 'max_items': maxItems,
+           'include_resources': ?includeResources,
+           'max_items': ?maxItems,
            'share_id': shareId,
          },
        );

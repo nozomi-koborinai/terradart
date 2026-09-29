@@ -22,9 +22,8 @@ final class KeyspacesKeyspaceReplicationSpecification {
   replicationStrategy;
 
   Map<String, Object?> encode() => {
-    if (regionList != null) 'region_list': regionList!.toTfJson(),
-    if (replicationStrategy != null)
-      'replication_strategy': replicationStrategy!.toTfJson(),
+    'region_list': ?regionList?.toTfJson(),
+    'replication_strategy': ?replicationStrategy?.toTfJson(),
   };
 }
 
@@ -59,8 +58,8 @@ final class AwsKeyspacesKeyspace extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (replicationSpecification != null)
              'replication_specification': TfArg.literal(
                replicationSpecification.encode(),

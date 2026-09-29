@@ -60,11 +60,11 @@ final class CloudflareCustomPages extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId.encodeAs('id'),
+           'account_id': ?accountId?.encodeAs('id'),
            'identifier': identifier,
            'state': state,
-           if (url != null) 'url': url,
-           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
+           'url': ?url,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

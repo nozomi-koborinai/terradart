@@ -32,9 +32,9 @@ final class CloudflareZeroTrustGatewayPacfile extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'contents': contents,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (slug != null) 'slug': slug,
+           'slug': ?slug,
          },
        );
 

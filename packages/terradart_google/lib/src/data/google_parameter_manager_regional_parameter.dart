@@ -27,7 +27,7 @@ final class DataGoogleParameterManagerRegionalParameter extends Data {
          argMap: {
            'location': location,
            'parameter_id': parameterId,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -68,14 +68,12 @@ final class NetworkServicesLbEdgeExtensionExtensionChainsExtensions {
   final TfArg<List<Object?>>? supportedEvents;
 
   Map<String, Object?> encode() => {
-    if (failOpen != null) 'fail_open': failOpen!.toTfJson(),
-    if (forwardAttributes != null)
-      'forward_attributes': forwardAttributes!.toTfJson(),
-    if (forwardHeaders != null) 'forward_headers': forwardHeaders!.toTfJson(),
+    'fail_open': ?failOpen?.toTfJson(),
+    'forward_attributes': ?forwardAttributes?.toTfJson(),
+    'forward_headers': ?forwardHeaders?.toTfJson(),
     'name': name.toTfJson(),
     'service': service.toTfJson(),
-    if (supportedEvents != null)
-      'supported_events': supportedEvents!.toTfJson(),
+    'supported_events': ?supportedEvents?.toTfJson(),
   };
 }
 
@@ -142,10 +140,10 @@ final class GoogleNetworkServicesLbEdgeExtension extends Resource {
            'extension_chains': TfArg.literal([
              for (final e in extensionChains) e.encode(),
            ]),
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

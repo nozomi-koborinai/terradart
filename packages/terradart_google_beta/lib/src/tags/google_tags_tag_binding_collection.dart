@@ -24,7 +24,7 @@ final class GoogleTagsTagBindingCollection extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            'full_resource_name': fullResourceName,
-           if (location != null) 'location': location,
+           'location': ?location,
            'tags': tags,
          },
        );

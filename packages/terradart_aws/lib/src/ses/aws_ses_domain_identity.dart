@@ -20,7 +20,7 @@ final class AwsSesDomainIdentity extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'domain': domain, if (region != null) 'region': region},
+         argMap: {'domain': domain, 'region': ?region},
        );
 
   @override

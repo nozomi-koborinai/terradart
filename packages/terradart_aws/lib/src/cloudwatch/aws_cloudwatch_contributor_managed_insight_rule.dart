@@ -26,10 +26,10 @@ final class AwsCloudwatchContributorManagedInsightRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_arn': resourceArn,
-           if (state != null) 'state': state,
-           if (tags != null) 'tags': tags,
+           'state': ?state,
+           'tags': ?tags,
            'template_name': templateName,
          },
        );

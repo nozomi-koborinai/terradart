@@ -53,8 +53,8 @@ final class VerifiedaccessEndpointCidrOptions {
 
   Map<String, Object?> encode() => {
     'cidr': cidr.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
+    'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),
     'port_range': [for (final e in portRange) e.encode()],
   };
 }
@@ -110,11 +110,10 @@ final class VerifiedaccessEndpointLoadBalancerOptions {
   final List<VerifiedaccessEndpointLoadBalancerOptionsPortRange>? portRange;
 
   Map<String, Object?> encode() => {
-    if (loadBalancerArn != null)
-      'load_balancer_arn': loadBalancerArn!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
+    'load_balancer_arn': ?loadBalancerArn?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
+    'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),
     if (portRange != null)
       'port_range': [for (final e in portRange!) e.encode()],
   };
@@ -171,10 +170,9 @@ final class VerifiedaccessEndpointNetworkInterfaceOptions {
   final List<VerifiedaccessEndpointNetworkInterfaceOptionsPortRange>? portRange;
 
   Map<String, Object?> encode() => {
-    if (networkInterfaceId != null)
-      'network_interface_id': networkInterfaceId!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
+    'network_interface_id': ?networkInterfaceId?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
     if (portRange != null)
       'port_range': [for (final e in portRange!) e.encode()],
   };
@@ -242,15 +240,13 @@ final class VerifiedaccessEndpointRdsOptions {
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   Map<String, Object?> encode() => {
-    if (port != null) 'port': port!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (rdsDbClusterArn != null)
-      'rds_db_cluster_arn': rdsDbClusterArn!.toTfJson(),
-    if (rdsDbInstanceArn != null)
-      'rds_db_instance_arn': rdsDbInstanceArn!.toTfJson(),
-    if (rdsDbProxyArn != null) 'rds_db_proxy_arn': rdsDbProxyArn!.toTfJson(),
-    if (rdsEndpoint != null) 'rds_endpoint': rdsEndpoint!.toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
+    'port': ?port?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
+    'rds_db_cluster_arn': ?rdsDbClusterArn?.toTfJson(),
+    'rds_db_instance_arn': ?rdsDbInstanceArn?.toTfJson(),
+    'rds_db_proxy_arn': ?rdsDbProxyArn?.toTfJson(),
+    'rds_endpoint': ?rdsEndpoint?.toTfJson(),
+    'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -277,9 +273,8 @@ final class VerifiedaccessEndpointSseSpecification {
   final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
-    if (customerManagedKeyEnabled != null)
-      'customer_managed_key_enabled': customerManagedKeyEnabled!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
+    'customer_managed_key_enabled': ?customerManagedKeyEnabled?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -312,20 +307,16 @@ final class AwsVerifiedaccessEndpoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (applicationDomain != null)
-             'application_domain': applicationDomain,
+           'application_domain': ?applicationDomain,
            'attachment_type': attachmentType,
-           if (description != null) 'description': description,
-           if (domainCertificateArn != null)
-             'domain_certificate_arn': domainCertificateArn,
-           if (endpointDomainPrefix != null)
-             'endpoint_domain_prefix': endpointDomainPrefix,
+           'description': ?description,
+           'domain_certificate_arn': ?domainCertificateArn,
+           'endpoint_domain_prefix': ?endpointDomainPrefix,
            'endpoint_type': endpointType,
-           if (policyDocument != null) 'policy_document': policyDocument,
-           if (region != null) 'region': region,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'policy_document': ?policyDocument,
+           'region': ?region,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
+           'tags': ?tags,
            'verified_access_group_id': verifiedAccessGroupId,
            if (cidrOptions != null)
              'cidr_options': TfArg.literal(cidrOptions.encode()),

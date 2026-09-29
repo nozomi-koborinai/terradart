@@ -62,7 +62,7 @@ final class EksCapabilityConfigurationArgoCd {
   final List<EksCapabilityConfigurationArgoCdRbacRoleMapping>? rbacRoleMapping;
 
   Map<String, Object?> encode() => {
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
     if (awsIdc != null) 'aws_idc': [for (final e in awsIdc!) e.encode()],
     if (networkAccess != null)
       'network_access': [for (final e in networkAccess!) e.encode()],
@@ -86,7 +86,7 @@ final class EksCapabilityConfigurationArgoCdAwsIdc {
 
   Map<String, Object?> encode() => {
     'idc_instance_arn': idcInstanceArn.toTfJson(),
-    if (idcRegion != null) 'idc_region': idcRegion!.toTfJson(),
+    'idc_region': ?idcRegion?.toTfJson(),
   };
 }
 
@@ -98,9 +98,7 @@ final class EksCapabilityConfigurationArgoCdNetworkAccess {
 
   final TfArg<List<Object?>>? vpceIds;
 
-  Map<String, Object?> encode() => {
-    if (vpceIds != null) 'vpce_ids': vpceIds!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'vpce_ids': ?vpceIds?.toTfJson()};
 }
 
 /// Typed helper for the `configuration.argo_cd.rbac_role_mapping` block of
@@ -193,9 +191,9 @@ final class AwsEksCapability extends Resource {
            'capability_name': capabilityName,
            'cluster_name': clusterName,
            'delete_propagation_policy': deletePropagationPolicy,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'type': type,
            if (configuration != null)
              'configuration': TfArg.literal([

@@ -27,8 +27,8 @@ final class GoogleBiglakeCatalog extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

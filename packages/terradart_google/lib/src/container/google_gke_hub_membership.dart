@@ -59,11 +59,11 @@ final class GoogleGkeHubMembership extends Resource {
          terraformType: tfType,
          argMap: {
            'membership_id': membershipId,
-           if (location != null) 'location': location,
-           if (labels != null) 'labels': labels,
-           if (endpoint != null) 'endpoint': endpoint,
-           if (authority != null) 'authority': authority,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'labels': ?labels,
+           'endpoint': ?endpoint,
+           'authority': ?authority,
+           'project': ?project,
          },
        );
 

@@ -40,8 +40,8 @@ final class DataAwsImagebuilderComponents extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (owner != null) 'owner': owner,
-           if (region != null) 'region': region,
+           'owner': ?owner,
+           'region': ?region,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

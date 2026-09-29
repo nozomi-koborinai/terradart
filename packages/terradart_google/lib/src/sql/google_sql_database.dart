@@ -53,10 +53,10 @@ final class GoogleSqlDatabase extends Resource {
          argMap: {
            'name': name,
            'instance': instance,
-           if (charset != null) 'charset': charset,
-           if (collation != null) 'collation': collation,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'charset': ?charset,
+           'collation': ?collation,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

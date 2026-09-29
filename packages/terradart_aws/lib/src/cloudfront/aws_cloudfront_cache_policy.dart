@@ -33,10 +33,8 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOrigin {
   queryStringsConfig;
 
   Map<String, Object?> encode() => {
-    if (enableAcceptEncodingBrotli != null)
-      'enable_accept_encoding_brotli': enableAcceptEncodingBrotli!.toTfJson(),
-    if (enableAcceptEncodingGzip != null)
-      'enable_accept_encoding_gzip': enableAcceptEncodingGzip!.toTfJson(),
+    'enable_accept_encoding_brotli': ?enableAcceptEncodingBrotli?.toTfJson(),
+    'enable_accept_encoding_gzip': ?enableAcceptEncodingGzip?.toTfJson(),
     'cookies_config': cookiesConfig.encode(),
     'headers_config': headersConfig.encode(),
     'query_strings_config': queryStringsConfig.encode(),
@@ -62,7 +60,7 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookies
 
   Map<String, Object?> encode() => {
     'cookie_behavior': cookieBehavior.toTfJson(),
-    if (cookies != null) 'cookies': cookies!.encode(),
+    'cookies': ?cookies?.encode(),
   };
 }
 
@@ -91,9 +89,7 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginCookies
 
   final TfArg<List<Object?>>? items;
 
-  Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
 /// Typed helper for the `parameters_in_cache_key_and_forwarded_to_origin.headers_config` block of
@@ -114,8 +110,8 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeaders
   headers;
 
   Map<String, Object?> encode() => {
-    if (headerBehavior != null) 'header_behavior': headerBehavior!.toTfJson(),
-    if (headers != null) 'headers': headers!.encode(),
+    'header_behavior': ?headerBehavior?.toTfJson(),
+    'headers': ?headers?.encode(),
   };
 }
 
@@ -142,9 +138,7 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginHeaders
 
   final TfArg<List<Object?>>? items;
 
-  Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
 /// Typed helper for the `parameters_in_cache_key_and_forwarded_to_origin.query_strings_config` block of
@@ -166,7 +160,7 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQuerySt
 
   Map<String, Object?> encode() => {
     'query_string_behavior': queryStringBehavior.toTfJson(),
-    if (queryStrings != null) 'query_strings': queryStrings!.encode(),
+    'query_strings': ?queryStrings?.encode(),
   };
 }
 
@@ -195,9 +189,7 @@ final class CloudfrontCachePolicyParametersInCacheKeyAndForwardedToOriginQuerySt
 
   final TfArg<List<Object?>>? items;
 
-  Map<String, Object?> encode() => {
-    if (items != null) 'items': items!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'items': ?items?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_cloudfront_cache_policy`.
@@ -220,10 +212,10 @@ final class AwsCloudfrontCachePolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (comment != null) 'comment': comment,
-           if (defaultTtl != null) 'default_ttl': defaultTtl,
-           if (maxTtl != null) 'max_ttl': maxTtl,
-           if (minTtl != null) 'min_ttl': minTtl,
+           'comment': ?comment,
+           'default_ttl': ?defaultTtl,
+           'max_ttl': ?maxTtl,
+           'min_ttl': ?minTtl,
            'name': name,
            'parameters_in_cache_key_and_forwarded_to_origin': TfArg.literal(
              parametersInCacheKeyAndForwardedToOrigin.encode(),

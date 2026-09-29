@@ -81,15 +81,14 @@ final class GoogleDataprocMetastoreFederation extends Resource {
          argMap: {
            'federation_id': federationId,
            'version': version,
-           if (location != null) 'location': location,
+           'location': ?location,
            'backend_metastores': TfArg.literal(
              backendMetastores.map((b) => b.toArgMap()).toList(),
            ),
-           if (labels != null) 'labels': labels,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_protection': ?deletionProtection,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

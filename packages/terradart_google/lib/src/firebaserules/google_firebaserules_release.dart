@@ -30,9 +30,9 @@ final class GoogleFirebaserulesRelease extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            'ruleset_name': rulesetName,
          },
        );

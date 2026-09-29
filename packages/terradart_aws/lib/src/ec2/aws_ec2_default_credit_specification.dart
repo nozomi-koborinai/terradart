@@ -46,7 +46,7 @@ final class AwsEc2DefaultCreditSpecification extends Resource {
          argMap: {
            'cpu_credits': cpuCredits,
            'instance_family': instanceFamily,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

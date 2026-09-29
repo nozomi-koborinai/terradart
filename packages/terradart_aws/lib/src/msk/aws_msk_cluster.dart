@@ -59,13 +59,12 @@ final class MskClusterBrokerNodeGroupInfo {
   final MskClusterBrokerNodeGroupInfoStorageInfo? storageInfo;
 
   Map<String, Object?> encode() => {
-    if (azDistribution != null) 'az_distribution': azDistribution!.toTfJson(),
+    'az_distribution': ?azDistribution?.toTfJson(),
     'client_subnets': clientSubnets.toTfJson(),
     'instance_type': instanceType.toTfJson(),
     'security_groups': securityGroups.encodeAs('id').toTfJson(),
-    if (connectivityInfo != null)
-      'connectivity_info': connectivityInfo!.encode(),
-    if (storageInfo != null) 'storage_info': storageInfo!.encode(),
+    'connectivity_info': ?connectivityInfo?.encode(),
+    'storage_info': ?storageInfo?.encode(),
   };
 }
 
@@ -97,9 +96,9 @@ final class MskClusterBrokerNodeGroupInfoConnectivityInfo {
   vpcConnectivity;
 
   Map<String, Object?> encode() => {
-    if (networkType != null) 'network_type': networkType!.toTfJson(),
-    if (publicAccess != null) 'public_access': publicAccess!.encode(),
-    if (vpcConnectivity != null) 'vpc_connectivity': vpcConnectivity!.encode(),
+    'network_type': ?networkType?.toTfJson(),
+    'public_access': ?publicAccess?.encode(),
+    'vpc_connectivity': ?vpcConnectivity?.encode(),
   };
 }
 
@@ -125,7 +124,7 @@ final class MskClusterBrokerNodeGroupInfoConnectivityInfoPublicAccess {
   final TfArg<MskClusterBrokerNodeGroupInfoConnectivityInfoPublicAccessType>?
   type;
 
-  Map<String, Object?> encode() => {if (type != null) 'type': type!.toTfJson()};
+  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
 }
 
 /// `type` — derived from the provider schema description.
@@ -153,8 +152,7 @@ final class MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivity {
   clientAuthentication;
 
   Map<String, Object?> encode() => {
-    if (clientAuthentication != null)
-      'client_authentication': clientAuthentication!.encode(),
+    'client_authentication': ?clientAuthentication?.encode(),
   };
 }
 
@@ -173,8 +171,8 @@ final class MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAu
   sasl;
 
   Map<String, Object?> encode() => {
-    if (tls != null) 'tls': tls!.toTfJson(),
-    if (sasl != null) 'sasl': sasl!.encode(),
+    'tls': ?tls?.toTfJson(),
+    'sasl': ?sasl?.encode(),
   };
 }
 
@@ -192,8 +190,8 @@ final class MskClusterBrokerNodeGroupInfoConnectivityInfoVpcConnectivityClientAu
   final TfArg<bool>? scram;
 
   Map<String, Object?> encode() => {
-    if (iam != null) 'iam': iam!.toTfJson(),
-    if (scram != null) 'scram': scram!.toTfJson(),
+    'iam': ?iam?.toTfJson(),
+    'scram': ?scram?.toTfJson(),
   };
 }
 
@@ -206,7 +204,7 @@ final class MskClusterBrokerNodeGroupInfoStorageInfo {
   final MskClusterBrokerNodeGroupInfoStorageInfoEbsStorageInfo? ebsStorageInfo;
 
   Map<String, Object?> encode() => {
-    if (ebsStorageInfo != null) 'ebs_storage_info': ebsStorageInfo!.encode(),
+    'ebs_storage_info': ?ebsStorageInfo?.encode(),
   };
 }
 
@@ -225,9 +223,8 @@ final class MskClusterBrokerNodeGroupInfoStorageInfoEbsStorageInfo {
   provisionedThroughput;
 
   Map<String, Object?> encode() => {
-    if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),
-    if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput!.encode(),
+    'volume_size': ?volumeSize?.toTfJson(),
+    'provisioned_throughput': ?provisionedThroughput?.encode(),
   };
 }
 
@@ -245,9 +242,8 @@ final class MskClusterBrokerNodeGroupInfoStorageInfoEbsStorageInfoProvisionedThr
   final TfArg<num>? volumeThroughput;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (volumeThroughput != null)
-      'volume_throughput': volumeThroughput!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'volume_throughput': ?volumeThroughput?.toTfJson(),
   };
 }
 
@@ -268,9 +264,9 @@ final class MskClusterClientAuthentication {
   final MskClusterClientAuthenticationTls? tls;
 
   Map<String, Object?> encode() => {
-    if (unauthenticated != null) 'unauthenticated': unauthenticated!.toTfJson(),
-    if (sasl != null) 'sasl': sasl!.encode(),
-    if (tls != null) 'tls': tls!.encode(),
+    'unauthenticated': ?unauthenticated?.toTfJson(),
+    'sasl': ?sasl?.encode(),
+    'tls': ?tls?.encode(),
   };
 }
 
@@ -285,8 +281,8 @@ final class MskClusterClientAuthenticationSasl {
   final TfArg<bool>? scram;
 
   Map<String, Object?> encode() => {
-    if (iam != null) 'iam': iam!.toTfJson(),
-    if (scram != null) 'scram': scram!.toTfJson(),
+    'iam': ?iam?.toTfJson(),
+    'scram': ?scram?.toTfJson(),
   };
 }
 
@@ -299,8 +295,7 @@ final class MskClusterClientAuthenticationTls {
   final TfArg<List<Object?>>? certificateAuthorityArns;
 
   Map<String, Object?> encode() => {
-    if (certificateAuthorityArns != null)
-      'certificate_authority_arns': certificateAuthorityArns!.toTfJson(),
+    'certificate_authority_arns': ?certificateAuthorityArns?.toTfJson(),
   };
 }
 
@@ -337,10 +332,8 @@ final class MskClusterEncryptionInfo {
   final MskClusterEncryptionInfoEncryptionInTransit? encryptionInTransit;
 
   Map<String, Object?> encode() => {
-    if (encryptionAtRestKmsKeyArn != null)
-      'encryption_at_rest_kms_key_arn': encryptionAtRestKmsKeyArn!.toTfJson(),
-    if (encryptionInTransit != null)
-      'encryption_in_transit': encryptionInTransit!.encode(),
+    'encryption_at_rest_kms_key_arn': ?encryptionAtRestKmsKeyArn?.toTfJson(),
+    'encryption_in_transit': ?encryptionInTransit?.encode(),
   };
 }
 
@@ -359,8 +352,8 @@ final class MskClusterEncryptionInfoEncryptionInTransit {
   final TfArg<bool>? inCluster;
 
   Map<String, Object?> encode() => {
-    if (clientBroker != null) 'client_broker': clientBroker!.toTfJson(),
-    if (inCluster != null) 'in_cluster': inCluster!.toTfJson(),
+    'client_broker': ?clientBroker?.toTfJson(),
+    'in_cluster': ?inCluster?.toTfJson(),
   };
 }
 
@@ -406,9 +399,9 @@ final class MskClusterLoggingInfoBrokerLogs {
   final MskClusterLoggingInfoBrokerLogsS3? s3;
 
   Map<String, Object?> encode() => {
-    if (cloudwatchLogs != null) 'cloudwatch_logs': cloudwatchLogs!.encode(),
-    if (firehose != null) 'firehose': firehose!.encode(),
-    if (s3 != null) 's3': s3!.encode(),
+    'cloudwatch_logs': ?cloudwatchLogs?.encode(),
+    'firehose': ?firehose?.encode(),
+    's3': ?s3?.encode(),
   };
 }
 
@@ -427,7 +420,7 @@ final class MskClusterLoggingInfoBrokerLogsCloudwatchLogs {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
+    'log_group': ?logGroup?.encodeAs('name').toTfJson(),
   };
 }
 
@@ -445,7 +438,7 @@ final class MskClusterLoggingInfoBrokerLogsFirehose {
   final TfArg<bool> enabled;
 
   Map<String, Object?> encode() => {
-    if (deliveryStream != null) 'delivery_stream': deliveryStream!.toTfJson(),
+    'delivery_stream': ?deliveryStream?.toTfJson(),
     'enabled': enabled.toTfJson(),
   };
 }
@@ -467,9 +460,9 @@ final class MskClusterLoggingInfoBrokerLogsS3 {
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
+    'bucket': ?bucket?.encodeAs('id').toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -498,8 +491,8 @@ final class MskClusterOpenMonitoringPrometheus {
   final MskClusterOpenMonitoringPrometheusNodeExporter? nodeExporter;
 
   Map<String, Object?> encode() => {
-    if (jmxExporter != null) 'jmx_exporter': jmxExporter!.encode(),
-    if (nodeExporter != null) 'node_exporter': nodeExporter!.encode(),
+    'jmx_exporter': ?jmxExporter?.encode(),
+    'node_exporter': ?nodeExporter?.encode(),
   };
 }
 
@@ -582,13 +575,12 @@ final class AwsMskCluster extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_name': clusterName,
-           if (enhancedMonitoring != null)
-             'enhanced_monitoring': enhancedMonitoring,
+           'enhanced_monitoring': ?enhancedMonitoring,
            'kafka_version': kafkaVersion,
            'number_of_broker_nodes': numberOfBrokerNodes,
-           if (region != null) 'region': region,
-           if (storageMode != null) 'storage_mode': storageMode,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'storage_mode': ?storageMode,
+           'tags': ?tags,
            'broker_node_group_info': TfArg.literal(
              brokerNodeGroupInfo.encode(),
            ),

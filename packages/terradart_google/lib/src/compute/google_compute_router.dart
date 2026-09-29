@@ -84,16 +84,14 @@ final class GoogleComputeRouter extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (network != null) 'network': network.encodeAs('id'),
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
-           if (description != null) 'description': description,
-           if (encryptedInterconnectRouter != null)
-             'encrypted_interconnect_router': encryptedInterconnectRouter,
+           'network': ?network?.encodeAs('id'),
+           'region': ?region,
+           'project': ?project,
+           'description': ?description,
+           'encrypted_interconnect_router': ?encryptedInterconnectRouter,
            if (bgp != null) 'bgp': TfArg.literal([bgp.encode()]),
-           if (md5AuthenticationKeys != null)
-             'md5_authentication_keys': md5AuthenticationKeys,
-           if (params != null) 'params': params,
+           'md5_authentication_keys': ?md5AuthenticationKeys,
+           'params': ?params,
          },
        );
 

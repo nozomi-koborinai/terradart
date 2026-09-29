@@ -26,9 +26,7 @@ final class ApiTokenCondition {
 
   final ApiTokenConditionRequestIp? requestIp;
 
-  Map<String, Object?> encode() => {
-    if (requestIp != null) 'request_ip': requestIp!.encode(),
-  };
+  Map<String, Object?> encode() => {'request_ip': ?requestIp?.encode()};
 }
 
 /// Typed helper for the `condition.request_ip` block of
@@ -42,8 +40,8 @@ final class ApiTokenConditionRequestIp {
   final TfArg<List<Object?>>? notIn;
 
   Map<String, Object?> encode() => {
-    if (inCase != null) 'in': inCase!.toTfJson(),
-    if (notIn != null) 'not_in': notIn!.toTfJson(),
+    'in': ?inCase?.toTfJson(),
+    'not_in': ?notIn?.toTfJson(),
   };
 }
 
@@ -114,10 +112,10 @@ final class CloudflareApiToken extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (expiresOn != null) 'expires_on': expiresOn,
+           'expires_on': ?expiresOn,
            'name': name,
-           if (notBefore != null) 'not_before': notBefore,
-           if (status != null) 'status': status,
+           'not_before': ?notBefore,
+           'status': ?status,
            if (condition != null)
              'condition': TfArg.literal(condition.encode()),
            'policies': TfArg.literal([for (final e in policies) e.encode()]),

@@ -34,12 +34,12 @@ final class DataApiShieldOperationFilter {
   final TfArg<DataApiShieldOperationFilterOrder>? order;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (endpoint != null) 'endpoint': endpoint!.toTfJson(),
-    if (feature != null) 'feature': feature!.toTfJson(),
-    if (host != null) 'host': host!.toTfJson(),
-    if (method != null) 'method': method!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'endpoint': ?endpoint?.toTfJson(),
+    'feature': ?feature?.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'method': ?method?.toTfJson(),
+    'order': ?order?.toTfJson(),
   };
 }
 
@@ -86,10 +86,10 @@ final class DataCloudflareApiShieldOperation extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (feature != null) 'feature': feature,
-           if (operationId != null) 'operation_id': operationId,
-           if (withSchemas != null) 'with_schemas': withSchemas,
-           if (zoneId != null) 'zone_id': zoneId,
+           'feature': ?feature,
+           'operation_id': ?operationId,
+           'with_schemas': ?withSchemas,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

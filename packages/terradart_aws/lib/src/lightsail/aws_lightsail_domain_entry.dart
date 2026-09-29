@@ -42,9 +42,9 @@ final class AwsLightsailDomainEntry extends Resource {
          terraformType: tfType,
          argMap: {
            'domain_name': domainName,
-           if (isAlias != null) 'is_alias': isAlias,
+           'is_alias': ?isAlias,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'target': target,
            'type': type,
          },

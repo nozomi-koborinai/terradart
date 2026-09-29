@@ -67,12 +67,12 @@ final class GoogleNetworkConnectivityRegionalEndpoint extends Resource {
            'location': location,
            'target_google_api': targetGoogleApi,
            'access_type': accessType,
-           if (network != null) 'network': network.encodeAs('id'),
-           if (subnetwork != null) 'subnetwork': subnetwork.encodeAs('id'),
-           if (address != null) 'address': address,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'network': ?network?.encodeAs('id'),
+           'subnetwork': ?subnetwork?.encodeAs('id'),
+           'address': ?address,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

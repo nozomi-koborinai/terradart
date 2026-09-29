@@ -171,10 +171,10 @@ final class AwsBackupSelection extends Resource {
          argMap: {
            'iam_role_arn': iamRoleArn.encodeAs('arn'),
            'name': name,
-           if (notResources != null) 'not_resources': notResources,
+           'not_resources': ?notResources,
            'plan_id': planId,
-           if (region != null) 'region': region,
-           if (resources != null) 'resources': resources,
+           'region': ?region,
+           'resources': ?resources,
            if (condition != null)
              'condition': TfArg.literal([
                for (final e in condition) e.encode(),

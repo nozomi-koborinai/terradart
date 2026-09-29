@@ -30,9 +30,9 @@ final class GoogleGkeHubNamespace extends Resource {
            'scope_namespace_id': scopeNamespaceId,
            'scope_id': scopeId,
            'scope': scope,
-           if (labels != null) 'labels': labels,
-           if (namespaceLabels != null) 'namespace_labels': namespaceLabels,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'namespace_labels': ?namespaceLabels,
+           'project': ?project,
          },
        );
 

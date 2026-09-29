@@ -27,12 +27,11 @@ final class AwsBedrockagentcoreAgentRuntimeEndpoint extends Resource {
          terraformType: tfType,
          argMap: {
            'agent_runtime_id': agentRuntimeId,
-           if (agentRuntimeVersion != null)
-             'agent_runtime_version': agentRuntimeVersion,
-           if (description != null) 'description': description,
+           'agent_runtime_version': ?agentRuntimeVersion,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -24,7 +24,7 @@ final class DataGoogleIamWorkloadIdentityPoolProvider extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (project != null) 'project': project,
+           'project': ?project,
            'workload_identity_pool_id': workloadIdentityPoolId,
            'workload_identity_pool_provider_id': workloadIdentityPoolProviderId,
          },

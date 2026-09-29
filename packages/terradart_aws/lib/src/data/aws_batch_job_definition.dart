@@ -23,11 +23,11 @@ final class DataAwsBatchJobDefinition extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (arn != null) 'arn': arn,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (revision != null) 'revision': revision,
-           if (status != null) 'status': status,
+           'arn': ?arn,
+           'name': ?name,
+           'region': ?region,
+           'revision': ?revision,
+           'status': ?status,
          },
        );
 

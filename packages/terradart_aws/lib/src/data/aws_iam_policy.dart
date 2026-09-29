@@ -22,10 +22,10 @@ final class DataAwsIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (arn != null) 'arn': arn,
-           if (name != null) 'name': name,
-           if (pathPrefix != null) 'path_prefix': pathPrefix,
-           if (tags != null) 'tags': tags,
+           'arn': ?arn,
+           'name': ?name,
+           'path_prefix': ?pathPrefix,
+           'tags': ?tags,
          },
        );
 

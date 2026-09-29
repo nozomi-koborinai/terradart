@@ -28,8 +28,8 @@ final class AwsM2Deployment extends Resource {
            'application_id': applicationId,
            'application_version': applicationVersion,
            'environment_id': environmentId,
-           if (forceStop != null) 'force_stop': forceStop,
-           if (region != null) 'region': region,
+           'force_stop': ?forceStop,
+           'region': ?region,
            'start': start,
          },
        );

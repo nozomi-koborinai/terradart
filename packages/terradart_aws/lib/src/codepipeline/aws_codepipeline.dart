@@ -51,9 +51,9 @@ final class CodepipelineArtifactStore {
 
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
+    'region': ?region?.toTfJson(),
     'type': type.toTfJson(),
-    if (encryptionKey != null) 'encryption_key': encryptionKey!.encode(),
+    'encryption_key': ?encryptionKey?.encode(),
   };
 }
 
@@ -119,9 +119,9 @@ final class CodepipelineStage {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'action': [for (final e in action) e.encode()],
-    if (beforeEntry != null) 'before_entry': beforeEntry!.encode(),
-    if (onFailure != null) 'on_failure': onFailure!.encode(),
-    if (onSuccess != null) 'on_success': onSuccess!.encode(),
+    'before_entry': ?beforeEntry?.encode(),
+    'on_failure': ?onFailure?.encode(),
+    'on_success': ?onSuccess?.encode(),
   };
 }
 
@@ -183,22 +183,19 @@ final class CodepipelineStageAction {
 
   Map<String, Object?> encode() => {
     'category': category.toTfJson(),
-    if (commands != null) 'commands': commands!.toTfJson(),
-    if (configuration != null) 'configuration': configuration!.toTfJson(),
-    if (inputArtifacts != null) 'input_artifacts': inputArtifacts!.toTfJson(),
+    'commands': ?commands?.toTfJson(),
+    'configuration': ?configuration?.toTfJson(),
+    'input_artifacts': ?inputArtifacts?.toTfJson(),
     'name': name.toTfJson(),
-    if (namespace != null) 'namespace': namespace!.toTfJson(),
-    if (outputArtifacts != null)
-      'output_artifacts': outputArtifacts!.toTfJson(),
-    if (outputVariables != null)
-      'output_variables': outputVariables!.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
+    'output_artifacts': ?outputArtifacts?.toTfJson(),
+    'output_variables': ?outputVariables?.toTfJson(),
     'owner': owner.toTfJson(),
     'provider': provider.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
-    if (runOrder != null) 'run_order': runOrder!.toTfJson(),
-    if (timeoutInMinutes != null)
-      'timeout_in_minutes': timeoutInMinutes!.toTfJson(),
+    'region': ?region?.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
+    'run_order': ?runOrder?.toTfJson(),
+    'timeout_in_minutes': ?timeoutInMinutes?.toTfJson(),
     'version': version.toTfJson(),
     if (outputArtifactsForComputeAction != null)
       'output_artifacts_for_compute_action': [
@@ -247,7 +244,7 @@ final class CodepipelineStageActionOutputArtifactsForComputeAction {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (files != null) 'files': files!.toTfJson(),
+    'files': ?files?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -277,7 +274,7 @@ final class CodepipelineStageBeforeEntryCondition {
   final List<CodepipelineStageBeforeEntryConditionRule> rule;
 
   Map<String, Object?> encode() => {
-    if (result != null) 'result': result!.toTfJson(),
+    'result': ?result?.toTfJson(),
     'rule': [for (final e in rule) e.encode()],
   };
 }
@@ -314,14 +311,13 @@ final class CodepipelineStageBeforeEntryConditionRule {
   final CodepipelineStageBeforeEntryConditionRuleRuleTypeId ruleTypeId;
 
   Map<String, Object?> encode() => {
-    if (commands != null) 'commands': commands!.toTfJson(),
-    if (configuration != null) 'configuration': configuration!.toTfJson(),
-    if (inputArtifacts != null) 'input_artifacts': inputArtifacts!.toTfJson(),
+    'commands': ?commands?.toTfJson(),
+    'configuration': ?configuration?.toTfJson(),
+    'input_artifacts': ?inputArtifacts?.toTfJson(),
     'name': name.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
-    if (timeoutInMinutes != null)
-      'timeout_in_minutes': timeoutInMinutes!.toTfJson(),
+    'region': ?region?.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
+    'timeout_in_minutes': ?timeoutInMinutes?.toTfJson(),
     'rule_type_id': ruleTypeId.encode(),
   };
 }
@@ -347,9 +343,9 @@ final class CodepipelineStageBeforeEntryConditionRuleRuleTypeId {
 
   Map<String, Object?> encode() => {
     'category': category.toTfJson(),
-    if (owner != null) 'owner': owner!.toTfJson(),
+    'owner': ?owner?.toTfJson(),
     'provider': provider.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -370,10 +366,9 @@ final class CodepipelineStageOnFailure {
   final CodepipelineStageOnFailureRetryConfiguration? retryConfiguration;
 
   Map<String, Object?> encode() => {
-    if (result != null) 'result': result!.toTfJson(),
-    if (condition != null) 'condition': condition!.encode(),
-    if (retryConfiguration != null)
-      'retry_configuration': retryConfiguration!.encode(),
+    'result': ?result?.toTfJson(),
+    'condition': ?condition?.encode(),
+    'retry_configuration': ?retryConfiguration?.encode(),
   };
 }
 
@@ -400,7 +395,7 @@ final class CodepipelineStageOnFailureCondition {
   final List<CodepipelineStageOnFailureConditionRule> rule;
 
   Map<String, Object?> encode() => {
-    if (result != null) 'result': result!.toTfJson(),
+    'result': ?result?.toTfJson(),
     'rule': [for (final e in rule) e.encode()],
   };
 }
@@ -437,14 +432,13 @@ final class CodepipelineStageOnFailureConditionRule {
   final CodepipelineStageOnFailureConditionRuleRuleTypeId ruleTypeId;
 
   Map<String, Object?> encode() => {
-    if (commands != null) 'commands': commands!.toTfJson(),
-    if (configuration != null) 'configuration': configuration!.toTfJson(),
-    if (inputArtifacts != null) 'input_artifacts': inputArtifacts!.toTfJson(),
+    'commands': ?commands?.toTfJson(),
+    'configuration': ?configuration?.toTfJson(),
+    'input_artifacts': ?inputArtifacts?.toTfJson(),
     'name': name.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
-    if (timeoutInMinutes != null)
-      'timeout_in_minutes': timeoutInMinutes!.toTfJson(),
+    'region': ?region?.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
+    'timeout_in_minutes': ?timeoutInMinutes?.toTfJson(),
     'rule_type_id': ruleTypeId.encode(),
   };
 }
@@ -470,9 +464,9 @@ final class CodepipelineStageOnFailureConditionRuleRuleTypeId {
 
   Map<String, Object?> encode() => {
     'category': category.toTfJson(),
-    if (owner != null) 'owner': owner!.toTfJson(),
+    'owner': ?owner?.toTfJson(),
     'provider': provider.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -484,9 +478,7 @@ final class CodepipelineStageOnFailureRetryConfiguration {
 
   final TfArg<CodepipelineStageOnFailureRetryConfigurationRetryMode>? retryMode;
 
-  Map<String, Object?> encode() => {
-    if (retryMode != null) 'retry_mode': retryMode!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'retry_mode': ?retryMode?.toTfJson()};
 }
 
 /// `retry_mode` — derived from the provider schema description.
@@ -524,7 +516,7 @@ final class CodepipelineStageOnSuccessCondition {
   final List<CodepipelineStageOnSuccessConditionRule> rule;
 
   Map<String, Object?> encode() => {
-    if (result != null) 'result': result!.toTfJson(),
+    'result': ?result?.toTfJson(),
     'rule': [for (final e in rule) e.encode()],
   };
 }
@@ -561,14 +553,13 @@ final class CodepipelineStageOnSuccessConditionRule {
   final CodepipelineStageOnSuccessConditionRuleRuleTypeId ruleTypeId;
 
   Map<String, Object?> encode() => {
-    if (commands != null) 'commands': commands!.toTfJson(),
-    if (configuration != null) 'configuration': configuration!.toTfJson(),
-    if (inputArtifacts != null) 'input_artifacts': inputArtifacts!.toTfJson(),
+    'commands': ?commands?.toTfJson(),
+    'configuration': ?configuration?.toTfJson(),
+    'input_artifacts': ?inputArtifacts?.toTfJson(),
     'name': name.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
-    if (timeoutInMinutes != null)
-      'timeout_in_minutes': timeoutInMinutes!.toTfJson(),
+    'region': ?region?.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
+    'timeout_in_minutes': ?timeoutInMinutes?.toTfJson(),
     'rule_type_id': ruleTypeId.encode(),
   };
 }
@@ -594,9 +585,9 @@ final class CodepipelineStageOnSuccessConditionRuleRuleTypeId {
 
   Map<String, Object?> encode() => {
     'category': category.toTfJson(),
-    if (owner != null) 'owner': owner!.toTfJson(),
+    'owner': ?owner?.toTfJson(),
     'provider': provider.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -660,9 +651,9 @@ final class CodepipelineTriggerGitConfigurationPullRequest {
   final CodepipelineTriggerGitConfigurationPullRequestFilePaths? filePaths;
 
   Map<String, Object?> encode() => {
-    if (events != null) 'events': events!.toTfJson(),
-    if (branches != null) 'branches': branches!.encode(),
-    if (filePaths != null) 'file_paths': filePaths!.encode(),
+    'events': ?events?.toTfJson(),
+    'branches': ?branches?.encode(),
+    'file_paths': ?filePaths?.encode(),
   };
 }
 
@@ -680,8 +671,8 @@ final class CodepipelineTriggerGitConfigurationPullRequestBranches {
   final TfArg<List<Object?>>? includes;
 
   Map<String, Object?> encode() => {
-    if (excludes != null) 'excludes': excludes!.toTfJson(),
-    if (includes != null) 'includes': includes!.toTfJson(),
+    'excludes': ?excludes?.toTfJson(),
+    'includes': ?includes?.toTfJson(),
   };
 }
 
@@ -699,8 +690,8 @@ final class CodepipelineTriggerGitConfigurationPullRequestFilePaths {
   final TfArg<List<Object?>>? includes;
 
   Map<String, Object?> encode() => {
-    if (excludes != null) 'excludes': excludes!.toTfJson(),
-    if (includes != null) 'includes': includes!.toTfJson(),
+    'excludes': ?excludes?.toTfJson(),
+    'includes': ?includes?.toTfJson(),
   };
 }
 
@@ -721,9 +712,9 @@ final class CodepipelineTriggerGitConfigurationPush {
   final CodepipelineTriggerGitConfigurationPushTags? tags;
 
   Map<String, Object?> encode() => {
-    if (branches != null) 'branches': branches!.encode(),
-    if (filePaths != null) 'file_paths': filePaths!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'branches': ?branches?.encode(),
+    'file_paths': ?filePaths?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -741,8 +732,8 @@ final class CodepipelineTriggerGitConfigurationPushBranches {
   final TfArg<List<Object?>>? includes;
 
   Map<String, Object?> encode() => {
-    if (excludes != null) 'excludes': excludes!.toTfJson(),
-    if (includes != null) 'includes': includes!.toTfJson(),
+    'excludes': ?excludes?.toTfJson(),
+    'includes': ?includes?.toTfJson(),
   };
 }
 
@@ -760,8 +751,8 @@ final class CodepipelineTriggerGitConfigurationPushFilePaths {
   final TfArg<List<Object?>>? includes;
 
   Map<String, Object?> encode() => {
-    if (excludes != null) 'excludes': excludes!.toTfJson(),
-    if (includes != null) 'includes': includes!.toTfJson(),
+    'excludes': ?excludes?.toTfJson(),
+    'includes': ?includes?.toTfJson(),
   };
 }
 
@@ -779,8 +770,8 @@ final class CodepipelineTriggerGitConfigurationPushTags {
   final TfArg<List<Object?>>? includes;
 
   Map<String, Object?> encode() => {
-    if (excludes != null) 'excludes': excludes!.toTfJson(),
-    if (includes != null) 'includes': includes!.toTfJson(),
+    'excludes': ?excludes?.toTfJson(),
+    'includes': ?includes?.toTfJson(),
   };
 }
 
@@ -801,8 +792,8 @@ final class CodepipelineVariable {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (defaultValue != null) 'default_value': defaultValue!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'default_value': ?defaultValue?.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -830,12 +821,12 @@ final class AwsCodepipeline extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (executionMode != null) 'execution_mode': executionMode,
+           'execution_mode': ?executionMode,
            'name': name,
-           if (pipelineType != null) 'pipeline_type': pipelineType,
-           if (region != null) 'region': region,
+           'pipeline_type': ?pipelineType,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'artifact_store': TfArg.literal([
              for (final e in artifactStore) e.encode(),
            ]),

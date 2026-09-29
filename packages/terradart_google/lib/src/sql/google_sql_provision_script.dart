@@ -32,11 +32,11 @@ final class GoogleSqlProvisionScript extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (database != null) 'database': database,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'database': ?database,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'instance': instance,
-           if (project != null) 'project': project,
+           'project': ?project,
            'script': script,
          },
        );

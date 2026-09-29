@@ -46,17 +46,17 @@ final class CloudSecurityComplianceCloudControlParameterSpec {
   final CloudSecurityComplianceCloudControlParameterSpecValidation? validation;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
     'is_required': isRequired.toTfJson(),
     'name': name.toTfJson(),
     'value_type': valueType.toTfJson(),
-    if (defaultValue != null) 'default_value': defaultValue!.encode(),
+    'default_value': ?defaultValue?.encode(),
     if (subParameters != null)
       'sub_parameters': [for (final e in subParameters!) e.encode()],
     if (substitutionRules != null)
       'substitution_rules': [for (final e in substitutionRules!) e.encode()],
-    if (validation != null) 'validation': validation!.encode(),
+    'validation': ?validation?.encode(),
   };
 }
 
@@ -85,11 +85,11 @@ final class CloudSecurityComplianceCloudControlParameterSpecDefaultValue {
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'oneof_value': ?oneofValue?.encode(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -108,8 +108,8 @@ final class CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofVal
   parameterValue;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+    'name': ?name?.toTfJson(),
+    'parameter_value': ?parameterValue?.encode(),
   };
 }
 
@@ -138,11 +138,11 @@ final class CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofVal
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'oneof_value': ?oneofValue?.encode(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -161,8 +161,8 @@ final class CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofVal
   parameterValue;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+    'name': ?name?.toTfJson(),
+    'parameter_value': ?parameterValue?.encode(),
   };
 }
 
@@ -187,10 +187,10 @@ final class CloudSecurityComplianceCloudControlParameterSpecDefaultValueOneofVal
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -276,17 +276,17 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParameters {
   validation;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
     'is_required': isRequired.toTfJson(),
     'name': name.toTfJson(),
     'value_type': valueType.toTfJson(),
-    if (defaultValue != null) 'default_value': defaultValue!.encode(),
+    'default_value': ?defaultValue?.encode(),
     if (subParameters != null)
       'sub_parameters': [for (final e in subParameters!) e.encode()],
     if (substitutionRules != null)
       'substitution_rules': [for (final e in substitutionRules!) e.encode()],
-    if (validation != null) 'validation': validation!.encode(),
+    'validation': ?validation?.encode(),
   };
 }
 
@@ -315,11 +315,11 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefault
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'oneof_value': ?oneofValue?.encode(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -338,8 +338,8 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefault
   parameterValue;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+    'name': ?name?.toTfJson(),
+    'parameter_value': ?parameterValue?.encode(),
   };
 }
 
@@ -368,11 +368,11 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefault
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'oneof_value': ?oneofValue?.encode(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -391,8 +391,8 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefault
   parameterValue;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+    'name': ?name?.toTfJson(),
+    'parameter_value': ?parameterValue?.encode(),
   };
 }
 
@@ -417,10 +417,10 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersDefault
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -500,15 +500,15 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
   validation;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
     'is_required': isRequired.toTfJson(),
     'name': name.toTfJson(),
     'value_type': valueType.toTfJson(),
-    if (defaultValue != null) 'default_value': defaultValue!.encode(),
+    'default_value': ?defaultValue?.encode(),
     if (substitutionRules != null)
       'substitution_rules': [for (final e in substitutionRules!) e.encode()],
-    if (validation != null) 'validation': validation!.encode(),
+    'validation': ?validation?.encode(),
   };
 }
 
@@ -537,11 +537,11 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'oneof_value': ?oneofValue?.encode(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -560,8 +560,8 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
   parameterValue;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+    'name': ?name?.toTfJson(),
+    'parameter_value': ?parameterValue?.encode(),
   };
 }
 
@@ -586,10 +586,10 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -635,10 +635,8 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
   placeholderSubstitutionRule;
 
   Map<String, Object?> encode() => {
-    if (attributeSubstitutionRule != null)
-      'attribute_substitution_rule': attributeSubstitutionRule!.encode(),
-    if (placeholderSubstitutionRule != null)
-      'placeholder_substitution_rule': placeholderSubstitutionRule!.encode(),
+    'attribute_substitution_rule': ?attributeSubstitutionRule?.encode(),
+    'placeholder_substitution_rule': ?placeholderSubstitutionRule?.encode(),
   };
 }
 
@@ -652,9 +650,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
 
   final TfArg<String>? attribute;
 
-  Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'attribute': ?attribute?.toTfJson()};
 }
 
 /// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.substitution_rules.placeholder_substitution_rule` block of
@@ -667,9 +663,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
 
   final TfArg<String>? attribute;
 
-  Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'attribute': ?attribute?.toTfJson()};
 }
 
 /// Typed helper for the `parameter_spec.sub_parameters.sub_parameters.validation` block of
@@ -692,9 +686,9 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
   regexpPattern;
 
   Map<String, Object?> encode() => {
-    if (allowedValues != null) 'allowed_values': allowedValues!.encode(),
-    if (intRange != null) 'int_range': intRange!.encode(),
-    if (regexpPattern != null) 'regexp_pattern': regexpPattern!.encode(),
+    'allowed_values': ?allowedValues?.encode(),
+    'int_range': ?intRange?.encode(),
+    'regexp_pattern': ?regexpPattern?.encode(),
   };
 }
 
@@ -741,11 +735,11 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'oneof_value': ?oneofValue?.encode(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -764,8 +758,8 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
   parameterValue;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+    'name': ?name?.toTfJson(),
+    'parameter_value': ?parameterValue?.encode(),
   };
 }
 
@@ -790,10 +784,10 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubPara
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -871,10 +865,8 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubstit
   placeholderSubstitutionRule;
 
   Map<String, Object?> encode() => {
-    if (attributeSubstitutionRule != null)
-      'attribute_substitution_rule': attributeSubstitutionRule!.encode(),
-    if (placeholderSubstitutionRule != null)
-      'placeholder_substitution_rule': placeholderSubstitutionRule!.encode(),
+    'attribute_substitution_rule': ?attributeSubstitutionRule?.encode(),
+    'placeholder_substitution_rule': ?placeholderSubstitutionRule?.encode(),
   };
 }
 
@@ -888,9 +880,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubstit
 
   final TfArg<String>? attribute;
 
-  Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'attribute': ?attribute?.toTfJson()};
 }
 
 /// Typed helper for the `parameter_spec.sub_parameters.substitution_rules.placeholder_substitution_rule` block of
@@ -903,9 +893,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersSubstit
 
   final TfArg<String>? attribute;
 
-  Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'attribute': ?attribute?.toTfJson()};
 }
 
 /// Typed helper for the `parameter_spec.sub_parameters.validation` block of
@@ -928,9 +916,9 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidat
   regexpPattern;
 
   Map<String, Object?> encode() => {
-    if (allowedValues != null) 'allowed_values': allowedValues!.encode(),
-    if (intRange != null) 'int_range': intRange!.encode(),
-    if (regexpPattern != null) 'regexp_pattern': regexpPattern!.encode(),
+    'allowed_values': ?allowedValues?.encode(),
+    'int_range': ?intRange?.encode(),
+    'regexp_pattern': ?regexpPattern?.encode(),
   };
 }
 
@@ -977,11 +965,11 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidat
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'oneof_value': ?oneofValue?.encode(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -1000,8 +988,8 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidat
   parameterValue;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+    'name': ?name?.toTfJson(),
+    'parameter_value': ?parameterValue?.encode(),
   };
 }
 
@@ -1030,11 +1018,11 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidat
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'oneof_value': ?oneofValue?.encode(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -1053,8 +1041,8 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidat
   parameterValue;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+    'name': ?name?.toTfJson(),
+    'parameter_value': ?parameterValue?.encode(),
   };
 }
 
@@ -1079,10 +1067,10 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubParametersValidat
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -1173,10 +1161,8 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubstitutionRules {
   placeholderSubstitutionRule;
 
   Map<String, Object?> encode() => {
-    if (attributeSubstitutionRule != null)
-      'attribute_substitution_rule': attributeSubstitutionRule!.encode(),
-    if (placeholderSubstitutionRule != null)
-      'placeholder_substitution_rule': placeholderSubstitutionRule!.encode(),
+    'attribute_substitution_rule': ?attributeSubstitutionRule?.encode(),
+    'placeholder_substitution_rule': ?placeholderSubstitutionRule?.encode(),
   };
 }
 
@@ -1190,9 +1176,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubstitutionRulesAtt
 
   final TfArg<String>? attribute;
 
-  Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'attribute': ?attribute?.toTfJson()};
 }
 
 /// Typed helper for the `parameter_spec.substitution_rules.placeholder_substitution_rule` block of
@@ -1205,9 +1189,7 @@ final class CloudSecurityComplianceCloudControlParameterSpecSubstitutionRulesPla
 
   final TfArg<String>? attribute;
 
-  Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'attribute': ?attribute?.toTfJson()};
 }
 
 /// Typed helper for the `parameter_spec.validation` block of
@@ -1230,9 +1212,9 @@ final class CloudSecurityComplianceCloudControlParameterSpecValidation {
   regexpPattern;
 
   Map<String, Object?> encode() => {
-    if (allowedValues != null) 'allowed_values': allowedValues!.encode(),
-    if (intRange != null) 'int_range': intRange!.encode(),
-    if (regexpPattern != null) 'regexp_pattern': regexpPattern!.encode(),
+    'allowed_values': ?allowedValues?.encode(),
+    'int_range': ?intRange?.encode(),
+    'regexp_pattern': ?regexpPattern?.encode(),
   };
 }
 
@@ -1279,11 +1261,11 @@ final class CloudSecurityComplianceCloudControlParameterSpecValidationAllowedVal
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'oneof_value': ?oneofValue?.encode(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -1302,8 +1284,8 @@ final class CloudSecurityComplianceCloudControlParameterSpecValidationAllowedVal
   parameterValue;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+    'name': ?name?.toTfJson(),
+    'parameter_value': ?parameterValue?.encode(),
   };
 }
 
@@ -1332,11 +1314,11 @@ final class CloudSecurityComplianceCloudControlParameterSpecValidationAllowedVal
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (oneofValue != null) 'oneof_value': oneofValue!.encode(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'oneof_value': ?oneofValue?.encode(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -1355,8 +1337,8 @@ final class CloudSecurityComplianceCloudControlParameterSpecValidationAllowedVal
   parameterValue;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (parameterValue != null) 'parameter_value': parameterValue!.encode(),
+    'name': ?name?.toTfJson(),
+    'parameter_value': ?parameterValue?.encode(),
   };
 }
 
@@ -1381,10 +1363,10 @@ final class CloudSecurityComplianceCloudControlParameterSpecValidationAllowedVal
   stringListValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (numberValue != null) 'number_value': numberValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
-    if (stringListValue != null) 'string_list_value': stringListValue!.encode(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'number_value': ?numberValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
+    'string_list_value': ?stringListValue?.encode(),
   };
 }
 
@@ -1476,9 +1458,9 @@ final class CloudSecurityComplianceCloudControlRules {
   final CloudSecurityComplianceCloudControlRulesCelExpression? celExpression;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'rule_action_types': ruleActionTypes.toTfJson(),
-    if (celExpression != null) 'cel_expression': celExpression!.encode(),
+    'cel_expression': ?celExpression?.encode(),
   };
 }
 
@@ -1498,8 +1480,7 @@ final class CloudSecurityComplianceCloudControlRulesCelExpression {
 
   Map<String, Object?> encode() => {
     'expression': expression.toTfJson(),
-    if (resourceTypesValues != null)
-      'resource_types_values': resourceTypesValues!.encode(),
+    'resource_types_values': ?resourceTypesValues?.encode(),
   };
 }
 
@@ -1553,18 +1534,17 @@ final class GoogleCloudSecurityComplianceCloudControl extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (categories != null) 'categories': categories,
+           'categories': ?categories,
            'cloud_control_id': cloudControlId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (displayName != null) 'display_name': displayName,
-           if (findingCategory != null) 'finding_category': findingCategory,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'display_name': ?displayName,
+           'finding_category': ?findingCategory,
            'location': location,
-           if (parent != null) 'parent': parent,
-           if (remediationSteps != null) 'remediation_steps': remediationSteps,
-           if (severity != null) 'severity': severity,
-           if (supportedCloudProviders != null)
-             'supported_cloud_providers': supportedCloudProviders,
+           'parent': ?parent,
+           'remediation_steps': ?remediationSteps,
+           'severity': ?severity,
+           'supported_cloud_providers': ?supportedCloudProviders,
            if (parameterSpec != null)
              'parameter_spec': TfArg.literal([
                for (final e in parameterSpec) e.encode(),

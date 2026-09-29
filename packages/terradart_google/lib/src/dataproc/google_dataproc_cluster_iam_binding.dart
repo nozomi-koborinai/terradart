@@ -34,9 +34,9 @@ final class GoogleDataprocClusterIamBinding extends Resource {
            'cluster': cluster,
            'role': role,
            'members': members,
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
-           if (condition != null) 'condition': condition,
+           'region': ?region,
+           'project': ?project,
+           'condition': ?condition,
          },
        );
 

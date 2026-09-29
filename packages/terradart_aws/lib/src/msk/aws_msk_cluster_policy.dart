@@ -24,7 +24,7 @@ final class AwsMskClusterPolicy extends Resource {
          argMap: {
            'cluster_arn': clusterArn,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

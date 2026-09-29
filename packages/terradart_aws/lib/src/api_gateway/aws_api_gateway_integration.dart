@@ -60,8 +60,7 @@ final class ApiGatewayIntegrationTlsConfig {
   final TfArg<bool>? insecureSkipVerification;
 
   Map<String, Object?> encode() => {
-    if (insecureSkipVerification != null)
-      'insecure_skip_verification': insecureSkipVerification!.toTfJson(),
+    'insecure_skip_verification': ?insecureSkipVerification?.toTfJson(),
   };
 }
 
@@ -98,32 +97,25 @@ final class AwsApiGatewayIntegration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cacheKeyParameters != null)
-             'cache_key_parameters': cacheKeyParameters,
-           if (cacheNamespace != null) 'cache_namespace': cacheNamespace,
-           if (connectionId != null) 'connection_id': connectionId,
-           if (connectionType != null) 'connection_type': connectionType,
-           if (contentHandling != null) 'content_handling': contentHandling,
-           if (credentials != null) 'credentials': credentials,
+           'cache_key_parameters': ?cacheKeyParameters,
+           'cache_namespace': ?cacheNamespace,
+           'connection_id': ?connectionId,
+           'connection_type': ?connectionType,
+           'content_handling': ?contentHandling,
+           'credentials': ?credentials,
            'http_method': httpMethod,
-           if (integrationHttpMethod != null)
-             'integration_http_method': integrationHttpMethod,
-           if (integrationTarget != null)
-             'integration_target': integrationTarget,
-           if (passthroughBehavior != null)
-             'passthrough_behavior': passthroughBehavior,
-           if (region != null) 'region': region,
-           if (requestParameters != null)
-             'request_parameters': requestParameters,
-           if (requestTemplates != null) 'request_templates': requestTemplates,
+           'integration_http_method': ?integrationHttpMethod,
+           'integration_target': ?integrationTarget,
+           'passthrough_behavior': ?passthroughBehavior,
+           'region': ?region,
+           'request_parameters': ?requestParameters,
+           'request_templates': ?requestTemplates,
            'resource_id': resourceId,
-           if (responseTransferMode != null)
-             'response_transfer_mode': responseTransferMode,
+           'response_transfer_mode': ?responseTransferMode,
            'rest_api_id': restApiId,
-           if (timeoutMilliseconds != null)
-             'timeout_milliseconds': timeoutMilliseconds,
+           'timeout_milliseconds': ?timeoutMilliseconds,
            'type': type,
-           if (uri != null) 'uri': uri,
+           'uri': ?uri,
            if (tlsConfig != null)
              'tls_config': TfArg.literal(tlsConfig.encode()),
          },

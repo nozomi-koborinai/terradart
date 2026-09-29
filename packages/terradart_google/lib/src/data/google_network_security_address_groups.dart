@@ -22,11 +22,7 @@ final class DataGoogleNetworkSecurityAddressGroups extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'location': location,
-           if (parent != null) 'parent': parent,
-           if (project != null) 'project': project,
-         },
+         argMap: {'location': location, 'parent': ?parent, 'project': ?project},
        );
 
   @override

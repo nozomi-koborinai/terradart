@@ -81,9 +81,9 @@ final class AwsMemorydbAcl extends Resource {
          terraformType: tfType,
          argMap: {
            ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (userNames != null) 'user_names': userNames,
+           'region': ?region,
+           'tags': ?tags,
+           'user_names': ?userNames,
          },
        );
 

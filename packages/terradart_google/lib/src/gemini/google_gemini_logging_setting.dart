@@ -29,11 +29,10 @@ final class GoogleGeminiLoggingSetting extends Resource {
          argMap: {
            'logging_setting_id': loggingSettingId,
            'location': location,
-           if (logMetadata != null) 'log_metadata': logMetadata,
-           if (logPromptsAndResponses != null)
-             'log_prompts_and_responses': logPromptsAndResponses,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'log_metadata': ?logMetadata,
+           'log_prompts_and_responses': ?logPromptsAndResponses,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

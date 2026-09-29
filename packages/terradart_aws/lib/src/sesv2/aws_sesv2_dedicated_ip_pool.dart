@@ -34,9 +34,9 @@ final class AwsSesv2DedicatedIpPool extends Resource {
          terraformType: tfType,
          argMap: {
            'pool_name': poolName,
-           if (region != null) 'region': region,
-           if (scalingMode != null) 'scaling_mode': scalingMode,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'scaling_mode': ?scalingMode,
+           'tags': ?tags,
          },
        );
 

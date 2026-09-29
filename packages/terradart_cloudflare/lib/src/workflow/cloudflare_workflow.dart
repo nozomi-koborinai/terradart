@@ -17,9 +17,7 @@ final class WorkflowConcurrency {
 
   final TfArg<num>? limit;
 
-  Map<String, Object?> encode() => {
-    if (limit != null) 'limit': limit!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'limit': ?limit?.toTfJson()};
 }
 
 /// Typed helper for the `default_retention` block of
@@ -33,9 +31,8 @@ final class WorkflowDefaultRetention {
   final TfArg<Object?>? successRetention;
 
   Map<String, Object?> encode() => {
-    if (errorRetention != null) 'error_retention': errorRetention!.toTfJson(),
-    if (successRetention != null)
-      'success_retention': successRetention!.toTfJson(),
+    'error_retention': ?errorRetention?.toTfJson(),
+    'success_retention': ?successRetention?.toTfJson(),
   };
 }
 
@@ -47,9 +44,7 @@ final class WorkflowLimits {
 
   final TfArg<num>? steps;
 
-  Map<String, Object?> encode() => {
-    if (steps != null) 'steps': steps!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'steps': ?steps?.toTfJson()};
 }
 
 /// Typed helper for the `schedules` block of

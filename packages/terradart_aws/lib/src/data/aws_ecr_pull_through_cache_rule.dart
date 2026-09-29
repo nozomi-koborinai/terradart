@@ -21,7 +21,7 @@ final class DataAwsEcrPullThroughCacheRule extends Data {
          terraformType: tfType,
          argMap: {
            'ecr_repository_prefix': ecrRepositoryPrefix,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

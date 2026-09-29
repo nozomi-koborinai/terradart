@@ -31,7 +31,7 @@ final class GoogleKmsKeyRingIamBinding extends Resource {
            'key_ring_id': keyRingId,
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

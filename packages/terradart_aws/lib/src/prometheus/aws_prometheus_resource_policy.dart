@@ -24,8 +24,8 @@ final class AwsPrometheusResourcePolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'policy_document': policyDocument,
-           if (region != null) 'region': region,
-           if (revisionId != null) 'revision_id': revisionId,
+           'region': ?region,
+           'revision_id': ?revisionId,
            'workspace_id': workspaceId,
          },
        );

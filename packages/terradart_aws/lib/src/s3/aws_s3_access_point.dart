@@ -30,14 +30,10 @@ final class S3AccessPointPublicAccessBlockConfiguration {
   final TfArg<bool>? restrictPublicBuckets;
 
   Map<String, Object?> encode() => {
-    if (blockPublicAcls != null)
-      'block_public_acls': blockPublicAcls!.toTfJson(),
-    if (blockPublicPolicy != null)
-      'block_public_policy': blockPublicPolicy!.toTfJson(),
-    if (ignorePublicAcls != null)
-      'ignore_public_acls': ignorePublicAcls!.toTfJson(),
-    if (restrictPublicBuckets != null)
-      'restrict_public_buckets': restrictPublicBuckets!.toTfJson(),
+    'block_public_acls': ?blockPublicAcls?.toTfJson(),
+    'block_public_policy': ?blockPublicPolicy?.toTfJson(),
+    'ignore_public_acls': ?ignorePublicAcls?.toTfJson(),
+    'restrict_public_buckets': ?restrictPublicBuckets?.toTfJson(),
   };
 }
 
@@ -74,13 +70,13 @@ final class AwsS3AccessPoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'bucket': bucket.encodeAs('id'),
-           if (bucketAccountId != null) 'bucket_account_id': bucketAccountId,
+           'bucket_account_id': ?bucketAccountId,
            'name': name,
-           if (policy != null) 'policy': policy,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'policy': ?policy,
+           'region': ?region,
+           'tags': ?tags,
            if (publicAccessBlockConfiguration != null)
              'public_access_block_configuration': TfArg.literal(
                publicAccessBlockConfiguration.encode(),

@@ -21,10 +21,10 @@ final class DataAwsRoute53ResolverFirewallRules extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (action != null) 'action': action,
+           'action': ?action,
            'firewall_rule_group_id': firewallRuleGroupId,
-           if (priority != null) 'priority': priority,
-           if (region != null) 'region': region,
+           'priority': ?priority,
+           'region': ?region,
          },
        );
 

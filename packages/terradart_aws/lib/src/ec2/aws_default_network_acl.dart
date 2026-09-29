@@ -45,11 +45,11 @@ final class DefaultNetworkAclEgress {
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    if (cidrBlock != null) 'cidr_block': cidrBlock!.toTfJson(),
+    'cidr_block': ?cidrBlock?.toTfJson(),
     'from_port': fromPort.toTfJson(),
-    if (icmpCode != null) 'icmp_code': icmpCode!.toTfJson(),
-    if (icmpType != null) 'icmp_type': icmpType!.toTfJson(),
-    if (ipv6CidrBlock != null) 'ipv6_cidr_block': ipv6CidrBlock!.toTfJson(),
+    'icmp_code': ?icmpCode?.toTfJson(),
+    'icmp_type': ?icmpType?.toTfJson(),
+    'ipv6_cidr_block': ?ipv6CidrBlock?.toTfJson(),
     'protocol': protocol.toTfJson(),
     'rule_no': ruleNo.toTfJson(),
     'to_port': toPort.toTfJson(),
@@ -92,11 +92,11 @@ final class DefaultNetworkAclIngress {
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    if (cidrBlock != null) 'cidr_block': cidrBlock!.toTfJson(),
+    'cidr_block': ?cidrBlock?.toTfJson(),
     'from_port': fromPort.toTfJson(),
-    if (icmpCode != null) 'icmp_code': icmpCode!.toTfJson(),
-    if (icmpType != null) 'icmp_type': icmpType!.toTfJson(),
-    if (ipv6CidrBlock != null) 'ipv6_cidr_block': ipv6CidrBlock!.toTfJson(),
+    'icmp_code': ?icmpCode?.toTfJson(),
+    'icmp_type': ?icmpType?.toTfJson(),
+    'ipv6_cidr_block': ?ipv6CidrBlock?.toTfJson(),
     'protocol': protocol.toTfJson(),
     'rule_no': ruleNo.toTfJson(),
     'to_port': toPort.toTfJson(),
@@ -123,9 +123,9 @@ final class AwsDefaultNetworkAcl extends Resource {
          terraformType: tfType,
          argMap: {
            'default_network_acl_id': defaultNetworkAclId,
-           if (region != null) 'region': region,
-           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'subnet_ids': ?subnetIds?.encodeAs('id'),
+           'tags': ?tags,
            if (egress != null)
              'egress': TfArg.literal([for (final e in egress) e.encode()]),
            if (ingress != null)

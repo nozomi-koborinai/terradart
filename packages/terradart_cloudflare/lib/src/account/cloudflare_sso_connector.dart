@@ -31,12 +31,10 @@ final class CloudflareSsoConnector extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (beginVerification != null)
-             'begin_verification': beginVerification,
+           'begin_verification': ?beginVerification,
            'email_domain': emailDomain,
-           if (enabled != null) 'enabled': enabled,
-           if (useFedrampLanguage != null)
-             'use_fedramp_language': useFedrampLanguage,
+           'enabled': ?enabled,
+           'use_fedramp_language': ?useFedrampLanguage,
          },
        );
 

@@ -24,7 +24,7 @@ final class AwsSqsQueueRedriveAllowPolicy extends Resource {
          argMap: {
            'queue_url': queueUrl,
            'redrive_allow_policy': redriveAllowPolicy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

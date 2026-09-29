@@ -25,10 +25,9 @@ final class CloudflareEmailSendingSubdomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dropSuppressedRecipients != null)
-             'drop_suppressed_recipients': dropSuppressedRecipients,
+           'drop_suppressed_recipients': ?dropSuppressedRecipients,
            'name': name,
-           if (previewEnabled != null) 'preview_enabled': previewEnabled,
+           'preview_enabled': ?previewEnabled,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

@@ -134,7 +134,7 @@ final class DatastreamConnectionProfileForwardSshConnectivity {
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
     ...?credential?.encode(),
-    if (port != null) 'port': port!.toTfJson(),
+    'port': ?port?.toTfJson(),
     'username': username.toTfJson(),
   };
 }
@@ -210,7 +210,7 @@ final class DatastreamConnectionProfileGcsProfile {
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('name').toTfJson(),
-    if (rootPath != null) 'root_path': rootPath!.toTfJson(),
+    'root_path': ?rootPath?.toTfJson(),
   };
 }
 
@@ -252,19 +252,15 @@ final class DatastreamConnectionProfileMongodbProfile {
   standardConnectionFormat;
 
   Map<String, Object?> encode() => {
-    if (additionalOptions != null)
-      'additional_options': additionalOptions!.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
-    if (replicaSet != null) 'replica_set': replicaSet!.toTfJson(),
-    if (secretManagerStoredPassword != null)
-      'secret_manager_stored_password': secretManagerStoredPassword!.toTfJson(),
+    'additional_options': ?additionalOptions?.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'replica_set': ?replicaSet?.toTfJson(),
+    'secret_manager_stored_password': ?secretManagerStoredPassword?.toTfJson(),
     'username': username.toTfJson(),
     'host_addresses': [for (final e in hostAddresses) e.encode()],
-    if (srvConnectionFormat != null)
-      'srv_connection_format': srvConnectionFormat!.encode(),
-    if (sslConfig != null) 'ssl_config': sslConfig!.encode(),
-    if (standardConnectionFormat != null)
-      'standard_connection_format': standardConnectionFormat!.encode(),
+    'srv_connection_format': ?srvConnectionFormat?.encode(),
+    'ssl_config': ?sslConfig?.encode(),
+    'standard_connection_format': ?standardConnectionFormat?.encode(),
   };
 }
 
@@ -283,7 +279,7 @@ final class DatastreamConnectionProfileMongodbProfileHostAddresses {
 
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -316,13 +312,11 @@ final class DatastreamConnectionProfileMongodbProfileSslConfig {
   final TfArg<String>? secretManagerStoredClientKey;
 
   Map<String, Object?> encode() => {
-    if (caCertificate != null) 'ca_certificate': caCertificate!.toTfJson(),
-    if (clientCertificate != null)
-      'client_certificate': clientCertificate!.toTfJson(),
-    if (clientKey != null) 'client_key': clientKey!.toTfJson(),
-    if (secretManagerStoredClientKey != null)
-      'secret_manager_stored_client_key': secretManagerStoredClientKey!
-          .toTfJson(),
+    'ca_certificate': ?caCertificate?.toTfJson(),
+    'client_certificate': ?clientCertificate?.toTfJson(),
+    'client_key': ?clientKey?.toTfJson(),
+    'secret_manager_stored_client_key': ?secretManagerStoredClientKey
+        ?.toTfJson(),
   };
 }
 
@@ -337,8 +331,7 @@ final class DatastreamConnectionProfileMongodbProfileStandardConnectionFormat {
   final TfArg<bool>? directConnection;
 
   Map<String, Object?> encode() => {
-    if (directConnection != null)
-      'direct_connection': directConnection!.toTfJson(),
+    'direct_connection': ?directConnection?.toTfJson(),
   };
 }
 
@@ -369,12 +362,11 @@ final class DatastreamConnectionProfileMysqlProfile {
 
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (secretManagerStoredPassword != null)
-      'secret_manager_stored_password': secretManagerStoredPassword!.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'secret_manager_stored_password': ?secretManagerStoredPassword?.toTfJson(),
     'username': username.toTfJson(),
-    if (sslConfig != null) 'ssl_config': sslConfig!.encode(),
+    'ssl_config': ?sslConfig?.encode(),
   };
 }
 
@@ -395,10 +387,9 @@ final class DatastreamConnectionProfileMysqlProfileSslConfig {
   final TfArg<String>? clientKey;
 
   Map<String, Object?> encode() => {
-    if (caCertificate != null) 'ca_certificate': caCertificate!.toTfJson(),
-    if (clientCertificate != null)
-      'client_certificate': clientCertificate!.toTfJson(),
-    if (clientKey != null) 'client_key': clientKey!.toTfJson(),
+    'ca_certificate': ?caCertificate?.toTfJson(),
+    'client_certificate': ?clientCertificate?.toTfJson(),
+    'client_key': ?clientKey?.toTfJson(),
   };
 }
 
@@ -431,14 +422,12 @@ final class DatastreamConnectionProfileOracleProfile {
   final TfArg<String> username;
 
   Map<String, Object?> encode() => {
-    if (connectionAttributes != null)
-      'connection_attributes': connectionAttributes!.toTfJson(),
+    'connection_attributes': ?connectionAttributes?.toTfJson(),
     'database_service': databaseService.toTfJson(),
     'hostname': hostname.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (secretManagerStoredPassword != null)
-      'secret_manager_stored_password': secretManagerStoredPassword!.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'secret_manager_stored_password': ?secretManagerStoredPassword?.toTfJson(),
     'username': username.toTfJson(),
   };
 }
@@ -474,12 +463,11 @@ final class DatastreamConnectionProfilePostgresqlProfile {
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'hostname': hostname.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (secretManagerStoredPassword != null)
-      'secret_manager_stored_password': secretManagerStoredPassword!.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'secret_manager_stored_password': ?secretManagerStoredPassword?.toTfJson(),
     'username': username.toTfJson(),
-    if (sslConfig != null) 'ssl_config': sslConfig!.encode(),
+    'ssl_config': ?sslConfig?.encode(),
   };
 }
 
@@ -499,10 +487,8 @@ final class DatastreamConnectionProfilePostgresqlProfileSslConfig {
   serverVerification;
 
   Map<String, Object?> encode() => {
-    if (serverAndClientVerification != null)
-      'server_and_client_verification': serverAndClientVerification!.encode(),
-    if (serverVerification != null)
-      'server_verification': serverVerification!.encode(),
+    'server_and_client_verification': ?serverAndClientVerification?.encode(),
+    'server_verification': ?serverVerification?.encode(),
   };
 }
 
@@ -585,10 +571,9 @@ final class DatastreamConnectionProfileSqlServerProfile {
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
     'hostname': hostname.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (secretManagerStoredPassword != null)
-      'secret_manager_stored_password': secretManagerStoredPassword!.toTfJson(),
+    'password': ?password?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'secret_manager_stored_password': ?secretManagerStoredPassword?.toTfJson(),
     'username': username.toTfJson(),
   };
 }
@@ -626,13 +611,12 @@ final class GoogleDatastreamConnectionProfile extends Resource {
          terraformType: tfType,
          argMap: {
            'connection_profile_id': connectionProfileId,
-           if (createWithoutValidation != null)
-             'create_without_validation': createWithoutValidation,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'create_without_validation': ?createWithoutValidation,
+           'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            ...?connectivity?.argMap,
            if (gcsProfile != null)
              'gcs_profile': TfArg.literal(gcsProfile.encode()),

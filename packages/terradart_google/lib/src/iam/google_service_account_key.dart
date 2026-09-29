@@ -102,11 +102,11 @@ final class GoogleServiceAccountKey extends Resource {
          terraformType: tfType,
          argMap: {
            'service_account_id': serviceAccountId.encodeAs('name'),
-           if (keyAlgorithm != null) 'key_algorithm': keyAlgorithm,
-           if (privateKeyType != null) 'private_key_type': privateKeyType,
-           if (publicKeyType != null) 'public_key_type': publicKeyType,
-           if (publicKeyData != null) 'public_key_data': publicKeyData,
-           if (keepers != null) 'keepers': keepers,
+           'key_algorithm': ?keyAlgorithm,
+           'private_key_type': ?privateKeyType,
+           'public_key_type': ?publicKeyType,
+           'public_key_data': ?publicKeyData,
+           'keepers': ?keepers,
          },
        );
 

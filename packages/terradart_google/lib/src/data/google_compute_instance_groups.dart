@@ -22,11 +22,7 @@ final class DataGoogleComputeInstanceGroups extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (filter != null) 'filter': filter,
-           if (project != null) 'project': project,
-           if (zone != null) 'zone': zone,
-         },
+         argMap: {'filter': ?filter, 'project': ?project, 'zone': ?zone},
        );
 
   @override

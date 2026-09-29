@@ -30,8 +30,8 @@ final class GoogleColabRuntimeTemplateIamPolicy extends Resource {
          argMap: {
            'runtime_template': runtimeTemplate,
            'policy_data': policyData,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

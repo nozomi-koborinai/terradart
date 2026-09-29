@@ -32,7 +32,7 @@ final class IotProvisioningTemplatePreProvisioningHook {
   final TfArg<String> targetArn;
 
   Map<String, Object?> encode() => {
-    if (payloadVersion != null) 'payload_version': payloadVersion!.toTfJson(),
+    'payload_version': ?payloadVersion?.toTfJson(),
     'target_arn': targetArn.toTfJson(),
   };
 }
@@ -71,14 +71,14 @@ final class AwsIotProvisioningTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (enabled != null) 'enabled': enabled,
+           'description': ?description,
+           'enabled': ?enabled,
            'name': name,
            'provisioning_role_arn': provisioningRoleArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'template_body': templateBody,
-           if (type != null) 'type': type,
+           'type': ?type,
            if (preProvisioningHook != null)
              'pre_provisioning_hook': TfArg.literal(
                preProvisioningHook.encode(),

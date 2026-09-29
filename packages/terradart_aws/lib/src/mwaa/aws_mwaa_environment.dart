@@ -69,12 +69,11 @@ final class MwaaEnvironmentLoggingConfiguration {
   final MwaaEnvironmentLoggingConfigurationWorkerLogs? workerLogs;
 
   Map<String, Object?> encode() => {
-    if (dagProcessingLogs != null)
-      'dag_processing_logs': dagProcessingLogs!.encode(),
-    if (schedulerLogs != null) 'scheduler_logs': schedulerLogs!.encode(),
-    if (taskLogs != null) 'task_logs': taskLogs!.encode(),
-    if (webserverLogs != null) 'webserver_logs': webserverLogs!.encode(),
-    if (workerLogs != null) 'worker_logs': workerLogs!.encode(),
+    'dag_processing_logs': ?dagProcessingLogs?.encode(),
+    'scheduler_logs': ?schedulerLogs?.encode(),
+    'task_logs': ?taskLogs?.encode(),
+    'webserver_logs': ?webserverLogs?.encode(),
+    'worker_logs': ?workerLogs?.encode(),
   };
 }
 
@@ -93,8 +92,8 @@ final class MwaaEnvironmentLoggingConfigurationDagProcessingLogs {
   logLevel;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logLevel != null) 'log_level': logLevel!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_level': ?logLevel?.toTfJson(),
   };
 }
 
@@ -129,8 +128,8 @@ final class MwaaEnvironmentLoggingConfigurationSchedulerLogs {
   logLevel;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logLevel != null) 'log_level': logLevel!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_level': ?logLevel?.toTfJson(),
   };
 }
 
@@ -164,8 +163,8 @@ final class MwaaEnvironmentLoggingConfigurationTaskLogs {
   final TfArg<MwaaEnvironmentLoggingConfigurationTaskLogsLogLevel>? logLevel;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logLevel != null) 'log_level': logLevel!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_level': ?logLevel?.toTfJson(),
   };
 }
 
@@ -200,8 +199,8 @@ final class MwaaEnvironmentLoggingConfigurationWebserverLogs {
   logLevel;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logLevel != null) 'log_level': logLevel!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_level': ?logLevel?.toTfJson(),
   };
 }
 
@@ -235,8 +234,8 @@ final class MwaaEnvironmentLoggingConfigurationWorkerLogs {
   final TfArg<MwaaEnvironmentLoggingConfigurationWorkerLogsLogLevel>? logLevel;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (logLevel != null) 'log_level': logLevel!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'log_level': ?logLevel?.toTfJson(),
   };
 }
 
@@ -315,41 +314,31 @@ final class AwsMwaaEnvironment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (airflowConfigurationOptions != null)
-             'airflow_configuration_options': airflowConfigurationOptions,
-           if (airflowVersion != null) 'airflow_version': airflowVersion,
+           'airflow_configuration_options': ?airflowConfigurationOptions,
+           'airflow_version': ?airflowVersion,
            'dag_s3_path': dagS3Path,
-           if (endpointManagement != null)
-             'endpoint_management': endpointManagement,
-           if (environmentClass != null) 'environment_class': environmentClass,
+           'endpoint_management': ?endpointManagement,
+           'environment_class': ?environmentClass,
            'execution_role_arn': executionRoleArn.encodeAs('arn'),
-           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('arn'),
-           if (maxWebservers != null) 'max_webservers': maxWebservers,
-           if (maxWorkers != null) 'max_workers': maxWorkers,
-           if (minWebservers != null) 'min_webservers': minWebservers,
-           if (minWorkers != null) 'min_workers': minWorkers,
+           'kms_key': ?kmsKey?.encodeAs('arn'),
+           'max_webservers': ?maxWebservers,
+           'max_workers': ?maxWorkers,
+           'min_webservers': ?minWebservers,
+           'min_workers': ?minWorkers,
            'name': name,
-           if (pluginsS3ObjectVersion != null)
-             'plugins_s3_object_version': pluginsS3ObjectVersion,
-           if (pluginsS3Path != null) 'plugins_s3_path': pluginsS3Path,
-           if (region != null) 'region': region,
-           if (requirementsS3ObjectVersion != null)
-             'requirements_s3_object_version': requirementsS3ObjectVersion,
-           if (requirementsS3Path != null)
-             'requirements_s3_path': requirementsS3Path,
-           if (schedulers != null) 'schedulers': schedulers,
+           'plugins_s3_object_version': ?pluginsS3ObjectVersion,
+           'plugins_s3_path': ?pluginsS3Path,
+           'region': ?region,
+           'requirements_s3_object_version': ?requirementsS3ObjectVersion,
+           'requirements_s3_path': ?requirementsS3Path,
+           'schedulers': ?schedulers,
            'source_bucket_arn': sourceBucketArn.encodeAs('arn'),
-           if (startupScriptS3ObjectVersion != null)
-             'startup_script_s3_object_version': startupScriptS3ObjectVersion,
-           if (startupScriptS3Path != null)
-             'startup_script_s3_path': startupScriptS3Path,
-           if (tags != null) 'tags': tags,
-           if (webserverAccessMode != null)
-             'webserver_access_mode': webserverAccessMode,
-           if (weeklyMaintenanceWindowStart != null)
-             'weekly_maintenance_window_start': weeklyMaintenanceWindowStart,
-           if (workerReplacementStrategy != null)
-             'worker_replacement_strategy': workerReplacementStrategy,
+           'startup_script_s3_object_version': ?startupScriptS3ObjectVersion,
+           'startup_script_s3_path': ?startupScriptS3Path,
+           'tags': ?tags,
+           'webserver_access_mode': ?webserverAccessMode,
+           'weekly_maintenance_window_start': ?weeklyMaintenanceWindowStart,
+           'worker_replacement_strategy': ?workerReplacementStrategy,
            if (loggingConfiguration != null)
              'logging_configuration': TfArg.literal(
                loggingConfiguration.encode(),

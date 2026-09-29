@@ -26,10 +26,10 @@ final class AwsServicecatalogappregistryAttributeGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'attributes': attributes,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

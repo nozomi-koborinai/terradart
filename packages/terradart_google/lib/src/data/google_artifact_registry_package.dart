@@ -26,7 +26,7 @@ final class DataGoogleArtifactRegistryPackage extends Data {
          argMap: {
            'location': location,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            'repository_id': repositoryId,
          },
        );

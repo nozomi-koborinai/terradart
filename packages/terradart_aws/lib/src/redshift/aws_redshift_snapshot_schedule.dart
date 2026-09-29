@@ -94,11 +94,11 @@ final class AwsRedshiftSnapshotSchedule extends Resource {
          terraformType: tfType,
          argMap: {
            'definitions': definitions,
-           if (description != null) 'description': description,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
+           'description': ?description,
+           'force_destroy': ?forceDestroy,
            ...?identifier?.argMap,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -24,7 +24,7 @@ final class AwsServicecatalogTagOptionResourceAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_id': resourceId,
            'tag_option_id': tagOptionId,
          },

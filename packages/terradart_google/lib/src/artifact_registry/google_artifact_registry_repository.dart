@@ -820,11 +820,11 @@ final class GoogleArtifactRegistryRepository extends Resource {
          argMap: {
            'repository_id': repositoryId,
            'format': format,
-           if (mode != null) 'mode': mode,
-           if (description != null) 'description': description,
-           if (location != null) 'location': location,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName.encodeAs('id'),
-           if (labels != null) 'labels': labels,
+           'mode': ?mode,
+           'description': ?description,
+           'location': ?location,
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
+           'labels': ?labels,
            if (dockerConfig != null)
              'docker_config': TfArg.literal([dockerConfig.toArgMap()]),
            if (mavenConfig != null)
@@ -834,13 +834,12 @@ final class GoogleArtifactRegistryRepository extends Resource {
              'cleanup_policies': TfArg.literal(
                cleanupPolicies.map((p) => p.toArgMap()).toList(),
              ),
-           if (cleanupPolicyDryRun != null)
-             'cleanup_policy_dry_run': cleanupPolicyDryRun,
+           'cleanup_policy_dry_run': ?cleanupPolicyDryRun,
            if (vulnerabilityScanningConfig != null)
              'vulnerability_scanning_config': TfArg.literal([
                vulnerabilityScanningConfig.toArgMap(),
              ]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -33,12 +33,12 @@ final class CloudflareZeroTrustDlpDataset extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (caseSensitive != null) 'case_sensitive': caseSensitive,
-           if (datasetId != null) 'dataset_id': datasetId,
-           if (description != null) 'description': description,
-           if (encodingVersion != null) 'encoding_version': encodingVersion,
+           'case_sensitive': ?caseSensitive,
+           'dataset_id': ?datasetId,
+           'description': ?description,
+           'encoding_version': ?encodingVersion,
            'name': name,
-           if (secret != null) 'secret': secret,
+           'secret': ?secret,
          },
        );
 

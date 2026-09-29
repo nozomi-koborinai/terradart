@@ -47,14 +47,13 @@ final class AwsAmiFromInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deprecationTime != null) 'deprecation_time': deprecationTime,
-           if (description != null) 'description': description,
+           'deprecation_time': ?deprecationTime,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (snapshotWithoutReboot != null)
-             'snapshot_without_reboot': snapshotWithoutReboot,
+           'region': ?region,
+           'snapshot_without_reboot': ?snapshotWithoutReboot,
            'source_instance_id': sourceInstanceId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (ebsBlockDevice != null)
              'ebs_block_device': TfArg.literal([
                for (final e in ebsBlockDevice) e.encode(),

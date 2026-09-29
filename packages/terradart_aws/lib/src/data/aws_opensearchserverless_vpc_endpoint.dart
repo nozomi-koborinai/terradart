@@ -19,10 +19,7 @@ final class DataAwsOpensearchserverlessVpcEndpoint extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'vpc_endpoint_id': vpcEndpointId,
-         },
+         argMap: {'region': ?region, 'vpc_endpoint_id': vpcEndpointId},
        );
 
   @override

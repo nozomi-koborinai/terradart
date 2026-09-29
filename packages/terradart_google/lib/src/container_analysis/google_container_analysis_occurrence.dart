@@ -41,7 +41,7 @@ final class ContainerAnalysisOccurrenceAttestationSignatures {
 
   Map<String, Object?> encode() => {
     'public_key_id': publicKeyId.toTfJson(),
-    if (signature != null) 'signature': signature!.toTfJson(),
+    'signature': ?signature?.toTfJson(),
   };
 }
 
@@ -95,9 +95,9 @@ final class GoogleContainerAnalysisOccurrence extends Resource {
            'note_name': noteName,
            'resource_uri': resourceUri,
            'attestation': TfArg.literal(attestation.encode()),
-           if (remediation != null) 'remediation': remediation,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'remediation': ?remediation,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

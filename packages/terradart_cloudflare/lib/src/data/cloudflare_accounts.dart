@@ -20,9 +20,9 @@ final class DataCloudflareAccounts extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (direction != null) 'direction': direction,
-           if (maxItems != null) 'max_items': maxItems,
-           if (name != null) 'name': name,
+           'direction': ?direction,
+           'max_items': ?maxItems,
+           'name': ?name,
          },
        );
 

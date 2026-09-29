@@ -17,10 +17,7 @@ final class DataAwsCloudfrontDistribution extends Data {
     TfArg<Map<String, String>>? tags,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {'id': id, if (tags != null) 'tags': tags},
-       );
+  }) : super(terraformType: tfType, argMap: {'id': id, 'tags': ?tags});
 
   @override
   Set<String> get sensitiveFields => _awsCloudfrontDistributionSensitive;

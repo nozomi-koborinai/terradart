@@ -37,8 +37,8 @@ final class DataAwsSsmPatchBaselines extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultBaselines != null) 'default_baselines': defaultBaselines,
-           if (region != null) 'region': region,
+           'default_baselines': ?defaultBaselines,
+           'region': ?region,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

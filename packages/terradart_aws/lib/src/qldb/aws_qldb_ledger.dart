@@ -37,13 +37,12 @@ final class AwsQldbLedger extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('arn'),
-           if (name != null) 'name': name,
+           'deletion_protection': ?deletionProtection,
+           'kms_key': ?kmsKey?.encodeAs('arn'),
+           'name': ?name,
            'permissions_mode': permissionsMode,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

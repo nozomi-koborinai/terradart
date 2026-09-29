@@ -23,7 +23,7 @@ final class AwsVpcEndpointPrivateDns extends Resource {
          terraformType: tfType,
          argMap: {
            'private_dns_enabled': privateDnsEnabled,
-           if (region != null) 'region': region,
+           'region': ?region,
            'vpc_endpoint_id': vpcEndpointId,
          },
        );

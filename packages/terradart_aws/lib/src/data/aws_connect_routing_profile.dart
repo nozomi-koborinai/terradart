@@ -24,10 +24,10 @@ final class DataAwsConnectRoutingProfile extends Data {
          terraformType: tfType,
          argMap: {
            'instance_id': instanceId,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (routingProfileId != null) 'routing_profile_id': routingProfileId,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'region': ?region,
+           'routing_profile_id': ?routingProfileId,
+           'tags': ?tags,
          },
        );
 

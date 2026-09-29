@@ -35,17 +35,17 @@ final class DataCloudflareZeroTrustTunnelWarpConnectors extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (excludePrefix != null) 'exclude_prefix': excludePrefix,
-           if (existedAt != null) 'existed_at': existedAt,
-           if (includePrefix != null) 'include_prefix': includePrefix,
-           if (isDeleted != null) 'is_deleted': isDeleted,
-           if (maxItems != null) 'max_items': maxItems,
-           if (name != null) 'name': name,
-           if (status != null) 'status': status,
-           if (uuid != null) 'uuid': uuid,
-           if (wasActiveAt != null) 'was_active_at': wasActiveAt,
-           if (wasInactiveAt != null) 'was_inactive_at': wasInactiveAt,
+           'account_id': ?accountId,
+           'exclude_prefix': ?excludePrefix,
+           'existed_at': ?existedAt,
+           'include_prefix': ?includePrefix,
+           'is_deleted': ?isDeleted,
+           'max_items': ?maxItems,
+           'name': ?name,
+           'status': ?status,
+           'uuid': ?uuid,
+           'was_active_at': ?wasActiveAt,
+           'was_inactive_at': ?wasInactiveAt,
          },
        );
 

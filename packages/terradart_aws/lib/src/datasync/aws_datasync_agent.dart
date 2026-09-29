@@ -28,17 +28,15 @@ final class AwsDatasyncAgent extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (activationKey != null) 'activation_key': activationKey,
-           if (ipAddress != null) 'ip_address': ipAddress,
-           if (name != null) 'name': name,
-           if (privateLinkEndpoint != null)
-             'private_link_endpoint': privateLinkEndpoint,
-           if (region != null) 'region': region,
-           if (securityGroupArns != null)
-             'security_group_arns': securityGroupArns,
-           if (subnetArns != null) 'subnet_arns': subnetArns,
-           if (tags != null) 'tags': tags,
-           if (vpcEndpointId != null) 'vpc_endpoint_id': vpcEndpointId,
+           'activation_key': ?activationKey,
+           'ip_address': ?ipAddress,
+           'name': ?name,
+           'private_link_endpoint': ?privateLinkEndpoint,
+           'region': ?region,
+           'security_group_arns': ?securityGroupArns,
+           'subnet_arns': ?subnetArns,
+           'tags': ?tags,
+           'vpc_endpoint_id': ?vpcEndpointId,
          },
        );
 

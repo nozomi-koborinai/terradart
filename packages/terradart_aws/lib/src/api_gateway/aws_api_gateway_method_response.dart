@@ -27,11 +27,10 @@ final class AwsApiGatewayMethodResponse extends Resource {
          terraformType: tfType,
          argMap: {
            'http_method': httpMethod,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_id': resourceId,
-           if (responseModels != null) 'response_models': responseModels,
-           if (responseParameters != null)
-             'response_parameters': responseParameters,
+           'response_models': ?responseModels,
+           'response_parameters': ?responseParameters,
            'rest_api_id': restApiId,
            'status_code': statusCode,
          },

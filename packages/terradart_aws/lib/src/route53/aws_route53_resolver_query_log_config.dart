@@ -25,8 +25,8 @@ final class AwsRoute53ResolverQueryLogConfig extends Resource {
          argMap: {
            'destination_arn': destinationArn,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

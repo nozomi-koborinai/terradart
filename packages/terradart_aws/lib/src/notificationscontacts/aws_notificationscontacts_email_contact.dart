@@ -21,11 +21,7 @@ final class AwsNotificationscontactsEmailContact extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'email_address': emailAddress,
-           'name': name,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'email_address': emailAddress, 'name': name, 'tags': ?tags},
        );
 
   @override

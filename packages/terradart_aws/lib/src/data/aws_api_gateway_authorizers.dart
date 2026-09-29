@@ -18,10 +18,7 @@ final class DataAwsApiGatewayAuthorizers extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'rest_api_id': restApiId,
-         },
+         argMap: {'region': ?region, 'rest_api_id': restApiId},
        );
 
   @override

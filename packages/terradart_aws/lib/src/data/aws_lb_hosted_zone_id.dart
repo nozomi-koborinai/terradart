@@ -18,10 +18,7 @@ final class DataAwsLbHostedZoneId extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (loadBalancerType != null) 'load_balancer_type': loadBalancerType,
-           if (region != null) 'region': region,
-         },
+         argMap: {'load_balancer_type': ?loadBalancerType, 'region': ?region},
        );
 
   @override

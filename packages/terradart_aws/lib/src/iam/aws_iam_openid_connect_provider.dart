@@ -24,8 +24,8 @@ final class AwsIamOpenidConnectProvider extends Resource {
          terraformType: tfType,
          argMap: {
            'client_id_list': clientIdList,
-           if (tags != null) 'tags': tags,
-           if (thumbprintList != null) 'thumbprint_list': thumbprintList,
+           'tags': ?tags,
+           'thumbprint_list': ?thumbprintList,
            'url': url,
          },
        );

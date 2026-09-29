@@ -81,10 +81,9 @@ final class PinpointAppCampaignHook {
   final TfArg<String>? webUrl;
 
   Map<String, Object?> encode() => {
-    if (lambdaFunctionName != null)
-      'lambda_function_name': lambdaFunctionName!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (webUrl != null) 'web_url': webUrl!.toTfJson(),
+    'lambda_function_name': ?lambdaFunctionName?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'web_url': ?webUrl?.toTfJson(),
   };
 }
 
@@ -118,12 +117,10 @@ final class PinpointAppLimits {
   final TfArg<num>? total;
 
   Map<String, Object?> encode() => {
-    if (daily != null) 'daily': daily!.toTfJson(),
-    if (maximumDuration != null)
-      'maximum_duration': maximumDuration!.toTfJson(),
-    if (messagesPerSecond != null)
-      'messages_per_second': messagesPerSecond!.toTfJson(),
-    if (total != null) 'total': total!.toTfJson(),
+    'daily': ?daily?.toTfJson(),
+    'maximum_duration': ?maximumDuration?.toTfJson(),
+    'messages_per_second': ?messagesPerSecond?.toTfJson(),
+    'total': ?total?.toTfJson(),
   };
 }
 
@@ -138,8 +135,8 @@ final class PinpointAppQuietTime {
   final TfArg<String>? start;
 
   Map<String, Object?> encode() => {
-    if (end != null) 'end': end!.toTfJson(),
-    if (start != null) 'start': start!.toTfJson(),
+    'end': ?end?.toTfJson(),
+    'start': ?start?.toTfJson(),
   };
 }
 
@@ -163,8 +160,8 @@ final class AwsPinpointApp extends Resource {
          terraformType: tfType,
          argMap: {
            ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (campaignHook != null)
              'campaign_hook': TfArg.literal(campaignHook.encode()),
            if (limits != null) 'limits': TfArg.literal(limits.encode()),

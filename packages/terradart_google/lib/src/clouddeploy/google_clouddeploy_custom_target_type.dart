@@ -92,7 +92,7 @@ final class ClouddeployCustomTargetTypeCustomActions {
 
   Map<String, Object?> encode() => {
     'deploy_action': deployAction.toTfJson(),
-    if (renderAction != null) 'render_action': renderAction!.toTfJson(),
+    'render_action': ?renderAction?.toTfJson(),
     if (includeSkaffoldModules != null)
       'include_skaffold_modules': [
         for (final e in includeSkaffoldModules!) e.encode(),
@@ -115,7 +115,7 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModules {
   source;
 
   Map<String, Object?> encode() => {
-    if (configs != null) 'configs': configs!.toTfJson(),
+    'configs': ?configs?.toTfJson(),
     ...source.encode(),
   };
 }
@@ -224,8 +224,8 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGit {
   final TfArg<String> repo;
 
   Map<String, Object?> encode() => {
-    if (path != null) 'path': path!.toTfJson(),
-    if (ref != null) 'ref': ref!.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'ref': ?ref?.toTfJson(),
     'repo': repo.toTfJson(),
   };
 }
@@ -247,8 +247,8 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogle
   final TfArg<String> repository;
 
   Map<String, Object?> encode() => {
-    if (path != null) 'path': path!.toTfJson(),
-    if (ref != null) 'ref': ref!.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'ref': ?ref?.toTfJson(),
     'repository': repository.toTfJson(),
   };
 }
@@ -267,7 +267,7 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogle
   final TfArg<String> source;
 
   Map<String, Object?> encode() => {
-    if (path != null) 'path': path!.toTfJson(),
+    'path': ?path?.toTfJson(),
     'source': source.toTfJson(),
   };
 }
@@ -284,7 +284,7 @@ final class ClouddeployCustomTargetTypeTasks {
 
   Map<String, Object?> encode() => {
     'deploy': deploy.encode(),
-    if (render != null) 'render': render!.encode(),
+    'render': ?render?.encode(),
   };
 }
 
@@ -296,9 +296,7 @@ final class ClouddeployCustomTargetTypeTasksDeploy {
 
   final ClouddeployCustomTargetTypeTasksDeployContainer? container;
 
-  Map<String, Object?> encode() => {
-    if (container != null) 'container': container!.encode(),
-  };
+  Map<String, Object?> encode() => {'container': ?container?.encode()};
 }
 
 /// Typed helper for the `tasks.deploy.container` block of
@@ -321,9 +319,9 @@ final class ClouddeployCustomTargetTypeTasksDeployContainer {
   final TfArg<String> image;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
-    if (command != null) 'command': command!.toTfJson(),
-    if (env != null) 'env': env!.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'command': ?command?.toTfJson(),
+    'env': ?env?.toTfJson(),
     'image': image.toTfJson(),
   };
 }
@@ -336,9 +334,7 @@ final class ClouddeployCustomTargetTypeTasksRender {
 
   final ClouddeployCustomTargetTypeTasksRenderContainer? container;
 
-  Map<String, Object?> encode() => {
-    if (container != null) 'container': container!.encode(),
-  };
+  Map<String, Object?> encode() => {'container': ?container?.encode()};
 }
 
 /// Typed helper for the `tasks.render.container` block of
@@ -361,9 +357,9 @@ final class ClouddeployCustomTargetTypeTasksRenderContainer {
   final TfArg<String> image;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
-    if (command != null) 'command': command!.toTfJson(),
-    if (env != null) 'env': env!.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'command': ?command?.toTfJson(),
+    'env': ?env?.toTfJson(),
     'image': image.toTfJson(),
   };
 }
@@ -396,11 +392,11 @@ final class GoogleClouddeployCustomTargetType extends Resource {
            'name': name,
            'location': location,
            ...?actions?.argMap,
-           if (description != null) 'description': description,
-           if (annotations != null) 'annotations': annotations,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'annotations': ?annotations,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

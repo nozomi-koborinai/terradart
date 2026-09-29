@@ -25,11 +25,10 @@ final class AwsEc2TransitGatewayPrefixListReference extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (blackhole != null) 'blackhole': blackhole,
+           'blackhole': ?blackhole,
            'prefix_list_id': prefixListId,
-           if (region != null) 'region': region,
-           if (transitGatewayAttachmentId != null)
-             'transit_gateway_attachment_id': transitGatewayAttachmentId,
+           'region': ?region,
+           'transit_gateway_attachment_id': ?transitGatewayAttachmentId,
            'transit_gateway_route_table_id': transitGatewayRouteTableId,
          },
        );

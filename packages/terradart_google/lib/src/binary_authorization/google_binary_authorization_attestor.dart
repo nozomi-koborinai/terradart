@@ -47,10 +47,10 @@ final class GoogleBinaryAuthorizationAttestor extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (description != null) 'description': description,
+           'description': ?description,
            'attestation_authority_note': attestationAuthorityNote,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

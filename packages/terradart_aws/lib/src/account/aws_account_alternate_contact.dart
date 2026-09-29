@@ -37,7 +37,7 @@ final class AwsAccountAlternateContact extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'alternate_contact_type': alternateContactType,
            'email_address': emailAddress,
            'name': name,

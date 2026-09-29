@@ -25,7 +25,7 @@ final class AwsEc2ClientVpnNetworkAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'client_vpn_endpoint_id': clientVpnEndpointId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'subnet_id': subnetId.encodeAs('id'),
          },
        );

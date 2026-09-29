@@ -42,9 +42,8 @@ final class GoogleApigeeSharedflowDeployment extends Resource {
            'environment': environment,
            'sharedflow_id': sharedflowId,
            'revision': revision,
-           if (serviceAccount != null)
-             'service_account': serviceAccount.encodeAs('email'),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'service_account': ?serviceAccount?.encodeAs('email'),
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

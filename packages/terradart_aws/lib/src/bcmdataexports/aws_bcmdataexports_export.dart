@@ -33,7 +33,7 @@ final class BcmdataexportsExportExport {
   final List<BcmdataexportsExportExportRefreshCadence>? refreshCadence;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
     if (dataQuery != null)
       'data_query': [for (final e in dataQuery!) e.encode()],
@@ -61,8 +61,7 @@ final class BcmdataexportsExportExportDataQuery {
 
   Map<String, Object?> encode() => {
     'query_statement': queryStatement.toTfJson(),
-    if (tableConfigurations != null)
-      'table_configurations': tableConfigurations!.toTfJson(),
+    'table_configurations': ?tableConfigurations?.toTfJson(),
   };
 }
 
@@ -245,7 +244,7 @@ final class AwsBcmdataexportsExport extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (export != null)
              'export': TfArg.literal([for (final e in export) e.encode()]),
          },

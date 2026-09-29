@@ -27,12 +27,12 @@ final class GoogleDataplexEntryGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (entryGroupId != null) 'entry_group_id': entryGroupId,
-           if (location != null) 'location': location,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'entry_group_id': ?entryGroupId,
+           'location': ?location,
+           'display_name': ?displayName,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

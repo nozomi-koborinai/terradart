@@ -26,7 +26,7 @@ final class AwsLightsailLbStickinessPolicy extends Resource {
            'cookie_duration': cookieDuration,
            'enabled': enabled,
            'lb_name': lbName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

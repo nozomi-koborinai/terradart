@@ -31,7 +31,7 @@ final class CloudflareRegionalHostname extends Resource {
          argMap: {
            'hostname': hostname,
            'region_key': regionKey,
-           if (routing != null) 'routing': routing,
+           'routing': ?routing,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

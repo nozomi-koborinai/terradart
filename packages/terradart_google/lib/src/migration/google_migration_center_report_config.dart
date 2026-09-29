@@ -66,13 +66,13 @@ final class GoogleMigrationCenterReportConfig extends Resource {
          argMap: {
            'location': location,
            'report_config_id': reportConfigId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
+           'display_name': ?displayName,
+           'description': ?description,
            'group_preferenceset_assignments': TfArg.literal(
              groupPreferencesetAssignments.map((a) => a.toArgMap()).toList(),
            ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

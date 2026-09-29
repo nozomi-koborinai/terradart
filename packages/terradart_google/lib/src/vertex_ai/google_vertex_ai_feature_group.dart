@@ -27,12 +27,12 @@ final class GoogleVertexAiFeatureGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (bigQuery != null) 'big_query': bigQuery,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'name': ?name,
+           'region': ?region,
+           'big_query': ?bigQuery,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

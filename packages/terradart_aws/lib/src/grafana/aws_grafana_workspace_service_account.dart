@@ -36,7 +36,7 @@ final class AwsGrafanaWorkspaceServiceAccount extends Resource {
          argMap: {
            'grafana_role': grafanaRole,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'workspace_id': workspaceId,
          },
        );

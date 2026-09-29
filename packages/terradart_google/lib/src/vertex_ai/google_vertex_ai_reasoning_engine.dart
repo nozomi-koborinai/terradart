@@ -19,8 +19,7 @@ final class VertexAiReasoningEngineContextSpec {
   final VertexAiReasoningEngineContextSpecMemoryBankConfig? memoryBankConfig;
 
   Map<String, Object?> encode() => {
-    if (memoryBankConfig != null)
-      'memory_bank_config': memoryBankConfig!.encode(),
+    'memory_bank_config': ?memoryBankConfig?.encode(),
   };
 }
 
@@ -58,21 +57,18 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfig {
   final VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig? ttlConfig;
 
   Map<String, Object?> encode() => {
-    if (disableMemoryRevisions != null)
-      'disable_memory_revisions': disableMemoryRevisions!.toTfJson(),
+    'disable_memory_revisions': ?disableMemoryRevisions?.toTfJson(),
     if (customizationConfigs != null)
       'customization_configs': [
         for (final e in customizationConfigs!) e.encode(),
       ],
-    if (generationConfig != null)
-      'generation_config': generationConfig!.encode(),
-    if (similaritySearchConfig != null)
-      'similarity_search_config': similaritySearchConfig!.encode(),
+    'generation_config': ?generationConfig?.encode(),
+    'similarity_search_config': ?similaritySearchConfig?.encode(),
     if (structuredMemoryConfigs != null)
       'structured_memory_configs': [
         for (final e in structuredMemoryConfigs!) e.encode(),
       ],
-    if (ttlConfig != null) 'ttl_config': ttlConfig!.encode(),
+    'ttl_config': ?ttlConfig?.encode(),
   };
 }
 
@@ -109,14 +105,11 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   memoryTopics;
 
   Map<String, Object?> encode() => {
-    if (disableNaturalLanguageMemories != null)
-      'disable_natural_language_memories': disableNaturalLanguageMemories!
-          .toTfJson(),
-    if (enableThirdPersonMemories != null)
-      'enable_third_person_memories': enableThirdPersonMemories!.toTfJson(),
-    if (scopeKeys != null) 'scope_keys': scopeKeys!.toTfJson(),
-    if (consolidationConfig != null)
-      'consolidation_config': consolidationConfig!.encode(),
+    'disable_natural_language_memories': ?disableNaturalLanguageMemories
+        ?.toTfJson(),
+    'enable_third_person_memories': ?enableThirdPersonMemories?.toTfJson(),
+    'scope_keys': ?scopeKeys?.toTfJson(),
+    'consolidation_config': ?consolidationConfig?.encode(),
     if (generateMemoriesExamples != null)
       'generate_memories_examples': [
         for (final e in generateMemoriesExamples!) e.encode(),
@@ -137,8 +130,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   final TfArg<num>? revisionsPerCandidateCount;
 
   Map<String, Object?> encode() => {
-    if (revisionsPerCandidateCount != null)
-      'revisions_per_candidate_count': revisionsPerCandidateCount!.toTfJson(),
+    'revisions_per_candidate_count': ?revisionsPerCandidateCount?.toTfJson(),
   };
 }
 
@@ -160,8 +152,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   generatedMemories;
 
   Map<String, Object?> encode() => {
-    if (conversationSource != null)
-      'conversation_source': conversationSource!.encode(),
+    'conversation_source': ?conversationSource?.encode(),
     if (generatedMemories != null)
       'generated_memories': [for (final e in generatedMemories!) e.encode()],
   };
@@ -216,7 +207,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   parts;
 
   Map<String, Object?> encode() => {
-    if (role != null) 'role': role!.toTfJson(),
+    'role': ?role?.toTfJson(),
     'parts': [for (final e in parts) e.encode()],
   };
 }
@@ -267,19 +258,16 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   videoMetadata;
 
   Map<String, Object?> encode() => {
-    if (text != null) 'text': text!.toTfJson(),
-    if (thought != null) 'thought': thought!.toTfJson(),
-    if (audioTranscription != null)
-      'audio_transcription': audioTranscription!.encode(),
-    if (codeExecutionResult != null)
-      'code_execution_result': codeExecutionResult!.encode(),
-    if (executableCode != null) 'executable_code': executableCode!.encode(),
-    if (fileData != null) 'file_data': fileData!.encode(),
-    if (functionCall != null) 'function_call': functionCall!.encode(),
-    if (functionResponse != null)
-      'function_response': functionResponse!.encode(),
-    if (inlineData != null) 'inline_data': inlineData!.encode(),
-    if (videoMetadata != null) 'video_metadata': videoMetadata!.encode(),
+    'text': ?text?.toTfJson(),
+    'thought': ?thought?.toTfJson(),
+    'audio_transcription': ?audioTranscription?.encode(),
+    'code_execution_result': ?codeExecutionResult?.encode(),
+    'executable_code': ?executableCode?.encode(),
+    'file_data': ?fileData?.encode(),
+    'function_call': ?functionCall?.encode(),
+    'function_response': ?functionResponse?.encode(),
+    'inline_data': ?inlineData?.encode(),
+    'video_metadata': ?videoMetadata?.encode(),
   };
 }
 
@@ -303,7 +291,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   words;
 
   Map<String, Object?> encode() => {
-    if (speakerLabel != null) 'speaker_label': speakerLabel!.toTfJson(),
+    'speaker_label': ?speakerLabel?.toTfJson(),
     'text': text.toTfJson(),
     if (words != null) 'words': [for (final e in words!) e.encode()],
   };
@@ -326,8 +314,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   final TfArg<String> word;
 
   Map<String, Object?> encode() => {
-    if (endOffset != null) 'end_offset': endOffset!.toTfJson(),
-    if (startOffset != null) 'start_offset': startOffset!.toTfJson(),
+    'end_offset': ?endOffset?.toTfJson(),
+    'start_offset': ?startOffset?.toTfJson(),
     'word': word.toTfJson(),
   };
 }
@@ -352,9 +340,9 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   final TfArg<String>? output;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
+    'id': ?id?.toTfJson(),
     'outcome': outcome.toTfJson(),
-    if (output != null) 'output': output!.toTfJson(),
+    'output': ?output?.toTfJson(),
   };
 }
 
@@ -394,7 +382,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
 
   Map<String, Object?> encode() => {
     'code': code.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
+    'id': ?id?.toTfJson(),
     'language': language.toTfJson(),
   };
 }
@@ -449,9 +437,9 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   final TfArg<String>? name;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -472,9 +460,9 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   final TfArg<String>? response;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
+    'id': ?id?.toTfJson(),
     'name': name.toTfJson(),
-    if (response != null) 'response': response!.toTfJson(),
+    'response': ?response?.toTfJson(),
   };
 }
 
@@ -511,8 +499,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   final TfArg<String>? startOffset;
 
   Map<String, Object?> encode() => {
-    if (endOffset != null) 'end_offset': endOffset!.toTfJson(),
-    if (startOffset != null) 'start_offset': startOffset!.toTfJson(),
+    'end_offset': ?endOffset?.toTfJson(),
+    'start_offset': ?startOffset?.toTfJson(),
   };
 }
 
@@ -555,10 +543,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   managedMemoryTopic;
 
   Map<String, Object?> encode() => {
-    if (customMemoryTopicLabel != null)
-      'custom_memory_topic_label': customMemoryTopicLabel!.toTfJson(),
-    if (managedMemoryTopic != null)
-      'managed_memory_topic': managedMemoryTopic!.toTfJson(),
+    'custom_memory_topic_label': ?customMemoryTopicLabel?.toTfJson(),
+    'managed_memory_topic': ?managedMemoryTopic?.toTfJson(),
   };
 }
 
@@ -670,8 +656,8 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   final TfArg<String>? label;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (label != null) 'label': label!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'label': ?label?.toTfJson(),
   };
 }
 
@@ -686,8 +672,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   final TfArg<String>? managedTopicEnum;
 
   Map<String, Object?> encode() => {
-    if (managedTopicEnum != null)
-      'managed_topic_enum': managedTopicEnum!.toTfJson(),
+    'managed_topic_enum': ?managedTopicEnum?.toTfJson(),
   };
 }
 
@@ -707,8 +692,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfig {
 
   Map<String, Object?> encode() => {
     'model': model.toTfJson(),
-    if (generationTriggerConfig != null)
-      'generation_trigger_config': generationTriggerConfig!.encode(),
+    'generation_trigger_config': ?generationTriggerConfig?.encode(),
   };
 }
 
@@ -724,7 +708,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGe
   generationRule;
 
   Map<String, Object?> encode() => {
-    if (generationRule != null) 'generation_rule': generationRule!.encode(),
+    'generation_rule': ?generationRule?.encode(),
   };
 }
 
@@ -748,11 +732,10 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGe
   final TfArg<num>? overlapEventCount;
 
   Map<String, Object?> encode() => {
-    if (eventCount != null) 'event_count': eventCount!.toTfJson(),
-    if (fixedInterval != null) 'fixed_interval': fixedInterval!.toTfJson(),
-    if (idleDuration != null) 'idle_duration': idleDuration!.toTfJson(),
-    if (overlapEventCount != null)
-      'overlap_event_count': overlapEventCount!.toTfJson(),
+    'event_count': ?eventCount?.toTfJson(),
+    'fixed_interval': ?fixedInterval?.toTfJson(),
+    'idle_duration': ?idleDuration?.toTfJson(),
+    'overlap_event_count': ?overlapEventCount?.toTfJson(),
   };
 }
 
@@ -788,7 +771,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryCo
   schemaConfigs;
 
   Map<String, Object?> encode() => {
-    if (scopeKeys != null) 'scope_keys': scopeKeys!.toTfJson(),
+    'scope_keys': ?scopeKeys?.toTfJson(),
     if (schemaConfigs != null)
       'schema_configs': [for (final e in schemaConfigs!) e.encode()],
   };
@@ -809,7 +792,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryCo
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (memorySchema != null) 'memory_schema': memorySchema!.toTfJson(),
+    'memory_schema': ?memorySchema?.toTfJson(),
   };
 }
 
@@ -828,8 +811,7 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig {
 
   Map<String, Object?> encode() => {
     ...ttl.encode(),
-    if (memoryRevisionDefaultTtl != null)
-      'memory_revision_default_ttl': memoryRevisionDefaultTtl!.toTfJson(),
+    'memory_revision_default_ttl': ?memoryRevisionDefaultTtl?.toTfJson(),
   };
 }
 
@@ -909,11 +891,9 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularT
   final TfArg<String>? generateUpdatedTtl;
 
   Map<String, Object?> encode() => {
-    if (createTtl != null) 'create_ttl': createTtl!.toTfJson(),
-    if (generateCreatedTtl != null)
-      'generate_created_ttl': generateCreatedTtl!.toTfJson(),
-    if (generateUpdatedTtl != null)
-      'generate_updated_ttl': generateUpdatedTtl!.toTfJson(),
+    'create_ttl': ?createTtl?.toTfJson(),
+    'generate_created_ttl': ?generateCreatedTtl?.toTfJson(),
+    'generate_updated_ttl': ?generateUpdatedTtl?.toTfJson(),
   };
 }
 
@@ -962,15 +942,14 @@ final class VertexAiReasoningEngineSpec {
   final VertexAiReasoningEngineSpecPackageSpec? packageSpec;
 
   Map<String, Object?> encode() => {
-    if (agentFramework != null) 'agent_framework': agentFramework!.toTfJson(),
-    if (classMethods != null) 'class_methods': classMethods!.toTfJson(),
-    if (identityType != null) 'identity_type': identityType!.toTfJson(),
-    if (serviceAccount != null)
-      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
-    if (buildSpec != null) 'build_spec': buildSpec!.encode(),
+    'agent_framework': ?agentFramework?.toTfJson(),
+    'class_methods': ?classMethods?.toTfJson(),
+    'identity_type': ?identityType?.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
+    'build_spec': ?buildSpec?.encode(),
     ...?deployment?.encode(),
-    if (deploymentSpec != null) 'deployment_spec': deploymentSpec!.encode(),
-    if (packageSpec != null) 'package_spec': packageSpec!.encode(),
+    'deployment_spec': ?deploymentSpec?.encode(),
+    'package_spec': ?packageSpec?.encode(),
   };
 }
 
@@ -1054,9 +1033,8 @@ final class VertexAiReasoningEngineSpecBuildSpec {
   final TfArg<String>? workerPool;
 
   Map<String, Object?> encode() => {
-    if (serviceAccount != null)
-      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
-    if (workerPool != null) 'worker_pool': workerPool!.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
+    'worker_pool': ?workerPool?.toTfJson(),
   };
 }
 
@@ -1075,7 +1053,7 @@ final class VertexAiReasoningEngineSpecContainerSpec {
 
   Map<String, Object?> encode() => {
     'image_uri': imageUri.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -1113,16 +1091,13 @@ final class VertexAiReasoningEngineSpecDeploymentSpec {
   final List<VertexAiReasoningEngineSpecDeploymentSpecSecretEnv>? secretEnv;
 
   Map<String, Object?> encode() => {
-    if (containerConcurrency != null)
-      'container_concurrency': containerConcurrency!.toTfJson(),
-    if (maxInstances != null) 'max_instances': maxInstances!.toTfJson(),
-    if (minInstances != null) 'min_instances': minInstances!.toTfJson(),
-    if (resourceLimits != null) 'resource_limits': resourceLimits!.toTfJson(),
-    if (agentGatewayConfig != null)
-      'agent_gateway_config': agentGatewayConfig!.encode(),
+    'container_concurrency': ?containerConcurrency?.toTfJson(),
+    'max_instances': ?maxInstances?.toTfJson(),
+    'min_instances': ?minInstances?.toTfJson(),
+    'resource_limits': ?resourceLimits?.toTfJson(),
+    'agent_gateway_config': ?agentGatewayConfig?.encode(),
     if (env != null) 'env': [for (final e in env!) e.encode()],
-    if (pscInterfaceConfig != null)
-      'psc_interface_config': pscInterfaceConfig!.encode(),
+    'psc_interface_config': ?pscInterfaceConfig?.encode(),
     if (secretEnv != null)
       'secret_env': [for (final e in secretEnv!) e.encode()],
   };
@@ -1144,10 +1119,8 @@ final class VertexAiReasoningEngineSpecDeploymentSpecAgentGatewayConfig {
   clientToAgentConfig;
 
   Map<String, Object?> encode() => {
-    if (agentToAnywhereConfig != null)
-      'agent_to_anywhere_config': agentToAnywhereConfig!.encode(),
-    if (clientToAgentConfig != null)
-      'client_to_agent_config': clientToAgentConfig!.encode(),
+    'agent_to_anywhere_config': ?agentToAnywhereConfig?.encode(),
+    'client_to_agent_config': ?clientToAgentConfig?.encode(),
   };
 }
 
@@ -1213,8 +1186,7 @@ final class VertexAiReasoningEngineSpecDeploymentSpecPscInterfaceConfig {
   dnsPeeringConfigs;
 
   Map<String, Object?> encode() => {
-    if (networkAttachment != null)
-      'network_attachment': networkAttachment!.toTfJson(),
+    'network_attachment': ?networkAttachment?.toTfJson(),
     if (dnsPeeringConfigs != null)
       'dns_peering_configs': [for (final e in dnsPeeringConfigs!) e.encode()],
   };
@@ -1277,7 +1249,7 @@ final class VertexAiReasoningEngineSpecDeploymentSpecSecretEnvSecretRef {
 
   Map<String, Object?> encode() => {
     'secret': secret.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -1301,13 +1273,10 @@ final class VertexAiReasoningEngineSpecPackageSpec {
   final TfArg<String>? requirementsGcsUri;
 
   Map<String, Object?> encode() => {
-    if (dependencyFilesGcsUri != null)
-      'dependency_files_gcs_uri': dependencyFilesGcsUri!.toTfJson(),
-    if (pickleObjectGcsUri != null)
-      'pickle_object_gcs_uri': pickleObjectGcsUri!.toTfJson(),
-    if (pythonVersion != null) 'python_version': pythonVersion!.toTfJson(),
-    if (requirementsGcsUri != null)
-      'requirements_gcs_uri': requirementsGcsUri!.toTfJson(),
+    'dependency_files_gcs_uri': ?dependencyFilesGcsUri?.toTfJson(),
+    'pickle_object_gcs_uri': ?pickleObjectGcsUri?.toTfJson(),
+    'python_version': ?pythonVersion?.toTfJson(),
+    'requirements_gcs_uri': ?requirementsGcsUri?.toTfJson(),
   };
 }
 
@@ -1333,12 +1302,10 @@ final class VertexAiReasoningEngineSpecSourceCodeSpec {
   final VertexAiReasoningEngineSpecSourceCodeSpecInlineSource? inlineSource;
 
   Map<String, Object?> encode() => {
-    if (agentConfigSource != null)
-      'agent_config_source': agentConfigSource!.encode(),
-    if (developerConnectSource != null)
-      'developer_connect_source': developerConnectSource!.encode(),
+    'agent_config_source': ?agentConfigSource?.encode(),
+    'developer_connect_source': ?developerConnectSource?.encode(),
     ...?runtime?.encode(),
-    if (inlineSource != null) 'inline_source': inlineSource!.encode(),
+    'inline_source': ?inlineSource?.encode(),
   };
 }
 
@@ -1414,8 +1381,8 @@ final class VertexAiReasoningEngineSpecSourceCodeSpecAgentConfigSource {
   inlineSource;
 
   Map<String, Object?> encode() => {
-    if (adkConfig != null) 'adk_config': adkConfig!.encode(),
-    if (inlineSource != null) 'inline_source': inlineSource!.encode(),
+    'adk_config': ?adkConfig?.encode(),
+    'inline_source': ?inlineSource?.encode(),
   };
 }
 
@@ -1490,9 +1457,7 @@ final class VertexAiReasoningEngineSpecSourceCodeSpecImageSpec {
 
   final TfArg<Map<String, String>>? buildArgs;
 
-  Map<String, Object?> encode() => {
-    if (buildArgs != null) 'build_args': buildArgs!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'build_args': ?buildArgs?.toTfJson()};
 }
 
 /// Typed helper for the `spec.source_code_spec.inline_source` block of
@@ -1506,7 +1471,7 @@ final class VertexAiReasoningEngineSpecSourceCodeSpecInlineSource {
   final TfArg<String>? sourceArchive;
 
   Map<String, Object?> encode() => {
-    if (sourceArchive != null) 'source_archive': sourceArchive!.toTfJson(),
+    'source_archive': ?sourceArchive?.toTfJson(),
   };
 }
 
@@ -1530,13 +1495,10 @@ final class VertexAiReasoningEngineSpecSourceCodeSpecPythonSpec {
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    if (entrypointModule != null)
-      'entrypoint_module': entrypointModule!.toTfJson(),
-    if (entrypointObject != null)
-      'entrypoint_object': entrypointObject!.toTfJson(),
-    if (requirementsFile != null)
-      'requirements_file': requirementsFile!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
+    'entrypoint_module': ?entrypointModule?.toTfJson(),
+    'entrypoint_object': ?entrypointObject?.toTfJson(),
+    'requirements_file': ?requirementsFile?.toTfJson(),
+    'version': ?version?.toTfJson(),
   };
 }
 
@@ -1589,14 +1551,14 @@ final class GoogleVertexAiReasoningEngine extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (region != null) 'region': region,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'region': ?region,
+           'description': ?description,
+           'labels': ?labels,
            if (encryptionSpec != null)
              'encryption_spec': TfArg.literal(encryptionSpec.encode()),
            if (spec != null) 'spec': TfArg.literal(spec.encode()),
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

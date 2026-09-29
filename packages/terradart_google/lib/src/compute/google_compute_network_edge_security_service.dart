@@ -28,12 +28,12 @@ final class GoogleComputeNetworkEdgeSecurityService extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'name': name,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-           if (securityPolicy != null) 'security_policy': securityPolicy,
+           'project': ?project,
+           'region': ?region,
+           'security_policy': ?securityPolicy,
          },
        );
 

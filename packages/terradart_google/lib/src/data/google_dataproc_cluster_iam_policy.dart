@@ -23,11 +23,7 @@ final class DataGoogleDataprocClusterIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'cluster': cluster,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-         },
+         argMap: {'cluster': cluster, 'project': ?project, 'region': ?region},
        );
 
   @override

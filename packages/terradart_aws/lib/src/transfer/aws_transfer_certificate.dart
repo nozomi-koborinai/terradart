@@ -42,11 +42,11 @@ final class AwsTransferCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'certificate': certificate,
-           if (certificateChain != null) 'certificate_chain': certificateChain,
-           if (description != null) 'description': description,
-           if (privateKey != null) 'private_key': privateKey,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'certificate_chain': ?certificateChain,
+           'description': ?description,
+           'private_key': ?privateKey,
+           'region': ?region,
+           'tags': ?tags,
            'usage': usage,
          },
        );

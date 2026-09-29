@@ -108,9 +108,8 @@ final class Wafv2WebAclLoggingConfigurationLoggingFilterFilterCondition {
   labelNameCondition;
 
   Map<String, Object?> encode() => {
-    if (actionCondition != null) 'action_condition': actionCondition!.encode(),
-    if (labelNameCondition != null)
-      'label_name_condition': labelNameCondition!.encode(),
+    'action_condition': ?actionCondition?.encode(),
+    'label_name_condition': ?labelNameCondition?.encode(),
   };
 }
 
@@ -181,10 +180,10 @@ final class Wafv2WebAclLoggingConfigurationRedactedFields {
   final Wafv2WebAclLoggingConfigurationRedactedFieldsUriPath? uriPath;
 
   Map<String, Object?> encode() => {
-    if (method != null) 'method': method!.encode(),
-    if (queryString != null) 'query_string': queryString!.encode(),
-    if (singleHeader != null) 'single_header': singleHeader!.encode(),
-    if (uriPath != null) 'uri_path': uriPath!.encode(),
+    'method': ?method?.encode(),
+    'query_string': ?queryString?.encode(),
+    'single_header': ?singleHeader?.encode(),
+    'uri_path': ?uriPath?.encode(),
   };
 }
 
@@ -247,7 +246,7 @@ final class AwsWafv2WebAclLoggingConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'log_destination_configs': logDestinationConfigs,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_arn': resourceArn,
            if (loggingFilter != null)
              'logging_filter': TfArg.literal(loggingFilter.encode()),

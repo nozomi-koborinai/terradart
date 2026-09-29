@@ -24,7 +24,7 @@ final class AwsCloudwatchDashboard extends Resource {
          argMap: {
            'dashboard_body': dashboardBody,
            'dashboard_name': dashboardName,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

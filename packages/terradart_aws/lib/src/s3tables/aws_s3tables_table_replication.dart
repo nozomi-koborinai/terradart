@@ -55,7 +55,7 @@ final class AwsS3tablesTableReplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'role': role.encodeAs('arn'),
            'table_arn': tableArn,
            if (rule != null)

@@ -44,7 +44,7 @@ final class AwsCloudwatchLogS3TableIntegrationSource extends Resource {
          terraformType: tfType,
          argMap: {
            'integration_arn': integrationArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (dataSource != null)
              'data_source': TfArg.literal([
                for (final e in dataSource) e.encode(),

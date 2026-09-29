@@ -24,9 +24,9 @@ final class DataCloudflareD1Databases extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (name != null) 'name': name,
+           'account_id': ?accountId,
+           'max_items': ?maxItems,
+           'name': ?name,
          },
        );
 

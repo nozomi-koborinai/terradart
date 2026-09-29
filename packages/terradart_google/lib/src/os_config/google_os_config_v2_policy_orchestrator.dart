@@ -22,9 +22,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResource {
   osPolicyAssignmentV1Payload;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (osPolicyAssignmentV1Payload != null)
-      'os_policy_assignment_v1_payload': osPolicyAssignmentV1Payload!.encode(),
+    'id': ?id?.toTfJson(),
+    'os_policy_assignment_v1_payload': ?osPolicyAssignmentV1Payload?.encode(),
   };
 }
 
@@ -56,8 +55,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
   rollout;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'name': ?name?.toTfJson(),
     'instance_filter': instanceFilter.encode(),
     'os_policies': [for (final e in osPolicies) e.encode()],
     'rollout': rollout.encode(),
@@ -93,7 +92,7 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
   inventories;
 
   Map<String, Object?> encode() => {
-    if (all != null) 'all': all!.toTfJson(),
+    'all': ?all?.toTfJson(),
     if (exclusionLabels != null)
       'exclusion_labels': [for (final e in exclusionLabels!) e.encode()],
     if (inclusionLabels != null)
@@ -113,9 +112,7 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
   final TfArg<Map<String, String>>? labels;
 
-  Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'labels': ?labels?.toTfJson()};
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.instance_filter.inclusion_labels` block of
@@ -128,9 +125,7 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
   final TfArg<Map<String, String>>? labels;
 
-  Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'labels': ?labels?.toTfJson()};
 }
 
 /// Typed helper for the `orchestrated_resource.os_policy_assignment_v1_payload.instance_filter.inventories` block of
@@ -148,7 +143,7 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
   Map<String, Object?> encode() => {
     'os_short_name': osShortName.toTfJson(),
-    if (osVersion != null) 'os_version': osVersion!.toTfJson(),
+    'os_version': ?osVersion?.toTfJson(),
   };
 }
 
@@ -178,9 +173,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
   resourceGroups;
 
   Map<String, Object?> encode() => {
-    if (allowNoResourceGroupMatch != null)
-      'allow_no_resource_group_match': allowNoResourceGroupMatch!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'allow_no_resource_group_match': ?allowNoResourceGroupMatch?.toTfJson(),
+    'description': ?description?.toTfJson(),
     'id': id.toTfJson(),
     'mode': mode.toTfJson(),
     'resource_groups': [for (final e in resourceGroups) e.encode()],
@@ -225,7 +219,7 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
 
   Map<String, Object?> encode() => {
     'os_short_name': osShortName.toTfJson(),
-    if (osVersion != null) 'os_version': osVersion!.toTfJson(),
+    'os_version': ?osVersion?.toTfJson(),
   };
 }
 
@@ -263,8 +257,8 @@ final class OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1
   final TfArg<num>? percent;
 
   Map<String, Object?> encode() => {
-    if (fixed != null) 'fixed': fixed!.toTfJson(),
-    if (percent != null) 'percent': percent!.toTfJson(),
+    'fixed': ?fixed?.toTfJson(),
+    'percent': ?percent?.toTfJson(),
   };
 }
 
@@ -299,10 +293,8 @@ final class OsConfigV2PolicyOrchestratorOrchestrationScopeSelectors {
   resourceHierarchySelector;
 
   Map<String, Object?> encode() => {
-    if (locationSelector != null)
-      'location_selector': locationSelector!.encode(),
-    if (resourceHierarchySelector != null)
-      'resource_hierarchy_selector': resourceHierarchySelector!.encode(),
+    'location_selector': ?locationSelector?.encode(),
+    'resource_hierarchy_selector': ?resourceHierarchySelector?.encode(),
   };
 }
 
@@ -317,8 +309,7 @@ final class OsConfigV2PolicyOrchestratorOrchestrationScopeSelectorsLocationSelec
   final TfArg<List<Object?>>? includedLocations;
 
   Map<String, Object?> encode() => {
-    if (includedLocations != null)
-      'included_locations': includedLocations!.toTfJson(),
+    'included_locations': ?includedLocations?.toTfJson(),
   };
 }
 
@@ -336,10 +327,8 @@ final class OsConfigV2PolicyOrchestratorOrchestrationScopeSelectorsResourceHiera
   final TfArg<List<Object?>>? includedProjects;
 
   Map<String, Object?> encode() => {
-    if (includedFolders != null)
-      'included_folders': includedFolders!.toTfJson(),
-    if (includedProjects != null)
-      'included_projects': includedProjects!.toTfJson(),
+    'included_folders': ?includedFolders?.toTfJson(),
+    'included_projects': ?includedProjects?.toTfJson(),
   };
 }
 
@@ -439,13 +428,13 @@ final class GoogleOsConfigV2PolicyOrchestrator extends Resource {
            'orchestrated_resource': TfArg.literal(
              orchestratedResource.encode(),
            ),
-           if (state != null) 'state': state,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'state': ?state,
+           'description': ?description,
+           'labels': ?labels,
            if (orchestrationScope != null)
              'orchestration_scope': TfArg.literal(orchestrationScope.encode()),
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

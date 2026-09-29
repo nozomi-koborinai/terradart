@@ -38,12 +38,12 @@ final class FisExperimentTemplateAction {
 
   Map<String, Object?> encode() => {
     'action_id': actionId.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'name': name.toTfJson(),
-    if (startAfter != null) 'start_after': startAfter!.toTfJson(),
+    'start_after': ?startAfter?.toTfJson(),
     if (parameter != null)
       'parameter': [for (final e in parameter!) e.encode()],
-    if (target != null) 'target': target!.encode(),
+    'target': ?target?.encode(),
   };
 }
 
@@ -101,10 +101,8 @@ final class FisExperimentTemplateExperimentOptions {
   emptyTargetResolutionMode;
 
   Map<String, Object?> encode() => {
-    if (accountTargeting != null)
-      'account_targeting': accountTargeting!.toTfJson(),
-    if (emptyTargetResolutionMode != null)
-      'empty_target_resolution_mode': emptyTargetResolutionMode!.toTfJson(),
+    'account_targeting': ?accountTargeting?.toTfJson(),
+    'empty_target_resolution_mode': ?emptyTargetResolutionMode?.toTfJson(),
   };
 }
 
@@ -155,12 +153,10 @@ final class FisExperimentTemplateExperimentReportConfiguration {
   final FisExperimentTemplateExperimentReportConfigurationOutputs? outputs;
 
   Map<String, Object?> encode() => {
-    if (postExperimentDuration != null)
-      'post_experiment_duration': postExperimentDuration!.toTfJson(),
-    if (preExperimentDuration != null)
-      'pre_experiment_duration': preExperimentDuration!.toTfJson(),
-    if (dataSources != null) 'data_sources': dataSources!.encode(),
-    if (outputs != null) 'outputs': outputs!.encode(),
+    'post_experiment_duration': ?postExperimentDuration?.toTfJson(),
+    'pre_experiment_duration': ?preExperimentDuration?.toTfJson(),
+    'data_sources': ?dataSources?.encode(),
+    'outputs': ?outputs?.encode(),
   };
 }
 
@@ -195,9 +191,7 @@ final class FisExperimentTemplateExperimentReportConfigurationDataSourcesCloudwa
 
   final TfArg<String>? dashboardArn;
 
-  Map<String, Object?> encode() => {
-    if (dashboardArn != null) 'dashboard_arn': dashboardArn!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'dashboard_arn': ?dashboardArn?.toTfJson()};
 }
 
 /// Typed helper for the `experiment_report_configuration.outputs` block of
@@ -212,7 +206,7 @@ final class FisExperimentTemplateExperimentReportConfigurationOutputs {
   s3Configuration;
 
   Map<String, Object?> encode() => {
-    if (s3Configuration != null) 's3_configuration': s3Configuration!.encode(),
+    's3_configuration': ?s3Configuration?.encode(),
   };
 }
 
@@ -231,7 +225,7 @@ final class FisExperimentTemplateExperimentReportConfigurationOutputsS3Configura
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -254,9 +248,8 @@ final class FisExperimentTemplateLogConfiguration {
 
   Map<String, Object?> encode() => {
     'log_schema_version': logSchemaVersion.toTfJson(),
-    if (cloudwatchLogsConfiguration != null)
-      'cloudwatch_logs_configuration': cloudwatchLogsConfiguration!.encode(),
-    if (s3Configuration != null) 's3_configuration': s3Configuration!.encode(),
+    'cloudwatch_logs_configuration': ?cloudwatchLogsConfiguration?.encode(),
+    's3_configuration': ?s3Configuration?.encode(),
   };
 }
 
@@ -290,7 +283,7 @@ final class FisExperimentTemplateLogConfigurationS3Configuration {
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -306,7 +299,7 @@ final class FisExperimentTemplateStopCondition {
 
   Map<String, Object?> encode() => {
     'source': source.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -340,8 +333,8 @@ final class FisExperimentTemplateTarget {
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (resourceArns != null) 'resource_arns': resourceArns!.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'resource_arns': ?resourceArns?.toTfJson(),
     'resource_type': resourceType.toTfJson(),
     'selection_mode': selectionMode.toTfJson(),
     if (filter != null) 'filter': [for (final e in filter!) e.encode()],
@@ -413,9 +406,9 @@ final class AwsFisExperimentTemplate extends Resource {
          terraformType: tfType,
          argMap: {
            'description': description,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'action': TfArg.literal([for (final e in action) e.encode()]),
            if (experimentOptions != null)
              'experiment_options': TfArg.literal(experimentOptions.encode()),

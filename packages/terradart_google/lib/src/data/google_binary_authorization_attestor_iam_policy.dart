@@ -24,10 +24,7 @@ final class DataGoogleBinaryAuthorizationAttestorIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'attestor': attestor,
-           if (project != null) 'project': project,
-         },
+         argMap: {'attestor': attestor, 'project': ?project},
        );
 
   @override

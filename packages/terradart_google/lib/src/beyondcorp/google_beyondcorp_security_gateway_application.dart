@@ -58,10 +58,10 @@ final class BeyondcorpSecurityGatewayApplicationUpstreams {
   proxyProtocol;
 
   Map<String, Object?> encode() => {
-    if (egressPolicy != null) 'egress_policy': egressPolicy!.encode(),
-    if (external != null) 'external': external!.encode(),
-    if (network != null) 'network': network!.encode(),
-    if (proxyProtocol != null) 'proxy_protocol': proxyProtocol!.encode(),
+    'egress_policy': ?egressPolicy?.encode(),
+    'external': ?external?.encode(),
+    'network': ?network?.encode(),
+    'proxy_protocol': ?proxyProtocol?.encode(),
   };
 }
 
@@ -150,15 +150,11 @@ final class BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocol {
   contextualHeaders;
 
   Map<String, Object?> encode() => {
-    if (allowedClientHeaders != null)
-      'allowed_client_headers': allowedClientHeaders!.toTfJson(),
-    if (clientIp != null) 'client_ip': clientIp!.toTfJson(),
-    if (gatewayIdentity != null)
-      'gateway_identity': gatewayIdentity!.toTfJson(),
-    if (metadataHeaders != null)
-      'metadata_headers': metadataHeaders!.toTfJson(),
-    if (contextualHeaders != null)
-      'contextual_headers': contextualHeaders!.encode(),
+    'allowed_client_headers': ?allowedClientHeaders?.toTfJson(),
+    'client_ip': ?clientIp?.toTfJson(),
+    'gateway_identity': ?gatewayIdentity?.toTfJson(),
+    'metadata_headers': ?metadataHeaders?.toTfJson(),
+    'contextual_headers': ?contextualHeaders?.encode(),
   };
 }
 
@@ -188,10 +184,10 @@ final class BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextual
   userInfo;
 
   Map<String, Object?> encode() => {
-    if (outputType != null) 'output_type': outputType!.toTfJson(),
-    if (deviceInfo != null) 'device_info': deviceInfo!.encode(),
-    if (groupInfo != null) 'group_info': groupInfo!.encode(),
-    if (userInfo != null) 'user_info': userInfo!.encode(),
+    'output_type': ?outputType?.toTfJson(),
+    'device_info': ?deviceInfo?.encode(),
+    'group_info': ?groupInfo?.encode(),
+    'user_info': ?userInfo?.encode(),
   };
 }
 
@@ -222,9 +218,7 @@ final class BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextual
   >?
   outputType;
 
-  Map<String, Object?> encode() => {
-    if (outputType != null) 'output_type': outputType!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }
 
 /// `output_type` — derived from the provider schema description.
@@ -254,9 +248,7 @@ final class BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextual
   >?
   outputType;
 
-  Map<String, Object?> encode() => {
-    if (outputType != null) 'output_type': outputType!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }
 
 /// `output_type` — derived from the provider schema description.
@@ -286,9 +278,7 @@ final class BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextual
   >?
   outputType;
 
-  Map<String, Object?> encode() => {
-    if (outputType != null) 'output_type': outputType!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'output_type': ?outputType?.toTfJson()};
 }
 
 /// `output_type` — derived from the provider schema description.
@@ -339,8 +329,8 @@ final class GoogleBeyondcorpSecurityGatewayApplication extends Resource {
          argMap: {
            'application_id': applicationId,
            'security_gateway_id': securityGatewayId,
-           if (displayName != null) 'display_name': displayName,
-           if (schema != null) 'schema': schema,
+           'display_name': ?displayName,
+           'schema': ?schema,
            if (endpointMatchers != null)
              'endpoint_matchers': TfArg.literal([
                for (final e in endpointMatchers) e.encode(),
@@ -349,8 +339,8 @@ final class GoogleBeyondcorpSecurityGatewayApplication extends Resource {
              'upstreams': TfArg.literal([
                for (final e in upstreams) e.encode(),
              ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

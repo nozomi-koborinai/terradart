@@ -38,11 +38,10 @@ final class AwsSesv2EmailIdentityMailFromAttributes extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (behaviorOnMxFailure != null)
-             'behavior_on_mx_failure': behaviorOnMxFailure,
+           'behavior_on_mx_failure': ?behaviorOnMxFailure,
            'email_identity': emailIdentity,
-           if (mailFromDomain != null) 'mail_from_domain': mailFromDomain,
-           if (region != null) 'region': region,
+           'mail_from_domain': ?mailFromDomain,
+           'region': ?region,
          },
        );
 

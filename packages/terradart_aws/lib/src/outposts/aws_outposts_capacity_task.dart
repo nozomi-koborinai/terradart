@@ -69,12 +69,11 @@ final class AwsOutpostsCapacityTask extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (assetId != null) 'asset_id': assetId,
-           if (orderId != null) 'order_id': orderId,
+           'asset_id': ?assetId,
+           'order_id': ?orderId,
            'outpost_identifier': outpostIdentifier,
-           if (region != null) 'region': region,
-           if (taskActionOnBlockingInstances != null)
-             'task_action_on_blocking_instances': taskActionOnBlockingInstances,
+           'region': ?region,
+           'task_action_on_blocking_instances': ?taskActionOnBlockingInstances,
            if (instancePool != null)
              'instance_pool': TfArg.literal([
                for (final e in instancePool) e.encode(),

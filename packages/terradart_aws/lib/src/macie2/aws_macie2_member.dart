@@ -39,15 +39,13 @@ final class AwsMacie2Member extends Resource {
          argMap: {
            'account_id': accountId,
            'email': email,
-           if (invitationDisableEmailNotification != null)
-             'invitation_disable_email_notification':
-                 invitationDisableEmailNotification,
-           if (invitationMessage != null)
-             'invitation_message': invitationMessage,
-           if (invite != null) 'invite': invite,
-           if (region != null) 'region': region,
-           if (status != null) 'status': status,
-           if (tags != null) 'tags': tags,
+           'invitation_disable_email_notification':
+               ?invitationDisableEmailNotification,
+           'invitation_message': ?invitationMessage,
+           'invite': ?invite,
+           'region': ?region,
+           'status': ?status,
+           'tags': ?tags,
          },
        );
 

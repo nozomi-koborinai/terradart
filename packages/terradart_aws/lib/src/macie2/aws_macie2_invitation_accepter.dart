@@ -22,7 +22,7 @@ final class AwsMacie2InvitationAccepter extends Resource {
          terraformType: tfType,
          argMap: {
            'administrator_account_id': administratorAccountId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

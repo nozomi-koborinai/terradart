@@ -39,9 +39,7 @@ final class NetworkSecuritySacRealmSymantecOptions {
 
   final TfArg<String>? secretPath;
 
-  Map<String, Object?> encode() => {
-    if (secretPath != null) 'secret_path': secretPath!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'secret_path': ?secretPath?.toTfJson()};
 }
 
 /// Factory wrapper for `google_network_security_sac_realm`.
@@ -66,10 +64,10 @@ final class GoogleNetworkSecuritySacRealm extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (labels != null) 'labels': labels,
+           'deletion_policy': ?deletionPolicy,
+           'labels': ?labels,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
            'security_service': securityService,
            if (symantecOptions != null)
              'symantec_options': TfArg.literal(symantecOptions.encode()),

@@ -33,11 +33,11 @@ final class GooglePrivatecaCertificateTemplateIamBinding extends Resource {
          terraformType: tfType,
          argMap: {
            'certificate_template': certificateTemplate,
-           if (location != null) 'location': location,
+           'location': ?location,
            'role': role,
            'members': members,
-           if (project != null) 'project': project,
-           if (condition != null) 'condition': condition,
+           'project': ?project,
+           'condition': ?condition,
          },
        );
 

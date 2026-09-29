@@ -34,7 +34,7 @@ final class CloudflareCloudforceOneRequestAsset extends Resource {
            'page': page,
            'per_page': perPage,
            'request_id': requestId,
-           if (source != null) 'source': source,
+           'source': ?source,
          },
        );
 

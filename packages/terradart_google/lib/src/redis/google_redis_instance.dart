@@ -241,21 +241,18 @@ final class GoogleRedisInstance extends Resource {
          argMap: {
            'name': name,
            'memory_size_gb': memorySizeGb,
-           if (region != null) 'region': region,
-           if (tier != null) 'tier': tier,
-           if (authorizedNetwork != null)
-             'authorized_network': authorizedNetwork.encodeAs('id'),
-           if (connectMode != null) 'connect_mode': connectMode,
-           if (authEnabled != null) 'auth_enabled': authEnabled,
-           if (transitEncryptionMode != null)
-             'transit_encryption_mode': transitEncryptionMode,
-           if (replicaCount != null) 'replica_count': replicaCount,
-           if (readReplicasMode != null) 'read_replicas_mode': readReplicasMode,
-           if (redisVersion != null) 'redis_version': redisVersion,
-           if (displayName != null) 'display_name': displayName,
-           if (labels != null) 'labels': labels,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
+           'region': ?region,
+           'tier': ?tier,
+           'authorized_network': ?authorizedNetwork?.encodeAs('id'),
+           'connect_mode': ?connectMode,
+           'auth_enabled': ?authEnabled,
+           'transit_encryption_mode': ?transitEncryptionMode,
+           'replica_count': ?replicaCount,
+           'read_replicas_mode': ?readReplicasMode,
+           'redis_version': ?redisVersion,
+           'display_name': ?displayName,
+           'labels': ?labels,
+           'deletion_protection': ?deletionProtection,
            if (maintenancePolicy != null)
              'maintenance_policy': TfArg.literal([
                maintenancePolicy.toArgMap(),

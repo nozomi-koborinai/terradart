@@ -42,8 +42,8 @@ final class NetworkSecurityAuthzPolicyCustomProvider {
   final NetworkSecurityAuthzPolicyCustomProviderCloudIap? cloudIap;
 
   Map<String, Object?> encode() => {
-    if (authzExtension != null) 'authz_extension': authzExtension!.encode(),
-    if (cloudIap != null) 'cloud_iap': cloudIap!.encode(),
+    'authz_extension': ?authzExtension?.encode(),
+    'cloud_iap': ?cloudIap?.encode(),
   };
 }
 
@@ -86,9 +86,9 @@ final class NetworkSecurityAuthzPolicyHttpRules {
   final NetworkSecurityAuthzPolicyHttpRulesTo? to;
 
   Map<String, Object?> encode() => {
-    if (when != null) 'when': when!.toTfJson(),
-    if (from != null) 'from': from!.encode(),
-    if (to != null) 'to': to!.encode(),
+    'when': ?when?.toTfJson(),
+    'from': ?from?.encode(),
+    'to': ?to?.encode(),
   };
 }
 
@@ -192,14 +192,13 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipals {
   principal;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (principalSelector != null)
-      'principal_selector': principalSelector!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
-    if (principal != null) 'principal': principal!.encode(),
+    'contains': ?contains?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'principal_selector': ?principalSelector?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
+    'principal': ?principal?.encode(),
   };
 }
 
@@ -241,11 +240,11 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipalsPrincipal
   final TfArg<String>? suffix;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -265,9 +264,8 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResources {
   tagValueIdSet;
 
   Map<String, Object?> encode() => {
-    if (iamServiceAccount != null)
-      'iam_service_account': iamServiceAccount!.encode(),
-    if (tagValueIdSet != null) 'tag_value_id_set': tagValueIdSet!.encode(),
+    'iam_service_account': ?iamServiceAccount?.encode(),
+    'tag_value_id_set': ?tagValueIdSet?.encode(),
   };
 }
 
@@ -294,11 +292,11 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesIamService
   final TfArg<String>? suffix;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -312,7 +310,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesTagValueId
 
   final TfArg<List<Object?>>? ids;
 
-  Map<String, Object?> encode() => {if (ids != null) 'ids': ids!.toTfJson()};
+  Map<String, Object?> encode() => {'ids': ?ids?.toTfJson()};
 }
 
 /// Typed helper for the `http_rules.from.sources` block of
@@ -394,14 +392,13 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipals {
   principal;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (principalSelector != null)
-      'principal_selector': principalSelector!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
-    if (principal != null) 'principal': principal!.encode(),
+    'contains': ?contains?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'principal_selector': ?principalSelector?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
+    'principal': ?principal?.encode(),
   };
 }
 
@@ -443,11 +440,11 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipalsPrincipal {
   final TfArg<String>? suffix;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -467,9 +464,8 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromSourcesResources {
   tagValueIdSet;
 
   Map<String, Object?> encode() => {
-    if (iamServiceAccount != null)
-      'iam_service_account': iamServiceAccount!.encode(),
-    if (tagValueIdSet != null) 'tag_value_id_set': tagValueIdSet!.encode(),
+    'iam_service_account': ?iamServiceAccount?.encode(),
+    'tag_value_id_set': ?tagValueIdSet?.encode(),
   };
 }
 
@@ -496,11 +492,11 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromSourcesResourcesIamServiceAcc
   final TfArg<String>? suffix;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -514,7 +510,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesFromSourcesResourcesTagValueIdSet
 
   final TfArg<List<Object?>>? ids;
 
-  Map<String, Object?> encode() => {if (ids != null) 'ids': ids!.toTfJson()};
+  Map<String, Object?> encode() => {'ids': ?ids?.toTfJson()};
 }
 
 /// Typed helper for the `http_rules.to` block of
@@ -558,8 +554,8 @@ final class NetworkSecurityAuthzPolicyHttpRulesToNotOperations {
   final List<NetworkSecurityAuthzPolicyHttpRulesToNotOperationsPaths>? paths;
 
   Map<String, Object?> encode() => {
-    if (methods != null) 'methods': methods!.toTfJson(),
-    if (headerSet != null) 'header_set': headerSet!.encode(),
+    'methods': ?methods?.toTfJson(),
+    'header_set': ?headerSet?.encode(),
     if (hosts != null) 'hosts': [for (final e in hosts!) e.encode()],
     if (paths != null) 'paths': [for (final e in paths!) e.encode()],
   };
@@ -598,8 +594,8 @@ final class NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSetHeaders {
   value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.encode(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.encode(),
   };
 }
 
@@ -626,11 +622,11 @@ final class NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSetHeadersVa
   final TfArg<String>? suffix;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -657,11 +653,11 @@ final class NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHosts {
   final TfArg<String>? suffix;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -688,11 +684,11 @@ final class NetworkSecurityAuthzPolicyHttpRulesToNotOperationsPaths {
   final TfArg<String>? suffix;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -719,10 +715,10 @@ final class NetworkSecurityAuthzPolicyHttpRulesToOperations {
   final List<NetworkSecurityAuthzPolicyHttpRulesToOperationsPaths>? paths;
 
   Map<String, Object?> encode() => {
-    if (methods != null) 'methods': methods!.toTfJson(),
-    if (headerSet != null) 'header_set': headerSet!.encode(),
+    'methods': ?methods?.toTfJson(),
+    'header_set': ?headerSet?.encode(),
     if (hosts != null) 'hosts': [for (final e in hosts!) e.encode()],
-    if (mcp != null) 'mcp': mcp!.encode(),
+    'mcp': ?mcp?.encode(),
     if (paths != null) 'paths': [for (final e in paths!) e.encode()],
   };
 }
@@ -758,8 +754,8 @@ final class NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSetHeaders {
   value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.encode(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.encode(),
   };
 }
 
@@ -786,11 +782,11 @@ final class NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSetHeadersValue
   final TfArg<String>? suffix;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -817,11 +813,11 @@ final class NetworkSecurityAuthzPolicyHttpRulesToOperationsHosts {
   final TfArg<String>? suffix;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -843,8 +839,7 @@ final class NetworkSecurityAuthzPolicyHttpRulesToOperationsMcp {
   methods;
 
   Map<String, Object?> encode() => {
-    if (baseProtocolMethodsOption != null)
-      'base_protocol_methods_option': baseProtocolMethodsOption!.toTfJson(),
+    'base_protocol_methods_option': ?baseProtocolMethodsOption?.toTfJson(),
     if (methods != null) 'methods': [for (final e in methods!) e.encode()],
   };
 }
@@ -905,11 +900,11 @@ final class NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpMethodsParams {
   final TfArg<String>? suffix;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -936,11 +931,11 @@ final class NetworkSecurityAuthzPolicyHttpRulesToOperationsPaths {
   final TfArg<String>? suffix;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (exact != null) 'exact': exact!.toTfJson(),
-    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (suffix != null) 'suffix': suffix!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'exact': ?exact?.toTfJson(),
+    'ignore_case': ?ignoreCase?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'suffix': ?suffix?.toTfJson(),
   };
 }
 
@@ -955,8 +950,8 @@ final class NetworkSecurityAuthzPolicyNetworkRules {
   final NetworkSecurityAuthzPolicyNetworkRulesTo? to;
 
   Map<String, Object?> encode() => {
-    if (from != null) 'from': from!.encode(),
-    if (to != null) 'to': to!.encode(),
+    'from': ?from?.encode(),
+    'to': ?to?.encode(),
   };
 }
 
@@ -1039,9 +1034,8 @@ final class NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipals {
   principal;
 
   Map<String, Object?> encode() => {
-    if (principalSelector != null)
-      'principal_selector': principalSelector!.toTfJson(),
-    if (principal != null) 'principal': principal!.encode(),
+    'principal_selector': ?principalSelector?.toTfJson(),
+    'principal': ?principal?.encode(),
   };
 }
 
@@ -1070,9 +1064,7 @@ final class NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipalsPrinci
 
   final TfArg<String>? exact;
 
-  Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'exact': ?exact?.toTfJson()};
 }
 
 /// Typed helper for the `network_rules.from.sources` block of
@@ -1134,9 +1126,8 @@ final class NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipals {
   principal;
 
   Map<String, Object?> encode() => {
-    if (principalSelector != null)
-      'principal_selector': principalSelector!.toTfJson(),
-    if (principal != null) 'principal': principal!.encode(),
+    'principal_selector': ?principalSelector?.toTfJson(),
+    'principal': ?principal?.encode(),
   };
 }
 
@@ -1165,9 +1156,7 @@ final class NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipalsPrincipal
 
   final TfArg<String>? exact;
 
-  Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'exact': ?exact?.toTfJson()};
 }
 
 /// Typed helper for the `network_rules.to` block of
@@ -1205,9 +1194,7 @@ final class NetworkSecurityAuthzPolicyNetworkRulesToOperationsSnis {
 
   final TfArg<String>? exact;
 
-  Map<String, Object?> encode() => {
-    if (exact != null) 'exact': exact!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'exact': ?exact?.toTfJson()};
 }
 
 /// Typed helper for the `target` block of
@@ -1225,9 +1212,8 @@ final class NetworkSecurityAuthzPolicyTarget {
   final TfArg<List<Object?>>? resources;
 
   Map<String, Object?> encode() => {
-    if (loadBalancingScheme != null)
-      'load_balancing_scheme': loadBalancingScheme!.toTfJson(),
-    if (resources != null) 'resources': resources!.toTfJson(),
+    'load_balancing_scheme': ?loadBalancingScheme?.toTfJson(),
+    'resources': ?resources?.toTfJson(),
   };
 }
 
@@ -1281,13 +1267,13 @@ final class GoogleNetworkSecurityAuthzPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'action': action,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
+           'labels': ?labels,
            'location': location,
            'name': name,
-           if (policyProfile != null) 'policy_profile': policyProfile,
-           if (project != null) 'project': project,
+           'policy_profile': ?policyProfile,
+           'project': ?project,
            if (customProvider != null)
              'custom_provider': TfArg.literal(customProvider.encode()),
            if (httpRules != null)

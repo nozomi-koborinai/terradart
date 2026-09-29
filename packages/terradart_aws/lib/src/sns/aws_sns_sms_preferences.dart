@@ -26,18 +26,14 @@ final class AwsSnsSmsPreferences extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultSenderId != null) 'default_sender_id': defaultSenderId,
-           if (defaultSmsType != null) 'default_sms_type': defaultSmsType,
-           if (deliveryStatusIamRoleArn != null)
-             'delivery_status_iam_role_arn': deliveryStatusIamRoleArn,
-           if (deliveryStatusSuccessSamplingRate != null)
-             'delivery_status_success_sampling_rate':
-                 deliveryStatusSuccessSamplingRate,
-           if (monthlySpendLimit != null)
-             'monthly_spend_limit': monthlySpendLimit,
-           if (region != null) 'region': region,
-           if (usageReportS3Bucket != null)
-             'usage_report_s3_bucket': usageReportS3Bucket,
+           'default_sender_id': ?defaultSenderId,
+           'default_sms_type': ?defaultSmsType,
+           'delivery_status_iam_role_arn': ?deliveryStatusIamRoleArn,
+           'delivery_status_success_sampling_rate':
+               ?deliveryStatusSuccessSamplingRate,
+           'monthly_spend_limit': ?monthlySpendLimit,
+           'region': ?region,
+           'usage_report_s3_bucket': ?usageReportS3Bucket,
          },
        );
 

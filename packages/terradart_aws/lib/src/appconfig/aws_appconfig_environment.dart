@@ -22,7 +22,7 @@ final class AppconfigEnvironmentMonitor {
 
   Map<String, Object?> encode() => {
     'alarm_arn': alarmArn.toTfJson(),
-    if (alarmRoleArn != null) 'alarm_role_arn': alarmRoleArn!.toTfJson(),
+    'alarm_role_arn': ?alarmRoleArn?.toTfJson(),
   };
 }
 
@@ -46,10 +46,10 @@ final class AwsAppconfigEnvironment extends Resource {
          terraformType: tfType,
          argMap: {
            'application_id': applicationId,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (monitor != null)
              'monitor': TfArg.literal([for (final e in monitor) e.encode()]),
          },

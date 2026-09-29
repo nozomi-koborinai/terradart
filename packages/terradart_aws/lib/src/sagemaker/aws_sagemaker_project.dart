@@ -30,10 +30,9 @@ final class SagemakerProjectServiceCatalogProvisioningDetails {
   provisioningParameter;
 
   Map<String, Object?> encode() => {
-    if (pathId != null) 'path_id': pathId!.toTfJson(),
+    'path_id': ?pathId?.toTfJson(),
     'product_id': productId.toTfJson(),
-    if (provisioningArtifactId != null)
-      'provisioning_artifact_id': provisioningArtifactId!.toTfJson(),
+    'provisioning_artifact_id': ?provisioningArtifactId?.toTfJson(),
     if (provisioningParameter != null)
       'provisioning_parameter': [
         for (final e in provisioningParameter!) e.encode(),
@@ -56,7 +55,7 @@ final class SagemakerProjectServiceCatalogProvisioningDetailsProvisioningParamet
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -79,11 +78,10 @@ final class AwsSagemakerProject extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (projectDescription != null)
-             'project_description': projectDescription,
+           'project_description': ?projectDescription,
            'project_name': projectName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'service_catalog_provisioning_details': TfArg.literal(
              serviceCatalogProvisioningDetails.encode(),
            ),

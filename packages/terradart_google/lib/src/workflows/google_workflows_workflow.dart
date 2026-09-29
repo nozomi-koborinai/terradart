@@ -72,22 +72,18 @@ final class GoogleWorkflowsWorkflow extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (description != null) 'description': description,
+           'name': ?name,
+           'region': ?region,
+           'description': ?description,
            'source_contents': sourceContents,
-           if (serviceAccount != null)
-             'service_account': serviceAccount.encodeAs('email'),
-           if (callLogLevel != null) 'call_log_level': callLogLevel,
-           if (executionHistoryLevel != null)
-             'execution_history_level': executionHistoryLevel,
-           if (cryptoKeyName != null)
-             'crypto_key_name': cryptoKeyName.encodeAs('id'),
-           if (userEnvVars != null) 'user_env_vars': userEnvVars,
-           if (labels != null) 'labels': labels,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'service_account': ?serviceAccount?.encodeAs('email'),
+           'call_log_level': ?callLogLevel,
+           'execution_history_level': ?executionHistoryLevel,
+           'crypto_key_name': ?cryptoKeyName?.encodeAs('id'),
+           'user_env_vars': ?userEnvVars,
+           'labels': ?labels,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

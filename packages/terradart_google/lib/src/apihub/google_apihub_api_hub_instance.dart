@@ -27,10 +27,10 @@ final class ApihubApiHubInstanceConfig {
   final TfArg<String>? vertexLocation;
 
   Map<String, Object?> encode() => {
-    if (cmekKeyName != null) 'cmek_key_name': cmekKeyName!.toTfJson(),
-    if (disableSearch != null) 'disable_search': disableSearch!.toTfJson(),
-    if (encryptionType != null) 'encryption_type': encryptionType!.toTfJson(),
-    if (vertexLocation != null) 'vertex_location': vertexLocation!.toTfJson(),
+    'cmek_key_name': ?cmekKeyName?.toTfJson(),
+    'disable_search': ?disableSearch?.toTfJson(),
+    'encryption_type': ?encryptionType?.toTfJson(),
+    'vertex_location': ?vertexLocation?.toTfJson(),
   };
 }
 
@@ -72,12 +72,11 @@ final class GoogleApihubApiHubInstance extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (apiHubInstanceId != null)
-             'api_hub_instance_id': apiHubInstanceId,
-           if (description != null) 'description': description,
+           'api_hub_instance_id': ?apiHubInstanceId,
+           'description': ?description,
            'config': TfArg.literal(config.encode()),
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

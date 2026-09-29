@@ -84,11 +84,11 @@ final class CodebuildFleetComputeConfiguration {
   final TfArg<num>? vcpu;
 
   Map<String, Object?> encode() => {
-    if (disk != null) 'disk': disk!.toTfJson(),
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (memory != null) 'memory': memory!.toTfJson(),
-    if (vcpu != null) 'vcpu': vcpu!.toTfJson(),
+    'disk': ?disk?.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'memory': ?memory?.toTfJson(),
+    'vcpu': ?vcpu?.toTfJson(),
   };
 }
 
@@ -120,8 +120,8 @@ final class CodebuildFleetScalingConfiguration {
   targetTrackingScalingConfigs;
 
   Map<String, Object?> encode() => {
-    if (maxCapacity != null) 'max_capacity': maxCapacity!.toTfJson(),
-    if (scalingType != null) 'scaling_type': scalingType!.toTfJson(),
+    'max_capacity': ?maxCapacity?.toTfJson(),
+    'scaling_type': ?scalingType?.toTfJson(),
     if (targetTrackingScalingConfigs != null)
       'target_tracking_scaling_configs': [
         for (final e in targetTrackingScalingConfigs!) e.encode(),
@@ -155,8 +155,8 @@ final class CodebuildFleetScalingConfigurationTargetTrackingScalingConfigs {
   final TfArg<num>? targetValue;
 
   Map<String, Object?> encode() => {
-    if (metricType != null) 'metric_type': metricType!.toTfJson(),
-    if (targetValue != null) 'target_value': targetValue!.toTfJson(),
+    'metric_type': ?metricType?.toTfJson(),
+    'target_value': ?targetValue?.toTfJson(),
   };
 }
 
@@ -223,12 +223,12 @@ final class AwsCodebuildFleet extends Resource {
            'base_capacity': baseCapacity,
            'compute_type': computeType,
            'environment_type': environmentType,
-           if (fleetServiceRole != null) 'fleet_service_role': fleetServiceRole,
-           if (imageId != null) 'image_id': imageId,
+           'fleet_service_role': ?fleetServiceRole,
+           'image_id': ?imageId,
            'name': name,
-           if (overflowBehavior != null) 'overflow_behavior': overflowBehavior,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'overflow_behavior': ?overflowBehavior,
+           'region': ?region,
+           'tags': ?tags,
            if (computeConfiguration != null)
              'compute_configuration': TfArg.literal(
                computeConfiguration.encode(),

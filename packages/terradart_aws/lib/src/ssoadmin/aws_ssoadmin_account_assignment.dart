@@ -49,7 +49,7 @@ final class AwsSsoadminAccountAssignment extends Resource {
            'permission_set_arn': permissionSetArn,
            'principal_id': principalId,
            'principal_type': principalType,
-           if (region != null) 'region': region,
+           'region': ?region,
            'target_id': targetId,
            'target_type': targetType,
          },

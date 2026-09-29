@@ -35,15 +35,13 @@ final class AwsEc2TransitGatewayConnect extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (protocol != null) 'protocol': protocol,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (transitGatewayDefaultRouteTableAssociation != null)
-             'transit_gateway_default_route_table_association':
-                 transitGatewayDefaultRouteTableAssociation,
-           if (transitGatewayDefaultRouteTablePropagation != null)
-             'transit_gateway_default_route_table_propagation':
-                 transitGatewayDefaultRouteTablePropagation,
+           'protocol': ?protocol,
+           'region': ?region,
+           'tags': ?tags,
+           'transit_gateway_default_route_table_association':
+               ?transitGatewayDefaultRouteTableAssociation,
+           'transit_gateway_default_route_table_propagation':
+               ?transitGatewayDefaultRouteTablePropagation,
            'transit_gateway_id': transitGatewayId,
            'transport_attachment_id': transportAttachmentId,
          },

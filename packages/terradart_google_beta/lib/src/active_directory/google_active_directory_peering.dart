@@ -31,13 +31,13 @@ final class GoogleActiveDirectoryPeering extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            'authorized_network': authorizedNetwork,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'domain_resource': domainResource,
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
            'peering_id': peeringId,
-           if (project != null) 'project': project,
-           if (status != null) 'status': status,
-           if (statusMessage != null) 'status_message': statusMessage,
+           'project': ?project,
+           'status': ?status,
+           'status_message': ?statusMessage,
          },
        );
 

@@ -18,10 +18,7 @@ final class DataAwsEksNodeGroups extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'cluster_name': clusterName,
-           if (region != null) 'region': region,
-         },
+         argMap: {'cluster_name': clusterName, 'region': ?region},
        );
 
   @override

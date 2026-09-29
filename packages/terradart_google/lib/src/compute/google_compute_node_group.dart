@@ -24,9 +24,9 @@ final class ComputeNodeGroupAutoscalingPolicy {
   final TfArg<ComputeNodeGroupAutoscalingPolicyMode>? mode;
 
   Map<String, Object?> encode() => {
-    if (maxNodes != null) 'max_nodes': maxNodes!.toTfJson(),
-    if (minNodes != null) 'min_nodes': minNodes!.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
+    'max_nodes': ?maxNodes?.toTfJson(),
+    'min_nodes': ?minNodes?.toTfJson(),
+    'mode': ?mode?.toTfJson(),
   };
 }
 
@@ -140,19 +140,18 @@ final class GoogleComputeNodeGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (zone != null) 'zone': zone,
+           'zone': ?zone,
            'node_template': nodeTemplate,
-           if (initialSize != null) 'initial_size': initialSize,
+           'initial_size': ?initialSize,
            if (autoscalingPolicy != null)
              'autoscaling_policy': TfArg.literal(autoscalingPolicy.encode()),
-           if (maintenancePolicy != null)
-             'maintenance_policy': maintenancePolicy,
+           'maintenance_policy': ?maintenancePolicy,
            if (maintenanceWindow != null)
              'maintenance_window': TfArg.literal(maintenanceWindow.encode()),
            if (shareSettings != null)
              'share_settings': TfArg.literal(shareSettings.encode()),
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

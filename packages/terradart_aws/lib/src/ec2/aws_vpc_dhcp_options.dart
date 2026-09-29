@@ -27,17 +27,14 @@ final class AwsVpcDhcpOptions extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (domainName != null) 'domain_name': domainName,
-           if (domainNameServers != null)
-             'domain_name_servers': domainNameServers,
-           if (ipv6AddressPreferredLeaseTime != null)
-             'ipv6_address_preferred_lease_time': ipv6AddressPreferredLeaseTime,
-           if (netbiosNameServers != null)
-             'netbios_name_servers': netbiosNameServers,
-           if (netbiosNodeType != null) 'netbios_node_type': netbiosNodeType,
-           if (ntpServers != null) 'ntp_servers': ntpServers,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'domain_name': ?domainName,
+           'domain_name_servers': ?domainNameServers,
+           'ipv6_address_preferred_lease_time': ?ipv6AddressPreferredLeaseTime,
+           'netbios_name_servers': ?netbiosNameServers,
+           'netbios_node_type': ?netbiosNodeType,
+           'ntp_servers': ?ntpServers,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

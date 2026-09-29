@@ -23,11 +23,9 @@ final class SsoadminPermissionsBoundaryAttachmentPermissionsBoundary {
   customerManagedPolicyReference;
 
   Map<String, Object?> encode() => {
-    if (managedPolicyArn != null)
-      'managed_policy_arn': managedPolicyArn!.toTfJson(),
-    if (customerManagedPolicyReference != null)
-      'customer_managed_policy_reference': customerManagedPolicyReference!
-          .encode(),
+    'managed_policy_arn': ?managedPolicyArn?.toTfJson(),
+    'customer_managed_policy_reference': ?customerManagedPolicyReference
+        ?.encode(),
   };
 }
 
@@ -46,7 +44,7 @@ final class SsoadminPermissionsBoundaryAttachmentPermissionsBoundaryCustomerMana
 
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
+    'path': ?path?.toTfJson(),
   };
 }
 
@@ -70,7 +68,7 @@ final class AwsSsoadminPermissionsBoundaryAttachment extends Resource {
          argMap: {
            'instance_arn': instanceArn,
            'permission_set_arn': permissionSetArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'permissions_boundary': TfArg.literal(permissionsBoundary.encode()),
          },
        );

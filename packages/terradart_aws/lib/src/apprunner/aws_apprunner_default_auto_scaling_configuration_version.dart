@@ -25,7 +25,7 @@ final class AwsApprunnerDefaultAutoScalingConfigurationVersion
          terraformType: tfType,
          argMap: {
            'auto_scaling_configuration_arn': autoScalingConfigurationArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

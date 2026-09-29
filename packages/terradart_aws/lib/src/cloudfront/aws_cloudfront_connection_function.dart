@@ -86,8 +86,8 @@ final class AwsCloudfrontConnectionFunction extends Resource {
          argMap: {
            'connection_function_code': connectionFunctionCode,
            'name': name,
-           if (publish != null) 'publish': publish,
-           if (tags != null) 'tags': tags,
+           'publish': ?publish,
+           'tags': ?tags,
            if (connectionFunctionConfig != null)
              'connection_function_config': TfArg.literal([
                for (final e in connectionFunctionConfig) e.encode(),

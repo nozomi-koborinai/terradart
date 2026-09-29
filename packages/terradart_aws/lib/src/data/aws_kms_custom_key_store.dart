@@ -21,11 +21,9 @@ final class DataAwsKmsCustomKeyStore extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customKeyStoreId != null)
-             'custom_key_store_id': customKeyStoreId,
-           if (customKeyStoreName != null)
-             'custom_key_store_name': customKeyStoreName,
-           if (region != null) 'region': region,
+           'custom_key_store_id': ?customKeyStoreId,
+           'custom_key_store_name': ?customKeyStoreName,
+           'region': ?region,
          },
        );
 

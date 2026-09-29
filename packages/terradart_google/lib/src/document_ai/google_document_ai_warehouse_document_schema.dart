@@ -79,30 +79,24 @@ final class DocumentAiWarehouseDocumentSchemaPropertyDefinitions {
   timestampTypeOptions;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (isFilterable != null) 'is_filterable': isFilterable!.toTfJson(),
-    if (isMetadata != null) 'is_metadata': isMetadata!.toTfJson(),
-    if (isRepeatable != null) 'is_repeatable': isRepeatable!.toTfJson(),
-    if (isRequired != null) 'is_required': isRequired!.toTfJson(),
-    if (isSearchable != null) 'is_searchable': isSearchable!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
+    'is_filterable': ?isFilterable?.toTfJson(),
+    'is_metadata': ?isMetadata?.toTfJson(),
+    'is_repeatable': ?isRepeatable?.toTfJson(),
+    'is_required': ?isRequired?.toTfJson(),
+    'is_searchable': ?isSearchable?.toTfJson(),
     'name': name.toTfJson(),
-    if (retrievalImportance != null)
-      'retrieval_importance': retrievalImportance!.toTfJson(),
-    if (dateTimeTypeOptions != null)
-      'date_time_type_options': dateTimeTypeOptions!.encode(),
-    if (enumTypeOptions != null) 'enum_type_options': enumTypeOptions!.encode(),
-    if (floatTypeOptions != null)
-      'float_type_options': floatTypeOptions!.encode(),
-    if (integerTypeOptions != null)
-      'integer_type_options': integerTypeOptions!.encode(),
-    if (mapTypeOptions != null) 'map_type_options': mapTypeOptions!.encode(),
-    if (propertyTypeOptions != null)
-      'property_type_options': propertyTypeOptions!.encode(),
+    'retrieval_importance': ?retrievalImportance?.toTfJson(),
+    'date_time_type_options': ?dateTimeTypeOptions?.encode(),
+    'enum_type_options': ?enumTypeOptions?.encode(),
+    'float_type_options': ?floatTypeOptions?.encode(),
+    'integer_type_options': ?integerTypeOptions?.encode(),
+    'map_type_options': ?mapTypeOptions?.encode(),
+    'property_type_options': ?propertyTypeOptions?.encode(),
     if (schemaSources != null)
       'schema_sources': [for (final e in schemaSources!) e.encode()],
-    if (textTypeOptions != null) 'text_type_options': textTypeOptions!.encode(),
-    if (timestampTypeOptions != null)
-      'timestamp_type_options': timestampTypeOptions!.encode(),
+    'text_type_options': ?textTypeOptions?.encode(),
+    'timestamp_type_options': ?timestampTypeOptions?.encode(),
   };
 }
 
@@ -147,8 +141,7 @@ final class DocumentAiWarehouseDocumentSchemaPropertyDefinitionsEnumTypeOptions 
 
   Map<String, Object?> encode() => {
     'possible_values': possibleValues.toTfJson(),
-    if (validationCheckDisabled != null)
-      'validation_check_disabled': validationCheckDisabled!.toTfJson(),
+    'validation_check_disabled': ?validationCheckDisabled?.toTfJson(),
   };
 }
 
@@ -266,28 +259,23 @@ final class DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOpti
   timestampTypeOptions;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (isFilterable != null) 'is_filterable': isFilterable!.toTfJson(),
-    if (isMetadata != null) 'is_metadata': isMetadata!.toTfJson(),
-    if (isRepeatable != null) 'is_repeatable': isRepeatable!.toTfJson(),
-    if (isRequired != null) 'is_required': isRequired!.toTfJson(),
-    if (isSearchable != null) 'is_searchable': isSearchable!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
+    'is_filterable': ?isFilterable?.toTfJson(),
+    'is_metadata': ?isMetadata?.toTfJson(),
+    'is_repeatable': ?isRepeatable?.toTfJson(),
+    'is_required': ?isRequired?.toTfJson(),
+    'is_searchable': ?isSearchable?.toTfJson(),
     'name': name.toTfJson(),
-    if (retrievalImportance != null)
-      'retrieval_importance': retrievalImportance!.toTfJson(),
-    if (dateTimeTypeOptions != null)
-      'date_time_type_options': dateTimeTypeOptions!.encode(),
-    if (enumTypeOptions != null) 'enum_type_options': enumTypeOptions!.encode(),
-    if (floatTypeOptions != null)
-      'float_type_options': floatTypeOptions!.encode(),
-    if (integerTypeOptions != null)
-      'integer_type_options': integerTypeOptions!.encode(),
-    if (mapTypeOptions != null) 'map_type_options': mapTypeOptions!.encode(),
+    'retrieval_importance': ?retrievalImportance?.toTfJson(),
+    'date_time_type_options': ?dateTimeTypeOptions?.encode(),
+    'enum_type_options': ?enumTypeOptions?.encode(),
+    'float_type_options': ?floatTypeOptions?.encode(),
+    'integer_type_options': ?integerTypeOptions?.encode(),
+    'map_type_options': ?mapTypeOptions?.encode(),
     if (schemaSources != null)
       'schema_sources': [for (final e in schemaSources!) e.encode()],
-    if (textTypeOptions != null) 'text_type_options': textTypeOptions!.encode(),
-    if (timestampTypeOptions != null)
-      'timestamp_type_options': timestampTypeOptions!.encode(),
+    'text_type_options': ?textTypeOptions?.encode(),
+    'timestamp_type_options': ?timestampTypeOptions?.encode(),
   };
 }
 
@@ -332,8 +320,7 @@ final class DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOpti
 
   Map<String, Object?> encode() => {
     'possible_values': possibleValues.toTfJson(),
-    if (validationCheckDisabled != null)
-      'validation_check_disabled': validationCheckDisabled!.toTfJson(),
+    'validation_check_disabled': ?validationCheckDisabled?.toTfJson(),
   };
 }
 
@@ -378,8 +365,8 @@ final class DocumentAiWarehouseDocumentSchemaPropertyDefinitionsPropertyTypeOpti
   final TfArg<String>? processorType;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (processorType != null) 'processor_type': processorType!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'processor_type': ?processorType?.toTfJson(),
   };
 }
 
@@ -415,8 +402,8 @@ final class DocumentAiWarehouseDocumentSchemaPropertyDefinitionsSchemaSources {
   final TfArg<String>? processorType;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (processorType != null) 'processor_type': processorType!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'processor_type': ?processorType?.toTfJson(),
   };
 }
 
@@ -465,9 +452,9 @@ final class GoogleDocumentAiWarehouseDocumentSchema extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
-           if (documentIsFolder != null) 'document_is_folder': documentIsFolder,
+           'document_is_folder': ?documentIsFolder,
            'location': location,
            'project_number': projectNumber,
            'property_definitions': TfArg.literal([

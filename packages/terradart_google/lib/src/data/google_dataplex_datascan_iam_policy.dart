@@ -25,8 +25,8 @@ final class DataGoogleDataplexDatascanIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'data_scan_id': dataScanId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

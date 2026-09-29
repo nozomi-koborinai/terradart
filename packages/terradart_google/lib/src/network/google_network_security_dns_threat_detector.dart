@@ -69,13 +69,12 @@ final class GoogleNetworkSecurityDnsThreatDetector extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (location != null) 'location': location,
-           if (threatDetectorProvider != null)
-             'threat_detector_provider': threatDetectorProvider,
-           if (excludedNetworks != null) 'excluded_networks': excludedNetworks,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'threat_detector_provider': ?threatDetectorProvider,
+           'excluded_networks': ?excludedNetworks,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

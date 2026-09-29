@@ -31,8 +31,8 @@ final class DatasyncTaskExcludes {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (filterType != null) 'filter_type': filterType!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'filter_type': ?filterType?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -56,8 +56,8 @@ final class DatasyncTaskIncludes {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (filterType != null) 'filter_type': filterType!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'filter_type': ?filterType?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -124,25 +124,21 @@ final class DatasyncTaskOptions {
   final TfArg<DatasyncTaskOptionsVerifyMode>? verifyMode;
 
   Map<String, Object?> encode() => {
-    if (atime != null) 'atime': atime!.toTfJson(),
-    if (bytesPerSecond != null) 'bytes_per_second': bytesPerSecond!.toTfJson(),
-    if (gid != null) 'gid': gid!.toTfJson(),
-    if (logLevel != null) 'log_level': logLevel!.toTfJson(),
-    if (mtime != null) 'mtime': mtime!.toTfJson(),
-    if (objectTags != null) 'object_tags': objectTags!.toTfJson(),
-    if (overwriteMode != null) 'overwrite_mode': overwriteMode!.toTfJson(),
-    if (posixPermissions != null)
-      'posix_permissions': posixPermissions!.toTfJson(),
-    if (preserveDeletedFiles != null)
-      'preserve_deleted_files': preserveDeletedFiles!.toTfJson(),
-    if (preserveDevices != null)
-      'preserve_devices': preserveDevices!.toTfJson(),
-    if (securityDescriptorCopyFlags != null)
-      'security_descriptor_copy_flags': securityDescriptorCopyFlags!.toTfJson(),
-    if (taskQueueing != null) 'task_queueing': taskQueueing!.toTfJson(),
-    if (transferMode != null) 'transfer_mode': transferMode!.toTfJson(),
-    if (uid != null) 'uid': uid!.toTfJson(),
-    if (verifyMode != null) 'verify_mode': verifyMode!.toTfJson(),
+    'atime': ?atime?.toTfJson(),
+    'bytes_per_second': ?bytesPerSecond?.toTfJson(),
+    'gid': ?gid?.toTfJson(),
+    'log_level': ?logLevel?.toTfJson(),
+    'mtime': ?mtime?.toTfJson(),
+    'object_tags': ?objectTags?.toTfJson(),
+    'overwrite_mode': ?overwriteMode?.toTfJson(),
+    'posix_permissions': ?posixPermissions?.toTfJson(),
+    'preserve_deleted_files': ?preserveDeletedFiles?.toTfJson(),
+    'preserve_devices': ?preserveDevices?.toTfJson(),
+    'security_descriptor_copy_flags': ?securityDescriptorCopyFlags?.toTfJson(),
+    'task_queueing': ?taskQueueing?.toTfJson(),
+    'transfer_mode': ?transferMode?.toTfJson(),
+    'uid': ?uid?.toTfJson(),
+    'verify_mode': ?verifyMode?.toTfJson(),
   };
 }
 
@@ -305,7 +301,7 @@ final class DatasyncTaskSchedule {
 
   Map<String, Object?> encode() => {
     'schedule_expression': scheduleExpression.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -343,11 +339,10 @@ final class DatasyncTaskTaskReportConfig {
   final DatasyncTaskTaskReportConfigS3Destination s3Destination;
 
   Map<String, Object?> encode() => {
-    if (outputType != null) 'output_type': outputType!.toTfJson(),
-    if (reportLevel != null) 'report_level': reportLevel!.toTfJson(),
-    if (s3ObjectVersioning != null)
-      's3_object_versioning': s3ObjectVersioning!.toTfJson(),
-    if (reportOverrides != null) 'report_overrides': reportOverrides!.encode(),
+    'output_type': ?outputType?.toTfJson(),
+    'report_level': ?reportLevel?.toTfJson(),
+    's3_object_versioning': ?s3ObjectVersioning?.toTfJson(),
+    'report_overrides': ?reportOverrides?.encode(),
     's3_destination': s3Destination.encode(),
   };
 }
@@ -406,14 +401,10 @@ final class DatasyncTaskTaskReportConfigReportOverrides {
   verifiedOverride;
 
   Map<String, Object?> encode() => {
-    if (deletedOverride != null)
-      'deleted_override': deletedOverride!.toTfJson(),
-    if (skippedOverride != null)
-      'skipped_override': skippedOverride!.toTfJson(),
-    if (transferredOverride != null)
-      'transferred_override': transferredOverride!.toTfJson(),
-    if (verifiedOverride != null)
-      'verified_override': verifiedOverride!.toTfJson(),
+    'deleted_override': ?deletedOverride?.toTfJson(),
+    'skipped_override': ?skippedOverride?.toTfJson(),
+    'transferred_override': ?transferredOverride?.toTfJson(),
+    'verified_override': ?verifiedOverride?.toTfJson(),
   };
 }
 
@@ -488,7 +479,7 @@ final class DatasyncTaskTaskReportConfigS3Destination {
   Map<String, Object?> encode() => {
     'bucket_access_role_arn': bucketAccessRoleArn.toTfJson(),
     's3_bucket_arn': s3BucketArn.encodeAs('arn').toTfJson(),
-    if (subdirectory != null) 'subdirectory': subdirectory!.toTfJson(),
+    'subdirectory': ?subdirectory?.toTfJson(),
   };
 }
 
@@ -517,14 +508,13 @@ final class AwsDatasyncTask extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cloudwatchLogGroupArn != null)
-             'cloudwatch_log_group_arn': cloudwatchLogGroupArn.encodeAs('arn'),
+           'cloudwatch_log_group_arn': ?cloudwatchLogGroupArn?.encodeAs('arn'),
            'destination_location_arn': destinationLocationArn,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
+           'name': ?name,
+           'region': ?region,
            'source_location_arn': sourceLocationArn,
-           if (tags != null) 'tags': tags,
-           if (taskMode != null) 'task_mode': taskMode,
+           'tags': ?tags,
+           'task_mode': ?taskMode,
            if (excludes != null) 'excludes': TfArg.literal(excludes.encode()),
            if (includes != null) 'includes': TfArg.literal(includes.encode()),
            if (options != null) 'options': TfArg.literal(options.encode()),

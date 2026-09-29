@@ -30,7 +30,7 @@ final class ElasticBeanstalkConfigurationTemplateSetting {
   Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     'namespace': namespace.toTfJson(),
-    if (resource != null) 'resource': resource!.toTfJson(),
+    'resource': ?resource?.toTfJson(),
     'value': value.toTfJson(),
   };
 }
@@ -56,12 +56,11 @@ final class AwsElasticBeanstalkConfigurationTemplate extends Resource {
          terraformType: tfType,
          argMap: {
            'application': application,
-           if (description != null) 'description': description,
-           if (environmentId != null) 'environment_id': environmentId,
+           'description': ?description,
+           'environment_id': ?environmentId,
            'name': name,
-           if (region != null) 'region': region,
-           if (solutionStackName != null)
-             'solution_stack_name': solutionStackName,
+           'region': ?region,
+           'solution_stack_name': ?solutionStackName,
            if (setting != null)
              'setting': TfArg.literal([for (final e in setting) e.encode()]),
          },

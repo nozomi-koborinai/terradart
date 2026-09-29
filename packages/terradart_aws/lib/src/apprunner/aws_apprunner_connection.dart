@@ -35,8 +35,8 @@ final class AwsApprunnerConnection extends Resource {
          argMap: {
            'connection_name': connectionName,
            'provider_type': providerType,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

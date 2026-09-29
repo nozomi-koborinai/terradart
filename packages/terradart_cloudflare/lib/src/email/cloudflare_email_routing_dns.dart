@@ -28,8 +28,8 @@ final class CloudflareEmailRoutingDns extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (subdomain != null) 'subdomain': subdomain,
+           'name': ?name,
+           'subdomain': ?subdomain,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

@@ -35,10 +35,8 @@ final class GoogleApigeeControlPlaneAccess extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (synchronizerIdentities != null)
-             'synchronizer_identities': synchronizerIdentities,
-           if (analyticsPublisherIdentities != null)
-             'analytics_publisher_identities': analyticsPublisherIdentities,
+           'synchronizer_identities': ?synchronizerIdentities,
+           'analytics_publisher_identities': ?analyticsPublisherIdentities,
          },
        );
 

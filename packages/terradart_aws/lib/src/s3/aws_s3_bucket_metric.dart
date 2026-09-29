@@ -22,9 +22,9 @@ final class S3BucketMetricFilter {
   final TfArg<Map<String, String>>? tags;
 
   Map<String, Object?> encode() => {
-    if (accessPoint != null) 'access_point': accessPoint!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'access_point': ?accessPoint?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
   };
 }
 
@@ -47,7 +47,7 @@ final class AwsS3BucketMetric extends Resource {
          argMap: {
            'bucket': bucket.encodeAs('id'),
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

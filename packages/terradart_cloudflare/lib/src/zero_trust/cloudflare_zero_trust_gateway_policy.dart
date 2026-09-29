@@ -60,7 +60,7 @@ final class ZeroTrustGatewayPolicyExpiration {
   final TfArg<String> expiresAt;
 
   Map<String, Object?> encode() => {
-    if (duration != null) 'duration': duration!.toTfJson(),
+    'duration': ?duration?.toTfJson(),
     'expires_at': expiresAt.toTfJson(),
   };
 }
@@ -159,45 +159,35 @@ final class ZeroTrustGatewayPolicyRuleSettings {
   final ZeroTrustGatewayPolicyRuleSettingsUntrustedCert? untrustedCert;
 
   Map<String, Object?> encode() => {
-    if (addHeaders != null) 'add_headers': addHeaders!.toTfJson(),
-    if (allowChildBypass != null)
-      'allow_child_bypass': allowChildBypass!.toTfJson(),
-    if (blockPageEnabled != null)
-      'block_page_enabled': blockPageEnabled!.toTfJson(),
-    if (blockReason != null) 'block_reason': blockReason!.toTfJson(),
-    if (bypassParentRule != null)
-      'bypass_parent_rule': bypassParentRule!.toTfJson(),
-    if (deleteHeaders != null) 'delete_headers': deleteHeaders!.toTfJson(),
-    if (ignoreCnameCategoryMatches != null)
-      'ignore_cname_category_matches': ignoreCnameCategoryMatches!.toTfJson(),
-    if (insecureDisableDnssecValidation != null)
-      'insecure_disable_dnssec_validation': insecureDisableDnssecValidation!
-          .toTfJson(),
-    if (ipCategories != null) 'ip_categories': ipCategories!.toTfJson(),
-    if (ipIndicatorFeeds != null)
-      'ip_indicator_feeds': ipIndicatorFeeds!.toTfJson(),
-    if (overrideHost != null) 'override_host': overrideHost!.toTfJson(),
-    if (overrideIps != null) 'override_ips': overrideIps!.toTfJson(),
-    if (resolveDnsThroughCloudflare != null)
-      'resolve_dns_through_cloudflare': resolveDnsThroughCloudflare!.toTfJson(),
-    if (setHeaders != null) 'set_headers': setHeaders!.toTfJson(),
-    if (auditSsh != null) 'audit_ssh': auditSsh!.encode(),
-    if (bisoAdminControls != null)
-      'biso_admin_controls': bisoAdminControls!.encode(),
-    if (blockPage != null) 'block_page': blockPage!.encode(),
-    if (checkSession != null) 'check_session': checkSession!.encode(),
-    if (dnsResolvers != null) 'dns_resolvers': dnsResolvers!.encode(),
-    if (egress != null) 'egress': egress!.encode(),
-    if (forensicCopy != null) 'forensic_copy': forensicCopy!.encode(),
-    if (l4override != null) 'l4override': l4override!.encode(),
-    if (notificationSettings != null)
-      'notification_settings': notificationSettings!.encode(),
-    if (payloadLog != null) 'payload_log': payloadLog!.encode(),
-    if (quarantine != null) 'quarantine': quarantine!.encode(),
-    if (redirect != null) 'redirect': redirect!.encode(),
-    if (resolveDnsInternally != null)
-      'resolve_dns_internally': resolveDnsInternally!.encode(),
-    if (untrustedCert != null) 'untrusted_cert': untrustedCert!.encode(),
+    'add_headers': ?addHeaders?.toTfJson(),
+    'allow_child_bypass': ?allowChildBypass?.toTfJson(),
+    'block_page_enabled': ?blockPageEnabled?.toTfJson(),
+    'block_reason': ?blockReason?.toTfJson(),
+    'bypass_parent_rule': ?bypassParentRule?.toTfJson(),
+    'delete_headers': ?deleteHeaders?.toTfJson(),
+    'ignore_cname_category_matches': ?ignoreCnameCategoryMatches?.toTfJson(),
+    'insecure_disable_dnssec_validation': ?insecureDisableDnssecValidation
+        ?.toTfJson(),
+    'ip_categories': ?ipCategories?.toTfJson(),
+    'ip_indicator_feeds': ?ipIndicatorFeeds?.toTfJson(),
+    'override_host': ?overrideHost?.toTfJson(),
+    'override_ips': ?overrideIps?.toTfJson(),
+    'resolve_dns_through_cloudflare': ?resolveDnsThroughCloudflare?.toTfJson(),
+    'set_headers': ?setHeaders?.toTfJson(),
+    'audit_ssh': ?auditSsh?.encode(),
+    'biso_admin_controls': ?bisoAdminControls?.encode(),
+    'block_page': ?blockPage?.encode(),
+    'check_session': ?checkSession?.encode(),
+    'dns_resolvers': ?dnsResolvers?.encode(),
+    'egress': ?egress?.encode(),
+    'forensic_copy': ?forensicCopy?.encode(),
+    'l4override': ?l4override?.encode(),
+    'notification_settings': ?notificationSettings?.encode(),
+    'payload_log': ?payloadLog?.encode(),
+    'quarantine': ?quarantine?.encode(),
+    'redirect': ?redirect?.encode(),
+    'resolve_dns_internally': ?resolveDnsInternally?.encode(),
+    'untrusted_cert': ?untrustedCert?.encode(),
   };
 }
 
@@ -210,7 +200,7 @@ final class ZeroTrustGatewayPolicyRuleSettingsAuditSsh {
   final TfArg<bool>? commandLogging;
 
   Map<String, Object?> encode() => {
-    if (commandLogging != null) 'command_logging': commandLogging!.toTfJson(),
+    'command_logging': ?commandLogging?.toTfJson(),
   };
 }
 
@@ -266,19 +256,19 @@ final class ZeroTrustGatewayPolicyRuleSettingsBisoAdminControls {
   final TfArg<String>? wmId;
 
   Map<String, Object?> encode() => {
-    if (copy != null) 'copy': copy!.toTfJson(),
-    if (dcp != null) 'dcp': dcp!.toTfJson(),
-    if (dd != null) 'dd': dd!.toTfJson(),
-    if (dk != null) 'dk': dk!.toTfJson(),
-    if (download != null) 'download': download!.toTfJson(),
-    if (dp != null) 'dp': dp!.toTfJson(),
-    if (du != null) 'du': du!.toTfJson(),
-    if (keyboard != null) 'keyboard': keyboard!.toTfJson(),
-    if (paste != null) 'paste': paste!.toTfJson(),
-    if (printing != null) 'printing': printing!.toTfJson(),
-    if (upload != null) 'upload': upload!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
-    if (wmId != null) 'wm_id': wmId!.toTfJson(),
+    'copy': ?copy?.toTfJson(),
+    'dcp': ?dcp?.toTfJson(),
+    'dd': ?dd?.toTfJson(),
+    'dk': ?dk?.toTfJson(),
+    'download': ?download?.toTfJson(),
+    'dp': ?dp?.toTfJson(),
+    'du': ?du?.toTfJson(),
+    'keyboard': ?keyboard?.toTfJson(),
+    'paste': ?paste?.toTfJson(),
+    'printing': ?printing?.toTfJson(),
+    'upload': ?upload?.toTfJson(),
+    'version': ?version?.toTfJson(),
+    'wm_id': ?wmId?.toTfJson(),
   };
 }
 
@@ -390,7 +380,7 @@ final class ZeroTrustGatewayPolicyRuleSettingsBlockPage {
   final TfArg<String> targetUri;
 
   Map<String, Object?> encode() => {
-    if (includeContext != null) 'include_context': includeContext!.toTfJson(),
+    'include_context': ?includeContext?.toTfJson(),
     'target_uri': targetUri.toTfJson(),
   };
 }
@@ -409,8 +399,8 @@ final class ZeroTrustGatewayPolicyRuleSettingsCheckSession {
   final TfArg<bool>? enforce;
 
   Map<String, Object?> encode() => {
-    if (duration != null) 'duration': duration!.toTfJson(),
-    if (enforce != null) 'enforce': enforce!.toTfJson(),
+    'duration': ?duration?.toTfJson(),
+    'enforce': ?enforce?.toTfJson(),
   };
 }
 
@@ -451,10 +441,9 @@ final class ZeroTrustGatewayPolicyRuleSettingsDnsResolversIpv4 {
 
   Map<String, Object?> encode() => {
     'ip': ip.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (routeThroughPrivateNetwork != null)
-      'route_through_private_network': routeThroughPrivateNetwork!.toTfJson(),
-    if (vnetId != null) 'vnet_id': vnetId!.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'route_through_private_network': ?routeThroughPrivateNetwork?.toTfJson(),
+    'vnet_id': ?vnetId?.toTfJson(),
   };
 }
 
@@ -479,10 +468,9 @@ final class ZeroTrustGatewayPolicyRuleSettingsDnsResolversIpv6 {
 
   Map<String, Object?> encode() => {
     'ip': ip.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (routeThroughPrivateNetwork != null)
-      'route_through_private_network': routeThroughPrivateNetwork!.toTfJson(),
-    if (vnetId != null) 'vnet_id': vnetId!.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'route_through_private_network': ?routeThroughPrivateNetwork?.toTfJson(),
+    'vnet_id': ?vnetId?.toTfJson(),
   };
 }
 
@@ -503,9 +491,9 @@ final class ZeroTrustGatewayPolicyRuleSettingsEgress {
   final TfArg<String>? ipv6;
 
   Map<String, Object?> encode() => {
-    if (ipv4 != null) 'ipv4': ipv4!.toTfJson(),
-    if (ipv4Fallback != null) 'ipv4_fallback': ipv4Fallback!.toTfJson(),
-    if (ipv6 != null) 'ipv6': ipv6!.toTfJson(),
+    'ipv4': ?ipv4?.toTfJson(),
+    'ipv4_fallback': ?ipv4Fallback?.toTfJson(),
+    'ipv6': ?ipv6?.toTfJson(),
   };
 }
 
@@ -517,9 +505,7 @@ final class ZeroTrustGatewayPolicyRuleSettingsForensicCopy {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `rule_settings.l4override` block of
@@ -533,8 +519,8 @@ final class ZeroTrustGatewayPolicyRuleSettingsL4override {
   final TfArg<num>? port;
 
   Map<String, Object?> encode() => {
-    if (ip != null) 'ip': ip!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'ip': ?ip?.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -558,10 +544,10 @@ final class ZeroTrustGatewayPolicyRuleSettingsNotificationSettings {
   final TfArg<String>? supportUrl;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (includeContext != null) 'include_context': includeContext!.toTfJson(),
-    if (msg != null) 'msg': msg!.toTfJson(),
-    if (supportUrl != null) 'support_url': supportUrl!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'include_context': ?includeContext?.toTfJson(),
+    'msg': ?msg?.toTfJson(),
+    'support_url': ?supportUrl?.toTfJson(),
   };
 }
 
@@ -573,9 +559,7 @@ final class ZeroTrustGatewayPolicyRuleSettingsPayloadLog {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `rule_settings.quarantine` block of
@@ -634,9 +618,8 @@ final class ZeroTrustGatewayPolicyRuleSettingsRedirect {
   final TfArg<String> targetUri;
 
   Map<String, Object?> encode() => {
-    if (includeContext != null) 'include_context': includeContext!.toTfJson(),
-    if (preservePathAndQuery != null)
-      'preserve_path_and_query': preservePathAndQuery!.toTfJson(),
+    'include_context': ?includeContext?.toTfJson(),
+    'preserve_path_and_query': ?preservePathAndQuery?.toTfJson(),
     'target_uri': targetUri.toTfJson(),
   };
 }
@@ -656,8 +639,8 @@ final class ZeroTrustGatewayPolicyRuleSettingsResolveDnsInternally {
   final TfArg<String>? viewId;
 
   Map<String, Object?> encode() => {
-    if (fallback != null) 'fallback': fallback!.toTfJson(),
-    if (viewId != null) 'view_id': viewId!.toTfJson(),
+    'fallback': ?fallback?.toTfJson(),
+    'view_id': ?viewId?.toTfJson(),
   };
 }
 
@@ -682,9 +665,7 @@ final class ZeroTrustGatewayPolicyRuleSettingsUntrustedCert {
 
   final TfArg<ZeroTrustGatewayPolicyRuleSettingsUntrustedCertAction>? action;
 
-  Map<String, Object?> encode() => {
-    if (action != null) 'action': action!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'action': ?action?.toTfJson()};
 }
 
 /// `action` — derived from the provider schema description.
@@ -733,14 +714,14 @@ final class ZeroTrustGatewayPolicySchedule {
   final TfArg<String>? wed;
 
   Map<String, Object?> encode() => {
-    if (fri != null) 'fri': fri!.toTfJson(),
-    if (mon != null) 'mon': mon!.toTfJson(),
-    if (sat != null) 'sat': sat!.toTfJson(),
-    if (sun != null) 'sun': sun!.toTfJson(),
-    if (thu != null) 'thu': thu!.toTfJson(),
-    if (timeZone != null) 'time_zone': timeZone!.toTfJson(),
-    if (tue != null) 'tue': tue!.toTfJson(),
-    if (wed != null) 'wed': wed!.toTfJson(),
+    'fri': ?fri?.toTfJson(),
+    'mon': ?mon?.toTfJson(),
+    'sat': ?sat?.toTfJson(),
+    'sun': ?sun?.toTfJson(),
+    'thu': ?thu?.toTfJson(),
+    'time_zone': ?timeZone?.toTfJson(),
+    'tue': ?tue?.toTfJson(),
+    'wed': ?wed?.toTfJson(),
   };
 }
 
@@ -772,15 +753,15 @@ final class CloudflareZeroTrustGatewayPolicy extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'action': action,
-           if (description != null) 'description': description,
-           if (devicePosture != null) 'device_posture': devicePosture,
-           if (enabled != null) 'enabled': enabled,
+           'description': ?description,
+           'device_posture': ?devicePosture,
+           'enabled': ?enabled,
            if (filters != null)
              'filters': TfArg.literal([for (final e in filters) e.toTfJson()]),
-           if (identity != null) 'identity': identity,
+           'identity': ?identity,
            'name': name,
-           if (precedence != null) 'precedence': precedence,
-           if (traffic != null) 'traffic': traffic,
+           'precedence': ?precedence,
+           'traffic': ?traffic,
            if (expiration != null)
              'expiration': TfArg.literal(expiration.encode()),
            if (ruleSettings != null)

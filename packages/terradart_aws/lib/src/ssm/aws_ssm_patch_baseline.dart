@@ -90,14 +90,10 @@ final class SsmPatchBaselineApprovalRule {
   final List<SsmPatchBaselineApprovalRulePatchFilter> patchFilter;
 
   Map<String, Object?> encode() => {
-    if (approveAfterDays != null)
-      'approve_after_days': approveAfterDays!.toTfJson(),
-    if (approveUntilDate != null)
-      'approve_until_date': approveUntilDate!.toTfJson(),
-    if (complianceLevel != null)
-      'compliance_level': complianceLevel!.toTfJson(),
-    if (enableNonSecurity != null)
-      'enable_non_security': enableNonSecurity!.toTfJson(),
+    'approve_after_days': ?approveAfterDays?.toTfJson(),
+    'approve_until_date': ?approveUntilDate?.toTfJson(),
+    'compliance_level': ?complianceLevel?.toTfJson(),
+    'enable_non_security': ?enableNonSecurity?.toTfJson(),
     'patch_filter': [for (final e in patchFilter) e.encode()],
   };
 }
@@ -257,24 +253,19 @@ final class AwsSsmPatchBaseline extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (approvedPatches != null) 'approved_patches': approvedPatches,
-           if (approvedPatchesComplianceLevel != null)
-             'approved_patches_compliance_level':
-                 approvedPatchesComplianceLevel,
-           if (approvedPatchesEnableNonSecurity != null)
-             'approved_patches_enable_non_security':
-                 approvedPatchesEnableNonSecurity,
-           if (availableSecurityUpdatesComplianceStatus != null)
-             'available_security_updates_compliance_status':
-                 availableSecurityUpdatesComplianceStatus,
-           if (description != null) 'description': description,
+           'approved_patches': ?approvedPatches,
+           'approved_patches_compliance_level': ?approvedPatchesComplianceLevel,
+           'approved_patches_enable_non_security':
+               ?approvedPatchesEnableNonSecurity,
+           'available_security_updates_compliance_status':
+               ?availableSecurityUpdatesComplianceStatus,
+           'description': ?description,
            'name': name,
-           if (operatingSystem != null) 'operating_system': operatingSystem,
-           if (region != null) 'region': region,
-           if (rejectedPatches != null) 'rejected_patches': rejectedPatches,
-           if (rejectedPatchesAction != null)
-             'rejected_patches_action': rejectedPatchesAction,
-           if (tags != null) 'tags': tags,
+           'operating_system': ?operatingSystem,
+           'region': ?region,
+           'rejected_patches': ?rejectedPatches,
+           'rejected_patches_action': ?rejectedPatchesAction,
+           'tags': ?tags,
            if (approvalRule != null)
              'approval_rule': TfArg.literal([
                for (final e in approvalRule) e.encode(),

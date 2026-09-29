@@ -168,9 +168,9 @@ final class AwsIvschatLoggingConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'region': ?region,
+           'tags': ?tags,
            if (destinationConfiguration != null)
              'destination_configuration': TfArg.literal(
                destinationConfiguration.encode(),

@@ -31,7 +31,7 @@ final class CloudflareZeroTrustDexRule extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (description != null) 'description': description,
+           'description': ?description,
            'match': match,
            'name': name,
          },

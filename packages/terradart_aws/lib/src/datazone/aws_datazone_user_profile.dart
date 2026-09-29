@@ -49,10 +49,10 @@ final class AwsDatazoneUserProfile extends Resource {
          terraformType: tfType,
          argMap: {
            'domain_identifier': domainIdentifier,
-           if (region != null) 'region': region,
-           if (status != null) 'status': status,
+           'region': ?region,
+           'status': ?status,
            'user_identifier': userIdentifier,
-           if (userType != null) 'user_type': userType,
+           'user_type': ?userType,
          },
        );
 

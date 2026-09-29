@@ -56,12 +56,12 @@ final class AwsGlueSchema extends Resource {
          argMap: {
            'compatibility': compatibility,
            'data_format': dataFormat,
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (registryArn != null) 'registry_arn': registryArn,
+           'description': ?description,
+           'region': ?region,
+           'registry_arn': ?registryArn,
            'schema_definition': schemaDefinition,
            'schema_name': schemaName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

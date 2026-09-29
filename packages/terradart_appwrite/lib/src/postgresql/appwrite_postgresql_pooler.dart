@@ -44,17 +44,14 @@ final class AppwritePostgresqlPooler extends Resource {
          terraformType: tfType,
          argMap: {
            'database_id': databaseId,
-           if (defaultPoolSize != null) 'default_pool_size': defaultPoolSize,
-           if (mode != null) 'mode': mode,
-           if (poolerCpuLimit != null) 'pooler_cpu_limit': poolerCpuLimit,
-           if (poolerCpuRequest != null) 'pooler_cpu_request': poolerCpuRequest,
-           if (poolerMemoryLimit != null)
-             'pooler_memory_limit': poolerMemoryLimit,
-           if (poolerMemoryRequest != null)
-             'pooler_memory_request': poolerMemoryRequest,
-           if (projectId != null) 'project_id': projectId,
-           if (readWriteSplitting != null)
-             'read_write_splitting': readWriteSplitting,
+           'default_pool_size': ?defaultPoolSize,
+           'mode': ?mode,
+           'pooler_cpu_limit': ?poolerCpuLimit,
+           'pooler_cpu_request': ?poolerCpuRequest,
+           'pooler_memory_limit': ?poolerMemoryLimit,
+           'pooler_memory_request': ?poolerMemoryRequest,
+           'project_id': ?projectId,
+           'read_write_splitting': ?readWriteSplitting,
          },
        );
 

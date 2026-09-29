@@ -19,8 +19,8 @@ final class DataCertificatePackFilter {
   final TfArg<DataCertificatePackFilterStatus>? status;
 
   Map<String, Object?> encode() => {
-    if (deploy != null) 'deploy': deploy!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'deploy': ?deploy?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -61,9 +61,8 @@ final class DataCloudflareCertificatePack extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (certificatePackId != null)
-             'certificate_pack_id': certificatePackId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'certificate_pack_id': ?certificatePackId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

@@ -59,7 +59,7 @@ final class ContainerAwsClusterBinaryAuthorization {
   evaluationMode;
 
   Map<String, Object?> encode() => {
-    if (evaluationMode != null) 'evaluation_mode': evaluationMode!.toTfJson(),
+    'evaluation_mode': ?evaluationMode?.toTfJson(),
   };
 }
 
@@ -125,19 +125,18 @@ final class ContainerAwsClusterControlPlane {
 
   Map<String, Object?> encode() => {
     'iam_instance_profile': iamInstanceProfile.toTfJson(),
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.toTfJson(),
     'subnet_ids': subnetIds.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     'version': version.toTfJson(),
     'aws_services_authentication': awsServicesAuthentication.encode(),
     'config_encryption': configEncryption.encode(),
     'database_encryption': databaseEncryption.encode(),
-    if (mainVolume != null) 'main_volume': mainVolume!.encode(),
-    if (proxyConfig != null) 'proxy_config': proxyConfig!.encode(),
-    if (rootVolume != null) 'root_volume': rootVolume!.encode(),
-    if (sshConfig != null) 'ssh_config': sshConfig!.encode(),
+    'main_volume': ?mainVolume?.encode(),
+    'proxy_config': ?proxyConfig?.encode(),
+    'root_volume': ?rootVolume?.encode(),
+    'ssh_config': ?sshConfig?.encode(),
   };
 }
 
@@ -156,8 +155,7 @@ final class ContainerAwsClusterControlPlaneAwsServicesAuthentication {
 
   Map<String, Object?> encode() => {
     'role_arn': roleArn.toTfJson(),
-    if (roleSessionName != null)
-      'role_session_name': roleSessionName!.toTfJson(),
+    'role_session_name': ?roleSessionName?.toTfJson(),
   };
 }
 
@@ -210,11 +208,11 @@ final class ContainerAwsClusterControlPlaneMainVolume {
   final TfArg<ContainerAwsClusterControlPlaneMainVolumeVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
-    if (sizeGib != null) 'size_gib': sizeGib!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.toTfJson(),
+    'size_gib': ?sizeGib?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -274,11 +272,11 @@ final class ContainerAwsClusterControlPlaneRootVolume {
   final TfArg<ContainerAwsClusterControlPlaneRootVolumeVolumeType>? volumeType;
 
   Map<String, Object?> encode() => {
-    if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
-    if (sizeGib != null) 'size_gib': sizeGib!.toTfJson(),
-    if (throughput != null) 'throughput': throughput!.toTfJson(),
-    if (volumeType != null) 'volume_type': volumeType!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
+    'kms_key_arn': ?kmsKeyArn?.toTfJson(),
+    'size_gib': ?sizeGib?.toTfJson(),
+    'throughput': ?throughput?.toTfJson(),
+    'volume_type': ?volumeType?.toTfJson(),
   };
 }
 
@@ -315,9 +313,7 @@ final class ContainerAwsClusterFleet {
 
   final TfArg<String>? project;
 
-  Map<String, Object?> encode() => {
-    if (project != null) 'project': project!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'project': ?project?.toTfJson()};
 }
 
 /// Typed helper for the `networking` block of
@@ -340,8 +336,7 @@ final class ContainerAwsClusterNetworking {
   final TfArg<String> vpcId;
 
   Map<String, Object?> encode() => {
-    if (perNodePoolSgRulesDisabled != null)
-      'per_node_pool_sg_rules_disabled': perNodePoolSgRulesDisabled!.toTfJson(),
+    'per_node_pool_sg_rules_disabled': ?perNodePoolSgRulesDisabled?.toTfJson(),
     'pod_address_cidr_blocks': podAddressCidrBlocks.toTfJson(),
     'service_address_cidr_blocks': serviceAddressCidrBlocks.toTfJson(),
     'vpc_id': vpcId.toTfJson(),
@@ -395,9 +390,9 @@ final class GoogleContainerAwsCluster extends Resource {
              'binary_authorization': TfArg.literal(
                binaryAuthorization.encode(),
              ),
-           if (description != null) 'description': description,
-           if (annotations != null) 'annotations': annotations,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'annotations': ?annotations,
+           'project': ?project,
          },
        );
 

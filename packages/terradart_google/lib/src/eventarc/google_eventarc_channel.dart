@@ -29,14 +29,12 @@ final class GoogleEventarcChannel extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cryptoKeyName != null)
-             'crypto_key_name': cryptoKeyName.encodeAs('id'),
-           if (labels != null) 'labels': labels,
+           'crypto_key_name': ?cryptoKeyName?.encodeAs('id'),
+           'labels': ?labels,
            'location': location,
            'name': name,
-           if (project != null) 'project': project,
-           if (thirdPartyProvider != null)
-             'third_party_provider': thirdPartyProvider,
+           'project': ?project,
+           'third_party_provider': ?thirdPartyProvider,
          },
        );
 

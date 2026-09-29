@@ -45,8 +45,8 @@ final class GoogleStorageDefaultObjectAcl extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('name'),
-           if (roleEntity != null) 'role_entity': roleEntity,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'role_entity': ?roleEntity,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

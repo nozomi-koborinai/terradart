@@ -22,10 +22,9 @@ final class AwsAppfabricAppBundle extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customerManagedKeyArn != null)
-             'customer_managed_key_arn': customerManagedKeyArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'customer_managed_key_arn': ?customerManagedKeyArn,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

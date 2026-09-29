@@ -28,8 +28,8 @@ final class AwsEc2LocalGatewayRouteTableVpcAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'local_gateway_route_table_id': localGatewayRouteTableId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'vpc_id': vpcId.encodeAs('id'),
          },
        );

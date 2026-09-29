@@ -44,7 +44,7 @@ final class GoogleAccessContextManagerServicePerimeterResource
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'perimeter_name': perimeterName,
            'resource': resource,
          },

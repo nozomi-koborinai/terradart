@@ -24,10 +24,10 @@ final class DataGoogleAgentRegistryEndpoint extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (endpointId != null) 'endpoint_id': endpointId,
-           if (filter != null) 'filter': filter,
+           'endpoint_id': ?endpointId,
+           'filter': ?filter,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

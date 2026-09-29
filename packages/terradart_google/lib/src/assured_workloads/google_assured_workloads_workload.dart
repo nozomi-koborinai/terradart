@@ -95,11 +95,9 @@ final class AssuredWorkloadsWorkloadPartnerPermissions {
   final TfArg<bool>? serviceAccessApprover;
 
   Map<String, Object?> encode() => {
-    if (assuredWorkloadsMonitoring != null)
-      'assured_workloads_monitoring': assuredWorkloadsMonitoring!.toTfJson(),
-    if (dataLogsViewer != null) 'data_logs_viewer': dataLogsViewer!.toTfJson(),
-    if (serviceAccessApprover != null)
-      'service_access_approver': serviceAccessApprover!.toTfJson(),
+    'assured_workloads_monitoring': ?assuredWorkloadsMonitoring?.toTfJson(),
+    'data_logs_viewer': ?dataLogsViewer?.toTfJson(),
+    'service_access_approver': ?serviceAccessApprover?.toTfJson(),
   };
 }
 
@@ -121,9 +119,9 @@ final class AssuredWorkloadsWorkloadResourceSettings {
   resourceType;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
-    if (resourceId != null) 'resource_id': resourceId!.toTfJson(),
-    if (resourceType != null) 'resource_type': resourceType!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
+    'resource_id': ?resourceId?.toTfJson(),
+    'resource_type': ?resourceType?.toTfJson(),
   };
 }
 
@@ -153,8 +151,7 @@ final class AssuredWorkloadsWorkloadWorkloadOptions {
   kajEnrollmentType;
 
   Map<String, Object?> encode() => {
-    if (kajEnrollmentType != null)
-      'kaj_enrollment_type': kajEnrollmentType!.toTfJson(),
+    'kaj_enrollment_type': ?kajEnrollmentType?.toTfJson(),
   };
 }
 
@@ -209,22 +206,18 @@ final class GoogleAssuredWorkloadsWorkload extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (billingAccount != null) 'billing_account': billingAccount,
+           'billing_account': ?billingAccount,
            'compliance_regime': complianceRegime,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'display_name': displayName,
-           if (enableSovereignControls != null)
-             'enable_sovereign_controls': enableSovereignControls,
-           if (labels != null) 'labels': labels,
+           'enable_sovereign_controls': ?enableSovereignControls,
+           'labels': ?labels,
            'location': location,
            'organization': organization,
-           if (partner != null) 'partner': partner,
-           if (partnerServicesBillingAccount != null)
-             'partner_services_billing_account': partnerServicesBillingAccount,
-           if (provisionedResourcesParent != null)
-             'provisioned_resources_parent': provisionedResourcesParent,
-           if (violationNotificationsEnabled != null)
-             'violation_notifications_enabled': violationNotificationsEnabled,
+           'partner': ?partner,
+           'partner_services_billing_account': ?partnerServicesBillingAccount,
+           'provisioned_resources_parent': ?provisionedResourcesParent,
+           'violation_notifications_enabled': ?violationNotificationsEnabled,
            if (kmsSettings != null)
              'kms_settings': TfArg.literal(kmsSettings.encode()),
            if (partnerPermissions != null)

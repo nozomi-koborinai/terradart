@@ -66,7 +66,7 @@ final class CloudflareApiShieldOperation extends Resource {
              'feature': TfArg.literal([for (final e in feature) e.toTfJson()]),
            'host': host,
            'method': method,
-           if (withSchemas != null) 'with_schemas': withSchemas,
+           'with_schemas': ?withSchemas,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

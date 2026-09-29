@@ -24,8 +24,8 @@ final class DataAwsServiceDiscoveryService extends Data {
          argMap: {
            'name': name,
            'namespace_id': namespaceId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

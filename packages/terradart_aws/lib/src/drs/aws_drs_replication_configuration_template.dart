@@ -69,10 +69,10 @@ final class DrsReplicationConfigurationTemplatePitPolicy {
   final TfArg<DrsReplicationConfigurationTemplatePitPolicyUnits> units;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'interval': interval.toTfJson(),
     'retention_duration': retentionDuration.toTfJson(),
-    if (ruleId != null) 'rule_id': ruleId!.toTfJson(),
+    'rule_id': ?ruleId?.toTfJson(),
     'units': units.toTfJson(),
   };
 }
@@ -124,22 +124,20 @@ final class AwsDrsReplicationConfigurationTemplate extends Resource {
          terraformType: tfType,
          argMap: {
            'associate_default_security_group': associateDefaultSecurityGroup,
-           if (autoReplicateNewDisks != null)
-             'auto_replicate_new_disks': autoReplicateNewDisks,
+           'auto_replicate_new_disks': ?autoReplicateNewDisks,
            'bandwidth_throttling': bandwidthThrottling,
            'create_public_ip': createPublicIp,
            'data_plane_routing': dataPlaneRouting,
            'default_large_staging_disk_type': defaultLargeStagingDiskType,
            'ebs_encryption': ebsEncryption,
-           if (ebsEncryptionKeyArn != null)
-             'ebs_encryption_key_arn': ebsEncryptionKeyArn,
-           if (region != null) 'region': region,
+           'ebs_encryption_key_arn': ?ebsEncryptionKeyArn,
+           'region': ?region,
            'replication_server_instance_type': replicationServerInstanceType,
            'replication_servers_security_groups_ids':
                replicationServersSecurityGroupsIds,
            'staging_area_subnet_id': stagingAreaSubnetId,
            'staging_area_tags': stagingAreaTags,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'use_dedicated_replication_server': useDedicatedReplicationServer,
            if (pitPolicy != null)
              'pit_policy': TfArg.literal([

@@ -31,7 +31,7 @@ final class DirectoryServiceSharedDirectoryTarget {
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -63,9 +63,9 @@ final class AwsDirectoryServiceSharedDirectory extends Resource {
          terraformType: tfType,
          argMap: {
            'directory_id': directoryId,
-           if (method != null) 'method': method,
-           if (notes != null) 'notes': notes,
-           if (region != null) 'region': region,
+           'method': ?method,
+           'notes': ?notes,
+           'region': ?region,
            'target': TfArg.literal(target.encode()),
          },
        );

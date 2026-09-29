@@ -29,8 +29,8 @@ final class CloudflareMtlsCertificate extends Resource {
            'account_id': accountId.encodeAs('id'),
            'ca': ca,
            'certificates': certificates,
-           if (name != null) 'name': name,
-           if (privateKey != null) 'private_key': privateKey,
+           'name': ?name,
+           'private_key': ?privateKey,
          },
        );
 

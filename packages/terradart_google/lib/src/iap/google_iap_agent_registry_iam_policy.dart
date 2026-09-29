@@ -30,7 +30,7 @@ final class GoogleIapAgentRegistryIamPolicy extends Resource {
          argMap: {
            'location': location,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

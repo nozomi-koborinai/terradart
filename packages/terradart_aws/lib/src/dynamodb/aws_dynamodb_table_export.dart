@@ -57,9 +57,9 @@ final class DynamodbTableExportIncrementalExportSpecification {
   exportViewType;
 
   Map<String, Object?> encode() => {
-    if (exportFromTime != null) 'export_from_time': exportFromTime!.toTfJson(),
-    if (exportToTime != null) 'export_to_time': exportToTime!.toTfJson(),
-    if (exportViewType != null) 'export_view_type': exportViewType!.toTfJson(),
+    'export_from_time': ?exportFromTime?.toTfJson(),
+    'export_to_time': ?exportToTime?.toTfJson(),
+    'export_view_type': ?exportViewType?.toTfJson(),
   };
 }
 
@@ -101,15 +101,15 @@ final class AwsDynamodbTableExport extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (exportFormat != null) 'export_format': exportFormat,
-           if (exportTime != null) 'export_time': exportTime,
-           if (exportType != null) 'export_type': exportType,
-           if (region != null) 'region': region,
+           'export_format': ?exportFormat,
+           'export_time': ?exportTime,
+           'export_type': ?exportType,
+           'region': ?region,
            's3_bucket': s3Bucket.encodeAs('id'),
-           if (s3BucketOwner != null) 's3_bucket_owner': s3BucketOwner,
-           if (s3Prefix != null) 's3_prefix': s3Prefix,
-           if (s3SseAlgorithm != null) 's3_sse_algorithm': s3SseAlgorithm,
-           if (s3SseKmsKeyId != null) 's3_sse_kms_key_id': s3SseKmsKeyId,
+           's3_bucket_owner': ?s3BucketOwner,
+           's3_prefix': ?s3Prefix,
+           's3_sse_algorithm': ?s3SseAlgorithm,
+           's3_sse_kms_key_id': ?s3SseKmsKeyId,
            'table_arn': tableArn,
            if (incrementalExportSpecification != null)
              'incremental_export_specification': TfArg.literal(

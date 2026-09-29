@@ -39,8 +39,8 @@ final class DialogflowCxEntityTypeEntities {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (synonyms != null) 'synonyms': synonyms!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'synonyms': ?synonyms?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -52,9 +52,7 @@ final class DialogflowCxEntityTypeExcludedPhrases {
 
   final TfArg<String>? value;
 
-  Map<String, Object?> encode() => {
-    if (value != null) 'value': value!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'value': ?value?.toTfJson()};
 }
 
 /// Factory wrapper for `google_dialogflow_cx_entity_type`.
@@ -96,19 +94,17 @@ final class GoogleDialogflowCxEntityType extends Resource {
          argMap: {
            'display_name': displayName,
            'kind': kind,
-           if (parent != null) 'parent': parent,
-           if (languageCode != null) 'language_code': languageCode,
-           if (autoExpansionMode != null)
-             'auto_expansion_mode': autoExpansionMode,
-           if (enableFuzzyExtraction != null)
-             'enable_fuzzy_extraction': enableFuzzyExtraction,
-           if (redact != null) 'redact': redact,
+           'parent': ?parent,
+           'language_code': ?languageCode,
+           'auto_expansion_mode': ?autoExpansionMode,
+           'enable_fuzzy_extraction': ?enableFuzzyExtraction,
+           'redact': ?redact,
            'entities': TfArg.literal([for (final e in entities) e.encode()]),
            if (excludedPhrases != null)
              'excluded_phrases': TfArg.literal([
                for (final e in excludedPhrases) e.encode(),
              ]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

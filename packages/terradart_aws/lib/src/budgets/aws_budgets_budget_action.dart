@@ -90,12 +90,9 @@ final class BudgetsBudgetActionDefinition {
   final BudgetsBudgetActionDefinitionSsmActionDefinition? ssmActionDefinition;
 
   Map<String, Object?> encode() => {
-    if (iamActionDefinition != null)
-      'iam_action_definition': iamActionDefinition!.encode(),
-    if (scpActionDefinition != null)
-      'scp_action_definition': scpActionDefinition!.encode(),
-    if (ssmActionDefinition != null)
-      'ssm_action_definition': ssmActionDefinition!.encode(),
+    'iam_action_definition': ?iamActionDefinition?.encode(),
+    'scp_action_definition': ?scpActionDefinition?.encode(),
+    'ssm_action_definition': ?ssmActionDefinition?.encode(),
   };
 }
 
@@ -119,10 +116,10 @@ final class BudgetsBudgetActionDefinitionIamActionDefinition {
   final TfArg<List<Object?>>? users;
 
   Map<String, Object?> encode() => {
-    if (groups != null) 'groups': groups!.toTfJson(),
+    'groups': ?groups?.toTfJson(),
     'policy_arn': policyArn.toTfJson(),
-    if (roles != null) 'roles': roles!.encodeAs('name').toTfJson(),
-    if (users != null) 'users': users!.toTfJson(),
+    'roles': ?roles?.encodeAs('name').toTfJson(),
+    'users': ?users?.toTfJson(),
   };
 }
 
@@ -234,13 +231,13 @@ final class AwsBudgetsBudgetAction extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           'account_id': ?accountId,
            'action_type': actionType,
            'approval_model': approvalModel,
            'budget_name': budgetName,
            'execution_role_arn': executionRoleArn.encodeAs('arn'),
            'notification_type': notificationType,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'action_threshold': TfArg.literal(actionThreshold.encode()),
            'definition': TfArg.literal(definition.encode()),
            'subscriber': TfArg.literal([

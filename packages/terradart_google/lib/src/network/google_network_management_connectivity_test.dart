@@ -58,21 +58,19 @@ final class NetworkManagementConnectivityTestDestination {
   final TfArg<String>? redisInstance;
 
   Map<String, Object?> encode() => {
-    if (cloudSqlInstance != null)
-      'cloud_sql_instance': cloudSqlInstance!.toTfJson(),
-    if (forwardingRule != null) 'forwarding_rule': forwardingRule!.toTfJson(),
-    if (fqdn != null) 'fqdn': fqdn!.toTfJson(),
-    if (gkeMasterCluster != null)
-      'gke_master_cluster': gkeMasterCluster!.toTfJson(),
-    if (gkePod != null) 'gke_pod': gkePod!.toTfJson(),
-    if (instance != null) 'instance': instance!.toTfJson(),
-    if (ipAddress != null) 'ip_address': ipAddress!.toTfJson(),
-    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
-    if (networkType != null) 'network_type': networkType!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
-    if (redisCluster != null) 'redis_cluster': redisCluster!.toTfJson(),
-    if (redisInstance != null) 'redis_instance': redisInstance!.toTfJson(),
+    'cloud_sql_instance': ?cloudSqlInstance?.toTfJson(),
+    'forwarding_rule': ?forwardingRule?.toTfJson(),
+    'fqdn': ?fqdn?.toTfJson(),
+    'gke_master_cluster': ?gkeMasterCluster?.toTfJson(),
+    'gke_pod': ?gkePod?.toTfJson(),
+    'instance': ?instance?.toTfJson(),
+    'ip_address': ?ipAddress?.toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'network_type': ?networkType?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
+    'redis_cluster': ?redisCluster?.toTfJson(),
+    'redis_instance': ?redisInstance?.toTfJson(),
   };
 }
 
@@ -133,21 +131,17 @@ final class NetworkManagementConnectivityTestSource {
   cloudRunRevision;
 
   Map<String, Object?> encode() => {
-    if (cloudSqlInstance != null)
-      'cloud_sql_instance': cloudSqlInstance!.toTfJson(),
-    if (gkeMasterCluster != null)
-      'gke_master_cluster': gkeMasterCluster!.toTfJson(),
-    if (instance != null) 'instance': instance!.toTfJson(),
-    if (ipAddress != null) 'ip_address': ipAddress!.toTfJson(),
-    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
-    if (networkType != null) 'network_type': networkType!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
-    if (appEngineVersion != null)
-      'app_engine_version': appEngineVersion!.encode(),
-    if (cloudFunction != null) 'cloud_function': cloudFunction!.encode(),
-    if (cloudRunRevision != null)
-      'cloud_run_revision': cloudRunRevision!.encode(),
+    'cloud_sql_instance': ?cloudSqlInstance?.toTfJson(),
+    'gke_master_cluster': ?gkeMasterCluster?.toTfJson(),
+    'instance': ?instance?.toTfJson(),
+    'ip_address': ?ipAddress?.toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'network_type': ?networkType?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
+    'app_engine_version': ?appEngineVersion?.encode(),
+    'cloud_function': ?cloudFunction?.encode(),
+    'cloud_run_revision': ?cloudRunRevision?.encode(),
   };
 }
 
@@ -170,7 +164,7 @@ final class NetworkManagementConnectivityTestSourceAppEngineVersion {
 
   final TfArg<String>? uri;
 
-  Map<String, Object?> encode() => {if (uri != null) 'uri': uri!.toTfJson()};
+  Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
 }
 
 /// Typed helper for the `source.cloud_function` block of
@@ -181,7 +175,7 @@ final class NetworkManagementConnectivityTestSourceCloudFunction {
 
   final TfArg<String>? uri;
 
-  Map<String, Object?> encode() => {if (uri != null) 'uri': uri!.toTfJson()};
+  Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
 }
 
 /// Typed helper for the `source.cloud_run_revision` block of
@@ -192,7 +186,7 @@ final class NetworkManagementConnectivityTestSourceCloudRunRevision {
 
   final TfArg<String>? uri;
 
-  Map<String, Object?> encode() => {if (uri != null) 'uri': uri!.toTfJson()};
+  Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
 }
 
 /// Factory wrapper for `google_network_management_connectivity_test`.
@@ -243,16 +237,15 @@ final class GoogleNetworkManagementConnectivityTest extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (protocol != null) 'protocol': protocol,
+           'protocol': ?protocol,
            'source': TfArg.literal(source.encode()),
            'destination': TfArg.literal(destination.encode()),
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (bypassFirewallChecks != null)
-             'bypass_firewall_checks': bypassFirewallChecks,
-           if (relatedProjects != null) 'related_projects': relatedProjects,
-           if (roundTrip != null) 'round_trip': roundTrip,
+           'description': ?description,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
+           'bypass_firewall_checks': ?bypassFirewallChecks,
+           'related_projects': ?relatedProjects,
+           'round_trip': ?roundTrip,
          },
        );
 

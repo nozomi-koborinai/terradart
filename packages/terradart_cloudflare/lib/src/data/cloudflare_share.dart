@@ -37,13 +37,13 @@ final class DataShareFilter {
   final TfArg<DataShareFilterTargetType>? targetType;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (kind != null) 'kind': kind!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
-    if (resourceTypes != null) 'resource_types': resourceTypes!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
-    if (tag != null) 'tag': tag!.toTfJson(),
-    if (targetType != null) 'target_type': targetType!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'kind': ?kind?.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'resource_types': ?resourceTypes?.toTfJson(),
+    'status': ?status?.toTfJson(),
+    'tag': ?tag?.toTfJson(),
+    'target_type': ?targetType?.toTfJson(),
   };
 }
 
@@ -115,10 +115,9 @@ final class DataCloudflareShare extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (includeRecipientCounts != null)
-             'include_recipient_counts': includeRecipientCounts,
-           if (includeResources != null) 'include_resources': includeResources,
-           if (shareId != null) 'share_id': shareId,
+           'include_recipient_counts': ?includeRecipientCounts,
+           'include_resources': ?includeResources,
+           'share_id': ?shareId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

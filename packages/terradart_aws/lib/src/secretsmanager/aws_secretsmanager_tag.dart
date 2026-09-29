@@ -24,7 +24,7 @@ final class AwsSecretsmanagerTag extends Resource {
          terraformType: tfType,
          argMap: {
            'key': key,
-           if (region != null) 'region': region,
+           'region': ?region,
            'secret_id': secretId,
            'value': value,
          },

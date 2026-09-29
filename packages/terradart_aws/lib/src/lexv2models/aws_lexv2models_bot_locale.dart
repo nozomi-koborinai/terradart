@@ -18,7 +18,7 @@ final class Lexv2modelsBotLocaleVoiceSettings {
   final TfArg<String> voiceId;
 
   Map<String, Object?> encode() => {
-    if (engine != null) 'engine': engine!.toTfJson(),
+    'engine': ?engine?.toTfJson(),
     'voice_id': voiceId.toTfJson(),
   };
 }
@@ -58,11 +58,11 @@ final class AwsLexv2modelsBotLocale extends Resource {
          argMap: {
            'bot_id': botId,
            'bot_version': botVersion,
-           if (description != null) 'description': description,
+           'description': ?description,
            'locale_id': localeId,
            'n_lu_intent_confidence_threshold': nLuIntentConfidenceThreshold,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
+           'name': ?name,
+           'region': ?region,
            if (voiceSettings != null)
              'voice_settings': TfArg.literal([
                for (final e in voiceSettings) e.encode(),

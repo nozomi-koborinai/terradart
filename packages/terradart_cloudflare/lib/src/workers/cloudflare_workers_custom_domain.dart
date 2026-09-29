@@ -33,11 +33,11 @@ final class CloudflareWorkersCustomDomain extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (environment != null) 'environment': environment,
+           'environment': ?environment,
            'hostname': hostname,
            'service': service,
-           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
-           if (zoneName != null) 'zone_name': zoneName,
+           'zone_id': ?zoneId?.encodeAs('id'),
+           'zone_name': ?zoneName,
          },
        );
 

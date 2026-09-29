@@ -30,12 +30,9 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionConfiguration {
   inlineRedactionPattern;
 
   Map<String, Object?> encode() => {
-    if (globalConfidenceLevel != null)
-      'global_confidence_level': globalConfidenceLevel!.toTfJson(),
-    if (globalEnforcedUrls != null)
-      'global_enforced_urls': globalEnforcedUrls!.toTfJson(),
-    if (globalExemptUrls != null)
-      'global_exempt_urls': globalExemptUrls!.toTfJson(),
+    'global_confidence_level': ?globalConfidenceLevel?.toTfJson(),
+    'global_enforced_urls': ?globalEnforcedUrls?.toTfJson(),
+    'global_exempt_urls': ?globalExemptUrls?.toTfJson(),
     if (inlineRedactionPattern != null)
       'inline_redaction_pattern': [
         for (final e in inlineRedactionPattern!) e.encode(),
@@ -75,12 +72,10 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlin
   redactionPlaceHolder;
 
   Map<String, Object?> encode() => {
-    if (builtInPatternId != null)
-      'built_in_pattern_id': builtInPatternId!.toTfJson(),
-    if (confidenceLevel != null)
-      'confidence_level': confidenceLevel!.toTfJson(),
-    if (enforcedUrls != null) 'enforced_urls': enforcedUrls!.toTfJson(),
-    if (exemptUrls != null) 'exempt_urls': exemptUrls!.toTfJson(),
+    'built_in_pattern_id': ?builtInPatternId?.toTfJson(),
+    'confidence_level': ?confidenceLevel?.toTfJson(),
+    'enforced_urls': ?enforcedUrls?.toTfJson(),
+    'exempt_urls': ?exemptUrls?.toTfJson(),
     if (customPattern != null)
       'custom_pattern': [for (final e in customPattern!) e.encode()],
     if (redactionPlaceHolder != null)
@@ -110,9 +105,8 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlin
   final TfArg<String> patternRegex;
 
   Map<String, Object?> encode() => {
-    if (keywordRegex != null) 'keyword_regex': keywordRegex!.toTfJson(),
-    if (patternDescription != null)
-      'pattern_description': patternDescription!.toTfJson(),
+    'keyword_regex': ?keywordRegex?.toTfJson(),
+    'pattern_description': ?patternDescription?.toTfJson(),
     'pattern_name': patternName.toTfJson(),
     'pattern_regex': patternRegex.toTfJson(),
   };
@@ -135,8 +129,7 @@ final class WorkspaceswebDataProtectionSettingsInlineRedactionConfigurationInlin
   redactionPlaceHolderType;
 
   Map<String, Object?> encode() => {
-    if (redactionPlaceHolderText != null)
-      'redaction_place_holder_text': redactionPlaceHolderText!.toTfJson(),
+    'redaction_place_holder_text': ?redactionPlaceHolderText?.toTfJson(),
     'redaction_place_holder_type': redactionPlaceHolderType.toTfJson(),
   };
 }
@@ -174,14 +167,12 @@ final class AwsWorkspaceswebDataProtectionSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (additionalEncryptionContext != null)
-             'additional_encryption_context': additionalEncryptionContext,
-           if (customerManagedKey != null)
-             'customer_managed_key': customerManagedKey,
-           if (description != null) 'description': description,
+           'additional_encryption_context': ?additionalEncryptionContext,
+           'customer_managed_key': ?customerManagedKey,
+           'description': ?description,
            'display_name': displayName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (inlineRedactionConfiguration != null)
              'inline_redaction_configuration': TfArg.literal([
                for (final e in inlineRedactionConfiguration) e.encode(),

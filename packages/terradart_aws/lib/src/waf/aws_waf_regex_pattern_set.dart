@@ -20,11 +20,7 @@ final class AwsWafRegexPatternSet extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (regexPatternStrings != null)
-             'regex_pattern_strings': regexPatternStrings,
-         },
+         argMap: {'name': name, 'regex_pattern_strings': ?regexPatternStrings},
        );
 
   @override

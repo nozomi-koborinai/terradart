@@ -31,11 +31,11 @@ final class GoogleDiscoveryEngineSearchEngineIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
+           'location': ?location,
            'collection_id': collectionId,
            'engine_id': engineId,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

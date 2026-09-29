@@ -27,7 +27,7 @@ final class DataGoogleMonitoringClusterIstioService extends Data {
          argMap: {
            'cluster_name': clusterName,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'service_name': serviceName,
            'service_namespace': serviceNamespace,
          },

@@ -24,7 +24,7 @@ final class DataAwsCognitoUserPoolClient extends Data {
          terraformType: tfType,
          argMap: {
            'client_id': clientId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'user_pool_id': userPoolId,
          },
        );

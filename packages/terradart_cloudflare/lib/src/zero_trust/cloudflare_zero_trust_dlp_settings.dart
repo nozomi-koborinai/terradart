@@ -20,8 +20,8 @@ final class ZeroTrustDlpSettingsPayloadLogging {
   final TfArg<String>? publicKey;
 
   Map<String, Object?> encode() => {
-    if (maskingLevel != null) 'masking_level': maskingLevel!.toTfJson(),
-    if (publicKey != null) 'public_key': publicKey!.toTfJson(),
+    'masking_level': ?maskingLevel?.toTfJson(),
+    'public_key': ?publicKey?.toTfJson(),
   };
 }
 
@@ -59,9 +59,8 @@ final class CloudflareZeroTrustDlpSettings extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (aiContextAnalysis != null)
-             'ai_context_analysis': aiContextAnalysis,
-           if (ocr != null) 'ocr': ocr,
+           'ai_context_analysis': ?aiContextAnalysis,
+           'ocr': ?ocr,
            if (payloadLogging != null)
              'payload_logging': TfArg.literal(payloadLogging.encode()),
          },

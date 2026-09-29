@@ -109,15 +109,11 @@ final class SagemakerAppResourceSpec {
   final TfArg<String>? sagemakerImageVersionArn;
 
   Map<String, Object?> encode() => {
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
-    if (lifecycleConfigArn != null)
-      'lifecycle_config_arn': lifecycleConfigArn!.toTfJson(),
-    if (sagemakerImageArn != null)
-      'sagemaker_image_arn': sagemakerImageArn!.toTfJson(),
-    if (sagemakerImageVersionAlias != null)
-      'sagemaker_image_version_alias': sagemakerImageVersionAlias!.toTfJson(),
-    if (sagemakerImageVersionArn != null)
-      'sagemaker_image_version_arn': sagemakerImageVersionArn!.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
+    'lifecycle_config_arn': ?lifecycleConfigArn?.toTfJson(),
+    'sagemaker_image_arn': ?sagemakerImageArn?.toTfJson(),
+    'sagemaker_image_version_alias': ?sagemakerImageVersionAlias?.toTfJson(),
+    'sagemaker_image_version_arn': ?sagemakerImageVersionArn?.toTfJson(),
   };
 }
 
@@ -328,9 +324,9 @@ final class AwsSagemakerApp extends Resource {
            'app_name': appName,
            'app_type': appType,
            'domain_id': domainId,
-           if (region != null) 'region': region,
+           'region': ?region,
            ...owner.argMap,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (resourceSpec != null)
              'resource_spec': TfArg.literal(resourceSpec.encode()),
          },

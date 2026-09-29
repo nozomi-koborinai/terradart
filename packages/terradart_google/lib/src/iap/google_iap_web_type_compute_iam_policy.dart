@@ -26,10 +26,7 @@ final class GoogleIapWebTypeComputeIamPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'policy_data': policyData,
-           if (project != null) 'project': project,
-         },
+         argMap: {'policy_data': policyData, 'project': ?project},
        );
 
   @override

@@ -24,9 +24,9 @@ final class AwsAuditmanagerAssessmentReport extends Resource {
          terraformType: tfType,
          argMap: {
            'assessment_id': assessmentId,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

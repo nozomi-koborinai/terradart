@@ -37,10 +37,8 @@ final class SsmcontactsPlanStageTarget {
   final SsmcontactsPlanStageTargetContactTargetInfo? contactTargetInfo;
 
   Map<String, Object?> encode() => {
-    if (channelTargetInfo != null)
-      'channel_target_info': channelTargetInfo!.encode(),
-    if (contactTargetInfo != null)
-      'contact_target_info': contactTargetInfo!.encode(),
+    'channel_target_info': ?channelTargetInfo?.encode(),
+    'contact_target_info': ?contactTargetInfo?.encode(),
   };
 }
 
@@ -59,8 +57,7 @@ final class SsmcontactsPlanStageTargetChannelTargetInfo {
 
   Map<String, Object?> encode() => {
     'contact_channel_id': contactChannelId.toTfJson(),
-    if (retryIntervalInMinutes != null)
-      'retry_interval_in_minutes': retryIntervalInMinutes!.toTfJson(),
+    'retry_interval_in_minutes': ?retryIntervalInMinutes?.toTfJson(),
   };
 }
 
@@ -78,7 +75,7 @@ final class SsmcontactsPlanStageTargetContactTargetInfo {
   final TfArg<bool> isEssential;
 
   Map<String, Object?> encode() => {
-    if (contactId != null) 'contact_id': contactId!.toTfJson(),
+    'contact_id': ?contactId?.toTfJson(),
     'is_essential': isEssential.toTfJson(),
   };
 }
@@ -100,7 +97,7 @@ final class AwsSsmcontactsPlan extends Resource {
          terraformType: tfType,
          argMap: {
            'contact_id': contactId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'stage': TfArg.literal([for (final e in stage) e.encode()]),
          },
        );

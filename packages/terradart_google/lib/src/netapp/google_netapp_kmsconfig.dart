@@ -43,10 +43,10 @@ final class GoogleNetappKmsconfig extends Resource {
            'name': name,
            'location': location,
            'crypto_key_name': cryptoKeyName.encodeAs('id'),
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

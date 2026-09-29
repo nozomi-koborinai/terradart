@@ -117,16 +117,14 @@ final class AwsBedrockCustomModel extends Resource {
          terraformType: tfType,
          argMap: {
            'base_model_identifier': baseModelIdentifier,
-           if (customModelKmsKeyId != null)
-             'custom_model_kms_key_id': customModelKmsKeyId,
+           'custom_model_kms_key_id': ?customModelKmsKeyId,
            'custom_model_name': customModelName,
-           if (customizationType != null)
-             'customization_type': customizationType,
+           'customization_type': ?customizationType,
            'hyperparameters': hyperparameters,
            'job_name': jobName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (outputDataConfig != null)
              'output_data_config': TfArg.literal([
                for (final e in outputDataConfig) e.encode(),

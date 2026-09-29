@@ -40,9 +40,8 @@ final class DataAwsVpcSecurityGroupRule extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (securityGroupRuleId != null)
-             'security_group_rule_id': securityGroupRuleId,
+           'region': ?region,
+           'security_group_rule_id': ?securityGroupRuleId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

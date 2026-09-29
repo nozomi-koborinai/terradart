@@ -43,18 +43,15 @@ final class DataEmailSecurityAllowPolicyFilter {
   final TfArg<bool>? verifySender;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (isAcceptableSender != null)
-      'is_acceptable_sender': isAcceptableSender!.toTfJson(),
-    if (isExemptRecipient != null)
-      'is_exempt_recipient': isExemptRecipient!.toTfJson(),
-    if (isTrustedSender != null)
-      'is_trusted_sender': isTrustedSender!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
-    if (pattern != null) 'pattern': pattern!.toTfJson(),
-    if (patternType != null) 'pattern_type': patternType!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
-    if (verifySender != null) 'verify_sender': verifySender!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'is_acceptable_sender': ?isAcceptableSender?.toTfJson(),
+    'is_exempt_recipient': ?isExemptRecipient?.toTfJson(),
+    'is_trusted_sender': ?isTrustedSender?.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'pattern': ?pattern?.toTfJson(),
+    'pattern_type': ?patternType?.toTfJson(),
+    'search': ?search?.toTfJson(),
+    'verify_sender': ?verifySender?.toTfJson(),
   };
 }
 
@@ -109,7 +106,7 @@ final class DataCloudflareEmailSecurityAllowPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (policyId != null) 'policy_id': policyId,
+           'policy_id': ?policyId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

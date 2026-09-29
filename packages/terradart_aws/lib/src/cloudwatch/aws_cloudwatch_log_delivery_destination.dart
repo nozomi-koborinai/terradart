@@ -46,8 +46,7 @@ final class CloudwatchLogDeliveryDestinationDeliveryDestinationConfiguration {
   final TfArg<String>? destinationResourceArn;
 
   Map<String, Object?> encode() => {
-    if (destinationResourceArn != null)
-      'destination_resource_arn': destinationResourceArn!.toTfJson(),
+    'destination_resource_arn': ?destinationResourceArn?.toTfJson(),
   };
 }
 
@@ -72,12 +71,11 @@ final class AwsCloudwatchLogDeliveryDestination extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deliveryDestinationType != null)
-             'delivery_destination_type': deliveryDestinationType,
+           'delivery_destination_type': ?deliveryDestinationType,
            'name': name,
-           if (outputFormat != null) 'output_format': outputFormat,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'output_format': ?outputFormat,
+           'region': ?region,
+           'tags': ?tags,
            if (deliveryDestinationConfiguration != null)
              'delivery_destination_configuration': TfArg.literal([
                for (final e in deliveryDestinationConfiguration) e.encode(),

@@ -38,15 +38,13 @@ final class ElasticsearchDomainSamlOptionsSamlOptions {
   final ElasticsearchDomainSamlOptionsSamlOptionsIdp? idp;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (masterBackendRole != null)
-      'master_backend_role': masterBackendRole!.toTfJson(),
-    if (masterUserName != null) 'master_user_name': masterUserName!.toTfJson(),
-    if (rolesKey != null) 'roles_key': rolesKey!.toTfJson(),
-    if (sessionTimeoutMinutes != null)
-      'session_timeout_minutes': sessionTimeoutMinutes!.toTfJson(),
-    if (subjectKey != null) 'subject_key': subjectKey!.toTfJson(),
-    if (idp != null) 'idp': idp!.encode(),
+    'enabled': ?enabled?.toTfJson(),
+    'master_backend_role': ?masterBackendRole?.toTfJson(),
+    'master_user_name': ?masterUserName?.toTfJson(),
+    'roles_key': ?rolesKey?.toTfJson(),
+    'session_timeout_minutes': ?sessionTimeoutMinutes?.toTfJson(),
+    'subject_key': ?subjectKey?.toTfJson(),
+    'idp': ?idp?.encode(),
   };
 }
 
@@ -86,7 +84,7 @@ final class AwsElasticsearchDomainSamlOptions extends Resource {
          terraformType: tfType,
          argMap: {
            'domain_name': domainName,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (samlOptions != null)
              'saml_options': TfArg.literal(samlOptions.encode()),
          },

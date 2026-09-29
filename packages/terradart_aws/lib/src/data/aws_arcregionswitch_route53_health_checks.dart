@@ -18,7 +18,7 @@ final class DataAwsArcregionswitchRoute53HealthChecks extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'plan_arn': planArn, if (region != null) 'region': region},
+         argMap: {'plan_arn': planArn, 'region': ?region},
        );
 
   @override

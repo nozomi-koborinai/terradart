@@ -18,10 +18,7 @@ final class DataAwsEfsAccessPoints extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'file_system_id': fileSystemId,
-           if (region != null) 'region': region,
-         },
+         argMap: {'file_system_id': fileSystemId, 'region': ?region},
        );
 
   @override

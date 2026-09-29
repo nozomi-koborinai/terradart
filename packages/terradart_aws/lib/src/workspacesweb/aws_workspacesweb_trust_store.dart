@@ -34,8 +34,8 @@ final class AwsWorkspaceswebTrustStore extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (certificate != null)
              'certificate': TfArg.literal([
                for (final e in certificate) e.encode(),

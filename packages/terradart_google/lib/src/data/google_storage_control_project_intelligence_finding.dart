@@ -26,8 +26,8 @@ final class DataGoogleStorageControlProjectIntelligenceFinding extends Data {
          terraformType: tfType,
          argMap: {
            'finding_id': findingId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

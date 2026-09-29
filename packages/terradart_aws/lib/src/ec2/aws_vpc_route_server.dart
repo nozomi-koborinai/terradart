@@ -37,13 +37,11 @@ final class AwsVpcRouteServer extends Resource {
          terraformType: tfType,
          argMap: {
            'amazon_side_asn': amazonSideAsn,
-           if (persistRoutes != null) 'persist_routes': persistRoutes,
-           if (persistRoutesDuration != null)
-             'persist_routes_duration': persistRoutesDuration,
-           if (region != null) 'region': region,
-           if (snsNotificationsEnabled != null)
-             'sns_notifications_enabled': snsNotificationsEnabled,
-           if (tags != null) 'tags': tags,
+           'persist_routes': ?persistRoutes,
+           'persist_routes_duration': ?persistRoutesDuration,
+           'region': ?region,
+           'sns_notifications_enabled': ?snsNotificationsEnabled,
+           'tags': ?tags,
          },
        );
 

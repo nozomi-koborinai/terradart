@@ -25,8 +25,8 @@ final class DataAwsDmsCertificate extends Data {
          terraformType: tfType,
          argMap: {
            'certificate_id': certificateId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

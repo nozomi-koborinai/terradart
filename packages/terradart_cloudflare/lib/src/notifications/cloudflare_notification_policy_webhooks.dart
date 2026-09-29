@@ -34,7 +34,7 @@ final class CloudflareNotificationPolicyWebhooks extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'name': name,
-           if (secret != null) 'secret': secret,
+           'secret': ?secret,
            'url': url,
          },
        );

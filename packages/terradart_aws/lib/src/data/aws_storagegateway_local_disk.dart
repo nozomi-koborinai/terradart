@@ -21,10 +21,10 @@ final class DataAwsStoragegatewayLocalDisk extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (diskNode != null) 'disk_node': diskNode,
-           if (diskPath != null) 'disk_path': diskPath,
+           'disk_node': ?diskNode,
+           'disk_path': ?diskPath,
            'gateway_arn': gatewayArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

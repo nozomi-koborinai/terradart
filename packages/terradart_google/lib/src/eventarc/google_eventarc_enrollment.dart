@@ -30,15 +30,15 @@ final class GoogleEventarcEnrollment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (annotations != null) 'annotations': annotations,
+           'annotations': ?annotations,
            'cel_match': celMatch,
            'destination': destination,
-           if (displayName != null) 'display_name': displayName,
+           'display_name': ?displayName,
            'enrollment_id': enrollmentId,
-           if (labels != null) 'labels': labels,
+           'labels': ?labels,
            'location': location,
            'message_bus': messageBus,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

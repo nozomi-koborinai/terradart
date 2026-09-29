@@ -16,9 +16,7 @@ final class DataWebAnalyticsSiteFilter {
 
   final TfArg<DataWebAnalyticsSiteFilterOrderBy>? orderBy;
 
-  Map<String, Object?> encode() => {
-    if (orderBy != null) 'order_by': orderBy!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'order_by': ?orderBy?.toTfJson()};
 }
 
 /// `order_by` — derived from the provider schema description.
@@ -49,8 +47,8 @@ final class DataCloudflareWebAnalyticsSite extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (siteId != null) 'site_id': siteId,
+           'account_id': ?accountId,
+           'site_id': ?siteId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

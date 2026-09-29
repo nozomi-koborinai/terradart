@@ -42,8 +42,8 @@ final class GoogleSecurityposturePostureDeployment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'location': location,
            'parent': parent,
            'posture_deployment_id': postureDeploymentId,

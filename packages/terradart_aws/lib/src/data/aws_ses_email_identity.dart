@@ -19,7 +19,7 @@ final class DataAwsSesEmailIdentity extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'email': email, if (region != null) 'region': region},
+         argMap: {'email': email, 'region': ?region},
        );
 
   @override

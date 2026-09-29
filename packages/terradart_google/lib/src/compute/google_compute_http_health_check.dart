@@ -46,17 +46,16 @@ final class GoogleComputeHttpHealthCheck extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (requestPath != null) 'request_path': requestPath,
-           if (port != null) 'port': port,
-           if (host != null) 'host': host,
-           if (checkIntervalSec != null) 'check_interval_sec': checkIntervalSec,
-           if (timeoutSec != null) 'timeout_sec': timeoutSec,
-           if (healthyThreshold != null) 'healthy_threshold': healthyThreshold,
-           if (unhealthyThreshold != null)
-             'unhealthy_threshold': unhealthyThreshold,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'request_path': ?requestPath,
+           'port': ?port,
+           'host': ?host,
+           'check_interval_sec': ?checkIntervalSec,
+           'timeout_sec': ?timeoutSec,
+           'healthy_threshold': ?healthyThreshold,
+           'unhealthy_threshold': ?unhealthyThreshold,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

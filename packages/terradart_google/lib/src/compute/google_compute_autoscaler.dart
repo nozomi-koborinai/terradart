@@ -453,8 +453,8 @@ final class GoogleComputeAutoscaler extends Resource {
            'zone': zone,
            'target': target,
            'autoscaling_policy': TfArg.literal([autoscalingPolicy.toArgMap()]),
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

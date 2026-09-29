@@ -27,10 +27,10 @@ final class CloudflareRegistrarDomain extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (autoRenew != null) 'auto_renew': autoRenew,
+           'auto_renew': ?autoRenew,
            'domain_name': domainName,
-           if (locked != null) 'locked': locked,
-           if (privacy != null) 'privacy': privacy,
+           'locked': ?locked,
+           'privacy': ?privacy,
          },
        );
 

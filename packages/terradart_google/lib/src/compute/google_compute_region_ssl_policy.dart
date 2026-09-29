@@ -53,13 +53,13 @@ final class GoogleComputeRegionSslPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customFeatures != null) 'custom_features': customFeatures,
-           if (description != null) 'description': description,
-           if (minTlsVersion != null) 'min_tls_version': minTlsVersion,
+           'custom_features': ?customFeatures,
+           'description': ?description,
+           'min_tls_version': ?minTlsVersion,
            'name': name,
-           if (profile != null) 'profile': profile,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'profile': ?profile,
+           'project': ?project,
+           'region': ?region,
          },
        );
 

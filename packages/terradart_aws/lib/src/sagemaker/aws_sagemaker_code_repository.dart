@@ -24,9 +24,9 @@ final class SagemakerCodeRepositoryGitConfig {
   final TfArg<String>? secretArn;
 
   Map<String, Object?> encode() => {
-    if (branch != null) 'branch': branch!.toTfJson(),
+    'branch': ?branch?.toTfJson(),
     'repository_url': repositoryUrl.toTfJson(),
-    if (secretArn != null) 'secret_arn': secretArn!.toTfJson(),
+    'secret_arn': ?secretArn?.toTfJson(),
   };
 }
 
@@ -48,8 +48,8 @@ final class AwsSagemakerCodeRepository extends Resource {
          terraformType: tfType,
          argMap: {
            'code_repository_name': codeRepositoryName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'git_config': TfArg.literal(gitConfig.encode()),
          },
        );

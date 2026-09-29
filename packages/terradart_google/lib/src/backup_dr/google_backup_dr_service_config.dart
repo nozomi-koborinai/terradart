@@ -38,7 +38,7 @@ final class GoogleBackupDrServiceConfig extends Resource {
          argMap: {
            'location': location,
            'resource_type': resourceType,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

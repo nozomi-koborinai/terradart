@@ -265,8 +265,7 @@ final class NetworkInterfaceAttachment {
   Map<String, Object?> encode() => {
     'device_index': deviceIndex.toTfJson(),
     'instance': instance.toTfJson(),
-    if (networkCardIndex != null)
-      'network_card_index': networkCardIndex!.toTfJson(),
+    'network_card_index': ?networkCardIndex?.toTfJson(),
   };
 }
 
@@ -285,9 +284,8 @@ final class NetworkInterfaceEnaSrdSpecification {
   enaSrdUdpSpecification;
 
   Map<String, Object?> encode() => {
-    if (enaSrdEnabled != null) 'ena_srd_enabled': enaSrdEnabled!.toTfJson(),
-    if (enaSrdUdpSpecification != null)
-      'ena_srd_udp_specification': enaSrdUdpSpecification!.encode(),
+    'ena_srd_enabled': ?enaSrdEnabled?.toTfJson(),
+    'ena_srd_udp_specification': ?enaSrdUdpSpecification?.encode(),
   };
 }
 
@@ -302,8 +300,7 @@ final class NetworkInterfaceEnaSrdSpecificationEnaSrdUdpSpecification {
   final TfArg<bool>? enaSrdUdpEnabled;
 
   Map<String, Object?> encode() => {
-    if (enaSrdUdpEnabled != null)
-      'ena_srd_udp_enabled': enaSrdUdpEnabled!.toTfJson(),
+    'ena_srd_udp_enabled': ?enaSrdUdpEnabled?.toTfJson(),
   };
 }
 
@@ -339,27 +336,23 @@ final class AwsNetworkInterface extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (enablePrimaryIpv6 != null)
-             'enable_primary_ipv6': enablePrimaryIpv6,
-           if (interfaceType != null) 'interface_type': interfaceType,
+           'description': ?description,
+           'enable_primary_ipv6': ?enablePrimaryIpv6,
+           'interface_type': ?interfaceType,
            ...?ipv4Prefix?.argMap,
            ...?ipv6Address?.argMap,
-           if (ipv6AddressListEnabled != null)
-             'ipv6_address_list_enabled': ipv6AddressListEnabled,
+           'ipv6_address_list_enabled': ?ipv6AddressListEnabled,
            ...?ipv6Prefix?.argMap,
-           if (privateIp != null) 'private_ip': privateIp,
-           if (privateIpList != null) 'private_ip_list': privateIpList,
-           if (privateIpListEnabled != null)
-             'private_ip_list_enabled': privateIpListEnabled,
-           if (privateIps != null) 'private_ips': privateIps,
-           if (privateIpsCount != null) 'private_ips_count': privateIpsCount,
-           if (region != null) 'region': region,
-           if (securityGroups != null)
-             'security_groups': securityGroups.encodeAs('id'),
-           if (sourceDestCheck != null) 'source_dest_check': sourceDestCheck,
+           'private_ip': ?privateIp,
+           'private_ip_list': ?privateIpList,
+           'private_ip_list_enabled': ?privateIpListEnabled,
+           'private_ips': ?privateIps,
+           'private_ips_count': ?privateIpsCount,
+           'region': ?region,
+           'security_groups': ?securityGroups?.encodeAs('id'),
+           'source_dest_check': ?sourceDestCheck,
            'subnet_id': subnetId.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (attachment != null)
              'attachment': TfArg.literal([
                for (final e in attachment) e.encode(),

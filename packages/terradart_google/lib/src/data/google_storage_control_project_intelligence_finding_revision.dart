@@ -28,8 +28,8 @@ final class DataGoogleStorageControlProjectIntelligenceFindingRevision
          terraformType: tfType,
          argMap: {
            'finding_id': findingId,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
            'revision_id': revisionId,
          },
        );

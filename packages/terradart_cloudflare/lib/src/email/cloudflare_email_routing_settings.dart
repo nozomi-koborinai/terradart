@@ -27,8 +27,7 @@ final class CloudflareEmailRoutingSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (supportSubaddress != null)
-             'support_subaddress': supportSubaddress,
+           'support_subaddress': ?supportSubaddress,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

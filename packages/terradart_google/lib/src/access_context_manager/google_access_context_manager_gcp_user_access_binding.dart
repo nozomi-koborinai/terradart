@@ -24,10 +24,8 @@ final class AccessContextManagerGcpUserAccessBindingPrincipal {
   final TfArg<String>? serviceAccountProjectNumber;
 
   Map<String, Object?> encode() => {
-    if (serviceAccount != null)
-      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
-    if (serviceAccountProjectNumber != null)
-      'service_account_project_number': serviceAccountProjectNumber!.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
+    'service_account_project_number': ?serviceAccountProjectNumber?.toTfJson(),
   };
 }
 
@@ -51,9 +49,9 @@ final class AccessContextManagerGcpUserAccessBindingScopedAccessSettings {
   scope;
 
   Map<String, Object?> encode() => {
-    if (activeSettings != null) 'active_settings': activeSettings!.encode(),
-    if (dryRunSettings != null) 'dry_run_settings': dryRunSettings!.encode(),
-    if (scope != null) 'scope': scope!.encode(),
+    'active_settings': ?activeSettings?.encode(),
+    'dry_run_settings': ?dryRunSettings?.encode(),
+    'scope': ?scope?.encode(),
   };
 }
 
@@ -72,8 +70,8 @@ final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSe
   sessionSettings;
 
   Map<String, Object?> encode() => {
-    if (accessLevels != null) 'access_levels': accessLevels!.toTfJson(),
-    if (sessionSettings != null) 'session_settings': sessionSettings!.encode(),
+    'access_levels': ?accessLevels?.toTfJson(),
+    'session_settings': ?sessionSettings?.encode(),
   };
 }
 
@@ -103,13 +101,11 @@ final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSe
   final TfArg<bool>? useOidcMaxAge;
 
   Map<String, Object?> encode() => {
-    if (maxInactivity != null) 'max_inactivity': maxInactivity!.toTfJson(),
-    if (sessionLength != null) 'session_length': sessionLength!.toTfJson(),
-    if (sessionLengthEnabled != null)
-      'session_length_enabled': sessionLengthEnabled!.toTfJson(),
-    if (sessionReauthMethod != null)
-      'session_reauth_method': sessionReauthMethod!.toTfJson(),
-    if (useOidcMaxAge != null) 'use_oidc_max_age': useOidcMaxAge!.toTfJson(),
+    'max_inactivity': ?maxInactivity?.toTfJson(),
+    'session_length': ?sessionLength?.toTfJson(),
+    'session_length_enabled': ?sessionLengthEnabled?.toTfJson(),
+    'session_reauth_method': ?sessionReauthMethod?.toTfJson(),
+    'use_oidc_max_age': ?useOidcMaxAge?.toTfJson(),
   };
 }
 
@@ -137,9 +133,7 @@ final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsDryRunSe
 
   final TfArg<List<Object?>>? accessLevels;
 
-  Map<String, Object?> encode() => {
-    if (accessLevels != null) 'access_levels': accessLevels!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'access_levels': ?accessLevels?.toTfJson()};
 }
 
 /// Typed helper for the `scoped_access_settings.scope` block of
@@ -153,9 +147,7 @@ final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsScope {
   final AccessContextManagerGcpUserAccessBindingScopedAccessSettingsScopeClientScope?
   clientScope;
 
-  Map<String, Object?> encode() => {
-    if (clientScope != null) 'client_scope': clientScope!.encode(),
-  };
+  Map<String, Object?> encode() => {'client_scope': ?clientScope?.encode()};
 }
 
 /// Typed helper for the `scoped_access_settings.scope.client_scope` block of
@@ -170,8 +162,7 @@ final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsScopeCli
   restrictedClientApplication;
 
   Map<String, Object?> encode() => {
-    if (restrictedClientApplication != null)
-      'restricted_client_application': restrictedClientApplication!.encode(),
+    'restricted_client_application': ?restrictedClientApplication?.encode(),
   };
 }
 
@@ -189,8 +180,8 @@ final class AccessContextManagerGcpUserAccessBindingScopedAccessSettingsScopeCli
   final TfArg<String>? name;
 
   Map<String, Object?> encode() => {
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -220,13 +211,11 @@ final class AccessContextManagerGcpUserAccessBindingSessionSettings {
   final TfArg<bool>? useOidcMaxAge;
 
   Map<String, Object?> encode() => {
-    if (maxInactivity != null) 'max_inactivity': maxInactivity!.toTfJson(),
-    if (sessionLength != null) 'session_length': sessionLength!.toTfJson(),
-    if (sessionLengthEnabled != null)
-      'session_length_enabled': sessionLengthEnabled!.toTfJson(),
-    if (sessionReauthMethod != null)
-      'session_reauth_method': sessionReauthMethod!.toTfJson(),
-    if (useOidcMaxAge != null) 'use_oidc_max_age': useOidcMaxAge!.toTfJson(),
+    'max_inactivity': ?maxInactivity?.toTfJson(),
+    'session_length': ?sessionLength?.toTfJson(),
+    'session_length_enabled': ?sessionLengthEnabled?.toTfJson(),
+    'session_reauth_method': ?sessionReauthMethod?.toTfJson(),
+    'use_oidc_max_age': ?useOidcMaxAge?.toTfJson(),
   };
 }
 
@@ -274,9 +263,9 @@ final class GoogleAccessContextManagerGcpUserAccessBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accessLevels != null) 'access_levels': accessLevels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (groupKey != null) 'group_key': groupKey,
+           'access_levels': ?accessLevels,
+           'deletion_policy': ?deletionPolicy,
+           'group_key': ?groupKey,
            'organization_id': organizationId,
            if (scopedAccessSettings != null)
              'scoped_access_settings': TfArg.literal([

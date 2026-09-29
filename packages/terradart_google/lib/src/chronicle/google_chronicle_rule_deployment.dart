@@ -21,11 +21,8 @@ final class ChronicleRuleDeploymentScheduleCustomizations {
   final TfArg<String>? lateArrivingDataAdjustment;
 
   Map<String, Object?> encode() => {
-    if (ensureEnrichmentCompleteness != null)
-      'ensure_enrichment_completeness': ensureEnrichmentCompleteness!
-          .toTfJson(),
-    if (lateArrivingDataAdjustment != null)
-      'late_arriving_data_adjustment': lateArrivingDataAdjustment!.toTfJson(),
+    'ensure_enrichment_completeness': ?ensureEnrichmentCompleteness?.toTfJson(),
+    'late_arriving_data_adjustment': ?lateArrivingDataAdjustment?.toTfJson(),
   };
 }
 
@@ -68,11 +65,11 @@ final class GoogleChronicleRuleDeployment extends Resource {
            'rule': rule,
            'location': location,
            'instance': instance,
-           if (enabled != null) 'enabled': enabled,
-           if (alerting != null) 'alerting': alerting,
-           if (archived != null) 'archived': archived,
-           if (runFrequency != null) 'run_frequency': runFrequency,
-           if (project != null) 'project': project,
+           'enabled': ?enabled,
+           'alerting': ?alerting,
+           'archived': ?archived,
+           'run_frequency': ?runFrequency,
+           'project': ?project,
          },
        );
 

@@ -73,10 +73,9 @@ final class GoogleComputeRegionTargetHttpProxy extends Resource {
            'name': name,
            'url_map': urlMap,
            'region': region,
-           if (httpKeepAliveTimeoutSec != null)
-             'http_keep_alive_timeout_sec': httpKeepAliveTimeoutSec,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
+           'http_keep_alive_timeout_sec': ?httpKeepAliveTimeoutSec,
+           'description': ?description,
+           'project': ?project,
          },
        );
 

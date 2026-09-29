@@ -30,8 +30,7 @@ final class CloudflareDnsZoneTransfersIncoming extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (autoRefreshSeconds != null)
-             'auto_refresh_seconds': autoRefreshSeconds,
+           'auto_refresh_seconds': ?autoRefreshSeconds,
            'name': name,
            'peers': peers,
            'zone_id': zoneId.encodeAs('id'),

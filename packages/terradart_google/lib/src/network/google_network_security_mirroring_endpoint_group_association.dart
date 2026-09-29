@@ -51,12 +51,11 @@ final class GoogleNetworkSecurityMirroringEndpointGroupAssociation
            'location': location,
            'mirroring_endpoint_group': mirroringEndpointGroup,
            'network': network.encodeAs('id'),
-           if (mirroringEndpointGroupAssociationId != null)
-             'mirroring_endpoint_group_association_id':
-                 mirroringEndpointGroupAssociationId,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'mirroring_endpoint_group_association_id':
+               ?mirroringEndpointGroupAssociationId,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

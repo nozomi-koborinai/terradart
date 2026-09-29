@@ -37,10 +37,9 @@ final class AwsIamServiceSpecificCredential extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (credentialAgeDays != null)
-             'credential_age_days': credentialAgeDays,
+           'credential_age_days': ?credentialAgeDays,
            'service_name': serviceName,
-           if (status != null) 'status': status,
+           'status': ?status,
            'user_name': userName,
          },
        );

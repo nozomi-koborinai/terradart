@@ -36,16 +36,12 @@ final class ComputeInstanceFromMachineImageAdvancedMachineFeatures {
   final TfArg<num>? visibleCoreCount;
 
   Map<String, Object?> encode() => {
-    if (enableNestedVirtualization != null)
-      'enable_nested_virtualization': enableNestedVirtualization!.toTfJson(),
-    if (enableUefiNetworking != null)
-      'enable_uefi_networking': enableUefiNetworking!.toTfJson(),
-    if (performanceMonitoringUnit != null)
-      'performance_monitoring_unit': performanceMonitoringUnit!.toTfJson(),
-    if (threadsPerCore != null) 'threads_per_core': threadsPerCore!.toTfJson(),
-    if (turboMode != null) 'turbo_mode': turboMode!.toTfJson(),
-    if (visibleCoreCount != null)
-      'visible_core_count': visibleCoreCount!.toTfJson(),
+    'enable_nested_virtualization': ?enableNestedVirtualization?.toTfJson(),
+    'enable_uefi_networking': ?enableUefiNetworking?.toTfJson(),
+    'performance_monitoring_unit': ?performanceMonitoringUnit?.toTfJson(),
+    'threads_per_core': ?threadsPerCore?.toTfJson(),
+    'turbo_mode': ?turboMode?.toTfJson(),
+    'visible_core_count': ?visibleCoreCount?.toTfJson(),
   };
 }
 
@@ -63,10 +59,8 @@ final class ComputeInstanceFromMachineImageConfidentialInstanceConfig {
   final TfArg<bool>? enableConfidentialCompute;
 
   Map<String, Object?> encode() => {
-    if (confidentialInstanceType != null)
-      'confidential_instance_type': confidentialInstanceType!.toTfJson(),
-    if (enableConfidentialCompute != null)
-      'enable_confidential_compute': enableConfidentialCompute!.toTfJson(),
+    'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
+    'enable_confidential_compute': ?enableConfidentialCompute?.toTfJson(),
   };
 }
 
@@ -103,9 +97,8 @@ final class ComputeInstanceFromMachineImageInstanceEncryptionKey {
   final TfArg<String>? kmsKeyServiceAccount;
 
   Map<String, Object?> encode() => {
-    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink!.toTfJson(),
-    if (kmsKeyServiceAccount != null)
-      'kms_key_service_account': kmsKeyServiceAccount!.toTfJson(),
+    'kms_key_self_link': ?kmsKeySelfLink?.toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
   };
 }
 
@@ -172,22 +165,19 @@ final class ComputeInstanceFromMachineImageNetworkInterface {
   ipv6AccessConfig;
 
   Map<String, Object?> encode() => {
-    if (igmpQuery != null) 'igmp_query': igmpQuery!.toTfJson(),
-    if (internalIpv6PrefixLength != null)
-      'internal_ipv6_prefix_length': internalIpv6PrefixLength!.toTfJson(),
-    if (ipv6Address != null) 'ipv6_address': ipv6Address!.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
-    if (networkAttachment != null)
-      'network_attachment': networkAttachment!.toTfJson(),
-    if (networkIp != null) 'network_ip': networkIp!.toTfJson(),
-    if (nicType != null) 'nic_type': nicType!.toTfJson(),
-    if (queueCount != null) 'queue_count': queueCount!.toTfJson(),
-    if (securityPolicy != null) 'security_policy': securityPolicy!.toTfJson(),
-    if (stackType != null) 'stack_type': stackType!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
-    if (subnetworkProject != null)
-      'subnetwork_project': subnetworkProject!.toTfJson(),
-    if (vlan != null) 'vlan': vlan!.toTfJson(),
+    'igmp_query': ?igmpQuery?.toTfJson(),
+    'internal_ipv6_prefix_length': ?internalIpv6PrefixLength?.toTfJson(),
+    'ipv6_address': ?ipv6Address?.toTfJson(),
+    'network': ?network?.toTfJson(),
+    'network_attachment': ?networkAttachment?.toTfJson(),
+    'network_ip': ?networkIp?.toTfJson(),
+    'nic_type': ?nicType?.toTfJson(),
+    'queue_count': ?queueCount?.toTfJson(),
+    'security_policy': ?securityPolicy?.toTfJson(),
+    'stack_type': ?stackType?.toTfJson(),
+    'subnetwork': ?subnetwork?.toTfJson(),
+    'subnetwork_project': ?subnetworkProject?.toTfJson(),
+    'vlan': ?vlan?.toTfJson(),
     if (accessConfig != null)
       'access_config': [for (final e in accessConfig!) e.encode()],
     if (aliasIpRange != null)
@@ -232,10 +222,9 @@ final class ComputeInstanceFromMachineImageNetworkInterfaceAccessConfig {
   final TfArg<String>? publicPtrDomainName;
 
   Map<String, Object?> encode() => {
-    if (natIp != null) 'nat_ip': natIp!.toTfJson(),
-    if (networkTier != null) 'network_tier': networkTier!.toTfJson(),
-    if (publicPtrDomainName != null)
-      'public_ptr_domain_name': publicPtrDomainName!.toTfJson(),
+    'nat_ip': ?natIp?.toTfJson(),
+    'network_tier': ?networkTier?.toTfJson(),
+    'public_ptr_domain_name': ?publicPtrDomainName?.toTfJson(),
   };
 }
 
@@ -254,8 +243,7 @@ final class ComputeInstanceFromMachineImageNetworkInterfaceAliasIpRange {
 
   Map<String, Object?> encode() => {
     'ip_cidr_range': ipCidrRange.toTfJson(),
-    if (subnetworkRangeName != null)
-      'subnetwork_range_name': subnetworkRangeName!.toTfJson(),
+    'subnetwork_range_name': ?subnetworkRangeName?.toTfJson(),
   };
 }
 
@@ -274,8 +262,7 @@ final class ComputeInstanceFromMachineImageNetworkInterfaceAliasIpv6Range {
 
   Map<String, Object?> encode() => {
     'ip_cidr_range': ipCidrRange.toTfJson(),
-    if (subnetworkRangeName != null)
-      'subnetwork_range_name': subnetworkRangeName!.toTfJson(),
+    'subnetwork_range_name': ?subnetworkRangeName?.toTfJson(),
   };
 }
 
@@ -302,13 +289,11 @@ final class ComputeInstanceFromMachineImageNetworkInterfaceIpv6AccessConfig {
   final TfArg<String>? publicPtrDomainName;
 
   Map<String, Object?> encode() => {
-    if (externalIpv6 != null) 'external_ipv6': externalIpv6!.toTfJson(),
-    if (externalIpv6PrefixLength != null)
-      'external_ipv6_prefix_length': externalIpv6PrefixLength!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'external_ipv6': ?externalIpv6?.toTfJson(),
+    'external_ipv6_prefix_length': ?externalIpv6PrefixLength?.toTfJson(),
+    'name': ?name?.toTfJson(),
     'network_tier': networkTier.toTfJson(),
-    if (publicPtrDomainName != null)
-      'public_ptr_domain_name': publicPtrDomainName!.toTfJson(),
+    'public_ptr_domain_name': ?publicPtrDomainName?.toTfJson(),
   };
 }
 
@@ -352,8 +337,7 @@ final class ComputeInstanceFromMachineImageParams {
   final TfArg<Map<String, String>>? resourceManagerTags;
 
   Map<String, Object?> encode() => {
-    if (resourceManagerTags != null)
-      'resource_manager_tags': resourceManagerTags!.toTfJson(),
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
   };
 }
 
@@ -373,8 +357,7 @@ final class ComputeInstanceFromMachineImageReservationAffinity {
 
   Map<String, Object?> encode() => {
     'type': type.toTfJson(),
-    if (specificReservation != null)
-      'specific_reservation': specificReservation!.encode(),
+    'specific_reservation': ?specificReservation?.encode(),
   };
 }
 
@@ -461,37 +444,24 @@ final class ComputeInstanceFromMachineImageScheduling {
   preemptionNoticeDuration;
 
   Map<String, Object?> encode() => {
-    if (automaticRestart != null)
-      'automatic_restart': automaticRestart!.toTfJson(),
-    if (availabilityDomain != null)
-      'availability_domain': availabilityDomain!.toTfJson(),
-    if (hostErrorTimeoutSeconds != null)
-      'host_error_timeout_seconds': hostErrorTimeoutSeconds!.toTfJson(),
-    if (instanceTerminationAction != null)
-      'instance_termination_action': instanceTerminationAction!.toTfJson(),
-    if (maintenanceInterval != null)
-      'maintenance_interval': maintenanceInterval!.toTfJson(),
-    if (minNodeCpus != null) 'min_node_cpus': minNodeCpus!.toTfJson(),
-    if (onHostMaintenance != null)
-      'on_host_maintenance': onHostMaintenance!.toTfJson(),
-    if (preemptible != null) 'preemptible': preemptible!.toTfJson(),
-    if (provisioningModel != null)
-      'provisioning_model': provisioningModel!.toTfJson(),
-    if (skipGuestOsShutdown != null)
-      'skip_guest_os_shutdown': skipGuestOsShutdown!.toTfJson(),
-    if (terminationTime != null)
-      'termination_time': terminationTime!.toTfJson(),
-    if (gracefulShutdown != null)
-      'graceful_shutdown': gracefulShutdown!.encode(),
-    if (localSsdRecoveryTimeout != null)
-      'local_ssd_recovery_timeout': localSsdRecoveryTimeout!.encode(),
-    if (maxRunDuration != null) 'max_run_duration': maxRunDuration!.encode(),
+    'automatic_restart': ?automaticRestart?.toTfJson(),
+    'availability_domain': ?availabilityDomain?.toTfJson(),
+    'host_error_timeout_seconds': ?hostErrorTimeoutSeconds?.toTfJson(),
+    'instance_termination_action': ?instanceTerminationAction?.toTfJson(),
+    'maintenance_interval': ?maintenanceInterval?.toTfJson(),
+    'min_node_cpus': ?minNodeCpus?.toTfJson(),
+    'on_host_maintenance': ?onHostMaintenance?.toTfJson(),
+    'preemptible': ?preemptible?.toTfJson(),
+    'provisioning_model': ?provisioningModel?.toTfJson(),
+    'skip_guest_os_shutdown': ?skipGuestOsShutdown?.toTfJson(),
+    'termination_time': ?terminationTime?.toTfJson(),
+    'graceful_shutdown': ?gracefulShutdown?.encode(),
+    'local_ssd_recovery_timeout': ?localSsdRecoveryTimeout?.encode(),
+    'max_run_duration': ?maxRunDuration?.encode(),
     if (nodeAffinities != null)
       'node_affinities': [for (final e in nodeAffinities!) e.encode()],
-    if (onInstanceStopAction != null)
-      'on_instance_stop_action': onInstanceStopAction!.encode(),
-    if (preemptionNoticeDuration != null)
-      'preemption_notice_duration': preemptionNoticeDuration!.encode(),
+    'on_instance_stop_action': ?onInstanceStopAction?.encode(),
+    'preemption_notice_duration': ?preemptionNoticeDuration?.encode(),
   };
 }
 
@@ -511,7 +481,7 @@ final class ComputeInstanceFromMachineImageSchedulingGracefulShutdown {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (maxDuration != null) 'max_duration': maxDuration!.encode(),
+    'max_duration': ?maxDuration?.encode(),
   };
 }
 
@@ -529,7 +499,7 @@ final class ComputeInstanceFromMachineImageSchedulingGracefulShutdownMaxDuration
   final TfArg<num> seconds;
 
   Map<String, Object?> encode() => {
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
   };
 }
@@ -548,7 +518,7 @@ final class ComputeInstanceFromMachineImageSchedulingLocalSsdRecoveryTimeout {
   final TfArg<num> seconds;
 
   Map<String, Object?> encode() => {
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
   };
 }
@@ -567,7 +537,7 @@ final class ComputeInstanceFromMachineImageSchedulingMaxRunDuration {
   final TfArg<num> seconds;
 
   Map<String, Object?> encode() => {
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
   };
 }
@@ -606,8 +576,7 @@ final class ComputeInstanceFromMachineImageSchedulingOnInstanceStopAction {
   final TfArg<bool>? discardLocalSsd;
 
   Map<String, Object?> encode() => {
-    if (discardLocalSsd != null)
-      'discard_local_ssd': discardLocalSsd!.toTfJson(),
+    'discard_local_ssd': ?discardLocalSsd?.toTfJson(),
   };
 }
 
@@ -625,7 +594,7 @@ final class ComputeInstanceFromMachineImageSchedulingPreemptionNoticeDuration {
   final TfArg<num> seconds;
 
   Map<String, Object?> encode() => {
-    if (nanos != null) 'nanos': nanos!.toTfJson(),
+    'nanos': ?nanos?.toTfJson(),
     'seconds': seconds.toTfJson(),
   };
 }
@@ -644,7 +613,7 @@ final class ComputeInstanceFromMachineImageServiceAccount {
   final TfArg<List<Object?>> scopes;
 
   Map<String, Object?> encode() => {
-    if (email != null) 'email': email!.toTfJson(),
+    'email': ?email?.toTfJson(),
     'scopes': scopes.toTfJson(),
   };
 }
@@ -666,11 +635,9 @@ final class ComputeInstanceFromMachineImageShieldedInstanceConfig {
   final TfArg<bool>? enableVtpm;
 
   Map<String, Object?> encode() => {
-    if (enableIntegrityMonitoring != null)
-      'enable_integrity_monitoring': enableIntegrityMonitoring!.toTfJson(),
-    if (enableSecureBoot != null)
-      'enable_secure_boot': enableSecureBoot!.toTfJson(),
-    if (enableVtpm != null) 'enable_vtpm': enableVtpm!.toTfJson(),
+    'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
+    'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
+    'enable_vtpm': ?enableVtpm?.toTfJson(),
   };
 }
 
@@ -694,12 +661,10 @@ final class ComputeInstanceFromMachineImageSourceMachineImageEncryptionKey {
   final TfArg<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
-    if (kmsKeyServiceAccount != null)
-      'kms_key_service_account': kmsKeyServiceAccount!.toTfJson(),
-    if (rawKey != null) 'raw_key': rawKey!.toTfJson(),
-    if (rsaEncryptedKey != null)
-      'rsa_encrypted_key': rsaEncryptedKey!.toTfJson(),
+    'kms_key_name': ?kmsKeyName?.toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
   };
 }
 
@@ -717,9 +682,8 @@ final class ComputeInstanceFromMachineImageWorkloadIdentityConfig {
   final TfArg<bool>? identityCertificateEnabled;
 
   Map<String, Object?> encode() => {
-    if (identity != null) 'identity': identity!.toTfJson(),
-    if (identityCertificateEnabled != null)
-      'identity_certificate_enabled': identityCertificateEnabled!.toTfJson(),
+    'identity': ?identity?.toTfJson(),
+    'identity_certificate_enabled': ?identityCertificateEnabled?.toTfJson(),
   };
 }
 
@@ -778,33 +742,28 @@ final class GoogleComputeInstanceFromMachineImage extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (allowStoppingForUpdate != null)
-             'allow_stopping_for_update': allowStoppingForUpdate,
-           if (canIpForward != null) 'can_ip_forward': canIpForward,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (description != null) 'description': description,
-           if (desiredStatus != null) 'desired_status': desiredStatus,
-           if (enableDisplay != null) 'enable_display': enableDisplay,
-           if (eraseWindowsVssSignature != null)
-             'erase_windows_vss_signature': eraseWindowsVssSignature,
-           if (hostname != null) 'hostname': hostname,
-           if (keyRevocationActionType != null)
-             'key_revocation_action_type': keyRevocationActionType,
-           if (labels != null) 'labels': labels,
-           if (machineType != null) 'machine_type': machineType,
-           if (metadata != null) 'metadata': metadata,
-           if (metadataStartupScript != null)
-             'metadata_startup_script': metadataStartupScript,
-           if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform,
+           'allow_stopping_for_update': ?allowStoppingForUpdate,
+           'can_ip_forward': ?canIpForward,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'description': ?description,
+           'desired_status': ?desiredStatus,
+           'enable_display': ?enableDisplay,
+           'erase_windows_vss_signature': ?eraseWindowsVssSignature,
+           'hostname': ?hostname,
+           'key_revocation_action_type': ?keyRevocationActionType,
+           'labels': ?labels,
+           'machine_type': ?machineType,
+           'metadata': ?metadata,
+           'metadata_startup_script': ?metadataStartupScript,
+           'min_cpu_platform': ?minCpuPlatform,
            'name': name,
-           if (partnerMetadata != null) 'partner_metadata': partnerMetadata,
-           if (project != null) 'project': project,
-           if (resourcePolicies != null) 'resource_policies': resourcePolicies,
+           'partner_metadata': ?partnerMetadata,
+           'project': ?project,
+           'resource_policies': ?resourcePolicies,
            'source_machine_image': sourceMachineImage,
-           if (tags != null) 'tags': tags,
-           if (zone != null) 'zone': zone,
+           'tags': ?tags,
+           'zone': ?zone,
            if (advancedMachineFeatures != null)
              'advanced_machine_features': TfArg.literal(
                advancedMachineFeatures.encode(),

@@ -21,12 +21,10 @@ final class DataAwsElasticacheServiceUpdateActions extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cacheClusterId != null) 'cache_cluster_id': cacheClusterId,
-           if (region != null) 'region': region,
-           if (replicationGroupId != null)
-             'replication_group_id': replicationGroupId,
-           if (serviceUpdateStatus != null)
-             'service_update_status': serviceUpdateStatus,
+           'cache_cluster_id': ?cacheClusterId,
+           'region': ?region,
+           'replication_group_id': ?replicationGroupId,
+           'service_update_status': ?serviceUpdateStatus,
          },
        );
 

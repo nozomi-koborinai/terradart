@@ -20,9 +20,9 @@ final class DataAwsApiGatewayApiKeys extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customerId != null) 'customer_id': customerId,
-           if (includeValues != null) 'include_values': includeValues,
-           if (region != null) 'region': region,
+           'customer_id': ?customerId,
+           'include_values': ?includeValues,
+           'region': ?region,
          },
        );
 

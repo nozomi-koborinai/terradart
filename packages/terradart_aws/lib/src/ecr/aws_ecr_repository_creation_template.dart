@@ -49,8 +49,8 @@ final class EcrRepositoryCreationTemplateEncryptionConfiguration {
   final RefTo<AwsKmsKey>? kmsKey;
 
   Map<String, Object?> encode() => {
-    if (encryptionType != null) 'encryption_type': encryptionType!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
+    'encryption_type': ?encryptionType?.toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -131,15 +131,14 @@ final class AwsEcrRepositoryCreationTemplate extends Resource {
            'applied_for': TfArg.literal([
              for (final e in appliedFor) e.toTfJson(),
            ]),
-           if (customRoleArn != null) 'custom_role_arn': customRoleArn,
-           if (description != null) 'description': description,
-           if (imageTagMutability != null)
-             'image_tag_mutability': imageTagMutability,
-           if (lifecyclePolicy != null) 'lifecycle_policy': lifecyclePolicy,
+           'custom_role_arn': ?customRoleArn,
+           'description': ?description,
+           'image_tag_mutability': ?imageTagMutability,
+           'lifecycle_policy': ?lifecyclePolicy,
            'prefix': prefix,
-           if (region != null) 'region': region,
-           if (repositoryPolicy != null) 'repository_policy': repositoryPolicy,
-           if (resourceTags != null) 'resource_tags': resourceTags,
+           'region': ?region,
+           'repository_policy': ?repositoryPolicy,
+           'resource_tags': ?resourceTags,
            if (encryptionConfiguration != null)
              'encryption_configuration': TfArg.literal([
                for (final e in encryptionConfiguration) e.encode(),

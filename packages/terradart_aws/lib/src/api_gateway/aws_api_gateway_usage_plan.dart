@@ -47,9 +47,9 @@ final class ApiGatewayUsagePlanApiStagesThrottle {
   final TfArg<num>? rateLimit;
 
   Map<String, Object?> encode() => {
-    if (burstLimit != null) 'burst_limit': burstLimit!.toTfJson(),
+    'burst_limit': ?burstLimit?.toTfJson(),
     'path': path.toTfJson(),
-    if (rateLimit != null) 'rate_limit': rateLimit!.toTfJson(),
+    'rate_limit': ?rateLimit?.toTfJson(),
   };
 }
 
@@ -71,7 +71,7 @@ final class ApiGatewayUsagePlanQuotaSettings {
 
   Map<String, Object?> encode() => {
     'limit': limit.toTfJson(),
-    if (offset != null) 'offset': offset!.toTfJson(),
+    'offset': ?offset?.toTfJson(),
     'period': period.toTfJson(),
   };
 }
@@ -98,8 +98,8 @@ final class ApiGatewayUsagePlanThrottleSettings {
   final TfArg<num>? rateLimit;
 
   Map<String, Object?> encode() => {
-    if (burstLimit != null) 'burst_limit': burstLimit!.toTfJson(),
-    if (rateLimit != null) 'rate_limit': rateLimit!.toTfJson(),
+    'burst_limit': ?burstLimit?.toTfJson(),
+    'rate_limit': ?rateLimit?.toTfJson(),
   };
 }
 
@@ -124,11 +124,11 @@ final class AwsApiGatewayUsagePlan extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (productCode != null) 'product_code': productCode,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'product_code': ?productCode,
+           'region': ?region,
+           'tags': ?tags,
            if (apiStages != null)
              'api_stages': TfArg.literal([
                for (final e in apiStages) e.encode(),

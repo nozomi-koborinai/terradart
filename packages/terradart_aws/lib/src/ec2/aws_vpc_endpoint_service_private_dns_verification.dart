@@ -24,10 +24,9 @@ final class AwsVpcEndpointServicePrivateDnsVerification extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'service_id': serviceId,
-           if (waitForVerification != null)
-             'wait_for_verification': waitForVerification,
+           'wait_for_verification': ?waitForVerification,
          },
        );
 

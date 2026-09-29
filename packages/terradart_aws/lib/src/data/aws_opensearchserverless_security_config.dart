@@ -54,7 +54,7 @@ final class DataAwsOpensearchserverlessSecurityConfig extends Data {
          terraformType: tfType,
          argMap: {
            'id': id,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (iamFederationOptions != null)
              'iam_federation_options': TfArg.literal([
                for (final e in iamFederationOptions) e.encode(),

@@ -37,12 +37,12 @@ final class GoogleComputeTargetTcpProxy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (backendService != null) 'backend_service': backendService,
-           if (description != null) 'description': description,
+           'backend_service': ?backendService,
+           'description': ?description,
            'name': name,
-           if (project != null) 'project': project,
-           if (proxyBind != null) 'proxy_bind': proxyBind,
-           if (proxyHeader != null) 'proxy_header': proxyHeader,
+           'project': ?project,
+           'proxy_bind': ?proxyBind,
+           'proxy_header': ?proxyHeader,
          },
        );
 

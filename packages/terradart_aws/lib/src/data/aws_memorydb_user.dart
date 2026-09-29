@@ -20,11 +20,7 @@ final class DataAwsMemorydbUser extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           'user_name': userName,
-         },
+         argMap: {'region': ?region, 'tags': ?tags, 'user_name': userName},
        );
 
   @override

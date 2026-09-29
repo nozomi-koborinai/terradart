@@ -21,7 +21,7 @@ final class EksAccessPolicyAssociationAccessScope {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (namespaces != null) 'namespaces': namespaces!.toTfJson(),
+    'namespaces': ?namespaces?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -47,7 +47,7 @@ final class AwsEksAccessPolicyAssociation extends Resource {
            'cluster_name': clusterName,
            'policy_arn': policyArn,
            'principal_arn': principalArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'access_scope': TfArg.literal(accessScope.encode()),
          },
        );

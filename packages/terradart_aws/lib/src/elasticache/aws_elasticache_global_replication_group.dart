@@ -39,20 +39,17 @@ final class AwsElasticacheGlobalReplicationGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (automaticFailoverEnabled != null)
-             'automatic_failover_enabled': automaticFailoverEnabled,
-           if (cacheNodeType != null) 'cache_node_type': cacheNodeType,
-           if (engine != null) 'engine': engine,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (globalReplicationGroupDescription != null)
-             'global_replication_group_description':
-                 globalReplicationGroupDescription,
+           'automatic_failover_enabled': ?automaticFailoverEnabled,
+           'cache_node_type': ?cacheNodeType,
+           'engine': ?engine,
+           'engine_version': ?engineVersion,
+           'global_replication_group_description':
+               ?globalReplicationGroupDescription,
            'global_replication_group_id_suffix': globalReplicationGroupIdSuffix,
-           if (numNodeGroups != null) 'num_node_groups': numNodeGroups,
-           if (parameterGroupName != null)
-             'parameter_group_name': parameterGroupName,
+           'num_node_groups': ?numNodeGroups,
+           'parameter_group_name': ?parameterGroupName,
            'primary_replication_group_id': primaryReplicationGroupId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

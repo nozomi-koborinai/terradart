@@ -76,30 +76,24 @@ final class AwsDmsReplicationInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allocatedStorage != null) 'allocated_storage': allocatedStorage,
-           if (allowMajorVersionUpgrade != null)
-             'allow_major_version_upgrade': allowMajorVersionUpgrade,
-           if (applyImmediately != null) 'apply_immediately': applyImmediately,
-           if (autoMinorVersionUpgrade != null)
-             'auto_minor_version_upgrade': autoMinorVersionUpgrade,
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (dnsNameServers != null) 'dns_name_servers': dnsNameServers,
-           if (engineVersion != null) 'engine_version': engineVersion,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
-           if (multiAz != null) 'multi_az': multiAz,
-           if (networkType != null) 'network_type': networkType,
-           if (preferredMaintenanceWindow != null)
-             'preferred_maintenance_window': preferredMaintenanceWindow,
-           if (publiclyAccessible != null)
-             'publicly_accessible': publiclyAccessible,
-           if (region != null) 'region': region,
+           'allocated_storage': ?allocatedStorage,
+           'allow_major_version_upgrade': ?allowMajorVersionUpgrade,
+           'apply_immediately': ?applyImmediately,
+           'auto_minor_version_upgrade': ?autoMinorVersionUpgrade,
+           'availability_zone': ?availabilityZone,
+           'dns_name_servers': ?dnsNameServers,
+           'engine_version': ?engineVersion,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
+           'multi_az': ?multiAz,
+           'network_type': ?networkType,
+           'preferred_maintenance_window': ?preferredMaintenanceWindow,
+           'publicly_accessible': ?publiclyAccessible,
+           'region': ?region,
            'replication_instance_class': replicationInstanceClass,
            'replication_instance_id': replicationInstanceId,
-           if (replicationSubnetGroupId != null)
-             'replication_subnet_group_id': replicationSubnetGroupId,
-           if (tags != null) 'tags': tags,
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
+           'replication_subnet_group_id': ?replicationSubnetGroupId,
+           'tags': ?tags,
+           'vpc_security_group_ids': ?vpcSecurityGroupIds?.encodeAs('id'),
            if (kerberosAuthenticationSettings != null)
              'kerberos_authentication_settings': TfArg.literal(
                kerberosAuthenticationSettings.encode(),

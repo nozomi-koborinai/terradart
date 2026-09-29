@@ -33,7 +33,7 @@ final class GoogleComputeDiskAsyncReplication extends Resource {
          argMap: {
            'primary_disk': primaryDisk,
            'secondary_disk': secondaryDisk,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

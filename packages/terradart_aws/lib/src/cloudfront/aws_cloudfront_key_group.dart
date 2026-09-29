@@ -21,11 +21,7 @@ final class AwsCloudfrontKeyGroup extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (comment != null) 'comment': comment,
-           'items': items,
-           'name': name,
-         },
+         argMap: {'comment': ?comment, 'items': items, 'name': name},
        );
 
   @override

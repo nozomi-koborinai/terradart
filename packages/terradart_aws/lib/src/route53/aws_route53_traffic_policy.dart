@@ -21,11 +21,7 @@ final class AwsRoute53TrafficPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (comment != null) 'comment': comment,
-           'document': document,
-           'name': name,
-         },
+         argMap: {'comment': ?comment, 'document': document, 'name': name},
        );
 
   @override

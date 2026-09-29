@@ -33,10 +33,10 @@ final class MagicWanGreTunnelBgp {
 
   Map<String, Object?> encode() => {
     'customer_asn': customerAsn.toTfJson(),
-    if (exportFilterId != null) 'export_filter_id': exportFilterId!.toTfJson(),
-    if (extraPrefixes != null) 'extra_prefixes': extraPrefixes!.toTfJson(),
-    if (importFilterId != null) 'import_filter_id': importFilterId!.toTfJson(),
-    if (md5Key != null) 'md5_key': md5Key!.toTfJson(),
+    'export_filter_id': ?exportFilterId?.toTfJson(),
+    'extra_prefixes': ?extraPrefixes?.toTfJson(),
+    'import_filter_id': ?importFilterId?.toTfJson(),
+    'md5_key': ?md5Key?.toTfJson(),
   };
 }
 
@@ -63,11 +63,11 @@ final class MagicWanGreTunnelHealthCheck {
   final MagicWanGreTunnelHealthCheckTarget? target;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (rate != null) 'rate': rate!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (target != null) 'target': target!.encode(),
+    'direction': ?direction?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'rate': ?rate?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'target': ?target?.encode(),
   };
 }
 
@@ -110,9 +110,7 @@ final class MagicWanGreTunnelHealthCheckTarget {
 
   final TfArg<String>? saved;
 
-  Map<String, Object?> encode() => {
-    if (saved != null) 'saved': saved!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'saved': ?saved?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_magic_wan_gre_tunnel`.
@@ -141,17 +139,15 @@ final class CloudflareMagicWanGreTunnel extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (automaticReturnRouting != null)
-             'automatic_return_routing': automaticReturnRouting,
+           'automatic_return_routing': ?automaticReturnRouting,
            'cloudflare_gre_endpoint': cloudflareGreEndpoint,
            'customer_gre_endpoint': customerGreEndpoint,
-           if (description != null) 'description': description,
+           'description': ?description,
            'interface_address': interfaceAddress,
-           if (interfaceAddress6 != null)
-             'interface_address6': interfaceAddress6,
-           if (mtu != null) 'mtu': mtu,
+           'interface_address6': ?interfaceAddress6,
+           'mtu': ?mtu,
            'name': name,
-           if (ttl != null) 'ttl': ttl,
+           'ttl': ?ttl,
            if (bgp != null) 'bgp': TfArg.literal(bgp.encode()),
            if (healthCheck != null)
              'health_check': TfArg.literal(healthCheck.encode()),

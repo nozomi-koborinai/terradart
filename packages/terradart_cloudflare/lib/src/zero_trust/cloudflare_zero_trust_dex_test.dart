@@ -22,9 +22,9 @@ final class ZeroTrustDexTestData {
   final TfArg<String>? method;
 
   Map<String, Object?> encode() => {
-    if (host != null) 'host': host!.toTfJson(),
-    if (kind != null) 'kind': kind!.toTfJson(),
-    if (method != null) 'method': method!.toTfJson(),
+    'host': ?host?.toTfJson(),
+    'kind': ?kind?.toTfJson(),
+    'method': ?method?.toTfJson(),
   };
 }
 
@@ -65,7 +65,7 @@ final class CloudflareZeroTrustDexTest extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (description != null) 'description': description,
+           'description': ?description,
            'enabled': enabled,
            'interval': interval,
            'name': name,

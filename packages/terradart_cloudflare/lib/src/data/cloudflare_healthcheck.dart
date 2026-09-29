@@ -23,10 +23,7 @@ final class DataCloudflareHealthcheck extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'healthcheck_id': healthcheckId,
-           if (zoneId != null) 'zone_id': zoneId,
-         },
+         argMap: {'healthcheck_id': healthcheckId, 'zone_id': ?zoneId},
        );
 
   @override

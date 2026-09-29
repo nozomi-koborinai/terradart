@@ -19,8 +19,8 @@ final class DataEmailRoutingAddressFilter {
   final TfArg<bool>? verified;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (verified != null) 'verified': verified!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'verified': ?verified?.toTfJson(),
   };
 }
 
@@ -52,9 +52,8 @@ final class DataCloudflareEmailRoutingAddress extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (destinationAddressIdentifier != null)
-             'destination_address_identifier': destinationAddressIdentifier,
+           'account_id': ?accountId,
+           'destination_address_identifier': ?destinationAddressIdentifier,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

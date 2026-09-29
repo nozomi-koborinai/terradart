@@ -24,11 +24,10 @@ final class AwsS3vectorsVectorBucket extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (encryptionConfiguration != null)
-             'encryption_configuration': encryptionConfiguration,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'encryption_configuration': ?encryptionConfiguration,
+           'force_destroy': ?forceDestroy,
+           'region': ?region,
+           'tags': ?tags,
            'vector_bucket_name': vectorBucketName,
          },
        );

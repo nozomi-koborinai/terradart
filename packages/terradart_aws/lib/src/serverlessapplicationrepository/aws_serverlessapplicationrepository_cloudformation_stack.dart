@@ -51,10 +51,10 @@ final class AwsServerlessapplicationrepositoryCloudformationStack
                for (final e in capabilities) e.toTfJson(),
              ]),
            'name': name,
-           if (parameters != null) 'parameters': parameters,
-           if (region != null) 'region': region,
-           if (semanticVersion != null) 'semantic_version': semanticVersion,
-           if (tags != null) 'tags': tags,
+           'parameters': ?parameters,
+           'region': ?region,
+           'semantic_version': ?semanticVersion,
+           'tags': ?tags,
          },
        );
 

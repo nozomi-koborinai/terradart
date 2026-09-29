@@ -34,12 +34,11 @@ final class VertexAiSemanticGovernancePolicyEngineGatewayConfigs {
   final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
   Map<String, Object?> encode() => {
-    if (allowedProjects != null)
-      'allowed_projects': allowedProjects!.toTfJson(),
-    if (dnsZoneName != null) 'dns_zone_name': dnsZoneName!.toTfJson(),
+    'allowed_projects': ?allowedProjects?.toTfJson(),
+    'dns_zone_name': ?dnsZoneName?.toTfJson(),
     'name': name.toTfJson(),
-    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.encodeAs('id').toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -96,9 +95,9 @@ final class GoogleVertexAiSemanticGovernancePolicyEngine extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -23,11 +23,10 @@ final class AwsDynamodbResourcePolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (confirmRemoveSelfResourceAccess != null)
-             'confirm_remove_self_resource_access':
-                 confirmRemoveSelfResourceAccess,
+           'confirm_remove_self_resource_access':
+               ?confirmRemoveSelfResourceAccess,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_arn': resourceArn,
          },
        );

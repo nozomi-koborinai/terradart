@@ -62,13 +62,10 @@ final class ConnectInstanceStorageConfigStorageConfig {
 
   Map<String, Object?> encode() => {
     'storage_type': storageType.toTfJson(),
-    if (kinesisFirehoseConfig != null)
-      'kinesis_firehose_config': kinesisFirehoseConfig!.encode(),
-    if (kinesisStreamConfig != null)
-      'kinesis_stream_config': kinesisStreamConfig!.encode(),
-    if (kinesisVideoStreamConfig != null)
-      'kinesis_video_stream_config': kinesisVideoStreamConfig!.encode(),
-    if (s3Config != null) 's3_config': s3Config!.encode(),
+    'kinesis_firehose_config': ?kinesisFirehoseConfig?.encode(),
+    'kinesis_stream_config': ?kinesisStreamConfig?.encode(),
+    'kinesis_video_stream_config': ?kinesisVideoStreamConfig?.encode(),
+    's3_config': ?s3Config?.encode(),
   };
 }
 
@@ -191,8 +188,7 @@ final class ConnectInstanceStorageConfigStorageConfigS3Config {
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_prefix': bucketPrefix.toTfJson(),
-    if (encryptionConfig != null)
-      'encryption_config': encryptionConfig!.encode(),
+    'encryption_config': ?encryptionConfig?.encode(),
   };
 }
 
@@ -248,7 +244,7 @@ final class AwsConnectInstanceStorageConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'instance_id': instanceId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_type': resourceType,
            'storage_config': TfArg.literal(storageConfig.encode()),
          },

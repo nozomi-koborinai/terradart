@@ -60,10 +60,9 @@ final class GoogleAlloydbUser extends Resource {
            'cluster': cluster,
            'user_id': userId,
            'user_type': userType,
-           if (password != null) 'password': password,
-           if (passwordWo != null) 'password_wo': passwordWo,
-           if (passwordWoVersion != null)
-             'password_wo_version': passwordWoVersion,
+           'password': ?password,
+           'password_wo': ?passwordWo,
+           'password_wo_version': ?passwordWoVersion,
          },
        );
 

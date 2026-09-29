@@ -105,13 +105,13 @@ final class AwsConnectContactFlow extends Resource {
          terraformType: tfType,
          argMap: {
            ...?content?.argMap,
-           if (contentHash != null) 'content_hash': contentHash,
-           if (description != null) 'description': description,
+           'content_hash': ?contentHash,
+           'description': ?description,
            'instance_id': instanceId,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
+           'region': ?region,
+           'tags': ?tags,
+           'type': ?type,
          },
        );
 

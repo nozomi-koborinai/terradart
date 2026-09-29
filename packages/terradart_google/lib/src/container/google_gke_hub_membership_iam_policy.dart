@@ -29,9 +29,9 @@ final class GoogleGkeHubMembershipIamPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'membership_id': membershipId,
-           if (location != null) 'location': location,
+           'location': ?location,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

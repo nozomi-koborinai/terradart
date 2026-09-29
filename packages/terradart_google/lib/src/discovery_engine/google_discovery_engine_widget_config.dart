@@ -30,15 +30,12 @@ final class DiscoveryEngineWidgetConfigAccessSettings {
   final TfArg<String>? workforceIdentityPoolProvider;
 
   Map<String, Object?> encode() => {
-    if (allowPublicAccess != null)
-      'allow_public_access': allowPublicAccess!.toTfJson(),
-    if (allowlistedDomains != null)
-      'allowlisted_domains': allowlistedDomains!.toTfJson(),
-    if (enableWebApp != null) 'enable_web_app': enableWebApp!.toTfJson(),
-    if (languageCode != null) 'language_code': languageCode!.toTfJson(),
-    if (workforceIdentityPoolProvider != null)
-      'workforce_identity_pool_provider': workforceIdentityPoolProvider!
-          .toTfJson(),
+    'allow_public_access': ?allowPublicAccess?.toTfJson(),
+    'allowlisted_domains': ?allowlistedDomains?.toTfJson(),
+    'enable_web_app': ?enableWebApp?.toTfJson(),
+    'language_code': ?languageCode?.toTfJson(),
+    'workforce_identity_pool_provider': ?workforceIdentityPoolProvider
+        ?.toTfJson(),
   };
 }
 
@@ -73,9 +70,9 @@ final class DiscoveryEngineWidgetConfigHomepageSettingShortcuts {
   final DiscoveryEngineWidgetConfigHomepageSettingShortcutsIcon? icon;
 
   Map<String, Object?> encode() => {
-    if (destinationUri != null) 'destination_uri': destinationUri!.toTfJson(),
-    if (title != null) 'title': title!.toTfJson(),
-    if (icon != null) 'icon': icon!.encode(),
+    'destination_uri': ?destinationUri?.toTfJson(),
+    'title': ?title?.toTfJson(),
+    'icon': ?icon?.encode(),
   };
 }
 
@@ -87,7 +84,7 @@ final class DiscoveryEngineWidgetConfigHomepageSettingShortcutsIcon {
 
   final TfArg<String>? url;
 
-  Map<String, Object?> encode() => {if (url != null) 'url': url!.toTfJson()};
+  Map<String, Object?> encode() => {'url': ?url?.toTfJson()};
 }
 
 /// Typed helper for the `ui_branding` block of
@@ -98,7 +95,7 @@ final class DiscoveryEngineWidgetConfigUiBranding {
 
   final DiscoveryEngineWidgetConfigUiBrandingLogo? logo;
 
-  Map<String, Object?> encode() => {if (logo != null) 'logo': logo!.encode()};
+  Map<String, Object?> encode() => {'logo': ?logo?.encode()};
 }
 
 /// Typed helper for the `ui_branding.logo` block of
@@ -109,7 +106,7 @@ final class DiscoveryEngineWidgetConfigUiBrandingLogo {
 
   final TfArg<String>? url;
 
-  Map<String, Object?> encode() => {if (url != null) 'url': url!.toTfJson()};
+  Map<String, Object?> encode() => {'url': ?url?.toTfJson()};
 }
 
 /// Typed helper for the `ui_settings` block of
@@ -169,39 +166,25 @@ final class DiscoveryEngineWidgetConfigUiSettings {
   final DiscoveryEngineWidgetConfigUiSettingsSearchAddonSpec? searchAddonSpec;
 
   Map<String, Object?> encode() => {
-    if (defaultSearchRequestOrderBy != null)
-      'default_search_request_order_by': defaultSearchRequestOrderBy!
-          .toTfJson(),
-    if (disableUserEventsCollection != null)
-      'disable_user_events_collection': disableUserEventsCollection!.toTfJson(),
-    if (enableAutocomplete != null)
-      'enable_autocomplete': enableAutocomplete!.toTfJson(),
-    if (enableCreateAgentButton != null)
-      'enable_create_agent_button': enableCreateAgentButton!.toTfJson(),
-    if (enablePeopleSearch != null)
-      'enable_people_search': enablePeopleSearch!.toTfJson(),
-    if (enableQualityFeedback != null)
-      'enable_quality_feedback': enableQualityFeedback!.toTfJson(),
-    if (enableSafeSearch != null)
-      'enable_safe_search': enableSafeSearch!.toTfJson(),
-    if (enableSearchAsYouType != null)
-      'enable_search_as_you_type': enableSearchAsYouType!.toTfJson(),
-    if (enableVisualContentSummary != null)
-      'enable_visual_content_summary': enableVisualContentSummary!.toTfJson(),
-    if (interactionType != null)
-      'interaction_type': interactionType!.toTfJson(),
-    if (resultDescriptionType != null)
-      'result_description_type': resultDescriptionType!.toTfJson(),
-    if (sourceAdminDisplayNameEnabled != null)
-      'source_admin_display_name_enabled': sourceAdminDisplayNameEnabled!
-          .toTfJson(),
+    'default_search_request_order_by': ?defaultSearchRequestOrderBy?.toTfJson(),
+    'disable_user_events_collection': ?disableUserEventsCollection?.toTfJson(),
+    'enable_autocomplete': ?enableAutocomplete?.toTfJson(),
+    'enable_create_agent_button': ?enableCreateAgentButton?.toTfJson(),
+    'enable_people_search': ?enablePeopleSearch?.toTfJson(),
+    'enable_quality_feedback': ?enableQualityFeedback?.toTfJson(),
+    'enable_safe_search': ?enableSafeSearch?.toTfJson(),
+    'enable_search_as_you_type': ?enableSearchAsYouType?.toTfJson(),
+    'enable_visual_content_summary': ?enableVisualContentSummary?.toTfJson(),
+    'interaction_type': ?interactionType?.toTfJson(),
+    'result_description_type': ?resultDescriptionType?.toTfJson(),
+    'source_admin_display_name_enabled': ?sourceAdminDisplayNameEnabled
+        ?.toTfJson(),
     if (dataStoreUiConfigs != null)
       'data_store_ui_configs': [
         for (final e in dataStoreUiConfigs!) e.encode(),
       ],
-    if (generativeAnswerConfig != null)
-      'generative_answer_config': generativeAnswerConfig!.encode(),
-    if (searchAddonSpec != null) 'search_addon_spec': searchAddonSpec!.encode(),
+    'generative_answer_config': ?generativeAnswerConfig?.encode(),
+    'search_addon_spec': ?searchAddonSpec?.encode(),
   };
 }
 
@@ -253,7 +236,7 @@ final class DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigs {
   fieldsUiComponentsMap;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (facetField != null)
       'facet_field': [for (final e in facetField!) e.encode()],
     if (fieldsUiComponentsMap != null)
@@ -277,7 +260,7 @@ final class DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFacetField {
   final TfArg<String> field;
 
   Map<String, Object?> encode() => {
-    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    'display_name': ?displayName?.toTfJson(),
     'field': field.toTfJson(),
   };
 }
@@ -309,8 +292,7 @@ final class DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFieldsUiCompo
   Map<String, Object?> encode() => {
     if (deviceVisibility != null)
       'device_visibility': [for (final e in deviceVisibility!) e.toTfJson()],
-    if (displayTemplate != null)
-      'display_template': displayTemplate!.toTfJson(),
+    'display_template': ?displayTemplate?.toTfJson(),
     'field': field.toTfJson(),
     'ui_component': uiComponent.toTfJson(),
   };
@@ -370,23 +352,16 @@ final class DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfig {
   final TfArg<num>? resultCount;
 
   Map<String, Object?> encode() => {
-    if (disableRelatedQuestions != null)
-      'disable_related_questions': disableRelatedQuestions!.toTfJson(),
-    if (ignoreAdversarialQuery != null)
-      'ignore_adversarial_query': ignoreAdversarialQuery!.toTfJson(),
-    if (ignoreLowRelevantContent != null)
-      'ignore_low_relevant_content': ignoreLowRelevantContent!.toTfJson(),
-    if (ignoreNonAnswerSeekingQuery != null)
-      'ignore_non_answer_seeking_query': ignoreNonAnswerSeekingQuery!
-          .toTfJson(),
-    if (imageSource != null) 'image_source': imageSource!.toTfJson(),
-    if (languageCode != null) 'language_code': languageCode!.toTfJson(),
-    if (maxRephraseSteps != null)
-      'max_rephrase_steps': maxRephraseSteps!.toTfJson(),
-    if (modelPromptPreamble != null)
-      'model_prompt_preamble': modelPromptPreamble!.toTfJson(),
-    if (modelVersion != null) 'model_version': modelVersion!.toTfJson(),
-    if (resultCount != null) 'result_count': resultCount!.toTfJson(),
+    'disable_related_questions': ?disableRelatedQuestions?.toTfJson(),
+    'ignore_adversarial_query': ?ignoreAdversarialQuery?.toTfJson(),
+    'ignore_low_relevant_content': ?ignoreLowRelevantContent?.toTfJson(),
+    'ignore_non_answer_seeking_query': ?ignoreNonAnswerSeekingQuery?.toTfJson(),
+    'image_source': ?imageSource?.toTfJson(),
+    'language_code': ?languageCode?.toTfJson(),
+    'max_rephrase_steps': ?maxRephraseSteps?.toTfJson(),
+    'model_prompt_preamble': ?modelPromptPreamble?.toTfJson(),
+    'model_version': ?modelVersion?.toTfJson(),
+    'result_count': ?resultCount?.toTfJson(),
   };
 }
 
@@ -421,14 +396,11 @@ final class DiscoveryEngineWidgetConfigUiSettingsSearchAddonSpec {
   final TfArg<bool>? semanticAddOnDisabled;
 
   Map<String, Object?> encode() => {
-    if (generativeAnswerAddOnDisabled != null)
-      'generative_answer_add_on_disabled': generativeAnswerAddOnDisabled!
-          .toTfJson(),
-    if (kpiPersonalizationAddOnDisabled != null)
-      'kpi_personalization_add_on_disabled': kpiPersonalizationAddOnDisabled!
-          .toTfJson(),
-    if (semanticAddOnDisabled != null)
-      'semantic_add_on_disabled': semanticAddOnDisabled!.toTfJson(),
+    'generative_answer_add_on_disabled': ?generativeAnswerAddOnDisabled
+        ?.toTfJson(),
+    'kpi_personalization_add_on_disabled': ?kpiPersonalizationAddOnDisabled
+        ?.toTfJson(),
+    'semantic_add_on_disabled': ?semanticAddOnDisabled?.toTfJson(),
   };
 }
 
@@ -468,8 +440,8 @@ final class GoogleDiscoveryEngineWidgetConfig extends Resource {
          argMap: {
            'location': location,
            'engine_id': engineId,
-           if (collectionId != null) 'collection_id': collectionId,
-           if (widgetConfigId != null) 'widget_config_id': widgetConfigId,
+           'collection_id': ?collectionId,
+           'widget_config_id': ?widgetConfigId,
            if (accessSettings != null)
              'access_settings': TfArg.literal(accessSettings.encode()),
            if (uiSettings != null)
@@ -478,7 +450,7 @@ final class GoogleDiscoveryEngineWidgetConfig extends Resource {
              'ui_branding': TfArg.literal(uiBranding.encode()),
            if (homepageSetting != null)
              'homepage_setting': TfArg.literal(homepageSetting.encode()),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

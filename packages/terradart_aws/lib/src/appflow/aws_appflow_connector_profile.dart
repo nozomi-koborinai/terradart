@@ -178,24 +178,24 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   zendesk;
 
   Map<String, Object?> encode() => {
-    if (amplitude != null) 'amplitude': amplitude!.encode(),
-    if (customConnector != null) 'custom_connector': customConnector!.encode(),
-    if (datadog != null) 'datadog': datadog!.encode(),
-    if (dynatrace != null) 'dynatrace': dynatrace!.encode(),
-    if (googleAnalytics != null) 'google_analytics': googleAnalytics!.encode(),
-    if (honeycode != null) 'honeycode': honeycode!.encode(),
-    if (inforNexus != null) 'infor_nexus': inforNexus!.encode(),
-    if (marketo != null) 'marketo': marketo!.encode(),
-    if (redshift != null) 'redshift': redshift!.encode(),
-    if (salesforce != null) 'salesforce': salesforce!.encode(),
-    if (sapoData != null) 'sapo_data': sapoData!.encode(),
-    if (serviceNow != null) 'service_now': serviceNow!.encode(),
-    if (singular != null) 'singular': singular!.encode(),
-    if (slack != null) 'slack': slack!.encode(),
-    if (snowflake != null) 'snowflake': snowflake!.encode(),
-    if (trendmicro != null) 'trendmicro': trendmicro!.encode(),
-    if (veeva != null) 'veeva': veeva!.encode(),
-    if (zendesk != null) 'zendesk': zendesk!.encode(),
+    'amplitude': ?amplitude?.encode(),
+    'custom_connector': ?customConnector?.encode(),
+    'datadog': ?datadog?.encode(),
+    'dynatrace': ?dynatrace?.encode(),
+    'google_analytics': ?googleAnalytics?.encode(),
+    'honeycode': ?honeycode?.encode(),
+    'infor_nexus': ?inforNexus?.encode(),
+    'marketo': ?marketo?.encode(),
+    'redshift': ?redshift?.encode(),
+    'salesforce': ?salesforce?.encode(),
+    'sapo_data': ?sapoData?.encode(),
+    'service_now': ?serviceNow?.encode(),
+    'singular': ?singular?.encode(),
+    'slack': ?slack?.encode(),
+    'snowflake': ?snowflake?.encode(),
+    'trendmicro': ?trendmicro?.encode(),
+    'veeva': ?veeva?.encode(),
+    'zendesk': ?zendesk?.encode(),
   };
 }
 
@@ -249,10 +249,10 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 
   Map<String, Object?> encode() => {
     'authentication_type': authenticationType.toTfJson(),
-    if (apiKey != null) 'api_key': apiKey!.encode(),
-    if (basic != null) 'basic': basic!.encode(),
-    if (custom != null) 'custom': custom!.encode(),
-    if (oauth2 != null) 'oauth2': oauth2!.encode(),
+    'api_key': ?apiKey?.encode(),
+    'basic': ?basic?.encode(),
+    'custom': ?custom?.encode(),
+    'oauth2': ?oauth2?.encode(),
   };
 }
 
@@ -286,7 +286,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
 
   Map<String, Object?> encode() => {
     'api_key': apiKey.toTfJson(),
-    if (apiSecretKey != null) 'api_secret_key': apiSecretKey!.toTfJson(),
+    'api_secret_key': ?apiSecretKey?.toTfJson(),
   };
 }
 
@@ -323,7 +323,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   final TfArg<String> customAuthenticationType;
 
   Map<String, Object?> encode() => {
-    if (credentialsMap != null) 'credentials_map': credentialsMap!.toTfJson(),
+    'credentials_map': ?credentialsMap?.toTfJson(),
     'custom_authentication_type': customAuthenticationType.toTfJson(),
   };
 }
@@ -352,11 +352,11 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   oauthRequest;
 
   Map<String, Object?> encode() => {
-    if (accessToken != null) 'access_token': accessToken!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (refreshToken != null) 'refresh_token': refreshToken!.toTfJson(),
-    if (oauthRequest != null) 'oauth_request': oauthRequest!.encode(),
+    'access_token': ?accessToken?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'refresh_token': ?refreshToken?.toTfJson(),
+    'oauth_request': ?oauthRequest?.encode(),
   };
 }
 
@@ -374,8 +374,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   final TfArg<String>? redirectUri;
 
   Map<String, Object?> encode() => {
-    if (authCode != null) 'auth_code': authCode!.toTfJson(),
-    if (redirectUri != null) 'redirect_uri': redirectUri!.toTfJson(),
+    'auth_code': ?authCode?.toTfJson(),
+    'redirect_uri': ?redirectUri?.toTfJson(),
   };
 }
 
@@ -435,11 +435,11 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   oauthRequest;
 
   Map<String, Object?> encode() => {
-    if (accessToken != null) 'access_token': accessToken!.toTfJson(),
+    'access_token': ?accessToken?.toTfJson(),
     'client_id': clientId.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
-    if (refreshToken != null) 'refresh_token': refreshToken!.toTfJson(),
-    if (oauthRequest != null) 'oauth_request': oauthRequest!.encode(),
+    'refresh_token': ?refreshToken?.toTfJson(),
+    'oauth_request': ?oauthRequest?.encode(),
   };
 }
 
@@ -457,8 +457,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   final TfArg<String>? redirectUri;
 
   Map<String, Object?> encode() => {
-    if (authCode != null) 'auth_code': authCode!.toTfJson(),
-    if (redirectUri != null) 'redirect_uri': redirectUri!.toTfJson(),
+    'auth_code': ?authCode?.toTfJson(),
+    'redirect_uri': ?redirectUri?.toTfJson(),
   };
 }
 
@@ -480,9 +480,9 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   oauthRequest;
 
   Map<String, Object?> encode() => {
-    if (accessToken != null) 'access_token': accessToken!.toTfJson(),
-    if (refreshToken != null) 'refresh_token': refreshToken!.toTfJson(),
-    if (oauthRequest != null) 'oauth_request': oauthRequest!.encode(),
+    'access_token': ?accessToken?.toTfJson(),
+    'refresh_token': ?refreshToken?.toTfJson(),
+    'oauth_request': ?oauthRequest?.encode(),
   };
 }
 
@@ -500,8 +500,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   final TfArg<String>? redirectUri;
 
   Map<String, Object?> encode() => {
-    if (authCode != null) 'auth_code': authCode!.toTfJson(),
-    if (redirectUri != null) 'redirect_uri': redirectUri!.toTfJson(),
+    'auth_code': ?authCode?.toTfJson(),
+    'redirect_uri': ?redirectUri?.toTfJson(),
   };
 }
 
@@ -553,10 +553,10 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   oauthRequest;
 
   Map<String, Object?> encode() => {
-    if (accessToken != null) 'access_token': accessToken!.toTfJson(),
+    'access_token': ?accessToken?.toTfJson(),
     'client_id': clientId.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
-    if (oauthRequest != null) 'oauth_request': oauthRequest!.encode(),
+    'oauth_request': ?oauthRequest?.encode(),
   };
 }
 
@@ -574,8 +574,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   final TfArg<String>? redirectUri;
 
   Map<String, Object?> encode() => {
-    if (authCode != null) 'auth_code': authCode!.toTfJson(),
-    if (redirectUri != null) 'redirect_uri': redirectUri!.toTfJson(),
+    'auth_code': ?authCode?.toTfJson(),
+    'redirect_uri': ?redirectUri?.toTfJson(),
   };
 }
 
@@ -628,14 +628,12 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   oauthRequest;
 
   Map<String, Object?> encode() => {
-    if (accessToken != null) 'access_token': accessToken!.toTfJson(),
-    if (clientCredentialsArn != null)
-      'client_credentials_arn': clientCredentialsArn!.toTfJson(),
-    if (jwtToken != null) 'jwt_token': jwtToken!.toTfJson(),
-    if (oauth2GrantType != null)
-      'oauth2_grant_type': oauth2GrantType!.toTfJson(),
-    if (refreshToken != null) 'refresh_token': refreshToken!.toTfJson(),
-    if (oauthRequest != null) 'oauth_request': oauthRequest!.encode(),
+    'access_token': ?accessToken?.toTfJson(),
+    'client_credentials_arn': ?clientCredentialsArn?.toTfJson(),
+    'jwt_token': ?jwtToken?.toTfJson(),
+    'oauth2_grant_type': ?oauth2GrantType?.toTfJson(),
+    'refresh_token': ?refreshToken?.toTfJson(),
+    'oauth_request': ?oauthRequest?.encode(),
   };
 }
 
@@ -667,8 +665,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   final TfArg<String>? redirectUri;
 
   Map<String, Object?> encode() => {
-    if (authCode != null) 'auth_code': authCode!.toTfJson(),
-    if (redirectUri != null) 'redirect_uri': redirectUri!.toTfJson(),
+    'auth_code': ?authCode?.toTfJson(),
+    'redirect_uri': ?redirectUri?.toTfJson(),
   };
 }
 
@@ -688,10 +686,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   oauthCredentials;
 
   Map<String, Object?> encode() => {
-    if (basicAuthCredentials != null)
-      'basic_auth_credentials': basicAuthCredentials!.encode(),
-    if (oauthCredentials != null)
-      'oauth_credentials': oauthCredentials!.encode(),
+    'basic_auth_credentials': ?basicAuthCredentials?.encode(),
+    'oauth_credentials': ?oauthCredentials?.encode(),
   };
 }
 
@@ -738,11 +734,11 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   oauthRequest;
 
   Map<String, Object?> encode() => {
-    if (accessToken != null) 'access_token': accessToken!.toTfJson(),
+    'access_token': ?accessToken?.toTfJson(),
     'client_id': clientId.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
-    if (refreshToken != null) 'refresh_token': refreshToken!.toTfJson(),
-    if (oauthRequest != null) 'oauth_request': oauthRequest!.encode(),
+    'refresh_token': ?refreshToken?.toTfJson(),
+    'oauth_request': ?oauthRequest?.encode(),
   };
 }
 
@@ -760,8 +756,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   final TfArg<String>? redirectUri;
 
   Map<String, Object?> encode() => {
-    if (authCode != null) 'auth_code': authCode!.toTfJson(),
-    if (redirectUri != null) 'redirect_uri': redirectUri!.toTfJson(),
+    'auth_code': ?authCode?.toTfJson(),
+    'redirect_uri': ?redirectUri?.toTfJson(),
   };
 }
 
@@ -818,10 +814,10 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   oauthRequest;
 
   Map<String, Object?> encode() => {
-    if (accessToken != null) 'access_token': accessToken!.toTfJson(),
+    'access_token': ?accessToken?.toTfJson(),
     'client_id': clientId.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
-    if (oauthRequest != null) 'oauth_request': oauthRequest!.encode(),
+    'oauth_request': ?oauthRequest?.encode(),
   };
 }
 
@@ -839,8 +835,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   final TfArg<String>? redirectUri;
 
   Map<String, Object?> encode() => {
-    if (authCode != null) 'auth_code': authCode!.toTfJson(),
-    if (redirectUri != null) 'redirect_uri': redirectUri!.toTfJson(),
+    'auth_code': ?authCode?.toTfJson(),
+    'redirect_uri': ?redirectUri?.toTfJson(),
   };
 }
 
@@ -916,10 +912,10 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   oauthRequest;
 
   Map<String, Object?> encode() => {
-    if (accessToken != null) 'access_token': accessToken!.toTfJson(),
+    'access_token': ?accessToken?.toTfJson(),
     'client_id': clientId.toTfJson(),
     'client_secret': clientSecret.toTfJson(),
-    if (oauthRequest != null) 'oauth_request': oauthRequest!.encode(),
+    'oauth_request': ?oauthRequest?.encode(),
   };
 }
 
@@ -937,8 +933,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfileCredent
   final TfArg<String>? redirectUri;
 
   Map<String, Object?> encode() => {
-    if (authCode != null) 'auth_code': authCode!.toTfJson(),
-    if (redirectUri != null) 'redirect_uri': redirectUri!.toTfJson(),
+    'auth_code': ?authCode?.toTfJson(),
+    'redirect_uri': ?redirectUri?.toTfJson(),
   };
 }
 
@@ -1022,24 +1018,24 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
   zendesk;
 
   Map<String, Object?> encode() => {
-    if (amplitude != null) 'amplitude': amplitude!.encode(),
-    if (customConnector != null) 'custom_connector': customConnector!.encode(),
-    if (datadog != null) 'datadog': datadog!.encode(),
-    if (dynatrace != null) 'dynatrace': dynatrace!.encode(),
-    if (googleAnalytics != null) 'google_analytics': googleAnalytics!.encode(),
-    if (honeycode != null) 'honeycode': honeycode!.encode(),
-    if (inforNexus != null) 'infor_nexus': inforNexus!.encode(),
-    if (marketo != null) 'marketo': marketo!.encode(),
-    if (redshift != null) 'redshift': redshift!.encode(),
-    if (salesforce != null) 'salesforce': salesforce!.encode(),
-    if (sapoData != null) 'sapo_data': sapoData!.encode(),
-    if (serviceNow != null) 'service_now': serviceNow!.encode(),
-    if (singular != null) 'singular': singular!.encode(),
-    if (slack != null) 'slack': slack!.encode(),
-    if (snowflake != null) 'snowflake': snowflake!.encode(),
-    if (trendmicro != null) 'trendmicro': trendmicro!.encode(),
-    if (veeva != null) 'veeva': veeva!.encode(),
-    if (zendesk != null) 'zendesk': zendesk!.encode(),
+    'amplitude': ?amplitude?.encode(),
+    'custom_connector': ?customConnector?.encode(),
+    'datadog': ?datadog?.encode(),
+    'dynatrace': ?dynatrace?.encode(),
+    'google_analytics': ?googleAnalytics?.encode(),
+    'honeycode': ?honeycode?.encode(),
+    'infor_nexus': ?inforNexus?.encode(),
+    'marketo': ?marketo?.encode(),
+    'redshift': ?redshift?.encode(),
+    'salesforce': ?salesforce?.encode(),
+    'sapo_data': ?sapoData?.encode(),
+    'service_now': ?serviceNow?.encode(),
+    'singular': ?singular?.encode(),
+    'slack': ?slack?.encode(),
+    'snowflake': ?snowflake?.encode(),
+    'trendmicro': ?trendmicro?.encode(),
+    'veeva': ?veeva?.encode(),
+    'zendesk': ?zendesk?.encode(),
   };
 }
 
@@ -1067,10 +1063,8 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
   oauth2Properties;
 
   Map<String, Object?> encode() => {
-    if (profileProperties != null)
-      'profile_properties': profileProperties!.toTfJson(),
-    if (oauth2Properties != null)
-      'oauth2_properties': oauth2Properties!.encode(),
+    'profile_properties': ?profileProperties?.toTfJson(),
+    'oauth2_properties': ?oauth2Properties?.encode(),
   };
 }
 
@@ -1096,8 +1090,7 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
   Map<String, Object?> encode() => {
     'oauth2_grant_type': oauth2GrantType.toTfJson(),
     'token_url': tokenUrl.toTfJson(),
-    if (tokenUrlCustomProperties != null)
-      'token_url_custom_properties': tokenUrlCustomProperties!.toTfJson(),
+    'token_url_custom_properties': ?tokenUrlCustomProperties?.toTfJson(),
   };
 }
 
@@ -1215,12 +1208,11 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
 
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (clusterIdentifier != null)
-      'cluster_identifier': clusterIdentifier!.toTfJson(),
-    if (dataApiRoleArn != null) 'data_api_role_arn': dataApiRoleArn!.toTfJson(),
-    if (databaseName != null) 'database_name': databaseName!.toTfJson(),
-    if (databaseUrl != null) 'database_url': databaseUrl!.toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    'cluster_identifier': ?clusterIdentifier?.toTfJson(),
+    'data_api_role_arn': ?dataApiRoleArn?.toTfJson(),
+    'database_name': ?databaseName?.toTfJson(),
+    'database_url': ?databaseUrl?.toTfJson(),
     'role_arn': roleArn.encodeAs('arn').toTfJson(),
   };
 }
@@ -1242,12 +1234,10 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
   final TfArg<bool>? usePrivatelinkForMetadataAndAuthorization;
 
   Map<String, Object?> encode() => {
-    if (instanceUrl != null) 'instance_url': instanceUrl!.toTfJson(),
-    if (isSandboxEnvironment != null)
-      'is_sandbox_environment': isSandboxEnvironment!.toTfJson(),
-    if (usePrivatelinkForMetadataAndAuthorization != null)
-      'use_privatelink_for_metadata_and_authorization':
-          usePrivatelinkForMetadataAndAuthorization!.toTfJson(),
+    'instance_url': ?instanceUrl?.toTfJson(),
+    'is_sandbox_environment': ?isSandboxEnvironment?.toTfJson(),
+    'use_privatelink_for_metadata_and_authorization':
+        ?usePrivatelinkForMetadataAndAuthorization?.toTfJson(),
   };
 }
 
@@ -1284,11 +1274,10 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
     'application_host_url': applicationHostUrl.toTfJson(),
     'application_service_path': applicationServicePath.toTfJson(),
     'client_number': clientNumber.toTfJson(),
-    if (logonLanguage != null) 'logon_language': logonLanguage!.toTfJson(),
+    'logon_language': ?logonLanguage?.toTfJson(),
     'port_number': portNumber.toTfJson(),
-    if (privateLinkServiceName != null)
-      'private_link_service_name': privateLinkServiceName!.toTfJson(),
-    if (oauthProperties != null) 'oauth_properties': oauthProperties!.encode(),
+    'private_link_service_name': ?privateLinkServiceName?.toTfJson(),
+    'oauth_properties': ?oauthProperties?.encode(),
   };
 }
 
@@ -1379,12 +1368,11 @@ final class AppflowConnectorProfileConnectorProfileConfigConnectorProfilePropert
   final TfArg<String> warehouse;
 
   Map<String, Object?> encode() => {
-    if (accountName != null) 'account_name': accountName!.toTfJson(),
+    'account_name': ?accountName?.toTfJson(),
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (privateLinkServiceName != null)
-      'private_link_service_name': privateLinkServiceName!.toTfJson(),
-    if (region != null) 'region': region!.toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    'private_link_service_name': ?privateLinkServiceName?.toTfJson(),
+    'region': ?region?.toTfJson(),
     'stage': stage.toTfJson(),
     'warehouse': warehouse.toTfJson(),
   };
@@ -1447,11 +1435,11 @@ final class AwsAppflowConnectorProfile extends Resource {
          terraformType: tfType,
          argMap: {
            'connection_mode': connectionMode,
-           if (connectorLabel != null) 'connector_label': connectorLabel,
+           'connector_label': ?connectorLabel,
            'connector_type': connectorType,
-           if (kmsArn != null) 'kms_arn': kmsArn.encodeAs('arn'),
+           'kms_arn': ?kmsArn?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'connector_profile_config': TfArg.literal(
              connectorProfileConfig.encode(),
            ),

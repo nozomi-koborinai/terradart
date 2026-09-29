@@ -27,12 +27,12 @@ final class DataCloudflareFilters extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (expression != null) 'expression': expression,
-           if (maxItems != null) 'max_items': maxItems,
-           if (paused != null) 'paused': paused,
-           if (ref != null) 'ref': ref,
-           if (zoneId != null) 'zone_id': zoneId,
+           'description': ?description,
+           'expression': ?expression,
+           'max_items': ?maxItems,
+           'paused': ?paused,
+           'ref': ?ref,
+           'zone_id': ?zoneId,
          },
        );
 

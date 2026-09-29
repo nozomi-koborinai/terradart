@@ -23,7 +23,7 @@ final class DataAwsNetworkmanagerSite extends Data {
          argMap: {
            'global_network_id': globalNetworkId,
            'site_id': siteId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

@@ -112,13 +112,11 @@ final class Wafv2WebAclAssociationConfigRequestBody {
   verifiedAccessInstance;
 
   Map<String, Object?> encode() => {
-    if (apiGateway != null) 'api_gateway': apiGateway!.encode(),
-    if (appRunnerService != null)
-      'app_runner_service': appRunnerService!.encode(),
-    if (cloudfront != null) 'cloudfront': cloudfront!.encode(),
-    if (cognitoUserPool != null) 'cognito_user_pool': cognitoUserPool!.encode(),
-    if (verifiedAccessInstance != null)
-      'verified_access_instance': verifiedAccessInstance!.encode(),
+    'api_gateway': ?apiGateway?.encode(),
+    'app_runner_service': ?appRunnerService?.encode(),
+    'cloudfront': ?cloudfront?.encode(),
+    'cognito_user_pool': ?cognitoUserPool?.encode(),
+    'verified_access_instance': ?verifiedAccessInstance?.encode(),
   };
 }
 
@@ -148,8 +146,7 @@ final class Wafv2WebAclCaptchaConfig {
   final Wafv2WebAclCaptchaConfigImmunityTimeProperty? immunityTimeProperty;
 
   Map<String, Object?> encode() => {
-    if (immunityTimeProperty != null)
-      'immunity_time_property': immunityTimeProperty!.encode(),
+    'immunity_time_property': ?immunityTimeProperty?.encode(),
   };
 }
 
@@ -162,9 +159,7 @@ final class Wafv2WebAclCaptchaConfigImmunityTimeProperty {
 
   final TfArg<num>? immunityTime;
 
-  Map<String, Object?> encode() => {
-    if (immunityTime != null) 'immunity_time': immunityTime!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'immunity_time': ?immunityTime?.toTfJson()};
 }
 
 /// Typed helper for the `custom_response_body` block of
@@ -225,10 +220,8 @@ final class Wafv2WebAclDataProtectionConfigDataProtection {
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    if (excludeRateBasedDetails != null)
-      'exclude_rate_based_details': excludeRateBasedDetails!.toTfJson(),
-    if (excludeRuleMatchDetails != null)
-      'exclude_rule_match_details': excludeRuleMatchDetails!.toTfJson(),
+    'exclude_rate_based_details': ?excludeRateBasedDetails?.toTfJson(),
+    'exclude_rule_match_details': ?excludeRuleMatchDetails?.toTfJson(),
     'field': field.encode(),
   };
 }
@@ -261,7 +254,7 @@ final class Wafv2WebAclDataProtectionConfigDataProtectionField {
   fieldType;
 
   Map<String, Object?> encode() => {
-    if (fieldKeys != null) 'field_keys': fieldKeys!.toTfJson(),
+    'field_keys': ?fieldKeys?.toTfJson(),
     'field_type': fieldType.toTfJson(),
   };
 }
@@ -293,8 +286,8 @@ final class Wafv2WebAclDefaultAction {
   final Wafv2WebAclDefaultActionBlock? block;
 
   Map<String, Object?> encode() => {
-    if (allow != null) 'allow': allow!.encode(),
-    if (block != null) 'block': block!.encode(),
+    'allow': ?allow?.encode(),
+    'block': ?block?.encode(),
   };
 }
 
@@ -308,8 +301,7 @@ final class Wafv2WebAclDefaultActionAllow {
   customRequestHandling;
 
   Map<String, Object?> encode() => {
-    if (customRequestHandling != null)
-      'custom_request_handling': customRequestHandling!.encode(),
+    'custom_request_handling': ?customRequestHandling?.encode(),
   };
 }
 
@@ -358,7 +350,7 @@ final class Wafv2WebAclDefaultActionBlock {
   final Wafv2WebAclDefaultActionBlockCustomResponse? customResponse;
 
   Map<String, Object?> encode() => {
-    if (customResponse != null) 'custom_response': customResponse!.encode(),
+    'custom_response': ?customResponse?.encode(),
   };
 }
 
@@ -380,8 +372,7 @@ final class Wafv2WebAclDefaultActionBlockCustomResponse {
   responseHeader;
 
   Map<String, Object?> encode() => {
-    if (customResponseBodyKey != null)
-      'custom_response_body_key': customResponseBodyKey!.toTfJson(),
+    'custom_response_body_key': ?customResponseBodyKey?.toTfJson(),
     'response_code': responseCode.toTfJson(),
     if (responseHeader != null)
       'response_header': [for (final e in responseHeader!) e.encode()],
@@ -439,13 +430,13 @@ final class AwsWafv2WebAcl extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (ruleJson != null) 'rule_json': ruleJson,
+           'region': ?region,
+           'rule_json': ?ruleJson,
            'scope': scope,
-           if (tags != null) 'tags': tags,
-           if (tokenDomains != null) 'token_domains': tokenDomains,
+           'tags': ?tags,
+           'token_domains': ?tokenDomains,
            if (associationConfig != null)
              'association_config': TfArg.literal(associationConfig.encode()),
            if (captchaConfig != null)
@@ -461,7 +452,7 @@ final class AwsWafv2WebAcl extends Resource {
                dataProtectionConfig.encode(),
              ),
            'default_action': TfArg.literal(defaultAction.encode()),
-           if (rule != null) 'rule': rule,
+           'rule': ?rule,
            'visibility_config': TfArg.literal(visibilityConfig.encode()),
          },
        );

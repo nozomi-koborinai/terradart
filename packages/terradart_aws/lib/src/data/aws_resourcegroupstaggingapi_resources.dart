@@ -22,7 +22,7 @@ final class DataResourcegroupstaggingapiResourcesTagFilter {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -43,14 +43,11 @@ final class DataAwsResourcegroupstaggingapiResources extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (excludeCompliantResources != null)
-             'exclude_compliant_resources': excludeCompliantResources,
-           if (includeComplianceDetails != null)
-             'include_compliance_details': includeComplianceDetails,
-           if (region != null) 'region': region,
-           if (resourceArnList != null) 'resource_arn_list': resourceArnList,
-           if (resourceTypeFilters != null)
-             'resource_type_filters': resourceTypeFilters,
+           'exclude_compliant_resources': ?excludeCompliantResources,
+           'include_compliance_details': ?includeComplianceDetails,
+           'region': ?region,
+           'resource_arn_list': ?resourceArnList,
+           'resource_type_filters': ?resourceTypeFilters,
            if (tagFilter != null)
              'tag_filter': TfArg.literal([
                for (final e in tagFilter) e.encode(),

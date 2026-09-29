@@ -137,7 +137,7 @@ final class GoogleDataLineageConfig extends Resource {
            'parent': parent,
            'location': location,
            'ingestion': TfArg.literal(ingestion.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

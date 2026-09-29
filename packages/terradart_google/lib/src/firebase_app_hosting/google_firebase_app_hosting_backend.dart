@@ -131,11 +131,11 @@ final class GoogleFirebaseAppHostingBackend extends Resource {
            'serving_locality': servingLocality,
            if (codebase != null)
              'codebase': TfArg.literal([codebase.toArgMap()]),
-           if (environment != null) 'environment': environment,
-           if (displayName != null) 'display_name': displayName,
-           if (annotations != null) 'annotations': annotations,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'environment': ?environment,
+           'display_name': ?displayName,
+           'annotations': ?annotations,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

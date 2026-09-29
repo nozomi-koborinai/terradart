@@ -33,13 +33,13 @@ final class GoogleClouddeployDeliveryPipeline extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           if (serialPipeline != null) 'serial_pipeline': serialPipeline,
-           if (description != null) 'description': description,
-           if (suspended != null) 'suspended': suspended,
-           if (annotations != null) 'annotations': annotations,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'serial_pipeline': ?serialPipeline,
+           'description': ?description,
+           'suspended': ?suspended,
+           'annotations': ?annotations,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

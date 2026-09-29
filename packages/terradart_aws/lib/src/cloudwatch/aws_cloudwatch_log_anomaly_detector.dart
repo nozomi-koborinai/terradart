@@ -44,17 +44,15 @@ final class AwsCloudwatchLogAnomalyDetector extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (anomalyVisibilityTime != null)
-             'anomaly_visibility_time': anomalyVisibilityTime,
-           if (detectorName != null) 'detector_name': detectorName,
+           'anomaly_visibility_time': ?anomalyVisibilityTime,
+           'detector_name': ?detectorName,
            'enabled': enabled,
-           if (evaluationFrequency != null)
-             'evaluation_frequency': evaluationFrequency,
-           if (filterPattern != null) 'filter_pattern': filterPattern,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'evaluation_frequency': ?evaluationFrequency,
+           'filter_pattern': ?filterPattern,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'log_group_arn_list': logGroupArnList,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

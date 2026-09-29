@@ -66,18 +66,18 @@ final class AwsRedshiftEventSubscription extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enabled != null) 'enabled': enabled,
+           'enabled': ?enabled,
            if (eventCategories != null)
              'event_categories': TfArg.literal([
                for (final e in eventCategories) e.toTfJson(),
              ]),
            'name': name,
-           if (region != null) 'region': region,
-           if (severity != null) 'severity': severity,
+           'region': ?region,
+           'severity': ?severity,
            'sns_topic_arn': snsTopicArn.encodeAs('arn'),
-           if (sourceIds != null) 'source_ids': sourceIds,
-           if (sourceType != null) 'source_type': sourceType,
-           if (tags != null) 'tags': tags,
+           'source_ids': ?sourceIds,
+           'source_type': ?sourceType,
+           'tags': ?tags,
          },
        );
 

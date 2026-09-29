@@ -29,8 +29,8 @@ final class CloudflareCallsSfuApp extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (appId != null) 'app_id': appId,
-           if (name != null) 'name': name,
+           'app_id': ?appId,
+           'name': ?name,
          },
        );
 

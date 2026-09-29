@@ -71,11 +71,11 @@ final class GoogleStorageTransferAgentPool extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (displayName != null) 'display_name': displayName,
+           'display_name': ?displayName,
            if (bandwidthLimit != null)
              'bandwidth_limit': TfArg.literal(bandwidthLimit.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

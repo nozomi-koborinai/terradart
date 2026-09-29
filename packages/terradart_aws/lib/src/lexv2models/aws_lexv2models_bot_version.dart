@@ -25,10 +25,10 @@ final class AwsLexv2modelsBotVersion extends Resource {
          terraformType: tfType,
          argMap: {
            'bot_id': botId,
-           if (botVersion != null) 'bot_version': botVersion,
-           if (description != null) 'description': description,
+           'bot_version': ?botVersion,
+           'description': ?description,
            'locale_specification': localeSpecification,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

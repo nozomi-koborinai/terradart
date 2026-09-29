@@ -21,10 +21,7 @@ final class DataGoogleMonitoringAppEngineService extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'module_id': moduleId,
-           if (project != null) 'project': project,
-         },
+         argMap: {'module_id': moduleId, 'project': ?project},
        );
 
   @override

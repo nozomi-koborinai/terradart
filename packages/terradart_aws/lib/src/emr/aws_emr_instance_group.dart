@@ -27,11 +27,10 @@ final class EmrInstanceGroupEbsConfig {
   final TfArg<num>? volumesPerInstance;
 
   Map<String, Object?> encode() => {
-    if (iops != null) 'iops': iops!.toTfJson(),
+    'iops': ?iops?.toTfJson(),
     'size': size.toTfJson(),
     'type': type.toTfJson(),
-    if (volumesPerInstance != null)
-      'volumes_per_instance': volumesPerInstance!.toTfJson(),
+    'volumes_per_instance': ?volumesPerInstance?.toTfJson(),
   };
 }
 
@@ -58,17 +57,15 @@ final class AwsEmrInstanceGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (autoscalingPolicy != null)
-             'autoscaling_policy': autoscalingPolicy,
-           if (bidPrice != null) 'bid_price': bidPrice,
+           'autoscaling_policy': ?autoscalingPolicy,
+           'bid_price': ?bidPrice,
            'cluster_id': clusterId,
-           if (configurationsJson != null)
-             'configurations_json': configurationsJson,
-           if (ebsOptimized != null) 'ebs_optimized': ebsOptimized,
-           if (instanceCount != null) 'instance_count': instanceCount,
+           'configurations_json': ?configurationsJson,
+           'ebs_optimized': ?ebsOptimized,
+           'instance_count': ?instanceCount,
            'instance_type': instanceType,
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
+           'name': ?name,
+           'region': ?region,
            if (ebsConfig != null)
              'ebs_config': TfArg.literal([
                for (final e in ebsConfig) e.encode(),

@@ -67,14 +67,14 @@ final class TokenValidationConfigCredentialsKeys {
 
   Map<String, Object?> encode() => {
     'alg': alg.toTfJson(),
-    if (crv != null) 'crv': crv!.toTfJson(),
-    if (e != null) 'e': e!.toTfJson(),
-    if (k != null) 'k': k!.toTfJson(),
+    'crv': ?crv?.toTfJson(),
+    'e': ?e?.toTfJson(),
+    'k': ?k?.toTfJson(),
     'kid': kid.toTfJson(),
     'kty': kty.toTfJson(),
-    if (n != null) 'n': n!.toTfJson(),
-    if (x != null) 'x': x!.toTfJson(),
-    if (y != null) 'y': y!.toTfJson(),
+    'n': ?n?.toTfJson(),
+    'x': ?x?.toTfJson(),
+    'y': ?y?.toTfJson(),
   };
 }
 

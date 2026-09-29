@@ -26,7 +26,7 @@ final class DataGoogleOracleDatabaseOdbNetwork extends Data {
          argMap: {
            'location': location,
            'odb_network_id': odbNetworkId,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

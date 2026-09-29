@@ -15,9 +15,7 @@ final class ChimesdkvoiceGlobalSettingsVoiceConnector {
 
   final TfArg<String>? cdrBucket;
 
-  Map<String, Object?> encode() => {
-    if (cdrBucket != null) 'cdr_bucket': cdrBucket!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'cdr_bucket': ?cdrBucket?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_chimesdkvoice_global_settings`.

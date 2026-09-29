@@ -25,8 +25,8 @@ final class DataCloudflareMagicTransitConnectors extends Data {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
-           if (deviceType != null) 'device_type': deviceType,
-           if (maxItems != null) 'max_items': maxItems,
+           'device_type': ?deviceType,
+           'max_items': ?maxItems,
          },
        );
 

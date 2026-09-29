@@ -41,11 +41,9 @@ final class VmwareengineClusterAutoscalingSettings {
   autoscalingPolicies;
 
   Map<String, Object?> encode() => {
-    if (coolDownPeriod != null) 'cool_down_period': coolDownPeriod!.toTfJson(),
-    if (maxClusterNodeCount != null)
-      'max_cluster_node_count': maxClusterNodeCount!.toTfJson(),
-    if (minClusterNodeCount != null)
-      'min_cluster_node_count': minClusterNodeCount!.toTfJson(),
+    'cool_down_period': ?coolDownPeriod?.toTfJson(),
+    'max_cluster_node_count': ?maxClusterNodeCount?.toTfJson(),
+    'min_cluster_node_count': ?minClusterNodeCount?.toTfJson(),
     'autoscaling_policies': [for (final e in autoscalingPolicies) e.encode()],
   };
 }
@@ -82,11 +80,9 @@ final class VmwareengineClusterAutoscalingSettingsAutoscalingPolicies {
     'autoscale_policy_id': autoscalePolicyId.toTfJson(),
     'node_type_id': nodeTypeId.toTfJson(),
     'scale_out_size': scaleOutSize.toTfJson(),
-    if (consumedMemoryThresholds != null)
-      'consumed_memory_thresholds': consumedMemoryThresholds!.encode(),
-    if (cpuThresholds != null) 'cpu_thresholds': cpuThresholds!.encode(),
-    if (storageThresholds != null)
-      'storage_thresholds': storageThresholds!.encode(),
+    'consumed_memory_thresholds': ?consumedMemoryThresholds?.encode(),
+    'cpu_thresholds': ?cpuThresholds?.encode(),
+    'storage_thresholds': ?storageThresholds?.encode(),
   };
 }
 
@@ -171,11 +167,10 @@ final class VmwareengineClusterDatastoreMountConfig {
   datastoreNetwork;
 
   Map<String, Object?> encode() => {
-    if (accessMode != null) 'access_mode': accessMode!.toTfJson(),
+    'access_mode': ?accessMode?.toTfJson(),
     'datastore': datastore.toTfJson(),
-    if (ignoreColocation != null)
-      'ignore_colocation': ignoreColocation!.toTfJson(),
-    if (nfsVersion != null) 'nfs_version': nfsVersion!.toTfJson(),
+    'ignore_colocation': ?ignoreColocation?.toTfJson(),
+    'nfs_version': ?nfsVersion?.toTfJson(),
     'datastore_network': datastoreNetwork.encode(),
   };
 }
@@ -197,9 +192,8 @@ final class VmwareengineClusterDatastoreMountConfigDatastoreNetwork {
   final TfArg<String> subnet;
 
   Map<String, Object?> encode() => {
-    if (connectionCount != null)
-      'connection_count': connectionCount!.toTfJson(),
-    if (mtu != null) 'mtu': mtu!.toTfJson(),
+    'connection_count': ?connectionCount?.toTfJson(),
+    'mtu': ?mtu?.toTfJson(),
     'subnet': subnet.toTfJson(),
   };
 }
@@ -221,8 +215,7 @@ final class VmwareengineClusterNodeTypeConfigs {
   final TfArg<String> nodeTypeId;
 
   Map<String, Object?> encode() => {
-    if (customCoreCount != null)
-      'custom_core_count': customCoreCount!.toTfJson(),
+    'custom_core_count': ?customCoreCount?.toTfJson(),
     'node_count': nodeCount.toTfJson(),
     'node_type_id': nodeTypeId.toTfJson(),
   };

@@ -55,8 +55,8 @@ final class GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig
            'cloud_exadata_infrastructure': cloudExadataInfrastructure,
            'location': location,
            'total_storage_size_gb': totalStorageSizeGb,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

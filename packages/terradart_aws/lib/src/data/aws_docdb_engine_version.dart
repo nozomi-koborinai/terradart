@@ -22,13 +22,11 @@ final class DataAwsDocdbEngineVersion extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (engine != null) 'engine': engine,
-           if (parameterGroupFamily != null)
-             'parameter_group_family': parameterGroupFamily,
-           if (preferredVersions != null)
-             'preferred_versions': preferredVersions,
-           if (region != null) 'region': region,
-           if (version != null) 'version': version,
+           'engine': ?engine,
+           'parameter_group_family': ?parameterGroupFamily,
+           'preferred_versions': ?preferredVersions,
+           'region': ?region,
+           'version': ?version,
          },
        );
 

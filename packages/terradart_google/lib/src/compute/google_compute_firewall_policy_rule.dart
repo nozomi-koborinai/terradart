@@ -72,26 +72,19 @@ final class ComputeFirewallPolicyRuleMatch {
   final List<ComputeFirewallPolicyRuleMatchSrcSecureTags>? srcSecureTags;
 
   Map<String, Object?> encode() => {
-    if (destAddressGroups != null)
-      'dest_address_groups': destAddressGroups!.toTfJson(),
-    if (destFqdns != null) 'dest_fqdns': destFqdns!.toTfJson(),
-    if (destIpRanges != null) 'dest_ip_ranges': destIpRanges!.toTfJson(),
-    if (destNetworkContext != null)
-      'dest_network_context': destNetworkContext!.toTfJson(),
-    if (destRegionCodes != null)
-      'dest_region_codes': destRegionCodes!.toTfJson(),
-    if (destThreatIntelligences != null)
-      'dest_threat_intelligences': destThreatIntelligences!.toTfJson(),
-    if (srcAddressGroups != null)
-      'src_address_groups': srcAddressGroups!.toTfJson(),
-    if (srcFqdns != null) 'src_fqdns': srcFqdns!.toTfJson(),
-    if (srcIpRanges != null) 'src_ip_ranges': srcIpRanges!.toTfJson(),
-    if (srcNetworkContext != null)
-      'src_network_context': srcNetworkContext!.toTfJson(),
-    if (srcNetworks != null) 'src_networks': srcNetworks!.toTfJson(),
-    if (srcRegionCodes != null) 'src_region_codes': srcRegionCodes!.toTfJson(),
-    if (srcThreatIntelligences != null)
-      'src_threat_intelligences': srcThreatIntelligences!.toTfJson(),
+    'dest_address_groups': ?destAddressGroups?.toTfJson(),
+    'dest_fqdns': ?destFqdns?.toTfJson(),
+    'dest_ip_ranges': ?destIpRanges?.toTfJson(),
+    'dest_network_context': ?destNetworkContext?.toTfJson(),
+    'dest_region_codes': ?destRegionCodes?.toTfJson(),
+    'dest_threat_intelligences': ?destThreatIntelligences?.toTfJson(),
+    'src_address_groups': ?srcAddressGroups?.toTfJson(),
+    'src_fqdns': ?srcFqdns?.toTfJson(),
+    'src_ip_ranges': ?srcIpRanges?.toTfJson(),
+    'src_network_context': ?srcNetworkContext?.toTfJson(),
+    'src_networks': ?srcNetworks?.toTfJson(),
+    'src_region_codes': ?srcRegionCodes?.toTfJson(),
+    'src_threat_intelligences': ?srcThreatIntelligences?.toTfJson(),
     'layer4_configs': [for (final e in layer4Configs) e.encode()],
     if (srcSecureTags != null)
       'src_secure_tags': [for (final e in srcSecureTags!) e.encode()],
@@ -139,7 +132,7 @@ final class ComputeFirewallPolicyRuleMatchLayer4Configs {
 
   Map<String, Object?> encode() => {
     'ip_protocol': ipProtocol.toTfJson(),
-    if (ports != null) 'ports': ports!.toTfJson(),
+    'ports': ?ports?.toTfJson(),
   };
 }
 
@@ -151,7 +144,7 @@ final class ComputeFirewallPolicyRuleMatchSrcSecureTags {
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Typed helper for the `target_secure_tags` block of
@@ -162,7 +155,7 @@ final class ComputeFirewallPolicyRuleTargetSecureTags {
 
   final TfArg<String>? name;
 
-  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+  Map<String, Object?> encode() => {'name': ?name?.toTfJson()};
 }
 
 /// Factory wrapper for `google_compute_firewall_policy_rule`.
@@ -207,20 +200,18 @@ final class GoogleComputeFirewallPolicyRule extends Resource {
            'action': action,
            'direction': direction,
            'match': TfArg.literal(match.encode()),
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
-           if (enableLogging != null) 'enable_logging': enableLogging,
-           if (targetResources != null) 'target_resources': targetResources,
-           if (targetServiceAccounts != null)
-             'target_service_accounts': targetServiceAccounts,
+           'description': ?description,
+           'disabled': ?disabled,
+           'enable_logging': ?enableLogging,
+           'target_resources': ?targetResources,
+           'target_service_accounts': ?targetServiceAccounts,
            if (targetSecureTags != null)
              'target_secure_tags': TfArg.literal([
                for (final e in targetSecureTags) e.encode(),
              ]),
-           if (securityProfileGroup != null)
-             'security_profile_group': securityProfileGroup,
-           if (tlsInspect != null) 'tls_inspect': tlsInspect,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'security_profile_group': ?securityProfileGroup,
+           'tls_inspect': ?tlsInspect,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

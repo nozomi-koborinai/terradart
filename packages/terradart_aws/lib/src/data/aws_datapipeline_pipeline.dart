@@ -20,11 +20,7 @@ final class DataAwsDatapipelinePipeline extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'pipeline_id': pipelineId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'pipeline_id': pipelineId, 'region': ?region, 'tags': ?tags},
        );
 
   @override

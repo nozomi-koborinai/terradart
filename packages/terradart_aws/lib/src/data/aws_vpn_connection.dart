@@ -38,8 +38,8 @@ final class DataAwsVpnConnection extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (vpnConnectionId != null) 'vpn_connection_id': vpnConnectionId,
+           'region': ?region,
+           'vpn_connection_id': ?vpnConnectionId,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

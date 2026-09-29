@@ -23,8 +23,8 @@ final class DataAwsServerlessapplicationrepositoryApplication extends Data {
          terraformType: tfType,
          argMap: {
            'application_id': applicationId,
-           if (region != null) 'region': region,
-           if (semanticVersion != null) 'semantic_version': semanticVersion,
+           'region': ?region,
+           'semantic_version': ?semanticVersion,
          },
        );
 

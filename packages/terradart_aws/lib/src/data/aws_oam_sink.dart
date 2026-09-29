@@ -21,9 +21,9 @@ final class DataAwsOamSink extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'sink_identifier': sinkIdentifier,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

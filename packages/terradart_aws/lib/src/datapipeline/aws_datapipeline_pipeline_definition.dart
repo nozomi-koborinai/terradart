@@ -106,8 +106,8 @@ final class DatapipelinePipelineDefinitionPipelineObjectField {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (refValue != null) 'ref_value': refValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    'ref_value': ?refValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
   };
 }
 
@@ -130,7 +130,7 @@ final class AwsDatapipelinePipelineDefinition extends Resource {
          terraformType: tfType,
          argMap: {
            'pipeline_id': pipelineId,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (parameterObject != null)
              'parameter_object': TfArg.literal([
                for (final e in parameterObject) e.encode(),

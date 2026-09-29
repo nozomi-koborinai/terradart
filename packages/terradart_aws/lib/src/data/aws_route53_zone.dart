@@ -24,13 +24,12 @@ final class DataAwsRoute53Zone extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (enableAcceleratedRecovery != null)
-             'enable_accelerated_recovery': enableAcceleratedRecovery,
-           if (name != null) 'name': name,
-           if (privateZone != null) 'private_zone': privateZone,
-           if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'enable_accelerated_recovery': ?enableAcceleratedRecovery,
+           'name': ?name,
+           'private_zone': ?privateZone,
+           'tags': ?tags,
+           'vpc_id': ?vpcId,
+           'zone_id': ?zoneId,
          },
        );
 

@@ -24,7 +24,7 @@ final class AwsVerifiedaccessInstanceTrustProviderAttachment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'verifiedaccess_instance_id': verifiedaccessInstanceId,
            'verifiedaccess_trust_provider_id': verifiedaccessTrustProviderId,
          },

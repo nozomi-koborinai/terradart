@@ -20,10 +20,7 @@ final class AwsDxConnectionConfirmation extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'connection_id': connectionId,
-           if (region != null) 'region': region,
-         },
+         argMap: {'connection_id': connectionId, 'region': ?region},
        );
 
   @override

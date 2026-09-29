@@ -22,9 +22,8 @@ final class DataAwsS3BucketObjectLockConfiguration extends Data {
          terraformType: tfType,
          argMap: {
            'bucket': bucket,
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (region != null) 'region': region,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'region': ?region,
          },
        );
 

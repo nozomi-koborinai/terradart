@@ -62,11 +62,10 @@ final class GoogleOracleDatabaseOdbSubnet extends Resource {
            'odb_subnet_id': odbSubnetId,
            'cidr_range': cidrRange,
            'purpose': purpose,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

@@ -75,8 +75,8 @@ final class IamRoleInlinePolicy {
   final TfArg<String>? policy;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (policy != null) 'policy': policy!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'policy': ?policy?.toTfJson(),
   };
 }
 
@@ -112,18 +112,14 @@ final class AwsIamRole extends Resource {
          terraformType: tfType,
          argMap: {
            'assume_role_policy': assumeRolePolicy,
-           if (description != null) 'description': description,
-           if (forceDetachPolicies != null)
-             'force_detach_policies': forceDetachPolicies,
-           if (managedPolicyArns != null)
-             'managed_policy_arns': managedPolicyArns,
-           if (maxSessionDuration != null)
-             'max_session_duration': maxSessionDuration,
+           'description': ?description,
+           'force_detach_policies': ?forceDetachPolicies,
+           'managed_policy_arns': ?managedPolicyArns,
+           'max_session_duration': ?maxSessionDuration,
            ...?name?.argMap,
-           if (path != null) 'path': path,
-           if (permissionsBoundary != null)
-             'permissions_boundary': permissionsBoundary,
-           if (tags != null) 'tags': tags,
+           'path': ?path,
+           'permissions_boundary': ?permissionsBoundary,
+           'tags': ?tags,
            if (inlinePolicy != null)
              'inline_policy': TfArg.literal([
                for (final e in inlinePolicy) e.encode(),

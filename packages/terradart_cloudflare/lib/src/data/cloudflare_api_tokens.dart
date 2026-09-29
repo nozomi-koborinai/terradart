@@ -24,9 +24,9 @@ final class DataCloudflareApiTokens extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (direction != null) 'direction': direction,
-           if (includeExpired != null) 'include_expired': includeExpired,
-           if (maxItems != null) 'max_items': maxItems,
+           'direction': ?direction,
+           'include_expired': ?includeExpired,
+           'max_items': ?maxItems,
          },
        );
 

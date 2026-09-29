@@ -29,12 +29,12 @@ final class AwsTransferAgreement extends Resource {
          argMap: {
            'access_role': accessRole,
            'base_directory': baseDirectory,
-           if (description != null) 'description': description,
+           'description': ?description,
            'local_profile_id': localProfileId,
            'partner_profile_id': partnerProfileId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'server_id': serverId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

@@ -29,7 +29,7 @@ final class OsConfigOsPolicyAssignmentInstanceFilter {
   final List<OsConfigOsPolicyAssignmentInstanceFilterInventories>? inventories;
 
   Map<String, Object?> encode() => {
-    if (all != null) 'all': all!.toTfJson(),
+    'all': ?all?.toTfJson(),
     if (exclusionLabels != null)
       'exclusion_labels': [for (final e in exclusionLabels!) e.encode()],
     if (inclusionLabels != null)
@@ -47,9 +47,7 @@ final class OsConfigOsPolicyAssignmentInstanceFilterExclusionLabels {
 
   final TfArg<Map<String, String>>? labels;
 
-  Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'labels': ?labels?.toTfJson()};
 }
 
 /// Typed helper for the `instance_filter.inclusion_labels` block of
@@ -60,9 +58,7 @@ final class OsConfigOsPolicyAssignmentInstanceFilterInclusionLabels {
 
   final TfArg<Map<String, String>>? labels;
 
-  Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'labels': ?labels?.toTfJson()};
 }
 
 /// Typed helper for the `instance_filter.inventories` block of
@@ -80,7 +76,7 @@ final class OsConfigOsPolicyAssignmentInstanceFilterInventories {
 
   Map<String, Object?> encode() => {
     'os_short_name': osShortName.toTfJson(),
-    if (osVersion != null) 'os_version': osVersion!.toTfJson(),
+    'os_version': ?osVersion?.toTfJson(),
   };
 }
 
@@ -107,9 +103,8 @@ final class OsConfigOsPolicyAssignmentOsPolicies {
   final List<OsConfigOsPolicyAssignmentOsPoliciesResourceGroups> resourceGroups;
 
   Map<String, Object?> encode() => {
-    if (allowNoResourceGroupMatch != null)
-      'allow_no_resource_group_match': allowNoResourceGroupMatch!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
+    'allow_no_resource_group_match': ?allowNoResourceGroupMatch?.toTfJson(),
+    'description': ?description?.toTfJson(),
     'id': id.toTfJson(),
     'mode': mode.toTfJson(),
     'resource_groups': [for (final e in resourceGroups) e.encode()],
@@ -165,7 +160,7 @@ final class OsConfigOsPolicyAssignmentOsPoliciesResourceGroupsInventoryFilters {
 
   Map<String, Object?> encode() => {
     'os_short_name': osShortName.toTfJson(),
-    if (osVersion != null) 'os_version': osVersion!.toTfJson(),
+    'os_version': ?osVersion?.toTfJson(),
   };
 }
 
@@ -202,8 +197,8 @@ final class OsConfigOsPolicyAssignmentRolloutDisruptionBudget {
   final TfArg<num>? percent;
 
   Map<String, Object?> encode() => {
-    if (fixed != null) 'fixed': fixed!.toTfJson(),
-    if (percent != null) 'percent': percent!.toTfJson(),
+    'fixed': ?fixed?.toTfJson(),
+    'percent': ?percent?.toTfJson(),
   };
 }
 
@@ -262,10 +257,10 @@ final class GoogleOsConfigOsPolicyAssignment extends Resource {
            ]),
            'instance_filter': TfArg.literal(instanceFilter.encode()),
            'rollout': TfArg.literal(rollout.encode()),
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (skipAwaitRollout != null) 'skip_await_rollout': skipAwaitRollout,
+           'description': ?description,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
+           'skip_await_rollout': ?skipAwaitRollout,
          },
        );
 

@@ -48,8 +48,8 @@ final class GoogleApigeeKeystoresAliasesKeyCertFile extends Resource {
            'environment': environment,
            'keystore': keystore,
            'cert': cert,
-           if (key != null) 'key': key,
-           if (password != null) 'password': password,
+           'key': ?key,
+           'password': ?password,
          },
        );
 

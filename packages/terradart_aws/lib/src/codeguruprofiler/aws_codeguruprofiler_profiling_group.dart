@@ -41,10 +41,10 @@ final class AwsCodeguruprofilerProfilingGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (computePlatform != null) 'compute_platform': computePlatform,
+           'compute_platform': ?computePlatform,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (agentOrchestrationConfig != null)
              'agent_orchestration_config': TfArg.literal([
                for (final e in agentOrchestrationConfig) e.encode(),

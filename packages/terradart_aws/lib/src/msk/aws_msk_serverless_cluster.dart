@@ -59,8 +59,7 @@ final class MskServerlessClusterVpcConfig {
   final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
@@ -84,8 +83,8 @@ final class AwsMskServerlessCluster extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_name': clusterName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'client_authentication': TfArg.literal(
              clientAuthentication.encode(),
            ),

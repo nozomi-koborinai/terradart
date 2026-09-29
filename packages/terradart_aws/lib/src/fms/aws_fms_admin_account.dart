@@ -17,10 +17,7 @@ final class AwsFmsAdminAccount extends Resource {
     super.dependsOn,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {if (accountId != null) 'account_id': accountId},
-       );
+  }) : super(terraformType: tfType, argMap: {'account_id': ?accountId});
 
   @override
   Set<String> get sensitiveFields => _awsFmsAdminAccountSensitive;

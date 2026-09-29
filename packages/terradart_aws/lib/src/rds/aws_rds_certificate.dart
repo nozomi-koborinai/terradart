@@ -22,7 +22,7 @@ final class AwsRdsCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'certificate_identifier': certificateIdentifier,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

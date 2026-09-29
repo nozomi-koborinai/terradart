@@ -21,10 +21,7 @@ final class DataGoogleComputeNodeTypes extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (project != null) 'project': project,
-           if (zone != null) 'zone': zone,
-         },
+         argMap: {'project': ?project, 'zone': ?zone},
        );
 
   @override

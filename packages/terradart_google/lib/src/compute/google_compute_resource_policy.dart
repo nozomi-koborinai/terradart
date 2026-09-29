@@ -298,22 +298,19 @@ final class GoogleComputeResourcePolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (description != null) 'description': description,
+           'region': ?region,
+           'description': ?description,
            if (snapshotSchedulePolicy != null)
              'snapshot_schedule_policy': TfArg.literal(
                snapshotSchedulePolicy.encode(),
              ),
            if (workloadPolicy != null)
              'workload_policy': TfArg.literal(workloadPolicy.encode()),
-           if (groupPlacementPolicy != null)
-             'group_placement_policy': groupPlacementPolicy,
-           if (instanceSchedulePolicy != null)
-             'instance_schedule_policy': instanceSchedulePolicy,
-           if (diskConsistencyGroupPolicy != null)
-             'disk_consistency_group_policy': diskConsistencyGroupPolicy,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'group_placement_policy': ?groupPlacementPolicy,
+           'instance_schedule_policy': ?instanceSchedulePolicy,
+           'disk_consistency_group_policy': ?diskConsistencyGroupPolicy,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

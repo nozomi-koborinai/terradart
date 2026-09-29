@@ -43,8 +43,8 @@ final class ComputeOrganizationSecurityPolicyRuleHeaderActionRequestHeadersToAdd
   final TfArg<String>? headerValue;
 
   Map<String, Object?> encode() => {
-    if (headerName != null) 'header_name': headerName!.toTfJson(),
-    if (headerValue != null) 'header_value': headerValue!.toTfJson(),
+    'header_name': ?headerName?.toTfJson(),
+    'header_value': ?headerValue?.toTfJson(),
   };
 }
 
@@ -68,10 +68,10 @@ final class ComputeOrganizationSecurityPolicyRuleMatch {
   final ComputeOrganizationSecurityPolicyRuleMatchExpr? expr;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (versionedExpr != null) 'versioned_expr': versionedExpr!.toTfJson(),
-    if (config != null) 'config': config!.encode(),
-    if (expr != null) 'expr': expr!.encode(),
+    'description': ?description?.toTfJson(),
+    'versioned_expr': ?versionedExpr?.toTfJson(),
+    'config': ?config?.encode(),
+    'expr': ?expr?.encode(),
   };
 }
 
@@ -83,9 +83,7 @@ final class ComputeOrganizationSecurityPolicyRuleMatchConfig {
 
   final TfArg<List<Object?>>? srcIpRanges;
 
-  Map<String, Object?> encode() => {
-    if (srcIpRanges != null) 'src_ip_ranges': srcIpRanges!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'src_ip_ranges': ?srcIpRanges?.toTfJson()};
 }
 
 /// Typed helper for the `match.expr` block of
@@ -158,7 +156,7 @@ final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion
   requestUri;
 
   Map<String, Object?> encode() => {
-    if (targetRuleIds != null) 'target_rule_ids': targetRuleIds!.toTfJson(),
+    'target_rule_ids': ?targetRuleIds?.toTfJson(),
     'target_rule_set': targetRuleSet.toTfJson(),
     if (requestCookie != null)
       'request_cookie': [for (final e in requestCookie!) e.encode()],
@@ -186,7 +184,7 @@ final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion
 
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -205,7 +203,7 @@ final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion
 
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -224,7 +222,7 @@ final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion
 
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -243,7 +241,7 @@ final class ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion
 
   Map<String, Object?> encode() => {
     'operator': operator.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -261,7 +259,7 @@ final class ComputeOrganizationSecurityPolicyRuleRedirectOptions {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (target != null) 'target': target!.toTfJson(),
+    'target': ?target?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -300,10 +298,10 @@ final class GoogleComputeOrganizationSecurityPolicyRule extends Resource {
          terraformType: tfType,
          argMap: {
            'action': action,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'policy_id': policyId,
-           if (preview != null) 'preview': preview,
+           'preview': ?preview,
            'priority': priority,
            if (headerAction != null)
              'header_action': TfArg.literal(headerAction.encode()),

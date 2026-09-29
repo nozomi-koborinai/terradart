@@ -28,11 +28,11 @@ final class AwsCloudcontrolapiResource extends Resource {
          terraformType: tfType,
          argMap: {
            'desired_state': desiredState,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
-           if (schema != null) 'schema': schema,
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
+           'schema': ?schema,
            'type_name': typeName,
-           if (typeVersionId != null) 'type_version_id': typeVersionId,
+           'type_version_id': ?typeVersionId,
          },
        );
 

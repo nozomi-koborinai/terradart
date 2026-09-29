@@ -19,10 +19,7 @@ final class DataAwsCeCostCategory extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'cost_category_arn': costCategoryArn,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'cost_category_arn': costCategoryArn, 'tags': ?tags},
        );
 
   @override

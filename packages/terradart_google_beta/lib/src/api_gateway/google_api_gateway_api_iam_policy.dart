@@ -27,11 +27,7 @@ final class GoogleApiGatewayApiIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          provider: provider ?? 'google-beta',
-         argMap: {
-           'api': api,
-           'policy_data': policyData,
-           if (project != null) 'project': project,
-         },
+         argMap: {'api': api, 'policy_data': policyData, 'project': ?project},
        );
 
   @override

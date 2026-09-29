@@ -50,8 +50,8 @@ final class GoogleSccEventThreatDetectionCustomModule extends Resource {
          terraformType: tfType,
          argMap: {
            'config': config,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
            'enablement_state': enablementState,
            'organization': organization,
            'type': type,

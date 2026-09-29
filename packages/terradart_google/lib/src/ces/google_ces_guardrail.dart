@@ -24,11 +24,9 @@ final class CesGuardrailAction {
   final CesGuardrailActionTransferAgent? transferAgent;
 
   Map<String, Object?> encode() => {
-    if (generativeAnswer != null)
-      'generative_answer': generativeAnswer!.encode(),
-    if (respondImmediately != null)
-      'respond_immediately': respondImmediately!.encode(),
-    if (transferAgent != null) 'transfer_agent': transferAgent!.encode(),
+    'generative_answer': ?generativeAnswer?.encode(),
+    'respond_immediately': ?respondImmediately?.encode(),
+    'transfer_agent': ?transferAgent?.encode(),
   };
 }
 
@@ -70,7 +68,7 @@ final class CesGuardrailActionRespondImmediatelyResponses {
   final TfArg<String> text;
 
   Map<String, Object?> encode() => {
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
     'text': text.toTfJson(),
   };
 }
@@ -106,14 +104,10 @@ final class CesGuardrailCodeCallback {
   final CesGuardrailCodeCallbackBeforeModelCallback? beforeModelCallback;
 
   Map<String, Object?> encode() => {
-    if (afterAgentCallback != null)
-      'after_agent_callback': afterAgentCallback!.encode(),
-    if (afterModelCallback != null)
-      'after_model_callback': afterModelCallback!.encode(),
-    if (beforeAgentCallback != null)
-      'before_agent_callback': beforeAgentCallback!.encode(),
-    if (beforeModelCallback != null)
-      'before_model_callback': beforeModelCallback!.encode(),
+    'after_agent_callback': ?afterAgentCallback?.encode(),
+    'after_model_callback': ?afterModelCallback?.encode(),
+    'before_agent_callback': ?beforeAgentCallback?.encode(),
+    'before_model_callback': ?beforeModelCallback?.encode(),
   };
 }
 
@@ -137,10 +131,9 @@ final class CesGuardrailCodeCallbackAfterAgentCallback {
   final TfArg<String> pythonCode;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (proactiveExecutionEnabled != null)
-      'proactive_execution_enabled': proactiveExecutionEnabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'proactive_execution_enabled': ?proactiveExecutionEnabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -165,10 +158,9 @@ final class CesGuardrailCodeCallbackAfterModelCallback {
   final TfArg<String> pythonCode;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (proactiveExecutionEnabled != null)
-      'proactive_execution_enabled': proactiveExecutionEnabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'proactive_execution_enabled': ?proactiveExecutionEnabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -193,10 +185,9 @@ final class CesGuardrailCodeCallbackBeforeAgentCallback {
   final TfArg<String> pythonCode;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (proactiveExecutionEnabled != null)
-      'proactive_execution_enabled': proactiveExecutionEnabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'proactive_execution_enabled': ?proactiveExecutionEnabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -221,10 +212,9 @@ final class CesGuardrailCodeCallbackBeforeModelCallback {
   final TfArg<String> pythonCode;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (proactiveExecutionEnabled != null)
-      'proactive_execution_enabled': proactiveExecutionEnabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'proactive_execution_enabled': ?proactiveExecutionEnabled?.toTfJson(),
     'python_code': pythonCode.toTfJson(),
   };
 }
@@ -252,14 +242,11 @@ final class CesGuardrailContentFilter {
   final TfArg<String> matchType;
 
   Map<String, Object?> encode() => {
-    if (bannedContents != null) 'banned_contents': bannedContents!.toTfJson(),
-    if (bannedContentsInAgentResponse != null)
-      'banned_contents_in_agent_response': bannedContentsInAgentResponse!
-          .toTfJson(),
-    if (bannedContentsInUserInput != null)
-      'banned_contents_in_user_input': bannedContentsInUserInput!.toTfJson(),
-    if (disregardDiacritics != null)
-      'disregard_diacritics': disregardDiacritics!.toTfJson(),
+    'banned_contents': ?bannedContents?.toTfJson(),
+    'banned_contents_in_agent_response': ?bannedContentsInAgentResponse
+        ?.toTfJson(),
+    'banned_contents_in_user_input': ?bannedContentsInUserInput?.toTfJson(),
+    'disregard_diacritics': ?disregardDiacritics?.toTfJson(),
     'match_type': matchType.toTfJson(),
   };
 }
@@ -290,14 +277,12 @@ final class CesGuardrailLlmPolicy {
   final CesGuardrailLlmPolicyModelSettings? modelSettings;
 
   Map<String, Object?> encode() => {
-    if (allowShortUtterance != null)
-      'allow_short_utterance': allowShortUtterance!.toTfJson(),
-    if (failOpen != null) 'fail_open': failOpen!.toTfJson(),
-    if (maxConversationMessages != null)
-      'max_conversation_messages': maxConversationMessages!.toTfJson(),
+    'allow_short_utterance': ?allowShortUtterance?.toTfJson(),
+    'fail_open': ?failOpen?.toTfJson(),
+    'max_conversation_messages': ?maxConversationMessages?.toTfJson(),
     'policy_scope': policyScope.toTfJson(),
     'prompt': prompt.toTfJson(),
-    if (modelSettings != null) 'model_settings': modelSettings!.encode(),
+    'model_settings': ?modelSettings?.encode(),
   };
 }
 
@@ -323,8 +308,8 @@ final class CesGuardrailLlmPolicyModelSettings {
   final TfArg<num>? temperature;
 
   Map<String, Object?> encode() => {
-    if (model != null) 'model': model!.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
+    'model': ?model?.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
   };
 }
 
@@ -345,9 +330,9 @@ final class CesGuardrailLlmPromptSecurity {
   final CesGuardrailLlmPromptSecurityDefaultSettings? defaultSettings;
 
   Map<String, Object?> encode() => {
-    if (failOpen != null) 'fail_open': failOpen!.toTfJson(),
-    if (customPolicy != null) 'custom_policy': customPolicy!.encode(),
-    if (defaultSettings != null) 'default_settings': defaultSettings!.encode(),
+    'fail_open': ?failOpen?.toTfJson(),
+    'custom_policy': ?customPolicy?.encode(),
+    'default_settings': ?defaultSettings?.encode(),
   };
 }
 
@@ -377,14 +362,12 @@ final class CesGuardrailLlmPromptSecurityCustomPolicy {
   final CesGuardrailLlmPromptSecurityCustomPolicyModelSettings? modelSettings;
 
   Map<String, Object?> encode() => {
-    if (allowShortUtterance != null)
-      'allow_short_utterance': allowShortUtterance!.toTfJson(),
-    if (failOpen != null) 'fail_open': failOpen!.toTfJson(),
-    if (maxConversationMessages != null)
-      'max_conversation_messages': maxConversationMessages!.toTfJson(),
+    'allow_short_utterance': ?allowShortUtterance?.toTfJson(),
+    'fail_open': ?failOpen?.toTfJson(),
+    'max_conversation_messages': ?maxConversationMessages?.toTfJson(),
     'policy_scope': policyScope.toTfJson(),
     'prompt': prompt.toTfJson(),
-    if (modelSettings != null) 'model_settings': modelSettings!.encode(),
+    'model_settings': ?modelSettings?.encode(),
   };
 }
 
@@ -402,8 +385,8 @@ final class CesGuardrailLlmPromptSecurityCustomPolicyModelSettings {
   final TfArg<num>? temperature;
 
   Map<String, Object?> encode() => {
-    if (model != null) 'model': model!.toTfJson(),
-    if (temperature != null) 'temperature': temperature!.toTfJson(),
+    'model': ?model?.toTfJson(),
+    'temperature': ?temperature?.toTfJson(),
   };
 }
 
@@ -542,8 +525,8 @@ final class GoogleCesGuardrail extends Resource {
            'app': app,
            'guardrail_id': guardrailId,
            'display_name': displayName,
-           if (description != null) 'description': description,
-           if (enabled != null) 'enabled': enabled,
+           'description': ?description,
+           'enabled': ?enabled,
            if (action != null) 'action': TfArg.literal(action.encode()),
            if (contentFilter != null)
              'content_filter': TfArg.literal(contentFilter.encode()),
@@ -555,8 +538,8 @@ final class GoogleCesGuardrail extends Resource {
              'llm_prompt_security': TfArg.literal(llmPromptSecurity.encode()),
            if (codeCallback != null)
              'code_callback': TfArg.literal(codeCallback.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

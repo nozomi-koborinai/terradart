@@ -62,15 +62,14 @@ final class ZeroTrustDevicePostureIntegrationConfig {
   final TfArg<String>? customerId;
 
   Map<String, Object?> encode() => {
-    if (accessClientId != null) 'access_client_id': accessClientId!.toTfJson(),
-    if (accessClientSecret != null)
-      'access_client_secret': accessClientSecret!.toTfJson(),
-    if (apiUrl != null) 'api_url': apiUrl!.toTfJson(),
-    if (authUrl != null) 'auth_url': authUrl!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (clientKey != null) 'client_key': clientKey!.toTfJson(),
-    if (clientSecret != null) 'client_secret': clientSecret!.toTfJson(),
-    if (customerId != null) 'customer_id': customerId!.toTfJson(),
+    'access_client_id': ?accessClientId?.toTfJson(),
+    'access_client_secret': ?accessClientSecret?.toTfJson(),
+    'api_url': ?apiUrl?.toTfJson(),
+    'auth_url': ?authUrl?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'client_key': ?clientKey?.toTfJson(),
+    'client_secret': ?clientSecret?.toTfJson(),
+    'customer_id': ?customerId?.toTfJson(),
   };
 }
 

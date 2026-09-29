@@ -22,9 +22,8 @@ final class CloudsearchDomainEndpointOptions {
   tlsSecurityPolicy;
 
   Map<String, Object?> encode() => {
-    if (enforceHttps != null) 'enforce_https': enforceHttps!.toTfJson(),
-    if (tlsSecurityPolicy != null)
-      'tls_security_policy': tlsSecurityPolicy!.toTfJson(),
+    'enforce_https': ?enforceHttps?.toTfJson(),
+    'tls_security_policy': ?tlsSecurityPolicy?.toTfJson(),
   };
 }
 
@@ -77,15 +76,15 @@ final class CloudsearchDomainIndexField {
   final TfArg<CloudsearchDomainIndexFieldType> type;
 
   Map<String, Object?> encode() => {
-    if (analysisScheme != null) 'analysis_scheme': analysisScheme!.toTfJson(),
-    if (defaultValue != null) 'default_value': defaultValue!.toTfJson(),
-    if (facet != null) 'facet': facet!.toTfJson(),
-    if (highlight != null) 'highlight': highlight!.toTfJson(),
+    'analysis_scheme': ?analysisScheme?.toTfJson(),
+    'default_value': ?defaultValue?.toTfJson(),
+    'facet': ?facet?.toTfJson(),
+    'highlight': ?highlight?.toTfJson(),
     'name': name.toTfJson(),
-    if (returnCase != null) 'return': returnCase!.toTfJson(),
-    if (search != null) 'search': search!.toTfJson(),
-    if (sort != null) 'sort': sort!.toTfJson(),
-    if (sourceFields != null) 'source_fields': sourceFields!.toTfJson(),
+    'return': ?returnCase?.toTfJson(),
+    'search': ?search?.toTfJson(),
+    'sort': ?sort?.toTfJson(),
+    'source_fields': ?sourceFields?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -127,12 +126,9 @@ final class CloudsearchDomainScalingParameters {
   final TfArg<num>? desiredReplicationCount;
 
   Map<String, Object?> encode() => {
-    if (desiredInstanceType != null)
-      'desired_instance_type': desiredInstanceType!.toTfJson(),
-    if (desiredPartitionCount != null)
-      'desired_partition_count': desiredPartitionCount!.toTfJson(),
-    if (desiredReplicationCount != null)
-      'desired_replication_count': desiredReplicationCount!.toTfJson(),
+    'desired_instance_type': ?desiredInstanceType?.toTfJson(),
+    'desired_partition_count': ?desiredPartitionCount?.toTfJson(),
+    'desired_replication_count': ?desiredReplicationCount?.toTfJson(),
   };
 }
 
@@ -183,9 +179,9 @@ final class AwsCloudsearchDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (multiAz != null) 'multi_az': multiAz,
+           'multi_az': ?multiAz,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (endpointOptions != null)
              'endpoint_options': TfArg.literal(endpointOptions.encode()),
            if (indexField != null)

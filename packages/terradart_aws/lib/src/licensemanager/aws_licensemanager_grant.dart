@@ -46,7 +46,7 @@ final class AwsLicensemanagerGrant extends Resource {
            'license_arn': licenseArn,
            'name': name,
            'principal': principal,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

@@ -27,11 +27,11 @@ final class AwsSagemakerNotebookInstanceLifecycleConfiguration
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (onCreate != null) 'on_create': onCreate,
-           if (onStart != null) 'on_start': onStart,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'on_create': ?onCreate,
+           'on_start': ?onStart,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

@@ -58,12 +58,12 @@ final class GoogleNetworkConnectivityMulticloudDataTransferConfig
          argMap: {
            'location': location,
            'name': name,
-           if (description != null) 'description': description,
+           'description': ?description,
            if (services != null)
              'services': TfArg.literal([for (final e in services) e.encode()]),
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'labels': ?labels,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

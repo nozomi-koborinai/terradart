@@ -19,10 +19,7 @@ final class DataCloudflareZeroTrustAccessTag extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'tag_name': tagName,
-         },
+         argMap: {'account_id': ?accountId, 'tag_name': tagName},
        );
 
   @override

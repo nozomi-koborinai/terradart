@@ -42,9 +42,9 @@ final class CloudflareZeroTrustRiskScoringIntegration extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (active != null) 'active': active,
+           'active': ?active,
            'integration_type': integrationType,
-           if (referenceId != null) 'reference_id': referenceId,
+           'reference_id': ?referenceId,
            'tenant_url': tenantUrl,
          },
        );

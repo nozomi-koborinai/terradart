@@ -78,14 +78,10 @@ final class SsmMaintenanceWindowTaskTaskInvocationParameters {
   stepFunctionsParameters;
 
   Map<String, Object?> encode() => {
-    if (automationParameters != null)
-      'automation_parameters': automationParameters!.encode(),
-    if (lambdaParameters != null)
-      'lambda_parameters': lambdaParameters!.encode(),
-    if (runCommandParameters != null)
-      'run_command_parameters': runCommandParameters!.encode(),
-    if (stepFunctionsParameters != null)
-      'step_functions_parameters': stepFunctionsParameters!.encode(),
+    'automation_parameters': ?automationParameters?.encode(),
+    'lambda_parameters': ?lambdaParameters?.encode(),
+    'run_command_parameters': ?runCommandParameters?.encode(),
+    'step_functions_parameters': ?stepFunctionsParameters?.encode(),
   };
 }
 
@@ -106,8 +102,7 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersAutomationParameters
   parameter;
 
   Map<String, Object?> encode() => {
-    if (documentVersion != null)
-      'document_version': documentVersion!.toTfJson(),
+    'document_version': ?documentVersion?.toTfJson(),
     if (parameter != null)
       'parameter': [for (final e in parameter!) e.encode()],
   };
@@ -149,9 +144,9 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersLambdaParameters {
   final TfArg<String>? qualifier;
 
   Map<String, Object?> encode() => {
-    if (clientContext != null) 'client_context': clientContext!.toTfJson(),
-    if (payload != null) 'payload': payload!.toTfJson(),
-    if (qualifier != null) 'qualifier': qualifier!.toTfJson(),
+    'client_context': ?clientContext?.toTfJson(),
+    'payload': ?payload?.toTfJson(),
+    'qualifier': ?qualifier?.toTfJson(),
   };
 }
 
@@ -204,22 +199,16 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
   parameter;
 
   Map<String, Object?> encode() => {
-    if (comment != null) 'comment': comment!.toTfJson(),
-    if (documentHash != null) 'document_hash': documentHash!.toTfJson(),
-    if (documentHashType != null)
-      'document_hash_type': documentHashType!.toTfJson(),
-    if (documentVersion != null)
-      'document_version': documentVersion!.toTfJson(),
-    if (outputS3Bucket != null) 'output_s3_bucket': outputS3Bucket!.toTfJson(),
-    if (outputS3KeyPrefix != null)
-      'output_s3_key_prefix': outputS3KeyPrefix!.toTfJson(),
-    if (serviceRoleArn != null)
-      'service_role_arn': serviceRoleArn!.encodeAs('arn').toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
-    if (cloudwatchConfig != null)
-      'cloudwatch_config': cloudwatchConfig!.encode(),
-    if (notificationConfig != null)
-      'notification_config': notificationConfig!.encode(),
+    'comment': ?comment?.toTfJson(),
+    'document_hash': ?documentHash?.toTfJson(),
+    'document_hash_type': ?documentHashType?.toTfJson(),
+    'document_version': ?documentVersion?.toTfJson(),
+    'output_s3_bucket': ?outputS3Bucket?.toTfJson(),
+    'output_s3_key_prefix': ?outputS3KeyPrefix?.toTfJson(),
+    'service_role_arn': ?serviceRoleArn?.encodeAs('arn').toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
+    'cloudwatch_config': ?cloudwatchConfig?.encode(),
+    'notification_config': ?notificationConfig?.encode(),
     if (parameter != null)
       'parameter': [for (final e in parameter!) e.encode()],
   };
@@ -252,12 +241,10 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
   final TfArg<bool>? cloudwatchOutputEnabled;
 
   Map<String, Object?> encode() => {
-    if (cloudwatchLogGroupName != null)
-      'cloudwatch_log_group_name': cloudwatchLogGroupName!
-          .encodeAs('name')
-          .toTfJson(),
-    if (cloudwatchOutputEnabled != null)
-      'cloudwatch_output_enabled': cloudwatchOutputEnabled!.toTfJson(),
+    'cloudwatch_log_group_name': ?cloudwatchLogGroupName
+        ?.encodeAs('name')
+        .toTfJson(),
+    'cloudwatch_output_enabled': ?cloudwatchOutputEnabled?.toTfJson(),
   };
 }
 
@@ -286,14 +273,12 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersRunCommandParameters
   notificationType;
 
   Map<String, Object?> encode() => {
-    if (notificationArn != null)
-      'notification_arn': notificationArn!.toTfJson(),
+    'notification_arn': ?notificationArn?.toTfJson(),
     if (notificationEvents != null)
       'notification_events': [
         for (final e in notificationEvents!) e.toTfJson(),
       ],
-    if (notificationType != null)
-      'notification_type': notificationType!.toTfJson(),
+    'notification_type': ?notificationType?.toTfJson(),
   };
 }
 
@@ -360,8 +345,8 @@ final class SsmMaintenanceWindowTaskTaskInvocationParametersStepFunctionsParamet
   final TfArg<String>? name;
 
   Map<String, Object?> encode() => {
-    if (input != null) 'input': input!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'input': ?input?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -391,15 +376,14 @@ final class AwsSsmMaintenanceWindowTask extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cutoffBehavior != null) 'cutoff_behavior': cutoffBehavior,
-           if (description != null) 'description': description,
-           if (maxConcurrency != null) 'max_concurrency': maxConcurrency,
-           if (maxErrors != null) 'max_errors': maxErrors,
-           if (name != null) 'name': name,
-           if (priority != null) 'priority': priority,
-           if (region != null) 'region': region,
-           if (serviceRoleArn != null)
-             'service_role_arn': serviceRoleArn.encodeAs('arn'),
+           'cutoff_behavior': ?cutoffBehavior,
+           'description': ?description,
+           'max_concurrency': ?maxConcurrency,
+           'max_errors': ?maxErrors,
+           'name': ?name,
+           'priority': ?priority,
+           'region': ?region,
+           'service_role_arn': ?serviceRoleArn?.encodeAs('arn'),
            'task_arn': taskArn,
            'task_type': taskType,
            'window_id': windowId,

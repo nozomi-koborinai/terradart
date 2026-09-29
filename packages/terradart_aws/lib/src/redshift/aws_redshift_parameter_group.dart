@@ -45,11 +45,11 @@ final class AwsRedshiftParameterGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'family': family,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (parameter != null)
              'parameter': TfArg.literal([
                for (final e in parameter) e.encode(),

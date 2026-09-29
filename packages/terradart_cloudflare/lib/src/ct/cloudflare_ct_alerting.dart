@@ -28,7 +28,7 @@ final class CloudflareCtAlerting extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (emails != null) 'emails': emails,
+           'emails': ?emails,
            'enabled': enabled,
            'zone_id': zoneId.encodeAs('id'),
          },

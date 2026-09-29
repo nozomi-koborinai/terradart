@@ -122,7 +122,7 @@ final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationCod
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
     'prefix': prefix.toTfJson(),
-    if (versionId != null) 'version_id': versionId!.toTfJson(),
+    'version_id': ?versionId?.toTfJson(),
   };
 }
 
@@ -204,10 +204,9 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
   privateEndpointOverrides;
 
   Map<String, Object?> encode() => {
-    if (allowedAudience != null)
-      'allowed_audience': allowedAudience!.toTfJson(),
-    if (allowedClients != null) 'allowed_clients': allowedClients!.toTfJson(),
-    if (allowedScopes != null) 'allowed_scopes': allowedScopes!.toTfJson(),
+    'allowed_audience': ?allowedAudience?.toTfJson(),
+    'allowed_clients': ?allowedClients?.toTfJson(),
+    'allowed_scopes': ?allowedScopes?.toTfJson(),
     'discovery_url': discoveryUrl.toTfJson(),
     if (allowedWorkloadConfiguration != null)
       'allowed_workload_configuration': [
@@ -241,8 +240,7 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
   hostingEnvironment;
 
   Map<String, Object?> encode() => {
-    if (workloadIdentities != null)
-      'workload_identities': workloadIdentities!.toTfJson(),
+    'workload_identities': ?workloadIdentities?.toTfJson(),
     if (hostingEnvironment != null)
       'hosting_environment': [for (final e in hostingEnvironment!) e.encode()],
   };
@@ -360,10 +358,8 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
   final TfArg<List<Object?>>? matchValueStringList;
 
   Map<String, Object?> encode() => {
-    if (matchValueString != null)
-      'match_value_string': matchValueString!.toTfJson(),
-    if (matchValueStringList != null)
-      'match_value_string_list': matchValueStringList!.toTfJson(),
+    'match_value_string': ?matchValueString?.toTfJson(),
+    'match_value_string_list': ?matchValueStringList?.toTfJson(),
   };
 }
 
@@ -426,11 +422,10 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'routing_domain': ?routingDomain?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
 }
@@ -459,9 +454,8 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
   final TfArg<String>? resourceConfigurationIdentifier;
 
   Map<String, Object?> encode() => {
-    if (resourceConfigurationIdentifier != null)
-      'resource_configuration_identifier': resourceConfigurationIdentifier!
-          .toTfJson(),
+    'resource_configuration_identifier': ?resourceConfigurationIdentifier
+        ?.toTfJson(),
   };
 }
 
@@ -547,11 +541,10 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 
   Map<String, Object?> encode() => {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
-    if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'routing_domain': ?routingDomain?.toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
     'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
 }
@@ -580,9 +573,8 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
   final TfArg<String>? resourceConfigurationIdentifier;
 
   Map<String, Object?> encode() => {
-    if (resourceConfigurationIdentifier != null)
-      'resource_configuration_identifier': resourceConfigurationIdentifier!
-          .toTfJson(),
+    'resource_configuration_identifier': ?resourceConfigurationIdentifier
+        ?.toTfJson(),
   };
 }
 
@@ -736,7 +728,7 @@ final class BedrockagentcoreAgentRuntimeProtocolConfiguration {
   serverProtocol;
 
   Map<String, Object?> encode() => {
-    if (serverProtocol != null) 'server_protocol': serverProtocol!.toTfJson(),
+    'server_protocol': ?serverProtocol?.toTfJson(),
   };
 }
 
@@ -766,8 +758,7 @@ final class BedrockagentcoreAgentRuntimeRequestHeaderConfiguration {
   final TfArg<List<Object?>>? requestHeaderAllowlist;
 
   Map<String, Object?> encode() => {
-    if (requestHeaderAllowlist != null)
-      'request_header_allowlist': requestHeaderAllowlist!.toTfJson(),
+    'request_header_allowlist': ?requestHeaderAllowlist?.toTfJson(),
   };
 }
 
@@ -804,14 +795,12 @@ final class AwsBedrockagentcoreAgentRuntime extends Resource {
          terraformType: tfType,
          argMap: {
            'agent_runtime_name': agentRuntimeName,
-           if (description != null) 'description': description,
-           if (environmentVariables != null)
-             'environment_variables': environmentVariables,
-           if (lifecycleConfiguration != null)
-             'lifecycle_configuration': lifecycleConfiguration,
-           if (region != null) 'region': region,
+           'description': ?description,
+           'environment_variables': ?environmentVariables,
+           'lifecycle_configuration': ?lifecycleConfiguration,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (agentRuntimeArtifact != null)
              'agent_runtime_artifact': TfArg.literal([
                for (final e in agentRuntimeArtifact) e.encode(),

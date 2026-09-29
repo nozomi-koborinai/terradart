@@ -44,7 +44,7 @@ final class FlagshipFlagRules {
     'priority': priority.toTfJson(),
     'serve_variation': serveVariation.toTfJson(),
     'conditions': [for (final e in conditions) e.encode()],
-    if (rollout != null) 'rollout': rollout!.encode(),
+    'rollout': ?rollout?.encode(),
   };
 }
 
@@ -71,11 +71,10 @@ final class FlagshipFlagRulesConditions {
   final List<FlagshipFlagRulesConditionsClauses>? clauses;
 
   Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-    if (logicalOperator != null)
-      'logical_operator': logicalOperator!.toTfJson(),
-    if (operator != null) 'operator': operator!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'attribute': ?attribute?.toTfJson(),
+    'logical_operator': ?logicalOperator?.toTfJson(),
+    'operator': ?operator?.toTfJson(),
+    'value': ?value?.toTfJson(),
     if (clauses != null) 'clauses': [for (final e in clauses!) e.encode()],
   };
 }
@@ -133,11 +132,10 @@ final class FlagshipFlagRulesConditionsClauses {
   final List<FlagshipFlagRulesConditionsClausesClauses>? clauses;
 
   Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-    if (logicalOperator != null)
-      'logical_operator': logicalOperator!.toTfJson(),
-    if (operator != null) 'operator': operator!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'attribute': ?attribute?.toTfJson(),
+    'logical_operator': ?logicalOperator?.toTfJson(),
+    'operator': ?operator?.toTfJson(),
+    'value': ?value?.toTfJson(),
     if (clauses != null) 'clauses': [for (final e in clauses!) e.encode()],
   };
 }
@@ -196,11 +194,10 @@ final class FlagshipFlagRulesConditionsClausesClauses {
   final List<FlagshipFlagRulesConditionsClausesClausesClauses>? clauses;
 
   Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-    if (logicalOperator != null)
-      'logical_operator': logicalOperator!.toTfJson(),
-    if (operator != null) 'operator': operator!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'attribute': ?attribute?.toTfJson(),
+    'logical_operator': ?logicalOperator?.toTfJson(),
+    'operator': ?operator?.toTfJson(),
+    'value': ?value?.toTfJson(),
     if (clauses != null) 'clauses': [for (final e in clauses!) e.encode()],
   };
 }
@@ -263,11 +260,10 @@ final class FlagshipFlagRulesConditionsClausesClausesClauses {
   final List<FlagshipFlagRulesConditionsClausesClausesClausesClauses>? clauses;
 
   Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-    if (logicalOperator != null)
-      'logical_operator': logicalOperator!.toTfJson(),
-    if (operator != null) 'operator': operator!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'attribute': ?attribute?.toTfJson(),
+    'logical_operator': ?logicalOperator?.toTfJson(),
+    'operator': ?operator?.toTfJson(),
+    'value': ?value?.toTfJson(),
     if (clauses != null) 'clauses': [for (final e in clauses!) e.encode()],
   };
 }
@@ -335,11 +331,10 @@ final class FlagshipFlagRulesConditionsClausesClausesClausesClauses {
   clauses;
 
   Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-    if (logicalOperator != null)
-      'logical_operator': logicalOperator!.toTfJson(),
-    if (operator != null) 'operator': operator!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'attribute': ?attribute?.toTfJson(),
+    'logical_operator': ?logicalOperator?.toTfJson(),
+    'operator': ?operator?.toTfJson(),
+    'value': ?value?.toTfJson(),
     if (clauses != null) 'clauses': [for (final e in clauses!) e.encode()],
   };
 }
@@ -408,12 +403,11 @@ final class FlagshipFlagRulesConditionsClausesClausesClausesClausesClauses {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
-    if (clauses != null) 'clauses': clauses!.toTfJson(),
-    if (logicalOperator != null)
-      'logical_operator': logicalOperator!.toTfJson(),
-    if (operator != null) 'operator': operator!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'attribute': ?attribute?.toTfJson(),
+    'clauses': ?clauses?.toTfJson(),
+    'logical_operator': ?logicalOperator?.toTfJson(),
+    'operator': ?operator?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -463,7 +457,7 @@ final class FlagshipFlagRulesRollout {
   final TfArg<num> percentage;
 
   Map<String, Object?> encode() => {
-    if (attribute != null) 'attribute': attribute!.toTfJson(),
+    'attribute': ?attribute?.toTfJson(),
     'percentage': percentage.toTfJson(),
   };
 }
@@ -497,10 +491,10 @@ final class CloudflareFlagshipFlag extends Resource {
            'account_id': accountId.encodeAs('id'),
            'app_id': appId,
            'default_variation': defaultVariation,
-           if (description != null) 'description': description,
+           'description': ?description,
            'enabled': enabled,
            'key': key,
-           if (type != null) 'type': type,
+           'type': ?type,
            'variations': variations,
            'rules': TfArg.literal([for (final e in rules) e.encode()]),
          },

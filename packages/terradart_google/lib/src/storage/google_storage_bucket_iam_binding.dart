@@ -34,7 +34,7 @@ final class GoogleStorageBucketIamBinding extends Resource {
            'bucket': bucket.encodeAs('name'),
            'role': role,
            'members': members,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

@@ -39,10 +39,10 @@ final class GoogleMonitoringCustomService extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (serviceId != null) 'service_id': serviceId,
-           if (displayName != null) 'display_name': displayName,
-           if (userLabels != null) 'user_labels': userLabels,
-           if (project != null) 'project': project,
+           'service_id': ?serviceId,
+           'display_name': ?displayName,
+           'user_labels': ?userLabels,
+           'project': ?project,
          },
        );
 

@@ -31,7 +31,7 @@ final class CloudflareZeroTrustDlpDataTag extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'category_id': categoryId,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
          },
        );

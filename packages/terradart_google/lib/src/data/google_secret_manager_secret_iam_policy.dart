@@ -22,10 +22,7 @@ final class DataGoogleSecretManagerSecretIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (project != null) 'project': project,
-           'secret_id': secretId,
-         },
+         argMap: {'project': ?project, 'secret_id': secretId},
        );
 
   @override

@@ -23,9 +23,9 @@ final class AwsVerifiedpermissionsPolicyTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'policy_store_id': policyStoreId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'statement': statement,
          },
        );

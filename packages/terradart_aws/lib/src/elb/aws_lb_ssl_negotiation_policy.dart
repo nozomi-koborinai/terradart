@@ -48,8 +48,8 @@ final class AwsLbSslNegotiationPolicy extends Resource {
            'lb_port': lbPort,
            'load_balancer': loadBalancer,
            'name': name,
-           if (region != null) 'region': region,
-           if (triggers != null) 'triggers': triggers,
+           'region': ?region,
+           'triggers': ?triggers,
            if (attribute != null)
              'attribute': TfArg.literal([
                for (final e in attribute) e.encode(),

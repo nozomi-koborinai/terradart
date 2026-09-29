@@ -25,7 +25,7 @@ final class AwsCodecommitApprovalRuleTemplateAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'approval_rule_template_name': approvalRuleTemplateName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'repository_name': repositoryName,
          },
        );

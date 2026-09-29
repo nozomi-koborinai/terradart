@@ -25,11 +25,10 @@ final class AwsRedshiftClusterSnapshot extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_identifier': clusterIdentifier,
-           if (manualSnapshotRetentionPeriod != null)
-             'manual_snapshot_retention_period': manualSnapshotRetentionPeriod,
-           if (region != null) 'region': region,
+           'manual_snapshot_retention_period': ?manualSnapshotRetentionPeriod,
+           'region': ?region,
            'snapshot_identifier': snapshotIdentifier,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

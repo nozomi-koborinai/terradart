@@ -48,21 +48,15 @@ final class GoogleSecureSourceManagerBranchRule extends Resource {
            'location': location,
            'repository_id': repositoryId,
            'include_pattern': includePattern,
-           if (disabled != null) 'disabled': disabled,
-           if (requirePullRequest != null)
-             'require_pull_request': requirePullRequest,
-           if (minimumReviewsCount != null)
-             'minimum_reviews_count': minimumReviewsCount,
-           if (minimumApprovalsCount != null)
-             'minimum_approvals_count': minimumApprovalsCount,
-           if (requireCommentsResolved != null)
-             'require_comments_resolved': requireCommentsResolved,
-           if (requireLinearHistory != null)
-             'require_linear_history': requireLinearHistory,
-           if (allowStaleReviews != null)
-             'allow_stale_reviews': allowStaleReviews,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'disabled': ?disabled,
+           'require_pull_request': ?requirePullRequest,
+           'minimum_reviews_count': ?minimumReviewsCount,
+           'minimum_approvals_count': ?minimumApprovalsCount,
+           'require_comments_resolved': ?requireCommentsResolved,
+           'require_linear_history': ?requireLinearHistory,
+           'allow_stale_reviews': ?allowStaleReviews,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

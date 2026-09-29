@@ -24,7 +24,7 @@ final class AwsEc2TransitGatewayDefaultRouteTableAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'transit_gateway_id': transitGatewayId,
            'transit_gateway_route_table_id': transitGatewayRouteTableId,
          },

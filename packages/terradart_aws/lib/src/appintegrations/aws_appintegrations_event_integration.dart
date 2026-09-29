@@ -37,11 +37,11 @@ final class AwsAppintegrationsEventIntegration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'eventbridge_bus': eventbridgeBus,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'event_filter': TfArg.literal(eventFilter.encode()),
          },
        );

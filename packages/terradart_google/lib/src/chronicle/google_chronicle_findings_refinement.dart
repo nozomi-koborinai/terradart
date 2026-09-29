@@ -68,14 +68,14 @@ final class GoogleChronicleFindingsRefinement extends Resource {
          argMap: {
            'location': location,
            'instance': instance,
-           if (type != null) 'type': type,
-           if (displayName != null) 'display_name': displayName,
-           if (query != null) 'query': query,
+           'type': ?type,
+           'display_name': ?displayName,
+           'query': ?query,
            if (outcomeFilters != null)
              'outcome_filters': TfArg.literal([
                for (final e in outcomeFilters) e.encode(),
              ]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -22,9 +22,9 @@ final class DataAwsWafv2WebAcl extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
-           if (resourceArn != null) 'resource_arn': resourceArn,
+           'name': ?name,
+           'region': ?region,
+           'resource_arn': ?resourceArn,
            'scope': scope,
          },
        );

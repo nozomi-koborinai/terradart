@@ -70,9 +70,9 @@ final class AiGatewayDlp {
   final List<AiGatewayDlpPolicies>? policies;
 
   Map<String, Object?> encode() => {
-    if (action != null) 'action': action!.toTfJson(),
+    'action': ?action?.toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (profiles != null) 'profiles': profiles!.toTfJson(),
+    'profiles': ?profiles?.toTfJson(),
     if (policies != null) 'policies': [for (final e in policies!) e.encode()],
   };
 }
@@ -204,20 +204,20 @@ final class AiGatewayGuardrailsPrompt {
   final TfArg<AiGatewayGuardrailsPromptS9>? s9;
 
   Map<String, Object?> encode() => {
-    if (p1 != null) 'p1': p1!.toTfJson(),
-    if (s1 != null) 's1': s1!.toTfJson(),
-    if (s10 != null) 's10': s10!.toTfJson(),
-    if (s11 != null) 's11': s11!.toTfJson(),
-    if (s12 != null) 's12': s12!.toTfJson(),
-    if (s13 != null) 's13': s13!.toTfJson(),
-    if (s2 != null) 's2': s2!.toTfJson(),
-    if (s3 != null) 's3': s3!.toTfJson(),
-    if (s4 != null) 's4': s4!.toTfJson(),
-    if (s5 != null) 's5': s5!.toTfJson(),
-    if (s6 != null) 's6': s6!.toTfJson(),
-    if (s7 != null) 's7': s7!.toTfJson(),
-    if (s8 != null) 's8': s8!.toTfJson(),
-    if (s9 != null) 's9': s9!.toTfJson(),
+    'p1': ?p1?.toTfJson(),
+    's1': ?s1?.toTfJson(),
+    's10': ?s10?.toTfJson(),
+    's11': ?s11?.toTfJson(),
+    's12': ?s12?.toTfJson(),
+    's13': ?s13?.toTfJson(),
+    's2': ?s2?.toTfJson(),
+    's3': ?s3?.toTfJson(),
+    's4': ?s4?.toTfJson(),
+    's5': ?s5?.toTfJson(),
+    's6': ?s6?.toTfJson(),
+    's7': ?s7?.toTfJson(),
+    's8': ?s8?.toTfJson(),
+    's9': ?s9?.toTfJson(),
   };
 }
 
@@ -411,20 +411,20 @@ final class AiGatewayGuardrailsResponse {
   final TfArg<AiGatewayGuardrailsResponseS9>? s9;
 
   Map<String, Object?> encode() => {
-    if (p1 != null) 'p1': p1!.toTfJson(),
-    if (s1 != null) 's1': s1!.toTfJson(),
-    if (s10 != null) 's10': s10!.toTfJson(),
-    if (s11 != null) 's11': s11!.toTfJson(),
-    if (s12 != null) 's12': s12!.toTfJson(),
-    if (s13 != null) 's13': s13!.toTfJson(),
-    if (s2 != null) 's2': s2!.toTfJson(),
-    if (s3 != null) 's3': s3!.toTfJson(),
-    if (s4 != null) 's4': s4!.toTfJson(),
-    if (s5 != null) 's5': s5!.toTfJson(),
-    if (s6 != null) 's6': s6!.toTfJson(),
-    if (s7 != null) 's7': s7!.toTfJson(),
-    if (s8 != null) 's8': s8!.toTfJson(),
-    if (s9 != null) 's9': s9!.toTfJson(),
+    'p1': ?p1?.toTfJson(),
+    's1': ?s1?.toTfJson(),
+    's10': ?s10?.toTfJson(),
+    's11': ?s11?.toTfJson(),
+    's12': ?s12?.toTfJson(),
+    's13': ?s13?.toTfJson(),
+    's2': ?s2?.toTfJson(),
+    's3': ?s3?.toTfJson(),
+    's4': ?s4?.toTfJson(),
+    's5': ?s5?.toTfJson(),
+    's6': ?s6?.toTfJson(),
+    's7': ?s7?.toTfJson(),
+    's8': ?s8?.toTfJson(),
+    's9': ?s9?.toTfJson(),
   };
 }
 
@@ -588,8 +588,8 @@ final class AiGatewayOtel {
   final TfArg<String> url;
 
   Map<String, Object?> encode() => {
-    if (authorization != null) 'authorization': authorization!.toTfJson(),
-    if (contentType != null) 'content_type': contentType!.toTfJson(),
+    'authorization': ?authorization?.toTfJson(),
+    'content_type': ?contentType?.toTfJson(),
     'headers': headers.toTfJson(),
     'url': url.toTfJson(),
   };
@@ -616,7 +616,7 @@ final class AiGatewaySpendLimits {
   final List<AiGatewaySpendLimitsRules>? rules;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     if (rules != null) 'rules': [for (final e in rules!) e.encode()],
   };
 }
@@ -656,17 +656,16 @@ final class AiGatewaySpendLimitsRules {
   final AiGatewaySpendLimitsRulesModel? model;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'id': ?id?.toTfJson(),
     'limit': limit.toTfJson(),
     'limit_type': limitType.toTfJson(),
-    if (technique != null) 'technique': technique!.toTfJson(),
+    'technique': ?technique?.toTfJson(),
     'window': window.toTfJson(),
-    if (aiGatewayProvider != null)
-      'ai_gateway_provider': aiGatewayProvider!.encode(),
+    'ai_gateway_provider': ?aiGatewayProvider?.encode(),
     if (metadata != null)
       'metadata': {for (final e in metadata!.entries) e.key: e.value.encode()},
-    if (model != null) 'model': model!.encode(),
+    'model': ?model?.encode(),
   };
 }
 
@@ -729,7 +728,7 @@ final class AiGatewaySpendLimitsRulesMetadata {
 
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -845,30 +844,26 @@ final class CloudflareAiGateway extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (authentication != null) 'authentication': authentication,
-           if (byokOnly != null) 'byok_only': byokOnly,
+           'authentication': ?authentication,
+           'byok_only': ?byokOnly,
            'cache_invalidate_on_update': cacheInvalidateOnUpdate,
            'cache_ttl': cacheTtl,
            'collect_logs': collectLogs,
            'id': id,
-           if (logClassification != null)
-             'log_classification': logClassification,
-           if (logManagement != null) 'log_management': logManagement,
-           if (logManagementStrategy != null)
-             'log_management_strategy': logManagementStrategy,
-           if (logpush != null) 'logpush': logpush,
-           if (logpushPublicKey != null) 'logpush_public_key': logpushPublicKey,
+           'log_classification': ?logClassification,
+           'log_management': ?logManagement,
+           'log_management_strategy': ?logManagementStrategy,
+           'logpush': ?logpush,
+           'logpush_public_key': ?logpushPublicKey,
            'rate_limiting_interval': rateLimitingInterval,
            'rate_limiting_limit': rateLimitingLimit,
-           if (rateLimitingTechnique != null)
-             'rate_limiting_technique': rateLimitingTechnique,
-           if (retryBackoff != null) 'retry_backoff': retryBackoff,
-           if (retryDelay != null) 'retry_delay': retryDelay,
-           if (retryMaxAttempts != null) 'retry_max_attempts': retryMaxAttempts,
-           if (storeId != null) 'store_id': storeId,
-           if (workersAiBillingMode != null)
-             'workers_ai_billing_mode': workersAiBillingMode,
-           if (zdr != null) 'zdr': zdr,
+           'rate_limiting_technique': ?rateLimitingTechnique,
+           'retry_backoff': ?retryBackoff,
+           'retry_delay': ?retryDelay,
+           'retry_max_attempts': ?retryMaxAttempts,
+           'store_id': ?storeId,
+           'workers_ai_billing_mode': ?workersAiBillingMode,
+           'zdr': ?zdr,
            if (dlp != null) 'dlp': TfArg.literal(dlp.encode()),
            if (guardrails != null)
              'guardrails': TfArg.literal(guardrails.encode()),

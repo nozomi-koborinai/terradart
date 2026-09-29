@@ -143,28 +143,26 @@ final class AwsGrafanaWorkspace extends Resource {
            'authentication_providers': TfArg.literal([
              for (final e in authenticationProviders) e.toTfJson(),
            ]),
-           if (configuration != null) 'configuration': configuration,
+           'configuration': ?configuration,
            if (dataSources != null)
              'data_sources': TfArg.literal([
                for (final e in dataSources) e.toTfJson(),
              ]),
-           if (description != null) 'description': description,
-           if (grafanaVersion != null) 'grafana_version': grafanaVersion,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (name != null) 'name': name,
+           'description': ?description,
+           'grafana_version': ?grafanaVersion,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'name': ?name,
            if (notificationDestinations != null)
              'notification_destinations': TfArg.literal([
                for (final e in notificationDestinations) e.toTfJson(),
              ]),
-           if (organizationRoleName != null)
-             'organization_role_name': organizationRoleName,
-           if (organizationalUnits != null)
-             'organizational_units': organizationalUnits,
+           'organization_role_name': ?organizationRoleName,
+           'organizational_units': ?organizationalUnits,
            'permission_type': permissionType,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
-           if (stackSetName != null) 'stack_set_name': stackSetName,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
+           'stack_set_name': ?stackSetName,
+           'tags': ?tags,
            if (networkAccessControl != null)
              'network_access_control': TfArg.literal(
                networkAccessControl.encode(),

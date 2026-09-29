@@ -18,7 +18,7 @@ final class FirebaserulesRulesetSource {
   final List<FirebaserulesRulesetSourceFiles> files;
 
   Map<String, Object?> encode() => {
-    if (language != null) 'language': language!.toTfJson(),
+    'language': ?language?.toTfJson(),
     'files': [for (final e in files) e.encode()],
   };
 }
@@ -52,7 +52,7 @@ final class FirebaserulesRulesetSourceFiles {
 
   Map<String, Object?> encode() => {
     'content': content.toTfJson(),
-    if (fingerprint != null) 'fingerprint': fingerprint!.toTfJson(),
+    'fingerprint': ?fingerprint?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -106,8 +106,8 @@ final class GoogleFirebaserulesRuleset extends Resource {
          terraformType: tfType,
          argMap: {
            'source': TfArg.literal(source.encode()),
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

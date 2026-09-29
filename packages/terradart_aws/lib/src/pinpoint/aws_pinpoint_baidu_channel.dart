@@ -29,8 +29,8 @@ final class AwsPinpointBaiduChannel extends Resource {
          argMap: {
            'api_key': apiKey,
            'application_id': applicationId,
-           if (enabled != null) 'enabled': enabled,
-           if (region != null) 'region': region,
+           'enabled': ?enabled,
+           'region': ?region,
            'secret_key': secretKey,
          },
        );

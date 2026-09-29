@@ -23,7 +23,7 @@ final class AwsMskScramSecretAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_arn': clusterArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'secret_arn_list': secretArnList,
          },
        );

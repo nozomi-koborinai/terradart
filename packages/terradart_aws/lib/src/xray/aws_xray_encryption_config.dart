@@ -34,8 +34,8 @@ final class AwsXrayEncryptionConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (keyId != null) 'key_id': keyId.encodeAs('arn'),
-           if (region != null) 'region': region,
+           'key_id': ?keyId?.encodeAs('arn'),
+           'region': ?region,
            'type': type,
          },
        );

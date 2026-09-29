@@ -22,8 +22,8 @@ final class DataAwsOamLink extends Data {
          terraformType: tfType,
          argMap: {
            'link_identifier': linkIdentifier,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

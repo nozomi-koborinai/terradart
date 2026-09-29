@@ -23,7 +23,7 @@ final class DataAwsLambdaAlias extends Data {
          argMap: {
            'function_name': functionName,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

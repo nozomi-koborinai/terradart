@@ -98,7 +98,7 @@ final class GoogleComputeSnapshotSettings extends Resource {
          terraformType: tfType,
          argMap: {
            'storage_location': TfArg.literal(storageLocation.encode()),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -24,10 +24,9 @@ final class AwsRedshiftClusterIamRoles extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_identifier': clusterIdentifier,
-           if (defaultIamRoleArn != null)
-             'default_iam_role_arn': defaultIamRoleArn,
-           if (iamRoleArns != null) 'iam_role_arns': iamRoleArns,
-           if (region != null) 'region': region,
+           'default_iam_role_arn': ?defaultIamRoleArn,
+           'iam_role_arns': ?iamRoleArns,
+           'region': ?region,
          },
        );
 

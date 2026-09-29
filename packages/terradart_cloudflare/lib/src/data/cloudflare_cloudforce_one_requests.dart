@@ -33,18 +33,18 @@ final class DataCloudflareCloudforceOneRequests extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (completedAfter != null) 'completed_after': completedAfter,
-           if (completedBefore != null) 'completed_before': completedBefore,
-           if (createdAfter != null) 'created_after': createdAfter,
-           if (createdBefore != null) 'created_before': createdBefore,
-           if (maxItems != null) 'max_items': maxItems,
+           'account_id': ?accountId,
+           'completed_after': ?completedAfter,
+           'completed_before': ?completedBefore,
+           'created_after': ?createdAfter,
+           'created_before': ?createdBefore,
+           'max_items': ?maxItems,
            'page': page,
            'per_page': perPage,
-           if (requestType != null) 'request_type': requestType,
-           if (sortBy != null) 'sort_by': sortBy,
-           if (sortOrder != null) 'sort_order': sortOrder,
-           if (status != null) 'status': status,
+           'request_type': ?requestType,
+           'sort_by': ?sortBy,
+           'sort_order': ?sortOrder,
+           'status': ?status,
          },
        );
 

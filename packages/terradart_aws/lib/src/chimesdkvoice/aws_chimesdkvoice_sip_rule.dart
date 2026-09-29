@@ -59,9 +59,9 @@ final class AwsChimesdkvoiceSipRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (disabled != null) 'disabled': disabled,
+           'disabled': ?disabled,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'trigger_type': triggerType,
            'trigger_value': triggerValue,
            'target_applications': TfArg.literal([

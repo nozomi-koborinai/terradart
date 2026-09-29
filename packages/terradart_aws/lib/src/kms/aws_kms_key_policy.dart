@@ -25,12 +25,11 @@ final class AwsKmsKeyPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bypassPolicyLockoutSafetyCheck != null)
-             'bypass_policy_lockout_safety_check':
-                 bypassPolicyLockoutSafetyCheck,
+           'bypass_policy_lockout_safety_check':
+               ?bypassPolicyLockoutSafetyCheck,
            'key_id': keyId.encodeAs('key_id'),
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

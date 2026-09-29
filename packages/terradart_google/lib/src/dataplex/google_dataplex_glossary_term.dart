@@ -30,14 +30,14 @@ final class GoogleDataplexGlossaryTerm extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (termId != null) 'term_id': termId,
-           if (glossaryId != null) 'glossary_id': glossaryId,
+           'term_id': ?termId,
+           'glossary_id': ?glossaryId,
            'parent': parent,
            'location': location,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

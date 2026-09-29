@@ -28,7 +28,7 @@ final class DataGoogleBiglakeHiveTableIamPolicy extends Data {
            'catalog': catalog,
            'database': database,
            'name': name,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -77,12 +77,12 @@ final class AwsAcmpcaCertificate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (apiPassthrough != null) 'api_passthrough': apiPassthrough,
+           'api_passthrough': ?apiPassthrough,
            'certificate_authority_arn': certificateAuthorityArn,
            'certificate_signing_request': certificateSigningRequest,
-           if (region != null) 'region': region,
+           'region': ?region,
            'signing_algorithm': signingAlgorithm,
-           if (templateArn != null) 'template_arn': templateArn,
+           'template_arn': ?templateArn,
            'validity': TfArg.literal(validity.encode()),
          },
        );

@@ -49,15 +49,13 @@ final class VpclatticeTargetGroupConfig {
   final VpclatticeTargetGroupConfigHealthCheck? healthCheck;
 
   Map<String, Object?> encode() => {
-    if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
-    if (lambdaEventStructureVersion != null)
-      'lambda_event_structure_version': lambdaEventStructureVersion!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (protocolVersion != null)
-      'protocol_version': protocolVersion!.toTfJson(),
-    if (vpcIdentifier != null) 'vpc_identifier': vpcIdentifier!.toTfJson(),
-    if (healthCheck != null) 'health_check': healthCheck!.encode(),
+    'ip_address_type': ?ipAddressType?.toTfJson(),
+    'lambda_event_structure_version': ?lambdaEventStructureVersion?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
+    'protocol_version': ?protocolVersion?.toTfJson(),
+    'vpc_identifier': ?vpcIdentifier?.toTfJson(),
+    'health_check': ?healthCheck?.encode(),
   };
 }
 
@@ -145,21 +143,16 @@ final class VpclatticeTargetGroupConfigHealthCheck {
   final VpclatticeTargetGroupConfigHealthCheckMatcher? matcher;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (healthCheckIntervalSeconds != null)
-      'health_check_interval_seconds': healthCheckIntervalSeconds!.toTfJson(),
-    if (healthCheckTimeoutSeconds != null)
-      'health_check_timeout_seconds': healthCheckTimeoutSeconds!.toTfJson(),
-    if (healthyThresholdCount != null)
-      'healthy_threshold_count': healthyThresholdCount!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (protocolVersion != null)
-      'protocol_version': protocolVersion!.toTfJson(),
-    if (unhealthyThresholdCount != null)
-      'unhealthy_threshold_count': unhealthyThresholdCount!.toTfJson(),
-    if (matcher != null) 'matcher': matcher!.encode(),
+    'enabled': ?enabled?.toTfJson(),
+    'health_check_interval_seconds': ?healthCheckIntervalSeconds?.toTfJson(),
+    'health_check_timeout_seconds': ?healthCheckTimeoutSeconds?.toTfJson(),
+    'healthy_threshold_count': ?healthyThresholdCount?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'protocol': ?protocol?.toTfJson(),
+    'protocol_version': ?protocolVersion?.toTfJson(),
+    'unhealthy_threshold_count': ?unhealthyThresholdCount?.toTfJson(),
+    'matcher': ?matcher?.encode(),
   };
 }
 
@@ -195,9 +188,7 @@ final class VpclatticeTargetGroupConfigHealthCheckMatcher {
 
   final TfArg<String>? value;
 
-  Map<String, Object?> encode() => {
-    if (value != null) 'value': value!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'value': ?value?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_vpclattice_target_group`.
@@ -219,8 +210,8 @@ final class AwsVpclatticeTargetGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'type': type,
            if (config != null) 'config': TfArg.literal(config.encode()),
          },

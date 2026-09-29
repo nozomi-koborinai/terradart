@@ -26,16 +26,14 @@ final class DataAwsDbSnapshot extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dbInstanceIdentifier != null)
-             'db_instance_identifier': dbInstanceIdentifier,
-           if (dbSnapshotIdentifier != null)
-             'db_snapshot_identifier': dbSnapshotIdentifier,
-           if (includePublic != null) 'include_public': includePublic,
-           if (includeShared != null) 'include_shared': includeShared,
-           if (mostRecent != null) 'most_recent': mostRecent,
-           if (region != null) 'region': region,
-           if (snapshotType != null) 'snapshot_type': snapshotType,
-           if (tags != null) 'tags': tags,
+           'db_instance_identifier': ?dbInstanceIdentifier,
+           'db_snapshot_identifier': ?dbSnapshotIdentifier,
+           'include_public': ?includePublic,
+           'include_shared': ?includeShared,
+           'most_recent': ?mostRecent,
+           'region': ?region,
+           'snapshot_type': ?snapshotType,
+           'tags': ?tags,
          },
        );
 

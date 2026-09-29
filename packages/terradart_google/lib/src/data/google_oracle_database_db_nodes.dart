@@ -25,7 +25,7 @@ final class DataGoogleOracleDatabaseDbNodes extends Data {
          argMap: {
            'cloud_vm_cluster': cloudVmCluster,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

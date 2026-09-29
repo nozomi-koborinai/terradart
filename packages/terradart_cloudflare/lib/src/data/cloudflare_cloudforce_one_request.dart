@@ -46,17 +46,16 @@ final class DataCloudforceOneRequestFilter {
   final TfArg<DataCloudforceOneRequestFilterStatus>? status;
 
   Map<String, Object?> encode() => {
-    if (completedAfter != null) 'completed_after': completedAfter!.toTfJson(),
-    if (completedBefore != null)
-      'completed_before': completedBefore!.toTfJson(),
-    if (createdAfter != null) 'created_after': createdAfter!.toTfJson(),
-    if (createdBefore != null) 'created_before': createdBefore!.toTfJson(),
+    'completed_after': ?completedAfter?.toTfJson(),
+    'completed_before': ?completedBefore?.toTfJson(),
+    'created_after': ?createdAfter?.toTfJson(),
+    'created_before': ?createdBefore?.toTfJson(),
     'page': page.toTfJson(),
     'per_page': perPage.toTfJson(),
-    if (requestType != null) 'request_type': requestType!.toTfJson(),
-    if (sortBy != null) 'sort_by': sortBy!.toTfJson(),
-    if (sortOrder != null) 'sort_order': sortOrder!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'request_type': ?requestType?.toTfJson(),
+    'sort_by': ?sortBy?.toTfJson(),
+    'sort_order': ?sortOrder?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -102,8 +101,8 @@ final class DataCloudflareCloudforceOneRequest extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (requestId != null) 'request_id': requestId,
+           'account_id': ?accountId,
+           'request_id': ?requestId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

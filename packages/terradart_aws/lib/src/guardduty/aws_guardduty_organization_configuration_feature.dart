@@ -115,7 +115,7 @@ final class AwsGuarddutyOrganizationConfigurationFeature extends Resource {
            'auto_enable': autoEnable,
            'detector_id': detectorId,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (additionalConfiguration != null)
              'additional_configuration': TfArg.literal([
                for (final e in additionalConfiguration) e.encode(),

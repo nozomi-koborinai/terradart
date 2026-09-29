@@ -24,7 +24,7 @@ final class SagemakerDeviceFleetOutputConfig {
   final TfArg<String> s3OutputLocation;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
     's3_output_location': s3OutputLocation.toTfJson(),
   };
 }
@@ -49,13 +49,12 @@ final class AwsSagemakerDeviceFleet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'device_fleet_name': deviceFleetName,
-           if (enableIotRoleAlias != null)
-             'enable_iot_role_alias': enableIotRoleAlias,
-           if (region != null) 'region': region,
+           'enable_iot_role_alias': ?enableIotRoleAlias,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'output_config': TfArg.literal(outputConfig.encode()),
          },
        );

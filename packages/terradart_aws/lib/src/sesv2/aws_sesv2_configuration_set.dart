@@ -24,11 +24,9 @@ final class Sesv2ConfigurationSetDeliveryOptions {
   final TfArg<Sesv2ConfigurationSetDeliveryOptionsTlsPolicy>? tlsPolicy;
 
   Map<String, Object?> encode() => {
-    if (maxDeliverySeconds != null)
-      'max_delivery_seconds': maxDeliverySeconds!.toTfJson(),
-    if (sendingPoolName != null)
-      'sending_pool_name': sendingPoolName!.toTfJson(),
-    if (tlsPolicy != null) 'tls_policy': tlsPolicy!.toTfJson(),
+    'max_delivery_seconds': ?maxDeliverySeconds?.toTfJson(),
+    'sending_pool_name': ?sendingPoolName?.toTfJson(),
+    'tls_policy': ?tlsPolicy?.toTfJson(),
   };
 }
 
@@ -51,8 +49,7 @@ final class Sesv2ConfigurationSetReputationOptions {
   final TfArg<bool>? reputationMetricsEnabled;
 
   Map<String, Object?> encode() => {
-    if (reputationMetricsEnabled != null)
-      'reputation_metrics_enabled': reputationMetricsEnabled!.toTfJson(),
+    'reputation_metrics_enabled': ?reputationMetricsEnabled?.toTfJson(),
   };
 }
 
@@ -65,7 +62,7 @@ final class Sesv2ConfigurationSetSendingOptions {
   final TfArg<bool>? sendingEnabled;
 
   Map<String, Object?> encode() => {
-    if (sendingEnabled != null) 'sending_enabled': sendingEnabled!.toTfJson(),
+    'sending_enabled': ?sendingEnabled?.toTfJson(),
   };
 }
 
@@ -112,7 +109,7 @@ final class Sesv2ConfigurationSetTrackingOptions {
 
   Map<String, Object?> encode() => {
     'custom_redirect_domain': customRedirectDomain.toTfJson(),
-    if (httpsPolicy != null) 'https_policy': httpsPolicy!.toTfJson(),
+    'https_policy': ?httpsPolicy?.toTfJson(),
   };
 }
 
@@ -141,9 +138,8 @@ final class Sesv2ConfigurationSetVdmOptions {
   final Sesv2ConfigurationSetVdmOptionsGuardianOptions? guardianOptions;
 
   Map<String, Object?> encode() => {
-    if (dashboardOptions != null)
-      'dashboard_options': dashboardOptions!.encode(),
-    if (guardianOptions != null) 'guardian_options': guardianOptions!.encode(),
+    'dashboard_options': ?dashboardOptions?.encode(),
+    'guardian_options': ?guardianOptions?.encode(),
   };
 }
 
@@ -159,8 +155,7 @@ final class Sesv2ConfigurationSetVdmOptionsDashboardOptions {
   engagementMetrics;
 
   Map<String, Object?> encode() => {
-    if (engagementMetrics != null)
-      'engagement_metrics': engagementMetrics!.toTfJson(),
+    'engagement_metrics': ?engagementMetrics?.toTfJson(),
   };
 }
 
@@ -191,8 +186,7 @@ final class Sesv2ConfigurationSetVdmOptionsGuardianOptions {
   optimizedSharedDelivery;
 
   Map<String, Object?> encode() => {
-    if (optimizedSharedDelivery != null)
-      'optimized_shared_delivery': optimizedSharedDelivery!.toTfJson(),
+    'optimized_shared_delivery': ?optimizedSharedDelivery?.toTfJson(),
   };
 }
 
@@ -232,8 +226,8 @@ final class AwsSesv2ConfigurationSet extends Resource {
          terraformType: tfType,
          argMap: {
            'configuration_set_name': configurationSetName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (deliveryOptions != null)
              'delivery_options': TfArg.literal(deliveryOptions.encode()),
            if (reputationOptions != null)

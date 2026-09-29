@@ -366,10 +366,10 @@ final class GoogleBigqueryDatasetAccess extends Resource {
          terraformType: tfType,
          argMap: {
            'dataset_id': datasetId.encodeAs('dataset_id'),
-           if (role != null) 'role': role,
+           'role': ?role,
            ...grantee.argMap,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

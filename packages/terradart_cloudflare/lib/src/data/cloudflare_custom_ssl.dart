@@ -19,8 +19,8 @@ final class DataCustomSslFilter {
   final TfArg<DataCustomSslFilterStatus>? status;
 
   Map<String, Object?> encode() => {
-    if (match != null) 'match': match!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
+    'match': ?match?.toTfJson(),
+    'status': ?status?.toTfJson(),
   };
 }
 
@@ -66,9 +66,8 @@ final class DataCloudflareCustomSsl extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customCertificateId != null)
-             'custom_certificate_id': customCertificateId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'custom_certificate_id': ?customCertificateId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

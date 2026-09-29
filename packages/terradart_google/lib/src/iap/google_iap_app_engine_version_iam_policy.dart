@@ -33,7 +33,7 @@ final class GoogleIapAppEngineVersionIamPolicy extends Resource {
            'service': service,
            'version_id': versionId,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -38,10 +38,10 @@ final class AwsQuicksightRoleMembership extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'member_name': memberName,
-           if (namespace != null) 'namespace': namespace,
-           if (region != null) 'region': region,
+           'namespace': ?namespace,
+           'region': ?region,
            'role': role,
          },
        );

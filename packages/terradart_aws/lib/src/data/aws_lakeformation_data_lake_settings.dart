@@ -19,10 +19,7 @@ final class DataAwsLakeformationDataLakeSettings extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (catalogId != null) 'catalog_id': catalogId,
-           if (region != null) 'region': region,
-         },
+         argMap: {'catalog_id': ?catalogId, 'region': ?region},
        );
 
   @override

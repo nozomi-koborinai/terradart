@@ -32,7 +32,7 @@ final class CloudflareSecretsStoreSecret extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (comment != null) 'comment': comment,
+           'comment': ?comment,
            'name': name,
            'scopes': scopes,
            'store_id': storeId,

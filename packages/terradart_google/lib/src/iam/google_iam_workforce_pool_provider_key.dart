@@ -60,7 +60,7 @@ final class GoogleIamWorkforcePoolProviderKey extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'key_id': keyId,
            'location': location,
            'provider_id': providerId,

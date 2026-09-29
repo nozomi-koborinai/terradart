@@ -161,25 +161,21 @@ final class AwsFsxOpenzfsVolume extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (copyTagsToSnapshots != null)
-             'copy_tags_to_snapshots': copyTagsToSnapshots,
-           if (dataCompressionType != null)
-             'data_compression_type': dataCompressionType,
+           'copy_tags_to_snapshots': ?copyTagsToSnapshots,
+           'data_compression_type': ?dataCompressionType,
            if (deleteVolumeOptions != null)
              'delete_volume_options': TfArg.literal([
                for (final e in deleteVolumeOptions) e.toTfJson(),
              ]),
            'name': name,
            'parent_volume_id': parentVolumeId,
-           if (readOnly != null) 'read_only': readOnly,
-           if (recordSizeKib != null) 'record_size_kib': recordSizeKib,
-           if (region != null) 'region': region,
-           if (storageCapacityQuotaGib != null)
-             'storage_capacity_quota_gib': storageCapacityQuotaGib,
-           if (storageCapacityReservationGib != null)
-             'storage_capacity_reservation_gib': storageCapacityReservationGib,
-           if (tags != null) 'tags': tags,
-           if (volumeType != null) 'volume_type': volumeType,
+           'read_only': ?readOnly,
+           'record_size_kib': ?recordSizeKib,
+           'region': ?region,
+           'storage_capacity_quota_gib': ?storageCapacityQuotaGib,
+           'storage_capacity_reservation_gib': ?storageCapacityReservationGib,
+           'tags': ?tags,
+           'volume_type': ?volumeType,
            if (nfsExports != null)
              'nfs_exports': TfArg.literal(nfsExports.encode()),
            if (originSnapshot != null)

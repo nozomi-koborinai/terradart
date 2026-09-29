@@ -97,9 +97,7 @@ final class AccessanalyzerAnalyzerConfigurationInternalAccess {
   final AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRule?
   analysisRule;
 
-  Map<String, Object?> encode() => {
-    if (analysisRule != null) 'analysis_rule': analysisRule!.encode(),
-  };
+  Map<String, Object?> encode() => {'analysis_rule': ?analysisRule?.encode()};
 }
 
 /// Typed helper for the `configuration.internal_access.analysis_rule` block of
@@ -143,8 +141,8 @@ final class AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusi
   resourceTypes;
 
   Map<String, Object?> encode() => {
-    if (accountIds != null) 'account_ids': accountIds!.toTfJson(),
-    if (resourceArns != null) 'resource_arns': resourceArns!.toTfJson(),
+    'account_ids': ?accountIds?.toTfJson(),
+    'resource_arns': ?resourceArns?.toTfJson(),
     if (resourceTypes != null)
       'resource_types': [for (final e in resourceTypes!) e.toTfJson()],
   };
@@ -193,9 +191,8 @@ final class AccessanalyzerAnalyzerConfigurationUnusedAccess {
   analysisRule;
 
   Map<String, Object?> encode() => {
-    if (unusedAccessAge != null)
-      'unused_access_age': unusedAccessAge!.toTfJson(),
-    if (analysisRule != null) 'analysis_rule': analysisRule!.encode(),
+    'unused_access_age': ?unusedAccessAge?.toTfJson(),
+    'analysis_rule': ?analysisRule?.encode(),
   };
 }
 
@@ -232,8 +229,8 @@ final class AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRuleExclusion
   final TfArg<List<Object?>>? resourceTags;
 
   Map<String, Object?> encode() => {
-    if (accountIds != null) 'account_ids': accountIds!.toTfJson(),
-    if (resourceTags != null) 'resource_tags': resourceTags!.toTfJson(),
+    'account_ids': ?accountIds?.toTfJson(),
+    'resource_tags': ?resourceTags?.toTfJson(),
   };
 }
 
@@ -256,9 +253,9 @@ final class AwsAccessanalyzerAnalyzer extends Resource {
          terraformType: tfType,
          argMap: {
            'analyzer_name': analyzerName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (type != null) 'type': type,
+           'region': ?region,
+           'tags': ?tags,
+           'type': ?type,
            if (configuration != null)
              'configuration': TfArg.literal(configuration.encode()),
          },

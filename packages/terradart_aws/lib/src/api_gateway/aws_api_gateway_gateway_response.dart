@@ -25,14 +25,12 @@ final class AwsApiGatewayGatewayResponse extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (responseParameters != null)
-             'response_parameters': responseParameters,
-           if (responseTemplates != null)
-             'response_templates': responseTemplates,
+           'region': ?region,
+           'response_parameters': ?responseParameters,
+           'response_templates': ?responseTemplates,
            'response_type': responseType,
            'rest_api_id': restApiId,
-           if (statusCode != null) 'status_code': statusCode,
+           'status_code': ?statusCode,
          },
        );
 

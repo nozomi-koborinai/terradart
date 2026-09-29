@@ -34,10 +34,10 @@ final class AppwritePostgresqlBranch extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (branchId != null) 'branch_id': branchId,
+           'branch_id': ?branchId,
            'database_id': databaseId,
-           if (projectId != null) 'project_id': projectId,
-           if (ttl != null) 'ttl': ttl,
+           'project_id': ?projectId,
+           'ttl': ?ttl,
          },
        );
 

@@ -24,7 +24,7 @@ final class AwsStoragegatewayCache extends Resource {
          argMap: {
            'disk_id': diskId,
            'gateway_arn': gatewayArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

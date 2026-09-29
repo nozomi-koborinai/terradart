@@ -24,9 +24,9 @@ final class AwsLakeformationIdentityCenterConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (catalogId != null) 'catalog_id': catalogId,
+           'catalog_id': ?catalogId,
            'instance_arn': instanceArn,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

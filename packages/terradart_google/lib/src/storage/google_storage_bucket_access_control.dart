@@ -72,8 +72,8 @@ final class GoogleStorageBucketAccessControl extends Resource {
          argMap: {
            'bucket': bucket.encodeAs('name'),
            'entity': entity,
-           if (role != null) 'role': role,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'role': ?role,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

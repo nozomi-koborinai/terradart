@@ -25,8 +25,8 @@ final class AppwriteMessagingTopic extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (projectId != null) 'project_id': projectId,
-           if (subscribe != null) 'subscribe': subscribe,
+           'project_id': ?projectId,
+           'subscribe': ?subscribe,
          },
        );
 

@@ -60,11 +60,11 @@ final class AwsBedrockagentcorePolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
            'policy_engine_id': policyEngineId,
-           if (region != null) 'region': region,
-           if (validationMode != null) 'validation_mode': validationMode,
+           'region': ?region,
+           'validation_mode': ?validationMode,
            if (definition != null)
              'definition': TfArg.literal([
                for (final e in definition) e.encode(),

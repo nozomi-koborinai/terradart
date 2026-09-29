@@ -115,7 +115,7 @@ final class AwsEcrReplicationConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (replicationConfiguration != null)
              'replication_configuration': TfArg.literal(
                replicationConfiguration.encode(),

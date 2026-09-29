@@ -20,9 +20,9 @@ final class DataAwsNetworkmanagerConnections extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deviceId != null) 'device_id': deviceId,
+           'device_id': ?deviceId,
            'global_network_id': globalNetworkId,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

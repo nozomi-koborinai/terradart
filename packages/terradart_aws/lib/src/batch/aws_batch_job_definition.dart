@@ -192,18 +192,16 @@ final class BatchJobDefinitionEksPropertiesPodProperties {
   final List<BatchJobDefinitionEksPropertiesPodPropertiesVolumes>? volumes;
 
   Map<String, Object?> encode() => {
-    if (dnsPolicy != null) 'dns_policy': dnsPolicy!.toTfJson(),
-    if (hostNetwork != null) 'host_network': hostNetwork!.toTfJson(),
-    if (serviceAccountName != null)
-      'service_account_name': serviceAccountName!.toTfJson(),
-    if (shareProcessNamespace != null)
-      'share_process_namespace': shareProcessNamespace!.toTfJson(),
+    'dns_policy': ?dnsPolicy?.toTfJson(),
+    'host_network': ?hostNetwork?.toTfJson(),
+    'service_account_name': ?serviceAccountName?.toTfJson(),
+    'share_process_namespace': ?shareProcessNamespace?.toTfJson(),
     'containers': [for (final e in containers) e.encode()],
     if (imagePullSecret != null)
       'image_pull_secret': [for (final e in imagePullSecret!) e.encode()],
     if (initContainers != null)
       'init_containers': [for (final e in initContainers!) e.encode()],
-    if (metadata != null) 'metadata': metadata!.encode(),
+    'metadata': ?metadata?.encode(),
     if (volumes != null) 'volumes': [for (final e in volumes!) e.encode()],
   };
 }
@@ -265,15 +263,14 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesContainers {
   volumeMounts;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
-    if (command != null) 'command': command!.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'command': ?command?.toTfJson(),
     'image': image.toTfJson(),
-    if (imagePullPolicy != null)
-      'image_pull_policy': imagePullPolicy!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'image_pull_policy': ?imagePullPolicy?.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (env != null) 'env': [for (final e in env!) e.encode()],
-    if (resources != null) 'resources': resources!.encode(),
-    if (securityContext != null) 'security_context': securityContext!.encode(),
+    'resources': ?resources?.encode(),
+    'security_context': ?securityContext?.encode(),
     if (volumeMounts != null)
       'volume_mounts': [for (final e in volumeMounts!) e.encode()],
   };
@@ -326,8 +323,8 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesContainersResources {
   final TfArg<Map<String, String>>? requests;
 
   Map<String, Object?> encode() => {
-    if (limits != null) 'limits': limits!.toTfJson(),
-    if (requests != null) 'requests': requests!.toTfJson(),
+    'limits': ?limits?.toTfJson(),
+    'requests': ?requests?.toTfJson(),
   };
 }
 
@@ -357,14 +354,12 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesContainersSecurityContex
   final TfArg<num>? runAsUser;
 
   Map<String, Object?> encode() => {
-    if (allowPrivilegeEscalation != null)
-      'allow_privilege_escalation': allowPrivilegeEscalation!.toTfJson(),
-    if (privileged != null) 'privileged': privileged!.toTfJson(),
-    if (readOnlyRootFileSystem != null)
-      'read_only_root_file_system': readOnlyRootFileSystem!.toTfJson(),
-    if (runAsGroup != null) 'run_as_group': runAsGroup!.toTfJson(),
-    if (runAsNonRoot != null) 'run_as_non_root': runAsNonRoot!.toTfJson(),
-    if (runAsUser != null) 'run_as_user': runAsUser!.toTfJson(),
+    'allow_privilege_escalation': ?allowPrivilegeEscalation?.toTfJson(),
+    'privileged': ?privileged?.toTfJson(),
+    'read_only_root_file_system': ?readOnlyRootFileSystem?.toTfJson(),
+    'run_as_group': ?runAsGroup?.toTfJson(),
+    'run_as_non_root': ?runAsNonRoot?.toTfJson(),
+    'run_as_user': ?runAsUser?.toTfJson(),
   };
 }
 
@@ -387,7 +382,7 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesContainersVolumeMounts {
   Map<String, Object?> encode() => {
     'mount_path': mountPath.toTfJson(),
     'name': name.toTfJson(),
-    if (readOnly != null) 'read_only': readOnly!.toTfJson(),
+    'read_only': ?readOnly?.toTfJson(),
   };
 }
 
@@ -448,15 +443,14 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesInitContainers {
   volumeMounts;
 
   Map<String, Object?> encode() => {
-    if (args != null) 'args': args!.toTfJson(),
-    if (command != null) 'command': command!.toTfJson(),
+    'args': ?args?.toTfJson(),
+    'command': ?command?.toTfJson(),
     'image': image.toTfJson(),
-    if (imagePullPolicy != null)
-      'image_pull_policy': imagePullPolicy!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'image_pull_policy': ?imagePullPolicy?.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (env != null) 'env': [for (final e in env!) e.encode()],
-    if (resources != null) 'resources': resources!.encode(),
-    if (securityContext != null) 'security_context': securityContext!.encode(),
+    'resources': ?resources?.encode(),
+    'security_context': ?securityContext?.encode(),
     if (volumeMounts != null)
       'volume_mounts': [for (final e in volumeMounts!) e.encode()],
   };
@@ -509,8 +503,8 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesInitContainersResources 
   final TfArg<Map<String, String>>? requests;
 
   Map<String, Object?> encode() => {
-    if (limits != null) 'limits': limits!.toTfJson(),
-    if (requests != null) 'requests': requests!.toTfJson(),
+    'limits': ?limits?.toTfJson(),
+    'requests': ?requests?.toTfJson(),
   };
 }
 
@@ -540,14 +534,12 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesInitContainersSecurityCo
   final TfArg<num>? runAsUser;
 
   Map<String, Object?> encode() => {
-    if (allowPrivilegeEscalation != null)
-      'allow_privilege_escalation': allowPrivilegeEscalation!.toTfJson(),
-    if (privileged != null) 'privileged': privileged!.toTfJson(),
-    if (readOnlyRootFileSystem != null)
-      'read_only_root_file_system': readOnlyRootFileSystem!.toTfJson(),
-    if (runAsGroup != null) 'run_as_group': runAsGroup!.toTfJson(),
-    if (runAsNonRoot != null) 'run_as_non_root': runAsNonRoot!.toTfJson(),
-    if (runAsUser != null) 'run_as_user': runAsUser!.toTfJson(),
+    'allow_privilege_escalation': ?allowPrivilegeEscalation?.toTfJson(),
+    'privileged': ?privileged?.toTfJson(),
+    'read_only_root_file_system': ?readOnlyRootFileSystem?.toTfJson(),
+    'run_as_group': ?runAsGroup?.toTfJson(),
+    'run_as_non_root': ?runAsNonRoot?.toTfJson(),
+    'run_as_user': ?runAsUser?.toTfJson(),
   };
 }
 
@@ -570,7 +562,7 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesInitContainersVolumeMoun
   Map<String, Object?> encode() => {
     'mount_path': mountPath.toTfJson(),
     'name': name.toTfJson(),
-    if (readOnly != null) 'read_only': readOnly!.toTfJson(),
+    'read_only': ?readOnly?.toTfJson(),
   };
 }
 
@@ -582,9 +574,7 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesMetadata {
 
   final TfArg<Map<String, String>>? labels;
 
-  Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'labels': ?labels?.toTfJson()};
 }
 
 /// Typed helper for the `eks_properties.pod_properties.volumes` block of
@@ -607,10 +597,10 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesVolumes {
   final BatchJobDefinitionEksPropertiesPodPropertiesVolumesSecret? secret;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (emptyDir != null) 'empty_dir': emptyDir!.encode(),
-    if (hostPath != null) 'host_path': hostPath!.encode(),
-    if (secret != null) 'secret': secret!.encode(),
+    'name': ?name?.toTfJson(),
+    'empty_dir': ?emptyDir?.encode(),
+    'host_path': ?hostPath?.encode(),
+    'secret': ?secret?.encode(),
   };
 }
 
@@ -631,7 +621,7 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesVolumesEmptyDir {
   final TfArg<String> sizeLimit;
 
   Map<String, Object?> encode() => {
-    if (medium != null) 'medium': medium!.toTfJson(),
+    'medium': ?medium?.toTfJson(),
     'size_limit': sizeLimit.toTfJson(),
   };
 }
@@ -676,7 +666,7 @@ final class BatchJobDefinitionEksPropertiesPodPropertiesVolumesSecret {
   final TfArg<String> secretName;
 
   Map<String, Object?> encode() => {
-    if (optional != null) 'optional': optional!.toTfJson(),
+    'optional': ?optional?.toTfJson(),
     'secret_name': secretName.toTfJson(),
   };
 }
@@ -692,7 +682,7 @@ final class BatchJobDefinitionRetryStrategy {
   final List<BatchJobDefinitionRetryStrategyEvaluateOnExit>? evaluateOnExit;
 
   Map<String, Object?> encode() => {
-    if (attempts != null) 'attempts': attempts!.toTfJson(),
+    'attempts': ?attempts?.toTfJson(),
     if (evaluateOnExit != null)
       'evaluate_on_exit': [for (final e in evaluateOnExit!) e.encode()],
   };
@@ -719,9 +709,9 @@ final class BatchJobDefinitionRetryStrategyEvaluateOnExit {
 
   Map<String, Object?> encode() => {
     'action': action.toTfJson(),
-    if (onExitCode != null) 'on_exit_code': onExitCode!.toTfJson(),
-    if (onReason != null) 'on_reason': onReason!.toTfJson(),
-    if (onStatusReason != null) 'on_status_reason': onStatusReason!.toTfJson(),
+    'on_exit_code': ?onExitCode?.toTfJson(),
+    'on_reason': ?onReason?.toTfJson(),
+    'on_status_reason': ?onStatusReason?.toTfJson(),
   };
 }
 
@@ -747,8 +737,7 @@ final class BatchJobDefinitionTimeout {
   final TfArg<num>? attemptDurationSeconds;
 
   Map<String, Object?> encode() => {
-    if (attemptDurationSeconds != null)
-      'attempt_duration_seconds': attemptDurationSeconds!.toTfJson(),
+    'attempt_duration_seconds': ?attemptDurationSeconds?.toTfJson(),
   };
 }
 
@@ -778,19 +767,17 @@ final class AwsBatchJobDefinition extends Resource {
          terraformType: tfType,
          argMap: {
            ...?properties?.argMap,
-           if (deregisterOnNewRevision != null)
-             'deregister_on_new_revision': deregisterOnNewRevision,
+           'deregister_on_new_revision': ?deregisterOnNewRevision,
            'name': name,
-           if (parameters != null) 'parameters': parameters,
+           'parameters': ?parameters,
            if (platformCapabilities != null)
              'platform_capabilities': TfArg.literal([
                for (final e in platformCapabilities) e.toTfJson(),
              ]),
-           if (propagateTags != null) 'propagate_tags': propagateTags,
-           if (region != null) 'region': region,
-           if (schedulingPriority != null)
-             'scheduling_priority': schedulingPriority,
-           if (tags != null) 'tags': tags,
+           'propagate_tags': ?propagateTags,
+           'region': ?region,
+           'scheduling_priority': ?schedulingPriority,
+           'tags': ?tags,
            'type': type,
            if (retryStrategy != null)
              'retry_strategy': TfArg.literal(retryStrategy.encode()),

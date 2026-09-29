@@ -40,8 +40,8 @@ final class PrecursorEnforcementRules {
   final TfArg<PrecursorEnforcementRulesMode> mode;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
     'expression': expression.toTfJson(),
     'mode': mode.toTfJson(),
   };
@@ -73,7 +73,7 @@ final class CloudflarePrecursor extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultMode != null) 'default_mode': defaultMode,
+           'default_mode': ?defaultMode,
            'zone_id': zoneId.encodeAs('id'),
            if (enforcementRules != null)
              'enforcement_rules': TfArg.literal([

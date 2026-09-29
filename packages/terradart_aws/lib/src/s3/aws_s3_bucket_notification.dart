@@ -35,11 +35,10 @@ final class S3BucketNotificationLambdaFunction {
 
   Map<String, Object?> encode() => {
     'events': events.toTfJson(),
-    if (filterPrefix != null) 'filter_prefix': filterPrefix!.toTfJson(),
-    if (filterSuffix != null) 'filter_suffix': filterSuffix!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (lambdaFunctionArn != null)
-      'lambda_function_arn': lambdaFunctionArn!.encodeAs('arn').toTfJson(),
+    'filter_prefix': ?filterPrefix?.toTfJson(),
+    'filter_suffix': ?filterSuffix?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'lambda_function_arn': ?lambdaFunctionArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -67,9 +66,9 @@ final class S3BucketNotificationQueue {
 
   Map<String, Object?> encode() => {
     'events': events.toTfJson(),
-    if (filterPrefix != null) 'filter_prefix': filterPrefix!.toTfJson(),
-    if (filterSuffix != null) 'filter_suffix': filterSuffix!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
+    'filter_prefix': ?filterPrefix?.toTfJson(),
+    'filter_suffix': ?filterSuffix?.toTfJson(),
+    'id': ?id?.toTfJson(),
     'queue_arn': queueArn.toTfJson(),
   };
 }
@@ -98,9 +97,9 @@ final class S3BucketNotificationTopic {
 
   Map<String, Object?> encode() => {
     'events': events.toTfJson(),
-    if (filterPrefix != null) 'filter_prefix': filterPrefix!.toTfJson(),
-    if (filterSuffix != null) 'filter_suffix': filterSuffix!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
+    'filter_prefix': ?filterPrefix?.toTfJson(),
+    'filter_suffix': ?filterSuffix?.toTfJson(),
+    'id': ?id?.toTfJson(),
     'topic_arn': topicArn.encodeAs('arn').toTfJson(),
   };
 }
@@ -125,8 +124,8 @@ final class AwsS3BucketNotification extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (eventbridge != null) 'eventbridge': eventbridge,
-           if (region != null) 'region': region,
+           'eventbridge': ?eventbridge,
+           'region': ?region,
            if (lambdaFunction != null)
              'lambda_function': TfArg.literal([
                for (final e in lambdaFunction) e.encode(),

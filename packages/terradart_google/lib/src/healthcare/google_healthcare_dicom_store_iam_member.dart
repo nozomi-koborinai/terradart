@@ -26,7 +26,7 @@ final class GoogleHealthcareDicomStoreIamMember extends Resource {
            'dicom_store_id': dicomStoreId,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

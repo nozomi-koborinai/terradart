@@ -39,10 +39,9 @@ final class EcsExpressGatewayServicePrimaryContainer {
   final List<EcsExpressGatewayServicePrimaryContainerSecret>? secret;
 
   Map<String, Object?> encode() => {
-    if (awsLogsConfiguration != null)
-      'aws_logs_configuration': awsLogsConfiguration!.toTfJson(),
-    if (command != null) 'command': command!.toTfJson(),
-    if (containerPort != null) 'container_port': containerPort!.toTfJson(),
+    'aws_logs_configuration': ?awsLogsConfiguration?.toTfJson(),
+    'command': ?command?.toTfJson(),
+    'container_port': ?containerPort?.toTfJson(),
     'image': image.toTfJson(),
     if (environment != null)
       'environment': [for (final e in environment!) e.encode()],
@@ -134,22 +133,19 @@ final class AwsEcsExpressGatewayService extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cluster != null) 'cluster': cluster,
-           if (cpu != null) 'cpu': cpu,
+           'cluster': ?cluster,
+           'cpu': ?cpu,
            'execution_role_arn': executionRoleArn.encodeAs('arn'),
-           if (healthCheckPath != null) 'health_check_path': healthCheckPath,
+           'health_check_path': ?healthCheckPath,
            'infrastructure_role_arn': infrastructureRoleArn,
-           if (memory != null) 'memory': memory,
-           if (networkConfiguration != null)
-             'network_configuration': networkConfiguration,
-           if (region != null) 'region': region,
-           if (scalingTarget != null) 'scaling_target': scalingTarget,
-           if (serviceName != null) 'service_name': serviceName,
-           if (tags != null) 'tags': tags,
-           if (taskRoleArn != null)
-             'task_role_arn': taskRoleArn.encodeAs('arn'),
-           if (waitForSteadyState != null)
-             'wait_for_steady_state': waitForSteadyState,
+           'memory': ?memory,
+           'network_configuration': ?networkConfiguration,
+           'region': ?region,
+           'scaling_target': ?scalingTarget,
+           'service_name': ?serviceName,
+           'tags': ?tags,
+           'task_role_arn': ?taskRoleArn?.encodeAs('arn'),
+           'wait_for_steady_state': ?waitForSteadyState,
            if (primaryContainer != null)
              'primary_container': TfArg.literal([
                for (final e in primaryContainer) e.encode(),

@@ -28,10 +28,10 @@ final class DataCloudflareZeroTrustAccessIdentityProviders extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (maxItems != null) 'max_items': maxItems,
-           if (scimEnabled != null) 'scim_enabled': scimEnabled,
-           if (zoneId != null) 'zone_id': zoneId,
+           'account_id': ?accountId,
+           'max_items': ?maxItems,
+           'scim_enabled': ?scimEnabled,
+           'zone_id': ?zoneId,
          },
        );
 

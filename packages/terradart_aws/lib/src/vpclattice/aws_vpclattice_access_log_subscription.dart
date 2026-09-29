@@ -39,11 +39,10 @@ final class AwsVpclatticeAccessLogSubscription extends Resource {
          terraformType: tfType,
          argMap: {
            'destination_arn': destinationArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_identifier': resourceIdentifier,
-           if (serviceNetworkLogType != null)
-             'service_network_log_type': serviceNetworkLogType,
-           if (tags != null) 'tags': tags,
+           'service_network_log_type': ?serviceNetworkLogType,
+           'tags': ?tags,
          },
        );
 

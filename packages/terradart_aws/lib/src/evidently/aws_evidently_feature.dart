@@ -53,10 +53,10 @@ final class EvidentlyFeatureVariationsValue {
   final TfArg<String>? stringValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (doubleValue != null) 'double_value': doubleValue!.toTfJson(),
-    if (longValue != null) 'long_value': longValue!.toTfJson(),
-    if (stringValue != null) 'string_value': stringValue!.toTfJson(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'double_value': ?doubleValue?.toTfJson(),
+    'long_value': ?longValue?.toTfJson(),
+    'string_value': ?stringValue?.toTfJson(),
   };
 }
 
@@ -82,15 +82,14 @@ final class AwsEvidentlyFeature extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultVariation != null) 'default_variation': defaultVariation,
-           if (description != null) 'description': description,
-           if (entityOverrides != null) 'entity_overrides': entityOverrides,
-           if (evaluationStrategy != null)
-             'evaluation_strategy': evaluationStrategy,
+           'default_variation': ?defaultVariation,
+           'description': ?description,
+           'entity_overrides': ?entityOverrides,
+           'evaluation_strategy': ?evaluationStrategy,
            'name': name,
            'project': project,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'variations': TfArg.literal([
              for (final e in variations) e.encode(),
            ]),

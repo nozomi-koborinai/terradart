@@ -21,10 +21,7 @@ final class DataGoogleComputeRouters extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-         },
+         argMap: {'project': ?project, 'region': ?region},
        );
 
   @override

@@ -18,7 +18,7 @@ final class ConnectBotAssociationLexBot {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (lexRegion != null) 'lex_region': lexRegion!.toTfJson(),
+    'lex_region': ?lexRegion?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -40,7 +40,7 @@ final class AwsConnectBotAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'instance_id': instanceId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'lex_bot': TfArg.literal(lexBot.encode()),
          },
        );

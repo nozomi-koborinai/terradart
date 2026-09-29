@@ -73,14 +73,13 @@ final class GoogleOracleDatabaseDbSystem extends Resource {
            'db_system_id': dbSystemId,
            'display_name': displayName,
            'odb_subnet': odbSubnet,
-           if (properties != null) 'properties': properties,
-           if (odbNetwork != null) 'odb_network': odbNetwork,
-           if (gcpOracleZone != null) 'gcp_oracle_zone': gcpOracleZone,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'properties': ?properties,
+           'odb_network': ?odbNetwork,
+           'gcp_oracle_zone': ?gcpOracleZone,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

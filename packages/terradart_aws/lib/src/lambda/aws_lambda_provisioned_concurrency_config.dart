@@ -29,8 +29,8 @@ final class AwsLambdaProvisionedConcurrencyConfig extends Resource {
            'function_name': functionName.encodeAs('function_name'),
            'provisioned_concurrent_executions': provisionedConcurrentExecutions,
            'qualifier': qualifier,
-           if (region != null) 'region': region,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
+           'region': ?region,
+           'skip_destroy': ?skipDestroy,
          },
        );
 

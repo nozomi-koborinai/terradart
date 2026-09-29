@@ -15,9 +15,7 @@ final class EdgecontainerVpnConnectionVpcProject {
 
   final TfArg<String>? projectId;
 
-  Map<String, Object?> encode() => {
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'project_id': ?projectId?.toTfJson()};
 }
 
 /// Factory wrapper for `google_edgecontainer_vpn_connection`.
@@ -63,16 +61,15 @@ final class GoogleEdgecontainerVpnConnection extends Resource {
            'name': name,
            'cluster': cluster,
            'location': location,
-           if (vpc != null) 'vpc': vpc,
-           if (router != null) 'router': router,
+           'vpc': ?vpc,
+           'router': ?router,
            if (vpcProject != null)
              'vpc_project': TfArg.literal(vpcProject.encode()),
-           if (enableHighAvailability != null)
-             'enable_high_availability': enableHighAvailability,
-           if (natGatewayIp != null) 'nat_gateway_ip': natGatewayIp,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'enable_high_availability': ?enableHighAvailability,
+           'nat_gateway_ip': ?natGatewayIp,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

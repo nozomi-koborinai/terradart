@@ -99,7 +99,7 @@ final class IamWorkforcePoolProviderExtendedAttributesOauth2Client {
     'client_id': clientId.toTfJson(),
     'issuer_uri': issuerUri.toTfJson(),
     'client_secret': clientSecret.encode(),
-    if (queryParameters != null) 'query_parameters': queryParameters!.encode(),
+    'query_parameters': ?queryParameters?.encode(),
   };
 }
 
@@ -114,9 +114,7 @@ final class IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecret {
   final IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValue?
   value;
 
-  Map<String, Object?> encode() => {
-    if (value != null) 'value': value!.encode(),
-  };
+  Map<String, Object?> encode() => {'value': ?value?.encode()};
 }
 
 /// Typed helper for the `extended_attributes_oauth2_client.client_secret.value` block of
@@ -136,10 +134,9 @@ final class IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretVa
   final TfArg<String>? plainTextWoVersion;
 
   Map<String, Object?> encode() => {
-    if (plainText != null) 'plain_text': plainText!.toTfJson(),
-    if (plainTextWo != null) 'plain_text_wo': plainTextWo!.toTfJson(),
-    if (plainTextWoVersion != null)
-      'plain_text_wo_version': plainTextWoVersion!.toTfJson(),
+    'plain_text': ?plainText?.toTfJson(),
+    'plain_text_wo': ?plainTextWo?.toTfJson(),
+    'plain_text_wo_version': ?plainTextWoVersion?.toTfJson(),
   };
 }
 
@@ -153,9 +150,7 @@ final class IamWorkforcePoolProviderExtendedAttributesOauth2ClientQueryParameter
 
   final TfArg<String>? filter;
 
-  Map<String, Object?> encode() => {
-    if (filter != null) 'filter': filter!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'filter': ?filter?.toTfJson()};
 }
 
 /// Typed helper for the `saml` block of
@@ -220,13 +215,12 @@ final class GoogleIamWorkforcePoolProvider extends Resource {
            'location': location,
            'workforce_pool_id': workforcePoolId,
            'provider_id': providerId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
-           if (attributeMapping != null) 'attribute_mapping': attributeMapping,
-           if (attributeCondition != null)
-             'attribute_condition': attributeCondition,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'display_name': ?displayName,
+           'description': ?description,
+           'disabled': ?disabled,
+           'attribute_mapping': ?attributeMapping,
+           'attribute_condition': ?attributeCondition,
+           'deletion_policy': ?deletionPolicy,
            trustSource.blockKey: TfArg.literal(trustSource.encode()),
          },
        );

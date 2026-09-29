@@ -358,18 +358,15 @@ final class GoogleBigqueryDataTransferConfig extends Resource {
          argMap: {
            'display_name': displayName,
            'data_source_id': dataSourceId,
-           if (destinationDatasetId != null)
-             'destination_dataset_id': destinationDatasetId,
-           if (location != null) 'location': location,
+           'destination_dataset_id': ?destinationDatasetId,
+           'location': ?location,
            'params': params,
-           if (schedule != null) 'schedule': schedule,
+           'schedule': ?schedule,
            if (scheduleOptions != null)
              'schedule_options': TfArg.literal([scheduleOptions.toArgMap()]),
-           if (disabled != null) 'disabled': disabled,
-           if (serviceAccountName != null)
-             'service_account_name': serviceAccountName,
-           if (notificationPubsubTopic != null)
-             'notification_pubsub_topic': notificationPubsubTopic,
+           'disabled': ?disabled,
+           'service_account_name': ?serviceAccountName,
+           'notification_pubsub_topic': ?notificationPubsubTopic,
            if (emailPreferences != null)
              'email_preferences': TfArg.literal([emailPreferences.toArgMap()]),
            if (sensitiveParams != null)
@@ -378,9 +375,8 @@ final class GoogleBigqueryDataTransferConfig extends Resource {
              'encryption_configuration': TfArg.literal([
                encryptionConfiguration.toArgMap(),
              ]),
-           if (dataRefreshWindowDays != null)
-             'data_refresh_window_days': dataRefreshWindowDays,
-           if (project != null) 'project': project,
+           'data_refresh_window_days': ?dataRefreshWindowDays,
+           'project': ?project,
          },
        );
 

@@ -18,10 +18,7 @@ final class DataAwsServicequotasService extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (region != null) 'region': region,
-           'service_name': serviceName,
-         },
+         argMap: {'region': ?region, 'service_name': serviceName},
        );
 
   @override

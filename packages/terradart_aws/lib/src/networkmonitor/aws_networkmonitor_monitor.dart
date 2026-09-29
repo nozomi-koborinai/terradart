@@ -23,11 +23,10 @@ final class AwsNetworkmonitorMonitor extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (aggregationPeriod != null)
-             'aggregation_period': aggregationPeriod,
+           'aggregation_period': ?aggregationPeriod,
            'monitor_name': monitorName,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

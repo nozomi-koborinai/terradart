@@ -89,8 +89,7 @@ final class NetworkServicesAgentGatewayNetworkConfig {
   final NetworkServicesAgentGatewayNetworkConfigEgress egress;
 
   Map<String, Object?> encode() => {
-    if (dnsPeeringConfig != null)
-      'dns_peering_config': dnsPeeringConfig!.encode(),
+    'dns_peering_config': ?dnsPeeringConfig?.encode(),
     'egress': egress.encode(),
   };
 }
@@ -181,14 +180,14 @@ final class GoogleNetworkServicesAgentGateway extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           if (description != null) 'description': description,
-           if (protocols != null) 'protocols': protocols,
-           if (registries != null) 'registries': registries,
+           'description': ?description,
+           'protocols': ?protocols,
+           'registries': ?registries,
            if (networkConfig != null)
              'network_config': TfArg.literal(networkConfig.encode()),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
            deployment.blockKey: TfArg.literal([deployment.encode()]),
          },
        );

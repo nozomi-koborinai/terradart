@@ -66,29 +66,24 @@ final class WorkbenchInstanceGceSetup {
   final WorkbenchInstanceGceSetupShieldedInstanceConfig? shieldedInstanceConfig;
 
   Map<String, Object?> encode() => {
-    if (disablePublicIp != null)
-      'disable_public_ip': disablePublicIp!.toTfJson(),
-    if (enableIpForwarding != null)
-      'enable_ip_forwarding': enableIpForwarding!.toTfJson(),
-    if (machineType != null) 'machine_type': machineType!.toTfJson(),
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
-    if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'disable_public_ip': ?disablePublicIp?.toTfJson(),
+    'enable_ip_forwarding': ?enableIpForwarding?.toTfJson(),
+    'machine_type': ?machineType?.toTfJson(),
+    'metadata': ?metadata?.toTfJson(),
+    'min_cpu_platform': ?minCpuPlatform?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     if (acceleratorConfigs != null)
       'accelerator_configs': [for (final e in acceleratorConfigs!) e.encode()],
-    if (bootDisk != null) 'boot_disk': bootDisk!.encode(),
-    if (confidentialInstanceConfig != null)
-      'confidential_instance_config': confidentialInstanceConfig!.encode(),
+    'boot_disk': ?bootDisk?.encode(),
+    'confidential_instance_config': ?confidentialInstanceConfig?.encode(),
     ...?image?.encode(),
-    if (dataDisks != null) 'data_disks': dataDisks!.encode(),
+    'data_disks': ?dataDisks?.encode(),
     if (networkInterfaces != null)
       'network_interfaces': [for (final e in networkInterfaces!) e.encode()],
-    if (reservationAffinity != null)
-      'reservation_affinity': reservationAffinity!.encode(),
+    'reservation_affinity': ?reservationAffinity?.encode(),
     if (serviceAccounts != null)
       'service_accounts': [for (final e in serviceAccounts!) e.encode()],
-    if (shieldedInstanceConfig != null)
-      'shielded_instance_config': shieldedInstanceConfig!.encode(),
+    'shielded_instance_config': ?shieldedInstanceConfig?.encode(),
   };
 }
 
@@ -158,8 +153,8 @@ final class WorkbenchInstanceGceSetupAcceleratorConfigs {
   final TfArg<WorkbenchInstanceGceSetupAcceleratorConfigsType>? type;
 
   Map<String, Object?> encode() => {
-    if (coreCount != null) 'core_count': coreCount!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'core_count': ?coreCount?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -206,10 +201,10 @@ final class WorkbenchInstanceGceSetupBootDisk {
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
   Map<String, Object?> encode() => {
-    if (diskEncryption != null) 'disk_encryption': diskEncryption!.toTfJson(),
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
+    'disk_encryption': ?diskEncryption?.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -249,8 +244,7 @@ final class WorkbenchInstanceGceSetupConfidentialInstanceConfig {
   final TfArg<String>? confidentialInstanceType;
 
   Map<String, Object?> encode() => {
-    if (confidentialInstanceType != null)
-      'confidential_instance_type': confidentialInstanceType!.toTfJson(),
+    'confidential_instance_type': ?confidentialInstanceType?.toTfJson(),
   };
 }
 
@@ -269,7 +263,7 @@ final class WorkbenchInstanceGceSetupContainerImage {
 
   Map<String, Object?> encode() => {
     'repository': repository.toTfJson(),
-    if (tag != null) 'tag': tag!.toTfJson(),
+    'tag': ?tag?.toTfJson(),
   };
 }
 
@@ -296,12 +290,11 @@ final class WorkbenchInstanceGceSetupDataDisks {
   final TfArg<List<Object?>>? resourcePolicies;
 
   Map<String, Object?> encode() => {
-    if (diskEncryption != null) 'disk_encryption': diskEncryption!.toTfJson(),
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
-    if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
-    if (resourcePolicies != null)
-      'resource_policies': resourcePolicies!.toTfJson(),
+    'disk_encryption': ?diskEncryption?.toTfJson(),
+    'disk_size_gb': ?diskSizeGb?.toTfJson(),
+    'disk_type': ?diskType?.toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
+    'resource_policies': ?resourcePolicies?.toTfJson(),
   };
 }
 
@@ -353,9 +346,9 @@ final class WorkbenchInstanceGceSetupNetworkInterfaces {
   accessConfigs;
 
   Map<String, Object?> encode() => {
-    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
-    if (nicType != null) 'nic_type': nicType!.toTfJson(),
-    if (subnet != null) 'subnet': subnet!.encodeAs('id').toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'nic_type': ?nicType?.toTfJson(),
+    'subnet': ?subnet?.encodeAs('id').toTfJson(),
     if (accessConfigs != null)
       'access_configs': [for (final e in accessConfigs!) e.encode()],
   };
@@ -405,10 +398,9 @@ final class WorkbenchInstanceGceSetupReservationAffinity {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (consumeReservationType != null)
-      'consume_reservation_type': consumeReservationType!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'consume_reservation_type': ?consumeReservationType?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -435,7 +427,7 @@ final class WorkbenchInstanceGceSetupServiceAccounts {
   final RefTo<GoogleServiceAccount>? email;
 
   Map<String, Object?> encode() => {
-    if (email != null) 'email': email!.encodeAs('email').toTfJson(),
+    'email': ?email?.encodeAs('email').toTfJson(),
   };
 }
 
@@ -456,11 +448,9 @@ final class WorkbenchInstanceGceSetupShieldedInstanceConfig {
   final TfArg<bool>? enableVtpm;
 
   Map<String, Object?> encode() => {
-    if (enableIntegrityMonitoring != null)
-      'enable_integrity_monitoring': enableIntegrityMonitoring!.toTfJson(),
-    if (enableSecureBoot != null)
-      'enable_secure_boot': enableSecureBoot!.toTfJson(),
-    if (enableVtpm != null) 'enable_vtpm': enableVtpm!.toTfJson(),
+    'enable_integrity_monitoring': ?enableIntegrityMonitoring?.toTfJson(),
+    'enable_secure_boot': ?enableSecureBoot?.toTfJson(),
+    'enable_vtpm': ?enableVtpm?.toTfJson(),
   };
 }
 
@@ -481,9 +471,9 @@ final class WorkbenchInstanceGceSetupVmImage {
   final TfArg<String>? project;
 
   Map<String, Object?> encode() => {
-    if (family != null) 'family': family!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (project != null) 'project': project!.toTfJson(),
+    'family': ?family?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'project': ?project?.toTfJson(),
   };
 }
 
@@ -546,17 +536,15 @@ final class GoogleWorkbenchInstance extends Resource {
            'name': name,
            'location': location,
            if (gceSetup != null) 'gce_setup': TfArg.literal(gceSetup.encode()),
-           if (instanceOwners != null) 'instance_owners': instanceOwners,
-           if (disableProxyAccess != null)
-             'disable_proxy_access': disableProxyAccess,
-           if (enableThirdPartyIdentity != null)
-             'enable_third_party_identity': enableThirdPartyIdentity,
-           if (enableManagedEuc != null) 'enable_managed_euc': enableManagedEuc,
-           if (labels != null) 'labels': labels,
-           if (desiredState != null) 'desired_state': desiredState,
-           if (instanceId != null) 'instance_id': instanceId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'instance_owners': ?instanceOwners,
+           'disable_proxy_access': ?disableProxyAccess,
+           'enable_third_party_identity': ?enableThirdPartyIdentity,
+           'enable_managed_euc': ?enableManagedEuc,
+           'labels': ?labels,
+           'desired_state': ?desiredState,
+           'instance_id': ?instanceId,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

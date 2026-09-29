@@ -41,16 +41,14 @@ final class AwsIotAuthorizer extends Resource {
          terraformType: tfType,
          argMap: {
            'authorizer_function_arn': authorizerFunctionArn,
-           if (enableCachingForHttp != null)
-             'enable_caching_for_http': enableCachingForHttp,
+           'enable_caching_for_http': ?enableCachingForHttp,
            'name': name,
-           if (region != null) 'region': region,
-           if (signingDisabled != null) 'signing_disabled': signingDisabled,
-           if (status != null) 'status': status,
-           if (tags != null) 'tags': tags,
-           if (tokenKeyName != null) 'token_key_name': tokenKeyName,
-           if (tokenSigningPublicKeys != null)
-             'token_signing_public_keys': tokenSigningPublicKeys,
+           'region': ?region,
+           'signing_disabled': ?signingDisabled,
+           'status': ?status,
+           'tags': ?tags,
+           'token_key_name': ?tokenKeyName,
+           'token_signing_public_keys': ?tokenSigningPublicKeys,
          },
        );
 

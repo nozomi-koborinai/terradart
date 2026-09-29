@@ -40,19 +40,16 @@ final class AwsApiGatewayAuthorizer extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (authorizerCredentials != null)
-             'authorizer_credentials': authorizerCredentials,
-           if (authorizerResultTtlInSeconds != null)
-             'authorizer_result_ttl_in_seconds': authorizerResultTtlInSeconds,
-           if (authorizerUri != null) 'authorizer_uri': authorizerUri,
-           if (identitySource != null) 'identity_source': identitySource,
-           if (identityValidationExpression != null)
-             'identity_validation_expression': identityValidationExpression,
+           'authorizer_credentials': ?authorizerCredentials,
+           'authorizer_result_ttl_in_seconds': ?authorizerResultTtlInSeconds,
+           'authorizer_uri': ?authorizerUri,
+           'identity_source': ?identitySource,
+           'identity_validation_expression': ?identityValidationExpression,
            'name': name,
-           if (providerArns != null) 'provider_arns': providerArns,
-           if (region != null) 'region': region,
+           'provider_arns': ?providerArns,
+           'region': ?region,
            'rest_api_id': restApiId,
-           if (type != null) 'type': type,
+           'type': ?type,
          },
        );
 

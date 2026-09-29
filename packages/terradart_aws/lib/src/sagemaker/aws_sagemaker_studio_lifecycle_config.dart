@@ -40,11 +40,11 @@ final class AwsSagemakerStudioLifecycleConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'studio_lifecycle_config_app_type': studioLifecycleConfigAppType,
            'studio_lifecycle_config_content': studioLifecycleConfigContent,
            'studio_lifecycle_config_name': studioLifecycleConfigName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

@@ -41,9 +41,9 @@ final class GoogleGkeBackupBackupChannel extends Resource {
            'name': name,
            'location': location,
            'destination_project': destinationProject,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'labels': ?labels,
+           'project': ?project,
          },
        );
 

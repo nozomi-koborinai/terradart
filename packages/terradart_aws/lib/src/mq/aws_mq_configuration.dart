@@ -49,16 +49,15 @@ final class AwsMqConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (authenticationStrategy != null)
-             'authentication_strategy': authenticationStrategy,
+           'authentication_strategy': ?authenticationStrategy,
            'data': data,
-           if (description != null) 'description': description,
+           'description': ?description,
            'engine_type': engineType,
            'engine_version': engineVersion,
            'name': name,
-           if (region != null) 'region': region,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'skip_destroy': ?skipDestroy,
+           'tags': ?tags,
          },
        );
 

@@ -22,11 +22,7 @@ final class DataGoogleStorageBucketObjectContent extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'bucket': bucket,
-           if (content != null) 'content': content,
-           'name': name,
-         },
+         argMap: {'bucket': bucket, 'content': ?content, 'name': name},
        );
 
   @override

@@ -39,11 +39,10 @@ final class DataAwsEc2CoipPool extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (localGatewayRouteTableId != null)
-             'local_gateway_route_table_id': localGatewayRouteTableId,
-           if (poolId != null) 'pool_id': poolId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'local_gateway_route_table_id': ?localGatewayRouteTableId,
+           'pool_id': ?poolId,
+           'region': ?region,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

@@ -22,7 +22,7 @@ final class DataAwsLocationTrackerAssociation extends Data {
          terraformType: tfType,
          argMap: {
            'consumer_arn': consumerArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            'tracker_name': trackerName,
          },
        );

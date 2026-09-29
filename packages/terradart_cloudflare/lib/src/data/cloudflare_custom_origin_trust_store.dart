@@ -19,8 +19,8 @@ final class DataCustomOriginTrustStoreFilter {
   final TfArg<num>? offset;
 
   Map<String, Object?> encode() => {
-    if (limit != null) 'limit': limit!.toTfJson(),
-    if (offset != null) 'offset': offset!.toTfJson(),
+    'limit': ?limit?.toTfJson(),
+    'offset': ?offset?.toTfJson(),
   };
 }
 
@@ -42,9 +42,8 @@ final class DataCloudflareCustomOriginTrustStore extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customOriginTrustStoreId != null)
-             'custom_origin_trust_store_id': customOriginTrustStoreId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'custom_origin_trust_store_id': ?customOriginTrustStoreId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

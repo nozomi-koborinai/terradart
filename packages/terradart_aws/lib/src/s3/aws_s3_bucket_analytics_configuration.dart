@@ -20,8 +20,8 @@ final class S3BucketAnalyticsConfigurationFilter {
   final TfArg<Map<String, String>>? tags;
 
   Map<String, Object?> encode() => {
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
   };
 }
 
@@ -56,8 +56,7 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExport {
   destination;
 
   Map<String, Object?> encode() => {
-    if (outputSchemaVersion != null)
-      'output_schema_version': outputSchemaVersion!.toTfJson(),
+    'output_schema_version': ?outputSchemaVersion?.toTfJson(),
     'destination': destination.encode(),
   };
 }
@@ -113,11 +112,10 @@ final class S3BucketAnalyticsConfigurationStorageClassAnalysisDataExportDestinat
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (bucketAccountId != null)
-      'bucket_account_id': bucketAccountId!.toTfJson(),
+    'bucket_account_id': ?bucketAccountId?.toTfJson(),
     'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
-    if (format != null) 'format': format!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'format': ?format?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -153,7 +151,7 @@ final class AwsS3BucketAnalyticsConfiguration extends Resource {
          argMap: {
            'bucket': bucket.encodeAs('id'),
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
            if (storageClassAnalysis != null)
              'storage_class_analysis': TfArg.literal(

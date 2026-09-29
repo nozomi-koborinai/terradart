@@ -22,11 +22,11 @@ final class DataAwsOutpostsOutpost extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (arn != null) 'arn': arn,
-           if (name != null) 'name': name,
-           if (ownerId != null) 'owner_id': ownerId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'arn': ?arn,
+           'name': ?name,
+           'owner_id': ?ownerId,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

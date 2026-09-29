@@ -40,15 +40,12 @@ final class GoogleDiscoveryEngineUserStore extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (userStoreId != null) 'user_store_id': userStoreId,
-           if (defaultLicenseConfig != null)
-             'default_license_config': defaultLicenseConfig,
-           if (enableLicenseAutoRegister != null)
-             'enable_license_auto_register': enableLicenseAutoRegister,
-           if (enableExpiredLicenseAutoUpdate != null)
-             'enable_expired_license_auto_update':
-                 enableExpiredLicenseAutoUpdate,
-           if (project != null) 'project': project,
+           'user_store_id': ?userStoreId,
+           'default_license_config': ?defaultLicenseConfig,
+           'enable_license_auto_register': ?enableLicenseAutoRegister,
+           'enable_expired_license_auto_update':
+               ?enableExpiredLicenseAutoUpdate,
+           'project': ?project,
          },
        );
 

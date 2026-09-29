@@ -26,11 +26,11 @@ final class AwsIamPolicyAttachment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (groups != null) 'groups': groups,
+           'groups': ?groups,
            'name': name,
            'policy_arn': policyArn,
-           if (roles != null) 'roles': roles.encodeAs('name'),
-           if (users != null) 'users': users,
+           'roles': ?roles?.encodeAs('name'),
+           'users': ?users,
          },
        );
 

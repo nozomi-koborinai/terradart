@@ -26,11 +26,11 @@ final class DataCloudflareClientCertificates extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (limit != null) 'limit': limit,
-           if (maxItems != null) 'max_items': maxItems,
-           if (offset != null) 'offset': offset,
-           if (status != null) 'status': status,
-           if (zoneId != null) 'zone_id': zoneId,
+           'limit': ?limit,
+           'max_items': ?maxItems,
+           'offset': ?offset,
+           'status': ?status,
+           'zone_id': ?zoneId,
          },
        );
 

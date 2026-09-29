@@ -40,14 +40,14 @@ final class AwsDxConnection extends Resource {
          terraformType: tfType,
          argMap: {
            'bandwidth': bandwidth,
-           if (encryptionMode != null) 'encryption_mode': encryptionMode,
+           'encryption_mode': ?encryptionMode,
            'location': location,
            'name': name,
-           if (providerName != null) 'provider_name': providerName,
-           if (region != null) 'region': region,
-           if (requestMacsec != null) 'request_macsec': requestMacsec,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
-           if (tags != null) 'tags': tags,
+           'provider_name': ?providerName,
+           'region': ?region,
+           'request_macsec': ?requestMacsec,
+           'skip_destroy': ?skipDestroy,
+           'tags': ?tags,
          },
        );
 

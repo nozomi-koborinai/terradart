@@ -72,12 +72,11 @@ final class GoogleDialogflowEntityType extends Resource {
          argMap: {
            'display_name': displayName,
            'kind': kind,
-           if (enableFuzzyExtraction != null)
-             'enable_fuzzy_extraction': enableFuzzyExtraction,
+           'enable_fuzzy_extraction': ?enableFuzzyExtraction,
            if (entities != null)
              'entities': TfArg.literal([for (final e in entities) e.encode()]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

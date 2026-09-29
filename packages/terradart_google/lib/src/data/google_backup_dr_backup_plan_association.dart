@@ -26,7 +26,7 @@ final class DataGoogleBackupDrBackupPlanAssociation extends Data {
          argMap: {
            'backup_plan_association_id': backupPlanAssociationId,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

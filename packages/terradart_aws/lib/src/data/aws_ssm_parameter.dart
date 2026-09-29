@@ -22,8 +22,8 @@ final class DataAwsSsmParameter extends Data {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (withDecryption != null) 'with_decryption': withDecryption,
+           'region': ?region,
+           'with_decryption': ?withDecryption,
          },
        );
 

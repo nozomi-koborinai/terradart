@@ -25,11 +25,11 @@ final class DataGoogleContainerRegistryImage extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (digest != null) 'digest': digest,
+           'digest': ?digest,
            'name': name,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-           if (tag != null) 'tag': tag,
+           'project': ?project,
+           'region': ?region,
+           'tag': ?tag,
          },
        );
 

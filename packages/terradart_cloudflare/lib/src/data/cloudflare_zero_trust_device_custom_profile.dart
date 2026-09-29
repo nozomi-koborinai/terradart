@@ -16,9 +16,7 @@ final class DataZeroTrustDeviceCustomProfileFilter {
 
   final TfArg<DataZeroTrustDeviceCustomProfileFilterProfileType>? profileType;
 
-  Map<String, Object?> encode() => {
-    if (profileType != null) 'profile_type': profileType!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'profile_type': ?profileType?.toTfJson()};
 }
 
 /// `profile_type` — derived from the provider schema description.
@@ -46,8 +44,8 @@ final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (policyId != null) 'policy_id': policyId,
+           'account_id': ?accountId,
+           'policy_id': ?policyId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

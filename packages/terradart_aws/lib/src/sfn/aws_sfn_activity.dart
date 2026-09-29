@@ -26,11 +26,10 @@ final class SfnActivityEncryptionConfiguration {
   final TfArg<SfnActivityEncryptionConfigurationType>? type;
 
   Map<String, Object?> encode() => {
-    if (kmsDataKeyReusePeriodSeconds != null)
-      'kms_data_key_reuse_period_seconds': kmsDataKeyReusePeriodSeconds!
-          .toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'kms_data_key_reuse_period_seconds': ?kmsDataKeyReusePeriodSeconds
+        ?.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -62,8 +61,8 @@ final class AwsSfnActivity extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (encryptionConfiguration != null)
              'encryption_configuration': TfArg.literal(
                encryptionConfiguration.encode(),

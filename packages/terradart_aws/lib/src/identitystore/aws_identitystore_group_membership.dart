@@ -26,7 +26,7 @@ final class AwsIdentitystoreGroupMembership extends Resource {
            'group_id': groupId,
            'identity_store_id': identityStoreId,
            'member_id': memberId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

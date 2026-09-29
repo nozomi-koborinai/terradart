@@ -24,10 +24,10 @@ final class DataAwsConnectQueue extends Data {
          terraformType: tfType,
          argMap: {
            'instance_id': instanceId,
-           if (name != null) 'name': name,
-           if (queueId != null) 'queue_id': queueId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'queue_id': ?queueId,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

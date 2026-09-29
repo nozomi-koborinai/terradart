@@ -17,10 +17,7 @@ final class DataAwsIamSamlProvider extends Data {
     TfArg<Map<String, String>>? tags,
     super.provider,
     super.timeouts,
-  }) : super(
-         terraformType: tfType,
-         argMap: {'arn': arn, if (tags != null) 'tags': tags},
-       );
+  }) : super(terraformType: tfType, argMap: {'arn': arn, 'tags': ?tags});
 
   @override
   Set<String> get sensitiveFields => _awsIamSamlProviderSensitive;

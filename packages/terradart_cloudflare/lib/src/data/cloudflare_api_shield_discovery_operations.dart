@@ -32,16 +32,16 @@ final class DataCloudflareApiShieldDiscoveryOperations extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (diff != null) 'diff': diff,
-           if (direction != null) 'direction': direction,
-           if (endpoint != null) 'endpoint': endpoint,
-           if (host != null) 'host': host,
-           if (maxItems != null) 'max_items': maxItems,
-           if (method != null) 'method': method,
-           if (order != null) 'order': order,
-           if (origin != null) 'origin': origin,
-           if (state != null) 'state': state,
-           if (zoneId != null) 'zone_id': zoneId,
+           'diff': ?diff,
+           'direction': ?direction,
+           'endpoint': ?endpoint,
+           'host': ?host,
+           'max_items': ?maxItems,
+           'method': ?method,
+           'order': ?order,
+           'origin': ?origin,
+           'state': ?state,
+           'zone_id': ?zoneId,
          },
        );
 

@@ -34,8 +34,8 @@ final class AccessRuleConfiguration {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (target != null) 'target': target!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'target': ?target?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -75,10 +75,10 @@ final class CloudflareAccessRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId.encodeAs('id'),
+           'account_id': ?accountId?.encodeAs('id'),
            'mode': mode,
-           if (notes != null) 'notes': notes,
-           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
+           'notes': ?notes,
+           'zone_id': ?zoneId?.encodeAs('id'),
            'configuration': TfArg.literal(configuration.encode()),
          },
        );

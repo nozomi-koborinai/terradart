@@ -23,9 +23,9 @@ final class DataGoogleOrganizationIamCustomRoles extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (orgId != null) 'org_id': orgId,
-           if (showDeleted != null) 'show_deleted': showDeleted,
-           if (view != null) 'view': view,
+           'org_id': ?orgId,
+           'show_deleted': ?showDeleted,
+           'view': ?view,
          },
        );
 

@@ -71,13 +71,13 @@ final class GoogleChronicleDataExport extends Resource {
            'end_time': endTime,
            'location': location,
            'instance': instance,
-           if (includeLogTypes != null) 'include_log_types': includeLogTypes,
-           if (namespaces != null) 'namespaces': namespaces,
+           'include_log_types': ?includeLogTypes,
+           'namespaces': ?namespaces,
            if (ingestionLabels != null)
              'ingestion_labels': TfArg.literal([
                for (final e in ingestionLabels) e.encode(),
              ]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

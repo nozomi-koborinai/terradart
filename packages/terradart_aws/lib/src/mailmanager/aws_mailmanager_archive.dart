@@ -64,10 +64,10 @@ final class AwsMailmanagerArchive extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (retention != null)
              'retention': TfArg.literal([
                for (final e in retention) e.encode(),

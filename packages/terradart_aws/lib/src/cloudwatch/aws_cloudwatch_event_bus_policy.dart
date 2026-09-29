@@ -22,9 +22,9 @@ final class AwsCloudwatchEventBusPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (eventBusName != null) 'event_bus_name': eventBusName,
+           'event_bus_name': ?eventBusName,
            'policy': policy,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

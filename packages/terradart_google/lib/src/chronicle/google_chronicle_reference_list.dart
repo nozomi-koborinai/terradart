@@ -27,8 +27,7 @@ final class ChronicleReferenceListScopeInfo {
   final ChronicleReferenceListScopeInfoReferenceListScope? referenceListScope;
 
   Map<String, Object?> encode() => {
-    if (referenceListScope != null)
-      'reference_list_scope': referenceListScope!.encode(),
+    'reference_list_scope': ?referenceListScope?.encode(),
   };
 }
 
@@ -40,9 +39,7 @@ final class ChronicleReferenceListScopeInfoReferenceListScope {
 
   final TfArg<List<Object?>>? scopeNames;
 
-  Map<String, Object?> encode() => {
-    if (scopeNames != null) 'scope_names': scopeNames!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'scope_names': ?scopeNames?.toTfJson()};
 }
 
 /// Factory wrapper for `google_chronicle_reference_list`.
@@ -90,7 +87,7 @@ final class GoogleChronicleReferenceList extends Resource {
            'instance': instance,
            if (scopeInfo != null)
              'scope_info': TfArg.literal(scopeInfo.encode()),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

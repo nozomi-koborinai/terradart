@@ -24,7 +24,7 @@ final class DataGoogleApphubDiscoveredWorkload extends Data {
          terraformType: tfType,
          argMap: {
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'workload_uri': workloadUri,
          },
        );

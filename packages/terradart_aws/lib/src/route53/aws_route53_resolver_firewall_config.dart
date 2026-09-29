@@ -33,8 +33,8 @@ final class AwsRoute53ResolverFirewallConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (firewallFailOpen != null) 'firewall_fail_open': firewallFailOpen,
-           if (region != null) 'region': region,
+           'firewall_fail_open': ?firewallFailOpen,
+           'region': ?region,
            'resource_id': resourceId,
          },
        );

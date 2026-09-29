@@ -26,7 +26,7 @@ final class GoogleBillingAccountIamMember extends Resource {
            'billing_account_id': billingAccountId,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

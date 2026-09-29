@@ -32,8 +32,8 @@ final class GoogleLoggingBillingAccountExclusion extends Resource {
          terraformType: tfType,
          argMap: {
            'billing_account': billingAccount,
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
+           'description': ?description,
+           'disabled': ?disabled,
            'filter': filter,
            'name': name,
          },

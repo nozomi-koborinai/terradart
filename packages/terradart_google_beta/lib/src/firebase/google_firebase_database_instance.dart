@@ -58,12 +58,12 @@ final class GoogleFirebaseDatabaseInstance extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (desiredState != null) 'desired_state': desiredState,
+           'deletion_policy': ?deletionPolicy,
+           'desired_state': ?desiredState,
            'instance_id': instanceId,
-           if (project != null) 'project': project,
+           'project': ?project,
            'region': region,
-           if (type != null) 'type': type,
+           'type': ?type,
          },
        );
 

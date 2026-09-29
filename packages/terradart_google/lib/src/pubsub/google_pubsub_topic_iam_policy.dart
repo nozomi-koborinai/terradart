@@ -31,7 +31,7 @@ final class GooglePubsubTopicIamPolicy extends Resource {
          argMap: {
            'topic': topic.encodeAs('id'),
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

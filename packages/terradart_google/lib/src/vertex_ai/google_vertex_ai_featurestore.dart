@@ -162,17 +162,17 @@ final class GoogleVertexAiFeaturestore extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
+           'name': ?name,
+           'region': ?region,
            if (onlineServingConfig != null)
              'online_serving_config': TfArg.literal(
                onlineServingConfig.encode(),
              ),
            if (encryptionSpec != null)
              'encryption_spec': TfArg.literal(encryptionSpec.encode()),
-           if (labels != null) 'labels': labels,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'force_destroy': ?forceDestroy,
+           'project': ?project,
          },
        );
 

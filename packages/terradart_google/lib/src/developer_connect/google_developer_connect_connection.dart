@@ -96,13 +96,11 @@ final class DeveloperConnectConnectionBitbucketDataCenterConfig {
 
   Map<String, Object?> encode() => {
     'host_uri': hostUri.toTfJson(),
-    if (sslCaCertificate != null)
-      'ssl_ca_certificate': sslCaCertificate!.toTfJson(),
+    'ssl_ca_certificate': ?sslCaCertificate?.toTfJson(),
     'webhook_secret_secret_version': webhookSecretSecretVersion.toTfJson(),
     'authorizer_credential': authorizerCredential.encode(),
     'read_authorizer_credential': readAuthorizerCredential.encode(),
-    if (serviceDirectoryConfig != null)
-      'service_directory_config': serviceDirectoryConfig!.encode(),
+    'service_directory_config': ?serviceDirectoryConfig?.encode(),
   };
 }
 
@@ -178,11 +176,9 @@ final class DeveloperConnectConnectionGithubConfig {
   authorizerCredential;
 
   Map<String, Object?> encode() => {
-    if (appInstallationId != null)
-      'app_installation_id': appInstallationId!.toTfJson(),
+    'app_installation_id': ?appInstallationId?.toTfJson(),
     'github_app': githubApp.toTfJson(),
-    if (authorizerCredential != null)
-      'authorizer_credential': authorizerCredential!.encode(),
+    'authorizer_credential': ?authorizerCredential?.encode(),
   };
 }
 
@@ -231,18 +227,13 @@ final class DeveloperConnectConnectionGithubEnterpriseConfig {
   serviceDirectoryConfig;
 
   Map<String, Object?> encode() => {
-    if (appId != null) 'app_id': appId!.toTfJson(),
-    if (appInstallationId != null)
-      'app_installation_id': appInstallationId!.toTfJson(),
+    'app_id': ?appId?.toTfJson(),
+    'app_installation_id': ?appInstallationId?.toTfJson(),
     'host_uri': hostUri.toTfJson(),
-    if (privateKeySecretVersion != null)
-      'private_key_secret_version': privateKeySecretVersion!.toTfJson(),
-    if (sslCaCertificate != null)
-      'ssl_ca_certificate': sslCaCertificate!.toTfJson(),
-    if (webhookSecretSecretVersion != null)
-      'webhook_secret_secret_version': webhookSecretSecretVersion!.toTfJson(),
-    if (serviceDirectoryConfig != null)
-      'service_directory_config': serviceDirectoryConfig!.encode(),
+    'private_key_secret_version': ?privateKeySecretVersion?.toTfJson(),
+    'ssl_ca_certificate': ?sslCaCertificate?.toTfJson(),
+    'webhook_secret_secret_version': ?webhookSecretSecretVersion?.toTfJson(),
+    'service_directory_config': ?serviceDirectoryConfig?.encode(),
   };
 }
 
@@ -344,13 +335,11 @@ final class DeveloperConnectConnectionGitlabEnterpriseConfig {
 
   Map<String, Object?> encode() => {
     'host_uri': hostUri.toTfJson(),
-    if (sslCaCertificate != null)
-      'ssl_ca_certificate': sslCaCertificate!.toTfJson(),
+    'ssl_ca_certificate': ?sslCaCertificate?.toTfJson(),
     'webhook_secret_secret_version': webhookSecretSecretVersion.toTfJson(),
     'authorizer_credential': authorizerCredential.encode(),
     'read_authorizer_credential': readAuthorizerCredential.encode(),
-    if (serviceDirectoryConfig != null)
-      'service_directory_config': serviceDirectoryConfig!.encode(),
+    'service_directory_config': ?serviceDirectoryConfig?.encode(),
   };
 }
 
@@ -424,14 +413,10 @@ final class DeveloperConnectConnectionHttpConfig {
 
   Map<String, Object?> encode() => {
     'host_uri': hostUri.toTfJson(),
-    if (sslCaCertificate != null)
-      'ssl_ca_certificate': sslCaCertificate!.toTfJson(),
-    if (basicAuthentication != null)
-      'basic_authentication': basicAuthentication!.encode(),
-    if (bearerTokenAuthentication != null)
-      'bearer_token_authentication': bearerTokenAuthentication!.encode(),
-    if (serviceDirectoryConfig != null)
-      'service_directory_config': serviceDirectoryConfig!.encode(),
+    'ssl_ca_certificate': ?sslCaCertificate?.toTfJson(),
+    'basic_authentication': ?basicAuthentication?.encode(),
+    'bearer_token_authentication': ?bearerTokenAuthentication?.encode(),
+    'service_directory_config': ?serviceDirectoryConfig?.encode(),
   };
 }
 
@@ -449,8 +434,7 @@ final class DeveloperConnectConnectionHttpConfigBasicAuthentication {
   final TfArg<String> username;
 
   Map<String, Object?> encode() => {
-    if (passwordSecretVersion != null)
-      'password_secret_version': passwordSecretVersion!.toTfJson(),
+    'password_secret_version': ?passwordSecretVersion?.toTfJson(),
     'username': username.toTfJson(),
   };
 }
@@ -466,8 +450,7 @@ final class DeveloperConnectConnectionHttpConfigBearerTokenAuthentication {
   final TfArg<String>? tokenSecretVersion;
 
   Map<String, Object?> encode() => {
-    if (tokenSecretVersion != null)
-      'token_secret_version': tokenSecretVersion!.toTfJson(),
+    'token_secret_version': ?tokenSecretVersion?.toTfJson(),
   };
 }
 
@@ -523,14 +506,14 @@ final class GoogleDeveloperConnectConnection extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (annotations != null) 'annotations': annotations,
+           'annotations': ?annotations,
            'connection_id': connectionId,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (disabled != null) 'disabled': disabled,
-           if (etag != null) 'etag': etag,
-           if (labels != null) 'labels': labels,
+           'deletion_policy': ?deletionPolicy,
+           'disabled': ?disabled,
+           'etag': ?etag,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            if (bitbucketCloudConfig != null)
              'bitbucket_cloud_config': TfArg.literal(
                bitbucketCloudConfig.encode(),

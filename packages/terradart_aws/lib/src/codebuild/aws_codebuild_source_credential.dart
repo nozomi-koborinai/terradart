@@ -51,10 +51,10 @@ final class AwsCodebuildSourceCredential extends Resource {
          terraformType: tfType,
          argMap: {
            'auth_type': authType,
-           if (region != null) 'region': region,
+           'region': ?region,
            'server_type': serverType,
            'token': token,
-           if (userName != null) 'user_name': userName,
+           'user_name': ?userName,
          },
        );
 

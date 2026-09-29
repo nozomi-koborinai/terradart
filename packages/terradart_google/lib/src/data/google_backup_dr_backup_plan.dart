@@ -26,7 +26,7 @@ final class DataGoogleBackupDrBackupPlan extends Data {
          argMap: {
            'backup_plan_id': backupPlanId,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

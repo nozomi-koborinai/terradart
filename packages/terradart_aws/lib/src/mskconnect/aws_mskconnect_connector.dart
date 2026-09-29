@@ -102,10 +102,10 @@ final class MskconnectConnectorCapacityAutoscaling {
 
   Map<String, Object?> encode() => {
     'max_worker_count': maxWorkerCount.toTfJson(),
-    if (mcuCount != null) 'mcu_count': mcuCount!.toTfJson(),
+    'mcu_count': ?mcuCount?.toTfJson(),
     'min_worker_count': minWorkerCount.toTfJson(),
-    if (scaleInPolicy != null) 'scale_in_policy': scaleInPolicy!.encode(),
-    if (scaleOutPolicy != null) 'scale_out_policy': scaleOutPolicy!.encode(),
+    'scale_in_policy': ?scaleInPolicy?.encode(),
+    'scale_out_policy': ?scaleOutPolicy?.encode(),
   };
 }
 
@@ -120,8 +120,7 @@ final class MskconnectConnectorCapacityAutoscalingScaleInPolicy {
   final TfArg<num>? cpuUtilizationPercentage;
 
   Map<String, Object?> encode() => {
-    if (cpuUtilizationPercentage != null)
-      'cpu_utilization_percentage': cpuUtilizationPercentage!.toTfJson(),
+    'cpu_utilization_percentage': ?cpuUtilizationPercentage?.toTfJson(),
   };
 }
 
@@ -136,8 +135,7 @@ final class MskconnectConnectorCapacityAutoscalingScaleOutPolicy {
   final TfArg<num>? cpuUtilizationPercentage;
 
   Map<String, Object?> encode() => {
-    if (cpuUtilizationPercentage != null)
-      'cpu_utilization_percentage': cpuUtilizationPercentage!.toTfJson(),
+    'cpu_utilization_percentage': ?cpuUtilizationPercentage?.toTfJson(),
   };
 }
 
@@ -155,7 +153,7 @@ final class MskconnectConnectorCapacityProvisionedCapacity {
   final TfArg<num> workerCount;
 
   Map<String, Object?> encode() => {
-    if (mcuCount != null) 'mcu_count': mcuCount!.toTfJson(),
+    'mcu_count': ?mcuCount?.toTfJson(),
     'worker_count': workerCount.toTfJson(),
   };
 }
@@ -225,8 +223,7 @@ final class MskconnectConnectorKafkaClusterClientAuthentication {
   authenticationType;
 
   Map<String, Object?> encode() => {
-    if (authenticationType != null)
-      'authentication_type': authenticationType!.toTfJson(),
+    'authentication_type': ?authenticationType?.toTfJson(),
   };
 }
 
@@ -255,7 +252,7 @@ final class MskconnectConnectorKafkaClusterEncryptionInTransit {
   encryptionType;
 
   Map<String, Object?> encode() => {
-    if (encryptionType != null) 'encryption_type': encryptionType!.toTfJson(),
+    'encryption_type': ?encryptionType?.toTfJson(),
   };
 }
 
@@ -303,9 +300,9 @@ final class MskconnectConnectorLogDeliveryWorkerLogDelivery {
   final MskconnectConnectorLogDeliveryWorkerLogDeliveryS3? s3;
 
   Map<String, Object?> encode() => {
-    if (cloudwatchLogs != null) 'cloudwatch_logs': cloudwatchLogs!.encode(),
-    if (firehose != null) 'firehose': firehose!.encode(),
-    if (s3 != null) 's3': s3!.encode(),
+    'cloudwatch_logs': ?cloudwatchLogs?.encode(),
+    'firehose': ?firehose?.encode(),
+    's3': ?s3?.encode(),
   };
 }
 
@@ -324,7 +321,7 @@ final class MskconnectConnectorLogDeliveryWorkerLogDeliveryCloudwatchLogs {
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
+    'log_group': ?logGroup?.encodeAs('name').toTfJson(),
   };
 }
 
@@ -342,7 +339,7 @@ final class MskconnectConnectorLogDeliveryWorkerLogDeliveryFirehose {
   final TfArg<bool> enabled;
 
   Map<String, Object?> encode() => {
-    if (deliveryStream != null) 'delivery_stream': deliveryStream!.toTfJson(),
+    'delivery_stream': ?deliveryStream?.toTfJson(),
     'enabled': enabled.toTfJson(),
   };
 }
@@ -364,9 +361,9 @@ final class MskconnectConnectorLogDeliveryWorkerLogDeliveryS3 {
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
+    'bucket': ?bucket?.encodeAs('id').toTfJson(),
     'enabled': enabled.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -449,12 +446,12 @@ final class AwsMskconnectConnector extends Resource {
          terraformType: tfType,
          argMap: {
            'connector_configuration': connectorConfiguration,
-           if (description != null) 'description': description,
+           'description': ?description,
            'kafkaconnect_version': kafkaconnectVersion,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'service_execution_role_arn': serviceExecutionRoleArn,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'capacity': TfArg.literal(capacity.encode()),
            'kafka_cluster': TfArg.literal(kafkaCluster.encode()),
            'kafka_cluster_client_authentication': TfArg.literal(

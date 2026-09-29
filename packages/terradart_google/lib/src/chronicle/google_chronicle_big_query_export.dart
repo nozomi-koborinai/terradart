@@ -153,8 +153,7 @@ final class GoogleChronicleBigQueryExport extends Resource {
          argMap: {
            'location': location,
            'instance': instance,
-           if (bigQueryExportPackage != null)
-             'big_query_export_package': bigQueryExportPackage,
+           'big_query_export_package': ?bigQueryExportPackage,
            if (udmEventsSettings != null)
              'udm_events_settings': TfArg.literal(udmEventsSettings.encode()),
            if (udmEventsAggregatesSettings != null)
@@ -171,7 +170,7 @@ final class GoogleChronicleBigQueryExport extends Resource {
              'entity_graph_settings': TfArg.literal(
                entityGraphSettings.encode(),
              ),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -42,7 +42,7 @@ final class GoogleSccFolderSccBigQueryExport extends Resource {
          argMap: {
            'big_query_export_id': bigQueryExportId,
            'dataset': dataset,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'description': description,
            'filter': filter,
            'folder': folder,

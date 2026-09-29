@@ -77,11 +77,9 @@ final class AppsyncGraphqlApiAdditionalAuthenticationProvider {
 
   Map<String, Object?> encode() => {
     'authentication_type': authenticationType.toTfJson(),
-    if (lambdaAuthorizerConfig != null)
-      'lambda_authorizer_config': lambdaAuthorizerConfig!.encode(),
-    if (openidConnectConfig != null)
-      'openid_connect_config': openidConnectConfig!.encode(),
-    if (userPoolConfig != null) 'user_pool_config': userPoolConfig!.encode(),
+    'lambda_authorizer_config': ?lambdaAuthorizerConfig?.encode(),
+    'openid_connect_config': ?openidConnectConfig?.encode(),
+    'user_pool_config': ?userPoolConfig?.encode(),
   };
 }
 
@@ -118,13 +116,10 @@ final class AppsyncGraphqlApiAdditionalAuthenticationProviderLambdaAuthorizerCon
   final TfArg<String>? identityValidationExpression;
 
   Map<String, Object?> encode() => {
-    if (authorizerResultTtlInSeconds != null)
-      'authorizer_result_ttl_in_seconds': authorizerResultTtlInSeconds!
-          .toTfJson(),
+    'authorizer_result_ttl_in_seconds': ?authorizerResultTtlInSeconds
+        ?.toTfJson(),
     'authorizer_uri': authorizerUri.toTfJson(),
-    if (identityValidationExpression != null)
-      'identity_validation_expression': identityValidationExpression!
-          .toTfJson(),
+    'identity_validation_expression': ?identityValidationExpression?.toTfJson(),
   };
 }
 
@@ -148,9 +143,9 @@ final class AppsyncGraphqlApiAdditionalAuthenticationProviderOpenidConnectConfig
   final TfArg<String> issuer;
 
   Map<String, Object?> encode() => {
-    if (authTtl != null) 'auth_ttl': authTtl!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (iatTtl != null) 'iat_ttl': iatTtl!.toTfJson(),
+    'auth_ttl': ?authTtl?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'iat_ttl': ?iatTtl?.toTfJson(),
     'issuer': issuer.toTfJson(),
   };
 }
@@ -172,9 +167,8 @@ final class AppsyncGraphqlApiAdditionalAuthenticationProviderUserPoolConfig {
   final TfArg<String> userPoolId;
 
   Map<String, Object?> encode() => {
-    if (appIdClientRegex != null)
-      'app_id_client_regex': appIdClientRegex!.toTfJson(),
-    if (awsRegion != null) 'aws_region': awsRegion!.toTfJson(),
+    'app_id_client_regex': ?appIdClientRegex?.toTfJson(),
+    'aws_region': ?awsRegion?.toTfJson(),
     'user_pool_id': userPoolId.toTfJson(),
   };
 }
@@ -266,13 +260,10 @@ final class AppsyncGraphqlApiLambdaAuthorizerConfig {
   final TfArg<String>? identityValidationExpression;
 
   Map<String, Object?> encode() => {
-    if (authorizerResultTtlInSeconds != null)
-      'authorizer_result_ttl_in_seconds': authorizerResultTtlInSeconds!
-          .toTfJson(),
+    'authorizer_result_ttl_in_seconds': ?authorizerResultTtlInSeconds
+        ?.toTfJson(),
     'authorizer_uri': authorizerUri.toTfJson(),
-    if (identityValidationExpression != null)
-      'identity_validation_expression': identityValidationExpression!
-          .toTfJson(),
+    'identity_validation_expression': ?identityValidationExpression?.toTfJson(),
   };
 }
 
@@ -294,8 +285,7 @@ final class AppsyncGraphqlApiLogConfig {
 
   Map<String, Object?> encode() => {
     'cloudwatch_logs_role_arn': cloudwatchLogsRoleArn.toTfJson(),
-    if (excludeVerboseContent != null)
-      'exclude_verbose_content': excludeVerboseContent!.toTfJson(),
+    'exclude_verbose_content': ?excludeVerboseContent?.toTfJson(),
     'field_log_level': fieldLogLevel.toTfJson(),
   };
 }
@@ -333,9 +323,9 @@ final class AppsyncGraphqlApiOpenidConnectConfig {
   final TfArg<String> issuer;
 
   Map<String, Object?> encode() => {
-    if (authTtl != null) 'auth_ttl': authTtl!.toTfJson(),
-    if (clientId != null) 'client_id': clientId!.toTfJson(),
-    if (iatTtl != null) 'iat_ttl': iatTtl!.toTfJson(),
+    'auth_ttl': ?authTtl?.toTfJson(),
+    'client_id': ?clientId?.toTfJson(),
+    'iat_ttl': ?iatTtl?.toTfJson(),
     'issuer': issuer.toTfJson(),
   };
 }
@@ -360,9 +350,8 @@ final class AppsyncGraphqlApiUserPoolConfig {
   final TfArg<String> userPoolId;
 
   Map<String, Object?> encode() => {
-    if (appIdClientRegex != null)
-      'app_id_client_regex': appIdClientRegex!.toTfJson(),
-    if (awsRegion != null) 'aws_region': awsRegion!.toTfJson(),
+    'app_id_client_regex': ?appIdClientRegex?.toTfJson(),
+    'aws_region': ?awsRegion?.toTfJson(),
     'default_action': defaultAction.toTfJson(),
     'user_pool_id': userPoolId.toTfJson(),
   };
@@ -410,21 +399,18 @@ final class AwsAppsyncGraphqlApi extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (apiType != null) 'api_type': apiType,
+           'api_type': ?apiType,
            'authentication_type': authenticationType,
-           if (introspectionConfig != null)
-             'introspection_config': introspectionConfig,
-           if (mergedApiExecutionRoleArn != null)
-             'merged_api_execution_role_arn': mergedApiExecutionRoleArn,
+           'introspection_config': ?introspectionConfig,
+           'merged_api_execution_role_arn': ?mergedApiExecutionRoleArn,
            'name': name,
-           if (queryDepthLimit != null) 'query_depth_limit': queryDepthLimit,
-           if (region != null) 'region': region,
-           if (resolverCountLimit != null)
-             'resolver_count_limit': resolverCountLimit,
-           if (schema != null) 'schema': schema,
-           if (tags != null) 'tags': tags,
-           if (visibility != null) 'visibility': visibility,
-           if (xrayEnabled != null) 'xray_enabled': xrayEnabled,
+           'query_depth_limit': ?queryDepthLimit,
+           'region': ?region,
+           'resolver_count_limit': ?resolverCountLimit,
+           'schema': ?schema,
+           'tags': ?tags,
+           'visibility': ?visibility,
+           'xray_enabled': ?xrayEnabled,
            if (additionalAuthenticationProvider != null)
              'additional_authentication_provider': TfArg.literal([
                for (final e in additionalAuthenticationProvider) e.encode(),

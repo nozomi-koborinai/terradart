@@ -23,9 +23,9 @@ final class DataAwsCodeartifactRepositoryEndpoint extends Data {
          terraformType: tfType,
          argMap: {
            'domain': domain,
-           if (domainOwner != null) 'domain_owner': domainOwner,
+           'domain_owner': ?domainOwner,
            'format': format,
-           if (region != null) 'region': region,
+           'region': ?region,
            'repository': repository,
          },
        );

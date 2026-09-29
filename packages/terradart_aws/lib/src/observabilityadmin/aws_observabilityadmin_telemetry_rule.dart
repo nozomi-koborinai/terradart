@@ -44,14 +44,12 @@ final class ObservabilityadminTelemetryRuleRule {
   destinationConfiguration;
 
   Map<String, Object?> encode() => {
-    if (allRegions != null) 'all_regions': allRegions!.toTfJson(),
-    if (allowFieldUpdates != null)
-      'allow_field_updates': allowFieldUpdates!.toTfJson(),
-    if (regions != null) 'regions': regions!.toTfJson(),
-    if (resourceType != null) 'resource_type': resourceType!.toTfJson(),
-    if (scope != null) 'scope': scope!.toTfJson(),
-    if (selectionCriteria != null)
-      'selection_criteria': selectionCriteria!.toTfJson(),
+    'all_regions': ?allRegions?.toTfJson(),
+    'allow_field_updates': ?allowFieldUpdates?.toTfJson(),
+    'regions': ?regions?.toTfJson(),
+    'resource_type': ?resourceType?.toTfJson(),
+    'scope': ?scope?.toTfJson(),
+    'selection_criteria': ?selectionCriteria?.toTfJson(),
     if (telemetrySourceTypes != null)
       'telemetry_source_types': [
         for (final e in telemetrySourceTypes!) e.toTfJson(),
@@ -182,12 +180,9 @@ final class ObservabilityadminTelemetryRuleRuleDestinationConfiguration {
   wafLoggingParameters;
 
   Map<String, Object?> encode() => {
-    if (destinationPattern != null)
-      'destination_pattern': destinationPattern!.toTfJson(),
-    if (destinationType != null)
-      'destination_type': destinationType!.toTfJson(),
-    if (retentionInDays != null)
-      'retention_in_days': retentionInDays!.toTfJson(),
+    'destination_pattern': ?destinationPattern?.toTfJson(),
+    'destination_type': ?destinationType?.toTfJson(),
+    'retention_in_days': ?retentionInDays?.toTfJson(),
     if (cloudtrailParameters != null)
       'cloudtrail_parameters': [
         for (final e in cloudtrailParameters!) e.encode(),
@@ -265,7 +260,7 @@ final class ObservabilityadminTelemetryRuleRuleDestinationConfigurationCloudtrai
   fieldSelectors;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (fieldSelectors != null)
       'field_selectors': [for (final e in fieldSelectors!) e.encode()],
   };
@@ -300,13 +295,13 @@ final class ObservabilityadminTelemetryRuleRuleDestinationConfigurationCloudtrai
   final TfArg<List<Object?>>? startsWith;
 
   Map<String, Object?> encode() => {
-    if (endsWith != null) 'ends_with': endsWith!.toTfJson(),
-    if (equals != null) 'equals': equals!.toTfJson(),
+    'ends_with': ?endsWith?.toTfJson(),
+    'equals': ?equals?.toTfJson(),
     'field': field.toTfJson(),
-    if (notEndsWith != null) 'not_ends_with': notEndsWith!.toTfJson(),
-    if (notEquals != null) 'not_equals': notEquals!.toTfJson(),
-    if (notStartsWith != null) 'not_starts_with': notStartsWith!.toTfJson(),
-    if (startsWith != null) 'starts_with': startsWith!.toTfJson(),
+    'not_ends_with': ?notEndsWith?.toTfJson(),
+    'not_equals': ?notEquals?.toTfJson(),
+    'not_starts_with': ?notStartsWith?.toTfJson(),
+    'starts_with': ?startsWith?.toTfJson(),
   };
 }
 
@@ -327,8 +322,8 @@ final class ObservabilityadminTelemetryRuleRuleDestinationConfigurationElbLoadBa
   outputFormat;
 
   Map<String, Object?> encode() => {
-    if (fieldDelimiter != null) 'field_delimiter': fieldDelimiter!.toTfJson(),
-    if (outputFormat != null) 'output_format': outputFormat!.toTfJson(),
+    'field_delimiter': ?fieldDelimiter?.toTfJson(),
+    'output_format': ?outputFormat?.toTfJson(),
   };
 }
 
@@ -400,8 +395,7 @@ final class ObservabilityadminTelemetryRuleRuleDestinationConfigurationMskMonito
   enhancedMonitoring;
 
   Map<String, Object?> encode() => {
-    if (enhancedMonitoring != null)
-      'enhanced_monitoring': enhancedMonitoring!.toTfJson(),
+    'enhanced_monitoring': ?enhancedMonitoring?.toTfJson(),
   };
 }
 
@@ -437,10 +431,9 @@ final class ObservabilityadminTelemetryRuleRuleDestinationConfigurationVpcFlowLo
   final TfArg<String>? trafficType;
 
   Map<String, Object?> encode() => {
-    if (logFormat != null) 'log_format': logFormat!.toTfJson(),
-    if (maxAggregationInterval != null)
-      'max_aggregation_interval': maxAggregationInterval!.toTfJson(),
-    if (trafficType != null) 'traffic_type': trafficType!.toTfJson(),
+    'log_format': ?logFormat?.toTfJson(),
+    'max_aggregation_interval': ?maxAggregationInterval?.toTfJson(),
+    'traffic_type': ?trafficType?.toTfJson(),
   };
 }
 
@@ -470,7 +463,7 @@ final class ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggin
   redactedFields;
 
   Map<String, Object?> encode() => {
-    if (logType != null) 'log_type': logType!.toTfJson(),
+    'log_type': ?logType?.toTfJson(),
     if (loggingFilter != null)
       'logging_filter': [for (final e in loggingFilter!) e.encode()],
     if (redactedFields != null)
@@ -510,8 +503,7 @@ final class ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggin
   filters;
 
   Map<String, Object?> encode() => {
-    if (defaultBehavior != null)
-      'default_behavior': defaultBehavior!.toTfJson(),
+    'default_behavior': ?defaultBehavior?.toTfJson(),
     if (filters != null) 'filters': [for (final e in filters!) e.encode()],
   };
 }
@@ -555,8 +547,8 @@ final class ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggin
   conditions;
 
   Map<String, Object?> encode() => {
-    if (behavior != null) 'behavior': behavior!.toTfJson(),
-    if (requirement != null) 'requirement': requirement!.toTfJson(),
+    'behavior': ?behavior?.toTfJson(),
+    'requirement': ?requirement?.toTfJson(),
     if (conditions != null)
       'conditions': [for (final e in conditions!) e.encode()],
   };
@@ -658,9 +650,7 @@ final class ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggin
 
   final TfArg<String>? labelName;
 
-  Map<String, Object?> encode() => {
-    if (labelName != null) 'label_name': labelName!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'label_name': ?labelName?.toTfJson()};
 }
 
 /// Typed helper for the `rule.destination_configuration.waf_logging_parameters.redacted_fields` block of
@@ -686,9 +676,9 @@ final class ObservabilityadminTelemetryRuleRuleDestinationConfigurationWafLoggin
   singleHeader;
 
   Map<String, Object?> encode() => {
-    if (method != null) 'method': method!.toTfJson(),
-    if (queryString != null) 'query_string': queryString!.toTfJson(),
-    if (uriPath != null) 'uri_path': uriPath!.toTfJson(),
+    'method': ?method?.toTfJson(),
+    'query_string': ?queryString?.toTfJson(),
+    'uri_path': ?uriPath?.toTfJson(),
     if (singleHeader != null)
       'single_header': [for (final e in singleHeader!) e.encode()],
   };
@@ -724,9 +714,9 @@ final class AwsObservabilityadminTelemetryRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'rule_name': ruleName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (rule != null)
              'rule': TfArg.literal([for (final e in rule) e.encode()]),
          },

@@ -27,9 +27,9 @@ final class DevopsguruServiceIntegrationKmsServerSideEncryption {
   final TfArg<DevopsguruServiceIntegrationKmsServerSideEncryptionType>? type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
-    if (optInStatus != null) 'opt_in_status': optInStatus!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'kms_key_id': ?kmsKeyId?.encodeAs('arn').toTfJson(),
+    'opt_in_status': ?optInStatus?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -68,9 +68,7 @@ final class DevopsguruServiceIntegrationLogsAnomalyDetection {
   final TfArg<DevopsguruServiceIntegrationLogsAnomalyDetectionOptInStatus>?
   optInStatus;
 
-  Map<String, Object?> encode() => {
-    if (optInStatus != null) 'opt_in_status': optInStatus!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'opt_in_status': ?optInStatus?.toTfJson()};
 }
 
 /// `opt_in_status` — derived from the provider schema description.
@@ -94,9 +92,7 @@ final class DevopsguruServiceIntegrationOpsCenter {
 
   final TfArg<DevopsguruServiceIntegrationOpsCenterOptInStatus>? optInStatus;
 
-  Map<String, Object?> encode() => {
-    if (optInStatus != null) 'opt_in_status': optInStatus!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'opt_in_status': ?optInStatus?.toTfJson()};
 }
 
 /// `opt_in_status` — derived from the provider schema description.
@@ -128,7 +124,7 @@ final class AwsDevopsguruServiceIntegration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            if (kmsServerSideEncryption != null)
              'kms_server_side_encryption': TfArg.literal([
                for (final e in kmsServerSideEncryption) e.encode(),

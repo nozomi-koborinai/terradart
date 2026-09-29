@@ -34,10 +34,9 @@ final class ConfigConfigurationRecorderRecordingGroup {
   recordingStrategy;
 
   Map<String, Object?> encode() => {
-    if (allSupported != null) 'all_supported': allSupported!.toTfJson(),
-    if (includeGlobalResourceTypes != null)
-      'include_global_resource_types': includeGlobalResourceTypes!.toTfJson(),
-    if (resourceTypes != null) 'resource_types': resourceTypes!.toTfJson(),
+    'all_supported': ?allSupported?.toTfJson(),
+    'include_global_resource_types': ?includeGlobalResourceTypes?.toTfJson(),
+    'resource_types': ?resourceTypes?.toTfJson(),
     if (exclusionByResourceTypes != null)
       'exclusion_by_resource_types': [
         for (final e in exclusionByResourceTypes!) e.encode(),
@@ -58,7 +57,7 @@ final class ConfigConfigurationRecorderRecordingGroupExclusionByResourceTypes {
   final TfArg<List<Object?>>? resourceTypes;
 
   Map<String, Object?> encode() => {
-    if (resourceTypes != null) 'resource_types': resourceTypes!.toTfJson(),
+    'resource_types': ?resourceTypes?.toTfJson(),
   };
 }
 
@@ -75,9 +74,7 @@ final class ConfigConfigurationRecorderRecordingGroupRecordingStrategy {
   >?
   useOnly;
 
-  Map<String, Object?> encode() => {
-    if (useOnly != null) 'use_only': useOnly!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'use_only': ?useOnly?.toTfJson()};
 }
 
 /// `use_only` — derived from the provider schema description.
@@ -110,10 +107,8 @@ final class ConfigConfigurationRecorderRecordingMode {
   recordingModeOverride;
 
   Map<String, Object?> encode() => {
-    if (recordingFrequency != null)
-      'recording_frequency': recordingFrequency!.toTfJson(),
-    if (recordingModeOverride != null)
-      'recording_mode_override': recordingModeOverride!.encode(),
+    'recording_frequency': ?recordingFrequency?.toTfJson(),
+    'recording_mode_override': ?recordingModeOverride?.encode(),
   };
 }
 
@@ -150,7 +145,7 @@ final class ConfigConfigurationRecorderRecordingModeRecordingModeOverride {
   final TfArg<List<Object?>> resourceTypes;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'recording_frequency': recordingFrequency.toTfJson(),
     'resource_types': resourceTypes.toTfJson(),
   };
@@ -187,8 +182,8 @@ final class AwsConfigConfigurationRecorder extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (region != null) 'region': region,
+           'name': ?name,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
            if (recordingGroup != null)
              'recording_group': TfArg.literal(recordingGroup.encode()),

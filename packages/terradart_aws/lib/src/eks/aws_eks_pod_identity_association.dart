@@ -31,15 +31,14 @@ final class AwsEksPodIdentityAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'cluster_name': clusterName,
-           if (disableSessionTags != null)
-             'disable_session_tags': disableSessionTags,
+           'disable_session_tags': ?disableSessionTags,
            'namespace': namespace,
-           if (policy != null) 'policy': policy,
-           if (region != null) 'region': region,
+           'policy': ?policy,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
            'service_account': serviceAccount,
-           if (tags != null) 'tags': tags,
-           if (targetRoleArn != null) 'target_role_arn': targetRoleArn,
+           'tags': ?tags,
+           'target_role_arn': ?targetRoleArn,
          },
        );
 

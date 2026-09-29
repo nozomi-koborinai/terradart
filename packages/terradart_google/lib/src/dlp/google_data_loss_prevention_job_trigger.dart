@@ -48,13 +48,13 @@ final class GoogleDataLossPreventionJobTrigger extends Resource {
          terraformType: tfType,
          argMap: {
            'parent': parent,
-           if (triggerId != null) 'trigger_id': triggerId,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (status != null) 'status': status,
+           'trigger_id': ?triggerId,
+           'display_name': ?displayName,
+           'description': ?description,
+           'status': ?status,
            'triggers': triggers,
-           if (inspectJob != null) 'inspect_job': inspectJob,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'inspect_job': ?inspectJob,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

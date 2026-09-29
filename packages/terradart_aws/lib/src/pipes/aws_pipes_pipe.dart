@@ -95,8 +95,8 @@ final class PipesPipeEnrichmentParameters {
   final PipesPipeEnrichmentParametersHttpParameters? httpParameters;
 
   Map<String, Object?> encode() => {
-    if (inputTemplate != null) 'input_template': inputTemplate!.toTfJson(),
-    if (httpParameters != null) 'http_parameters': httpParameters!.encode(),
+    'input_template': ?inputTemplate?.toTfJson(),
+    'http_parameters': ?httpParameters?.encode(),
   };
 }
 
@@ -117,12 +117,9 @@ final class PipesPipeEnrichmentParametersHttpParameters {
   final TfArg<Map<String, String>>? queryStringParameters;
 
   Map<String, Object?> encode() => {
-    if (headerParameters != null)
-      'header_parameters': headerParameters!.toTfJson(),
-    if (pathParameterValues != null)
-      'path_parameter_values': pathParameterValues!.toTfJson(),
-    if (queryStringParameters != null)
-      'query_string_parameters': queryStringParameters!.toTfJson(),
+    'header_parameters': ?headerParameters?.toTfJson(),
+    'path_parameter_values': ?pathParameterValues?.toTfJson(),
+    'query_string_parameters': ?queryStringParameters?.toTfJson(),
   };
 }
 
@@ -156,12 +153,9 @@ final class PipesPipeLogConfiguration {
         for (final e in includeExecutionData!) e.toTfJson(),
       ],
     'level': level.toTfJson(),
-    if (cloudwatchLogsLogDestination != null)
-      'cloudwatch_logs_log_destination': cloudwatchLogsLogDestination!.encode(),
-    if (firehoseLogDestination != null)
-      'firehose_log_destination': firehoseLogDestination!.encode(),
-    if (s3LogDestination != null)
-      's3_log_destination': s3LogDestination!.encode(),
+    'cloudwatch_logs_log_destination': ?cloudwatchLogsLogDestination?.encode(),
+    'firehose_log_destination': ?firehoseLogDestination?.encode(),
+    's3_log_destination': ?s3LogDestination?.encode(),
   };
 }
 
@@ -239,8 +233,8 @@ final class PipesPipeLogConfigurationS3LogDestination {
   Map<String, Object?> encode() => {
     'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_owner': bucketOwner.toTfJson(),
-    if (outputFormat != null) 'output_format': outputFormat!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'output_format': ?outputFormat?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
   };
 }
 
@@ -270,7 +264,7 @@ final class PipesPipeSourceParameters {
 
   Map<String, Object?> encode() => {
     ...?parameters?.encode(),
-    if (filterCriteria != null) 'filter_criteria': filterCriteria!.encode(),
+    'filter_criteria': ?filterCriteria?.encode(),
   };
 }
 
@@ -479,10 +473,9 @@ final class PipesPipeSourceParametersActivemqBrokerParameters {
   credentials;
 
   Map<String, Object?> encode() => {
-    if (batchSize != null) 'batch_size': batchSize!.toTfJson(),
-    if (maximumBatchingWindowInSeconds != null)
-      'maximum_batching_window_in_seconds': maximumBatchingWindowInSeconds!
-          .toTfJson(),
+    'batch_size': ?batchSize?.toTfJson(),
+    'maximum_batching_window_in_seconds': ?maximumBatchingWindowInSeconds
+        ?.toTfJson(),
     'queue_name': queueName.toTfJson(),
     'credentials': credentials.encode(),
   };
@@ -538,21 +531,15 @@ final class PipesPipeSourceParametersDynamodbStreamParameters {
   deadLetterConfig;
 
   Map<String, Object?> encode() => {
-    if (batchSize != null) 'batch_size': batchSize!.toTfJson(),
-    if (maximumBatchingWindowInSeconds != null)
-      'maximum_batching_window_in_seconds': maximumBatchingWindowInSeconds!
-          .toTfJson(),
-    if (maximumRecordAgeInSeconds != null)
-      'maximum_record_age_in_seconds': maximumRecordAgeInSeconds!.toTfJson(),
-    if (maximumRetryAttempts != null)
-      'maximum_retry_attempts': maximumRetryAttempts!.toTfJson(),
-    if (onPartialBatchItemFailure != null)
-      'on_partial_batch_item_failure': onPartialBatchItemFailure!.toTfJson(),
-    if (parallelizationFactor != null)
-      'parallelization_factor': parallelizationFactor!.toTfJson(),
+    'batch_size': ?batchSize?.toTfJson(),
+    'maximum_batching_window_in_seconds': ?maximumBatchingWindowInSeconds
+        ?.toTfJson(),
+    'maximum_record_age_in_seconds': ?maximumRecordAgeInSeconds?.toTfJson(),
+    'maximum_retry_attempts': ?maximumRetryAttempts?.toTfJson(),
+    'on_partial_batch_item_failure': ?onPartialBatchItemFailure?.toTfJson(),
+    'parallelization_factor': ?parallelizationFactor?.toTfJson(),
     'starting_position': startingPosition.toTfJson(),
-    if (deadLetterConfig != null)
-      'dead_letter_config': deadLetterConfig!.encode(),
+    'dead_letter_config': ?deadLetterConfig?.encode(),
   };
 }
 
@@ -591,7 +578,7 @@ final class PipesPipeSourceParametersDynamodbStreamParametersDeadLetterConfig {
 
   final TfArg<String>? arn;
 
-  Map<String, Object?> encode() => {if (arn != null) 'arn': arn!.toTfJson()};
+  Map<String, Object?> encode() => {'arn': ?arn?.toTfJson()};
 }
 
 /// Typed helper for the `source_parameters.filter_criteria` block of
@@ -658,23 +645,16 @@ final class PipesPipeSourceParametersKinesisStreamParameters {
   deadLetterConfig;
 
   Map<String, Object?> encode() => {
-    if (batchSize != null) 'batch_size': batchSize!.toTfJson(),
-    if (maximumBatchingWindowInSeconds != null)
-      'maximum_batching_window_in_seconds': maximumBatchingWindowInSeconds!
-          .toTfJson(),
-    if (maximumRecordAgeInSeconds != null)
-      'maximum_record_age_in_seconds': maximumRecordAgeInSeconds!.toTfJson(),
-    if (maximumRetryAttempts != null)
-      'maximum_retry_attempts': maximumRetryAttempts!.toTfJson(),
-    if (onPartialBatchItemFailure != null)
-      'on_partial_batch_item_failure': onPartialBatchItemFailure!.toTfJson(),
-    if (parallelizationFactor != null)
-      'parallelization_factor': parallelizationFactor!.toTfJson(),
+    'batch_size': ?batchSize?.toTfJson(),
+    'maximum_batching_window_in_seconds': ?maximumBatchingWindowInSeconds
+        ?.toTfJson(),
+    'maximum_record_age_in_seconds': ?maximumRecordAgeInSeconds?.toTfJson(),
+    'maximum_retry_attempts': ?maximumRetryAttempts?.toTfJson(),
+    'on_partial_batch_item_failure': ?onPartialBatchItemFailure?.toTfJson(),
+    'parallelization_factor': ?parallelizationFactor?.toTfJson(),
     'starting_position': startingPosition.toTfJson(),
-    if (startingPositionTimestamp != null)
-      'starting_position_timestamp': startingPositionTimestamp!.toTfJson(),
-    if (deadLetterConfig != null)
-      'dead_letter_config': deadLetterConfig!.encode(),
+    'starting_position_timestamp': ?startingPositionTimestamp?.toTfJson(),
+    'dead_letter_config': ?deadLetterConfig?.encode(),
   };
 }
 
@@ -714,7 +694,7 @@ final class PipesPipeSourceParametersKinesisStreamParametersDeadLetterConfig {
 
   final TfArg<String>? arn;
 
-  Map<String, Object?> encode() => {if (arn != null) 'arn': arn!.toTfJson()};
+  Map<String, Object?> encode() => {'arn': ?arn?.toTfJson()};
 }
 
 /// Typed helper for the `source_parameters.managed_streaming_kafka_parameters` block of
@@ -747,16 +727,13 @@ final class PipesPipeSourceParametersManagedStreamingKafkaParameters {
   credentials;
 
   Map<String, Object?> encode() => {
-    if (batchSize != null) 'batch_size': batchSize!.toTfJson(),
-    if (consumerGroupId != null)
-      'consumer_group_id': consumerGroupId!.toTfJson(),
-    if (maximumBatchingWindowInSeconds != null)
-      'maximum_batching_window_in_seconds': maximumBatchingWindowInSeconds!
-          .toTfJson(),
-    if (startingPosition != null)
-      'starting_position': startingPosition!.toTfJson(),
+    'batch_size': ?batchSize?.toTfJson(),
+    'consumer_group_id': ?consumerGroupId?.toTfJson(),
+    'maximum_batching_window_in_seconds': ?maximumBatchingWindowInSeconds
+        ?.toTfJson(),
+    'starting_position': ?startingPosition?.toTfJson(),
     'topic_name': topicName.toTfJson(),
-    if (credentials != null) 'credentials': credentials!.encode(),
+    'credentials': ?credentials?.encode(),
   };
 }
 
@@ -787,10 +764,8 @@ final class PipesPipeSourceParametersManagedStreamingKafkaParametersCredentials 
   final TfArg<String>? saslScram512Auth;
 
   Map<String, Object?> encode() => {
-    if (clientCertificateTlsAuth != null)
-      'client_certificate_tls_auth': clientCertificateTlsAuth!.toTfJson(),
-    if (saslScram512Auth != null)
-      'sasl_scram_512_auth': saslScram512Auth!.toTfJson(),
+    'client_certificate_tls_auth': ?clientCertificateTlsAuth?.toTfJson(),
+    'sasl_scram_512_auth': ?saslScram512Auth?.toTfJson(),
   };
 }
 
@@ -818,12 +793,11 @@ final class PipesPipeSourceParametersRabbitmqBrokerParameters {
   credentials;
 
   Map<String, Object?> encode() => {
-    if (batchSize != null) 'batch_size': batchSize!.toTfJson(),
-    if (maximumBatchingWindowInSeconds != null)
-      'maximum_batching_window_in_seconds': maximumBatchingWindowInSeconds!
-          .toTfJson(),
+    'batch_size': ?batchSize?.toTfJson(),
+    'maximum_batching_window_in_seconds': ?maximumBatchingWindowInSeconds
+        ?.toTfJson(),
     'queue_name': queueName.toTfJson(),
-    if (virtualHost != null) 'virtual_host': virtualHost!.toTfJson(),
+    'virtual_host': ?virtualHost?.toTfJson(),
     'credentials': credentials.encode(),
   };
 }
@@ -880,21 +854,16 @@ final class PipesPipeSourceParametersSelfManagedKafkaParameters {
   final PipesPipeSourceParametersSelfManagedKafkaParametersVpc? vpc;
 
   Map<String, Object?> encode() => {
-    if (additionalBootstrapServers != null)
-      'additional_bootstrap_servers': additionalBootstrapServers!.toTfJson(),
-    if (batchSize != null) 'batch_size': batchSize!.toTfJson(),
-    if (consumerGroupId != null)
-      'consumer_group_id': consumerGroupId!.toTfJson(),
-    if (maximumBatchingWindowInSeconds != null)
-      'maximum_batching_window_in_seconds': maximumBatchingWindowInSeconds!
-          .toTfJson(),
-    if (serverRootCaCertificate != null)
-      'server_root_ca_certificate': serverRootCaCertificate!.toTfJson(),
-    if (startingPosition != null)
-      'starting_position': startingPosition!.toTfJson(),
+    'additional_bootstrap_servers': ?additionalBootstrapServers?.toTfJson(),
+    'batch_size': ?batchSize?.toTfJson(),
+    'consumer_group_id': ?consumerGroupId?.toTfJson(),
+    'maximum_batching_window_in_seconds': ?maximumBatchingWindowInSeconds
+        ?.toTfJson(),
+    'server_root_ca_certificate': ?serverRootCaCertificate?.toTfJson(),
+    'starting_position': ?startingPosition?.toTfJson(),
     'topic_name': topicName.toTfJson(),
-    if (credentials != null) 'credentials': credentials!.encode(),
-    if (vpc != null) 'vpc': vpc!.encode(),
+    'credentials': ?credentials?.encode(),
+    'vpc': ?vpc?.encode(),
   };
 }
 
@@ -931,13 +900,10 @@ final class PipesPipeSourceParametersSelfManagedKafkaParametersCredentials {
   final TfArg<String>? saslScram512Auth;
 
   Map<String, Object?> encode() => {
-    if (basicAuth != null) 'basic_auth': basicAuth!.toTfJson(),
-    if (clientCertificateTlsAuth != null)
-      'client_certificate_tls_auth': clientCertificateTlsAuth!.toTfJson(),
-    if (saslScram256Auth != null)
-      'sasl_scram_256_auth': saslScram256Auth!.toTfJson(),
-    if (saslScram512Auth != null)
-      'sasl_scram_512_auth': saslScram512Auth!.toTfJson(),
+    'basic_auth': ?basicAuth?.toTfJson(),
+    'client_certificate_tls_auth': ?clientCertificateTlsAuth?.toTfJson(),
+    'sasl_scram_256_auth': ?saslScram256Auth?.toTfJson(),
+    'sasl_scram_512_auth': ?saslScram512Auth?.toTfJson(),
   };
 }
 
@@ -955,9 +921,8 @@ final class PipesPipeSourceParametersSelfManagedKafkaParametersVpc {
   final TfArg<List<RefTo<AwsSubnet>>>? subnets;
 
   Map<String, Object?> encode() => {
-    if (securityGroups != null)
-      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
-    if (subnets != null) 'subnets': subnets!.encodeAs('id').toTfJson(),
+    'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
+    'subnets': ?subnets?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -975,10 +940,9 @@ final class PipesPipeSourceParametersSqsQueueParameters {
   final TfArg<num>? maximumBatchingWindowInSeconds;
 
   Map<String, Object?> encode() => {
-    if (batchSize != null) 'batch_size': batchSize!.toTfJson(),
-    if (maximumBatchingWindowInSeconds != null)
-      'maximum_batching_window_in_seconds': maximumBatchingWindowInSeconds!
-          .toTfJson(),
+    'batch_size': ?batchSize?.toTfJson(),
+    'maximum_batching_window_in_seconds': ?maximumBatchingWindowInSeconds
+        ?.toTfJson(),
   };
 }
 
@@ -993,7 +957,7 @@ final class PipesPipeTargetParameters {
   final PipesPipeTargetParametersParameters? parameters;
 
   Map<String, Object?> encode() => {
-    if (inputTemplate != null) 'input_template': inputTemplate!.toTfJson(),
+    'input_template': ?inputTemplate?.toTfJson(),
     ...?parameters?.encode(),
   };
 }
@@ -1304,13 +1268,12 @@ final class PipesPipeTargetParametersBatchJobParameters {
   Map<String, Object?> encode() => {
     'job_definition': jobDefinition.toTfJson(),
     'job_name': jobName.toTfJson(),
-    if (parameters != null) 'parameters': parameters!.toTfJson(),
-    if (arrayProperties != null) 'array_properties': arrayProperties!.encode(),
-    if (containerOverrides != null)
-      'container_overrides': containerOverrides!.encode(),
+    'parameters': ?parameters?.toTfJson(),
+    'array_properties': ?arrayProperties?.encode(),
+    'container_overrides': ?containerOverrides?.encode(),
     if (dependsOn != null)
       'depends_on': [for (final e in dependsOn!) e.encode()],
-    if (retryStrategy != null) 'retry_strategy': retryStrategy!.encode(),
+    'retry_strategy': ?retryStrategy?.encode(),
   };
 }
 
@@ -1322,7 +1285,7 @@ final class PipesPipeTargetParametersBatchJobParametersArrayProperties {
 
   final TfArg<num>? size;
 
-  Map<String, Object?> encode() => {if (size != null) 'size': size!.toTfJson()};
+  Map<String, Object?> encode() => {'size': ?size?.toTfJson()};
 }
 
 /// Typed helper for the `target_parameters.batch_job_parameters.container_overrides` block of
@@ -1351,8 +1314,8 @@ final class PipesPipeTargetParametersBatchJobParametersContainerOverrides {
   resourceRequirement;
 
   Map<String, Object?> encode() => {
-    if (command != null) 'command': command!.toTfJson(),
-    if (instanceType != null) 'instance_type': instanceType!.toTfJson(),
+    'command': ?command?.toTfJson(),
+    'instance_type': ?instanceType?.toTfJson(),
     if (environment != null)
       'environment': [for (final e in environment!) e.encode()],
     if (resourceRequirement != null)
@@ -1376,8 +1339,8 @@ final class PipesPipeTargetParametersBatchJobParametersContainerOverridesEnviron
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -1431,8 +1394,8 @@ final class PipesPipeTargetParametersBatchJobParametersDependsOn {
   final TfArg<PipesPipeTargetParametersBatchJobParametersDependsOnType>? type;
 
   Map<String, Object?> encode() => {
-    if (jobId != null) 'job_id': jobId!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'job_id': ?jobId?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -1459,9 +1422,7 @@ final class PipesPipeTargetParametersBatchJobParametersRetryStrategy {
 
   final TfArg<num>? attempts;
 
-  Map<String, Object?> encode() => {
-    if (attempts != null) 'attempts': attempts!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'attempts': ?attempts?.toTfJson()};
 }
 
 /// Typed helper for the `target_parameters.cloudwatch_logs_parameters` block of
@@ -1478,8 +1439,8 @@ final class PipesPipeTargetParametersCloudwatchLogsParameters {
   final TfArg<String>? timestamp;
 
   Map<String, Object?> encode() => {
-    if (logStreamName != null) 'log_stream_name': logStreamName!.toTfJson(),
-    if (timestamp != null) 'timestamp': timestamp!.toTfJson(),
+    'log_stream_name': ?logStreamName?.toTfJson(),
+    'timestamp': ?timestamp?.toTfJson(),
   };
 }
 
@@ -1543,26 +1504,22 @@ final class PipesPipeTargetParametersEcsTaskParameters {
   placementStrategy;
 
   Map<String, Object?> encode() => {
-    if (enableEcsManagedTags != null)
-      'enable_ecs_managed_tags': enableEcsManagedTags!.toTfJson(),
-    if (enableExecuteCommand != null)
-      'enable_execute_command': enableExecuteCommand!.toTfJson(),
-    if (group != null) 'group': group!.toTfJson(),
-    if (launchType != null) 'launch_type': launchType!.toTfJson(),
-    if (platformVersion != null)
-      'platform_version': platformVersion!.toTfJson(),
-    if (propagateTags != null) 'propagate_tags': propagateTags!.toTfJson(),
-    if (referenceId != null) 'reference_id': referenceId!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-    if (taskCount != null) 'task_count': taskCount!.toTfJson(),
+    'enable_ecs_managed_tags': ?enableEcsManagedTags?.toTfJson(),
+    'enable_execute_command': ?enableExecuteCommand?.toTfJson(),
+    'group': ?group?.toTfJson(),
+    'launch_type': ?launchType?.toTfJson(),
+    'platform_version': ?platformVersion?.toTfJson(),
+    'propagate_tags': ?propagateTags?.toTfJson(),
+    'reference_id': ?referenceId?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
+    'task_count': ?taskCount?.toTfJson(),
     'task_definition_arn': taskDefinitionArn.toTfJson(),
     if (capacityProviderStrategy != null)
       'capacity_provider_strategy': [
         for (final e in capacityProviderStrategy!) e.encode(),
       ],
-    if (networkConfiguration != null)
-      'network_configuration': networkConfiguration!.encode(),
-    if (overrides != null) 'overrides': overrides!.encode(),
+    'network_configuration': ?networkConfiguration?.encode(),
+    'overrides': ?overrides?.encode(),
     if (placementConstraint != null)
       'placement_constraint': [
         for (final e in placementConstraint!) e.encode(),
@@ -1615,9 +1572,9 @@ final class PipesPipeTargetParametersEcsTaskParametersCapacityProviderStrategy {
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (base != null) 'base': base!.toTfJson(),
+    'base': ?base?.toTfJson(),
     'capacity_provider': capacityProvider.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -1633,8 +1590,7 @@ final class PipesPipeTargetParametersEcsTaskParametersNetworkConfiguration {
   awsVpcConfiguration;
 
   Map<String, Object?> encode() => {
-    if (awsVpcConfiguration != null)
-      'aws_vpc_configuration': awsVpcConfiguration!.encode(),
+    'aws_vpc_configuration': ?awsVpcConfiguration?.encode(),
   };
 }
 
@@ -1658,10 +1614,9 @@ final class PipesPipeTargetParametersEcsTaskParametersNetworkConfigurationAwsVpc
   final TfArg<List<RefTo<AwsSubnet>>>? subnets;
 
   Map<String, Object?> encode() => {
-    if (assignPublicIp != null) 'assign_public_ip': assignPublicIp!.toTfJson(),
-    if (securityGroups != null)
-      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
-    if (subnets != null) 'subnets': subnets!.encodeAs('id').toTfJson(),
+    'assign_public_ip': ?assignPublicIp?.toTfJson(),
+    'security_groups': ?securityGroups?.encodeAs('id').toTfJson(),
+    'subnets': ?subnets?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -1714,16 +1669,13 @@ final class PipesPipeTargetParametersEcsTaskParametersOverrides {
   inferenceAcceleratorOverride;
 
   Map<String, Object?> encode() => {
-    if (cpu != null) 'cpu': cpu!.toTfJson(),
-    if (executionRoleArn != null)
-      'execution_role_arn': executionRoleArn!.encodeAs('arn').toTfJson(),
-    if (memory != null) 'memory': memory!.toTfJson(),
-    if (taskRoleArn != null)
-      'task_role_arn': taskRoleArn!.encodeAs('arn').toTfJson(),
+    'cpu': ?cpu?.toTfJson(),
+    'execution_role_arn': ?executionRoleArn?.encodeAs('arn').toTfJson(),
+    'memory': ?memory?.toTfJson(),
+    'task_role_arn': ?taskRoleArn?.encodeAs('arn').toTfJson(),
     if (containerOverride != null)
       'container_override': [for (final e in containerOverride!) e.encode()],
-    if (ephemeralStorage != null)
-      'ephemeral_storage': ephemeralStorage!.encode(),
+    'ephemeral_storage': ?ephemeralStorage?.encode(),
     if (inferenceAcceleratorOverride != null)
       'inference_accelerator_override': [
         for (final e in inferenceAcceleratorOverride!) e.encode(),
@@ -1772,12 +1724,11 @@ final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride
   resourceRequirement;
 
   Map<String, Object?> encode() => {
-    if (command != null) 'command': command!.toTfJson(),
-    if (cpu != null) 'cpu': cpu!.toTfJson(),
-    if (memory != null) 'memory': memory!.toTfJson(),
-    if (memoryReservation != null)
-      'memory_reservation': memoryReservation!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'command': ?command?.toTfJson(),
+    'cpu': ?cpu?.toTfJson(),
+    'memory': ?memory?.toTfJson(),
+    'memory_reservation': ?memoryReservation?.toTfJson(),
+    'name': ?name?.toTfJson(),
     if (environment != null)
       'environment': [for (final e in environment!) e.encode()],
     if (environmentFile != null)
@@ -1803,8 +1754,8 @@ final class PipesPipeTargetParametersEcsTaskParametersOverridesContainerOverride
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -1904,8 +1855,8 @@ final class PipesPipeTargetParametersEcsTaskParametersOverridesInferenceAccelera
   final TfArg<String>? deviceType;
 
   Map<String, Object?> encode() => {
-    if (deviceName != null) 'device_name': deviceName!.toTfJson(),
-    if (deviceType != null) 'device_type': deviceType!.toTfJson(),
+    'device_name': ?deviceName?.toTfJson(),
+    'device_type': ?deviceType?.toTfJson(),
   };
 }
 
@@ -1926,8 +1877,8 @@ final class PipesPipeTargetParametersEcsTaskParametersPlacementConstraint {
   type;
 
   Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'expression': ?expression?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -1959,8 +1910,8 @@ final class PipesPipeTargetParametersEcsTaskParametersPlacementStrategy {
   type;
 
   Map<String, Object?> encode() => {
-    if (field != null) 'field': field!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'field': ?field?.toTfJson(),
+    'type': ?type?.toTfJson(),
   };
 }
 
@@ -2001,11 +1952,11 @@ final class PipesPipeTargetParametersEventbridgeEventBusParameters {
   final TfArg<String>? time;
 
   Map<String, Object?> encode() => {
-    if (detailType != null) 'detail_type': detailType!.toTfJson(),
-    if (endpointId != null) 'endpoint_id': endpointId!.toTfJson(),
-    if (resources != null) 'resources': resources!.toTfJson(),
-    if (source != null) 'source': source!.toTfJson(),
-    if (time != null) 'time': time!.toTfJson(),
+    'detail_type': ?detailType?.toTfJson(),
+    'endpoint_id': ?endpointId?.toTfJson(),
+    'resources': ?resources?.toTfJson(),
+    'source': ?source?.toTfJson(),
+    'time': ?time?.toTfJson(),
   };
 }
 
@@ -2026,12 +1977,9 @@ final class PipesPipeTargetParametersHttpParameters {
   final TfArg<Map<String, String>>? queryStringParameters;
 
   Map<String, Object?> encode() => {
-    if (headerParameters != null)
-      'header_parameters': headerParameters!.toTfJson(),
-    if (pathParameterValues != null)
-      'path_parameter_values': pathParameterValues!.toTfJson(),
-    if (queryStringParameters != null)
-      'query_string_parameters': queryStringParameters!.toTfJson(),
+    'header_parameters': ?headerParameters?.toTfJson(),
+    'path_parameter_values': ?pathParameterValues?.toTfJson(),
+    'query_string_parameters': ?queryStringParameters?.toTfJson(),
   };
 }
 
@@ -2104,12 +2052,11 @@ final class PipesPipeTargetParametersRedshiftDataParameters {
 
   Map<String, Object?> encode() => {
     'database': database.toTfJson(),
-    if (dbUser != null) 'db_user': dbUser!.toTfJson(),
-    if (secretManagerArn != null)
-      'secret_manager_arn': secretManagerArn!.toTfJson(),
+    'db_user': ?dbUser?.toTfJson(),
+    'secret_manager_arn': ?secretManagerArn?.toTfJson(),
     'sqls': sqls.toTfJson(),
-    if (statementName != null) 'statement_name': statementName!.toTfJson(),
-    if (withEvent != null) 'with_event': withEvent!.toTfJson(),
+    'statement_name': ?statementName?.toTfJson(),
+    'with_event': ?withEvent?.toTfJson(),
   };
 }
 
@@ -2165,9 +2112,8 @@ final class PipesPipeTargetParametersSqsQueueParameters {
   final TfArg<String>? messageGroupId;
 
   Map<String, Object?> encode() => {
-    if (messageDeduplicationId != null)
-      'message_deduplication_id': messageDeduplicationId!.toTfJson(),
-    if (messageGroupId != null) 'message_group_id': messageGroupId!.toTfJson(),
+    'message_deduplication_id': ?messageDeduplicationId?.toTfJson(),
+    'message_group_id': ?messageGroupId?.toTfJson(),
   };
 }
 
@@ -2229,16 +2175,15 @@ final class AwsPipesPipe extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (desiredState != null) 'desired_state': desiredState,
-           if (enrichment != null) 'enrichment': enrichment,
-           if (kmsKeyIdentifier != null)
-             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
+           'description': ?description,
+           'desired_state': ?desiredState,
+           'enrichment': ?enrichment,
+           'kms_key_identifier': ?kmsKeyIdentifier?.encodeAs('arn'),
            ...?name?.argMap,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
            'source': source,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'target': target,
            if (enrichmentParameters != null)
              'enrichment_parameters': TfArg.literal(

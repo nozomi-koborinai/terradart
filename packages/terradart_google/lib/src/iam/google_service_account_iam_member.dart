@@ -60,7 +60,7 @@ final class GoogleServiceAccountIamMember extends Resource {
            'service_account_id': serviceAccountId.encodeAs('name'),
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

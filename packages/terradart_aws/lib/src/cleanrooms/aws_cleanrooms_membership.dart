@@ -35,7 +35,7 @@ final class CleanroomsMembershipDefaultResultConfiguration {
   outputConfiguration;
 
   Map<String, Object?> encode() => {
-    if (roleArn != null) 'role_arn': roleArn!.encodeAs('arn').toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
     if (outputConfiguration != null)
       'output_configuration': [
         for (final e in outputConfiguration!) e.encode(),
@@ -79,7 +79,7 @@ final class CleanroomsMembershipDefaultResultConfigurationOutputConfigurationS3 
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
-    if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
+    'key_prefix': ?keyPrefix?.toTfJson(),
     'result_format': resultFormat.toTfJson(),
   };
 }
@@ -134,8 +134,8 @@ final class AwsCleanroomsMembership extends Resource {
          argMap: {
            'collaboration_id': collaborationId,
            'query_log_status': queryLogStatus,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (defaultResultConfiguration != null)
              'default_result_configuration': TfArg.literal([
                for (final e in defaultResultConfiguration) e.encode(),

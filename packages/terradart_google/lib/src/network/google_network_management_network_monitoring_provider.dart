@@ -26,10 +26,10 @@ final class GoogleNetworkManagementNetworkMonitoringProvider extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
            'location': location,
            'network_monitoring_provider_id': networkMonitoringProviderId,
-           if (project != null) 'project': project,
+           'project': ?project,
            'provider_type': providerType,
          },
        );

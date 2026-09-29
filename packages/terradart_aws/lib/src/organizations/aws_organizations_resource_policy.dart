@@ -20,7 +20,7 @@ final class AwsOrganizationsResourcePolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'content': content, if (tags != null) 'tags': tags},
+         argMap: {'content': content, 'tags': ?tags},
        );
 
   @override

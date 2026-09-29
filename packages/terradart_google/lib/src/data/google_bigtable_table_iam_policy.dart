@@ -25,7 +25,7 @@ final class DataGoogleBigtableTableIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'instance_name': instanceName,
-           if (project != null) 'project': project,
+           'project': ?project,
            'table': table,
          },
        );

@@ -25,13 +25,12 @@ final class AwsDatazoneProject extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'domain_identifier': domainIdentifier,
-           if (glossaryTerms != null) 'glossary_terms': glossaryTerms,
+           'glossary_terms': ?glossaryTerms,
            'name': name,
-           if (region != null) 'region': region,
-           if (skipDeletionCheck != null)
-             'skip_deletion_check': skipDeletionCheck,
+           'region': ?region,
+           'skip_deletion_check': ?skipDeletionCheck,
          },
        );
 

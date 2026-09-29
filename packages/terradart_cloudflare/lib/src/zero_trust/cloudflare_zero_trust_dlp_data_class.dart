@@ -53,7 +53,7 @@ final class CloudflareZeroTrustDlpDataClass extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'data_tags': dataTags,
-           if (description != null) 'description': description,
+           'description': ?description,
            'expression': expression,
            'name': name,
            'sensitivity_levels': TfArg.literal([

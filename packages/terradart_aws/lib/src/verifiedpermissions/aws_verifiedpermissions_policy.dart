@@ -38,7 +38,7 @@ final class VerifiedpermissionsPolicyDefinitionStatic {
   final TfArg<String> statement;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
+    'description': ?description?.toTfJson(),
     'statement': statement.toTfJson(),
   };
 }
@@ -124,7 +124,7 @@ final class AwsVerifiedpermissionsPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'policy_store_id': policyStoreId,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (definition != null)
              'definition': TfArg.literal([
                for (final e in definition) e.encode(),

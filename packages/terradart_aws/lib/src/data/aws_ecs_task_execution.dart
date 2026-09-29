@@ -24,9 +24,9 @@ final class DataEcsTaskExecutionCapacityProviderStrategy {
   final TfArg<num>? weight;
 
   Map<String, Object?> encode() => {
-    if (base != null) 'base': base!.toTfJson(),
+    'base': ?base?.toTfJson(),
     'capacity_provider': capacityProvider.toTfJson(),
-    if (weight != null) 'weight': weight!.toTfJson(),
+    'weight': ?weight?.toTfJson(),
   };
 }
 
@@ -47,8 +47,8 @@ final class DataEcsTaskExecutionNetworkConfiguration {
   final TfArg<List<Object?>> subnets;
 
   Map<String, Object?> encode() => {
-    if (assignPublicIp != null) 'assign_public_ip': assignPublicIp!.toTfJson(),
-    if (securityGroups != null) 'security_groups': securityGroups!.toTfJson(),
+    'assign_public_ip': ?assignPublicIp?.toTfJson(),
+    'security_groups': ?securityGroups?.toTfJson(),
     'subnets': subnets.toTfJson(),
   };
 }
@@ -77,11 +77,10 @@ final class DataEcsTaskExecutionOverrides {
   containerOverrides;
 
   Map<String, Object?> encode() => {
-    if (cpu != null) 'cpu': cpu!.toTfJson(),
-    if (executionRoleArn != null)
-      'execution_role_arn': executionRoleArn!.toTfJson(),
-    if (memory != null) 'memory': memory!.toTfJson(),
-    if (taskRoleArn != null) 'task_role_arn': taskRoleArn!.toTfJson(),
+    'cpu': ?cpu?.toTfJson(),
+    'execution_role_arn': ?executionRoleArn?.toTfJson(),
+    'memory': ?memory?.toTfJson(),
+    'task_role_arn': ?taskRoleArn?.toTfJson(),
     if (containerOverrides != null)
       'container_overrides': [for (final e in containerOverrides!) e.encode()],
   };
@@ -120,11 +119,10 @@ final class DataEcsTaskExecutionOverridesContainerOverrides {
   resourceRequirements;
 
   Map<String, Object?> encode() => {
-    if (command != null) 'command': command!.toTfJson(),
-    if (cpu != null) 'cpu': cpu!.toTfJson(),
-    if (memory != null) 'memory': memory!.toTfJson(),
-    if (memoryReservation != null)
-      'memory_reservation': memoryReservation!.toTfJson(),
+    'command': ?command?.toTfJson(),
+    'cpu': ?cpu?.toTfJson(),
+    'memory': ?memory?.toTfJson(),
+    'memory_reservation': ?memoryReservation?.toTfJson(),
     'name': name.toTfJson(),
     if (environment != null)
       'environment': [for (final e in environment!) e.encode()],
@@ -187,7 +185,7 @@ final class DataEcsTaskExecutionPlacementConstraints {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
+    'expression': ?expression?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -203,7 +201,7 @@ final class DataEcsTaskExecutionPlacementStrategy {
   final TfArg<String> type;
 
   Map<String, Object?> encode() => {
-    if (field != null) 'field': field!.toTfJson(),
+    'field': ?field?.toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -239,21 +237,19 @@ final class DataAwsEcsTaskExecution extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (clientToken != null) 'client_token': clientToken,
+           'client_token': ?clientToken,
            'cluster': cluster,
-           if (desiredCount != null) 'desired_count': desiredCount,
-           if (enableEcsManagedTags != null)
-             'enable_ecs_managed_tags': enableEcsManagedTags,
-           if (enableExecuteCommand != null)
-             'enable_execute_command': enableExecuteCommand,
-           if (group != null) 'group': group,
-           if (launchType != null) 'launch_type': launchType,
-           if (platformVersion != null) 'platform_version': platformVersion,
-           if (propagateTags != null) 'propagate_tags': propagateTags,
-           if (referenceId != null) 'reference_id': referenceId,
-           if (region != null) 'region': region,
-           if (startedBy != null) 'started_by': startedBy,
-           if (tags != null) 'tags': tags,
+           'desired_count': ?desiredCount,
+           'enable_ecs_managed_tags': ?enableEcsManagedTags,
+           'enable_execute_command': ?enableExecuteCommand,
+           'group': ?group,
+           'launch_type': ?launchType,
+           'platform_version': ?platformVersion,
+           'propagate_tags': ?propagateTags,
+           'reference_id': ?referenceId,
+           'region': ?region,
+           'started_by': ?startedBy,
+           'tags': ?tags,
            'task_definition': taskDefinition,
            if (capacityProviderStrategy != null)
              'capacity_provider_strategy': TfArg.literal([

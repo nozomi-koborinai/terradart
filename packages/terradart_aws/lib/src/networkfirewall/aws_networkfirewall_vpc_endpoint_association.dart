@@ -26,7 +26,7 @@ final class NetworkfirewallVpcEndpointAssociationSubnetMapping {
   final RefTo<AwsSubnet> subnetId;
 
   Map<String, Object?> encode() => {
-    if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
+    'ip_address_type': ?ipAddressType?.toTfJson(),
     'subnet_id': subnetId.encodeAs('id').toTfJson(),
   };
 }
@@ -64,10 +64,10 @@ final class AwsNetworkfirewallVpcEndpointAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
+           'description': ?description,
            'firewall_arn': firewallArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'vpc_id': vpcId.encodeAs('id'),
            if (subnetMapping != null)
              'subnet_mapping': TfArg.literal([

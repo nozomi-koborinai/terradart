@@ -85,13 +85,11 @@ final class GoogleNetworkSecurityGatewaySecurityPolicyRule extends Resource {
            'priority': priority,
            'session_matcher': sessionMatcher,
            'basic_profile': basicProfile,
-           if (applicationMatcher != null)
-             'application_matcher': applicationMatcher,
-           if (description != null) 'description': description,
-           if (tlsInspectionEnabled != null)
-             'tls_inspection_enabled': tlsInspectionEnabled,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'application_matcher': ?applicationMatcher,
+           'description': ?description,
+           'tls_inspection_enabled': ?tlsInspectionEnabled,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

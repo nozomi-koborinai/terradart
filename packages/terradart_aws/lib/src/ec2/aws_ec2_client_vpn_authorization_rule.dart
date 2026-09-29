@@ -95,8 +95,8 @@ final class AwsEc2ClientVpnAuthorizationRule extends Resource {
          argMap: {
            ...audience.argMap,
            'client_vpn_endpoint_id': clientVpnEndpointId,
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
+           'description': ?description,
+           'region': ?region,
            'target_network_cidr': targetNetworkCidr,
          },
        );

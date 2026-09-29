@@ -94,13 +94,13 @@ final class AwsMediaConvertQueue extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (concurrentJobs != null) 'concurrent_jobs': concurrentJobs,
-           if (description != null) 'description': description,
+           'concurrent_jobs': ?concurrentJobs,
+           'description': ?description,
            'name': name,
-           if (pricingPlan != null) 'pricing_plan': pricingPlan,
-           if (region != null) 'region': region,
-           if (status != null) 'status': status,
-           if (tags != null) 'tags': tags,
+           'pricing_plan': ?pricingPlan,
+           'region': ?region,
+           'status': ?status,
+           'tags': ?tags,
            if (reservationPlanSettings != null)
              'reservation_plan_settings': TfArg.literal(
                reservationPlanSettings.encode(),

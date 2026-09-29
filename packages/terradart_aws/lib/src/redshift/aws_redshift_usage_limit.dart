@@ -74,13 +74,13 @@ final class AwsRedshiftUsageLimit extends Resource {
          terraformType: tfType,
          argMap: {
            'amount': amount,
-           if (breachAction != null) 'breach_action': breachAction,
+           'breach_action': ?breachAction,
            'cluster_identifier': clusterIdentifier,
            'feature_type': featureType,
            'limit_type': limitType,
-           if (period != null) 'period': period,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'period': ?period,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

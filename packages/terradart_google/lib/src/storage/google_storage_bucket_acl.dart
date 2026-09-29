@@ -46,10 +46,10 @@ final class GoogleStorageBucketAcl extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('name'),
-           if (predefinedAcl != null) 'predefined_acl': predefinedAcl,
-           if (roleEntity != null) 'role_entity': roleEntity,
-           if (defaultAcl != null) 'default_acl': defaultAcl,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'predefined_acl': ?predefinedAcl,
+           'role_entity': ?roleEntity,
+           'default_acl': ?defaultAcl,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

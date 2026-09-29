@@ -31,7 +31,7 @@ final class CloudflareWorkersScriptSubdomain extends Resource {
          argMap: {
            'account_id': accountId.encodeAs('id'),
            'enabled': enabled,
-           if (previewsEnabled != null) 'previews_enabled': previewsEnabled,
+           'previews_enabled': ?previewsEnabled,
            'script_name': scriptName,
          },
        );

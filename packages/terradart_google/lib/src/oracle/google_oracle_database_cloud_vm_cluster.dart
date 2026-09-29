@@ -53,17 +53,16 @@ final class GoogleOracleDatabaseCloudVmCluster extends Resource {
          argMap: {
            'location': location,
            'cloud_vm_cluster_id': cloudVmClusterId,
-           if (displayName != null) 'display_name': displayName,
+           'display_name': ?displayName,
            'exadata_infrastructure': exadataInfrastructure,
-           if (odbNetwork != null) 'odb_network': odbNetwork,
-           if (odbSubnet != null) 'odb_subnet': odbSubnet,
-           if (backupOdbSubnet != null) 'backup_odb_subnet': backupOdbSubnet,
-           if (properties != null) 'properties': properties,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (project != null) 'project': project,
+           'odb_network': ?odbNetwork,
+           'odb_subnet': ?odbSubnet,
+           'backup_odb_subnet': ?backupOdbSubnet,
+           'properties': ?properties,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'deletion_protection': ?deletionProtection,
+           'project': ?project,
          },
        );
 

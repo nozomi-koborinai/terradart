@@ -27,7 +27,7 @@ final class DataCloudflareWaitingRoomEvent extends Data {
          argMap: {
            'event_id': eventId,
            'waiting_room_id': waitingRoomId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'zone_id': ?zoneId,
          },
        );
 

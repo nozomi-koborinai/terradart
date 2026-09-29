@@ -45,8 +45,8 @@ final class AwsWorkspaceswebIdentityProvider extends Resource {
            'identity_provider_name': identityProviderName,
            'identity_provider_type': identityProviderType,
            'portal_arn': portalArn,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

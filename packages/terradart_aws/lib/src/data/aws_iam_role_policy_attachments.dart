@@ -18,10 +18,7 @@ final class DataAwsIamRolePolicyAttachments extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (pathPrefix != null) 'path_prefix': pathPrefix,
-           'role_name': roleName,
-         },
+         argMap: {'path_prefix': ?pathPrefix, 'role_name': roleName},
        );
 
   @override

@@ -35,7 +35,7 @@ final class AwsVerifiedpermissionsSchema extends Resource {
          terraformType: tfType,
          argMap: {
            'policy_store_id': policyStoreId,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (definition != null)
              'definition': TfArg.literal([
                for (final e in definition) e.encode(),

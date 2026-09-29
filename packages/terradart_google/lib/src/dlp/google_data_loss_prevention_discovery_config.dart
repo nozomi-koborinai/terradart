@@ -51,15 +51,12 @@ final class DataLossPreventionDiscoveryConfigActions {
   final DataLossPreventionDiscoveryConfigActionsTagResources? tagResources;
 
   Map<String, Object?> encode() => {
-    if (exportData != null) 'export_data': exportData!.encode(),
-    if (pubSubNotification != null)
-      'pub_sub_notification': pubSubNotification!.encode(),
-    if (publishToChronicle != null)
-      'publish_to_chronicle': publishToChronicle!.encode(),
-    if (publishToDataplexCatalog != null)
-      'publish_to_dataplex_catalog': publishToDataplexCatalog!.encode(),
-    if (publishToScc != null) 'publish_to_scc': publishToScc!.encode(),
-    if (tagResources != null) 'tag_resources': tagResources!.encode(),
+    'export_data': ?exportData?.encode(),
+    'pub_sub_notification': ?pubSubNotification?.encode(),
+    'publish_to_chronicle': ?publishToChronicle?.encode(),
+    'publish_to_dataplex_catalog': ?publishToDataplexCatalog?.encode(),
+    'publish_to_scc': ?publishToScc?.encode(),
+    'tag_resources': ?tagResources?.encode(),
   };
 }
 
@@ -79,9 +76,8 @@ final class DataLossPreventionDiscoveryConfigActionsExportData {
   sampleFindingsTable;
 
   Map<String, Object?> encode() => {
-    if (profileTable != null) 'profile_table': profileTable!.encode(),
-    if (sampleFindingsTable != null)
-      'sample_findings_table': sampleFindingsTable!.encode(),
+    'profile_table': ?profileTable?.encode(),
+    'sample_findings_table': ?sampleFindingsTable?.encode(),
   };
 }
 
@@ -102,10 +98,9 @@ final class DataLossPreventionDiscoveryConfigActionsExportDataProfileTable {
   final TfArg<String>? tableId;
 
   Map<String, Object?> encode() => {
-    if (datasetId != null)
-      'dataset_id': datasetId!.encodeAs('dataset_id').toTfJson(),
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
-    if (tableId != null) 'table_id': tableId!.toTfJson(),
+    'dataset_id': ?datasetId?.encodeAs('dataset_id').toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
+    'table_id': ?tableId?.toTfJson(),
   };
 }
 
@@ -126,10 +121,9 @@ final class DataLossPreventionDiscoveryConfigActionsExportDataSampleFindingsTabl
   final TfArg<String>? tableId;
 
   Map<String, Object?> encode() => {
-    if (datasetId != null)
-      'dataset_id': datasetId!.encodeAs('dataset_id').toTfJson(),
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
-    if (tableId != null) 'table_id': tableId!.toTfJson(),
+    'dataset_id': ?datasetId?.encodeAs('dataset_id').toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
+    'table_id': ?tableId?.toTfJson(),
   };
 }
 
@@ -158,11 +152,10 @@ final class DataLossPreventionDiscoveryConfigActionsPubSubNotification {
   pubsubCondition;
 
   Map<String, Object?> encode() => {
-    if (detailOfMessage != null)
-      'detail_of_message': detailOfMessage!.toTfJson(),
-    if (event != null) 'event': event!.toTfJson(),
-    if (topic != null) 'topic': topic!.encodeAs('id').toTfJson(),
-    if (pubsubCondition != null) 'pubsub_condition': pubsubCondition!.encode(),
+    'detail_of_message': ?detailOfMessage?.toTfJson(),
+    'event': ?event?.toTfJson(),
+    'topic': ?topic?.encodeAs('id').toTfJson(),
+    'pubsub_condition': ?pubsubCondition?.encode(),
   };
 }
 
@@ -205,9 +198,7 @@ final class DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubCond
   final DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubConditionExpressions?
   expressions;
 
-  Map<String, Object?> encode() => {
-    if (expressions != null) 'expressions': expressions!.encode(),
-  };
+  Map<String, Object?> encode() => {'expressions': ?expressions?.encode()};
 }
 
 /// Typed helper for the `actions.pub_sub_notification.pubsub_condition.expressions` block of
@@ -230,8 +221,7 @@ final class DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubCond
   conditions;
 
   Map<String, Object?> encode() => {
-    if (logicalOperator != null)
-      'logical_operator': logicalOperator!.toTfJson(),
+    'logical_operator': ?logicalOperator?.toTfJson(),
     if (conditions != null)
       'conditions': [for (final e in conditions!) e.encode()],
   };
@@ -270,10 +260,8 @@ final class DataLossPreventionDiscoveryConfigActionsPubSubNotificationPubsubCond
   minimumSensitivityScore;
 
   Map<String, Object?> encode() => {
-    if (minimumRiskScore != null)
-      'minimum_risk_score': minimumRiskScore!.toTfJson(),
-    if (minimumSensitivityScore != null)
-      'minimum_sensitivity_score': minimumSensitivityScore!.toTfJson(),
+    'minimum_risk_score': ?minimumRiskScore?.toTfJson(),
+    'minimum_sensitivity_score': ?minimumSensitivityScore?.toTfJson(),
   };
 }
 
@@ -353,8 +341,7 @@ final class DataLossPreventionDiscoveryConfigActionsTagResources {
   tagConditions;
 
   Map<String, Object?> encode() => {
-    if (lowerDataRiskToLow != null)
-      'lower_data_risk_to_low': lowerDataRiskToLow!.toTfJson(),
+    'lower_data_risk_to_low': ?lowerDataRiskToLow?.toTfJson(),
     if (profileGenerationsToTag != null)
       'profile_generations_to_tag': [
         for (final e in profileGenerationsToTag!) e.toTfJson(),
@@ -393,9 +380,8 @@ final class DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditions {
   tag;
 
   Map<String, Object?> encode() => {
-    if (sensitivityScore != null)
-      'sensitivity_score': sensitivityScore!.encode(),
-    if (tag != null) 'tag': tag!.encode(),
+    'sensitivity_score': ?sensitivityScore?.encode(),
+    'tag': ?tag?.encode(),
   };
 }
 
@@ -441,8 +427,7 @@ final class DataLossPreventionDiscoveryConfigActionsTagResourcesTagConditionsTag
   final TfArg<String>? namespacedValue;
 
   Map<String, Object?> encode() => {
-    if (namespacedValue != null)
-      'namespaced_value': namespacedValue!.toTfJson(),
+    'namespaced_value': ?namespacedValue?.toTfJson(),
   };
 }
 
@@ -460,8 +445,8 @@ final class DataLossPreventionDiscoveryConfigOrgConfig {
   final DataLossPreventionDiscoveryConfigOrgConfigLocation? location;
 
   Map<String, Object?> encode() => {
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
-    if (location != null) 'location': location!.encode(),
+    'project_id': ?projectId?.toTfJson(),
+    'location': ?location?.encode(),
   };
 }
 
@@ -479,8 +464,8 @@ final class DataLossPreventionDiscoveryConfigOrgConfigLocation {
   final TfArg<String>? organizationId;
 
   Map<String, Object?> encode() => {
-    if (folderId != null) 'folder_id': folderId!.toTfJson(),
-    if (organizationId != null) 'organization_id': organizationId!.toTfJson(),
+    'folder_id': ?folderId?.toTfJson(),
+    'organization_id': ?organizationId?.toTfJson(),
   };
 }
 
@@ -495,9 +480,7 @@ final class DataLossPreventionDiscoveryConfigOtherCloudStartingLocation {
   final DataLossPreventionDiscoveryConfigOtherCloudStartingLocationAwsLocation?
   awsLocation;
 
-  Map<String, Object?> encode() => {
-    if (awsLocation != null) 'aws_location': awsLocation!.encode(),
-  };
+  Map<String, Object?> encode() => {'aws_location': ?awsLocation?.encode()};
 }
 
 /// Typed helper for the `other_cloud_starting_location.aws_location` block of
@@ -514,9 +497,8 @@ final class DataLossPreventionDiscoveryConfigOtherCloudStartingLocationAwsLocati
   final TfArg<bool>? allAssetInventoryAssets;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
-    if (allAssetInventoryAssets != null)
-      'all_asset_inventory_assets': allAssetInventoryAssets!.toTfJson(),
+    'account_id': ?accountId?.toTfJson(),
+    'all_asset_inventory_assets': ?allAssetInventoryAssets?.toTfJson(),
   };
 }
 
@@ -545,13 +527,11 @@ final class DataLossPreventionDiscoveryConfigTargets {
   final DataLossPreventionDiscoveryConfigTargetsSecretsTarget? secretsTarget;
 
   Map<String, Object?> encode() => {
-    if (bigQueryTarget != null) 'big_query_target': bigQueryTarget!.encode(),
-    if (cloudSqlTarget != null) 'cloud_sql_target': cloudSqlTarget!.encode(),
-    if (cloudStorageTarget != null)
-      'cloud_storage_target': cloudStorageTarget!.encode(),
-    if (otherCloudTarget != null)
-      'other_cloud_target': otherCloudTarget!.encode(),
-    if (secretsTarget != null) 'secrets_target': secretsTarget!.encode(),
+    'big_query_target': ?bigQueryTarget?.encode(),
+    'cloud_sql_target': ?cloudSqlTarget?.encode(),
+    'cloud_storage_target': ?cloudStorageTarget?.encode(),
+    'other_cloud_target': ?otherCloudTarget?.encode(),
+    'secrets_target': ?secretsTarget?.encode(),
   };
 }
 
@@ -577,10 +557,10 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTarget {
   final DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilter? filter;
 
   Map<String, Object?> encode() => {
-    if (cadence != null) 'cadence': cadence!.encode(),
-    if (conditions != null) 'conditions': conditions!.encode(),
-    if (disabled != null) 'disabled': disabled!.encode(),
-    if (filter != null) 'filter': filter!.encode(),
+    'cadence': ?cadence?.encode(),
+    'conditions': ?conditions?.encode(),
+    'disabled': ?disabled?.encode(),
+    'filter': ?filter?.encode(),
   };
 }
 
@@ -610,15 +590,11 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadence {
   tableModifiedCadence;
 
   Map<String, Object?> encode() => {
-    if (refreshFrequency != null)
-      'refresh_frequency': refreshFrequency!.toTfJson(),
-    if (inspectTemplateModifiedCadence != null)
-      'inspect_template_modified_cadence': inspectTemplateModifiedCadence!
-          .encode(),
-    if (schemaModifiedCadence != null)
-      'schema_modified_cadence': schemaModifiedCadence!.encode(),
-    if (tableModifiedCadence != null)
-      'table_modified_cadence': tableModifiedCadence!.encode(),
+    'refresh_frequency': ?refreshFrequency?.toTfJson(),
+    'inspect_template_modified_cadence': ?inspectTemplateModifiedCadence
+        ?.encode(),
+    'schema_modified_cadence': ?schemaModifiedCadence?.encode(),
+    'table_modified_cadence': ?tableModifiedCadence?.encode(),
   };
 }
 
@@ -649,9 +625,7 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceInspect
   >?
   frequency;
 
-  Map<String, Object?> encode() => {
-    if (frequency != null) 'frequency': frequency!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'frequency': ?frequency?.toTfJson()};
 }
 
 /// `frequency` — derived from the provider schema description.
@@ -690,7 +664,7 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceSchemaM
   types;
 
   Map<String, Object?> encode() => {
-    if (frequency != null) 'frequency': frequency!.toTfJson(),
+    'frequency': ?frequency?.toTfJson(),
     if (types != null) 'types': [for (final e in types!) e.toTfJson()],
   };
 }
@@ -739,8 +713,8 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetCadenceTableMo
   final TfArg<List<Object?>>? types;
 
   Map<String, Object?> encode() => {
-    if (frequency != null) 'frequency': frequency!.toTfJson(),
-    if (types != null) 'types': types!.toTfJson(),
+    'frequency': ?frequency?.toTfJson(),
+    'types': ?types?.toTfJson(),
   };
 }
 
@@ -783,10 +757,10 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditions {
   types;
 
   Map<String, Object?> encode() => {
-    if (createdAfter != null) 'created_after': createdAfter!.toTfJson(),
-    if (typeCollection != null) 'type_collection': typeCollection!.toTfJson(),
-    if (orConditions != null) 'or_conditions': orConditions!.encode(),
-    if (types != null) 'types': types!.encode(),
+    'created_after': ?createdAfter?.toTfJson(),
+    'type_collection': ?typeCollection?.toTfJson(),
+    'or_conditions': ?orConditions?.encode(),
+    'types': ?types?.encode(),
   };
 }
 
@@ -819,8 +793,8 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetConditionsOrCo
   final TfArg<num>? minRowCount;
 
   Map<String, Object?> encode() => {
-    if (minAge != null) 'min_age': minAge!.toTfJson(),
-    if (minRowCount != null) 'min_row_count': minRowCount!.toTfJson(),
+    'min_age': ?minAge?.toTfJson(),
+    'min_row_count': ?minRowCount?.toTfJson(),
   };
 }
 
@@ -886,9 +860,9 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilter {
   tables;
 
   Map<String, Object?> encode() => {
-    if (otherTables != null) 'other_tables': otherTables!.encode(),
-    if (tableReference != null) 'table_reference': tableReference!.encode(),
-    if (tables != null) 'tables': tables!.encode(),
+    'other_tables': ?otherTables?.encode(),
+    'table_reference': ?tableReference?.encode(),
+    'tables': ?tables?.encode(),
   };
 }
 
@@ -919,7 +893,7 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTableRef
 
   Map<String, Object?> encode() => {
     'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
     'table_id': tableId.toTfJson(),
   };
 }
@@ -936,7 +910,7 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTables {
   includeRegexes;
 
   Map<String, Object?> encode() => {
-    if (includeRegexes != null) 'include_regexes': includeRegexes!.encode(),
+    'include_regexes': ?includeRegexes?.encode(),
   };
 }
 
@@ -975,9 +949,9 @@ final class DataLossPreventionDiscoveryConfigTargetsBigQueryTargetFilterTablesIn
   final TfArg<String>? tableIdRegex;
 
   Map<String, Object?> encode() => {
-    if (datasetIdRegex != null) 'dataset_id_regex': datasetIdRegex!.toTfJson(),
-    if (projectIdRegex != null) 'project_id_regex': projectIdRegex!.toTfJson(),
-    if (tableIdRegex != null) 'table_id_regex': tableIdRegex!.toTfJson(),
+    'dataset_id_regex': ?datasetIdRegex?.toTfJson(),
+    'project_id_regex': ?projectIdRegex?.toTfJson(),
+    'table_id_regex': ?tableIdRegex?.toTfJson(),
   };
 }
 
@@ -1004,11 +978,10 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTarget {
   generationCadence;
 
   Map<String, Object?> encode() => {
-    if (conditions != null) 'conditions': conditions!.encode(),
-    if (disabled != null) 'disabled': disabled!.encode(),
+    'conditions': ?conditions?.encode(),
+    'disabled': ?disabled?.encode(),
     'filter': filter.encode(),
-    if (generationCadence != null)
-      'generation_cadence': generationCadence!.encode(),
+    'generation_cadence': ?generationCadence?.encode(),
   };
 }
 
@@ -1098,10 +1071,9 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilter {
   others;
 
   Map<String, Object?> encode() => {
-    if (collection != null) 'collection': collection!.encode(),
-    if (databaseResourceReference != null)
-      'database_resource_reference': databaseResourceReference!.encode(),
-    if (others != null) 'others': others!.encode(),
+    'collection': ?collection?.encode(),
+    'database_resource_reference': ?databaseResourceReference?.encode(),
+    'others': ?others?.encode(),
   };
 }
 
@@ -1117,7 +1089,7 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterCollecti
   includeRegexes;
 
   Map<String, Object?> encode() => {
-    if (includeRegexes != null) 'include_regexes': includeRegexes!.encode(),
+    'include_regexes': ?includeRegexes?.encode(),
   };
 }
 
@@ -1159,11 +1131,10 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetFilterCollecti
   final TfArg<String>? projectIdRegex;
 
   Map<String, Object?> encode() => {
-    if (databaseRegex != null) 'database_regex': databaseRegex!.toTfJson(),
-    if (databaseResourceNameRegex != null)
-      'database_resource_name_regex': databaseResourceNameRegex!.toTfJson(),
-    if (instanceRegex != null) 'instance_regex': instanceRegex!.toTfJson(),
-    if (projectIdRegex != null) 'project_id_regex': projectIdRegex!.toTfJson(),
+    'database_regex': ?databaseRegex?.toTfJson(),
+    'database_resource_name_regex': ?databaseResourceNameRegex?.toTfJson(),
+    'instance_regex': ?instanceRegex?.toTfJson(),
+    'project_id_regex': ?projectIdRegex?.toTfJson(),
   };
 }
 
@@ -1225,13 +1196,10 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCade
   schemaModifiedCadence;
 
   Map<String, Object?> encode() => {
-    if (refreshFrequency != null)
-      'refresh_frequency': refreshFrequency!.toTfJson(),
-    if (inspectTemplateModifiedCadence != null)
-      'inspect_template_modified_cadence': inspectTemplateModifiedCadence!
-          .encode(),
-    if (schemaModifiedCadence != null)
-      'schema_modified_cadence': schemaModifiedCadence!.encode(),
+    'refresh_frequency': ?refreshFrequency?.toTfJson(),
+    'inspect_template_modified_cadence': ?inspectTemplateModifiedCadence
+        ?.encode(),
+    'schema_modified_cadence': ?schemaModifiedCadence?.encode(),
   };
 }
 
@@ -1301,7 +1269,7 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudSqlTargetGenerationCade
   types;
 
   Map<String, Object?> encode() => {
-    if (frequency != null) 'frequency': frequency!.toTfJson(),
+    'frequency': ?frequency?.toTfJson(),
     if (types != null) 'types': [for (final e in types!) e.toTfJson()],
   };
 }
@@ -1356,11 +1324,10 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTarget {
   generationCadence;
 
   Map<String, Object?> encode() => {
-    if (conditions != null) 'conditions': conditions!.encode(),
-    if (disabled != null) 'disabled': disabled!.encode(),
+    'conditions': ?conditions?.encode(),
+    'disabled': ?disabled?.encode(),
     'filter': filter.encode(),
-    if (generationCadence != null)
-      'generation_cadence': generationCadence!.encode(),
+    'generation_cadence': ?generationCadence?.encode(),
   };
 }
 
@@ -1382,10 +1349,9 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetConditions
   cloudStorageConditions;
 
   Map<String, Object?> encode() => {
-    if (createdAfter != null) 'created_after': createdAfter!.toTfJson(),
-    if (minAge != null) 'min_age': minAge!.toTfJson(),
-    if (cloudStorageConditions != null)
-      'cloud_storage_conditions': cloudStorageConditions!.encode(),
+    'created_after': ?createdAfter?.toTfJson(),
+    'min_age': ?minAge?.toTfJson(),
+    'cloud_storage_conditions': ?cloudStorageConditions?.encode(),
   };
 }
 
@@ -1486,11 +1452,10 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilter {
   others;
 
   Map<String, Object?> encode() => {
-    if (cloudStorageResourceReference != null)
-      'cloud_storage_resource_reference': cloudStorageResourceReference!
-          .encode(),
-    if (collection != null) 'collection': collection!.encode(),
-    if (others != null) 'others': others!.encode(),
+    'cloud_storage_resource_reference': ?cloudStorageResourceReference
+        ?.encode(),
+    'collection': ?collection?.encode(),
+    'others': ?others?.encode(),
   };
 }
 
@@ -1508,9 +1473,8 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterClou
   final TfArg<String>? projectId;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null)
-      'bucket_name': bucketName!.encodeAs('name').toTfJson(),
-    if (projectId != null) 'project_id': projectId!.toTfJson(),
+    'bucket_name': ?bucketName?.encodeAs('name').toTfJson(),
+    'project_id': ?projectId?.toTfJson(),
   };
 }
 
@@ -1530,8 +1494,8 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterColl
   includeTags;
 
   Map<String, Object?> encode() => {
-    if (includeRegexes != null) 'include_regexes': includeRegexes!.encode(),
-    if (includeTags != null) 'include_tags': includeTags!.encode(),
+    'include_regexes': ?includeRegexes?.encode(),
+    'include_tags': ?includeTags?.encode(),
   };
 }
 
@@ -1565,8 +1529,7 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterColl
   cloudStorageRegex;
 
   Map<String, Object?> encode() => {
-    if (cloudStorageRegex != null)
-      'cloud_storage_regex': cloudStorageRegex!.encode(),
+    'cloud_storage_regex': ?cloudStorageRegex?.encode(),
   };
 }
 
@@ -1584,9 +1547,8 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterColl
   final TfArg<String>? projectIdRegex;
 
   Map<String, Object?> encode() => {
-    if (bucketNameRegex != null)
-      'bucket_name_regex': bucketNameRegex!.toTfJson(),
-    if (projectIdRegex != null) 'project_id_regex': projectIdRegex!.toTfJson(),
+    'bucket_name_regex': ?bucketNameRegex?.toTfJson(),
+    'project_id_regex': ?projectIdRegex?.toTfJson(),
   };
 }
 
@@ -1712,11 +1674,9 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGeneration
   inspectTemplateModifiedCadence;
 
   Map<String, Object?> encode() => {
-    if (refreshFrequency != null)
-      'refresh_frequency': refreshFrequency!.toTfJson(),
-    if (inspectTemplateModifiedCadence != null)
-      'inspect_template_modified_cadence': inspectTemplateModifiedCadence!
-          .encode(),
+    'refresh_frequency': ?refreshFrequency?.toTfJson(),
+    'inspect_template_modified_cadence': ?inspectTemplateModifiedCadence
+        ?.encode(),
   };
 }
 
@@ -1747,9 +1707,7 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetGeneration
   >?
   frequency;
 
-  Map<String, Object?> encode() => {
-    if (frequency != null) 'frequency': frequency!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'frequency': ?frequency?.toTfJson()};
 }
 
 /// `frequency` — derived from the provider schema description.
@@ -1793,12 +1751,11 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTarget {
   generationCadence;
 
   Map<String, Object?> encode() => {
-    if (conditions != null) 'conditions': conditions!.encode(),
-    if (dataSourceType != null) 'data_source_type': dataSourceType!.encode(),
-    if (disabled != null) 'disabled': disabled!.encode(),
+    'conditions': ?conditions?.encode(),
+    'data_source_type': ?dataSourceType?.encode(),
+    'disabled': ?disabled?.encode(),
     'filter': filter.encode(),
-    if (generationCadence != null)
-      'generation_cadence': generationCadence!.encode(),
+    'generation_cadence': ?generationCadence?.encode(),
   };
 }
 
@@ -1817,9 +1774,8 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetConditions {
   amazonS3BucketConditions;
 
   Map<String, Object?> encode() => {
-    if (minAge != null) 'min_age': minAge!.toTfJson(),
-    if (amazonS3BucketConditions != null)
-      'amazon_s3_bucket_conditions': amazonS3BucketConditions!.encode(),
+    'min_age': ?minAge?.toTfJson(),
+    'amazon_s3_bucket_conditions': ?amazonS3BucketConditions?.encode(),
   };
 }
 
@@ -1895,9 +1851,7 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetDataSourceTy
 
   final TfArg<String>? dataSource;
 
-  Map<String, Object?> encode() => {
-    if (dataSource != null) 'data_source': dataSource!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'data_source': ?dataSource?.toTfJson()};
 }
 
 /// Typed helper for the `targets.other_cloud_target.disabled` block of
@@ -1929,9 +1883,9 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilter {
   singleResource;
 
   Map<String, Object?> encode() => {
-    if (collection != null) 'collection': collection!.encode(),
-    if (others != null) 'others': others!.encode(),
-    if (singleResource != null) 'single_resource': singleResource!.encode(),
+    'collection': ?collection?.encode(),
+    'others': ?others?.encode(),
+    'single_resource': ?singleResource?.encode(),
   };
 }
 
@@ -1947,7 +1901,7 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollec
   includeRegexes;
 
   Map<String, Object?> encode() => {
-    if (includeRegexes != null) 'include_regexes': includeRegexes!.encode(),
+    'include_regexes': ?includeRegexes?.encode(),
   };
 }
 
@@ -1981,8 +1935,7 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollec
   amazonS3BucketRegex;
 
   Map<String, Object?> encode() => {
-    if (amazonS3BucketRegex != null)
-      'amazon_s3_bucket_regex': amazonS3BucketRegex!.encode(),
+    'amazon_s3_bucket_regex': ?amazonS3BucketRegex?.encode(),
   };
 }
 
@@ -2001,9 +1954,8 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollec
   awsAccountRegex;
 
   Map<String, Object?> encode() => {
-    if (bucketNameRegex != null)
-      'bucket_name_regex': bucketNameRegex!.toTfJson(),
-    if (awsAccountRegex != null) 'aws_account_regex': awsAccountRegex!.encode(),
+    'bucket_name_regex': ?bucketNameRegex?.toTfJson(),
+    'aws_account_regex': ?awsAccountRegex?.encode(),
   };
 }
 
@@ -2018,7 +1970,7 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterCollec
   final TfArg<String>? accountIdRegex;
 
   Map<String, Object?> encode() => {
-    if (accountIdRegex != null) 'account_id_regex': accountIdRegex!.toTfJson(),
+    'account_id_regex': ?accountIdRegex?.toTfJson(),
   };
 }
 
@@ -2043,7 +1995,7 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterSingle
   amazonS3Bucket;
 
   Map<String, Object?> encode() => {
-    if (amazonS3Bucket != null) 'amazon_s3_bucket': amazonS3Bucket!.encode(),
+    'amazon_s3_bucket': ?amazonS3Bucket?.encode(),
   };
 }
 
@@ -2062,8 +2014,8 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterSingle
   awsAccount;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
-    if (awsAccount != null) 'aws_account': awsAccount!.encode(),
+    'bucket_name': ?bucketName?.toTfJson(),
+    'aws_account': ?awsAccount?.encode(),
   };
 }
 
@@ -2077,9 +2029,7 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetFilterSingle
 
   final TfArg<String>? accountId;
 
-  Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'account_id': ?accountId?.toTfJson()};
 }
 
 /// Typed helper for the `targets.other_cloud_target.generation_cadence` block of
@@ -2100,11 +2050,9 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetGenerationCa
   inspectTemplateModifiedCadence;
 
   Map<String, Object?> encode() => {
-    if (refreshFrequency != null)
-      'refresh_frequency': refreshFrequency!.toTfJson(),
-    if (inspectTemplateModifiedCadence != null)
-      'inspect_template_modified_cadence': inspectTemplateModifiedCadence!
-          .encode(),
+    'refresh_frequency': ?refreshFrequency?.toTfJson(),
+    'inspect_template_modified_cadence': ?inspectTemplateModifiedCadence
+        ?.encode(),
   };
 }
 
@@ -2135,9 +2083,7 @@ final class DataLossPreventionDiscoveryConfigTargetsOtherCloudTargetGenerationCa
   >?
   frequency;
 
-  Map<String, Object?> encode() => {
-    if (frequency != null) 'frequency': frequency!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'frequency': ?frequency?.toTfJson()};
 }
 
 /// `frequency` — derived from the provider schema description.
@@ -2197,12 +2143,12 @@ final class GoogleDataLossPreventionDiscoveryConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (displayName != null) 'display_name': displayName,
-           if (inspectTemplates != null) 'inspect_templates': inspectTemplates,
+           'deletion_policy': ?deletionPolicy,
+           'display_name': ?displayName,
+           'inspect_templates': ?inspectTemplates,
            'location': location,
            'parent': parent,
-           if (status != null) 'status': status,
+           'status': ?status,
            if (actions != null)
              'actions': TfArg.literal([for (final e in actions) e.encode()]),
            if (orgConfig != null)

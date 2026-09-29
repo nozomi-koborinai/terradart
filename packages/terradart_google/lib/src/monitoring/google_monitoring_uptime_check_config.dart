@@ -724,12 +724,12 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
          argMap: {
            'display_name': displayName,
            'timeout': timeout,
-           if (period != null) 'period': period,
+           'period': ?period,
            if (selectedRegions != null)
              'selected_regions': TfArg.literal(
                selectedRegions.map((r) => r.terraformValue).toList(),
              ),
-           if (checkerType != null) 'checker_type': checkerType,
+           'checker_type': ?checkerType,
            if (httpCheck != null)
              'http_check': TfArg.literal([httpCheck.toArgMap()]),
            if (tcpCheck != null)
@@ -738,9 +738,9 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
              'content_matchers': TfArg.literal(
                contentMatchers.map((c) => c.toArgMap()).toList(),
              ),
-           if (logCheckFailures != null) 'log_check_failures': logCheckFailures,
-           if (userLabels != null) 'user_labels': userLabels,
-           if (project != null) 'project': project,
+           'log_check_failures': ?logCheckFailures,
+           'user_labels': ?userLabels,
+           'project': ?project,
            target.blockKey: TfArg.literal(target.encode()),
          },
        );

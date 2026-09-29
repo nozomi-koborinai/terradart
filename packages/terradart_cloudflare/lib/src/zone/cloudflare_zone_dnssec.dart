@@ -40,11 +40,10 @@ final class CloudflareZoneDnssec extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dnssecMultiSigner != null)
-             'dnssec_multi_signer': dnssecMultiSigner,
-           if (dnssecPresigned != null) 'dnssec_presigned': dnssecPresigned,
-           if (dnssecUseNsec3 != null) 'dnssec_use_nsec3': dnssecUseNsec3,
-           if (status != null) 'status': status,
+           'dnssec_multi_signer': ?dnssecMultiSigner,
+           'dnssec_presigned': ?dnssecPresigned,
+           'dnssec_use_nsec3': ?dnssecUseNsec3,
+           'status': ?status,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

@@ -45,9 +45,9 @@ final class ComputePacketMirroringFilter {
   final TfArg<List<Object?>>? ipProtocols;
 
   Map<String, Object?> encode() => {
-    if (cidrRanges != null) 'cidr_ranges': cidrRanges!.toTfJson(),
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (ipProtocols != null) 'ip_protocols': ipProtocols!.toTfJson(),
+    'cidr_ranges': ?cidrRanges?.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'ip_protocols': ?ipProtocols?.toTfJson(),
   };
 }
 
@@ -79,7 +79,7 @@ final class ComputePacketMirroringMirroredResources {
   final List<ComputePacketMirroringMirroredResourcesSubnetworks>? subnetworks;
 
   Map<String, Object?> encode() => {
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'tags': ?tags?.toTfJson(),
     if (instances != null)
       'instances': [for (final e in instances!) e.encode()],
     if (subnetworks != null)
@@ -158,16 +158,16 @@ final class GoogleComputePacketMirroring extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'network': TfArg.literal(network.encode()),
            'collector_ilb': TfArg.literal(collectorIlb.encode()),
            'mirrored_resources': TfArg.literal(mirroredResources.encode()),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
-           if (description != null) 'description': description,
-           if (enable != null) 'enable': enable,
-           if (priority != null) 'priority': priority,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'description': ?description,
+           'enable': ?enable,
+           'priority': ?priority,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

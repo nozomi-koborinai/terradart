@@ -39,11 +39,11 @@ final class GoogleFirebaseHostingRelease extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           if (channelId != null) 'channel_id': channelId,
-           if (message != null) 'message': message,
+           'channel_id': ?channelId,
+           'message': ?message,
            'site_id': siteId,
-           if (type != null) 'type': type,
-           if (versionName != null) 'version_name': versionName,
+           'type': ?type,
+           'version_name': ?versionName,
          },
        );
 

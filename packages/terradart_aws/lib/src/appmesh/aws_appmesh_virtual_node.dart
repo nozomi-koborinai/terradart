@@ -31,11 +31,10 @@ final class AppmeshVirtualNodeSpec {
 
   Map<String, Object?> encode() => {
     if (backend != null) 'backend': [for (final e in backend!) e.encode()],
-    if (backendDefaults != null) 'backend_defaults': backendDefaults!.encode(),
+    'backend_defaults': ?backendDefaults?.encode(),
     if (listener != null) 'listener': [for (final e in listener!) e.encode()],
-    if (logging != null) 'logging': logging!.encode(),
-    if (serviceDiscovery != null)
-      'service_discovery': serviceDiscovery!.encode(),
+    'logging': ?logging?.encode(),
+    'service_discovery': ?serviceDiscovery?.encode(),
   };
 }
 
@@ -65,7 +64,7 @@ final class AppmeshVirtualNodeSpecBackendVirtualService {
 
   Map<String, Object?> encode() => {
     'virtual_service_name': virtualServiceName.toTfJson(),
-    if (clientPolicy != null) 'client_policy': clientPolicy!.encode(),
+    'client_policy': ?clientPolicy?.encode(),
   };
 }
 
@@ -77,7 +76,7 @@ final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicy {
 
   final AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTls? tls;
 
-  Map<String, Object?> encode() => {if (tls != null) 'tls': tls!.encode()};
+  Map<String, Object?> encode() => {'tls': ?tls?.encode()};
 }
 
 /// Typed helper for the `spec.backend.virtual_service.client_policy.tls` block of
@@ -102,9 +101,9 @@ final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTls {
   validation;
 
   Map<String, Object?> encode() => {
-    if (enforce != null) 'enforce': enforce!.toTfJson(),
-    if (ports != null) 'ports': ports!.toTfJson(),
-    if (certificate != null) 'certificate': certificate!.encode(),
+    'enforce': ?enforce?.toTfJson(),
+    'ports': ?ports?.toTfJson(),
+    'certificate': ?certificate?.encode(),
     'validation': validation.encode(),
   };
 }
@@ -125,8 +124,8 @@ final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsCertificat
   sds;
 
   Map<String, Object?> encode() => {
-    if (file != null) 'file': file!.encode(),
-    if (sds != null) 'sds': sds!.encode(),
+    'file': ?file?.encode(),
+    'sds': ?sds?.encode(),
   };
 }
 
@@ -178,8 +177,7 @@ final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidation
   trust;
 
   Map<String, Object?> encode() => {
-    if (subjectAlternativeNames != null)
-      'subject_alternative_names': subjectAlternativeNames!.encode(),
+    'subject_alternative_names': ?subjectAlternativeNames?.encode(),
     'trust': trust.encode(),
   };
 }
@@ -231,9 +229,9 @@ final class AppmeshVirtualNodeSpecBackendVirtualServiceClientPolicyTlsValidation
   sds;
 
   Map<String, Object?> encode() => {
-    if (acm != null) 'acm': acm!.encode(),
-    if (file != null) 'file': file!.encode(),
-    if (sds != null) 'sds': sds!.encode(),
+    'acm': ?acm?.encode(),
+    'file': ?file?.encode(),
+    'sds': ?sds?.encode(),
   };
 }
 
@@ -288,9 +286,7 @@ final class AppmeshVirtualNodeSpecBackendDefaults {
 
   final AppmeshVirtualNodeSpecBackendDefaultsClientPolicy? clientPolicy;
 
-  Map<String, Object?> encode() => {
-    if (clientPolicy != null) 'client_policy': clientPolicy!.encode(),
-  };
+  Map<String, Object?> encode() => {'client_policy': ?clientPolicy?.encode()};
 }
 
 /// Typed helper for the `spec.backend_defaults.client_policy` block of
@@ -301,7 +297,7 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicy {
 
   final AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTls? tls;
 
-  Map<String, Object?> encode() => {if (tls != null) 'tls': tls!.encode()};
+  Map<String, Object?> encode() => {'tls': ?tls?.encode()};
 }
 
 /// Typed helper for the `spec.backend_defaults.client_policy.tls` block of
@@ -326,9 +322,9 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTls {
   validation;
 
   Map<String, Object?> encode() => {
-    if (enforce != null) 'enforce': enforce!.toTfJson(),
-    if (ports != null) 'ports': ports!.toTfJson(),
-    if (certificate != null) 'certificate': certificate!.encode(),
+    'enforce': ?enforce?.toTfJson(),
+    'ports': ?ports?.toTfJson(),
+    'certificate': ?certificate?.encode(),
     'validation': validation.encode(),
   };
 }
@@ -348,8 +344,8 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificate {
   final AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsCertificateSds? sds;
 
   Map<String, Object?> encode() => {
-    if (file != null) 'file': file!.encode(),
-    if (sds != null) 'sds': sds!.encode(),
+    'file': ?file?.encode(),
+    'sds': ?sds?.encode(),
   };
 }
 
@@ -401,8 +397,7 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidation {
   trust;
 
   Map<String, Object?> encode() => {
-    if (subjectAlternativeNames != null)
-      'subject_alternative_names': subjectAlternativeNames!.encode(),
+    'subject_alternative_names': ?subjectAlternativeNames?.encode(),
     'trust': trust.encode(),
   };
 }
@@ -454,9 +449,9 @@ final class AppmeshVirtualNodeSpecBackendDefaultsClientPolicyTlsValidationTrust 
   sds;
 
   Map<String, Object?> encode() => {
-    if (acm != null) 'acm': acm!.encode(),
-    if (file != null) 'file': file!.encode(),
-    if (sds != null) 'sds': sds!.encode(),
+    'acm': ?acm?.encode(),
+    'file': ?file?.encode(),
+    'sds': ?sds?.encode(),
   };
 }
 
@@ -529,13 +524,12 @@ final class AppmeshVirtualNodeSpecListener {
   final AppmeshVirtualNodeSpecListenerTls? tls;
 
   Map<String, Object?> encode() => {
-    if (connectionPool != null) 'connection_pool': connectionPool!.encode(),
-    if (healthCheck != null) 'health_check': healthCheck!.encode(),
-    if (outlierDetection != null)
-      'outlier_detection': outlierDetection!.encode(),
+    'connection_pool': ?connectionPool?.encode(),
+    'health_check': ?healthCheck?.encode(),
+    'outlier_detection': ?outlierDetection?.encode(),
     'port_mapping': portMapping.encode(),
-    if (timeout != null) 'timeout': timeout!.encode(),
-    if (tls != null) 'tls': tls!.encode(),
+    'timeout': ?timeout?.encode(),
+    'tls': ?tls?.encode(),
   };
 }
 
@@ -559,7 +553,7 @@ final class AppmeshVirtualNodeSpecListenerConnectionPool {
   final List<AppmeshVirtualNodeSpecListenerConnectionPoolTcp>? tcp;
 
   Map<String, Object?> encode() => {
-    if (grpc != null) 'grpc': grpc!.encode(),
+    'grpc': ?grpc?.encode(),
     if (http != null) 'http': [for (final e in http!) e.encode()],
     if (http2 != null) 'http2': [for (final e in http2!) e.encode()],
     if (tcp != null) 'tcp': [for (final e in tcp!) e.encode()],
@@ -594,8 +588,7 @@ final class AppmeshVirtualNodeSpecListenerConnectionPoolHttp {
 
   Map<String, Object?> encode() => {
     'max_connections': maxConnections.toTfJson(),
-    if (maxPendingRequests != null)
-      'max_pending_requests': maxPendingRequests!.toTfJson(),
+    'max_pending_requests': ?maxPendingRequests?.toTfJson(),
   };
 }
 
@@ -658,8 +651,8 @@ final class AppmeshVirtualNodeSpecListenerHealthCheck {
   Map<String, Object?> encode() => {
     'healthy_threshold': healthyThreshold.toTfJson(),
     'interval_millis': intervalMillis.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
     'protocol': protocol.toTfJson(),
     'timeout_millis': timeoutMillis.toTfJson(),
     'unhealthy_threshold': unhealthyThreshold.toTfJson(),
@@ -826,10 +819,10 @@ final class AppmeshVirtualNodeSpecListenerTimeout {
   final AppmeshVirtualNodeSpecListenerTimeoutTcp? tcp;
 
   Map<String, Object?> encode() => {
-    if (grpc != null) 'grpc': grpc!.encode(),
-    if (http != null) 'http': http!.encode(),
-    if (http2 != null) 'http2': http2!.encode(),
-    if (tcp != null) 'tcp': tcp!.encode(),
+    'grpc': ?grpc?.encode(),
+    'http': ?http?.encode(),
+    'http2': ?http2?.encode(),
+    'tcp': ?tcp?.encode(),
   };
 }
 
@@ -844,8 +837,8 @@ final class AppmeshVirtualNodeSpecListenerTimeoutGrpc {
   final AppmeshVirtualNodeSpecListenerTimeoutGrpcPerRequest? perRequest;
 
   Map<String, Object?> encode() => {
-    if (idle != null) 'idle': idle!.encode(),
-    if (perRequest != null) 'per_request': perRequest!.encode(),
+    'idle': ?idle?.encode(),
+    'per_request': ?perRequest?.encode(),
   };
 }
 
@@ -922,8 +915,8 @@ final class AppmeshVirtualNodeSpecListenerTimeoutHttp {
   final AppmeshVirtualNodeSpecListenerTimeoutHttpPerRequest? perRequest;
 
   Map<String, Object?> encode() => {
-    if (idle != null) 'idle': idle!.encode(),
-    if (perRequest != null) 'per_request': perRequest!.encode(),
+    'idle': ?idle?.encode(),
+    'per_request': ?perRequest?.encode(),
   };
 }
 
@@ -1003,8 +996,8 @@ final class AppmeshVirtualNodeSpecListenerTimeoutHttp2 {
   final AppmeshVirtualNodeSpecListenerTimeoutHttp2PerRequest? perRequest;
 
   Map<String, Object?> encode() => {
-    if (idle != null) 'idle': idle!.encode(),
-    if (perRequest != null) 'per_request': perRequest!.encode(),
+    'idle': ?idle?.encode(),
+    'per_request': ?perRequest?.encode(),
   };
 }
 
@@ -1078,7 +1071,7 @@ final class AppmeshVirtualNodeSpecListenerTimeoutTcp {
 
   final AppmeshVirtualNodeSpecListenerTimeoutTcpIdle? idle;
 
-  Map<String, Object?> encode() => {if (idle != null) 'idle': idle!.encode()};
+  Map<String, Object?> encode() => {'idle': ?idle?.encode()};
 }
 
 /// Typed helper for the `spec.listener.timeout.tcp.idle` block of
@@ -1129,7 +1122,7 @@ final class AppmeshVirtualNodeSpecListenerTls {
   Map<String, Object?> encode() => {
     'mode': mode.toTfJson(),
     'certificate': certificate.encode(),
-    if (validation != null) 'validation': validation!.encode(),
+    'validation': ?validation?.encode(),
   };
 }
 
@@ -1161,9 +1154,9 @@ final class AppmeshVirtualNodeSpecListenerTlsCertificate {
   final AppmeshVirtualNodeSpecListenerTlsCertificateSds? sds;
 
   Map<String, Object?> encode() => {
-    if (acm != null) 'acm': acm!.encode(),
-    if (file != null) 'file': file!.encode(),
-    if (sds != null) 'sds': sds!.encode(),
+    'acm': ?acm?.encode(),
+    'file': ?file?.encode(),
+    'sds': ?sds?.encode(),
   };
 }
 
@@ -1229,8 +1222,7 @@ final class AppmeshVirtualNodeSpecListenerTlsValidation {
   final AppmeshVirtualNodeSpecListenerTlsValidationTrust trust;
 
   Map<String, Object?> encode() => {
-    if (subjectAlternativeNames != null)
-      'subject_alternative_names': subjectAlternativeNames!.encode(),
+    'subject_alternative_names': ?subjectAlternativeNames?.encode(),
     'trust': trust.encode(),
   };
 }
@@ -1273,8 +1265,8 @@ final class AppmeshVirtualNodeSpecListenerTlsValidationTrust {
   final AppmeshVirtualNodeSpecListenerTlsValidationTrustSds? sds;
 
   Map<String, Object?> encode() => {
-    if (file != null) 'file': file!.encode(),
-    if (sds != null) 'sds': sds!.encode(),
+    'file': ?file?.encode(),
+    'sds': ?sds?.encode(),
   };
 }
 
@@ -1314,9 +1306,7 @@ final class AppmeshVirtualNodeSpecLogging {
 
   final AppmeshVirtualNodeSpecLoggingAccessLog? accessLog;
 
-  Map<String, Object?> encode() => {
-    if (accessLog != null) 'access_log': accessLog!.encode(),
-  };
+  Map<String, Object?> encode() => {'access_log': ?accessLog?.encode()};
 }
 
 /// Typed helper for the `spec.logging.access_log` block of
@@ -1327,7 +1317,7 @@ final class AppmeshVirtualNodeSpecLoggingAccessLog {
 
   final AppmeshVirtualNodeSpecLoggingAccessLogFile? file;
 
-  Map<String, Object?> encode() => {if (file != null) 'file': file!.encode()};
+  Map<String, Object?> encode() => {'file': ?file?.encode()};
 }
 
 /// Typed helper for the `spec.logging.access_log.file` block of
@@ -1345,7 +1335,7 @@ final class AppmeshVirtualNodeSpecLoggingAccessLogFile {
 
   Map<String, Object?> encode() => {
     'path': path.toTfJson(),
-    if (format != null) 'format': format!.encode(),
+    'format': ?format?.encode(),
   };
 }
 
@@ -1363,7 +1353,7 @@ final class AppmeshVirtualNodeSpecLoggingAccessLogFileFormat {
   final List<AppmeshVirtualNodeSpecLoggingAccessLogFileFormatJson>? json;
 
   Map<String, Object?> encode() => {
-    if (text != null) 'text': text!.toTfJson(),
+    'text': ?text?.toTfJson(),
     if (json != null) 'json': [for (final e in json!) e.encode()],
   };
 }
@@ -1470,7 +1460,7 @@ final class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMap {
   final TfArg<String> serviceName;
 
   Map<String, Object?> encode() => {
-    if (attributes != null) 'attributes': attributes!.toTfJson(),
+    'attributes': ?attributes?.toTfJson(),
     'namespace_name': namespaceName.toTfJson(),
     'service_name': serviceName.toTfJson(),
   };
@@ -1496,8 +1486,8 @@ final class AppmeshVirtualNodeSpecServiceDiscoveryDns {
 
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
-    if (ipPreference != null) 'ip_preference': ipPreference!.toTfJson(),
-    if (responseType != null) 'response_type': responseType!.toTfJson(),
+    'ip_preference': ?ipPreference?.toTfJson(),
+    'response_type': ?responseType?.toTfJson(),
   };
 }
 
@@ -1549,10 +1539,10 @@ final class AwsAppmeshVirtualNode extends Resource {
          terraformType: tfType,
          argMap: {
            'mesh_name': meshName,
-           if (meshOwner != null) 'mesh_owner': meshOwner,
+           'mesh_owner': ?meshOwner,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'spec': TfArg.literal(spec.encode()),
          },
        );

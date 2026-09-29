@@ -52,8 +52,8 @@ final class AwsEc2CapacityBlockReservation extends Resource {
          argMap: {
            'capacity_block_offering_id': capacityBlockOfferingId,
            'instance_platform': instancePlatform,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

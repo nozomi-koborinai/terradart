@@ -24,7 +24,7 @@ final class DataAppwriteMysqlDatabase extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'id': id, if (projectId != null) 'project_id': projectId},
+         argMap: {'id': id, 'project_id': ?projectId},
        );
 
   @override

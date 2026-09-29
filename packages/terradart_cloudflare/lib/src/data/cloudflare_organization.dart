@@ -34,12 +34,12 @@ final class DataOrganizationFilter {
   final DataOrganizationFilterParent? parent;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (pageSize != null) 'page_size': pageSize!.toTfJson(),
-    if (pageToken != null) 'page_token': pageToken!.toTfJson(),
-    if (containing != null) 'containing': containing!.encode(),
-    if (name != null) 'name': name!.encode(),
-    if (parent != null) 'parent': parent!.encode(),
+    'id': ?id?.toTfJson(),
+    'page_size': ?pageSize?.toTfJson(),
+    'page_token': ?pageToken?.toTfJson(),
+    'containing': ?containing?.encode(),
+    'name': ?name?.encode(),
+    'parent': ?parent?.encode(),
   };
 }
 
@@ -60,9 +60,9 @@ final class DataOrganizationFilterContaining {
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    if (account != null) 'account': account!.toTfJson(),
-    if (organization != null) 'organization': organization!.toTfJson(),
-    if (user != null) 'user': user!.toTfJson(),
+    'account': ?account?.toTfJson(),
+    'organization': ?organization?.toTfJson(),
+    'user': ?user?.toTfJson(),
   };
 }
 
@@ -83,9 +83,9 @@ final class DataOrganizationFilterName {
   final TfArg<String>? startsWith;
 
   Map<String, Object?> encode() => {
-    if (contains != null) 'contains': contains!.toTfJson(),
-    if (endsWith != null) 'ends_with': endsWith!.toTfJson(),
-    if (startsWith != null) 'starts_with': startsWith!.toTfJson(),
+    'contains': ?contains?.toTfJson(),
+    'ends_with': ?endsWith?.toTfJson(),
+    'starts_with': ?startsWith?.toTfJson(),
   };
 }
 
@@ -97,7 +97,7 @@ final class DataOrganizationFilterParent {
 
   final TfArg<String>? id;
 
-  Map<String, Object?> encode() => {if (id != null) 'id': id!.toTfJson()};
+  Map<String, Object?> encode() => {'id': ?id?.toTfJson()};
 }
 
 /// Factory wrapper for `cloudflare_organization`.
@@ -117,7 +117,7 @@ final class DataCloudflareOrganization extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (organizationId != null) 'organization_id': organizationId,
+           'organization_id': ?organizationId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

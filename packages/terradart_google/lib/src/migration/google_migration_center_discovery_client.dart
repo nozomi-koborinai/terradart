@@ -54,12 +54,12 @@ final class GoogleMigrationCenterDiscoveryClient extends Resource {
            'discovery_client_id': discoveryClientId,
            'source': source,
            'service_account': serviceAccount.encodeAs('email'),
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (ttl != null) 'ttl': ttl,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'display_name': ?displayName,
+           'description': ?description,
+           'ttl': ?ttl,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

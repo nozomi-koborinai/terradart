@@ -27,12 +27,12 @@ final class AwsResiliencehubv2System extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'description': ?description,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (sharingEnabled != null) 'sharing_enabled': sharingEnabled,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'sharing_enabled': ?sharingEnabled,
+           'tags': ?tags,
          },
        );
 

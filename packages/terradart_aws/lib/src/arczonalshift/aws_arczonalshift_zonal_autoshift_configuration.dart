@@ -177,8 +177,8 @@ final class AwsArczonalshiftZonalAutoshiftConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            ...?windows?.argMap,
-           if (blockedDates != null) 'blocked_dates': blockedDates,
-           if (region != null) 'region': region,
+           'blocked_dates': ?blockedDates,
+           'region': ?region,
            'resource_arn': resourceArn,
            'zonal_autoshift_status': zonalAutoshiftStatus,
            if (blockingAlarms != null)

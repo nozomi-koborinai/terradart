@@ -44,9 +44,9 @@ final class GoogleChronicleDataAccessLabel extends Resource {
            'udm_query': udmQuery,
            'location': location,
            'instance': instance,
-           if (description != null) 'description': description,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

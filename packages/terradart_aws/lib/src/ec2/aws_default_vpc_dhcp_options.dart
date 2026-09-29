@@ -21,11 +21,7 @@ final class AwsDefaultVpcDhcpOptions extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (ownerId != null) 'owner_id': ownerId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-         },
+         argMap: {'owner_id': ?ownerId, 'region': ?region, 'tags': ?tags},
        );
 
   @override

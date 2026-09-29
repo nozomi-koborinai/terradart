@@ -100,9 +100,9 @@ final class ElbAccessLogs {
 
   Map<String, Object?> encode() => {
     'bucket': bucket.encodeAs('id').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (interval != null) 'interval': interval!.toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'interval': ?interval?.toTfJson(),
   };
 }
 
@@ -164,8 +164,7 @@ final class ElbListener {
     'instance_protocol': instanceProtocol.toTfJson(),
     'lb_port': lbPort.toTfJson(),
     'lb_protocol': lbProtocol.toTfJson(),
-    if (sslCertificateId != null)
-      'ssl_certificate_id': sslCertificateId!.toTfJson(),
+    'ssl_certificate_id': ?sslCertificateId?.toTfJson(),
   };
 }
 
@@ -199,27 +198,20 @@ final class AwsElb extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZones != null)
-             'availability_zones': availabilityZones,
-           if (connectionDraining != null)
-             'connection_draining': connectionDraining,
-           if (connectionDrainingTimeout != null)
-             'connection_draining_timeout': connectionDrainingTimeout,
-           if (crossZoneLoadBalancing != null)
-             'cross_zone_load_balancing': crossZoneLoadBalancing,
-           if (desyncMitigationMode != null)
-             'desync_mitigation_mode': desyncMitigationMode,
-           if (idleTimeout != null) 'idle_timeout': idleTimeout,
-           if (instances != null) 'instances': instances,
-           if (internal != null) 'internal': internal,
+           'availability_zones': ?availabilityZones,
+           'connection_draining': ?connectionDraining,
+           'connection_draining_timeout': ?connectionDrainingTimeout,
+           'cross_zone_load_balancing': ?crossZoneLoadBalancing,
+           'desync_mitigation_mode': ?desyncMitigationMode,
+           'idle_timeout': ?idleTimeout,
+           'instances': ?instances,
+           'internal': ?internal,
            ...?name?.argMap,
-           if (region != null) 'region': region,
-           if (securityGroups != null)
-             'security_groups': securityGroups.encodeAs('id'),
-           if (sourceSecurityGroup != null)
-             'source_security_group': sourceSecurityGroup,
-           if (subnets != null) 'subnets': subnets.encodeAs('id'),
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'security_groups': ?securityGroups?.encodeAs('id'),
+           'source_security_group': ?sourceSecurityGroup,
+           'subnets': ?subnets?.encodeAs('id'),
+           'tags': ?tags,
            if (accessLogs != null)
              'access_logs': TfArg.literal(accessLogs.encode()),
            if (healthCheck != null)

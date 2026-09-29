@@ -52,9 +52,9 @@ final class AwsVpcIpamResourceDiscovery extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'description': ?description,
+           'region': ?region,
+           'tags': ?tags,
            'operating_regions': TfArg.literal([
              for (final e in operatingRegions) e.encode(),
            ]),

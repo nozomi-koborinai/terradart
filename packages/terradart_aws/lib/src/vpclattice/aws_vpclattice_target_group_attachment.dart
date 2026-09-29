@@ -19,7 +19,7 @@ final class VpclatticeTargetGroupAttachmentTarget {
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
+    'port': ?port?.toTfJson(),
   };
 }
 
@@ -39,7 +39,7 @@ final class AwsVpclatticeTargetGroupAttachment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'target_group_identifier': targetGroupIdentifier,
            'target': TfArg.literal(target.encode()),
          },

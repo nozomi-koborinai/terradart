@@ -28,9 +28,9 @@ final class GoogleVertexAiReasoningEngineIamMember extends Resource {
            'reasoning_engine': reasoningEngine,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
+           'condition': ?condition,
+           'region': ?region,
+           'project': ?project,
          },
        );
 

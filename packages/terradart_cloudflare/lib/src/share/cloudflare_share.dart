@@ -20,9 +20,8 @@ final class ShareRecipients {
   final TfArg<String>? recipientAccountId;
 
   Map<String, Object?> encode() => {
-    if (organizationId != null) 'organization_id': organizationId!.toTfJson(),
-    if (recipientAccountId != null)
-      'recipient_account_id': recipientAccountId!.toTfJson(),
+    'organization_id': ?organizationId?.toTfJson(),
+    'recipient_account_id': ?recipientAccountId?.toTfJson(),
   };
 }
 
@@ -88,9 +87,8 @@ final class CloudflareShare extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (includeRecipientCounts != null)
-             'include_recipient_counts': includeRecipientCounts,
-           if (includeResources != null) 'include_resources': includeResources,
+           'include_recipient_counts': ?includeRecipientCounts,
+           'include_resources': ?includeResources,
            'name': name,
            'recipients': TfArg.literal([
              for (final e in recipients) e.encode(),

@@ -21,9 +21,9 @@ final class DataTurnstileWidgetFilter {
   final TfArg<DataTurnstileWidgetFilterOrder>? order;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (filter != null) 'filter': filter!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
+    'direction': ?direction?.toTfJson(),
+    'filter': ?filter?.toTfJson(),
+    'order': ?order?.toTfJson(),
   };
 }
 
@@ -69,8 +69,8 @@ final class DataCloudflareTurnstileWidget extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (sitekey != null) 'sitekey': sitekey,
+           'account_id': ?accountId,
+           'sitekey': ?sitekey,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

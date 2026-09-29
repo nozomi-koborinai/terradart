@@ -38,9 +38,9 @@ final class AwsAuditmanagerAssessmentDelegation extends Resource {
          terraformType: tfType,
          argMap: {
            'assessment_id': assessmentId,
-           if (comment != null) 'comment': comment,
+           'comment': ?comment,
            'control_set_id': controlSetId,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
            'role_type': roleType,
          },

@@ -21,11 +21,7 @@ final class AwsSqsQueuePolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'policy': policy,
-           'queue_url': queueUrl,
-           if (region != null) 'region': region,
-         },
+         argMap: {'policy': policy, 'queue_url': queueUrl, 'region': ?region},
        );
 
   @override

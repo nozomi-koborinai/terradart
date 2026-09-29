@@ -101,7 +101,7 @@ final class AwsGuarddutyDetectorFeature extends Resource {
          argMap: {
            'detector_id': detectorId,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'status': status,
            if (additionalConfiguration != null)
              'additional_configuration': TfArg.literal([

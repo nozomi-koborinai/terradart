@@ -30,9 +30,9 @@ final class GoogleVertexAiEndpointIamPolicy extends Resource {
          provider: provider ?? 'google-beta',
          argMap: {
            'endpoint': endpoint,
-           if (location != null) 'location': location,
+           'location': ?location,
            'policy_data': policyData,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -22,10 +22,10 @@ final class DataAwsQuicksightGroup extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (awsAccountId != null) 'aws_account_id': awsAccountId,
+           'aws_account_id': ?awsAccountId,
            'group_name': groupName,
-           if (namespace != null) 'namespace': namespace,
-           if (region != null) 'region': region,
+           'namespace': ?namespace,
+           'region': ?region,
          },
        );
 

@@ -31,7 +31,7 @@ final class GoogleEssentialContactsContact extends Resource {
            'language_tag': languageTag,
            'notification_category_subscriptions':
                notificationCategorySubscriptions,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

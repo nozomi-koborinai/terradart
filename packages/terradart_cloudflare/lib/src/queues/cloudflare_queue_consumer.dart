@@ -55,13 +55,12 @@ final class QueueConsumerSettings {
   final List<QueueConsumerSettingsWebhooks>? webhooks;
 
   Map<String, Object?> encode() => {
-    if (batchSize != null) 'batch_size': batchSize!.toTfJson(),
-    if (maxConcurrency != null) 'max_concurrency': maxConcurrency!.toTfJson(),
-    if (maxRetries != null) 'max_retries': maxRetries!.toTfJson(),
-    if (maxWaitTimeMs != null) 'max_wait_time_ms': maxWaitTimeMs!.toTfJson(),
-    if (retryDelay != null) 'retry_delay': retryDelay!.toTfJson(),
-    if (visibilityTimeoutMs != null)
-      'visibility_timeout_ms': visibilityTimeoutMs!.toTfJson(),
+    'batch_size': ?batchSize?.toTfJson(),
+    'max_concurrency': ?maxConcurrency?.toTfJson(),
+    'max_retries': ?maxRetries?.toTfJson(),
+    'max_wait_time_ms': ?maxWaitTimeMs?.toTfJson(),
+    'retry_delay': ?retryDelay?.toTfJson(),
+    'visibility_timeout_ms': ?visibilityTimeoutMs?.toTfJson(),
     if (email != null) 'email': [for (final e in email!) e.encode()],
     if (pagerduty != null)
       'pagerduty': [for (final e in pagerduty!) e.encode()],
@@ -127,9 +126,9 @@ final class CloudflareQueueConsumer extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (deadLetterQueue != null) 'dead_letter_queue': deadLetterQueue,
+           'dead_letter_queue': ?deadLetterQueue,
            'queue_id': queueId,
-           if (scriptName != null) 'script_name': scriptName,
+           'script_name': ?scriptName,
            'type': type,
            if (settings != null) 'settings': TfArg.literal(settings.encode()),
          },

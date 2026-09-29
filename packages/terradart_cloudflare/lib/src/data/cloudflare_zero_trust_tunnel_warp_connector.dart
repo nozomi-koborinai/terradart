@@ -43,15 +43,15 @@ final class DataZeroTrustTunnelWarpConnectorFilter {
   final TfArg<String>? wasInactiveAt;
 
   Map<String, Object?> encode() => {
-    if (excludePrefix != null) 'exclude_prefix': excludePrefix!.toTfJson(),
-    if (existedAt != null) 'existed_at': existedAt!.toTfJson(),
-    if (includePrefix != null) 'include_prefix': includePrefix!.toTfJson(),
-    if (isDeleted != null) 'is_deleted': isDeleted!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
-    if (uuid != null) 'uuid': uuid!.toTfJson(),
-    if (wasActiveAt != null) 'was_active_at': wasActiveAt!.toTfJson(),
-    if (wasInactiveAt != null) 'was_inactive_at': wasInactiveAt!.toTfJson(),
+    'exclude_prefix': ?excludePrefix?.toTfJson(),
+    'existed_at': ?existedAt?.toTfJson(),
+    'include_prefix': ?includePrefix?.toTfJson(),
+    'is_deleted': ?isDeleted?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'status': ?status?.toTfJson(),
+    'uuid': ?uuid?.toTfJson(),
+    'was_active_at': ?wasActiveAt?.toTfJson(),
+    'was_inactive_at': ?wasInactiveAt?.toTfJson(),
   };
 }
 
@@ -87,8 +87,8 @@ final class DataCloudflareZeroTrustTunnelWarpConnector extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (tunnelId != null) 'tunnel_id': tunnelId,
+           'account_id': ?accountId,
+           'tunnel_id': ?tunnelId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

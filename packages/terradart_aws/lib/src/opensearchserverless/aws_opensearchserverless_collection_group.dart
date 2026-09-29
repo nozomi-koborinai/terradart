@@ -48,13 +48,13 @@ final class AwsOpensearchserverlessCollectionGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (capacityLimits != null) 'capacity_limits': capacityLimits,
-           if (description != null) 'description': description,
-           if (generation != null) 'generation': generation,
+           'capacity_limits': ?capacityLimits,
+           'description': ?description,
+           'generation': ?generation,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'standby_replicas': standbyReplicas,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

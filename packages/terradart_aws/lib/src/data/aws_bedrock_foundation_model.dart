@@ -18,7 +18,7 @@ final class DataAwsBedrockFoundationModel extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'model_id': modelId, if (region != null) 'region': region},
+         argMap: {'model_id': modelId, 'region': ?region},
        );
 
   @override

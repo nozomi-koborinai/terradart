@@ -39,8 +39,8 @@ final class DataAccountaccessEntitlementsFilterPrincipalRole {
   principal;
 
   Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
-    if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
+    'account_id': ?accountId?.toTfJson(),
+    'role_arn': ?roleArn?.toTfJson(),
     if (principal != null)
       'principal': [for (final e in principal!) e.encode()],
   };
@@ -79,8 +79,8 @@ final class DataAccountaccessEntitlementsFilterPrincipalRolePrincipalIdentityCen
   final TfArg<String>? userId;
 
   Map<String, Object?> encode() => {
-    if (groupId != null) 'group_id': groupId!.toTfJson(),
-    if (userId != null) 'user_id': userId!.toTfJson(),
+    'group_id': ?groupId?.toTfJson(),
+    'user_id': ?userId?.toTfJson(),
   };
 }
 
@@ -99,7 +99,7 @@ final class DataAwsAccountaccessEntitlements extends Data {
          terraformType: tfType,
          argMap: {
            'application_arn': applicationArn,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

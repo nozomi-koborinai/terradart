@@ -61,7 +61,7 @@ final class S3BucketLifecycleConfigurationRule {
 
   Map<String, Object?> encode() => {
     'id': id.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     'status': status.toTfJson(),
     if (abortIncompleteMultipartUpload != null)
       'abort_incomplete_multipart_upload': [
@@ -104,8 +104,7 @@ final class S3BucketLifecycleConfigurationRuleAbortIncompleteMultipartUpload {
   final TfArg<num>? daysAfterInitiation;
 
   Map<String, Object?> encode() => {
-    if (daysAfterInitiation != null)
-      'days_after_initiation': daysAfterInitiation!.toTfJson(),
+    'days_after_initiation': ?daysAfterInitiation?.toTfJson(),
   };
 }
 
@@ -126,10 +125,9 @@ final class S3BucketLifecycleConfigurationRuleExpiration {
   final TfArg<bool>? expiredObjectDeleteMarker;
 
   Map<String, Object?> encode() => {
-    if (date != null) 'date': date!.toTfJson(),
-    if (days != null) 'days': days!.toTfJson(),
-    if (expiredObjectDeleteMarker != null)
-      'expired_object_delete_marker': expiredObjectDeleteMarker!.toTfJson(),
+    'date': ?date?.toTfJson(),
+    'days': ?days?.toTfJson(),
+    'expired_object_delete_marker': ?expiredObjectDeleteMarker?.toTfJson(),
   };
 }
 
@@ -156,11 +154,9 @@ final class S3BucketLifecycleConfigurationRuleFilter {
   final List<S3BucketLifecycleConfigurationRuleFilterTag>? tag;
 
   Map<String, Object?> encode() => {
-    if (objectSizeGreaterThan != null)
-      'object_size_greater_than': objectSizeGreaterThan!.toTfJson(),
-    if (objectSizeLessThan != null)
-      'object_size_less_than': objectSizeLessThan!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
+    'object_size_greater_than': ?objectSizeGreaterThan?.toTfJson(),
+    'object_size_less_than': ?objectSizeLessThan?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
     if (and != null) 'and': [for (final e in and!) e.encode()],
     if (tag != null) 'tag': [for (final e in tag!) e.encode()],
   };
@@ -186,12 +182,10 @@ final class S3BucketLifecycleConfigurationRuleFilterAnd {
   final TfArg<Map<String, String>>? tags;
 
   Map<String, Object?> encode() => {
-    if (objectSizeGreaterThan != null)
-      'object_size_greater_than': objectSizeGreaterThan!.toTfJson(),
-    if (objectSizeLessThan != null)
-      'object_size_less_than': objectSizeLessThan!.toTfJson(),
-    if (prefix != null) 'prefix': prefix!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
+    'object_size_greater_than': ?objectSizeGreaterThan?.toTfJson(),
+    'object_size_less_than': ?objectSizeLessThan?.toTfJson(),
+    'prefix': ?prefix?.toTfJson(),
+    'tags': ?tags?.toTfJson(),
   };
 }
 
@@ -228,8 +222,7 @@ final class S3BucketLifecycleConfigurationRuleNoncurrentVersionExpiration {
   final TfArg<num> noncurrentDays;
 
   Map<String, Object?> encode() => {
-    if (newerNoncurrentVersions != null)
-      'newer_noncurrent_versions': newerNoncurrentVersions!.toTfJson(),
+    'newer_noncurrent_versions': ?newerNoncurrentVersions?.toTfJson(),
     'noncurrent_days': noncurrentDays.toTfJson(),
   };
 }
@@ -254,8 +247,7 @@ final class S3BucketLifecycleConfigurationRuleNoncurrentVersionTransition {
   storageClass;
 
   Map<String, Object?> encode() => {
-    if (newerNoncurrentVersions != null)
-      'newer_noncurrent_versions': newerNoncurrentVersions!.toTfJson(),
+    'newer_noncurrent_versions': ?newerNoncurrentVersions?.toTfJson(),
     'noncurrent_days': noncurrentDays.toTfJson(),
     'storage_class': storageClass.toTfJson(),
   };
@@ -296,8 +288,8 @@ final class S3BucketLifecycleConfigurationRuleTransition {
   storageClass;
 
   Map<String, Object?> encode() => {
-    if (date != null) 'date': date!.toTfJson(),
-    if (days != null) 'days': days!.toTfJson(),
+    'date': ?date?.toTfJson(),
+    'days': ?days?.toTfJson(),
     'storage_class': storageClass.toTfJson(),
   };
 }
@@ -339,12 +331,10 @@ final class AwsS3BucketLifecycleConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket': bucket.encodeAs('id'),
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (region != null) 'region': region,
-           if (transitionDefaultMinimumObjectSize != null)
-             'transition_default_minimum_object_size':
-                 transitionDefaultMinimumObjectSize,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'region': ?region,
+           'transition_default_minimum_object_size':
+               ?transitionDefaultMinimumObjectSize,
            if (rule != null)
              'rule': TfArg.literal([for (final e in rule) e.encode()]),
          },

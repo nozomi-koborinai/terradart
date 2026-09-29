@@ -34,8 +34,8 @@ final class CodepipelineWebhookAuthenticationConfiguration {
   final TfArg<String>? secretToken;
 
   Map<String, Object?> encode() => {
-    if (allowedIpRange != null) 'allowed_ip_range': allowedIpRange!.toTfJson(),
-    if (secretToken != null) 'secret_token': secretToken!.toTfJson(),
+    'allowed_ip_range': ?allowedIpRange?.toTfJson(),
+    'secret_token': ?secretToken?.toTfJson(),
   };
 }
 
@@ -81,8 +81,8 @@ final class AwsCodepipelineWebhook extends Resource {
          argMap: {
            'authentication': authentication,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'target_action': targetAction,
            'target_pipeline': targetPipeline,
            if (authenticationConfiguration != null)

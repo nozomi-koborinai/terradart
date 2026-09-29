@@ -40,9 +40,9 @@ final class GooglePubsubLiteReservation extends Resource {
          argMap: {
            'name': name,
            'throughput_capacity': throughputCapacity,
-           if (region != null) 'region': region,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'region': ?region,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -44,11 +44,7 @@ final class GoogleCertificateManagerCertificateMap extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'name': name,
-           if (description != null) 'description': description,
-           if (labels != null) 'labels': labels,
-         },
+         argMap: {'name': name, 'description': ?description, 'labels': ?labels},
        );
 
   @override

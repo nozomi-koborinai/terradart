@@ -31,8 +31,8 @@ final class GoogleAccessContextManagerAccessPolicy extends Resource {
          argMap: {
            'parent': parent,
            'title': title,
-           if (scopes != null) 'scopes': scopes,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'scopes': ?scopes,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

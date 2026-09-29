@@ -63,8 +63,8 @@ final class GoogleChronicleCustomList extends Resource {
            'entity_identifier': entityIdentifier,
            'category': category,
            'environments': environments,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

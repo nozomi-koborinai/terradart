@@ -25,7 +25,7 @@ final class S3filesAccessPointPosixUser {
 
   Map<String, Object?> encode() => {
     'gid': gid.toTfJson(),
-    if (secondaryGids != null) 'secondary_gids': secondaryGids!.toTfJson(),
+    'secondary_gids': ?secondaryGids?.toTfJson(),
     'uid': uid.toTfJson(),
   };
 }
@@ -42,7 +42,7 @@ final class S3filesAccessPointRootDirectory {
   creationPermissions;
 
   Map<String, Object?> encode() => {
-    if (path != null) 'path': path!.toTfJson(),
+    'path': ?path?.toTfJson(),
     if (creationPermissions != null)
       'creation_permissions': [
         for (final e in creationPermissions!) e.encode(),
@@ -92,8 +92,8 @@ final class AwsS3filesAccessPoint extends Resource {
          terraformType: tfType,
          argMap: {
            'file_system_id': fileSystemId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (posixUser != null)
              'posix_user': TfArg.literal([
                for (final e in posixUser) e.encode(),

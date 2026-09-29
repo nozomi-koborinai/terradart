@@ -26,7 +26,7 @@ final class GoogleHealthcareHl7V2StoreIamMember extends Resource {
            'hl7_v2_store_id': hl7V2StoreId,
            'role': role,
            'member': member,
-           if (condition != null) 'condition': condition,
+           'condition': ?condition,
          },
        );
 

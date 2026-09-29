@@ -32,12 +32,11 @@ final class DataZeroTrustTunnelCloudflaredVirtualNetworkFilter {
   final TfArg<String>? name;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (isDefault != null) 'is_default': isDefault!.toTfJson(),
-    if (isDefaultNetwork != null)
-      'is_default_network': isDefaultNetwork!.toTfJson(),
-    if (isDeleted != null) 'is_deleted': isDeleted!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'is_default': ?isDefault?.toTfJson(),
+    'is_default_network': ?isDefaultNetwork?.toTfJson(),
+    'is_deleted': ?isDeleted?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -62,8 +61,8 @@ final class DataCloudflareZeroTrustTunnelCloudflaredVirtualNetwork
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (virtualNetworkId != null) 'virtual_network_id': virtualNetworkId,
+           'account_id': ?accountId,
+           'virtual_network_id': ?virtualNetworkId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

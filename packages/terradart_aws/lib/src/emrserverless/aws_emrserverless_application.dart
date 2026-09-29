@@ -30,9 +30,7 @@ final class EmrserverlessApplicationAutoStartConfiguration {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `auto_stop_configuration` block of
@@ -49,9 +47,8 @@ final class EmrserverlessApplicationAutoStopConfiguration {
   final TfArg<num>? idleTimeoutMinutes;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (idleTimeoutMinutes != null)
-      'idle_timeout_minutes': idleTimeoutMinutes!.toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'idle_timeout_minutes': ?idleTimeoutMinutes?.toTfJson(),
   };
 }
 
@@ -82,8 +79,7 @@ final class EmrserverlessApplicationInitialCapacity {
 
   Map<String, Object?> encode() => {
     'initial_capacity_type': initialCapacityType.toTfJson(),
-    if (initialCapacityConfig != null)
-      'initial_capacity_config': initialCapacityConfig!.encode(),
+    'initial_capacity_config': ?initialCapacityConfig?.encode(),
   };
 }
 
@@ -103,8 +99,7 @@ final class EmrserverlessApplicationInitialCapacityInitialCapacityConfig {
 
   Map<String, Object?> encode() => {
     'worker_count': workerCount.toTfJson(),
-    if (workerConfiguration != null)
-      'worker_configuration': workerConfiguration!.encode(),
+    'worker_configuration': ?workerConfiguration?.encode(),
   };
 }
 
@@ -126,7 +121,7 @@ final class EmrserverlessApplicationInitialCapacityInitialCapacityConfigWorkerCo
 
   Map<String, Object?> encode() => {
     'cpu': cpu.toTfJson(),
-    if (disk != null) 'disk': disk!.toTfJson(),
+    'disk': ?disk?.toTfJson(),
     'memory': memory.toTfJson(),
   };
 }
@@ -145,9 +140,8 @@ final class EmrserverlessApplicationInteractiveConfiguration {
   final TfArg<bool>? studioEnabled;
 
   Map<String, Object?> encode() => {
-    if (livyEndpointEnabled != null)
-      'livy_endpoint_enabled': livyEndpointEnabled!.toTfJson(),
-    if (studioEnabled != null) 'studio_enabled': studioEnabled!.toTfJson(),
+    'livy_endpoint_enabled': ?livyEndpointEnabled?.toTfJson(),
+    'studio_enabled': ?studioEnabled?.toTfJson(),
   };
 }
 
@@ -161,9 +155,7 @@ final class EmrserverlessApplicationJobLevelCostAllocationConfiguration {
 
   final TfArg<bool>? enabled;
 
-  Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'enabled': ?enabled?.toTfJson()};
 }
 
 /// Typed helper for the `maximum_capacity` block of
@@ -184,7 +176,7 @@ final class EmrserverlessApplicationMaximumCapacity {
 
   Map<String, Object?> encode() => {
     'cpu': cpu.toTfJson(),
-    if (disk != null) 'disk': disk!.toTfJson(),
+    'disk': ?disk?.toTfJson(),
     'memory': memory.toTfJson(),
   };
 }
@@ -213,17 +205,13 @@ final class EmrserverlessApplicationMonitoringConfiguration {
   s3MonitoringConfiguration;
 
   Map<String, Object?> encode() => {
-    if (cloudwatchLoggingConfiguration != null)
-      'cloudwatch_logging_configuration': cloudwatchLoggingConfiguration!
-          .encode(),
-    if (managedPersistenceMonitoringConfiguration != null)
-      'managed_persistence_monitoring_configuration':
-          managedPersistenceMonitoringConfiguration!.encode(),
-    if (prometheusMonitoringConfiguration != null)
-      'prometheus_monitoring_configuration': prometheusMonitoringConfiguration!
-          .encode(),
-    if (s3MonitoringConfiguration != null)
-      's3_monitoring_configuration': s3MonitoringConfiguration!.encode(),
+    'cloudwatch_logging_configuration': ?cloudwatchLoggingConfiguration
+        ?.encode(),
+    'managed_persistence_monitoring_configuration':
+        ?managedPersistenceMonitoringConfiguration?.encode(),
+    'prometheus_monitoring_configuration': ?prometheusMonitoringConfiguration
+        ?.encode(),
+    's3_monitoring_configuration': ?s3MonitoringConfiguration?.encode(),
   };
 }
 
@@ -254,12 +242,9 @@ final class EmrserverlessApplicationMonitoringConfigurationCloudwatchLoggingConf
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (encryptionKeyArn != null)
-      'encryption_key_arn': encryptionKeyArn!.encodeAs('arn').toTfJson(),
-    if (logGroupName != null)
-      'log_group_name': logGroupName!.encodeAs('name').toTfJson(),
-    if (logStreamNamePrefix != null)
-      'log_stream_name_prefix': logStreamNamePrefix!.toTfJson(),
+    'encryption_key_arn': ?encryptionKeyArn?.encodeAs('arn').toTfJson(),
+    'log_group_name': ?logGroupName?.encodeAs('name').toTfJson(),
+    'log_stream_name_prefix': ?logStreamNamePrefix?.toTfJson(),
     if (logTypes != null) 'log_types': [for (final e in logTypes!) e.encode()],
   };
 }
@@ -297,9 +282,8 @@ final class EmrserverlessApplicationMonitoringConfigurationManagedPersistenceMon
   final RefTo<AwsKmsKey>? encryptionKeyArn;
 
   Map<String, Object?> encode() => {
-    if (enabled != null) 'enabled': enabled!.toTfJson(),
-    if (encryptionKeyArn != null)
-      'encryption_key_arn': encryptionKeyArn!.encodeAs('arn').toTfJson(),
+    'enabled': ?enabled?.toTfJson(),
+    'encryption_key_arn': ?encryptionKeyArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -314,7 +298,7 @@ final class EmrserverlessApplicationMonitoringConfigurationPrometheusMonitoringC
   final TfArg<String>? remoteWriteUrl;
 
   Map<String, Object?> encode() => {
-    if (remoteWriteUrl != null) 'remote_write_url': remoteWriteUrl!.toTfJson(),
+    'remote_write_url': ?remoteWriteUrl?.toTfJson(),
   };
 }
 
@@ -332,9 +316,8 @@ final class EmrserverlessApplicationMonitoringConfigurationS3MonitoringConfigura
   final TfArg<String>? logUri;
 
   Map<String, Object?> encode() => {
-    if (encryptionKeyArn != null)
-      'encryption_key_arn': encryptionKeyArn!.encodeAs('arn').toTfJson(),
-    if (logUri != null) 'log_uri': logUri!.toTfJson(),
+    'encryption_key_arn': ?encryptionKeyArn?.encodeAs('arn').toTfJson(),
+    'log_uri': ?logUri?.toTfJson(),
   };
 }
 
@@ -352,9 +335,8 @@ final class EmrserverlessApplicationNetworkConfiguration {
   final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   Map<String, Object?> encode() => {
-    if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
+    'security_group_ids': ?securityGroupIds?.encodeAs('id').toTfJson(),
+    'subnet_ids': ?subnetIds?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -373,7 +355,7 @@ final class EmrserverlessApplicationRuntimeConfiguration {
 
   Map<String, Object?> encode() => {
     'classification': classification.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
+    'properties': ?properties?.toTfJson(),
   };
 }
 
@@ -391,10 +373,8 @@ final class EmrserverlessApplicationSchedulerConfiguration {
   final TfArg<num>? queueTimeoutMinutes;
 
   Map<String, Object?> encode() => {
-    if (maxConcurrentRuns != null)
-      'max_concurrent_runs': maxConcurrentRuns!.toTfJson(),
-    if (queueTimeoutMinutes != null)
-      'queue_timeout_minutes': queueTimeoutMinutes!.toTfJson(),
+    'max_concurrent_runs': ?maxConcurrentRuns?.toTfJson(),
+    'queue_timeout_minutes': ?queueTimeoutMinutes?.toTfJson(),
   };
 }
 
@@ -429,11 +409,11 @@ final class AwsEmrserverlessApplication extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (architecture != null) 'architecture': architecture,
+           'architecture': ?architecture,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'release_label': releaseLabel,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'type': type,
            if (autoStartConfiguration != null)
              'auto_start_configuration': TfArg.literal(

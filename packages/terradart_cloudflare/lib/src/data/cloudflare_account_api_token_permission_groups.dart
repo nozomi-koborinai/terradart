@@ -24,11 +24,7 @@ final class DataCloudflareAccountApiTokenPermissionGroups extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (name != null) 'name': name,
-           if (scope != null) 'scope': scope,
-         },
+         argMap: {'account_id': ?accountId, 'name': ?name, 'scope': ?scope},
        );
 
   @override

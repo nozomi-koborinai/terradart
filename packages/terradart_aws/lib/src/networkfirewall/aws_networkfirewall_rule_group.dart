@@ -34,7 +34,7 @@ final class NetworkfirewallRuleGroupEncryptionConfiguration {
   final TfArg<NetworkfirewallRuleGroupEncryptionConfigurationType> type;
 
   Map<String, Object?> encode() => {
-    if (keyId != null) 'key_id': keyId!.encodeAs('arn').toTfJson(),
+    'key_id': ?keyId?.encodeAs('arn').toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -73,11 +73,10 @@ final class NetworkfirewallRuleGroupRuleGroup {
   statefulRuleOptions;
 
   Map<String, Object?> encode() => {
-    if (referenceSets != null) 'reference_sets': referenceSets!.encode(),
-    if (ruleVariables != null) 'rule_variables': ruleVariables!.encode(),
+    'reference_sets': ?referenceSets?.encode(),
+    'rule_variables': ?ruleVariables?.encode(),
     'rules_source': rulesSource.encode(),
-    if (statefulRuleOptions != null)
-      'stateful_rule_options': statefulRuleOptions!.encode(),
+    'stateful_rule_options': ?statefulRuleOptions?.encode(),
   };
 }
 
@@ -237,13 +236,12 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSource {
   statelessRulesAndCustomActions;
 
   Map<String, Object?> encode() => {
-    if (rulesString != null) 'rules_string': rulesString!.toTfJson(),
-    if (rulesSourceList != null) 'rules_source_list': rulesSourceList!.encode(),
+    'rules_string': ?rulesString?.toTfJson(),
+    'rules_source_list': ?rulesSourceList?.encode(),
     if (statefulRule != null)
       'stateful_rule': [for (final e in statefulRule!) e.encode()],
-    if (statelessRulesAndCustomActions != null)
-      'stateless_rules_and_custom_actions': statelessRulesAndCustomActions!
-          .encode(),
+    'stateless_rules_and_custom_actions': ?statelessRulesAndCustomActions
+        ?.encode(),
   };
 }
 
@@ -447,7 +445,7 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatefulRuleRuleOption {
 
   Map<String, Object?> encode() => {
     'keyword': keyword.toTfJson(),
-    if (settings != null) 'settings': settings!.toTfJson(),
+    'settings': ?settings?.toTfJson(),
   };
 }
 
@@ -625,7 +623,7 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
   tcpFlag;
 
   Map<String, Object?> encode() => {
-    if (protocols != null) 'protocols': protocols!.toTfJson(),
+    'protocols': ?protocols?.toTfJson(),
     if (destination != null)
       'destination': [for (final e in destination!) e.encode()],
     if (destinationPort != null)
@@ -667,7 +665,7 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 
   Map<String, Object?> encode() => {
     'from_port': fromPort.toTfJson(),
-    if (toPort != null) 'to_port': toPort!.toTfJson(),
+    'to_port': ?toPort?.toTfJson(),
   };
 }
 
@@ -701,7 +699,7 @@ final class NetworkfirewallRuleGroupRuleGroupRulesSourceStatelessRulesAndCustomA
 
   Map<String, Object?> encode() => {
     'from_port': fromPort.toTfJson(),
-    if (toPort != null) 'to_port': toPort!.toTfJson(),
+    'to_port': ?toPort?.toTfJson(),
   };
 }
 
@@ -822,11 +820,11 @@ final class AwsNetworkfirewallRuleGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'capacity': capacity,
-           if (description != null) 'description': description,
+           'description': ?description,
            'name': name,
-           if (region != null) 'region': region,
-           if (rules != null) 'rules': rules,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'rules': ?rules,
+           'tags': ?tags,
            'type': type,
            if (encryptionConfiguration != null)
              'encryption_configuration': TfArg.literal(

@@ -45,8 +45,8 @@ final class AwsGuarddutyThreatintelset extends Resource {
            'format': format,
            'location': location,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

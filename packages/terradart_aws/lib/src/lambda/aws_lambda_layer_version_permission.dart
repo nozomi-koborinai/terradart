@@ -29,10 +29,10 @@ final class AwsLambdaLayerVersionPermission extends Resource {
          argMap: {
            'action': action,
            'layer_name': layerName,
-           if (organizationId != null) 'organization_id': organizationId,
+           'organization_id': ?organizationId,
            'principal': principal,
-           if (region != null) 'region': region,
-           if (skipDestroy != null) 'skip_destroy': skipDestroy,
+           'region': ?region,
+           'skip_destroy': ?skipDestroy,
            'statement_id': statementId,
            'version_number': versionNumber,
          },

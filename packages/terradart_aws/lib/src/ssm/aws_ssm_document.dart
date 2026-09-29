@@ -61,7 +61,7 @@ final class SsmDocumentAttachmentsSource {
 
   Map<String, Object?> encode() => {
     'key': key.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'name': ?name?.toTfJson(),
     'values': values.toTfJson(),
   };
 }
@@ -101,14 +101,14 @@ final class AwsSsmDocument extends Resource {
          terraformType: tfType,
          argMap: {
            'content': content,
-           if (documentFormat != null) 'document_format': documentFormat,
+           'document_format': ?documentFormat,
            'document_type': documentType,
            'name': name,
-           if (permissions != null) 'permissions': permissions,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
-           if (targetType != null) 'target_type': targetType,
-           if (versionName != null) 'version_name': versionName,
+           'permissions': ?permissions,
+           'region': ?region,
+           'tags': ?tags,
+           'target_type': ?targetType,
+           'version_name': ?versionName,
            if (attachmentsSource != null)
              'attachments_source': TfArg.literal([
                for (final e in attachmentsSource) e.encode(),

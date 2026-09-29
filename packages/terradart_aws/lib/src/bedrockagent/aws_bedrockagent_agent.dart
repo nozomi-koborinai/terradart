@@ -45,28 +45,21 @@ final class AwsBedrockagentAgent extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (agentCollaboration != null)
-             'agent_collaboration': agentCollaboration,
+           'agent_collaboration': ?agentCollaboration,
            'agent_name': agentName,
            'agent_resource_role_arn': agentResourceRoleArn,
-           if (customerEncryptionKeyArn != null)
-             'customer_encryption_key_arn': customerEncryptionKeyArn,
-           if (description != null) 'description': description,
+           'customer_encryption_key_arn': ?customerEncryptionKeyArn,
+           'description': ?description,
            'foundation_model': foundationModel,
-           if (guardrailConfiguration != null)
-             'guardrail_configuration': guardrailConfiguration,
-           if (idleSessionTtlInSeconds != null)
-             'idle_session_ttl_in_seconds': idleSessionTtlInSeconds,
-           if (instruction != null) 'instruction': instruction,
-           if (memoryConfiguration != null)
-             'memory_configuration': memoryConfiguration,
-           if (prepareAgent != null) 'prepare_agent': prepareAgent,
-           if (promptOverrideConfiguration != null)
-             'prompt_override_configuration': promptOverrideConfiguration,
-           if (region != null) 'region': region,
-           if (skipResourceInUseCheck != null)
-             'skip_resource_in_use_check': skipResourceInUseCheck,
-           if (tags != null) 'tags': tags,
+           'guardrail_configuration': ?guardrailConfiguration,
+           'idle_session_ttl_in_seconds': ?idleSessionTtlInSeconds,
+           'instruction': ?instruction,
+           'memory_configuration': ?memoryConfiguration,
+           'prepare_agent': ?prepareAgent,
+           'prompt_override_configuration': ?promptOverrideConfiguration,
+           'region': ?region,
+           'skip_resource_in_use_check': ?skipResourceInUseCheck,
+           'tags': ?tags,
          },
        );
 

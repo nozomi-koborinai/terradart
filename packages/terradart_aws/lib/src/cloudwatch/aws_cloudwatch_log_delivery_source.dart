@@ -26,9 +26,9 @@ final class AwsCloudwatchLogDeliverySource extends Resource {
          argMap: {
            'log_type': logType,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_arn': resourceArn,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

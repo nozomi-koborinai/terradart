@@ -20,7 +20,7 @@ final class AwsSecurityhubInviteAccepter extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'master_id': masterId, if (region != null) 'region': region},
+         argMap: {'master_id': masterId, 'region': ?region},
        );
 
   @override

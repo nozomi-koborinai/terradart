@@ -154,38 +154,27 @@ final class CloudflareBotManagement extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (aiBotsMigrationOptOut != null)
-             'ai_bots_migration_opt_out': aiBotsMigrationOptOut,
-           if (aiBotsProtection != null) 'ai_bots_protection': aiBotsProtection,
-           if (aiTraining != null) 'ai_training': aiTraining,
-           if (aiUser != null) 'ai_user': aiUser,
-           if (aisearch != null) 'aisearch': aisearch,
-           if (autoUpdateModel != null) 'auto_update_model': autoUpdateModel,
-           if (bmCookieEnabled != null) 'bm_cookie_enabled': bmCookieEnabled,
-           if (botPreferenceSyncEnabled != null)
-             'bot_preference_sync_enabled': botPreferenceSyncEnabled,
-           if (cfRobotsVariant != null) 'cf_robots_variant': cfRobotsVariant,
-           if (contentBotsProtection != null)
-             'content_bots_protection': contentBotsProtection,
-           if (crawlerProtection != null)
-             'crawler_protection': crawlerProtection,
-           if (enableJs != null) 'enable_js': enableJs,
-           if (fightMode != null) 'fight_mode': fightMode,
-           if (isRobotsTxtManaged != null)
-             'is_robots_txt_managed': isRobotsTxtManaged,
-           if (jsdApiResultsEnabled != null)
-             'jsd_api_results_enabled': jsdApiResultsEnabled,
-           if (optimizeWordpress != null)
-             'optimize_wordpress': optimizeWordpress,
-           if (sbfmDefinitelyAutomated != null)
-             'sbfm_definitely_automated': sbfmDefinitelyAutomated,
-           if (sbfmLikelyAutomated != null)
-             'sbfm_likely_automated': sbfmLikelyAutomated,
-           if (sbfmStaticResourceProtection != null)
-             'sbfm_static_resource_protection': sbfmStaticResourceProtection,
-           if (sbfmVerifiedBots != null) 'sbfm_verified_bots': sbfmVerifiedBots,
-           if (suppressSessionScore != null)
-             'suppress_session_score': suppressSessionScore,
+           'ai_bots_migration_opt_out': ?aiBotsMigrationOptOut,
+           'ai_bots_protection': ?aiBotsProtection,
+           'ai_training': ?aiTraining,
+           'ai_user': ?aiUser,
+           'aisearch': ?aisearch,
+           'auto_update_model': ?autoUpdateModel,
+           'bm_cookie_enabled': ?bmCookieEnabled,
+           'bot_preference_sync_enabled': ?botPreferenceSyncEnabled,
+           'cf_robots_variant': ?cfRobotsVariant,
+           'content_bots_protection': ?contentBotsProtection,
+           'crawler_protection': ?crawlerProtection,
+           'enable_js': ?enableJs,
+           'fight_mode': ?fightMode,
+           'is_robots_txt_managed': ?isRobotsTxtManaged,
+           'jsd_api_results_enabled': ?jsdApiResultsEnabled,
+           'optimize_wordpress': ?optimizeWordpress,
+           'sbfm_definitely_automated': ?sbfmDefinitelyAutomated,
+           'sbfm_likely_automated': ?sbfmLikelyAutomated,
+           'sbfm_static_resource_protection': ?sbfmStaticResourceProtection,
+           'sbfm_verified_bots': ?sbfmVerifiedBots,
+           'suppress_session_score': ?suppressSessionScore,
            'zone_id': zoneId.encodeAs('id'),
          },
        );

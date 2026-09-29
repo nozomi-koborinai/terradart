@@ -81,20 +81,18 @@ final class GoogleLoggingProjectSink extends Resource {
          argMap: {
            'name': name,
            'destination': destination,
-           if (filter != null) 'filter': filter,
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
-           if (uniqueWriterIdentity != null)
-             'unique_writer_identity': uniqueWriterIdentity,
-           if (customWriterIdentity != null)
-             'custom_writer_identity': customWriterIdentity,
+           'filter': ?filter,
+           'description': ?description,
+           'disabled': ?disabled,
+           'unique_writer_identity': ?uniqueWriterIdentity,
+           'custom_writer_identity': ?customWriterIdentity,
            if (bigqueryOptions != null)
              'bigquery_options': TfArg.literal([bigqueryOptions.toArgMap()]),
            if (exclusions != null)
              'exclusions': TfArg.literal(
                exclusions.map((e) => e.toArgMap()).toList(),
              ),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

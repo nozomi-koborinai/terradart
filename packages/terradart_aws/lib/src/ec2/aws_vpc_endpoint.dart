@@ -146,15 +146,11 @@ final class VpcEndpointDnsOptions {
   final TfArg<List<Object?>>? privateDnsSpecifiedDomains;
 
   Map<String, Object?> encode() => {
-    if (dnsRecordIpType != null)
-      'dns_record_ip_type': dnsRecordIpType!.toTfJson(),
-    if (privateDnsOnlyForInboundResolverEndpoint != null)
-      'private_dns_only_for_inbound_resolver_endpoint':
-          privateDnsOnlyForInboundResolverEndpoint!.toTfJson(),
-    if (privateDnsPreference != null)
-      'private_dns_preference': privateDnsPreference!.toTfJson(),
-    if (privateDnsSpecifiedDomains != null)
-      'private_dns_specified_domains': privateDnsSpecifiedDomains!.toTfJson(),
+    'dns_record_ip_type': ?dnsRecordIpType?.toTfJson(),
+    'private_dns_only_for_inbound_resolver_endpoint':
+        ?privateDnsOnlyForInboundResolverEndpoint?.toTfJson(),
+    'private_dns_preference': ?privateDnsPreference?.toTfJson(),
+    'private_dns_specified_domains': ?privateDnsSpecifiedDomains?.toTfJson(),
   };
 }
 
@@ -195,9 +191,9 @@ final class VpcEndpointSubnetConfiguration {
   final RefTo<AwsSubnet>? subnetId;
 
   Map<String, Object?> encode() => {
-    if (ipv4 != null) 'ipv4': ipv4!.toTfJson(),
-    if (ipv6 != null) 'ipv6': ipv6!.toTfJson(),
-    if (subnetId != null) 'subnet_id': subnetId!.encodeAs('id').toTfJson(),
+    'ipv4': ?ipv4?.toTfJson(),
+    'ipv6': ?ipv6?.toTfJson(),
+    'subnet_id': ?subnetId?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -229,20 +225,18 @@ final class AwsVpcEndpoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (autoAccept != null) 'auto_accept': autoAccept,
-           if (ipAddressType != null) 'ip_address_type': ipAddressType,
-           if (policy != null) 'policy': policy,
-           if (privateDnsEnabled != null)
-             'private_dns_enabled': privateDnsEnabled,
-           if (region != null) 'region': region,
+           'auto_accept': ?autoAccept,
+           'ip_address_type': ?ipAddressType,
+           'policy': ?policy,
+           'private_dns_enabled': ?privateDnsEnabled,
+           'region': ?region,
            ...?service?.argMap,
-           if (routeTableIds != null) 'route_table_ids': routeTableIds,
-           if (securityGroupIds != null)
-             'security_group_ids': securityGroupIds.encodeAs('id'),
-           if (serviceRegion != null) 'service_region': serviceRegion,
-           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
-           if (tags != null) 'tags': tags,
-           if (vpcEndpointType != null) 'vpc_endpoint_type': vpcEndpointType,
+           'route_table_ids': ?routeTableIds,
+           'security_group_ids': ?securityGroupIds?.encodeAs('id'),
+           'service_region': ?serviceRegion,
+           'subnet_ids': ?subnetIds?.encodeAs('id'),
+           'tags': ?tags,
+           'vpc_endpoint_type': ?vpcEndpointType,
            'vpc_id': vpcId.encodeAs('id'),
            if (dnsOptions != null)
              'dns_options': TfArg.literal(dnsOptions.encode()),

@@ -24,10 +24,10 @@ final class DataAwsConnectQuickConnect extends Data {
          terraformType: tfType,
          argMap: {
            'instance_id': instanceId,
-           if (name != null) 'name': name,
-           if (quickConnectId != null) 'quick_connect_id': quickConnectId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'name': ?name,
+           'quick_connect_id': ?quickConnectId,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

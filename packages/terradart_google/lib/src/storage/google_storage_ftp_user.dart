@@ -29,10 +29,10 @@ final class StorageFtpUserStorageDirectoryMappings {
   final TfArg<StorageFtpUserStorageDirectoryMappingsPermission>? permission;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.encodeAs('name').toTfJson(),
-    if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
-    if (directory != null) 'directory': directory!.toTfJson(),
-    if (permission != null) 'permission': permission!.toTfJson(),
+    'bucket': ?bucket?.encodeAs('name').toTfJson(),
+    'bucket_prefix': ?bucketPrefix?.toTfJson(),
+    'directory': ?directory?.toTfJson(),
+    'permission': ?permission?.toTfJson(),
   };
 }
 
@@ -63,10 +63,9 @@ final class StorageFtpUserUserCredentials {
   final TfArg<String>? sshPublicKeyBody;
 
   Map<String, Object?> encode() => {
-    if (credentialName != null) 'credential_name': credentialName!.toTfJson(),
-    if (credentialType != null) 'credential_type': credentialType!.toTfJson(),
-    if (sshPublicKeyBody != null)
-      'ssh_public_key_body': sshPublicKeyBody!.toTfJson(),
+    'credential_name': ?credentialName?.toTfJson(),
+    'credential_type': ?credentialType?.toTfJson(),
+    'ssh_public_key_body': ?sshPublicKeyBody?.toTfJson(),
   };
 }
 
@@ -96,10 +95,10 @@ final class GoogleStorageFtpUser extends Resource {
          terraformType: tfType,
          argMap: {
            'customer_service_account': customerServiceAccount,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (labels != null) 'labels': labels,
+           'deletion_policy': ?deletionPolicy,
+           'labels': ?labels,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
            'server_id': serverId,
            'user_id': userId,
            if (storageDirectoryMappings != null)

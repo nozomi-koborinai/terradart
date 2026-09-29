@@ -41,15 +41,12 @@ final class AwsApigatewayv2IntegrationResponse extends Resource {
          terraformType: tfType,
          argMap: {
            'api_id': apiId,
-           if (contentHandlingStrategy != null)
-             'content_handling_strategy': contentHandlingStrategy,
+           'content_handling_strategy': ?contentHandlingStrategy,
            'integration_id': integrationId,
            'integration_response_key': integrationResponseKey,
-           if (region != null) 'region': region,
-           if (responseTemplates != null)
-             'response_templates': responseTemplates,
-           if (templateSelectionExpression != null)
-             'template_selection_expression': templateSelectionExpression,
+           'region': ?region,
+           'response_templates': ?responseTemplates,
+           'template_selection_expression': ?templateSelectionExpression,
          },
        );
 

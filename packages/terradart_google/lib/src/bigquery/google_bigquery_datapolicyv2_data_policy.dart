@@ -133,13 +133,13 @@ final class GoogleBigqueryDatapolicyv2DataPolicy extends Resource {
            'data_policy_id': dataPolicyId,
            'data_policy_type': dataPolicyType,
            'location': location,
-           if (grantees != null) 'grantees': grantees,
+           'grantees': ?grantees,
            if (dataMaskingPolicy != null)
              'data_masking_policy': TfArg.literal([dataMaskingPolicy.encode()]),
            if (dataGovernanceTag != null)
              'data_governance_tag': TfArg.literal([dataGovernanceTag.encode()]),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

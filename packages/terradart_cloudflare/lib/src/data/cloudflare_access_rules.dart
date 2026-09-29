@@ -18,8 +18,8 @@ final class DataAccessRulesConfiguration {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (target != null) 'target': target!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'target': ?target?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -60,14 +60,14 @@ final class DataCloudflareAccessRules extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (direction != null) 'direction': direction,
-           if (match != null) 'match': match,
-           if (maxItems != null) 'max_items': maxItems,
-           if (mode != null) 'mode': mode,
-           if (notes != null) 'notes': notes,
-           if (order != null) 'order': order,
-           if (zoneId != null) 'zone_id': zoneId,
+           'account_id': ?accountId,
+           'direction': ?direction,
+           'match': ?match,
+           'max_items': ?maxItems,
+           'mode': ?mode,
+           'notes': ?notes,
+           'order': ?order,
+           'zone_id': ?zoneId,
            if (configuration != null)
              'configuration': TfArg.literal(configuration.encode()),
          },

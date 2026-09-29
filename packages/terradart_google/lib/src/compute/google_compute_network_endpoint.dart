@@ -51,10 +51,10 @@ final class GoogleComputeNetworkEndpoint extends Resource {
          argMap: {
            'network_endpoint_group': networkEndpointGroup,
            'ip_address': ipAddress,
-           if (port != null) 'port': port,
-           if (instance != null) 'instance': instance,
-           if (zone != null) 'zone': zone,
-           if (project != null) 'project': project,
+           'port': ?port,
+           'instance': ?instance,
+           'zone': ?zone,
+           'project': ?project,
          },
        );
 

@@ -22,7 +22,7 @@ final class AwsRamResourceAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_arn': resourceArn,
            'resource_share_arn': resourceShareArn,
          },

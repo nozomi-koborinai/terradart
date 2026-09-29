@@ -26,7 +26,7 @@ final class DataGoogleOracleDatabaseAutonomousDatabase extends Data {
          argMap: {
            'autonomous_database_id': autonomousDatabaseId,
            'location': location,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

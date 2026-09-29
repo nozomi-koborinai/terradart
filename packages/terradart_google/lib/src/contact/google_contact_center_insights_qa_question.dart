@@ -33,12 +33,12 @@ final class ContactCenterInsightsQaQuestionAnswerChoices {
   final TfArg<String>? strValue;
 
   Map<String, Object?> encode() => {
-    if (boolValue != null) 'bool_value': boolValue!.toTfJson(),
-    if (key != null) 'key': key!.toTfJson(),
-    if (naValue != null) 'na_value': naValue!.toTfJson(),
-    if (numValue != null) 'num_value': numValue!.toTfJson(),
-    if (score != null) 'score': score!.toTfJson(),
-    if (strValue != null) 'str_value': strValue!.toTfJson(),
+    'bool_value': ?boolValue?.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'na_value': ?naValue?.toTfJson(),
+    'num_value': ?numValue?.toTfJson(),
+    'score': ?score?.toTfJson(),
+    'str_value': ?strValue?.toTfJson(),
   };
 }
 
@@ -79,19 +79,18 @@ final class GoogleContactCenterInsightsQaQuestion extends Resource {
            'location': location,
            'qa_scorecard': qaScorecard,
            'revision': revision,
-           if (questionBody != null) 'question_body': questionBody,
-           if (questionType != null) 'question_type': questionType,
-           if (abbreviation != null) 'abbreviation': abbreviation,
-           if (answerInstructions != null)
-             'answer_instructions': answerInstructions,
+           'question_body': ?questionBody,
+           'question_type': ?questionType,
+           'abbreviation': ?abbreviation,
+           'answer_instructions': ?answerInstructions,
            if (answerChoices != null)
              'answer_choices': TfArg.literal([
                for (final e in answerChoices) e.encode(),
              ]),
-           if (order != null) 'order': order,
-           if (tags != null) 'tags': tags,
-           if (project != null) 'project': project,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'order': ?order,
+           'tags': ?tags,
+           'project': ?project,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

@@ -22,11 +22,10 @@ final class AwsBedrockagentcoreWorkloadIdentity extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (allowedResourceOauth2ReturnUrls != null)
-             'allowed_resource_oauth2_return_urls':
-                 allowedResourceOauth2ReturnUrls,
+           'allowed_resource_oauth2_return_urls':
+               ?allowedResourceOauth2ReturnUrls,
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

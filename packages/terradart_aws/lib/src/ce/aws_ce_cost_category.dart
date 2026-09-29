@@ -27,10 +27,10 @@ final class CeCostCategoryRule {
   final CeCostCategoryRuleRule? rule;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
-    if (inheritedValue != null) 'inherited_value': inheritedValue!.encode(),
-    if (rule != null) 'rule': rule!.encode(),
+    'type': ?type?.toTfJson(),
+    'value': ?value?.toTfJson(),
+    'inherited_value': ?inheritedValue?.encode(),
+    'rule': ?rule?.encode(),
   };
 }
 
@@ -58,8 +58,8 @@ final class CeCostCategoryRuleInheritedValue {
   final TfArg<CeCostCategoryRuleInheritedValueDimensionName>? dimensionName;
 
   Map<String, Object?> encode() => {
-    if (dimensionKey != null) 'dimension_key': dimensionKey!.toTfJson(),
-    if (dimensionName != null) 'dimension_name': dimensionName!.toTfJson(),
+    'dimension_key': ?dimensionKey?.toTfJson(),
+    'dimension_name': ?dimensionName?.toTfJson(),
   };
 }
 
@@ -100,11 +100,11 @@ final class CeCostCategoryRuleRule {
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (not != null) 'not': not!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'not': ?not?.encode(),
     if (or != null) 'or': [for (final e in or!) e.encode()],
-    if (tags != null) 'tags': tags!.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -135,11 +135,11 @@ final class CeCostCategoryRuleRuleAnd {
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (not != null) 'not': not!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'not': ?not?.encode(),
     if (or != null) 'or': [for (final e in or!) e.encode()],
-    if (tags != null) 'tags': tags!.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -160,9 +160,9 @@ final class CeCostCategoryRuleRuleAndAnd {
   final CeCostCategoryRuleRuleAndAndTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -183,9 +183,9 @@ final class CeCostCategoryRuleRuleAndAndCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -206,9 +206,9 @@ final class CeCostCategoryRuleRuleAndAndDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -229,9 +229,9 @@ final class CeCostCategoryRuleRuleAndAndTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -252,9 +252,9 @@ final class CeCostCategoryRuleRuleAndCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -275,9 +275,9 @@ final class CeCostCategoryRuleRuleAndDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -298,9 +298,9 @@ final class CeCostCategoryRuleRuleAndNot {
   final CeCostCategoryRuleRuleAndNotTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -321,9 +321,9 @@ final class CeCostCategoryRuleRuleAndNotCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -344,9 +344,9 @@ final class CeCostCategoryRuleRuleAndNotDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -367,9 +367,9 @@ final class CeCostCategoryRuleRuleAndNotTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -390,9 +390,9 @@ final class CeCostCategoryRuleRuleAndOr {
   final CeCostCategoryRuleRuleAndOrTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -413,9 +413,9 @@ final class CeCostCategoryRuleRuleAndOrCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -436,9 +436,9 @@ final class CeCostCategoryRuleRuleAndOrDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -459,9 +459,9 @@ final class CeCostCategoryRuleRuleAndOrTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -482,9 +482,9 @@ final class CeCostCategoryRuleRuleAndTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -506,10 +506,10 @@ final class CeCostCategoryRuleRuleCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
+    'key': ?key?.toTfJson(),
     if (matchOptions != null)
       'match_options': [for (final e in matchOptions!) e.toTfJson()],
-    if (values != null) 'values': values!.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -546,10 +546,10 @@ final class CeCostCategoryRuleRuleDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
+    'key': ?key?.toTfJson(),
     if (matchOptions != null)
       'match_options': [for (final e in matchOptions!) e.toTfJson()],
-    if (values != null) 'values': values!.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -639,11 +639,11 @@ final class CeCostCategoryRuleRuleNot {
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (not != null) 'not': not!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'not': ?not?.encode(),
     if (or != null) 'or': [for (final e in or!) e.encode()],
-    if (tags != null) 'tags': tags!.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -664,9 +664,9 @@ final class CeCostCategoryRuleRuleNotAnd {
   final CeCostCategoryRuleRuleNotAndTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -687,9 +687,9 @@ final class CeCostCategoryRuleRuleNotAndCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -710,9 +710,9 @@ final class CeCostCategoryRuleRuleNotAndDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -733,9 +733,9 @@ final class CeCostCategoryRuleRuleNotAndTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -756,9 +756,9 @@ final class CeCostCategoryRuleRuleNotCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -779,9 +779,9 @@ final class CeCostCategoryRuleRuleNotDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -802,9 +802,9 @@ final class CeCostCategoryRuleRuleNotNot {
   final CeCostCategoryRuleRuleNotNotTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -825,9 +825,9 @@ final class CeCostCategoryRuleRuleNotNotCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -848,9 +848,9 @@ final class CeCostCategoryRuleRuleNotNotDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -871,9 +871,9 @@ final class CeCostCategoryRuleRuleNotNotTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -894,9 +894,9 @@ final class CeCostCategoryRuleRuleNotOr {
   final CeCostCategoryRuleRuleNotOrTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -917,9 +917,9 @@ final class CeCostCategoryRuleRuleNotOrCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -940,9 +940,9 @@ final class CeCostCategoryRuleRuleNotOrDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -963,9 +963,9 @@ final class CeCostCategoryRuleRuleNotOrTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -986,9 +986,9 @@ final class CeCostCategoryRuleRuleNotTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1019,11 +1019,11 @@ final class CeCostCategoryRuleRuleOr {
 
   Map<String, Object?> encode() => {
     if (and != null) 'and': [for (final e in and!) e.encode()],
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (not != null) 'not': not!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'not': ?not?.encode(),
     if (or != null) 'or': [for (final e in or!) e.encode()],
-    if (tags != null) 'tags': tags!.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -1044,9 +1044,9 @@ final class CeCostCategoryRuleRuleOrAnd {
   final CeCostCategoryRuleRuleOrAndTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -1067,9 +1067,9 @@ final class CeCostCategoryRuleRuleOrAndCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1090,9 +1090,9 @@ final class CeCostCategoryRuleRuleOrAndDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1113,9 +1113,9 @@ final class CeCostCategoryRuleRuleOrAndTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1136,9 +1136,9 @@ final class CeCostCategoryRuleRuleOrCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1159,9 +1159,9 @@ final class CeCostCategoryRuleRuleOrDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1182,9 +1182,9 @@ final class CeCostCategoryRuleRuleOrNot {
   final CeCostCategoryRuleRuleOrNotTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -1205,9 +1205,9 @@ final class CeCostCategoryRuleRuleOrNotCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1228,9 +1228,9 @@ final class CeCostCategoryRuleRuleOrNotDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1251,9 +1251,9 @@ final class CeCostCategoryRuleRuleOrNotTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1274,9 +1274,9 @@ final class CeCostCategoryRuleRuleOrOr {
   final CeCostCategoryRuleRuleOrOrTags? tags;
 
   Map<String, Object?> encode() => {
-    if (costCategory != null) 'cost_category': costCategory!.encode(),
-    if (dimension != null) 'dimension': dimension!.encode(),
-    if (tags != null) 'tags': tags!.encode(),
+    'cost_category': ?costCategory?.encode(),
+    'dimension': ?dimension?.encode(),
+    'tags': ?tags?.encode(),
   };
 }
 
@@ -1297,9 +1297,9 @@ final class CeCostCategoryRuleRuleOrOrCostCategory {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1320,9 +1320,9 @@ final class CeCostCategoryRuleRuleOrOrDimension {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1343,9 +1343,9 @@ final class CeCostCategoryRuleRuleOrOrTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1366,9 +1366,9 @@ final class CeCostCategoryRuleRuleOrTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
-    if (matchOptions != null) 'match_options': matchOptions!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'key': ?key?.toTfJson(),
+    'match_options': ?matchOptions?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1385,10 +1385,10 @@ final class CeCostCategoryRuleRuleTags {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (key != null) 'key': key!.toTfJson(),
+    'key': ?key?.toTfJson(),
     if (matchOptions != null)
       'match_options': [for (final e in matchOptions!) e.toTfJson()],
-    if (values != null) 'values': values!.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1458,8 +1458,8 @@ final class CeCostCategorySplitChargeRuleParameter {
   final TfArg<List<Object?>>? values;
 
   Map<String, Object?> encode() => {
-    if (type != null) 'type': type!.toTfJson(),
-    if (values != null) 'values': values!.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'values': ?values?.toTfJson(),
   };
 }
 
@@ -1492,11 +1492,11 @@ final class AwsCeCostCategory extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultValue != null) 'default_value': defaultValue,
-           if (effectiveStart != null) 'effective_start': effectiveStart,
+           'default_value': ?defaultValue,
+           'effective_start': ?effectiveStart,
            'name': name,
            'rule_version': ruleVersion,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'rule': TfArg.literal([for (final e in rule) e.encode()]),
            if (splitChargeRule != null)
              'split_charge_rule': TfArg.literal([

@@ -24,7 +24,7 @@ final class AwsNatGatewayEipAssociation extends Resource {
          argMap: {
            'allocation_id': allocationId,
            'nat_gateway_id': natGatewayId,
-           if (region != null) 'region': region,
+           'region': ?region,
          },
        );
 

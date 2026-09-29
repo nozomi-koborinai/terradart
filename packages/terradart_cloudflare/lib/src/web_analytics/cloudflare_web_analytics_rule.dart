@@ -28,10 +28,10 @@ final class CloudflareWebAnalyticsRule extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (host != null) 'host': host,
-           if (inclusive != null) 'inclusive': inclusive,
-           if (isPaused != null) 'is_paused': isPaused,
-           if (paths != null) 'paths': paths,
+           'host': ?host,
+           'inclusive': ?inclusive,
+           'is_paused': ?isPaused,
+           'paths': ?paths,
            'ruleset_id': rulesetId,
          },
        );

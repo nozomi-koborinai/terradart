@@ -37,12 +37,12 @@ final class GoogleSccV2ProjectMuteConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (description != null) 'description': description,
+           'deletion_policy': ?deletionPolicy,
+           'description': ?description,
            'filter': filter,
-           if (location != null) 'location': location,
+           'location': ?location,
            'mute_config_id': muteConfigId,
-           if (project != null) 'project': project,
+           'project': ?project,
            'type': type,
          },
        );

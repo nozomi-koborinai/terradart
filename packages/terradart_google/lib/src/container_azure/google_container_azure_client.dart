@@ -36,7 +36,7 @@ final class GoogleContainerAzureClient extends Resource {
            'location': location,
            'application_id': applicationId,
            'tenant_id': tenantId,
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

@@ -31,12 +31,12 @@ final class GoogleVertexAiTensorboard extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (encryptionSpec != null) 'encryption_spec': encryptionSpec,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'description': ?description,
+           'region': ?region,
+           'encryption_spec': ?encryptionSpec,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -34,9 +34,9 @@ final class CloudflareZeroTrustTunnelCloudflaredVirtualNetwork
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (comment != null) 'comment': comment,
-           if (isDefault != null) 'is_default': isDefault,
-           if (isDefaultNetwork != null) 'is_default_network': isDefaultNetwork,
+           'comment': ?comment,
+           'is_default': ?isDefault,
+           'is_default_network': ?isDefaultNetwork,
            'name': name,
          },
        );

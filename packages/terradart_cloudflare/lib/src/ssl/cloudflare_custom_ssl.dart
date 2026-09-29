@@ -48,9 +48,7 @@ final class CustomSslGeoRestrictions {
 
   final TfArg<CustomSslGeoRestrictionsLabel>? label;
 
-  Map<String, Object?> encode() => {
-    if (label != null) 'label': label!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'label': ?label?.toTfJson()};
 }
 
 /// `label` — derived from the provider schema description.
@@ -91,13 +89,13 @@ final class CloudflareCustomSsl extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bundleMethod != null) 'bundle_method': bundleMethod,
+           'bundle_method': ?bundleMethod,
            'certificate': certificate,
-           if (customCsrId != null) 'custom_csr_id': customCsrId,
-           if (deploy != null) 'deploy': deploy,
-           if (policy != null) 'policy': policy,
-           if (privateKey != null) 'private_key': privateKey,
-           if (type != null) 'type': type,
+           'custom_csr_id': ?customCsrId,
+           'deploy': ?deploy,
+           'policy': ?policy,
+           'private_key': ?privateKey,
+           'type': ?type,
            'zone_id': zoneId.encodeAs('id'),
            if (geoRestrictions != null)
              'geo_restrictions': TfArg.literal(geoRestrictions.encode()),

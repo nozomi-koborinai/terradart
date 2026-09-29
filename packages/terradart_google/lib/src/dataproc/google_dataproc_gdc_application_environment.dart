@@ -22,9 +22,8 @@ final class DataprocGdcApplicationEnvironmentSparkApplicationEnvironmentConfig {
   final TfArg<String>? defaultVersion;
 
   Map<String, Object?> encode() => {
-    if (defaultProperties != null)
-      'default_properties': defaultProperties!.toTfJson(),
-    if (defaultVersion != null) 'default_version': defaultVersion!.toTfJson(),
+    'default_properties': ?defaultProperties?.toTfJson(),
+    'default_version': ?defaultVersion?.toTfJson(),
   };
 }
 
@@ -70,18 +69,17 @@ final class GoogleDataprocGdcApplicationEnvironment extends Resource {
          argMap: {
            'location': location,
            'serviceinstance': serviceinstance,
-           if (applicationEnvironmentId != null)
-             'application_environment_id': applicationEnvironmentId,
-           if (displayName != null) 'display_name': displayName,
-           if (namespace != null) 'namespace': namespace,
-           if (labels != null) 'labels': labels,
-           if (annotations != null) 'annotations': annotations,
+           'application_environment_id': ?applicationEnvironmentId,
+           'display_name': ?displayName,
+           'namespace': ?namespace,
+           'labels': ?labels,
+           'annotations': ?annotations,
            if (sparkApplicationEnvironmentConfig != null)
              'spark_application_environment_config': TfArg.literal(
                sparkApplicationEnvironmentConfig.encode(),
              ),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

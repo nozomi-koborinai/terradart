@@ -25,11 +25,11 @@ final class AwsRamResourceShareAssociationsExclusive extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (principals != null) 'principals': principals,
-           if (region != null) 'region': region,
-           if (resourceArns != null) 'resource_arns': resourceArns,
+           'principals': ?principals,
+           'region': ?region,
+           'resource_arns': ?resourceArns,
            'resource_share_arn': resourceShareArn,
-           if (sources != null) 'sources': sources,
+           'sources': ?sources,
          },
        );
 

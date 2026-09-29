@@ -57,21 +57,20 @@ final class Route53domainsRegisteredDomainAdminContact {
   final TfArg<String>? zipCode;
 
   Map<String, Object?> encode() => {
-    if (addressLine1 != null) 'address_line_1': addressLine1!.toTfJson(),
-    if (addressLine2 != null) 'address_line_2': addressLine2!.toTfJson(),
-    if (city != null) 'city': city!.toTfJson(),
-    if (contactType != null) 'contact_type': contactType!.toTfJson(),
-    if (countryCode != null) 'country_code': countryCode!.toTfJson(),
-    if (email != null) 'email': email!.toTfJson(),
-    if (extraParams != null) 'extra_params': extraParams!.toTfJson(),
-    if (fax != null) 'fax': fax!.toTfJson(),
-    if (firstName != null) 'first_name': firstName!.toTfJson(),
-    if (lastName != null) 'last_name': lastName!.toTfJson(),
-    if (organizationName != null)
-      'organization_name': organizationName!.toTfJson(),
-    if (phoneNumber != null) 'phone_number': phoneNumber!.toTfJson(),
-    if (state != null) 'state': state!.toTfJson(),
-    if (zipCode != null) 'zip_code': zipCode!.toTfJson(),
+    'address_line_1': ?addressLine1?.toTfJson(),
+    'address_line_2': ?addressLine2?.toTfJson(),
+    'city': ?city?.toTfJson(),
+    'contact_type': ?contactType?.toTfJson(),
+    'country_code': ?countryCode?.toTfJson(),
+    'email': ?email?.toTfJson(),
+    'extra_params': ?extraParams?.toTfJson(),
+    'fax': ?fax?.toTfJson(),
+    'first_name': ?firstName?.toTfJson(),
+    'last_name': ?lastName?.toTfJson(),
+    'organization_name': ?organizationName?.toTfJson(),
+    'phone_number': ?phoneNumber?.toTfJson(),
+    'state': ?state?.toTfJson(),
+    'zip_code': ?zipCode?.toTfJson(),
   };
 }
 
@@ -125,21 +124,20 @@ final class Route53domainsRegisteredDomainBillingContact {
   final TfArg<String>? zipCode;
 
   Map<String, Object?> encode() => {
-    if (addressLine1 != null) 'address_line_1': addressLine1!.toTfJson(),
-    if (addressLine2 != null) 'address_line_2': addressLine2!.toTfJson(),
-    if (city != null) 'city': city!.toTfJson(),
-    if (contactType != null) 'contact_type': contactType!.toTfJson(),
-    if (countryCode != null) 'country_code': countryCode!.toTfJson(),
-    if (email != null) 'email': email!.toTfJson(),
-    if (extraParams != null) 'extra_params': extraParams!.toTfJson(),
-    if (fax != null) 'fax': fax!.toTfJson(),
-    if (firstName != null) 'first_name': firstName!.toTfJson(),
-    if (lastName != null) 'last_name': lastName!.toTfJson(),
-    if (organizationName != null)
-      'organization_name': organizationName!.toTfJson(),
-    if (phoneNumber != null) 'phone_number': phoneNumber!.toTfJson(),
-    if (state != null) 'state': state!.toTfJson(),
-    if (zipCode != null) 'zip_code': zipCode!.toTfJson(),
+    'address_line_1': ?addressLine1?.toTfJson(),
+    'address_line_2': ?addressLine2?.toTfJson(),
+    'city': ?city?.toTfJson(),
+    'contact_type': ?contactType?.toTfJson(),
+    'country_code': ?countryCode?.toTfJson(),
+    'email': ?email?.toTfJson(),
+    'extra_params': ?extraParams?.toTfJson(),
+    'fax': ?fax?.toTfJson(),
+    'first_name': ?firstName?.toTfJson(),
+    'last_name': ?lastName?.toTfJson(),
+    'organization_name': ?organizationName?.toTfJson(),
+    'phone_number': ?phoneNumber?.toTfJson(),
+    'state': ?state?.toTfJson(),
+    'zip_code': ?zipCode?.toTfJson(),
   };
 }
 
@@ -157,7 +155,7 @@ final class Route53domainsRegisteredDomainNameServer {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (glueIps != null) 'glue_ips': glueIps!.toTfJson(),
+    'glue_ips': ?glueIps?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -212,21 +210,20 @@ final class Route53domainsRegisteredDomainRegistrantContact {
   final TfArg<String>? zipCode;
 
   Map<String, Object?> encode() => {
-    if (addressLine1 != null) 'address_line_1': addressLine1!.toTfJson(),
-    if (addressLine2 != null) 'address_line_2': addressLine2!.toTfJson(),
-    if (city != null) 'city': city!.toTfJson(),
-    if (contactType != null) 'contact_type': contactType!.toTfJson(),
-    if (countryCode != null) 'country_code': countryCode!.toTfJson(),
-    if (email != null) 'email': email!.toTfJson(),
-    if (extraParams != null) 'extra_params': extraParams!.toTfJson(),
-    if (fax != null) 'fax': fax!.toTfJson(),
-    if (firstName != null) 'first_name': firstName!.toTfJson(),
-    if (lastName != null) 'last_name': lastName!.toTfJson(),
-    if (organizationName != null)
-      'organization_name': organizationName!.toTfJson(),
-    if (phoneNumber != null) 'phone_number': phoneNumber!.toTfJson(),
-    if (state != null) 'state': state!.toTfJson(),
-    if (zipCode != null) 'zip_code': zipCode!.toTfJson(),
+    'address_line_1': ?addressLine1?.toTfJson(),
+    'address_line_2': ?addressLine2?.toTfJson(),
+    'city': ?city?.toTfJson(),
+    'contact_type': ?contactType?.toTfJson(),
+    'country_code': ?countryCode?.toTfJson(),
+    'email': ?email?.toTfJson(),
+    'extra_params': ?extraParams?.toTfJson(),
+    'fax': ?fax?.toTfJson(),
+    'first_name': ?firstName?.toTfJson(),
+    'last_name': ?lastName?.toTfJson(),
+    'organization_name': ?organizationName?.toTfJson(),
+    'phone_number': ?phoneNumber?.toTfJson(),
+    'state': ?state?.toTfJson(),
+    'zip_code': ?zipCode?.toTfJson(),
   };
 }
 
@@ -280,21 +277,20 @@ final class Route53domainsRegisteredDomainTechContact {
   final TfArg<String>? zipCode;
 
   Map<String, Object?> encode() => {
-    if (addressLine1 != null) 'address_line_1': addressLine1!.toTfJson(),
-    if (addressLine2 != null) 'address_line_2': addressLine2!.toTfJson(),
-    if (city != null) 'city': city!.toTfJson(),
-    if (contactType != null) 'contact_type': contactType!.toTfJson(),
-    if (countryCode != null) 'country_code': countryCode!.toTfJson(),
-    if (email != null) 'email': email!.toTfJson(),
-    if (extraParams != null) 'extra_params': extraParams!.toTfJson(),
-    if (fax != null) 'fax': fax!.toTfJson(),
-    if (firstName != null) 'first_name': firstName!.toTfJson(),
-    if (lastName != null) 'last_name': lastName!.toTfJson(),
-    if (organizationName != null)
-      'organization_name': organizationName!.toTfJson(),
-    if (phoneNumber != null) 'phone_number': phoneNumber!.toTfJson(),
-    if (state != null) 'state': state!.toTfJson(),
-    if (zipCode != null) 'zip_code': zipCode!.toTfJson(),
+    'address_line_1': ?addressLine1?.toTfJson(),
+    'address_line_2': ?addressLine2?.toTfJson(),
+    'city': ?city?.toTfJson(),
+    'contact_type': ?contactType?.toTfJson(),
+    'country_code': ?countryCode?.toTfJson(),
+    'email': ?email?.toTfJson(),
+    'extra_params': ?extraParams?.toTfJson(),
+    'fax': ?fax?.toTfJson(),
+    'first_name': ?firstName?.toTfJson(),
+    'last_name': ?lastName?.toTfJson(),
+    'organization_name': ?organizationName?.toTfJson(),
+    'phone_number': ?phoneNumber?.toTfJson(),
+    'state': ?state?.toTfJson(),
+    'zip_code': ?zipCode?.toTfJson(),
   };
 }
 
@@ -324,15 +320,14 @@ final class AwsRoute53domainsRegisteredDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (adminPrivacy != null) 'admin_privacy': adminPrivacy,
-           if (autoRenew != null) 'auto_renew': autoRenew,
-           if (billingPrivacy != null) 'billing_privacy': billingPrivacy,
+           'admin_privacy': ?adminPrivacy,
+           'auto_renew': ?autoRenew,
+           'billing_privacy': ?billingPrivacy,
            'domain_name': domainName,
-           if (registrantPrivacy != null)
-             'registrant_privacy': registrantPrivacy,
-           if (tags != null) 'tags': tags,
-           if (techPrivacy != null) 'tech_privacy': techPrivacy,
-           if (transferLock != null) 'transfer_lock': transferLock,
+           'registrant_privacy': ?registrantPrivacy,
+           'tags': ?tags,
+           'tech_privacy': ?techPrivacy,
+           'transfer_lock': ?transferLock,
            if (adminContact != null)
              'admin_contact': TfArg.literal(adminContact.encode()),
            if (billingContact != null)

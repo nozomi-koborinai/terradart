@@ -267,15 +267,13 @@ final class GooglePrivatecaCertificateAuthority extends Resource {
            'location': location,
            'config': TfArg.literal([config.encode()]),
            'key_spec': TfArg.literal([keySpec.encode()]),
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-           if (ignoreActiveCertificatesOnDeletion != null)
-             'ignore_active_certificates_on_deletion':
-                 ignoreActiveCertificatesOnDeletion,
-           if (labels != null) 'labels': labels,
-           if (project != null) 'project': project,
-           if (type != null) 'type': type,
-           if (desiredState != null) 'desired_state': desiredState,
+           'deletion_protection': ?deletionProtection,
+           'ignore_active_certificates_on_deletion':
+               ?ignoreActiveCertificatesOnDeletion,
+           'labels': ?labels,
+           'project': ?project,
+           'type': ?type,
+           'desired_state': ?desiredState,
          },
        );
 

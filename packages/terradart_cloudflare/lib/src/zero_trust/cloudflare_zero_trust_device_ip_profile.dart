@@ -33,8 +33,8 @@ final class CloudflareZeroTrustDeviceIpProfile extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           if (description != null) 'description': description,
-           if (enabled != null) 'enabled': enabled,
+           'description': ?description,
+           'enabled': ?enabled,
            'match': match,
            'name': name,
            'precedence': precedence,

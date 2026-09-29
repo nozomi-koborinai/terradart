@@ -114,7 +114,7 @@ final class LakeformationResourceLfTagsDatabase {
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
     'name': name.toTfJson(),
   };
 }
@@ -136,7 +136,7 @@ final class LakeformationResourceLfTagsLfTag {
   final TfArg<String> value;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
     'key': key.toTfJson(),
     'value': value.toTfJson(),
   };
@@ -162,10 +162,10 @@ final class LakeformationResourceLfTagsTable {
   final TfArg<bool>? wildcard;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
     'database_name': databaseName.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (wildcard != null) 'wildcard': wildcard!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'wildcard': ?wildcard?.toTfJson(),
   };
 }
 
@@ -195,13 +195,12 @@ final class LakeformationResourceLfTagsTableWithColumns {
   final TfArg<bool>? wildcard;
 
   Map<String, Object?> encode() => {
-    if (catalogId != null) 'catalog_id': catalogId!.toTfJson(),
-    if (columnNames != null) 'column_names': columnNames!.toTfJson(),
+    'catalog_id': ?catalogId?.toTfJson(),
+    'column_names': ?columnNames?.toTfJson(),
     'database_name': databaseName.toTfJson(),
-    if (excludedColumnNames != null)
-      'excluded_column_names': excludedColumnNames!.toTfJson(),
+    'excluded_column_names': ?excludedColumnNames?.toTfJson(),
     'name': name.toTfJson(),
-    if (wildcard != null) 'wildcard': wildcard!.toTfJson(),
+    'wildcard': ?wildcard?.toTfJson(),
   };
 }
 
@@ -222,8 +221,8 @@ final class AwsLakeformationResourceLfTags extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (catalogId != null) 'catalog_id': catalogId,
-           if (region != null) 'region': region,
+           'catalog_id': ?catalogId,
+           'region': ?region,
            ...resource.argMap,
            'lf_tag': TfArg.literal([for (final e in lfTag) e.encode()]),
          },

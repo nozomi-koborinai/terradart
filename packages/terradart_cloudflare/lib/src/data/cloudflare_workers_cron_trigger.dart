@@ -23,10 +23,7 @@ final class DataCloudflareWorkersCronTrigger extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'script_name': scriptName,
-         },
+         argMap: {'account_id': ?accountId, 'script_name': scriptName},
        );
 
   @override

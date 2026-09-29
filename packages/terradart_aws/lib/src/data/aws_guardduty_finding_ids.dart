@@ -18,10 +18,7 @@ final class DataAwsGuarddutyFindingIds extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'detector_id': detectorId,
-           if (region != null) 'region': region,
-         },
+         argMap: {'detector_id': detectorId, 'region': ?region},
        );
 
   @override

@@ -218,11 +218,11 @@ final class S3ObjectCopyGrant {
   final TfArg<String>? uri;
 
   Map<String, Object?> encode() => {
-    if (email != null) 'email': email!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
+    'email': ?email?.toTfJson(),
+    'id': ?id?.toTfJson(),
     'permissions': [for (final e in permissions) e.toTfJson()],
     'type': type.toTfJson(),
-    if (uri != null) 'uri': uri!.toTfJson(),
+    'uri': ?uri?.toTfJson(),
   };
 }
 
@@ -257,9 +257,7 @@ final class S3ObjectCopyOverrideProvider {
 
   final S3ObjectCopyOverrideProviderDefaultTags? defaultTags;
 
-  Map<String, Object?> encode() => {
-    if (defaultTags != null) 'default_tags': defaultTags!.encode(),
-  };
+  Map<String, Object?> encode() => {'default_tags': ?defaultTags?.encode()};
 }
 
 /// Typed helper for the `override_provider.default_tags` block of
@@ -270,7 +268,7 @@ final class S3ObjectCopyOverrideProviderDefaultTags {
 
   final TfArg<Map<String, String>>? tags;
 
-  Map<String, Object?> encode() => {if (tags != null) 'tags': tags!.toTfJson()};
+  Map<String, Object?> encode() => {'tags': ?tags?.toTfJson()};
 }
 
 /// Factory wrapper for `aws_s3_object_copy`.
@@ -328,58 +326,43 @@ final class AwsS3ObjectCopy extends Resource {
          argMap: {
            ...?access?.argMap,
            'bucket': bucket.encodeAs('id'),
-           if (bucketKeyEnabled != null) 'bucket_key_enabled': bucketKeyEnabled,
-           if (cacheControl != null) 'cache_control': cacheControl,
-           if (checksumAlgorithm != null)
-             'checksum_algorithm': checksumAlgorithm,
-           if (contentDisposition != null)
-             'content_disposition': contentDisposition,
-           if (contentEncoding != null) 'content_encoding': contentEncoding,
-           if (contentLanguage != null) 'content_language': contentLanguage,
-           if (contentType != null) 'content_type': contentType,
-           if (copyIfMatch != null) 'copy_if_match': copyIfMatch,
-           if (copyIfModifiedSince != null)
-             'copy_if_modified_since': copyIfModifiedSince,
-           if (copyIfNoneMatch != null) 'copy_if_none_match': copyIfNoneMatch,
-           if (copyIfUnmodifiedSince != null)
-             'copy_if_unmodified_since': copyIfUnmodifiedSince,
-           if (customerAlgorithm != null)
-             'customer_algorithm': customerAlgorithm,
-           if (customerKey != null) 'customer_key': customerKey,
-           if (customerKeyMd5 != null) 'customer_key_md5': customerKeyMd5,
-           if (expectedBucketOwner != null)
-             'expected_bucket_owner': expectedBucketOwner,
-           if (expectedSourceBucketOwner != null)
-             'expected_source_bucket_owner': expectedSourceBucketOwner,
-           if (expires != null) 'expires': expires,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
+           'bucket_key_enabled': ?bucketKeyEnabled,
+           'cache_control': ?cacheControl,
+           'checksum_algorithm': ?checksumAlgorithm,
+           'content_disposition': ?contentDisposition,
+           'content_encoding': ?contentEncoding,
+           'content_language': ?contentLanguage,
+           'content_type': ?contentType,
+           'copy_if_match': ?copyIfMatch,
+           'copy_if_modified_since': ?copyIfModifiedSince,
+           'copy_if_none_match': ?copyIfNoneMatch,
+           'copy_if_unmodified_since': ?copyIfUnmodifiedSince,
+           'customer_algorithm': ?customerAlgorithm,
+           'customer_key': ?customerKey,
+           'customer_key_md5': ?customerKeyMd5,
+           'expected_bucket_owner': ?expectedBucketOwner,
+           'expected_source_bucket_owner': ?expectedSourceBucketOwner,
+           'expires': ?expires,
+           'force_destroy': ?forceDestroy,
            'key': key,
-           if (kmsEncryptionContext != null)
-             'kms_encryption_context': kmsEncryptionContext,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (metadata != null) 'metadata': metadata,
-           if (metadataDirective != null)
-             'metadata_directive': metadataDirective,
-           if (objectLockLegalHoldStatus != null)
-             'object_lock_legal_hold_status': objectLockLegalHoldStatus,
-           if (objectLockMode != null) 'object_lock_mode': objectLockMode,
-           if (objectLockRetainUntilDate != null)
-             'object_lock_retain_until_date': objectLockRetainUntilDate,
-           if (region != null) 'region': region,
-           if (requestPayer != null) 'request_payer': requestPayer,
-           if (serverSideEncryption != null)
-             'server_side_encryption': serverSideEncryption,
+           'kms_encryption_context': ?kmsEncryptionContext,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'metadata': ?metadata,
+           'metadata_directive': ?metadataDirective,
+           'object_lock_legal_hold_status': ?objectLockLegalHoldStatus,
+           'object_lock_mode': ?objectLockMode,
+           'object_lock_retain_until_date': ?objectLockRetainUntilDate,
+           'region': ?region,
+           'request_payer': ?requestPayer,
+           'server_side_encryption': ?serverSideEncryption,
            'source': source,
-           if (sourceCustomerAlgorithm != null)
-             'source_customer_algorithm': sourceCustomerAlgorithm,
-           if (sourceCustomerKey != null)
-             'source_customer_key': sourceCustomerKey,
-           if (sourceCustomerKeyMd5 != null)
-             'source_customer_key_md5': sourceCustomerKeyMd5,
-           if (storageClass != null) 'storage_class': storageClass,
-           if (taggingDirective != null) 'tagging_directive': taggingDirective,
-           if (tags != null) 'tags': tags,
-           if (websiteRedirect != null) 'website_redirect': websiteRedirect,
+           'source_customer_algorithm': ?sourceCustomerAlgorithm,
+           'source_customer_key': ?sourceCustomerKey,
+           'source_customer_key_md5': ?sourceCustomerKeyMd5,
+           'storage_class': ?storageClass,
+           'tagging_directive': ?taggingDirective,
+           'tags': ?tags,
+           'website_redirect': ?websiteRedirect,
            if (overrideProvider != null)
              'override_provider': TfArg.literal(overrideProvider.encode()),
          },

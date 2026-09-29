@@ -80,18 +80,15 @@ final class GoogleNetworkSecurityTlsInspectionPolicy extends Resource {
          argMap: {
            'name': name,
            'ca_pool': caPool,
-           if (location != null) 'location': location,
-           if (description != null) 'description': description,
-           if (trustConfig != null) 'trust_config': trustConfig,
-           if (minTlsVersion != null) 'min_tls_version': minTlsVersion,
-           if (tlsFeatureProfile != null)
-             'tls_feature_profile': tlsFeatureProfile,
-           if (customTlsFeatures != null)
-             'custom_tls_features': customTlsFeatures,
-           if (excludePublicCaSet != null)
-             'exclude_public_ca_set': excludePublicCaSet,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'description': ?description,
+           'trust_config': ?trustConfig,
+           'min_tls_version': ?minTlsVersion,
+           'tls_feature_profile': ?tlsFeatureProfile,
+           'custom_tls_features': ?customTlsFeatures,
+           'exclude_public_ca_set': ?excludePublicCaSet,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

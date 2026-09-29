@@ -26,11 +26,11 @@ final class AwsBackupVault extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
+           'force_destroy': ?forceDestroy,
+           'kms_key_arn': ?kmsKeyArn?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

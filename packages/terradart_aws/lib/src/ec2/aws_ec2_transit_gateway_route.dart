@@ -24,11 +24,10 @@ final class AwsEc2TransitGatewayRoute extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (blackhole != null) 'blackhole': blackhole,
+           'blackhole': ?blackhole,
            'destination_cidr_block': destinationCidrBlock,
-           if (region != null) 'region': region,
-           if (transitGatewayAttachmentId != null)
-             'transit_gateway_attachment_id': transitGatewayAttachmentId,
+           'region': ?region,
+           'transit_gateway_attachment_id': ?transitGatewayAttachmentId,
            'transit_gateway_route_table_id': transitGatewayRouteTableId,
          },
        );

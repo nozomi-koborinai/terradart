@@ -64,7 +64,7 @@ final class AwsWafRule extends Resource {
          argMap: {
            'metric_name': metricName,
            'name': name,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (predicates != null)
              'predicates': TfArg.literal([
                for (final e in predicates) e.encode(),

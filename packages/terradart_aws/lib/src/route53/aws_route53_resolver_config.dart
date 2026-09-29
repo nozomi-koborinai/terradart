@@ -35,7 +35,7 @@ final class AwsRoute53ResolverConfig extends Resource {
          terraformType: tfType,
          argMap: {
            'autodefined_reverse_flag': autodefinedReverseFlag,
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_id': resourceId,
          },
        );

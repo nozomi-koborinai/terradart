@@ -56,8 +56,8 @@ final class CloudflareZeroTrustAccessMtlsHostnameSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId.encodeAs('id'),
-           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
+           'account_id': ?accountId?.encodeAs('id'),
+           'zone_id': ?zoneId?.encodeAs('id'),
            'settings': TfArg.literal([for (final e in settings) e.encode()]),
          },
        );

@@ -18,7 +18,7 @@ final class EdgecontainerNodePoolLocalDiskEncryption {
   final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
+    'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -30,9 +30,7 @@ final class EdgecontainerNodePoolNodeConfig {
 
   final TfArg<Map<String, String>>? labels;
 
-  Map<String, Object?> encode() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'labels': ?labels?.toTfJson()};
 }
 
 /// Factory wrapper for `google_edgecontainer_node_pool`.
@@ -86,10 +84,10 @@ final class GoogleEdgecontainerNodePool extends Resource {
              'local_disk_encryption': TfArg.literal(
                localDiskEncryption.encode(),
              ),
-           if (machineFilter != null) 'machine_filter': machineFilter,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'machine_filter': ?machineFilter,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

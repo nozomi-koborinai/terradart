@@ -23,11 +23,7 @@ final class DataGoogleDataprocJobIamPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'job_id': jobId,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
-         },
+         argMap: {'job_id': jobId, 'project': ?project, 'region': ?region},
        );
 
   @override

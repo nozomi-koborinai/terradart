@@ -27,13 +27,12 @@ final class AwsBackupLogicallyAirGappedVault extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (encryptionKeyArn != null)
-             'encryption_key_arn': encryptionKeyArn.encodeAs('arn'),
+           'encryption_key_arn': ?encryptionKeyArn?.encodeAs('arn'),
            'max_retention_days': maxRetentionDays,
            'min_retention_days': minRetentionDays,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

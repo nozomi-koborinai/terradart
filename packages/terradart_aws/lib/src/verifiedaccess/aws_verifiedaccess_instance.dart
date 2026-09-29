@@ -24,12 +24,11 @@ final class AwsVerifiedaccessInstance extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cidrEndpointsCustomSubdomain != null)
-             'cidr_endpoints_custom_subdomain': cidrEndpointsCustomSubdomain,
-           if (description != null) 'description': description,
-           if (fipsEnabled != null) 'fips_enabled': fipsEnabled,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'cidr_endpoints_custom_subdomain': ?cidrEndpointsCustomSubdomain,
+           'description': ?description,
+           'fips_enabled': ?fipsEnabled,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

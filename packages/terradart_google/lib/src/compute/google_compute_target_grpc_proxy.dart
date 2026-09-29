@@ -36,12 +36,11 @@ final class GoogleComputeTargetGrpcProxy extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (urlMap != null) 'url_map': urlMap,
-           if (description != null) 'description': description,
-           if (validateForProxyless != null)
-             'validate_for_proxyless': validateForProxyless,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'url_map': ?urlMap,
+           'description': ?description,
+           'validate_for_proxyless': ?validateForProxyless,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

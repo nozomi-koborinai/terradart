@@ -93,9 +93,9 @@ final class GoogleNetworkSecurityUllMirroringCollectorRule extends Resource {
            'ull_mirroring_collector': ullMirroringCollector,
            'ull_mirroring_collector_rule_id': ullMirroringCollectorRuleId,
            'match': TfArg.literal([match.toArgMap()]),
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

@@ -40,14 +40,13 @@ final class CesDeploymentChannelProfile {
   final CesDeploymentChannelProfileWhatsappConfig? whatsappConfig;
 
   Map<String, Object?> encode() => {
-    if (channelType != null) 'channel_type': channelType!.toTfJson(),
-    if (disableBargeInControl != null)
-      'disable_barge_in_control': disableBargeInControl!.toTfJson(),
-    if (disableDtmf != null) 'disable_dtmf': disableDtmf!.toTfJson(),
-    if (profileId != null) 'profile_id': profileId!.toTfJson(),
-    if (personaProperty != null) 'persona_property': personaProperty!.encode(),
-    if (webWidgetConfig != null) 'web_widget_config': webWidgetConfig!.encode(),
-    if (whatsappConfig != null) 'whatsapp_config': whatsappConfig!.encode(),
+    'channel_type': ?channelType?.toTfJson(),
+    'disable_barge_in_control': ?disableBargeInControl?.toTfJson(),
+    'disable_dtmf': ?disableDtmf?.toTfJson(),
+    'profile_id': ?profileId?.toTfJson(),
+    'persona_property': ?personaProperty?.encode(),
+    'web_widget_config': ?webWidgetConfig?.encode(),
+    'whatsapp_config': ?whatsappConfig?.encode(),
   };
 }
 
@@ -59,9 +58,7 @@ final class CesDeploymentChannelProfilePersonaProperty {
 
   final TfArg<String>? persona;
 
-  Map<String, Object?> encode() => {
-    if (persona != null) 'persona': persona!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'persona': ?persona?.toTfJson()};
 }
 
 /// Typed helper for the `channel_profile.web_widget_config` block of
@@ -85,11 +82,10 @@ final class CesDeploymentChannelProfileWebWidgetConfig {
   securitySettings;
 
   Map<String, Object?> encode() => {
-    if (modality != null) 'modality': modality!.toTfJson(),
-    if (theme != null) 'theme': theme!.toTfJson(),
-    if (webWidgetTitle != null) 'web_widget_title': webWidgetTitle!.toTfJson(),
-    if (securitySettings != null)
-      'security_settings': securitySettings!.encode(),
+    'modality': ?modality?.toTfJson(),
+    'theme': ?theme?.toTfJson(),
+    'web_widget_title': ?webWidgetTitle?.toTfJson(),
+    'security_settings': ?securitySettings?.encode(),
   };
 }
 
@@ -113,13 +109,10 @@ final class CesDeploymentChannelProfileWebWidgetConfigSecuritySettings {
   final TfArg<bool>? enableRecaptcha;
 
   Map<String, Object?> encode() => {
-    if (allowedOrigins != null) 'allowed_origins': allowedOrigins!.toTfJson(),
-    if (enableOriginCheck != null)
-      'enable_origin_check': enableOriginCheck!.toTfJson(),
-    if (enablePublicAccess != null)
-      'enable_public_access': enablePublicAccess!.toTfJson(),
-    if (enableRecaptcha != null)
-      'enable_recaptcha': enableRecaptcha!.toTfJson(),
+    'allowed_origins': ?allowedOrigins?.toTfJson(),
+    'enable_origin_check': ?enableOriginCheck?.toTfJson(),
+    'enable_public_access': ?enablePublicAccess?.toTfJson(),
+    'enable_recaptcha': ?enableRecaptcha?.toTfJson(),
   };
 }
 
@@ -140,7 +133,7 @@ final class CesDeploymentChannelProfileWhatsappConfig {
   final TfArg<String> wabaId;
 
   Map<String, Object?> encode() => {
-    if (phoneNumber != null) 'phone_number': phoneNumber!.toTfJson(),
+    'phone_number': ?phoneNumber?.toTfJson(),
     'phone_number_id': phoneNumberId.toTfJson(),
     'waba_id': wabaId.toTfJson(),
   };
@@ -166,12 +159,10 @@ final class CesDeploymentInstagramCredentials {
   final TfArg<String>? conversationProfileId;
 
   Map<String, Object?> encode() => {
-    if (authCode != null) 'auth_code': authCode!.toTfJson(),
-    if (authCodeWo != null) 'auth_code_wo': authCodeWo!.toTfJson(),
-    if (authCodeWoVersion != null)
-      'auth_code_wo_version': authCodeWoVersion!.toTfJson(),
-    if (conversationProfileId != null)
-      'conversation_profile_id': conversationProfileId!.toTfJson(),
+    'auth_code': ?authCode?.toTfJson(),
+    'auth_code_wo': ?authCodeWo?.toTfJson(),
+    'auth_code_wo_version': ?authCodeWoVersion?.toTfJson(),
+    'conversation_profile_id': ?conversationProfileId?.toTfJson(),
   };
 }
 
@@ -213,17 +204,15 @@ final class CesDeploymentWhatsappCredentials {
   final TfArg<String> wabaId;
 
   Map<String, Object?> encode() => {
-    if (authCode != null) 'auth_code': authCode!.toTfJson(),
-    if (authCodeWo != null) 'auth_code_wo': authCodeWo!.toTfJson(),
-    if (authCodeWoVersion != null)
-      'auth_code_wo_version': authCodeWoVersion!.toTfJson(),
+    'auth_code': ?authCode?.toTfJson(),
+    'auth_code_wo': ?authCodeWo?.toTfJson(),
+    'auth_code_wo_version': ?authCodeWoVersion?.toTfJson(),
     'business_account_id': businessAccountId.toTfJson(),
-    if (conversationProfileId != null)
-      'conversation_profile_id': conversationProfileId!.toTfJson(),
+    'conversation_profile_id': ?conversationProfileId?.toTfJson(),
     'phone_number': phoneNumber.toTfJson(),
-    if (pin != null) 'pin': pin!.toTfJson(),
-    if (pinWo != null) 'pin_wo': pinWo!.toTfJson(),
-    if (pinWoVersion != null) 'pin_wo_version': pinWoVersion!.toTfJson(),
+    'pin': ?pin?.toTfJson(),
+    'pin_wo': ?pinWo?.toTfJson(),
+    'pin_wo_version': ?pinWoVersion?.toTfJson(),
     'waba_id': wabaId.toTfJson(),
   };
 }
@@ -284,8 +273,8 @@ final class GoogleCesDeployment extends Resource {
            'app_version': appVersion,
            'display_name': displayName,
            'channel_profile': TfArg.literal(channelProfile.encode()),
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

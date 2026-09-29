@@ -58,8 +58,7 @@ final class RekognitionStreamProcessorNotificationChannel {
   final RefTo<AwsSnsTopic>? snsTopicArn;
 
   Map<String, Object?> encode() => {
-    if (snsTopicArn != null)
-      'sns_topic_arn': snsTopicArn!.encodeAs('arn').toTfJson(),
+    'sns_topic_arn': ?snsTopicArn?.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -141,7 +140,7 @@ final class RekognitionStreamProcessorOutputKinesisDataStream {
 
   final TfArg<String>? arn;
 
-  Map<String, Object?> encode() => {if (arn != null) 'arn': arn!.toTfJson()};
+  Map<String, Object?> encode() => {'arn': ?arn?.toTfJson()};
 }
 
 /// Typed helper for the `output.s3_destination` block of
@@ -158,8 +157,8 @@ final class RekognitionStreamProcessorOutputS3Destination {
   final TfArg<String>? keyPrefix;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
-    if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
+    'bucket': ?bucket?.encodeAs('id').toTfJson(),
+    'key_prefix': ?keyPrefix?.toTfJson(),
   };
 }
 
@@ -256,10 +255,10 @@ final class RekognitionStreamProcessorRegionsOfInterestBoundingBox {
   final TfArg<num>? width;
 
   Map<String, Object?> encode() => {
-    if (height != null) 'height': height!.toTfJson(),
-    if (left != null) 'left': left!.toTfJson(),
-    if (top != null) 'top': top!.toTfJson(),
-    if (width != null) 'width': width!.toTfJson(),
+    'height': ?height?.toTfJson(),
+    'left': ?left?.toTfJson(),
+    'top': ?top?.toTfJson(),
+    'width': ?width?.toTfJson(),
   };
 }
 
@@ -273,10 +272,7 @@ final class RekognitionStreamProcessorRegionsOfInterestPolygon {
 
   final TfArg<num>? y;
 
-  Map<String, Object?> encode() => {
-    if (x != null) 'x': x!.toTfJson(),
-    if (y != null) 'y': y!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'x': ?x?.toTfJson(), 'y': ?y?.toTfJson()};
 }
 
 /// Typed helper for the `settings` block of
@@ -364,7 +360,7 @@ final class RekognitionStreamProcessorSettingsConnectedHome {
 
   Map<String, Object?> encode() => {
     if (labels != null) 'labels': [for (final e in labels!) e.toTfJson()],
-    if (minConfidence != null) 'min_confidence': minConfidence!.toTfJson(),
+    'min_confidence': ?minConfidence?.toTfJson(),
   };
 }
 
@@ -398,8 +394,7 @@ final class RekognitionStreamProcessorSettingsFaceSearch {
 
   Map<String, Object?> encode() => {
     'collection_id': collectionId.toTfJson(),
-    if (faceMatchThreshold != null)
-      'face_match_threshold': faceMatchThreshold!.toTfJson(),
+    'face_match_threshold': ?faceMatchThreshold?.toTfJson(),
   };
 }
 
@@ -428,11 +423,11 @@ final class AwsRekognitionStreamProcessor extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            if (dataSharingPreference != null)
              'data_sharing_preference': TfArg.literal([
                for (final e in dataSharingPreference) e.encode(),

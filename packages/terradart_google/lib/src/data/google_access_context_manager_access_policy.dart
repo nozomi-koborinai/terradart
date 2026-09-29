@@ -22,7 +22,7 @@ final class DataGoogleAccessContextManagerAccessPolicy extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'parent': parent, if (scopes != null) 'scopes': scopes},
+         argMap: {'parent': parent, 'scopes': ?scopes},
        );
 
   @override

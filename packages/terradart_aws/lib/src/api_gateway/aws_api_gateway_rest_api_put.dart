@@ -26,11 +26,11 @@ final class AwsApiGatewayRestApiPut extends Resource {
          terraformType: tfType,
          argMap: {
            'body': body,
-           if (failOnWarnings != null) 'fail_on_warnings': failOnWarnings,
-           if (parameters != null) 'parameters': parameters,
-           if (region != null) 'region': region,
+           'fail_on_warnings': ?failOnWarnings,
+           'parameters': ?parameters,
+           'region': ?region,
            'rest_api_id': restApiId,
-           if (triggers != null) 'triggers': triggers,
+           'triggers': ?triggers,
          },
        );
 

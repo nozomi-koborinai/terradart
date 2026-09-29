@@ -23,10 +23,10 @@ final class DataAwsWafv2ManagedRuleGroup extends Data {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'scope': scope,
            'vendor_name': vendorName,
-           if (versionName != null) 'version_name': versionName,
+           'version_name': ?versionName,
          },
        );
 

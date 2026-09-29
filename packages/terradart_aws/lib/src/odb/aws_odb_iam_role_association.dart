@@ -27,7 +27,7 @@ final class AwsOdbIamRoleAssociation extends Resource {
          argMap: {
            'aws_integration': awsIntegration,
            'iam_role_arn': iamRoleArn.encodeAs('arn'),
-           if (region != null) 'region': region,
+           'region': ?region,
            'resource_arn': resourceArn,
          },
        );

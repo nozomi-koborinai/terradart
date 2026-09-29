@@ -80,9 +80,9 @@ final class AwsNetworkfirewallContainerAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            'container_association_name': containerAssociationName,
-           if (description != null) 'description': description,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'description': ?description,
+           'region': ?region,
+           'tags': ?tags,
            'type': type,
            if (containerMonitoringConfiguration != null)
              'container_monitoring_configuration': TfArg.literal([

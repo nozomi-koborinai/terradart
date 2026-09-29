@@ -26,8 +26,8 @@ final class DataGoogleIapWebRegionBackendServiceIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
            'web_region_backend_service': webRegionBackendService,
          },
        );

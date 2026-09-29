@@ -25,7 +25,7 @@ final class AwsRoute53recoveryreadinessReadinessCheck extends Resource {
          argMap: {
            'readiness_check_name': readinessCheckName,
            'resource_set_name': resourceSetName,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
          },
        );
 

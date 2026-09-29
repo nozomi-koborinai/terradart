@@ -77,12 +77,12 @@ final class GoogleClouddeployAutomation extends Resource {
            'service_account': serviceAccount.encodeAs('email'),
            'selector': selector,
            'rules': rules,
-           if (suspended != null) 'suspended': suspended,
-           if (description != null) 'description': description,
-           if (annotations != null) 'annotations': annotations,
-           if (labels != null) 'labels': labels,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
+           'suspended': ?suspended,
+           'description': ?description,
+           'annotations': ?annotations,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 

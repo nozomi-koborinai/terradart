@@ -18,8 +18,8 @@ final class GluePartitionIndexPartitionIndex {
   final TfArg<List<Object?>>? keys;
 
   Map<String, Object?> encode() => {
-    if (indexName != null) 'index_name': indexName!.toTfJson(),
-    if (keys != null) 'keys': keys!.toTfJson(),
+    'index_name': ?indexName?.toTfJson(),
+    'keys': ?keys?.toTfJson(),
   };
 }
 
@@ -41,9 +41,9 @@ final class AwsGluePartitionIndex extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (catalogId != null) 'catalog_id': catalogId,
+           'catalog_id': ?catalogId,
            'database_name': databaseName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'table_name': tableName,
            'partition_index': TfArg.literal(partitionIndex.encode()),
          },

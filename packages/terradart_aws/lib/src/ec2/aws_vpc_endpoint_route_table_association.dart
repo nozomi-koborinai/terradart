@@ -22,7 +22,7 @@ final class AwsVpcEndpointRouteTableAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
+           'region': ?region,
            'route_table_id': routeTableId,
            'vpc_endpoint_id': vpcEndpointId,
          },

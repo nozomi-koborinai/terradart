@@ -1122,36 +1122,27 @@ final class GoogleComputeBackendService extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (description != null) 'description': description,
-           if (protocol != null) 'protocol': protocol,
-           if (portName != null) 'port_name': portName,
-           if (loadBalancingScheme != null)
-             'load_balancing_scheme': loadBalancingScheme,
-           if (localityLbPolicy != null) 'locality_lb_policy': localityLbPolicy,
-           if (sessionAffinity != null) 'session_affinity': sessionAffinity,
-           if (affinityCookieTtlSec != null)
-             'affinity_cookie_ttl_sec': affinityCookieTtlSec,
-           if (timeoutSec != null) 'timeout_sec': timeoutSec,
-           if (connectionDrainingTimeoutSec != null)
-             'connection_draining_timeout_sec': connectionDrainingTimeoutSec,
-           if (enableCdn != null) 'enable_cdn': enableCdn,
-           if (compressionMode != null) 'compression_mode': compressionMode,
-           if (ipAddressSelectionPolicy != null)
-             'ip_address_selection_policy': ipAddressSelectionPolicy,
-           if (customRequestHeaders != null)
-             'custom_request_headers': customRequestHeaders,
-           if (customResponseHeaders != null)
-             'custom_response_headers': customResponseHeaders,
-           if (healthChecks != null) 'health_checks': healthChecks,
-           if (securityPolicy != null) 'security_policy': securityPolicy,
-           if (edgeSecurityPolicy != null)
-             'edge_security_policy': edgeSecurityPolicy,
-           if (serviceLbPolicy != null) 'service_lb_policy': serviceLbPolicy,
-           if (externalManagedMigrationState != null)
-             'external_managed_migration_state': externalManagedMigrationState,
-           if (externalManagedMigrationTestingPercentage != null)
-             'external_managed_migration_testing_percentage':
-                 externalManagedMigrationTestingPercentage,
+           'description': ?description,
+           'protocol': ?protocol,
+           'port_name': ?portName,
+           'load_balancing_scheme': ?loadBalancingScheme,
+           'locality_lb_policy': ?localityLbPolicy,
+           'session_affinity': ?sessionAffinity,
+           'affinity_cookie_ttl_sec': ?affinityCookieTtlSec,
+           'timeout_sec': ?timeoutSec,
+           'connection_draining_timeout_sec': ?connectionDrainingTimeoutSec,
+           'enable_cdn': ?enableCdn,
+           'compression_mode': ?compressionMode,
+           'ip_address_selection_policy': ?ipAddressSelectionPolicy,
+           'custom_request_headers': ?customRequestHeaders,
+           'custom_response_headers': ?customResponseHeaders,
+           'health_checks': ?healthChecks,
+           'security_policy': ?securityPolicy,
+           'edge_security_policy': ?edgeSecurityPolicy,
+           'service_lb_policy': ?serviceLbPolicy,
+           'external_managed_migration_state': ?externalManagedMigrationState,
+           'external_managed_migration_testing_percentage':
+               ?externalManagedMigrationTestingPercentage,
            if (backends != null)
              'backend': TfArg.literal(
                backends.map((b) => b.toArgMap()).toList(),
@@ -1188,7 +1179,7 @@ final class GoogleComputeBackendService extends Resource {
            if (tlsSettings != null)
              'tls_settings': TfArg.literal([tlsSettings.toArgMap()]),
            if (params != null) 'params': TfArg.literal([params.toArgMap()]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

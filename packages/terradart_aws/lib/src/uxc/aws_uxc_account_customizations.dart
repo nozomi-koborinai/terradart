@@ -22,9 +22,9 @@ final class AwsUxcAccountCustomizations extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountColor != null) 'account_color': accountColor,
-           if (visibleRegions != null) 'visible_regions': visibleRegions,
-           if (visibleServices != null) 'visible_services': visibleServices,
+           'account_color': ?accountColor,
+           'visible_regions': ?visibleRegions,
+           'visible_services': ?visibleServices,
          },
        );
 

@@ -45,9 +45,8 @@ final class TransferConnectorAs2Config {
     'encryption_algorithm': encryptionAlgorithm.toTfJson(),
     'local_profile_id': localProfileId.toTfJson(),
     'mdn_response': mdnResponse.toTfJson(),
-    if (mdnSigningAlgorithm != null)
-      'mdn_signing_algorithm': mdnSigningAlgorithm!.toTfJson(),
-    if (messageSubject != null) 'message_subject': messageSubject!.toTfJson(),
+    'mdn_signing_algorithm': ?mdnSigningAlgorithm?.toTfJson(),
+    'message_subject': ?messageSubject?.toTfJson(),
     'partner_profile_id': partnerProfileId.toTfJson(),
     'signing_algorithm': signingAlgorithm.toTfJson(),
   };
@@ -122,9 +121,7 @@ final class TransferConnectorEgressConfig {
 
   final TransferConnectorEgressConfigVpcLattice? vpcLattice;
 
-  Map<String, Object?> encode() => {
-    if (vpcLattice != null) 'vpc_lattice': vpcLattice!.encode(),
-  };
+  Map<String, Object?> encode() => {'vpc_lattice': ?vpcLattice?.encode()};
 }
 
 /// Typed helper for the `egress_config.vpc_lattice` block of
@@ -141,7 +138,7 @@ final class TransferConnectorEgressConfigVpcLattice {
   final TfArg<String> resourceConfigurationArn;
 
   Map<String, Object?> encode() => {
-    if (portNumber != null) 'port_number': portNumber!.toTfJson(),
+    'port_number': ?portNumber?.toTfJson(),
     'resource_configuration_arn': resourceConfigurationArn.toTfJson(),
   };
 }
@@ -157,9 +154,8 @@ final class TransferConnectorSftpConfig {
   final TfArg<String>? userSecretId;
 
   Map<String, Object?> encode() => {
-    if (trustedHostKeys != null)
-      'trusted_host_keys': trustedHostKeys!.toTfJson(),
-    if (userSecretId != null) 'user_secret_id': userSecretId!.toTfJson(),
+    'trusted_host_keys': ?trustedHostKeys?.toTfJson(),
+    'user_secret_id': ?userSecretId?.toTfJson(),
   };
 }
 
@@ -186,12 +182,11 @@ final class AwsTransferConnector extends Resource {
          terraformType: tfType,
          argMap: {
            'access_role': accessRole,
-           if (loggingRole != null) 'logging_role': loggingRole,
-           if (region != null) 'region': region,
-           if (securityPolicyName != null)
-             'security_policy_name': securityPolicyName,
-           if (tags != null) 'tags': tags,
-           if (url != null) 'url': url,
+           'logging_role': ?loggingRole,
+           'region': ?region,
+           'security_policy_name': ?securityPolicyName,
+           'tags': ?tags,
+           'url': ?url,
            if (as2Config != null)
              'as2_config': TfArg.literal(as2Config.encode()),
            if (egressConfig != null)

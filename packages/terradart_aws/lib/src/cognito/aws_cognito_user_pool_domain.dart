@@ -24,11 +24,10 @@ final class AwsCognitoUserPoolDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (certificateArn != null) 'certificate_arn': certificateArn,
+           'certificate_arn': ?certificateArn,
            'domain': domain,
-           if (managedLoginVersion != null)
-             'managed_login_version': managedLoginVersion,
-           if (region != null) 'region': region,
+           'managed_login_version': ?managedLoginVersion,
+           'region': ?region,
            'user_pool_id': userPoolId,
          },
        );

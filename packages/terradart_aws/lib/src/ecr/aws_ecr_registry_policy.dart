@@ -20,7 +20,7 @@ final class AwsEcrRegistryPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'policy': policy, if (region != null) 'region': region},
+         argMap: {'policy': policy, 'region': ?region},
        );
 
   @override

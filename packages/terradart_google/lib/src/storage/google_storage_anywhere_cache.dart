@@ -64,10 +64,10 @@ final class GoogleStorageAnywhereCache extends Resource {
          argMap: {
            'bucket': bucket.encodeAs('name'),
            'zone': zone,
-           if (ttl != null) 'ttl': ttl,
-           if (admissionPolicy != null) 'admission_policy': admissionPolicy,
-           if (ingestOnWrite != null) 'ingest_on_write': ingestOnWrite,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           'ttl': ?ttl,
+           'admission_policy': ?admissionPolicy,
+           'ingest_on_write': ?ingestOnWrite,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

@@ -22,11 +22,11 @@ final class DataAwsService extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (dnsName != null) 'dns_name': dnsName,
-           if (region != null) 'region': region,
-           if (reverseDnsName != null) 'reverse_dns_name': reverseDnsName,
-           if (reverseDnsPrefix != null) 'reverse_dns_prefix': reverseDnsPrefix,
-           if (serviceId != null) 'service_id': serviceId,
+           'dns_name': ?dnsName,
+           'region': ?region,
+           'reverse_dns_name': ?reverseDnsName,
+           'reverse_dns_prefix': ?reverseDnsPrefix,
+           'service_id': ?serviceId,
          },
        );
 

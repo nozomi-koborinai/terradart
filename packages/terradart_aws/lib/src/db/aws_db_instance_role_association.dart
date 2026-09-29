@@ -27,7 +27,7 @@ final class AwsDbInstanceRoleAssociation extends Resource {
          argMap: {
            'db_instance_identifier': dbInstanceIdentifier,
            'feature_name': featureName,
-           if (region != null) 'region': region,
+           'region': ?region,
            'role_arn': roleArn.encodeAs('arn'),
          },
        );

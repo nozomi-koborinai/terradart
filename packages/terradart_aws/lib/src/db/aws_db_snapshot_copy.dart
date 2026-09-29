@@ -32,18 +32,16 @@ final class AwsDbSnapshotCopy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (copyTags != null) 'copy_tags': copyTags,
-           if (destinationRegion != null)
-             'destination_region': destinationRegion,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
-           if (optionGroupName != null) 'option_group_name': optionGroupName,
-           if (presignedUrl != null) 'presigned_url': presignedUrl,
-           if (region != null) 'region': region,
-           if (sharedAccounts != null) 'shared_accounts': sharedAccounts,
+           'copy_tags': ?copyTags,
+           'destination_region': ?destinationRegion,
+           'kms_key_id': ?kmsKeyId?.encodeAs('arn'),
+           'option_group_name': ?optionGroupName,
+           'presigned_url': ?presignedUrl,
+           'region': ?region,
+           'shared_accounts': ?sharedAccounts,
            'source_db_snapshot_identifier': sourceDbSnapshotIdentifier,
-           if (tags != null) 'tags': tags,
-           if (targetCustomAvailabilityZone != null)
-             'target_custom_availability_zone': targetCustomAvailabilityZone,
+           'tags': ?tags,
+           'target_custom_availability_zone': ?targetCustomAvailabilityZone,
            'target_db_snapshot_identifier': targetDbSnapshotIdentifier,
          },
        );

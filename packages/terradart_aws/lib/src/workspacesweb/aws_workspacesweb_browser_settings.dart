@@ -24,13 +24,11 @@ final class AwsWorkspaceswebBrowserSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (additionalEncryptionContext != null)
-             'additional_encryption_context': additionalEncryptionContext,
+           'additional_encryption_context': ?additionalEncryptionContext,
            'browser_policy': browserPolicy,
-           if (customerManagedKey != null)
-             'customer_managed_key': customerManagedKey,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'customer_managed_key': ?customerManagedKey,
+           'region': ?region,
+           'tags': ?tags,
          },
        );
 

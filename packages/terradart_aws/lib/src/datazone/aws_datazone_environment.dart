@@ -18,8 +18,8 @@ final class DatazoneEnvironmentUserParameters {
   final TfArg<String>? value;
 
   Map<String, Object?> encode() => {
-    if (name != null) 'name': name!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'value': ?value?.toTfJson(),
   };
 }
 
@@ -47,18 +47,16 @@ final class AwsDatazoneEnvironment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountIdentifier != null)
-             'account_identifier': accountIdentifier,
-           if (accountRegion != null) 'account_region': accountRegion,
-           if (blueprintIdentifier != null)
-             'blueprint_identifier': blueprintIdentifier,
-           if (description != null) 'description': description,
+           'account_identifier': ?accountIdentifier,
+           'account_region': ?accountRegion,
+           'blueprint_identifier': ?blueprintIdentifier,
+           'description': ?description,
            'domain_identifier': domainIdentifier,
-           if (glossaryTerms != null) 'glossary_terms': glossaryTerms,
+           'glossary_terms': ?glossaryTerms,
            'name': name,
            'profile_identifier': profileIdentifier,
            'project_identifier': projectIdentifier,
-           if (region != null) 'region': region,
+           'region': ?region,
            if (userParameters != null)
              'user_parameters': TfArg.literal([
                for (final e in userParameters) e.encode(),

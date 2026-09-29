@@ -46,8 +46,7 @@ final class LoadBalancerAdaptiveRouting {
   final TfArg<bool>? failoverAcrossPools;
 
   Map<String, Object?> encode() => {
-    if (failoverAcrossPools != null)
-      'failover_across_pools': failoverAcrossPools!.toTfJson(),
+    'failover_across_pools': ?failoverAcrossPools?.toTfJson(),
   };
 }
 
@@ -62,8 +61,8 @@ final class LoadBalancerLocationStrategy {
   final TfArg<LoadBalancerLocationStrategyPreferEcs>? preferEcs;
 
   Map<String, Object?> encode() => {
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (preferEcs != null) 'prefer_ecs': preferEcs!.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'prefer_ecs': ?preferEcs?.toTfJson(),
   };
 }
 
@@ -100,8 +99,8 @@ final class LoadBalancerRandomSteering {
   final TfArg<Map<String, num>>? poolWeights;
 
   Map<String, Object?> encode() => {
-    if (defaultWeight != null) 'default_weight': defaultWeight!.toTfJson(),
-    if (poolWeights != null) 'pool_weights': poolWeights!.toTfJson(),
+    'default_weight': ?defaultWeight?.toTfJson(),
+    'pool_weights': ?poolWeights?.toTfJson(),
   };
 }
 
@@ -134,13 +133,13 @@ final class LoadBalancerRules {
   final LoadBalancerRulesOverrides? overrides;
 
   Map<String, Object?> encode() => {
-    if (condition != null) 'condition': condition!.toTfJson(),
-    if (disabled != null) 'disabled': disabled!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (priority != null) 'priority': priority!.toTfJson(),
-    if (terminates != null) 'terminates': terminates!.toTfJson(),
-    if (fixedResponse != null) 'fixed_response': fixedResponse!.encode(),
-    if (overrides != null) 'overrides': overrides!.encode(),
+    'condition': ?condition?.toTfJson(),
+    'disabled': ?disabled?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'priority': ?priority?.toTfJson(),
+    'terminates': ?terminates?.toTfJson(),
+    'fixed_response': ?fixedResponse?.encode(),
+    'overrides': ?overrides?.encode(),
   };
 }
 
@@ -164,10 +163,10 @@ final class LoadBalancerRulesFixedResponse {
   final TfArg<num>? statusCode;
 
   Map<String, Object?> encode() => {
-    if (contentType != null) 'content_type': contentType!.toTfJson(),
-    if (location != null) 'location': location!.toTfJson(),
-    if (messageBody != null) 'message_body': messageBody!.toTfJson(),
-    if (statusCode != null) 'status_code': statusCode!.toTfJson(),
+    'content_type': ?contentType?.toTfJson(),
+    'location': ?location?.toTfJson(),
+    'message_body': ?messageBody?.toTfJson(),
+    'status_code': ?statusCode?.toTfJson(),
   };
 }
 
@@ -219,23 +218,19 @@ final class LoadBalancerRulesOverrides {
   sessionAffinityAttributes;
 
   Map<String, Object?> encode() => {
-    if (countryPools != null) 'country_pools': countryPools!.toTfJson(),
-    if (defaultPools != null) 'default_pools': defaultPools!.toTfJson(),
-    if (fallbackPool != null) 'fallback_pool': fallbackPool!.toTfJson(),
-    if (popPools != null) 'pop_pools': popPools!.toTfJson(),
-    if (regionPools != null) 'region_pools': regionPools!.toTfJson(),
-    if (sessionAffinity != null)
-      'session_affinity': sessionAffinity!.toTfJson(),
-    if (sessionAffinityTtl != null)
-      'session_affinity_ttl': sessionAffinityTtl!.toTfJson(),
-    if (steeringPolicy != null) 'steering_policy': steeringPolicy!.toTfJson(),
-    if (ttl != null) 'ttl': ttl!.toTfJson(),
-    if (adaptiveRouting != null) 'adaptive_routing': adaptiveRouting!.encode(),
-    if (locationStrategy != null)
-      'location_strategy': locationStrategy!.encode(),
-    if (randomSteering != null) 'random_steering': randomSteering!.encode(),
-    if (sessionAffinityAttributes != null)
-      'session_affinity_attributes': sessionAffinityAttributes!.encode(),
+    'country_pools': ?countryPools?.toTfJson(),
+    'default_pools': ?defaultPools?.toTfJson(),
+    'fallback_pool': ?fallbackPool?.toTfJson(),
+    'pop_pools': ?popPools?.toTfJson(),
+    'region_pools': ?regionPools?.toTfJson(),
+    'session_affinity': ?sessionAffinity?.toTfJson(),
+    'session_affinity_ttl': ?sessionAffinityTtl?.toTfJson(),
+    'steering_policy': ?steeringPolicy?.toTfJson(),
+    'ttl': ?ttl?.toTfJson(),
+    'adaptive_routing': ?adaptiveRouting?.encode(),
+    'location_strategy': ?locationStrategy?.encode(),
+    'random_steering': ?randomSteering?.encode(),
+    'session_affinity_attributes': ?sessionAffinityAttributes?.encode(),
   };
 }
 
@@ -276,8 +271,7 @@ final class LoadBalancerRulesOverridesAdaptiveRouting {
   final TfArg<bool>? failoverAcrossPools;
 
   Map<String, Object?> encode() => {
-    if (failoverAcrossPools != null)
-      'failover_across_pools': failoverAcrossPools!.toTfJson(),
+    'failover_across_pools': ?failoverAcrossPools?.toTfJson(),
   };
 }
 
@@ -292,8 +286,8 @@ final class LoadBalancerRulesOverridesLocationStrategy {
   final TfArg<LoadBalancerRulesOverridesLocationStrategyPreferEcs>? preferEcs;
 
   Map<String, Object?> encode() => {
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (preferEcs != null) 'prefer_ecs': preferEcs!.toTfJson(),
+    'mode': ?mode?.toTfJson(),
+    'prefer_ecs': ?preferEcs?.toTfJson(),
   };
 }
 
@@ -336,8 +330,8 @@ final class LoadBalancerRulesOverridesRandomSteering {
   final TfArg<Map<String, num>>? poolWeights;
 
   Map<String, Object?> encode() => {
-    if (defaultWeight != null) 'default_weight': defaultWeight!.toTfJson(),
-    if (poolWeights != null) 'pool_weights': poolWeights!.toTfJson(),
+    'default_weight': ?defaultWeight?.toTfJson(),
+    'pool_weights': ?poolWeights?.toTfJson(),
   };
 }
 
@@ -372,14 +366,12 @@ final class LoadBalancerRulesOverridesSessionAffinityAttributes {
   zeroDowntimeFailover;
 
   Map<String, Object?> encode() => {
-    if (drainDuration != null) 'drain_duration': drainDuration!.toTfJson(),
-    if (headers != null) 'headers': headers!.toTfJson(),
-    if (requireAllHeaders != null)
-      'require_all_headers': requireAllHeaders!.toTfJson(),
-    if (samesite != null) 'samesite': samesite!.toTfJson(),
-    if (secure != null) 'secure': secure!.toTfJson(),
-    if (zeroDowntimeFailover != null)
-      'zero_downtime_failover': zeroDowntimeFailover!.toTfJson(),
+    'drain_duration': ?drainDuration?.toTfJson(),
+    'headers': ?headers?.toTfJson(),
+    'require_all_headers': ?requireAllHeaders?.toTfJson(),
+    'samesite': ?samesite?.toTfJson(),
+    'secure': ?secure?.toTfJson(),
+    'zero_downtime_failover': ?zeroDowntimeFailover?.toTfJson(),
   };
 }
 
@@ -453,14 +445,12 @@ final class LoadBalancerSessionAffinityAttributes {
   zeroDowntimeFailover;
 
   Map<String, Object?> encode() => {
-    if (drainDuration != null) 'drain_duration': drainDuration!.toTfJson(),
-    if (headers != null) 'headers': headers!.toTfJson(),
-    if (requireAllHeaders != null)
-      'require_all_headers': requireAllHeaders!.toTfJson(),
-    if (samesite != null) 'samesite': samesite!.toTfJson(),
-    if (secure != null) 'secure': secure!.toTfJson(),
-    if (zeroDowntimeFailover != null)
-      'zero_downtime_failover': zeroDowntimeFailover!.toTfJson(),
+    'drain_duration': ?drainDuration?.toTfJson(),
+    'headers': ?headers?.toTfJson(),
+    'require_all_headers': ?requireAllHeaders?.toTfJson(),
+    'samesite': ?samesite?.toTfJson(),
+    'secure': ?secure?.toTfJson(),
+    'zero_downtime_failover': ?zeroDowntimeFailover?.toTfJson(),
   };
 }
 
@@ -538,21 +528,20 @@ final class CloudflareLoadBalancer extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (countryPools != null) 'country_pools': countryPools,
+           'country_pools': ?countryPools,
            'default_pools': defaultPools,
-           if (description != null) 'description': description,
-           if (enabled != null) 'enabled': enabled,
+           'description': ?description,
+           'enabled': ?enabled,
            'fallback_pool': fallbackPool,
            'name': name,
-           if (networks != null) 'networks': networks,
-           if (popPools != null) 'pop_pools': popPools,
-           if (proxied != null) 'proxied': proxied,
-           if (regionPools != null) 'region_pools': regionPools,
-           if (sessionAffinity != null) 'session_affinity': sessionAffinity,
-           if (sessionAffinityTtl != null)
-             'session_affinity_ttl': sessionAffinityTtl,
-           if (steeringPolicy != null) 'steering_policy': steeringPolicy,
-           if (ttl != null) 'ttl': ttl,
+           'networks': ?networks,
+           'pop_pools': ?popPools,
+           'proxied': ?proxied,
+           'region_pools': ?regionPools,
+           'session_affinity': ?sessionAffinity,
+           'session_affinity_ttl': ?sessionAffinityTtl,
+           'steering_policy': ?steeringPolicy,
+           'ttl': ?ttl,
            'zone_id': zoneId.encodeAs('id'),
            if (adaptiveRouting != null)
              'adaptive_routing': TfArg.literal(adaptiveRouting.encode()),

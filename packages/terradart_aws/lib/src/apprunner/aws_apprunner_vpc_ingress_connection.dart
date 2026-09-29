@@ -23,8 +23,8 @@ final class ApprunnerVpcIngressConnectionIngressVpcConfiguration {
   final RefTo<AwsVpc>? vpcId;
 
   Map<String, Object?> encode() => {
-    if (vpcEndpointId != null) 'vpc_endpoint_id': vpcEndpointId!.toTfJson(),
-    if (vpcId != null) 'vpc_id': vpcId!.encodeAs('id').toTfJson(),
+    'vpc_endpoint_id': ?vpcEndpointId?.toTfJson(),
+    'vpc_id': ?vpcId?.encodeAs('id').toTfJson(),
   };
 }
 
@@ -48,9 +48,9 @@ final class AwsApprunnerVpcIngressConnection extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (region != null) 'region': region,
+           'region': ?region,
            'service_arn': serviceArn,
-           if (tags != null) 'tags': tags,
+           'tags': ?tags,
            'ingress_vpc_configuration': TfArg.literal(
              ingressVpcConfiguration.encode(),
            ),

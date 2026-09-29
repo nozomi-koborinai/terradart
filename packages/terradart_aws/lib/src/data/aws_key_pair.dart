@@ -41,11 +41,11 @@ final class DataAwsKeyPair extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (includePublicKey != null) 'include_public_key': includePublicKey,
-           if (keyName != null) 'key_name': keyName,
-           if (keyPairId != null) 'key_pair_id': keyPairId,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'include_public_key': ?includePublicKey,
+           'key_name': ?keyName,
+           'key_pair_id': ?keyPairId,
+           'region': ?region,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

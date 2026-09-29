@@ -910,8 +910,8 @@ final class GoogleComputeUrlMap extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           if (defaultService != null) 'default_service': defaultService,
-           if (description != null) 'description': description,
+           'default_service': ?defaultService,
+           'description': ?description,
            if (hostRules != null)
              'host_rule': TfArg.literal(
                hostRules.map((r) => r.toArgMap()).toList(),
@@ -925,7 +925,7 @@ final class GoogleComputeUrlMap extends Resource {
            ...?defaultAction?.argMap,
            if (headerAction != null)
              'header_action': TfArg.literal([headerAction.toArgMap()]),
-           if (project != null) 'project': project,
+           'project': ?project,
          },
        );
 

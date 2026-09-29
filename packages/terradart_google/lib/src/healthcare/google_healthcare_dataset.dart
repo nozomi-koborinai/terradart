@@ -28,8 +28,8 @@ final class GoogleHealthcareDataset extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           if (timeZone != null) 'time_zone': timeZone,
-           if (project != null) 'project': project,
+           'time_zone': ?timeZone,
+           'project': ?project,
          },
        );
 

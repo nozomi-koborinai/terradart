@@ -43,16 +43,15 @@ final class DataZoneLockdownFilter {
   final TfArg<String>? uriSearch;
 
   Map<String, Object?> encode() => {
-    if (createdOn != null) 'created_on': createdOn!.toTfJson(),
-    if (description != null) 'description': description!.toTfJson(),
-    if (descriptionSearch != null)
-      'description_search': descriptionSearch!.toTfJson(),
-    if (ip != null) 'ip': ip!.toTfJson(),
-    if (ipRangeSearch != null) 'ip_range_search': ipRangeSearch!.toTfJson(),
-    if (ipSearch != null) 'ip_search': ipSearch!.toTfJson(),
-    if (modifiedOn != null) 'modified_on': modifiedOn!.toTfJson(),
-    if (priority != null) 'priority': priority!.toTfJson(),
-    if (uriSearch != null) 'uri_search': uriSearch!.toTfJson(),
+    'created_on': ?createdOn?.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'description_search': ?descriptionSearch?.toTfJson(),
+    'ip': ?ip?.toTfJson(),
+    'ip_range_search': ?ipRangeSearch?.toTfJson(),
+    'ip_search': ?ipSearch?.toTfJson(),
+    'modified_on': ?modifiedOn?.toTfJson(),
+    'priority': ?priority?.toTfJson(),
+    'uri_search': ?uriSearch?.toTfJson(),
   };
 }
 
@@ -74,8 +73,8 @@ final class DataCloudflareZoneLockdown extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (lockDownsId != null) 'lock_downs_id': lockDownsId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'lock_downs_id': ?lockDownsId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

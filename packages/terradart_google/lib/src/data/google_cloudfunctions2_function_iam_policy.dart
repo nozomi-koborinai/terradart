@@ -25,8 +25,8 @@ final class DataGoogleCloudfunctions2FunctionIamPolicy extends Data {
          terraformType: tfType,
          argMap: {
            'cloud_function': cloudFunction,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
+           'location': ?location,
+           'project': ?project,
          },
        );
 

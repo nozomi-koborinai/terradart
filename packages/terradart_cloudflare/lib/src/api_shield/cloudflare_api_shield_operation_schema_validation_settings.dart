@@ -47,7 +47,7 @@ final class CloudflareApiShieldOperationSchemaValidationSettings
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (mitigationAction != null) 'mitigation_action': mitigationAction,
+           'mitigation_action': ?mitigationAction,
            'operation_id': operationId,
            'zone_id': zoneId.encodeAs('id'),
          },

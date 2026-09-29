@@ -23,9 +23,9 @@ final class DataGoogleContainerEngineVersions extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
-           if (versionPrefix != null) 'version_prefix': versionPrefix,
+           'location': ?location,
+           'project': ?project,
+           'version_prefix': ?versionPrefix,
          },
        );
 

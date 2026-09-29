@@ -29,7 +29,7 @@ final class WafregionalRuleGroupActivatedRule {
   Map<String, Object?> encode() => {
     'priority': priority.toTfJson(),
     'rule_id': ruleId.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
+    'type': ?type?.toTfJson(),
     'action': action.encode(),
   };
 }
@@ -65,8 +65,8 @@ final class AwsWafregionalRuleGroup extends Resource {
          argMap: {
            'metric_name': metricName,
            'name': name,
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            if (activatedRule != null)
              'activated_rule': TfArg.literal([
                for (final e in activatedRule) e.encode(),

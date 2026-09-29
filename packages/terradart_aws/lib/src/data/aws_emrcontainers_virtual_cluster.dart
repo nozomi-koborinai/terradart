@@ -21,8 +21,8 @@ final class DataAwsEmrcontainersVirtualCluster extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (region != null) 'region': region,
-           if (tags != null) 'tags': tags,
+           'region': ?region,
+           'tags': ?tags,
            'virtual_cluster_id': virtualClusterId,
          },
        );

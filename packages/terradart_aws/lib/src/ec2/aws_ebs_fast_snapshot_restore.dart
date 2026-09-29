@@ -23,7 +23,7 @@ final class AwsEbsFastSnapshotRestore extends Resource {
          terraformType: tfType,
          argMap: {
            'availability_zone': availabilityZone,
-           if (region != null) 'region': region,
+           'region': ?region,
            'snapshot_id': snapshotId,
          },
        );

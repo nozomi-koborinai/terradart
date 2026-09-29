@@ -45,13 +45,12 @@ final class DataAwsEc2LocalGatewayRouteTable extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (localGatewayId != null) 'local_gateway_id': localGatewayId,
-           if (localGatewayRouteTableId != null)
-             'local_gateway_route_table_id': localGatewayRouteTableId,
-           if (outpostArn != null) 'outpost_arn': outpostArn,
-           if (region != null) 'region': region,
-           if (state != null) 'state': state,
-           if (tags != null) 'tags': tags,
+           'local_gateway_id': ?localGatewayId,
+           'local_gateway_route_table_id': ?localGatewayRouteTableId,
+           'outpost_arn': ?outpostArn,
+           'region': ?region,
+           'state': ?state,
+           'tags': ?tags,
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

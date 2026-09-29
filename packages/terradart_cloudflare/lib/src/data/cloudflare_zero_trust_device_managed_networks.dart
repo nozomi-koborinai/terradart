@@ -20,10 +20,7 @@ final class DataCloudflareZeroTrustDeviceManagedNetworks extends Data {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           if (accountId != null) 'account_id': accountId,
-           'network_id': networkId,
-         },
+         argMap: {'account_id': ?accountId, 'network_id': networkId},
        );
 
   @override

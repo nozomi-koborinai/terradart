@@ -30,14 +30,13 @@ final class AwsPinpointEmailChannel extends Resource {
          terraformType: tfType,
          argMap: {
            'application_id': applicationId,
-           if (configurationSet != null) 'configuration_set': configurationSet,
-           if (enabled != null) 'enabled': enabled,
+           'configuration_set': ?configurationSet,
+           'enabled': ?enabled,
            'from_address': fromAddress,
            'identity': identity,
-           if (orchestrationSendingRoleArn != null)
-             'orchestration_sending_role_arn': orchestrationSendingRoleArn,
-           if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
+           'orchestration_sending_role_arn': ?orchestrationSendingRoleArn,
+           'region': ?region,
+           'role_arn': ?roleArn?.encodeAs('arn'),
          },
        );
 

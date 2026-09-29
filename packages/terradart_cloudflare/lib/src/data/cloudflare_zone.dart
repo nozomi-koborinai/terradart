@@ -37,13 +37,13 @@ final class DataZoneFilter {
   final DataZoneFilterAccount? account;
 
   Map<String, Object?> encode() => {
-    if (direction != null) 'direction': direction!.toTfJson(),
-    if (match != null) 'match': match!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (order != null) 'order': order!.toTfJson(),
-    if (status != null) 'status': status!.toTfJson(),
-    if (type != null) 'type': type!.toTfJson(),
-    if (account != null) 'account': account!.encode(),
+    'direction': ?direction?.toTfJson(),
+    'match': ?match?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'order': ?order?.toTfJson(),
+    'status': ?status?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    'account': ?account?.encode(),
   };
 }
 
@@ -103,8 +103,8 @@ final class DataZoneFilterAccount {
   final TfArg<String>? name;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
@@ -136,7 +136,7 @@ final class DataCloudflareZone extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (zoneId != null) 'zone_id': zoneId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

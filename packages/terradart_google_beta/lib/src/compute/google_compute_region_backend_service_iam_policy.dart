@@ -33,8 +33,8 @@ final class GoogleComputeRegionBackendServiceIamPolicy extends Resource {
          argMap: {
            'name': name,
            'policy_data': policyData,
-           if (project != null) 'project': project,
-           if (region != null) 'region': region,
+           'project': ?project,
+           'region': ?region,
          },
        );
 

@@ -64,25 +64,21 @@ final class CloudflareWaitingRoomEvent extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (customPageHtml != null) 'custom_page_html': customPageHtml,
-           if (description != null) 'description': description,
-           if (disableSessionRenewal != null)
-             'disable_session_renewal': disableSessionRenewal,
+           'custom_page_html': ?customPageHtml,
+           'description': ?description,
+           'disable_session_renewal': ?disableSessionRenewal,
            'event_end_time': eventEndTime,
            'event_start_time': eventStartTime,
            'name': name,
-           if (newUsersPerMinute != null)
-             'new_users_per_minute': newUsersPerMinute,
-           if (prequeueStartTime != null)
-             'prequeue_start_time': prequeueStartTime,
-           if (queueingMethod != null) 'queueing_method': queueingMethod,
-           if (sessionDuration != null) 'session_duration': sessionDuration,
-           if (shuffleAtEventStart != null)
-             'shuffle_at_event_start': shuffleAtEventStart,
-           if (suspended != null) 'suspended': suspended,
-           if (totalActiveUsers != null) 'total_active_users': totalActiveUsers,
-           if (turnstileAction != null) 'turnstile_action': turnstileAction,
-           if (turnstileMode != null) 'turnstile_mode': turnstileMode,
+           'new_users_per_minute': ?newUsersPerMinute,
+           'prequeue_start_time': ?prequeueStartTime,
+           'queueing_method': ?queueingMethod,
+           'session_duration': ?sessionDuration,
+           'shuffle_at_event_start': ?shuffleAtEventStart,
+           'suspended': ?suspended,
+           'total_active_users': ?totalActiveUsers,
+           'turnstile_action': ?turnstileAction,
+           'turnstile_mode': ?turnstileMode,
            'waiting_room_id': waitingRoomId,
            'zone_id': zoneId.encodeAs('id'),
          },

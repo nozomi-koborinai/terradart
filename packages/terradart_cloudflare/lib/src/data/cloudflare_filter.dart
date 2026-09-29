@@ -30,11 +30,11 @@ final class DataFilterFilter {
   final TfArg<String>? ref;
 
   Map<String, Object?> encode() => {
-    if (description != null) 'description': description!.toTfJson(),
-    if (expression != null) 'expression': expression!.toTfJson(),
-    if (id != null) 'id': id!.toTfJson(),
-    if (paused != null) 'paused': paused!.toTfJson(),
-    if (ref != null) 'ref': ref!.toTfJson(),
+    'description': ?description?.toTfJson(),
+    'expression': ?expression?.toTfJson(),
+    'id': ?id?.toTfJson(),
+    'paused': ?paused?.toTfJson(),
+    'ref': ?ref?.toTfJson(),
   };
 }
 
@@ -56,8 +56,8 @@ final class DataCloudflareFilter extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (filterId != null) 'filter_id': filterId,
-           if (zoneId != null) 'zone_id': zoneId,
+           'filter_id': ?filterId,
+           'zone_id': ?zoneId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );
