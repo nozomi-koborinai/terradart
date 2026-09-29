@@ -17,6 +17,64 @@ enum ZeroTrustDeviceCustomProfileProfileType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `exclude`, `include` on `cloudflare_zero_trust_device_custom_profile`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ZeroTrustDeviceCustomProfileExcludeOrInclude {
+  const ZeroTrustDeviceCustomProfileExcludeOrInclude();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `exclude` (one of the [ZeroTrustDeviceCustomProfileExcludeOrInclude] choices).
+final class ZeroTrustDeviceCustomProfileExcludeOption
+    extends ZeroTrustDeviceCustomProfileExcludeOrInclude {
+  const ZeroTrustDeviceCustomProfileExcludeOption({required this.exclude});
+
+  final List<ZeroTrustDeviceCustomProfileExclude> exclude;
+
+  @override
+  String get blockKey => 'exclude';
+
+  @override
+  Map<String, Object?> encode() => {
+    'exclude': [for (final e in exclude) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'exclude': TfArg.literal([for (final e in exclude) e.encode()]),
+  };
+}
+
+/// Sets `include` (one of the [ZeroTrustDeviceCustomProfileExcludeOrInclude] choices).
+final class ZeroTrustDeviceCustomProfileIncludeOption
+    extends ZeroTrustDeviceCustomProfileExcludeOrInclude {
+  const ZeroTrustDeviceCustomProfileIncludeOption({required this.include});
+
+  final List<ZeroTrustDeviceCustomProfileInclude> include;
+
+  @override
+  String get blockKey => 'include';
+
+  @override
+  Map<String, Object?> encode() => {
+    'include': [for (final e in include) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'include': TfArg.literal([for (final e in include) e.encode()]),
+  };
+}
+
 /// Typed helper for the `browser_extension_config` block of
 /// `cloudflare_zero_trust_device_custom_profile` (derived from provider schema).
 @immutable
@@ -211,9 +269,8 @@ final class CloudflareZeroTrustDeviceCustomProfile extends Resource {
     TfArg<bool>? uninstallProtection,
     ZeroTrustDeviceCustomProfileBrowserExtensionConfig? browserExtensionConfig,
     List<ZeroTrustDeviceCustomProfileDnsSearchSuffixes>? dnsSearchSuffixes,
-    List<ZeroTrustDeviceCustomProfileExclude>? exclude,
+    ZeroTrustDeviceCustomProfileExcludeOrInclude? excludeOrInclude,
     ZeroTrustDeviceCustomProfileGlobalAcceleration? globalAcceleration,
-    List<ZeroTrustDeviceCustomProfileInclude>? include,
     ZeroTrustDeviceCustomProfileServiceModeV2? serviceModeV2,
     ZeroTrustDeviceCustomProfileVirtualNetworks? virtualNetworks,
     super.lifecycle,
@@ -258,12 +315,9 @@ final class CloudflareZeroTrustDeviceCustomProfile extends Resource {
              'dns_search_suffixes': TfArg.literal([
                for (final e in dnsSearchSuffixes) e.encode(),
              ]),
-           if (exclude != null)
-             'exclude': TfArg.literal([for (final e in exclude) e.encode()]),
+           ...?excludeOrInclude?.argMap,
            if (globalAcceleration != null)
              'global_acceleration': TfArg.literal(globalAcceleration.encode()),
-           if (include != null)
-             'include': TfArg.literal([for (final e in include) e.encode()]),
            if (serviceModeV2 != null)
              'service_mode_v2': TfArg.literal(serviceModeV2.encode()),
            if (virtualNetworks != null)

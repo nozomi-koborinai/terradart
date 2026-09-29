@@ -14,10 +14,22 @@ Per-package changelogs live alongside each package and are the system of record 
   `at_most_one_of_groups` into one nullable sealed-type argument (or helper
   field) whose variants each set one member, beside the required sealed
   arguments of exactly-one groups. The migration manifest and the migrator
-  carry them as optional sealed slots. No provider lane emits the groups
-  yet; per-provider adoption follows.
+  carry them as optional sealed slots.
 
 ### Changed
+
+- **`terradart_cloudflare` at-most-one groups are nullable sealed types**
+  (**breaking**) — 14 groups on 8 resources (5 on resource arguments, 9 in
+  nested blocks), e.g. `CloudflareDnsRecord(contentOrData:
+  DnsRecordContentOption(content: ...))`. `tool/extract_provider_hints.dart`
+  now writes `at_most_one_of_groups` into `source_cloudflare/hints/`: the
+  `ConflictsWith` / `Conflicting` pairs no exactly-one group covers, joined
+  into groups when every member conflicts with every other. The combining
+  rule is shared (`exclusiveGroups` in `terradart_codegen`) so the other
+  hint sources can adopt it; a conflict it cannot express (one that touches
+  an exactly-one member, spans two blocks, or is not pairwise) is listed on
+  stdout. The weekly bump's re-extraction refreshes the groups with the
+  pin. Synth output is unchanged. See `MIGRATING.md`.
 
 - **`terradart_cloudflare` exactly-one groups are sealed types**
   (**breaking**) — 13 groups on 5 resources (2 on resource arguments, 11 in
@@ -28,9 +40,7 @@ Per-package changelogs live alongside each package and are the system of record 
   `exactly_one_of_groups` into `source_cloudflare/hints/`: every
   `ExactlyOneOf` set (attribute validators and `resourcevalidator` in
   `ConfigValidators`), and every `AtLeastOneOf` set whose members all
-  pairwise `ConflictsWith`. A `ConflictsWith` set nothing requires one of
-  (for example `cloudflare_dns_record` `content` / `data`) accepts none, so
-  it stays as optional arguments and the tool only lists it. Every
+  pairwise `ConflictsWith`. Every
   cloudflare resource override sets `deriveExactlyOne: true` (and the lane
   scaffold fills it for new types), so a re-extraction at a later pin seals
   new groups in the same bump. The migration manifest derives the sealed

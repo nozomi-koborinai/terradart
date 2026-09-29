@@ -52,19 +52,56 @@ final class WorkerVersionAnnotations {
 /// `cloudflare_worker_version` (derived from provider schema).
 @immutable
 final class WorkerVersionAssets {
-  const WorkerVersionAssets({this.directory, this.jwt, this.config});
+  const WorkerVersionAssets({this.directoryOrJwt, this.config});
 
-  final TfArg<String>? directory;
-
-  final TfArg<String>? jwt;
+  final WorkerVersionAssetsDirectoryOrJwt? directoryOrJwt;
 
   final WorkerVersionAssetsConfig? config;
 
   Map<String, Object?> encode() => {
-    if (directory != null) 'directory': directory!.toTfJson(),
-    if (jwt != null) 'jwt': jwt!.toTfJson(),
+    ...?directoryOrJwt?.encode(),
     if (config != null) 'config': config!.encode(),
   };
+}
+
+/// At most one of `directory`, `jwt` on the `assets` block of `cloudflare_worker_version`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class WorkerVersionAssetsDirectoryOrJwt {
+  const WorkerVersionAssetsDirectoryOrJwt();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `directory` (one of the [WorkerVersionAssetsDirectoryOrJwt] choices).
+final class WorkerVersionAssetsDirectoryOption
+    extends WorkerVersionAssetsDirectoryOrJwt {
+  const WorkerVersionAssetsDirectoryOption({required this.directory});
+
+  final TfArg<String> directory;
+
+  @override
+  String get blockKey => 'directory';
+
+  @override
+  Map<String, Object?> encode() => {'directory': directory.toTfJson()};
+}
+
+/// Sets `jwt` (one of the [WorkerVersionAssetsDirectoryOrJwt] choices).
+final class WorkerVersionAssetsJwtOption
+    extends WorkerVersionAssetsDirectoryOrJwt {
+  const WorkerVersionAssetsJwtOption({required this.jwt});
+
+  final TfArg<String> jwt;
+
+  @override
+  String get blockKey => 'jwt';
+
+  @override
+  Map<String, Object?> encode() => {'jwt': jwt.toTfJson()};
 }
 
 /// Typed helper for the `assets.config` block of

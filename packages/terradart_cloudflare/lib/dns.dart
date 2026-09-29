@@ -8,9 +8,12 @@ export 'src/dns/cloudflare_dns_firewall.dart'
 export 'src/dns/cloudflare_dns_record.dart'
     show
         CloudflareDnsRecord,
+        DnsRecordContentOption,
+        DnsRecordContentOrData,
         DnsRecordData,
         DnsRecordDataLatDirection,
         DnsRecordDataLongDirection,
+        DnsRecordDataOption,
         DnsRecordSettings,
         DnsRecordType;
 export 'src/dns/cloudflare_dns_zone_transfers_acl.dart'
