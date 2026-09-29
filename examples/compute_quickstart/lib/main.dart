@@ -148,7 +148,7 @@ final class NetworkStack extends Stack {
         localName: 'edge_router',
         name: .literal('edge-router'),
         region: .literal('asia-northeast1'),
-        network: mainVpc.ref,
+        network: .network(mainVpc.ref),
         description: .literal('Cloud Router for private egress'),
         bgp: ComputeRouterBgp(
           advertiseMode: ComputeRouterBgpAdvertiseMode.defaultMode,
@@ -334,19 +334,15 @@ final class NetworkStack extends Stack {
       machineType: .literal('e2-small'),
       zone: .literal('asia-northeast1-a'),
       bootDisk: ComputeInstanceBootDisk(
-        initializeParams: ComputeInstanceInitializeParams(
+        initializeParams: ComputeInstanceBootDiskInitializeParams(
           image: .literal('debian-cloud/debian-12'),
         ),
       ),
       networkInterface: [
-        ComputeInstanceNetworkInterface(
-          subnetwork: .ref(workloadSubnet.selfLink),
-        ),
+        ComputeInstanceNetworkInterface(subnetwork: workloadSubnet.ref),
       ],
-      networkPerformanceConfig: const ComputeInstanceNetworkPerformanceConfig(
-        totalEgressBandwidthTier:
-            ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier
-                .platformDefault,
+      networkPerformanceConfig: ComputeInstanceNetworkPerformanceConfig(
+        totalEgressBandwidthTier: .literal(.platformDefault),
       ),
       dependsOn: apiDeps,
     );
@@ -592,16 +588,16 @@ final class NetworkStack extends Stack {
         namePrefix: .literal('bulk-worker-'),
         machineType: .literal('e2-micro'),
         disk: [
-          ComputeInstanceTemplateInstanceTemplateDisk(
+          ComputeInstanceTemplateDisk(
             boot: .literal(true),
             sourceImage: .literal('debian-cloud/debian-12'),
             autoDelete: .literal(true),
           ),
         ],
         networkInterface: [
-          ComputeInstanceTemplateInstanceTemplateNetworkInterface(
-            network: .ref(mainVpc.selfLink),
-            subnetwork: .ref(workloadSubnet.selfLink),
+          ComputeInstanceTemplateNetworkInterface(
+            network: mainVpc.ref,
+            subnetwork: workloadSubnet.ref,
           ),
         ],
         dependsOn: apiDeps,
@@ -1102,19 +1098,19 @@ final class NetworkStack extends Stack {
         namePrefix: .literal('reg-worker-'),
         region: .literal('asia-northeast1'),
         machineType: .literal('e2-micro'),
-        disk: .literal([
-          {
-            'boot': true,
-            'source_image': 'debian-cloud/debian-12',
-            'auto_delete': true,
-          },
-        ]),
-        networkInterface: .literal([
-          {
-            'network': mainVpc.selfLink.interpolation,
-            'subnetwork': workloadSubnet.selfLink.interpolation,
-          },
-        ]),
+        disk: [
+          ComputeRegionInstanceTemplateDisk(
+            boot: .literal(true),
+            sourceImage: .literal('debian-cloud/debian-12'),
+            autoDelete: .literal(true),
+          ),
+        ],
+        networkInterface: [
+          ComputeRegionInstanceTemplateNetworkInterface(
+            network: mainVpc.ref,
+            subnetwork: workloadSubnet.ref,
+          ),
+        ],
         dependsOn: apiDeps,
       ),
     );
@@ -1156,11 +1152,19 @@ final class NetworkStack extends Stack {
         localName: 'bastion_schedule',
         name: .literal('ops-bastion-schedule'),
         region: .literal('asia-northeast1'),
-        instanceSchedulePolicy: .literal({
-          'time_zone': 'Asia/Tokyo',
-          'vm_start_schedule': {'schedule': '0 9 * * 1-5'},
-          'vm_stop_schedule': {'schedule': '0 18 * * 1-5'},
-        }),
+        kind: .instanceSchedulePolicy(
+          ComputeResourcePolicyInstanceSchedulePolicy(
+            timeZone: .literal('Asia/Tokyo'),
+            vmStartSchedule:
+                ComputeResourcePolicyInstanceSchedulePolicyVmStartSchedule(
+                  schedule: .literal('0 9 * * 1-5'),
+                ),
+            vmStopSchedule:
+                ComputeResourcePolicyInstanceSchedulePolicyVmStopSchedule(
+                  schedule: .literal('0 18 * * 1-5'),
+                ),
+          ),
+        ),
         dependsOn: apiDeps,
       ),
     );
@@ -1184,14 +1188,21 @@ final class NetworkStack extends Stack {
         localName: 'backup_daily_snapshots',
         name: .literal('ops-backup-daily-snapshots'),
         region: .literal('asia-northeast1'),
-        snapshotSchedulePolicy: ComputeResourcePolicySnapshotSchedulePolicy(
-          schedule: .daily(
-            daysInCycle: .literal(1),
-            startTime: .literal('04:00'),
-          ),
-          retentionPolicy: ComputeResourcePolicyRetentionPolicy(
-            maxRetentionDays: .literal(3),
-            onSourceDiskDelete: .literal(.applyRetentionPolicy),
+        kind: .snapshotSchedulePolicy(
+          ComputeResourcePolicySnapshotSchedulePolicy(
+            schedule: ComputeResourcePolicySnapshotSchedulePolicySchedule(
+              frequency: .dailySchedule(
+                ComputeResourcePolicySnapshotSchedulePolicyScheduleDailySchedule(
+                  daysInCycle: .literal(1),
+                  startTime: .literal('04:00'),
+                ),
+              ),
+            ),
+            retentionPolicy:
+                ComputeResourcePolicySnapshotSchedulePolicyRetentionPolicy(
+                  maxRetentionDays: .literal(3),
+                  onSourceDiskDelete: .literal(.applyRetentionPolicy),
+                ),
           ),
         ),
         dependsOn: apiDeps,

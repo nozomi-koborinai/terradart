@@ -214,6 +214,10 @@ final class GoogleComputeRouterNat extends Resource {
     sourceSubnetworkIpRangesToNat64,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    ComputeRouterNatLogConfig? logConfig,
+    List<ComputeRouterNatNat64Subnetwork>? nat64Subnetwork,
+    List<ComputeRouterNatRules>? rules,
+    List<ComputeRouterNatSubnetwork>? subnetwork,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -246,6 +250,18 @@ final class GoogleComputeRouterNat extends Resource {
                ?sourceSubnetworkIpRangesToNat64,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           if (logConfig != null)
+             'log_config': TfArg.literal(logConfig.encode()),
+           if (nat64Subnetwork != null)
+             'nat64_subnetwork': TfArg.literal([
+               for (final e in nat64Subnetwork) e.encode(),
+             ]),
+           if (rules != null)
+             'rules': TfArg.literal([for (final e in rules) e.encode()]),
+           if (subnetwork != null)
+             'subnetwork': TfArg.literal([
+               for (final e in subnetwork) e.encode(),
+             ]),
          },
        );
 

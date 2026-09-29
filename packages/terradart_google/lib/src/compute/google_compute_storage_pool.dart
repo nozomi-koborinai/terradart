@@ -80,6 +80,7 @@ final class GoogleComputeStoragePool extends Resource {
     TfArg<bool>? deletionProtection,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    ComputeStoragePoolParams? params,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -100,6 +101,7 @@ final class GoogleComputeStoragePool extends Resource {
            'deletion_protection': ?deletionProtection,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           if (params != null) 'params': TfArg.literal(params.encode()),
          },
        );
 

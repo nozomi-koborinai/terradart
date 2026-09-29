@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_compute_image`.
 const Set<String> _googleComputeImageSensitive = <String>{
   'image_encryption_key.raw_key',
@@ -88,6 +90,114 @@ final class ComputeImageSnapshotSource extends ComputeImageSource {
   TfArg<String> get value => sourceSnapshot;
 }
 
+/// Typed helper for the `image_encryption_key` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageImageEncryptionKey {
+  const ComputeImageImageEncryptionKey({
+    this.kmsKeySelfLink,
+    this.kmsKeyServiceAccount,
+    this.rawKey,
+    this.rsaEncryptedKey,
+  });
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
+
+  final TfArg<String>? kmsKeyServiceAccount;
+
+  final TfArg<String>? rawKey;
+
+  final TfArg<String>? rsaEncryptedKey;
+
+  Map<String, Object?> encode() => {
+    'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `source_disk_encryption_key` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageSourceDiskEncryptionKey {
+  const ComputeImageSourceDiskEncryptionKey({
+    this.kmsKeySelfLink,
+    this.kmsKeyServiceAccount,
+    this.rawKey,
+    this.rsaEncryptedKey,
+  });
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
+
+  final TfArg<String>? kmsKeyServiceAccount;
+
+  final TfArg<String>? rawKey;
+
+  final TfArg<String>? rsaEncryptedKey;
+
+  Map<String, Object?> encode() => {
+    'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `source_image_encryption_key` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageSourceImageEncryptionKey {
+  const ComputeImageSourceImageEncryptionKey({
+    this.kmsKeySelfLink,
+    this.kmsKeyServiceAccount,
+    this.rawKey,
+    this.rsaEncryptedKey,
+  });
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
+
+  final TfArg<String>? kmsKeyServiceAccount;
+
+  final TfArg<String>? rawKey;
+
+  final TfArg<String>? rsaEncryptedKey;
+
+  Map<String, Object?> encode() => {
+    'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `source_snapshot_encryption_key` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageSourceSnapshotEncryptionKey {
+  const ComputeImageSourceSnapshotEncryptionKey({
+    this.kmsKeySelfLink,
+    this.kmsKeyServiceAccount,
+    this.rawKey,
+    this.rsaEncryptedKey,
+  });
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
+
+  final TfArg<String>? kmsKeyServiceAccount;
+
+  final TfArg<String>? rawKey;
+
+  final TfArg<String>? rsaEncryptedKey;
+
+  Map<String, Object?> encode() => {
+    'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_image`.
 ///
 /// Represents an Image resource.
@@ -131,6 +241,10 @@ final class GoogleComputeImage extends Resource {
     TfArg<num>? diskSizeGb,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    ComputeImageImageEncryptionKey? imageEncryptionKey,
+    ComputeImageSourceDiskEncryptionKey? sourceDiskEncryptionKey,
+    ComputeImageSourceImageEncryptionKey? sourceImageEncryptionKey,
+    ComputeImageSourceSnapshotEncryptionKey? sourceSnapshotEncryptionKey,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -148,6 +262,20 @@ final class GoogleComputeImage extends Resource {
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
            source.blockKey: source.value,
+           if (imageEncryptionKey != null)
+             'image_encryption_key': TfArg.literal(imageEncryptionKey.encode()),
+           if (sourceDiskEncryptionKey != null)
+             'source_disk_encryption_key': TfArg.literal(
+               sourceDiskEncryptionKey.encode(),
+             ),
+           if (sourceImageEncryptionKey != null)
+             'source_image_encryption_key': TfArg.literal(
+               sourceImageEncryptionKey.encode(),
+             ),
+           if (sourceSnapshotEncryptionKey != null)
+             'source_snapshot_encryption_key': TfArg.literal(
+               sourceSnapshotEncryptionKey.encode(),
+             ),
          },
        );
 

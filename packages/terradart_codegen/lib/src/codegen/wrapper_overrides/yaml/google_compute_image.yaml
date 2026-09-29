@@ -12,10 +12,6 @@ deriveNestedTypes: true
 nestedTypeExcludes:
   - guest_os_features
   - raw_disk
-  - image_encryption_key
-  - source_disk_encryption_key
-  - source_image_encryption_key
-  - source_snapshot_encryption_key
   - shielded_instance_initial_state
   - params
 
@@ -119,6 +115,10 @@ paramOrder:
   - disk_size_gb
   - deletion_policy
   - project
+  - image_encryption_key
+  - source_disk_encryption_key
+  - source_image_encryption_key
+  - source_snapshot_encryption_key
 
 argMapOrder:
   - name
@@ -131,6 +131,10 @@ argMapOrder:
   - deletion_policy
   - project
   - source
+  - image_encryption_key
+  - source_disk_encryption_key
+  - source_image_encryption_key
+  - source_snapshot_encryption_key
 
 customSlots:
   source:

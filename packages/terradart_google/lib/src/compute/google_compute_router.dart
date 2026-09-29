@@ -59,6 +59,67 @@ class ComputeRouterBgp {
   };
 }
 
+/// At most one of `network`, `ncc_gateway` on `google_compute_router`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.network(...)`.
+sealed class ComputeRouterNetwork {
+  const ComputeRouterNetwork();
+
+  /// Sets `network`.
+  const factory ComputeRouterNetwork.network(
+    RefTo<GoogleComputeNetwork> network,
+  ) = ComputeRouterNetworkNetwork;
+
+  /// Sets `ncc_gateway`.
+  const factory ComputeRouterNetwork.nccGateway(TfArg<String> nccGateway) =
+      ComputeRouterNetworkNccGateway;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [ComputeRouterNetwork.network] choice: sets `network`.
+final class ComputeRouterNetworkNetwork extends ComputeRouterNetwork {
+  const ComputeRouterNetworkNetwork(this.network);
+
+  final RefTo<GoogleComputeNetwork> network;
+
+  @override
+  String get blockKey => 'network';
+
+  @override
+  Map<String, Object?> encode() => {
+    'network': network.encodeAs('id').toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'network': network.encodeAs('id')};
+}
+
+/// The [ComputeRouterNetwork.nccGateway] choice: sets `ncc_gateway`.
+final class ComputeRouterNetworkNccGateway extends ComputeRouterNetwork {
+  const ComputeRouterNetworkNccGateway(this.nccGateway);
+
+  final TfArg<String> nccGateway;
+
+  @override
+  String get blockKey => 'ncc_gateway';
+
+  @override
+  Map<String, Object?> encode() => {'ncc_gateway': nccGateway.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'ncc_gateway': nccGateway};
+}
+
 /// Factory wrapper for `google_compute_router`.
 ///
 /// Represents a Router resource.
@@ -68,7 +129,7 @@ final class GoogleComputeRouter extends Resource {
   GoogleComputeRouter({
     required super.localName,
     required TfArg<String> name,
-    RefTo<GoogleComputeNetwork>? network,
+    ComputeRouterNetwork? network,
     TfArg<String>? region,
     TfArg<String>? project,
     TfArg<String>? description,
@@ -84,7 +145,7 @@ final class GoogleComputeRouter extends Resource {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'network': ?network?.encodeAs('id'),
+           ...?network?.argMap,
            'region': ?region,
            'project': ?project,
            'description': ?description,
