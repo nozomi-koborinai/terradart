@@ -144844,19 +144844,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'BigqueryDataTransferConfigPlaintextSecretAccessKey': MigrateHelper(
-      className: 'BigqueryDataTransferConfigPlaintextSecretAccessKey',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'secret_access_key',
-          dartName: 'secretAccessKey',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'plaintext',
-    ),
     'BigqueryDataTransferConfigScheduleOptions': MigrateHelper(
       className: 'BigqueryDataTransferConfigScheduleOptions',
       slots: <MigrateSlot>[
@@ -144908,26 +144895,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-    ),
-    'BigqueryDataTransferConfigWriteOnlySecretAccessKey': MigrateHelper(
-      className: 'BigqueryDataTransferConfigWriteOnlySecretAccessKey',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'secret_access_key_wo',
-          dartName: 'secretAccessKeyWo',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'secret_access_key_wo_version',
-          dartName: 'secretAccessKeyWoVersion',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'writeOnly',
     ),
     'BigqueryDatapolicyDataPolicyDataMaskingPolicyPredefinedExpression':
         MigrateHelper(
@@ -145771,16 +145738,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'compression',
           dartName: 'compression',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryJobExtractCompression',
         ),
         MigrateSlot(
           tfName: 'destination_format',
           dartName: 'destinationFormat',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryJobExtractDestinationFormat',
         ),
         MigrateSlot(
           tfName: 'destination_uris',
@@ -146012,9 +145979,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'source_format',
           dartName: 'sourceFormat',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryJobLoadSourceFormat',
         ),
         MigrateSlot(
           tfName: 'source_uris',
@@ -146190,9 +146157,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'parameter_mode',
           dartName: 'parameterMode',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.enumValue,
           required: false,
-          dartType: 'String',
+          dartType: 'BigqueryJobParameterMode',
         ),
         MigrateSlot(
           tfName: 'priority',
@@ -223212,7 +223179,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           kind: MigrateSlotKind.reference,
           required: false,
           dartType: 'GoogleComputeNetwork',
-          attribute: 'id',
+          attribute: 'name',
         ),
         MigrateSlot(
           tfName: 'squash_mode',
@@ -268944,11 +268911,41 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'WRITE_EMPTY': 'writeEmpty',
       },
     ),
+    'BigqueryJobExtractCompression': MigrateEnum(
+      name: 'BigqueryJobExtractCompression',
+      members: <String, String>{
+        'GZIP': 'gzip',
+        'DEFLATE': 'deflate',
+        'SNAPPY': 'snappy',
+        'NONE': 'none',
+      },
+    ),
+    'BigqueryJobExtractDestinationFormat': MigrateEnum(
+      name: 'BigqueryJobExtractDestinationFormat',
+      members: <String, String>{
+        'CSV': 'csv',
+        'NEWLINE_DELIMITED_JSON': 'newlineDelimitedJson',
+        'AVRO': 'avro',
+        'SAVED_MODEL': 'savedModel',
+      },
+    ),
     'BigqueryJobLoadCreateDisposition': MigrateEnum(
       name: 'BigqueryJobLoadCreateDisposition',
       members: <String, String>{
         'CREATE_IF_NEEDED': 'createIfNeeded',
         'CREATE_NEVER': 'createNever',
+      },
+    ),
+    'BigqueryJobLoadSourceFormat': MigrateEnum(
+      name: 'BigqueryJobLoadSourceFormat',
+      members: <String, String>{
+        'CSV': 'csv',
+        'NEWLINE_DELIMITED_JSON': 'newlineDelimitedJson',
+        'AVRO': 'avro',
+        'PARQUET': 'parquet',
+        'ORC': 'orc',
+        'DATASTORE_BACKUP': 'datastoreBackup',
+        'BIGTABLE': 'bigtable',
       },
     ),
     'BigqueryJobLoadWriteDisposition': MigrateEnum(
@@ -268958,6 +268955,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         'WRITE_APPEND': 'writeAppend',
         'WRITE_EMPTY': 'writeEmpty',
       },
+    ),
+    'BigqueryJobParameterMode': MigrateEnum(
+      name: 'BigqueryJobParameterMode',
+      members: <String, String>{'NAMED': 'named', 'POSITIONAL': 'positional'},
     ),
     'BigqueryJobQueryCreateDisposition': MigrateEnum(
       name: 'BigqueryJobQueryCreateDisposition',

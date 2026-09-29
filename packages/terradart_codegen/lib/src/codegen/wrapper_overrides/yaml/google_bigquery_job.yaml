@@ -25,45 +25,43 @@ curatedDoc: |-
   ///   Conflict`). Caller-supplied — `terraform apply` will not retry
   ///   under a different ID on collision.
   ///
-  /// **Job-type one-of**: exactly one of [query], [load], [extract], or
-  /// [copy] must be set on a single job; they are mutually exclusive. The
-  /// Terraform schema does not enforce this at plan time, but the
-  /// BigQuery API will reject the apply with an
-  /// `Exactly one of query, load, extract, copy must be set` error if
-  /// the count is not 1.
+  /// **Job type**: `configuration` is sealed — exactly one of
+  /// `.query(...)`, `.load(...)`, `.extract(...)` or `.copy(...)`, the
+  /// rule the BigQuery API enforces.
   ///
-  /// - [query] — execute a SQL statement, optionally writing results to a
+  /// - `.query` — execute a SQL statement, optionally writing results to a
   ///   `destination_table`. The most common job type.
-  /// - [load] — bulk-load files from Cloud Storage (or inline) into a
-  ///   table. Second most common.
-  /// - [extract] — export a table or model to one or more Cloud Storage
+  /// - `.load` — bulk-load files from Cloud Storage (or inline) into a
+  ///   table.
+  /// - `.extract` — export a table or model to one or more Cloud Storage
   ///   URIs.
-  /// - [copy] — copy one or more source tables into a destination table.
+  /// - `.copy` — copy one or more source tables into a destination table.
   ///
-  /// Example (query — most common: SQL SELECT into a destination table):
+  /// Example (query — SQL SELECT into a destination table):
   /// ```dart
   /// final dailyRollup = GoogleBigqueryJob(
   ///   localName: 'daily_rollup',
   ///   // Rotate the job ID to force re-execution on the next apply.
-  ///   jobId: TfArg.literal('daily_rollup_2026_05_19'),
-  ///   location: TfArg.literal('US'),
-  ///   labels: TfArg.literal({'pipeline': 'analytics', 'env': 'prod'}),
-  ///   query: BigqueryJobQuery(
-  ///     query: TfArg.literal(
-  ///       'SELECT user_id, COUNT(*) AS events '
-  ///       'FROM analytics_prod.events '
-  ///       'WHERE event_ts >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY) '
-  ///       'GROUP BY user_id',
+  ///   jobId: .literal('daily_rollup_2026_05_19'),
+  ///   location: .literal('US'),
+  ///   labels: .literal({'pipeline': 'analytics', 'env': 'prod'}),
+  ///   configuration: .query(
+  ///     BigqueryJobQuery(
+  ///       query: .literal(
+  ///         'SELECT user_id, COUNT(*) AS events '
+  ///         'FROM analytics_prod.events '
+  ///         'WHERE event_ts >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY) '
+  ///         'GROUP BY user_id',
+  ///       ),
+  ///       useLegacySql: .literal(false),
+  ///       destinationTable: BigqueryJobQueryDestinationTable(
+  ///         datasetId: analyticsProd.ref,
+  ///         tableId: .literal('daily_user_events'),
+  ///       ),
+  ///       writeDisposition: .literal(.writeTruncate),
+  ///       createDisposition: .literal(.createIfNeeded),
+  ///       priority: .literal(.batch),
   ///     ),
-  ///     useLegacySql: false,
-  ///     destinationTable: BigqueryJobDestinationTable(
-  ///       projectId: TfArg.literal('my-proj'),
-  ///       datasetId: TfArg.literal('analytics_prod'),
-  ///       tableId: TfArg.literal('daily_user_events'),
-  ///     ),
-  ///     writeDisposition: BigqueryJobWriteDisposition.writeTruncate,
-  ///     createDisposition: BigqueryJobCreateDisposition.createIfNeeded,
-  ///     priority: BigqueryJobQueryPriority.batch,
   ///   ),
   /// );
   /// ```
@@ -72,28 +70,104 @@ curatedDoc: |-
   /// ```dart
   /// final ingest = GoogleBigqueryJob(
   ///   localName: 'ingest_csv',
-  ///   jobId: TfArg.literal('ingest_csv_2026_05_19'),
-  ///   location: TfArg.literal('US'),
-  ///   load: BigqueryJobLoad(
-  ///     sourceUris: TfArg.literal([
-  ///       'gs://my-landing-bucket/users/2026-05-19/users-*.csv',
-  ///     ]),
-  ///     destinationTable: BigqueryJobDestinationTable(
-  ///       projectId: TfArg.literal('my-proj'),
-  ///       datasetId: TfArg.literal('staging'),
-  ///       tableId: TfArg.literal('users_raw'),
+  ///   jobId: .literal('ingest_csv_2026_05_19'),
+  ///   location: .literal('US'),
+  ///   configuration: .load(
+  ///     BigqueryJobLoad(
+  ///       sourceUris: .literal([
+  ///         'gs://my-landing-bucket/users/2026-05-19/users-*.csv',
+  ///       ]),
+  ///       destinationTable: BigqueryJobLoadDestinationTable(
+  ///         datasetId: staging.ref,
+  ///         tableId: .literal('users_raw'),
+  ///       ),
+  ///       sourceFormat: .literal(.csv),
+  ///       skipLeadingRows: .literal(1),
+  ///       autodetect: .literal(true),
+  ///       writeDisposition: .literal(.writeTruncate),
+  ///       createDisposition: .literal(.createIfNeeded),
   ///     ),
-  ///     sourceFormat: BigqueryJobLoadSourceFormat.csv,
-  ///     skipLeadingRows: 1,
-  ///     autodetect: true,
-  ///     writeDisposition: BigqueryJobWriteDisposition.writeTruncate,
-  ///     createDisposition: BigqueryJobCreateDisposition.createIfNeeded,
   ///   ),
   /// );
   /// ```
   ///
   /// Sensitive fields: none. Authorization is via the service account
   /// running Terraform — no in-schema secrets on this resource.
+
+dartTypeOverrides:
+  query.parameter_mode: BigqueryJobParameterMode
+  load.source_format: BigqueryJobLoadSourceFormat
+  extract.compression: BigqueryJobExtractCompression
+  extract.destination_format: BigqueryJobExtractDestinationFormat
+
+prelude: |
+  /// `query.parameter_mode`. Standard SQL only. `POSITIONAL` uses `?`
+  /// placeholders; `NAMED` uses `@param` syntax. The provider
+  /// description does not expose a formal `Possible values` array;
+  /// the BigQuery API documents these two as the supported modes.
+  enum BigqueryJobParameterMode implements TerraformEnum {
+    named('NAMED'),
+    positional('POSITIONAL');
+
+    const BigqueryJobParameterMode(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `load.source_format`. From the schema description: for CSV
+  /// specify `CSV`; for datastore backups `DATASTORE_BACKUP`; for
+  /// newline-delimited JSON `NEWLINE_DELIMITED_JSON`; for Avro `AVRO`;
+  /// for Parquet `PARQUET`; for ORC `ORC`; [Beta] for Bigtable
+  /// `BIGTABLE`. Default is `CSV`. The schema doesn't expose a
+  /// formal `enum_values` array, so this list is sourced from the
+  /// attribute's `description` prose.
+  enum BigqueryJobLoadSourceFormat implements TerraformEnum {
+    csv('CSV'),
+    newlineDelimitedJson('NEWLINE_DELIMITED_JSON'),
+    avro('AVRO'),
+    parquet('PARQUET'),
+    orc('ORC'),
+    datastoreBackup('DATASTORE_BACKUP'),
+    bigtable('BIGTABLE');
+
+    const BigqueryJobLoadSourceFormat(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `extract.compression`. Schema description: "Possible values
+  /// include GZIP, DEFLATE, SNAPPY, and NONE. The default value is
+  /// NONE. DEFLATE and SNAPPY are only supported for Avro." The
+  /// schema doesn't expose a formal `enum_values` array — values
+  /// transcribed from the description prose.
+  enum BigqueryJobExtractCompression implements TerraformEnum {
+    gzip('GZIP'),
+    deflate('DEFLATE'),
+    snappy('SNAPPY'),
+    none('NONE');
+
+    const BigqueryJobExtractCompression(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `extract.destination_format`. Schema description: "Possible
+  /// values include CSV, NEWLINE_DELIMITED_JSON and AVRO for tables
+  /// and SAVED_MODEL for models. The default value for tables is CSV.
+  /// Tables with nested or repeated fields cannot be exported as CSV.
+  /// The default value for models is SAVED_MODEL." Values transcribed
+  /// from the description prose (no formal `enum_values` array on
+  /// this attribute).
+  enum BigqueryJobExtractDestinationFormat implements TerraformEnum {
+    csv('CSV'),
+    newlineDelimitedJson('NEWLINE_DELIMITED_JSON'),
+    avro('AVRO'),
+    savedModel('SAVED_MODEL');
+
+    const BigqueryJobExtractDestinationFormat(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
 
 # User-settable attrs first; the four mutually-exclusive job-type blocks
 # next; `project` last. Computed-only attrs (effective_labels, id,
