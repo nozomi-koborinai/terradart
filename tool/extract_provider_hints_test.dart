@@ -137,6 +137,7 @@ func (r *R) ConfigValidators(_ context.Context) []resource.ConfigValidator {
         'modules.content_base64,modules.content_file',
       ]);
       expect(atMostOne, ['content,data', 'script,script_file']);
+      expect(scan.unsealed, isEmpty);
       expect(scan.unresolved, 1);
       expect([for (final h in scan.hints) h.dotted], ['modules.content_file']);
     });
@@ -526,12 +527,21 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
           ['settings', 'y'],
         ],
       ],
+      atMostOne: const [
+        [
+          ['d'],
+          ['c'],
+        ],
+      ],
     );
     final doc = loadYaml(yaml) as YamlMap;
     expect(doc.containsKey('properties'), isFalse);
     expect(doc['exactly_one_of_groups'], [
       ['a', 'b'],
       ['settings.x', 'settings.y'],
+    ]);
+    expect(doc['at_most_one_of_groups'], [
+      ['d', 'c'],
     ]);
   });
 
@@ -630,11 +640,13 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
       test('seal only sibling inputs that schema.json declares', () {
         for (final file in files) {
           final type = p.basenameWithoutExtension(file.path);
-          final groups = (loadYaml(file.readAsStringSync())
-              as YamlMap)['exactly_one_of_groups'] as YamlList?;
+          final doc = loadYaml(file.readAsStringSync()) as YamlMap;
           final block = ((resources[type] as Map)['block'] as Map)
               .cast<String, dynamic>();
-          for (final g in groups ?? YamlList()) {
+          for (final g in [
+            ...?doc['exactly_one_of_groups'] as YamlList?,
+            ...?doc['at_most_one_of_groups'] as YamlList?,
+          ]) {
             final members = [
               for (final m in g as YamlList) m.toString().split('.'),
             ];

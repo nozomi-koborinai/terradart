@@ -805,7 +805,7 @@ const _valueByKey = <String, String>{
 /// one of a group the generated constructor leaves optional.
 const _optionalExtras = <String, List<String>>{
   'CloudflareCustomSsl': ['customCsrId'],
-  'CloudflareWorkersScript': ['content'],
+  'CloudflareWorkersScript': ['contentOrContentFile'],
 };
 
 String _stringLiteral(String name, {String owner = ''}) {

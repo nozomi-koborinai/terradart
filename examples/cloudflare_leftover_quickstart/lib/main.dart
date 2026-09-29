@@ -2055,7 +2055,9 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'workers_script',
         accountId: TfArg.literal(accountId),
         scriptName: TfArg.literal(leftover),
-        content: TfArg.literal(leftover),
+        contentOrContentFile: WorkersScriptContentOption(
+          content: TfArg.literal(leftover),
+        ),
       ),
     );
 

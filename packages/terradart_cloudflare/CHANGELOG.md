@@ -3,6 +3,7 @@
 ## Unreleased
 
 - **Breaking:** inputs the provider requires exactly one of are sealed types — 13 groups on 5 resources take one required argument (or helper field) whose variants each set one member (e.g. `CloudflareRuleset(accountIdOrZoneId: RulesetZoneIdOption(zoneId: ...))`, `CloudflareAccountMember(rolesOrPolicies: AccountMemberRolesOption(roles: ...))`). Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md).
+- **Breaking:** mutually exclusive inputs the provider also accepts none of are nullable sealed types — 14 groups on 8 resources (5 on resource arguments, 9 in nested blocks) take one optional argument (or helper field) whose variants each set one member (e.g. `CloudflareDnsRecord(contentOrData: DnsRecordContentOption(content: ...))`, `CloudflareWorkersScript(contentOrContentFile: WorkersScriptContentFileOption(contentFile: ...))`). Leave it out to set none. Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md).
 
 ## 0.30.0 - 2026-09-28
 

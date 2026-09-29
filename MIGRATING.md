@@ -30,10 +30,39 @@ the ruleset's `from_value.target_url` (`value` / `expression`), `uri.query`
 `allowed_origins`) and `policies` (`id` / `include`). Leaving the argument
 out, or setting two members, used to fail at `terraform validate`; now it
 doesn't compile. Mutually exclusive inputs the provider lets you
-leave all unset (`CloudflareDnsRecord` `content` / `data`,
-`CloudflareWorkersScript` `content` / `content_file`, ...) are unchanged.
-`terradart-migrate` picks the variant from whichever member the source
-sets.
+leave all unset are the next section. `terradart-migrate` picks the variant
+from whichever member the source sets.
+
+### `terradart_cloudflare` at-most-one inputs are nullable sealed types
+
+**Breaking (`terradart_cloudflare`)** — 14 input groups across 8 resources
+whose members conflict with each other, with no rule requiring one of them,
+take one optional sealed-type argument (or helper field) instead of several
+optional ones. These are the provider's `ConflictsWith` / `Conflicting` sets
+at the pinned `5.26.0` that no exactly-one group covers; 5 are on resource
+arguments and 9 inside nested blocks. Naming follows the exactly-one
+groups: the argument joins its members with `Or`, and each member is a
+`<Prefix><Member>Option` variant. Leave the argument out to set none of
+them. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `CloudflareDnsRecord(content: TfArg.literal('ghs.googlehosted.com'), ...)` | `CloudflareDnsRecord(contentOrData: DnsRecordContentOption(content: TfArg.literal('ghs.googlehosted.com')), ...)` |
+| `CloudflareWorkersScript(contentFile: TfArg.literal('dist/index.js'), ...)` | `CloudflareWorkersScript(contentOrContentFile: WorkersScriptContentFileOption(contentFile: TfArg.literal('dist/index.js')), ...)` |
+| `CloudflareZeroTrustDeviceCustomProfile(include: [...], ...)` | `CloudflareZeroTrustDeviceCustomProfile(excludeOrInclude: ZeroTrustDeviceCustomProfileIncludeOption(include: [...]), ...)` |
+| `ListItems(ip: TfArg.literal('192.0.2.1'))` | `ListItems(asnOrIpOrHostnameOrRedirect: ListItemsIpOption(ip: TfArg.literal('192.0.2.1')))` |
+
+The other groups: `CloudflareZeroTrustDeviceDefaultProfile` (`exclude` /
+`include`), `CloudflareZeroTrustAccessApplication` (`self_hosted_domains` /
+`destinations`, and `cors_headers` `allow_all_headers` /
+`allowed_headers`), the `assets` block of `CloudflareWorkersScript` and
+`CloudflareWorkerVersion` (`directory` / `jwt`), and the ruleset's
+`action_parameters` (`asset_name` / `content`, `from_list` / `from_value`,
+`values` / `expression`, `headers` `value` / `expression`, and the cache
+key's `query_string` `include` / `exclude`). Setting two members used to
+fail at `terraform validate`; now it doesn't compile. `terradart-migrate`
+picks the variant from whichever member the source sets, and leaves the
+argument out when none is set.
 
 ### `terradart_google_beta` inputs are typed like `terradart_google`
 

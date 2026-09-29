@@ -23,31 +23,82 @@ enum ListKind implements TerraformEnum {
 /// `cloudflare_list` (derived from provider schema).
 @immutable
 final class ListItems {
-  const ListItems({
-    this.asn,
-    this.comment,
-    this.ip,
-    this.hostname,
-    this.redirect,
-  });
+  const ListItems({this.asnOrIpOrHostnameOrRedirect, this.comment});
 
-  final TfArg<num>? asn;
+  final ListItemsAsnOrIpOrHostnameOrRedirect? asnOrIpOrHostnameOrRedirect;
 
   final TfArg<String>? comment;
 
-  final TfArg<String>? ip;
-
-  final ListItemsHostname? hostname;
-
-  final ListItemsRedirect? redirect;
-
   Map<String, Object?> encode() => {
-    if (asn != null) 'asn': asn!.toTfJson(),
+    ...?asnOrIpOrHostnameOrRedirect?.encode(),
     if (comment != null) 'comment': comment!.toTfJson(),
-    if (ip != null) 'ip': ip!.toTfJson(),
-    if (hostname != null) 'hostname': hostname!.encode(),
-    if (redirect != null) 'redirect': redirect!.encode(),
   };
+}
+
+/// At most one of `asn`, `ip`, `hostname`, `redirect` on the `items` block of `cloudflare_list`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ListItemsAsnOrIpOrHostnameOrRedirect {
+  const ListItemsAsnOrIpOrHostnameOrRedirect();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `asn` (one of the [ListItemsAsnOrIpOrHostnameOrRedirect] choices).
+final class ListItemsAsnOption extends ListItemsAsnOrIpOrHostnameOrRedirect {
+  const ListItemsAsnOption({required this.asn});
+
+  final TfArg<num> asn;
+
+  @override
+  String get blockKey => 'asn';
+
+  @override
+  Map<String, Object?> encode() => {'asn': asn.toTfJson()};
+}
+
+/// Sets `ip` (one of the [ListItemsAsnOrIpOrHostnameOrRedirect] choices).
+final class ListItemsIpOption extends ListItemsAsnOrIpOrHostnameOrRedirect {
+  const ListItemsIpOption({required this.ip});
+
+  final TfArg<String> ip;
+
+  @override
+  String get blockKey => 'ip';
+
+  @override
+  Map<String, Object?> encode() => {'ip': ip.toTfJson()};
+}
+
+/// Sets `hostname` (one of the [ListItemsAsnOrIpOrHostnameOrRedirect] choices).
+final class ListItemsHostnameOption
+    extends ListItemsAsnOrIpOrHostnameOrRedirect {
+  const ListItemsHostnameOption({required this.hostname});
+
+  final ListItemsHostname hostname;
+
+  @override
+  String get blockKey => 'hostname';
+
+  @override
+  Map<String, Object?> encode() => {'hostname': hostname.encode()};
+}
+
+/// Sets `redirect` (one of the [ListItemsAsnOrIpOrHostnameOrRedirect] choices).
+final class ListItemsRedirectOption
+    extends ListItemsAsnOrIpOrHostnameOrRedirect {
+  const ListItemsRedirectOption({required this.redirect});
+
+  final ListItemsRedirect redirect;
+
+  @override
+  String get blockKey => 'redirect';
+
+  @override
+  Map<String, Object?> encode() => {'redirect': redirect.encode()};
 }
 
 /// Typed helper for the `items.hostname` block of

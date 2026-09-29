@@ -36,6 +36,56 @@ enum DnsRecordType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `content`, `data` on `cloudflare_dns_record`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DnsRecordContentOrData {
+  const DnsRecordContentOrData();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `content` (one of the [DnsRecordContentOrData] choices).
+final class DnsRecordContentOption extends DnsRecordContentOrData {
+  const DnsRecordContentOption({required this.content});
+
+  final TfArg<String> content;
+
+  @override
+  String get blockKey => 'content';
+
+  @override
+  Map<String, Object?> encode() => {'content': content.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'content': content};
+}
+
+/// Sets `data` (one of the [DnsRecordContentOrData] choices).
+final class DnsRecordDataOption extends DnsRecordContentOrData {
+  const DnsRecordDataOption({required this.data});
+
+  final DnsRecordData data;
+
+  @override
+  String get blockKey => 'data';
+
+  @override
+  Map<String, Object?> encode() => {'data': data.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'data': TfArg.literal(data.encode()),
+  };
+}
+
 /// Typed helper for the `data` block of
 /// `cloudflare_dns_record` (derived from provider schema).
 @immutable
@@ -255,12 +305,11 @@ final class CloudflareDnsRecord extends Resource {
     required TfArg<String> name,
     required TfArg<DnsRecordType> type,
     required TfArg<num> ttl,
-    TfArg<String>? content,
+    DnsRecordContentOrData? contentOrData,
     TfArg<bool>? proxied,
     TfArg<String>? comment,
     TfArg<num>? priority,
     TfArg<List<String>>? tags,
-    DnsRecordData? data,
     DnsRecordSettings? settings,
     TfArg<bool>? privateRouting,
     super.lifecycle,
@@ -274,12 +323,11 @@ final class CloudflareDnsRecord extends Resource {
            'name': name,
            'type': type,
            'ttl': ttl,
-           if (content != null) 'content': content,
+           ...?contentOrData?.argMap,
            if (proxied != null) 'proxied': proxied,
            if (comment != null) 'comment': comment,
            if (priority != null) 'priority': priority,
            if (tags != null) 'tags': tags,
-           if (data != null) 'data': TfArg.literal(data.encode()),
            if (settings != null) 'settings': TfArg.literal(settings.encode()),
            if (privateRouting != null) 'private_routing': privateRouting,
          },

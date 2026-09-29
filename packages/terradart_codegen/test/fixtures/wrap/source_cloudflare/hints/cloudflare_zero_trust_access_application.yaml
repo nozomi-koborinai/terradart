@@ -146,3 +146,6 @@ exactly_one_of_groups:
   - ["cors_headers.allow_all_methods", "cors_headers.allowed_methods"]
   - ["cors_headers.allow_all_origins", "cors_headers.allowed_origins"]
   - ["policies.id", "policies.include"]
+at_most_one_of_groups:
+  - ["cors_headers.allow_all_headers", "cors_headers.allowed_headers"]
+  - ["self_hosted_domains", "destinations"]

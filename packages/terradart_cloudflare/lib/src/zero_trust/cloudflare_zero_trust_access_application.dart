@@ -34,20 +34,82 @@ enum ZeroTrustAccessApplicationType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `self_hosted_domains`, `destinations` on `cloudflare_zero_trust_access_application`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations {
+  const ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `self_hosted_domains` (one of the [ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations] choices).
+final class ZeroTrustAccessApplicationSelfHostedDomainsOption
+    extends ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations {
+  const ZeroTrustAccessApplicationSelfHostedDomainsOption({
+    required this.selfHostedDomains,
+  });
+
+  final TfArg<List<String>> selfHostedDomains;
+
+  @override
+  String get blockKey => 'self_hosted_domains';
+
+  @override
+  Map<String, Object?> encode() => {
+    'self_hosted_domains': selfHostedDomains.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'self_hosted_domains': selfHostedDomains,
+  };
+}
+
+/// Sets `destinations` (one of the [ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations] choices).
+final class ZeroTrustAccessApplicationDestinationsOption
+    extends ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations {
+  const ZeroTrustAccessApplicationDestinationsOption({
+    required this.destinations,
+  });
+
+  final List<ZeroTrustAccessApplicationDestinations> destinations;
+
+  @override
+  String get blockKey => 'destinations';
+
+  @override
+  Map<String, Object?> encode() => {
+    'destinations': [for (final e in destinations) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'destinations': TfArg.literal([for (final e in destinations) e.encode()]),
+  };
+}
+
 /// Typed helper for the `cors_headers` block of
 /// `cloudflare_zero_trust_access_application` (derived from provider schema).
 @immutable
 final class ZeroTrustAccessApplicationCorsHeaders {
   const ZeroTrustAccessApplicationCorsHeaders({
-    this.allowAllHeaders,
+    this.allowAllHeadersOrAllowedHeaders,
     required this.allowAllMethodsOrAllowedMethods,
     required this.allowAllOriginsOrAllowedOrigins,
     this.allowCredentials,
-    this.allowedHeaders,
     this.maxAge,
   });
 
-  final TfArg<bool>? allowAllHeaders;
+  final ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders?
+  allowAllHeadersOrAllowedHeaders;
 
   final ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods
   allowAllMethodsOrAllowedMethods;
@@ -57,18 +119,14 @@ final class ZeroTrustAccessApplicationCorsHeaders {
 
   final TfArg<bool>? allowCredentials;
 
-  final TfArg<List<Object?>>? allowedHeaders;
-
   final TfArg<num>? maxAge;
 
   Map<String, Object?> encode() => {
-    if (allowAllHeaders != null)
-      'allow_all_headers': allowAllHeaders!.toTfJson(),
+    ...?allowAllHeadersOrAllowedHeaders?.encode(),
     ...allowAllMethodsOrAllowedMethods.encode(),
     ...allowAllOriginsOrAllowedOrigins.encode(),
     if (allowCredentials != null)
       'allow_credentials': allowCredentials!.toTfJson(),
-    if (allowedHeaders != null) 'allowed_headers': allowedHeaders!.toTfJson(),
     if (maxAge != null) 'max_age': maxAge!.toTfJson(),
   };
 }
@@ -169,6 +227,56 @@ final class ZeroTrustAccessApplicationCorsHeadersAllowedOriginsOption
   @override
   Map<String, Object?> encode() => {
     'allowed_origins': allowedOrigins.toTfJson(),
+  };
+}
+
+/// At most one of `allow_all_headers`, `allowed_headers` on the `cors_headers` block of `cloudflare_zero_trust_access_application`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders {
+  const ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `allow_all_headers` (one of the [ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders] choices).
+final class ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOption
+    extends
+        ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders {
+  const ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOption({
+    required this.allowAllHeaders,
+  });
+
+  final TfArg<bool> allowAllHeaders;
+
+  @override
+  String get blockKey => 'allow_all_headers';
+
+  @override
+  Map<String, Object?> encode() => {
+    'allow_all_headers': allowAllHeaders.toTfJson(),
+  };
+}
+
+/// Sets `allowed_headers` (one of the [ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders] choices).
+final class ZeroTrustAccessApplicationCorsHeadersAllowedHeadersOption
+    extends
+        ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders {
+  const ZeroTrustAccessApplicationCorsHeadersAllowedHeadersOption({
+    required this.allowedHeaders,
+  });
+
+  final TfArg<List<Object?>> allowedHeaders;
+
+  @override
+  String get blockKey => 'allowed_headers';
+
+  @override
+  Map<String, Object?> encode() => {
+    'allowed_headers': allowedHeaders.toTfJson(),
   };
 }
 
@@ -2652,7 +2760,8 @@ final class CloudflareZeroTrustAccessApplication extends Resource {
     TfArg<bool>? pathCookieAttribute,
     TfArg<String>? readServiceTokensFromHeader,
     TfArg<String>? sameSiteCookieAttribute,
-    TfArg<List<String>>? selfHostedDomains,
+    ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations?
+    selfHostedDomainsOrDestinations,
     TfArg<bool>? serviceAuth401Redirect,
     TfArg<String>? sessionDuration,
     TfArg<bool>? skipAppLauncherLoginPage,
@@ -2661,7 +2770,6 @@ final class CloudflareZeroTrustAccessApplication extends Resource {
     TfArg<ZeroTrustAccessApplicationType>? type,
     TfArg<String>? zoneId,
     ZeroTrustAccessApplicationCorsHeaders? corsHeaders,
-    List<ZeroTrustAccessApplicationDestinations>? destinations,
     List<ZeroTrustAccessApplicationFooterLinks>? footerLinks,
     ZeroTrustAccessApplicationLandingPageDesign? landingPageDesign,
     ZeroTrustAccessApplicationMfaConfig? mfaConfig,
@@ -2711,8 +2819,7 @@ final class CloudflareZeroTrustAccessApplication extends Resource {
              'read_service_tokens_from_header': readServiceTokensFromHeader,
            if (sameSiteCookieAttribute != null)
              'same_site_cookie_attribute': sameSiteCookieAttribute,
-           if (selfHostedDomains != null)
-             'self_hosted_domains': selfHostedDomains,
+           ...?selfHostedDomainsOrDestinations?.argMap,
            if (serviceAuth401Redirect != null)
              'service_auth_401_redirect': serviceAuth401Redirect,
            if (sessionDuration != null) 'session_duration': sessionDuration,
@@ -2724,10 +2831,6 @@ final class CloudflareZeroTrustAccessApplication extends Resource {
            if (zoneId != null) 'zone_id': zoneId,
            if (corsHeaders != null)
              'cors_headers': TfArg.literal(corsHeaders.encode()),
-           if (destinations != null)
-             'destinations': TfArg.literal([
-               for (final e in destinations) e.encode(),
-             ]),
            if (footerLinks != null)
              'footer_links': TfArg.literal([
                for (final e in footerLinks) e.encode(),
