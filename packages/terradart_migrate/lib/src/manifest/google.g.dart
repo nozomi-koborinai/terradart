@@ -15188,8 +15188,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'status',
           dartName: 'status',
-          dartType:
-              'List<Object?>>` shape: the schema types `status` as a /// `list(object(...))`, which the output-getter gate would widen to /// `TfRef<List<Map<String, Object?>>>`. Holding the narrower element /// type here keeps the public surface stable; the gate skips `status` /// because the name is present in `extraGetters`. TfRef<List<Object?>',
+          dartType: 'List<Object?>',
         ),
       ],
     ),
@@ -16013,8 +16012,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'num_rows',
           dartName: 'numRows',
-          dartType:
-              'String>` for direct interpolation). /// /// `num_rows` / `num_bytes` / `creation_time` / `last_modified_time` are /// kept hand-written (not derived) to pin them at `TfRef<String>`: the /// schema types them as `number`, which the output-getter gate would emit /// as `TfRef<num>`. Holding `String` here keeps the public surface stable; /// the gate skips these names because they are present in `extraGetters`. TfRef<String',
+          dartType: 'String',
         ),
         MigrateGetter(
           tfName: 'num_bytes',
@@ -23496,7 +23494,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'execution_count',
           dartName: 'executionCount',
-          dartType: 'num>`. TfRef<int',
+          dartType: 'int',
         ),
         MigrateGetter(
           tfName: 'latest_created_execution',
@@ -31065,8 +31063,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'generated_id',
           dartName: 'generatedId',
-          dartType:
-              'int>` — schema type is `number` (derived would widen /// to `TfRef<num>`). TfRef<int',
+          dartType: 'int',
         ),
       ],
     ),
@@ -36205,8 +36202,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'instance_group_manager_id',
           dartName: 'instanceGroupManagerId',
-          dartType:
-              'int>` — schema type is `number` (derived would widen /// to `TfRef<num>`). TfRef<int',
+          dartType: 'int',
         ),
       ],
     ),
@@ -41378,8 +41374,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'generated_id',
           dartName: 'generatedId',
-          dartType:
-              'int>` — schema type is `number` (derived would widen /// to `TfRef<num>`). TfRef<int',
+          dartType: 'int',
         ),
       ],
     ),
@@ -42554,8 +42549,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'health_check_id',
           dartName: 'healthCheckId',
-          dartType:
-              'int>` — schema type is `number` (derived would widen /// to `TfRef<num>`). TfRef<int',
+          dartType: 'int',
         ),
       ],
     ),
@@ -42947,8 +42941,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'instance_group_manager_id',
           dartName: 'instanceGroupManagerId',
-          dartType:
-              'int>` — schema type is `number` (derived would widen /// to `TfRef<num>`). TfRef<int',
+          dartType: 'int',
         ),
       ],
     ),
@@ -73081,12 +73074,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
       getters: <MigrateGetter>[
-        MigrateGetter(
-          tfName: 'name',
-          dartName: 'nameRef',
-          dartType:
-              'String>` getters rather than typed enums because they are read- /// only and the wire values are best consumed as-is. final class GoogleFirebaseAppHostingBuild extends Resource { static const String tfType = \'google_firebase_app_hosting_build\'; GoogleFirebaseAppHostingBuild({ required super.localName, required TfArg<String> backend, required TfArg<String> location, required TfArg<String> buildId, required FirebaseAppHostingBuildAppHostingBuildSource source, TfArg<String>? displayName, TfArg<Map<String, String>>? annotations, TfArg<Map<String, String>>? labels, TfArg<String>? project, super.lifecycle, super.dependsOn, super.provider, super.timeouts, }) : super( terraformType: tfType, argMap: { \'backend\': backend, \'location\': location, \'build_id\': buildId, \'source\': TfArg.literal([source.encode()]), if (displayName != null) \'display_name\': displayName, if (annotations != null) \'annotations\': annotations, if (labels != null) \'labels\': labels, if (project != null) \'project\': project, }, ); @override Set<String> get sensitiveFields => _googleFirebaseAppHostingBuildSensitive; /// Reference to `name` attribute (full resource path /// `projects/{project}/locations/{location}/backends/{backend}/builds/{build_id}`). TfRef<String',
-        ),
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(
           tfName: 'build_id',
