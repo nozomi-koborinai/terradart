@@ -10,8 +10,19 @@ const Set<String> _awsDbOptionGroupSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_db_option_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class DbOptionGroupNameOrNamePrefix {
   const DbOptionGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory DbOptionGroupNameOrNamePrefix.name(TfArg<String> name) =
+      DbOptionGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory DbOptionGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = DbOptionGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,9 +34,10 @@ sealed class DbOptionGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [DbOptionGroupNameOrNamePrefix] choices).
-final class DbOptionGroupNameOption extends DbOptionGroupNameOrNamePrefix {
-  const DbOptionGroupNameOption({required this.name});
+/// The [DbOptionGroupNameOrNamePrefix.name] choice: sets `name`.
+final class DbOptionGroupNameOrNamePrefixName
+    extends DbOptionGroupNameOrNamePrefix {
+  const DbOptionGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -39,10 +51,10 @@ final class DbOptionGroupNameOption extends DbOptionGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [DbOptionGroupNameOrNamePrefix] choices).
-final class DbOptionGroupNamePrefixOption
+/// The [DbOptionGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class DbOptionGroupNameOrNamePrefixNamePrefix
     extends DbOptionGroupNameOrNamePrefix {
-  const DbOptionGroupNamePrefixOption({required this.namePrefix});
+  const DbOptionGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

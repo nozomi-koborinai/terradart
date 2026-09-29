@@ -14,9 +14,9 @@ export 'src/storagegateway/aws_storagegateway_file_system_association.dart'
 export 'src/storagegateway/aws_storagegateway_gateway.dart'
     show
         AwsStoragegatewayGateway,
-        StoragegatewayGatewayActivationKeyOption,
         StoragegatewayGatewayActivationKeyOrGatewayIpAddress,
-        StoragegatewayGatewayGatewayIpAddressOption,
+        StoragegatewayGatewayActivationKeyOrGatewayIpAddressActivationKey,
+        StoragegatewayGatewayActivationKeyOrGatewayIpAddressGatewayIpAddress,
         StoragegatewayGatewayGatewayType,
         StoragegatewayGatewayMaintenanceStartTime,
         StoragegatewayGatewayMediumChangerType,
@@ -49,8 +49,8 @@ export 'src/storagegateway/aws_storagegateway_tape_pool.dart'
 export 'src/storagegateway/aws_storagegateway_upload_buffer.dart'
     show
         AwsStoragegatewayUploadBuffer,
-        StoragegatewayUploadBufferDiskIdOption,
         StoragegatewayUploadBufferDiskIdOrDiskPath,
-        StoragegatewayUploadBufferDiskPathOption;
+        StoragegatewayUploadBufferDiskIdOrDiskPathDiskId,
+        StoragegatewayUploadBufferDiskIdOrDiskPathDiskPath;
 export 'src/storagegateway/aws_storagegateway_working_storage.dart'
     show AwsStoragegatewayWorkingStorage;

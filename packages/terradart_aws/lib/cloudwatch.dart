@@ -39,10 +39,11 @@ export 'src/cloudwatch/aws_cloudwatch_event_connection.dart'
         AwsCloudwatchEventConnection,
         CloudwatchEventConnectionAuthParameters,
         CloudwatchEventConnectionAuthParametersApiKey,
-        CloudwatchEventConnectionAuthParametersApiKeyOption,
         CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauth,
+        CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthApiKey,
+        CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthBasic,
+        CloudwatchEventConnectionAuthParametersApiKeyOrBasicOrOauthOauth,
         CloudwatchEventConnectionAuthParametersBasic,
-        CloudwatchEventConnectionAuthParametersBasicOption,
         CloudwatchEventConnectionAuthParametersConnectivityParameters,
         CloudwatchEventConnectionAuthParametersConnectivityParametersResourceParameters,
         CloudwatchEventConnectionAuthParametersInvocationHttpParameters,
@@ -56,7 +57,6 @@ export 'src/cloudwatch/aws_cloudwatch_event_connection.dart'
         CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersBody,
         CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersHeader,
         CloudwatchEventConnectionAuthParametersOauthOauthHttpParametersQueryString,
-        CloudwatchEventConnectionAuthParametersOauthOption,
         CloudwatchEventConnectionAuthorizationType,
         CloudwatchEventConnectionInvocationConnectivityParameters,
         CloudwatchEventConnectionInvocationConnectivityParametersResourceParameters;
@@ -79,13 +79,13 @@ export 'src/cloudwatch/aws_cloudwatch_event_permission.dart'
 export 'src/cloudwatch/aws_cloudwatch_event_rule.dart'
     show
         AwsCloudwatchEventRule,
-        CloudwatchEventRuleIsEnabledOption,
         CloudwatchEventRuleIsEnabledOrState,
-        CloudwatchEventRuleNameOption,
+        CloudwatchEventRuleIsEnabledOrStateIsEnabled,
+        CloudwatchEventRuleIsEnabledOrStateState,
         CloudwatchEventRuleNameOrNamePrefix,
-        CloudwatchEventRuleNamePrefixOption,
-        CloudwatchEventRuleState,
-        CloudwatchEventRuleStateOption;
+        CloudwatchEventRuleNameOrNamePrefixName,
+        CloudwatchEventRuleNameOrNamePrefixNamePrefix,
+        CloudwatchEventRuleState;
 export 'src/cloudwatch/aws_cloudwatch_event_target.dart'
     show
         AwsCloudwatchEventTarget,
@@ -102,11 +102,11 @@ export 'src/cloudwatch/aws_cloudwatch_event_target.dart'
         CloudwatchEventTargetEcsTargetPlacementConstraintType,
         CloudwatchEventTargetEcsTargetPropagateTags,
         CloudwatchEventTargetHttpTarget,
-        CloudwatchEventTargetInputOption,
         CloudwatchEventTargetInputOrInputPathOrInputTransformer,
-        CloudwatchEventTargetInputPathOption,
+        CloudwatchEventTargetInputOrInputPathOrInputTransformerInput,
+        CloudwatchEventTargetInputOrInputPathOrInputTransformerInputPath,
+        CloudwatchEventTargetInputOrInputPathOrInputTransformerInputTransformer,
         CloudwatchEventTargetInputTransformer,
-        CloudwatchEventTargetInputTransformerOption,
         CloudwatchEventTargetKinesisTarget,
         CloudwatchEventTargetRedshiftTarget,
         CloudwatchEventTargetRetryPolicy,
@@ -145,9 +145,9 @@ export 'src/cloudwatch/aws_cloudwatch_log_group.dart'
     show
         AwsCloudwatchLogGroup,
         CloudwatchLogGroupLogGroupClass,
-        CloudwatchLogGroupNameOption,
         CloudwatchLogGroupNameOrNamePrefix,
-        CloudwatchLogGroupNamePrefixOption;
+        CloudwatchLogGroupNameOrNamePrefixName,
+        CloudwatchLogGroupNameOrNamePrefixNamePrefix;
 export 'src/cloudwatch/aws_cloudwatch_log_index_policy.dart'
     show AwsCloudwatchLogIndexPolicy;
 export 'src/cloudwatch/aws_cloudwatch_log_metric_filter.dart'
@@ -158,9 +158,9 @@ export 'src/cloudwatch/aws_cloudwatch_log_metric_filter.dart'
 export 'src/cloudwatch/aws_cloudwatch_log_resource_policy.dart'
     show
         AwsCloudwatchLogResourcePolicy,
-        CloudwatchLogResourcePolicyPolicyNameOption,
         CloudwatchLogResourcePolicyPolicyNameOrResourceArn,
-        CloudwatchLogResourcePolicyResourceArnOption;
+        CloudwatchLogResourcePolicyPolicyNameOrResourceArnPolicyName,
+        CloudwatchLogResourcePolicyPolicyNameOrResourceArnResourceArn;
 export 'src/cloudwatch/aws_cloudwatch_log_s3_table_integration_source.dart'
     show
         AwsCloudwatchLogS3TableIntegrationSource,
@@ -220,22 +220,22 @@ export 'src/cloudwatch/aws_cloudwatch_metric_alarm.dart'
         CloudwatchMetricAlarmComparisonOperator,
         CloudwatchMetricAlarmEvaluateLowSampleCountPercentiles,
         CloudwatchMetricAlarmEvaluationCriteria,
-        CloudwatchMetricAlarmEvaluationCriteriaOption,
         CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery,
+        CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryEvaluationCriteria,
+        CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricName,
+        CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQueryMetricQuery,
         CloudwatchMetricAlarmEvaluationCriteriaPromqlCriteria,
-        CloudwatchMetricAlarmExtendedStatisticOption,
         CloudwatchMetricAlarmExtendedStatisticOrStatistic,
-        CloudwatchMetricAlarmMetricNameOption,
+        CloudwatchMetricAlarmExtendedStatisticOrStatisticExtendedStatistic,
+        CloudwatchMetricAlarmExtendedStatisticOrStatisticStatistic,
         CloudwatchMetricAlarmMetricQuery,
         CloudwatchMetricAlarmMetricQueryMetric,
         CloudwatchMetricAlarmMetricQueryMetricStat,
         CloudwatchMetricAlarmMetricQueryMetricUnit,
-        CloudwatchMetricAlarmMetricQueryOption,
         CloudwatchMetricAlarmStatistic,
-        CloudwatchMetricAlarmStatisticOption,
-        CloudwatchMetricAlarmThresholdMetricIdOption,
-        CloudwatchMetricAlarmThresholdOption,
         CloudwatchMetricAlarmThresholdOrThresholdMetricId,
+        CloudwatchMetricAlarmThresholdOrThresholdMetricIdThreshold,
+        CloudwatchMetricAlarmThresholdOrThresholdMetricIdThresholdMetricId,
         CloudwatchMetricAlarmTreatMissingData,
         CloudwatchMetricAlarmUnit,
         CloudwatchMetricAlarmWarmUpConfiguration;
@@ -243,13 +243,13 @@ export 'src/cloudwatch/aws_cloudwatch_metric_stream.dart'
     show
         AwsCloudwatchMetricStream,
         CloudwatchMetricStreamExcludeFilter,
-        CloudwatchMetricStreamExcludeFilterOption,
         CloudwatchMetricStreamExcludeFilterOrIncludeFilter,
+        CloudwatchMetricStreamExcludeFilterOrIncludeFilterExcludeFilter,
+        CloudwatchMetricStreamExcludeFilterOrIncludeFilterIncludeFilter,
         CloudwatchMetricStreamIncludeFilter,
-        CloudwatchMetricStreamIncludeFilterOption,
-        CloudwatchMetricStreamNameOption,
         CloudwatchMetricStreamNameOrNamePrefix,
-        CloudwatchMetricStreamNamePrefixOption,
+        CloudwatchMetricStreamNameOrNamePrefixName,
+        CloudwatchMetricStreamNameOrNamePrefixNamePrefix,
         CloudwatchMetricStreamOutputFormat,
         CloudwatchMetricStreamStatisticsConfiguration,
         CloudwatchMetricStreamStatisticsConfigurationIncludeMetric;

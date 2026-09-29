@@ -42,24 +42,31 @@ String exactlyOneSlotName(List<String> members) => members.join('_or_');
 String exactlyOneSealedName(String prefix, List<String> members) =>
     prefix + snakeToPascal(exactlyOneSlotName(members));
 
-/// The variant of [exactlyOneSealedName] that sets [member].
-String exactlyOneVariantName(String prefix, String member) =>
-    '$prefix${snakeToPascal(member)}Option';
+/// The concrete variant class of the sealed type [sealed] that sets
+/// [member] (`LambdaFunctionCode` + `image_uri` → `LambdaFunctionCodeImageUri`).
+/// Callers construct it through the sealed type's factory constructor
+/// (`.imageUri(...)`); the class exists for pattern matching.
+String exactlyOneVariantName(String sealed, String member) =>
+    '$sealed${snakeToPascal(member)}';
 
 /// Renders the sealed type for one exactly-one group — or, when [optional],
 /// one at-most-one group, held by a nullable slot — and one variant per
 /// member, in [variants] order. [where] names the block the members belong
-/// to in the doc comments. The declarations follow the shape
-/// `migrate/helper_class_extractor.dart` recognises: a `blockKey` getter and
-/// a field-per-key `encode()` (plus `argMap` for a resource-level group).
+/// to in the doc comments.
+///
+/// Each variant is reachable as a `const factory` constructor on the sealed
+/// type named after its member, taking the member's value positionally, so
+/// a caller writes the dot shorthand `slot: .imageUri(...)`. The concrete
+/// classes follow the shape `migrate/helper_class_extractor.dart`
+/// recognises: a `blockKey` getter and a field-per-key `encode()` (plus
+/// `argMap` for a resource-level group).
 String renderExactlyOneTypes({
-  required String prefix,
+  required String sealed,
   required List<String> members,
   required String where,
   required List<ExactlyOneVariant> variants,
   bool optional = false,
 }) {
-  final sealed = exactlyOneSealedName(prefix, members);
   final topLevel = variants.first.argMapExpr != null;
   final list = members.map((m) => '`$m`').join(', ');
   final buf = StringBuffer();
@@ -76,8 +83,25 @@ String renderExactlyOneTypes({
       );
   }
   buf
+    ..writeln('///')
+    ..writeln(
+      '/// Pick one with a dot shorthand: `.${variants.first.ident}(...)`.',
+    )
     ..writeln('sealed class $sealed {')
-    ..writeln('  const $sealed();')
+    ..writeln('  const $sealed();');
+  for (final v in variants) {
+    buf
+      ..writeln()
+      ..writeln('  /// Sets `${v.tfName}`.');
+    if (v.deprecation != null) {
+      buf.writeln("  @Deprecated('${dartSingleQuotedBody(v.deprecation!)}')");
+    }
+    buf.writeln(
+      '  const factory $sealed.${v.ident}(${v.fieldType} ${v.ident}) = '
+      '${exactlyOneVariantName(sealed, v.tfName)};',
+    );
+  }
+  buf
     ..writeln()
     ..writeln('  /// The Terraform argument this choice sets.')
     ..writeln('  String get blockKey;')
@@ -94,16 +118,16 @@ String renderExactlyOneTypes({
   }
   buf.writeln('}');
   for (final v in variants) {
-    final name = exactlyOneVariantName(prefix, v.tfName);
+    final name = exactlyOneVariantName(sealed, v.tfName);
     buf
       ..writeln()
-      ..writeln('/// Sets `${v.tfName}` (one of the [$sealed] choices).');
+      ..writeln('/// The [$sealed.${v.ident}] choice: sets `${v.tfName}`.');
     if (v.deprecation != null) {
       buf.writeln("@Deprecated('${dartSingleQuotedBody(v.deprecation!)}')");
     }
     buf
       ..writeln('final class $name extends $sealed {')
-      ..writeln('  const $name({required this.${v.ident}});')
+      ..writeln('  const $name(this.${v.ident});')
       ..writeln()
       ..writeln('  final ${v.fieldType} ${v.ident};')
       ..writeln()

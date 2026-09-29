@@ -20,8 +20,19 @@ enum CloudwatchLogGroupLogGroupClass implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_cloudwatch_log_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class CloudwatchLogGroupNameOrNamePrefix {
   const CloudwatchLogGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory CloudwatchLogGroupNameOrNamePrefix.name(TfArg<String> name) =
+      CloudwatchLogGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory CloudwatchLogGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = CloudwatchLogGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +44,10 @@ sealed class CloudwatchLogGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [CloudwatchLogGroupNameOrNamePrefix] choices).
-final class CloudwatchLogGroupNameOption
+/// The [CloudwatchLogGroupNameOrNamePrefix.name] choice: sets `name`.
+final class CloudwatchLogGroupNameOrNamePrefixName
     extends CloudwatchLogGroupNameOrNamePrefix {
-  const CloudwatchLogGroupNameOption({required this.name});
+  const CloudwatchLogGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +61,10 @@ final class CloudwatchLogGroupNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [CloudwatchLogGroupNameOrNamePrefix] choices).
-final class CloudwatchLogGroupNamePrefixOption
+/// The [CloudwatchLogGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class CloudwatchLogGroupNameOrNamePrefixNamePrefix
     extends CloudwatchLogGroupNameOrNamePrefix {
-  const CloudwatchLogGroupNamePrefixOption({required this.namePrefix});
+  const CloudwatchLogGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

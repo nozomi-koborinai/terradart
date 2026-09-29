@@ -9,13 +9,13 @@ export 'src/redshift/aws_redshift_cluster.dart'
     show
         AwsRedshiftCluster,
         RedshiftClusterAquaConfigurationStatus,
-        RedshiftClusterManageMasterPasswordOption,
         RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo,
-        RedshiftClusterMasterPasswordOption,
-        RedshiftClusterMasterPasswordWoOption,
-        RedshiftClusterSnapshotArnOption,
+        RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoManageMasterPassword,
+        RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword,
+        RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo,
         RedshiftClusterSnapshotArnOrSnapshotIdentifier,
-        RedshiftClusterSnapshotIdentifierOption;
+        RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotArn,
+        RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotIdentifier;
 export 'src/redshift/aws_redshift_cluster_iam_roles.dart'
     show AwsRedshiftClusterIamRoles;
 export 'src/redshift/aws_redshift_cluster_snapshot.dart'
@@ -25,10 +25,10 @@ export 'src/redshift/aws_redshift_data_share_authorization.dart'
 export 'src/redshift/aws_redshift_data_share_consumer_association.dart'
     show
         AwsRedshiftDataShareConsumerAssociation,
-        RedshiftDataShareConsumerAssociationAssociateEntireAccountOption,
         RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion,
-        RedshiftDataShareConsumerAssociationConsumerArnOption,
-        RedshiftDataShareConsumerAssociationConsumerRegionOption;
+        RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionAssociateEntireAccount,
+        RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerArn,
+        RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerRegion;
 export 'src/redshift/aws_redshift_endpoint_access.dart'
     show AwsRedshiftEndpointAccess;
 export 'src/redshift/aws_redshift_endpoint_authorization.dart'
@@ -76,12 +76,12 @@ export 'src/redshift/aws_redshift_scheduled_action.dart'
         AwsRedshiftScheduledAction,
         RedshiftScheduledActionTargetAction,
         RedshiftScheduledActionTargetActionPauseCluster,
-        RedshiftScheduledActionTargetActionPauseClusterOption,
         RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster,
+        RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterPauseCluster,
+        RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterResizeCluster,
+        RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterResumeCluster,
         RedshiftScheduledActionTargetActionResizeCluster,
-        RedshiftScheduledActionTargetActionResizeClusterOption,
-        RedshiftScheduledActionTargetActionResumeCluster,
-        RedshiftScheduledActionTargetActionResumeClusterOption;
+        RedshiftScheduledActionTargetActionResumeCluster;
 export 'src/redshift/aws_redshift_snapshot_copy.dart'
     show AwsRedshiftSnapshotCopy;
 export 'src/redshift/aws_redshift_snapshot_copy_grant.dart'
@@ -89,9 +89,9 @@ export 'src/redshift/aws_redshift_snapshot_copy_grant.dart'
 export 'src/redshift/aws_redshift_snapshot_schedule.dart'
     show
         AwsRedshiftSnapshotSchedule,
-        RedshiftSnapshotScheduleIdentifierOption,
         RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix,
-        RedshiftSnapshotScheduleIdentifierPrefixOption;
+        RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifier,
+        RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifierPrefix;
 export 'src/redshift/aws_redshift_snapshot_schedule_association.dart'
     show AwsRedshiftSnapshotScheduleAssociation;
 export 'src/redshift/aws_redshift_subnet_group.dart'

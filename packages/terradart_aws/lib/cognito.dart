@@ -33,21 +33,21 @@ export 'src/cognito/aws_cognito_managed_login_branding.dart'
         CognitoManagedLoginBrandingAssetCategory,
         CognitoManagedLoginBrandingAssetColorMode,
         CognitoManagedLoginBrandingAssetExtension,
-        CognitoManagedLoginBrandingSettingsOption,
         CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues,
-        CognitoManagedLoginBrandingUseCognitoProvidedValuesOption;
+        CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesSettings,
+        CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesUseCognitoProvidedValues;
 export 'src/cognito/aws_cognito_managed_user_pool_client.dart'
     show
         AwsCognitoManagedUserPoolClient,
         CognitoManagedUserPoolClientAllowedOauthFlows,
         CognitoManagedUserPoolClientAnalyticsConfiguration,
-        CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOption,
         CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId,
-        CognitoManagedUserPoolClientAnalyticsConfigurationApplicationIdOption,
+        CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationArn,
+        CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationId,
         CognitoManagedUserPoolClientExplicitAuthFlows,
-        CognitoManagedUserPoolClientNamePatternOption,
         CognitoManagedUserPoolClientNamePatternOrNamePrefix,
-        CognitoManagedUserPoolClientNamePrefixOption,
+        CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePattern,
+        CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePrefix,
         CognitoManagedUserPoolClientPreventUserExistenceErrors,
         CognitoManagedUserPoolClientRefreshTokenRotation,
         CognitoManagedUserPoolClientRefreshTokenRotationFeature,
@@ -79,9 +79,9 @@ export 'src/cognito/aws_cognito_user.dart'
         AwsCognitoUser,
         CognitoUserDesiredDeliveryMediums,
         CognitoUserMessageAction,
-        CognitoUserPasswordOption,
         CognitoUserPasswordOrTemporaryPassword,
-        CognitoUserTemporaryPasswordOption;
+        CognitoUserPasswordOrTemporaryPasswordPassword,
+        CognitoUserPasswordOrTemporaryPasswordTemporaryPassword;
 export 'src/cognito/aws_cognito_user_group.dart' show AwsCognitoUserGroup;
 export 'src/cognito/aws_cognito_user_in_group.dart' show AwsCognitoUserInGroup;
 export 'src/cognito/aws_cognito_user_pool.dart'
@@ -93,8 +93,9 @@ export 'src/cognito/aws_cognito_user_pool.dart'
         CognitoUserPoolAdminCreateUserConfig,
         CognitoUserPoolAdminCreateUserConfigInviteMessageTemplate,
         CognitoUserPoolAliasAttributes,
-        CognitoUserPoolAliasAttributesOption,
         CognitoUserPoolAliasAttributesOrUsernameAttributes,
+        CognitoUserPoolAliasAttributesOrUsernameAttributesAliasAttributes,
+        CognitoUserPoolAliasAttributesOrUsernameAttributesUsernameAttributes,
         CognitoUserPoolAutoVerifiedAttributes,
         CognitoUserPoolDeletionProtection,
         CognitoUserPoolDeviceConfiguration,
@@ -126,7 +127,6 @@ export 'src/cognito/aws_cognito_user_pool.dart'
         CognitoUserPoolUserPoolAddOnsAdvancedSecurityMode,
         CognitoUserPoolUserPoolTier,
         CognitoUserPoolUsernameAttributes,
-        CognitoUserPoolUsernameAttributesOption,
         CognitoUserPoolUsernameConfiguration,
         CognitoUserPoolVerificationMessageTemplate,
         CognitoUserPoolVerificationMessageTemplateDefaultEmailOption,
@@ -137,9 +137,9 @@ export 'src/cognito/aws_cognito_user_pool_client.dart'
         AwsCognitoUserPoolClient,
         CognitoUserPoolClientAllowedOauthFlows,
         CognitoUserPoolClientAnalyticsConfiguration,
-        CognitoUserPoolClientAnalyticsConfigurationApplicationArnOption,
         CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId,
-        CognitoUserPoolClientAnalyticsConfigurationApplicationIdOption,
+        CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationArn,
+        CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationId,
         CognitoUserPoolClientExplicitAuthFlows,
         CognitoUserPoolClientPreventUserExistenceErrors,
         CognitoUserPoolClientRefreshTokenRotation,

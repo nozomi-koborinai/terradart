@@ -44,8 +44,20 @@ enum FsxOntapFileSystemStorageType implements TerraformEnum {
 
 /// Exactly one of `throughput_capacity`, `throughput_capacity_per_ha_pair` on `aws_fsx_ontap_file_system`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.throughputCapacity(...)`.
 sealed class FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair {
   const FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair();
+
+  /// Sets `throughput_capacity`.
+  const factory FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair.throughputCapacity(
+    TfArg<num> throughputCapacity,
+  ) = FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThroughputCapacity;
+
+  /// Sets `throughput_capacity_per_ha_pair`.
+  const factory FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair.throughputCapacityPerHaPair(
+    TfArg<num> throughputCapacityPerHaPair,
+  ) = FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThroughputCapacityPerHaPair;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -57,12 +69,12 @@ sealed class FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `throughput_capacity` (one of the [FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair] choices).
-final class FsxOntapFileSystemThroughputCapacityOption
+/// The [FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair.throughputCapacity] choice: sets `throughput_capacity`.
+final class FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThroughputCapacity
     extends FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair {
-  const FsxOntapFileSystemThroughputCapacityOption({
-    required this.throughputCapacity,
-  });
+  const FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThroughputCapacity(
+    this.throughputCapacity,
+  );
 
   final TfArg<num> throughputCapacity;
 
@@ -80,12 +92,12 @@ final class FsxOntapFileSystemThroughputCapacityOption
   };
 }
 
-/// Sets `throughput_capacity_per_ha_pair` (one of the [FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair] choices).
-final class FsxOntapFileSystemThroughputCapacityPerHaPairOption
+/// The [FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair.throughputCapacityPerHaPair] choice: sets `throughput_capacity_per_ha_pair`.
+final class FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThroughputCapacityPerHaPair
     extends FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair {
-  const FsxOntapFileSystemThroughputCapacityPerHaPairOption({
-    required this.throughputCapacityPerHaPair,
-  });
+  const FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThroughputCapacityPerHaPair(
+    this.throughputCapacityPerHaPair,
+  );
 
   final TfArg<num> throughputCapacityPerHaPair;
 

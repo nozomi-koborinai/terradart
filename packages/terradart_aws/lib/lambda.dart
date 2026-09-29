@@ -20,8 +20,9 @@ export 'src/lambda/aws_lambda_event_source_mapping.dart'
     show
         AwsLambdaEventSourceMapping,
         LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfig,
-        LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOption,
         LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig,
+        LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfigAmazonManagedKafkaEventSourceConfig,
+        LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfigSelfManagedKafkaEventSourceConfig,
         LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfig,
         LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfig,
         LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfigType,
@@ -32,8 +33,9 @@ export 'src/lambda/aws_lambda_event_source_mapping.dart'
         LambdaEventSourceMappingDestinationConfigOnFailure,
         LambdaEventSourceMappingDocumentDbEventSourceConfig,
         LambdaEventSourceMappingDocumentDbEventSourceConfigFullDocument,
-        LambdaEventSourceMappingEventSourceArnOption,
         LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSource,
+        LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceEventSourceArn,
+        LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceSelfManagedEventSource,
         LambdaEventSourceMappingFilterCriteria,
         LambdaEventSourceMappingFilterCriteriaFilter,
         LambdaEventSourceMappingFunctionResponseTypes,
@@ -42,9 +44,7 @@ export 'src/lambda/aws_lambda_event_source_mapping.dart'
         LambdaEventSourceMappingProvisionedPollerConfig,
         LambdaEventSourceMappingScalingConfig,
         LambdaEventSourceMappingSelfManagedEventSource,
-        LambdaEventSourceMappingSelfManagedEventSourceOption,
         LambdaEventSourceMappingSelfManagedKafkaEventSourceConfig,
-        LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigOption,
         LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfig,
         LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfig,
         LambdaEventSourceMappingSelfManagedKafkaEventSourceConfigSchemaRegistryConfigAccessConfigType,
@@ -65,10 +65,11 @@ export 'src/lambda/aws_lambda_function.dart'
         LambdaFunctionEnvironment,
         LambdaFunctionEphemeralStorage,
         LambdaFunctionFileSystemConfig,
-        LambdaFunctionFilenameOption,
         LambdaFunctionFilenameOrImageUriOrS3Bucket,
+        LambdaFunctionFilenameOrImageUriOrS3BucketFilename,
+        LambdaFunctionFilenameOrImageUriOrS3BucketImageUri,
+        LambdaFunctionFilenameOrImageUriOrS3BucketS3Bucket,
         LambdaFunctionImageConfig,
-        LambdaFunctionImageUriOption,
         LambdaFunctionLoggingConfig,
         LambdaFunctionLoggingConfigApplicationLogLevel,
         LambdaFunctionLoggingConfigLogFormat,
@@ -76,7 +77,6 @@ export 'src/lambda/aws_lambda_function.dart'
         LambdaFunctionPackageType,
         LambdaFunctionPublishTo,
         LambdaFunctionRuntime,
-        LambdaFunctionS3BucketOption,
         LambdaFunctionSnapStart,
         LambdaFunctionSnapStartApplyOn,
         LambdaFunctionTenancyConfig,
@@ -117,9 +117,9 @@ export 'src/lambda/aws_lambda_permission.dart'
     show
         AwsLambdaPermission,
         LambdaPermissionFunctionUrlAuthType,
-        LambdaPermissionStatementIdOption,
         LambdaPermissionStatementIdOrStatementIdPrefix,
-        LambdaPermissionStatementIdPrefixOption;
+        LambdaPermissionStatementIdOrStatementIdPrefixStatementId,
+        LambdaPermissionStatementIdOrStatementIdPrefixStatementIdPrefix;
 export 'src/lambda/aws_lambda_provisioned_concurrency_config.dart'
     show AwsLambdaProvisionedConcurrencyConfig;
 export 'src/lambda/aws_lambda_resource_policy.dart'

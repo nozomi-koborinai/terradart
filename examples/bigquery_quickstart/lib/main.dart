@@ -184,14 +184,13 @@ final class AnalyticsStack extends Stack {
         dataExchangeId: TfArg.literal('shared-exchange'),
         listingId: TfArg.literal('events-listing'),
         displayName: TfArg.literal('Events dataset listing'),
-        pubsubTopicOrBigqueryDataset:
-            BigqueryAnalyticsHubListingBigqueryDatasetOption(
-              bigqueryDataset: BigqueryAnalyticsHubListingBigqueryDataset(
-                dataset: TfArg.literal(
-                  'projects/$projectId/datasets/analytics_prod',
-                ),
-              ),
+        pubsubTopicOrBigqueryDataset: .bigqueryDataset(
+          BigqueryAnalyticsHubListingBigqueryDataset(
+            dataset: TfArg.literal(
+              'projects/$projectId/datasets/analytics_prod',
             ),
+          ),
+        ),
         dependsOn: [ResourceDependency(exchange)],
       ),
     );
@@ -399,8 +398,8 @@ final class AnalyticsStack extends Stack {
         datasetId: TfArg.ref(dataset.datasetIdRef),
         role: TfArg.literal('READER'),
         userByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine:
-            BigqueryDatasetAccessSpecialGroupOption(
-              specialGroup: TfArg.literal(
+            .specialGroup(
+              TfArg.literal(
                 BigqueryDatasetAccessPredefinedGroup.projectWriters,
               ),
             ),

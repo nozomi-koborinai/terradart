@@ -208,8 +208,20 @@ final class PrivatecaCertificateConfig {
 
 /// Exactly one of `pem_csr`, `config` on `google_privateca_certificate`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.pemCsr(...)`.
 sealed class PrivatecaCertificatePemCsrOrConfig {
   const PrivatecaCertificatePemCsrOrConfig();
+
+  /// Sets `pem_csr`.
+  const factory PrivatecaCertificatePemCsrOrConfig.pemCsr(
+    TfArg<String> pemCsr,
+  ) = PrivatecaCertificatePemCsrOrConfigPemCsr;
+
+  /// Sets `config`.
+  const factory PrivatecaCertificatePemCsrOrConfig.config(
+    PrivatecaCertificateConfig config,
+  ) = PrivatecaCertificatePemCsrOrConfigConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -221,10 +233,10 @@ sealed class PrivatecaCertificatePemCsrOrConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `pem_csr` (one of the [PrivatecaCertificatePemCsrOrConfig] choices).
-final class PrivatecaCertificatePemCsrOption
+/// The [PrivatecaCertificatePemCsrOrConfig.pemCsr] choice: sets `pem_csr`.
+final class PrivatecaCertificatePemCsrOrConfigPemCsr
     extends PrivatecaCertificatePemCsrOrConfig {
-  const PrivatecaCertificatePemCsrOption({required this.pemCsr});
+  const PrivatecaCertificatePemCsrOrConfigPemCsr(this.pemCsr);
 
   final TfArg<String> pemCsr;
 
@@ -238,10 +250,10 @@ final class PrivatecaCertificatePemCsrOption
   Map<String, TfArg<Object?>> get argMap => {'pem_csr': pemCsr};
 }
 
-/// Sets `config` (one of the [PrivatecaCertificatePemCsrOrConfig] choices).
-final class PrivatecaCertificateConfigOption
+/// The [PrivatecaCertificatePemCsrOrConfig.config] choice: sets `config`.
+final class PrivatecaCertificatePemCsrOrConfigConfig
     extends PrivatecaCertificatePemCsrOrConfig {
-  const PrivatecaCertificateConfigOption({required this.config});
+  const PrivatecaCertificatePemCsrOrConfigConfig(this.config);
 
   final PrivatecaCertificateConfig config;
 

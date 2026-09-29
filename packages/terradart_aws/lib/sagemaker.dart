@@ -83,9 +83,9 @@ export 'src/sagemaker/aws_sagemaker_app.dart'
         SagemakerAppAppType,
         SagemakerAppResourceSpec,
         SagemakerAppResourceSpecInstanceType,
-        SagemakerAppSpaceNameOption,
         SagemakerAppSpaceNameOrUserProfileName,
-        SagemakerAppUserProfileNameOption;
+        SagemakerAppSpaceNameOrUserProfileNameSpaceName,
+        SagemakerAppSpaceNameOrUserProfileNameUserProfileName;
 export 'src/sagemaker/aws_sagemaker_app_image_config.dart'
     show
         AwsSagemakerAppImageConfig,
@@ -243,8 +243,9 @@ export 'src/sagemaker/aws_sagemaker_endpoint.dart'
         SagemakerEndpointDeploymentConfigAutoRollbackConfiguration,
         SagemakerEndpointDeploymentConfigAutoRollbackConfigurationAlarms,
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicy,
-        SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOption,
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicy,
+        SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicyBlueGreenUpdatePolicy,
+        SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicyRollingUpdatePolicy,
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfiguration,
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySize,
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySizeType,
@@ -254,7 +255,6 @@ export 'src/sagemaker/aws_sagemaker_endpoint.dart'
         SagemakerEndpointDeploymentConfigRollingUpdatePolicy,
         SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSize,
         SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSizeType,
-        SagemakerEndpointDeploymentConfigRollingUpdatePolicyOption,
         SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSize,
         SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSizeType;
 export 'src/sagemaker/aws_sagemaker_endpoint_configuration.dart'
@@ -269,9 +269,9 @@ export 'src/sagemaker/aws_sagemaker_endpoint_configuration.dart'
         SagemakerEndpointConfigurationDataCaptureConfigCaptureContentTypeHeader,
         SagemakerEndpointConfigurationDataCaptureConfigCaptureOptions,
         SagemakerEndpointConfigurationDataCaptureConfigCaptureOptionsCaptureMode,
-        SagemakerEndpointConfigurationNameOption,
         SagemakerEndpointConfigurationNameOrNamePrefix,
-        SagemakerEndpointConfigurationNamePrefixOption,
+        SagemakerEndpointConfigurationNameOrNamePrefixName,
+        SagemakerEndpointConfigurationNameOrNamePrefixNamePrefix,
         SagemakerEndpointConfigurationProductionVariants,
         SagemakerEndpointConfigurationProductionVariantsAcceleratorType,
         SagemakerEndpointConfigurationProductionVariantsCapacityReservationConfig,
@@ -358,10 +358,10 @@ export 'src/sagemaker/aws_sagemaker_hyper_parameter_tuning_job.dart'
         SagemakerHyperParameterTuningJobConfigTuningJobCompletionCriteriaConvergenceDetectedCompleteOnConvergence,
         SagemakerHyperParameterTuningJobTrainingJobDefinition,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecification,
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOption,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage,
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImageAlgorithmName,
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImageTrainingImage,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationMetricDefinitions,
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationTrainingImageOption,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationTrainingInputMode,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionCheckpointConfig,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterRanges,
@@ -376,8 +376,9 @@ export 'src/sagemaker/aws_sagemaker_hyper_parameter_tuning_job.dart'
         SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigInstanceConfigs,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigInstanceConfigsInstanceType,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigInstanceType,
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOption,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig,
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfigHyperParameterTuningResourceConfig,
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfigResourceConfig,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionInputDataConfig,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionInputDataConfigCompressionType,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionInputDataConfigDataSource,
@@ -400,17 +401,16 @@ export 'src/sagemaker/aws_sagemaker_hyper_parameter_tuning_job.dart'
         SagemakerHyperParameterTuningJobTrainingJobDefinitionResourceConfigInstancePlacementConfig,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionResourceConfigInstancePlacementConfigPlacementSpecifications,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionResourceConfigInstanceType,
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionResourceConfigOption,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionStoppingCondition,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionTuningObjective,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionTuningObjectiveType,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionVpcConfig,
         SagemakerHyperParameterTuningJobTrainingJobDefinitions,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecification,
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOption,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage,
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImageAlgorithmName,
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImageTrainingImage,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationMetricDefinitions,
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationTrainingImageOption,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationTrainingInputMode,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsCheckpointConfig,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterRanges,
@@ -425,8 +425,9 @@ export 'src/sagemaker/aws_sagemaker_hyper_parameter_tuning_job.dart'
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigInstanceConfigs,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigInstanceConfigsInstanceType,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigInstanceType,
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOption,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig,
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfigHyperParameterTuningResourceConfig,
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfigResourceConfig,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsInputDataConfig,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsInputDataConfigCompressionType,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsInputDataConfigDataSource,
@@ -449,7 +450,6 @@ export 'src/sagemaker/aws_sagemaker_hyper_parameter_tuning_job.dart'
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourceConfigInstancePlacementConfig,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourceConfigInstancePlacementConfigPlacementSpecifications,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourceConfigInstanceType,
-        SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourceConfigOption,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsStoppingCondition,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsTuningObjective,
         SagemakerHyperParameterTuningJobTrainingJobDefinitionsTuningObjectiveType,
@@ -588,10 +588,10 @@ export 'src/sagemaker/aws_sagemaker_pipeline.dart'
     show
         AwsSagemakerPipeline,
         SagemakerPipelineParallelismConfiguration,
-        SagemakerPipelinePipelineDefinitionOption,
         SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location,
-        SagemakerPipelinePipelineDefinitionS3Location,
-        SagemakerPipelinePipelineDefinitionS3LocationOption;
+        SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinition,
+        SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinitionS3Location,
+        SagemakerPipelinePipelineDefinitionS3Location;
 export 'src/sagemaker/aws_sagemaker_project.dart'
     show
         AwsSagemakerProject,
@@ -760,10 +760,10 @@ export 'src/sagemaker/aws_sagemaker_workforce.dart'
     show
         AwsSagemakerWorkforce,
         SagemakerWorkforceCognitoConfig,
-        SagemakerWorkforceCognitoConfigOption,
         SagemakerWorkforceCognitoConfigOrOidcConfig,
+        SagemakerWorkforceCognitoConfigOrOidcConfigCognitoConfig,
+        SagemakerWorkforceCognitoConfigOrOidcConfigOidcConfig,
         SagemakerWorkforceOidcConfig,
-        SagemakerWorkforceOidcConfigOption,
         SagemakerWorkforceSourceIpConfig,
         SagemakerWorkforceWorkforceVpcConfig;
 export 'src/sagemaker/aws_sagemaker_workteam.dart'
@@ -777,7 +777,7 @@ export 'src/sagemaker/aws_sagemaker_workteam.dart'
         SagemakerWorkteamWorkerAccessConfigurationS3Presign,
         SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints,
         SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIp,
-        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOption,
         SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOrVpcSourceIp,
-        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp,
-        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIpOption;
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOrVpcSourceIpSourceIp,
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOrVpcSourceIpVpcSourceIp,
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp;

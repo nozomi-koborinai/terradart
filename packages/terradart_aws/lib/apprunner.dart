@@ -37,14 +37,14 @@ export 'src/apprunner/aws_apprunner_service.dart'
         ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfigurationValues,
         ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationCodeConfigurationValuesRuntime,
         ApprunnerServiceSourceConfigurationCodeRepositoryCodeConfigurationConfigurationSource,
-        ApprunnerServiceSourceConfigurationCodeRepositoryOption,
         ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepository,
+        ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepositoryCodeRepository,
+        ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepositoryImageRepository,
         ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersion,
         ApprunnerServiceSourceConfigurationCodeRepositorySourceCodeVersionType,
         ApprunnerServiceSourceConfigurationImageRepository,
         ApprunnerServiceSourceConfigurationImageRepositoryImageConfiguration,
         ApprunnerServiceSourceConfigurationImageRepositoryImageRepositoryType,
-        ApprunnerServiceSourceConfigurationImageRepositoryOption,
         AwsApprunnerService;
 export 'src/apprunner/aws_apprunner_vpc_connector.dart'
     show AwsApprunnerVpcConnector;

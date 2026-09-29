@@ -9,8 +9,25 @@ const Set<String> _awsRedshiftDataShareConsumerAssociationSensitive =
 
 /// Exactly one of `associate_entire_account`, `consumer_arn`, `consumer_region` on `aws_redshift_data_share_consumer_association`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.associateEntireAccount(...)`.
 sealed class RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion {
   const RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion();
+
+  /// Sets `associate_entire_account`.
+  const factory RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion.associateEntireAccount(
+    TfArg<bool> associateEntireAccount,
+  ) = RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionAssociateEntireAccount;
+
+  /// Sets `consumer_arn`.
+  const factory RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion.consumerArn(
+    TfArg<String> consumerArn,
+  ) = RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerArn;
+
+  /// Sets `consumer_region`.
+  const factory RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion.consumerRegion(
+    TfArg<String> consumerRegion,
+  ) = RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerRegion;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,13 +39,13 @@ sealed class RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsume
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `associate_entire_account` (one of the [RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion] choices).
-final class RedshiftDataShareConsumerAssociationAssociateEntireAccountOption
+/// The [RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion.associateEntireAccount] choice: sets `associate_entire_account`.
+final class RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionAssociateEntireAccount
     extends
         RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion {
-  const RedshiftDataShareConsumerAssociationAssociateEntireAccountOption({
-    required this.associateEntireAccount,
-  });
+  const RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionAssociateEntireAccount(
+    this.associateEntireAccount,
+  );
 
   final TfArg<bool> associateEntireAccount;
 
@@ -46,13 +63,13 @@ final class RedshiftDataShareConsumerAssociationAssociateEntireAccountOption
   };
 }
 
-/// Sets `consumer_arn` (one of the [RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion] choices).
-final class RedshiftDataShareConsumerAssociationConsumerArnOption
+/// The [RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion.consumerArn] choice: sets `consumer_arn`.
+final class RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerArn
     extends
         RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion {
-  const RedshiftDataShareConsumerAssociationConsumerArnOption({
-    required this.consumerArn,
-  });
+  const RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerArn(
+    this.consumerArn,
+  );
 
   final TfArg<String> consumerArn;
 
@@ -66,13 +83,13 @@ final class RedshiftDataShareConsumerAssociationConsumerArnOption
   Map<String, TfArg<Object?>> get argMap => {'consumer_arn': consumerArn};
 }
 
-/// Sets `consumer_region` (one of the [RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion] choices).
-final class RedshiftDataShareConsumerAssociationConsumerRegionOption
+/// The [RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion.consumerRegion] choice: sets `consumer_region`.
+final class RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerRegion
     extends
         RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion {
-  const RedshiftDataShareConsumerAssociationConsumerRegionOption({
-    required this.consumerRegion,
-  });
+  const RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerRegion(
+    this.consumerRegion,
+  );
 
   final TfArg<String> consumerRegion;
 

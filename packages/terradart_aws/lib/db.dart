@@ -7,9 +7,9 @@ export 'src/db/aws_db_cluster_snapshot.dart' show AwsDbClusterSnapshot;
 export 'src/db/aws_db_event_subscription.dart'
     show
         AwsDbEventSubscription,
-        DbEventSubscriptionNameOption,
         DbEventSubscriptionNameOrNamePrefix,
-        DbEventSubscriptionNamePrefixOption,
+        DbEventSubscriptionNameOrNamePrefixName,
+        DbEventSubscriptionNameOrNamePrefixNamePrefix,
         DbEventSubscriptionSourceType;
 export 'src/db/aws_db_instance.dart'
     show
@@ -19,19 +19,19 @@ export 'src/db/aws_db_instance.dart'
         DbInstanceDatabaseInsightsMode,
         DbInstanceEnabledCloudwatchLogsExports,
         DbInstanceEngineLifecycleSupport,
-        DbInstanceIdentifierOption,
         DbInstanceIdentifierOrIdentifierPrefix,
-        DbInstanceIdentifierPrefixOption,
-        DbInstanceManageMasterUserPasswordOption,
+        DbInstanceIdentifierOrIdentifierPrefixIdentifier,
+        DbInstanceIdentifierOrIdentifierPrefixIdentifierPrefix,
         DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo,
+        DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoManageMasterUserPassword,
+        DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPassword,
+        DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPasswordWo,
         DbInstanceNetworkType,
-        DbInstancePasswordOption,
-        DbInstancePasswordWoOption,
         DbInstanceReplicaMode,
         DbInstanceRestoreToPointInTime,
-        DbInstanceRestoreToPointInTimeRestoreTimeOption,
         DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime,
-        DbInstanceRestoreToPointInTimeUseLatestRestorableTimeOption,
+        DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeRestoreTime,
+        DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeUseLatestRestorableTime,
         DbInstanceS3Import;
 export 'src/db/aws_db_instance_automated_backups_replication.dart'
     show AwsDbInstanceAutomatedBackupsReplication;
@@ -40,17 +40,17 @@ export 'src/db/aws_db_instance_role_association.dart'
 export 'src/db/aws_db_option_group.dart'
     show
         AwsDbOptionGroup,
-        DbOptionGroupNameOption,
         DbOptionGroupNameOrNamePrefix,
-        DbOptionGroupNamePrefixOption,
+        DbOptionGroupNameOrNamePrefixName,
+        DbOptionGroupNameOrNamePrefixNamePrefix,
         DbOptionGroupOption,
         DbOptionGroupOptionOptionSettings;
 export 'src/db/aws_db_parameter_group.dart'
     show
         AwsDbParameterGroup,
-        DbParameterGroupNameOption,
         DbParameterGroupNameOrNamePrefix,
-        DbParameterGroupNamePrefixOption,
+        DbParameterGroupNameOrNamePrefixName,
+        DbParameterGroupNameOrNamePrefixNamePrefix,
         DbParameterGroupParameter,
         DbParameterGroupParameterApplyMethod;
 export 'src/db/aws_db_proxy.dart'
@@ -74,14 +74,14 @@ export 'src/db/aws_db_proxy_endpoint.dart'
 export 'src/db/aws_db_proxy_target.dart'
     show
         AwsDbProxyTarget,
-        DbProxyTargetDbClusterIdentifierOption,
         DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier,
-        DbProxyTargetDbInstanceIdentifierOption;
+        DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifierDbClusterIdentifier,
+        DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifierDbInstanceIdentifier;
 export 'src/db/aws_db_snapshot.dart' show AwsDbSnapshot;
 export 'src/db/aws_db_snapshot_copy.dart' show AwsDbSnapshotCopy;
 export 'src/db/aws_db_subnet_group.dart'
     show
         AwsDbSubnetGroup,
-        DbSubnetGroupNameOption,
         DbSubnetGroupNameOrNamePrefix,
-        DbSubnetGroupNamePrefixOption;
+        DbSubnetGroupNameOrNamePrefixName,
+        DbSubnetGroupNameOrNamePrefixNamePrefix;

@@ -9,8 +9,20 @@ const Set<String> _googleComputeVpnTunnelSensitive = <String>{'shared_secret'};
 /// At most one of `peer_external_gateway`, `peer_gcp_gateway` on `google_compute_vpn_tunnel`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.peerExternalGateway(...)`.
 sealed class ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway {
   const ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway();
+
+  /// Sets `peer_external_gateway`.
+  const factory ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway.peerExternalGateway(
+    TfArg<String> peerExternalGateway,
+  ) = ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerExternalGateway;
+
+  /// Sets `peer_gcp_gateway`.
+  const factory ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway.peerGcpGateway(
+    TfArg<String> peerGcpGateway,
+  ) = ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerGcpGateway;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,12 +34,12 @@ sealed class ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `peer_external_gateway` (one of the [ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway] choices).
-final class ComputeVpnTunnelPeerExternalGatewayOption
+/// The [ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway.peerExternalGateway] choice: sets `peer_external_gateway`.
+final class ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerExternalGateway
     extends ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway {
-  const ComputeVpnTunnelPeerExternalGatewayOption({
-    required this.peerExternalGateway,
-  });
+  const ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerExternalGateway(
+    this.peerExternalGateway,
+  );
 
   final TfArg<String> peerExternalGateway;
 
@@ -45,10 +57,12 @@ final class ComputeVpnTunnelPeerExternalGatewayOption
   };
 }
 
-/// Sets `peer_gcp_gateway` (one of the [ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway] choices).
-final class ComputeVpnTunnelPeerGcpGatewayOption
+/// The [ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway.peerGcpGateway] choice: sets `peer_gcp_gateway`.
+final class ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerGcpGateway
     extends ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway {
-  const ComputeVpnTunnelPeerGcpGatewayOption({required this.peerGcpGateway});
+  const ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerGcpGateway(
+    this.peerGcpGateway,
+  );
 
   final TfArg<String> peerGcpGateway;
 

@@ -9,8 +9,19 @@ const Set<String> _awsMemorydbAclSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_memorydb_acl`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class MemorydbAclNameOrNamePrefix {
   const MemorydbAclNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory MemorydbAclNameOrNamePrefix.name(TfArg<String> name) =
+      MemorydbAclNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory MemorydbAclNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = MemorydbAclNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,9 +33,10 @@ sealed class MemorydbAclNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [MemorydbAclNameOrNamePrefix] choices).
-final class MemorydbAclNameOption extends MemorydbAclNameOrNamePrefix {
-  const MemorydbAclNameOption({required this.name});
+/// The [MemorydbAclNameOrNamePrefix.name] choice: sets `name`.
+final class MemorydbAclNameOrNamePrefixName
+    extends MemorydbAclNameOrNamePrefix {
+  const MemorydbAclNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -38,9 +50,10 @@ final class MemorydbAclNameOption extends MemorydbAclNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [MemorydbAclNameOrNamePrefix] choices).
-final class MemorydbAclNamePrefixOption extends MemorydbAclNameOrNamePrefix {
-  const MemorydbAclNamePrefixOption({required this.namePrefix});
+/// The [MemorydbAclNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class MemorydbAclNameOrNamePrefixNamePrefix
+    extends MemorydbAclNameOrNamePrefix {
+  const MemorydbAclNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

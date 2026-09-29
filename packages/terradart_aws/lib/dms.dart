@@ -6,9 +6,9 @@ library;
 export 'src/dms/aws_dms_certificate.dart'
     show
         AwsDmsCertificate,
-        DmsCertificateCertificatePemOption,
         DmsCertificateCertificatePemOrCertificateWallet,
-        DmsCertificateCertificateWalletOption;
+        DmsCertificateCertificatePemOrCertificateWalletCertificatePem,
+        DmsCertificateCertificatePemOrCertificateWalletCertificateWallet;
 export 'src/dms/aws_dms_data_provider.dart'
     show
         AwsDmsDataProvider,
@@ -85,9 +85,9 @@ export 'src/dms/aws_dms_replication_subnet_group.dart'
 export 'src/dms/aws_dms_replication_task.dart'
     show
         AwsDmsReplicationTask,
-        DmsReplicationTaskCdcStartPositionOption,
         DmsReplicationTaskCdcStartPositionOrCdcStartTime,
-        DmsReplicationTaskCdcStartTimeOption,
+        DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartPosition,
+        DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartTime,
         DmsReplicationTaskMigrationType;
 export 'src/dms/aws_dms_s3_endpoint.dart'
     show

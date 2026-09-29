@@ -31,9 +31,9 @@ export 'src/firebase/google_firebase_extensions_instance.dart'
         GoogleFirebaseExtensionsInstance;
 export 'src/firebase/google_firebase_hosting_channel.dart'
     show
-        FirebaseHostingChannelExpireTimeOption,
         FirebaseHostingChannelExpireTimeOrTtl,
-        FirebaseHostingChannelTtlOption,
+        FirebaseHostingChannelExpireTimeOrTtlExpireTime,
+        FirebaseHostingChannelExpireTimeOrTtlTtl,
         GoogleFirebaseHostingChannel;
 export 'src/firebase/google_firebase_hosting_custom_domain.dart'
     show

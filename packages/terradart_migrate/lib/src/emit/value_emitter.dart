@@ -827,7 +827,8 @@ final class ValueEmitter {
       sub.checkClaimed();
       candidate.claimed.add(key);
     }
-    return '$className($args)';
+    final shorthand = helper.shorthand;
+    return shorthand == null ? '$className($args)' : '.$shorthand($args)';
   }
 
   String _passthrough(MigrateSlot slot, Expr value, {required String path}) {

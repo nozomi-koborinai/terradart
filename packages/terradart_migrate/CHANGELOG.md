@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- `MigrateHelper.shorthand`: a sealed variant whose sealed type declares a factory constructor for it migrates to the dot shorthand `.member(value)` (`filenameOrImageUriOrS3Bucket: .filename(TfArg.literal(r'f.zip'))`, `replication: .auto()`) instead of naming the variant class.
 - A migrated package's generated `pubspec.yaml` declares `sdk: ^3.10.0` (was `^3.6.0`), the minimum of the `terradart_*` packages it depends on.
 - An optional merged `sealed` slot (the nullable at-most-one sealed arguments `terradart wrap` derives) migrates to nothing when none of its keys is set, to the variant of the one that is set, and keeps a block that sets more than one in Terraform.
 - pub.dev: add `example/main.dart` (`migrateModule` on an inline module), dartdoc on every public member, and a `pubspec.yaml` description short enough for the pub.dev score (180 characters at most). No API changes.

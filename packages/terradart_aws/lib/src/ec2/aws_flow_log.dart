@@ -31,8 +31,40 @@ enum FlowLogTrafficType implements TerraformEnum {
 
 /// Exactly one of `eni_id`, `regional_nat_gateway_id`, `subnet_id`, `transit_gateway_attachment_id`, `transit_gateway_id`, `vpc_id` on `aws_flow_log`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.eniId(...)`.
 sealed class FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId {
   const FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId();
+
+  /// Sets `eni_id`.
+  const factory FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId.eniId(
+    TfArg<String> eniId,
+  ) = FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdEniId;
+
+  /// Sets `regional_nat_gateway_id`.
+  const factory FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId.regionalNatGatewayId(
+    TfArg<String> regionalNatGatewayId,
+  ) = FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdRegionalNatGatewayId;
+
+  /// Sets `subnet_id`.
+  const factory FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId.subnetId(
+    TfArg<String> subnetId,
+  ) = FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdSubnetId;
+
+  /// Sets `transit_gateway_attachment_id`.
+  const factory FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId.transitGatewayAttachmentId(
+    TfArg<String> transitGatewayAttachmentId,
+  ) = FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdTransitGatewayAttachmentId;
+
+  /// Sets `transit_gateway_id`.
+  const factory FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId.transitGatewayId(
+    TfArg<String> transitGatewayId,
+  ) = FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdTransitGatewayId;
+
+  /// Sets `vpc_id`.
+  const factory FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId.vpcId(
+    TfArg<String> vpcId,
+  ) = FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdVpcId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,11 +76,13 @@ sealed class FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachm
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `eni_id` (one of the [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId] choices).
-final class FlowLogEniIdOption
+/// The [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId.eniId] choice: sets `eni_id`.
+final class FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdEniId
     extends
         FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId {
-  const FlowLogEniIdOption({required this.eniId});
+  const FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdEniId(
+    this.eniId,
+  );
 
   final TfArg<String> eniId;
 
@@ -62,11 +96,13 @@ final class FlowLogEniIdOption
   Map<String, TfArg<Object?>> get argMap => {'eni_id': eniId};
 }
 
-/// Sets `regional_nat_gateway_id` (one of the [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId] choices).
-final class FlowLogRegionalNatGatewayIdOption
+/// The [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId.regionalNatGatewayId] choice: sets `regional_nat_gateway_id`.
+final class FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdRegionalNatGatewayId
     extends
         FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId {
-  const FlowLogRegionalNatGatewayIdOption({required this.regionalNatGatewayId});
+  const FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdRegionalNatGatewayId(
+    this.regionalNatGatewayId,
+  );
 
   final TfArg<String> regionalNatGatewayId;
 
@@ -84,11 +120,13 @@ final class FlowLogRegionalNatGatewayIdOption
   };
 }
 
-/// Sets `subnet_id` (one of the [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId] choices).
-final class FlowLogSubnetIdOption
+/// The [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId.subnetId] choice: sets `subnet_id`.
+final class FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdSubnetId
     extends
         FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId {
-  const FlowLogSubnetIdOption({required this.subnetId});
+  const FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdSubnetId(
+    this.subnetId,
+  );
 
   final TfArg<String> subnetId;
 
@@ -102,13 +140,13 @@ final class FlowLogSubnetIdOption
   Map<String, TfArg<Object?>> get argMap => {'subnet_id': subnetId};
 }
 
-/// Sets `transit_gateway_attachment_id` (one of the [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId] choices).
-final class FlowLogTransitGatewayAttachmentIdOption
+/// The [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId.transitGatewayAttachmentId] choice: sets `transit_gateway_attachment_id`.
+final class FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdTransitGatewayAttachmentId
     extends
         FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId {
-  const FlowLogTransitGatewayAttachmentIdOption({
-    required this.transitGatewayAttachmentId,
-  });
+  const FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdTransitGatewayAttachmentId(
+    this.transitGatewayAttachmentId,
+  );
 
   final TfArg<String> transitGatewayAttachmentId;
 
@@ -126,11 +164,13 @@ final class FlowLogTransitGatewayAttachmentIdOption
   };
 }
 
-/// Sets `transit_gateway_id` (one of the [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId] choices).
-final class FlowLogTransitGatewayIdOption
+/// The [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId.transitGatewayId] choice: sets `transit_gateway_id`.
+final class FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdTransitGatewayId
     extends
         FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId {
-  const FlowLogTransitGatewayIdOption({required this.transitGatewayId});
+  const FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdTransitGatewayId(
+    this.transitGatewayId,
+  );
 
   final TfArg<String> transitGatewayId;
 
@@ -148,11 +188,13 @@ final class FlowLogTransitGatewayIdOption
   };
 }
 
-/// Sets `vpc_id` (one of the [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId] choices).
-final class FlowLogVpcIdOption
+/// The [FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId.vpcId] choice: sets `vpc_id`.
+final class FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdVpcId
     extends
         FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcId {
-  const FlowLogVpcIdOption({required this.vpcId});
+  const FlowLogEniIdOrRegionalNatGatewayIdOrSubnetIdOrTransitGatewayAttachmentIdOrTransitGatewayIdOrVpcIdVpcId(
+    this.vpcId,
+  );
 
   final TfArg<String> vpcId;
 

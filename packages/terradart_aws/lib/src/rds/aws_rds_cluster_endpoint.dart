@@ -19,8 +19,20 @@ enum RdsClusterEndpointCustomEndpointType implements TerraformEnum {
 /// At most one of `excluded_members`, `static_members` on `aws_rds_cluster_endpoint`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.excludedMembers(...)`.
 sealed class RdsClusterEndpointExcludedMembersOrStaticMembers {
   const RdsClusterEndpointExcludedMembersOrStaticMembers();
+
+  /// Sets `excluded_members`.
+  const factory RdsClusterEndpointExcludedMembersOrStaticMembers.excludedMembers(
+    TfArg<List<String>> excludedMembers,
+  ) = RdsClusterEndpointExcludedMembersOrStaticMembersExcludedMembers;
+
+  /// Sets `static_members`.
+  const factory RdsClusterEndpointExcludedMembersOrStaticMembers.staticMembers(
+    TfArg<List<String>> staticMembers,
+  ) = RdsClusterEndpointExcludedMembersOrStaticMembersStaticMembers;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,12 +44,12 @@ sealed class RdsClusterEndpointExcludedMembersOrStaticMembers {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `excluded_members` (one of the [RdsClusterEndpointExcludedMembersOrStaticMembers] choices).
-final class RdsClusterEndpointExcludedMembersOption
+/// The [RdsClusterEndpointExcludedMembersOrStaticMembers.excludedMembers] choice: sets `excluded_members`.
+final class RdsClusterEndpointExcludedMembersOrStaticMembersExcludedMembers
     extends RdsClusterEndpointExcludedMembersOrStaticMembers {
-  const RdsClusterEndpointExcludedMembersOption({
-    required this.excludedMembers,
-  });
+  const RdsClusterEndpointExcludedMembersOrStaticMembersExcludedMembers(
+    this.excludedMembers,
+  );
 
   final TfArg<List<String>> excludedMembers;
 
@@ -55,10 +67,12 @@ final class RdsClusterEndpointExcludedMembersOption
   };
 }
 
-/// Sets `static_members` (one of the [RdsClusterEndpointExcludedMembersOrStaticMembers] choices).
-final class RdsClusterEndpointStaticMembersOption
+/// The [RdsClusterEndpointExcludedMembersOrStaticMembers.staticMembers] choice: sets `static_members`.
+final class RdsClusterEndpointExcludedMembersOrStaticMembersStaticMembers
     extends RdsClusterEndpointExcludedMembersOrStaticMembers {
-  const RdsClusterEndpointStaticMembersOption({required this.staticMembers});
+  const RdsClusterEndpointExcludedMembersOrStaticMembersStaticMembers(
+    this.staticMembers,
+  );
 
   final TfArg<List<String>> staticMembers;
 

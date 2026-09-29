@@ -9,8 +9,20 @@ const Set<String> _awsVpcIpamPoolCidrAllocationSensitive = <String>{};
 /// At most one of `cidr`, `netmask_length` on `aws_vpc_ipam_pool_cidr_allocation`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.cidr(...)`.
 sealed class VpcIpamPoolCidrAllocationCidrOrNetmaskLength {
   const VpcIpamPoolCidrAllocationCidrOrNetmaskLength();
+
+  /// Sets `cidr`.
+  const factory VpcIpamPoolCidrAllocationCidrOrNetmaskLength.cidr(
+    TfArg<String> cidr,
+  ) = VpcIpamPoolCidrAllocationCidrOrNetmaskLengthCidr;
+
+  /// Sets `netmask_length`.
+  const factory VpcIpamPoolCidrAllocationCidrOrNetmaskLength.netmaskLength(
+    TfArg<num> netmaskLength,
+  ) = VpcIpamPoolCidrAllocationCidrOrNetmaskLengthNetmaskLength;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +34,10 @@ sealed class VpcIpamPoolCidrAllocationCidrOrNetmaskLength {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `cidr` (one of the [VpcIpamPoolCidrAllocationCidrOrNetmaskLength] choices).
-final class VpcIpamPoolCidrAllocationCidrOption
+/// The [VpcIpamPoolCidrAllocationCidrOrNetmaskLength.cidr] choice: sets `cidr`.
+final class VpcIpamPoolCidrAllocationCidrOrNetmaskLengthCidr
     extends VpcIpamPoolCidrAllocationCidrOrNetmaskLength {
-  const VpcIpamPoolCidrAllocationCidrOption({required this.cidr});
+  const VpcIpamPoolCidrAllocationCidrOrNetmaskLengthCidr(this.cidr);
 
   final TfArg<String> cidr;
 
@@ -39,12 +51,12 @@ final class VpcIpamPoolCidrAllocationCidrOption
   Map<String, TfArg<Object?>> get argMap => {'cidr': cidr};
 }
 
-/// Sets `netmask_length` (one of the [VpcIpamPoolCidrAllocationCidrOrNetmaskLength] choices).
-final class VpcIpamPoolCidrAllocationNetmaskLengthOption
+/// The [VpcIpamPoolCidrAllocationCidrOrNetmaskLength.netmaskLength] choice: sets `netmask_length`.
+final class VpcIpamPoolCidrAllocationCidrOrNetmaskLengthNetmaskLength
     extends VpcIpamPoolCidrAllocationCidrOrNetmaskLength {
-  const VpcIpamPoolCidrAllocationNetmaskLengthOption({
-    required this.netmaskLength,
-  });
+  const VpcIpamPoolCidrAllocationCidrOrNetmaskLengthNetmaskLength(
+    this.netmaskLength,
+  );
 
   final TfArg<num> netmaskLength;
 

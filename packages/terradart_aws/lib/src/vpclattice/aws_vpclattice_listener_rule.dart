@@ -21,8 +21,20 @@ final class VpclatticeListenerRuleAction {
 
 /// Exactly one of `fixed_response`, `forward` on the `action` block of `aws_vpclattice_listener_rule`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.fixedResponse(...)`.
 sealed class VpclatticeListenerRuleActionFixedResponseOrForward {
   const VpclatticeListenerRuleActionFixedResponseOrForward();
+
+  /// Sets `fixed_response`.
+  const factory VpclatticeListenerRuleActionFixedResponseOrForward.fixedResponse(
+    VpclatticeListenerRuleActionFixedResponse fixedResponse,
+  ) = VpclatticeListenerRuleActionFixedResponseOrForwardFixedResponse;
+
+  /// Sets `forward`.
+  const factory VpclatticeListenerRuleActionFixedResponseOrForward.forward(
+    VpclatticeListenerRuleActionForward forward,
+  ) = VpclatticeListenerRuleActionFixedResponseOrForwardForward;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -30,12 +42,12 @@ sealed class VpclatticeListenerRuleActionFixedResponseOrForward {
   Map<String, Object?> encode();
 }
 
-/// Sets `fixed_response` (one of the [VpclatticeListenerRuleActionFixedResponseOrForward] choices).
-final class VpclatticeListenerRuleActionFixedResponseOption
+/// The [VpclatticeListenerRuleActionFixedResponseOrForward.fixedResponse] choice: sets `fixed_response`.
+final class VpclatticeListenerRuleActionFixedResponseOrForwardFixedResponse
     extends VpclatticeListenerRuleActionFixedResponseOrForward {
-  const VpclatticeListenerRuleActionFixedResponseOption({
-    required this.fixedResponse,
-  });
+  const VpclatticeListenerRuleActionFixedResponseOrForwardFixedResponse(
+    this.fixedResponse,
+  );
 
   final VpclatticeListenerRuleActionFixedResponse fixedResponse;
 
@@ -46,10 +58,10 @@ final class VpclatticeListenerRuleActionFixedResponseOption
   Map<String, Object?> encode() => {'fixed_response': fixedResponse.encode()};
 }
 
-/// Sets `forward` (one of the [VpclatticeListenerRuleActionFixedResponseOrForward] choices).
-final class VpclatticeListenerRuleActionForwardOption
+/// The [VpclatticeListenerRuleActionFixedResponseOrForward.forward] choice: sets `forward`.
+final class VpclatticeListenerRuleActionFixedResponseOrForwardForward
     extends VpclatticeListenerRuleActionFixedResponseOrForward {
-  const VpclatticeListenerRuleActionForwardOption({required this.forward});
+  const VpclatticeListenerRuleActionFixedResponseOrForwardForward(this.forward);
 
   final VpclatticeListenerRuleActionForward forward;
 

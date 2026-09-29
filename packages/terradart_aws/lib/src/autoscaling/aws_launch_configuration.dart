@@ -10,8 +10,19 @@ const Set<String> _awsLaunchConfigurationSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_launch_configuration`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class LaunchConfigurationNameOrNamePrefix {
   const LaunchConfigurationNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory LaunchConfigurationNameOrNamePrefix.name(TfArg<String> name) =
+      LaunchConfigurationNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory LaunchConfigurationNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = LaunchConfigurationNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +34,10 @@ sealed class LaunchConfigurationNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [LaunchConfigurationNameOrNamePrefix] choices).
-final class LaunchConfigurationNameOption
+/// The [LaunchConfigurationNameOrNamePrefix.name] choice: sets `name`.
+final class LaunchConfigurationNameOrNamePrefixName
     extends LaunchConfigurationNameOrNamePrefix {
-  const LaunchConfigurationNameOption({required this.name});
+  const LaunchConfigurationNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -40,10 +51,10 @@ final class LaunchConfigurationNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [LaunchConfigurationNameOrNamePrefix] choices).
-final class LaunchConfigurationNamePrefixOption
+/// The [LaunchConfigurationNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class LaunchConfigurationNameOrNamePrefixNamePrefix
     extends LaunchConfigurationNameOrNamePrefix {
-  const LaunchConfigurationNamePrefixOption({required this.namePrefix});
+  const LaunchConfigurationNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -60,8 +71,20 @@ final class LaunchConfigurationNamePrefixOption
 /// At most one of `user_data`, `user_data_base64` on `aws_launch_configuration`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.userData(...)`.
 sealed class LaunchConfigurationUserDataOrUserDataBase64 {
   const LaunchConfigurationUserDataOrUserDataBase64();
+
+  /// Sets `user_data`.
+  const factory LaunchConfigurationUserDataOrUserDataBase64.userData(
+    TfArg<String> userData,
+  ) = LaunchConfigurationUserDataOrUserDataBase64UserData;
+
+  /// Sets `user_data_base64`.
+  const factory LaunchConfigurationUserDataOrUserDataBase64.userDataBase64(
+    TfArg<String> userDataBase64,
+  ) = LaunchConfigurationUserDataOrUserDataBase64UserDataBase64;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -73,10 +96,10 @@ sealed class LaunchConfigurationUserDataOrUserDataBase64 {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `user_data` (one of the [LaunchConfigurationUserDataOrUserDataBase64] choices).
-final class LaunchConfigurationUserDataOption
+/// The [LaunchConfigurationUserDataOrUserDataBase64.userData] choice: sets `user_data`.
+final class LaunchConfigurationUserDataOrUserDataBase64UserData
     extends LaunchConfigurationUserDataOrUserDataBase64 {
-  const LaunchConfigurationUserDataOption({required this.userData});
+  const LaunchConfigurationUserDataOrUserDataBase64UserData(this.userData);
 
   final TfArg<String> userData;
 
@@ -90,10 +113,12 @@ final class LaunchConfigurationUserDataOption
   Map<String, TfArg<Object?>> get argMap => {'user_data': userData};
 }
 
-/// Sets `user_data_base64` (one of the [LaunchConfigurationUserDataOrUserDataBase64] choices).
-final class LaunchConfigurationUserDataBase64Option
+/// The [LaunchConfigurationUserDataOrUserDataBase64.userDataBase64] choice: sets `user_data_base64`.
+final class LaunchConfigurationUserDataOrUserDataBase64UserDataBase64
     extends LaunchConfigurationUserDataOrUserDataBase64 {
-  const LaunchConfigurationUserDataBase64Option({required this.userDataBase64});
+  const LaunchConfigurationUserDataOrUserDataBase64UserDataBase64(
+    this.userDataBase64,
+  );
 
   final TfArg<String> userDataBase64;
 

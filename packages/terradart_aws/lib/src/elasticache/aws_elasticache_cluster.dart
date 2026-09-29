@@ -60,8 +60,20 @@ enum ElasticacheClusterOutpostMode implements TerraformEnum {
 
 /// Exactly one of `engine`, `replication_group_id` on `aws_elasticache_cluster`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.engine(...)`.
 sealed class ElasticacheClusterEngineOrReplicationGroupId {
   const ElasticacheClusterEngineOrReplicationGroupId();
+
+  /// Sets `engine`.
+  const factory ElasticacheClusterEngineOrReplicationGroupId.engine(
+    TfArg<ElasticacheClusterEngine> engine,
+  ) = ElasticacheClusterEngineOrReplicationGroupIdEngine;
+
+  /// Sets `replication_group_id`.
+  const factory ElasticacheClusterEngineOrReplicationGroupId.replicationGroupId(
+    TfArg<String> replicationGroupId,
+  ) = ElasticacheClusterEngineOrReplicationGroupIdReplicationGroupId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -73,10 +85,10 @@ sealed class ElasticacheClusterEngineOrReplicationGroupId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `engine` (one of the [ElasticacheClusterEngineOrReplicationGroupId] choices).
-final class ElasticacheClusterEngineOption
+/// The [ElasticacheClusterEngineOrReplicationGroupId.engine] choice: sets `engine`.
+final class ElasticacheClusterEngineOrReplicationGroupIdEngine
     extends ElasticacheClusterEngineOrReplicationGroupId {
-  const ElasticacheClusterEngineOption({required this.engine});
+  const ElasticacheClusterEngineOrReplicationGroupIdEngine(this.engine);
 
   final TfArg<ElasticacheClusterEngine> engine;
 
@@ -90,12 +102,12 @@ final class ElasticacheClusterEngineOption
   Map<String, TfArg<Object?>> get argMap => {'engine': engine};
 }
 
-/// Sets `replication_group_id` (one of the [ElasticacheClusterEngineOrReplicationGroupId] choices).
-final class ElasticacheClusterReplicationGroupIdOption
+/// The [ElasticacheClusterEngineOrReplicationGroupId.replicationGroupId] choice: sets `replication_group_id`.
+final class ElasticacheClusterEngineOrReplicationGroupIdReplicationGroupId
     extends ElasticacheClusterEngineOrReplicationGroupId {
-  const ElasticacheClusterReplicationGroupIdOption({
-    required this.replicationGroupId,
-  });
+  const ElasticacheClusterEngineOrReplicationGroupIdReplicationGroupId(
+    this.replicationGroupId,
+  );
 
   final TfArg<String> replicationGroupId;
 

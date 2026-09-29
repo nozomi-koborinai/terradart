@@ -47,12 +47,12 @@ export 'src/glue/aws_glue_catalog_table.dart'
         GlueCatalogTableStorageDescriptorColumns,
         GlueCatalogTableStorageDescriptorSchemaReference,
         GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOption,
         GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOption,
+        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionIdSchemaId,
+        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionIdSchemaVersionId,
         GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaNameOption,
-        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaVersionIdOption,
+        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaNameSchemaArn,
+        GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaNameSchemaName,
         GlueCatalogTableStorageDescriptorSerDeInfo,
         GlueCatalogTableStorageDescriptorSkewedInfo,
         GlueCatalogTableStorageDescriptorSortColumns,
@@ -79,15 +79,15 @@ export 'src/glue/aws_glue_classifier.dart'
         GlueClassifierCsvClassifier,
         GlueClassifierCsvClassifierContainsHeader,
         GlueClassifierCsvClassifierCustomDatatypes,
-        GlueClassifierCsvClassifierOption,
         GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier,
+        GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierCsvClassifier,
+        GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierGrokClassifier,
+        GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierJsonClassifier,
+        GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierXmlClassifier,
         GlueClassifierCsvClassifierSerde,
         GlueClassifierGrokClassifier,
-        GlueClassifierGrokClassifierOption,
         GlueClassifierJsonClassifier,
-        GlueClassifierJsonClassifierOption,
-        GlueClassifierXmlClassifier,
-        GlueClassifierXmlClassifierOption;
+        GlueClassifierXmlClassifier;
 export 'src/glue/aws_glue_connection.dart'
     show
         AwsGlueConnection,
@@ -130,9 +130,9 @@ export 'src/glue/aws_glue_data_quality_ruleset.dart'
 export 'src/glue/aws_glue_dev_endpoint.dart'
     show
         AwsGlueDevEndpoint,
-        GlueDevEndpointPublicKeyOption,
         GlueDevEndpointPublicKeyOrPublicKeys,
-        GlueDevEndpointPublicKeysOption,
+        GlueDevEndpointPublicKeyOrPublicKeysPublicKey,
+        GlueDevEndpointPublicKeyOrPublicKeysPublicKeys,
         GlueDevEndpointWorkerType;
 export 'src/glue/aws_glue_job.dart'
     show

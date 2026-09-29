@@ -9,8 +9,19 @@ const Set<String> _awsSecurityGroupSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_security_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class SecurityGroupNameOrNamePrefix {
   const SecurityGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory SecurityGroupNameOrNamePrefix.name(TfArg<String> name) =
+      SecurityGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory SecurityGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = SecurityGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,9 +33,10 @@ sealed class SecurityGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [SecurityGroupNameOrNamePrefix] choices).
-final class SecurityGroupNameOption extends SecurityGroupNameOrNamePrefix {
-  const SecurityGroupNameOption({required this.name});
+/// The [SecurityGroupNameOrNamePrefix.name] choice: sets `name`.
+final class SecurityGroupNameOrNamePrefixName
+    extends SecurityGroupNameOrNamePrefix {
+  const SecurityGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -38,10 +50,10 @@ final class SecurityGroupNameOption extends SecurityGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [SecurityGroupNameOrNamePrefix] choices).
-final class SecurityGroupNamePrefixOption
+/// The [SecurityGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class SecurityGroupNameOrNamePrefixNamePrefix
     extends SecurityGroupNameOrNamePrefix {
-  const SecurityGroupNamePrefixOption({required this.namePrefix});
+  const SecurityGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

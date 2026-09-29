@@ -67,8 +67,19 @@ final class WorkerVersionAssets {
 /// At most one of `directory`, `jwt` on the `assets` block of `cloudflare_worker_version`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.directory(...)`.
 sealed class WorkerVersionAssetsDirectoryOrJwt {
   const WorkerVersionAssetsDirectoryOrJwt();
+
+  /// Sets `directory`.
+  const factory WorkerVersionAssetsDirectoryOrJwt.directory(
+    TfArg<String> directory,
+  ) = WorkerVersionAssetsDirectoryOrJwtDirectory;
+
+  /// Sets `jwt`.
+  const factory WorkerVersionAssetsDirectoryOrJwt.jwt(TfArg<String> jwt) =
+      WorkerVersionAssetsDirectoryOrJwtJwt;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -76,10 +87,10 @@ sealed class WorkerVersionAssetsDirectoryOrJwt {
   Map<String, Object?> encode();
 }
 
-/// Sets `directory` (one of the [WorkerVersionAssetsDirectoryOrJwt] choices).
-final class WorkerVersionAssetsDirectoryOption
+/// The [WorkerVersionAssetsDirectoryOrJwt.directory] choice: sets `directory`.
+final class WorkerVersionAssetsDirectoryOrJwtDirectory
     extends WorkerVersionAssetsDirectoryOrJwt {
-  const WorkerVersionAssetsDirectoryOption({required this.directory});
+  const WorkerVersionAssetsDirectoryOrJwtDirectory(this.directory);
 
   final TfArg<String> directory;
 
@@ -90,10 +101,10 @@ final class WorkerVersionAssetsDirectoryOption
   Map<String, Object?> encode() => {'directory': directory.toTfJson()};
 }
 
-/// Sets `jwt` (one of the [WorkerVersionAssetsDirectoryOrJwt] choices).
-final class WorkerVersionAssetsJwtOption
+/// The [WorkerVersionAssetsDirectoryOrJwt.jwt] choice: sets `jwt`.
+final class WorkerVersionAssetsDirectoryOrJwtJwt
     extends WorkerVersionAssetsDirectoryOrJwt {
-  const WorkerVersionAssetsJwtOption({required this.jwt});
+  const WorkerVersionAssetsDirectoryOrJwtJwt(this.jwt);
 
   final TfArg<String> jwt;
 
@@ -810,8 +821,20 @@ final class WorkerVersionModules {
 
 /// Exactly one of `content_base64`, `content_file` on the `modules` block of `cloudflare_worker_version`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.contentBase64(...)`.
 sealed class WorkerVersionModulesContentBase64OrContentFile {
   const WorkerVersionModulesContentBase64OrContentFile();
+
+  /// Sets `content_base64`.
+  const factory WorkerVersionModulesContentBase64OrContentFile.contentBase64(
+    TfArg<String> contentBase64,
+  ) = WorkerVersionModulesContentBase64OrContentFileContentBase64;
+
+  /// Sets `content_file`.
+  const factory WorkerVersionModulesContentBase64OrContentFile.contentFile(
+    TfArg<String> contentFile,
+  ) = WorkerVersionModulesContentBase64OrContentFileContentFile;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -819,10 +842,12 @@ sealed class WorkerVersionModulesContentBase64OrContentFile {
   Map<String, Object?> encode();
 }
 
-/// Sets `content_base64` (one of the [WorkerVersionModulesContentBase64OrContentFile] choices).
-final class WorkerVersionModulesContentBase64Option
+/// The [WorkerVersionModulesContentBase64OrContentFile.contentBase64] choice: sets `content_base64`.
+final class WorkerVersionModulesContentBase64OrContentFileContentBase64
     extends WorkerVersionModulesContentBase64OrContentFile {
-  const WorkerVersionModulesContentBase64Option({required this.contentBase64});
+  const WorkerVersionModulesContentBase64OrContentFileContentBase64(
+    this.contentBase64,
+  );
 
   final TfArg<String> contentBase64;
 
@@ -833,10 +858,12 @@ final class WorkerVersionModulesContentBase64Option
   Map<String, Object?> encode() => {'content_base64': contentBase64.toTfJson()};
 }
 
-/// Sets `content_file` (one of the [WorkerVersionModulesContentBase64OrContentFile] choices).
-final class WorkerVersionModulesContentFileOption
+/// The [WorkerVersionModulesContentBase64OrContentFile.contentFile] choice: sets `content_file`.
+final class WorkerVersionModulesContentBase64OrContentFileContentFile
     extends WorkerVersionModulesContentBase64OrContentFile {
-  const WorkerVersionModulesContentFileOption({required this.contentFile});
+  const WorkerVersionModulesContentBase64OrContentFileContentFile(
+    this.contentFile,
+  );
 
   final TfArg<String> contentFile;
 

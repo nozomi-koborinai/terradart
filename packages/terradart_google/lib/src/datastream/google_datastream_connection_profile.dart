@@ -29,8 +29,20 @@ const Set<String> _googleDatastreamConnectionProfileSensitive = <String>{
 /// At most one of `forward_ssh_connectivity`, `private_connectivity` on `google_datastream_connection_profile`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.forwardSshConnectivity(...)`.
 sealed class DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity {
   const DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity();
+
+  /// Sets `forward_ssh_connectivity`.
+  const factory DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity.forwardSshConnectivity(
+    DatastreamConnectionProfileForwardSshConnectivity forwardSshConnectivity,
+  ) = DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity;
+
+  /// Sets `private_connectivity`.
+  const factory DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity.privateConnectivity(
+    DatastreamConnectionProfilePrivateConnectivity privateConnectivity,
+  ) = DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -42,13 +54,13 @@ sealed class DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectiv
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `forward_ssh_connectivity` (one of the [DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity] choices).
-final class DatastreamConnectionProfileForwardSshConnectivityOption
+/// The [DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity.forwardSshConnectivity] choice: sets `forward_ssh_connectivity`.
+final class DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity
     extends
         DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity {
-  const DatastreamConnectionProfileForwardSshConnectivityOption({
-    required this.forwardSshConnectivity,
-  });
+  const DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity(
+    this.forwardSshConnectivity,
+  );
 
   final DatastreamConnectionProfileForwardSshConnectivity
   forwardSshConnectivity;
@@ -67,13 +79,13 @@ final class DatastreamConnectionProfileForwardSshConnectivityOption
   };
 }
 
-/// Sets `private_connectivity` (one of the [DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity] choices).
-final class DatastreamConnectionProfilePrivateConnectivityOption
+/// The [DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity.privateConnectivity] choice: sets `private_connectivity`.
+final class DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity
     extends
         DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity {
-  const DatastreamConnectionProfilePrivateConnectivityOption({
-    required this.privateConnectivity,
-  });
+  const DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity(
+    this.privateConnectivity,
+  );
 
   final DatastreamConnectionProfilePrivateConnectivity privateConnectivity;
 
@@ -131,8 +143,20 @@ final class DatastreamConnectionProfileForwardSshConnectivity {
 /// At most one of `password`, `private_key` on the `forward_ssh_connectivity` block of `google_datastream_connection_profile`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.password(...)`.
 sealed class DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey {
   const DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey();
+
+  /// Sets `password`.
+  const factory DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey.password(
+    TfArg<String> password,
+  ) = DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPassword;
+
+  /// Sets `private_key`.
+  const factory DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey.privateKey(
+    TfArg<String> privateKey,
+  ) = DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPrivateKey;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -140,13 +164,13 @@ sealed class DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateK
   Map<String, Object?> encode();
 }
 
-/// Sets `password` (one of the [DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey] choices).
-final class DatastreamConnectionProfileForwardSshConnectivityPasswordOption
+/// The [DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey.password] choice: sets `password`.
+final class DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPassword
     extends
         DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey {
-  const DatastreamConnectionProfileForwardSshConnectivityPasswordOption({
-    required this.password,
-  });
+  const DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPassword(
+    this.password,
+  );
 
   final TfArg<String> password;
 
@@ -157,13 +181,13 @@ final class DatastreamConnectionProfileForwardSshConnectivityPasswordOption
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
 
-/// Sets `private_key` (one of the [DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey] choices).
-final class DatastreamConnectionProfileForwardSshConnectivityPrivateKeyOption
+/// The [DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey.privateKey] choice: sets `private_key`.
+final class DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPrivateKey
     extends
         DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey {
-  const DatastreamConnectionProfileForwardSshConnectivityPrivateKeyOption({
-    required this.privateKey,
-  });
+  const DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPrivateKey(
+    this.privateKey,
+  );
 
   final TfArg<String> privateKey;
 

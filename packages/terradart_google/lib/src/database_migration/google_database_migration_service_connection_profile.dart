@@ -330,8 +330,20 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAut
 
 /// Exactly one of `expire_time`, `ttl` on the `cloudsql.settings.ip_config.authorized_networks` block of `google_database_migration_service_connection_profile`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.expireTime(...)`.
 sealed class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtl {
   const DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtl();
+
+  /// Sets `expire_time`.
+  const factory DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtl.expireTime(
+    TfArg<String> expireTime,
+  ) = DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtlExpireTime;
+
+  /// Sets `ttl`.
+  const factory DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtl.ttl(
+    TfArg<String> ttl,
+  ) = DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtlTtl;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -339,13 +351,13 @@ sealed class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAu
   Map<String, Object?> encode();
 }
 
-/// Sets `expire_time` (one of the [DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtl] choices).
-final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOption
+/// The [DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtl.expireTime] choice: sets `expire_time`.
+final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtlExpireTime
     extends
         DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtl {
-  const DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOption({
-    required this.expireTime,
-  });
+  const DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtlExpireTime(
+    this.expireTime,
+  );
 
   final TfArg<String> expireTime;
 
@@ -356,13 +368,13 @@ final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAut
   Map<String, Object?> encode() => {'expire_time': expireTime.toTfJson()};
 }
 
-/// Sets `ttl` (one of the [DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtl] choices).
-final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksTtlOption
+/// The [DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtl.ttl] choice: sets `ttl`.
+final class DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtlTtl
     extends
         DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtl {
-  const DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksTtlOption({
-    required this.ttl,
-  });
+  const DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtlTtl(
+    this.ttl,
+  );
 
   final TfArg<String> ttl;
 
@@ -494,8 +506,28 @@ final class DatabaseMigrationServiceConnectionProfileOracle {
 
 /// Exactly one of `static_service_ip_connectivity`, `forward_ssh_connectivity`, `private_connectivity` on the `oracle` block of `google_database_migration_service_connection_profile`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.staticServiceIpConnectivity(...)`.
 sealed class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity {
   const DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity();
+
+  /// Sets `static_service_ip_connectivity`.
+  const factory DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity.staticServiceIpConnectivity(
+    DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivity
+    staticServiceIpConnectivity,
+  ) = DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityStaticServiceIpConnectivity;
+
+  /// Sets `forward_ssh_connectivity`.
+  const factory DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity.forwardSshConnectivity(
+    DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity
+    forwardSshConnectivity,
+  ) = DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity;
+
+  /// Sets `private_connectivity`.
+  const factory DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity.privateConnectivity(
+    DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivity
+    privateConnectivity,
+  ) = DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -503,13 +535,13 @@ sealed class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConne
   Map<String, Object?> encode();
 }
 
-/// Sets `static_service_ip_connectivity` (one of the [DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity] choices).
-final class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOption
+/// The [DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity.staticServiceIpConnectivity] choice: sets `static_service_ip_connectivity`.
+final class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityStaticServiceIpConnectivity
     extends
         DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity {
-  const DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOption({
-    required this.staticServiceIpConnectivity,
-  });
+  const DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityStaticServiceIpConnectivity(
+    this.staticServiceIpConnectivity,
+  );
 
   final DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivity
   staticServiceIpConnectivity;
@@ -523,13 +555,13 @@ final class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnec
   };
 }
 
-/// Sets `forward_ssh_connectivity` (one of the [DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity] choices).
-final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityOption
+/// The [DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity.forwardSshConnectivity] choice: sets `forward_ssh_connectivity`.
+final class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity
     extends
         DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity {
-  const DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityOption({
-    required this.forwardSshConnectivity,
-  });
+  const DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity(
+    this.forwardSshConnectivity,
+  );
 
   final DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity
   forwardSshConnectivity;
@@ -543,13 +575,13 @@ final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivit
   };
 }
 
-/// Sets `private_connectivity` (one of the [DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity] choices).
-final class DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivityOption
+/// The [DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity.privateConnectivity] choice: sets `private_connectivity`.
+final class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity
     extends
         DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity {
-  const DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivityOption({
-    required this.privateConnectivity,
-  });
+  const DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity(
+    this.privateConnectivity,
+  );
 
   final DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivity
   privateConnectivity;
@@ -593,8 +625,20 @@ final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivit
 
 /// Exactly one of `password`, `private_key` on the `oracle.forward_ssh_connectivity` block of `google_database_migration_service_connection_profile`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.password(...)`.
 sealed class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKey {
   const DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKey();
+
+  /// Sets `password`.
+  const factory DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKey.password(
+    TfArg<String> password,
+  ) = DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKeyPassword;
+
+  /// Sets `private_key`.
+  const factory DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKey.privateKey(
+    TfArg<String> privateKey,
+  ) = DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKeyPrivateKey;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -602,13 +646,13 @@ sealed class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivi
   Map<String, Object?> encode();
 }
 
-/// Sets `password` (one of the [DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKey] choices).
-final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOption
+/// The [DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKey.password] choice: sets `password`.
+final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKeyPassword
     extends
         DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKey {
-  const DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOption({
-    required this.password,
-  });
+  const DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKeyPassword(
+    this.password,
+  );
 
   final TfArg<String> password;
 
@@ -619,13 +663,13 @@ final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivit
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
 
-/// Sets `private_key` (one of the [DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKey] choices).
-final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPrivateKeyOption
+/// The [DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKey.privateKey] choice: sets `private_key`.
+final class DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKeyPrivateKey
     extends
         DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKey {
-  const DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPrivateKeyOption({
-    required this.privateKey,
-  });
+  const DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKeyPrivateKey(
+    this.privateKey,
+  );
 
   final TfArg<String> privateKey;
 

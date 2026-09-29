@@ -23,8 +23,25 @@ enum RedshiftClusterAquaConfigurationStatus implements TerraformEnum {
 /// At most one of `manage_master_password`, `master_password`, `master_password_wo` on `aws_redshift_cluster`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.manageMasterPassword(...)`.
 sealed class RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo {
   const RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo();
+
+  /// Sets `manage_master_password`.
+  const factory RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo.manageMasterPassword(
+    TfArg<bool> manageMasterPassword,
+  ) = RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoManageMasterPassword;
+
+  /// Sets `master_password`.
+  const factory RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo.masterPassword(
+    TfArg<String> masterPassword,
+  ) = RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword;
+
+  /// Sets `master_password_wo`.
+  const factory RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo.masterPasswordWo(
+    TfArg<String> masterPasswordWo,
+  ) = RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,13 +53,13 @@ sealed class RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPassword
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `manage_master_password` (one of the [RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo] choices).
-final class RedshiftClusterManageMasterPasswordOption
+/// The [RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo.manageMasterPassword] choice: sets `manage_master_password`.
+final class RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoManageMasterPassword
     extends
         RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo {
-  const RedshiftClusterManageMasterPasswordOption({
-    required this.manageMasterPassword,
-  });
+  const RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoManageMasterPassword(
+    this.manageMasterPassword,
+  );
 
   final TfArg<bool> manageMasterPassword;
 
@@ -60,11 +77,13 @@ final class RedshiftClusterManageMasterPasswordOption
   };
 }
 
-/// Sets `master_password` (one of the [RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo] choices).
-final class RedshiftClusterMasterPasswordOption
+/// The [RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo.masterPassword] choice: sets `master_password`.
+final class RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword
     extends
         RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo {
-  const RedshiftClusterMasterPasswordOption({required this.masterPassword});
+  const RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword(
+    this.masterPassword,
+  );
 
   final TfArg<String> masterPassword;
 
@@ -80,11 +99,13 @@ final class RedshiftClusterMasterPasswordOption
   Map<String, TfArg<Object?>> get argMap => {'master_password': masterPassword};
 }
 
-/// Sets `master_password_wo` (one of the [RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo] choices).
-final class RedshiftClusterMasterPasswordWoOption
+/// The [RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo.masterPasswordWo] choice: sets `master_password_wo`.
+final class RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo
     extends
         RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo {
-  const RedshiftClusterMasterPasswordWoOption({required this.masterPasswordWo});
+  const RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo(
+    this.masterPasswordWo,
+  );
 
   final TfArg<String> masterPasswordWo;
 
@@ -105,8 +126,20 @@ final class RedshiftClusterMasterPasswordWoOption
 /// At most one of `snapshot_arn`, `snapshot_identifier` on `aws_redshift_cluster`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.snapshotArn(...)`.
 sealed class RedshiftClusterSnapshotArnOrSnapshotIdentifier {
   const RedshiftClusterSnapshotArnOrSnapshotIdentifier();
+
+  /// Sets `snapshot_arn`.
+  const factory RedshiftClusterSnapshotArnOrSnapshotIdentifier.snapshotArn(
+    TfArg<String> snapshotArn,
+  ) = RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotArn;
+
+  /// Sets `snapshot_identifier`.
+  const factory RedshiftClusterSnapshotArnOrSnapshotIdentifier.snapshotIdentifier(
+    TfArg<String> snapshotIdentifier,
+  ) = RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotIdentifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -118,10 +151,12 @@ sealed class RedshiftClusterSnapshotArnOrSnapshotIdentifier {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `snapshot_arn` (one of the [RedshiftClusterSnapshotArnOrSnapshotIdentifier] choices).
-final class RedshiftClusterSnapshotArnOption
+/// The [RedshiftClusterSnapshotArnOrSnapshotIdentifier.snapshotArn] choice: sets `snapshot_arn`.
+final class RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotArn
     extends RedshiftClusterSnapshotArnOrSnapshotIdentifier {
-  const RedshiftClusterSnapshotArnOption({required this.snapshotArn});
+  const RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotArn(
+    this.snapshotArn,
+  );
 
   final TfArg<String> snapshotArn;
 
@@ -135,12 +170,12 @@ final class RedshiftClusterSnapshotArnOption
   Map<String, TfArg<Object?>> get argMap => {'snapshot_arn': snapshotArn};
 }
 
-/// Sets `snapshot_identifier` (one of the [RedshiftClusterSnapshotArnOrSnapshotIdentifier] choices).
-final class RedshiftClusterSnapshotIdentifierOption
+/// The [RedshiftClusterSnapshotArnOrSnapshotIdentifier.snapshotIdentifier] choice: sets `snapshot_identifier`.
+final class RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotIdentifier
     extends RedshiftClusterSnapshotArnOrSnapshotIdentifier {
-  const RedshiftClusterSnapshotIdentifierOption({
-    required this.snapshotIdentifier,
-  });
+  const RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotIdentifier(
+    this.snapshotIdentifier,
+  );
 
   final TfArg<String> snapshotIdentifier;
 

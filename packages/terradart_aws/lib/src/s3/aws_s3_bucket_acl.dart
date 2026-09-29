@@ -9,8 +9,19 @@ const Set<String> _awsS3BucketAclSensitive = <String>{};
 
 /// Exactly one of `access_control_policy`, `acl` on `aws_s3_bucket_acl`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.accessControlPolicy(...)`.
 sealed class S3BucketAclAccessControlPolicyOrAcl {
   const S3BucketAclAccessControlPolicyOrAcl();
+
+  /// Sets `access_control_policy`.
+  const factory S3BucketAclAccessControlPolicyOrAcl.accessControlPolicy(
+    S3BucketAclAccessControlPolicy accessControlPolicy,
+  ) = S3BucketAclAccessControlPolicyOrAclAccessControlPolicy;
+
+  /// Sets `acl`.
+  const factory S3BucketAclAccessControlPolicyOrAcl.acl(TfArg<String> acl) =
+      S3BucketAclAccessControlPolicyOrAclAcl;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,12 +33,12 @@ sealed class S3BucketAclAccessControlPolicyOrAcl {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `access_control_policy` (one of the [S3BucketAclAccessControlPolicyOrAcl] choices).
-final class S3BucketAclAccessControlPolicyOption
+/// The [S3BucketAclAccessControlPolicyOrAcl.accessControlPolicy] choice: sets `access_control_policy`.
+final class S3BucketAclAccessControlPolicyOrAclAccessControlPolicy
     extends S3BucketAclAccessControlPolicyOrAcl {
-  const S3BucketAclAccessControlPolicyOption({
-    required this.accessControlPolicy,
-  });
+  const S3BucketAclAccessControlPolicyOrAclAccessControlPolicy(
+    this.accessControlPolicy,
+  );
 
   final S3BucketAclAccessControlPolicy accessControlPolicy;
 
@@ -45,9 +56,10 @@ final class S3BucketAclAccessControlPolicyOption
   };
 }
 
-/// Sets `acl` (one of the [S3BucketAclAccessControlPolicyOrAcl] choices).
-final class S3BucketAclAclOption extends S3BucketAclAccessControlPolicyOrAcl {
-  const S3BucketAclAclOption({required this.acl});
+/// The [S3BucketAclAccessControlPolicyOrAcl.acl] choice: sets `acl`.
+final class S3BucketAclAccessControlPolicyOrAclAcl
+    extends S3BucketAclAccessControlPolicyOrAcl {
+  const S3BucketAclAccessControlPolicyOrAclAcl(this.acl);
 
   final TfArg<String> acl;
 

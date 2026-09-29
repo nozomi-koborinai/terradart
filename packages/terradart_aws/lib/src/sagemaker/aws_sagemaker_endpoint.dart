@@ -31,8 +31,21 @@ final class SagemakerEndpointDeploymentConfig {
 
 /// Exactly one of `blue_green_update_policy`, `rolling_update_policy` on the `deployment_config` block of `aws_sagemaker_endpoint`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.blueGreenUpdatePolicy(...)`.
 sealed class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicy {
   const SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicy();
+
+  /// Sets `blue_green_update_policy`.
+  const factory SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicy.blueGreenUpdatePolicy(
+    SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicy
+    blueGreenUpdatePolicy,
+  ) = SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicyBlueGreenUpdatePolicy;
+
+  /// Sets `rolling_update_policy`.
+  const factory SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicy.rollingUpdatePolicy(
+    SagemakerEndpointDeploymentConfigRollingUpdatePolicy rollingUpdatePolicy,
+  ) = SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicyRollingUpdatePolicy;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -40,13 +53,13 @@ sealed class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpda
   Map<String, Object?> encode();
 }
 
-/// Sets `blue_green_update_policy` (one of the [SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicy] choices).
-final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOption
+/// The [SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicy.blueGreenUpdatePolicy] choice: sets `blue_green_update_policy`.
+final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicyBlueGreenUpdatePolicy
     extends
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicy {
-  const SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOption({
-    required this.blueGreenUpdatePolicy,
-  });
+  const SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicyBlueGreenUpdatePolicy(
+    this.blueGreenUpdatePolicy,
+  );
 
   final SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicy
   blueGreenUpdatePolicy;
@@ -60,13 +73,13 @@ final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOption
   };
 }
 
-/// Sets `rolling_update_policy` (one of the [SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicy] choices).
-final class SagemakerEndpointDeploymentConfigRollingUpdatePolicyOption
+/// The [SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicy.rollingUpdatePolicy] choice: sets `rolling_update_policy`.
+final class SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicyRollingUpdatePolicy
     extends
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicy {
-  const SagemakerEndpointDeploymentConfigRollingUpdatePolicyOption({
-    required this.rollingUpdatePolicy,
-  });
+  const SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicyRollingUpdatePolicy(
+    this.rollingUpdatePolicy,
+  );
 
   final SagemakerEndpointDeploymentConfigRollingUpdatePolicy
   rollingUpdatePolicy;

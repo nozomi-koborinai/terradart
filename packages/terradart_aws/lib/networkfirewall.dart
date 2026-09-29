@@ -18,9 +18,9 @@ export 'src/networkfirewall/aws_networkfirewall_firewall.dart'
         NetworkfirewallFirewallEncryptionConfigurationType,
         NetworkfirewallFirewallSubnetMapping,
         NetworkfirewallFirewallSubnetMappingIpAddressType,
-        NetworkfirewallFirewallTransitGatewayIdOption,
         NetworkfirewallFirewallTransitGatewayIdOrVpcId,
-        NetworkfirewallFirewallVpcIdOption;
+        NetworkfirewallFirewallTransitGatewayIdOrVpcIdTransitGatewayId,
+        NetworkfirewallFirewallTransitGatewayIdOrVpcIdVpcId;
 export 'src/networkfirewall/aws_networkfirewall_firewall_policy.dart'
     show
         AwsNetworkfirewallFirewallPolicy,

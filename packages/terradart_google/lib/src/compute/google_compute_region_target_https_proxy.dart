@@ -9,8 +9,20 @@ const Set<String> _googleComputeRegionTargetHttpsProxySensitive = <String>{};
 /// At most one of `certificate_manager_certificates`, `ssl_certificates` on `google_compute_region_target_https_proxy`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.certificateManagerCertificates(...)`.
 sealed class ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
   const ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates();
+
+  /// Sets `certificate_manager_certificates`.
+  const factory ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.certificateManagerCertificates(
+    TfArg<List<String>> certificateManagerCertificates,
+  ) = ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesCertificateManagerCertificates;
+
+  /// Sets `ssl_certificates`.
+  const factory ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.sslCertificates(
+    TfArg<List<String>> sslCertificates,
+  ) = ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesSslCertificates;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,13 +34,13 @@ sealed class ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCer
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `certificate_manager_certificates` (one of the [ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates] choices).
-final class ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOption
+/// The [ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.certificateManagerCertificates] choice: sets `certificate_manager_certificates`.
+final class ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesCertificateManagerCertificates
     extends
         ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
-  const ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOption({
-    required this.certificateManagerCertificates,
-  });
+  const ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesCertificateManagerCertificates(
+    this.certificateManagerCertificates,
+  );
 
   final TfArg<List<String>> certificateManagerCertificates;
 
@@ -47,13 +59,13 @@ final class ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOption
   };
 }
 
-/// Sets `ssl_certificates` (one of the [ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates] choices).
-final class ComputeRegionTargetHttpsProxySslCertificatesOption
+/// The [ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.sslCertificates] choice: sets `ssl_certificates`.
+final class ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesSslCertificates
     extends
         ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
-  const ComputeRegionTargetHttpsProxySslCertificatesOption({
-    required this.sslCertificates,
-  });
+  const ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesSslCertificates(
+    this.sslCertificates,
+  );
 
   final TfArg<List<String>> sslCertificates;
 

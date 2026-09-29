@@ -10,8 +10,20 @@ const Set<String> _awsNeptunegraphGraphSensitive = <String>{};
 /// At most one of `graph_name`, `graph_name_prefix` on `aws_neptunegraph_graph`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.graphName(...)`.
 sealed class NeptunegraphGraphGraphNameOrGraphNamePrefix {
   const NeptunegraphGraphGraphNameOrGraphNamePrefix();
+
+  /// Sets `graph_name`.
+  const factory NeptunegraphGraphGraphNameOrGraphNamePrefix.graphName(
+    TfArg<String> graphName,
+  ) = NeptunegraphGraphGraphNameOrGraphNamePrefixGraphName;
+
+  /// Sets `graph_name_prefix`.
+  const factory NeptunegraphGraphGraphNameOrGraphNamePrefix.graphNamePrefix(
+    TfArg<String> graphNamePrefix,
+  ) = NeptunegraphGraphGraphNameOrGraphNamePrefixGraphNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +35,10 @@ sealed class NeptunegraphGraphGraphNameOrGraphNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `graph_name` (one of the [NeptunegraphGraphGraphNameOrGraphNamePrefix] choices).
-final class NeptunegraphGraphGraphNameOption
+/// The [NeptunegraphGraphGraphNameOrGraphNamePrefix.graphName] choice: sets `graph_name`.
+final class NeptunegraphGraphGraphNameOrGraphNamePrefixGraphName
     extends NeptunegraphGraphGraphNameOrGraphNamePrefix {
-  const NeptunegraphGraphGraphNameOption({required this.graphName});
+  const NeptunegraphGraphGraphNameOrGraphNamePrefixGraphName(this.graphName);
 
   final TfArg<String> graphName;
 
@@ -40,10 +52,12 @@ final class NeptunegraphGraphGraphNameOption
   Map<String, TfArg<Object?>> get argMap => {'graph_name': graphName};
 }
 
-/// Sets `graph_name_prefix` (one of the [NeptunegraphGraphGraphNameOrGraphNamePrefix] choices).
-final class NeptunegraphGraphGraphNamePrefixOption
+/// The [NeptunegraphGraphGraphNameOrGraphNamePrefix.graphNamePrefix] choice: sets `graph_name_prefix`.
+final class NeptunegraphGraphGraphNameOrGraphNamePrefixGraphNamePrefix
     extends NeptunegraphGraphGraphNameOrGraphNamePrefix {
-  const NeptunegraphGraphGraphNamePrefixOption({required this.graphNamePrefix});
+  const NeptunegraphGraphGraphNameOrGraphNamePrefixGraphNamePrefix(
+    this.graphNamePrefix,
+  );
 
   final TfArg<String> graphNamePrefix;
 

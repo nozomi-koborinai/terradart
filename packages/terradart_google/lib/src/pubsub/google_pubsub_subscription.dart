@@ -188,8 +188,25 @@ class PubsubSubscriptionExpirationPolicy {
 /// At most one of `bigquery_config`, `push_config`, `cloud_storage_config` on `google_pubsub_subscription`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.bigqueryConfig(...)`.
 sealed class PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig {
   const PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig();
+
+  /// Sets `bigquery_config`.
+  const factory PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig.bigqueryConfig(
+    PubsubSubscriptionBigQueryConfig bigqueryConfig,
+  ) = PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigBigqueryConfig;
+
+  /// Sets `push_config`.
+  const factory PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig.pushConfig(
+    PubsubSubscriptionPushConfig pushConfig,
+  ) = PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigPushConfig;
+
+  /// Sets `cloud_storage_config`.
+  const factory PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig.cloudStorageConfig(
+    PubsubSubscriptionCloudStorageConfig cloudStorageConfig,
+  ) = PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigCloudStorageConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -201,10 +218,12 @@ sealed class PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `bigquery_config` (one of the [PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig] choices).
-final class PubsubSubscriptionBigqueryConfigOption
+/// The [PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig.bigqueryConfig] choice: sets `bigquery_config`.
+final class PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigBigqueryConfig
     extends PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig {
-  const PubsubSubscriptionBigqueryConfigOption({required this.bigqueryConfig});
+  const PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigBigqueryConfig(
+    this.bigqueryConfig,
+  );
 
   final PubsubSubscriptionBigQueryConfig bigqueryConfig;
 
@@ -220,10 +239,12 @@ final class PubsubSubscriptionBigqueryConfigOption
   };
 }
 
-/// Sets `push_config` (one of the [PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig] choices).
-final class PubsubSubscriptionPushConfigOption
+/// The [PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig.pushConfig] choice: sets `push_config`.
+final class PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigPushConfig
     extends PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig {
-  const PubsubSubscriptionPushConfigOption({required this.pushConfig});
+  const PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigPushConfig(
+    this.pushConfig,
+  );
 
   final PubsubSubscriptionPushConfig pushConfig;
 
@@ -239,12 +260,12 @@ final class PubsubSubscriptionPushConfigOption
   };
 }
 
-/// Sets `cloud_storage_config` (one of the [PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig] choices).
-final class PubsubSubscriptionCloudStorageConfigOption
+/// The [PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig.cloudStorageConfig] choice: sets `cloud_storage_config`.
+final class PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigCloudStorageConfig
     extends PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfig {
-  const PubsubSubscriptionCloudStorageConfigOption({
-    required this.cloudStorageConfig,
-  });
+  const PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigCloudStorageConfig(
+    this.cloudStorageConfig,
+  );
 
   final PubsubSubscriptionCloudStorageConfig cloudStorageConfig;
 

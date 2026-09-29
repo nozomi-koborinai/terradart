@@ -19,8 +19,25 @@ enum SpannerInstancePartitionState implements TerraformEnum {
 
 /// Exactly one of `node_count`, `processing_units`, `autoscaling_config` on `google_spanner_instance_partition`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.nodeCount(...)`.
 sealed class SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfig {
   const SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfig();
+
+  /// Sets `node_count`.
+  const factory SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfig.nodeCount(
+    TfArg<num> nodeCount,
+  ) = SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigNodeCount;
+
+  /// Sets `processing_units`.
+  const factory SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfig.processingUnits(
+    TfArg<num> processingUnits,
+  ) = SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigProcessingUnits;
+
+  /// Sets `autoscaling_config`.
+  const factory SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfig.autoscalingConfig(
+    SpannerInstancePartitionAutoscalingConfig autoscalingConfig,
+  ) = SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigAutoscalingConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,11 +49,13 @@ sealed class SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConf
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `node_count` (one of the [SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfig] choices).
-final class SpannerInstancePartitionNodeCountOption
+/// The [SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfig.nodeCount] choice: sets `node_count`.
+final class SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigNodeCount
     extends
         SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfig {
-  const SpannerInstancePartitionNodeCountOption({required this.nodeCount});
+  const SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigNodeCount(
+    this.nodeCount,
+  );
 
   final TfArg<num> nodeCount;
 
@@ -50,13 +69,13 @@ final class SpannerInstancePartitionNodeCountOption
   Map<String, TfArg<Object?>> get argMap => {'node_count': nodeCount};
 }
 
-/// Sets `processing_units` (one of the [SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfig] choices).
-final class SpannerInstancePartitionProcessingUnitsOption
+/// The [SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfig.processingUnits] choice: sets `processing_units`.
+final class SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigProcessingUnits
     extends
         SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfig {
-  const SpannerInstancePartitionProcessingUnitsOption({
-    required this.processingUnits,
-  });
+  const SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigProcessingUnits(
+    this.processingUnits,
+  );
 
   final TfArg<num> processingUnits;
 
@@ -74,13 +93,13 @@ final class SpannerInstancePartitionProcessingUnitsOption
   };
 }
 
-/// Sets `autoscaling_config` (one of the [SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfig] choices).
-final class SpannerInstancePartitionAutoscalingConfigOption
+/// The [SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfig.autoscalingConfig] choice: sets `autoscaling_config`.
+final class SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigAutoscalingConfig
     extends
         SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfig {
-  const SpannerInstancePartitionAutoscalingConfigOption({
-    required this.autoscalingConfig,
-  });
+  const SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigAutoscalingConfig(
+    this.autoscalingConfig,
+  );
 
   final SpannerInstancePartitionAutoscalingConfig autoscalingConfig;
 
@@ -144,8 +163,20 @@ final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimits {
 
 /// Exactly one of `min_processing_units`, `min_nodes` on the `autoscaling_config.autoscaling_limits` block of `google_spanner_instance_partition`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.minProcessingUnits(...)`.
 sealed class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodes {
   const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodes();
+
+  /// Sets `min_processing_units`.
+  const factory SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodes.minProcessingUnits(
+    TfArg<num> minProcessingUnits,
+  ) = SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodesMinProcessingUnits;
+
+  /// Sets `min_nodes`.
+  const factory SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodes.minNodes(
+    TfArg<num> minNodes,
+  ) = SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodesMinNodes;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -153,13 +184,13 @@ sealed class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProces
   Map<String, Object?> encode();
 }
 
-/// Sets `min_processing_units` (one of the [SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodes] choices).
-final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOption
+/// The [SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodes.minProcessingUnits] choice: sets `min_processing_units`.
+final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodesMinProcessingUnits
     extends
         SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodes {
-  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOption({
-    required this.minProcessingUnits,
-  });
+  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodesMinProcessingUnits(
+    this.minProcessingUnits,
+  );
 
   final TfArg<num> minProcessingUnits;
 
@@ -172,13 +203,13 @@ final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcess
   };
 }
 
-/// Sets `min_nodes` (one of the [SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodes] choices).
-final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinNodesOption
+/// The [SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodes.minNodes] choice: sets `min_nodes`.
+final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodesMinNodes
     extends
         SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodes {
-  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinNodesOption({
-    required this.minNodes,
-  });
+  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodesMinNodes(
+    this.minNodes,
+  );
 
   final TfArg<num> minNodes;
 
@@ -191,8 +222,20 @@ final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinNodesOp
 
 /// Exactly one of `max_processing_units`, `max_nodes` on the `autoscaling_config.autoscaling_limits` block of `google_spanner_instance_partition`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.maxProcessingUnits(...)`.
 sealed class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodes {
   const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodes();
+
+  /// Sets `max_processing_units`.
+  const factory SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodes.maxProcessingUnits(
+    TfArg<num> maxProcessingUnits,
+  ) = SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodesMaxProcessingUnits;
+
+  /// Sets `max_nodes`.
+  const factory SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodes.maxNodes(
+    TfArg<num> maxNodes,
+  ) = SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodesMaxNodes;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -200,13 +243,13 @@ sealed class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProces
   Map<String, Object?> encode();
 }
 
-/// Sets `max_processing_units` (one of the [SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodes] choices).
-final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOption
+/// The [SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodes.maxProcessingUnits] choice: sets `max_processing_units`.
+final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodesMaxProcessingUnits
     extends
         SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodes {
-  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOption({
-    required this.maxProcessingUnits,
-  });
+  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodesMaxProcessingUnits(
+    this.maxProcessingUnits,
+  );
 
   final TfArg<num> maxProcessingUnits;
 
@@ -219,13 +262,13 @@ final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcess
   };
 }
 
-/// Sets `max_nodes` (one of the [SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodes] choices).
-final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxNodesOption
+/// The [SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodes.maxNodes] choice: sets `max_nodes`.
+final class SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodesMaxNodes
     extends
         SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodes {
-  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxNodesOption({
-    required this.maxNodes,
-  });
+  const SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodesMaxNodes(
+    this.maxNodes,
+  );
 
   final TfArg<num> maxNodes;
 

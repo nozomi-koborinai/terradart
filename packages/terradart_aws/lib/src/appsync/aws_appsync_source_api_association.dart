@@ -8,8 +8,20 @@ const Set<String> _awsAppsyncSourceApiAssociationSensitive = <String>{};
 
 /// Exactly one of `merged_api_arn`, `merged_api_id` on `aws_appsync_source_api_association`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.mergedApiArn(...)`.
 sealed class AppsyncSourceApiAssociationMergedApiArnOrMergedApiId {
   const AppsyncSourceApiAssociationMergedApiArnOrMergedApiId();
+
+  /// Sets `merged_api_arn`.
+  const factory AppsyncSourceApiAssociationMergedApiArnOrMergedApiId.mergedApiArn(
+    TfArg<String> mergedApiArn,
+  ) = AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiArn;
+
+  /// Sets `merged_api_id`.
+  const factory AppsyncSourceApiAssociationMergedApiArnOrMergedApiId.mergedApiId(
+    TfArg<String> mergedApiId,
+  ) = AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,12 +33,12 @@ sealed class AppsyncSourceApiAssociationMergedApiArnOrMergedApiId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `merged_api_arn` (one of the [AppsyncSourceApiAssociationMergedApiArnOrMergedApiId] choices).
-final class AppsyncSourceApiAssociationMergedApiArnOption
+/// The [AppsyncSourceApiAssociationMergedApiArnOrMergedApiId.mergedApiArn] choice: sets `merged_api_arn`.
+final class AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiArn
     extends AppsyncSourceApiAssociationMergedApiArnOrMergedApiId {
-  const AppsyncSourceApiAssociationMergedApiArnOption({
-    required this.mergedApiArn,
-  });
+  const AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiArn(
+    this.mergedApiArn,
+  );
 
   final TfArg<String> mergedApiArn;
 
@@ -40,12 +52,12 @@ final class AppsyncSourceApiAssociationMergedApiArnOption
   Map<String, TfArg<Object?>> get argMap => {'merged_api_arn': mergedApiArn};
 }
 
-/// Sets `merged_api_id` (one of the [AppsyncSourceApiAssociationMergedApiArnOrMergedApiId] choices).
-final class AppsyncSourceApiAssociationMergedApiIdOption
+/// The [AppsyncSourceApiAssociationMergedApiArnOrMergedApiId.mergedApiId] choice: sets `merged_api_id`.
+final class AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiId
     extends AppsyncSourceApiAssociationMergedApiArnOrMergedApiId {
-  const AppsyncSourceApiAssociationMergedApiIdOption({
-    required this.mergedApiId,
-  });
+  const AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiId(
+    this.mergedApiId,
+  );
 
   final TfArg<String> mergedApiId;
 
@@ -61,8 +73,20 @@ final class AppsyncSourceApiAssociationMergedApiIdOption
 
 /// Exactly one of `source_api_arn`, `source_api_id` on `aws_appsync_source_api_association`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.sourceApiArn(...)`.
 sealed class AppsyncSourceApiAssociationSourceApiArnOrSourceApiId {
   const AppsyncSourceApiAssociationSourceApiArnOrSourceApiId();
+
+  /// Sets `source_api_arn`.
+  const factory AppsyncSourceApiAssociationSourceApiArnOrSourceApiId.sourceApiArn(
+    TfArg<String> sourceApiArn,
+  ) = AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiArn;
+
+  /// Sets `source_api_id`.
+  const factory AppsyncSourceApiAssociationSourceApiArnOrSourceApiId.sourceApiId(
+    TfArg<String> sourceApiId,
+  ) = AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -74,12 +98,12 @@ sealed class AppsyncSourceApiAssociationSourceApiArnOrSourceApiId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `source_api_arn` (one of the [AppsyncSourceApiAssociationSourceApiArnOrSourceApiId] choices).
-final class AppsyncSourceApiAssociationSourceApiArnOption
+/// The [AppsyncSourceApiAssociationSourceApiArnOrSourceApiId.sourceApiArn] choice: sets `source_api_arn`.
+final class AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiArn
     extends AppsyncSourceApiAssociationSourceApiArnOrSourceApiId {
-  const AppsyncSourceApiAssociationSourceApiArnOption({
-    required this.sourceApiArn,
-  });
+  const AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiArn(
+    this.sourceApiArn,
+  );
 
   final TfArg<String> sourceApiArn;
 
@@ -93,12 +117,12 @@ final class AppsyncSourceApiAssociationSourceApiArnOption
   Map<String, TfArg<Object?>> get argMap => {'source_api_arn': sourceApiArn};
 }
 
-/// Sets `source_api_id` (one of the [AppsyncSourceApiAssociationSourceApiArnOrSourceApiId] choices).
-final class AppsyncSourceApiAssociationSourceApiIdOption
+/// The [AppsyncSourceApiAssociationSourceApiArnOrSourceApiId.sourceApiId] choice: sets `source_api_id`.
+final class AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiId
     extends AppsyncSourceApiAssociationSourceApiArnOrSourceApiId {
-  const AppsyncSourceApiAssociationSourceApiIdOption({
-    required this.sourceApiId,
-  });
+  const AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiId(
+    this.sourceApiId,
+  );
 
   final TfArg<String> sourceApiId;
 

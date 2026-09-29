@@ -119,9 +119,9 @@ export 'src/securityhub/aws_securityhub_configuration_policy.dart'
         AwsSecurityhubConfigurationPolicy,
         SecurityhubConfigurationPolicyConfigurationPolicy,
         SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfiguration,
-        SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOption,
         SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers,
-        SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationEnabledControlIdentifiersOption,
+        SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiersDisabledControlIdentifiers,
+        SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiersEnabledControlIdentifiers,
         SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameter,
         SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameter,
         SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameterParameterBool,
@@ -139,10 +139,10 @@ export 'src/securityhub/aws_securityhub_connector_v2.dart'
         AwsSecurityhubConnectorV2,
         SecurityhubConnectorV2ConnectorProvider,
         SecurityhubConnectorV2ConnectorProviderJiraCloud,
-        SecurityhubConnectorV2ConnectorProviderJiraCloudOption,
         SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow,
-        SecurityhubConnectorV2ConnectorProviderServiceNow,
-        SecurityhubConnectorV2ConnectorProviderServiceNowOption;
+        SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNowJiraCloud,
+        SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNowServiceNow,
+        SecurityhubConnectorV2ConnectorProviderServiceNow;
 export 'src/securityhub/aws_securityhub_feature_v2.dart'
     show
         AwsSecurityhubFeatureV2,

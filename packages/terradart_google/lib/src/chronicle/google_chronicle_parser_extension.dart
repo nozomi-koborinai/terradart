@@ -10,8 +10,25 @@ const Set<String> _googleChronicleParserExtensionSensitive = <String>{};
 /// At most one of `cbn_snippet`, `field_extractors`, `dynamic_parsing` on `google_chronicle_parser_extension`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.cbnSnippet(...)`.
 sealed class ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing {
   const ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing();
+
+  /// Sets `cbn_snippet`.
+  const factory ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing.cbnSnippet(
+    TfArg<String> cbnSnippet,
+  ) = ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingCbnSnippet;
+
+  /// Sets `field_extractors`.
+  const factory ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing.fieldExtractors(
+    ChronicleParserExtensionFieldExtractors fieldExtractors,
+  ) = ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingFieldExtractors;
+
+  /// Sets `dynamic_parsing`.
+  const factory ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing.dynamicParsing(
+    ChronicleParserExtensionDynamicParsing dynamicParsing,
+  ) = ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingDynamicParsing;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,11 +40,13 @@ sealed class ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `cbn_snippet` (one of the [ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing] choices).
-final class ChronicleParserExtensionCbnSnippetOption
+/// The [ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing.cbnSnippet] choice: sets `cbn_snippet`.
+final class ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingCbnSnippet
     extends
         ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing {
-  const ChronicleParserExtensionCbnSnippetOption({required this.cbnSnippet});
+  const ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingCbnSnippet(
+    this.cbnSnippet,
+  );
 
   final TfArg<String> cbnSnippet;
 
@@ -41,13 +60,13 @@ final class ChronicleParserExtensionCbnSnippetOption
   Map<String, TfArg<Object?>> get argMap => {'cbn_snippet': cbnSnippet};
 }
 
-/// Sets `field_extractors` (one of the [ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing] choices).
-final class ChronicleParserExtensionFieldExtractorsOption
+/// The [ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing.fieldExtractors] choice: sets `field_extractors`.
+final class ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingFieldExtractors
     extends
         ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing {
-  const ChronicleParserExtensionFieldExtractorsOption({
-    required this.fieldExtractors,
-  });
+  const ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingFieldExtractors(
+    this.fieldExtractors,
+  );
 
   final ChronicleParserExtensionFieldExtractors fieldExtractors;
 
@@ -65,13 +84,13 @@ final class ChronicleParserExtensionFieldExtractorsOption
   };
 }
 
-/// Sets `dynamic_parsing` (one of the [ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing] choices).
-final class ChronicleParserExtensionDynamicParsingOption
+/// The [ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing.dynamicParsing] choice: sets `dynamic_parsing`.
+final class ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingDynamicParsing
     extends
         ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing {
-  const ChronicleParserExtensionDynamicParsingOption({
-    required this.dynamicParsing,
-  });
+  const ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingDynamicParsing(
+    this.dynamicParsing,
+  );
 
   final ChronicleParserExtensionDynamicParsing dynamicParsing;
 

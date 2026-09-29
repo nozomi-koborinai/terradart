@@ -17,8 +17,20 @@ enum NeptuneGlobalClusterEngine implements TerraformEnum {
 
 /// Exactly one of `engine`, `source_db_cluster_identifier` on `aws_neptune_global_cluster`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.engine(...)`.
 sealed class NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier {
   const NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier();
+
+  /// Sets `engine`.
+  const factory NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier.engine(
+    TfArg<NeptuneGlobalClusterEngine> engine,
+  ) = NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierEngine;
+
+  /// Sets `source_db_cluster_identifier`.
+  const factory NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier.sourceDbClusterIdentifier(
+    TfArg<String> sourceDbClusterIdentifier,
+  ) = NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -30,10 +42,12 @@ sealed class NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `engine` (one of the [NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier] choices).
-final class NeptuneGlobalClusterEngineOption
+/// The [NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier.engine] choice: sets `engine`.
+final class NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierEngine
     extends NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier {
-  const NeptuneGlobalClusterEngineOption({required this.engine});
+  const NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierEngine(
+    this.engine,
+  );
 
   final TfArg<NeptuneGlobalClusterEngine> engine;
 
@@ -47,12 +61,12 @@ final class NeptuneGlobalClusterEngineOption
   Map<String, TfArg<Object?>> get argMap => {'engine': engine};
 }
 
-/// Sets `source_db_cluster_identifier` (one of the [NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier] choices).
-final class NeptuneGlobalClusterSourceDbClusterIdentifierOption
+/// The [NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier.sourceDbClusterIdentifier] choice: sets `source_db_cluster_identifier`.
+final class NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier
     extends NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier {
-  const NeptuneGlobalClusterSourceDbClusterIdentifierOption({
-    required this.sourceDbClusterIdentifier,
-  });
+  const NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier(
+    this.sourceDbClusterIdentifier,
+  );
 
   final TfArg<String> sourceDbClusterIdentifier;
 

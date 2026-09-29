@@ -87,8 +87,19 @@ enum AlbXffHeaderProcessingMode implements TerraformEnum {
 
 /// Exactly one of `subnet_mapping`, `subnets` on `aws_alb`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.subnetMapping(...)`.
 sealed class AlbSubnetMappingOrSubnets {
   const AlbSubnetMappingOrSubnets();
+
+  /// Sets `subnet_mapping`.
+  const factory AlbSubnetMappingOrSubnets.subnetMapping(
+    List<AlbSubnetMapping> subnetMapping,
+  ) = AlbSubnetMappingOrSubnetsSubnetMapping;
+
+  /// Sets `subnets`.
+  const factory AlbSubnetMappingOrSubnets.subnets(TfArg<List<String>> subnets) =
+      AlbSubnetMappingOrSubnetsSubnets;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -100,9 +111,10 @@ sealed class AlbSubnetMappingOrSubnets {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `subnet_mapping` (one of the [AlbSubnetMappingOrSubnets] choices).
-final class AlbSubnetMappingOption extends AlbSubnetMappingOrSubnets {
-  const AlbSubnetMappingOption({required this.subnetMapping});
+/// The [AlbSubnetMappingOrSubnets.subnetMapping] choice: sets `subnet_mapping`.
+final class AlbSubnetMappingOrSubnetsSubnetMapping
+    extends AlbSubnetMappingOrSubnets {
+  const AlbSubnetMappingOrSubnetsSubnetMapping(this.subnetMapping);
 
   final List<AlbSubnetMapping> subnetMapping;
 
@@ -122,9 +134,9 @@ final class AlbSubnetMappingOption extends AlbSubnetMappingOrSubnets {
   };
 }
 
-/// Sets `subnets` (one of the [AlbSubnetMappingOrSubnets] choices).
-final class AlbSubnetsOption extends AlbSubnetMappingOrSubnets {
-  const AlbSubnetsOption({required this.subnets});
+/// The [AlbSubnetMappingOrSubnets.subnets] choice: sets `subnets`.
+final class AlbSubnetMappingOrSubnetsSubnets extends AlbSubnetMappingOrSubnets {
+  const AlbSubnetMappingOrSubnetsSubnets(this.subnets);
 
   final TfArg<List<String>> subnets;
 
@@ -141,8 +153,18 @@ final class AlbSubnetsOption extends AlbSubnetMappingOrSubnets {
 /// At most one of `name`, `name_prefix` on `aws_alb`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class AlbNameOrNamePrefix {
   const AlbNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory AlbNameOrNamePrefix.name(TfArg<String> name) =
+      AlbNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory AlbNameOrNamePrefix.namePrefix(TfArg<String> namePrefix) =
+      AlbNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -154,9 +176,9 @@ sealed class AlbNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [AlbNameOrNamePrefix] choices).
-final class AlbNameOption extends AlbNameOrNamePrefix {
-  const AlbNameOption({required this.name});
+/// The [AlbNameOrNamePrefix.name] choice: sets `name`.
+final class AlbNameOrNamePrefixName extends AlbNameOrNamePrefix {
+  const AlbNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -170,9 +192,9 @@ final class AlbNameOption extends AlbNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [AlbNameOrNamePrefix] choices).
-final class AlbNamePrefixOption extends AlbNameOrNamePrefix {
-  const AlbNamePrefixOption({required this.namePrefix});
+/// The [AlbNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class AlbNameOrNamePrefixNamePrefix extends AlbNameOrNamePrefix {
+  const AlbNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

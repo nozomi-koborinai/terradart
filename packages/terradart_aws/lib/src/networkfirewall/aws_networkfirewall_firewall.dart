@@ -19,8 +19,20 @@ enum NetworkfirewallFirewallEnabledAnalysisTypes implements TerraformEnum {
 
 /// Exactly one of `transit_gateway_id`, `vpc_id` on `aws_networkfirewall_firewall`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.transitGatewayId(...)`.
 sealed class NetworkfirewallFirewallTransitGatewayIdOrVpcId {
   const NetworkfirewallFirewallTransitGatewayIdOrVpcId();
+
+  /// Sets `transit_gateway_id`.
+  const factory NetworkfirewallFirewallTransitGatewayIdOrVpcId.transitGatewayId(
+    TfArg<String> transitGatewayId,
+  ) = NetworkfirewallFirewallTransitGatewayIdOrVpcIdTransitGatewayId;
+
+  /// Sets `vpc_id`.
+  const factory NetworkfirewallFirewallTransitGatewayIdOrVpcId.vpcId(
+    TfArg<String> vpcId,
+  ) = NetworkfirewallFirewallTransitGatewayIdOrVpcIdVpcId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,12 +44,12 @@ sealed class NetworkfirewallFirewallTransitGatewayIdOrVpcId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `transit_gateway_id` (one of the [NetworkfirewallFirewallTransitGatewayIdOrVpcId] choices).
-final class NetworkfirewallFirewallTransitGatewayIdOption
+/// The [NetworkfirewallFirewallTransitGatewayIdOrVpcId.transitGatewayId] choice: sets `transit_gateway_id`.
+final class NetworkfirewallFirewallTransitGatewayIdOrVpcIdTransitGatewayId
     extends NetworkfirewallFirewallTransitGatewayIdOrVpcId {
-  const NetworkfirewallFirewallTransitGatewayIdOption({
-    required this.transitGatewayId,
-  });
+  const NetworkfirewallFirewallTransitGatewayIdOrVpcIdTransitGatewayId(
+    this.transitGatewayId,
+  );
 
   final TfArg<String> transitGatewayId;
 
@@ -55,10 +67,10 @@ final class NetworkfirewallFirewallTransitGatewayIdOption
   };
 }
 
-/// Sets `vpc_id` (one of the [NetworkfirewallFirewallTransitGatewayIdOrVpcId] choices).
-final class NetworkfirewallFirewallVpcIdOption
+/// The [NetworkfirewallFirewallTransitGatewayIdOrVpcId.vpcId] choice: sets `vpc_id`.
+final class NetworkfirewallFirewallTransitGatewayIdOrVpcIdVpcId
     extends NetworkfirewallFirewallTransitGatewayIdOrVpcId {
-  const NetworkfirewallFirewallVpcIdOption({required this.vpcId});
+  const NetworkfirewallFirewallTransitGatewayIdOrVpcIdVpcId(this.vpcId);
 
   final TfArg<String> vpcId;
 

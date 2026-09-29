@@ -73,8 +73,20 @@ enum CognitoUserPoolUsernameAttributes implements TerraformEnum {
 /// At most one of `alias_attributes`, `username_attributes` on `aws_cognito_user_pool`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.aliasAttributes(...)`.
 sealed class CognitoUserPoolAliasAttributesOrUsernameAttributes {
   const CognitoUserPoolAliasAttributesOrUsernameAttributes();
+
+  /// Sets `alias_attributes`.
+  const factory CognitoUserPoolAliasAttributesOrUsernameAttributes.aliasAttributes(
+    List<TfArg<CognitoUserPoolAliasAttributes>> aliasAttributes,
+  ) = CognitoUserPoolAliasAttributesOrUsernameAttributesAliasAttributes;
+
+  /// Sets `username_attributes`.
+  const factory CognitoUserPoolAliasAttributesOrUsernameAttributes.usernameAttributes(
+    List<TfArg<CognitoUserPoolUsernameAttributes>> usernameAttributes,
+  ) = CognitoUserPoolAliasAttributesOrUsernameAttributesUsernameAttributes;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -86,10 +98,12 @@ sealed class CognitoUserPoolAliasAttributesOrUsernameAttributes {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `alias_attributes` (one of the [CognitoUserPoolAliasAttributesOrUsernameAttributes] choices).
-final class CognitoUserPoolAliasAttributesOption
+/// The [CognitoUserPoolAliasAttributesOrUsernameAttributes.aliasAttributes] choice: sets `alias_attributes`.
+final class CognitoUserPoolAliasAttributesOrUsernameAttributesAliasAttributes
     extends CognitoUserPoolAliasAttributesOrUsernameAttributes {
-  const CognitoUserPoolAliasAttributesOption({required this.aliasAttributes});
+  const CognitoUserPoolAliasAttributesOrUsernameAttributesAliasAttributes(
+    this.aliasAttributes,
+  );
 
   final List<TfArg<CognitoUserPoolAliasAttributes>> aliasAttributes;
 
@@ -109,12 +123,12 @@ final class CognitoUserPoolAliasAttributesOption
   };
 }
 
-/// Sets `username_attributes` (one of the [CognitoUserPoolAliasAttributesOrUsernameAttributes] choices).
-final class CognitoUserPoolUsernameAttributesOption
+/// The [CognitoUserPoolAliasAttributesOrUsernameAttributes.usernameAttributes] choice: sets `username_attributes`.
+final class CognitoUserPoolAliasAttributesOrUsernameAttributesUsernameAttributes
     extends CognitoUserPoolAliasAttributesOrUsernameAttributes {
-  const CognitoUserPoolUsernameAttributesOption({
-    required this.usernameAttributes,
-  });
+  const CognitoUserPoolAliasAttributesOrUsernameAttributesUsernameAttributes(
+    this.usernameAttributes,
+  );
 
   final List<TfArg<CognitoUserPoolUsernameAttributes>> usernameAttributes;
 

@@ -688,8 +688,22 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration {
 /// At most one of `customized_metric_specification`, `predefined_metric_specification` on the `target_tracking_scaling_policy_configuration` block of `aws_appautoscaling_policy`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.customizedMetricSpecification(...)`.
 sealed class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
   const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification();
+
+  /// Sets `customized_metric_specification`.
+  const factory AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification.customizedMetricSpecification(
+    AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecification
+    customizedMetricSpecification,
+  ) = AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationCustomizedMetricSpecification;
+
+  /// Sets `predefined_metric_specification`.
+  const factory AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification.predefinedMetricSpecification(
+    AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification
+    predefinedMetricSpecification,
+  ) = AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationPredefinedMetricSpecification;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -697,13 +711,13 @@ sealed class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomi
   Map<String, Object?> encode();
 }
 
-/// Sets `customized_metric_specification` (one of the [AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification] choices).
-final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOption
+/// The [AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification.customizedMetricSpecification] choice: sets `customized_metric_specification`.
+final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationCustomizedMetricSpecification
     extends
         AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOption({
-    required this.customizedMetricSpecification,
-  });
+  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationCustomizedMetricSpecification(
+    this.customizedMetricSpecification,
+  );
 
   final AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecification
   customizedMetricSpecification;
@@ -717,13 +731,13 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
   };
 }
 
-/// Sets `predefined_metric_specification` (one of the [AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification] choices).
-final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecificationOption
+/// The [AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification.predefinedMetricSpecification] choice: sets `predefined_metric_specification`.
+final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationPredefinedMetricSpecification
     extends
         AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecificationOption({
-    required this.predefinedMetricSpecification,
-  });
+  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationPredefinedMetricSpecification(
+    this.predefinedMetricSpecification,
+  );
 
   final AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification
   predefinedMetricSpecification;

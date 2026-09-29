@@ -9,8 +9,20 @@ const Set<String> _awsConnectContactFlowModuleSensitive = <String>{};
 /// At most one of `content`, `filename` on `aws_connect_contact_flow_module`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.content(...)`.
 sealed class ConnectContactFlowModuleContentOrFilename {
   const ConnectContactFlowModuleContentOrFilename();
+
+  /// Sets `content`.
+  const factory ConnectContactFlowModuleContentOrFilename.content(
+    TfArg<String> content,
+  ) = ConnectContactFlowModuleContentOrFilenameContent;
+
+  /// Sets `filename`.
+  const factory ConnectContactFlowModuleContentOrFilename.filename(
+    TfArg<String> filename,
+  ) = ConnectContactFlowModuleContentOrFilenameFilename;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +34,10 @@ sealed class ConnectContactFlowModuleContentOrFilename {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `content` (one of the [ConnectContactFlowModuleContentOrFilename] choices).
-final class ConnectContactFlowModuleContentOption
+/// The [ConnectContactFlowModuleContentOrFilename.content] choice: sets `content`.
+final class ConnectContactFlowModuleContentOrFilenameContent
     extends ConnectContactFlowModuleContentOrFilename {
-  const ConnectContactFlowModuleContentOption({required this.content});
+  const ConnectContactFlowModuleContentOrFilenameContent(this.content);
 
   final TfArg<String> content;
 
@@ -39,10 +51,10 @@ final class ConnectContactFlowModuleContentOption
   Map<String, TfArg<Object?>> get argMap => {'content': content};
 }
 
-/// Sets `filename` (one of the [ConnectContactFlowModuleContentOrFilename] choices).
-final class ConnectContactFlowModuleFilenameOption
+/// The [ConnectContactFlowModuleContentOrFilename.filename] choice: sets `filename`.
+final class ConnectContactFlowModuleContentOrFilenameFilename
     extends ConnectContactFlowModuleContentOrFilename {
-  const ConnectContactFlowModuleFilenameOption({required this.filename});
+  const ConnectContactFlowModuleContentOrFilenameFilename(this.filename);
 
   final TfArg<String> filename;
 

@@ -52,8 +52,20 @@ enum CognitoManagedUserPoolClientPreventUserExistenceErrors
 
 /// Exactly one of `name_pattern`, `name_prefix` on `aws_cognito_managed_user_pool_client`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.namePattern(...)`.
 sealed class CognitoManagedUserPoolClientNamePatternOrNamePrefix {
   const CognitoManagedUserPoolClientNamePatternOrNamePrefix();
+
+  /// Sets `name_pattern`.
+  const factory CognitoManagedUserPoolClientNamePatternOrNamePrefix.namePattern(
+    TfArg<String> namePattern,
+  ) = CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePattern;
+
+  /// Sets `name_prefix`.
+  const factory CognitoManagedUserPoolClientNamePatternOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -65,12 +77,12 @@ sealed class CognitoManagedUserPoolClientNamePatternOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name_pattern` (one of the [CognitoManagedUserPoolClientNamePatternOrNamePrefix] choices).
-final class CognitoManagedUserPoolClientNamePatternOption
+/// The [CognitoManagedUserPoolClientNamePatternOrNamePrefix.namePattern] choice: sets `name_pattern`.
+final class CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePattern
     extends CognitoManagedUserPoolClientNamePatternOrNamePrefix {
-  const CognitoManagedUserPoolClientNamePatternOption({
-    required this.namePattern,
-  });
+  const CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePattern(
+    this.namePattern,
+  );
 
   final TfArg<String> namePattern;
 
@@ -84,12 +96,12 @@ final class CognitoManagedUserPoolClientNamePatternOption
   Map<String, TfArg<Object?>> get argMap => {'name_pattern': namePattern};
 }
 
-/// Sets `name_prefix` (one of the [CognitoManagedUserPoolClientNamePatternOrNamePrefix] choices).
-final class CognitoManagedUserPoolClientNamePrefixOption
+/// The [CognitoManagedUserPoolClientNamePatternOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePrefix
     extends CognitoManagedUserPoolClientNamePatternOrNamePrefix {
-  const CognitoManagedUserPoolClientNamePrefixOption({
-    required this.namePrefix,
-  });
+  const CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePrefix(
+    this.namePrefix,
+  );
 
   final TfArg<String> namePrefix;
 
@@ -133,8 +145,20 @@ final class CognitoManagedUserPoolClientAnalyticsConfiguration {
 
 /// Exactly one of `application_arn`, `application_id` on the `analytics_configuration` block of `aws_cognito_managed_user_pool_client`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.applicationArn(...)`.
 sealed class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
   const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId();
+
+  /// Sets `application_arn`.
+  const factory CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationArn(
+    TfArg<String> applicationArn,
+  ) = CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationArn;
+
+  /// Sets `application_id`.
+  const factory CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationId(
+    TfArg<String> applicationId,
+  ) = CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -142,13 +166,13 @@ sealed class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrA
   Map<String, Object?> encode();
 }
 
-/// Sets `application_arn` (one of the [CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId] choices).
-final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOption
+/// The [CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationArn] choice: sets `application_arn`.
+final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationArn
     extends
         CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
-  const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOption({
-    required this.applicationArn,
-  });
+  const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationArn(
+    this.applicationArn,
+  );
 
   final TfArg<String> applicationArn;
 
@@ -161,13 +185,13 @@ final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOpti
   };
 }
 
-/// Sets `application_id` (one of the [CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId] choices).
-final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationIdOption
+/// The [CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationId] choice: sets `application_id`.
+final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationId
     extends
         CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
-  const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationIdOption({
-    required this.applicationId,
-  });
+  const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationId(
+    this.applicationId,
+  );
 
   final TfArg<String> applicationId;
 

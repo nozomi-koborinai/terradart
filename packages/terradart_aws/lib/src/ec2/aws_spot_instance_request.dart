@@ -21,8 +21,25 @@ enum SpotInstanceRequestTenancy implements TerraformEnum {
 /// At most one of `host_resource_group_arn`, `placement_group`, `placement_group_id` on `aws_spot_instance_request`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.hostResourceGroupArn(...)`.
 sealed class SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId {
   const SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId();
+
+  /// Sets `host_resource_group_arn`.
+  const factory SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId.hostResourceGroupArn(
+    TfArg<String> hostResourceGroupArn,
+  ) = SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdHostResourceGroupArn;
+
+  /// Sets `placement_group`.
+  const factory SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId.placementGroup(
+    TfArg<String> placementGroup,
+  ) = SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroup;
+
+  /// Sets `placement_group_id`.
+  const factory SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId.placementGroupId(
+    TfArg<String> placementGroupId,
+  ) = SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroupId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,13 +51,13 @@ sealed class SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementG
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `host_resource_group_arn` (one of the [SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId] choices).
-final class SpotInstanceRequestHostResourceGroupArnOption
+/// The [SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId.hostResourceGroupArn] choice: sets `host_resource_group_arn`.
+final class SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdHostResourceGroupArn
     extends
         SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId {
-  const SpotInstanceRequestHostResourceGroupArnOption({
-    required this.hostResourceGroupArn,
-  });
+  const SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdHostResourceGroupArn(
+    this.hostResourceGroupArn,
+  );
 
   final TfArg<String> hostResourceGroupArn;
 
@@ -58,11 +75,13 @@ final class SpotInstanceRequestHostResourceGroupArnOption
   };
 }
 
-/// Sets `placement_group` (one of the [SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId] choices).
-final class SpotInstanceRequestPlacementGroupOption
+/// The [SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId.placementGroup] choice: sets `placement_group`.
+final class SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroup
     extends
         SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId {
-  const SpotInstanceRequestPlacementGroupOption({required this.placementGroup});
+  const SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroup(
+    this.placementGroup,
+  );
 
   final TfArg<String> placementGroup;
 
@@ -78,13 +97,13 @@ final class SpotInstanceRequestPlacementGroupOption
   Map<String, TfArg<Object?>> get argMap => {'placement_group': placementGroup};
 }
 
-/// Sets `placement_group_id` (one of the [SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId] choices).
-final class SpotInstanceRequestPlacementGroupIdOption
+/// The [SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId.placementGroupId] choice: sets `placement_group_id`.
+final class SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroupId
     extends
         SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId {
-  const SpotInstanceRequestPlacementGroupIdOption({
-    required this.placementGroupId,
-  });
+  const SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupIdPlacementGroupId(
+    this.placementGroupId,
+  );
 
   final TfArg<String> placementGroupId;
 
@@ -105,8 +124,20 @@ final class SpotInstanceRequestPlacementGroupIdOption
 /// At most one of `user_data`, `user_data_base64` on `aws_spot_instance_request`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.userData(...)`.
 sealed class SpotInstanceRequestUserDataOrUserDataBase64 {
   const SpotInstanceRequestUserDataOrUserDataBase64();
+
+  /// Sets `user_data`.
+  const factory SpotInstanceRequestUserDataOrUserDataBase64.userData(
+    TfArg<String> userData,
+  ) = SpotInstanceRequestUserDataOrUserDataBase64UserData;
+
+  /// Sets `user_data_base64`.
+  const factory SpotInstanceRequestUserDataOrUserDataBase64.userDataBase64(
+    TfArg<String> userDataBase64,
+  ) = SpotInstanceRequestUserDataOrUserDataBase64UserDataBase64;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -118,10 +149,10 @@ sealed class SpotInstanceRequestUserDataOrUserDataBase64 {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `user_data` (one of the [SpotInstanceRequestUserDataOrUserDataBase64] choices).
-final class SpotInstanceRequestUserDataOption
+/// The [SpotInstanceRequestUserDataOrUserDataBase64.userData] choice: sets `user_data`.
+final class SpotInstanceRequestUserDataOrUserDataBase64UserData
     extends SpotInstanceRequestUserDataOrUserDataBase64 {
-  const SpotInstanceRequestUserDataOption({required this.userData});
+  const SpotInstanceRequestUserDataOrUserDataBase64UserData(this.userData);
 
   final TfArg<String> userData;
 
@@ -135,10 +166,12 @@ final class SpotInstanceRequestUserDataOption
   Map<String, TfArg<Object?>> get argMap => {'user_data': userData};
 }
 
-/// Sets `user_data_base64` (one of the [SpotInstanceRequestUserDataOrUserDataBase64] choices).
-final class SpotInstanceRequestUserDataBase64Option
+/// The [SpotInstanceRequestUserDataOrUserDataBase64.userDataBase64] choice: sets `user_data_base64`.
+final class SpotInstanceRequestUserDataOrUserDataBase64UserDataBase64
     extends SpotInstanceRequestUserDataOrUserDataBase64 {
-  const SpotInstanceRequestUserDataBase64Option({required this.userDataBase64});
+  const SpotInstanceRequestUserDataOrUserDataBase64UserDataBase64(
+    this.userDataBase64,
+  );
 
   final TfArg<String> userDataBase64;
 
@@ -174,8 +207,24 @@ final class SpotInstanceRequestCapacityReservationSpecification {
 
 /// Exactly one of `capacity_reservation_preference`, `capacity_reservation_target` on the `capacity_reservation_specification` block of `aws_spot_instance_request`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.capacityReservationPreference(...)`.
 sealed class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget {
   const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget();
+
+  /// Sets `capacity_reservation_preference`.
+  const factory SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget.capacityReservationPreference(
+    TfArg<
+      SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreference
+    >
+    capacityReservationPreference,
+  ) = SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTargetCapacityReservationPreference;
+
+  /// Sets `capacity_reservation_target`.
+  const factory SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget.capacityReservationTarget(
+    SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget
+    capacityReservationTarget,
+  ) = SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTargetCapacityReservationTarget;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -183,13 +232,13 @@ sealed class SpotInstanceRequestCapacityReservationSpecificationCapacityReservat
   Map<String, Object?> encode();
 }
 
-/// Sets `capacity_reservation_preference` (one of the [SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget] choices).
-final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOption
+/// The [SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget.capacityReservationPreference] choice: sets `capacity_reservation_preference`.
+final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTargetCapacityReservationPreference
     extends
         SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget {
-  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOption({
-    required this.capacityReservationPreference,
-  });
+  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTargetCapacityReservationPreference(
+    this.capacityReservationPreference,
+  );
 
   final TfArg<
     SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreference
@@ -205,13 +254,13 @@ final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservati
   };
 }
 
-/// Sets `capacity_reservation_target` (one of the [SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget] choices).
-final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetOption
+/// The [SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget.capacityReservationTarget] choice: sets `capacity_reservation_target`.
+final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTargetCapacityReservationTarget
     extends
         SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget {
-  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetOption({
-    required this.capacityReservationTarget,
-  });
+  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTargetCapacityReservationTarget(
+    this.capacityReservationTarget,
+  );
 
   final SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget
   capacityReservationTarget;
@@ -258,8 +307,20 @@ final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservati
 /// At most one of `capacity_reservation_id`, `capacity_reservation_resource_group_arn` on the `capacity_reservation_specification.capacity_reservation_target` block of `aws_spot_instance_request`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.capacityReservationId(...)`.
 sealed class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
   const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn();
+
+  /// Sets `capacity_reservation_id`.
+  const factory SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn.capacityReservationId(
+    TfArg<String> capacityReservationId,
+  ) = SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationId;
+
+  /// Sets `capacity_reservation_resource_group_arn`.
+  const factory SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn.capacityReservationResourceGroupArn(
+    TfArg<String> capacityReservationResourceGroupArn,
+  ) = SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationResourceGroupArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -267,13 +328,13 @@ sealed class SpotInstanceRequestCapacityReservationSpecificationCapacityReservat
   Map<String, Object?> encode();
 }
 
-/// Sets `capacity_reservation_id` (one of the [SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn] choices).
-final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOption
+/// The [SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn.capacityReservationId] choice: sets `capacity_reservation_id`.
+final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationId
     extends
         SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
-  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOption({
-    required this.capacityReservationId,
-  });
+  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationId(
+    this.capacityReservationId,
+  );
 
   final TfArg<String> capacityReservationId;
 
@@ -286,13 +347,13 @@ final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservati
   };
 }
 
-/// Sets `capacity_reservation_resource_group_arn` (one of the [SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn] choices).
-final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArnOption
+/// The [SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn.capacityReservationResourceGroupArn] choice: sets `capacity_reservation_resource_group_arn`.
+final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationResourceGroupArn
     extends
         SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
-  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArnOption({
-    required this.capacityReservationResourceGroupArn,
-  });
+  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationResourceGroupArn(
+    this.capacityReservationResourceGroupArn,
+  );
 
   final TfArg<String> capacityReservationResourceGroupArn;
 
@@ -507,8 +568,19 @@ final class SpotInstanceRequestLaunchTemplate {
 
 /// Exactly one of `id`, `name` on the `launch_template` block of `aws_spot_instance_request`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.id(...)`.
 sealed class SpotInstanceRequestLaunchTemplateIdOrName {
   const SpotInstanceRequestLaunchTemplateIdOrName();
+
+  /// Sets `id`.
+  const factory SpotInstanceRequestLaunchTemplateIdOrName.id(TfArg<String> id) =
+      SpotInstanceRequestLaunchTemplateIdOrNameId;
+
+  /// Sets `name`.
+  const factory SpotInstanceRequestLaunchTemplateIdOrName.name(
+    TfArg<String> name,
+  ) = SpotInstanceRequestLaunchTemplateIdOrNameName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -516,10 +588,10 @@ sealed class SpotInstanceRequestLaunchTemplateIdOrName {
   Map<String, Object?> encode();
 }
 
-/// Sets `id` (one of the [SpotInstanceRequestLaunchTemplateIdOrName] choices).
-final class SpotInstanceRequestLaunchTemplateIdOption
+/// The [SpotInstanceRequestLaunchTemplateIdOrName.id] choice: sets `id`.
+final class SpotInstanceRequestLaunchTemplateIdOrNameId
     extends SpotInstanceRequestLaunchTemplateIdOrName {
-  const SpotInstanceRequestLaunchTemplateIdOption({required this.id});
+  const SpotInstanceRequestLaunchTemplateIdOrNameId(this.id);
 
   final TfArg<String> id;
 
@@ -530,10 +602,10 @@ final class SpotInstanceRequestLaunchTemplateIdOption
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
-/// Sets `name` (one of the [SpotInstanceRequestLaunchTemplateIdOrName] choices).
-final class SpotInstanceRequestLaunchTemplateNameOption
+/// The [SpotInstanceRequestLaunchTemplateIdOrName.name] choice: sets `name`.
+final class SpotInstanceRequestLaunchTemplateIdOrNameName
     extends SpotInstanceRequestLaunchTemplateIdOrName {
-  const SpotInstanceRequestLaunchTemplateNameOption({required this.name});
+  const SpotInstanceRequestLaunchTemplateIdOrNameName(this.name);
 
   final TfArg<String> name;
 

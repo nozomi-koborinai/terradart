@@ -38,17 +38,17 @@ export 'src/sesv2/aws_sesv2_configuration_set_event_destination.dart'
         Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestination,
         Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfiguration,
         Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfigurationDimensionValueSource,
-        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOption,
         Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination,
+        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestinationCloudWatchDestination,
+        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestinationEventBridgeDestination,
+        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestinationKinesisFirehoseDestination,
+        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestinationPinpointDestination,
+        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestinationSnsDestination,
         Sesv2ConfigurationSetEventDestinationEventDestinationEventBridgeDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationEventBridgeDestinationOption,
         Sesv2ConfigurationSetEventDestinationEventDestinationKinesisFirehoseDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationKinesisFirehoseDestinationOption,
         Sesv2ConfigurationSetEventDestinationEventDestinationMatchingEventTypes,
         Sesv2ConfigurationSetEventDestinationEventDestinationPinpointDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationPinpointDestinationOption,
-        Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestination,
-        Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestinationOption;
+        Sesv2ConfigurationSetEventDestinationEventDestinationSnsDestination;
 export 'src/sesv2/aws_sesv2_contact_list.dart'
     show
         AwsSesv2ContactList,

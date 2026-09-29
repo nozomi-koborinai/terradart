@@ -20,8 +20,19 @@ enum SfnStateMachineType implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_sfn_state_machine`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class SfnStateMachineNameOrNamePrefix {
   const SfnStateMachineNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory SfnStateMachineNameOrNamePrefix.name(TfArg<String> name) =
+      SfnStateMachineNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory SfnStateMachineNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = SfnStateMachineNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,9 +44,10 @@ sealed class SfnStateMachineNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [SfnStateMachineNameOrNamePrefix] choices).
-final class SfnStateMachineNameOption extends SfnStateMachineNameOrNamePrefix {
-  const SfnStateMachineNameOption({required this.name});
+/// The [SfnStateMachineNameOrNamePrefix.name] choice: sets `name`.
+final class SfnStateMachineNameOrNamePrefixName
+    extends SfnStateMachineNameOrNamePrefix {
+  const SfnStateMachineNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -49,10 +61,10 @@ final class SfnStateMachineNameOption extends SfnStateMachineNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [SfnStateMachineNameOrNamePrefix] choices).
-final class SfnStateMachineNamePrefixOption
+/// The [SfnStateMachineNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class SfnStateMachineNameOrNamePrefixNamePrefix
     extends SfnStateMachineNameOrNamePrefix {
-  const SfnStateMachineNamePrefixOption({required this.namePrefix});
+  const SfnStateMachineNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

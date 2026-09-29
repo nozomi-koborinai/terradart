@@ -9,8 +9,19 @@ const Set<String> _awsIamUserPolicySensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_iam_user_policy`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class IamUserPolicyNameOrNamePrefix {
   const IamUserPolicyNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory IamUserPolicyNameOrNamePrefix.name(TfArg<String> name) =
+      IamUserPolicyNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory IamUserPolicyNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = IamUserPolicyNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,9 +33,10 @@ sealed class IamUserPolicyNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [IamUserPolicyNameOrNamePrefix] choices).
-final class IamUserPolicyNameOption extends IamUserPolicyNameOrNamePrefix {
-  const IamUserPolicyNameOption({required this.name});
+/// The [IamUserPolicyNameOrNamePrefix.name] choice: sets `name`.
+final class IamUserPolicyNameOrNamePrefixName
+    extends IamUserPolicyNameOrNamePrefix {
+  const IamUserPolicyNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -38,10 +50,10 @@ final class IamUserPolicyNameOption extends IamUserPolicyNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [IamUserPolicyNameOrNamePrefix] choices).
-final class IamUserPolicyNamePrefixOption
+/// The [IamUserPolicyNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class IamUserPolicyNameOrNamePrefixNamePrefix
     extends IamUserPolicyNameOrNamePrefix {
-  const IamUserPolicyNamePrefixOption({required this.namePrefix});
+  const IamUserPolicyNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

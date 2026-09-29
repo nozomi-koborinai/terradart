@@ -276,8 +276,20 @@ final class CesToolDataStoreTool {
 /// At most one of `data_store_source`, `engine_source` on the `data_store_tool` block of `google_ces_tool`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.dataStoreSource(...)`.
 sealed class CesToolDataStoreToolDataStoreSourceOrEngineSource {
   const CesToolDataStoreToolDataStoreSourceOrEngineSource();
+
+  /// Sets `data_store_source`.
+  const factory CesToolDataStoreToolDataStoreSourceOrEngineSource.dataStoreSource(
+    CesToolDataStoreToolDataStoreSource dataStoreSource,
+  ) = CesToolDataStoreToolDataStoreSourceOrEngineSourceDataStoreSource;
+
+  /// Sets `engine_source`.
+  const factory CesToolDataStoreToolDataStoreSourceOrEngineSource.engineSource(
+    CesToolDataStoreToolEngineSource engineSource,
+  ) = CesToolDataStoreToolDataStoreSourceOrEngineSourceEngineSource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -285,12 +297,12 @@ sealed class CesToolDataStoreToolDataStoreSourceOrEngineSource {
   Map<String, Object?> encode();
 }
 
-/// Sets `data_store_source` (one of the [CesToolDataStoreToolDataStoreSourceOrEngineSource] choices).
-final class CesToolDataStoreToolDataStoreSourceOption
+/// The [CesToolDataStoreToolDataStoreSourceOrEngineSource.dataStoreSource] choice: sets `data_store_source`.
+final class CesToolDataStoreToolDataStoreSourceOrEngineSourceDataStoreSource
     extends CesToolDataStoreToolDataStoreSourceOrEngineSource {
-  const CesToolDataStoreToolDataStoreSourceOption({
-    required this.dataStoreSource,
-  });
+  const CesToolDataStoreToolDataStoreSourceOrEngineSourceDataStoreSource(
+    this.dataStoreSource,
+  );
 
   final CesToolDataStoreToolDataStoreSource dataStoreSource;
 
@@ -303,10 +315,12 @@ final class CesToolDataStoreToolDataStoreSourceOption
   };
 }
 
-/// Sets `engine_source` (one of the [CesToolDataStoreToolDataStoreSourceOrEngineSource] choices).
-final class CesToolDataStoreToolEngineSourceOption
+/// The [CesToolDataStoreToolDataStoreSourceOrEngineSource.engineSource] choice: sets `engine_source`.
+final class CesToolDataStoreToolDataStoreSourceOrEngineSourceEngineSource
     extends CesToolDataStoreToolDataStoreSourceOrEngineSource {
-  const CesToolDataStoreToolEngineSourceOption({required this.engineSource});
+  const CesToolDataStoreToolDataStoreSourceOrEngineSourceEngineSource(
+    this.engineSource,
+  );
 
   final CesToolDataStoreToolEngineSource engineSource;
 

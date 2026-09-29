@@ -10,8 +10,20 @@ const Set<String> _googleTpuV2VmSensitive = <String>{};
 /// At most one of `accelerator_type`, `accelerator_config` on `google_tpu_v2_vm`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.acceleratorType(...)`.
 sealed class TpuV2VmAcceleratorTypeOrAcceleratorConfig {
   const TpuV2VmAcceleratorTypeOrAcceleratorConfig();
+
+  /// Sets `accelerator_type`.
+  const factory TpuV2VmAcceleratorTypeOrAcceleratorConfig.acceleratorType(
+    TfArg<String> acceleratorType,
+  ) = TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorType;
+
+  /// Sets `accelerator_config`.
+  const factory TpuV2VmAcceleratorTypeOrAcceleratorConfig.acceleratorConfig(
+    TpuV2VmAcceleratorConfig acceleratorConfig,
+  ) = TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +35,12 @@ sealed class TpuV2VmAcceleratorTypeOrAcceleratorConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `accelerator_type` (one of the [TpuV2VmAcceleratorTypeOrAcceleratorConfig] choices).
-final class TpuV2VmAcceleratorTypeOption
+/// The [TpuV2VmAcceleratorTypeOrAcceleratorConfig.acceleratorType] choice: sets `accelerator_type`.
+final class TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorType
     extends TpuV2VmAcceleratorTypeOrAcceleratorConfig {
-  const TpuV2VmAcceleratorTypeOption({required this.acceleratorType});
+  const TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorType(
+    this.acceleratorType,
+  );
 
   final TfArg<String> acceleratorType;
 
@@ -44,10 +58,12 @@ final class TpuV2VmAcceleratorTypeOption
   };
 }
 
-/// Sets `accelerator_config` (one of the [TpuV2VmAcceleratorTypeOrAcceleratorConfig] choices).
-final class TpuV2VmAcceleratorConfigOption
+/// The [TpuV2VmAcceleratorTypeOrAcceleratorConfig.acceleratorConfig] choice: sets `accelerator_config`.
+final class TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorConfig
     extends TpuV2VmAcceleratorTypeOrAcceleratorConfig {
-  const TpuV2VmAcceleratorConfigOption({required this.acceleratorConfig});
+  const TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorConfig(
+    this.acceleratorConfig,
+  );
 
   final TpuV2VmAcceleratorConfig acceleratorConfig;
 
@@ -68,8 +84,20 @@ final class TpuV2VmAcceleratorConfigOption
 /// At most one of `network_config`, `network_configs` on `google_tpu_v2_vm`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.networkConfig(...)`.
 sealed class TpuV2VmNetworkConfigOrNetworkConfigs {
   const TpuV2VmNetworkConfigOrNetworkConfigs();
+
+  /// Sets `network_config`.
+  const factory TpuV2VmNetworkConfigOrNetworkConfigs.networkConfig(
+    TpuV2VmNetworkConfig networkConfig,
+  ) = TpuV2VmNetworkConfigOrNetworkConfigsNetworkConfig;
+
+  /// Sets `network_configs`.
+  const factory TpuV2VmNetworkConfigOrNetworkConfigs.networkConfigs(
+    List<TpuV2VmNetworkConfigs> networkConfigs,
+  ) = TpuV2VmNetworkConfigOrNetworkConfigsNetworkConfigs;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -81,10 +109,10 @@ sealed class TpuV2VmNetworkConfigOrNetworkConfigs {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `network_config` (one of the [TpuV2VmNetworkConfigOrNetworkConfigs] choices).
-final class TpuV2VmNetworkConfigOption
+/// The [TpuV2VmNetworkConfigOrNetworkConfigs.networkConfig] choice: sets `network_config`.
+final class TpuV2VmNetworkConfigOrNetworkConfigsNetworkConfig
     extends TpuV2VmNetworkConfigOrNetworkConfigs {
-  const TpuV2VmNetworkConfigOption({required this.networkConfig});
+  const TpuV2VmNetworkConfigOrNetworkConfigsNetworkConfig(this.networkConfig);
 
   final TpuV2VmNetworkConfig networkConfig;
 
@@ -100,10 +128,10 @@ final class TpuV2VmNetworkConfigOption
   };
 }
 
-/// Sets `network_configs` (one of the [TpuV2VmNetworkConfigOrNetworkConfigs] choices).
-final class TpuV2VmNetworkConfigsOption
+/// The [TpuV2VmNetworkConfigOrNetworkConfigs.networkConfigs] choice: sets `network_configs`.
+final class TpuV2VmNetworkConfigOrNetworkConfigsNetworkConfigs
     extends TpuV2VmNetworkConfigOrNetworkConfigs {
-  const TpuV2VmNetworkConfigsOption({required this.networkConfigs});
+  const TpuV2VmNetworkConfigOrNetworkConfigsNetworkConfigs(this.networkConfigs);
 
   final List<TpuV2VmNetworkConfigs> networkConfigs;
 

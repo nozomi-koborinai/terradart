@@ -22,8 +22,20 @@ final class DatasyncLocationFsxOntapFileSystemProtocol {
 
 /// Exactly one of `nfs`, `smb` on the `protocol` block of `aws_datasync_location_fsx_ontap_file_system`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.nfs(...)`.
 sealed class DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb {
   const DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb();
+
+  /// Sets `nfs`.
+  const factory DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb.nfs(
+    DatasyncLocationFsxOntapFileSystemProtocolNfs nfs,
+  ) = DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmbNfs;
+
+  /// Sets `smb`.
+  const factory DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb.smb(
+    DatasyncLocationFsxOntapFileSystemProtocolSmb smb,
+  ) = DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmbSmb;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -31,12 +43,10 @@ sealed class DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb {
   Map<String, Object?> encode();
 }
 
-/// Sets `nfs` (one of the [DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb] choices).
-final class DatasyncLocationFsxOntapFileSystemProtocolNfsOption
+/// The [DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb.nfs] choice: sets `nfs`.
+final class DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmbNfs
     extends DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb {
-  const DatasyncLocationFsxOntapFileSystemProtocolNfsOption({
-    required this.nfs,
-  });
+  const DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmbNfs(this.nfs);
 
   final DatasyncLocationFsxOntapFileSystemProtocolNfs nfs;
 
@@ -47,12 +57,10 @@ final class DatasyncLocationFsxOntapFileSystemProtocolNfsOption
   Map<String, Object?> encode() => {'nfs': nfs.encode()};
 }
 
-/// Sets `smb` (one of the [DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb] choices).
-final class DatasyncLocationFsxOntapFileSystemProtocolSmbOption
+/// The [DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb.smb] choice: sets `smb`.
+final class DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmbSmb
     extends DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb {
-  const DatasyncLocationFsxOntapFileSystemProtocolSmbOption({
-    required this.smb,
-  });
+  const DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmbSmb(this.smb);
 
   final DatasyncLocationFsxOntapFileSystemProtocolSmb smb;
 

@@ -46,8 +46,20 @@ class LoggingSavedQueryOpsAnalyticsQuery {
 
 /// Exactly one of `logging_query`, `ops_analytics_query` on `google_logging_saved_query`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.loggingQuery(...)`.
 sealed class LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery {
   const LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery();
+
+  /// Sets `logging_query`.
+  const factory LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery.loggingQuery(
+    LoggingSavedQueryLoggingQuery loggingQuery,
+  ) = LoggingSavedQueryLoggingQueryOrOpsAnalyticsQueryLoggingQuery;
+
+  /// Sets `ops_analytics_query`.
+  const factory LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery.opsAnalyticsQuery(
+    LoggingSavedQueryOpsAnalyticsQuery opsAnalyticsQuery,
+  ) = LoggingSavedQueryLoggingQueryOrOpsAnalyticsQueryOpsAnalyticsQuery;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -59,10 +71,12 @@ sealed class LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `logging_query` (one of the [LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery] choices).
-final class LoggingSavedQueryLoggingQueryOption
+/// The [LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery.loggingQuery] choice: sets `logging_query`.
+final class LoggingSavedQueryLoggingQueryOrOpsAnalyticsQueryLoggingQuery
     extends LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery {
-  const LoggingSavedQueryLoggingQueryOption({required this.loggingQuery});
+  const LoggingSavedQueryLoggingQueryOrOpsAnalyticsQueryLoggingQuery(
+    this.loggingQuery,
+  );
 
   final LoggingSavedQueryLoggingQuery loggingQuery;
 
@@ -80,12 +94,12 @@ final class LoggingSavedQueryLoggingQueryOption
   };
 }
 
-/// Sets `ops_analytics_query` (one of the [LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery] choices).
-final class LoggingSavedQueryOpsAnalyticsQueryOption
+/// The [LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery.opsAnalyticsQuery] choice: sets `ops_analytics_query`.
+final class LoggingSavedQueryLoggingQueryOrOpsAnalyticsQueryOpsAnalyticsQuery
     extends LoggingSavedQueryLoggingQueryOrOpsAnalyticsQuery {
-  const LoggingSavedQueryOpsAnalyticsQueryOption({
-    required this.opsAnalyticsQuery,
-  });
+  const LoggingSavedQueryLoggingQueryOrOpsAnalyticsQueryOpsAnalyticsQuery(
+    this.opsAnalyticsQuery,
+  );
 
   final LoggingSavedQueryOpsAnalyticsQuery opsAnalyticsQuery;
 

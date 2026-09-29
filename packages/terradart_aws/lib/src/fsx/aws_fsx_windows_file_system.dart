@@ -45,8 +45,20 @@ enum FsxWindowsFileSystemStorageType implements TerraformEnum {
 /// At most one of `active_directory_id`, `self_managed_active_directory` on `aws_fsx_windows_file_system`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.activeDirectoryId(...)`.
 sealed class FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory {
   const FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory();
+
+  /// Sets `active_directory_id`.
+  const factory FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory.activeDirectoryId(
+    TfArg<String> activeDirectoryId,
+  ) = FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectoryActiveDirectoryId;
+
+  /// Sets `self_managed_active_directory`.
+  const factory FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory.selfManagedActiveDirectory(
+    FsxWindowsFileSystemSelfManagedActiveDirectory selfManagedActiveDirectory,
+  ) = FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectorySelfManagedActiveDirectory;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -58,12 +70,12 @@ sealed class FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `active_directory_id` (one of the [FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory] choices).
-final class FsxWindowsFileSystemActiveDirectoryIdOption
+/// The [FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory.activeDirectoryId] choice: sets `active_directory_id`.
+final class FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectoryActiveDirectoryId
     extends FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory {
-  const FsxWindowsFileSystemActiveDirectoryIdOption({
-    required this.activeDirectoryId,
-  });
+  const FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectoryActiveDirectoryId(
+    this.activeDirectoryId,
+  );
 
   final TfArg<String> activeDirectoryId;
 
@@ -81,12 +93,12 @@ final class FsxWindowsFileSystemActiveDirectoryIdOption
   };
 }
 
-/// Sets `self_managed_active_directory` (one of the [FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory] choices).
-final class FsxWindowsFileSystemSelfManagedActiveDirectoryOption
+/// The [FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory.selfManagedActiveDirectory] choice: sets `self_managed_active_directory`.
+final class FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectorySelfManagedActiveDirectory
     extends FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory {
-  const FsxWindowsFileSystemSelfManagedActiveDirectoryOption({
-    required this.selfManagedActiveDirectory,
-  });
+  const FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectorySelfManagedActiveDirectory(
+    this.selfManagedActiveDirectory,
+  );
 
   final FsxWindowsFileSystemSelfManagedActiveDirectory
   selfManagedActiveDirectory;

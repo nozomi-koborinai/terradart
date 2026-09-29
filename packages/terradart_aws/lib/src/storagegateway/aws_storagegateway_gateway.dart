@@ -58,8 +58,20 @@ enum StoragegatewayGatewayTapeDriveType implements TerraformEnum {
 
 /// Exactly one of `activation_key`, `gateway_ip_address` on `aws_storagegateway_gateway`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.activationKey(...)`.
 sealed class StoragegatewayGatewayActivationKeyOrGatewayIpAddress {
   const StoragegatewayGatewayActivationKeyOrGatewayIpAddress();
+
+  /// Sets `activation_key`.
+  const factory StoragegatewayGatewayActivationKeyOrGatewayIpAddress.activationKey(
+    TfArg<String> activationKey,
+  ) = StoragegatewayGatewayActivationKeyOrGatewayIpAddressActivationKey;
+
+  /// Sets `gateway_ip_address`.
+  const factory StoragegatewayGatewayActivationKeyOrGatewayIpAddress.gatewayIpAddress(
+    TfArg<String> gatewayIpAddress,
+  ) = StoragegatewayGatewayActivationKeyOrGatewayIpAddressGatewayIpAddress;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -71,10 +83,12 @@ sealed class StoragegatewayGatewayActivationKeyOrGatewayIpAddress {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `activation_key` (one of the [StoragegatewayGatewayActivationKeyOrGatewayIpAddress] choices).
-final class StoragegatewayGatewayActivationKeyOption
+/// The [StoragegatewayGatewayActivationKeyOrGatewayIpAddress.activationKey] choice: sets `activation_key`.
+final class StoragegatewayGatewayActivationKeyOrGatewayIpAddressActivationKey
     extends StoragegatewayGatewayActivationKeyOrGatewayIpAddress {
-  const StoragegatewayGatewayActivationKeyOption({required this.activationKey});
+  const StoragegatewayGatewayActivationKeyOrGatewayIpAddressActivationKey(
+    this.activationKey,
+  );
 
   final TfArg<String> activationKey;
 
@@ -88,12 +102,12 @@ final class StoragegatewayGatewayActivationKeyOption
   Map<String, TfArg<Object?>> get argMap => {'activation_key': activationKey};
 }
 
-/// Sets `gateway_ip_address` (one of the [StoragegatewayGatewayActivationKeyOrGatewayIpAddress] choices).
-final class StoragegatewayGatewayGatewayIpAddressOption
+/// The [StoragegatewayGatewayActivationKeyOrGatewayIpAddress.gatewayIpAddress] choice: sets `gateway_ip_address`.
+final class StoragegatewayGatewayActivationKeyOrGatewayIpAddressGatewayIpAddress
     extends StoragegatewayGatewayActivationKeyOrGatewayIpAddress {
-  const StoragegatewayGatewayGatewayIpAddressOption({
-    required this.gatewayIpAddress,
-  });
+  const StoragegatewayGatewayActivationKeyOrGatewayIpAddressGatewayIpAddress(
+    this.gatewayIpAddress,
+  );
 
   final TfArg<String> gatewayIpAddress;
 

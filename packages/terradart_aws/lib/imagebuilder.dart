@@ -6,19 +6,19 @@ library;
 export 'src/imagebuilder/aws_imagebuilder_component.dart'
     show
         AwsImagebuilderComponent,
-        ImagebuilderComponentDataOption,
         ImagebuilderComponentDataOrUri,
-        ImagebuilderComponentPlatform,
-        ImagebuilderComponentUriOption;
+        ImagebuilderComponentDataOrUriData,
+        ImagebuilderComponentDataOrUriUri,
+        ImagebuilderComponentPlatform;
 export 'src/imagebuilder/aws_imagebuilder_container_recipe.dart'
     show
         AwsImagebuilderContainerRecipe,
         ImagebuilderContainerRecipeComponent,
         ImagebuilderContainerRecipeComponentParameter,
         ImagebuilderContainerRecipeContainerType,
-        ImagebuilderContainerRecipeDockerfileTemplateDataOption,
         ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri,
-        ImagebuilderContainerRecipeDockerfileTemplateUriOption,
+        ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUriDockerfileTemplateData,
+        ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUriDockerfileTemplateUri,
         ImagebuilderContainerRecipeInstanceConfiguration,
         ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMapping,
         ImagebuilderContainerRecipeInstanceConfigurationBlockDeviceMappingEbs,
@@ -46,9 +46,9 @@ export 'src/imagebuilder/aws_imagebuilder_distribution_configuration.dart'
 export 'src/imagebuilder/aws_imagebuilder_image.dart'
     show
         AwsImagebuilderImage,
-        ImagebuilderImageContainerRecipeArnOption,
         ImagebuilderImageContainerRecipeArnOrImageRecipeArn,
-        ImagebuilderImageImageRecipeArnOption,
+        ImagebuilderImageContainerRecipeArnOrImageRecipeArnContainerRecipeArn,
+        ImagebuilderImageContainerRecipeArnOrImageRecipeArnImageRecipeArn,
         ImagebuilderImageImageScanningConfiguration,
         ImagebuilderImageImageScanningConfigurationEcrConfiguration,
         ImagebuilderImageImageTestsConfiguration,
@@ -59,9 +59,9 @@ export 'src/imagebuilder/aws_imagebuilder_image.dart'
 export 'src/imagebuilder/aws_imagebuilder_image_pipeline.dart'
     show
         AwsImagebuilderImagePipeline,
-        ImagebuilderImagePipelineContainerRecipeArnOption,
         ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn,
-        ImagebuilderImagePipelineImageRecipeArnOption,
+        ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnContainerRecipeArn,
+        ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnImageRecipeArn,
         ImagebuilderImagePipelineImageScanningConfiguration,
         ImagebuilderImagePipelineImageScanningConfigurationEcrConfiguration,
         ImagebuilderImagePipelineImageTestsConfiguration,
@@ -89,9 +89,9 @@ export 'src/imagebuilder/aws_imagebuilder_infrastructure_configuration.dart'
         ImagebuilderInfrastructureConfigurationLogging,
         ImagebuilderInfrastructureConfigurationLoggingS3Logs,
         ImagebuilderInfrastructureConfigurationPlacement,
-        ImagebuilderInfrastructureConfigurationPlacementHostIdOption,
         ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn,
-        ImagebuilderInfrastructureConfigurationPlacementHostResourceGroupArnOption,
+        ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArnHostId,
+        ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArnHostResourceGroupArn,
         ImagebuilderInfrastructureConfigurationPlacementTenancy;
 export 'src/imagebuilder/aws_imagebuilder_lifecycle_policy.dart'
     show
@@ -113,7 +113,7 @@ export 'src/imagebuilder/aws_imagebuilder_lifecycle_policy.dart'
 export 'src/imagebuilder/aws_imagebuilder_workflow.dart'
     show
         AwsImagebuilderWorkflow,
-        ImagebuilderWorkflowDataOption,
         ImagebuilderWorkflowDataOrUri,
-        ImagebuilderWorkflowType,
-        ImagebuilderWorkflowUriOption;
+        ImagebuilderWorkflowDataOrUriData,
+        ImagebuilderWorkflowDataOrUriUri,
+        ImagebuilderWorkflowType;

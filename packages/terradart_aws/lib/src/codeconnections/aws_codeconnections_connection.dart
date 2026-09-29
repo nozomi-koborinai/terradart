@@ -23,8 +23,20 @@ enum CodeconnectionsConnectionProviderType implements TerraformEnum {
 /// At most one of `host_arn`, `provider_type` on `aws_codeconnections_connection`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.hostArn(...)`.
 sealed class CodeconnectionsConnectionHostArnOrProviderType {
   const CodeconnectionsConnectionHostArnOrProviderType();
+
+  /// Sets `host_arn`.
+  const factory CodeconnectionsConnectionHostArnOrProviderType.hostArn(
+    TfArg<String> hostArn,
+  ) = CodeconnectionsConnectionHostArnOrProviderTypeHostArn;
+
+  /// Sets `provider_type`.
+  const factory CodeconnectionsConnectionHostArnOrProviderType.providerType(
+    TfArg<CodeconnectionsConnectionProviderType> providerType,
+  ) = CodeconnectionsConnectionHostArnOrProviderTypeProviderType;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,10 +48,10 @@ sealed class CodeconnectionsConnectionHostArnOrProviderType {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `host_arn` (one of the [CodeconnectionsConnectionHostArnOrProviderType] choices).
-final class CodeconnectionsConnectionHostArnOption
+/// The [CodeconnectionsConnectionHostArnOrProviderType.hostArn] choice: sets `host_arn`.
+final class CodeconnectionsConnectionHostArnOrProviderTypeHostArn
     extends CodeconnectionsConnectionHostArnOrProviderType {
-  const CodeconnectionsConnectionHostArnOption({required this.hostArn});
+  const CodeconnectionsConnectionHostArnOrProviderTypeHostArn(this.hostArn);
 
   final TfArg<String> hostArn;
 
@@ -53,12 +65,12 @@ final class CodeconnectionsConnectionHostArnOption
   Map<String, TfArg<Object?>> get argMap => {'host_arn': hostArn};
 }
 
-/// Sets `provider_type` (one of the [CodeconnectionsConnectionHostArnOrProviderType] choices).
-final class CodeconnectionsConnectionProviderTypeOption
+/// The [CodeconnectionsConnectionHostArnOrProviderType.providerType] choice: sets `provider_type`.
+final class CodeconnectionsConnectionHostArnOrProviderTypeProviderType
     extends CodeconnectionsConnectionHostArnOrProviderType {
-  const CodeconnectionsConnectionProviderTypeOption({
-    required this.providerType,
-  });
+  const CodeconnectionsConnectionHostArnOrProviderTypeProviderType(
+    this.providerType,
+  );
 
   final TfArg<CodeconnectionsConnectionProviderType> providerType;
 

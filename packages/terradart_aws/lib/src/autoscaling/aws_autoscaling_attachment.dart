@@ -8,8 +8,20 @@ const Set<String> _awsAutoscalingAttachmentSensitive = <String>{};
 
 /// Exactly one of `elb`, `lb_target_group_arn` on `aws_autoscaling_attachment`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.elb(...)`.
 sealed class AutoscalingAttachmentElbOrLbTargetGroupArn {
   const AutoscalingAttachmentElbOrLbTargetGroupArn();
+
+  /// Sets `elb`.
+  const factory AutoscalingAttachmentElbOrLbTargetGroupArn.elb(
+    TfArg<String> elb,
+  ) = AutoscalingAttachmentElbOrLbTargetGroupArnElb;
+
+  /// Sets `lb_target_group_arn`.
+  const factory AutoscalingAttachmentElbOrLbTargetGroupArn.lbTargetGroupArn(
+    TfArg<String> lbTargetGroupArn,
+  ) = AutoscalingAttachmentElbOrLbTargetGroupArnLbTargetGroupArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,10 +33,10 @@ sealed class AutoscalingAttachmentElbOrLbTargetGroupArn {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `elb` (one of the [AutoscalingAttachmentElbOrLbTargetGroupArn] choices).
-final class AutoscalingAttachmentElbOption
+/// The [AutoscalingAttachmentElbOrLbTargetGroupArn.elb] choice: sets `elb`.
+final class AutoscalingAttachmentElbOrLbTargetGroupArnElb
     extends AutoscalingAttachmentElbOrLbTargetGroupArn {
-  const AutoscalingAttachmentElbOption({required this.elb});
+  const AutoscalingAttachmentElbOrLbTargetGroupArnElb(this.elb);
 
   final TfArg<String> elb;
 
@@ -38,12 +50,12 @@ final class AutoscalingAttachmentElbOption
   Map<String, TfArg<Object?>> get argMap => {'elb': elb};
 }
 
-/// Sets `lb_target_group_arn` (one of the [AutoscalingAttachmentElbOrLbTargetGroupArn] choices).
-final class AutoscalingAttachmentLbTargetGroupArnOption
+/// The [AutoscalingAttachmentElbOrLbTargetGroupArn.lbTargetGroupArn] choice: sets `lb_target_group_arn`.
+final class AutoscalingAttachmentElbOrLbTargetGroupArnLbTargetGroupArn
     extends AutoscalingAttachmentElbOrLbTargetGroupArn {
-  const AutoscalingAttachmentLbTargetGroupArnOption({
-    required this.lbTargetGroupArn,
-  });
+  const AutoscalingAttachmentElbOrLbTargetGroupArnLbTargetGroupArn(
+    this.lbTargetGroupArn,
+  );
 
   final TfArg<String> lbTargetGroupArn;
 

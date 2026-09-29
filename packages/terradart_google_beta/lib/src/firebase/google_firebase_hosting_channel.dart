@@ -9,8 +9,19 @@ const Set<String> _googleFirebaseHostingChannelSensitive = <String>{};
 /// At most one of `expire_time`, `ttl` on `google_firebase_hosting_channel`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.expireTime(...)`.
 sealed class FirebaseHostingChannelExpireTimeOrTtl {
   const FirebaseHostingChannelExpireTimeOrTtl();
+
+  /// Sets `expire_time`.
+  const factory FirebaseHostingChannelExpireTimeOrTtl.expireTime(
+    TfArg<String> expireTime,
+  ) = FirebaseHostingChannelExpireTimeOrTtlExpireTime;
+
+  /// Sets `ttl`.
+  const factory FirebaseHostingChannelExpireTimeOrTtl.ttl(TfArg<String> ttl) =
+      FirebaseHostingChannelExpireTimeOrTtlTtl;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +33,10 @@ sealed class FirebaseHostingChannelExpireTimeOrTtl {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `expire_time` (one of the [FirebaseHostingChannelExpireTimeOrTtl] choices).
-final class FirebaseHostingChannelExpireTimeOption
+/// The [FirebaseHostingChannelExpireTimeOrTtl.expireTime] choice: sets `expire_time`.
+final class FirebaseHostingChannelExpireTimeOrTtlExpireTime
     extends FirebaseHostingChannelExpireTimeOrTtl {
-  const FirebaseHostingChannelExpireTimeOption({required this.expireTime});
+  const FirebaseHostingChannelExpireTimeOrTtlExpireTime(this.expireTime);
 
   final TfArg<String> expireTime;
 
@@ -39,10 +50,10 @@ final class FirebaseHostingChannelExpireTimeOption
   Map<String, TfArg<Object?>> get argMap => {'expire_time': expireTime};
 }
 
-/// Sets `ttl` (one of the [FirebaseHostingChannelExpireTimeOrTtl] choices).
-final class FirebaseHostingChannelTtlOption
+/// The [FirebaseHostingChannelExpireTimeOrTtl.ttl] choice: sets `ttl`.
+final class FirebaseHostingChannelExpireTimeOrTtlTtl
     extends FirebaseHostingChannelExpireTimeOrTtl {
-  const FirebaseHostingChannelTtlOption({required this.ttl});
+  const FirebaseHostingChannelExpireTimeOrTtlTtl(this.ttl);
 
   final TfArg<String> ttl;
 

@@ -43,8 +43,20 @@ final class M2EnvironmentStorageConfiguration {
 
 /// Exactly one of `efs`, `fsx` on the `storage_configuration` block of `aws_m2_environment`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.efs(...)`.
 sealed class M2EnvironmentStorageConfigurationEfsOrFsx {
   const M2EnvironmentStorageConfigurationEfsOrFsx();
+
+  /// Sets `efs`.
+  const factory M2EnvironmentStorageConfigurationEfsOrFsx.efs(
+    List<M2EnvironmentStorageConfigurationEfs> efs,
+  ) = M2EnvironmentStorageConfigurationEfsOrFsxEfs;
+
+  /// Sets `fsx`.
+  const factory M2EnvironmentStorageConfigurationEfsOrFsx.fsx(
+    List<M2EnvironmentStorageConfigurationFsx> fsx,
+  ) = M2EnvironmentStorageConfigurationEfsOrFsxFsx;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -52,10 +64,10 @@ sealed class M2EnvironmentStorageConfigurationEfsOrFsx {
   Map<String, Object?> encode();
 }
 
-/// Sets `efs` (one of the [M2EnvironmentStorageConfigurationEfsOrFsx] choices).
-final class M2EnvironmentStorageConfigurationEfsOption
+/// The [M2EnvironmentStorageConfigurationEfsOrFsx.efs] choice: sets `efs`.
+final class M2EnvironmentStorageConfigurationEfsOrFsxEfs
     extends M2EnvironmentStorageConfigurationEfsOrFsx {
-  const M2EnvironmentStorageConfigurationEfsOption({required this.efs});
+  const M2EnvironmentStorageConfigurationEfsOrFsxEfs(this.efs);
 
   final List<M2EnvironmentStorageConfigurationEfs> efs;
 
@@ -68,10 +80,10 @@ final class M2EnvironmentStorageConfigurationEfsOption
   };
 }
 
-/// Sets `fsx` (one of the [M2EnvironmentStorageConfigurationEfsOrFsx] choices).
-final class M2EnvironmentStorageConfigurationFsxOption
+/// The [M2EnvironmentStorageConfigurationEfsOrFsx.fsx] choice: sets `fsx`.
+final class M2EnvironmentStorageConfigurationEfsOrFsxFsx
     extends M2EnvironmentStorageConfigurationEfsOrFsx {
-  const M2EnvironmentStorageConfigurationFsxOption({required this.fsx});
+  const M2EnvironmentStorageConfigurationEfsOrFsxFsx(this.fsx);
 
   final List<M2EnvironmentStorageConfigurationFsx> fsx;
 

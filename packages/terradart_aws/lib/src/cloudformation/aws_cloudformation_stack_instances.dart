@@ -20,8 +20,20 @@ enum CloudformationStackInstancesCallAs implements TerraformEnum {
 /// At most one of `accounts`, `deployment_targets` on `aws_cloudformation_stack_instances`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.accounts(...)`.
 sealed class CloudformationStackInstancesAccountsOrDeploymentTargets {
   const CloudformationStackInstancesAccountsOrDeploymentTargets();
+
+  /// Sets `accounts`.
+  const factory CloudformationStackInstancesAccountsOrDeploymentTargets.accounts(
+    TfArg<List<String>> accounts,
+  ) = CloudformationStackInstancesAccountsOrDeploymentTargetsAccounts;
+
+  /// Sets `deployment_targets`.
+  const factory CloudformationStackInstancesAccountsOrDeploymentTargets.deploymentTargets(
+    CloudformationStackInstancesDeploymentTargets deploymentTargets,
+  ) = CloudformationStackInstancesAccountsOrDeploymentTargetsDeploymentTargets;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +45,12 @@ sealed class CloudformationStackInstancesAccountsOrDeploymentTargets {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `accounts` (one of the [CloudformationStackInstancesAccountsOrDeploymentTargets] choices).
-final class CloudformationStackInstancesAccountsOption
+/// The [CloudformationStackInstancesAccountsOrDeploymentTargets.accounts] choice: sets `accounts`.
+final class CloudformationStackInstancesAccountsOrDeploymentTargetsAccounts
     extends CloudformationStackInstancesAccountsOrDeploymentTargets {
-  const CloudformationStackInstancesAccountsOption({required this.accounts});
+  const CloudformationStackInstancesAccountsOrDeploymentTargetsAccounts(
+    this.accounts,
+  );
 
   final TfArg<List<String>> accounts;
 
@@ -50,12 +64,12 @@ final class CloudformationStackInstancesAccountsOption
   Map<String, TfArg<Object?>> get argMap => {'accounts': accounts};
 }
 
-/// Sets `deployment_targets` (one of the [CloudformationStackInstancesAccountsOrDeploymentTargets] choices).
-final class CloudformationStackInstancesDeploymentTargetsOption
+/// The [CloudformationStackInstancesAccountsOrDeploymentTargets.deploymentTargets] choice: sets `deployment_targets`.
+final class CloudformationStackInstancesAccountsOrDeploymentTargetsDeploymentTargets
     extends CloudformationStackInstancesAccountsOrDeploymentTargets {
-  const CloudformationStackInstancesDeploymentTargetsOption({
-    required this.deploymentTargets,
-  });
+  const CloudformationStackInstancesAccountsOrDeploymentTargetsDeploymentTargets(
+    this.deploymentTargets,
+  );
 
   final CloudformationStackInstancesDeploymentTargets deploymentTargets;
 
@@ -144,8 +158,20 @@ final class CloudformationStackInstancesOperationPreferences {
 /// At most one of `failure_tolerance_count`, `failure_tolerance_percentage` on the `operation_preferences` block of `aws_cloudformation_stack_instances`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.failureToleranceCount(...)`.
 sealed class CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage {
   const CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage();
+
+  /// Sets `failure_tolerance_count`.
+  const factory CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage.failureToleranceCount(
+    TfArg<num> failureToleranceCount,
+  ) = CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentageFailureToleranceCount;
+
+  /// Sets `failure_tolerance_percentage`.
+  const factory CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage.failureTolerancePercentage(
+    TfArg<num> failureTolerancePercentage,
+  ) = CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentageFailureTolerancePercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -153,13 +179,13 @@ sealed class CloudformationStackInstancesOperationPreferencesFailureToleranceCou
   Map<String, Object?> encode();
 }
 
-/// Sets `failure_tolerance_count` (one of the [CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage] choices).
-final class CloudformationStackInstancesOperationPreferencesFailureToleranceCountOption
+/// The [CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage.failureToleranceCount] choice: sets `failure_tolerance_count`.
+final class CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentageFailureToleranceCount
     extends
         CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage {
-  const CloudformationStackInstancesOperationPreferencesFailureToleranceCountOption({
-    required this.failureToleranceCount,
-  });
+  const CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentageFailureToleranceCount(
+    this.failureToleranceCount,
+  );
 
   final TfArg<num> failureToleranceCount;
 
@@ -172,13 +198,13 @@ final class CloudformationStackInstancesOperationPreferencesFailureToleranceCoun
   };
 }
 
-/// Sets `failure_tolerance_percentage` (one of the [CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage] choices).
-final class CloudformationStackInstancesOperationPreferencesFailureTolerancePercentageOption
+/// The [CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage.failureTolerancePercentage] choice: sets `failure_tolerance_percentage`.
+final class CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentageFailureTolerancePercentage
     extends
         CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage {
-  const CloudformationStackInstancesOperationPreferencesFailureTolerancePercentageOption({
-    required this.failureTolerancePercentage,
-  });
+  const CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentageFailureTolerancePercentage(
+    this.failureTolerancePercentage,
+  );
 
   final TfArg<num> failureTolerancePercentage;
 
@@ -194,8 +220,20 @@ final class CloudformationStackInstancesOperationPreferencesFailureTolerancePerc
 /// At most one of `max_concurrent_count`, `max_concurrent_percentage` on the `operation_preferences` block of `aws_cloudformation_stack_instances`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.maxConcurrentCount(...)`.
 sealed class CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage {
   const CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage();
+
+  /// Sets `max_concurrent_count`.
+  const factory CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage.maxConcurrentCount(
+    TfArg<num> maxConcurrentCount,
+  ) = CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentageMaxConcurrentCount;
+
+  /// Sets `max_concurrent_percentage`.
+  const factory CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage.maxConcurrentPercentage(
+    TfArg<num> maxConcurrentPercentage,
+  ) = CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentageMaxConcurrentPercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -203,13 +241,13 @@ sealed class CloudformationStackInstancesOperationPreferencesMaxConcurrentCountO
   Map<String, Object?> encode();
 }
 
-/// Sets `max_concurrent_count` (one of the [CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage] choices).
-final class CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOption
+/// The [CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage.maxConcurrentCount] choice: sets `max_concurrent_count`.
+final class CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentageMaxConcurrentCount
     extends
         CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage {
-  const CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOption({
-    required this.maxConcurrentCount,
-  });
+  const CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentageMaxConcurrentCount(
+    this.maxConcurrentCount,
+  );
 
   final TfArg<num> maxConcurrentCount;
 
@@ -222,13 +260,13 @@ final class CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOp
   };
 }
 
-/// Sets `max_concurrent_percentage` (one of the [CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage] choices).
-final class CloudformationStackInstancesOperationPreferencesMaxConcurrentPercentageOption
+/// The [CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage.maxConcurrentPercentage] choice: sets `max_concurrent_percentage`.
+final class CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentageMaxConcurrentPercentage
     extends
         CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage {
-  const CloudformationStackInstancesOperationPreferencesMaxConcurrentPercentageOption({
-    required this.maxConcurrentPercentage,
-  });
+  const CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentageMaxConcurrentPercentage(
+    this.maxConcurrentPercentage,
+  );
 
   final TfArg<num> maxConcurrentPercentage;
 

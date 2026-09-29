@@ -97,8 +97,25 @@ enum LambdaFunctionRuntime implements TerraformEnum {
 
 /// Exactly one of `filename`, `image_uri`, `s3_bucket` on `aws_lambda_function`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.filename(...)`.
 sealed class LambdaFunctionFilenameOrImageUriOrS3Bucket {
   const LambdaFunctionFilenameOrImageUriOrS3Bucket();
+
+  /// Sets `filename`.
+  const factory LambdaFunctionFilenameOrImageUriOrS3Bucket.filename(
+    TfArg<String> filename,
+  ) = LambdaFunctionFilenameOrImageUriOrS3BucketFilename;
+
+  /// Sets `image_uri`.
+  const factory LambdaFunctionFilenameOrImageUriOrS3Bucket.imageUri(
+    TfArg<String> imageUri,
+  ) = LambdaFunctionFilenameOrImageUriOrS3BucketImageUri;
+
+  /// Sets `s3_bucket`.
+  const factory LambdaFunctionFilenameOrImageUriOrS3Bucket.s3Bucket(
+    TfArg<String> s3Bucket,
+  ) = LambdaFunctionFilenameOrImageUriOrS3BucketS3Bucket;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -110,10 +127,10 @@ sealed class LambdaFunctionFilenameOrImageUriOrS3Bucket {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `filename` (one of the [LambdaFunctionFilenameOrImageUriOrS3Bucket] choices).
-final class LambdaFunctionFilenameOption
+/// The [LambdaFunctionFilenameOrImageUriOrS3Bucket.filename] choice: sets `filename`.
+final class LambdaFunctionFilenameOrImageUriOrS3BucketFilename
     extends LambdaFunctionFilenameOrImageUriOrS3Bucket {
-  const LambdaFunctionFilenameOption({required this.filename});
+  const LambdaFunctionFilenameOrImageUriOrS3BucketFilename(this.filename);
 
   final TfArg<String> filename;
 
@@ -127,10 +144,10 @@ final class LambdaFunctionFilenameOption
   Map<String, TfArg<Object?>> get argMap => {'filename': filename};
 }
 
-/// Sets `image_uri` (one of the [LambdaFunctionFilenameOrImageUriOrS3Bucket] choices).
-final class LambdaFunctionImageUriOption
+/// The [LambdaFunctionFilenameOrImageUriOrS3Bucket.imageUri] choice: sets `image_uri`.
+final class LambdaFunctionFilenameOrImageUriOrS3BucketImageUri
     extends LambdaFunctionFilenameOrImageUriOrS3Bucket {
-  const LambdaFunctionImageUriOption({required this.imageUri});
+  const LambdaFunctionFilenameOrImageUriOrS3BucketImageUri(this.imageUri);
 
   final TfArg<String> imageUri;
 
@@ -144,10 +161,10 @@ final class LambdaFunctionImageUriOption
   Map<String, TfArg<Object?>> get argMap => {'image_uri': imageUri};
 }
 
-/// Sets `s3_bucket` (one of the [LambdaFunctionFilenameOrImageUriOrS3Bucket] choices).
-final class LambdaFunctionS3BucketOption
+/// The [LambdaFunctionFilenameOrImageUriOrS3Bucket.s3Bucket] choice: sets `s3_bucket`.
+final class LambdaFunctionFilenameOrImageUriOrS3BucketS3Bucket
     extends LambdaFunctionFilenameOrImageUriOrS3Bucket {
-  const LambdaFunctionS3BucketOption({required this.s3Bucket});
+  const LambdaFunctionFilenameOrImageUriOrS3BucketS3Bucket(this.s3Bucket);
 
   final TfArg<String> s3Bucket;
 

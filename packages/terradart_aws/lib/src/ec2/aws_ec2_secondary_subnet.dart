@@ -9,8 +9,20 @@ const Set<String> _awsEc2SecondarySubnetSensitive = <String>{};
 /// At most one of `availability_zone`, `availability_zone_id` on `aws_ec2_secondary_subnet`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.availabilityZone(...)`.
 sealed class Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId {
   const Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId();
+
+  /// Sets `availability_zone`.
+  const factory Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId.availabilityZone(
+    TfArg<String> availabilityZone,
+  ) = Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZone;
+
+  /// Sets `availability_zone_id`.
+  const factory Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId.availabilityZoneId(
+    TfArg<String> availabilityZoneId,
+  ) = Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZoneId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,12 +34,12 @@ sealed class Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `availability_zone` (one of the [Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId] choices).
-final class Ec2SecondarySubnetAvailabilityZoneOption
+/// The [Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId.availabilityZone] choice: sets `availability_zone`.
+final class Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZone
     extends Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId {
-  const Ec2SecondarySubnetAvailabilityZoneOption({
-    required this.availabilityZone,
-  });
+  const Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZone(
+    this.availabilityZone,
+  );
 
   final TfArg<String> availabilityZone;
 
@@ -45,12 +57,12 @@ final class Ec2SecondarySubnetAvailabilityZoneOption
   };
 }
 
-/// Sets `availability_zone_id` (one of the [Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId] choices).
-final class Ec2SecondarySubnetAvailabilityZoneIdOption
+/// The [Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId.availabilityZoneId] choice: sets `availability_zone_id`.
+final class Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZoneId
     extends Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId {
-  const Ec2SecondarySubnetAvailabilityZoneIdOption({
-    required this.availabilityZoneId,
-  });
+  const Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZoneId(
+    this.availabilityZoneId,
+  );
 
   final TfArg<String> availabilityZoneId;
 

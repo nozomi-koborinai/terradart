@@ -32,8 +32,26 @@ enum KinesisFirehoseDeliveryStreamDestination implements TerraformEnum {
 /// At most one of `kinesis_source_configuration`, `msk_source_configuration`, `server_side_encryption` on `aws_kinesis_firehose_delivery_stream`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.kinesisSourceConfiguration(...)`.
 sealed class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption {
   const KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption();
+
+  /// Sets `kinesis_source_configuration`.
+  const factory KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption.kinesisSourceConfiguration(
+    KinesisFirehoseDeliveryStreamKinesisSourceConfiguration
+    kinesisSourceConfiguration,
+  ) = KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionKinesisSourceConfiguration;
+
+  /// Sets `msk_source_configuration`.
+  const factory KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption.mskSourceConfiguration(
+    KinesisFirehoseDeliveryStreamMskSourceConfiguration mskSourceConfiguration,
+  ) = KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionMskSourceConfiguration;
+
+  /// Sets `server_side_encryption`.
+  const factory KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption.serverSideEncryption(
+    KinesisFirehoseDeliveryStreamServerSideEncryption serverSideEncryption,
+  ) = KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionServerSideEncryption;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,13 +63,13 @@ sealed class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceC
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `kinesis_source_configuration` (one of the [KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption] choices).
-final class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOption
+/// The [KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption.kinesisSourceConfiguration] choice: sets `kinesis_source_configuration`.
+final class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionKinesisSourceConfiguration
     extends
         KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption {
-  const KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOption({
-    required this.kinesisSourceConfiguration,
-  });
+  const KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionKinesisSourceConfiguration(
+    this.kinesisSourceConfiguration,
+  );
 
   final KinesisFirehoseDeliveryStreamKinesisSourceConfiguration
   kinesisSourceConfiguration;
@@ -72,13 +90,13 @@ final class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOption
   };
 }
 
-/// Sets `msk_source_configuration` (one of the [KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption] choices).
-final class KinesisFirehoseDeliveryStreamMskSourceConfigurationOption
+/// The [KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption.mskSourceConfiguration] choice: sets `msk_source_configuration`.
+final class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionMskSourceConfiguration
     extends
         KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption {
-  const KinesisFirehoseDeliveryStreamMskSourceConfigurationOption({
-    required this.mskSourceConfiguration,
-  });
+  const KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionMskSourceConfiguration(
+    this.mskSourceConfiguration,
+  );
 
   final KinesisFirehoseDeliveryStreamMskSourceConfiguration
   mskSourceConfiguration;
@@ -97,13 +115,13 @@ final class KinesisFirehoseDeliveryStreamMskSourceConfigurationOption
   };
 }
 
-/// Sets `server_side_encryption` (one of the [KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption] choices).
-final class KinesisFirehoseDeliveryStreamServerSideEncryptionOption
+/// The [KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption.serverSideEncryption] choice: sets `server_side_encryption`.
+final class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionServerSideEncryption
     extends
         KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption {
-  const KinesisFirehoseDeliveryStreamServerSideEncryptionOption({
-    required this.serverSideEncryption,
-  });
+  const KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryptionServerSideEncryption(
+    this.serverSideEncryption,
+  );
 
   final KinesisFirehoseDeliveryStreamServerSideEncryption serverSideEncryption;
 
@@ -202,8 +220,20 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
 /// At most one of `cluster_endpoint`, `domain_arn` on the `elasticsearch_configuration` block of `aws_kinesis_firehose_delivery_stream`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clusterEndpoint(...)`.
 sealed class KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn {
   const KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn();
+
+  /// Sets `cluster_endpoint`.
+  const factory KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn.clusterEndpoint(
+    TfArg<String> clusterEndpoint,
+  ) = KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnClusterEndpoint;
+
+  /// Sets `domain_arn`.
+  const factory KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn.domainArn(
+    TfArg<String> domainArn,
+  ) = KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnDomainArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -211,13 +241,13 @@ sealed class KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpo
   Map<String, Object?> encode();
 }
 
-/// Sets `cluster_endpoint` (one of the [KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn] choices).
-final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOption
+/// The [KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn.clusterEndpoint] choice: sets `cluster_endpoint`.
+final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnClusterEndpoint
     extends
         KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn {
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOption({
-    required this.clusterEndpoint,
-  });
+  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnClusterEndpoint(
+    this.clusterEndpoint,
+  );
 
   final TfArg<String> clusterEndpoint;
 
@@ -230,13 +260,13 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpoi
   };
 }
 
-/// Sets `domain_arn` (one of the [KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn] choices).
-final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainArnOption
+/// The [KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn.domainArn] choice: sets `domain_arn`.
+final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnDomainArn
     extends
         KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn {
-  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainArnOption({
-    required this.domainArn,
-  });
+  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArnDomainArn(
+    this.domainArn,
+  );
 
   final TfArg<String> domainArn;
 
@@ -671,8 +701,22 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 /// At most one of `hive_json_ser_de`, `open_x_json_ser_de` on the `extended_s3_configuration.data_format_conversion_configuration.input_format_configuration.deserializer` block of `aws_kinesis_firehose_delivery_stream`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.hiveJsonSerDe(...)`.
 sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe {
   const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe();
+
+  /// Sets `hive_json_ser_de`.
+  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe.hiveJsonSerDe(
+    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDe
+    hiveJsonSerDe,
+  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDeHiveJsonSerDe;
+
+  /// Sets `open_x_json_ser_de`.
+  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe.openXJsonSerDe(
+    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerOpenXJsonSerDe
+    openXJsonSerDe,
+  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDeOpenXJsonSerDe;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -680,13 +724,13 @@ sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConve
   Map<String, Object?> encode();
 }
 
-/// Sets `hive_json_ser_de` (one of the [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe] choices).
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOption
+/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe.hiveJsonSerDe] choice: sets `hive_json_ser_de`.
+final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDeHiveJsonSerDe
     extends
         KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOption({
-    required this.hiveJsonSerDe,
-  });
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDeHiveJsonSerDe(
+    this.hiveJsonSerDe,
+  );
 
   final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDe
   hiveJsonSerDe;
@@ -698,13 +742,13 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
   Map<String, Object?> encode() => {'hive_json_ser_de': hiveJsonSerDe.encode()};
 }
 
-/// Sets `open_x_json_ser_de` (one of the [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe] choices).
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerOpenXJsonSerDeOption
+/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe.openXJsonSerDe] choice: sets `open_x_json_ser_de`.
+final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDeOpenXJsonSerDe
     extends
         KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerOpenXJsonSerDeOption({
-    required this.openXJsonSerDe,
-  });
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDeOpenXJsonSerDe(
+    this.openXJsonSerDe,
+  );
 
   final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerOpenXJsonSerDe
   openXJsonSerDe;
@@ -792,8 +836,22 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 /// At most one of `orc_ser_de`, `parquet_ser_de` on the `extended_s3_configuration.data_format_conversion_configuration.output_format_configuration.serializer` block of `aws_kinesis_firehose_delivery_stream`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.orcSerDe(...)`.
 sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe {
   const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe();
+
+  /// Sets `orc_ser_de`.
+  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe.orcSerDe(
+    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDe
+    orcSerDe,
+  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDeOrcSerDe;
+
+  /// Sets `parquet_ser_de`.
+  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe.parquetSerDe(
+    KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDe
+    parquetSerDe,
+  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDeParquetSerDe;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -801,13 +859,13 @@ sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConve
   Map<String, Object?> encode();
 }
 
-/// Sets `orc_ser_de` (one of the [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe] choices).
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOption
+/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe.orcSerDe] choice: sets `orc_ser_de`.
+final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDeOrcSerDe
     extends
         KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOption({
-    required this.orcSerDe,
-  });
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDeOrcSerDe(
+    this.orcSerDe,
+  );
 
   final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDe
   orcSerDe;
@@ -819,13 +877,13 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
   Map<String, Object?> encode() => {'orc_ser_de': orcSerDe.encode()};
 }
 
-/// Sets `parquet_ser_de` (one of the [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe] choices).
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeOption
+/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe.parquetSerDe] choice: sets `parquet_ser_de`.
+final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDeParquetSerDe
     extends
         KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeOption({
-    required this.parquetSerDe,
-  });
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDeParquetSerDe(
+    this.parquetSerDe,
+  );
 
   final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDe
   parquetSerDe;
@@ -1949,8 +2007,20 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
 /// At most one of `cluster_endpoint`, `domain_arn` on the `opensearch_configuration` block of `aws_kinesis_firehose_delivery_stream`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clusterEndpoint(...)`.
 sealed class KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn {
   const KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn();
+
+  /// Sets `cluster_endpoint`.
+  const factory KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn.clusterEndpoint(
+    TfArg<String> clusterEndpoint,
+  ) = KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnClusterEndpoint;
+
+  /// Sets `domain_arn`.
+  const factory KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn.domainArn(
+    TfArg<String> domainArn,
+  ) = KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnDomainArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1958,13 +2028,13 @@ sealed class KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpoint
   Map<String, Object?> encode();
 }
 
-/// Sets `cluster_endpoint` (one of the [KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn] choices).
-final class KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOption
+/// The [KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn.clusterEndpoint] choice: sets `cluster_endpoint`.
+final class KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnClusterEndpoint
     extends
         KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn {
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOption({
-    required this.clusterEndpoint,
-  });
+  const KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnClusterEndpoint(
+    this.clusterEndpoint,
+  );
 
   final TfArg<String> clusterEndpoint;
 
@@ -1977,13 +2047,13 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointO
   };
 }
 
-/// Sets `domain_arn` (one of the [KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn] choices).
-final class KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainArnOption
+/// The [KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn.domainArn] choice: sets `domain_arn`.
+final class KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnDomainArn
     extends
         KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn {
-  const KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainArnOption({
-    required this.domainArn,
-  });
+  const KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArnDomainArn(
+    this.domainArn,
+  );
 
   final TfArg<String> domainArn;
 

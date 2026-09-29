@@ -89,8 +89,25 @@ enum ElasticacheReplicationGroupTransitEncryptionMode implements TerraformEnum {
 /// At most one of `auth_token`, `auth_token_wo`, `user_group_ids` on `aws_elasticache_replication_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.authToken(...)`.
 sealed class ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds {
   const ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds();
+
+  /// Sets `auth_token`.
+  const factory ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds.authToken(
+    TfArg<String> authToken,
+  ) = ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthToken;
+
+  /// Sets `auth_token_wo`.
+  const factory ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds.authTokenWo(
+    TfArg<String> authTokenWo,
+  ) = ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthTokenWo;
+
+  /// Sets `user_group_ids`.
+  const factory ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds.userGroupIds(
+    TfArg<List<String>> userGroupIds,
+  ) = ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsUserGroupIds;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -102,10 +119,12 @@ sealed class ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `auth_token` (one of the [ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds] choices).
-final class ElasticacheReplicationGroupAuthTokenOption
+/// The [ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds.authToken] choice: sets `auth_token`.
+final class ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthToken
     extends ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds {
-  const ElasticacheReplicationGroupAuthTokenOption({required this.authToken});
+  const ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthToken(
+    this.authToken,
+  );
 
   final TfArg<String> authToken;
 
@@ -119,12 +138,12 @@ final class ElasticacheReplicationGroupAuthTokenOption
   Map<String, TfArg<Object?>> get argMap => {'auth_token': authToken};
 }
 
-/// Sets `auth_token_wo` (one of the [ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds] choices).
-final class ElasticacheReplicationGroupAuthTokenWoOption
+/// The [ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds.authTokenWo] choice: sets `auth_token_wo`.
+final class ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthTokenWo
     extends ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds {
-  const ElasticacheReplicationGroupAuthTokenWoOption({
-    required this.authTokenWo,
-  });
+  const ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthTokenWo(
+    this.authTokenWo,
+  );
 
   final TfArg<String> authTokenWo;
 
@@ -138,12 +157,12 @@ final class ElasticacheReplicationGroupAuthTokenWoOption
   Map<String, TfArg<Object?>> get argMap => {'auth_token_wo': authTokenWo};
 }
 
-/// Sets `user_group_ids` (one of the [ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds] choices).
-final class ElasticacheReplicationGroupUserGroupIdsOption
+/// The [ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds.userGroupIds] choice: sets `user_group_ids`.
+final class ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsUserGroupIds
     extends ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds {
-  const ElasticacheReplicationGroupUserGroupIdsOption({
-    required this.userGroupIds,
-  });
+  const ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsUserGroupIds(
+    this.userGroupIds,
+  );
 
   final TfArg<List<String>> userGroupIds;
 
@@ -160,8 +179,21 @@ final class ElasticacheReplicationGroupUserGroupIdsOption
 /// At most one of `node_group_configuration`, `preferred_cache_cluster_azs` on `aws_elasticache_replication_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.nodeGroupConfiguration(...)`.
 sealed class ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs {
   const ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs();
+
+  /// Sets `node_group_configuration`.
+  const factory ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs.nodeGroupConfiguration(
+    List<ElasticacheReplicationGroupNodeGroupConfiguration>
+    nodeGroupConfiguration,
+  ) = ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsNodeGroupConfiguration;
+
+  /// Sets `preferred_cache_cluster_azs`.
+  const factory ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs.preferredCacheClusterAzs(
+    TfArg<List<String>> preferredCacheClusterAzs,
+  ) = ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsPreferredCacheClusterAzs;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -173,13 +205,13 @@ sealed class ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheCl
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `node_group_configuration` (one of the [ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs] choices).
-final class ElasticacheReplicationGroupNodeGroupConfigurationOption
+/// The [ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs.nodeGroupConfiguration] choice: sets `node_group_configuration`.
+final class ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsNodeGroupConfiguration
     extends
         ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs {
-  const ElasticacheReplicationGroupNodeGroupConfigurationOption({
-    required this.nodeGroupConfiguration,
-  });
+  const ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsNodeGroupConfiguration(
+    this.nodeGroupConfiguration,
+  );
 
   final List<ElasticacheReplicationGroupNodeGroupConfiguration>
   nodeGroupConfiguration;
@@ -202,13 +234,13 @@ final class ElasticacheReplicationGroupNodeGroupConfigurationOption
   };
 }
 
-/// Sets `preferred_cache_cluster_azs` (one of the [ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs] choices).
-final class ElasticacheReplicationGroupPreferredCacheClusterAzsOption
+/// The [ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs.preferredCacheClusterAzs] choice: sets `preferred_cache_cluster_azs`.
+final class ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsPreferredCacheClusterAzs
     extends
         ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs {
-  const ElasticacheReplicationGroupPreferredCacheClusterAzsOption({
-    required this.preferredCacheClusterAzs,
-  });
+  const ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsPreferredCacheClusterAzs(
+    this.preferredCacheClusterAzs,
+  );
 
   final TfArg<List<String>> preferredCacheClusterAzs;
 

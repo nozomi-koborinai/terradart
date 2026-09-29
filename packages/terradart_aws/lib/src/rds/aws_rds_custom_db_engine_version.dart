@@ -20,8 +20,20 @@ enum RdsCustomDbEngineVersionStatus implements TerraformEnum {
 /// At most one of `filename`, `manifest` on `aws_rds_custom_db_engine_version`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.filename(...)`.
 sealed class RdsCustomDbEngineVersionFilenameOrManifest {
   const RdsCustomDbEngineVersionFilenameOrManifest();
+
+  /// Sets `filename`.
+  const factory RdsCustomDbEngineVersionFilenameOrManifest.filename(
+    TfArg<String> filename,
+  ) = RdsCustomDbEngineVersionFilenameOrManifestFilename;
+
+  /// Sets `manifest`.
+  const factory RdsCustomDbEngineVersionFilenameOrManifest.manifest(
+    TfArg<String> manifest,
+  ) = RdsCustomDbEngineVersionFilenameOrManifestManifest;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +45,10 @@ sealed class RdsCustomDbEngineVersionFilenameOrManifest {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `filename` (one of the [RdsCustomDbEngineVersionFilenameOrManifest] choices).
-final class RdsCustomDbEngineVersionFilenameOption
+/// The [RdsCustomDbEngineVersionFilenameOrManifest.filename] choice: sets `filename`.
+final class RdsCustomDbEngineVersionFilenameOrManifestFilename
     extends RdsCustomDbEngineVersionFilenameOrManifest {
-  const RdsCustomDbEngineVersionFilenameOption({required this.filename});
+  const RdsCustomDbEngineVersionFilenameOrManifestFilename(this.filename);
 
   final TfArg<String> filename;
 
@@ -50,10 +62,10 @@ final class RdsCustomDbEngineVersionFilenameOption
   Map<String, TfArg<Object?>> get argMap => {'filename': filename};
 }
 
-/// Sets `manifest` (one of the [RdsCustomDbEngineVersionFilenameOrManifest] choices).
-final class RdsCustomDbEngineVersionManifestOption
+/// The [RdsCustomDbEngineVersionFilenameOrManifest.manifest] choice: sets `manifest`.
+final class RdsCustomDbEngineVersionFilenameOrManifestManifest
     extends RdsCustomDbEngineVersionFilenameOrManifest {
-  const RdsCustomDbEngineVersionManifestOption({required this.manifest});
+  const RdsCustomDbEngineVersionFilenameOrManifestManifest(this.manifest);
 
   final TfArg<String> manifest;
 

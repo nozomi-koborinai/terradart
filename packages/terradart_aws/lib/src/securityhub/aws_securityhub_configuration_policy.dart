@@ -63,8 +63,20 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
 /// At most one of `disabled_control_identifiers`, `enabled_control_identifiers` on the `configuration_policy.security_controls_configuration` block of `aws_securityhub_configuration_policy`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.disabledControlIdentifiers(...)`.
 sealed class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers {
   const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers();
+
+  /// Sets `disabled_control_identifiers`.
+  const factory SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers.disabledControlIdentifiers(
+    TfArg<List<Object?>> disabledControlIdentifiers,
+  ) = SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiersDisabledControlIdentifiers;
+
+  /// Sets `enabled_control_identifiers`.
+  const factory SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers.enabledControlIdentifiers(
+    TfArg<List<Object?>> enabledControlIdentifiers,
+  ) = SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiersEnabledControlIdentifiers;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -72,13 +84,13 @@ sealed class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCo
   Map<String, Object?> encode();
 }
 
-/// Sets `disabled_control_identifiers` (one of the [SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers] choices).
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOption
+/// The [SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers.disabledControlIdentifiers] choice: sets `disabled_control_identifiers`.
+final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiersDisabledControlIdentifiers
     extends
         SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOption({
-    required this.disabledControlIdentifiers,
-  });
+  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiersDisabledControlIdentifiers(
+    this.disabledControlIdentifiers,
+  );
 
   final TfArg<List<Object?>> disabledControlIdentifiers;
 
@@ -91,13 +103,13 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
   };
 }
 
-/// Sets `enabled_control_identifiers` (one of the [SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers] choices).
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationEnabledControlIdentifiersOption
+/// The [SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers.enabledControlIdentifiers] choice: sets `enabled_control_identifiers`.
+final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiersEnabledControlIdentifiers
     extends
         SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationEnabledControlIdentifiersOption({
-    required this.enabledControlIdentifiers,
-  });
+  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiersEnabledControlIdentifiers(
+    this.enabledControlIdentifiers,
+  );
 
   final TfArg<List<Object?>> enabledControlIdentifiers;
 

@@ -151,9 +151,12 @@ class MigrateManifestEmitter {
 
   String _helper(MigrateHelperData h) {
     final slots = h.slots.map(_slot).join(', ');
+    final shorthand = h.shorthand == null
+        ? ''
+        : ', shorthand: ${_str(h.shorthand!)}';
     final reason = h.reason == null ? '' : ', reason: ${_str(h.reason!)}';
     return 'MigrateHelper(className: ${_str(h.className)}, '
-        'slots: <MigrateSlot>[$slots]$reason)';
+        'slots: <MigrateSlot>[$slots]$shorthand$reason)';
   }
 
   String _enum(MigrateEnumData e) {

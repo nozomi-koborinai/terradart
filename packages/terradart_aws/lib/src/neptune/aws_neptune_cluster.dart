@@ -39,8 +39,20 @@ enum NeptuneClusterStorageType implements TerraformEnum {
 /// At most one of `cluster_identifier`, `cluster_identifier_prefix` on `aws_neptune_cluster`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clusterIdentifier(...)`.
 sealed class NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix {
   const NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix();
+
+  /// Sets `cluster_identifier`.
+  const factory NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifier(
+    TfArg<String> clusterIdentifier,
+  ) = NeptuneClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier;
+
+  /// Sets `cluster_identifier_prefix`.
+  const factory NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifierPrefix(
+    TfArg<String> clusterIdentifierPrefix,
+  ) = NeptuneClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -52,12 +64,12 @@ sealed class NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `cluster_identifier` (one of the [NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix] choices).
-final class NeptuneClusterClusterIdentifierOption
+/// The [NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifier] choice: sets `cluster_identifier`.
+final class NeptuneClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier
     extends NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix {
-  const NeptuneClusterClusterIdentifierOption({
-    required this.clusterIdentifier,
-  });
+  const NeptuneClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier(
+    this.clusterIdentifier,
+  );
 
   final TfArg<String> clusterIdentifier;
 
@@ -75,12 +87,12 @@ final class NeptuneClusterClusterIdentifierOption
   };
 }
 
-/// Sets `cluster_identifier_prefix` (one of the [NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix] choices).
-final class NeptuneClusterClusterIdentifierPrefixOption
+/// The [NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifierPrefix] choice: sets `cluster_identifier_prefix`.
+final class NeptuneClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix
     extends NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix {
-  const NeptuneClusterClusterIdentifierPrefixOption({
-    required this.clusterIdentifierPrefix,
-  });
+  const NeptuneClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix(
+    this.clusterIdentifierPrefix,
+  );
 
   final TfArg<String> clusterIdentifierPrefix;
 

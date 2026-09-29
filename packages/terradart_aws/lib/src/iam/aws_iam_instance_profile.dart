@@ -9,8 +9,19 @@ const Set<String> _awsIamInstanceProfileSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_iam_instance_profile`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class IamInstanceProfileNameOrNamePrefix {
   const IamInstanceProfileNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory IamInstanceProfileNameOrNamePrefix.name(TfArg<String> name) =
+      IamInstanceProfileNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory IamInstanceProfileNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = IamInstanceProfileNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +33,10 @@ sealed class IamInstanceProfileNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [IamInstanceProfileNameOrNamePrefix] choices).
-final class IamInstanceProfileNameOption
+/// The [IamInstanceProfileNameOrNamePrefix.name] choice: sets `name`.
+final class IamInstanceProfileNameOrNamePrefixName
     extends IamInstanceProfileNameOrNamePrefix {
-  const IamInstanceProfileNameOption({required this.name});
+  const IamInstanceProfileNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -39,10 +50,10 @@ final class IamInstanceProfileNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [IamInstanceProfileNameOrNamePrefix] choices).
-final class IamInstanceProfileNamePrefixOption
+/// The [IamInstanceProfileNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class IamInstanceProfileNameOrNamePrefixNamePrefix
     extends IamInstanceProfileNameOrNamePrefix {
-  const IamInstanceProfileNamePrefixOption({required this.namePrefix});
+  const IamInstanceProfileNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

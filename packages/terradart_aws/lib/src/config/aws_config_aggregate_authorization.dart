@@ -8,8 +8,20 @@ const Set<String> _awsConfigAggregateAuthorizationSensitive = <String>{};
 
 /// Exactly one of `authorized_aws_region`, `region` on `aws_config_aggregate_authorization`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.authorizedAwsRegion(...)`.
 sealed class ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion {
   const ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion();
+
+  /// Sets `authorized_aws_region`.
+  const factory ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion.authorizedAwsRegion(
+    TfArg<String> authorizedAwsRegion,
+  ) = ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionAuthorizedAwsRegion;
+
+  /// Sets `region`.
+  const factory ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion.region(
+    TfArg<String> region,
+  ) = ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionRegion;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,12 +33,12 @@ sealed class ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `authorized_aws_region` (one of the [ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion] choices).
-final class ConfigAggregateAuthorizationAuthorizedAwsRegionOption
+/// The [ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion.authorizedAwsRegion] choice: sets `authorized_aws_region`.
+final class ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionAuthorizedAwsRegion
     extends ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion {
-  const ConfigAggregateAuthorizationAuthorizedAwsRegionOption({
-    required this.authorizedAwsRegion,
-  });
+  const ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionAuthorizedAwsRegion(
+    this.authorizedAwsRegion,
+  );
 
   final TfArg<String> authorizedAwsRegion;
 
@@ -44,10 +56,12 @@ final class ConfigAggregateAuthorizationAuthorizedAwsRegionOption
   };
 }
 
-/// Sets `region` (one of the [ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion] choices).
-final class ConfigAggregateAuthorizationRegionOption
+/// The [ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion.region] choice: sets `region`.
+final class ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionRegion
     extends ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegion {
-  const ConfigAggregateAuthorizationRegionOption({required this.region});
+  const ConfigAggregateAuthorizationAuthorizedAwsRegionOrRegionRegion(
+    this.region,
+  );
 
   final TfArg<String> region;
 

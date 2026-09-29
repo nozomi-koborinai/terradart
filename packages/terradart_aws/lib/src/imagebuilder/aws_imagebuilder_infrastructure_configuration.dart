@@ -102,8 +102,20 @@ final class ImagebuilderInfrastructureConfigurationPlacement {
 /// At most one of `host_id`, `host_resource_group_arn` on the `placement` block of `aws_imagebuilder_infrastructure_configuration`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.hostId(...)`.
 sealed class ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn {
   const ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn();
+
+  /// Sets `host_id`.
+  const factory ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn.hostId(
+    TfArg<String> hostId,
+  ) = ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArnHostId;
+
+  /// Sets `host_resource_group_arn`.
+  const factory ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn.hostResourceGroupArn(
+    TfArg<String> hostResourceGroupArn,
+  ) = ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArnHostResourceGroupArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -111,13 +123,13 @@ sealed class ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourc
   Map<String, Object?> encode();
 }
 
-/// Sets `host_id` (one of the [ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn] choices).
-final class ImagebuilderInfrastructureConfigurationPlacementHostIdOption
+/// The [ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn.hostId] choice: sets `host_id`.
+final class ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArnHostId
     extends
         ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn {
-  const ImagebuilderInfrastructureConfigurationPlacementHostIdOption({
-    required this.hostId,
-  });
+  const ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArnHostId(
+    this.hostId,
+  );
 
   final TfArg<String> hostId;
 
@@ -128,13 +140,13 @@ final class ImagebuilderInfrastructureConfigurationPlacementHostIdOption
   Map<String, Object?> encode() => {'host_id': hostId.toTfJson()};
 }
 
-/// Sets `host_resource_group_arn` (one of the [ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn] choices).
-final class ImagebuilderInfrastructureConfigurationPlacementHostResourceGroupArnOption
+/// The [ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn.hostResourceGroupArn] choice: sets `host_resource_group_arn`.
+final class ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArnHostResourceGroupArn
     extends
         ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn {
-  const ImagebuilderInfrastructureConfigurationPlacementHostResourceGroupArnOption({
-    required this.hostResourceGroupArn,
-  });
+  const ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArnHostResourceGroupArn(
+    this.hostResourceGroupArn,
+  );
 
   final TfArg<String> hostResourceGroupArn;
 

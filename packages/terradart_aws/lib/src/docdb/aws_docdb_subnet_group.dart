@@ -9,8 +9,19 @@ const Set<String> _awsDocdbSubnetGroupSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_docdb_subnet_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class DocdbSubnetGroupNameOrNamePrefix {
   const DocdbSubnetGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory DocdbSubnetGroupNameOrNamePrefix.name(TfArg<String> name) =
+      DocdbSubnetGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory DocdbSubnetGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = DocdbSubnetGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +33,10 @@ sealed class DocdbSubnetGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [DocdbSubnetGroupNameOrNamePrefix] choices).
-final class DocdbSubnetGroupNameOption
+/// The [DocdbSubnetGroupNameOrNamePrefix.name] choice: sets `name`.
+final class DocdbSubnetGroupNameOrNamePrefixName
     extends DocdbSubnetGroupNameOrNamePrefix {
-  const DocdbSubnetGroupNameOption({required this.name});
+  const DocdbSubnetGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -39,10 +50,10 @@ final class DocdbSubnetGroupNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [DocdbSubnetGroupNameOrNamePrefix] choices).
-final class DocdbSubnetGroupNamePrefixOption
+/// The [DocdbSubnetGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class DocdbSubnetGroupNameOrNamePrefixNamePrefix
     extends DocdbSubnetGroupNameOrNamePrefix {
-  const DocdbSubnetGroupNamePrefixOption({required this.namePrefix});
+  const DocdbSubnetGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

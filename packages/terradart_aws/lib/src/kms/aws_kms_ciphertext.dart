@@ -11,8 +11,20 @@ const Set<String> _awsKmsCiphertextSensitive = <String>{
 
 /// Exactly one of `plaintext`, `plaintext_wo` on `aws_kms_ciphertext`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.plaintext(...)`.
 sealed class KmsCiphertextPlaintextOrPlaintextWo {
   const KmsCiphertextPlaintextOrPlaintextWo();
+
+  /// Sets `plaintext`.
+  const factory KmsCiphertextPlaintextOrPlaintextWo.plaintext(
+    TfArg<String> plaintext,
+  ) = KmsCiphertextPlaintextOrPlaintextWoPlaintext;
+
+  /// Sets `plaintext_wo`.
+  const factory KmsCiphertextPlaintextOrPlaintextWo.plaintextWo(
+    TfArg<String> plaintextWo,
+  ) = KmsCiphertextPlaintextOrPlaintextWoPlaintextWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -24,10 +36,10 @@ sealed class KmsCiphertextPlaintextOrPlaintextWo {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `plaintext` (one of the [KmsCiphertextPlaintextOrPlaintextWo] choices).
-final class KmsCiphertextPlaintextOption
+/// The [KmsCiphertextPlaintextOrPlaintextWo.plaintext] choice: sets `plaintext`.
+final class KmsCiphertextPlaintextOrPlaintextWoPlaintext
     extends KmsCiphertextPlaintextOrPlaintextWo {
-  const KmsCiphertextPlaintextOption({required this.plaintext});
+  const KmsCiphertextPlaintextOrPlaintextWoPlaintext(this.plaintext);
 
   final TfArg<String> plaintext;
 
@@ -41,10 +53,10 @@ final class KmsCiphertextPlaintextOption
   Map<String, TfArg<Object?>> get argMap => {'plaintext': plaintext};
 }
 
-/// Sets `plaintext_wo` (one of the [KmsCiphertextPlaintextOrPlaintextWo] choices).
-final class KmsCiphertextPlaintextWoOption
+/// The [KmsCiphertextPlaintextOrPlaintextWo.plaintextWo] choice: sets `plaintext_wo`.
+final class KmsCiphertextPlaintextOrPlaintextWoPlaintextWo
     extends KmsCiphertextPlaintextOrPlaintextWo {
-  const KmsCiphertextPlaintextWoOption({required this.plaintextWo});
+  const KmsCiphertextPlaintextOrPlaintextWoPlaintextWo(this.plaintextWo);
 
   final TfArg<String> plaintextWo;
 

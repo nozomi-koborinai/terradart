@@ -20,8 +20,20 @@ enum DmsReplicationTaskMigrationType implements TerraformEnum {
 /// At most one of `cdc_start_position`, `cdc_start_time` on `aws_dms_replication_task`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.cdcStartPosition(...)`.
 sealed class DmsReplicationTaskCdcStartPositionOrCdcStartTime {
   const DmsReplicationTaskCdcStartPositionOrCdcStartTime();
+
+  /// Sets `cdc_start_position`.
+  const factory DmsReplicationTaskCdcStartPositionOrCdcStartTime.cdcStartPosition(
+    TfArg<String> cdcStartPosition,
+  ) = DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartPosition;
+
+  /// Sets `cdc_start_time`.
+  const factory DmsReplicationTaskCdcStartPositionOrCdcStartTime.cdcStartTime(
+    TfArg<String> cdcStartTime,
+  ) = DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartTime;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,12 +45,12 @@ sealed class DmsReplicationTaskCdcStartPositionOrCdcStartTime {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `cdc_start_position` (one of the [DmsReplicationTaskCdcStartPositionOrCdcStartTime] choices).
-final class DmsReplicationTaskCdcStartPositionOption
+/// The [DmsReplicationTaskCdcStartPositionOrCdcStartTime.cdcStartPosition] choice: sets `cdc_start_position`.
+final class DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartPosition
     extends DmsReplicationTaskCdcStartPositionOrCdcStartTime {
-  const DmsReplicationTaskCdcStartPositionOption({
-    required this.cdcStartPosition,
-  });
+  const DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartPosition(
+    this.cdcStartPosition,
+  );
 
   final TfArg<String> cdcStartPosition;
 
@@ -56,10 +68,12 @@ final class DmsReplicationTaskCdcStartPositionOption
   };
 }
 
-/// Sets `cdc_start_time` (one of the [DmsReplicationTaskCdcStartPositionOrCdcStartTime] choices).
-final class DmsReplicationTaskCdcStartTimeOption
+/// The [DmsReplicationTaskCdcStartPositionOrCdcStartTime.cdcStartTime] choice: sets `cdc_start_time`.
+final class DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartTime
     extends DmsReplicationTaskCdcStartPositionOrCdcStartTime {
-  const DmsReplicationTaskCdcStartTimeOption({required this.cdcStartTime});
+  const DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartTime(
+    this.cdcStartTime,
+  );
 
   final TfArg<String> cdcStartTime;
 

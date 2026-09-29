@@ -8,8 +8,20 @@ const Set<String> _awsStoragegatewayUploadBufferSensitive = <String>{};
 
 /// Exactly one of `disk_id`, `disk_path` on `aws_storagegateway_upload_buffer`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.diskId(...)`.
 sealed class StoragegatewayUploadBufferDiskIdOrDiskPath {
   const StoragegatewayUploadBufferDiskIdOrDiskPath();
+
+  /// Sets `disk_id`.
+  const factory StoragegatewayUploadBufferDiskIdOrDiskPath.diskId(
+    TfArg<String> diskId,
+  ) = StoragegatewayUploadBufferDiskIdOrDiskPathDiskId;
+
+  /// Sets `disk_path`.
+  const factory StoragegatewayUploadBufferDiskIdOrDiskPath.diskPath(
+    TfArg<String> diskPath,
+  ) = StoragegatewayUploadBufferDiskIdOrDiskPathDiskPath;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,10 +33,10 @@ sealed class StoragegatewayUploadBufferDiskIdOrDiskPath {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `disk_id` (one of the [StoragegatewayUploadBufferDiskIdOrDiskPath] choices).
-final class StoragegatewayUploadBufferDiskIdOption
+/// The [StoragegatewayUploadBufferDiskIdOrDiskPath.diskId] choice: sets `disk_id`.
+final class StoragegatewayUploadBufferDiskIdOrDiskPathDiskId
     extends StoragegatewayUploadBufferDiskIdOrDiskPath {
-  const StoragegatewayUploadBufferDiskIdOption({required this.diskId});
+  const StoragegatewayUploadBufferDiskIdOrDiskPathDiskId(this.diskId);
 
   final TfArg<String> diskId;
 
@@ -38,10 +50,10 @@ final class StoragegatewayUploadBufferDiskIdOption
   Map<String, TfArg<Object?>> get argMap => {'disk_id': diskId};
 }
 
-/// Sets `disk_path` (one of the [StoragegatewayUploadBufferDiskIdOrDiskPath] choices).
-final class StoragegatewayUploadBufferDiskPathOption
+/// The [StoragegatewayUploadBufferDiskIdOrDiskPath.diskPath] choice: sets `disk_path`.
+final class StoragegatewayUploadBufferDiskIdOrDiskPathDiskPath
     extends StoragegatewayUploadBufferDiskIdOrDiskPath {
-  const StoragegatewayUploadBufferDiskPathOption({required this.diskPath});
+  const StoragegatewayUploadBufferDiskIdOrDiskPathDiskPath(this.diskPath);
 
   final TfArg<String> diskPath;
 

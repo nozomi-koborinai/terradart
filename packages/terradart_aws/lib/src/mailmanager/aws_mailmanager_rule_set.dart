@@ -668,8 +668,30 @@ final class MailmanagerRuleSetRuleConditionBooleanExpressionEvaluate {
 
 /// Exactly one of `analysis`, `attribute`, `is_in_address_list` on the `rule.condition.boolean_expression.evaluate` block of `aws_mailmanager_rule_set`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.analysis(...)`.
 sealed class MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList {
   const MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList();
+
+  /// Sets `analysis`.
+  const factory MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList.analysis(
+    List<MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysis>
+    analysis,
+  ) = MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListAnalysis;
+
+  /// Sets `attribute`.
+  const factory MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList.attribute(
+    TfArg<MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAttribute>
+    attribute,
+  ) = MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListAttribute;
+
+  /// Sets `is_in_address_list`.
+  const factory MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList.isInAddressList(
+    List<
+      MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateIsInAddressList
+    >
+    isInAddressList,
+  ) = MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListIsInAddressList;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -677,13 +699,13 @@ sealed class MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrA
   Map<String, Object?> encode();
 }
 
-/// Sets `analysis` (one of the [MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList] choices).
-final class MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOption
+/// The [MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList.analysis] choice: sets `analysis`.
+final class MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListAnalysis
     extends
         MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList {
-  const MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOption({
-    required this.analysis,
-  });
+  const MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListAnalysis(
+    this.analysis,
+  );
 
   final List<MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysis>
   analysis;
@@ -697,13 +719,13 @@ final class MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOpti
   };
 }
 
-/// Sets `attribute` (one of the [MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList] choices).
-final class MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAttributeOption
+/// The [MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList.attribute] choice: sets `attribute`.
+final class MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListAttribute
     extends
         MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList {
-  const MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAttributeOption({
-    required this.attribute,
-  });
+  const MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListAttribute(
+    this.attribute,
+  );
 
   final TfArg<MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAttribute>
   attribute;
@@ -715,13 +737,13 @@ final class MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAttributeOpt
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 
-/// Sets `is_in_address_list` (one of the [MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList] choices).
-final class MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateIsInAddressListOption
+/// The [MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList.isInAddressList] choice: sets `is_in_address_list`.
+final class MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListIsInAddressList
     extends
         MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList {
-  const MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateIsInAddressListOption({
-    required this.isInAddressList,
-  });
+  const MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListIsInAddressList(
+    this.isInAddressList,
+  );
 
   final List<
     MailmanagerRuleSetRuleConditionBooleanExpressionEvaluateIsInAddressList
@@ -1042,8 +1064,35 @@ final class MailmanagerRuleSetRuleConditionStringExpressionEvaluate {
 
 /// Exactly one of `analysis`, `attribute`, `client_certificate_attribute`, `mime_header_attribute` on the `rule.condition.string_expression.evaluate` block of `aws_mailmanager_rule_set`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.analysis(...)`.
 sealed class MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute {
   const MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute();
+
+  /// Sets `analysis`.
+  const factory MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.analysis(
+    List<MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysis>
+    analysis,
+  ) = MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeAnalysis;
+
+  /// Sets `attribute`.
+  const factory MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.attribute(
+    TfArg<MailmanagerRuleSetRuleConditionStringExpressionEvaluateAttribute>
+    attribute,
+  ) = MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeAttribute;
+
+  /// Sets `client_certificate_attribute`.
+  const factory MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.clientCertificateAttribute(
+    TfArg<
+      MailmanagerRuleSetRuleConditionStringExpressionEvaluateClientCertificateAttribute
+    >
+    clientCertificateAttribute,
+  ) = MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeClientCertificateAttribute;
+
+  /// Sets `mime_header_attribute`.
+  const factory MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.mimeHeaderAttribute(
+    TfArg<String> mimeHeaderAttribute,
+  ) = MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeMimeHeaderAttribute;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1051,13 +1100,13 @@ sealed class MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAt
   Map<String, Object?> encode();
 }
 
-/// Sets `analysis` (one of the [MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute] choices).
-final class MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOption
+/// The [MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.analysis] choice: sets `analysis`.
+final class MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeAnalysis
     extends
         MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute {
-  const MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOption({
-    required this.analysis,
-  });
+  const MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeAnalysis(
+    this.analysis,
+  );
 
   final List<MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysis>
   analysis;
@@ -1071,13 +1120,13 @@ final class MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOptio
   };
 }
 
-/// Sets `attribute` (one of the [MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute] choices).
-final class MailmanagerRuleSetRuleConditionStringExpressionEvaluateAttributeOption
+/// The [MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.attribute] choice: sets `attribute`.
+final class MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeAttribute
     extends
         MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute {
-  const MailmanagerRuleSetRuleConditionStringExpressionEvaluateAttributeOption({
-    required this.attribute,
-  });
+  const MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeAttribute(
+    this.attribute,
+  );
 
   final TfArg<MailmanagerRuleSetRuleConditionStringExpressionEvaluateAttribute>
   attribute;
@@ -1089,13 +1138,13 @@ final class MailmanagerRuleSetRuleConditionStringExpressionEvaluateAttributeOpti
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 
-/// Sets `client_certificate_attribute` (one of the [MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute] choices).
-final class MailmanagerRuleSetRuleConditionStringExpressionEvaluateClientCertificateAttributeOption
+/// The [MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.clientCertificateAttribute] choice: sets `client_certificate_attribute`.
+final class MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeClientCertificateAttribute
     extends
         MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute {
-  const MailmanagerRuleSetRuleConditionStringExpressionEvaluateClientCertificateAttributeOption({
-    required this.clientCertificateAttribute,
-  });
+  const MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeClientCertificateAttribute(
+    this.clientCertificateAttribute,
+  );
 
   final TfArg<
     MailmanagerRuleSetRuleConditionStringExpressionEvaluateClientCertificateAttribute
@@ -1111,13 +1160,13 @@ final class MailmanagerRuleSetRuleConditionStringExpressionEvaluateClientCertifi
   };
 }
 
-/// Sets `mime_header_attribute` (one of the [MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute] choices).
-final class MailmanagerRuleSetRuleConditionStringExpressionEvaluateMimeHeaderAttributeOption
+/// The [MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.mimeHeaderAttribute] choice: sets `mime_header_attribute`.
+final class MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeMimeHeaderAttribute
     extends
         MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute {
-  const MailmanagerRuleSetRuleConditionStringExpressionEvaluateMimeHeaderAttributeOption({
-    required this.mimeHeaderAttribute,
-  });
+  const MailmanagerRuleSetRuleConditionStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeMimeHeaderAttribute(
+    this.mimeHeaderAttribute,
+  );
 
   final TfArg<String> mimeHeaderAttribute;
 
@@ -1257,8 +1306,22 @@ final class MailmanagerRuleSetRuleConditionVerdictExpressionEvaluate {
 
 /// Exactly one of `analysis`, `attribute` on the `rule.condition.verdict_expression.evaluate` block of `aws_mailmanager_rule_set`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.analysis(...)`.
 sealed class MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttribute {
   const MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttribute();
+
+  /// Sets `analysis`.
+  const factory MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttribute.analysis(
+    List<MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysis>
+    analysis,
+  ) = MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttributeAnalysis;
+
+  /// Sets `attribute`.
+  const factory MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttribute.attribute(
+    TfArg<MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAttribute>
+    attribute,
+  ) = MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttributeAttribute;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1266,13 +1329,13 @@ sealed class MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrA
   Map<String, Object?> encode();
 }
 
-/// Sets `analysis` (one of the [MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttribute] choices).
-final class MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOption
+/// The [MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttribute.analysis] choice: sets `analysis`.
+final class MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttributeAnalysis
     extends
         MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttribute {
-  const MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOption({
-    required this.analysis,
-  });
+  const MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttributeAnalysis(
+    this.analysis,
+  );
 
   final List<MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysis>
   analysis;
@@ -1286,13 +1349,13 @@ final class MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOpti
   };
 }
 
-/// Sets `attribute` (one of the [MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttribute] choices).
-final class MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAttributeOption
+/// The [MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttribute.attribute] choice: sets `attribute`.
+final class MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttributeAttribute
     extends
         MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttribute {
-  const MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAttributeOption({
-    required this.attribute,
-  });
+  const MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAnalysisOrAttributeAttribute(
+    this.attribute,
+  );
 
   final TfArg<MailmanagerRuleSetRuleConditionVerdictExpressionEvaluateAttribute>
   attribute;
@@ -1427,8 +1490,28 @@ final class MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluate {
 
 /// Exactly one of `analysis`, `attribute`, `is_in_address_list` on the `rule.unless.boolean_expression.evaluate` block of `aws_mailmanager_rule_set`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.analysis(...)`.
 sealed class MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList {
   const MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList();
+
+  /// Sets `analysis`.
+  const factory MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList.analysis(
+    List<MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysis>
+    analysis,
+  ) = MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListAnalysis;
+
+  /// Sets `attribute`.
+  const factory MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList.attribute(
+    TfArg<MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAttribute>
+    attribute,
+  ) = MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListAttribute;
+
+  /// Sets `is_in_address_list`.
+  const factory MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList.isInAddressList(
+    List<MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateIsInAddressList>
+    isInAddressList,
+  ) = MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListIsInAddressList;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1436,13 +1519,13 @@ sealed class MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttr
   Map<String, Object?> encode();
 }
 
-/// Sets `analysis` (one of the [MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList] choices).
-final class MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOption
+/// The [MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList.analysis] choice: sets `analysis`.
+final class MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListAnalysis
     extends
         MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList {
-  const MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOption({
-    required this.analysis,
-  });
+  const MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListAnalysis(
+    this.analysis,
+  );
 
   final List<MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysis>
   analysis;
@@ -1456,13 +1539,13 @@ final class MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOption
   };
 }
 
-/// Sets `attribute` (one of the [MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList] choices).
-final class MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAttributeOption
+/// The [MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList.attribute] choice: sets `attribute`.
+final class MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListAttribute
     extends
         MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList {
-  const MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAttributeOption({
-    required this.attribute,
-  });
+  const MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListAttribute(
+    this.attribute,
+  );
 
   final TfArg<MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAttribute>
   attribute;
@@ -1474,13 +1557,13 @@ final class MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAttributeOption
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 
-/// Sets `is_in_address_list` (one of the [MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList] choices).
-final class MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateIsInAddressListOption
+/// The [MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList.isInAddressList] choice: sets `is_in_address_list`.
+final class MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListIsInAddressList
     extends
         MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressList {
-  const MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateIsInAddressListOption({
-    required this.isInAddressList,
-  });
+  const MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateAnalysisOrAttributeOrIsInAddressListIsInAddressList(
+    this.isInAddressList,
+  );
 
   final List<
     MailmanagerRuleSetRuleUnlessBooleanExpressionEvaluateIsInAddressList
@@ -1795,8 +1878,34 @@ final class MailmanagerRuleSetRuleUnlessStringExpressionEvaluate {
 
 /// Exactly one of `analysis`, `attribute`, `client_certificate_attribute`, `mime_header_attribute` on the `rule.unless.string_expression.evaluate` block of `aws_mailmanager_rule_set`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.analysis(...)`.
 sealed class MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute {
   const MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute();
+
+  /// Sets `analysis`.
+  const factory MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.analysis(
+    List<MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysis> analysis,
+  ) = MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeAnalysis;
+
+  /// Sets `attribute`.
+  const factory MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.attribute(
+    TfArg<MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAttribute>
+    attribute,
+  ) = MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeAttribute;
+
+  /// Sets `client_certificate_attribute`.
+  const factory MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.clientCertificateAttribute(
+    TfArg<
+      MailmanagerRuleSetRuleUnlessStringExpressionEvaluateClientCertificateAttribute
+    >
+    clientCertificateAttribute,
+  ) = MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeClientCertificateAttribute;
+
+  /// Sets `mime_header_attribute`.
+  const factory MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.mimeHeaderAttribute(
+    TfArg<String> mimeHeaderAttribute,
+  ) = MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeMimeHeaderAttribute;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1804,13 +1913,13 @@ sealed class MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttri
   Map<String, Object?> encode();
 }
 
-/// Sets `analysis` (one of the [MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute] choices).
-final class MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOption
+/// The [MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.analysis] choice: sets `analysis`.
+final class MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeAnalysis
     extends
         MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute {
-  const MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOption({
-    required this.analysis,
-  });
+  const MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeAnalysis(
+    this.analysis,
+  );
 
   final List<MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysis>
   analysis;
@@ -1824,13 +1933,13 @@ final class MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOption
   };
 }
 
-/// Sets `attribute` (one of the [MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute] choices).
-final class MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAttributeOption
+/// The [MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.attribute] choice: sets `attribute`.
+final class MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeAttribute
     extends
         MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute {
-  const MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAttributeOption({
-    required this.attribute,
-  });
+  const MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeAttribute(
+    this.attribute,
+  );
 
   final TfArg<MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAttribute>
   attribute;
@@ -1842,13 +1951,13 @@ final class MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAttributeOption
   Map<String, Object?> encode() => {'attribute': attribute.toTfJson()};
 }
 
-/// Sets `client_certificate_attribute` (one of the [MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute] choices).
-final class MailmanagerRuleSetRuleUnlessStringExpressionEvaluateClientCertificateAttributeOption
+/// The [MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.clientCertificateAttribute] choice: sets `client_certificate_attribute`.
+final class MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeClientCertificateAttribute
     extends
         MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute {
-  const MailmanagerRuleSetRuleUnlessStringExpressionEvaluateClientCertificateAttributeOption({
-    required this.clientCertificateAttribute,
-  });
+  const MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeClientCertificateAttribute(
+    this.clientCertificateAttribute,
+  );
 
   final TfArg<
     MailmanagerRuleSetRuleUnlessStringExpressionEvaluateClientCertificateAttribute
@@ -1864,13 +1973,13 @@ final class MailmanagerRuleSetRuleUnlessStringExpressionEvaluateClientCertificat
   };
 }
 
-/// Sets `mime_header_attribute` (one of the [MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute] choices).
-final class MailmanagerRuleSetRuleUnlessStringExpressionEvaluateMimeHeaderAttributeOption
+/// The [MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute.mimeHeaderAttribute] choice: sets `mime_header_attribute`.
+final class MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeMimeHeaderAttribute
     extends
         MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttribute {
-  const MailmanagerRuleSetRuleUnlessStringExpressionEvaluateMimeHeaderAttributeOption({
-    required this.mimeHeaderAttribute,
-  });
+  const MailmanagerRuleSetRuleUnlessStringExpressionEvaluateAnalysisOrAttributeOrClientCertificateAttributeOrMimeHeaderAttributeMimeHeaderAttribute(
+    this.mimeHeaderAttribute,
+  );
 
   final TfArg<String> mimeHeaderAttribute;
 
@@ -2007,8 +2116,22 @@ final class MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluate {
 
 /// Exactly one of `analysis`, `attribute` on the `rule.unless.verdict_expression.evaluate` block of `aws_mailmanager_rule_set`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.analysis(...)`.
 sealed class MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttribute {
   const MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttribute();
+
+  /// Sets `analysis`.
+  const factory MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttribute.analysis(
+    List<MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysis>
+    analysis,
+  ) = MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttributeAnalysis;
+
+  /// Sets `attribute`.
+  const factory MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttribute.attribute(
+    TfArg<MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAttribute>
+    attribute,
+  ) = MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttributeAttribute;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -2016,13 +2139,13 @@ sealed class MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttr
   Map<String, Object?> encode();
 }
 
-/// Sets `analysis` (one of the [MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttribute] choices).
-final class MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOption
+/// The [MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttribute.analysis] choice: sets `analysis`.
+final class MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttributeAnalysis
     extends
         MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttribute {
-  const MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOption({
-    required this.analysis,
-  });
+  const MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttributeAnalysis(
+    this.analysis,
+  );
 
   final List<MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysis>
   analysis;
@@ -2036,13 +2159,13 @@ final class MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOption
   };
 }
 
-/// Sets `attribute` (one of the [MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttribute] choices).
-final class MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAttributeOption
+/// The [MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttribute.attribute] choice: sets `attribute`.
+final class MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttributeAttribute
     extends
         MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttribute {
-  const MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAttributeOption({
-    required this.attribute,
-  });
+  const MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAnalysisOrAttributeAttribute(
+    this.attribute,
+  );
 
   final TfArg<MailmanagerRuleSetRuleUnlessVerdictExpressionEvaluateAttribute>
   attribute;

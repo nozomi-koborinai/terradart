@@ -20,8 +20,19 @@ enum Wafv2WebAclScope implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_wafv2_web_acl`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class Wafv2WebAclNameOrNamePrefix {
   const Wafv2WebAclNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory Wafv2WebAclNameOrNamePrefix.name(TfArg<String> name) =
+      Wafv2WebAclNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory Wafv2WebAclNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = Wafv2WebAclNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,9 +44,10 @@ sealed class Wafv2WebAclNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [Wafv2WebAclNameOrNamePrefix] choices).
-final class Wafv2WebAclNameOption extends Wafv2WebAclNameOrNamePrefix {
-  const Wafv2WebAclNameOption({required this.name});
+/// The [Wafv2WebAclNameOrNamePrefix.name] choice: sets `name`.
+final class Wafv2WebAclNameOrNamePrefixName
+    extends Wafv2WebAclNameOrNamePrefix {
+  const Wafv2WebAclNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -49,9 +61,10 @@ final class Wafv2WebAclNameOption extends Wafv2WebAclNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [Wafv2WebAclNameOrNamePrefix] choices).
-final class Wafv2WebAclNamePrefixOption extends Wafv2WebAclNameOrNamePrefix {
-  const Wafv2WebAclNamePrefixOption({required this.namePrefix});
+/// The [Wafv2WebAclNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class Wafv2WebAclNameOrNamePrefixNamePrefix
+    extends Wafv2WebAclNameOrNamePrefix {
+  const Wafv2WebAclNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

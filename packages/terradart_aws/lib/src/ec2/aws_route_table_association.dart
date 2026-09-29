@@ -8,8 +8,20 @@ const Set<String> _awsRouteTableAssociationSensitive = <String>{};
 
 /// Exactly one of `gateway_id`, `subnet_id` on `aws_route_table_association`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.gatewayId(...)`.
 sealed class RouteTableAssociationGatewayIdOrSubnetId {
   const RouteTableAssociationGatewayIdOrSubnetId();
+
+  /// Sets `gateway_id`.
+  const factory RouteTableAssociationGatewayIdOrSubnetId.gatewayId(
+    TfArg<String> gatewayId,
+  ) = RouteTableAssociationGatewayIdOrSubnetIdGatewayId;
+
+  /// Sets `subnet_id`.
+  const factory RouteTableAssociationGatewayIdOrSubnetId.subnetId(
+    TfArg<String> subnetId,
+  ) = RouteTableAssociationGatewayIdOrSubnetIdSubnetId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,10 +33,10 @@ sealed class RouteTableAssociationGatewayIdOrSubnetId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `gateway_id` (one of the [RouteTableAssociationGatewayIdOrSubnetId] choices).
-final class RouteTableAssociationGatewayIdOption
+/// The [RouteTableAssociationGatewayIdOrSubnetId.gatewayId] choice: sets `gateway_id`.
+final class RouteTableAssociationGatewayIdOrSubnetIdGatewayId
     extends RouteTableAssociationGatewayIdOrSubnetId {
-  const RouteTableAssociationGatewayIdOption({required this.gatewayId});
+  const RouteTableAssociationGatewayIdOrSubnetIdGatewayId(this.gatewayId);
 
   final TfArg<String> gatewayId;
 
@@ -38,10 +50,10 @@ final class RouteTableAssociationGatewayIdOption
   Map<String, TfArg<Object?>> get argMap => {'gateway_id': gatewayId};
 }
 
-/// Sets `subnet_id` (one of the [RouteTableAssociationGatewayIdOrSubnetId] choices).
-final class RouteTableAssociationSubnetIdOption
+/// The [RouteTableAssociationGatewayIdOrSubnetId.subnetId] choice: sets `subnet_id`.
+final class RouteTableAssociationGatewayIdOrSubnetIdSubnetId
     extends RouteTableAssociationGatewayIdOrSubnetId {
-  const RouteTableAssociationSubnetIdOption({required this.subnetId});
+  const RouteTableAssociationGatewayIdOrSubnetIdSubnetId(this.subnetId);
 
   final TfArg<String> subnetId;
 

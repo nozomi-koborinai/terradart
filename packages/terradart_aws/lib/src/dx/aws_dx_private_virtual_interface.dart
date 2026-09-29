@@ -18,8 +18,20 @@ enum DxPrivateVirtualInterfaceAddressFamily implements TerraformEnum {
 
 /// Exactly one of `dx_gateway_id`, `vpn_gateway_id` on `aws_dx_private_virtual_interface`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.dxGatewayId(...)`.
 sealed class DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId {
   const DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId();
+
+  /// Sets `dx_gateway_id`.
+  const factory DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId.dxGatewayId(
+    TfArg<String> dxGatewayId,
+  ) = DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayIdDxGatewayId;
+
+  /// Sets `vpn_gateway_id`.
+  const factory DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId.vpnGatewayId(
+    TfArg<String> vpnGatewayId,
+  ) = DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayIdVpnGatewayId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -31,10 +43,12 @@ sealed class DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `dx_gateway_id` (one of the [DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId] choices).
-final class DxPrivateVirtualInterfaceDxGatewayIdOption
+/// The [DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId.dxGatewayId] choice: sets `dx_gateway_id`.
+final class DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayIdDxGatewayId
     extends DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId {
-  const DxPrivateVirtualInterfaceDxGatewayIdOption({required this.dxGatewayId});
+  const DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayIdDxGatewayId(
+    this.dxGatewayId,
+  );
 
   final TfArg<String> dxGatewayId;
 
@@ -48,12 +62,12 @@ final class DxPrivateVirtualInterfaceDxGatewayIdOption
   Map<String, TfArg<Object?>> get argMap => {'dx_gateway_id': dxGatewayId};
 }
 
-/// Sets `vpn_gateway_id` (one of the [DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId] choices).
-final class DxPrivateVirtualInterfaceVpnGatewayIdOption
+/// The [DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId.vpnGatewayId] choice: sets `vpn_gateway_id`.
+final class DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayIdVpnGatewayId
     extends DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId {
-  const DxPrivateVirtualInterfaceVpnGatewayIdOption({
-    required this.vpnGatewayId,
-  });
+  const DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayIdVpnGatewayId(
+    this.vpnGatewayId,
+  );
 
   final TfArg<String> vpnGatewayId;
 

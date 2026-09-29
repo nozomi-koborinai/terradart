@@ -27,8 +27,20 @@ enum ConnectContactFlowType implements TerraformEnum {
 /// At most one of `content`, `filename` on `aws_connect_contact_flow`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.content(...)`.
 sealed class ConnectContactFlowContentOrFilename {
   const ConnectContactFlowContentOrFilename();
+
+  /// Sets `content`.
+  const factory ConnectContactFlowContentOrFilename.content(
+    TfArg<String> content,
+  ) = ConnectContactFlowContentOrFilenameContent;
+
+  /// Sets `filename`.
+  const factory ConnectContactFlowContentOrFilename.filename(
+    TfArg<String> filename,
+  ) = ConnectContactFlowContentOrFilenameFilename;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -40,10 +52,10 @@ sealed class ConnectContactFlowContentOrFilename {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `content` (one of the [ConnectContactFlowContentOrFilename] choices).
-final class ConnectContactFlowContentOption
+/// The [ConnectContactFlowContentOrFilename.content] choice: sets `content`.
+final class ConnectContactFlowContentOrFilenameContent
     extends ConnectContactFlowContentOrFilename {
-  const ConnectContactFlowContentOption({required this.content});
+  const ConnectContactFlowContentOrFilenameContent(this.content);
 
   final TfArg<String> content;
 
@@ -57,10 +69,10 @@ final class ConnectContactFlowContentOption
   Map<String, TfArg<Object?>> get argMap => {'content': content};
 }
 
-/// Sets `filename` (one of the [ConnectContactFlowContentOrFilename] choices).
-final class ConnectContactFlowFilenameOption
+/// The [ConnectContactFlowContentOrFilename.filename] choice: sets `filename`.
+final class ConnectContactFlowContentOrFilenameFilename
     extends ConnectContactFlowContentOrFilename {
-  const ConnectContactFlowFilenameOption({required this.filename});
+  const ConnectContactFlowContentOrFilenameFilename(this.filename);
 
   final TfArg<String> filename;
 

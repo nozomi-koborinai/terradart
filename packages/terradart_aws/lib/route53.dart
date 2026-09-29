@@ -24,27 +24,27 @@ export 'src/route53/aws_route53_record.dart'
     show
         AwsRoute53Record,
         Route53RecordAlias,
-        Route53RecordAliasOption,
         Route53RecordAliasOrRecords,
+        Route53RecordAliasOrRecordsAlias,
+        Route53RecordAliasOrRecordsRecords,
         Route53RecordCidrRoutingPolicy,
-        Route53RecordCidrRoutingPolicyOption,
         Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy,
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyCidrRoutingPolicy,
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyFailoverRoutingPolicy,
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyGeolocationRoutingPolicy,
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyGeoproximityRoutingPolicy,
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyLatencyRoutingPolicy,
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyMultivalueAnswerRoutingPolicy,
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyWeightedRoutingPolicy,
         Route53RecordFailoverRoutingPolicy,
-        Route53RecordFailoverRoutingPolicyOption,
         Route53RecordFailoverRoutingPolicyType,
         Route53RecordGeolocationRoutingPolicy,
-        Route53RecordGeolocationRoutingPolicyOption,
         Route53RecordGeoproximityRoutingPolicy,
         Route53RecordGeoproximityRoutingPolicyCoordinates,
-        Route53RecordGeoproximityRoutingPolicyOption,
         Route53RecordLatencyRoutingPolicy,
-        Route53RecordLatencyRoutingPolicyOption,
         Route53RecordLatencyRoutingPolicyRegion,
-        Route53RecordMultivalueAnswerRoutingPolicyOption,
-        Route53RecordRecordsOption,
         Route53RecordType,
-        Route53RecordWeightedRoutingPolicy,
-        Route53RecordWeightedRoutingPolicyOption;
+        Route53RecordWeightedRoutingPolicy;
 export 'src/route53/aws_route53_records_exclusive.dart'
     show
         AwsRoute53RecordsExclusive,
@@ -113,9 +113,9 @@ export 'src/route53/aws_route53_vpc_association_authorization.dart'
 export 'src/route53/aws_route53_zone.dart'
     show
         AwsRoute53Zone,
-        Route53ZoneDelegationSetIdOption,
         Route53ZoneDelegationSetIdOrVpc,
-        Route53ZoneVpc,
-        Route53ZoneVpcOption;
+        Route53ZoneDelegationSetIdOrVpcDelegationSetId,
+        Route53ZoneDelegationSetIdOrVpcVpc,
+        Route53ZoneVpc;
 export 'src/route53/aws_route53_zone_association.dart'
     show AwsRoute53ZoneAssociation, Route53ZoneAssociationVpcRegion;

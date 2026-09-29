@@ -9,8 +9,20 @@ const Set<String> _awsSagemakerPipelineSensitive = <String>{};
 
 /// Exactly one of `pipeline_definition`, `pipeline_definition_s3_location` on `aws_sagemaker_pipeline`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.pipelineDefinition(...)`.
 sealed class SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location {
   const SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location();
+
+  /// Sets `pipeline_definition`.
+  const factory SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location.pipelineDefinition(
+    TfArg<String> pipelineDefinition,
+  ) = SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinition;
+
+  /// Sets `pipeline_definition_s3_location`.
+  const factory SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location.pipelineDefinitionS3Location(
+    SagemakerPipelinePipelineDefinitionS3Location pipelineDefinitionS3Location,
+  ) = SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinitionS3Location;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,12 +34,12 @@ sealed class SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `pipeline_definition` (one of the [SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location] choices).
-final class SagemakerPipelinePipelineDefinitionOption
+/// The [SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location.pipelineDefinition] choice: sets `pipeline_definition`.
+final class SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinition
     extends SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location {
-  const SagemakerPipelinePipelineDefinitionOption({
-    required this.pipelineDefinition,
-  });
+  const SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinition(
+    this.pipelineDefinition,
+  );
 
   final TfArg<String> pipelineDefinition;
 
@@ -45,12 +57,12 @@ final class SagemakerPipelinePipelineDefinitionOption
   };
 }
 
-/// Sets `pipeline_definition_s3_location` (one of the [SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location] choices).
-final class SagemakerPipelinePipelineDefinitionS3LocationOption
+/// The [SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location.pipelineDefinitionS3Location] choice: sets `pipeline_definition_s3_location`.
+final class SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinitionS3Location
     extends SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location {
-  const SagemakerPipelinePipelineDefinitionS3LocationOption({
-    required this.pipelineDefinitionS3Location,
-  });
+  const SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinitionS3Location(
+    this.pipelineDefinitionS3Location,
+  );
 
   final SagemakerPipelinePipelineDefinitionS3Location
   pipelineDefinitionS3Location;

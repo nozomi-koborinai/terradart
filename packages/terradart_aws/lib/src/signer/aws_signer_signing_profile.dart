@@ -23,8 +23,19 @@ enum SignerSigningProfilePlatformId implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_signer_signing_profile`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class SignerSigningProfileNameOrNamePrefix {
   const SignerSigningProfileNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory SignerSigningProfileNameOrNamePrefix.name(TfArg<String> name) =
+      SignerSigningProfileNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory SignerSigningProfileNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = SignerSigningProfileNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,10 +47,10 @@ sealed class SignerSigningProfileNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [SignerSigningProfileNameOrNamePrefix] choices).
-final class SignerSigningProfileNameOption
+/// The [SignerSigningProfileNameOrNamePrefix.name] choice: sets `name`.
+final class SignerSigningProfileNameOrNamePrefixName
     extends SignerSigningProfileNameOrNamePrefix {
-  const SignerSigningProfileNameOption({required this.name});
+  const SignerSigningProfileNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -53,10 +64,10 @@ final class SignerSigningProfileNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [SignerSigningProfileNameOrNamePrefix] choices).
-final class SignerSigningProfileNamePrefixOption
+/// The [SignerSigningProfileNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class SignerSigningProfileNameOrNamePrefixNamePrefix
     extends SignerSigningProfileNameOrNamePrefix {
-  const SignerSigningProfileNamePrefixOption({required this.namePrefix});
+  const SignerSigningProfileNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

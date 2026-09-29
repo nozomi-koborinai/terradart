@@ -24,8 +24,20 @@ enum GlueDevEndpointWorkerType implements TerraformEnum {
 /// At most one of `public_key`, `public_keys` on `aws_glue_dev_endpoint`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.publicKey(...)`.
 sealed class GlueDevEndpointPublicKeyOrPublicKeys {
   const GlueDevEndpointPublicKeyOrPublicKeys();
+
+  /// Sets `public_key`.
+  const factory GlueDevEndpointPublicKeyOrPublicKeys.publicKey(
+    TfArg<String> publicKey,
+  ) = GlueDevEndpointPublicKeyOrPublicKeysPublicKey;
+
+  /// Sets `public_keys`.
+  const factory GlueDevEndpointPublicKeyOrPublicKeys.publicKeys(
+    TfArg<List<String>> publicKeys,
+  ) = GlueDevEndpointPublicKeyOrPublicKeysPublicKeys;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -37,10 +49,10 @@ sealed class GlueDevEndpointPublicKeyOrPublicKeys {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `public_key` (one of the [GlueDevEndpointPublicKeyOrPublicKeys] choices).
-final class GlueDevEndpointPublicKeyOption
+/// The [GlueDevEndpointPublicKeyOrPublicKeys.publicKey] choice: sets `public_key`.
+final class GlueDevEndpointPublicKeyOrPublicKeysPublicKey
     extends GlueDevEndpointPublicKeyOrPublicKeys {
-  const GlueDevEndpointPublicKeyOption({required this.publicKey});
+  const GlueDevEndpointPublicKeyOrPublicKeysPublicKey(this.publicKey);
 
   final TfArg<String> publicKey;
 
@@ -54,10 +66,10 @@ final class GlueDevEndpointPublicKeyOption
   Map<String, TfArg<Object?>> get argMap => {'public_key': publicKey};
 }
 
-/// Sets `public_keys` (one of the [GlueDevEndpointPublicKeyOrPublicKeys] choices).
-final class GlueDevEndpointPublicKeysOption
+/// The [GlueDevEndpointPublicKeyOrPublicKeys.publicKeys] choice: sets `public_keys`.
+final class GlueDevEndpointPublicKeyOrPublicKeysPublicKeys
     extends GlueDevEndpointPublicKeyOrPublicKeys {
-  const GlueDevEndpointPublicKeysOption({required this.publicKeys});
+  const GlueDevEndpointPublicKeyOrPublicKeysPublicKeys(this.publicKeys);
 
   final TfArg<List<String>> publicKeys;
 

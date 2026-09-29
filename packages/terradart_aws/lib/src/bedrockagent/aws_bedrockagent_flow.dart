@@ -82,8 +82,21 @@ final class BedrockagentFlowDefinitionConnectionConfiguration {
 
 /// Exactly one of `conditional`, `data` on the `definition.connection.configuration` block of `aws_bedrockagent_flow`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.conditional(...)`.
 sealed class BedrockagentFlowDefinitionConnectionConfigurationConditionalOrData {
   const BedrockagentFlowDefinitionConnectionConfigurationConditionalOrData();
+
+  /// Sets `conditional`.
+  const factory BedrockagentFlowDefinitionConnectionConfigurationConditionalOrData.conditional(
+    List<BedrockagentFlowDefinitionConnectionConfigurationConditional>
+    conditional,
+  ) = BedrockagentFlowDefinitionConnectionConfigurationConditionalOrDataConditional;
+
+  /// Sets `data`.
+  const factory BedrockagentFlowDefinitionConnectionConfigurationConditionalOrData.data(
+    List<BedrockagentFlowDefinitionConnectionConfigurationData> data,
+  ) = BedrockagentFlowDefinitionConnectionConfigurationConditionalOrDataData;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -91,12 +104,12 @@ sealed class BedrockagentFlowDefinitionConnectionConfigurationConditionalOrData 
   Map<String, Object?> encode();
 }
 
-/// Sets `conditional` (one of the [BedrockagentFlowDefinitionConnectionConfigurationConditionalOrData] choices).
-final class BedrockagentFlowDefinitionConnectionConfigurationConditionalOption
+/// The [BedrockagentFlowDefinitionConnectionConfigurationConditionalOrData.conditional] choice: sets `conditional`.
+final class BedrockagentFlowDefinitionConnectionConfigurationConditionalOrDataConditional
     extends BedrockagentFlowDefinitionConnectionConfigurationConditionalOrData {
-  const BedrockagentFlowDefinitionConnectionConfigurationConditionalOption({
-    required this.conditional,
-  });
+  const BedrockagentFlowDefinitionConnectionConfigurationConditionalOrDataConditional(
+    this.conditional,
+  );
 
   final List<BedrockagentFlowDefinitionConnectionConfigurationConditional>
   conditional;
@@ -110,12 +123,12 @@ final class BedrockagentFlowDefinitionConnectionConfigurationConditionalOption
   };
 }
 
-/// Sets `data` (one of the [BedrockagentFlowDefinitionConnectionConfigurationConditionalOrData] choices).
-final class BedrockagentFlowDefinitionConnectionConfigurationDataOption
+/// The [BedrockagentFlowDefinitionConnectionConfigurationConditionalOrData.data] choice: sets `data`.
+final class BedrockagentFlowDefinitionConnectionConfigurationConditionalOrDataData
     extends BedrockagentFlowDefinitionConnectionConfigurationConditionalOrData {
-  const BedrockagentFlowDefinitionConnectionConfigurationDataOption({
-    required this.data,
-  });
+  const BedrockagentFlowDefinitionConnectionConfigurationConditionalOrDataData(
+    this.data,
+  );
 
   final List<BedrockagentFlowDefinitionConnectionConfigurationData> data;
 
@@ -235,8 +248,77 @@ final class BedrockagentFlowDefinitionNodeConfiguration {
 
 /// Exactly one of `agent`, `collector`, `condition`, `inline_code`, `input`, `iterator`, `knowledge_base`, `lambda_function`, `lex`, `output`, `prompt`, `retrieval`, `storage` on the `definition.node.configuration` block of `aws_bedrockagent_flow`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.agent(...)`.
 sealed class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage {
   const BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage();
+
+  /// Sets `agent`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.agent(
+    List<BedrockagentFlowDefinitionNodeConfigurationAgent> agent,
+  ) = BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageAgent;
+
+  /// Sets `collector`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.collector(
+    List<BedrockagentFlowDefinitionNodeConfigurationCollector> collector,
+  ) = BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageCollector;
+
+  /// Sets `condition`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.condition(
+    List<BedrockagentFlowDefinitionNodeConfigurationCondition> condition,
+  ) = BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageCondition;
+
+  /// Sets `inline_code`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.inlineCode(
+    List<BedrockagentFlowDefinitionNodeConfigurationInlineCode> inlineCode,
+  ) = BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageInlineCode;
+
+  /// Sets `input`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.input(
+    List<BedrockagentFlowDefinitionNodeConfigurationInput> input,
+  ) = BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageInput;
+
+  /// Sets `iterator`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.iterator(
+    List<BedrockagentFlowDefinitionNodeConfigurationIterator> iterator,
+  ) = BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageIterator;
+
+  /// Sets `knowledge_base`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.knowledgeBase(
+    List<BedrockagentFlowDefinitionNodeConfigurationKnowledgeBase>
+    knowledgeBase,
+  ) = BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageKnowledgeBase;
+
+  /// Sets `lambda_function`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.lambdaFunction(
+    List<BedrockagentFlowDefinitionNodeConfigurationLambdaFunction>
+    lambdaFunction,
+  ) = BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageLambdaFunction;
+
+  /// Sets `lex`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.lex(
+    List<BedrockagentFlowDefinitionNodeConfigurationLex> lex,
+  ) = BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageLex;
+
+  /// Sets `output`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.output(
+    List<BedrockagentFlowDefinitionNodeConfigurationOutput> output,
+  ) = BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageOutput;
+
+  /// Sets `prompt`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.prompt(
+    List<BedrockagentFlowDefinitionNodeConfigurationPrompt> prompt,
+  ) = BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStoragePrompt;
+
+  /// Sets `retrieval`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.retrieval(
+    List<BedrockagentFlowDefinitionNodeConfigurationRetrieval> retrieval,
+  ) = BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageRetrieval;
+
+  /// Sets `storage`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.storage(
+    List<BedrockagentFlowDefinitionNodeConfigurationStorage> storage,
+  ) = BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageStorage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -244,13 +326,13 @@ sealed class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrCondit
   Map<String, Object?> encode();
 }
 
-/// Sets `agent` (one of the [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationAgentOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.agent] choice: sets `agent`.
+final class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageAgent
     extends
         BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage {
-  const BedrockagentFlowDefinitionNodeConfigurationAgentOption({
-    required this.agent,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageAgent(
+    this.agent,
+  );
 
   final List<BedrockagentFlowDefinitionNodeConfigurationAgent> agent;
 
@@ -263,13 +345,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationAgentOption
   };
 }
 
-/// Sets `collector` (one of the [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationCollectorOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.collector] choice: sets `collector`.
+final class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageCollector
     extends
         BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage {
-  const BedrockagentFlowDefinitionNodeConfigurationCollectorOption({
-    required this.collector,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageCollector(
+    this.collector,
+  );
 
   final List<BedrockagentFlowDefinitionNodeConfigurationCollector> collector;
 
@@ -282,13 +364,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationCollectorOption
   };
 }
 
-/// Sets `condition` (one of the [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationConditionOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.condition] choice: sets `condition`.
+final class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageCondition
     extends
         BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage {
-  const BedrockagentFlowDefinitionNodeConfigurationConditionOption({
-    required this.condition,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageCondition(
+    this.condition,
+  );
 
   final List<BedrockagentFlowDefinitionNodeConfigurationCondition> condition;
 
@@ -301,13 +383,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationConditionOption
   };
 }
 
-/// Sets `inline_code` (one of the [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationInlineCodeOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.inlineCode] choice: sets `inline_code`.
+final class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageInlineCode
     extends
         BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage {
-  const BedrockagentFlowDefinitionNodeConfigurationInlineCodeOption({
-    required this.inlineCode,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageInlineCode(
+    this.inlineCode,
+  );
 
   final List<BedrockagentFlowDefinitionNodeConfigurationInlineCode> inlineCode;
 
@@ -320,13 +402,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationInlineCodeOption
   };
 }
 
-/// Sets `input` (one of the [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationInputOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.input] choice: sets `input`.
+final class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageInput
     extends
         BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage {
-  const BedrockagentFlowDefinitionNodeConfigurationInputOption({
-    required this.input,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageInput(
+    this.input,
+  );
 
   final List<BedrockagentFlowDefinitionNodeConfigurationInput> input;
 
@@ -339,13 +421,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationInputOption
   };
 }
 
-/// Sets `iterator` (one of the [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationIteratorOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.iterator] choice: sets `iterator`.
+final class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageIterator
     extends
         BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage {
-  const BedrockagentFlowDefinitionNodeConfigurationIteratorOption({
-    required this.iterator,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageIterator(
+    this.iterator,
+  );
 
   final List<BedrockagentFlowDefinitionNodeConfigurationIterator> iterator;
 
@@ -358,13 +440,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationIteratorOption
   };
 }
 
-/// Sets `knowledge_base` (one of the [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationKnowledgeBaseOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.knowledgeBase] choice: sets `knowledge_base`.
+final class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageKnowledgeBase
     extends
         BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage {
-  const BedrockagentFlowDefinitionNodeConfigurationKnowledgeBaseOption({
-    required this.knowledgeBase,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageKnowledgeBase(
+    this.knowledgeBase,
+  );
 
   final List<BedrockagentFlowDefinitionNodeConfigurationKnowledgeBase>
   knowledgeBase;
@@ -378,13 +460,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationKnowledgeBaseOption
   };
 }
 
-/// Sets `lambda_function` (one of the [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationLambdaFunctionOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.lambdaFunction] choice: sets `lambda_function`.
+final class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageLambdaFunction
     extends
         BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage {
-  const BedrockagentFlowDefinitionNodeConfigurationLambdaFunctionOption({
-    required this.lambdaFunction,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageLambdaFunction(
+    this.lambdaFunction,
+  );
 
   final List<BedrockagentFlowDefinitionNodeConfigurationLambdaFunction>
   lambdaFunction;
@@ -398,13 +480,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationLambdaFunctionOption
   };
 }
 
-/// Sets `lex` (one of the [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationLexOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.lex] choice: sets `lex`.
+final class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageLex
     extends
         BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage {
-  const BedrockagentFlowDefinitionNodeConfigurationLexOption({
-    required this.lex,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageLex(
+    this.lex,
+  );
 
   final List<BedrockagentFlowDefinitionNodeConfigurationLex> lex;
 
@@ -417,13 +499,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationLexOption
   };
 }
 
-/// Sets `output` (one of the [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationOutputOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.output] choice: sets `output`.
+final class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageOutput
     extends
         BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage {
-  const BedrockagentFlowDefinitionNodeConfigurationOutputOption({
-    required this.output,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageOutput(
+    this.output,
+  );
 
   final List<BedrockagentFlowDefinitionNodeConfigurationOutput> output;
 
@@ -436,13 +518,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationOutputOption
   };
 }
 
-/// Sets `prompt` (one of the [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationPromptOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.prompt] choice: sets `prompt`.
+final class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStoragePrompt
     extends
         BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage {
-  const BedrockagentFlowDefinitionNodeConfigurationPromptOption({
-    required this.prompt,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStoragePrompt(
+    this.prompt,
+  );
 
   final List<BedrockagentFlowDefinitionNodeConfigurationPrompt> prompt;
 
@@ -455,13 +537,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptOption
   };
 }
 
-/// Sets `retrieval` (one of the [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationRetrievalOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.retrieval] choice: sets `retrieval`.
+final class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageRetrieval
     extends
         BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage {
-  const BedrockagentFlowDefinitionNodeConfigurationRetrievalOption({
-    required this.retrieval,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageRetrieval(
+    this.retrieval,
+  );
 
   final List<BedrockagentFlowDefinitionNodeConfigurationRetrieval> retrieval;
 
@@ -474,13 +556,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationRetrievalOption
   };
 }
 
-/// Sets `storage` (one of the [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationStorageOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage.storage] choice: sets `storage`.
+final class BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageStorage
     extends
         BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorage {
-  const BedrockagentFlowDefinitionNodeConfigurationStorageOption({
-    required this.storage,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationAgentOrCollectorOrConditionOrInlineCodeOrInputOrIteratorOrKnowledgeBaseOrLambdaFunctionOrLexOrOutputOrPromptOrRetrievalOrStorageStorage(
+    this.storage,
+  );
 
   final List<BedrockagentFlowDefinitionNodeConfigurationStorage> storage;
 
@@ -816,8 +898,26 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
 
 /// Exactly one of `inline`, `resource` on the `definition.node.configuration.prompt.source_configuration` block of `aws_bedrockagent_flow`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.inline(...)`.
 sealed class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResource {
   const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResource();
+
+  /// Sets `inline`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResource.inline(
+    List<
+      BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInline
+    >
+    inline,
+  ) = BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResourceInline;
+
+  /// Sets `resource`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResource.resource(
+    List<
+      BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationResource
+    >
+    resource,
+  ) = BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResourceResource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -825,13 +925,13 @@ sealed class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguratio
   Map<String, Object?> encode();
 }
 
-/// Sets `inline` (one of the [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResource] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResource.inline] choice: sets `inline`.
+final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResourceInline
     extends
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResource {
-  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOption({
-    required this.inline,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResourceInline(
+    this.inline,
+  );
 
   final List<
     BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInline
@@ -847,13 +947,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
   };
 }
 
-/// Sets `resource` (one of the [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResource] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationResourceOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResource.resource] choice: sets `resource`.
+final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResourceResource
     extends
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResource {
-  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationResourceOption({
-    required this.resource,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineOrResourceResource(
+    this.resource,
+  );
 
   final List<
     BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationResource
@@ -991,8 +1091,26 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
 
 /// Exactly one of `chat`, `text` on the `definition.node.configuration.prompt.source_configuration.inline.template_configuration` block of `aws_bedrockagent_flow`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.chat(...)`.
 sealed class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrText {
   const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrText();
+
+  /// Sets `chat`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrText.chat(
+    List<
+      BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChat
+    >
+    chat,
+  ) = BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrTextChat;
+
+  /// Sets `text`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrText.text(
+    List<
+      BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationText
+    >
+    text,
+  ) = BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrTextText;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1000,13 +1118,13 @@ sealed class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguratio
   Map<String, Object?> encode();
 }
 
-/// Sets `chat` (one of the [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrText] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrText.chat] choice: sets `chat`.
+final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrTextChat
     extends
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrText {
-  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOption({
-    required this.chat,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrTextChat(
+    this.chat,
+  );
 
   final List<
     BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChat
@@ -1022,13 +1140,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
   };
 }
 
-/// Sets `text` (one of the [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrText] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationTextOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrText.text] choice: sets `text`.
+final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrTextText
     extends
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrText {
-  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationTextOption({
-    required this.text,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatOrTextText(
+    this.text,
+  );
 
   final List<
     BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationText
@@ -1152,8 +1270,23 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
 
 /// Exactly one of `cache_point`, `text` on the `definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.message.content` block of `aws_bedrockagent_flow`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.cachePoint(...)`.
 sealed class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrText {
   const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrText();
+
+  /// Sets `cache_point`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrText.cachePoint(
+    List<
+      BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePoint
+    >
+    cachePoint,
+  ) = BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrTextCachePoint;
+
+  /// Sets `text`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrText.text(
+    TfArg<String> text,
+  ) = BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrTextText;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1161,13 +1294,13 @@ sealed class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguratio
   Map<String, Object?> encode();
 }
 
-/// Sets `cache_point` (one of the [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrText] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrText.cachePoint] choice: sets `cache_point`.
+final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrTextCachePoint
     extends
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrText {
-  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOption({
-    required this.cachePoint,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrTextCachePoint(
+    this.cachePoint,
+  );
 
   final List<
     BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePoint
@@ -1183,13 +1316,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
   };
 }
 
-/// Sets `text` (one of the [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrText] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentTextOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrText.text] choice: sets `text`.
+final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrTextText
     extends
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrText {
-  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentTextOption({
-    required this.text,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatMessageContentCachePointOrTextText(
+    this.text,
+  );
 
   final TfArg<String> text;
 
@@ -1244,8 +1377,23 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
 
 /// Exactly one of `cache_point`, `text` on the `definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.system` block of `aws_bedrockagent_flow`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.cachePoint(...)`.
 sealed class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrText {
   const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrText();
+
+  /// Sets `cache_point`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrText.cachePoint(
+    List<
+      BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePoint
+    >
+    cachePoint,
+  ) = BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrTextCachePoint;
+
+  /// Sets `text`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrText.text(
+    TfArg<String> text,
+  ) = BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrTextText;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1253,13 +1401,13 @@ sealed class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguratio
   Map<String, Object?> encode();
 }
 
-/// Sets `cache_point` (one of the [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrText] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrText.cachePoint] choice: sets `cache_point`.
+final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrTextCachePoint
     extends
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrText {
-  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOption({
-    required this.cachePoint,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrTextCachePoint(
+    this.cachePoint,
+  );
 
   final List<
     BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePoint
@@ -1275,13 +1423,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
   };
 }
 
-/// Sets `text` (one of the [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrText] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemTextOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrText.text] choice: sets `text`.
+final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrTextText
     extends
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrText {
-  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemTextOption({
-    required this.text,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatSystemCachePointOrTextText(
+    this.text,
+  );
 
   final TfArg<String> text;
 
@@ -1362,8 +1510,26 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
 
 /// Exactly one of `cache_point`, `tool_spec` on the `definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.tool_configuration.tool` block of `aws_bedrockagent_flow`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.cachePoint(...)`.
 sealed class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpec {
   const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpec();
+
+  /// Sets `cache_point`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpec.cachePoint(
+    List<
+      BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePoint
+    >
+    cachePoint,
+  ) = BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpecCachePoint;
+
+  /// Sets `tool_spec`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpec.toolSpec(
+    List<
+      BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolToolSpec
+    >
+    toolSpec,
+  ) = BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpecToolSpec;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1371,13 +1537,13 @@ sealed class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguratio
   Map<String, Object?> encode();
 }
 
-/// Sets `cache_point` (one of the [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpec] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpec.cachePoint] choice: sets `cache_point`.
+final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpecCachePoint
     extends
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpec {
-  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOption({
-    required this.cachePoint,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpecCachePoint(
+    this.cachePoint,
+  );
 
   final List<
     BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePoint
@@ -1393,13 +1559,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
   };
 }
 
-/// Sets `tool_spec` (one of the [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpec] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolToolSpecOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpec.toolSpec] choice: sets `tool_spec`.
+final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpecToolSpec
     extends
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpec {
-  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolToolSpecOption({
-    required this.toolSpec,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolCachePointOrToolSpecToolSpec(
+    this.toolSpec,
+  );
 
   final List<
     BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolToolSpec
@@ -1499,8 +1665,34 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
 
 /// Exactly one of `any`, `auto`, `tool` on the `definition.node.configuration.prompt.source_configuration.inline.template_configuration.chat.tool_configuration.tool_choice` block of `aws_bedrockagent_flow`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.any(...)`.
 sealed class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrTool {
   const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrTool();
+
+  /// Sets `any`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrTool.any(
+    List<
+      BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAny
+    >
+    any,
+  ) = BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrToolAny;
+
+  /// Sets `auto`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrTool.auto(
+    List<
+      BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAuto
+    >
+    auto,
+  ) = BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrToolAuto;
+
+  /// Sets `tool`.
+  const factory BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrTool.tool(
+    List<
+      BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceTool
+    >
+    tool,
+  ) = BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrToolTool;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1508,13 +1700,13 @@ sealed class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguratio
   Map<String, Object?> encode();
 }
 
-/// Sets `any` (one of the [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrTool] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrTool.any] choice: sets `any`.
+final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrToolAny
     extends
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrTool {
-  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOption({
-    required this.any,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrToolAny(
+    this.any,
+  );
 
   final List<
     BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAny
@@ -1530,13 +1722,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
   };
 }
 
-/// Sets `auto` (one of the [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrTool] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAutoOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrTool.auto] choice: sets `auto`.
+final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrToolAuto
     extends
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrTool {
-  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAutoOption({
-    required this.auto,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrToolAuto(
+    this.auto,
+  );
 
   final List<
     BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAuto
@@ -1552,13 +1744,13 @@ final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfiguration
   };
 }
 
-/// Sets `tool` (one of the [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrTool] choices).
-final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceToolOption
+/// The [BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrTool.tool] choice: sets `tool`.
+final class BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrToolTool
     extends
         BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrTool {
-  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceToolOption({
-    required this.tool,
-  });
+  const BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceAnyOrAutoOrToolTool(
+    this.tool,
+  );
 
   final List<
     BedrockagentFlowDefinitionNodeConfigurationPromptSourceConfigurationInlineTemplateConfigurationChatToolConfigurationToolChoiceTool

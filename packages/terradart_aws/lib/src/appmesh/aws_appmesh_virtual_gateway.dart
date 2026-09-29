@@ -99,8 +99,20 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificate {
 
 /// Exactly one of `file`, `sds` on the `spec.backend_defaults.client_policy.tls.certificate` block of `aws_appmesh_virtual_gateway`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.file(...)`.
 sealed class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds {
   const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds();
+
+  /// Sets `file`.
+  const factory AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds.file(
+    AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFile file,
+  ) = AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSdsFile;
+
+  /// Sets `sds`.
+  const factory AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds.sds(
+    AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSds sds,
+  ) = AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSdsSds;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -108,13 +120,13 @@ sealed class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateF
   Map<String, Object?> encode();
 }
 
-/// Sets `file` (one of the [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds] choices).
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOption
+/// The [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds.file] choice: sets `file`.
+final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSdsFile
     extends
         AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOption({
-    required this.file,
-  });
+  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSdsFile(
+    this.file,
+  );
 
   final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFile
   file;
@@ -126,13 +138,13 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFi
   Map<String, Object?> encode() => {'file': file.encode()};
 }
 
-/// Sets `sds` (one of the [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds] choices).
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSdsOption
+/// The [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds.sds] choice: sets `sds`.
+final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSdsSds
     extends
         AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSds {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSdsOption({
-    required this.sds,
-  });
+  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateFileOrSdsSds(
+    this.sds,
+  );
 
   final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsCertificateSds
   sds;
@@ -241,8 +253,28 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTru
 
 /// Exactly one of `acm`, `file`, `sds` on the `spec.backend_defaults.client_policy.tls.validation.trust` block of `aws_appmesh_virtual_gateway`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.acm(...)`.
 sealed class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds {
   const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds();
+
+  /// Sets `acm`.
+  const factory AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds.acm(
+    AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcm
+    acm,
+  ) = AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSdsAcm;
+
+  /// Sets `file`.
+  const factory AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds.file(
+    AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFile
+    file,
+  ) = AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSdsFile;
+
+  /// Sets `sds`.
+  const factory AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds.sds(
+    AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSds
+    sds,
+  ) = AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSdsSds;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -250,13 +282,13 @@ sealed class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTr
   Map<String, Object?> encode();
 }
 
-/// Sets `acm` (one of the [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds] choices).
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOption
+/// The [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds.acm] choice: sets `acm`.
+final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSdsAcm
     extends
         AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOption({
-    required this.acm,
-  });
+  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSdsAcm(
+    this.acm,
+  );
 
   final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcm
   acm;
@@ -268,13 +300,13 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTru
   Map<String, Object?> encode() => {'acm': acm.encode()};
 }
 
-/// Sets `file` (one of the [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds] choices).
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFileOption
+/// The [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds.file] choice: sets `file`.
+final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSdsFile
     extends
         AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFileOption({
-    required this.file,
-  });
+  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSdsFile(
+    this.file,
+  );
 
   final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustFile
   file;
@@ -286,13 +318,13 @@ final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTru
   Map<String, Object?> encode() => {'file': file.encode()};
 }
 
-/// Sets `sds` (one of the [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds] choices).
-final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSdsOption
+/// The [AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds.sds] choice: sets `sds`.
+final class AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSdsSds
     extends
         AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSds {
-  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSdsOption({
-    required this.sds,
-  });
+  const AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustAcmOrFileOrSdsSds(
+    this.sds,
+  );
 
   final AppmeshVirtualGatewaySpecBackendDefaultsClientPolicyTlsValidationTrustSds
   sds;

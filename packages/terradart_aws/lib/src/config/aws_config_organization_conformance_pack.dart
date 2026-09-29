@@ -10,8 +10,20 @@ const Set<String> _awsConfigOrganizationConformancePackSensitive = <String>{};
 /// At most one of `template_body`, `template_s3_uri` on `aws_config_organization_conformance_pack`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.templateBody(...)`.
 sealed class ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri {
   const ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri();
+
+  /// Sets `template_body`.
+  const factory ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri.templateBody(
+    TfArg<String> templateBody,
+  ) = ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplateBody;
+
+  /// Sets `template_s3_uri`.
+  const factory ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri.templateS3Uri(
+    TfArg<String> templateS3Uri,
+  ) = ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplateS3Uri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,12 +35,12 @@ sealed class ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `template_body` (one of the [ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri] choices).
-final class ConfigOrganizationConformancePackTemplateBodyOption
+/// The [ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri.templateBody] choice: sets `template_body`.
+final class ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplateBody
     extends ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri {
-  const ConfigOrganizationConformancePackTemplateBodyOption({
-    required this.templateBody,
-  });
+  const ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplateBody(
+    this.templateBody,
+  );
 
   final TfArg<String> templateBody;
 
@@ -42,12 +54,12 @@ final class ConfigOrganizationConformancePackTemplateBodyOption
   Map<String, TfArg<Object?>> get argMap => {'template_body': templateBody};
 }
 
-/// Sets `template_s3_uri` (one of the [ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri] choices).
-final class ConfigOrganizationConformancePackTemplateS3UriOption
+/// The [ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri.templateS3Uri] choice: sets `template_s3_uri`.
+final class ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplateS3Uri
     extends ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri {
-  const ConfigOrganizationConformancePackTemplateS3UriOption({
-    required this.templateS3Uri,
-  });
+  const ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplateS3Uri(
+    this.templateS3Uri,
+  );
 
   final TfArg<String> templateS3Uri;
 

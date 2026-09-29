@@ -53,8 +53,20 @@ enum BudgetsBudgetTimeUnit implements TerraformEnum {
 /// At most one of `cost_filter`, `filter_expression` on `aws_budgets_budget`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.costFilter(...)`.
 sealed class BudgetsBudgetCostFilterOrFilterExpression {
   const BudgetsBudgetCostFilterOrFilterExpression();
+
+  /// Sets `cost_filter`.
+  const factory BudgetsBudgetCostFilterOrFilterExpression.costFilter(
+    List<BudgetsBudgetCostFilter> costFilter,
+  ) = BudgetsBudgetCostFilterOrFilterExpressionCostFilter;
+
+  /// Sets `filter_expression`.
+  const factory BudgetsBudgetCostFilterOrFilterExpression.filterExpression(
+    BudgetsBudgetFilterExpression filterExpression,
+  ) = BudgetsBudgetCostFilterOrFilterExpressionFilterExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -66,10 +78,10 @@ sealed class BudgetsBudgetCostFilterOrFilterExpression {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `cost_filter` (one of the [BudgetsBudgetCostFilterOrFilterExpression] choices).
-final class BudgetsBudgetCostFilterOption
+/// The [BudgetsBudgetCostFilterOrFilterExpression.costFilter] choice: sets `cost_filter`.
+final class BudgetsBudgetCostFilterOrFilterExpressionCostFilter
     extends BudgetsBudgetCostFilterOrFilterExpression {
-  const BudgetsBudgetCostFilterOption({required this.costFilter});
+  const BudgetsBudgetCostFilterOrFilterExpressionCostFilter(this.costFilter);
 
   final List<BudgetsBudgetCostFilter> costFilter;
 
@@ -87,10 +99,12 @@ final class BudgetsBudgetCostFilterOption
   };
 }
 
-/// Sets `filter_expression` (one of the [BudgetsBudgetCostFilterOrFilterExpression] choices).
-final class BudgetsBudgetFilterExpressionOption
+/// The [BudgetsBudgetCostFilterOrFilterExpression.filterExpression] choice: sets `filter_expression`.
+final class BudgetsBudgetCostFilterOrFilterExpressionFilterExpression
     extends BudgetsBudgetCostFilterOrFilterExpression {
-  const BudgetsBudgetFilterExpressionOption({required this.filterExpression});
+  const BudgetsBudgetCostFilterOrFilterExpressionFilterExpression(
+    this.filterExpression,
+  );
 
   final BudgetsBudgetFilterExpression filterExpression;
 
@@ -111,8 +125,20 @@ final class BudgetsBudgetFilterExpressionOption
 /// At most one of `cost_types`, `metrics` on `aws_budgets_budget`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.costTypes(...)`.
 sealed class BudgetsBudgetCostTypesOrMetrics {
   const BudgetsBudgetCostTypesOrMetrics();
+
+  /// Sets `cost_types`.
+  const factory BudgetsBudgetCostTypesOrMetrics.costTypes(
+    BudgetsBudgetCostTypes costTypes,
+  ) = BudgetsBudgetCostTypesOrMetricsCostTypes;
+
+  /// Sets `metrics`.
+  const factory BudgetsBudgetCostTypesOrMetrics.metrics(
+    List<TfArg<BudgetsBudgetMetrics>> metrics,
+  ) = BudgetsBudgetCostTypesOrMetricsMetrics;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -124,10 +150,10 @@ sealed class BudgetsBudgetCostTypesOrMetrics {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `cost_types` (one of the [BudgetsBudgetCostTypesOrMetrics] choices).
-final class BudgetsBudgetCostTypesOption
+/// The [BudgetsBudgetCostTypesOrMetrics.costTypes] choice: sets `cost_types`.
+final class BudgetsBudgetCostTypesOrMetricsCostTypes
     extends BudgetsBudgetCostTypesOrMetrics {
-  const BudgetsBudgetCostTypesOption({required this.costTypes});
+  const BudgetsBudgetCostTypesOrMetricsCostTypes(this.costTypes);
 
   final BudgetsBudgetCostTypes costTypes;
 
@@ -143,9 +169,10 @@ final class BudgetsBudgetCostTypesOption
   };
 }
 
-/// Sets `metrics` (one of the [BudgetsBudgetCostTypesOrMetrics] choices).
-final class BudgetsBudgetMetricsOption extends BudgetsBudgetCostTypesOrMetrics {
-  const BudgetsBudgetMetricsOption({required this.metrics});
+/// The [BudgetsBudgetCostTypesOrMetrics.metrics] choice: sets `metrics`.
+final class BudgetsBudgetCostTypesOrMetricsMetrics
+    extends BudgetsBudgetCostTypesOrMetrics {
+  const BudgetsBudgetCostTypesOrMetricsMetrics(this.metrics);
 
   final List<TfArg<BudgetsBudgetMetrics>> metrics;
 
@@ -166,8 +193,19 @@ final class BudgetsBudgetMetricsOption extends BudgetsBudgetCostTypesOrMetrics {
 /// At most one of `name`, `name_prefix` on `aws_budgets_budget`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class BudgetsBudgetNameOrNamePrefix {
   const BudgetsBudgetNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory BudgetsBudgetNameOrNamePrefix.name(TfArg<String> name) =
+      BudgetsBudgetNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory BudgetsBudgetNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = BudgetsBudgetNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -179,9 +217,10 @@ sealed class BudgetsBudgetNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [BudgetsBudgetNameOrNamePrefix] choices).
-final class BudgetsBudgetNameOption extends BudgetsBudgetNameOrNamePrefix {
-  const BudgetsBudgetNameOption({required this.name});
+/// The [BudgetsBudgetNameOrNamePrefix.name] choice: sets `name`.
+final class BudgetsBudgetNameOrNamePrefixName
+    extends BudgetsBudgetNameOrNamePrefix {
+  const BudgetsBudgetNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -195,10 +234,10 @@ final class BudgetsBudgetNameOption extends BudgetsBudgetNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [BudgetsBudgetNameOrNamePrefix] choices).
-final class BudgetsBudgetNamePrefixOption
+/// The [BudgetsBudgetNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class BudgetsBudgetNameOrNamePrefixNamePrefix
     extends BudgetsBudgetNameOrNamePrefix {
-  const BudgetsBudgetNamePrefixOption({required this.namePrefix});
+  const BudgetsBudgetNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

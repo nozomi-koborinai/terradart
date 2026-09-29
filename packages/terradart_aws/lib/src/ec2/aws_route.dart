@@ -9,8 +9,20 @@ const Set<String> _awsRouteSensitive = <String>{};
 /// At most one of `carrier_gateway_id`, `destination_ipv6_cidr_block` on `aws_route`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.carrierGatewayId(...)`.
 sealed class RouteCarrierGatewayIdOrDestinationIpv6CidrBlock {
   const RouteCarrierGatewayIdOrDestinationIpv6CidrBlock();
+
+  /// Sets `carrier_gateway_id`.
+  const factory RouteCarrierGatewayIdOrDestinationIpv6CidrBlock.carrierGatewayId(
+    TfArg<String> carrierGatewayId,
+  ) = RouteCarrierGatewayIdOrDestinationIpv6CidrBlockCarrierGatewayId;
+
+  /// Sets `destination_ipv6_cidr_block`.
+  const factory RouteCarrierGatewayIdOrDestinationIpv6CidrBlock.destinationIpv6CidrBlock(
+    TfArg<String> destinationIpv6CidrBlock,
+  ) = RouteCarrierGatewayIdOrDestinationIpv6CidrBlockDestinationIpv6CidrBlock;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +34,12 @@ sealed class RouteCarrierGatewayIdOrDestinationIpv6CidrBlock {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `carrier_gateway_id` (one of the [RouteCarrierGatewayIdOrDestinationIpv6CidrBlock] choices).
-final class RouteCarrierGatewayIdOption
+/// The [RouteCarrierGatewayIdOrDestinationIpv6CidrBlock.carrierGatewayId] choice: sets `carrier_gateway_id`.
+final class RouteCarrierGatewayIdOrDestinationIpv6CidrBlockCarrierGatewayId
     extends RouteCarrierGatewayIdOrDestinationIpv6CidrBlock {
-  const RouteCarrierGatewayIdOption({required this.carrierGatewayId});
+  const RouteCarrierGatewayIdOrDestinationIpv6CidrBlockCarrierGatewayId(
+    this.carrierGatewayId,
+  );
 
   final TfArg<String> carrierGatewayId;
 
@@ -43,12 +57,12 @@ final class RouteCarrierGatewayIdOption
   };
 }
 
-/// Sets `destination_ipv6_cidr_block` (one of the [RouteCarrierGatewayIdOrDestinationIpv6CidrBlock] choices).
-final class RouteDestinationIpv6CidrBlockOption
+/// The [RouteCarrierGatewayIdOrDestinationIpv6CidrBlock.destinationIpv6CidrBlock] choice: sets `destination_ipv6_cidr_block`.
+final class RouteCarrierGatewayIdOrDestinationIpv6CidrBlockDestinationIpv6CidrBlock
     extends RouteCarrierGatewayIdOrDestinationIpv6CidrBlock {
-  const RouteDestinationIpv6CidrBlockOption({
-    required this.destinationIpv6CidrBlock,
-  });
+  const RouteCarrierGatewayIdOrDestinationIpv6CidrBlockDestinationIpv6CidrBlock(
+    this.destinationIpv6CidrBlock,
+  );
 
   final TfArg<String> destinationIpv6CidrBlock;
 
@@ -69,8 +83,20 @@ final class RouteDestinationIpv6CidrBlockOption
 /// At most one of `destination_cidr_block`, `egress_only_gateway_id` on `aws_route`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.destinationCidrBlock(...)`.
 sealed class RouteDestinationCidrBlockOrEgressOnlyGatewayId {
   const RouteDestinationCidrBlockOrEgressOnlyGatewayId();
+
+  /// Sets `destination_cidr_block`.
+  const factory RouteDestinationCidrBlockOrEgressOnlyGatewayId.destinationCidrBlock(
+    TfArg<String> destinationCidrBlock,
+  ) = RouteDestinationCidrBlockOrEgressOnlyGatewayIdDestinationCidrBlock;
+
+  /// Sets `egress_only_gateway_id`.
+  const factory RouteDestinationCidrBlockOrEgressOnlyGatewayId.egressOnlyGatewayId(
+    TfArg<String> egressOnlyGatewayId,
+  ) = RouteDestinationCidrBlockOrEgressOnlyGatewayIdEgressOnlyGatewayId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -82,10 +108,12 @@ sealed class RouteDestinationCidrBlockOrEgressOnlyGatewayId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `destination_cidr_block` (one of the [RouteDestinationCidrBlockOrEgressOnlyGatewayId] choices).
-final class RouteDestinationCidrBlockOption
+/// The [RouteDestinationCidrBlockOrEgressOnlyGatewayId.destinationCidrBlock] choice: sets `destination_cidr_block`.
+final class RouteDestinationCidrBlockOrEgressOnlyGatewayIdDestinationCidrBlock
     extends RouteDestinationCidrBlockOrEgressOnlyGatewayId {
-  const RouteDestinationCidrBlockOption({required this.destinationCidrBlock});
+  const RouteDestinationCidrBlockOrEgressOnlyGatewayIdDestinationCidrBlock(
+    this.destinationCidrBlock,
+  );
 
   final TfArg<String> destinationCidrBlock;
 
@@ -103,10 +131,12 @@ final class RouteDestinationCidrBlockOption
   };
 }
 
-/// Sets `egress_only_gateway_id` (one of the [RouteDestinationCidrBlockOrEgressOnlyGatewayId] choices).
-final class RouteEgressOnlyGatewayIdOption
+/// The [RouteDestinationCidrBlockOrEgressOnlyGatewayId.egressOnlyGatewayId] choice: sets `egress_only_gateway_id`.
+final class RouteDestinationCidrBlockOrEgressOnlyGatewayIdEgressOnlyGatewayId
     extends RouteDestinationCidrBlockOrEgressOnlyGatewayId {
-  const RouteEgressOnlyGatewayIdOption({required this.egressOnlyGatewayId});
+  const RouteDestinationCidrBlockOrEgressOnlyGatewayIdEgressOnlyGatewayId(
+    this.egressOnlyGatewayId,
+  );
 
   final TfArg<String> egressOnlyGatewayId;
 
@@ -127,8 +157,20 @@ final class RouteEgressOnlyGatewayIdOption
 /// At most one of `destination_prefix_list_id`, `vpc_endpoint_id` on `aws_route`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.destinationPrefixListId(...)`.
 sealed class RouteDestinationPrefixListIdOrVpcEndpointId {
   const RouteDestinationPrefixListIdOrVpcEndpointId();
+
+  /// Sets `destination_prefix_list_id`.
+  const factory RouteDestinationPrefixListIdOrVpcEndpointId.destinationPrefixListId(
+    TfArg<String> destinationPrefixListId,
+  ) = RouteDestinationPrefixListIdOrVpcEndpointIdDestinationPrefixListId;
+
+  /// Sets `vpc_endpoint_id`.
+  const factory RouteDestinationPrefixListIdOrVpcEndpointId.vpcEndpointId(
+    TfArg<String> vpcEndpointId,
+  ) = RouteDestinationPrefixListIdOrVpcEndpointIdVpcEndpointId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -140,12 +182,12 @@ sealed class RouteDestinationPrefixListIdOrVpcEndpointId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `destination_prefix_list_id` (one of the [RouteDestinationPrefixListIdOrVpcEndpointId] choices).
-final class RouteDestinationPrefixListIdOption
+/// The [RouteDestinationPrefixListIdOrVpcEndpointId.destinationPrefixListId] choice: sets `destination_prefix_list_id`.
+final class RouteDestinationPrefixListIdOrVpcEndpointIdDestinationPrefixListId
     extends RouteDestinationPrefixListIdOrVpcEndpointId {
-  const RouteDestinationPrefixListIdOption({
-    required this.destinationPrefixListId,
-  });
+  const RouteDestinationPrefixListIdOrVpcEndpointIdDestinationPrefixListId(
+    this.destinationPrefixListId,
+  );
 
   final TfArg<String> destinationPrefixListId;
 
@@ -163,10 +205,12 @@ final class RouteDestinationPrefixListIdOption
   };
 }
 
-/// Sets `vpc_endpoint_id` (one of the [RouteDestinationPrefixListIdOrVpcEndpointId] choices).
-final class RouteVpcEndpointIdOption
+/// The [RouteDestinationPrefixListIdOrVpcEndpointId.vpcEndpointId] choice: sets `vpc_endpoint_id`.
+final class RouteDestinationPrefixListIdOrVpcEndpointIdVpcEndpointId
     extends RouteDestinationPrefixListIdOrVpcEndpointId {
-  const RouteVpcEndpointIdOption({required this.vpcEndpointId});
+  const RouteDestinationPrefixListIdOrVpcEndpointIdVpcEndpointId(
+    this.vpcEndpointId,
+  );
 
   final TfArg<String> vpcEndpointId;
 

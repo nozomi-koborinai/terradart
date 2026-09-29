@@ -20,8 +20,20 @@ enum ComputeNodeTemplateCpuOvercommitType implements TerraformEnum {
 /// At most one of `node_type`, `node_type_flexibility` on `google_compute_node_template`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.nodeType(...)`.
 sealed class ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility {
   const ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility();
+
+  /// Sets `node_type`.
+  const factory ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility.nodeType(
+    TfArg<String> nodeType,
+  ) = ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeType;
+
+  /// Sets `node_type_flexibility`.
+  const factory ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility.nodeTypeFlexibility(
+    ComputeNodeTemplateNodeTypeFlexibility nodeTypeFlexibility,
+  ) = ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeTypeFlexibility;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +45,10 @@ sealed class ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `node_type` (one of the [ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility] choices).
-final class ComputeNodeTemplateNodeTypeOption
+/// The [ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility.nodeType] choice: sets `node_type`.
+final class ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeType
     extends ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility {
-  const ComputeNodeTemplateNodeTypeOption({required this.nodeType});
+  const ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeType(this.nodeType);
 
   final TfArg<String> nodeType;
 
@@ -50,12 +62,12 @@ final class ComputeNodeTemplateNodeTypeOption
   Map<String, TfArg<Object?>> get argMap => {'node_type': nodeType};
 }
 
-/// Sets `node_type_flexibility` (one of the [ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility] choices).
-final class ComputeNodeTemplateNodeTypeFlexibilityOption
+/// The [ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility.nodeTypeFlexibility] choice: sets `node_type_flexibility`.
+final class ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeTypeFlexibility
     extends ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility {
-  const ComputeNodeTemplateNodeTypeFlexibilityOption({
-    required this.nodeTypeFlexibility,
-  });
+  const ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeTypeFlexibility(
+    this.nodeTypeFlexibility,
+  );
 
   final ComputeNodeTemplateNodeTypeFlexibility nodeTypeFlexibility;
 

@@ -85,8 +85,20 @@ enum RdsClusterNetworkType implements TerraformEnum {
 /// At most one of `cluster_identifier`, `cluster_identifier_prefix` on `aws_rds_cluster`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clusterIdentifier(...)`.
 sealed class RdsClusterClusterIdentifierOrClusterIdentifierPrefix {
   const RdsClusterClusterIdentifierOrClusterIdentifierPrefix();
+
+  /// Sets `cluster_identifier`.
+  const factory RdsClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifier(
+    TfArg<String> clusterIdentifier,
+  ) = RdsClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier;
+
+  /// Sets `cluster_identifier_prefix`.
+  const factory RdsClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifierPrefix(
+    TfArg<String> clusterIdentifierPrefix,
+  ) = RdsClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -98,10 +110,12 @@ sealed class RdsClusterClusterIdentifierOrClusterIdentifierPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `cluster_identifier` (one of the [RdsClusterClusterIdentifierOrClusterIdentifierPrefix] choices).
-final class RdsClusterClusterIdentifierOption
+/// The [RdsClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifier] choice: sets `cluster_identifier`.
+final class RdsClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier
     extends RdsClusterClusterIdentifierOrClusterIdentifierPrefix {
-  const RdsClusterClusterIdentifierOption({required this.clusterIdentifier});
+  const RdsClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier(
+    this.clusterIdentifier,
+  );
 
   final TfArg<String> clusterIdentifier;
 
@@ -119,12 +133,12 @@ final class RdsClusterClusterIdentifierOption
   };
 }
 
-/// Sets `cluster_identifier_prefix` (one of the [RdsClusterClusterIdentifierOrClusterIdentifierPrefix] choices).
-final class RdsClusterClusterIdentifierPrefixOption
+/// The [RdsClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifierPrefix] choice: sets `cluster_identifier_prefix`.
+final class RdsClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix
     extends RdsClusterClusterIdentifierOrClusterIdentifierPrefix {
-  const RdsClusterClusterIdentifierPrefixOption({
-    required this.clusterIdentifierPrefix,
-  });
+  const RdsClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix(
+    this.clusterIdentifierPrefix,
+  );
 
   final TfArg<String> clusterIdentifierPrefix;
 
@@ -145,8 +159,25 @@ final class RdsClusterClusterIdentifierPrefixOption
 /// At most one of `manage_master_user_password`, `master_password`, `master_password_wo` on `aws_rds_cluster`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.manageMasterUserPassword(...)`.
 sealed class RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
   const RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo();
+
+  /// Sets `manage_master_user_password`.
+  const factory RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.manageMasterUserPassword(
+    TfArg<bool> manageMasterUserPassword,
+  ) = RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword;
+
+  /// Sets `master_password`.
+  const factory RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.masterPassword(
+    TfArg<String> masterPassword,
+  ) = RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword;
+
+  /// Sets `master_password_wo`.
+  const factory RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.masterPasswordWo(
+    TfArg<String> masterPasswordWo,
+  ) = RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -158,13 +189,13 @@ sealed class RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordW
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `manage_master_user_password` (one of the [RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo] choices).
-final class RdsClusterManageMasterUserPasswordOption
+/// The [RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.manageMasterUserPassword] choice: sets `manage_master_user_password`.
+final class RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword
     extends
         RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
-  const RdsClusterManageMasterUserPasswordOption({
-    required this.manageMasterUserPassword,
-  });
+  const RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword(
+    this.manageMasterUserPassword,
+  );
 
   final TfArg<bool> manageMasterUserPassword;
 
@@ -182,11 +213,13 @@ final class RdsClusterManageMasterUserPasswordOption
   };
 }
 
-/// Sets `master_password` (one of the [RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo] choices).
-final class RdsClusterMasterPasswordOption
+/// The [RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.masterPassword] choice: sets `master_password`.
+final class RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword
     extends
         RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
-  const RdsClusterMasterPasswordOption({required this.masterPassword});
+  const RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword(
+    this.masterPassword,
+  );
 
   final TfArg<String> masterPassword;
 
@@ -202,11 +235,13 @@ final class RdsClusterMasterPasswordOption
   Map<String, TfArg<Object?>> get argMap => {'master_password': masterPassword};
 }
 
-/// Sets `master_password_wo` (one of the [RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo] choices).
-final class RdsClusterMasterPasswordWoOption
+/// The [RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.masterPasswordWo] choice: sets `master_password_wo`.
+final class RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo
     extends
         RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
-  const RdsClusterMasterPasswordWoOption({required this.masterPasswordWo});
+  const RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo(
+    this.masterPasswordWo,
+  );
 
   final TfArg<String> masterPasswordWo;
 
@@ -251,8 +286,20 @@ final class RdsClusterRestoreToPointInTime {
 
 /// Exactly one of `restore_to_time`, `use_latest_restorable_time` on the `restore_to_point_in_time` block of `aws_rds_cluster`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.restoreToTime(...)`.
 sealed class RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime {
   const RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime();
+
+  /// Sets `restore_to_time`.
+  const factory RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime.restoreToTime(
+    TfArg<String> restoreToTime,
+  ) = RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeRestoreToTime;
+
+  /// Sets `use_latest_restorable_time`.
+  const factory RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime.useLatestRestorableTime(
+    TfArg<bool> useLatestRestorableTime,
+  ) = RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeUseLatestRestorableTime;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -260,13 +307,13 @@ sealed class RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTim
   Map<String, Object?> encode();
 }
 
-/// Sets `restore_to_time` (one of the [RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime] choices).
-final class RdsClusterRestoreToPointInTimeRestoreToTimeOption
+/// The [RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime.restoreToTime] choice: sets `restore_to_time`.
+final class RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeRestoreToTime
     extends
         RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime {
-  const RdsClusterRestoreToPointInTimeRestoreToTimeOption({
-    required this.restoreToTime,
-  });
+  const RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeRestoreToTime(
+    this.restoreToTime,
+  );
 
   final TfArg<String> restoreToTime;
 
@@ -279,13 +326,13 @@ final class RdsClusterRestoreToPointInTimeRestoreToTimeOption
   };
 }
 
-/// Sets `use_latest_restorable_time` (one of the [RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime] choices).
-final class RdsClusterRestoreToPointInTimeUseLatestRestorableTimeOption
+/// The [RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime.useLatestRestorableTime] choice: sets `use_latest_restorable_time`.
+final class RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeUseLatestRestorableTime
     extends
         RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime {
-  const RdsClusterRestoreToPointInTimeUseLatestRestorableTimeOption({
-    required this.useLatestRestorableTime,
-  });
+  const RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeUseLatestRestorableTime(
+    this.useLatestRestorableTime,
+  );
 
   final TfArg<bool> useLatestRestorableTime;
 
@@ -300,8 +347,20 @@ final class RdsClusterRestoreToPointInTimeUseLatestRestorableTimeOption
 
 /// Exactly one of `source_cluster_identifier`, `source_cluster_resource_id` on the `restore_to_point_in_time` block of `aws_rds_cluster`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.sourceClusterIdentifier(...)`.
 sealed class RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId {
   const RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId();
+
+  /// Sets `source_cluster_identifier`.
+  const factory RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId.sourceClusterIdentifier(
+    TfArg<String> sourceClusterIdentifier,
+  ) = RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceIdSourceClusterIdentifier;
+
+  /// Sets `source_cluster_resource_id`.
+  const factory RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId.sourceClusterResourceId(
+    TfArg<String> sourceClusterResourceId,
+  ) = RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceIdSourceClusterResourceId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -309,13 +368,13 @@ sealed class RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceCluste
   Map<String, Object?> encode();
 }
 
-/// Sets `source_cluster_identifier` (one of the [RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId] choices).
-final class RdsClusterRestoreToPointInTimeSourceClusterIdentifierOption
+/// The [RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId.sourceClusterIdentifier] choice: sets `source_cluster_identifier`.
+final class RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceIdSourceClusterIdentifier
     extends
         RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId {
-  const RdsClusterRestoreToPointInTimeSourceClusterIdentifierOption({
-    required this.sourceClusterIdentifier,
-  });
+  const RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceIdSourceClusterIdentifier(
+    this.sourceClusterIdentifier,
+  );
 
   final TfArg<String> sourceClusterIdentifier;
 
@@ -328,13 +387,13 @@ final class RdsClusterRestoreToPointInTimeSourceClusterIdentifierOption
   };
 }
 
-/// Sets `source_cluster_resource_id` (one of the [RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId] choices).
-final class RdsClusterRestoreToPointInTimeSourceClusterResourceIdOption
+/// The [RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId.sourceClusterResourceId] choice: sets `source_cluster_resource_id`.
+final class RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceIdSourceClusterResourceId
     extends
         RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId {
-  const RdsClusterRestoreToPointInTimeSourceClusterResourceIdOption({
-    required this.sourceClusterResourceId,
-  });
+  const RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceIdSourceClusterResourceId(
+    this.sourceClusterResourceId,
+  );
 
   final TfArg<String> sourceClusterResourceId;
 

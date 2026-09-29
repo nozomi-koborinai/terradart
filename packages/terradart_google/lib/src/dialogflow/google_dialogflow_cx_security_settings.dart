@@ -37,8 +37,20 @@ enum DialogflowCxSecuritySettingsRetentionStrategy implements TerraformEnum {
 /// At most one of `retention_window_days`, `retention_strategy` on `google_dialogflow_cx_security_settings`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.retentionWindowDays(...)`.
 sealed class DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy {
   const DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy();
+
+  /// Sets `retention_window_days`.
+  const factory DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy.retentionWindowDays(
+    TfArg<num> retentionWindowDays,
+  ) = DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRetentionWindowDays;
+
+  /// Sets `retention_strategy`.
+  const factory DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy.retentionStrategy(
+    TfArg<DialogflowCxSecuritySettingsRetentionStrategy> retentionStrategy,
+  ) = DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRetentionStrategy;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -50,12 +62,12 @@ sealed class DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy 
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `retention_window_days` (one of the [DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy] choices).
-final class DialogflowCxSecuritySettingsRetentionWindowDaysOption
+/// The [DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy.retentionWindowDays] choice: sets `retention_window_days`.
+final class DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRetentionWindowDays
     extends DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy {
-  const DialogflowCxSecuritySettingsRetentionWindowDaysOption({
-    required this.retentionWindowDays,
-  });
+  const DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRetentionWindowDays(
+    this.retentionWindowDays,
+  );
 
   final TfArg<num> retentionWindowDays;
 
@@ -73,12 +85,12 @@ final class DialogflowCxSecuritySettingsRetentionWindowDaysOption
   };
 }
 
-/// Sets `retention_strategy` (one of the [DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy] choices).
-final class DialogflowCxSecuritySettingsRetentionStrategyOption
+/// The [DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy.retentionStrategy] choice: sets `retention_strategy`.
+final class DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRetentionStrategy
     extends DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy {
-  const DialogflowCxSecuritySettingsRetentionStrategyOption({
-    required this.retentionStrategy,
-  });
+  const DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRetentionStrategy(
+    this.retentionStrategy,
+  );
 
   final TfArg<DialogflowCxSecuritySettingsRetentionStrategy> retentionStrategy;
 

@@ -25,6 +25,17 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **Sealed variants are factory constructors** (**breaking**;
+  `terradart_codegen`, `terradart_migrate`, every provider package) — a
+  derived sealed type declares one `const factory` constructor per member,
+  so a caller picks a choice with a Dart 3.10 dot shorthand:
+  `filenameOrImageUriOrS3Bucket: .filename(TfArg.literal('f.zip'))` instead
+  of `LambdaFunctionFilenameOption(filename: ...)`. The variant classes are
+  renamed `<SealedType><Member>` and stay public for pattern matching. The
+  migration manifest records each variant's constructor (`shorthand`), and
+  `terradart-migrate` emits the dot-shorthand form — also for a
+  hand-written sealed type that declares such factories
+  (`replication: .auto()`). See `MIGRATING.md`.
 - **`terradart_google` compute and networking input groups are sealed
   types** (**breaking**) — the GA lane's first `deriveExactlyOne`
   adoption: 16 Magic Modules groups on 13 resources (11 `conflicts` sets

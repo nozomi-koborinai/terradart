@@ -175,9 +175,7 @@ final class GkeQuickstartStack extends Stack {
         // namespace (plus secrets + volume data) — the canonical basic scope.
         backupConfig: GkeBackupBackupPlanBackupConfig(
           allNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels:
-              GkeBackupBackupPlanBackupConfigAllNamespacesOption(
-                allNamespaces: TfArg.literal(true),
-              ),
+              .allNamespaces(TfArg.literal(true)),
           includeSecrets: TfArg.literal(true),
           includeVolumeData: TfArg.literal(true),
         ),

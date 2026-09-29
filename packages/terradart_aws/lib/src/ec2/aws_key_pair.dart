@@ -9,8 +9,19 @@ const Set<String> _awsKeyPairSensitive = <String>{};
 /// At most one of `key_name`, `key_name_prefix` on `aws_key_pair`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.keyName(...)`.
 sealed class KeyPairKeyNameOrKeyNamePrefix {
   const KeyPairKeyNameOrKeyNamePrefix();
+
+  /// Sets `key_name`.
+  const factory KeyPairKeyNameOrKeyNamePrefix.keyName(TfArg<String> keyName) =
+      KeyPairKeyNameOrKeyNamePrefixKeyName;
+
+  /// Sets `key_name_prefix`.
+  const factory KeyPairKeyNameOrKeyNamePrefix.keyNamePrefix(
+    TfArg<String> keyNamePrefix,
+  ) = KeyPairKeyNameOrKeyNamePrefixKeyNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,9 +33,10 @@ sealed class KeyPairKeyNameOrKeyNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `key_name` (one of the [KeyPairKeyNameOrKeyNamePrefix] choices).
-final class KeyPairKeyNameOption extends KeyPairKeyNameOrKeyNamePrefix {
-  const KeyPairKeyNameOption({required this.keyName});
+/// The [KeyPairKeyNameOrKeyNamePrefix.keyName] choice: sets `key_name`.
+final class KeyPairKeyNameOrKeyNamePrefixKeyName
+    extends KeyPairKeyNameOrKeyNamePrefix {
+  const KeyPairKeyNameOrKeyNamePrefixKeyName(this.keyName);
 
   final TfArg<String> keyName;
 
@@ -38,9 +50,10 @@ final class KeyPairKeyNameOption extends KeyPairKeyNameOrKeyNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'key_name': keyName};
 }
 
-/// Sets `key_name_prefix` (one of the [KeyPairKeyNameOrKeyNamePrefix] choices).
-final class KeyPairKeyNamePrefixOption extends KeyPairKeyNameOrKeyNamePrefix {
-  const KeyPairKeyNamePrefixOption({required this.keyNamePrefix});
+/// The [KeyPairKeyNameOrKeyNamePrefix.keyNamePrefix] choice: sets `key_name_prefix`.
+final class KeyPairKeyNameOrKeyNamePrefixKeyNamePrefix
+    extends KeyPairKeyNameOrKeyNamePrefix {
+  const KeyPairKeyNameOrKeyNamePrefixKeyNamePrefix(this.keyNamePrefix);
 
   final TfArg<String> keyNamePrefix;
 

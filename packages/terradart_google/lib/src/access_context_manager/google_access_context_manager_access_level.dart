@@ -10,8 +10,20 @@ const Set<String> _googleAccessContextManagerAccessLevelSensitive = <String>{};
 /// At most one of `basic`, `custom` on `google_access_context_manager_access_level`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.basic(...)`.
 sealed class AccessContextManagerAccessLevelBasicOrCustom {
   const AccessContextManagerAccessLevelBasicOrCustom();
+
+  /// Sets `basic`.
+  const factory AccessContextManagerAccessLevelBasicOrCustom.basic(
+    AccessContextManagerAccessLevelBasic basic,
+  ) = AccessContextManagerAccessLevelBasicOrCustomBasic;
+
+  /// Sets `custom`.
+  const factory AccessContextManagerAccessLevelBasicOrCustom.custom(
+    AccessContextManagerAccessLevelCustom custom,
+  ) = AccessContextManagerAccessLevelBasicOrCustomCustom;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +35,10 @@ sealed class AccessContextManagerAccessLevelBasicOrCustom {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `basic` (one of the [AccessContextManagerAccessLevelBasicOrCustom] choices).
-final class AccessContextManagerAccessLevelBasicOption
+/// The [AccessContextManagerAccessLevelBasicOrCustom.basic] choice: sets `basic`.
+final class AccessContextManagerAccessLevelBasicOrCustomBasic
     extends AccessContextManagerAccessLevelBasicOrCustom {
-  const AccessContextManagerAccessLevelBasicOption({required this.basic});
+  const AccessContextManagerAccessLevelBasicOrCustomBasic(this.basic);
 
   final AccessContextManagerAccessLevelBasic basic;
 
@@ -42,10 +54,10 @@ final class AccessContextManagerAccessLevelBasicOption
   };
 }
 
-/// Sets `custom` (one of the [AccessContextManagerAccessLevelBasicOrCustom] choices).
-final class AccessContextManagerAccessLevelCustomOption
+/// The [AccessContextManagerAccessLevelBasicOrCustom.custom] choice: sets `custom`.
+final class AccessContextManagerAccessLevelBasicOrCustomCustom
     extends AccessContextManagerAccessLevelBasicOrCustom {
-  const AccessContextManagerAccessLevelCustomOption({required this.custom});
+  const AccessContextManagerAccessLevelBasicOrCustomCustom(this.custom);
 
   final AccessContextManagerAccessLevelCustom custom;
 

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking** — a derived sealed type declares one `const factory` constructor per member, named after it and taking its value positionally (`const factory LambdaFunctionFilenameOrImageUriOrS3Bucket.filename(TfArg<String> filename) = ...;`), so a caller writes the Dart 3.10 dot shorthand `.filename(...)`. The variant classes are renamed `<SealedType><Member>` (was `<Prefix><Member>Option`) and take their member positionally. The migration manifest records each variant's factory as `MigrateHelper.shorthand`, read from any sealed type's redirecting factories, hand-written ones included.
 - **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`). Source is formatted in the Dart 3.7+ tall style.
 - `deriveExactlyOne` also seals **at-most-one groups** — mutually exclusive inputs the provider also accepts none of. A hints file's `at_most_one_of_groups` (same shape as `exactly_one_of_groups`) becomes one *nullable* sealed-type argument per resource-level group (a `Sealed? slot` custom slot spread with `...?slot?.argMap`) or nullable helper field per nested group (`...?field?.encode()`); exactly-one groups claim their members first. `wrap` prints each at-most-one group it cannot seal (`at-most-one group not sealed: ...`). The migration manifest records these slots as optional merged `sealed` slots. No lane's hints carry the key yet, so generated output is unchanged.
 - The migration manifest emitter writes a dartdoc line on the generated `<package>MigrateManifest` constant.

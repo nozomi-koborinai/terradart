@@ -46,9 +46,7 @@ final class EdgeDnsStack extends Stack {
         name: TfArg.literal('api.example.com'),
         type: TfArg.literal(DnsRecordType.cname),
         ttl: TfArg.literal(1),
-        contentOrData: DnsRecordContentOption(
-          content: TfArg.literal('ghs.googlehosted.com'),
-        ),
+        contentOrData: .content(TfArg.literal('ghs.googlehosted.com')),
         proxied: TfArg.literal(true),
       ),
     );

@@ -10,8 +10,30 @@ const Set<String> _awsGlueClassifierSensitive = <String>{};
 /// At most one of `csv_classifier`, `grok_classifier`, `json_classifier`, `xml_classifier` on `aws_glue_classifier`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.csvClassifier(...)`.
 sealed class GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier {
   const GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier();
+
+  /// Sets `csv_classifier`.
+  const factory GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier.csvClassifier(
+    GlueClassifierCsvClassifier csvClassifier,
+  ) = GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierCsvClassifier;
+
+  /// Sets `grok_classifier`.
+  const factory GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier.grokClassifier(
+    GlueClassifierGrokClassifier grokClassifier,
+  ) = GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierGrokClassifier;
+
+  /// Sets `json_classifier`.
+  const factory GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier.jsonClassifier(
+    GlueClassifierJsonClassifier jsonClassifier,
+  ) = GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierJsonClassifier;
+
+  /// Sets `xml_classifier`.
+  const factory GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier.xmlClassifier(
+    GlueClassifierXmlClassifier xmlClassifier,
+  ) = GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierXmlClassifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,11 +45,13 @@ sealed class GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlCla
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `csv_classifier` (one of the [GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier] choices).
-final class GlueClassifierCsvClassifierOption
+/// The [GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier.csvClassifier] choice: sets `csv_classifier`.
+final class GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierCsvClassifier
     extends
         GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier {
-  const GlueClassifierCsvClassifierOption({required this.csvClassifier});
+  const GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierCsvClassifier(
+    this.csvClassifier,
+  );
 
   final GlueClassifierCsvClassifier csvClassifier;
 
@@ -43,11 +67,13 @@ final class GlueClassifierCsvClassifierOption
   };
 }
 
-/// Sets `grok_classifier` (one of the [GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier] choices).
-final class GlueClassifierGrokClassifierOption
+/// The [GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier.grokClassifier] choice: sets `grok_classifier`.
+final class GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierGrokClassifier
     extends
         GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier {
-  const GlueClassifierGrokClassifierOption({required this.grokClassifier});
+  const GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierGrokClassifier(
+    this.grokClassifier,
+  );
 
   final GlueClassifierGrokClassifier grokClassifier;
 
@@ -63,11 +89,13 @@ final class GlueClassifierGrokClassifierOption
   };
 }
 
-/// Sets `json_classifier` (one of the [GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier] choices).
-final class GlueClassifierJsonClassifierOption
+/// The [GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier.jsonClassifier] choice: sets `json_classifier`.
+final class GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierJsonClassifier
     extends
         GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier {
-  const GlueClassifierJsonClassifierOption({required this.jsonClassifier});
+  const GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierJsonClassifier(
+    this.jsonClassifier,
+  );
 
   final GlueClassifierJsonClassifier jsonClassifier;
 
@@ -83,11 +111,13 @@ final class GlueClassifierJsonClassifierOption
   };
 }
 
-/// Sets `xml_classifier` (one of the [GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier] choices).
-final class GlueClassifierXmlClassifierOption
+/// The [GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier.xmlClassifier] choice: sets `xml_classifier`.
+final class GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierXmlClassifier
     extends
         GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier {
-  const GlueClassifierXmlClassifierOption({required this.xmlClassifier});
+  const GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifierXmlClassifier(
+    this.xmlClassifier,
+  );
 
   final GlueClassifierXmlClassifier xmlClassifier;
 

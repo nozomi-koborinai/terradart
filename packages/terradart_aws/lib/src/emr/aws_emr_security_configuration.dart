@@ -9,8 +9,20 @@ const Set<String> _awsEmrSecurityConfigurationSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_emr_security_configuration`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class EmrSecurityConfigurationNameOrNamePrefix {
   const EmrSecurityConfigurationNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory EmrSecurityConfigurationNameOrNamePrefix.name(
+    TfArg<String> name,
+  ) = EmrSecurityConfigurationNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory EmrSecurityConfigurationNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = EmrSecurityConfigurationNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +34,10 @@ sealed class EmrSecurityConfigurationNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [EmrSecurityConfigurationNameOrNamePrefix] choices).
-final class EmrSecurityConfigurationNameOption
+/// The [EmrSecurityConfigurationNameOrNamePrefix.name] choice: sets `name`.
+final class EmrSecurityConfigurationNameOrNamePrefixName
     extends EmrSecurityConfigurationNameOrNamePrefix {
-  const EmrSecurityConfigurationNameOption({required this.name});
+  const EmrSecurityConfigurationNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -39,10 +51,10 @@ final class EmrSecurityConfigurationNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [EmrSecurityConfigurationNameOrNamePrefix] choices).
-final class EmrSecurityConfigurationNamePrefixOption
+/// The [EmrSecurityConfigurationNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class EmrSecurityConfigurationNameOrNamePrefixNamePrefix
     extends EmrSecurityConfigurationNameOrNamePrefix {
-  const EmrSecurityConfigurationNamePrefixOption({required this.namePrefix});
+  const EmrSecurityConfigurationNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

@@ -48,8 +48,20 @@ enum TlsEarlyData implements TerraformEnum {
 /// At most one of `certificate_manager_certificates`, `ssl_certificates` on `google_compute_target_https_proxy`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.certificateManagerCertificates(...)`.
 sealed class ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
   const ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates();
+
+  /// Sets `certificate_manager_certificates`.
+  const factory ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.certificateManagerCertificates(
+    TfArg<List<String>> certificateManagerCertificates,
+  ) = ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesCertificateManagerCertificates;
+
+  /// Sets `ssl_certificates`.
+  const factory ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.sslCertificates(
+    TfArg<List<String>> sslCertificates,
+  ) = ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesSslCertificates;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -61,13 +73,13 @@ sealed class ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertifica
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `certificate_manager_certificates` (one of the [ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates] choices).
-final class ComputeTargetHttpsProxyCertificateManagerCertificatesOption
+/// The [ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.certificateManagerCertificates] choice: sets `certificate_manager_certificates`.
+final class ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesCertificateManagerCertificates
     extends
         ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
-  const ComputeTargetHttpsProxyCertificateManagerCertificatesOption({
-    required this.certificateManagerCertificates,
-  });
+  const ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesCertificateManagerCertificates(
+    this.certificateManagerCertificates,
+  );
 
   final TfArg<List<String>> certificateManagerCertificates;
 
@@ -86,13 +98,13 @@ final class ComputeTargetHttpsProxyCertificateManagerCertificatesOption
   };
 }
 
-/// Sets `ssl_certificates` (one of the [ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates] choices).
-final class ComputeTargetHttpsProxySslCertificatesOption
+/// The [ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.sslCertificates] choice: sets `ssl_certificates`.
+final class ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesSslCertificates
     extends
         ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
-  const ComputeTargetHttpsProxySslCertificatesOption({
-    required this.sslCertificates,
-  });
+  const ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesSslCertificates(
+    this.sslCertificates,
+  );
 
   final TfArg<List<String>> sslCertificates;
 
