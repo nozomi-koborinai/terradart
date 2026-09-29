@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking:** inputs the provider requires exactly one of are sealed types — 13 groups on 5 resources take one required argument (or helper field) whose variants each set one member (e.g. `CloudflareRuleset(accountIdOrZoneId: RulesetZoneIdOption(zoneId: ...))`, `CloudflareAccountMember(rolesOrPolicies: AccountMemberRolesOption(roles: ...))`). Synth output is unchanged. See [MIGRATING.md](../../MIGRATING.md).
+
 ## 0.30.0 - 2026-09-28
 
 - **Breaking:** an attribute the schema declares as a map of objects

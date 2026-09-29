@@ -752,26 +752,62 @@ final class WorkerVersionMigrationsTransferredClasses {
 @immutable
 final class WorkerVersionModules {
   const WorkerVersionModules({
-    this.contentBase64,
-    this.contentFile,
+    required this.contentBase64OrContentFile,
     required this.contentType,
     required this.name,
   });
 
-  final TfArg<String>? contentBase64;
-
-  final TfArg<String>? contentFile;
+  final WorkerVersionModulesContentBase64OrContentFile
+  contentBase64OrContentFile;
 
   final TfArg<String> contentType;
 
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    if (contentBase64 != null) 'content_base64': contentBase64!.toTfJson(),
-    if (contentFile != null) 'content_file': contentFile!.toTfJson(),
+    ...contentBase64OrContentFile.encode(),
     'content_type': contentType.toTfJson(),
     'name': name.toTfJson(),
   };
+}
+
+/// Exactly one of `content_base64`, `content_file` on the `modules` block of `cloudflare_worker_version`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class WorkerVersionModulesContentBase64OrContentFile {
+  const WorkerVersionModulesContentBase64OrContentFile();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `content_base64` (one of the [WorkerVersionModulesContentBase64OrContentFile] choices).
+final class WorkerVersionModulesContentBase64Option
+    extends WorkerVersionModulesContentBase64OrContentFile {
+  const WorkerVersionModulesContentBase64Option({required this.contentBase64});
+
+  final TfArg<String> contentBase64;
+
+  @override
+  String get blockKey => 'content_base64';
+
+  @override
+  Map<String, Object?> encode() => {'content_base64': contentBase64.toTfJson()};
+}
+
+/// Sets `content_file` (one of the [WorkerVersionModulesContentBase64OrContentFile] choices).
+final class WorkerVersionModulesContentFileOption
+    extends WorkerVersionModulesContentBase64OrContentFile {
+  const WorkerVersionModulesContentFileOption({required this.contentFile});
+
+  final TfArg<String> contentFile;
+
+  @override
+  String get blockKey => 'content_file';
+
+  @override
+  Map<String, Object?> encode() => {'content_file': contentFile.toTfJson()};
 }
 
 /// Typed helper for the `package_dependencies` block of

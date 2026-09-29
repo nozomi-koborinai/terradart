@@ -297,3 +297,11 @@ properties:
                       - "bypass"
                       - "passthrough"
                       - "normalize"
+exactly_one_of_groups:
+  - ["account_id", "zone_id"]
+  - ["rules.action_parameters.cache_key.custom_key.query_string.exclude.list", "rules.action_parameters.cache_key.custom_key.query_string.exclude.all"]
+  - ["rules.action_parameters.cache_key.custom_key.query_string.include.list", "rules.action_parameters.cache_key.custom_key.query_string.include.all"]
+  - ["rules.action_parameters.edge_ttl.status_code_ttl.status_code_range", "rules.action_parameters.edge_ttl.status_code_ttl.status_code"]
+  - ["rules.action_parameters.from_value.target_url.value", "rules.action_parameters.from_value.target_url.expression"]
+  - ["rules.action_parameters.uri.path.value", "rules.action_parameters.uri.path.expression"]
+  - ["rules.action_parameters.uri.query.value", "rules.action_parameters.uri.query.expression"]
