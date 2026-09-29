@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../ssl/cloudflare_authenticated_origin_pulls_hostname_certificate.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_authenticated_origin_pulls_hostname_certificate`.
 const Set<String>
@@ -17,12 +18,15 @@ final class DataCloudflareAuthenticatedOriginPullsHostnameCertificate
   DataCloudflareAuthenticatedOriginPullsHostnameCertificate({
     required super.localName,
     required TfArg<String> certificateId,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'certificate_id': certificateId, 'zone_id': zoneId},
+         argMap: {
+           'certificate_id': certificateId,
+           'zone_id': zoneId.encodeAs('id'),
+         },
        );
 
   @override

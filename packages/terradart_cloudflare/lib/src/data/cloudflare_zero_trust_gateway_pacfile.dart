@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_gateway_pacfile.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_gateway_pacfile`.
 const Set<String> _cloudflareZeroTrustGatewayPacfileSensitive = <String>{};
@@ -17,13 +18,16 @@ final class DataCloudflareZeroTrustGatewayPacfile extends Data {
 
   DataCloudflareZeroTrustGatewayPacfile({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> pacfileId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'pacfile_id': pacfileId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'pacfile_id': pacfileId,
+         },
        );
 
   @override

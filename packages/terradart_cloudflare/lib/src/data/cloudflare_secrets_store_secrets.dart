@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_secrets_store_secrets`.
 const Set<String> _cloudflareSecretsStoreSecretsSensitive = <String>{};
@@ -16,7 +17,7 @@ final class DataCloudflareSecretsStoreSecrets extends Data {
 
   DataCloudflareSecretsStoreSecrets({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? direction,
     TfArg<num>? maxItems,
     TfArg<String>? order,
@@ -28,7 +29,7 @@ final class DataCloudflareSecretsStoreSecrets extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'direction': ?direction,
            'max_items': ?maxItems,
            'order': ?order,

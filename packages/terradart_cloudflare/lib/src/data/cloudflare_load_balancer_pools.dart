@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_load_balancer_pools`.
 const Set<String> _cloudflareLoadBalancerPoolsSensitive = <String>{};
@@ -17,7 +18,7 @@ final class DataCloudflareLoadBalancerPools extends Data {
 
   DataCloudflareLoadBalancerPools({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? monitor,
     super.provider,
@@ -25,7 +26,7 @@ final class DataCloudflareLoadBalancerPools extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'max_items': ?maxItems,
            'monitor': ?monitor,
          },

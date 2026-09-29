@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../account/cloudflare_account_token.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_account_token`.
 const Set<String> _cloudflareAccountTokenSensitive = <String>{};
@@ -44,7 +45,7 @@ final class DataCloudflareAccountToken extends Data {
 
   DataCloudflareAccountToken({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? tokenId,
     DataAccountTokenFilter? filter,
     super.provider,
@@ -52,7 +53,7 @@ final class DataCloudflareAccountToken extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'token_id': ?tokenId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

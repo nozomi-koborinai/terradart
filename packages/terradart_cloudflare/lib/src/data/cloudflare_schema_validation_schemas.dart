@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../api_shield/cloudflare_schema_validation_schemas.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_schema_validation_schemas`.
 const Set<String> _cloudflareSchemaValidationSchemasSensitive = <String>{};
@@ -34,7 +35,7 @@ final class DataCloudflareSchemaValidationSchemas extends Data {
     required super.localName,
     TfArg<bool>? omitSource,
     TfArg<String>? schemaId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataSchemaValidationSchemasFilter? filter,
     super.provider,
     super.timeouts,
@@ -43,7 +44,7 @@ final class DataCloudflareSchemaValidationSchemas extends Data {
          argMap: {
            'omit_source': ?omitSource,
            'schema_id': ?schemaId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

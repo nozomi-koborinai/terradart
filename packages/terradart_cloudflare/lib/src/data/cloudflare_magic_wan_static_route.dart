@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../magic/cloudflare_magic_wan_static_route.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_magic_wan_static_route`.
 const Set<String> _cloudflareMagicWanStaticRouteSensitive = <String>{};
@@ -18,13 +19,16 @@ final class DataCloudflareMagicWanStaticRoute extends Data {
 
   DataCloudflareMagicWanStaticRoute({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> routeId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'route_id': routeId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'route_id': routeId,
+         },
        );
 
   @override

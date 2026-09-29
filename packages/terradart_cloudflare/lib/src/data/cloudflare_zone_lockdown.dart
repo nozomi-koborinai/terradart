@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../zone/cloudflare_zone_lockdown.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_zone_lockdown`.
 const Set<String> _cloudflareZoneLockdownSensitive = <String>{};
@@ -66,7 +67,7 @@ final class DataCloudflareZoneLockdown extends Data {
   DataCloudflareZoneLockdown({
     required super.localName,
     TfArg<String>? lockDownsId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataZoneLockdownFilter? filter,
     super.provider,
     super.timeouts,
@@ -74,7 +75,7 @@ final class DataCloudflareZoneLockdown extends Data {
          terraformType: tfType,
          argMap: {
            'lock_downs_id': ?lockDownsId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

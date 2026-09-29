@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_connectivity_directory_services`.
 const Set<String> _cloudflareConnectivityDirectoryServicesSensitive =
@@ -13,7 +14,7 @@ final class DataCloudflareConnectivityDirectoryServices extends Data {
 
   DataCloudflareConnectivityDirectoryServices({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? type,
     super.provider,
@@ -21,7 +22,7 @@ final class DataCloudflareConnectivityDirectoryServices extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'max_items': ?maxItems,
            'type': ?type,
          },

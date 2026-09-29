@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../r2/cloudflare_r2_bucket.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_r2_bucket`.
 const Set<String> _cloudflareR2BucketSensitive = <String>{};
@@ -13,13 +14,16 @@ final class DataCloudflareR2Bucket extends Data {
 
   DataCloudflareR2Bucket({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> bucketName,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'bucket_name': bucketName},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'bucket_name': bucketName,
+         },
        );
 
   @override

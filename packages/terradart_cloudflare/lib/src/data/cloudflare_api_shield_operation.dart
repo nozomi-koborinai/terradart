@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../api_shield/cloudflare_api_shield_operation.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_api_shield_operation`.
 const Set<String> _cloudflareApiShieldOperationSensitive = <String>{};
@@ -79,7 +80,7 @@ final class DataCloudflareApiShieldOperation extends Data {
     TfArg<List<String>>? feature,
     TfArg<String>? operationId,
     TfArg<bool>? withSchemas,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataApiShieldOperationFilter? filter,
     super.provider,
     super.timeouts,
@@ -89,7 +90,7 @@ final class DataCloudflareApiShieldOperation extends Data {
            'feature': ?feature,
            'operation_id': ?operationId,
            'with_schemas': ?withSchemas,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

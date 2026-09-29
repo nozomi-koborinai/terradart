@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../email/cloudflare_email_security_block_sender.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_email_security_block_sender`.
 const Set<String> _cloudflareEmailSecurityBlockSenderSensitive = <String>{};
@@ -81,7 +82,7 @@ final class DataCloudflareEmailSecurityBlockSender extends Data {
 
   DataCloudflareEmailSecurityBlockSender({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? patternId,
     DataEmailSecurityBlockSenderFilter? filter,
     super.provider,
@@ -89,7 +90,7 @@ final class DataCloudflareEmailSecurityBlockSender extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'pattern_id': ?patternId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

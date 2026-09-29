@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_access_infrastructure_target.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_access_infrastructure_target`.
 const Set<String> _cloudflareZeroTrustAccessInfrastructureTargetSensitive =
@@ -128,7 +129,7 @@ final class DataCloudflareZeroTrustAccessInfrastructureTarget extends Data {
 
   DataCloudflareZeroTrustAccessInfrastructureTarget({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? targetId,
     DataZeroTrustAccessInfrastructureTargetFilter? filter,
     super.provider,
@@ -136,7 +137,7 @@ final class DataCloudflareZeroTrustAccessInfrastructureTarget extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'target_id': ?targetId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

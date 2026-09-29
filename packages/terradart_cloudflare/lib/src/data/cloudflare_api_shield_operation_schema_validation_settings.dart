@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../api_shield/cloudflare_api_shield_operation_schema_validation_settings.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_api_shield_operation_schema_validation_settings`.
 const Set<String>
@@ -22,12 +23,15 @@ final class DataCloudflareApiShieldOperationSchemaValidationSettings
   DataCloudflareApiShieldOperationSchemaValidationSettings({
     required super.localName,
     required TfArg<String> operationId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'operation_id': operationId, 'zone_id': ?zoneId},
+         argMap: {
+           'operation_id': operationId,
+           'zone_id': ?zoneId?.encodeAs('id'),
+         },
        );
 
   @override

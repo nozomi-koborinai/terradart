@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../s3/aws_s3_bucket_policy.dart';
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 
 /// Sensitive field paths for `aws_s3_bucket_policy`.
 const Set<String> _awsS3BucketPolicySensitive = <String>{};
@@ -13,13 +14,13 @@ final class DataAwsS3BucketPolicy extends Data {
 
   DataAwsS3BucketPolicy({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? region,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'bucket': bucket, 'region': ?region},
+         argMap: {'bucket': bucket.encodeAs('id'), 'region': ?region},
        );
 
   @override

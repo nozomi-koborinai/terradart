@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../notifications/cloudflare_notification_policy.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_notification_policy`.
 const Set<String> _cloudflareNotificationPolicySensitive = <String>{};
@@ -18,13 +19,16 @@ final class DataCloudflareNotificationPolicy extends Data {
 
   DataCloudflareNotificationPolicy({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> policyId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'policy_id': policyId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'policy_id': policyId,
+         },
        );
 
   @override

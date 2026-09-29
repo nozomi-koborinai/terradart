@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_page_shield_scripts_list`.
 const Set<String> _cloudflarePageShieldScriptsListSensitive = <String>{};
@@ -31,7 +32,7 @@ final class DataCloudflarePageShieldScriptsList extends Data {
     TfArg<bool>? prioritizeMalicious,
     TfArg<String>? status,
     TfArg<String>? urls,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -51,7 +52,7 @@ final class DataCloudflarePageShieldScriptsList extends Data {
            'prioritize_malicious': ?prioritizeMalicious,
            'status': ?status,
            'urls': ?urls,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

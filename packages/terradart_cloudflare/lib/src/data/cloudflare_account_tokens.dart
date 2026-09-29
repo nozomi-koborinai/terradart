@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_account_tokens`.
 const Set<String> _cloudflareAccountTokensSensitive = <String>{};
@@ -16,7 +17,7 @@ final class DataCloudflareAccountTokens extends Data {
 
   DataCloudflareAccountTokens({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<bool>? includeExpired,
     TfArg<num>? maxItems,
@@ -25,7 +26,7 @@ final class DataCloudflareAccountTokens extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'direction': ?direction,
            'include_expired': ?includeExpired,
            'max_items': ?maxItems,

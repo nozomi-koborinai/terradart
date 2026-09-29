@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../secrets/cloudflare_secrets_store_secret.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_secrets_store_secret`.
 const Set<String> _cloudflareSecretsStoreSecretSensitive = <String>{};
@@ -68,7 +69,7 @@ final class DataCloudflareSecretsStoreSecret extends Data {
 
   DataCloudflareSecretsStoreSecret({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? secretId,
     required TfArg<String> storeId,
     DataSecretsStoreSecretFilter? filter,
@@ -77,7 +78,7 @@ final class DataCloudflareSecretsStoreSecret extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'secret_id': ?secretId,
            'store_id': storeId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),

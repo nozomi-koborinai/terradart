@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../registrar/cloudflare_registrar_domain.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_registrar_domain`.
 const Set<String> _cloudflareRegistrarDomainSensitive = <String>{};
@@ -13,13 +14,16 @@ final class DataCloudflareRegistrarDomain extends Data {
 
   DataCloudflareRegistrarDomain({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> domainName,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'domain_name': domainName},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'domain_name': domainName,
+         },
        );
 
   @override

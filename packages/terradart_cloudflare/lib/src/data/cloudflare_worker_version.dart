@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../workers/cloudflare_worker_version.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_worker_version`.
 const Set<String> _cloudflareWorkerVersionSensitive = <String>{
@@ -22,7 +23,7 @@ final class DataCloudflareWorkerVersion extends Data {
 
   DataCloudflareWorkerVersion({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? include,
     required TfArg<String> versionId,
     required TfArg<String> workerId,
@@ -31,7 +32,7 @@ final class DataCloudflareWorkerVersion extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'include': ?include,
            'version_id': versionId,
            'worker_id': workerId,

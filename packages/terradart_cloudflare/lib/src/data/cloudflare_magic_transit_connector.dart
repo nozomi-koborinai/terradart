@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../magic/cloudflare_magic_transit_connector.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_magic_transit_connector`.
 const Set<String> _cloudflareMagicTransitConnectorSensitive = <String>{};
@@ -39,7 +40,7 @@ final class DataCloudflareMagicTransitConnector extends Data {
 
   DataCloudflareMagicTransitConnector({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? connectorId,
     DataMagicTransitConnectorFilter? filter,
     super.provider,
@@ -47,7 +48,7 @@ final class DataCloudflareMagicTransitConnector extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'connector_id': ?connectorId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

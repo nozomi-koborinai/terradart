@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../image/cloudflare_image.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_image`.
 const Set<String> _cloudflareImageSensitive = <String>{};
@@ -17,13 +18,16 @@ final class DataCloudflareImage extends Data {
 
   DataCloudflareImage({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> imageId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'image_id': imageId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'image_id': imageId,
+         },
        );
 
   @override

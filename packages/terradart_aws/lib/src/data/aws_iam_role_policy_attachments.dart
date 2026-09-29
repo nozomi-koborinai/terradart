@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../iam/aws_iam_role.dart' show AwsIamRole;
 
 /// Sensitive field paths for `aws_iam_role_policy_attachments`.
 const Set<String> _awsIamRolePolicyAttachmentsSensitive = <String>{};
@@ -13,12 +14,15 @@ final class DataAwsIamRolePolicyAttachments extends Data {
   DataAwsIamRolePolicyAttachments({
     required super.localName,
     TfArg<String>? pathPrefix,
-    required TfArg<String> roleName,
+    required RefTo<AwsIamRole> roleName,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'path_prefix': ?pathPrefix, 'role_name': roleName},
+         argMap: {
+           'path_prefix': ?pathPrefix,
+           'role_name': roleName.encodeAs('name'),
+         },
        );
 
   @override

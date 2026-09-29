@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../ec2/aws_route_table.dart';
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
 
 /// Sensitive field paths for `aws_route_table`.
 const Set<String> _awsRouteTableSensitive = <String>{};
@@ -33,9 +35,9 @@ final class DataAwsRouteTable extends Data {
     TfArg<String>? gatewayId,
     TfArg<String>? region,
     TfArg<String>? routeTableId,
-    TfArg<String>? subnetId,
+    RefTo<AwsSubnet>? subnetId,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? vpcId,
+    RefTo<AwsVpc>? vpcId,
     List<DataRouteTableFilter>? filter,
     super.provider,
     super.timeouts,
@@ -45,9 +47,9 @@ final class DataAwsRouteTable extends Data {
            'gateway_id': ?gatewayId,
            'region': ?region,
            'route_table_id': ?routeTableId,
-           'subnet_id': ?subnetId,
+           'subnet_id': ?subnetId?.encodeAs('id'),
            'tags': ?tags,
-           'vpc_id': ?vpcId,
+           'vpc_id': ?vpcId?.encodeAs('id'),
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

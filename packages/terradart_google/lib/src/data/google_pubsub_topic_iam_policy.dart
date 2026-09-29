@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../pubsub/google_pubsub_topic_iam_policy.dart';
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 
 /// Sensitive field paths for `google_pubsub_topic_iam_policy`.
 const Set<String> _googlePubsubTopicIamPolicySensitive = <String>{};
@@ -17,12 +18,12 @@ final class DataGooglePubsubTopicIamPolicy extends Data {
   DataGooglePubsubTopicIamPolicy({
     required super.localName,
     TfArg<String>? project,
-    required TfArg<String> topic,
+    required RefTo<GooglePubsubTopic> topic,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'project': ?project, 'topic': topic},
+         argMap: {'project': ?project, 'topic': topic.encodeAs('id')},
        );
 
   @override

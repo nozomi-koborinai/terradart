@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_magic_transit_sites`.
 const Set<String> _cloudflareMagicTransitSitesSensitive = <String>{};
@@ -17,7 +18,7 @@ final class DataCloudflareMagicTransitSites extends Data {
 
   DataCloudflareMagicTransitSites({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? connectorid,
     TfArg<num>? maxItems,
     super.provider,
@@ -25,7 +26,7 @@ final class DataCloudflareMagicTransitSites extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'connectorid': ?connectorid,
            'max_items': ?maxItems,
          },
