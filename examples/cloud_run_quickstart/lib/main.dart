@@ -95,7 +95,7 @@ final class ApiServiceStack extends Stack {
       GoogleSecretManagerSecretVersion(
         localName: 'db_password_v1',
         secret: TfArg.ref(dbPassword.id),
-        payload: SecretManagerSecretVersionWriteOnlyPayload(
+        payload: .writeOnly(
           secretDataWo: TfArg.literal('placeholder-secret-value'),
           secretDataWoVersion: TfArg.literal('1'),
         ),
@@ -255,13 +255,11 @@ final class ApiServiceStack extends Stack {
             env: [
               CloudRunV2ServiceEnvVar(
                 name: TfArg.literal('LOG_LEVEL'),
-                source: CloudRunV2ServiceEnvVarFromLiteral(
-                  TfArg.literal('info'),
-                ),
+                source: .value(TfArg.literal('info')),
               ),
               CloudRunV2ServiceEnvVar(
                 name: TfArg.literal('DB_PASSWORD'),
-                source: CloudRunV2ServiceEnvVarFromSecret(
+                source: .secret(
                   secret: TfArg.literal('api-db-password'),
                   version: TfArg.literal('latest'),
                 ),
@@ -271,9 +269,7 @@ final class ApiServiceStack extends Stack {
               // ordering without an explicit dependsOn entry.
               CloudRunV2ServiceEnvVar(
                 name: TfArg.literal('REDIS_HOST'),
-                source: CloudRunV2ServiceEnvVarFromLiteral(
-                  TfArg.ref(cache.host),
-                ),
+                source: .value(TfArg.ref(cache.host)),
               ),
             ],
             ports: CloudRunV2ServiceContainerPort(

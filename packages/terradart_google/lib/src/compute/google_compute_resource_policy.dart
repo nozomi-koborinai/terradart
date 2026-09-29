@@ -82,6 +82,23 @@ class ComputeResourcePolicyDayOfWeek {
 sealed class ComputeResourcePolicySnapshotSchedule {
   const ComputeResourcePolicySnapshotSchedule();
 
+  /// Hourly snapshot schedule.
+  const factory ComputeResourcePolicySnapshotSchedule.hourly({
+    required TfArg<int> hoursInCycle,
+    required TfArg<String> startTime,
+  }) = ComputeResourcePolicyHourlySchedule;
+
+  /// Daily snapshot schedule.
+  const factory ComputeResourcePolicySnapshotSchedule.daily({
+    required TfArg<int> daysInCycle,
+    required TfArg<String> startTime,
+  }) = ComputeResourcePolicyDailySchedule;
+
+  /// Weekly snapshot schedule (one or more [ComputeResourcePolicyDayOfWeek]).
+  const factory ComputeResourcePolicySnapshotSchedule.weekly(
+    List<ComputeResourcePolicyDayOfWeek> dayOfWeeks,
+  ) = ComputeResourcePolicyWeeklySchedule;
+
   Map<String, Object?> encode();
 }
 

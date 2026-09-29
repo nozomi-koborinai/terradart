@@ -89,9 +89,7 @@ final class NccHubStack extends Stack {
         location: TfArg.literal('global'),
         hub: TfArg.ref(hub.id),
         group: TfArg.literal('center'),
-        attachment: NetworkConnectivitySpokeLinkedVpcNetwork(
-          uri: TfArg.ref(vpc.id),
-        ),
+        attachment: .linkedVpcNetwork(uri: TfArg.ref(vpc.id)),
         dependsOn: [
           ...apiDeps,
           ResourceDependency(hub),

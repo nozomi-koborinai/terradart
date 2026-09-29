@@ -19,6 +19,24 @@ enum MonitoringSloCalendarPeriod implements TerraformEnum {
 
 sealed class MonitoringSloSli {
   const MonitoringSloSli();
+
+  /// `basic_sli` — availability and/or latency thresholds on a service.
+  const factory MonitoringSloSli.basicSli({
+    MonitoringSloBasicSliAvailability? availability,
+    MonitoringSloBasicSliLatency? latency,
+  }) = MonitoringSloBasicSli;
+
+  /// `request_based_sli` — ratio of good vs total request metrics.
+  const factory MonitoringSloSli.requestBasedSli({
+    MonitoringSloGoodTotalRatio? goodTotalRatio,
+  }) = MonitoringSloRequestBasedSli;
+
+  /// `windows_based_sli` — windowed metric SLI.
+  const factory MonitoringSloSli.windowsBasedSli({
+    TfArg<String>? goodBadMetricFilter,
+    TfArg<String>? windowPeriod,
+    MonitoringSloWindowsGoodTotalRatioThreshold? goodTotalRatioThreshold,
+  }) = MonitoringSloWindowsBasedSli;
   String get blockKey;
   List<Map<String, Object?>> encode();
 }

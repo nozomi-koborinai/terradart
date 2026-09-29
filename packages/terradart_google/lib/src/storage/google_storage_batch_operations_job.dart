@@ -80,6 +80,33 @@ final class StorageBatchOperationsJobBucketList {
 sealed class StorageBatchOperationsJobOperation {
   const StorageBatchOperationsJobOperation();
 
+  /// `put_metadata` — update object metadata fields / custom metadata.
+  const factory StorageBatchOperationsJobOperation.putMetadata({
+    TfArg<String>? cacheControl,
+    TfArg<String>? contentDisposition,
+    TfArg<String>? contentEncoding,
+    TfArg<String>? contentLanguage,
+    TfArg<String>? contentType,
+    TfArg<Map<String, String>>? customMetadata,
+    TfArg<String>? customTime,
+  }) = StorageBatchOperationsJobPutMetadata;
+
+  /// `put_object_hold` — set temporary / event-based holds.
+  const factory StorageBatchOperationsJobOperation.putObjectHold({
+    TfArg<String>? eventBasedHold,
+    TfArg<String>? temporaryHold,
+  }) = StorageBatchOperationsJobPutObjectHold;
+
+  /// `rewrite_object` — rewrite objects under a KMS key.
+  const factory StorageBatchOperationsJobOperation.rewriteObject({
+    required TfArg<String> kmsKey,
+  }) = StorageBatchOperationsJobRewriteObject;
+
+  /// `delete_object` — delete matching objects (optionally all versions).
+  const factory StorageBatchOperationsJobOperation.deleteObject({
+    required TfArg<bool> permanentObjectDeletionEnabled,
+  }) = StorageBatchOperationsJobDeleteObject;
+
   /// argMap key for this action block.
   String get blockKey;
 

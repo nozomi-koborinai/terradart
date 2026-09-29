@@ -12,6 +12,17 @@ const Set<String> _googleStorageInsightsReportConfigSensitive = <String>{};
 sealed class StorageInsightsReportConfigFormat {
   const StorageInsightsReportConfigFormat();
 
+  /// `csv_options` — CSV inventory reports.
+  const factory StorageInsightsReportConfigFormat.csv({
+    TfArg<String>? delimiter,
+    TfArg<bool>? headerRequired,
+    TfArg<String>? recordSeparator,
+  }) = StorageInsightsReportConfigCsvFormat;
+
+  /// `parquet_options` — Parquet inventory reports (empty options object).
+  const factory StorageInsightsReportConfigFormat.parquet() =
+      StorageInsightsReportConfigParquetFormat;
+
   String get blockKey;
 
   /// Single-element list (`nesting_mode: list, max_items: 1`). Parquet

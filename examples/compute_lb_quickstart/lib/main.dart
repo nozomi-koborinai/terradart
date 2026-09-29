@@ -336,7 +336,7 @@ final class ComputeLbStack extends Stack {
     final cmCert = GoogleCertificateManagerCertificate(
       localName: 'cm_cert',
       name: TfArg.literal('app-cm-cert'),
-      provisioning: CertificateManagerCertificateManagedProvisioning(
+      provisioning: .managed(
         domains: ['app.example.com'],
         dnsAuthorizations: [TfArg.ref(cmDnsAuth.id)],
       ),
@@ -379,7 +379,7 @@ final class ComputeLbStack extends Stack {
         timeoutSec: TfArg.literal(5),
         healthyThreshold: TfArg.literal(2),
         unhealthyThreshold: TfArg.literal(3),
-        protocol: ComputeHealthCheckHttpsHealthCheckConfig(
+        protocol: .https(
           port: TfArg.literal(443),
           requestPath: TfArg.literal('/healthz'),
           portSpecification: HealthCheckPortSpecification.useFixedPort,
@@ -601,7 +601,7 @@ final class ComputeLbStack extends Stack {
         localName: 'regional_hc',
         name: TfArg.literal('app-regional-hc'),
         region: TfArg.literal(region),
-        protocol: ComputeRegionHealthCheckRegionHealthCheckHttpsConfig(
+        protocol: .https(
           port: TfArg.literal(443),
           requestPath: TfArg.literal('/healthz'),
           portSpecification: RegionHealthCheckPortSpecification.useFixedPort,
@@ -750,10 +750,7 @@ final class ComputeLbStack extends Stack {
         name: TfArg.literal('app-allow-lb-health'),
         network: TfArg.ref(lbVpc.selfLink),
         direction: TfArg.literal(FirewallDirection.ingress),
-        rulePolicy: ComputeFirewallAllowPolicy(
-          protocol: TfArg.literal('tcp'),
-          ports: ['443'],
-        ),
+        rulePolicy: .allow(protocol: TfArg.literal('tcp'), ports: ['443']),
         sourceRanges: TfArg.literal(['130.211.0.0/22', '35.191.0.0/16']),
       ),
     );

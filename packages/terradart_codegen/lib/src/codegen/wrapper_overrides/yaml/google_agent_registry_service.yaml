@@ -86,6 +86,23 @@ prelude: |
   sealed class AgentRegistryServiceSpec {
     const AgentRegistryServiceSpec();
 
+    /// `agent_spec` — service type is Agent.
+    const factory AgentRegistryServiceSpec.agent({
+      required AgentRegistryServiceAgentSpecType type,
+      TfArg<String>? content,
+    }) = AgentRegistryServiceAgentSpec;
+
+    /// `mcp_server_spec` — service type is MCP Server.
+    const factory AgentRegistryServiceSpec.mcpServer({
+      required AgentRegistryServiceMcpServerSpecType type,
+      TfArg<String>? content,
+    }) = AgentRegistryServiceMcpServerSpec;
+
+    /// `endpoint_spec` — service type is Endpoint.
+    const factory AgentRegistryServiceSpec.endpoint({
+      required AgentRegistryServiceEndpointSpecType type,
+    }) = AgentRegistryServiceEndpointSpec;
+
     String get blockKey;
     Map<String, Object?> encode();
   }

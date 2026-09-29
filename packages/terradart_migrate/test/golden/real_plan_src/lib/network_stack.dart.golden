@@ -35,7 +35,7 @@ final class NetworkStack extends Stack {
         name: TfArg.literal(r'example-egress'),
         network: TfArg.ref(vpc.nameRef),
         destRange: TfArg.literal(r'0.0.0.0/0'),
-        nextHop: ComputeRouteGatewayNextHop(
+        nextHop: .gateway(
           nextHopGateway: TfArg.literal(r'default-internet-gateway'),
         ),
       ),

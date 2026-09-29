@@ -165,9 +165,7 @@ final class VmComplianceStack extends Stack {
             OsConfigPatchDeploymentPatchConfigRebootConfig.defaultCase,
           ),
         ),
-        schedule: OsConfigPatchDeploymentOneTimeSchedule(
-          executeTime: TfArg.literal('2030-01-01T02:00:00Z'),
-        ),
+        schedule: .oneTime(executeTime: TfArg.literal('2030-01-01T02:00:00Z')),
         dependsOn: apiDeps,
       ),
     );

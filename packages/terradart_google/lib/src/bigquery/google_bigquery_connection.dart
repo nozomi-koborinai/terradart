@@ -35,6 +35,58 @@ enum BigqueryConnectionCloudSqlType implements TerraformEnum {
 sealed class BigqueryConnectionBackend {
   const BigqueryConnectionBackend();
 
+  /// `cloud_sql` block — federated queries against a Cloud SQL Postgres or MySQL instance.
+  const factory BigqueryConnectionBackend.cloudSql({
+    required TfArg<String> instanceId,
+    required TfArg<String> database,
+    required BigqueryConnectionCloudSqlType type,
+    required BigqueryConnectionCloudSqlCredential credential,
+  }) = BigqueryConnectionCloudSql;
+
+  /// `cloud_spanner` block — federated reads against a Cloud Spanner database.
+  const factory BigqueryConnectionBackend.cloudSpanner({
+    required TfArg<String> database,
+    TfArg<bool>? useParallelism,
+    TfArg<int>? maxParallelism,
+    TfArg<bool>? useDataBoost,
+    TfArg<String>? databaseRole,
+    @Deprecated(
+      'Cloud Spanner serverless analytics is deprecated by the provider; '
+      'prefer Data Boost (useDataBoost) for new workloads.',
+    )
+    TfArg<bool>? useServerlessAnalytics,
+  }) = BigqueryConnectionCloudSpanner;
+
+  /// `aws` block — BigQuery Omni federation into AWS (S3 / Glue, BigLake- on-AWS).
+  const factory BigqueryConnectionBackend.aws({
+    required BigqueryConnectionAwsAccessRole accessRole,
+  }) = BigqueryConnectionAws;
+
+  /// `azure` block — BigQuery Omni federation into Azure Data Lake Storage.
+  const factory BigqueryConnectionBackend.azure({
+    required TfArg<String> customerTenantId,
+    TfArg<String>? federatedApplicationClientId,
+  }) = BigqueryConnectionAzure;
+
+  /// `cloud_resource` block — generic delegation for cross-project reads (BigLake tables over Cloud Storage in a different project, etc.).
+  const factory BigqueryConnectionBackend.cloudResource() =
+      BigqueryConnectionCloudResource;
+
+  /// `spark` block — stored procedures for Apache Spark on BigQuery.
+  const factory BigqueryConnectionBackend.spark({
+    BigqueryConnectionSparkMetastoreServiceConfig? metastoreServiceConfig,
+    BigqueryConnectionSparkSparkHistoryServerConfig? sparkHistoryServerConfig,
+  }) = BigqueryConnectionSpark;
+
+  /// `configuration` block — BigQuery Connector framework.
+  const factory BigqueryConnectionBackend.configuration({
+    required TfArg<String> connectorId,
+    required BigqueryConnectionConfigurationAsset asset,
+    BigqueryConnectionConfigurationAuthentication? authentication,
+    BigqueryConnectionConfigurationEndpoint? endpoint,
+    BigqueryConnectionConfigurationNetwork? network,
+  }) = BigqueryConnectionConfiguration;
+
   String get blockKey;
 
   List<Map<String, Object?>> encode();

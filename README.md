@@ -99,7 +99,7 @@ final class AppInfraStack extends Stack {
             env: [
               CloudRunV2ServiceEnvVar(
                 name: TfArg.literal('DATABASE_URL'),
-                source: CloudRunV2ServiceEnvVarFromLiteral(
+                source: .value(
                   TfArg.literal(
                     'postgresql://app-client@${projectId}.iam@localhost:5432/app',
                   ),

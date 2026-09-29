@@ -67,6 +67,67 @@ enum HealthCheckPortSpecification implements TerraformEnum {
 sealed class ComputeHealthCheckProtocol {
   const ComputeHealthCheckProtocol();
 
+  /// `http_health_check` block.
+  const factory ComputeHealthCheckProtocol.http({
+    TfArg<String>? host,
+    TfArg<String>? requestPath,
+    TfArg<String>? response,
+    TfArg<int>? port,
+    TfArg<String>? portName,
+    HealthCheckProxyHeader? proxyHeader,
+    HealthCheckPortSpecification? portSpecification,
+  }) = ComputeHealthCheckHttpHealthCheckConfig;
+
+  /// `https_health_check` block.
+  const factory ComputeHealthCheckProtocol.https({
+    TfArg<String>? host,
+    TfArg<String>? requestPath,
+    TfArg<String>? response,
+    TfArg<int>? port,
+    TfArg<String>? portName,
+    HealthCheckProxyHeader? proxyHeader,
+    HealthCheckPortSpecification? portSpecification,
+  }) = ComputeHealthCheckHttpsHealthCheckConfig;
+
+  /// `http2_health_check` block.
+  const factory ComputeHealthCheckProtocol.http2({
+    TfArg<String>? host,
+    TfArg<String>? requestPath,
+    TfArg<String>? response,
+    TfArg<int>? port,
+    TfArg<String>? portName,
+    HealthCheckProxyHeader? proxyHeader,
+    HealthCheckPortSpecification? portSpecification,
+  }) = ComputeHealthCheckHttp2HealthCheckConfig;
+
+  /// `tcp_health_check` block.
+  const factory ComputeHealthCheckProtocol.tcp({
+    TfArg<String>? request,
+    TfArg<String>? response,
+    TfArg<int>? port,
+    TfArg<String>? portName,
+    HealthCheckProxyHeader? proxyHeader,
+    HealthCheckPortSpecification? portSpecification,
+  }) = ComputeHealthCheckTcpHealthCheckConfig;
+
+  /// `ssl_health_check` block.
+  const factory ComputeHealthCheckProtocol.ssl({
+    TfArg<String>? request,
+    TfArg<String>? response,
+    TfArg<int>? port,
+    TfArg<String>? portName,
+    HealthCheckProxyHeader? proxyHeader,
+    HealthCheckPortSpecification? portSpecification,
+  }) = ComputeHealthCheckSslHealthCheckConfig;
+
+  /// `grpc_health_check` block.
+  const factory ComputeHealthCheckProtocol.grpc({
+    TfArg<int>? port,
+    TfArg<String>? portName,
+    HealthCheckPortSpecification? portSpecification,
+    TfArg<String>? grpcServiceName,
+  }) = ComputeHealthCheckGrpcHealthCheckConfig;
+
   /// Terraform nested-block key (e.g. `https_health_check`).
   String get blockKey;
 

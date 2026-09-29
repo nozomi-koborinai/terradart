@@ -16,6 +16,14 @@ const Set<String> _googleDataCatalogEntrySensitive = <String>{};
 sealed class DataCatalogEntryKind {
   const DataCatalogEntryKind();
 
+  /// Builtin `type = FILESET` entry.
+  const factory DataCatalogEntryKind.fileset() = DataCatalogEntryFileset;
+
+  /// Custom `user_specified_type` entry.
+  const factory DataCatalogEntryKind.customType({
+    required TfArg<String> userSpecifiedType,
+  }) = DataCatalogEntryCustomType;
+
   /// argMap key (`type` or `user_specified_type`).
   String get blockKey;
 

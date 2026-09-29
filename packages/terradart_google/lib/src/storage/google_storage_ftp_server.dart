@@ -21,6 +21,17 @@ enum StorageFtpServerAccessType implements TerraformEnum {
 sealed class StorageFtpServerConfig {
   const StorageFtpServerConfig();
 
+  /// `internal_config`: Private Service Connect access for the listed consumer projects.
+  const factory StorageFtpServerConfig.internal({
+    List<StorageFtpServerConsumerAccept>? consumerAcceptList,
+    List<StorageFtpServerConsumerReject>? consumerRejectList,
+  }) = StorageFtpServerInternalConfig;
+
+  /// `external_config`: public access from the allowed CIDR ranges.
+  const factory StorageFtpServerConfig.external({
+    TfArg<List<String>>? allowedCidrBlocks,
+  }) = StorageFtpServerExternalConfig;
+
   String get blockKey;
 
   Map<String, Object?> encode();

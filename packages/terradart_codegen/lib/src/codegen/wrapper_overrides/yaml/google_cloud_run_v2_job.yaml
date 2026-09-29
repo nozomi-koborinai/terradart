@@ -439,6 +439,17 @@ prelude: |
   sealed class CloudRunV2JobEnvVarSource {
     const CloudRunV2JobEnvVarSource();
 
+    /// Literal env var value (`env.value`).
+    const factory CloudRunV2JobEnvVarSource.value(
+      TfArg<String> value,
+    ) = CloudRunV2JobEnvVarFromLiteral;
+
+    /// Secret-Manager backed env var (`env.value_source.secret_key_ref`).
+    const factory CloudRunV2JobEnvVarSource.secret({
+      required TfArg<String> secret,
+      required TfArg<String> version,
+    }) = CloudRunV2JobEnvVarFromSecret;
+
     /// Returns the JSON fragment to merge into [CloudRunV2JobEnvVar.toArgMap].
     Map<String, Object?> encode();
   }
@@ -658,6 +669,38 @@ prelude: |
   /// Sealed dispatch for [CloudRunV2JobVolume.source].
   sealed class CloudRunV2JobVolumeSource {
     const CloudRunV2JobVolumeSource();
+
+    /// Secret Manager-backed volume.
+    const factory CloudRunV2JobVolumeSource.secret({
+      required TfArg<String> secret,
+      TfArg<int>? defaultMode,
+      List<CloudRunV2JobSecretVolumeItem>? items,
+    }) = CloudRunV2JobVolumeSecret;
+
+    /// Cloud SQL-backed volume.
+    const factory CloudRunV2JobVolumeSource.cloudSqlInstance({
+      TfArg<List<String>>? instances,
+    }) = CloudRunV2JobCloudSqlVolume;
+
+    /// Ephemeral shared volume (`empty_dir`).
+    const factory CloudRunV2JobVolumeSource.emptyDir({
+      TfArg<CloudRunV2JobEmptyDirMedium>? medium,
+      TfArg<String>? sizeLimit,
+    }) = CloudRunV2JobEmptyDirVolume;
+
+    /// GCSFuse-backed volume.
+    const factory CloudRunV2JobVolumeSource.gcs({
+      required TfArg<String> bucket,
+      TfArg<bool>? readOnly,
+      TfArg<List<String>>? mountOptions,
+    }) = CloudRunV2JobGcsVolume;
+
+    /// NFS-mounted volume.
+    const factory CloudRunV2JobVolumeSource.nfs({
+      required TfArg<String> server,
+      TfArg<String>? path,
+      TfArg<bool>? readOnly,
+    }) = CloudRunV2JobNfsVolume;
 
     Map<String, Object?> encode();
   }

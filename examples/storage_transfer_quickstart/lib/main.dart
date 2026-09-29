@@ -145,7 +145,7 @@ final class StorageTransferStack extends Stack {
         location: TfArg.literal('asia-northeast1'),
         displayName: TfArg.literal('terradart-inventory'),
         forceDestroy: TfArg.literal(true),
-        format: StorageInsightsReportConfigCsvFormat(
+        format: .csv(
           delimiter: TfArg.literal(','),
           headerRequired: TfArg.literal(true),
         ),
@@ -249,9 +249,7 @@ final class StorageTransferStack extends Stack {
         localName: 'acl_marker',
         bucket: TfArg.ref(objectAclBucket.nameRef),
         name: TfArg.literal('acl-marker.txt'),
-        body: StorageBucketObjectBucketObjectFromSource(
-          source: TfArg.literal('../acl-marker.txt'),
-        ),
+        body: .source(source: TfArg.literal('../acl-marker.txt')),
         contentType: TfArg.literal('text/plain'),
         dependsOn: [...apiDeps, ResourceDependency(objectAclBucket)],
       ),

@@ -172,7 +172,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
           DiscoveryEngineControlSolutionType.solutionTypeSearch,
         ),
         useCases: TfArg.literal(['SEARCH_USE_CASE_SEARCH']),
-        action: DiscoveryEngineControlSynonymsAction(
+        action: .synonymsAction(
           synonyms: TfArg.literal(['quickstart', 'demo']),
         ),
         dependsOn: [ResourceDependency(searchEngine)],

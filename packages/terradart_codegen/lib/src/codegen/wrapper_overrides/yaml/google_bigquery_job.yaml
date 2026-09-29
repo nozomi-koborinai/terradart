@@ -351,6 +351,74 @@ prelude: |
   sealed class BigqueryJobConfiguration {
     const BigqueryJobConfiguration();
 
+    /// All other fields are optional.
+    const factory BigqueryJobConfiguration.query({
+      required TfArg<String> query,
+      BigqueryJobDestinationTable? destinationTable,
+      BigqueryJobDefaultDataset? defaultDataset,
+      BigqueryJobEncryptionConfiguration? destinationEncryptionConfiguration,
+      List<BigqueryJobUserDefinedFunctionResource>? userDefinedFunctionResources,
+      List<BigqueryJobQueryConnectionProperty>? connectionProperties,
+      BigqueryJobScriptOptions? scriptOptions,
+      BigqueryJobCreateDisposition? createDisposition,
+      BigqueryJobWriteDisposition? writeDisposition,
+      BigqueryJobQueryPriority? priority,
+      BigqueryJobParameterMode? parameterMode,
+      TfArg<bool>? useQueryCache,
+      TfArg<bool>? flattenResults,
+      TfArg<bool>? allowLargeResults,
+      TfArg<int>? maximumBillingTier,
+      TfArg<String>? maximumBytesBilled,
+      TfArg<bool>? useLegacySql,
+      List<String>? schemaUpdateOptions,
+    }) = BigqueryJobQuery;
+
+    /// `load` job-type block.
+    const factory BigqueryJobConfiguration.load({
+      required TfArg<List<String>> sourceUris,
+      required BigqueryJobDestinationTable destinationTable,
+      BigqueryJobEncryptionConfiguration? destinationEncryptionConfiguration,
+      BigqueryJobTimePartitioning? timePartitioning,
+      BigqueryJobParquetOptions? parquetOptions,
+      BigqueryJobLoadSourceFormat? sourceFormat,
+      BigqueryJobCreateDisposition? createDisposition,
+      BigqueryJobWriteDisposition? writeDisposition,
+      List<String>? schemaUpdateOptions,
+      List<String>? projectionFields,
+      TfArg<bool>? autodetect,
+      TfArg<bool>? allowJaggedRows,
+      TfArg<bool>? allowQuotedNewlines,
+      TfArg<bool>? ignoreUnknownValues,
+      TfArg<int>? maxBadRecords,
+      TfArg<int>? skipLeadingRows,
+      TfArg<String>? fieldDelimiter,
+      TfArg<String>? quote,
+      TfArg<String>? encoding,
+      TfArg<String>? nullMarker,
+      TfArg<String>? jsonExtension,
+    }) = BigqueryJobLoad;
+
+    /// `extract` job-type block.
+    const factory BigqueryJobConfiguration.extract({
+      required TfArg<List<String>> destinationUris,
+      BigqueryJobDestinationTable? sourceTable,
+      BigqueryJobSourceModel? sourceModel,
+      BigqueryJobExtractCompression? compression,
+      BigqueryJobExtractDestinationFormat? destinationFormat,
+      TfArg<String>? fieldDelimiter,
+      TfArg<bool>? printHeader,
+      TfArg<bool>? useAvroLogicalTypes,
+    }) = BigqueryJobExtract;
+
+    /// `copy` job-type block.
+    const factory BigqueryJobConfiguration.copy({
+      required List<BigqueryJobDestinationTable> sourceTables,
+      required BigqueryJobDestinationTable destinationTable,
+      BigqueryJobEncryptionConfiguration? destinationEncryptionConfiguration,
+      BigqueryJobCreateDisposition? createDisposition,
+      BigqueryJobWriteDisposition? writeDisposition,
+    }) = BigqueryJobCopy;
+
     String get blockKey;
 
     List<Map<String, Object?>> encode();

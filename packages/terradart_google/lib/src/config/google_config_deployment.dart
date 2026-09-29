@@ -50,6 +50,18 @@ class ConfigDeploymentInputValue {
 sealed class ConfigDeploymentBlueprintSource {
   const ConfigDeploymentBlueprintSource();
 
+  /// GCS object URI containing a zipped Terraform blueprint.
+  const factory ConfigDeploymentBlueprintSource.gcs({
+    required TfArg<String> gcsSource,
+  }) = ConfigDeploymentBlueprintFromGcs;
+
+  /// Public Git repository containing the blueprint.
+  const factory ConfigDeploymentBlueprintSource.git({
+    required TfArg<String> repo,
+    TfArg<String>? directory,
+    TfArg<String>? ref,
+  }) = ConfigDeploymentBlueprintFromGit;
+
   Map<String, Object?> encode();
 }
 

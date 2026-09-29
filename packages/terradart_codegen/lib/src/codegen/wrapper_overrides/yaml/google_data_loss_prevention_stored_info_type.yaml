@@ -12,6 +12,23 @@ prelude: |
   sealed class DataLossPreventionStoredInfoTypeDefinition {
     const DataLossPreventionStoredInfoTypeDefinition();
 
+    /// Regex-based custom info type.
+    const factory DataLossPreventionStoredInfoTypeDefinition.regex({
+      required TfArg<String> pattern,
+      TfArg<List<num>>? groupIndexes,
+    }) = DataLossPreventionStoredInfoTypeRegex;
+
+    /// Word-list dictionary custom info type.
+    const factory DataLossPreventionStoredInfoTypeDefinition.dictionary({
+      required TfArg<List<String>> words,
+    }) = DataLossPreventionStoredInfoTypeDictionary;
+
+    /// Large custom dictionary built from a GCS phrase file.
+    const factory DataLossPreventionStoredInfoTypeDefinition.largeCustomDictionary({
+      required TfArg<String> outputPath,
+      required TfArg<String> cloudStorageFileSet,
+    }) = DataLossPreventionStoredInfoTypeLargeCustomDictionary;
+
     /// Terraform nested-block key.
     String get blockKey;
 

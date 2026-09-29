@@ -23,6 +23,31 @@ prelude: |
   sealed class ComputeRouteNextHop {
     const ComputeRouteNextHop();
 
+    /// Route via the default internet gateway (`default-internet-gateway`).
+    const factory ComputeRouteNextHop.gateway({
+      required TfArg<String> nextHopGateway,
+    }) = ComputeRouteGatewayNextHop;
+
+    /// Route via an explicit next-hop IP address.
+    const factory ComputeRouteNextHop.ip({
+      required TfArg<String> nextHopIp,
+    }) = ComputeRouteIpNextHop;
+
+    /// Route via a Compute Engine VM instance (name or self-link).
+    const factory ComputeRouteNextHop.instance({
+      required TfArg<String> nextHopInstance,
+    }) = ComputeRouteInstanceNextHop;
+
+    /// Route via an internal load balancer.
+    const factory ComputeRouteNextHop.ilb({
+      required TfArg<String> nextHopIlb,
+    }) = ComputeRouteIlbNextHop;
+
+    /// Route via a Cloud VPN tunnel.
+    const factory ComputeRouteNextHop.vpnTunnel({
+      required TfArg<String> nextHopVpnTunnel,
+    }) = ComputeRouteVpnTunnelNextHop;
+
     /// Terraform attribute name (`next_hop_gateway`, `next_hop_ip`, …).
     String get blockKey;
 

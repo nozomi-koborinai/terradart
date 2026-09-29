@@ -85,7 +85,7 @@ final class NetworkRouteStack extends Stack {
         destRange: TfArg.literal('192.168.255.0/24'),
         description: TfArg.literal('Demo egress route to the internet gateway'),
         priority: TfArg.literal(1000),
-        nextHop: ComputeRouteGatewayNextHop(
+        nextHop: .gateway(
           nextHopGateway: TfArg.literal('default-internet-gateway'),
         ),
         dependsOn: [ResourceDependency(vpc)],
@@ -225,7 +225,7 @@ final class NetworkRouteStack extends Stack {
         name: TfArg.literal('terradart-daily-snapshots'),
         region: TfArg.literal('us-central1'),
         snapshotSchedulePolicy: ComputeResourcePolicySnapshotSchedulePolicy(
-          schedule: ComputeResourcePolicyDailySchedule(
+          schedule: .daily(
             daysInCycle: TfArg.literal(1),
             startTime: TfArg.literal('04:00'),
           ),

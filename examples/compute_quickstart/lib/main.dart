@@ -538,9 +538,7 @@ final class NetworkStack extends Stack {
       GoogleComputeSnapshot(
         localName: 'scratch_snapshot',
         name: TfArg.literal('ops-scratch-snapshot'),
-        source: ComputeSnapshotDiskSource(
-          sourceDisk: TfArg.ref(scratchDisk.selfLink),
-        ),
+        source: .disk(sourceDisk: TfArg.ref(scratchDisk.selfLink)),
         storageLocations: TfArg.literal(['asia-northeast1']),
         dependsOn: [ResourceDependency(scratchDisk)],
       ),
@@ -564,9 +562,7 @@ final class NetworkStack extends Stack {
       GoogleComputeImage(
         localName: 'scratch_image',
         name: TfArg.literal('ops-scratch-image'),
-        source: ComputeImageSnapshotSource(
-          sourceSnapshot: TfArg.ref(scratchSnapshot.selfLink),
-        ),
+        source: .snapshot(sourceSnapshot: TfArg.ref(scratchSnapshot.selfLink)),
         family: TfArg.literal('ops-scratch'),
         storageLocations: TfArg.literal(['asia-northeast1']),
         dependsOn: [ResourceDependency(scratchSnapshot)],
@@ -1211,7 +1207,7 @@ final class NetworkStack extends Stack {
         name: TfArg.literal('ops-backup-daily-snapshots'),
         region: TfArg.literal('asia-northeast1'),
         snapshotSchedulePolicy: ComputeResourcePolicySnapshotSchedulePolicy(
-          schedule: ComputeResourcePolicyDailySchedule(
+          schedule: .daily(
             daysInCycle: TfArg.literal(1),
             startTime: TfArg.literal('04:00'),
           ),

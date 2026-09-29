@@ -44,6 +44,59 @@ enum DatasetStorageBillingModel implements TerraformEnum {
 sealed class BigqueryDatasetAccess {
   const BigqueryDatasetAccess({this.condition});
 
+  /// `access` entry granting [role] to [userByEmail].
+  const factory BigqueryDatasetAccess.userByEmail({
+    required TfArg<String> userByEmail,
+    TfArg<String>? role,
+    BigqueryDatasetAccessCondition? condition,
+  }) = BigqueryDatasetAccessUserByEmail;
+
+  /// `access` entry granting [role] to [groupByEmail].
+  const factory BigqueryDatasetAccess.groupByEmail({
+    required TfArg<String> groupByEmail,
+    TfArg<String>? role,
+    BigqueryDatasetAccessCondition? condition,
+  }) = BigqueryDatasetAccessGroupByEmail;
+
+  /// `access` entry granting [role] to [specialGroup].
+  const factory BigqueryDatasetAccess.specialGroup({
+    required TfArg<String> specialGroup,
+    TfArg<String>? role,
+    BigqueryDatasetAccessCondition? condition,
+  }) = BigqueryDatasetAccessSpecialGroup;
+
+  /// `access` entry granting [role] to all members of [domain].
+  const factory BigqueryDatasetAccess.domain({
+    required TfArg<String> domain,
+    TfArg<String>? role,
+    BigqueryDatasetAccessCondition? condition,
+  }) = BigqueryDatasetAccessDomain;
+
+  /// `access` entry granting [role] to an arbitrary IAM principal (e.g.
+  const factory BigqueryDatasetAccess.iamMember({
+    required TfArg<String> iamMember,
+    TfArg<String>? role,
+    BigqueryDatasetAccessCondition? condition,
+  }) = BigqueryDatasetAccessIamMember;
+
+  /// `access` entry referring to a BigQuery view.
+  const factory BigqueryDatasetAccess.view({
+    required BigqueryDatasetDatasetView view,
+    BigqueryDatasetAccessCondition? condition,
+  }) = BigqueryDatasetAccessView;
+
+  /// `access` entry referring to a dataset (transitive read for resource types listed in `targetTypes`).
+  const factory BigqueryDatasetAccess.dataset({
+    required BigqueryDatasetDatasetAccessChild dataset,
+    BigqueryDatasetAccessCondition? condition,
+  }) = BigqueryDatasetAccessDataset;
+
+  /// `access` entry referring to a BigQuery routine.
+  const factory BigqueryDatasetAccess.routine({
+    required BigqueryDatasetDatasetRoutineRef routine,
+    BigqueryDatasetAccessCondition? condition,
+  }) = BigqueryDatasetAccessRoutine;
+
   /// Optional CEL binding restricting when this access entry applies.
   final BigqueryDatasetAccessCondition? condition;
 

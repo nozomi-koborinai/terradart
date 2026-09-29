@@ -129,9 +129,7 @@ final class ColabStack extends Stack {
         localName: 'hello_ipynb',
         bucket: TfArg.ref(bucket.nameRef),
         name: TfArg.literal('hello_world.ipynb'),
-        body: StorageBucketObjectBucketObjectFromSource(
-          source: TfArg.literal('../hello_world.ipynb'),
-        ),
+        body: .source(source: TfArg.literal('../hello_world.ipynb')),
         contentType: TfArg.literal('application/json'),
         dependsOn: [ResourceDependency(bucket)],
       ),

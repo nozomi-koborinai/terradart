@@ -29,6 +29,19 @@ enum CertificateManagerCertificateScope implements TerraformEnum {
 sealed class CertificateManagerCertificateProvisioningSource {
   const CertificateManagerCertificateProvisioningSource();
 
+  /// Google-managed certificate — auto-provisioned and renewed while DNS authorization remains valid.
+  const factory CertificateManagerCertificateProvisioningSource.managed({
+    List<String>? domains,
+    List<TfArg<String>>? dnsAuthorizations,
+    TfArg<String>? issuanceConfig,
+  }) = CertificateManagerCertificateManagedProvisioning;
+
+  /// User-uploaded PEM certificate + private key.
+  const factory CertificateManagerCertificateProvisioningSource.selfManaged({
+    TfArg<String>? pemCertificate,
+    TfArg<String>? pemPrivateKey,
+  }) = CertificateManagerCertificateSelfManagedProvisioning;
+
   String get blockKey;
   Map<String, Object?> encode();
 }

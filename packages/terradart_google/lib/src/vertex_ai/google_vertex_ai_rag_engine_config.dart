@@ -17,6 +17,18 @@ const Set<String> _googleVertexAiRagEngineConfigSensitive = <String>{};
 sealed class VertexAiRagEngineConfigManagedDbTier {
   const VertexAiRagEngineConfigManagedDbTier();
 
+  /// `basic` tier — cost-effective default for experiments / small data.
+  const factory VertexAiRagEngineConfigManagedDbTier.basic() =
+      VertexAiRagEngineConfigBasic;
+
+  /// `scaled` tier — production-grade performance with autoscaling.
+  const factory VertexAiRagEngineConfigManagedDbTier.scaled() =
+      VertexAiRagEngineConfigScaled;
+
+  /// `unprovisioned` — disables RAG Engine and deletes managed data.
+  const factory VertexAiRagEngineConfigManagedDbTier.unprovisioned() =
+      VertexAiRagEngineConfigUnprovisioned;
+
   /// Inner block key under `rag_managed_db_config` (`basic` / `scaled` /
   /// `unprovisioned`).
   String get tierKey;
