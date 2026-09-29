@@ -110,3 +110,5 @@ properties:
       - "standard"
       - "bundled"
       - "unbound"
+exactly_one_of_groups:
+  - ["files.content_base64", "files.content_file"]

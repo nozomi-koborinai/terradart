@@ -142,3 +142,7 @@ properties:
       - "mcp"
       - "mcp_portal"
       - "proxy_endpoint"
+exactly_one_of_groups:
+  - ["cors_headers.allow_all_methods", "cors_headers.allowed_methods"]
+  - ["cors_headers.allow_all_origins", "cors_headers.allowed_origins"]
+  - ["policies.id", "policies.include"]

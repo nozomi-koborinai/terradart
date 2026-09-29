@@ -59,6 +59,110 @@ func ResourceSchema(ctx context.Context) schema.Schema {
     });
   });
 
+  group('scanFrameworkSchema', () {
+    test('derives exactly-one groups from framework relation validators', () {
+      const src = '''
+func ResourceSchema(ctx context.Context) schema.Schema {
+  return schema.Schema{
+    Attributes: map[string]schema.Attribute{
+      "account_id": schema.StringAttribute{
+        Optional: true,
+        Validators: []validator.String{
+          stringvalidator.ExactlyOneOf(path.MatchRoot("zone_id")),
+        },
+      },
+      "zone_id": schema.StringAttribute{
+        Optional: true,
+        Validators: []validator.String{
+          stringvalidator.ExactlyOneOf(path.MatchRoot("account_id")),
+        },
+      },
+      "content": schema.StringAttribute{
+        Validators: []validator.String{
+          stringvalidator.ConflictsWith(path.Expressions{
+            path.MatchRoot("data"),
+          }...),
+        },
+      },
+      "modules": schema.ListNestedAttribute{
+        NestedObject: schema.NestedAttributeObject{
+          Attributes: map[string]schema.Attribute{
+            "content_base64": schema.StringAttribute{
+              Validators: []validator.String{
+                stringvalidator.ConflictsWith(path.MatchRelative().AtParent().AtName("content_file")),
+                stringvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("content_file")),
+              },
+            },
+            "content_file": schema.StringAttribute{
+              Validators: []validator.String{
+                stringvalidator.ConflictsWith(path.MatchRelative().AtParent().AtName("content_base64")),
+                stringvalidator.AtLeastOneOf(path.MatchRelative().AtParent().AtName("content_base64")),
+                stringvalidator.OneOf("a", "b"),
+              },
+            },
+          },
+        },
+      },
+    },
+  }
+}
+
+func (r *R) ConfigValidators(_ context.Context) []resource.ConfigValidator {
+  return []resource.ConfigValidator{
+    resourcevalidator.ExactlyOneOf(
+      path.MatchRoot("roles"),
+      path.MatchRoot("policies"),
+    ),
+    resourcevalidator.AtLeastOneOf(
+      path.MatchRoot("script"),
+      path.MatchRoot("script_file"),
+      path.MatchRoot("assets"),
+    ),
+    resourcevalidator.Conflicting(
+      path.MatchRoot("script"),
+      path.MatchRoot("script_file"),
+    ),
+    resourcevalidator.ExactlyOneOf(path.MatchRoot(names.AttrName)),
+  }
+}
+''';
+      final scan = scanFrameworkSchema(src);
+      String dotted(List<List<String>> g) =>
+          [for (final m in g) m.join('.')].join(',');
+      expect([
+        for (final g in scan.groups) dotted(g)
+      ], [
+        'account_id,zone_id',
+        'roles,policies',
+        'modules.content_base64,modules.content_file',
+      ]);
+      expect([
+        for (final g in scan.atMostOne) dotted(g)
+      ], [
+        'content,data',
+        'script,script_file',
+      ]);
+      expect(scan.unresolved, 1);
+      expect([for (final h in scan.hints) h.dotted], ['modules.content_file']);
+    });
+
+    test('parseFrameworkPaths rejects a path it cannot evaluate', () {
+      List<List<String>>? parse(String src) {
+        final t = tokenizeGo('($src)');
+        return parseFrameworkPaths(t, 1, t.length - 1, ['a', 'b']);
+      }
+
+      expect(parse('path.MatchRelative().AtParent().AtName("c")'), [
+        ['a', 'c'],
+      ]);
+      expect(parse('path.MatchRoot("x").AtListIndex(0).AtName("y")'), [
+        ['x', 'y'],
+      ]);
+      expect(parse('path.MatchRoot(key)'), isNull);
+      expect(parse('otherPaths()'), isNull);
+    });
+  });
+
   test('scanSchemaGo skips rune literals in hand-written resource code', () {
     const src = '''
 func (r *thing) Schema(_ context.Context, _ resource.SchemaRequest, resp *resource.SchemaResponse) {
@@ -523,6 +627,26 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
               ),
               HintResolution.string,
               reason: '$type.$key',
+            );
+          }
+        }
+      });
+
+      test('seal only sibling inputs that schema.json declares', () {
+        for (final file in files) {
+          final type = p.basenameWithoutExtension(file.path);
+          final groups = (loadYaml(file.readAsStringSync())
+              as YamlMap)['exactly_one_of_groups'] as YamlList?;
+          final block = ((resources[type] as Map)['block'] as Map)
+              .cast<String, dynamic>();
+          for (final g in groups ?? YamlList()) {
+            final members = [
+              for (final m in g as YamlList) m.toString().split('.'),
+            ];
+            expect(
+              groupSkipReason(block, members),
+              isNull,
+              reason: '$type $g',
             );
           }
         }
