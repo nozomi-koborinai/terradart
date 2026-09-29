@@ -12,18 +12,18 @@ const Set<String> _awsLexIntentSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.conclusionStatement(...)`.
-sealed class LexIntentConclusionStatementOrFollowUpPrompt {
-  const LexIntentConclusionStatementOrFollowUpPrompt();
+sealed class LexIntentClosing {
+  const LexIntentClosing();
 
   /// Sets `conclusion_statement`.
-  const factory LexIntentConclusionStatementOrFollowUpPrompt.conclusionStatement(
+  const factory LexIntentClosing.conclusionStatement(
     LexIntentConclusionStatement conclusionStatement,
-  ) = LexIntentConclusionStatementOrFollowUpPromptConclusionStatement;
+  ) = LexIntentClosingConclusionStatement;
 
   /// Sets `follow_up_prompt`.
-  const factory LexIntentConclusionStatementOrFollowUpPrompt.followUpPrompt(
+  const factory LexIntentClosing.followUpPrompt(
     LexIntentFollowUpPrompt followUpPrompt,
-  ) = LexIntentConclusionStatementOrFollowUpPromptFollowUpPrompt;
+  ) = LexIntentClosingFollowUpPrompt;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,12 +35,9 @@ sealed class LexIntentConclusionStatementOrFollowUpPrompt {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LexIntentConclusionStatementOrFollowUpPrompt.conclusionStatement] choice: sets `conclusion_statement`.
-final class LexIntentConclusionStatementOrFollowUpPromptConclusionStatement
-    extends LexIntentConclusionStatementOrFollowUpPrompt {
-  const LexIntentConclusionStatementOrFollowUpPromptConclusionStatement(
-    this.conclusionStatement,
-  );
+/// The [LexIntentClosing.conclusionStatement] choice: sets `conclusion_statement`.
+final class LexIntentClosingConclusionStatement extends LexIntentClosing {
+  const LexIntentClosingConclusionStatement(this.conclusionStatement);
 
   final LexIntentConclusionStatement conclusionStatement;
 
@@ -58,12 +55,9 @@ final class LexIntentConclusionStatementOrFollowUpPromptConclusionStatement
   };
 }
 
-/// The [LexIntentConclusionStatementOrFollowUpPrompt.followUpPrompt] choice: sets `follow_up_prompt`.
-final class LexIntentConclusionStatementOrFollowUpPromptFollowUpPrompt
-    extends LexIntentConclusionStatementOrFollowUpPrompt {
-  const LexIntentConclusionStatementOrFollowUpPromptFollowUpPrompt(
-    this.followUpPrompt,
-  );
+/// The [LexIntentClosing.followUpPrompt] choice: sets `follow_up_prompt`.
+final class LexIntentClosingFollowUpPrompt extends LexIntentClosing {
+  const LexIntentClosingFollowUpPrompt(this.followUpPrompt);
 
   final LexIntentFollowUpPrompt followUpPrompt;
 
@@ -497,8 +491,7 @@ final class AwsLexIntent extends Resource {
     TfArg<String>? parentIntentSignature,
     TfArg<String>? region,
     TfArg<List<String>>? sampleUtterances,
-    LexIntentConclusionStatementOrFollowUpPrompt?
-    conclusionStatementOrFollowUpPrompt,
+    LexIntentClosing? closing,
     LexIntentConfirmationPrompt? confirmationPrompt,
     LexIntentDialogCodeHook? dialogCodeHook,
     required LexIntentFulfillmentActivity fulfillmentActivity,
@@ -518,7 +511,7 @@ final class AwsLexIntent extends Resource {
              'parent_intent_signature': parentIntentSignature,
            if (region != null) 'region': region,
            if (sampleUtterances != null) 'sample_utterances': sampleUtterances,
-           ...?conclusionStatementOrFollowUpPrompt?.argMap,
+           ...?closing?.argMap,
            if (confirmationPrompt != null)
              'confirmation_prompt': TfArg.literal(confirmationPrompt.encode()),
            if (dialogCodeHook != null)

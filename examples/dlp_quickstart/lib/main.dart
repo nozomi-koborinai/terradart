@@ -29,27 +29,27 @@ final class DlpStack extends Stack {
     final apiDlp = add(
       GoogleProjectService(
         localName: 'api_dlp',
-        service: TfArg.literal('dlp.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('dlp.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final apiStorage = add(
       GoogleProjectService(
         localName: 'api_storage',
-        service: TfArg.literal('storage.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('storage.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final inspect = add(
       GoogleDataLossPreventionInspectTemplate(
         localName: 'email_inspect',
-        parent: TfArg.literal(parent),
-        templateId: TfArg.literal('terradart-email-inspect'),
-        displayName: TfArg.literal('terradart-email-inspect'),
-        description: TfArg.literal('Quickstart inspect template'),
-        inspectConfig: TfArg.literal({
+        parent: .literal(parent),
+        templateId: .literal('terradart-email-inspect'),
+        displayName: .literal('terradart-email-inspect'),
+        description: .literal('Quickstart inspect template'),
+        inspectConfig: .literal({
           'info_types': [
             {'name': 'EMAIL_ADDRESS'},
           ],
@@ -62,11 +62,11 @@ final class DlpStack extends Stack {
     final deidentify = add(
       GoogleDataLossPreventionDeidentifyTemplate(
         localName: 'email_redact',
-        parent: TfArg.literal(parent),
-        templateId: TfArg.literal('terradart-email-redact'),
-        displayName: TfArg.literal('terradart-email-redact'),
-        description: TfArg.literal('Quickstart de-identify template'),
-        deidentifyConfig: TfArg.literal({
+        parent: .literal(parent),
+        templateId: .literal('terradart-email-redact'),
+        displayName: .literal('terradart-email-redact'),
+        description: .literal('Quickstart de-identify template'),
+        deidentifyConfig: .literal({
           'info_type_transformations': {
             'transformations': [
               {
@@ -87,13 +87,11 @@ final class DlpStack extends Stack {
     final stored = add(
       GoogleDataLossPreventionStoredInfoType(
         localName: 'patient_id',
-        parent: TfArg.literal(parent),
-        storedInfoTypeId: TfArg.literal('terradart-patient-id'),
-        displayName: TfArg.literal('terradart-patient-id'),
-        description: TfArg.literal('Quickstart regex stored info type'),
-        definition: DataLossPreventionStoredInfoTypeRegex(
-          pattern: TfArg.literal(r'patient-\d{4}'),
-        ),
+        parent: .literal(parent),
+        storedInfoTypeId: .literal('terradart-patient-id'),
+        displayName: .literal('terradart-patient-id'),
+        description: .literal('Quickstart regex stored info type'),
+        definition: .regex(pattern: .literal(r'patient-\d{4}')),
         dependsOn: [ResourceDependency(apiDlp)],
       ),
     );
@@ -103,10 +101,10 @@ final class DlpStack extends Stack {
     final scanBucket = add(
       GoogleStorageBucket(
         localName: 'dlp_scan',
-        name: TfArg.literal('$projectId-terradart-dlp-scan'),
-        location: TfArg.literal('US'),
-        forceDestroy: TfArg.literal(true),
-        uniformBucketLevelAccess: TfArg.literal(true),
+        name: .literal('$projectId-terradart-dlp-scan'),
+        location: .literal('US'),
+        forceDestroy: .literal(true),
+        uniformBucketLevelAccess: .literal(true),
         dependsOn: [ResourceDependency(apiStorage)],
       ),
     );
@@ -114,17 +112,17 @@ final class DlpStack extends Stack {
     final trigger = add(
       GoogleDataLossPreventionJobTrigger(
         localName: 'paused_gcs',
-        parent: TfArg.literal(parent),
-        triggerId: TfArg.literal('terradart-paused-gcs'),
-        displayName: TfArg.literal('terradart-paused-gcs'),
-        description: TfArg.literal('Paused quickstart GCS inspect trigger'),
-        status: TfArg.literal(DataLossPreventionJobTriggerStatus.paused),
-        triggers: TfArg.literal([
+        parent: .literal(parent),
+        triggerId: .literal('terradart-paused-gcs'),
+        displayName: .literal('terradart-paused-gcs'),
+        description: .literal('Paused quickstart GCS inspect trigger'),
+        status: .literal(.paused),
+        triggers: .literal([
           {
             'schedule': {'recurrence_period_duration': '86400s'},
           },
         ]),
-        inspectJob: TfArg.literal({
+        inspectJob: .literal({
           'inspect_template_name': inspect.nameRef.interpolation,
           'storage_config': {
             'cloud_storage_options': {

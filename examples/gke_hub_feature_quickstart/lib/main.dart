@@ -22,24 +22,24 @@ final class GkeHubFeatureStack extends Stack {
     final apiGkeHub = add(
       GoogleProjectService(
         localName: 'api_gkehub',
-        service: TfArg.literal('gkehub.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('gkehub.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final apiMcsd = add(
       GoogleProjectService(
         localName: 'api_mcsd',
-        service: TfArg.literal('multiclusterservicediscovery.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('multiclusterservicediscovery.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final feature = add(
       GoogleGkeHubFeature(
         localName: 'mcsd',
-        name: TfArg.literal('multiclusterservicediscovery'),
-        location: TfArg.literal('global'),
+        name: .literal('multiclusterservicediscovery'),
+        location: .literal('global'),
         dependsOn: [ResourceDependency(apiGkeHub), ResourceDependency(apiMcsd)],
       ),
     );
@@ -49,18 +49,18 @@ final class GkeHubFeatureStack extends Stack {
     final fleetReader = add(
       GoogleServiceAccount(
         localName: 'fleet_reader',
-        accountId: TfArg.literal('terradart-fleet-reader'),
-        displayName: TfArg.literal('GKE Hub fleet reader'),
+        accountId: .literal('terradart-fleet-reader'),
+        displayName: .literal('GKE Hub fleet reader'),
       ),
     );
 
     add(
       GoogleGkeHubFeatureIamMember(
         localName: 'mcsd_viewer',
-        name: TfArg.ref(feature.nameRef),
-        location: TfArg.literal('global'),
-        role: TfArg.literal('roles/viewer'),
-        member: TfArg.ref(fleetReader.iamMember),
+        name: .ref(feature.nameRef),
+        location: .literal('global'),
+        role: .literal('roles/viewer'),
+        member: .ref(fleetReader.iamMember),
         dependsOn: [
           ResourceDependency(feature),
           ResourceDependency(fleetReader),

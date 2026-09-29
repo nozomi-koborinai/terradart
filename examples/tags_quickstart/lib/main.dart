@@ -45,8 +45,8 @@ final class TagsStack extends Stack {
     final tagger = add(
       GoogleServiceAccount(
         localName: 'tagger',
-        accountId: TfArg.literal('terradart-tagger'),
-        displayName: TfArg.literal('Resource Manager tag operator'),
+        accountId: .literal('terradart-tagger'),
+        displayName: .literal('Resource Manager tag operator'),
       ),
     );
 
@@ -55,9 +55,9 @@ final class TagsStack extends Stack {
     final envKey = add(
       GoogleTagsTagKey(
         localName: 'env',
-        shortName: TfArg.literal('terradart-env'),
-        parent: TfArg.literal('projects/${current.number.interpolation}'),
-        description: TfArg.literal('Deployment environment (terradart demo)'),
+        shortName: .literal('terradart-env'),
+        parent: .literal('projects/${current.number.interpolation}'),
+        description: .literal('Deployment environment (terradart demo)'),
       ),
     );
 
@@ -65,9 +65,9 @@ final class TagsStack extends Stack {
     final prodValue = add(
       GoogleTagsTagValue(
         localName: 'prod',
-        shortName: TfArg.literal('production'),
-        parent: TfArg.ref(envKey.id),
-        description: TfArg.literal('Production environment'),
+        shortName: .literal('production'),
+        parent: .ref(envKey.id),
+        description: .literal('Production environment'),
       ),
     );
 
@@ -76,11 +76,11 @@ final class TagsStack extends Stack {
     add(
       GoogleTagsTagBinding(
         localName: 'project_env',
-        parent: TfArg.literal(
+        parent: .literal(
           '//cloudresourcemanager.googleapis.com/projects/'
           '${current.number.interpolation}',
         ),
-        tagValue: TfArg.ref(prodValue.id),
+        tagValue: .ref(prodValue.id),
         dependsOn: [ResourceDependency(prodValue)],
       ),
     );
@@ -89,9 +89,9 @@ final class TagsStack extends Stack {
     final envViewer = add(
       GoogleTagsTagKeyIamMember(
         localName: 'env_viewer',
-        tagKey: TfArg.ref(envKey.id),
-        role: TfArg.literal('roles/resourcemanager.tagViewer'),
-        member: TfArg.ref(tagger.iamMember),
+        tagKey: .ref(envKey.id),
+        role: .literal('roles/resourcemanager.tagViewer'),
+        member: .ref(tagger.iamMember),
         dependsOn: [ResourceDependency(envKey), ResourceDependency(tagger)],
       ),
     );
@@ -99,9 +99,9 @@ final class TagsStack extends Stack {
     final envViewerBinding = add(
       GoogleTagsTagKeyIamBinding(
         localName: 'env_viewer_binding',
-        tagKey: TfArg.ref(envKey.id),
-        role: TfArg.literal('roles/resourcemanager.tagViewer'),
-        members: TfArg.literal([tagger.iamMember.interpolation]),
+        tagKey: .ref(envKey.id),
+        role: .literal('roles/resourcemanager.tagViewer'),
+        members: .literal([tagger.iamMember.interpolation]),
         dependsOn: [ResourceDependency(envKey), ResourceDependency(envViewer)],
       ),
     );
@@ -109,8 +109,8 @@ final class TagsStack extends Stack {
     add(
       GoogleTagsTagKeyIamPolicy(
         localName: 'env_viewer_policy',
-        tagKey: TfArg.ref(envKey.id),
-        policyData: TfArg.literal(
+        tagKey: .ref(envKey.id),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/resourcemanager.tagViewer',
             member:
@@ -128,9 +128,9 @@ final class TagsStack extends Stack {
     final prodUser = add(
       GoogleTagsTagValueIamMember(
         localName: 'prod_user',
-        tagValue: TfArg.ref(prodValue.id),
-        role: TfArg.literal('roles/resourcemanager.tagUser'),
-        member: TfArg.ref(tagger.iamMember),
+        tagValue: .ref(prodValue.id),
+        role: .literal('roles/resourcemanager.tagUser'),
+        member: .ref(tagger.iamMember),
         dependsOn: [ResourceDependency(prodValue), ResourceDependency(tagger)],
       ),
     );
@@ -138,9 +138,9 @@ final class TagsStack extends Stack {
     final prodUserBinding = add(
       GoogleTagsTagValueIamBinding(
         localName: 'prod_user_binding',
-        tagValue: TfArg.ref(prodValue.id),
-        role: TfArg.literal('roles/resourcemanager.tagUser'),
-        members: TfArg.literal([tagger.iamMember.interpolation]),
+        tagValue: .ref(prodValue.id),
+        role: .literal('roles/resourcemanager.tagUser'),
+        members: .literal([tagger.iamMember.interpolation]),
         dependsOn: [
           ResourceDependency(prodValue),
           ResourceDependency(prodUser),
@@ -151,8 +151,8 @@ final class TagsStack extends Stack {
     add(
       GoogleTagsTagValueIamPolicy(
         localName: 'prod_user_policy',
-        tagValue: TfArg.ref(prodValue.id),
-        policyData: TfArg.literal(
+        tagValue: .ref(prodValue.id),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/resourcemanager.tagUser',
             member:

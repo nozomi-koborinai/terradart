@@ -26,9 +26,9 @@ final class ApiSecurityStack extends Stack {
     add(
       GoogleApikeysKey(
         localName: 'maps_browser',
-        name: TfArg.literal('maps-browser-key'),
-        displayName: TfArg.literal('Browser Maps API key'),
-        restrictions: TfArg.literal({
+        name: .literal('maps-browser-key'),
+        displayName: .literal('Browser Maps API key'),
+        restrictions: .literal({
           'api_targets': [
             {'service': 'maps-backend.googleapis.com'},
           ],
@@ -40,12 +40,10 @@ final class ApiSecurityStack extends Stack {
     add(
       GoogleRecaptchaEnterpriseKey(
         localName: 'web_login',
-        displayName: TfArg.literal('Login page'),
+        displayName: .literal('Login page'),
         webSettings: RecaptchaEnterpriseKeyWebSettings(
-          integrationType: TfArg.literal(
-            RecaptchaEnterpriseKeyWebSettingsIntegrationType.score,
-          ),
-          allowAllDomains: TfArg.literal(true),
+          integrationType: .literal(.score),
+          allowAllDomains: .literal(true),
         ),
         dependsOn: apiDeps,
       ),
@@ -54,18 +52,16 @@ final class ApiSecurityStack extends Stack {
     add(
       GoogleNetworkManagementConnectivityTest(
         localName: 'egress_https',
-        name: TfArg.literal('egress-https-probe'),
-        description: TfArg.literal('Synthetic probe to public DNS over TCP'),
-        protocol: TfArg.literal('TCP'),
+        name: .literal('egress-https-probe'),
+        description: .literal('Synthetic probe to public DNS over TCP'),
+        protocol: .literal('TCP'),
         source: NetworkManagementConnectivityTestSource(
-          ipAddress: TfArg.literal('10.0.0.2'),
-          networkType: TfArg.literal(
-            NetworkManagementConnectivityTestSourceNetworkType.gcpNetwork,
-          ),
+          ipAddress: .literal('10.0.0.2'),
+          networkType: .literal(.gcpNetwork),
         ),
         destination: NetworkManagementConnectivityTestDestination(
-          ipAddress: TfArg.literal('8.8.8.8'),
-          port: TfArg.literal(443),
+          ipAddress: .literal('8.8.8.8'),
+          port: .literal(443),
         ),
         dependsOn: apiDeps,
       ),

@@ -78,11 +78,9 @@ final class ApiServiceStack extends Stack {
     final dbPassword = add(
       GoogleSecretManagerSecret(
         localName: 'db_password',
-        secretId: TfArg.literal('api-db-password'),
+        secretId: .literal('api-db-password'),
         replication: SecretManagerSecretReplication.userManaged([
-          SecretManagerSecretReplica(
-            location: TfArg.literal('asia-northeast1'),
-          ),
+          SecretManagerSecretReplica(location: .literal('asia-northeast1')),
         ]),
         dependsOn: apiDeps,
       ),
@@ -94,10 +92,10 @@ final class ApiServiceStack extends Stack {
     final dbPasswordV1 = add(
       GoogleSecretManagerSecretVersion(
         localName: 'db_password_v1',
-        secret: TfArg.ref(dbPassword.id),
-        payload: SecretManagerSecretVersionWriteOnlyPayload(
-          secretDataWo: TfArg.literal('placeholder-secret-value'),
-          secretDataWoVersion: TfArg.literal('1'),
+        secret: .ref(dbPassword.id),
+        payload: .writeOnly(
+          secretDataWo: .literal('placeholder-secret-value'),
+          secretDataWoVersion: .literal('1'),
         ),
         dependsOn: [ResourceDependency(dbPassword)],
       ),
@@ -117,17 +115,17 @@ final class ApiServiceStack extends Stack {
     final runtimeSa = add(
       GoogleServiceAccount(
         localName: 'api_runtime',
-        accountId: TfArg.literal('api-runtime'),
-        displayName: TfArg.literal('Cloud Run api runtime'),
+        accountId: .literal('api-runtime'),
+        displayName: .literal('Cloud Run api runtime'),
       ),
     );
 
     final secretAccessor = add(
       GoogleSecretManagerSecretIamMember(
         localName: 'api_runtime_secret_accessor',
-        secretId: TfArg.ref(dbPassword.secretIdRef),
-        role: TfArg.literal('roles/secretmanager.secretAccessor'),
-        member: TfArg.ref(runtimeSa.iamMember),
+        secretId: .ref(dbPassword.secretIdRef),
+        role: .literal('roles/secretmanager.secretAccessor'),
+        member: .ref(runtimeSa.iamMember),
         dependsOn: [
           ResourceDependency(runtimeSa),
           ResourceDependency(dbPassword),
@@ -153,8 +151,8 @@ final class ApiServiceStack extends Stack {
     final vpc = add(
       GoogleComputeNetwork(
         localName: 'app_vpc',
-        name: TfArg.literal('app-vpc'),
-        autoCreateSubnetworks: TfArg.literal(false),
+        name: .literal('app-vpc'),
+        autoCreateSubnetworks: .literal(false),
         dependsOn: apiDeps,
       ),
     );
@@ -162,11 +160,11 @@ final class ApiServiceStack extends Stack {
     final psaRange = add(
       GoogleComputeGlobalAddress(
         localName: 'psa_range',
-        name: TfArg.literal('app-psa-range'),
-        addressType: TfArg.literal(GlobalAddressType.internal),
-        purpose: TfArg.literal(GlobalAddressPurpose.vpcPeering),
-        prefixLength: TfArg.literal(16),
-        network: TfArg.ref(vpc.id),
+        name: .literal('app-psa-range'),
+        addressType: .literal(.internal),
+        purpose: .literal(.vpcPeering),
+        prefixLength: .literal(16),
+        network: .ref(vpc.id),
         dependsOn: apiDeps,
       ),
     );
@@ -174,21 +172,21 @@ final class ApiServiceStack extends Stack {
     final psaConnection = add(
       GoogleServiceNetworkingConnection(
         localName: 'psa',
-        network: TfArg.ref(vpc.id),
-        service: TfArg.literal('servicenetworking.googleapis.com'),
-        reservedPeeringRanges: TfArg.literal([psaRange.nameRef.interpolation]),
+        network: .ref(vpc.id),
+        service: .literal('servicenetworking.googleapis.com'),
+        reservedPeeringRanges: .literal([psaRange.nameRef.interpolation]),
         dependsOn: apiDeps,
       ),
     );
 
     final runConnector = GoogleVpcAccessConnector(
       localName: 'run_vpc',
-      name: TfArg.literal('run-vpc'),
-      region: TfArg.literal('asia-northeast1'),
-      ipCidrRange: TfArg.literal('10.8.0.0/28'),
-      network: TfArg.ref(vpc.id),
-      minCapacity: .minInstances(TfArg.literal(2)),
-      maxCapacity: .maxInstances(TfArg.literal(3)),
+      name: .literal('run-vpc'),
+      region: .literal('asia-northeast1'),
+      ipCidrRange: .literal('10.8.0.0/28'),
+      network: .ref(vpc.id),
+      minCapacity: .minInstances(.literal(2)),
+      maxCapacity: .maxInstances(.literal(3)),
       dependsOn: apiDeps,
     );
     add(runConnector);
@@ -196,17 +194,15 @@ final class ApiServiceStack extends Stack {
     final cache = add(
       GoogleRedisInstance(
         localName: 'api_cache',
-        name: TfArg.literal('api-cache'),
-        memorySizeGb: TfArg.literal(1),
-        region: TfArg.literal('asia-northeast1'),
-        tier: TfArg.literal(RedisInstanceTier.basic),
+        name: .literal('api-cache'),
+        memorySizeGb: .literal(1),
+        region: .literal('asia-northeast1'),
+        tier: .literal(.basic),
         // Private Service Access: peer the instance into the dedicated VPC
         // over the PSA range reserved above. The provider takes the network
         // id (projects/<project>/global/networks/<name>), not a short name.
-        authorizedNetwork: TfArg.ref(vpc.id),
-        connectMode: TfArg.literal(
-          RedisInstanceConnectMode.privateServiceAccess,
-        ),
+        authorizedNetwork: .ref(vpc.id),
+        connectMode: .literal(.privateServiceAccess),
         dependsOn: [...apiDeps, ResourceDependency(psaConnection)],
       ),
     );
@@ -214,83 +210,79 @@ final class ApiServiceStack extends Stack {
     add(
       GoogleMemcacheInstance(
         localName: 'api_sessions',
-        name: TfArg.literal('api-sessions'),
-        nodeCount: TfArg.literal(1),
+        name: .literal('api-sessions'),
+        nodeCount: .literal(1),
         nodeConfig: MemcacheInstanceNodeConfig(
-          cpuCount: TfArg.literal(1),
-          memorySizeMb: TfArg.literal(1024),
+          cpuCount: .literal(1),
+          memorySizeMb: .literal(1024),
         ),
-        region: TfArg.literal('asia-northeast1'),
+        region: .literal('asia-northeast1'),
         // Memcache reaches the project only over Private Service Access, so
         // it must peer into a VPC that has a PSA connection. Point it at the
         // dedicated VPC's id (projects/<project>/global/networks/<name>) and
         // order it after the peering; a short name or the default network
         // (no PSA range) fails apply with "Google private service access is
         // not enabled".
-        authorizedNetwork: TfArg.ref(vpc.id),
+        authorizedNetwork: .ref(vpc.id),
         dependsOn: [...apiDeps, ResourceDependency(psaConnection)],
       ),
     );
 
     final apiService = GoogleCloudRunV2Service(
       localName: 'api',
-      name: TfArg.literal('api'),
-      location: TfArg.literal('asia-northeast1'),
-      ingress: TfArg.literal(Ingress.internalLoadBalancer),
+      name: .literal('api'),
+      location: .literal('asia-northeast1'),
+      ingress: .literal(.internalLoadBalancer),
       // Cloud Run v2 services default deletion_protection=true, which makes
       // `terraform destroy` fail ("cannot destroy service without setting
       // deletion_protection=false"). Disable it so the sweep can tear down.
-      deletionProtection: TfArg.literal(false),
+      deletionProtection: .literal(false),
       template: CloudRunV2ServiceTemplate(
         // Runtime identity for the revision — must be able to read the
         // secret-backed env var below (see the IAM member above).
-        serviceAccount: TfArg.ref(runtimeSa.email),
+        serviceAccount: .ref(runtimeSa.email),
         vpcAccess: CloudRunV2ServiceVpcAccess(
-          connector: TfArg.ref(runConnector.selfLink),
-          egress: TfArg.literal(VpcAccessEgress.privateRangesOnly),
+          connector: .ref(runConnector.selfLink),
+          egress: .literal(.privateRangesOnly),
         ),
         containers: [
           CloudRunV2ServiceServiceContainer(
-            image: TfArg.literal('gcr.io/cloudrun/hello'),
+            image: .literal('gcr.io/cloudrun/hello'),
             env: [
               CloudRunV2ServiceEnvVar(
-                name: TfArg.literal('LOG_LEVEL'),
-                source: CloudRunV2ServiceEnvVarFromLiteral(
-                  TfArg.literal('info'),
-                ),
+                name: .literal('LOG_LEVEL'),
+                source: .value(.literal('info')),
               ),
               CloudRunV2ServiceEnvVar(
-                name: TfArg.literal('DB_PASSWORD'),
-                source: CloudRunV2ServiceEnvVarFromSecret(
-                  secret: TfArg.literal('api-db-password'),
-                  version: TfArg.literal('latest'),
+                name: .literal('DB_PASSWORD'),
+                source: .secret(
+                  secret: .literal('api-db-password'),
+                  version: .literal('latest'),
                 ),
               ),
               // Reaches the cache through the VPC connector below; the
               // interpolation also gives Terraform the redis -> service
               // ordering without an explicit dependsOn entry.
               CloudRunV2ServiceEnvVar(
-                name: TfArg.literal('REDIS_HOST'),
-                source: CloudRunV2ServiceEnvVarFromLiteral(
-                  TfArg.ref(cache.host),
-                ),
+                name: .literal('REDIS_HOST'),
+                source: .value(.ref(cache.host)),
               ),
             ],
             ports: CloudRunV2ServiceContainerPort(
-              containerPort: TfArg.literal(8080),
+              containerPort: .literal(8080),
             ),
             resources: CloudRunV2ServiceContainerResources(
-              limits: TfArg.literal({'cpu': '1', 'memory': '512Mi'}),
-              cpuIdle: TfArg.literal(true),
-              startupCpuBoost: TfArg.literal(true),
+              limits: .literal({'cpu': '1', 'memory': '512Mi'}),
+              cpuIdle: .literal(true),
+              startupCpuBoost: .literal(true),
             ),
           ),
         ],
       ),
       scaling: CloudRunV2ServiceServiceScaling(
-        minInstanceCount: TfArg.literal(0),
-        maxInstanceCount: TfArg.literal(4),
-        scalingMode: TfArg.literal(ScalingMode.automatic),
+        minInstanceCount: .literal(0),
+        maxInstanceCount: .literal(4),
+        scalingMode: .literal(.automatic),
       ),
       dependsOn: [
         ...apiDeps,
@@ -306,12 +298,12 @@ final class ApiServiceStack extends Stack {
     final batchWorkers = add(
       GoogleCloudRunV2WorkerPool(
         localName: 'batch_workers',
-        name: TfArg.literal('batch-workers'),
-        location: TfArg.literal('asia-northeast1'),
-        launchStage: TfArg.literal(CloudRunV2WorkerPoolLaunchStage.ga),
+        name: .literal('batch-workers'),
+        location: .literal('asia-northeast1'),
+        launchStage: .literal(.ga),
         // Same deletion_protection=true default as the service — disable so
         // `terraform destroy` can remove the worker pool.
-        deletionProtection: TfArg.literal(false),
+        deletionProtection: .literal(false),
         template: CloudRunV2WorkerPoolTemplate(
           containers: const [
             {'image': 'gcr.io/cloudrun/hello'},
@@ -329,32 +321,32 @@ final class ApiServiceStack extends Stack {
 
     final nightlyJob = GoogleCloudRunV2Job(
       localName: 'nightly_cleanup',
-      name: TfArg.literal('nightly-cleanup'),
-      location: TfArg.literal('asia-northeast1'),
+      name: .literal('nightly-cleanup'),
+      location: .literal('asia-northeast1'),
       // Cloud Run v2 jobs default deletion_protection=true, which blocks
       // `terraform destroy` ("cannot destroy job without setting
       // deletion_protection=false"). Disable it for the sweep.
-      deletionProtection: TfArg.literal(false),
+      deletionProtection: .literal(false),
       template: CloudRunV2JobTemplate(
         template: CloudRunV2JobTaskTemplate(
-          maxRetries: TfArg.literal(2),
-          timeout: TfArg.literal('600s'),
+          maxRetries: .literal(2),
+          timeout: .literal('600s'),
           containers: [
             CloudRunV2JobContainer(
-              image: TfArg.literal('gcr.io/cloudrun/hello'),
-              args: TfArg.literal([
+              image: .literal('gcr.io/cloudrun/hello'),
+              args: .literal([
                 '/bin/sh',
                 '-c',
                 'echo "nightly cleanup running"',
               ]),
               resources: CloudRunV2JobContainerResources(
-                limits: TfArg.literal({'cpu': '1', 'memory': '512Mi'}),
+                limits: .literal({'cpu': '1', 'memory': '512Mi'}),
               ),
             ),
           ],
         ),
-        parallelism: TfArg.literal(1),
-        taskCount: TfArg.literal(1),
+        parallelism: .literal(1),
+        taskCount: .literal(1),
       ),
       dependsOn: apiDeps,
     );
@@ -371,10 +363,10 @@ final class ApiServiceStack extends Stack {
     add(
       GoogleCloudRunV2ServiceIamMember(
         localName: 'api_public_invoker',
-        name: TfArg.ref(apiService.nameRef),
-        role: TfArg.literal('roles/run.invoker'),
-        member: TfArg.literal('allUsers'),
-        location: TfArg.literal('asia-northeast1'),
+        name: .ref(apiService.nameRef),
+        role: .literal('roles/run.invoker'),
+        member: .literal('allUsers'),
+        location: .literal('asia-northeast1'),
       ),
     );
 
@@ -382,10 +374,10 @@ final class ApiServiceStack extends Stack {
     add(
       GoogleIapWebCloudRunServiceIamMember(
         localName: 'api_iap_accessor',
-        cloudRunServiceName: TfArg.ref(apiService.nameRef),
-        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
-        member: TfArg.ref(runtimeSa.iamMember),
-        location: TfArg.literal('asia-northeast1'),
+        cloudRunServiceName: .ref(apiService.nameRef),
+        role: .literal('roles/iap.httpsResourceAccessor'),
+        member: .ref(runtimeSa.iamMember),
+        location: .literal('asia-northeast1'),
         dependsOn: [
           ResourceDependency(apiService),
           ResourceDependency(runtimeSa),
@@ -403,18 +395,18 @@ final class ApiServiceStack extends Stack {
 
     final schedulerSa = GoogleServiceAccount(
       localName: 'cleanup_scheduler',
-      accountId: TfArg.literal('cleanup-scheduler'),
-      displayName: TfArg.literal('Nightly cleanup scheduler'),
+      accountId: .literal('cleanup-scheduler'),
+      displayName: .literal('Nightly cleanup scheduler'),
     );
     add(schedulerSa);
 
     add(
       GoogleCloudRunV2JobIamMember(
         localName: 'nightly_cleanup_invoker',
-        name: TfArg.ref(nightlyJob.nameRef),
-        role: TfArg.literal('roles/run.invoker'),
-        member: TfArg.ref(schedulerSa.iamMember),
-        location: TfArg.literal('asia-northeast1'),
+        name: .ref(nightlyJob.nameRef),
+        role: .literal('roles/run.invoker'),
+        member: .ref(schedulerSa.iamMember),
+        location: .literal('asia-northeast1'),
       ),
     );
 
@@ -429,10 +421,10 @@ final class ApiServiceStack extends Stack {
     add(
       GoogleCloudRunV2WorkerPoolIamMember(
         localName: 'batch_workers_developer',
-        name: TfArg.ref(batchWorkers.nameRef),
-        role: TfArg.literal('roles/run.developer'),
-        member: TfArg.ref(schedulerSa.iamMember),
-        location: TfArg.literal('asia-northeast1'),
+        name: .ref(batchWorkers.nameRef),
+        role: .literal('roles/run.developer'),
+        member: .ref(schedulerSa.iamMember),
+        location: .literal('asia-northeast1'),
       ),
     );
   }

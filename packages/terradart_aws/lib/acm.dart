@@ -5,14 +5,14 @@ library;
 
 export 'src/acm/aws_acm_certificate.dart'
     show
-        AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo,
-        AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoDomainName,
-        AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKey,
-        AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKeyWo,
         AcmCertificateKeyAlgorithm,
         AcmCertificateOptions,
         AcmCertificateOptionsCertificateTransparencyLoggingPreference,
         AcmCertificateOptionsExport,
+        AcmCertificateSource,
+        AcmCertificateSourceDomainName,
+        AcmCertificateSourcePrivateKey,
+        AcmCertificateSourcePrivateKeyWo,
         AcmCertificateValidationMethod,
         AcmCertificateValidationOption,
         AwsAcmCertificate;

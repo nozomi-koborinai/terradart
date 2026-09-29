@@ -22,8 +22,8 @@ LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
   final vpc = stack.add(
     GoogleComputeNetwork(
       localName: 'lunch_vpc',
-      name: TfArg.literal(vpcName),
-      autoCreateSubnetworks: TfArg.literal(false),
+      name: .literal(vpcName),
+      autoCreateSubnetworks: .literal(false),
       dependsOn: apiDeps,
     ),
   );
@@ -31,11 +31,11 @@ LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
   final subnet = stack.add(
     GoogleComputeSubnetwork(
       localName: 'lunch_subnet',
-      name: TfArg.literal(subnetName),
-      region: TfArg.literal(region),
-      network: TfArg.ref(vpc.selfLink),
-      ipCidrRange: TfArg.literal(subnetCidr),
-      privateIpGoogleAccess: TfArg.literal(true),
+      name: .literal(subnetName),
+      region: .literal(region),
+      network: .ref(vpc.selfLink),
+      ipCidrRange: .literal(subnetCidr),
+      privateIpGoogleAccess: .literal(true),
       dependsOn: [ResourceDependency(vpc)],
     ),
   );
@@ -43,11 +43,11 @@ LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
   final psaRange = stack.add(
     GoogleComputeGlobalAddress(
       localName: 'psa_range',
-      name: TfArg.literal(psaRangeName),
-      addressType: TfArg.literal(GlobalAddressType.internal),
-      purpose: TfArg.literal(GlobalAddressPurpose.vpcPeering),
-      prefixLength: TfArg.literal(16),
-      network: TfArg.ref(vpc.selfLink),
+      name: .literal(psaRangeName),
+      addressType: .literal(.internal),
+      purpose: .literal(.vpcPeering),
+      prefixLength: .literal(16),
+      network: .ref(vpc.selfLink),
       dependsOn: [ResourceDependency(vpc)],
     ),
   );
@@ -55,9 +55,9 @@ LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
   final psaConnection = stack.add(
     GoogleServiceNetworkingConnection(
       localName: 'psa',
-      network: TfArg.ref(vpc.selfLink),
-      service: TfArg.literal('servicenetworking.googleapis.com'),
-      reservedPeeringRanges: TfArg.literal([psaRange.nameRef.interpolation]),
+      network: .ref(vpc.selfLink),
+      service: .literal('servicenetworking.googleapis.com'),
+      reservedPeeringRanges: .literal([psaRange.nameRef.interpolation]),
       dependsOn: [...apiDeps, ResourceDependency(psaRange)],
     ),
   );

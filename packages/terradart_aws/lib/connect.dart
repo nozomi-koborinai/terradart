@@ -8,16 +8,16 @@ export 'src/connect/aws_connect_bot_association.dart'
 export 'src/connect/aws_connect_contact_flow.dart'
     show
         AwsConnectContactFlow,
-        ConnectContactFlowContentOrFilename,
-        ConnectContactFlowContentOrFilenameContent,
-        ConnectContactFlowContentOrFilenameFilename,
+        ConnectContactFlowContent,
+        ConnectContactFlowContentContent,
+        ConnectContactFlowContentFilename,
         ConnectContactFlowType;
 export 'src/connect/aws_connect_contact_flow_module.dart'
     show
         AwsConnectContactFlowModule,
-        ConnectContactFlowModuleContentOrFilename,
-        ConnectContactFlowModuleContentOrFilenameContent,
-        ConnectContactFlowModuleContentOrFilenameFilename;
+        ConnectContactFlowModuleContent,
+        ConnectContactFlowModuleContentContent,
+        ConnectContactFlowModuleContentFilename;
 export 'src/connect/aws_connect_hours_of_operation.dart'
     show
         AwsConnectHoursOfOperation,

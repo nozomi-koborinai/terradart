@@ -40,8 +40,8 @@ final class RemoteConfigStack extends Stack {
     // A condition that fires for users in Japan.
     final japanCondition =
         FirebaseRemoteConfigRemoteConfigRemoteConfigCondition(
-          name: TfArg.literal('is_japan'),
-          expression: TfArg.literal("device.country in ['JP']"),
+          name: .literal('is_japan'),
+          expression: .literal("device.country in ['JP']"),
           tagColor: RemoteConfigTagColor.blue,
         );
 
@@ -52,32 +52,32 @@ final class RemoteConfigStack extends Stack {
         parameters: [
           // Boolean feature flag: enable a new checkout flow.
           FirebaseRemoteConfigRemoteConfigRemoteConfigParameter(
-            parameterName: TfArg.literal('enable_new_checkout'),
+            parameterName: .literal('enable_new_checkout'),
             valueType: RemoteConfigValueType.boolean,
             defaultValue:
                 FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(
-                  value: TfArg.literal('false'),
+                  value: .literal('false'),
                 ),
             conditionalValues: [
               // Enable for Japan before global rollout.
               FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue(
-                conditionName: TfArg.literal('is_japan'),
-                value: TfArg.literal('true'),
+                conditionName: .literal('is_japan'),
+                value: .literal('true'),
               ),
             ],
           ),
           // String parameter: welcome banner text.
           FirebaseRemoteConfigRemoteConfigRemoteConfigParameter(
-            parameterName: TfArg.literal('welcome_banner_text'),
+            parameterName: .literal('welcome_banner_text'),
             valueType: RemoteConfigValueType.string,
             defaultValue:
                 FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(
-                  value: TfArg.literal('Welcome!'),
+                  value: .literal('Welcome!'),
                 ),
             conditionalValues: [
               FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue(
-                conditionName: TfArg.literal('is_japan'),
-                value: TfArg.literal('ようこそ！'),
+                conditionName: .literal('is_japan'),
+                value: .literal('ようこそ！'),
               ),
             ],
           ),
@@ -85,15 +85,15 @@ final class RemoteConfigStack extends Stack {
         parameterGroups: [
           // Group feature-flag parameters for the Firebase Console display.
           FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup(
-            parameterGroupName: TfArg.literal('feature_flags'),
-            description: TfArg.literal('Progressive feature rollout flags.'),
+            parameterGroupName: .literal('feature_flags'),
+            description: .literal('Progressive feature rollout flags.'),
             parameters: [
               FirebaseRemoteConfigRemoteConfigRemoteConfigParameter(
-                parameterName: TfArg.literal('enable_dark_mode'),
+                parameterName: .literal('enable_dark_mode'),
                 valueType: RemoteConfigValueType.boolean,
                 defaultValue:
                     FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(
-                      value: TfArg.literal('false'),
+                      value: .literal('false'),
                     ),
               ),
             ],

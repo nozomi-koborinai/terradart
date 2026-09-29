@@ -4,3 +4,8 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "availability_zones, vpc_zone_identifier": placement
+  "launch_configuration, launch_template, mixed_instances_policy": launch
+  "launch_template.id, launch_template.name": template

@@ -10,18 +10,17 @@ const Set<String> _awsAutoscalingAttachmentSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.elb(...)`.
-sealed class AutoscalingAttachmentElbOrLbTargetGroupArn {
-  const AutoscalingAttachmentElbOrLbTargetGroupArn();
+sealed class AutoscalingAttachmentTarget {
+  const AutoscalingAttachmentTarget();
 
   /// Sets `elb`.
-  const factory AutoscalingAttachmentElbOrLbTargetGroupArn.elb(
-    TfArg<String> elb,
-  ) = AutoscalingAttachmentElbOrLbTargetGroupArnElb;
+  const factory AutoscalingAttachmentTarget.elb(TfArg<String> elb) =
+      AutoscalingAttachmentTargetElb;
 
   /// Sets `lb_target_group_arn`.
-  const factory AutoscalingAttachmentElbOrLbTargetGroupArn.lbTargetGroupArn(
+  const factory AutoscalingAttachmentTarget.lbTargetGroupArn(
     TfArg<String> lbTargetGroupArn,
-  ) = AutoscalingAttachmentElbOrLbTargetGroupArnLbTargetGroupArn;
+  ) = AutoscalingAttachmentTargetLbTargetGroupArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class AutoscalingAttachmentElbOrLbTargetGroupArn {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AutoscalingAttachmentElbOrLbTargetGroupArn.elb] choice: sets `elb`.
-final class AutoscalingAttachmentElbOrLbTargetGroupArnElb
-    extends AutoscalingAttachmentElbOrLbTargetGroupArn {
-  const AutoscalingAttachmentElbOrLbTargetGroupArnElb(this.elb);
+/// The [AutoscalingAttachmentTarget.elb] choice: sets `elb`.
+final class AutoscalingAttachmentTargetElb extends AutoscalingAttachmentTarget {
+  const AutoscalingAttachmentTargetElb(this.elb);
 
   final TfArg<String> elb;
 
@@ -50,12 +48,10 @@ final class AutoscalingAttachmentElbOrLbTargetGroupArnElb
   Map<String, TfArg<Object?>> get argMap => {'elb': elb};
 }
 
-/// The [AutoscalingAttachmentElbOrLbTargetGroupArn.lbTargetGroupArn] choice: sets `lb_target_group_arn`.
-final class AutoscalingAttachmentElbOrLbTargetGroupArnLbTargetGroupArn
-    extends AutoscalingAttachmentElbOrLbTargetGroupArn {
-  const AutoscalingAttachmentElbOrLbTargetGroupArnLbTargetGroupArn(
-    this.lbTargetGroupArn,
-  );
+/// The [AutoscalingAttachmentTarget.lbTargetGroupArn] choice: sets `lb_target_group_arn`.
+final class AutoscalingAttachmentTargetLbTargetGroupArn
+    extends AutoscalingAttachmentTarget {
+  const AutoscalingAttachmentTargetLbTargetGroupArn(this.lbTargetGroupArn);
 
   final TfArg<String> lbTargetGroupArn;
 
@@ -80,7 +76,7 @@ final class AwsAutoscalingAttachment extends Resource {
   AwsAutoscalingAttachment({
     required super.localName,
     required TfArg<String> autoscalingGroupName,
-    required AutoscalingAttachmentElbOrLbTargetGroupArn elbOrLbTargetGroupArn,
+    required AutoscalingAttachmentTarget target,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
@@ -90,7 +86,7 @@ final class AwsAutoscalingAttachment extends Resource {
          terraformType: tfType,
          argMap: {
            'autoscaling_group_name': autoscalingGroupName,
-           ...elbOrLbTargetGroupArn.argMap,
+           ...target.argMap,
            if (region != null) 'region': region,
          },
        );

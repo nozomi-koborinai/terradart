@@ -34,17 +34,17 @@ final class GeminiStack extends Stack {
     final apiGemini = add(
       GoogleProjectService(
         localName: 'api_gemini',
-        service: TfArg.literal('cloudaicompanion.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('cloudaicompanion.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final enablement = add(
       GoogleGeminiGeminiGcpEnablementSetting(
         localName: 'enablement',
-        geminiGcpEnablementSettingId: TfArg.literal('terradart-enablement'),
-        location: TfArg.literal('global'),
-        enableCustomerDataSharing: TfArg.literal(false),
+        geminiGcpEnablementSettingId: .literal('terradart-enablement'),
+        location: .literal('global'),
+        enableCustomerDataSharing: .literal(false),
         dependsOn: [ResourceDependency(apiGemini)],
       ),
     );
@@ -52,10 +52,10 @@ final class GeminiStack extends Stack {
     add(
       GoogleGeminiGeminiGcpEnablementSettingBinding(
         localName: 'enablement_bind',
-        geminiGcpEnablementSettingId: TfArg.literal('terradart-enablement'),
-        settingBindingId: TfArg.literal('terradart-enablement-bind'),
-        location: TfArg.literal('global'),
-        target: TfArg.literal(projectTarget),
+        geminiGcpEnablementSettingId: .literal('terradart-enablement'),
+        settingBindingId: .literal('terradart-enablement-bind'),
+        location: .literal('global'),
+        target: .literal(projectTarget),
         dependsOn: [ResourceDependency(enablement)],
       ),
     );
@@ -63,10 +63,10 @@ final class GeminiStack extends Stack {
     final logging = add(
       GoogleGeminiLoggingSetting(
         localName: 'logging',
-        loggingSettingId: TfArg.literal('terradart-logging'),
-        location: TfArg.literal('global'),
-        logMetadata: TfArg.literal(true),
-        logPromptsAndResponses: TfArg.literal(false),
+        loggingSettingId: .literal('terradart-logging'),
+        location: .literal('global'),
+        logMetadata: .literal(true),
+        logPromptsAndResponses: .literal(false),
         dependsOn: [ResourceDependency(apiGemini)],
       ),
     );
@@ -74,10 +74,10 @@ final class GeminiStack extends Stack {
     add(
       GoogleGeminiLoggingSettingBinding(
         localName: 'logging_bind',
-        loggingSettingId: TfArg.literal('terradart-logging'),
-        settingBindingId: TfArg.literal('terradart-logging-bind'),
-        location: TfArg.literal('global'),
-        target: TfArg.literal(projectTarget),
+        loggingSettingId: .literal('terradart-logging'),
+        settingBindingId: .literal('terradart-logging-bind'),
+        location: .literal('global'),
+        target: .literal(projectTarget),
         dependsOn: [ResourceDependency(logging)],
       ),
     );
@@ -85,8 +85,8 @@ final class GeminiStack extends Stack {
     final releaseChannel = add(
       GoogleGeminiReleaseChannelSetting(
         localName: 'release_channel',
-        releaseChannelSettingId: TfArg.literal('terradart-channel'),
-        location: TfArg.literal('global'),
+        releaseChannelSettingId: .literal('terradart-channel'),
+        location: .literal('global'),
         dependsOn: [ResourceDependency(apiGemini)],
       ),
     );
@@ -94,10 +94,10 @@ final class GeminiStack extends Stack {
     add(
       GoogleGeminiReleaseChannelSettingBinding(
         localName: 'channel_bind',
-        releaseChannelSettingId: TfArg.literal('terradart-channel'),
-        settingBindingId: TfArg.literal('terradart-channel-bind'),
-        location: TfArg.literal('global'),
-        target: TfArg.literal(projectTarget),
+        releaseChannelSettingId: .literal('terradart-channel'),
+        settingBindingId: .literal('terradart-channel-bind'),
+        location: .literal('global'),
+        target: .literal(projectTarget),
         dependsOn: [ResourceDependency(releaseChannel)],
       ),
     );
@@ -105,10 +105,10 @@ final class GeminiStack extends Stack {
     final dataSharing = add(
       GoogleGeminiDataSharingWithGoogleSetting(
         localName: 'data_sharing',
-        dataSharingWithGoogleSettingId: TfArg.literal('terradart-sharing'),
-        location: TfArg.literal('global'),
-        enableDataSharing: TfArg.literal(false),
-        enablePreviewDataSharing: TfArg.literal(false),
+        dataSharingWithGoogleSettingId: .literal('terradart-sharing'),
+        location: .literal('global'),
+        enableDataSharing: .literal(false),
+        enablePreviewDataSharing: .literal(false),
         dependsOn: [ResourceDependency(apiGemini)],
       ),
     );
@@ -116,10 +116,10 @@ final class GeminiStack extends Stack {
     add(
       GoogleGeminiDataSharingWithGoogleSettingBinding(
         localName: 'sharing_bind',
-        dataSharingWithGoogleSettingId: TfArg.literal('terradart-sharing'),
-        settingBindingId: TfArg.literal('terradart-sharing-bind'),
-        location: TfArg.literal('global'),
-        target: TfArg.literal(projectTarget),
+        dataSharingWithGoogleSettingId: .literal('terradart-sharing'),
+        settingBindingId: .literal('terradart-sharing-bind'),
+        location: .literal('global'),
+        target: .literal(projectTarget),
         dependsOn: [ResourceDependency(dataSharing)],
       ),
     );

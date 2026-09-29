@@ -43,11 +43,11 @@ final class StorageTransferStack extends Stack {
     final src = add(
       GoogleStorageBucket(
         localName: 'xfer_src',
-        name: TfArg.literal('terradart-xfer-src-$projectId'),
-        location: TfArg.literal('ASIA-NORTHEAST1'),
-        storageClass: TfArg.literal(BucketStorageClass.standard),
-        forceDestroy: TfArg.literal(true),
-        uniformBucketLevelAccess: TfArg.literal(true),
+        name: .literal('terradart-xfer-src-$projectId'),
+        location: .literal('ASIA-NORTHEAST1'),
+        storageClass: .literal(.standard),
+        forceDestroy: .literal(true),
+        uniformBucketLevelAccess: .literal(true),
         dependsOn: apiDeps,
       ),
     );
@@ -55,11 +55,11 @@ final class StorageTransferStack extends Stack {
     final dst = add(
       GoogleStorageBucket(
         localName: 'xfer_dst',
-        name: TfArg.literal('terradart-xfer-dst-$projectId'),
-        location: TfArg.literal('ASIA-NORTHEAST1'),
-        storageClass: TfArg.literal(BucketStorageClass.standard),
-        forceDestroy: TfArg.literal(true),
-        uniformBucketLevelAccess: TfArg.literal(true),
+        name: .literal('terradart-xfer-dst-$projectId'),
+        location: .literal('ASIA-NORTHEAST1'),
+        storageClass: .literal(.standard),
+        forceDestroy: .literal(true),
+        uniformBucketLevelAccess: .literal(true),
         dependsOn: apiDeps,
       ),
     );
@@ -67,9 +67,9 @@ final class StorageTransferStack extends Stack {
     final stsSrcAdmin = add(
       GoogleStorageBucketIamMember(
         localName: 'sts_src_admin',
-        bucket: TfArg.ref(src.nameRef),
-        role: TfArg.literal('roles/storage.objectAdmin'),
-        member: TfArg.literal(stsMember),
+        bucket: .ref(src.nameRef),
+        role: .literal('roles/storage.objectAdmin'),
+        member: .literal(stsMember),
         dependsOn: [...apiDeps, ResourceDependency(src)],
       ),
     );
@@ -77,9 +77,9 @@ final class StorageTransferStack extends Stack {
     final stsDstAdmin = add(
       GoogleStorageBucketIamMember(
         localName: 'sts_dst_admin',
-        bucket: TfArg.ref(dst.nameRef),
-        role: TfArg.literal('roles/storage.objectAdmin'),
-        member: TfArg.literal(stsMember),
+        bucket: .ref(dst.nameRef),
+        role: .literal('roles/storage.objectAdmin'),
+        member: .literal(stsMember),
         dependsOn: [...apiDeps, ResourceDependency(dst)],
       ),
     );
@@ -87,9 +87,9 @@ final class StorageTransferStack extends Stack {
     final stsPubsub = add(
       GoogleProjectIamMember(
         localName: 'sts_pubsub_editor',
-        project: TfArg.literal(projectId),
-        role: TfArg.literal('roles/pubsub.editor'),
-        member: TfArg.literal(stsMember),
+        project: .literal(projectId),
+        role: .literal('roles/pubsub.editor'),
+        member: .literal(stsMember),
         dependsOn: apiDeps,
       ),
     );
@@ -97,9 +97,9 @@ final class StorageTransferStack extends Stack {
     final insightsAdmin = add(
       GoogleStorageBucketIamMember(
         localName: 'insights_src_admin',
-        bucket: TfArg.ref(src.nameRef),
-        role: TfArg.literal('roles/storage.admin'),
-        member: TfArg.literal(insightsMember),
+        bucket: .ref(src.nameRef),
+        role: .literal('roles/storage.admin'),
+        member: .literal(insightsMember),
         dependsOn: [...apiDeps, ResourceDependency(src)],
       ),
     );
@@ -107,10 +107,10 @@ final class StorageTransferStack extends Stack {
     add(
       GoogleStorageTransferAgentPool(
         localName: 'pool',
-        name: TfArg.literal('terradart-sts-pool'),
-        displayName: TfArg.literal('TerraDart smoke agent pool'),
+        name: .literal('terradart-sts-pool'),
+        displayName: .literal('TerraDart smoke agent pool'),
         bandwidthLimit: StorageTransferAgentPoolBandwidthLimit(
-          limitMbps: TfArg.literal('120'),
+          limitMbps: .literal('120'),
         ),
         dependsOn: [...apiDeps, ResourceDependency(stsPubsub)],
       ),
@@ -119,14 +119,14 @@ final class StorageTransferStack extends Stack {
     add(
       GoogleStorageTransferJob(
         localName: 'copy',
-        description: TfArg.literal('terradart disabled gcs copy'),
-        status: TfArg.literal('DISABLED'),
+        description: .literal('terradart disabled gcs copy'),
+        status: .literal('DISABLED'),
         transferSpec: StorageTransferJobTransferSpec(
           gcsDataSource: StorageTransferJobTransferSpecGcsDataSource(
-            bucketName: TfArg.ref(src.nameRef),
+            bucketName: .ref(src.nameRef),
           ),
           gcsDataSink: StorageTransferJobTransferSpecGcsDataSink(
-            bucketName: TfArg.ref(dst.nameRef),
+            bucketName: .ref(dst.nameRef),
           ),
         ),
         dependsOn: [
@@ -142,39 +142,34 @@ final class StorageTransferStack extends Stack {
     add(
       GoogleStorageInsightsReportConfig(
         localName: 'inventory',
-        location: TfArg.literal('asia-northeast1'),
-        displayName: TfArg.literal('terradart-inventory'),
-        forceDestroy: TfArg.literal(true),
-        format: StorageInsightsReportConfigCsvFormat(
-          delimiter: TfArg.literal(','),
-          headerRequired: TfArg.literal(true),
-        ),
+        location: .literal('asia-northeast1'),
+        displayName: .literal('terradart-inventory'),
+        forceDestroy: .literal(true),
+        format: .csv(delimiter: .literal(','), headerRequired: .literal(true)),
         frequencyOptions: StorageInsightsReportConfigFrequencyOptions(
-          frequency: TfArg.literal(
-            StorageInsightsReportConfigFrequencyOptionsFrequency.weekly,
-          ),
+          frequency: .literal(.weekly),
           startDate: StorageInsightsReportConfigFrequencyOptionsStartDate(
-            year: TfArg.literal(2099),
-            month: TfArg.literal(1),
-            day: TfArg.literal(1),
+            year: .literal(2099),
+            month: .literal(1),
+            day: .literal(1),
           ),
           endDate: StorageInsightsReportConfigFrequencyOptionsEndDate(
-            year: TfArg.literal(2099),
-            month: TfArg.literal(12),
-            day: TfArg.literal(31),
+            year: .literal(2099),
+            month: .literal(12),
+            day: .literal(31),
           ),
         ),
         objectMetadataReportOptions:
             StorageInsightsReportConfigObjectMetadataReportOptions(
-              metadataFields: TfArg.literal(['name', 'size']),
+              metadataFields: .literal(['name', 'size']),
               storageDestinationOptions:
                   StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions(
-                    bucket: TfArg.ref(src.nameRef),
-                    destinationPath: TfArg.literal('insights-reports/'),
+                    bucket: .ref(src.nameRef),
+                    destinationPath: .literal('insights-reports/'),
                   ),
               storageFilters:
                   StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters(
-                    bucket: TfArg.ref(src.nameRef),
+                    bucket: .ref(src.nameRef),
                   ),
             ),
         dependsOn: [
@@ -191,11 +186,11 @@ final class StorageTransferStack extends Stack {
     final aclBucket = add(
       GoogleStorageBucket(
         localName: 'legacy_acl',
-        name: TfArg.literal('terradart-xfer-acl-$projectId'),
-        location: TfArg.literal('ASIA-NORTHEAST1'),
-        storageClass: TfArg.literal(BucketStorageClass.standard),
-        forceDestroy: TfArg.literal(true),
-        uniformBucketLevelAccess: TfArg.literal(false),
+        name: .literal('terradart-xfer-acl-$projectId'),
+        location: .literal('ASIA-NORTHEAST1'),
+        storageClass: .literal(.standard),
+        forceDestroy: .literal(true),
+        uniformBucketLevelAccess: .literal(false),
         dependsOn: apiDeps,
       ),
     );
@@ -203,8 +198,8 @@ final class StorageTransferStack extends Stack {
     add(
       GoogleStorageBucketAcl(
         localName: 'legacy_bucket_acl',
-        bucket: TfArg.ref(aclBucket.nameRef),
-        predefinedAcl: TfArg.literal('private'),
+        bucket: .ref(aclBucket.nameRef),
+        predefinedAcl: .literal('private'),
         dependsOn: [...apiDeps, ResourceDependency(aclBucket)],
       ),
     );
@@ -212,11 +207,11 @@ final class StorageTransferStack extends Stack {
     final defaultAclBucket = add(
       GoogleStorageBucket(
         localName: 'legacy_default_acl_bucket',
-        name: TfArg.literal('terradart-xfer-dacl-$projectId'),
-        location: TfArg.literal('ASIA-NORTHEAST1'),
-        storageClass: TfArg.literal(BucketStorageClass.standard),
-        forceDestroy: TfArg.literal(true),
-        uniformBucketLevelAccess: TfArg.literal(false),
+        name: .literal('terradart-xfer-dacl-$projectId'),
+        location: .literal('ASIA-NORTHEAST1'),
+        storageClass: .literal(.standard),
+        forceDestroy: .literal(true),
+        uniformBucketLevelAccess: .literal(false),
         dependsOn: apiDeps,
       ),
     );
@@ -224,8 +219,8 @@ final class StorageTransferStack extends Stack {
     add(
       GoogleStorageDefaultObjectAcl(
         localName: 'legacy_default_acl',
-        bucket: TfArg.ref(defaultAclBucket.nameRef),
-        roleEntity: TfArg.literal([
+        bucket: .ref(defaultAclBucket.nameRef),
+        roleEntity: .literal([
           'OWNER:project-owners-${current.number.interpolation}',
         ]),
         dependsOn: [...apiDeps, ResourceDependency(defaultAclBucket)],
@@ -235,11 +230,11 @@ final class StorageTransferStack extends Stack {
     final objectAclBucket = add(
       GoogleStorageBucket(
         localName: 'legacy_object_acl_bucket',
-        name: TfArg.literal('terradart-xfer-oacl-$projectId'),
-        location: TfArg.literal('ASIA-NORTHEAST1'),
-        storageClass: TfArg.literal(BucketStorageClass.standard),
-        forceDestroy: TfArg.literal(true),
-        uniformBucketLevelAccess: TfArg.literal(false),
+        name: .literal('terradart-xfer-oacl-$projectId'),
+        location: .literal('ASIA-NORTHEAST1'),
+        storageClass: .literal(.standard),
+        forceDestroy: .literal(true),
+        uniformBucketLevelAccess: .literal(false),
         dependsOn: apiDeps,
       ),
     );
@@ -247,12 +242,10 @@ final class StorageTransferStack extends Stack {
     final marker = add(
       GoogleStorageBucketObject(
         localName: 'acl_marker',
-        bucket: TfArg.ref(objectAclBucket.nameRef),
-        name: TfArg.literal('acl-marker.txt'),
-        body: StorageBucketObjectBucketObjectFromSource(
-          source: TfArg.literal('../acl-marker.txt'),
-        ),
-        contentType: TfArg.literal('text/plain'),
+        bucket: .ref(objectAclBucket.nameRef),
+        name: .literal('acl-marker.txt'),
+        body: .source(source: .literal('../acl-marker.txt')),
+        contentType: .literal('text/plain'),
         dependsOn: [...apiDeps, ResourceDependency(objectAclBucket)],
       ),
     );
@@ -260,9 +253,9 @@ final class StorageTransferStack extends Stack {
     add(
       GoogleStorageObjectAcl(
         localName: 'legacy_object_acl',
-        bucket: TfArg.ref(objectAclBucket.nameRef),
-        object: TfArg.ref(marker.nameRef),
-        predefinedAcl: TfArg.literal('private'),
+        bucket: .ref(objectAclBucket.nameRef),
+        object: .ref(marker.nameRef),
+        predefinedAcl: .literal('private'),
         dependsOn: [...apiDeps, ResourceDependency(marker)],
       ),
     );

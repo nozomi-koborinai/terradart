@@ -31,8 +31,8 @@ final class FeatureStack extends Stack {
     final apiVertex = add(
       GoogleProjectService(
         localName: 'api_aiplatform',
-        service: TfArg.literal('aiplatform.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('aiplatform.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
@@ -42,17 +42,17 @@ final class FeatureStack extends Stack {
     final apiBigquery = add(
       GoogleProjectService(
         localName: 'api_bigquery',
-        service: TfArg.literal('bigquery.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('bigquery.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final dataset = add(
       GoogleBigqueryDataset(
         localName: 'features',
-        datasetId: TfArg.literal('vertex_features'),
-        location: TfArg.literal('us-central1'),
-        deleteContentsOnDestroy: TfArg.literal(true),
+        datasetId: .literal('vertex_features'),
+        location: .literal('us-central1'),
+        deleteContentsOnDestroy: .literal(true),
         dependsOn: [ResourceDependency(apiBigquery)],
       ),
     );
@@ -60,10 +60,10 @@ final class FeatureStack extends Stack {
     final table = add(
       GoogleBigqueryTable(
         localName: 'entities',
-        datasetId: TfArg.ref(dataset.datasetIdRef),
-        tableId: TfArg.literal('entities'),
-        deletionProtection: TfArg.literal(false),
-        schema: TfArg.literal(
+        datasetId: .ref(dataset.datasetIdRef),
+        tableId: .literal('entities'),
+        deletionProtection: .literal(false),
+        schema: .literal(
           '[{"name":"entity_id","type":"STRING","mode":"REQUIRED"},'
           '{"name":"feature_score","type":"FLOAT64","mode":"NULLABLE"},'
           '{"name":"feature_timestamp","type":"TIMESTAMP","mode":"NULLABLE"}]',
@@ -75,10 +75,10 @@ final class FeatureStack extends Stack {
     final featureGroup = add(
       GoogleVertexAiFeatureGroup(
         localName: 'customer_features',
-        name: TfArg.literal('terradart_customer_features'),
-        region: TfArg.literal('us-central1'),
-        description: TfArg.literal('Customer features backed by BigQuery'),
-        bigQuery: TfArg.literal(<String, Object?>{
+        name: .literal('terradart_customer_features'),
+        region: .literal('us-central1'),
+        description: .literal('Customer features backed by BigQuery'),
+        bigQuery: .literal(<String, Object?>{
           'big_query_source': {
             'input_uri': 'bq://$projectId.vertex_features.entities',
           },
@@ -91,11 +91,11 @@ final class FeatureStack extends Stack {
     add(
       GoogleVertexAiFeatureGroupFeature(
         localName: 'feature_score',
-        featureGroup: TfArg.ref(featureGroup.nameRef),
-        name: TfArg.literal('feature_score'),
-        region: TfArg.literal('us-central1'),
-        versionColumnName: TfArg.literal('feature_score'),
-        description: TfArg.literal('Customer score from BigQuery'),
+        featureGroup: .ref(featureGroup.nameRef),
+        name: .literal('feature_score'),
+        region: .literal('us-central1'),
+        versionColumnName: .literal('feature_score'),
+        description: .literal('Customer score from BigQuery'),
         dependsOn: [ResourceDependency(featureGroup)],
       ),
     );
@@ -105,11 +105,11 @@ final class FeatureStack extends Stack {
     add(
       GoogleVertexAiDataset(
         localName: 'images',
-        displayName: TfArg.literal('terradart-image-dataset'),
-        metadataSchemaUri: TfArg.literal(
+        displayName: .literal('terradart-image-dataset'),
+        metadataSchemaUri: .literal(
           'gs://google-cloud-aiplatform/schema/dataset/metadata/image_1.0.0.yaml',
         ),
-        region: TfArg.literal('us-central1'),
+        region: .literal('us-central1'),
         dependsOn: [ResourceDependency(apiVertex)],
       ),
     );
@@ -119,9 +119,9 @@ final class FeatureStack extends Stack {
     final tensorboard = add(
       GoogleVertexAiTensorboard(
         localName: 'experiments',
-        displayName: TfArg.literal('terradart-experiments'),
-        description: TfArg.literal('Experiment metrics (demo)'),
-        region: TfArg.literal('us-central1'),
+        displayName: .literal('terradart-experiments'),
+        description: .literal('Experiment metrics (demo)'),
+        region: .literal('us-central1'),
         dependsOn: [ResourceDependency(apiVertex)],
       ),
     );
@@ -139,11 +139,11 @@ final class FeatureStack extends Stack {
     final experiment = add(
       GoogleVertexAiTensorboardExperiment(
         localName: 'training_experiment',
-        tensorboardExperimentId: TfArg.literal(experimentId),
+        tensorboardExperimentId: .literal(experimentId),
         tensorboard: tensorboardShortId,
-        location: TfArg.literal('us-central1'),
-        displayName: TfArg.literal('TerraDart training experiment'),
-        description: TfArg.literal('Demo experiment'),
+        location: .literal('us-central1'),
+        displayName: .literal('TerraDart training experiment'),
+        description: .literal('Demo experiment'),
         dependsOn: [ResourceDependency(tensorboard)],
       ),
     );
@@ -151,11 +151,11 @@ final class FeatureStack extends Stack {
     add(
       GoogleVertexAiTensorboardRun(
         localName: 'training_run',
-        tensorboardRunId: TfArg.literal('terradart-run'),
-        experiment: TfArg.literal(experimentId),
+        tensorboardRunId: .literal('terradart-run'),
+        experiment: .literal(experimentId),
         tensorboard: tensorboardShortId,
-        location: TfArg.literal('us-central1'),
-        displayName: TfArg.literal('TerraDart training run'),
+        location: .literal('us-central1'),
+        displayName: .literal('TerraDart training run'),
         dependsOn: [ResourceDependency(experiment)],
       ),
     );
@@ -165,7 +165,7 @@ final class FeatureStack extends Stack {
     add(
       GoogleVertexAiCacheConfig(
         localName: 'genai_cache',
-        disableCache: TfArg.literal(false),
+        disableCache: .literal(false),
         dependsOn: [ResourceDependency(apiVertex)],
       ),
     );

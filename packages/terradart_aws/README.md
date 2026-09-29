@@ -41,11 +41,11 @@ final class HelloStack extends Stack {
       localName: 'lambda_trust',
       statement: [
         DataIamPolicyDocumentStatement(
-          actions: TfArg.literal(['sts:AssumeRole']),
+          actions: .literal(['sts:AssumeRole']),
           principals: [
             DataIamPolicyDocumentStatementPrincipals(
-              type: TfArg.literal('Service'),
-              identifiers: TfArg.literal(['lambda.amazonaws.com']),
+              type: .literal('Service'),
+              identifiers: .literal(['lambda.amazonaws.com']),
             ),
           ],
         ),
@@ -54,16 +54,16 @@ final class HelloStack extends Stack {
     addData(trust);
     final role = AwsIamRole(
       localName: 'hello',
-      assumeRolePolicy: TfArg.ref(trust.json),
+      assumeRolePolicy: .ref(trust.json),
     );
     add(role);
     add(AwsLambdaFunction(
       localName: 'hello',
-      functionName: TfArg.literal('hello-dart'),
-      role: TfArg.ref(role.arn),
-      runtime: TfArg.literal('provided.al2023'),
-      handler: TfArg.literal('bootstrap'),
-      filename: TfArg.literal('build/bootstrap.zip'),
+      functionName: .literal('hello-dart'),
+      role: .ref(role.arn),
+      runtime: .literal('provided.al2023'),
+      handler: .literal('bootstrap'),
+      filename: .literal('build/bootstrap.zip'),
     ));
   }
 }

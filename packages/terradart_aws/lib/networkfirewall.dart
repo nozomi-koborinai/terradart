@@ -12,15 +12,15 @@ export 'src/networkfirewall/aws_networkfirewall_container_association.dart'
 export 'src/networkfirewall/aws_networkfirewall_firewall.dart'
     show
         AwsNetworkfirewallFirewall,
+        NetworkfirewallFirewallAttachment,
+        NetworkfirewallFirewallAttachmentTransitGatewayId,
+        NetworkfirewallFirewallAttachmentVpcId,
         NetworkfirewallFirewallAvailabilityZoneMapping,
         NetworkfirewallFirewallEnabledAnalysisTypes,
         NetworkfirewallFirewallEncryptionConfiguration,
         NetworkfirewallFirewallEncryptionConfigurationType,
         NetworkfirewallFirewallSubnetMapping,
-        NetworkfirewallFirewallSubnetMappingIpAddressType,
-        NetworkfirewallFirewallTransitGatewayIdOrVpcId,
-        NetworkfirewallFirewallTransitGatewayIdOrVpcIdTransitGatewayId,
-        NetworkfirewallFirewallTransitGatewayIdOrVpcIdVpcId;
+        NetworkfirewallFirewallSubnetMappingIpAddressType;
 export 'src/networkfirewall/aws_networkfirewall_firewall_policy.dart'
     show
         AwsNetworkfirewallFirewallPolicy,

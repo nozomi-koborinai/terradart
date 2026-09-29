@@ -50,15 +50,15 @@ final class AssetsStack extends Stack {
       ) {
     final assets = GoogleStorageBucket(
       localName: 'assets',
-      name: TfArg.literal('my-app-assets-prod'),
-      location: TfArg.literal('ASIA-NORTHEAST1'),
-      storageClass: TfArg.literal(BucketStorageClass.standard),
-      forceDestroy: TfArg.literal(false),
-      uniformBucketLevelAccess: TfArg.literal(true),
+      name: .literal('my-app-assets-prod'),
+      location: .literal('ASIA-NORTHEAST1'),
+      storageClass: .literal(.standard),
+      forceDestroy: .literal(false),
+      uniformBucketLevelAccess: .literal(true),
       hierarchicalNamespace: StorageBucketHierarchicalNamespace(
-        enabled: TfArg.literal(true),
+        enabled: .literal(true),
       ),
-      versioning: StorageBucketVersioning(enabled: TfArg.literal(true)),
+      versioning: StorageBucketVersioning(enabled: .literal(true)),
       // `timeouts { ... }` in HCL: how long Terraform waits per operation.
       // Provider-neutral, like `lifecycle` — the provider decides which
       // operations its schema declares, and `terraform validate` says so
@@ -70,7 +70,7 @@ final class AssetsStack extends Stack {
             type: LifecycleActionType.setStorageClass,
             storageClass: BucketStorageClass.archive,
           ),
-          condition: StorageBucketLifecycleCondition(age: TfArg.literal(365)),
+          condition: StorageBucketLifecycleCondition(age: .literal(365)),
         ),
       ],
     );
@@ -83,11 +83,11 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageBucket(
         localName: 'assets_eu',
-        name: TfArg.literal('my-app-assets-prod-eu'),
-        location: TfArg.literal('EUROPE-WEST1'),
-        storageClass: TfArg.literal(BucketStorageClass.standard),
-        forceDestroy: TfArg.literal(false),
-        uniformBucketLevelAccess: TfArg.literal(true),
+        name: .literal('my-app-assets-prod-eu'),
+        location: .literal('EUROPE-WEST1'),
+        storageClass: .literal(.standard),
+        forceDestroy: .literal(false),
+        uniformBucketLevelAccess: .literal(true),
         provider: 'google.eu',
       ),
     );
@@ -102,13 +102,11 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageBucketObject(
         localName: 'config',
-        bucket: TfArg.ref(assets.nameRef),
-        name: TfArg.literal('config/app.json'),
-        body: StorageBucketObjectBucketObjectFromSource(
-          source: TfArg.literal('./config/app.json'),
-        ),
-        contentType: TfArg.literal('application/json'),
-        storageClass: TfArg.literal(BucketObjectStorageClass.standard),
+        bucket: .ref(assets.nameRef),
+        name: .literal('config/app.json'),
+        body: .source(source: .literal('./config/app.json')),
+        contentType: .literal('application/json'),
+        storageClass: .literal(.standard),
       ),
     );
 
@@ -120,17 +118,17 @@ final class AssetsStack extends Stack {
 
     final reader = GoogleServiceAccount(
       localName: 'assets_reader',
-      accountId: TfArg.literal('assets-reader'),
-      displayName: TfArg.literal('Assets bucket read-only consumer'),
+      accountId: .literal('assets-reader'),
+      displayName: .literal('Assets bucket read-only consumer'),
     );
     add(reader);
 
     add(
       GoogleStorageBucketIamMember(
         localName: 'assets_reader_binding',
-        bucket: TfArg.ref(assets.nameRef),
-        role: TfArg.literal('roles/storage.objectViewer'),
-        member: TfArg.ref(reader.iamMember),
+        bucket: .ref(assets.nameRef),
+        role: .literal('roles/storage.objectViewer'),
+        member: .ref(reader.iamMember),
       ),
     );
 
@@ -139,17 +137,17 @@ final class AssetsStack extends Stack {
     // additive `*_iam_member` above).
     final assetsAdmin = GoogleServiceAccount(
       localName: 'assets_admin',
-      accountId: TfArg.literal('assets-admin'),
-      displayName: TfArg.literal('Assets bucket object admin'),
+      accountId: .literal('assets-admin'),
+      displayName: .literal('Assets bucket object admin'),
     );
     add(assetsAdmin);
 
     add(
       GoogleStorageBucketIamBinding(
         localName: 'assets_admin_binding',
-        bucket: TfArg.ref(assets.nameRef),
-        role: TfArg.literal('roles/storage.objectAdmin'),
-        members: TfArg.literal([assetsAdmin.iamMember.interpolation]),
+        bucket: .ref(assets.nameRef),
+        role: .literal('roles/storage.objectAdmin'),
+        members: .literal([assetsAdmin.iamMember.interpolation]),
         dependsOn: [ResourceDependency(assetsAdmin)],
       ),
     );
@@ -157,7 +155,7 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageHmacKey(
         localName: 'interop_hmac',
-        serviceAccountEmail: TfArg.ref(reader.email),
+        serviceAccountEmail: .ref(reader.email),
         dependsOn: [ResourceDependency(reader)],
       ),
     );
@@ -165,8 +163,8 @@ final class AssetsStack extends Stack {
     final managedFolder = add(
       GoogleStorageManagedFolder(
         localName: 'config_folder',
-        bucket: TfArg.ref(assets.nameRef),
-        name: TfArg.literal('config/'),
+        bucket: .ref(assets.nameRef),
+        name: .literal('config/'),
       ),
     );
 
@@ -174,19 +172,19 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageFolder(
         localName: 'reports_folder',
-        bucket: TfArg.ref(assets.nameRef),
-        name: TfArg.literal('reports/'),
-        forceDestroy: TfArg.literal(true),
+        bucket: .ref(assets.nameRef),
+        name: .literal('reports/'),
+        forceDestroy: .literal(true),
       ),
     );
 
     add(
       GoogleStorageManagedFolderIamMember(
         localName: 'config_folder_viewer',
-        bucket: TfArg.ref(assets.nameRef),
-        managedFolder: TfArg.ref(managedFolder.nameRef),
-        role: TfArg.literal('roles/storage.objectViewer'),
-        member: TfArg.ref(reader.iamMember),
+        bucket: .ref(assets.nameRef),
+        managedFolder: .ref(managedFolder.nameRef),
+        role: .literal('roles/storage.objectViewer'),
+        member: .ref(reader.iamMember),
         dependsOn: [
           ResourceDependency(managedFolder),
           ResourceDependency(reader),
@@ -198,20 +196,20 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageBatchOperationsJob(
         localName: 'stamp_config_meta',
-        jobId: TfArg.literal('stamp-config-meta'),
-        deleteProtection: TfArg.literal(false),
+        jobId: .literal('stamp-config-meta'),
+        deleteProtection: .literal(false),
         bucketList: StorageBatchOperationsJobBucketList(
           buckets: [
             StorageBatchOperationsJobBuckets(
-              bucket: TfArg.ref(assets.nameRef),
+              bucket: .ref(assets.nameRef),
               prefixList: StorageBatchOperationsJobPrefixList(
-                includedObjectPrefixes: TfArg.literal(['config/']),
+                includedObjectPrefixes: .literal(['config/']),
               ),
             ),
           ],
         ),
-        operation: StorageBatchOperationsJobPutMetadata(
-          customMetadata: TfArg.literal({'managed-by': 'terradart'}),
+        operation: .putMetadata(
+          customMetadata: .literal({'managed-by': 'terradart'}),
         ),
         dependsOn: [ResourceDependency(assets)],
       ),
@@ -222,24 +220,22 @@ final class AssetsStack extends Stack {
     final legacy = add(
       GoogleStorageBucket(
         localName: 'legacy_acl',
-        name: TfArg.literal('my-app-legacy-acl'),
-        location: TfArg.literal('ASIA-NORTHEAST1'),
-        storageClass: TfArg.literal(BucketStorageClass.standard),
-        forceDestroy: TfArg.literal(true),
-        uniformBucketLevelAccess: TfArg.literal(false),
+        name: .literal('my-app-legacy-acl'),
+        location: .literal('ASIA-NORTHEAST1'),
+        storageClass: .literal(.standard),
+        forceDestroy: .literal(true),
+        uniformBucketLevelAccess: .literal(false),
       ),
     );
 
     final legacyObject = add(
       GoogleStorageBucketObject(
         localName: 'legacy_readme',
-        bucket: TfArg.ref(legacy.nameRef),
-        name: TfArg.literal('readme.txt'),
-        body: StorageBucketObjectBucketObjectFromSource(
-          source: TfArg.literal('./legacy/readme.txt'),
-        ),
-        contentType: TfArg.literal('text/plain'),
-        storageClass: TfArg.literal(BucketObjectStorageClass.standard),
+        bucket: .ref(legacy.nameRef),
+        name: .literal('readme.txt'),
+        body: .source(source: .literal('./legacy/readme.txt')),
+        contentType: .literal('text/plain'),
+        storageClass: .literal(.standard),
         dependsOn: [ResourceDependency(legacy)],
       ),
     );
@@ -247,9 +243,9 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageBucketAccessControl(
         localName: 'legacy_bucket_reader',
-        bucket: TfArg.ref(legacy.nameRef),
-        entity: TfArg.literal('allAuthenticatedUsers'),
-        role: TfArg.literal(StorageBucketAccessControlRole.reader),
+        bucket: .ref(legacy.nameRef),
+        entity: .literal('allAuthenticatedUsers'),
+        role: .literal(.reader),
         dependsOn: [ResourceDependency(legacy)],
       ),
     );
@@ -257,9 +253,9 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageDefaultObjectAccessControl(
         localName: 'legacy_default_reader',
-        bucket: TfArg.ref(legacy.nameRef),
-        entity: TfArg.literal('allAuthenticatedUsers'),
-        role: TfArg.literal(StorageDefaultObjectAccessControlRole.reader),
+        bucket: .ref(legacy.nameRef),
+        entity: .literal('allAuthenticatedUsers'),
+        role: .literal(.reader),
         dependsOn: [ResourceDependency(legacy)],
       ),
     );
@@ -267,10 +263,10 @@ final class AssetsStack extends Stack {
     add(
       GoogleStorageObjectAccessControl(
         localName: 'legacy_object_reader',
-        bucket: TfArg.ref(legacy.nameRef),
-        object: TfArg.literal('readme.txt'),
-        entity: TfArg.literal('allAuthenticatedUsers'),
-        role: TfArg.literal(StorageObjectAccessControlRole.reader),
+        bucket: .ref(legacy.nameRef),
+        object: .literal('readme.txt'),
+        entity: .literal('allAuthenticatedUsers'),
+        role: .literal(.reader),
         dependsOn: [
           ResourceDependency(legacy),
           ResourceDependency(legacyObject),
@@ -287,30 +283,28 @@ final class AssetsStack extends Stack {
       ModuleCall(
         localName: 'object_prefix',
         source: '../modules/object_prefix',
-        inputs: {'folder': TfArg.literal('config')},
+        inputs: {'folder': .literal('config')},
       ),
     );
 
     final objectEventsTopic = add(
       GooglePubsubTopic(
         localName: 'object_events',
-        name: TfArg.literal('gcs-object-events'),
+        name: .literal('gcs-object-events'),
       ),
     );
 
     add(
       GoogleStorageNotification(
         localName: 'assets_object_events',
-        bucket: TfArg.ref(assets.nameRef),
-        topic: TfArg.ref(objectEventsTopic.id),
-        payloadFormat: TfArg.literal(
-          StorageNotificationPayloadFormat.jsonApiV1,
-        ),
+        bucket: .ref(assets.nameRef),
+        topic: .ref(objectEventsTopic.id),
+        payloadFormat: .literal(.jsonApiV1),
         eventTypes: const [
           StorageNotificationEventType.objectFinalize,
           StorageNotificationEventType.objectDelete,
         ],
-        objectNamePrefix: TfArg.ref(objectPrefix.output<String>('prefix')),
+        objectNamePrefix: .ref(objectPrefix.output<String>('prefix')),
         dependsOn: [ResourceDependency(objectEventsTopic)],
       ),
     );

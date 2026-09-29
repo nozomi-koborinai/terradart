@@ -24,7 +24,7 @@ final class WorkloadIdentityStack extends Stack {
           TfRef.attribute<String>(github, r'workload_identity_pool_id'),
         ),
         workloadIdentityPoolProviderId: TfArg.literal(r'github-provider'),
-        trustSource: IamWorkloadIdentityPoolProviderOidcTrust(
+        trustSource: .oidc(
           issuerUri: TfArg.literal(
             r'https://token.actions.githubusercontent.com',
           ),

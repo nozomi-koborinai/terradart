@@ -30,6 +30,19 @@ enum EdgecontainerClusterReleaseChannel implements TerraformEnum {
 sealed class EdgecontainerClusterControlPlane {
   const EdgecontainerClusterControlPlane();
 
+  /// `remote` control plane — node location only.
+  const factory EdgecontainerClusterControlPlane.remote({
+    TfArg<String>? nodeLocation,
+  }) = EdgecontainerClusterControlPlaneRemote;
+
+  /// `local` control plane — optional node count (1 or 3), filter, policy.
+  const factory EdgecontainerClusterControlPlane.local({
+    TfArg<String>? nodeLocation,
+    TfArg<int>? nodeCount,
+    TfArg<String>? machineFilter,
+    TfArg<EdgecontainerClusterSharedDeploymentPolicy>? sharedDeploymentPolicy,
+  }) = EdgecontainerClusterControlPlaneLocal;
+
   /// Inner block key under `control_plane` (`remote` or `local`).
   String get planeKey;
 

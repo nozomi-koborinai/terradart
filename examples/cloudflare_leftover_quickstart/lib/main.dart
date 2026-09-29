@@ -54,7 +54,7 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'account_member',
         accountId: TfArg.literal(accountId),
         email: TfArg.literal('leftover@example.com'),
-        rolesOrPolicies: .roles(TfArg.literal([leftover])),
+        access: .roles(TfArg.literal([leftover])),
       ),
     );
 
@@ -1365,7 +1365,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareRuleset(
         localName: 'ruleset',
-        accountIdOrZoneId: .zoneId(TfArg.literal(zoneId)),
+        scope: .zoneId(TfArg.literal(zoneId)),
         kind: TfArg.literal(RulesetKind.zone),
         name: TfArg.literal(leftover),
         phase: TfArg.literal(RulesetPhase.httpRequestFirewallCustom),

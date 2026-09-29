@@ -9,7 +9,7 @@ final class HelloStack extends Stack {
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
       ) {
-    add(GooglePubsubTopic(localName: 'hello', name: TfArg.literal('hello')));
+    add(GooglePubsubTopic(localName: 'hello', name: .literal('hello')));
   }
 }
 

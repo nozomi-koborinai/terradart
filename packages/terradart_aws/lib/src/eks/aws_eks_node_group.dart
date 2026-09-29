@@ -121,14 +121,14 @@ final class EksNodeGroupNodeGroupNameNodeGroupNamePrefix
 /// `aws_eks_node_group` (derived from provider schema).
 @immutable
 final class EksNodeGroupLaunchTemplate {
-  const EksNodeGroupLaunchTemplate({this.idOrName, required this.version});
+  const EksNodeGroupLaunchTemplate({this.template, required this.version});
 
-  final EksNodeGroupLaunchTemplateIdOrName? idOrName;
+  final EksNodeGroupLaunchTemplateTemplate? template;
 
   final TfArg<String> version;
 
   Map<String, Object?> encode() => {
-    ...?idOrName?.encode(),
+    ...?template?.encode(),
     'version': version.toTfJson(),
   };
 }
@@ -138,16 +138,16 @@ final class EksNodeGroupLaunchTemplate {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.id(...)`.
-sealed class EksNodeGroupLaunchTemplateIdOrName {
-  const EksNodeGroupLaunchTemplateIdOrName();
+sealed class EksNodeGroupLaunchTemplateTemplate {
+  const EksNodeGroupLaunchTemplateTemplate();
 
   /// Sets `id`.
-  const factory EksNodeGroupLaunchTemplateIdOrName.id(TfArg<String> id) =
-      EksNodeGroupLaunchTemplateIdOrNameId;
+  const factory EksNodeGroupLaunchTemplateTemplate.id(TfArg<String> id) =
+      EksNodeGroupLaunchTemplateTemplateId;
 
   /// Sets `name`.
-  const factory EksNodeGroupLaunchTemplateIdOrName.name(TfArg<String> name) =
-      EksNodeGroupLaunchTemplateIdOrNameName;
+  const factory EksNodeGroupLaunchTemplateTemplate.name(TfArg<String> name) =
+      EksNodeGroupLaunchTemplateTemplateName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -155,10 +155,10 @@ sealed class EksNodeGroupLaunchTemplateIdOrName {
   Map<String, Object?> encode();
 }
 
-/// The [EksNodeGroupLaunchTemplateIdOrName.id] choice: sets `id`.
-final class EksNodeGroupLaunchTemplateIdOrNameId
-    extends EksNodeGroupLaunchTemplateIdOrName {
-  const EksNodeGroupLaunchTemplateIdOrNameId(this.id);
+/// The [EksNodeGroupLaunchTemplateTemplate.id] choice: sets `id`.
+final class EksNodeGroupLaunchTemplateTemplateId
+    extends EksNodeGroupLaunchTemplateTemplate {
+  const EksNodeGroupLaunchTemplateTemplateId(this.id);
 
   final TfArg<String> id;
 
@@ -169,10 +169,10 @@ final class EksNodeGroupLaunchTemplateIdOrNameId
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
-/// The [EksNodeGroupLaunchTemplateIdOrName.name] choice: sets `name`.
-final class EksNodeGroupLaunchTemplateIdOrNameName
-    extends EksNodeGroupLaunchTemplateIdOrName {
-  const EksNodeGroupLaunchTemplateIdOrNameName(this.name);
+/// The [EksNodeGroupLaunchTemplateTemplate.name] choice: sets `name`.
+final class EksNodeGroupLaunchTemplateTemplateName
+    extends EksNodeGroupLaunchTemplateTemplate {
+  const EksNodeGroupLaunchTemplateTemplateName(this.name);
 
   final TfArg<String> name;
 

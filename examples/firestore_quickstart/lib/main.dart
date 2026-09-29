@@ -27,35 +27,33 @@ final class MessagesStack extends Stack {
       ) {
     final db = GoogleFirestoreDatabase(
       localName: 'messages',
-      name: TfArg.literal('quickstart-db'),
-      locationId: TfArg.literal('asia-northeast1'),
-      type: TfArg.literal(FirestoreDatabaseType.firestoreNative),
-      pointInTimeRecoveryEnablement: TfArg.literal(
-        PointInTimeRecoveryEnablement.enabled,
-      ),
-      deleteProtectionState: TfArg.literal(DeleteProtectionState.disabled),
+      name: .literal('quickstart-db'),
+      locationId: .literal('asia-northeast1'),
+      type: .literal(.firestoreNative),
+      pointInTimeRecoveryEnablement: .literal(.enabled),
+      deleteProtectionState: .literal(.disabled),
       // DELETE (not the default ABANDON) so `terraform destroy` actually
       // removes the named database; otherwise it lingers and the next
       // apply fails 409 "Database already exists".
-      deletionPolicy: TfArg.literal('DELETE'),
-      concurrencyMode: TfArg.literal(ConcurrencyMode.optimistic),
+      deletionPolicy: .literal('DELETE'),
+      concurrencyMode: .literal(.optimistic),
     );
     add(db);
 
     add(
       GoogleFirestoreIndex(
         localName: 'messages_by_user_time',
-        collection: TfArg.literal('messages'),
-        database: TfArg.ref(db.nameRef),
-        queryScope: TfArg.literal(FirestoreIndexQueryScope.collection),
+        collection: .literal('messages'),
+        database: .ref(db.nameRef),
+        queryScope: .literal(.collection),
         fields: [
           FirestoreIndexIndexField(
-            fieldPath: TfArg.literal('user_id'),
-            spec: FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.ascending),
+            fieldPath: .literal('user_id'),
+            spec: .order(FirestoreIndexOrder.ascending),
           ),
           FirestoreIndexIndexField(
-            fieldPath: TfArg.literal('created_at'),
-            spec: FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.descending),
+            fieldPath: .literal('created_at'),
+            spec: .order(FirestoreIndexOrder.descending),
           ),
         ],
       ),
@@ -66,9 +64,9 @@ final class MessagesStack extends Stack {
     add(
       GoogleFirestoreField(
         localName: 'expires_at_ttl',
-        collection: TfArg.literal('messages'),
-        field: TfArg.literal('expires_at'),
-        database: TfArg.ref(db.nameRef),
+        collection: .literal('messages'),
+        field: .literal('expires_at'),
+        database: .ref(db.nameRef),
         ttlConfig: const FirestoreFieldTtlConfig(),
       ),
     );
@@ -76,9 +74,9 @@ final class MessagesStack extends Stack {
     add(
       GoogleFirestoreBackupSchedule(
         localName: 'daily_backup',
-        database: TfArg.ref(db.nameRef),
-        retention: TfArg.literal('604800s'),
-        recurrence: const FirestoreBackupScheduleDailyRecurrence(),
+        database: .ref(db.nameRef),
+        retention: .literal('604800s'),
+        recurrence: const .daily(),
       ),
     );
   }

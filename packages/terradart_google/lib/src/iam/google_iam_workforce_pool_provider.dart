@@ -16,6 +16,17 @@ const Set<String> _googleIamWorkforcePoolProviderSensitive = <String>{
 sealed class IamWorkforcePoolProviderTrustSource {
   const IamWorkforcePoolProviderTrustSource();
 
+  /// OIDC identity provider.
+  const factory IamWorkforcePoolProviderTrustSource.oidc({
+    required TfArg<String> issuerUri,
+    required TfArg<String> clientId,
+  }) = IamWorkforcePoolProviderOidcTrust;
+
+  /// SAML 2.0 identity provider.
+  const factory IamWorkforcePoolProviderTrustSource.saml({
+    required TfArg<String> idpMetadataXml,
+  }) = IamWorkforcePoolProviderSamlTrust;
+
   String get blockKey;
 
   List<Map<String, Object?>> encode();

@@ -39,6 +39,13 @@ Per-package changelogs live alongside each package and are the system of record 
   `--mm-hints` enum retyping GA does not use. The derivation adopts a
   hand-written helper slot as a sealed variant. Generated output is
   unchanged until GA overrides opt in.
+- **Hand-written `terradart_google` sealed types take dot shorthands** —
+  the 58 sealed types GA overrides write by hand (`payload`, `source`,
+  `trust`, health-check `protocol`, …) declare one `const factory` per
+  variant, named after its member, so they read like the derived ones:
+  `payload: .writeOnly(secretDataWo: ...)`, `source: .secret(...)`,
+  `protocol: .http(port: ...)`. The variant classes keep working, and
+  `terradart-migrate` emits the shorthand.
 
 ### Changed
 
@@ -46,7 +53,7 @@ Per-package changelogs live alongside each package and are the system of record 
   `terradart_codegen`, `terradart_migrate`, every provider package) — a
   derived sealed type declares one `const factory` constructor per member,
   so a caller picks a choice with a Dart 3.10 dot shorthand:
-  `filenameOrImageUriOrS3Bucket: .filename(TfArg.literal('f.zip'))` instead
+  `code: .filename(TfArg.literal('f.zip'))` instead
   of `LambdaFunctionFilenameOption(filename: ...)`. The variant classes are
   renamed `<SealedType><Member>` and stay public for pattern matching. The
   migration manifest records each variant's constructor (`shorthand`), and
@@ -56,32 +63,34 @@ Per-package changelogs live alongside each package and are the system of record 
 - **Sealed arguments take concept names** (**breaking**;
   `terradart_codegen`, every provider package) — a sealed slot is named
   for what its members are alternatives of, like a protobuf `oneof`:
-  `name: .namePrefix('app-')` instead of `nameOrNamePrefix:`, `match:`,
-  `destinationConfig:`. The name comes from the new `sealedNames` override
+  `code: .filename(...)` instead of `filenameOrImageUriOrS3Bucket:`, and
+  `name:`, `match:`, `destinationConfig:` on the groups new in this
+  release. The name comes from the new `sealedNames` override
   axis, else from the members' shared prefix or suffix or their whole
   block, else it falls back to the `Or` name and waits in
   `tool/sealed_name_debt.yaml` (`awaiting-name:`), which `wrap --check`
   keeps in sync. The 16-member cap is gone: every sealable group seals.
-  See `MIGRATING.md`.
+  Every group on every lane is named in this release, so the ledger is
+  empty. See `MIGRATING.md`.
 - **`terradart_google` compute and networking input groups are sealed
   types** (**breaking**) — the GA lane's first `deriveExactlyOne`
   adoption: 16 Magic Modules groups on 13 resources (11 `conflicts` sets
   → nullable, 5 `exactly_one_of` groups → required), e.g.
-  `GoogleVpcAccessConnector(minThroughputOrMinInstances: ...)`. A hand
+  `GoogleVpcAccessConnector(minCapacity: ...)`. A hand
   helper slot such as `GoogleComputeUrlMap`'s `defaultUrlRedirect` becomes
   a variant that keeps its class. See `MIGRATING.md`.
 - **`terradart_google` data, storage, database and observability input
   groups are sealed types** (**breaking**) — 35 Magic Modules groups on 20
   resources (18 nullable, 17 required), e.g.
-  `GooglePubsubSubscription(bigqueryConfigOrPushConfigOrCloudStorageConfig:
-  ...)` and `GoogleMonitoringSlo(rollingPeriodDaysOrCalendarPeriod: ...)`.
+  `GooglePubsubSubscription(delivery:
+  ...)` and `GoogleMonitoringSlo(period: ...)`.
   `GoogleBigqueryDatasetAccess`'s eight principal / target inputs are one
   sealed argument, which retires its `tool/exactly_one_lint_debt.yaml`
   entry. See `MIGRATING.md`.
 - **`terradart_google` AI / ML, serverless, container and CI/CD input
   groups are sealed types** (**breaking**) — 35 Magic Modules groups on 25
   resources (17 nullable, 18 required), e.g.
-  `GoogleCloudbuildv2Connection(githubConfigOr...: ...)` and the Cloud Run
+  `GoogleCloudbuildv2Connection(host: ...)` and the Cloud Run
   probe handlers. `GoogleGkeBackupBackupPlan`,
   `GoogleClouddeployCustomTargetType`, `GoogleCloudRunV2WorkerPool` and
   `GoogleVertexAiRagCorpus` take typed nested helpers instead of map
@@ -89,11 +98,9 @@ Per-package changelogs live alongside each package and are the system of record 
 - **`terradart_google` security, identity, billing and operations input
   groups are sealed types** (**breaking**) — 13 Magic Modules groups on 8
   resources (4 nullable, 9 required), e.g.
-  `GoogleAccessContextManagerAccessLevel(basicOrCustom: ...)`. Every
+  `GoogleAccessContextManagerAccessLevel(definition: ...)`. Every
   `terradart_google` resource override now sets `deriveExactlyOne`
-  (`yaml_loader_test.dart` enforces it), and a group of more than 16
-  members stays unsealed on every lane (`maxExactlyOneMembers`). See
-  `MIGRATING.md`.
+  (`yaml_loader_test.dart` enforces it). See `MIGRATING.md`.
 - **Minimum Dart SDK is 3.10** (**breaking**) — every package, example,
   and cookbook stack declares `sdk: ^3.10.0` (was `^3.6.0`;
   `terradart_hcl` and `terradart_migrate` already required 3.10). The
@@ -105,7 +112,7 @@ Per-package changelogs live alongside each package and are the system of record 
 - **`terradart_aws` at-most-one groups are nullable sealed types**
   (**breaking**) — 229 groups on 160 resources (169 on resource arguments,
   60 in nested blocks; 59 are `name` / `name_prefix`), e.g.
-  `AwsIamRole(nameOrNamePrefix: IamRoleNameOption(name: ...))`. The AWS
+  `AwsIamRole(name: .name(...))`. The AWS
   hints extractor now reads SDKv2 `ConflictsWith` / `AtLeastOneOf` lists and
   the framework `ConflictsWith` / `Conflicting` / `AtLeastOneOf` validators
   and combines them per resource with `exclusiveGroups`, as on cloudflare;
@@ -122,14 +129,14 @@ Per-package changelogs live alongside each package and are the system of record 
   `at_least_one_of` beside `exactly_one_of` and combines them with the
   shared `exclusiveGroups`, and `wrap --mm-hints` seals the at-most-one
   groups: 4 groups on 3 beta resources, e.g.
-  `GoogleFirebaseHostingChannel(expireTimeOrTtl:
-  FirebaseHostingChannelTtlOption(ttl: ...))`. The exactly-one groups are
+  `GoogleFirebaseHostingChannel(expiration:
+  .ttl(...))`. The exactly-one groups are
   unchanged. The GA `google` lane does not wrap with `--mm-hints`, so its
   259 `conflicts` entries stay unsealed. See `MIGRATING.md`.
 - **`terradart_cloudflare` at-most-one groups are nullable sealed types**
   (**breaking**) — 14 groups on 8 resources (5 on resource arguments, 9 in
-  nested blocks), e.g. `CloudflareDnsRecord(contentOrData:
-  DnsRecordContentOption(content: ...))`. `tool/extract_provider_hints.dart`
+  nested blocks), e.g. `CloudflareDnsRecord(content:
+  .content(...))`. `tool/extract_provider_hints.dart`
   now writes `at_most_one_of_groups` into `source_cloudflare/hints/`: the
   `ConflictsWith` / `Conflicting` pairs no exactly-one group covers, joined
   into groups when every member conflicts with every other. The combining
@@ -142,8 +149,8 @@ Per-package changelogs live alongside each package and are the system of record 
 - **`terradart_cloudflare` exactly-one groups are sealed types**
   (**breaking**) — 13 groups on 5 resources (2 on resource arguments, 11 in
   nested blocks) take one required sealed argument whose variants each set
-  one member, e.g. `CloudflareRuleset(accountIdOrZoneId:
-  RulesetZoneIdOption(zoneId: ...))`. `tool/extract_provider_hints.dart`
+  one member, e.g. `CloudflareRuleset(scope:
+  .zoneId(...))`. `tool/extract_provider_hints.dart`
   now reads the plugin-framework relation validators too and writes
   `exactly_one_of_groups` into `source_cloudflare/hints/`: every
   `ExactlyOneOf` set (attribute validators and `resourcevalidator` in

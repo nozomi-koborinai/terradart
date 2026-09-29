@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "catalog_resource, data_cells_filter, data_location, database, lf_tag, lf_tag_policy, table, table_with_columns": resource

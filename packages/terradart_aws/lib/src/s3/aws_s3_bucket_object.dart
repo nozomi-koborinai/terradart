@@ -82,23 +82,20 @@ enum S3BucketObjectStorageClass implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.content(...)`.
-sealed class S3BucketObjectContentOrContentBase64OrSource {
-  const S3BucketObjectContentOrContentBase64OrSource();
+sealed class S3BucketObjectBody {
+  const S3BucketObjectBody();
 
   /// Sets `content`.
-  const factory S3BucketObjectContentOrContentBase64OrSource.content(
-    TfArg<String> content,
-  ) = S3BucketObjectContentOrContentBase64OrSourceContent;
+  const factory S3BucketObjectBody.content(TfArg<String> content) =
+      S3BucketObjectBodyContent;
 
   /// Sets `content_base64`.
-  const factory S3BucketObjectContentOrContentBase64OrSource.contentBase64(
-    TfArg<String> contentBase64,
-  ) = S3BucketObjectContentOrContentBase64OrSourceContentBase64;
+  const factory S3BucketObjectBody.contentBase64(TfArg<String> contentBase64) =
+      S3BucketObjectBodyContentBase64;
 
   /// Sets `source`.
-  const factory S3BucketObjectContentOrContentBase64OrSource.source(
-    TfArg<String> source,
-  ) = S3BucketObjectContentOrContentBase64OrSourceSource;
+  const factory S3BucketObjectBody.source(TfArg<String> source) =
+      S3BucketObjectBodySource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -110,10 +107,9 @@ sealed class S3BucketObjectContentOrContentBase64OrSource {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [S3BucketObjectContentOrContentBase64OrSource.content] choice: sets `content`.
-final class S3BucketObjectContentOrContentBase64OrSourceContent
-    extends S3BucketObjectContentOrContentBase64OrSource {
-  const S3BucketObjectContentOrContentBase64OrSourceContent(this.content);
+/// The [S3BucketObjectBody.content] choice: sets `content`.
+final class S3BucketObjectBodyContent extends S3BucketObjectBody {
+  const S3BucketObjectBodyContent(this.content);
 
   final TfArg<String> content;
 
@@ -127,12 +123,9 @@ final class S3BucketObjectContentOrContentBase64OrSourceContent
   Map<String, TfArg<Object?>> get argMap => {'content': content};
 }
 
-/// The [S3BucketObjectContentOrContentBase64OrSource.contentBase64] choice: sets `content_base64`.
-final class S3BucketObjectContentOrContentBase64OrSourceContentBase64
-    extends S3BucketObjectContentOrContentBase64OrSource {
-  const S3BucketObjectContentOrContentBase64OrSourceContentBase64(
-    this.contentBase64,
-  );
+/// The [S3BucketObjectBody.contentBase64] choice: sets `content_base64`.
+final class S3BucketObjectBodyContentBase64 extends S3BucketObjectBody {
+  const S3BucketObjectBodyContentBase64(this.contentBase64);
 
   final TfArg<String> contentBase64;
 
@@ -146,10 +139,9 @@ final class S3BucketObjectContentOrContentBase64OrSourceContentBase64
   Map<String, TfArg<Object?>> get argMap => {'content_base64': contentBase64};
 }
 
-/// The [S3BucketObjectContentOrContentBase64OrSource.source] choice: sets `source`.
-final class S3BucketObjectContentOrContentBase64OrSourceSource
-    extends S3BucketObjectContentOrContentBase64OrSource {
-  const S3BucketObjectContentOrContentBase64OrSourceSource(this.source);
+/// The [S3BucketObjectBody.source] choice: sets `source`.
+final class S3BucketObjectBodySource extends S3BucketObjectBody {
+  const S3BucketObjectBodySource(this.source);
 
   final TfArg<String> source;
 
@@ -168,16 +160,16 @@ final class S3BucketObjectContentOrContentBase64OrSourceSource
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.etag(...)`.
-sealed class S3BucketObjectEtagOrKmsKeyId {
-  const S3BucketObjectEtagOrKmsKeyId();
+sealed class S3BucketObjectIntegrity {
+  const S3BucketObjectIntegrity();
 
   /// Sets `etag`.
-  const factory S3BucketObjectEtagOrKmsKeyId.etag(TfArg<String> etag) =
-      S3BucketObjectEtagOrKmsKeyIdEtag;
+  const factory S3BucketObjectIntegrity.etag(TfArg<String> etag) =
+      S3BucketObjectIntegrityEtag;
 
   /// Sets `kms_key_id`.
-  const factory S3BucketObjectEtagOrKmsKeyId.kmsKeyId(TfArg<String> kmsKeyId) =
-      S3BucketObjectEtagOrKmsKeyIdKmsKeyId;
+  const factory S3BucketObjectIntegrity.kmsKeyId(TfArg<String> kmsKeyId) =
+      S3BucketObjectIntegrityKmsKeyId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -189,10 +181,9 @@ sealed class S3BucketObjectEtagOrKmsKeyId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [S3BucketObjectEtagOrKmsKeyId.etag] choice: sets `etag`.
-final class S3BucketObjectEtagOrKmsKeyIdEtag
-    extends S3BucketObjectEtagOrKmsKeyId {
-  const S3BucketObjectEtagOrKmsKeyIdEtag(this.etag);
+/// The [S3BucketObjectIntegrity.etag] choice: sets `etag`.
+final class S3BucketObjectIntegrityEtag extends S3BucketObjectIntegrity {
+  const S3BucketObjectIntegrityEtag(this.etag);
 
   final TfArg<String> etag;
 
@@ -206,10 +197,9 @@ final class S3BucketObjectEtagOrKmsKeyIdEtag
   Map<String, TfArg<Object?>> get argMap => {'etag': etag};
 }
 
-/// The [S3BucketObjectEtagOrKmsKeyId.kmsKeyId] choice: sets `kms_key_id`.
-final class S3BucketObjectEtagOrKmsKeyIdKmsKeyId
-    extends S3BucketObjectEtagOrKmsKeyId {
-  const S3BucketObjectEtagOrKmsKeyIdKmsKeyId(this.kmsKeyId);
+/// The [S3BucketObjectIntegrity.kmsKeyId] choice: sets `kms_key_id`.
+final class S3BucketObjectIntegrityKmsKeyId extends S3BucketObjectIntegrity {
+  const S3BucketObjectIntegrityKmsKeyId(this.kmsKeyId);
 
   final TfArg<String> kmsKeyId;
 
@@ -233,13 +223,12 @@ final class AwsS3BucketObject extends Resource {
     required TfArg<String> bucket,
     TfArg<bool>? bucketKeyEnabled,
     TfArg<String>? cacheControl,
-    S3BucketObjectContentOrContentBase64OrSource?
-    contentOrContentBase64OrSource,
+    S3BucketObjectBody? body,
     TfArg<String>? contentDisposition,
     TfArg<String>? contentEncoding,
     TfArg<String>? contentLanguage,
     TfArg<String>? contentType,
-    S3BucketObjectEtagOrKmsKeyId? etagOrKmsKeyId,
+    S3BucketObjectIntegrity? integrity,
     TfArg<bool>? forceDestroy,
     required TfArg<String> key,
     TfArg<Map<String, String>>? metadata,
@@ -263,13 +252,13 @@ final class AwsS3BucketObject extends Resource {
            'bucket': bucket,
            if (bucketKeyEnabled != null) 'bucket_key_enabled': bucketKeyEnabled,
            if (cacheControl != null) 'cache_control': cacheControl,
-           ...?contentOrContentBase64OrSource?.argMap,
+           ...?body?.argMap,
            if (contentDisposition != null)
              'content_disposition': contentDisposition,
            if (contentEncoding != null) 'content_encoding': contentEncoding,
            if (contentLanguage != null) 'content_language': contentLanguage,
            if (contentType != null) 'content_type': contentType,
-           ...?etagOrKmsKeyId?.argMap,
+           ...?integrity?.argMap,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
            'key': key,
            if (metadata != null) 'metadata': metadata,

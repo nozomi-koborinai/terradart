@@ -31,40 +31,40 @@ final class OracleGoldengateStack extends Stack {
 
     final vpc = GoogleComputeNetwork(
       localName: 'ora_vpc',
-      name: TfArg.literal('terradart-ora-vpc'),
-      autoCreateSubnetworks: TfArg.literal(false),
+      name: .literal('terradart-ora-vpc'),
+      autoCreateSubnetworks: .literal(false),
       dependsOn: apiDeps,
     );
     add(vpc);
 
     final odbNetwork = GoogleOracleDatabaseOdbNetwork(
       localName: 'odb_net',
-      location: TfArg.literal(location),
-      odbNetworkId: TfArg.literal(odbNetworkId),
-      network: TfArg.ref(vpc.selfLink),
+      location: .literal(location),
+      odbNetworkId: .literal(odbNetworkId),
+      network: .ref(vpc.selfLink),
       dependsOn: [...apiDeps, ResourceDependency(vpc)],
     );
     add(odbNetwork);
 
     final odbSubnet = GoogleOracleDatabaseOdbSubnet(
       localName: 'odb_sub',
-      location: TfArg.literal(location),
-      odbnetwork: TfArg.literal(odbNetworkId),
-      odbSubnetId: TfArg.literal(odbSubnetId),
-      cidrRange: TfArg.literal('10.20.0.0/24'),
-      purpose: TfArg.literal(OracleDatabaseOdbSubnetPurpose.clientSubnet),
+      location: .literal(location),
+      odbnetwork: .literal(odbNetworkId),
+      odbSubnetId: .literal(odbSubnetId),
+      cidrRange: .literal('10.20.0.0/24'),
+      purpose: .literal(.clientSubnet),
       dependsOn: [...apiDeps, ResourceDependency(odbNetwork)],
     );
     add(odbSubnet);
 
     final deployment = GoogleOracleDatabaseGoldengateDeployment(
       localName: 'replication',
-      location: TfArg.literal(location),
-      goldengateDeploymentId: TfArg.literal(deploymentId),
-      displayName: TfArg.literal('TerraDart GoldenGate deployment'),
-      odbSubnet: TfArg.ref(odbSubnet.nameRef),
-      odbNetwork: TfArg.ref(odbNetwork.nameRef),
-      properties: TfArg.literal({
+      location: .literal(location),
+      goldengateDeploymentId: .literal(deploymentId),
+      displayName: .literal('TerraDart GoldenGate deployment'),
+      odbSubnet: .ref(odbSubnet.nameRef),
+      odbNetwork: .ref(odbNetwork.nameRef),
+      properties: .literal({
         'deployment_type': 'DATA_REPLICATION',
         'ogg_data': {
           'admin_username': 'admin',
@@ -72,18 +72,16 @@ final class OracleGoldengateStack extends Stack {
           'admin_password': 'placeholder-password',
         },
       }),
-      deletionPolicy: TfArg.literal(
-        OracleDatabaseGoldengateDeploymentDeletionPolicy.delete,
-      ),
+      deletionPolicy: .literal(.delete),
       dependsOn: [...apiDeps, ResourceDependency(odbSubnet)],
     );
     add(deployment);
 
     final connection = GoogleOracleDatabaseGoldengateConnection(
       localName: 'source',
-      location: TfArg.literal(location),
-      goldengateConnectionId: TfArg.literal(connectionId),
-      properties: TfArg.literal({
+      location: .literal(location),
+      goldengateConnectionId: .literal(connectionId),
+      properties: .literal({
         'connection_type': 'GENERIC',
         'display_name': 'TerraDart generic connection',
         'generic_connection_properties': {
@@ -98,13 +96,13 @@ final class OracleGoldengateStack extends Stack {
     add(
       GoogleOracleDatabaseGoldengateConnectionAssignment(
         localName: 'bind',
-        location: TfArg.literal(location),
-        goldengateConnectionAssignmentId: TfArg.literal(assignmentId),
-        properties: TfArg.literal({
+        location: .literal(location),
+        goldengateConnectionAssignmentId: .literal(assignmentId),
+        properties: .literal({
           'goldengate_connection': TfArg.ref(connection.nameRef),
           'goldengate_deployment': TfArg.ref(deployment.nameRef),
         }),
-        displayName: TfArg.literal('TerraDart connection assignment'),
+        displayName: .literal('TerraDart connection assignment'),
         dependsOn: [
           ...apiDeps,
           ResourceDependency(deployment),

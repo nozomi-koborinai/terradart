@@ -19,6 +19,17 @@ const Set<String> _googleFirebaseAppHostingBuildSensitive = <String>{};
 sealed class FirebaseAppHostingBuildAppHostingBuildSource {
   const FirebaseAppHostingBuildAppHostingBuildSource();
 
+  /// `source.codebase` sub-block.
+  const factory FirebaseAppHostingBuildAppHostingBuildSource.codebase({
+    TfArg<String>? branch,
+    TfArg<String>? commit,
+  }) = FirebaseAppHostingBuildAppHostingBuildSourceCodebase;
+
+  /// `source.container` sub-block.
+  const factory FirebaseAppHostingBuildAppHostingBuildSource.container({
+    required TfArg<String> image,
+  }) = FirebaseAppHostingBuildAppHostingBuildSourceContainer;
+
   /// Returns the JSON fragment to merge into the `source` block.
   Map<String, Object?> encode();
 }

@@ -705,6 +705,21 @@ prelude: |
   sealed class CloudbuildTriggerBuildSpec {
     const CloudbuildTriggerBuildSpec();
 
+    /// Repo-relative `cloudbuild.yaml` path (scalar `filename` attribute).
+    const factory CloudbuildTriggerBuildSpec.filename({
+      required TfArg<String> filename,
+    }) = CloudbuildTriggerFilenameSpec;
+
+    /// Inline `build` block.
+    const factory CloudbuildTriggerBuildSpec.build({
+      required CloudbuildTriggerBuild build,
+    }) = CloudbuildTriggerInlineBuildSpec;
+
+    /// `git_file_source` block fetched from an arbitrary repo/ref.
+    const factory CloudbuildTriggerBuildSpec.gitFileSource({
+      required CloudbuildTriggerGitFileSource gitFileSource,
+    }) = CloudbuildTriggerGitFileSourceSpec;
+
     String get blockKey;
 
     /// Value written to [blockKey] in the parent argMap (scalar or block list).

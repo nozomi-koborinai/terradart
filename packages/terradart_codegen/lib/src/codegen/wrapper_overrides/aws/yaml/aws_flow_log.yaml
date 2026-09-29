@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "eni_id, regional_nat_gateway_id, subnet_id, transit_gateway_attachment_id, transit_gateway_id, vpc_id": source

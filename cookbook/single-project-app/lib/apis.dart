@@ -1,7 +1,6 @@
 /// Tier 1: API enablement.
 library;
 
-import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/project.dart';
 
 /// All 8 project_service activations the recipe requires.
@@ -9,42 +8,42 @@ import 'package:terradart_google/project.dart';
 List<GoogleProjectService> buildProjectServices() => [
   GoogleProjectService(
     localName: 'api_run',
-    service: TfArg.literal('run.googleapis.com'),
-    disableOnDestroy: TfArg.literal(false),
+    service: .literal('run.googleapis.com'),
+    disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
     localName: 'api_sql',
-    service: TfArg.literal('sqladmin.googleapis.com'),
-    disableOnDestroy: TfArg.literal(false),
+    service: .literal('sqladmin.googleapis.com'),
+    disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
     localName: 'api_pubsub',
-    service: TfArg.literal('pubsub.googleapis.com'),
-    disableOnDestroy: TfArg.literal(false),
+    service: .literal('pubsub.googleapis.com'),
+    disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
     localName: 'api_monitoring',
-    service: TfArg.literal('monitoring.googleapis.com'),
-    disableOnDestroy: TfArg.literal(false),
+    service: .literal('monitoring.googleapis.com'),
+    disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
     localName: 'api_secret',
-    service: TfArg.literal('secretmanager.googleapis.com'),
-    disableOnDestroy: TfArg.literal(false),
+    service: .literal('secretmanager.googleapis.com'),
+    disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
     localName: 'api_iam',
-    service: TfArg.literal('iam.googleapis.com'),
-    disableOnDestroy: TfArg.literal(false),
+    service: .literal('iam.googleapis.com'),
+    disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
     localName: 'api_compute',
-    service: TfArg.literal('compute.googleapis.com'),
-    disableOnDestroy: TfArg.literal(false),
+    service: .literal('compute.googleapis.com'),
+    disableOnDestroy: .literal(false),
   ),
   GoogleProjectService(
     localName: 'api_servicenetworking',
-    service: TfArg.literal('servicenetworking.googleapis.com'),
-    disableOnDestroy: TfArg.literal(false),
+    service: .literal('servicenetworking.googleapis.com'),
+    disableOnDestroy: .literal(false),
   ),
 ];

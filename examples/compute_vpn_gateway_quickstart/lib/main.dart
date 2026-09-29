@@ -30,16 +30,16 @@ final class ComputeVpnGatewayStack extends Stack {
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',
-        service: TfArg.literal('compute.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('compute.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final vpc = add(
       GoogleComputeNetwork(
         localName: 'vpn_vpc',
-        name: TfArg.literal('terradart-vpn-gw-vpc'),
-        autoCreateSubnetworks: TfArg.literal(false),
+        name: .literal('terradart-vpn-gw-vpc'),
+        autoCreateSubnetworks: .literal(false),
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );
@@ -47,10 +47,10 @@ final class ComputeVpnGatewayStack extends Stack {
     add(
       GoogleComputeVpnGateway(
         localName: 'classic',
-        name: TfArg.literal('terradart-classic-vpn-gw'),
-        network: TfArg.ref(vpc.id),
-        region: TfArg.literal(region),
-        description: TfArg.literal('Classic VPN gateway shell (no tunnels)'),
+        name: .literal('terradart-classic-vpn-gw'),
+        network: .ref(vpc.id),
+        region: .literal(region),
+        description: .literal('Classic VPN gateway shell (no tunnels)'),
         dependsOn: [ResourceDependency(apiCompute), ResourceDependency(vpc)],
       ),
     );
@@ -58,11 +58,11 @@ final class ComputeVpnGatewayStack extends Stack {
     add(
       GoogleComputeHaVpnGateway(
         localName: 'ha',
-        name: TfArg.literal('terradart-ha-vpn-gw'),
-        network: TfArg.ref(vpc.id),
-        region: TfArg.literal(region),
-        description: TfArg.literal('HA VPN gateway shell (no tunnels)'),
-        stackType: TfArg.literal(ComputeHaVpnGatewayStackType.ipv4Only),
+        name: .literal('terradart-ha-vpn-gw'),
+        network: .ref(vpc.id),
+        region: .literal(region),
+        description: .literal('HA VPN gateway shell (no tunnels)'),
+        stackType: .literal(.ipv4Only),
         dependsOn: [ResourceDependency(apiCompute), ResourceDependency(vpc)],
       ),
     );
@@ -70,12 +70,10 @@ final class ComputeVpnGatewayStack extends Stack {
     add(
       GoogleComputeExternalVpnGateway(
         localName: 'peer',
-        name: TfArg.literal('terradart-external-vpn-gw'),
-        description: TfArg.literal('External peer gateway shell (TEST-NET-3)'),
-        redundancyType: TfArg.literal(
-          ComputeExternalVpnGatewayRedundancyType.singleIpInternallyRedundant,
-        ),
-        interface: TfArg.literal([
+        name: .literal('terradart-external-vpn-gw'),
+        description: .literal('External peer gateway shell (TEST-NET-3)'),
+        redundancyType: .literal(.singleIpInternallyRedundant),
+        interface: .literal([
           {
             'id': 0,
             // RFC 5737 TEST-NET-3 — documentation peer only; no tunnel attached.

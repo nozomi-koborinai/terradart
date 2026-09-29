@@ -25,7 +25,7 @@ final class EventarcStack extends Stack {
     final eventarcApi = add(
       GoogleProjectService(
         localName: 'eventarc_api',
-        service: TfArg.literal('eventarc.googleapis.com'),
+        service: .literal('eventarc.googleapis.com'),
       ),
     );
     // google_eventarc_channel (the partner channel below) additionally
@@ -35,7 +35,7 @@ final class EventarcStack extends Stack {
     final eventarcPublishingApi = add(
       GoogleProjectService(
         localName: 'eventarc_publishing_api',
-        service: TfArg.literal('eventarcpublishing.googleapis.com'),
+        service: .literal('eventarcpublishing.googleapis.com'),
       ),
     );
     final eventarcDeps = [
@@ -49,8 +49,8 @@ final class EventarcStack extends Stack {
     final triggerSa = add(
       GoogleServiceAccount(
         localName: 'trigger_sa',
-        accountId: TfArg.literal('eventarc-trigger'),
-        displayName: TfArg.literal('Eventarc trigger delivery'),
+        accountId: .literal('eventarc-trigger'),
+        displayName: .literal('Eventarc trigger delivery'),
         dependsOn: eventarcDeps,
       ),
     );
@@ -58,9 +58,9 @@ final class EventarcStack extends Stack {
     final messageBus = add(
       GoogleEventarcMessageBus(
         localName: 'ops_bus',
-        location: TfArg.literal(location),
-        messageBusId: TfArg.literal('ops-bus'),
-        displayName: TfArg.literal('Ops message bus'),
+        location: .literal(location),
+        messageBusId: .literal('ops-bus'),
+        displayName: .literal('Ops message bus'),
         loggingConfig: const EventarcMessageBusLoggingConfig(
           logSeverity: EventarcMessageBusLogSeverity.info,
         ),
@@ -71,10 +71,10 @@ final class EventarcStack extends Stack {
     add(
       GoogleEventarcGoogleApiSource(
         localName: 'audit_source',
-        location: TfArg.literal(location),
-        googleApiSourceId: TfArg.literal('audit-source'),
-        destination: TfArg.ref(messageBus.nameRef),
-        displayName: TfArg.literal('Audit log API source'),
+        location: .literal(location),
+        googleApiSourceId: .literal('audit-source'),
+        destination: .ref(messageBus.nameRef),
+        displayName: .literal('Audit log API source'),
         loggingConfig: const EventarcMessageBusLoggingConfig(
           logSeverity: EventarcMessageBusLogSeverity.warning,
         ),
@@ -86,9 +86,9 @@ final class EventarcStack extends Stack {
     final pipeline = add(
       GoogleEventarcPipeline(
         localName: 'ingest_pipeline',
-        location: TfArg.literal(location),
-        pipelineId: TfArg.literal('ingest-pipeline'),
-        destinations: TfArg.literal([
+        location: .literal(location),
+        pipelineId: .literal('ingest-pipeline'),
+        destinations: .literal([
           {
             'workflow':
                 'projects/$projectId/locations/$location/workflows/ingest',
@@ -107,11 +107,11 @@ final class EventarcStack extends Stack {
     add(
       GoogleEventarcEnrollment(
         localName: 'audit_enrollment',
-        location: TfArg.literal(location),
-        enrollmentId: TfArg.literal('audit-enrollment'),
-        celMatch: TfArg.literal('true'),
-        messageBus: TfArg.ref(messageBus.nameRef),
-        destination: TfArg.ref(pipeline.nameRef),
+        location: .literal(location),
+        enrollmentId: .literal('audit-enrollment'),
+        celMatch: .literal('true'),
+        messageBus: .ref(messageBus.nameRef),
+        destination: .ref(pipeline.nameRef),
         dependsOn: eventarcDeps,
       ),
     );
@@ -119,8 +119,8 @@ final class EventarcStack extends Stack {
     add(
       GoogleEventarcChannel(
         localName: 'partner_channel',
-        location: TfArg.literal(location),
-        name: TfArg.literal('partner-channel'),
+        location: .literal(location),
+        name: .literal('partner-channel'),
         dependsOn: eventarcDeps,
       ),
     );
@@ -128,8 +128,8 @@ final class EventarcStack extends Stack {
     add(
       GoogleEventarcGoogleChannelConfig(
         localName: 'channel_config',
-        location: TfArg.literal(location),
-        name: TfArg.literal('default'),
+        location: .literal(location),
+        name: .literal('default'),
         dependsOn: eventarcDeps,
       ),
     );
@@ -137,20 +137,18 @@ final class EventarcStack extends Stack {
     add(
       GoogleEventarcTrigger(
         localName: 'pubsub_to_http',
-        name: TfArg.literal('pubsub-to-http'),
-        location: TfArg.literal(location),
-        serviceAccount: TfArg.ref(triggerSa.email),
+        name: .literal('pubsub-to-http'),
+        location: .literal(location),
+        serviceAccount: .ref(triggerSa.email),
         matchingCriteria: [
           EventarcTriggerMatchingCriteria(
-            attribute: TfArg.literal('type'),
-            value: TfArg.literal(
-              'google.cloud.pubsub.topic.v1.messagePublished',
-            ),
+            attribute: .literal('type'),
+            value: .literal('google.cloud.pubsub.topic.v1.messagePublished'),
           ),
         ],
         destination: EventarcTriggerDestination(
           httpEndpoint: EventarcTriggerHttpEndpoint(
-            uri: TfArg.literal('https://example.com/events'),
+            uri: .literal('https://example.com/events'),
           ),
         ),
         dependsOn: eventarcDeps,

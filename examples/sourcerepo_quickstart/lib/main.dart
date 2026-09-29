@@ -21,23 +21,23 @@ final class SourcerepoStack extends Stack {
     final apiSource = add(
       GoogleProjectService(
         localName: 'api_sourcerepo',
-        service: TfArg.literal('sourcerepo.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('sourcerepo.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final reader = add(
       GoogleServiceAccount(
         localName: 'repo_reader',
-        accountId: TfArg.literal('terradart-repo-reader'),
-        displayName: TfArg.literal('Source repo reader'),
+        accountId: .literal('terradart-repo-reader'),
+        displayName: .literal('Source repo reader'),
       ),
     );
 
     final repo = add(
       GoogleSourcerepoRepository(
         localName: 'hello',
-        name: TfArg.literal('terradart-hello'),
+        name: .literal('terradart-hello'),
         dependsOn: [ResourceDependency(apiSource)],
       ),
     );
@@ -45,9 +45,9 @@ final class SourcerepoStack extends Stack {
     add(
       GoogleSourcerepoRepositoryIamMember(
         localName: 'reader',
-        repository: TfArg.ref(repo.nameRef),
-        role: TfArg.literal('roles/source.reader'),
-        member: TfArg.ref(reader.iamMember),
+        repository: .ref(repo.nameRef),
+        role: .literal('roles/source.reader'),
+        member: .ref(reader.iamMember),
         dependsOn: [ResourceDependency(repo), ResourceDependency(reader)],
       ),
     );

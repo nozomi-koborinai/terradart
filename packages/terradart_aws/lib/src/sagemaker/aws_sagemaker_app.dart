@@ -28,18 +28,17 @@ enum SagemakerAppAppType implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.spaceName(...)`.
-sealed class SagemakerAppSpaceNameOrUserProfileName {
-  const SagemakerAppSpaceNameOrUserProfileName();
+sealed class SagemakerAppOwner {
+  const SagemakerAppOwner();
 
   /// Sets `space_name`.
-  const factory SagemakerAppSpaceNameOrUserProfileName.spaceName(
-    TfArg<String> spaceName,
-  ) = SagemakerAppSpaceNameOrUserProfileNameSpaceName;
+  const factory SagemakerAppOwner.spaceName(TfArg<String> spaceName) =
+      SagemakerAppOwnerSpaceName;
 
   /// Sets `user_profile_name`.
-  const factory SagemakerAppSpaceNameOrUserProfileName.userProfileName(
+  const factory SagemakerAppOwner.userProfileName(
     TfArg<String> userProfileName,
-  ) = SagemakerAppSpaceNameOrUserProfileNameUserProfileName;
+  ) = SagemakerAppOwnerUserProfileName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -51,10 +50,9 @@ sealed class SagemakerAppSpaceNameOrUserProfileName {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SagemakerAppSpaceNameOrUserProfileName.spaceName] choice: sets `space_name`.
-final class SagemakerAppSpaceNameOrUserProfileNameSpaceName
-    extends SagemakerAppSpaceNameOrUserProfileName {
-  const SagemakerAppSpaceNameOrUserProfileNameSpaceName(this.spaceName);
+/// The [SagemakerAppOwner.spaceName] choice: sets `space_name`.
+final class SagemakerAppOwnerSpaceName extends SagemakerAppOwner {
+  const SagemakerAppOwnerSpaceName(this.spaceName);
 
   final TfArg<String> spaceName;
 
@@ -68,12 +66,9 @@ final class SagemakerAppSpaceNameOrUserProfileNameSpaceName
   Map<String, TfArg<Object?>> get argMap => {'space_name': spaceName};
 }
 
-/// The [SagemakerAppSpaceNameOrUserProfileName.userProfileName] choice: sets `user_profile_name`.
-final class SagemakerAppSpaceNameOrUserProfileNameUserProfileName
-    extends SagemakerAppSpaceNameOrUserProfileName {
-  const SagemakerAppSpaceNameOrUserProfileNameUserProfileName(
-    this.userProfileName,
-  );
+/// The [SagemakerAppOwner.userProfileName] choice: sets `user_profile_name`.
+final class SagemakerAppOwnerUserProfileName extends SagemakerAppOwner {
+  const SagemakerAppOwnerUserProfileName(this.userProfileName);
 
   final TfArg<String> userProfileName;
 
@@ -320,7 +315,7 @@ final class AwsSagemakerApp extends Resource {
     required TfArg<SagemakerAppAppType> appType,
     required TfArg<String> domainId,
     TfArg<String>? region,
-    required SagemakerAppSpaceNameOrUserProfileName spaceNameOrUserProfileName,
+    required SagemakerAppOwner owner,
     TfArg<Map<String, String>>? tags,
     SagemakerAppResourceSpec? resourceSpec,
     super.lifecycle,
@@ -334,7 +329,7 @@ final class AwsSagemakerApp extends Resource {
            'app_type': appType,
            'domain_id': domainId,
            if (region != null) 'region': region,
-           ...spaceNameOrUserProfileName.argMap,
+           ...owner.argMap,
            if (tags != null) 'tags': tags,
            if (resourceSpec != null)
              'resource_spec': TfArg.literal(resourceSpec.encode()),

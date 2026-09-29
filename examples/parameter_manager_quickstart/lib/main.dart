@@ -28,17 +28,17 @@ final class ParamsStack extends Stack {
     final apiParams = add(
       GoogleProjectService(
         localName: 'api_parametermanager',
-        service: TfArg.literal('parametermanager.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('parametermanager.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final appConfig = add(
       GoogleParameterManagerParameter(
         localName: 'app_config',
-        parameterId: TfArg.literal('terradart-app-config'),
-        format: TfArg.literal(ParameterManagerParameterFormat.json),
-        labels: TfArg.literal(const {'managed-by': 'terradart'}),
+        parameterId: .literal('terradart-app-config'),
+        format: .literal(.json),
+        labels: .literal(const {'managed-by': 'terradart'}),
         dependsOn: [ResourceDependency(apiParams)],
       ),
     );
@@ -46,10 +46,10 @@ final class ParamsStack extends Stack {
     add(
       GoogleParameterManagerRegionalParameter(
         localName: 'app_config_regional',
-        parameterId: TfArg.literal('terradart-app-config-rgnl'),
-        location: TfArg.literal('us-central1'),
-        format: TfArg.literal(ParameterManagerRegionalParameterFormat.yaml),
-        labels: TfArg.literal(const {'managed-by': 'terradart'}),
+        parameterId: .literal('terradart-app-config-rgnl'),
+        location: .literal('us-central1'),
+        format: .literal(.yaml),
+        labels: .literal(const {'managed-by': 'terradart'}),
         dependsOn: [ResourceDependency(apiParams)],
       ),
     );

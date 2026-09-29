@@ -23,18 +23,17 @@ enum InstanceTenancy implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.hostResourceGroupArn(...)`.
-sealed class InstanceHostResourceGroupArnOrPlacementGroup {
-  const InstanceHostResourceGroupArnOrPlacementGroup();
+sealed class InstancePlacement {
+  const InstancePlacement();
 
   /// Sets `host_resource_group_arn`.
-  const factory InstanceHostResourceGroupArnOrPlacementGroup.hostResourceGroupArn(
+  const factory InstancePlacement.hostResourceGroupArn(
     TfArg<String> hostResourceGroupArn,
-  ) = InstanceHostResourceGroupArnOrPlacementGroupHostResourceGroupArn;
+  ) = InstancePlacementHostResourceGroupArn;
 
   /// Sets `placement_group`.
-  const factory InstanceHostResourceGroupArnOrPlacementGroup.placementGroup(
-    TfArg<String> placementGroup,
-  ) = InstanceHostResourceGroupArnOrPlacementGroupPlacementGroup;
+  const factory InstancePlacement.placementGroup(TfArg<String> placementGroup) =
+      InstancePlacementPlacementGroup;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -46,12 +45,9 @@ sealed class InstanceHostResourceGroupArnOrPlacementGroup {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [InstanceHostResourceGroupArnOrPlacementGroup.hostResourceGroupArn] choice: sets `host_resource_group_arn`.
-final class InstanceHostResourceGroupArnOrPlacementGroupHostResourceGroupArn
-    extends InstanceHostResourceGroupArnOrPlacementGroup {
-  const InstanceHostResourceGroupArnOrPlacementGroupHostResourceGroupArn(
-    this.hostResourceGroupArn,
-  );
+/// The [InstancePlacement.hostResourceGroupArn] choice: sets `host_resource_group_arn`.
+final class InstancePlacementHostResourceGroupArn extends InstancePlacement {
+  const InstancePlacementHostResourceGroupArn(this.hostResourceGroupArn);
 
   final TfArg<String> hostResourceGroupArn;
 
@@ -69,12 +65,9 @@ final class InstanceHostResourceGroupArnOrPlacementGroupHostResourceGroupArn
   };
 }
 
-/// The [InstanceHostResourceGroupArnOrPlacementGroup.placementGroup] choice: sets `placement_group`.
-final class InstanceHostResourceGroupArnOrPlacementGroupPlacementGroup
-    extends InstanceHostResourceGroupArnOrPlacementGroup {
-  const InstanceHostResourceGroupArnOrPlacementGroupPlacementGroup(
-    this.placementGroup,
-  );
+/// The [InstancePlacement.placementGroup] choice: sets `placement_group`.
+final class InstancePlacementPlacementGroup extends InstancePlacement {
+  const InstancePlacementPlacementGroup(this.placementGroup);
 
   final TfArg<String> placementGroup;
 
@@ -583,14 +576,14 @@ enum InstanceInstanceMarketOptionsSpotOptionsSpotInstanceType
 /// `aws_instance` (derived from provider schema).
 @immutable
 final class InstanceLaunchTemplate {
-  const InstanceLaunchTemplate({required this.idOrName, this.version});
+  const InstanceLaunchTemplate({required this.template, this.version});
 
-  final InstanceLaunchTemplateIdOrName idOrName;
+  final InstanceLaunchTemplateTemplate template;
 
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    ...idOrName.encode(),
+    ...template.encode(),
     if (version != null) 'version': version!.toTfJson(),
   };
 }
@@ -599,16 +592,16 @@ final class InstanceLaunchTemplate {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.id(...)`.
-sealed class InstanceLaunchTemplateIdOrName {
-  const InstanceLaunchTemplateIdOrName();
+sealed class InstanceLaunchTemplateTemplate {
+  const InstanceLaunchTemplateTemplate();
 
   /// Sets `id`.
-  const factory InstanceLaunchTemplateIdOrName.id(TfArg<String> id) =
-      InstanceLaunchTemplateIdOrNameId;
+  const factory InstanceLaunchTemplateTemplate.id(TfArg<String> id) =
+      InstanceLaunchTemplateTemplateId;
 
   /// Sets `name`.
-  const factory InstanceLaunchTemplateIdOrName.name(TfArg<String> name) =
-      InstanceLaunchTemplateIdOrNameName;
+  const factory InstanceLaunchTemplateTemplate.name(TfArg<String> name) =
+      InstanceLaunchTemplateTemplateName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -616,10 +609,10 @@ sealed class InstanceLaunchTemplateIdOrName {
   Map<String, Object?> encode();
 }
 
-/// The [InstanceLaunchTemplateIdOrName.id] choice: sets `id`.
-final class InstanceLaunchTemplateIdOrNameId
-    extends InstanceLaunchTemplateIdOrName {
-  const InstanceLaunchTemplateIdOrNameId(this.id);
+/// The [InstanceLaunchTemplateTemplate.id] choice: sets `id`.
+final class InstanceLaunchTemplateTemplateId
+    extends InstanceLaunchTemplateTemplate {
+  const InstanceLaunchTemplateTemplateId(this.id);
 
   final TfArg<String> id;
 
@@ -630,10 +623,10 @@ final class InstanceLaunchTemplateIdOrNameId
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
-/// The [InstanceLaunchTemplateIdOrName.name] choice: sets `name`.
-final class InstanceLaunchTemplateIdOrNameName
-    extends InstanceLaunchTemplateIdOrName {
-  const InstanceLaunchTemplateIdOrNameName(this.name);
+/// The [InstanceLaunchTemplateTemplate.name] choice: sets `name`.
+final class InstanceLaunchTemplateTemplateName
+    extends InstanceLaunchTemplateTemplate {
+  const InstanceLaunchTemplateTemplateName(this.name);
 
   final TfArg<String> name;
 
@@ -938,8 +931,7 @@ final class AwsInstance extends Resource {
     TfArg<bool>? getPasswordData,
     TfArg<bool>? hibernation,
     TfArg<String>? hostId,
-    InstanceHostResourceGroupArnOrPlacementGroup?
-    hostResourceGroupArnOrPlacementGroup,
+    InstancePlacement? placement,
     TfArg<String>? iamInstanceProfile,
     TfArg<String>? instanceInitiatedShutdownBehavior,
     TfArg<String>? instanceType,
@@ -997,7 +989,7 @@ final class AwsInstance extends Resource {
            if (getPasswordData != null) 'get_password_data': getPasswordData,
            if (hibernation != null) 'hibernation': hibernation,
            if (hostId != null) 'host_id': hostId,
-           ...?hostResourceGroupArnOrPlacementGroup?.argMap,
+           ...?placement?.argMap,
            if (iamInstanceProfile != null)
              'iam_instance_profile': iamInstanceProfile,
            if (instanceInitiatedShutdownBehavior != null)

@@ -33,15 +33,15 @@ final class EventsStack extends Stack {
     final instance = add(
       GoogleBigtableInstance(
         localName: 'events',
-        name: TfArg.literal('quickstart-events'),
-        instanceType: TfArg.literal(BigtableInstanceType.production),
-        deletionPolicy: TfArg.literal('DELETE'),
-        deletionProtection: TfArg.literal(false),
+        name: .literal('quickstart-events'),
+        instanceType: .literal(.production),
+        deletionPolicy: .literal('DELETE'),
+        deletionProtection: .literal(false),
         cluster: [
           BigtableInstanceCluster(
-            clusterId: TfArg.literal('events-c1'),
-            zone: TfArg.literal('us-central1-b'),
-            numNodes: TfArg.literal(1),
+            clusterId: .literal('events-c1'),
+            zone: .literal('us-central1-b'),
+            numNodes: .literal(1),
           ),
         ],
         dependsOn: apiDeps,
@@ -51,9 +51,9 @@ final class EventsStack extends Stack {
     final table = add(
       GoogleBigtableTable(
         localName: 'events',
-        instanceName: TfArg.ref(instance.nameRef),
-        name: TfArg.literal('events'),
-        columnFamily: [BigtableTableColumnFamily(family: TfArg.literal('cf1'))],
+        instanceName: .ref(instance.nameRef),
+        name: .literal('events'),
+        columnFamily: [BigtableTableColumnFamily(family: .literal('cf1'))],
         dependsOn: [ResourceDependency(instance)],
       ),
     );
@@ -61,10 +61,10 @@ final class EventsStack extends Stack {
     final gcPolicy = add(
       GoogleBigtableGcPolicy(
         localName: 'cf1_gc',
-        instanceName: TfArg.ref(instance.nameRef),
-        table: TfArg.ref(table.nameRef),
-        columnFamily: TfArg.literal('cf1'),
-        policy: BigtableGcPolicyMaxAge(days: TfArg.literal(7)),
+        instanceName: .ref(instance.nameRef),
+        table: .ref(table.nameRef),
+        columnFamily: .literal('cf1'),
+        policy: .maxAge(days: .literal(7)),
         dependsOn: [ResourceDependency(table)],
       ),
     );
@@ -72,14 +72,14 @@ final class EventsStack extends Stack {
     final authorizedView = add(
       GoogleBigtableAuthorizedView(
         localName: 'tenant_a',
-        instanceName: TfArg.ref(instance.nameRef),
-        tableName: TfArg.ref(table.nameRef),
-        name: TfArg.literal('tenant-a'),
+        instanceName: .ref(instance.nameRef),
+        tableName: .ref(table.nameRef),
+        name: .literal('tenant-a'),
         subsetView: BigtableAuthorizedViewSubsetView(
           // Provider expects base64-encoded row prefix bytes.
-          rowPrefixes: [TfArg.literal('dGVuYW50LWEj')],
+          rowPrefixes: [.literal('dGVuYW50LWEj')],
         ),
-        deletionProtection: TfArg.literal('UNPROTECTED'),
+        deletionProtection: .literal('UNPROTECTED'),
         dependsOn: [ResourceDependency(table)],
       ),
     );
@@ -88,7 +88,7 @@ final class EventsStack extends Stack {
       TimeSleep(
         localName: 'table_propagation',
         createDuration: TfArg.duration(const Duration(seconds: 90)),
-        triggers: TfArg.literal({
+        triggers: .literal({
           'events_table': table.nameRef.interpolation,
           'tenant_a_view': authorizedView.id.interpolation,
         }),
@@ -104,12 +104,10 @@ final class EventsStack extends Stack {
     add(
       GoogleBigtableAppProfile(
         localName: 'routing',
-        appProfileId: TfArg.literal('quickstart-routing'),
-        instance: TfArg.ref(instance.nameRef),
-        routing: BigtableAppProfileSingleClusterRouting(
-          clusterId: TfArg.literal('events-c1'),
-        ),
-        ignoreWarnings: TfArg.literal(true),
+        appProfileId: .literal('quickstart-routing'),
+        instance: .ref(instance.nameRef),
+        routing: .singleClusterRouting(clusterId: .literal('events-c1')),
+        ignoreWarnings: .literal(true),
         dependsOn: [ResourceDependency(instance)],
       ),
     );
@@ -117,10 +115,10 @@ final class EventsStack extends Stack {
     final logicalView = add(
       GoogleBigtableLogicalView(
         localName: 'recent',
-        logicalViewId: TfArg.literal('recent-events'),
-        instance: TfArg.ref(instance.nameRef),
-        query: TfArg.literal('SELECT _key, cf1 FROM `events`'),
-        deletionProtection: TfArg.literal(false),
+        logicalViewId: .literal('recent-events'),
+        instance: .ref(instance.nameRef),
+        query: .literal('SELECT _key, cf1 FROM `events`'),
+        deletionProtection: .literal(false),
         dependsOn: tableReadyDeps,
       ),
     );
@@ -128,12 +126,12 @@ final class EventsStack extends Stack {
     final materializedView = add(
       GoogleBigtableMaterializedView(
         localName: 'counts',
-        materializedViewId: TfArg.literal('event-counts'),
-        instance: TfArg.ref(instance.nameRef),
-        query: TfArg.literal(
+        materializedViewId: .literal('event-counts'),
+        instance: .ref(instance.nameRef),
+        query: .literal(
           "SELECT _key, COUNT(cf1['col1']) AS event_count FROM `events` GROUP BY _key",
         ),
-        deletionProtection: TfArg.literal(false),
+        deletionProtection: .literal(false),
         dependsOn: [ResourceDependency(logicalView)],
       ),
     );
@@ -142,17 +140,17 @@ final class EventsStack extends Stack {
     final readerSa = add(
       GoogleServiceAccount(
         localName: 'reader',
-        accountId: TfArg.literal('bt-reader'),
-        displayName: TfArg.literal('Bigtable reader'),
+        accountId: .literal('bt-reader'),
+        displayName: .literal('Bigtable reader'),
       ),
     );
 
     add(
       GoogleBigtableInstanceIamMember(
         localName: 'instance_viewer',
-        instance: TfArg.ref(instance.nameRef),
-        role: TfArg.literal('roles/bigtable.viewer'),
-        member: TfArg.ref(readerSa.iamMember),
+        instance: .ref(instance.nameRef),
+        role: .literal('roles/bigtable.viewer'),
+        member: .ref(readerSa.iamMember),
         dependsOn: [
           ResourceDependency(readerSa),
           ResourceDependency(instance),
@@ -164,10 +162,10 @@ final class EventsStack extends Stack {
     add(
       GoogleBigtableTableIamMember(
         localName: 'table_reader',
-        instanceName: TfArg.ref(instance.nameRef),
-        table: TfArg.ref(table.nameRef),
-        role: TfArg.literal('roles/bigtable.reader'),
-        member: TfArg.ref(readerSa.iamMember),
+        instanceName: .ref(instance.nameRef),
+        table: .ref(table.nameRef),
+        role: .literal('roles/bigtable.reader'),
+        member: .ref(readerSa.iamMember),
         dependsOn: [
           ResourceDependency(readerSa),
           ResourceDependency(table),

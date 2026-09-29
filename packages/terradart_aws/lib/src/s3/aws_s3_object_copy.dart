@@ -135,16 +135,16 @@ enum S3ObjectCopyTaggingDirective implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.acl(...)`.
-sealed class S3ObjectCopyAclOrGrant {
-  const S3ObjectCopyAclOrGrant();
+sealed class S3ObjectCopyAccess {
+  const S3ObjectCopyAccess();
 
   /// Sets `acl`.
-  const factory S3ObjectCopyAclOrGrant.acl(TfArg<S3ObjectCopyAcl> acl) =
-      S3ObjectCopyAclOrGrantAcl;
+  const factory S3ObjectCopyAccess.acl(TfArg<S3ObjectCopyAcl> acl) =
+      S3ObjectCopyAccessAcl;
 
   /// Sets `grant`.
-  const factory S3ObjectCopyAclOrGrant.grant(List<S3ObjectCopyGrant> grant) =
-      S3ObjectCopyAclOrGrantGrant;
+  const factory S3ObjectCopyAccess.grant(List<S3ObjectCopyGrant> grant) =
+      S3ObjectCopyAccessGrant;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -156,9 +156,9 @@ sealed class S3ObjectCopyAclOrGrant {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [S3ObjectCopyAclOrGrant.acl] choice: sets `acl`.
-final class S3ObjectCopyAclOrGrantAcl extends S3ObjectCopyAclOrGrant {
-  const S3ObjectCopyAclOrGrantAcl(this.acl);
+/// The [S3ObjectCopyAccess.acl] choice: sets `acl`.
+final class S3ObjectCopyAccessAcl extends S3ObjectCopyAccess {
+  const S3ObjectCopyAccessAcl(this.acl);
 
   final TfArg<S3ObjectCopyAcl> acl;
 
@@ -172,9 +172,9 @@ final class S3ObjectCopyAclOrGrantAcl extends S3ObjectCopyAclOrGrant {
   Map<String, TfArg<Object?>> get argMap => {'acl': acl};
 }
 
-/// The [S3ObjectCopyAclOrGrant.grant] choice: sets `grant`.
-final class S3ObjectCopyAclOrGrantGrant extends S3ObjectCopyAclOrGrant {
-  const S3ObjectCopyAclOrGrantGrant(this.grant);
+/// The [S3ObjectCopyAccess.grant] choice: sets `grant`.
+final class S3ObjectCopyAccessGrant extends S3ObjectCopyAccess {
+  const S3ObjectCopyAccessGrant(this.grant);
 
   final List<S3ObjectCopyGrant> grant;
 
@@ -276,7 +276,7 @@ final class AwsS3ObjectCopy extends Resource {
 
   AwsS3ObjectCopy({
     required super.localName,
-    S3ObjectCopyAclOrGrant? aclOrGrant,
+    S3ObjectCopyAccess? access,
     required TfArg<String> bucket,
     TfArg<bool>? bucketKeyEnabled,
     TfArg<String>? cacheControl,
@@ -323,7 +323,7 @@ final class AwsS3ObjectCopy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?aclOrGrant?.argMap,
+           ...?access?.argMap,
            'bucket': bucket,
            if (bucketKeyEnabled != null) 'bucket_key_enabled': bucketKeyEnabled,
            if (cacheControl != null) 'cache_control': cacheControl,

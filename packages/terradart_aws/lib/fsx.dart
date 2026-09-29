@@ -122,9 +122,9 @@ export 'src/fsx/aws_fsx_s3_access_point_attachment.dart'
 export 'src/fsx/aws_fsx_windows_file_system.dart'
     show
         AwsFsxWindowsFileSystem,
-        FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory,
-        FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectoryActiveDirectoryId,
-        FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectorySelfManagedActiveDirectory,
+        FsxWindowsFileSystemActiveDirectory,
+        FsxWindowsFileSystemActiveDirectoryActiveDirectoryId,
+        FsxWindowsFileSystemActiveDirectorySelfManagedActiveDirectory,
         FsxWindowsFileSystemAuditLogConfiguration,
         FsxWindowsFileSystemAuditLogConfigurationFileAccessAuditLogLevel,
         FsxWindowsFileSystemAuditLogConfigurationFileShareAccessAuditLogLevel,

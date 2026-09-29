@@ -41,19 +41,19 @@ final class EbsSnapshotImportDiskContainer {
   const EbsSnapshotImportDiskContainer({
     this.description,
     required this.format,
-    required this.urlOrUserBucket,
+    required this.source,
   });
 
   final TfArg<String>? description;
 
   final TfArg<EbsSnapshotImportDiskContainerFormat> format;
 
-  final EbsSnapshotImportDiskContainerUrlOrUserBucket urlOrUserBucket;
+  final EbsSnapshotImportDiskContainerSource source;
 
   Map<String, Object?> encode() => {
     if (description != null) 'description': description!.toTfJson(),
     'format': format.toTfJson(),
-    ...urlOrUserBucket.encode(),
+    ...source.encode(),
   };
 }
 
@@ -61,18 +61,17 @@ final class EbsSnapshotImportDiskContainer {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.url(...)`.
-sealed class EbsSnapshotImportDiskContainerUrlOrUserBucket {
-  const EbsSnapshotImportDiskContainerUrlOrUserBucket();
+sealed class EbsSnapshotImportDiskContainerSource {
+  const EbsSnapshotImportDiskContainerSource();
 
   /// Sets `url`.
-  const factory EbsSnapshotImportDiskContainerUrlOrUserBucket.url(
-    TfArg<String> url,
-  ) = EbsSnapshotImportDiskContainerUrlOrUserBucketUrl;
+  const factory EbsSnapshotImportDiskContainerSource.url(TfArg<String> url) =
+      EbsSnapshotImportDiskContainerSourceUrl;
 
   /// Sets `user_bucket`.
-  const factory EbsSnapshotImportDiskContainerUrlOrUserBucket.userBucket(
+  const factory EbsSnapshotImportDiskContainerSource.userBucket(
     EbsSnapshotImportDiskContainerUserBucket userBucket,
-  ) = EbsSnapshotImportDiskContainerUrlOrUserBucketUserBucket;
+  ) = EbsSnapshotImportDiskContainerSourceUserBucket;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -80,10 +79,10 @@ sealed class EbsSnapshotImportDiskContainerUrlOrUserBucket {
   Map<String, Object?> encode();
 }
 
-/// The [EbsSnapshotImportDiskContainerUrlOrUserBucket.url] choice: sets `url`.
-final class EbsSnapshotImportDiskContainerUrlOrUserBucketUrl
-    extends EbsSnapshotImportDiskContainerUrlOrUserBucket {
-  const EbsSnapshotImportDiskContainerUrlOrUserBucketUrl(this.url);
+/// The [EbsSnapshotImportDiskContainerSource.url] choice: sets `url`.
+final class EbsSnapshotImportDiskContainerSourceUrl
+    extends EbsSnapshotImportDiskContainerSource {
+  const EbsSnapshotImportDiskContainerSourceUrl(this.url);
 
   final TfArg<String> url;
 
@@ -94,12 +93,10 @@ final class EbsSnapshotImportDiskContainerUrlOrUserBucketUrl
   Map<String, Object?> encode() => {'url': url.toTfJson()};
 }
 
-/// The [EbsSnapshotImportDiskContainerUrlOrUserBucket.userBucket] choice: sets `user_bucket`.
-final class EbsSnapshotImportDiskContainerUrlOrUserBucketUserBucket
-    extends EbsSnapshotImportDiskContainerUrlOrUserBucket {
-  const EbsSnapshotImportDiskContainerUrlOrUserBucketUserBucket(
-    this.userBucket,
-  );
+/// The [EbsSnapshotImportDiskContainerSource.userBucket] choice: sets `user_bucket`.
+final class EbsSnapshotImportDiskContainerSourceUserBucket
+    extends EbsSnapshotImportDiskContainerSource {
+  const EbsSnapshotImportDiskContainerSourceUserBucket(this.userBucket);
 
   final EbsSnapshotImportDiskContainerUserBucket userBucket;
 

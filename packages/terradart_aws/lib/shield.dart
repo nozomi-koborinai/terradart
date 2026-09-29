@@ -20,11 +20,11 @@ export 'src/shield/aws_shield_protection_group.dart'
     show
         AwsShieldProtectionGroup,
         ShieldProtectionGroupAggregation,
-        ShieldProtectionGroupMembersOrResourceType,
-        ShieldProtectionGroupMembersOrResourceTypeMembers,
-        ShieldProtectionGroupMembersOrResourceTypeResourceType,
         ShieldProtectionGroupPattern,
-        ShieldProtectionGroupResourceType;
+        ShieldProtectionGroupResourceType,
+        ShieldProtectionGroupScope,
+        ShieldProtectionGroupScopeMembers,
+        ShieldProtectionGroupScopeResourceType;
 export 'src/shield/aws_shield_protection_health_check_association.dart'
     show AwsShieldProtectionHealthCheckAssociation;
 export 'src/shield/aws_shield_subscription.dart'

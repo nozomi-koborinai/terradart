@@ -106,7 +106,7 @@ final class ComprehendDocumentClassifierInputDataConfig {
   const ComprehendDocumentClassifierInputDataConfig({
     this.dataFormat,
     this.labelDelimiter,
-    required this.augmentedManifestsOrS3Uri,
+    required this.source,
     this.testS3Uri,
   });
 
@@ -116,15 +116,14 @@ final class ComprehendDocumentClassifierInputDataConfig {
   final TfArg<ComprehendDocumentClassifierInputDataConfigLabelDelimiter>?
   labelDelimiter;
 
-  final ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri
-  augmentedManifestsOrS3Uri;
+  final ComprehendDocumentClassifierInputDataConfigSource source;
 
   final TfArg<String>? testS3Uri;
 
   Map<String, Object?> encode() => {
     if (dataFormat != null) 'data_format': dataFormat!.toTfJson(),
     if (labelDelimiter != null) 'label_delimiter': labelDelimiter!.toTfJson(),
-    ...augmentedManifestsOrS3Uri.encode(),
+    ...source.encode(),
     if (testS3Uri != null) 'test_s3_uri': testS3Uri!.toTfJson(),
   };
 }
@@ -133,19 +132,19 @@ final class ComprehendDocumentClassifierInputDataConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.augmentedManifests(...)`.
-sealed class ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri {
-  const ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri();
+sealed class ComprehendDocumentClassifierInputDataConfigSource {
+  const ComprehendDocumentClassifierInputDataConfigSource();
 
   /// Sets `augmented_manifests`.
-  const factory ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri.augmentedManifests(
+  const factory ComprehendDocumentClassifierInputDataConfigSource.augmentedManifests(
     List<ComprehendDocumentClassifierInputDataConfigAugmentedManifests>
     augmentedManifests,
-  ) = ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriAugmentedManifests;
+  ) = ComprehendDocumentClassifierInputDataConfigSourceAugmentedManifests;
 
   /// Sets `s3_uri`.
-  const factory ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri.s3Uri(
+  const factory ComprehendDocumentClassifierInputDataConfigSource.s3Uri(
     TfArg<String> s3Uri,
-  ) = ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriS3Uri;
+  ) = ComprehendDocumentClassifierInputDataConfigSourceS3Uri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -153,11 +152,10 @@ sealed class ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Ur
   Map<String, Object?> encode();
 }
 
-/// The [ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri.augmentedManifests] choice: sets `augmented_manifests`.
-final class ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriAugmentedManifests
-    extends
-        ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri {
-  const ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriAugmentedManifests(
+/// The [ComprehendDocumentClassifierInputDataConfigSource.augmentedManifests] choice: sets `augmented_manifests`.
+final class ComprehendDocumentClassifierInputDataConfigSourceAugmentedManifests
+    extends ComprehendDocumentClassifierInputDataConfigSource {
+  const ComprehendDocumentClassifierInputDataConfigSourceAugmentedManifests(
     this.augmentedManifests,
   );
 
@@ -173,13 +171,10 @@ final class ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri
   };
 }
 
-/// The [ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri.s3Uri] choice: sets `s3_uri`.
-final class ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriS3Uri
-    extends
-        ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3Uri {
-  const ComprehendDocumentClassifierInputDataConfigAugmentedManifestsOrS3UriS3Uri(
-    this.s3Uri,
-  );
+/// The [ComprehendDocumentClassifierInputDataConfigSource.s3Uri] choice: sets `s3_uri`.
+final class ComprehendDocumentClassifierInputDataConfigSourceS3Uri
+    extends ComprehendDocumentClassifierInputDataConfigSource {
+  const ComprehendDocumentClassifierInputDataConfigSourceS3Uri(this.s3Uri);
 
   final TfArg<String> s3Uri;
 

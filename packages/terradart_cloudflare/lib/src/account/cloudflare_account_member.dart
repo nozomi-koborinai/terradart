@@ -21,17 +21,17 @@ enum AccountMemberStatus implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.roles(...)`.
-sealed class AccountMemberRolesOrPolicies {
-  const AccountMemberRolesOrPolicies();
+sealed class AccountMemberAccess {
+  const AccountMemberAccess();
 
   /// Sets `roles`.
-  const factory AccountMemberRolesOrPolicies.roles(TfArg<List<String>> roles) =
-      AccountMemberRolesOrPoliciesRoles;
+  const factory AccountMemberAccess.roles(TfArg<List<String>> roles) =
+      AccountMemberAccessRoles;
 
   /// Sets `policies`.
-  const factory AccountMemberRolesOrPolicies.policies(
+  const factory AccountMemberAccess.policies(
     List<AccountMemberPolicies> policies,
-  ) = AccountMemberRolesOrPoliciesPolicies;
+  ) = AccountMemberAccessPolicies;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,10 +43,9 @@ sealed class AccountMemberRolesOrPolicies {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AccountMemberRolesOrPolicies.roles] choice: sets `roles`.
-final class AccountMemberRolesOrPoliciesRoles
-    extends AccountMemberRolesOrPolicies {
-  const AccountMemberRolesOrPoliciesRoles(this.roles);
+/// The [AccountMemberAccess.roles] choice: sets `roles`.
+final class AccountMemberAccessRoles extends AccountMemberAccess {
+  const AccountMemberAccessRoles(this.roles);
 
   final TfArg<List<String>> roles;
 
@@ -60,10 +59,9 @@ final class AccountMemberRolesOrPoliciesRoles
   Map<String, TfArg<Object?>> get argMap => {'roles': roles};
 }
 
-/// The [AccountMemberRolesOrPolicies.policies] choice: sets `policies`.
-final class AccountMemberRolesOrPoliciesPolicies
-    extends AccountMemberRolesOrPolicies {
-  const AccountMemberRolesOrPoliciesPolicies(this.policies);
+/// The [AccountMemberAccess.policies] choice: sets `policies`.
+final class AccountMemberAccessPolicies extends AccountMemberAccess {
+  const AccountMemberAccessPolicies(this.policies);
 
   final List<AccountMemberPolicies> policies;
 
@@ -148,7 +146,7 @@ final class CloudflareAccountMember extends Resource {
     required super.localName,
     required TfArg<String> accountId,
     required TfArg<String> email,
-    required AccountMemberRolesOrPolicies rolesOrPolicies,
+    required AccountMemberAccess access,
     TfArg<AccountMemberStatus>? status,
     super.lifecycle,
     super.dependsOn,
@@ -159,7 +157,7 @@ final class CloudflareAccountMember extends Resource {
          argMap: {
            'account_id': accountId,
            'email': email,
-           ...rolesOrPolicies.argMap,
+           ...access.argMap,
            if (status != null) 'status': status,
          },
        );

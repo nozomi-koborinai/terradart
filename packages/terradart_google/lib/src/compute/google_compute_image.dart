@@ -23,6 +23,19 @@ const Set<String> _googleComputeImageSensitive = <String>{
 sealed class ComputeImageSource {
   const ComputeImageSource();
 
+  /// Create the image from a Persistent Disk (name or self-link).
+  const factory ComputeImageSource.disk({required TfArg<String> sourceDisk}) =
+      ComputeImageDiskSource;
+
+  /// Create the image from another Image (name or self-link).
+  const factory ComputeImageSource.image({required TfArg<String> sourceImage}) =
+      ComputeImageImageSource;
+
+  /// Create the image from a Persistent Disk Snapshot (name or self-link).
+  const factory ComputeImageSource.snapshot({
+    required TfArg<String> sourceSnapshot,
+  }) = ComputeImageSnapshotSource;
+
   /// Terraform attribute name (`source_disk`, `source_image`, or
   /// `source_snapshot`).
   String get blockKey;

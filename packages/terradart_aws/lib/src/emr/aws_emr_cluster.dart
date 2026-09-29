@@ -393,7 +393,7 @@ final class EmrClusterEc2Attributes {
     required this.instanceProfile,
     this.keyName,
     this.serviceAccessSecurityGroup,
-    this.subnetId,
+    this.subnet,
   });
 
   final TfArg<String>? additionalMasterSecurityGroups;
@@ -410,7 +410,7 @@ final class EmrClusterEc2Attributes {
 
   final TfArg<String>? serviceAccessSecurityGroup;
 
-  final EmrClusterEc2AttributesSubnetId? subnetId;
+  final EmrClusterEc2AttributesSubnet? subnet;
 
   Map<String, Object?> encode() => {
     if (additionalMasterSecurityGroups != null)
@@ -429,7 +429,7 @@ final class EmrClusterEc2Attributes {
     if (keyName != null) 'key_name': keyName!.toTfJson(),
     if (serviceAccessSecurityGroup != null)
       'service_access_security_group': serviceAccessSecurityGroup!.toTfJson(),
-    ...?subnetId?.encode(),
+    ...?subnet?.encode(),
   };
 }
 
@@ -438,18 +438,17 @@ final class EmrClusterEc2Attributes {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.subnetId(...)`.
-sealed class EmrClusterEc2AttributesSubnetId {
-  const EmrClusterEc2AttributesSubnetId();
+sealed class EmrClusterEc2AttributesSubnet {
+  const EmrClusterEc2AttributesSubnet();
 
   /// Sets `subnet_id`.
-  const factory EmrClusterEc2AttributesSubnetId.subnetId(
-    TfArg<String> subnetId,
-  ) = EmrClusterEc2AttributesSubnetIdSubnetId;
+  const factory EmrClusterEc2AttributesSubnet.subnetId(TfArg<String> subnetId) =
+      EmrClusterEc2AttributesSubnetSubnetId;
 
   /// Sets `subnet_ids`.
-  const factory EmrClusterEc2AttributesSubnetId.subnetIds(
+  const factory EmrClusterEc2AttributesSubnet.subnetIds(
     TfArg<List<Object?>> subnetIds,
-  ) = EmrClusterEc2AttributesSubnetIdSubnetIds;
+  ) = EmrClusterEc2AttributesSubnetSubnetIds;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -457,10 +456,10 @@ sealed class EmrClusterEc2AttributesSubnetId {
   Map<String, Object?> encode();
 }
 
-/// The [EmrClusterEc2AttributesSubnetId.subnetId] choice: sets `subnet_id`.
-final class EmrClusterEc2AttributesSubnetIdSubnetId
-    extends EmrClusterEc2AttributesSubnetId {
-  const EmrClusterEc2AttributesSubnetIdSubnetId(this.subnetId);
+/// The [EmrClusterEc2AttributesSubnet.subnetId] choice: sets `subnet_id`.
+final class EmrClusterEc2AttributesSubnetSubnetId
+    extends EmrClusterEc2AttributesSubnet {
+  const EmrClusterEc2AttributesSubnetSubnetId(this.subnetId);
 
   final TfArg<String> subnetId;
 
@@ -471,10 +470,10 @@ final class EmrClusterEc2AttributesSubnetIdSubnetId
   Map<String, Object?> encode() => {'subnet_id': subnetId.toTfJson()};
 }
 
-/// The [EmrClusterEc2AttributesSubnetId.subnetIds] choice: sets `subnet_ids`.
-final class EmrClusterEc2AttributesSubnetIdSubnetIds
-    extends EmrClusterEc2AttributesSubnetId {
-  const EmrClusterEc2AttributesSubnetIdSubnetIds(this.subnetIds);
+/// The [EmrClusterEc2AttributesSubnet.subnetIds] choice: sets `subnet_ids`.
+final class EmrClusterEc2AttributesSubnetSubnetIds
+    extends EmrClusterEc2AttributesSubnet {
+  const EmrClusterEc2AttributesSubnetSubnetIds(this.subnetIds);
 
   final TfArg<List<Object?>> subnetIds;
 

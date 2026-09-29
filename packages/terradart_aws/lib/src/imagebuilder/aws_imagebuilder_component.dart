@@ -21,16 +21,16 @@ enum ImagebuilderComponentPlatform implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.data(...)`.
-sealed class ImagebuilderComponentDataOrUri {
-  const ImagebuilderComponentDataOrUri();
+sealed class ImagebuilderComponentDocument {
+  const ImagebuilderComponentDocument();
 
   /// Sets `data`.
-  const factory ImagebuilderComponentDataOrUri.data(TfArg<String> data) =
-      ImagebuilderComponentDataOrUriData;
+  const factory ImagebuilderComponentDocument.data(TfArg<String> data) =
+      ImagebuilderComponentDocumentData;
 
   /// Sets `uri`.
-  const factory ImagebuilderComponentDataOrUri.uri(TfArg<String> uri) =
-      ImagebuilderComponentDataOrUriUri;
+  const factory ImagebuilderComponentDocument.uri(TfArg<String> uri) =
+      ImagebuilderComponentDocumentUri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -42,10 +42,10 @@ sealed class ImagebuilderComponentDataOrUri {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ImagebuilderComponentDataOrUri.data] choice: sets `data`.
-final class ImagebuilderComponentDataOrUriData
-    extends ImagebuilderComponentDataOrUri {
-  const ImagebuilderComponentDataOrUriData(this.data);
+/// The [ImagebuilderComponentDocument.data] choice: sets `data`.
+final class ImagebuilderComponentDocumentData
+    extends ImagebuilderComponentDocument {
+  const ImagebuilderComponentDocumentData(this.data);
 
   final TfArg<String> data;
 
@@ -59,10 +59,10 @@ final class ImagebuilderComponentDataOrUriData
   Map<String, TfArg<Object?>> get argMap => {'data': data};
 }
 
-/// The [ImagebuilderComponentDataOrUri.uri] choice: sets `uri`.
-final class ImagebuilderComponentDataOrUriUri
-    extends ImagebuilderComponentDataOrUri {
-  const ImagebuilderComponentDataOrUriUri(this.uri);
+/// The [ImagebuilderComponentDocument.uri] choice: sets `uri`.
+final class ImagebuilderComponentDocumentUri
+    extends ImagebuilderComponentDocument {
+  const ImagebuilderComponentDocumentUri(this.uri);
 
   final TfArg<String> uri;
 
@@ -83,7 +83,7 @@ final class AwsImagebuilderComponent extends Resource {
   AwsImagebuilderComponent({
     required super.localName,
     TfArg<String>? changeDescription,
-    required ImagebuilderComponentDataOrUri dataOrUri,
+    required ImagebuilderComponentDocument document,
     TfArg<String>? description,
     TfArg<String>? kmsKeyId,
     required TfArg<String> name,
@@ -102,7 +102,7 @@ final class AwsImagebuilderComponent extends Resource {
          argMap: {
            if (changeDescription != null)
              'change_description': changeDescription,
-           ...dataOrUri.argMap,
+           ...document.argMap,
            if (description != null) 'description': description,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
            'name': name,

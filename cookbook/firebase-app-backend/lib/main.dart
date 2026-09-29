@@ -37,32 +37,32 @@ final class FirebaseAppBackendStack extends Stack {
     final apiFirebase = add(
       GoogleProjectService(
         localName: 'api_firebase',
-        service: TfArg.literal('firebase.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('firebase.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final apiFirestore = add(
       GoogleProjectService(
         localName: 'api_firestore',
-        service: TfArg.literal('firestore.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('firestore.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final apiRun = add(
       GoogleProjectService(
         localName: 'api_run',
-        service: TfArg.literal('run.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('run.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final apiStorage = add(
       GoogleProjectService(
         localName: 'api_storage',
-        service: TfArg.literal('storage.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('storage.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
@@ -72,7 +72,7 @@ final class FirebaseAppBackendStack extends Stack {
     final fbProject = add(
       GoogleFirebaseProject(
         localName: 'firebase_core',
-        project: TfArg.literal(projectId),
+        project: .literal(projectId),
         dependsOn: [ResourceDependency(apiFirebase)],
       ),
     );
@@ -80,8 +80,8 @@ final class FirebaseAppBackendStack extends Stack {
     add(
       GoogleFirebaseWebApp(
         localName: 'web_client',
-        displayName: TfArg.literal('Frontend Client'),
-        project: TfArg.literal(projectId),
+        displayName: .literal('Frontend Client'),
+        project: .literal(projectId),
         dependsOn: [ResourceDependency(fbProject)],
       ),
     );
@@ -92,11 +92,11 @@ final class FirebaseAppBackendStack extends Stack {
     final firestoreDb = add(
       GoogleFirestoreDatabase(
         localName: 'default_db',
-        name: TfArg.literal('(default)'),
-        locationId: TfArg.literal('asia-northeast1'),
-        type: TfArg.literal(FirestoreDatabaseType.firestoreNative),
-        deleteProtectionState: TfArg.literal(DeleteProtectionState.disabled),
-        deletionPolicy: TfArg.literal('DELETE'),
+        name: .literal('(default)'),
+        locationId: .literal('asia-northeast1'),
+        type: .literal(.firestoreNative),
+        deleteProtectionState: .literal(.disabled),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [
           ResourceDependency(apiFirestore),
           ResourceDependency(fbProject),
@@ -110,11 +110,11 @@ final class FirebaseAppBackendStack extends Stack {
     final uploadsBucket = add(
       GoogleStorageBucket(
         localName: 'uploads',
-        name: TfArg.literal('$projectId-app-uploads'),
-        location: TfArg.literal('ASIA-NORTHEAST1'),
-        storageClass: TfArg.literal(BucketStorageClass.standard),
-        uniformBucketLevelAccess: TfArg.literal(true),
-        forceDestroy: TfArg.literal(true),
+        name: .literal('$projectId-app-uploads'),
+        location: .literal('ASIA-NORTHEAST1'),
+        storageClass: .literal(.standard),
+        uniformBucketLevelAccess: .literal(true),
+        forceDestroy: .literal(true),
         dependsOn: [ResourceDependency(apiStorage)],
       ),
     );
@@ -125,25 +125,21 @@ final class FirebaseAppBackendStack extends Stack {
     add(
       GoogleCloudRunV2Service(
         localName: 'backend_api',
-        name: TfArg.literal('backend-api'),
-        location: TfArg.literal('asia-northeast1'),
-        deletionProtection: TfArg.literal(false),
+        name: .literal('backend-api'),
+        location: .literal('asia-northeast1'),
+        deletionProtection: .literal(false),
         template: CloudRunV2ServiceTemplate(
           containers: [
             CloudRunV2ServiceServiceContainer(
-              name: TfArg.literal('server'),
-              image: TfArg.literal(
-                'us-docker.pkg.dev/cloudrun/container/hello',
-              ),
+              name: .literal('server'),
+              image: .literal('us-docker.pkg.dev/cloudrun/container/hello'),
               ports: CloudRunV2ServiceContainerPort(
-                containerPort: TfArg.literal(8080),
+                containerPort: .literal(8080),
               ),
               env: [
                 CloudRunV2ServiceEnvVar(
-                  name: TfArg.literal('UPLOAD_BUCKET_NAME'),
-                  source: CloudRunV2ServiceEnvVarFromLiteral(
-                    TfArg.ref(uploadsBucket.nameRef),
-                  ),
+                  name: .literal('UPLOAD_BUCKET_NAME'),
+                  source: .value(.ref(uploadsBucket.nameRef)),
                 ),
               ],
             ),

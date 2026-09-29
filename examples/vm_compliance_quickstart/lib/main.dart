@@ -50,13 +50,13 @@ final class VmComplianceStack extends Stack {
     add(
       GoogleBinaryAuthorizationPolicy(
         localName: 'project_policy',
-        description: TfArg.literal('TerraDart quickstart admission policy'),
+        description: .literal('TerraDart quickstart admission policy'),
         defaultAdmissionRule: BinaryAuthorizationPolicyDefaultAdmissionRule(
-          evaluationMode: TfArg.literal(
+          evaluationMode: .literal(
             BinaryAuthorizationPolicyDefaultAdmissionRuleEvaluationMode
                 .alwaysAllow,
           ),
-          enforcementMode: TfArg.literal(
+          enforcementMode: .literal(
             BinaryAuthorizationPolicyDefaultAdmissionRuleEnforcementMode
                 .enforcedBlockAndAuditLog,
           ),
@@ -68,9 +68,9 @@ final class VmComplianceStack extends Stack {
     final attestor = add(
       GoogleBinaryAuthorizationAttestor(
         localName: 'ci_attestor',
-        name: TfArg.literal('ci-attestor'),
-        description: TfArg.literal('CI image signing attestor'),
-        attestationAuthorityNote: TfArg.literal({
+        name: .literal('ci-attestor'),
+        description: .literal('CI image signing attestor'),
+        attestationAuthorityNote: .literal({
           'note_reference': 'projects/$projectId/notes/ci-attestor',
           'public_keys': [
             {
@@ -89,17 +89,17 @@ final class VmComplianceStack extends Stack {
     final ciSigner = add(
       GoogleServiceAccount(
         localName: 'ci_signer',
-        accountId: TfArg.literal('ci-signer'),
-        displayName: TfArg.literal('CI image signer'),
+        accountId: .literal('ci-signer'),
+        displayName: .literal('CI image signer'),
       ),
     );
 
     add(
       GoogleBinaryAuthorizationAttestorIamMember(
         localName: 'ci_attestor_viewer',
-        attestor: TfArg.ref(attestor.nameRef),
-        role: TfArg.literal('roles/viewer'),
-        member: TfArg.ref(ciSigner.iamMember),
+        attestor: .ref(attestor.nameRef),
+        role: .literal('roles/viewer'),
+        member: .ref(ciSigner.iamMember),
         dependsOn: [ResourceDependency(attestor), ResourceDependency(ciSigner)],
       ),
     );
@@ -107,25 +107,23 @@ final class VmComplianceStack extends Stack {
     add(
       GoogleOsConfigOsPolicyAssignment(
         localName: 'baseline',
-        name: TfArg.literal('baseline-policies'),
-        location: TfArg.literal(zone),
-        description: TfArg.literal('Validation-mode shell probe for Linux VMs'),
+        name: .literal('baseline-policies'),
+        location: .literal(zone),
+        description: .literal('Validation-mode shell probe for Linux VMs'),
         instanceFilter: OsConfigOsPolicyAssignmentInstanceFilter(
-          all: TfArg.literal(true),
+          all: .literal(true),
         ),
         osPolicies: [
           OsConfigOsPolicyAssignmentOsPolicies(
-            id: TfArg.literal('hello-probe'),
-            mode: TfArg.literal(
-              OsConfigOsPolicyAssignmentOsPoliciesMode.validation,
-            ),
+            id: .literal('hello-probe'),
+            mode: .literal(.validation),
             resourceGroups: [
               OsConfigOsPolicyAssignmentOsPoliciesResourceGroups(
                 // `resources` stays an opaque literal — deliberately excluded
                 // from typed derivation (see the override's
                 // `nestedTypeExcludes`); the field is still required +
                 // repeated, matching the real schema.
-                resources: TfArg.literal([
+                resources: .literal([
                   {
                     'id': 'hello-script',
                     'exec': {
@@ -142,11 +140,11 @@ final class VmComplianceStack extends Stack {
         ],
         rollout: OsConfigOsPolicyAssignmentRollout(
           disruptionBudget: OsConfigOsPolicyAssignmentRolloutDisruptionBudget(
-            percent: TfArg.literal(100),
+            percent: .literal(100),
           ),
-          minWaitDuration: TfArg.literal('0s'),
+          minWaitDuration: .literal('0s'),
         ),
-        skipAwaitRollout: TfArg.literal(true),
+        skipAwaitRollout: .literal(true),
         dependsOn: apiDeps,
       ),
     );
@@ -154,20 +152,16 @@ final class VmComplianceStack extends Stack {
     add(
       GoogleOsConfigPatchDeployment(
         localName: 'security_patches',
-        patchDeploymentId: TfArg.literal('security-patches'),
-        description: TfArg.literal('One-time security patch window'),
+        patchDeploymentId: .literal('security-patches'),
+        description: .literal('One-time security patch window'),
         instanceFilter: OsConfigPatchDeploymentInstanceFilter(
-          all: TfArg.literal(true),
+          all: .literal(true),
         ),
         patchConfig: OsConfigPatchDeploymentPatchConfig(
-          migInstancesAllowed: TfArg.literal(true),
-          rebootConfig: TfArg.literal(
-            OsConfigPatchDeploymentPatchConfigRebootConfig.defaultCase,
-          ),
+          migInstancesAllowed: .literal(true),
+          rebootConfig: .literal(.defaultCase),
         ),
-        schedule: OsConfigPatchDeploymentOneTimeSchedule(
-          executeTime: TfArg.literal('2030-01-01T02:00:00Z'),
-        ),
+        schedule: .oneTime(executeTime: .literal('2030-01-01T02:00:00Z')),
         dependsOn: apiDeps,
       ),
     );
@@ -177,19 +171,19 @@ final class VmComplianceStack extends Stack {
     add(
       GoogleOsConfigV2PolicyOrchestrator(
         localName: 'stopped',
-        policyOrchestratorId: TfArg.literal('terradart-po'),
-        action: TfArg.literal('UPSERT'),
-        state: TfArg.literal('STOPPED'),
+        policyOrchestratorId: .literal('terradart-po'),
+        action: .literal('UPSERT'),
+        state: .literal('STOPPED'),
         orchestratedResource: OsConfigV2PolicyOrchestratorOrchestratedResource(
           osPolicyAssignmentV1Payload:
               OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1Payload(
                 osPolicies: [
                   OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies(
-                    id: TfArg.literal('test-os-policy'),
-                    mode: TfArg.literal('VALIDATION'),
+                    id: .literal('test-os-policy'),
+                    mode: .literal('VALIDATION'),
                     resourceGroups: [
                       OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups(
-                        resources: TfArg.literal([
+                        resources: .literal([
                           {
                             'id': 'resource-tf',
                             'file': {
@@ -207,7 +201,7 @@ final class VmComplianceStack extends Stack {
                     OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter(
                       inventories: [
                         OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories(
-                          osShortName: TfArg.literal('windows-10'),
+                          osShortName: .literal('windows-10'),
                         ),
                       ],
                     ),
@@ -215,13 +209,13 @@ final class VmComplianceStack extends Stack {
                     OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout(
                       disruptionBudget:
                           OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget(
-                            percent: TfArg.literal(100),
+                            percent: .literal(100),
                           ),
-                      minWaitDuration: TfArg.literal('60s'),
+                      minWaitDuration: .literal('60s'),
                     ),
               ),
         ),
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );

@@ -23,20 +23,20 @@ final class FirebaserulesStack extends Stack {
     final apiRules = add(
       GoogleProjectService(
         localName: 'api_firebaserules',
-        service: TfArg.literal('firebaserules.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('firebaserules.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     add(
       GoogleFirebaserulesRuleset(
         localName: 'deny_all',
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         source: FirebaserulesRulesetSource(
           files: [
             FirebaserulesRulesetSourceFiles(
-              name: TfArg.literal('firestore.rules'),
-              content: TfArg.literal(
+              name: .literal('firestore.rules'),
+              content: .literal(
                 'service cloud.firestore {'
                 'match /databases/{database}/documents {'
                 'match /{document=**} { allow read, write: if false; } } }',

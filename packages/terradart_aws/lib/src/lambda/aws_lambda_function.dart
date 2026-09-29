@@ -99,23 +99,20 @@ enum LambdaFunctionRuntime implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.filename(...)`.
-sealed class LambdaFunctionFilenameOrImageUriOrS3Bucket {
-  const LambdaFunctionFilenameOrImageUriOrS3Bucket();
+sealed class LambdaFunctionCode {
+  const LambdaFunctionCode();
 
   /// Sets `filename`.
-  const factory LambdaFunctionFilenameOrImageUriOrS3Bucket.filename(
-    TfArg<String> filename,
-  ) = LambdaFunctionFilenameOrImageUriOrS3BucketFilename;
+  const factory LambdaFunctionCode.filename(TfArg<String> filename) =
+      LambdaFunctionCodeFilename;
 
   /// Sets `image_uri`.
-  const factory LambdaFunctionFilenameOrImageUriOrS3Bucket.imageUri(
-    TfArg<String> imageUri,
-  ) = LambdaFunctionFilenameOrImageUriOrS3BucketImageUri;
+  const factory LambdaFunctionCode.imageUri(TfArg<String> imageUri) =
+      LambdaFunctionCodeImageUri;
 
   /// Sets `s3_bucket`.
-  const factory LambdaFunctionFilenameOrImageUriOrS3Bucket.s3Bucket(
-    TfArg<String> s3Bucket,
-  ) = LambdaFunctionFilenameOrImageUriOrS3BucketS3Bucket;
+  const factory LambdaFunctionCode.s3Bucket(TfArg<String> s3Bucket) =
+      LambdaFunctionCodeS3Bucket;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -127,10 +124,9 @@ sealed class LambdaFunctionFilenameOrImageUriOrS3Bucket {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LambdaFunctionFilenameOrImageUriOrS3Bucket.filename] choice: sets `filename`.
-final class LambdaFunctionFilenameOrImageUriOrS3BucketFilename
-    extends LambdaFunctionFilenameOrImageUriOrS3Bucket {
-  const LambdaFunctionFilenameOrImageUriOrS3BucketFilename(this.filename);
+/// The [LambdaFunctionCode.filename] choice: sets `filename`.
+final class LambdaFunctionCodeFilename extends LambdaFunctionCode {
+  const LambdaFunctionCodeFilename(this.filename);
 
   final TfArg<String> filename;
 
@@ -144,10 +140,9 @@ final class LambdaFunctionFilenameOrImageUriOrS3BucketFilename
   Map<String, TfArg<Object?>> get argMap => {'filename': filename};
 }
 
-/// The [LambdaFunctionFilenameOrImageUriOrS3Bucket.imageUri] choice: sets `image_uri`.
-final class LambdaFunctionFilenameOrImageUriOrS3BucketImageUri
-    extends LambdaFunctionFilenameOrImageUriOrS3Bucket {
-  const LambdaFunctionFilenameOrImageUriOrS3BucketImageUri(this.imageUri);
+/// The [LambdaFunctionCode.imageUri] choice: sets `image_uri`.
+final class LambdaFunctionCodeImageUri extends LambdaFunctionCode {
+  const LambdaFunctionCodeImageUri(this.imageUri);
 
   final TfArg<String> imageUri;
 
@@ -161,10 +156,9 @@ final class LambdaFunctionFilenameOrImageUriOrS3BucketImageUri
   Map<String, TfArg<Object?>> get argMap => {'image_uri': imageUri};
 }
 
-/// The [LambdaFunctionFilenameOrImageUriOrS3Bucket.s3Bucket] choice: sets `s3_bucket`.
-final class LambdaFunctionFilenameOrImageUriOrS3BucketS3Bucket
-    extends LambdaFunctionFilenameOrImageUriOrS3Bucket {
-  const LambdaFunctionFilenameOrImageUriOrS3BucketS3Bucket(this.s3Bucket);
+/// The [LambdaFunctionCode.s3Bucket] choice: sets `s3_bucket`.
+final class LambdaFunctionCodeS3Bucket extends LambdaFunctionCode {
+  const LambdaFunctionCodeS3Bucket(this.s3Bucket);
 
   final TfArg<String> s3Bucket;
 
@@ -477,14 +471,13 @@ final class LambdaFunctionVpcConfig {
 ///
 /// AWS **Lambda function**. A Dart backend runs on the `provided.al2023`
 /// custom runtime: compile it with `dart compile exe` to a binary named
-/// `bootstrap`, zip it, and pass the zip as `filename` with
+/// `bootstrap`, zip it, and pass the zip as `code: .filename(...)` with
 /// `handler: TfArg.literal('bootstrap')`.
 ///
 /// `role` takes the execution role's ARN (`TfArg.ref(role.arn)`).
-/// Supply the code through exactly one of `filename`, `s3Bucket` +
-/// `s3Key`, or `imageUri`; the Dart API does not enforce that choice,
-/// `terraform validate` does. Pair `sourceCodeHash` with `filename` so a
-/// rebuilt zip redeploys.
+/// `code` is exactly one of `.filename(...)`, `.s3Bucket(...)` (with
+/// `s3Key`) or `.imageUri(...)`. Pair `sourceCodeHash` with a `.filename`
+/// zip so a rebuilt zip redeploys.
 final class AwsLambdaFunction extends Resource {
   static const String tfType = 'aws_lambda_function';
 
@@ -494,8 +487,7 @@ final class AwsLambdaFunction extends Resource {
     TfArg<String>? codeSha256,
     TfArg<String>? codeSigningConfigArn,
     TfArg<String>? description,
-    required LambdaFunctionFilenameOrImageUriOrS3Bucket
-    filenameOrImageUriOrS3Bucket,
+    required LambdaFunctionCode code,
     required TfArg<String> functionName,
     TfArg<String>? handler,
     TfArg<String>? kmsKeyArn,
@@ -545,7 +537,7 @@ final class AwsLambdaFunction extends Resource {
            if (codeSigningConfigArn != null)
              'code_signing_config_arn': codeSigningConfigArn,
            if (description != null) 'description': description,
-           ...filenameOrImageUriOrS3Bucket.argMap,
+           ...code.argMap,
            'function_name': functionName,
            if (handler != null) 'handler': handler,
            if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,

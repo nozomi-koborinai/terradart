@@ -9,10 +9,10 @@ export 'src/redshift/aws_redshift_cluster.dart'
     show
         AwsRedshiftCluster,
         RedshiftClusterAquaConfigurationStatus,
-        RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo,
-        RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoManageMasterPassword,
-        RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword,
-        RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo,
+        RedshiftClusterMasterPassword,
+        RedshiftClusterMasterPasswordManageMasterPassword,
+        RedshiftClusterMasterPasswordMasterPassword,
+        RedshiftClusterMasterPasswordMasterPasswordWo,
         RedshiftClusterSnapshot,
         RedshiftClusterSnapshotSnapshotArn,
         RedshiftClusterSnapshotSnapshotIdentifier;
@@ -25,10 +25,10 @@ export 'src/redshift/aws_redshift_data_share_authorization.dart'
 export 'src/redshift/aws_redshift_data_share_consumer_association.dart'
     show
         AwsRedshiftDataShareConsumerAssociation,
-        RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegion,
-        RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionAssociateEntireAccount,
-        RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerArn,
-        RedshiftDataShareConsumerAssociationAssociateEntireAccountOrConsumerArnOrConsumerRegionConsumerRegion;
+        RedshiftDataShareConsumerAssociationConsumer,
+        RedshiftDataShareConsumerAssociationConsumerAssociateEntireAccount,
+        RedshiftDataShareConsumerAssociationConsumerConsumerArn,
+        RedshiftDataShareConsumerAssociationConsumerConsumerRegion;
 export 'src/redshift/aws_redshift_endpoint_access.dart'
     show AwsRedshiftEndpointAccess;
 export 'src/redshift/aws_redshift_endpoint_authorization.dart'
@@ -75,10 +75,10 @@ export 'src/redshift/aws_redshift_scheduled_action.dart'
     show
         AwsRedshiftScheduledAction,
         RedshiftScheduledActionTargetAction,
-        RedshiftScheduledActionTargetActionCluster,
-        RedshiftScheduledActionTargetActionClusterPauseCluster,
-        RedshiftScheduledActionTargetActionClusterResizeCluster,
-        RedshiftScheduledActionTargetActionClusterResumeCluster,
+        RedshiftScheduledActionTargetActionAction,
+        RedshiftScheduledActionTargetActionActionPauseCluster,
+        RedshiftScheduledActionTargetActionActionResizeCluster,
+        RedshiftScheduledActionTargetActionActionResumeCluster,
         RedshiftScheduledActionTargetActionPauseCluster,
         RedshiftScheduledActionTargetActionResizeCluster,
         RedshiftScheduledActionTargetActionResumeCluster;

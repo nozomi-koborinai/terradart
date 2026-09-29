@@ -29,7 +29,7 @@ final class MyBetaStack extends Stack {
     final pubsubAgent = add(
       GoogleProjectServiceIdentity(
         localName: 'pubsub_agent',
-        service: TfArg.literal('pubsub.googleapis.com'),
+        service: .literal('pubsub.googleapis.com'),
       ),
     );
     // pubsubAgent.member feeds IAM grants without racing agent creation.

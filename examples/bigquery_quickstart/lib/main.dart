@@ -46,30 +46,27 @@ final class AnalyticsStack extends Stack {
     // dataset so the access entry can reference the SA's email.
     final reader = GoogleServiceAccount(
       localName: 'analytics_reader',
-      accountId: TfArg.literal('analytics-reader'),
-      displayName: TfArg.literal('Analytics dataset reader'),
+      accountId: .literal('analytics-reader'),
+      displayName: .literal('Analytics dataset reader'),
     );
     add(reader);
 
     final dataset = GoogleBigqueryDataset(
       localName: 'analytics',
-      datasetId: TfArg.literal('analytics_prod'),
-      location: TfArg.literal('asia-northeast1'),
-      friendlyName: TfArg.literal('Production analytics'),
-      description: TfArg.literal('Production analytics events + sessions.'),
+      datasetId: .literal('analytics_prod'),
+      location: .literal('asia-northeast1'),
+      friendlyName: .literal('Production analytics'),
+      description: .literal('Production analytics events + sessions.'),
       // 30 days in milliseconds.
-      defaultTableExpirationMs: TfArg.literal(30 * 24 * 60 * 60 * 1000),
-      storageBillingModel: TfArg.literal(DatasetStorageBillingModel.logical),
+      defaultTableExpirationMs: .literal(30 * 24 * 60 * 60 * 1000),
+      storageBillingModel: .literal(.logical),
       access: [
         // UserByEmail variant pointed at the in-stack reader SA — a real
         // identity once applied, not a placeholder address.
-        BigqueryDatasetAccessUserByEmail(
-          userByEmail: TfArg.ref(reader.email),
-          role: TfArg.literal('OWNER'),
-        ),
-        BigqueryDatasetAccessSpecialGroup(
-          specialGroup: TfArg.literal('allAuthenticatedUsers'),
-          role: TfArg.literal('READER'),
+        .userByEmail(userByEmail: .ref(reader.email), role: .literal('OWNER')),
+        .specialGroup(
+          specialGroup: .literal('allAuthenticatedUsers'),
+          role: .literal('READER'),
         ),
       ],
     );
@@ -82,10 +79,10 @@ final class AnalyticsStack extends Stack {
 
     final eventsTable = GoogleBigqueryTable(
       localName: 'events',
-      datasetId: TfArg.ref(dataset.datasetIdRef),
-      tableId: TfArg.literal('events'),
-      deletionProtection: TfArg.literal(false),
-      schema: TfArg.literal(
+      datasetId: .ref(dataset.datasetIdRef),
+      tableId: .literal('events'),
+      deletionProtection: .literal(false),
+      schema: .literal(
         '[{"name":"event_id","type":"STRING","mode":"REQUIRED"},'
         '{"name":"ts","type":"TIMESTAMP","mode":"REQUIRED"}]',
       ),
@@ -100,9 +97,9 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryDatasetIamMember(
         localName: 'analytics_reader_binding',
-        datasetId: TfArg.ref(dataset.datasetIdRef),
-        role: TfArg.literal('roles/bigquery.dataViewer'),
-        member: TfArg.ref(reader.iamMember),
+        datasetId: .ref(dataset.datasetIdRef),
+        role: .literal('roles/bigquery.dataViewer'),
+        member: .ref(reader.iamMember),
       ),
     );
 
@@ -115,18 +112,18 @@ final class AnalyticsStack extends Stack {
 
     final ingestor = GoogleServiceAccount(
       localName: 'events_ingestor',
-      accountId: TfArg.literal('events-ingestor'),
-      displayName: TfArg.literal('Events table ingestor'),
+      accountId: .literal('events-ingestor'),
+      displayName: .literal('Events table ingestor'),
     );
     add(ingestor);
 
     add(
       GoogleBigqueryTableIamMember(
         localName: 'events_ingestor_binding',
-        datasetId: TfArg.ref(dataset.datasetIdRef),
-        tableId: TfArg.ref(eventsTable.tableIdRef),
-        role: TfArg.literal('roles/bigquery.dataEditor'),
-        member: TfArg.ref(ingestor.iamMember),
+        datasetId: .ref(dataset.datasetIdRef),
+        tableId: .ref(eventsTable.tableIdRef),
+        role: .literal('roles/bigquery.dataEditor'),
+        member: .ref(ingestor.iamMember),
       ),
     );
 
@@ -135,24 +132,22 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryBiReservation(
         localName: 'bi_engine',
-        location: TfArg.literal('asia-northeast1'),
-        size: TfArg.literal(1),
+        location: .literal('asia-northeast1'),
+        size: .literal(1),
       ),
     );
 
     add(
       GoogleBigqueryDatapolicyDataPolicy(
         localName: 'email_mask',
-        location: TfArg.literal('asia-northeast1'),
-        dataPolicyId: TfArg.literal('mask-email'),
-        dataPolicyType: TfArg.literal(
-          BigqueryDatapolicyDataPolicyType.dataMaskingPolicy,
-        ),
+        location: .literal('asia-northeast1'),
+        dataPolicyId: .literal('mask-email'),
+        dataPolicyType: .literal(.dataMaskingPolicy),
         dataMaskingPolicy: const BigqueryDatapolicyDataPolicyDataMaskingPolicy(
           predefinedExpression:
               BigqueryDatapolicyDataPolicyPredefinedExpression.emailMask,
         ),
-        policyTag: TfArg.literal(
+        policyTag: .literal(
           'projects/$projectId/locations/asia-northeast1/taxonomies/1/policyTags/1',
         ),
       ),
@@ -161,34 +156,32 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryDatapolicyDataPolicyIamMember(
         localName: 'mask_email_reader',
-        dataPolicyId: TfArg.literal('mask-email'),
-        location: TfArg.literal('asia-northeast1'),
-        role: TfArg.literal('roles/bigquerydatapolicy.maskedReader'),
-        member: TfArg.ref(reader.iamMember),
+        dataPolicyId: .literal('mask-email'),
+        location: .literal('asia-northeast1'),
+        role: .literal('roles/bigquerydatapolicy.maskedReader'),
+        member: .ref(reader.iamMember),
       ),
     );
 
     final exchange = add(
       GoogleBigqueryAnalyticsHubDataExchange(
         localName: 'shared_exchange',
-        location: TfArg.literal('asia-northeast1'),
-        dataExchangeId: TfArg.literal('shared-exchange'),
-        displayName: TfArg.literal('Shared analytics exchange'),
+        location: .literal('asia-northeast1'),
+        dataExchangeId: .literal('shared-exchange'),
+        displayName: .literal('Shared analytics exchange'),
       ),
     );
 
     add(
       GoogleBigqueryAnalyticsHubListing(
         localName: 'events_listing',
-        location: TfArg.literal('asia-northeast1'),
-        dataExchangeId: TfArg.literal('shared-exchange'),
-        listingId: TfArg.literal('events-listing'),
-        displayName: TfArg.literal('Events dataset listing'),
+        location: .literal('asia-northeast1'),
+        dataExchangeId: .literal('shared-exchange'),
+        listingId: .literal('events-listing'),
+        displayName: .literal('Events dataset listing'),
         source: .bigqueryDataset(
           BigqueryAnalyticsHubListingBigqueryDataset(
-            dataset: TfArg.literal(
-              'projects/$projectId/datasets/analytics_prod',
-            ),
+            dataset: .literal('projects/$projectId/datasets/analytics_prod'),
           ),
         ),
         dependsOn: [ResourceDependency(exchange)],
@@ -198,29 +191,29 @@ final class AnalyticsStack extends Stack {
     final slotsReservation = add(
       GoogleBigqueryReservation(
         localName: 'analytics_slots',
-        name: TfArg.literal('analytics-slots'),
-        location: TfArg.literal('asia-northeast1'),
-        slotCapacity: TfArg.literal(50),
+        name: .literal('analytics-slots'),
+        location: .literal('asia-northeast1'),
+        slotCapacity: .literal(50),
       ),
     );
 
     add(
       GoogleBigqueryReservationAssignment(
         localName: 'project_slots',
-        assignee: TfArg.literal('projects/$projectId'),
-        jobType: TfArg.literal(BigqueryReservationAssignmentJobType.query),
-        location: TfArg.literal('asia-northeast1'),
-        reservation: TfArg.ref(slotsReservation.nameRef),
+        assignee: .literal('projects/$projectId'),
+        jobType: .literal(.query),
+        location: .literal('asia-northeast1'),
+        reservation: .ref(slotsReservation.nameRef),
       ),
     );
 
     add(
       GoogleBigqueryRowAccessPolicy(
         localName: 'events_tenant_filter',
-        datasetId: TfArg.ref(dataset.datasetIdRef),
-        tableId: TfArg.ref(eventsTable.tableIdRef),
-        policyId: TfArg.literal('tenant-filter'),
-        filterPredicate: TfArg.literal('tenant_id = SESSION_USER()'),
+        datasetId: .ref(dataset.datasetIdRef),
+        tableId: .ref(eventsTable.tableIdRef),
+        policyId: .literal('tenant-filter'),
+        filterPredicate: .literal('tenant_id = SESSION_USER()'),
       ),
     );
 
@@ -229,31 +222,31 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryAnalyticsHubDataExchangeIamMember(
         localName: 'exchange_subscriber',
-        dataExchangeId: TfArg.literal('shared-exchange'),
-        location: TfArg.literal('asia-northeast1'),
-        role: TfArg.literal('roles/analyticshub.subscriber'),
-        member: TfArg.ref(reader.iamMember),
+        dataExchangeId: .literal('shared-exchange'),
+        location: .literal('asia-northeast1'),
+        role: .literal('roles/analyticshub.subscriber'),
+        member: .ref(reader.iamMember),
       ),
     );
 
     add(
       GoogleBigqueryAnalyticsHubListingIamMember(
         localName: 'listing_viewer',
-        dataExchangeId: TfArg.literal('shared-exchange'),
-        listingId: TfArg.literal('events-listing'),
-        location: TfArg.literal('asia-northeast1'),
-        role: TfArg.literal('roles/analyticshub.viewer'),
-        member: TfArg.ref(reader.iamMember),
+        dataExchangeId: .literal('shared-exchange'),
+        listingId: .literal('events-listing'),
+        location: .literal('asia-northeast1'),
+        role: .literal('roles/analyticshub.viewer'),
+        member: .ref(reader.iamMember),
       ),
     );
 
     add(
       GoogleBigqueryAnalyticsHubListingSubscription(
         localName: 'events_subscription',
-        dataExchangeId: TfArg.literal('shared-exchange'),
-        listingId: TfArg.literal('events-listing'),
-        location: TfArg.literal('asia-northeast1'),
-        destinationDataset: TfArg.literal({
+        dataExchangeId: .literal('shared-exchange'),
+        listingId: .literal('events-listing'),
+        location: .literal('asia-northeast1'),
+        destinationDataset: .literal({
           'location': 'asia-northeast1',
           'dataset_reference': [
             {'dataset_id': 'analytics_prod', 'project_id': projectId},
@@ -265,19 +258,19 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryConnection(
         localName: 'cloud_resource_link',
-        connectionId: TfArg.literal('cloud-resource-link'),
-        location: TfArg.literal('asia-northeast1'),
-        backend: BigqueryConnectionCloudResource(),
+        connectionId: .literal('cloud-resource-link'),
+        location: .literal('asia-northeast1'),
+        backend: .cloudResource(),
       ),
     );
 
     add(
       GoogleBigqueryConnectionIamMember(
         localName: 'connection_user',
-        connectionId: TfArg.literal('cloud-resource-link'),
-        location: TfArg.literal('asia-northeast1'),
-        role: TfArg.literal('roles/bigquery.connectionUser'),
-        member: TfArg.ref(ingestor.iamMember),
+        connectionId: .literal('cloud-resource-link'),
+        location: .literal('asia-northeast1'),
+        role: .literal('roles/bigquery.connectionUser'),
+        member: .ref(ingestor.iamMember),
       ),
     );
 
@@ -286,17 +279,17 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryJob(
         localName: 'events_count_job',
-        jobId: TfArg.literal('events-count-backfill'),
-        location: TfArg.literal('asia-northeast1'),
-        jobConfiguration: BigqueryJobQuery(
-          query: TfArg.literal(
+        jobId: .literal('events-count-backfill'),
+        location: .literal('asia-northeast1'),
+        jobConfiguration: .query(
+          query: .literal(
             'SELECT COUNT(*) AS event_count FROM analytics_prod.events',
           ),
-          useLegacySql: TfArg.literal(false),
+          useLegacySql: .literal(false),
           destinationTable: BigqueryJobDestinationTable(
-            projectId: TfArg.literal(projectId),
-            datasetId: TfArg.ref(dataset.datasetIdRef),
-            tableId: TfArg.literal('events_daily_count'),
+            projectId: .literal(projectId),
+            datasetId: .ref(dataset.datasetIdRef),
+            tableId: .literal('events_daily_count'),
           ),
           writeDisposition: BigqueryJobWriteDisposition.writeTruncate,
           createDisposition: BigqueryJobCreateDisposition.createIfNeeded,
@@ -307,38 +300,38 @@ final class AnalyticsStack extends Stack {
     final addOneRoutine = add(
       GoogleBigqueryRoutine(
         localName: 'add_one',
-        datasetId: TfArg.ref(dataset.datasetIdRef),
-        routineId: TfArg.literal('add_one'),
-        routineType: TfArg.literal(BigqueryRoutineType.scalarFunction),
-        definitionBody: TfArg.literal('x + 1'),
-        language: TfArg.literal(BigqueryRoutineLanguage.sql),
+        datasetId: .ref(dataset.datasetIdRef),
+        routineId: .literal('add_one'),
+        routineType: .literal(.scalarFunction),
+        definitionBody: .literal('x + 1'),
+        language: .literal(.sql),
         arguments: [
           BigqueryRoutineArgument(
-            name: TfArg.literal('x'),
-            dataType: TfArg.literal('{"typeKind":"INT64"}'),
+            name: .literal('x'),
+            dataType: .literal('{"typeKind":"INT64"}'),
           ),
         ],
-        returnType: TfArg.literal('{"typeKind":"INT64"}'),
+        returnType: .literal('{"typeKind":"INT64"}'),
       ),
     );
 
     add(
       GoogleBigqueryRoutineIamMember(
         localName: 'add_one_reader',
-        datasetId: TfArg.ref(dataset.datasetIdRef),
-        routineId: TfArg.ref(addOneRoutine.routineIdRef),
-        role: TfArg.literal('roles/bigquery.dataViewer'),
-        member: TfArg.ref(reader.iamMember),
+        datasetId: .ref(dataset.datasetIdRef),
+        routineId: .ref(addOneRoutine.routineIdRef),
+        role: .literal('roles/bigquery.dataViewer'),
+        member: .ref(reader.iamMember),
       ),
     );
 
     final addOneBinding = add(
       GoogleBigqueryRoutineIamBinding(
         localName: 'add_one_binding',
-        datasetId: TfArg.ref(dataset.datasetIdRef),
-        routineId: TfArg.ref(addOneRoutine.routineIdRef),
-        role: TfArg.literal('roles/bigquery.dataEditor'),
-        members: TfArg.literal([reader.iamMember.interpolation]),
+        datasetId: .ref(dataset.datasetIdRef),
+        routineId: .ref(addOneRoutine.routineIdRef),
+        role: .literal('roles/bigquery.dataEditor'),
+        members: .literal([reader.iamMember.interpolation]),
         dependsOn: [ResourceDependency(addOneRoutine)],
       ),
     );
@@ -346,9 +339,9 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryRoutineIamPolicy(
         localName: 'add_one_policy',
-        datasetId: TfArg.ref(dataset.datasetIdRef),
-        routineId: TfArg.ref(addOneRoutine.routineIdRef),
-        policyData: TfArg.literal(
+        datasetId: .ref(dataset.datasetIdRef),
+        routineId: .ref(addOneRoutine.routineIdRef),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/bigquery.dataViewer',
             member:
@@ -365,23 +358,23 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryCapacityCommitment(
         localName: 'analytics_trial',
-        capacityCommitmentId: TfArg.literal('analytics-trial'),
-        location: TfArg.literal('asia-northeast1'),
-        slotCount: TfArg.literal(50),
-        plan: TfArg.literal(BigqueryCapacityCommitmentPlan.trial),
-        renewalPlan: TfArg.literal(BigqueryCapacityCommitmentRenewalPlan.none),
+        capacityCommitmentId: .literal('analytics-trial'),
+        location: .literal('asia-northeast1'),
+        slotCount: .literal(50),
+        plan: .literal(.trial),
+        renewalPlan: .literal(.none),
       ),
     );
 
     add(
       GoogleBigqueryDataTransferConfig(
         localName: 'daily_events_rollup',
-        displayName: TfArg.literal('Daily events rollup'),
-        dataSourceId: TfArg.literal('scheduled_query'),
-        destinationDatasetId: TfArg.ref(dataset.datasetIdRef),
-        location: TfArg.literal('asia-northeast1'),
-        schedule: TfArg.literal('every 24 hours'),
-        params: TfArg.literal({
+        displayName: .literal('Daily events rollup'),
+        dataSourceId: .literal('scheduled_query'),
+        destinationDatasetId: .ref(dataset.datasetIdRef),
+        location: .literal('asia-northeast1'),
+        schedule: .literal('every 24 hours'),
+        params: .literal({
           'query':
               'SELECT event_id, ts FROM `analytics_prod.events` LIMIT 1000',
           'destination_table_name_template': 'events_rollup',
@@ -395,14 +388,9 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryDatasetAccess(
         localName: 'project_writers_reader',
-        datasetId: TfArg.ref(dataset.datasetIdRef),
-        role: TfArg.literal('READER'),
-        grantee:
-            .specialGroup(
-              TfArg.literal(
-                BigqueryDatasetAccessPredefinedGroup.projectWriters,
-              ),
-            ),
+        datasetId: .ref(dataset.datasetIdRef),
+        role: .literal('READER'),
+        grantee: .specialGroup(.literal(.projectWriters)),
         dependsOn: [ResourceDependency(dataset)],
       ),
     );

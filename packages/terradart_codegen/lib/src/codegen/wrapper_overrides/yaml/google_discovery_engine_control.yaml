@@ -59,6 +59,36 @@ prelude: |
   sealed class DiscoveryEngineControlAction {
     const DiscoveryEngineControlAction();
 
+    /// `boost_action` — change result order.
+    const factory DiscoveryEngineControlAction.boostAction({
+      required TfArg<String> dataStore,
+      required TfArg<String> filter,
+      TfArg<double>? fixedBoost,
+      DiscoveryEngineControlInterpolationBoostSpec? interpolationBoostSpec,
+    }) = DiscoveryEngineControlBoostAction;
+
+    /// `filter_action` — drop matching results.
+    const factory DiscoveryEngineControlAction.filterAction({
+      required TfArg<String> dataStore,
+      required TfArg<String> filter,
+    }) = DiscoveryEngineControlFilterAction;
+
+    /// `redirect_action` — send the query to [redirectUri].
+    const factory DiscoveryEngineControlAction.redirectAction({
+      required TfArg<String> redirectUri,
+    }) = DiscoveryEngineControlRedirectAction;
+
+    /// `synonyms_action` — treat [synonyms] as equivalent query terms.
+    const factory DiscoveryEngineControlAction.synonymsAction({
+      TfArg<List<String>>? synonyms,
+    }) = DiscoveryEngineControlSynonymsAction;
+
+    /// `promote_action` — pin a search-link promotion on [dataStore].
+    const factory DiscoveryEngineControlAction.promoteAction({
+      required TfArg<String> dataStore,
+      required DiscoveryEngineControlSearchLinkPromotion searchLinkPromotion,
+    }) = DiscoveryEngineControlPromoteAction;
+
     /// argMap key (`boost_action`, `filter_action`, …).
     String get blockKey;
 

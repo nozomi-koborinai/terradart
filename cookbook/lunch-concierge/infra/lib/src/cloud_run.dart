@@ -22,21 +22,21 @@ GoogleCloudRunV2Service addCloudRunService({
   final service = stack.add(
     GoogleCloudRunV2Service(
       localName: 'lunch_concierge',
-      name: TfArg.literal(serviceName),
-      location: TfArg.literal(region),
-      ingress: TfArg.literal(Ingress.all),
-      iapEnabled: TfArg.literal(true),
-      deletionProtection: TfArg.literal(false),
+      name: .literal(serviceName),
+      location: .literal(region),
+      ingress: .literal(.all),
+      iapEnabled: .literal(true),
+      deletionProtection: .literal(false),
       template: CloudRunV2ServiceTemplate(
-        serviceAccount: TfArg.ref(identity.serviceAccount.email),
-        maxInstanceRequestConcurrency: TfArg.literal(80),
-        timeout: TfArg.literal('300s'),
+        serviceAccount: .ref(identity.serviceAccount.email),
+        maxInstanceRequestConcurrency: .literal(80),
+        timeout: .literal('300s'),
         vpcAccess: CloudRunV2ServiceVpcAccess(
-          egress: TfArg.literal(VpcAccessEgress.privateRangesOnly),
+          egress: .literal(.privateRangesOnly),
           networkInterfaces: [
             CloudRunV2ServiceVpcNetworkInterface(
-              network: TfArg.ref(network.vpc.id),
-              subnetwork: TfArg.ref(network.subnet.id),
+              network: .ref(network.vpc.id),
+              subnetwork: .ref(network.subnet.id),
             ),
           ],
         ),
@@ -46,29 +46,29 @@ GoogleCloudRunV2Service addCloudRunService({
         ),
         containers: [
           CloudRunV2ServiceServiceContainer(
-            name: TfArg.literal('app'),
-            image: TfArg.literal(imageUri),
+            name: .literal('app'),
+            image: .literal(imageUri),
             ports: const CloudRunV2ServiceContainerPort(
               containerPort: TfArgLiteral(8080),
             ),
             resources: CloudRunV2ServiceContainerResources(
-              limits: TfArg.literal({'cpu': '1', 'memory': '512Mi'}),
-              cpuIdle: TfArg.literal(true),
-              startupCpuBoost: TfArg.literal(true),
+              limits: .literal({'cpu': '1', 'memory': '512Mi'}),
+              cpuIdle: .literal(true),
+              startupCpuBoost: .literal(true),
             ),
           ),
           CloudRunV2ServiceServiceContainer(
-            name: TfArg.literal('cloud-sql-proxy'),
-            image: TfArg.literal(cloudSqlProxyImage),
-            args: TfArg.literal([
+            name: .literal('cloud-sql-proxy'),
+            image: .literal(cloudSqlProxyImage),
+            args: .literal([
               '--private-ip',
               '--port=5432',
               '--auto-iam-authn',
               database.instanceConnectionName,
             ]),
             resources: CloudRunV2ServiceContainerResources(
-              limits: TfArg.literal({'cpu': '0.5', 'memory': '256Mi'}),
-              cpuIdle: TfArg.literal(false),
+              limits: .literal({'cpu': '0.5', 'memory': '256Mi'}),
+              cpuIdle: .literal(false),
             ),
           ),
         ],
@@ -98,10 +98,10 @@ GoogleCloudRunV2Service addCloudRunService({
   stack.add(
     GoogleCloudRunV2ServiceIamMember(
       localName: 'speaker_invoker',
-      name: TfArg.ref(service.nameRef),
-      location: TfArg.literal(region),
-      role: TfArg.literal('roles/run.invoker'),
-      member: TfArg.literal('user:$invokerEmail'),
+      name: .ref(service.nameRef),
+      location: .literal(region),
+      role: .literal('roles/run.invoker'),
+      member: .literal('user:$invokerEmail'),
       dependsOn: [ResourceDependency(service)],
     ),
   );
@@ -114,10 +114,10 @@ GoogleCloudRunV2Service addCloudRunService({
   stack.add(
     GoogleCloudRunV2ServiceIamMember(
       localName: 'iap_agent_invoker',
-      name: TfArg.ref(service.nameRef),
-      location: TfArg.literal(region),
-      role: TfArg.literal('roles/run.invoker'),
-      member: TfArg.literal(
+      name: .ref(service.nameRef),
+      location: .literal(region),
+      role: .literal('roles/run.invoker'),
+      member: .literal(
         'serviceAccount:service-${project.number.interpolation}'
         '@gcp-sa-iap.iam.gserviceaccount.com',
       ),
@@ -128,10 +128,10 @@ GoogleCloudRunV2Service addCloudRunService({
   stack.add(
     IapWebCloudRunServiceIamMember(
       localName: 'speaker_iap_access',
-      cloudRunServiceName: TfArg.ref(service.nameRef),
-      location: TfArg.literal(region),
-      role: TfArg.literal('roles/iap.httpsResourceAccessor'),
-      member: TfArg.literal('user:$invokerEmail'),
+      cloudRunServiceName: .ref(service.nameRef),
+      location: .literal(region),
+      role: .literal('roles/iap.httpsResourceAccessor'),
+      member: .literal('user:$invokerEmail'),
       dependsOn: [ResourceDependency(service), ResourceDependency(iapApi)],
     ),
   );

@@ -31,8 +31,8 @@ final class ApphubStack extends Stack {
     add(
       GoogleApphubBoundary(
         localName: 'host',
-        location: TfArg.literal('global'),
-        crmNode: TfArg.literal('projects/${current.number.interpolation}'),
+        location: .literal('global'),
+        crmNode: .literal('projects/${current.number.interpolation}'),
         dependsOn: apiDeps,
       ),
     );
@@ -40,12 +40,10 @@ final class ApphubStack extends Stack {
     add(
       GoogleApphubApplication(
         localName: 'orders',
-        location: TfArg.literal('us-central1'),
-        applicationId: TfArg.literal('terradart-orders'),
-        displayName: TfArg.literal('TerraDart orders app'),
-        scope: ApphubApplicationScope(
-          type: TfArg.literal(ApphubApplicationScopeType.regional),
-        ),
+        location: .literal('us-central1'),
+        applicationId: .literal('terradart-orders'),
+        displayName: .literal('TerraDart orders app'),
+        scope: ApphubApplicationScope(type: .literal(.regional)),
         dependsOn: apiDeps,
       ),
     );

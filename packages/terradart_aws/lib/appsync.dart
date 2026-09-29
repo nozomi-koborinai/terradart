@@ -98,10 +98,10 @@ export 'src/appsync/aws_appsync_graphql_api.dart'
         AwsAppsyncGraphqlApi;
 export 'src/appsync/aws_appsync_resolver.dart'
     show
+        AppsyncResolverBackend,
+        AppsyncResolverBackendDataSource,
+        AppsyncResolverBackendPipelineConfig,
         AppsyncResolverCachingConfig,
-        AppsyncResolverDataSourceOrPipelineConfig,
-        AppsyncResolverDataSourceOrPipelineConfigDataSource,
-        AppsyncResolverDataSourceOrPipelineConfigPipelineConfig,
         AppsyncResolverKind,
         AppsyncResolverPipelineConfig,
         AppsyncResolverRuntime,

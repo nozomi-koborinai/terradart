@@ -16,6 +16,58 @@ const Set<String> _googleNetworkConnectivitySpokeSensitive = <String>{};
 sealed class NetworkConnectivitySpokeAttachment {
   const NetworkConnectivitySpokeAttachment();
 
+  /// `linked_vpc_network` — attach a consumer VPC to the hub.
+  const factory NetworkConnectivitySpokeAttachment.linkedVpcNetwork({
+    required TfArg<String> uri,
+    TfArg<List<String>>? includeExportRanges,
+    TfArg<List<String>>? excludeExportRanges,
+  }) = NetworkConnectivitySpokeLinkedVpcNetwork;
+
+  /// `linked_vpn_tunnels` — attach HA VPN tunnels.
+  const factory NetworkConnectivitySpokeAttachment.linkedVpnTunnels({
+    required TfArg<List<String>> uris,
+    required TfArg<bool> siteToSiteDataTransfer,
+    TfArg<List<String>>? includeExportRanges,
+    TfArg<List<String>>? excludeExportRanges,
+    TfArg<List<String>>? includeImportRanges,
+    TfArg<List<String>>? excludeImportRanges,
+  }) = NetworkConnectivitySpokeLinkedVpnTunnels;
+
+  /// `linked_interconnect_attachments` — attach VLAN attachments.
+  const factory NetworkConnectivitySpokeAttachment.linkedInterconnectAttachments({
+    required TfArg<List<String>> uris,
+    required TfArg<bool> siteToSiteDataTransfer,
+    TfArg<List<String>>? includeExportRanges,
+    TfArg<List<String>>? excludeExportRanges,
+    TfArg<List<String>>? includeImportRanges,
+    TfArg<List<String>>? excludeImportRanges,
+  }) = NetworkConnectivitySpokeLinkedInterconnectAttachments;
+
+  /// `linked_router_appliance_instances` — attach router appliance VMs.
+  const factory NetworkConnectivitySpokeAttachment.linkedRouterApplianceInstances({
+    required List<NetworkConnectivitySpokeRouterApplianceInstance> instances,
+    required TfArg<bool> siteToSiteDataTransfer,
+    TfArg<List<String>>? includeExportRanges,
+    TfArg<List<String>>? excludeExportRanges,
+    TfArg<List<String>>? includeImportRanges,
+    TfArg<List<String>>? excludeImportRanges,
+  }) = NetworkConnectivitySpokeLinkedRouterApplianceInstances;
+
+  /// `linked_producer_vpc_network` — attach a producer VPC via peering.
+  const factory NetworkConnectivitySpokeAttachment.linkedProducerVpcNetwork({
+    required TfArg<String> network,
+    required TfArg<String> peering,
+    TfArg<List<String>>? includeExportRanges,
+    TfArg<List<String>>? excludeExportRanges,
+  }) = NetworkConnectivitySpokeLinkedProducerVpcNetwork;
+
+  /// `gateway` — NCC gateway spoke (capacity-billed; never apply-smoke).
+  const factory NetworkConnectivitySpokeAttachment.gateway({
+    required TfArg<NetworkConnectivitySpokeGatewayCapacity> capacity,
+    required List<NetworkConnectivitySpokeGatewayIpRangeReservation>
+    ipRangeReservations,
+  }) = NetworkConnectivitySpokeGateway;
+
   /// argMap key for this variant.
   String get blockKey;
 

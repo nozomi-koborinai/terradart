@@ -27,8 +27,8 @@ final class NetworkConnectivityStack extends Stack {
     final vpc = add(
       GoogleComputeNetwork(
         localName: 'cci_vpc',
-        name: TfArg.literal('terradart-cci-vpc'),
-        autoCreateSubnetworks: TfArg.literal(false),
+        name: .literal('terradart-cci-vpc'),
+        autoCreateSubnetworks: .literal(false),
         dependsOn: apiDeps,
       ),
     );
@@ -36,15 +36,15 @@ final class NetworkConnectivityStack extends Stack {
     add(
       GoogleNetworkConnectivityTransport(
         localName: 'aws_cci',
-        name: TfArg.literal('terradart-aws-transport'),
-        region: TfArg.literal(region),
-        network: TfArg.ref(vpc.nameRef),
-        description: TfArg.literal('Sample Partner CCI transport'),
-        remoteProfile: TfArg.literal(
+        name: .literal('terradart-aws-transport'),
+        region: .literal(region),
+        network: .ref(vpc.nameRef),
+        description: .literal('Sample Partner CCI transport'),
+        remoteProfile: .literal(
           'https://networkconnectivity.googleapis.com/v1/projects/$projectId/locations/$region/remoteTransportProfiles/aws-us-east-1',
         ),
-        bandwidth: TfArg.literal('BPS_1G'),
-        remoteAccountId: TfArg.literal('123'),
+        bandwidth: .literal('BPS_1G'),
+        remoteAccountId: .literal('123'),
         dependsOn: [...apiDeps, ResourceDependency(vpc)],
       ),
     );

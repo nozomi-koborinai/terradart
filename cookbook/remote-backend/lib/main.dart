@@ -25,13 +25,13 @@ final class RemoteBackendStack extends Stack {
     add(
       GoogleStorageBucket(
         localName: 'tfstate',
-        name: TfArg.literal(bucketName),
-        location: TfArg.literal('asia-northeast1'),
-        uniformBucketLevelAccess: TfArg.literal(true),
-        versioning: StorageBucketVersioning(enabled: TfArg.literal(true)),
+        name: .literal(bucketName),
+        location: .literal('asia-northeast1'),
+        uniformBucketLevelAccess: .literal(true),
+        versioning: StorageBucketVersioning(enabled: .literal(true)),
         // forceDestroy: false is the default; explicit here for clarity.
         // State buckets are long-lived; destroy must be a deliberate action.
-        forceDestroy: TfArg.literal(false),
+        forceDestroy: .literal(false),
       ),
     );
   }

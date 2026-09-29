@@ -10,18 +10,18 @@ const Set<String> _awsDbProxyTargetSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.dbClusterIdentifier(...)`.
-sealed class DbProxyTargetDb {
-  const DbProxyTargetDb();
+sealed class DbProxyTargetTarget {
+  const DbProxyTargetTarget();
 
   /// Sets `db_cluster_identifier`.
-  const factory DbProxyTargetDb.dbClusterIdentifier(
+  const factory DbProxyTargetTarget.dbClusterIdentifier(
     TfArg<String> dbClusterIdentifier,
-  ) = DbProxyTargetDbDbClusterIdentifier;
+  ) = DbProxyTargetTargetDbClusterIdentifier;
 
   /// Sets `db_instance_identifier`.
-  const factory DbProxyTargetDb.dbInstanceIdentifier(
+  const factory DbProxyTargetTarget.dbInstanceIdentifier(
     TfArg<String> dbInstanceIdentifier,
-  ) = DbProxyTargetDbDbInstanceIdentifier;
+  ) = DbProxyTargetTargetDbInstanceIdentifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,9 +33,9 @@ sealed class DbProxyTargetDb {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DbProxyTargetDb.dbClusterIdentifier] choice: sets `db_cluster_identifier`.
-final class DbProxyTargetDbDbClusterIdentifier extends DbProxyTargetDb {
-  const DbProxyTargetDbDbClusterIdentifier(this.dbClusterIdentifier);
+/// The [DbProxyTargetTarget.dbClusterIdentifier] choice: sets `db_cluster_identifier`.
+final class DbProxyTargetTargetDbClusterIdentifier extends DbProxyTargetTarget {
+  const DbProxyTargetTargetDbClusterIdentifier(this.dbClusterIdentifier);
 
   final TfArg<String> dbClusterIdentifier;
 
@@ -53,9 +53,10 @@ final class DbProxyTargetDbDbClusterIdentifier extends DbProxyTargetDb {
   };
 }
 
-/// The [DbProxyTargetDb.dbInstanceIdentifier] choice: sets `db_instance_identifier`.
-final class DbProxyTargetDbDbInstanceIdentifier extends DbProxyTargetDb {
-  const DbProxyTargetDbDbInstanceIdentifier(this.dbInstanceIdentifier);
+/// The [DbProxyTargetTarget.dbInstanceIdentifier] choice: sets `db_instance_identifier`.
+final class DbProxyTargetTargetDbInstanceIdentifier
+    extends DbProxyTargetTarget {
+  const DbProxyTargetTargetDbInstanceIdentifier(this.dbInstanceIdentifier);
 
   final TfArg<String> dbInstanceIdentifier;
 
@@ -79,7 +80,7 @@ final class AwsDbProxyTarget extends Resource {
 
   AwsDbProxyTarget({
     required super.localName,
-    required DbProxyTargetDb db,
+    required DbProxyTargetTarget target,
     required TfArg<String> dbProxyName,
     TfArg<String>? region,
     required TfArg<String> targetGroupName,
@@ -90,7 +91,7 @@ final class AwsDbProxyTarget extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...db.argMap,
+           ...target.argMap,
            'db_proxy_name': dbProxyName,
            if (region != null) 'region': region,
            'target_group_name': targetGroupName,

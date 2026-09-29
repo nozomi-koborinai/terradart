@@ -26,32 +26,32 @@ final class AppEngineStack extends Stack {
     final apiAppEngine = add(
       GoogleProjectService(
         localName: 'api_appengine',
-        service: TfArg.literal('appengine.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('appengine.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
     final apiAppEngineFlex = add(
       GoogleProjectService(
         localName: 'api_appengine_flex',
-        service: TfArg.literal('appengineflex.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('appengineflex.googleapis.com'),
+        disableOnDestroy: .literal(false),
         dependsOn: [ResourceDependency(apiAppEngine)],
       ),
     );
     final apiStorage = add(
       GoogleProjectService(
         localName: 'api_storage',
-        service: TfArg.literal('storage.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('storage.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final deployBucket = add(
       GoogleStorageBucket(
         localName: 'deploy',
-        name: TfArg.literal('$projectId-terradart-appengine'),
-        location: TfArg.literal('US'),
-        uniformBucketLevelAccess: TfArg.literal(true),
+        name: .literal('$projectId-terradart-appengine'),
+        location: .literal('US'),
+        uniformBucketLevelAccess: .literal(true),
         dependsOn: [ResourceDependency(apiStorage)],
       ),
     );
@@ -59,8 +59,8 @@ final class AppEngineStack extends Stack {
     final app = add(
       GoogleAppEngineApplication(
         localName: 'app',
-        locationId: TfArg.literal('us-central'),
-        databaseType: TfArg.literal(AppEngineDatabaseType.cloudFirestore),
+        locationId: .literal('us-central'),
+        databaseType: .literal(.cloudFirestore),
         dependsOn: [ResourceDependency(apiAppEngine)],
       ),
     );
@@ -68,20 +68,20 @@ final class AppEngineStack extends Stack {
     final standard = add(
       GoogleAppEngineStandardAppVersion(
         localName: 'default_v1',
-        service: TfArg.literal('default'),
-        versionId: TfArg.literal('v1'),
-        runtime: TfArg.literal('python312'),
+        service: .literal('default'),
+        versionId: .literal('v1'),
+        runtime: .literal('python312'),
         deployment: AppEngineStandardAppVersionDeployment(
           zip: AppEngineStandardAppVersionDeploymentZip(
-            sourceUrl: TfArg.literal(
+            sourceUrl: .literal(
               'https://storage.googleapis.com/$projectId-terradart-appengine/app.zip',
             ),
           ),
         ),
         entrypoint: AppEngineStandardAppVersionEntrypoint(
-          shell: TfArg.literal('gunicorn -b :\$PORT main:app'),
+          shell: .literal('gunicorn -b :\$PORT main:app'),
         ),
-        deleteServiceOnDestroy: TfArg.literal(true),
+        deleteServiceOnDestroy: .literal(true),
         dependsOn: [ResourceDependency(app), ResourceDependency(deployBucket)],
       ),
     );
@@ -89,19 +89,17 @@ final class AppEngineStack extends Stack {
     add(
       GoogleAppEngineFlexibleAppVersion(
         localName: 'flex_v1',
-        service: TfArg.literal('flex'),
-        versionId: TfArg.literal('v1'),
-        runtime: TfArg.literal('nodejs'),
-        scaling: AppEngineFlexibleAppVersionManualScalingMode(
-          instances: TfArg.literal(1),
-        ),
+        service: .literal('flex'),
+        versionId: .literal('v1'),
+        runtime: .literal('nodejs'),
+        scaling: .manualScaling(instances: .literal(1)),
         livenessCheck: AppEngineFlexibleAppVersionLivenessCheck(
-          path: TfArg.literal('/'),
+          path: .literal('/'),
         ),
         readinessCheck: AppEngineFlexibleAppVersionReadinessCheck(
-          path: TfArg.literal('/'),
+          path: .literal('/'),
         ),
-        noopOnDestroy: TfArg.literal(true),
+        noopOnDestroy: .literal(true),
         dependsOn: [
           ResourceDependency(apiAppEngineFlex),
           ResourceDependency(app),
@@ -112,12 +110,10 @@ final class AppEngineStack extends Stack {
     add(
       GoogleAppEngineFirewallRule(
         localName: 'allow_all',
-        priority: TfArg.literal(1000),
-        action: TfArg.literal(AppEngineFirewallRuleAction.allow),
-        sourceRange: TfArg.literal('*'),
-        description: TfArg.literal(
-          'terradart demo — allow all (replace in prod)',
-        ),
+        priority: .literal(1000),
+        action: .literal(.allow),
+        sourceRange: .literal('*'),
+        description: .literal('terradart demo — allow all (replace in prod)'),
         dependsOn: [ResourceDependency(app)],
       ),
     );
@@ -125,7 +121,7 @@ final class AppEngineStack extends Stack {
     add(
       GoogleAppEngineApplicationUrlDispatchRules(
         localName: 'dispatch',
-        dispatchRules: TfArg.literal(<Map<String, dynamic>>[
+        dispatchRules: .literal(<Map<String, dynamic>>[
           <String, dynamic>{'domain': '*', 'path': '/*', 'service': 'default'},
         ]),
         dependsOn: [ResourceDependency(app)],
@@ -135,7 +131,7 @@ final class AppEngineStack extends Stack {
     add(
       GoogleAppEngineDomainMapping(
         localName: 'demo',
-        domainName: TfArg.literal('terradart-appengine-demo.example'),
+        domainName: .literal('terradart-appengine-demo.example'),
         dependsOn: [ResourceDependency(app)],
       ),
     );
@@ -143,9 +139,9 @@ final class AppEngineStack extends Stack {
     add(
       GoogleAppEngineServiceNetworkSettings(
         localName: 'default_ingress',
-        service: TfArg.literal('default'),
+        service: .literal('default'),
         networkSettings: AppEngineServiceNetworkSettingsNetworkSettings(
-          ingressTrafficAllowed: TfArg.literal(
+          ingressTrafficAllowed: .literal(
             AppEngineServiceNetworkSettingsNetworkSettingsIngressTrafficAllowed
                 .ingressTrafficAllowedAll,
           ),
@@ -157,16 +153,16 @@ final class AppEngineStack extends Stack {
     add(
       GoogleAppEngineServiceSplitTraffic(
         localName: 'default_traffic',
-        service: TfArg.literal('default'),
+        service: .literal('default'),
         // `allocations` values are strings per the provider schema
         // (`["map", "string"]`) — Terraform's own JSON/cty layer already
         // treats a bare `1.0` and `"1.0"` as the same value for this
         // string-typed attribute, but the typed constructor enforces it.
         split: AppEngineServiceSplitTrafficSplit(
-          allocations: TfArg.literal({'v1': '1.0'}),
-          shardBy: TfArg.literal(AppEngineServiceSplitTrafficSplitShardBy.ip),
+          allocations: .literal({'v1': '1.0'}),
+          shardBy: .literal(.ip),
         ),
-        migrateTraffic: TfArg.literal(true),
+        migrateTraffic: .literal(true),
         dependsOn: [ResourceDependency(standard)],
       ),
     );

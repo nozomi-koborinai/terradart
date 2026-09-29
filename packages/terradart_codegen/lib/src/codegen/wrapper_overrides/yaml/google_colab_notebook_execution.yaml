@@ -65,6 +65,23 @@ prelude: |
   sealed class ColabNotebookExecutionSource {
     const ColabNotebookExecutionSource();
 
+    /// `dataform_repository_source`.
+    const factory ColabNotebookExecutionSource.dataform({
+      required TfArg<String> dataformRepositoryResourceName,
+      TfArg<String>? commitSha,
+    }) = ColabNotebookExecutionDataformSource;
+
+    /// `gcs_notebook_source`.
+    const factory ColabNotebookExecutionSource.gcs({
+      required TfArg<String> uri,
+      TfArg<String>? generation,
+    }) = ColabNotebookExecutionGcsSource;
+
+    /// `direct_notebook_source` — base64 ipynb content.
+    const factory ColabNotebookExecutionSource.direct({
+      required TfArg<String> content,
+    }) = ColabNotebookExecutionDirectSource;
+
     String get blockKey;
 
     /// Single-element list (`nesting_mode: list, max_items: 1`).
@@ -140,6 +157,16 @@ prelude: |
   /// Exactly one compute configuration (runtime template **or** custom env).
   sealed class ColabNotebookExecutionCompute {
     const ColabNotebookExecutionCompute();
+
+    /// `notebook_runtime_template_resource_name` attribute.
+    const factory ColabNotebookExecutionCompute.template(
+      TfArg<String> notebookRuntimeTemplateResourceName,
+    ) = ColabNotebookExecutionTemplateCompute;
+
+    /// `custom_environment_spec` nested block (literal map matching provider).
+    const factory ColabNotebookExecutionCompute.custom(
+      TfArg<Map<String, Object?>> customEnvironmentSpec,
+    ) = ColabNotebookExecutionCustomCompute;
 
     String get blockKey;
 

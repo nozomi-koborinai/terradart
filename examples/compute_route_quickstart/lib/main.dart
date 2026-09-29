@@ -45,24 +45,24 @@ final class NetworkRouteStack extends Stack {
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',
-        service: TfArg.literal('compute.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('compute.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final apiIam = add(
       GoogleProjectService(
         localName: 'api_iam',
-        service: TfArg.literal('iam.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('iam.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final edgeViewer = add(
       GoogleServiceAccount(
         localName: 'edge_viewer',
-        accountId: TfArg.literal('route-edge-viewer'),
-        displayName: TfArg.literal('Network firewall policy viewer (demo)'),
+        accountId: .literal('route-edge-viewer'),
+        displayName: .literal('Network firewall policy viewer (demo)'),
         dependsOn: [ResourceDependency(apiIam)],
       ),
     );
@@ -70,9 +70,9 @@ final class NetworkRouteStack extends Stack {
     final vpc = add(
       GoogleComputeNetwork(
         localName: 'demo',
-        name: TfArg.literal('terradart-route-demo'),
-        autoCreateSubnetworks: TfArg.literal(false),
-        routingMode: TfArg.literal(RoutingMode.regional),
+        name: .literal('terradart-route-demo'),
+        autoCreateSubnetworks: .literal(false),
+        routingMode: .literal(.regional),
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );
@@ -80,14 +80,12 @@ final class NetworkRouteStack extends Stack {
     final route = add(
       GoogleComputeRoute(
         localName: 'egress_demo',
-        name: TfArg.literal('terradart-egress-demo'),
-        network: TfArg.ref(vpc.id),
-        destRange: TfArg.literal('192.168.255.0/24'),
-        description: TfArg.literal('Demo egress route to the internet gateway'),
-        priority: TfArg.literal(1000),
-        nextHop: ComputeRouteGatewayNextHop(
-          nextHopGateway: TfArg.literal('default-internet-gateway'),
-        ),
+        name: .literal('terradart-egress-demo'),
+        network: .ref(vpc.id),
+        destRange: .literal('192.168.255.0/24'),
+        description: .literal('Demo egress route to the internet gateway'),
+        priority: .literal(1000),
+        nextHop: .gateway(nextHopGateway: .literal('default-internet-gateway')),
         dependsOn: [ResourceDependency(vpc)],
       ),
     );
@@ -95,10 +93,10 @@ final class NetworkRouteStack extends Stack {
     final router = add(
       GoogleComputeRouter(
         localName: 'edge',
-        name: TfArg.literal('terradart-route-router'),
-        network: TfArg.ref(vpc.id),
-        region: TfArg.literal('us-central1'),
-        description: TfArg.literal('Cloud Router for Named Set demo'),
+        name: .literal('terradart-route-router'),
+        network: .ref(vpc.id),
+        region: .literal('us-central1'),
+        description: .literal('Cloud Router for Named Set demo'),
         dependsOn: [ResourceDependency(vpc)],
       ),
     );
@@ -106,15 +104,15 @@ final class NetworkRouteStack extends Stack {
     add(
       GoogleComputeRouterNamedSet(
         localName: 'prefixes',
-        name: TfArg.literal('terradart-prefixes'),
-        router: TfArg.ref(router.nameRef),
-        region: TfArg.literal('us-central1'),
-        type: TfArg.literal(ComputeRouterNamedSetType.namedSetTypePrefix),
-        description: TfArg.literal('Demo PREFIX named set for route policies'),
+        name: .literal('terradart-prefixes'),
+        router: .ref(router.nameRef),
+        region: .literal('us-central1'),
+        type: .literal(.namedSetTypePrefix),
+        description: .literal('Demo PREFIX named set for route policies'),
         elements: [
           ComputeRouterNamedSetElements(
-            expression: TfArg.literal("'10.0.0.0/8'"),
-            title: TfArg.literal('rfc1918-10'),
+            expression: .literal("'10.0.0.0/8'"),
+            title: .literal('rfc1918-10'),
           ),
         ],
         dependsOn: [ResourceDependency(router)],
@@ -124,8 +122,8 @@ final class NetworkRouteStack extends Stack {
     add(
       GoogleComputeProjectMetadataItem(
         localName: 'ops_owner',
-        key: TfArg.literal('terradart-ops-owner'),
-        value: TfArg.literal('platform-team'),
+        key: .literal('terradart-ops-owner'),
+        value: .literal('platform-team'),
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );
@@ -135,8 +133,8 @@ final class NetworkRouteStack extends Stack {
     final edgePolicy = add(
       GoogleComputeNetworkFirewallPolicy(
         localName: 'edge_policy',
-        name: TfArg.literal('terradart-edge-policy'),
-        description: TfArg.literal('Global network firewall policy (demo)'),
+        name: .literal('terradart-edge-policy'),
+        description: .literal('Global network firewall policy (demo)'),
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );
@@ -144,9 +142,9 @@ final class NetworkRouteStack extends Stack {
     final edgeBinding = add(
       GoogleComputeNetworkFirewallPolicyIamBinding(
         localName: 'edge_policy_viewer',
-        name: TfArg.ref(edgePolicy.nameRef),
-        role: TfArg.literal('roles/compute.viewer'),
-        members: TfArg.literal([edgeViewer.iamMember.interpolation]),
+        name: .ref(edgePolicy.nameRef),
+        role: .literal('roles/compute.viewer'),
+        members: .literal([edgeViewer.iamMember.interpolation]),
         dependsOn: [
           ResourceDependency(edgePolicy),
           ResourceDependency(edgeViewer),
@@ -157,8 +155,8 @@ final class NetworkRouteStack extends Stack {
     add(
       GoogleComputeNetworkFirewallPolicyIamPolicy(
         localName: 'edge_policy_policy',
-        name: TfArg.ref(edgePolicy.nameRef),
-        policyData: TfArg.literal(
+        name: .ref(edgePolicy.nameRef),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/compute.viewer',
             member:
@@ -175,11 +173,9 @@ final class NetworkRouteStack extends Stack {
     final regionalEdgePolicy = add(
       GoogleComputeRegionNetworkFirewallPolicy(
         localName: 'regional_edge_policy',
-        name: TfArg.literal('terradart-regional-edge-policy'),
-        region: TfArg.literal('us-central1'),
-        description: TfArg.literal(
-          'Regional network firewall policy (IAM demo)',
-        ),
+        name: .literal('terradart-regional-edge-policy'),
+        region: .literal('us-central1'),
+        description: .literal('Regional network firewall policy (IAM demo)'),
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );
@@ -187,10 +183,10 @@ final class NetworkRouteStack extends Stack {
     final regionalEdgeBinding = add(
       GoogleComputeRegionNetworkFirewallPolicyIamBinding(
         localName: 'regional_edge_policy_viewer',
-        name: TfArg.ref(regionalEdgePolicy.nameRef),
-        region: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/compute.viewer'),
-        members: TfArg.literal([edgeViewer.iamMember.interpolation]),
+        name: .ref(regionalEdgePolicy.nameRef),
+        region: .literal('us-central1'),
+        role: .literal('roles/compute.viewer'),
+        members: .literal([edgeViewer.iamMember.interpolation]),
         dependsOn: [
           ResourceDependency(regionalEdgePolicy),
           ResourceDependency(edgeViewer),
@@ -201,9 +197,9 @@ final class NetworkRouteStack extends Stack {
     add(
       GoogleComputeRegionNetworkFirewallPolicyIamPolicy(
         localName: 'regional_edge_policy_policy',
-        name: TfArg.ref(regionalEdgePolicy.nameRef),
-        region: TfArg.literal('us-central1'),
-        policyData: TfArg.literal(
+        name: .ref(regionalEdgePolicy.nameRef),
+        region: .literal('us-central1'),
+        policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/compute.viewer',
             member:
@@ -222,18 +218,16 @@ final class NetworkRouteStack extends Stack {
     final snapshotPolicy = add(
       GoogleComputeResourcePolicy(
         localName: 'daily_snapshots',
-        name: TfArg.literal('terradart-daily-snapshots'),
-        region: TfArg.literal('us-central1'),
+        name: .literal('terradart-daily-snapshots'),
+        region: .literal('us-central1'),
         snapshotSchedulePolicy: ComputeResourcePolicySnapshotSchedulePolicy(
-          schedule: ComputeResourcePolicyDailySchedule(
-            daysInCycle: TfArg.literal(1),
-            startTime: TfArg.literal('04:00'),
+          schedule: .daily(
+            daysInCycle: .literal(1),
+            startTime: .literal('04:00'),
           ),
           retentionPolicy: ComputeResourcePolicyRetentionPolicy(
-            maxRetentionDays: TfArg.literal(7),
-            onSourceDiskDelete: TfArg.literal(
-              ComputeResourcePolicyOnSourceDiskDelete.applyRetentionPolicy,
-            ),
+            maxRetentionDays: .literal(7),
+            onSourceDiskDelete: .literal(.applyRetentionPolicy),
           ),
         ),
         dependsOn: [ResourceDependency(apiCompute)],
@@ -246,10 +240,10 @@ final class NetworkRouteStack extends Stack {
     final disk = add(
       GoogleComputeDisk(
         localName: 'data',
-        name: TfArg.literal('terradart-data-disk'),
-        zone: TfArg.literal('us-central1-a'),
-        type: TfArg.literal('pd-standard'),
-        size: TfArg.literal(10),
+        name: .literal('terradart-data-disk'),
+        zone: .literal('us-central1-a'),
+        type: .literal('pd-standard'),
+        size: .literal(10),
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );
@@ -257,10 +251,10 @@ final class NetworkRouteStack extends Stack {
     add(
       GoogleComputeDiskResourcePolicyAttachment(
         localName: 'data_snapshots',
-        name: TfArg.literal('terradart-daily-snapshots'),
-        disk: TfArg.ref(disk.nameRef),
-        zone: TfArg.literal('us-central1-a'),
-        deletionPolicy: TfArg.literal('DELETE'),
+        name: .literal('terradart-daily-snapshots'),
+        disk: .ref(disk.nameRef),
+        zone: .literal('us-central1-a'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [
           ResourceDependency(disk),
           ResourceDependency(snapshotPolicy),

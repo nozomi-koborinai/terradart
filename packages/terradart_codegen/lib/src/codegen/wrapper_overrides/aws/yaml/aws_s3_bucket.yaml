@@ -13,3 +13,7 @@ deriveExactlyOne: true
 nestedTypeExcludes:
   - object_lock_configuration
   - server_side_encryption_configuration
+
+sealedNames:
+  "acl, grant": access
+  "website.index_document, website.redirect_all_requests_to": mode

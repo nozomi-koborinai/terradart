@@ -46,6 +46,31 @@ prelude: |
   /// Value stored on one [DataCatalogTagField]. Exactly one variant.
   sealed class DataCatalogTagFieldValue {
     const DataCatalogTagFieldValue();
+
+    /// `string_value` variant.
+    const factory DataCatalogTagFieldValue.stringValue(
+      TfArg<String> stringValue,
+    ) = DataCatalogTagStringValue;
+
+    /// `bool_value` variant.
+    const factory DataCatalogTagFieldValue.boolValue(
+      TfArg<bool> boolValue,
+    ) = DataCatalogTagBoolValue;
+
+    /// `double_value` variant.
+    const factory DataCatalogTagFieldValue.doubleValue(
+      TfArg<num> doubleValue,
+    ) = DataCatalogTagDoubleValue;
+
+    /// `timestamp_value` variant (RFC3339).
+    const factory DataCatalogTagFieldValue.timestampValue(
+      TfArg<String> timestampValue,
+    ) = DataCatalogTagTimestampValue;
+
+    /// `enum_value` variant — display name of an allowed template enum.
+    const factory DataCatalogTagFieldValue.enumValue(
+      TfArg<String> enumValue,
+    ) = DataCatalogTagEnumValue;
     Map<String, Object?> encode();
   }
 

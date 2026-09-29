@@ -40,50 +40,42 @@ final class AwsStaticSiteStack extends Stack {
       ) {
     final zone = DataAwsRoute53Zone(
       localName: 'site',
-      name: TfArg.literal(hostedZone),
-      privateZone: TfArg.literal(false),
+      name: .literal(hostedZone),
+      privateZone: .literal(false),
     );
     addData(zone);
 
     final bucket = AwsS3Bucket(
       localName: 'site',
-      bucket: .bucketPrefix(TfArg.literal('terradart-site-')),
-      forceDestroy: TfArg.literal(true),
+      bucket: .bucketPrefix(.literal('terradart-site-')),
+      forceDestroy: .literal(true),
     );
     add(bucket);
     add(
       AwsS3BucketPublicAccessBlock(
         localName: 'site',
-        bucket: TfArg.ref(bucket.id),
-        blockPublicAcls: TfArg.literal(true),
-        blockPublicPolicy: TfArg.literal(true),
-        ignorePublicAcls: TfArg.literal(true),
-        restrictPublicBuckets: TfArg.literal(true),
+        bucket: .ref(bucket.id),
+        blockPublicAcls: .literal(true),
+        blockPublicPolicy: .literal(true),
+        ignorePublicAcls: .literal(true),
+        restrictPublicBuckets: .literal(true),
       ),
     );
 
     final oac = AwsCloudfrontOriginAccessControl(
       localName: 'site',
-      name: TfArg.literal('terradart-static-site'),
-      description: TfArg.literal('CloudFront reads the site bucket'),
-      originAccessControlOriginType: TfArg.literal(
-        CloudfrontOriginAccessControlOriginAccessControlOriginType.s3,
-      ),
-      signingBehavior: TfArg.literal(
-        CloudfrontOriginAccessControlSigningBehavior.always,
-      ),
-      signingProtocol: TfArg.literal(
-        CloudfrontOriginAccessControlSigningProtocol.sigv4,
-      ),
+      name: .literal('terradart-static-site'),
+      description: .literal('CloudFront reads the site bucket'),
+      originAccessControlOriginType: .literal(.s3),
+      signingBehavior: .literal(.always),
+      signingProtocol: .literal(.sigv4),
     );
     add(oac);
 
     final cert = AwsAcmCertificate(
       localName: 'site',
-      domainNameOrPrivateKeyOrPrivateKeyWo: .domainName(
-        TfArg.literal(siteDomain),
-      ),
-      validationMethod: TfArg.literal(AcmCertificateValidationMethod.dns),
+      source: .domainName(.literal(siteDomain)),
+      validationMethod: .literal(.dns),
       lifecycle: const LifecycleOptions(createBeforeDestroy: true),
     );
     add(cert);
@@ -93,80 +85,74 @@ final class AwsStaticSiteStack extends Stack {
     final option = 'tolist(${cert.domainValidationOptions.bareAddress})[0]';
     final validationRecord = AwsRoute53Record(
       localName: 'site_validation',
-      zoneId: TfArg.ref(zone.id),
+      zoneId: .ref(zone.id),
       name: TfArg.expression('\${$option.resource_record_name}'),
       type: TfArg.expression('\${$option.resource_record_type}'),
-      aliasOrRecords: .records(
-        TfArg.literal(['\${$option.resource_record_value}']),
-      ),
-      ttl: TfArg.literal(60),
-      allowOverwrite: TfArg.literal(true),
+      target: .records(.literal(['\${$option.resource_record_value}'])),
+      ttl: .literal(60),
+      allowOverwrite: .literal(true),
     );
     add(validationRecord);
 
     final validation = AwsAcmCertificateValidation(
       localName: 'site',
-      certificateArn: TfArg.ref(cert.arn),
-      validationRecordFqdns: TfArg.literal([
-        validationRecord.fqdn.interpolation,
-      ]),
+      certificateArn: .ref(cert.arn),
+      validationRecordFqdns: .literal([validationRecord.fqdn.interpolation]),
     );
     add(validation);
 
     final cachingOptimized = DataAwsCloudfrontCachePolicy(
       localName: 'caching_optimized',
-      name: TfArg.literal('Managed-CachingOptimized'),
+      name: .literal('Managed-CachingOptimized'),
     );
     addData(cachingOptimized);
 
     final distribution = AwsCloudfrontDistribution(
       localName: 'site',
-      enabled: TfArg.literal(true),
-      isIpv6Enabled: TfArg.literal(true),
-      comment: TfArg.literal(siteDomain),
-      aliases: TfArg.literal([siteDomain]),
-      defaultRootObject: TfArg.literal('index.html'),
-      priceClass: TfArg.literal(CloudfrontDistributionPriceClass.priceclass100),
+      enabled: .literal(true),
+      isIpv6Enabled: .literal(true),
+      comment: .literal(siteDomain),
+      aliases: .literal([siteDomain]),
+      defaultRootObject: .literal('index.html'),
+      priceClass: .literal(.priceclass100),
       origin: [
         CloudfrontDistributionOrigin(
-          originId: TfArg.literal(_originId),
-          domainName: TfArg.ref(bucket.bucketRegionalDomainName),
-          originAccessControlId: TfArg.ref(oac.id),
+          originId: .literal(_originId),
+          domainName: .ref(bucket.bucketRegionalDomainName),
+          originAccessControlId: .ref(oac.id),
         ),
       ],
       defaultCacheBehavior: CloudfrontDistributionDefaultCacheBehavior(
-        targetOriginId: TfArg.literal(_originId),
-        viewerProtocolPolicy: TfArg.literal(
+        targetOriginId: .literal(_originId),
+        viewerProtocolPolicy: .literal(
           CloudfrontDistributionDefaultCacheBehaviorViewerProtocolPolicy
               .redirectToHttps,
         ),
-        allowedMethods: TfArg.literal(['GET', 'HEAD']),
-        cachedMethods: TfArg.literal(['GET', 'HEAD']),
-        cachePolicyId: TfArg.ref(cachingOptimized.id),
-        compress: TfArg.literal(true),
+        allowedMethods: .literal(['GET', 'HEAD']),
+        cachedMethods: .literal(['GET', 'HEAD']),
+        cachePolicyId: .ref(cachingOptimized.id),
+        compress: .literal(true),
       ),
       customErrorResponse: [
         for (final code in [403, 404])
           CloudfrontDistributionCustomErrorResponse(
-            errorCode: TfArg.literal(code),
-            responseCode: TfArg.literal(200),
-            responsePagePath: TfArg.literal('/index.html'),
+            errorCode: .literal(code),
+            responseCode: .literal(200),
+            responsePagePath: .literal('/index.html'),
           ),
       ],
       restrictions: CloudfrontDistributionRestrictions(
         geoRestriction: CloudfrontDistributionRestrictionsGeoRestriction(
-          restrictionType: TfArg.literal(
+          restrictionType: .literal(
             CloudfrontDistributionRestrictionsGeoRestrictionRestrictionType
                 .none,
           ),
         ),
       ),
       viewerCertificate: CloudfrontDistributionViewerCertificate(
-        acmCertificateArn: TfArg.ref(cert.arn),
-        sslSupportMethod: TfArg.literal(
-          CloudfrontDistributionViewerCertificateSslSupportMethod.sniOnly,
-        ),
-        minimumProtocolVersion: TfArg.literal(
+        acmCertificateArn: .ref(cert.arn),
+        sslSupportMethod: .literal(.sniOnly),
+        minimumProtocolVersion: .literal(
           CloudfrontDistributionViewerCertificateMinimumProtocolVersion
               .tlsv1p2x2021,
         ),
@@ -179,21 +165,21 @@ final class AwsStaticSiteStack extends Stack {
       localName: 'site_bucket',
       statement: [
         DataIamPolicyDocumentStatement(
-          sid: TfArg.literal('AllowCloudFrontRead'),
-          effect: TfArg.literal('Allow'),
-          actions: TfArg.literal(['s3:GetObject']),
-          resources: TfArg.literal(['${bucket.arn.interpolation}/*']),
+          sid: .literal('AllowCloudFrontRead'),
+          effect: .literal('Allow'),
+          actions: .literal(['s3:GetObject']),
+          resources: .literal(['${bucket.arn.interpolation}/*']),
           principals: [
             DataIamPolicyDocumentStatementPrincipals(
-              type: TfArg.literal('Service'),
-              identifiers: TfArg.literal(['cloudfront.amazonaws.com']),
+              type: .literal('Service'),
+              identifiers: .literal(['cloudfront.amazonaws.com']),
             ),
           ],
           condition: [
             DataIamPolicyDocumentStatementCondition(
-              test: TfArg.literal('StringEquals'),
-              variable: TfArg.literal('AWS:SourceArn'),
-              values: TfArg.literal([TfArg.ref(distribution.arn)]),
+              test: .literal('StringEquals'),
+              variable: .literal('AWS:SourceArn'),
+              values: .literal([TfArg.ref(distribution.arn)]),
             ),
           ],
         ),
@@ -203,8 +189,8 @@ final class AwsStaticSiteStack extends Stack {
     add(
       AwsS3BucketPolicy(
         localName: 'site',
-        bucket: TfArg.ref(bucket.id),
-        policy: TfArg.ref(readFromCloudFront.json),
+        bucket: .ref(bucket.id),
+        policy: .ref(readFromCloudFront.json),
       ),
     );
 
@@ -212,14 +198,14 @@ final class AwsStaticSiteStack extends Stack {
       add(
         AwsRoute53Record(
           localName: 'site_${type.name}',
-          zoneId: TfArg.ref(zone.id),
-          name: TfArg.literal(siteDomain),
-          type: TfArg.literal(type),
-          aliasOrRecords: .alias(
+          zoneId: .ref(zone.id),
+          name: .literal(siteDomain),
+          type: .literal(type),
+          target: .alias(
             Route53RecordAlias(
-              name: TfArg.ref(distribution.domainName),
-              zoneId: TfArg.ref(distribution.hostedZoneId),
-              evaluateTargetHealth: TfArg.literal(false),
+              name: .ref(distribution.domainName),
+              zoneId: .ref(distribution.hostedZoneId),
+              evaluateTargetHealth: .literal(false),
             ),
           ),
         ),

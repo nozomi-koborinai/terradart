@@ -11,23 +11,23 @@ const Set<String> _awsLakeformationResourceLfTagSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.database(...)`.
-sealed class LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns {
-  const LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns();
+sealed class LakeformationResourceLfTagResource {
+  const LakeformationResourceLfTagResource();
 
   /// Sets `database`.
-  const factory LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns.database(
+  const factory LakeformationResourceLfTagResource.database(
     List<LakeformationResourceLfTagDatabase> database,
-  ) = LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsDatabase;
+  ) = LakeformationResourceLfTagResourceDatabase;
 
   /// Sets `table`.
-  const factory LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns.table(
+  const factory LakeformationResourceLfTagResource.table(
     List<LakeformationResourceLfTagTable> table,
-  ) = LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTable;
+  ) = LakeformationResourceLfTagResourceTable;
 
   /// Sets `table_with_columns`.
-  const factory LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns.tableWithColumns(
+  const factory LakeformationResourceLfTagResource.tableWithColumns(
     List<LakeformationResourceLfTagTableWithColumns> tableWithColumns,
-  ) = LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTableWithColumns;
+  ) = LakeformationResourceLfTagResourceTableWithColumns;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -39,12 +39,10 @@ sealed class LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns.database] choice: sets `database`.
-final class LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsDatabase
-    extends LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns {
-  const LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsDatabase(
-    this.database,
-  );
+/// The [LakeformationResourceLfTagResource.database] choice: sets `database`.
+final class LakeformationResourceLfTagResourceDatabase
+    extends LakeformationResourceLfTagResource {
+  const LakeformationResourceLfTagResourceDatabase(this.database);
 
   final List<LakeformationResourceLfTagDatabase> database;
 
@@ -62,12 +60,10 @@ final class LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsDatabase
   };
 }
 
-/// The [LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns.table] choice: sets `table`.
-final class LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTable
-    extends LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns {
-  const LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTable(
-    this.table,
-  );
+/// The [LakeformationResourceLfTagResource.table] choice: sets `table`.
+final class LakeformationResourceLfTagResourceTable
+    extends LakeformationResourceLfTagResource {
+  const LakeformationResourceLfTagResourceTable(this.table);
 
   final List<LakeformationResourceLfTagTable> table;
 
@@ -85,10 +81,10 @@ final class LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTable
   };
 }
 
-/// The [LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns.tableWithColumns] choice: sets `table_with_columns`.
-final class LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTableWithColumns
-    extends LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns {
-  const LakeformationResourceLfTagDatabaseOrTableOrTableWithColumnsTableWithColumns(
+/// The [LakeformationResourceLfTagResource.tableWithColumns] choice: sets `table_with_columns`.
+final class LakeformationResourceLfTagResourceTableWithColumns
+    extends LakeformationResourceLfTagResource {
+  const LakeformationResourceLfTagResourceTableWithColumns(
     this.tableWithColumns,
   );
 
@@ -236,8 +232,7 @@ final class AwsLakeformationResourceLfTag extends Resource {
     required super.localName,
     TfArg<String>? catalogId,
     TfArg<String>? region,
-    required LakeformationResourceLfTagDatabaseOrTableOrTableWithColumns
-    databaseOrTableOrTableWithColumns,
+    required LakeformationResourceLfTagResource resource,
     List<LakeformationResourceLfTagLfTag>? lfTag,
     super.lifecycle,
     super.dependsOn,
@@ -248,7 +243,7 @@ final class AwsLakeformationResourceLfTag extends Resource {
          argMap: {
            if (catalogId != null) 'catalog_id': catalogId,
            if (region != null) 'region': region,
-           ...databaseOrTableOrTableWithColumns.argMap,
+           ...resource.argMap,
            if (lfTag != null)
              'lf_tag': TfArg.literal([for (final e in lfTag) e.encode()]),
          },

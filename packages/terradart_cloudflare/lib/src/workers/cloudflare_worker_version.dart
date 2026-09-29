@@ -52,14 +52,14 @@ final class WorkerVersionAnnotations {
 /// `cloudflare_worker_version` (derived from provider schema).
 @immutable
 final class WorkerVersionAssets {
-  const WorkerVersionAssets({this.directoryOrJwt, this.config});
+  const WorkerVersionAssets({this.source, this.config});
 
-  final WorkerVersionAssetsDirectoryOrJwt? directoryOrJwt;
+  final WorkerVersionAssetsSource? source;
 
   final WorkerVersionAssetsConfig? config;
 
   Map<String, Object?> encode() => {
-    ...?directoryOrJwt?.encode(),
+    ...?source?.encode(),
     if (config != null) 'config': config!.encode(),
   };
 }
@@ -69,17 +69,16 @@ final class WorkerVersionAssets {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.directory(...)`.
-sealed class WorkerVersionAssetsDirectoryOrJwt {
-  const WorkerVersionAssetsDirectoryOrJwt();
+sealed class WorkerVersionAssetsSource {
+  const WorkerVersionAssetsSource();
 
   /// Sets `directory`.
-  const factory WorkerVersionAssetsDirectoryOrJwt.directory(
-    TfArg<String> directory,
-  ) = WorkerVersionAssetsDirectoryOrJwtDirectory;
+  const factory WorkerVersionAssetsSource.directory(TfArg<String> directory) =
+      WorkerVersionAssetsSourceDirectory;
 
   /// Sets `jwt`.
-  const factory WorkerVersionAssetsDirectoryOrJwt.jwt(TfArg<String> jwt) =
-      WorkerVersionAssetsDirectoryOrJwtJwt;
+  const factory WorkerVersionAssetsSource.jwt(TfArg<String> jwt) =
+      WorkerVersionAssetsSourceJwt;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -87,10 +86,10 @@ sealed class WorkerVersionAssetsDirectoryOrJwt {
   Map<String, Object?> encode();
 }
 
-/// The [WorkerVersionAssetsDirectoryOrJwt.directory] choice: sets `directory`.
-final class WorkerVersionAssetsDirectoryOrJwtDirectory
-    extends WorkerVersionAssetsDirectoryOrJwt {
-  const WorkerVersionAssetsDirectoryOrJwtDirectory(this.directory);
+/// The [WorkerVersionAssetsSource.directory] choice: sets `directory`.
+final class WorkerVersionAssetsSourceDirectory
+    extends WorkerVersionAssetsSource {
+  const WorkerVersionAssetsSourceDirectory(this.directory);
 
   final TfArg<String> directory;
 
@@ -101,10 +100,9 @@ final class WorkerVersionAssetsDirectoryOrJwtDirectory
   Map<String, Object?> encode() => {'directory': directory.toTfJson()};
 }
 
-/// The [WorkerVersionAssetsDirectoryOrJwt.jwt] choice: sets `jwt`.
-final class WorkerVersionAssetsDirectoryOrJwtJwt
-    extends WorkerVersionAssetsDirectoryOrJwt {
-  const WorkerVersionAssetsDirectoryOrJwtJwt(this.jwt);
+/// The [WorkerVersionAssetsSource.jwt] choice: sets `jwt`.
+final class WorkerVersionAssetsSourceJwt extends WorkerVersionAssetsSource {
+  const WorkerVersionAssetsSourceJwt(this.jwt);
 
   final TfArg<String> jwt;
 

@@ -29,22 +29,22 @@ final class FirestoreSeededDataStack extends Stack {
     final apiFirestore = add(
       GoogleProjectService(
         localName: 'api_firestore',
-        service: TfArg.literal('firestore.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
+        service: .literal('firestore.googleapis.com'),
+        disableOnDestroy: .literal(false),
       ),
     );
 
     final db = add(
       GoogleFirestoreDatabase(
         localName: 'default',
-        name: TfArg.literal('(default)'),
-        locationId: TfArg.literal('asia-northeast1'),
-        type: TfArg.literal(FirestoreDatabaseType.firestoreNative),
-        deleteProtectionState: TfArg.literal(DeleteProtectionState.disabled),
+        name: .literal('(default)'),
+        locationId: .literal('asia-northeast1'),
+        type: .literal(.firestoreNative),
+        deleteProtectionState: .literal(.disabled),
         // Without this, the provider default (`ABANDON`) leaves the
         // database in place on `terraform destroy` — Terraform reports
         // success but the resource survives in GCP. See FRICTIONS.md §P1.
-        deletionPolicy: TfArg.literal('DELETE'),
+        deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(apiFirestore)],
       ),
     );
@@ -53,8 +53,8 @@ final class FirestoreSeededDataStack extends Stack {
     add(
       GoogleFirestoreDocument(
         localName: 'flag_dark_mode',
-        collection: TfArg.literal('feature_flags'),
-        documentId: TfArg.literal('dark_mode'),
+        collection: .literal('feature_flags'),
+        documentId: .literal('dark_mode'),
         fields: FirestoreFields.encode({
           'enabled': true,
           'rollout_pct': 100,
@@ -67,8 +67,8 @@ final class FirestoreSeededDataStack extends Stack {
     add(
       GoogleFirestoreDocument(
         localName: 'flag_new_checkout',
-        collection: TfArg.literal('feature_flags'),
-        documentId: TfArg.literal('new_checkout'),
+        collection: .literal('feature_flags'),
+        documentId: .literal('new_checkout'),
         fields: FirestoreFields.encode({
           'enabled': false,
           'rollout_pct': 0,
@@ -81,8 +81,8 @@ final class FirestoreSeededDataStack extends Stack {
     add(
       GoogleFirestoreDocument(
         localName: 'flag_beta_invites',
-        collection: TfArg.literal('feature_flags'),
-        documentId: TfArg.literal('beta_invites'),
+        collection: .literal('feature_flags'),
+        documentId: .literal('beta_invites'),
         fields: FirestoreFields.encode({
           'enabled': true,
           'rollout_pct': 5,
@@ -97,8 +97,8 @@ final class FirestoreSeededDataStack extends Stack {
     add(
       GoogleFirestoreDocument(
         localName: 'tier_free',
-        collection: TfArg.literal('pricing_tiers'),
-        documentId: TfArg.literal('free'),
+        collection: .literal('pricing_tiers'),
+        documentId: .literal('free'),
         fields: FirestoreFields.encode({
           'label': 'Free',
           'monthly_usd': 0,
@@ -111,8 +111,8 @@ final class FirestoreSeededDataStack extends Stack {
     add(
       GoogleFirestoreDocument(
         localName: 'tier_pro',
-        collection: TfArg.literal('pricing_tiers'),
-        documentId: TfArg.literal('pro'),
+        collection: .literal('pricing_tiers'),
+        documentId: .literal('pro'),
         fields: FirestoreFields.encode({
           'label': 'Pro',
           'monthly_usd': 29,
@@ -125,8 +125,8 @@ final class FirestoreSeededDataStack extends Stack {
     add(
       GoogleFirestoreDocument(
         localName: 'tier_enterprise',
-        collection: TfArg.literal('pricing_tiers'),
-        documentId: TfArg.literal('enterprise'),
+        collection: .literal('pricing_tiers'),
+        documentId: .literal('enterprise'),
         fields: FirestoreFields.encode({
           'label': 'Enterprise',
           'monthly_usd': 499,
@@ -148,8 +148,8 @@ final class FirestoreSeededDataStack extends Stack {
     add(
       GoogleFirestoreDocument(
         localName: 'i18n_en',
-        collection: TfArg.literal('i18n'),
-        documentId: TfArg.literal('en'),
+        collection: .literal('i18n'),
+        documentId: .literal('en'),
         fields: FirestoreFields.encode({
           'greeting': 'Hello',
           'currency_symbol': r'$',
@@ -163,8 +163,8 @@ final class FirestoreSeededDataStack extends Stack {
     add(
       GoogleFirestoreDocument(
         localName: 'i18n_ja',
-        collection: TfArg.literal('i18n'),
-        documentId: TfArg.literal('ja'),
+        collection: .literal('i18n'),
+        documentId: .literal('ja'),
         fields: FirestoreFields.encode({
           'greeting': 'こんにちは',
           'currency_symbol': '¥',
@@ -178,8 +178,8 @@ final class FirestoreSeededDataStack extends Stack {
     add(
       GoogleFirestoreDocument(
         localName: 'i18n_ko',
-        collection: TfArg.literal('i18n'),
-        documentId: TfArg.literal('ko'),
+        collection: .literal('i18n'),
+        documentId: .literal('ko'),
         fields: FirestoreFields.encode({
           'greeting': '안녕하세요',
           'currency_symbol': '₩',
@@ -194,8 +194,8 @@ final class FirestoreSeededDataStack extends Stack {
     add(
       GoogleFirestoreDocument(
         localName: 'region_us',
-        collection: TfArg.literal('regions'),
-        documentId: TfArg.literal('us'),
+        collection: .literal('regions'),
+        documentId: .literal('us'),
         fields: FirestoreFields.encode({
           'name': 'United States',
           'currency': 'USD',
@@ -212,8 +212,8 @@ final class FirestoreSeededDataStack extends Stack {
     add(
       GoogleFirestoreDocument(
         localName: 'region_jp',
-        collection: TfArg.literal('regions'),
-        documentId: TfArg.literal('jp'),
+        collection: .literal('regions'),
+        documentId: .literal('jp'),
         fields: FirestoreFields.encode({
           'name': 'Japan',
           'currency': 'JPY',
@@ -231,21 +231,17 @@ final class FirestoreSeededDataStack extends Stack {
     add(
       GoogleFirestoreIndex(
         localName: 'pricing_tiers_by_price',
-        collection: TfArg.literal('pricing_tiers'),
-        database: TfArg.ref(db.nameRef),
-        queryScope: TfArg.literal(FirestoreIndexQueryScope.collection),
+        collection: .literal('pricing_tiers'),
+        database: .ref(db.nameRef),
+        queryScope: .literal(.collection),
         fields: [
           FirestoreIndexIndexField(
-            fieldPath: TfArg.literal('monthly_usd'),
-            spec: const FirestoreIndexIndexFieldOrder(
-              FirestoreIndexOrder.ascending,
-            ),
+            fieldPath: .literal('monthly_usd'),
+            spec: const .order(FirestoreIndexOrder.ascending),
           ),
           FirestoreIndexIndexField(
-            fieldPath: TfArg.literal('label'),
-            spec: const FirestoreIndexIndexFieldOrder(
-              FirestoreIndexOrder.ascending,
-            ),
+            fieldPath: .literal('label'),
+            spec: const .order(FirestoreIndexOrder.ascending),
           ),
         ],
       ),
@@ -255,9 +251,9 @@ final class FirestoreSeededDataStack extends Stack {
     add(
       GoogleFirestoreBackupSchedule(
         localName: 'daily',
-        database: TfArg.ref(db.nameRef),
-        retention: TfArg.literal('604800s'),
-        recurrence: const FirestoreBackupScheduleDailyRecurrence(),
+        database: .ref(db.nameRef),
+        retention: .literal('604800s'),
+        recurrence: const .daily(),
         dependsOn: [ResourceDependency(db)],
       ),
     );

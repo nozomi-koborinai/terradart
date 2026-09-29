@@ -26,8 +26,8 @@ final class AppHostingStack extends Stack {
     final sa = add(
       GoogleServiceAccount(
         localName: 'apphosting_sa',
-        accountId: TfArg.literal('apphosting-quickstart-sa'),
-        displayName: TfArg.literal('App Hosting runtime SA'),
+        accountId: .literal('apphosting-quickstart-sa'),
+        displayName: .literal('App Hosting runtime SA'),
       ),
     );
 
@@ -36,14 +36,12 @@ final class AppHostingStack extends Stack {
     final backend = add(
       GoogleFirebaseAppHostingBackend(
         localName: 'quickstart',
-        backendId: TfArg.literal('quickstart-backend'),
-        location: TfArg.literal('us-central1'),
-        appId: TfArg.literal('1:1234567890:web:abcdef'),
-        serviceAccount: TfArg.ref(sa.email),
-        servingLocality: TfArg.literal(
-          AppHostingServingLocality.regionalStrict,
-        ),
-        displayName: TfArg.literal('terradart App Hosting quickstart'),
+        backendId: .literal('quickstart-backend'),
+        location: .literal('us-central1'),
+        appId: .literal('1:1234567890:web:abcdef'),
+        serviceAccount: .ref(sa.email),
+        servingLocality: .literal(.regionalStrict),
+        displayName: .literal('terradart App Hosting quickstart'),
       ),
     );
 
@@ -52,9 +50,9 @@ final class AppHostingStack extends Stack {
     add(
       GoogleFirebaseAppHostingDomain(
         localName: 'quickstart_domain',
-        backend: TfArg.ref(backend.backendIdRef),
-        location: TfArg.literal('us-central1'),
-        domainId: TfArg.literal('apphosting.example.com'),
+        backend: .ref(backend.backendIdRef),
+        location: .literal('us-central1'),
+        domainId: .literal('apphosting.example.com'),
       ),
     );
 
@@ -63,9 +61,9 @@ final class AppHostingStack extends Stack {
     add(
       GoogleFirebaseAppHostingDefaultDomain(
         localName: 'default_domain',
-        backend: TfArg.ref(backend.backendIdRef),
-        location: TfArg.literal('us-central1'),
-        domainId: TfArg.literal(
+        backend: .ref(backend.backendIdRef),
+        location: .literal('us-central1'),
+        domainId: .literal(
           'quickstart-backend--$projectId.us-central1.hosted.app',
         ),
       ),
@@ -74,27 +72,25 @@ final class AppHostingStack extends Stack {
     final releaseBuild = add(
       GoogleFirebaseAppHostingBuild(
         localName: 'release_build',
-        backend: TfArg.ref(backend.backendIdRef),
-        location: TfArg.literal('us-central1'),
-        buildId: TfArg.literal('release-1'),
-        source: FirebaseAppHostingBuildAppHostingBuildSourceCodebase(
-          branch: TfArg.literal('main'),
-        ),
-        displayName: TfArg.literal('Initial release build'),
+        backend: .ref(backend.backendIdRef),
+        location: .literal('us-central1'),
+        buildId: .literal('release-1'),
+        source: .codebase(branch: .literal('main')),
+        displayName: .literal('Initial release build'),
       ),
     );
 
     add(
       GoogleFirebaseAppHostingTraffic(
         localName: 'live_traffic',
-        backend: TfArg.ref(backend.backendIdRef),
-        location: TfArg.literal('us-central1'),
+        backend: .ref(backend.backendIdRef),
+        location: .literal('us-central1'),
         routing: .target(
           FirebaseAppHostingTrafficAppHostingTrafficTarget(
             splits: [
               FirebaseAppHostingTrafficAppHostingTrafficSplit(
-                build: TfArg.ref(releaseBuild.buildIdRef),
-                percent: TfArg.literal(100),
+                build: .ref(releaseBuild.buildIdRef),
+                percent: .literal(100),
               ),
             ],
           ),
