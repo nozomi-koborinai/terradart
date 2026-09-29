@@ -151,7 +151,7 @@ final class NccHubStack extends Stack {
                 .defaultRouting,
           ),
         ),
-        virtualMachineOrInterconnectAttachment: .virtualMachine(
+        scope: .virtualMachine(
           NetworkConnectivityPolicyBasedRouteVirtualMachine(
             tags: TfArg.literal(['terradart-pbr']),
           ),

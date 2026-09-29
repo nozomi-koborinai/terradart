@@ -168,3 +168,6 @@ customSlots:
   sli:
     paramDeclaration: 'required MonitoringSloSli sli'
     argMapEntry: 'sli.blockKey: TfArg.literal(sli.encode()),'
+
+sealedNames:
+  "calendar_period, rolling_period_days": period

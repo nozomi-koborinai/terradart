@@ -185,9 +185,9 @@ export 'src/compute/google_compute_global_vm_extension_policy.dart'
         ComputeGlobalVmExtensionPolicyInstanceSelectorsLabelSelector,
         ComputeGlobalVmExtensionPolicyRolloutOperation,
         ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput,
-        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan,
-        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanName,
-        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanPredefinedRolloutPlan,
+        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlan,
+        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanName,
+        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanPredefinedRolloutPlan,
         GoogleComputeGlobalVmExtensionPolicy;
 export 'src/compute/google_compute_ha_vpn_gateway.dart'
     show
@@ -760,9 +760,9 @@ export 'src/compute/google_compute_region_target_tcp_proxy.dart'
     show GoogleComputeRegionTargetTcpProxy, RegionTargetTcpProxyProxyHeader;
 export 'src/compute/google_compute_region_url_map.dart'
     show
-        ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction,
-        ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction,
-        ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect,
+        ComputeRegionUrlMapDefaultAction,
+        ComputeRegionUrlMapDefaultActionDefaultRouteAction,
+        ComputeRegionUrlMapDefaultActionDefaultUrlRedirect,
         ComputeRegionUrlMapRegionUrlMapCachePolicy,
         ComputeRegionUrlMapRegionUrlMapHeaderAction,
         ComputeRegionUrlMapRegionUrlMapHeaderMatch,
@@ -797,9 +797,9 @@ export 'src/compute/google_compute_reservation.dart'
         ComputeReservationSpecificReservationInstancePropertiesGuestAccelerators,
         ComputeReservationSpecificReservationInstancePropertiesLocalSsds,
         ComputeReservationSpecificReservationInstancePropertiesLocalSsdsInterface,
-        ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate,
-        ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateInstanceProperties,
-        ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateSourceInstanceTemplate,
+        ComputeReservationSpecificReservationInstanceSpec,
+        ComputeReservationSpecificReservationInstanceSpecInstanceProperties,
+        ComputeReservationSpecificReservationInstanceSpecSourceInstanceTemplate,
         GoogleComputeReservation;
 export 'src/compute/google_compute_resize_request.dart'
     show ComputeResizeRequestRequestedRunDuration, GoogleComputeResizeRequest;
@@ -1003,9 +1003,9 @@ export 'src/compute/google_compute_target_tcp_proxy.dart'
     show GoogleComputeTargetTcpProxy, TargetTcpProxyProxyHeader;
 export 'src/compute/google_compute_url_map.dart'
     show
-        ComputeUrlMapDefaultUrlRedirectOrDefaultRouteAction,
-        ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction,
-        ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect,
+        ComputeUrlMapDefaultAction,
+        ComputeUrlMapDefaultActionDefaultRouteAction,
+        ComputeUrlMapDefaultActionDefaultUrlRedirect,
         ComputeUrlMapUrlMapCachePolicy,
         ComputeUrlMapUrlMapHeaderAction,
         ComputeUrlMapUrlMapHeaderMatch,

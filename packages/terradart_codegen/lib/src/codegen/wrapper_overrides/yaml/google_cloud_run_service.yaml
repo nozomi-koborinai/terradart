@@ -57,3 +57,8 @@ paramOrder:
   - autogenerate_revision_name
   - deletion_policy
   - project
+
+sealedNames:
+  "template.spec.containers.liveness_probe.grpc, template.spec.containers.liveness_probe.http_get": check
+  "template.spec.containers.readiness_probe.grpc, template.spec.containers.readiness_probe.http_get": check
+  "template.spec.containers.startup_probe.grpc, template.spec.containers.startup_probe.http_get, template.spec.containers.startup_probe.tcp_socket": check

@@ -115,17 +115,16 @@ final class GkeonpremVmwareAdminClusterControlPlaneNode {
 @immutable
 final class GkeonpremVmwareAdminClusterLoadBalancer {
   const GkeonpremVmwareAdminClusterLoadBalancer({
-    required this.f5ConfigOrManualLbConfigOrMetalLbConfig,
+    required this.lbConfig,
     required this.vipConfig,
   });
 
-  final GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig
-  f5ConfigOrManualLbConfigOrMetalLbConfig;
+  final GkeonpremVmwareAdminClusterLoadBalancerLbConfig lbConfig;
 
   final GkeonpremVmwareAdminClusterLoadBalancerVipConfig vipConfig;
 
   Map<String, Object?> encode() => {
-    ...f5ConfigOrManualLbConfigOrMetalLbConfig.encode(),
+    ...lbConfig.encode(),
     'vip_config': vipConfig.encode(),
   };
 }
@@ -134,23 +133,23 @@ final class GkeonpremVmwareAdminClusterLoadBalancer {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.f5Config(...)`.
-sealed class GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig {
-  const GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig();
+sealed class GkeonpremVmwareAdminClusterLoadBalancerLbConfig {
+  const GkeonpremVmwareAdminClusterLoadBalancerLbConfig();
 
   /// Sets `f5_config`.
-  const factory GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig.f5Config(
+  const factory GkeonpremVmwareAdminClusterLoadBalancerLbConfig.f5Config(
     GkeonpremVmwareAdminClusterLoadBalancerF5Config f5Config,
-  ) = GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigF5Config;
+  ) = GkeonpremVmwareAdminClusterLoadBalancerLbConfigF5Config;
 
   /// Sets `manual_lb_config`.
-  const factory GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig.manualLbConfig(
+  const factory GkeonpremVmwareAdminClusterLoadBalancerLbConfig.manualLbConfig(
     GkeonpremVmwareAdminClusterLoadBalancerManualLbConfig manualLbConfig,
-  ) = GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigManualLbConfig;
+  ) = GkeonpremVmwareAdminClusterLoadBalancerLbConfigManualLbConfig;
 
   /// Sets `metal_lb_config`.
-  const factory GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig.metalLbConfig(
+  const factory GkeonpremVmwareAdminClusterLoadBalancerLbConfig.metalLbConfig(
     GkeonpremVmwareAdminClusterLoadBalancerMetalLbConfig metalLbConfig,
-  ) = GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigMetalLbConfig;
+  ) = GkeonpremVmwareAdminClusterLoadBalancerLbConfigMetalLbConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -158,13 +157,10 @@ sealed class GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMe
   Map<String, Object?> encode();
 }
 
-/// The [GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig.f5Config] choice: sets `f5_config`.
-final class GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigF5Config
-    extends
-        GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig {
-  const GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigF5Config(
-    this.f5Config,
-  );
+/// The [GkeonpremVmwareAdminClusterLoadBalancerLbConfig.f5Config] choice: sets `f5_config`.
+final class GkeonpremVmwareAdminClusterLoadBalancerLbConfigF5Config
+    extends GkeonpremVmwareAdminClusterLoadBalancerLbConfig {
+  const GkeonpremVmwareAdminClusterLoadBalancerLbConfigF5Config(this.f5Config);
 
   final GkeonpremVmwareAdminClusterLoadBalancerF5Config f5Config;
 
@@ -175,11 +171,10 @@ final class GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMet
   Map<String, Object?> encode() => {'f5_config': f5Config.encode()};
 }
 
-/// The [GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig.manualLbConfig] choice: sets `manual_lb_config`.
-final class GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigManualLbConfig
-    extends
-        GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig {
-  const GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigManualLbConfig(
+/// The [GkeonpremVmwareAdminClusterLoadBalancerLbConfig.manualLbConfig] choice: sets `manual_lb_config`.
+final class GkeonpremVmwareAdminClusterLoadBalancerLbConfigManualLbConfig
+    extends GkeonpremVmwareAdminClusterLoadBalancerLbConfig {
+  const GkeonpremVmwareAdminClusterLoadBalancerLbConfigManualLbConfig(
     this.manualLbConfig,
   );
 
@@ -194,11 +189,10 @@ final class GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMet
   };
 }
 
-/// The [GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig.metalLbConfig] choice: sets `metal_lb_config`.
-final class GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigMetalLbConfig
-    extends
-        GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig {
-  const GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigMetalLbConfig(
+/// The [GkeonpremVmwareAdminClusterLoadBalancerLbConfig.metalLbConfig] choice: sets `metal_lb_config`.
+final class GkeonpremVmwareAdminClusterLoadBalancerLbConfigMetalLbConfig
+    extends GkeonpremVmwareAdminClusterLoadBalancerLbConfig {
+  const GkeonpremVmwareAdminClusterLoadBalancerLbConfigMetalLbConfig(
     this.metalLbConfig,
   );
 

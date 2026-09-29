@@ -79,3 +79,7 @@ customSlots:
   subnet:
     paramDeclaration: 'VpcAccessConnectorSubnet? subnet'
     argMapEntry: "if (subnet != null) 'subnet': TfArg.literal([subnet.encode()]),"
+
+sealedNames:
+  "max_instances, max_throughput": max_capacity
+  "min_instances, min_throughput": min_capacity

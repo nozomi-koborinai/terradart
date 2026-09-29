@@ -12,18 +12,18 @@ const Set<String> _googleClouddeployCustomTargetTypeSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.customActions(...)`.
-sealed class ClouddeployCustomTargetTypeCustomActionsOrTasks {
-  const ClouddeployCustomTargetTypeCustomActionsOrTasks();
+sealed class ClouddeployCustomTargetTypeActions {
+  const ClouddeployCustomTargetTypeActions();
 
   /// Sets `custom_actions`.
-  const factory ClouddeployCustomTargetTypeCustomActionsOrTasks.customActions(
+  const factory ClouddeployCustomTargetTypeActions.customActions(
     ClouddeployCustomTargetTypeCustomActions customActions,
-  ) = ClouddeployCustomTargetTypeCustomActionsOrTasksCustomActions;
+  ) = ClouddeployCustomTargetTypeActionsCustomActions;
 
   /// Sets `tasks`.
-  const factory ClouddeployCustomTargetTypeCustomActionsOrTasks.tasks(
+  const factory ClouddeployCustomTargetTypeActions.tasks(
     ClouddeployCustomTargetTypeTasks tasks,
-  ) = ClouddeployCustomTargetTypeCustomActionsOrTasksTasks;
+  ) = ClouddeployCustomTargetTypeActionsTasks;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,12 +35,10 @@ sealed class ClouddeployCustomTargetTypeCustomActionsOrTasks {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ClouddeployCustomTargetTypeCustomActionsOrTasks.customActions] choice: sets `custom_actions`.
-final class ClouddeployCustomTargetTypeCustomActionsOrTasksCustomActions
-    extends ClouddeployCustomTargetTypeCustomActionsOrTasks {
-  const ClouddeployCustomTargetTypeCustomActionsOrTasksCustomActions(
-    this.customActions,
-  );
+/// The [ClouddeployCustomTargetTypeActions.customActions] choice: sets `custom_actions`.
+final class ClouddeployCustomTargetTypeActionsCustomActions
+    extends ClouddeployCustomTargetTypeActions {
+  const ClouddeployCustomTargetTypeActionsCustomActions(this.customActions);
 
   final ClouddeployCustomTargetTypeCustomActions customActions;
 
@@ -56,10 +54,10 @@ final class ClouddeployCustomTargetTypeCustomActionsOrTasksCustomActions
   };
 }
 
-/// The [ClouddeployCustomTargetTypeCustomActionsOrTasks.tasks] choice: sets `tasks`.
-final class ClouddeployCustomTargetTypeCustomActionsOrTasksTasks
-    extends ClouddeployCustomTargetTypeCustomActionsOrTasks {
-  const ClouddeployCustomTargetTypeCustomActionsOrTasksTasks(this.tasks);
+/// The [ClouddeployCustomTargetTypeActions.tasks] choice: sets `tasks`.
+final class ClouddeployCustomTargetTypeActionsTasks
+    extends ClouddeployCustomTargetTypeActions {
+  const ClouddeployCustomTargetTypeActionsTasks(this.tasks);
 
   final ClouddeployCustomTargetTypeTasks tasks;
 
@@ -108,17 +106,17 @@ final class ClouddeployCustomTargetTypeCustomActions {
 final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModules {
   const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModules({
     this.configs,
-    required this.gitOrGoogleCloudStorageOrGoogleCloudBuildRepo,
+    required this.source,
   });
 
   final TfArg<List<Object?>>? configs;
 
-  final ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo
-  gitOrGoogleCloudStorageOrGoogleCloudBuildRepo;
+  final ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource
+  source;
 
   Map<String, Object?> encode() => {
     if (configs != null) 'configs': configs!.toTfJson(),
-    ...gitOrGoogleCloudStorageOrGoogleCloudBuildRepo.encode(),
+    ...source.encode(),
   };
 }
 
@@ -126,25 +124,25 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModules {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.git(...)`.
-sealed class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo();
+sealed class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource {
+  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource();
 
   /// Sets `git`.
-  const factory ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo.git(
+  const factory ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource.git(
     ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGit git,
-  ) = ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGit;
+  ) = ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGit;
 
   /// Sets `google_cloud_storage`.
-  const factory ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo.googleCloudStorage(
+  const factory ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource.googleCloudStorage(
     ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudStorage
     googleCloudStorage,
-  ) = ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudStorage;
+  ) = ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudStorage;
 
   /// Sets `google_cloud_build_repo`.
-  const factory ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo.googleCloudBuildRepo(
+  const factory ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource.googleCloudBuildRepo(
     ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudBuildRepo
     googleCloudBuildRepo,
-  ) = ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudBuildRepo;
+  ) = ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudBuildRepo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -152,11 +150,11 @@ sealed class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOr
   Map<String, Object?> encode();
 }
 
-/// The [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo.git] choice: sets `git`.
-final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGit
+/// The [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource.git] choice: sets `git`.
+final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGit
     extends
-        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGit(
+        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource {
+  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGit(
     this.git,
   );
 
@@ -169,11 +167,11 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrG
   Map<String, Object?> encode() => {'git': git.encode()};
 }
 
-/// The [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo.googleCloudStorage] choice: sets `google_cloud_storage`.
-final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudStorage
+/// The [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource.googleCloudStorage] choice: sets `google_cloud_storage`.
+final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudStorage
     extends
-        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudStorage(
+        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource {
+  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudStorage(
     this.googleCloudStorage,
   );
 
@@ -189,11 +187,11 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrG
   };
 }
 
-/// The [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo.googleCloudBuildRepo] choice: sets `google_cloud_build_repo`.
-final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudBuildRepo
+/// The [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource.googleCloudBuildRepo] choice: sets `google_cloud_build_repo`.
+final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudBuildRepo
     extends
-        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudBuildRepo(
+        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSource {
+  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudBuildRepo(
     this.googleCloudBuildRepo,
   );
 
@@ -382,7 +380,7 @@ final class GoogleClouddeployCustomTargetType extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    ClouddeployCustomTargetTypeCustomActionsOrTasks? customActionsOrTasks,
+    ClouddeployCustomTargetTypeActions? actions,
     TfArg<String>? description,
     TfArg<Map<String, String>>? annotations,
     TfArg<Map<String, String>>? labels,
@@ -397,7 +395,7 @@ final class GoogleClouddeployCustomTargetType extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           ...?customActionsOrTasks?.argMap,
+           ...?actions?.argMap,
            if (description != null) 'description': description,
            if (annotations != null) 'annotations': annotations,
            if (labels != null) 'labels': labels,

@@ -99,7 +99,7 @@ final class ComputeRolloutStack extends Stack {
         rolloutOperation: ComputeGlobalVmExtensionPolicyRolloutOperation(
           rolloutInput:
               ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput(
-                nameOrPredefinedRolloutPlan: .name(
+                plan: .name(
                   TfArg.literal(planResourceName),
                 ),
               ),

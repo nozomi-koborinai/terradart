@@ -164,3 +164,6 @@ paramOrder:
   - dataset
   - deletion_policy
   - project
+
+sealedNames:
+  "dataset, domain, group_by_email, iam_member, routine, special_group, user_by_email, view": grantee

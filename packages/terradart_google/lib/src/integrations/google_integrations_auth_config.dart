@@ -78,18 +78,16 @@ final class IntegrationsAuthConfigClientCertificate {
 final class IntegrationsAuthConfigDecryptedCredential {
   const IntegrationsAuthConfigDecryptedCredential({
     required this.credentialType,
-    this.usernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken,
+    this.credential,
   });
 
   final TfArg<String> credentialType;
 
-  final IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken?
-  usernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken;
+  final IntegrationsAuthConfigDecryptedCredentialCredential? credential;
 
   Map<String, Object?> encode() => {
     'credential_type': credentialType.toTfJson(),
-    ...?usernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken
-        ?.encode(),
+    ...?credential?.encode(),
   };
 }
 
@@ -98,47 +96,47 @@ final class IntegrationsAuthConfigDecryptedCredential {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.usernameAndPassword(...)`.
-sealed class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
-  const IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken();
+sealed class IntegrationsAuthConfigDecryptedCredentialCredential {
+  const IntegrationsAuthConfigDecryptedCredentialCredential();
 
   /// Sets `username_and_password`.
-  const factory IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken.usernameAndPassword(
+  const factory IntegrationsAuthConfigDecryptedCredentialCredential.usernameAndPassword(
     IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword
     usernameAndPassword,
-  ) = IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenUsernameAndPassword;
+  ) = IntegrationsAuthConfigDecryptedCredentialCredentialUsernameAndPassword;
 
   /// Sets `oauth2_authorization_code`.
-  const factory IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken.oauth2AuthorizationCode(
+  const factory IntegrationsAuthConfigDecryptedCredentialCredential.oauth2AuthorizationCode(
     IntegrationsAuthConfigDecryptedCredentialOauth2AuthorizationCode
     oauth2AuthorizationCode,
-  ) = IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOauth2AuthorizationCode;
+  ) = IntegrationsAuthConfigDecryptedCredentialCredentialOauth2AuthorizationCode;
 
   /// Sets `oauth2_client_credentials`.
-  const factory IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken.oauth2ClientCredentials(
+  const factory IntegrationsAuthConfigDecryptedCredentialCredential.oauth2ClientCredentials(
     IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentials
     oauth2ClientCredentials,
-  ) = IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOauth2ClientCredentials;
+  ) = IntegrationsAuthConfigDecryptedCredentialCredentialOauth2ClientCredentials;
 
   /// Sets `jwt`.
-  const factory IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken.jwt(
+  const factory IntegrationsAuthConfigDecryptedCredentialCredential.jwt(
     IntegrationsAuthConfigDecryptedCredentialJwt jwt,
-  ) = IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenJwt;
+  ) = IntegrationsAuthConfigDecryptedCredentialCredentialJwt;
 
   /// Sets `auth_token`.
-  const factory IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken.authToken(
+  const factory IntegrationsAuthConfigDecryptedCredentialCredential.authToken(
     IntegrationsAuthConfigDecryptedCredentialAuthToken authToken,
-  ) = IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenAuthToken;
+  ) = IntegrationsAuthConfigDecryptedCredentialCredentialAuthToken;
 
   /// Sets `service_account_credentials`.
-  const factory IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken.serviceAccountCredentials(
+  const factory IntegrationsAuthConfigDecryptedCredentialCredential.serviceAccountCredentials(
     IntegrationsAuthConfigDecryptedCredentialServiceAccountCredentials
     serviceAccountCredentials,
-  ) = IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenServiceAccountCredentials;
+  ) = IntegrationsAuthConfigDecryptedCredentialCredentialServiceAccountCredentials;
 
   /// Sets `oidc_token`.
-  const factory IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken.oidcToken(
+  const factory IntegrationsAuthConfigDecryptedCredentialCredential.oidcToken(
     IntegrationsAuthConfigDecryptedCredentialOidcToken oidcToken,
-  ) = IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOidcToken;
+  ) = IntegrationsAuthConfigDecryptedCredentialCredentialOidcToken;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -146,11 +144,10 @@ sealed class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth
   Map<String, Object?> encode();
 }
 
-/// The [IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken.usernameAndPassword] choice: sets `username_and_password`.
-final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenUsernameAndPassword
-    extends
-        IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
-  const IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenUsernameAndPassword(
+/// The [IntegrationsAuthConfigDecryptedCredentialCredential.usernameAndPassword] choice: sets `username_and_password`.
+final class IntegrationsAuthConfigDecryptedCredentialCredentialUsernameAndPassword
+    extends IntegrationsAuthConfigDecryptedCredentialCredential {
+  const IntegrationsAuthConfigDecryptedCredentialCredentialUsernameAndPassword(
     this.usernameAndPassword,
   );
 
@@ -166,11 +163,10 @@ final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2
   };
 }
 
-/// The [IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken.oauth2AuthorizationCode] choice: sets `oauth2_authorization_code`.
-final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOauth2AuthorizationCode
-    extends
-        IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
-  const IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOauth2AuthorizationCode(
+/// The [IntegrationsAuthConfigDecryptedCredentialCredential.oauth2AuthorizationCode] choice: sets `oauth2_authorization_code`.
+final class IntegrationsAuthConfigDecryptedCredentialCredentialOauth2AuthorizationCode
+    extends IntegrationsAuthConfigDecryptedCredentialCredential {
+  const IntegrationsAuthConfigDecryptedCredentialCredentialOauth2AuthorizationCode(
     this.oauth2AuthorizationCode,
   );
 
@@ -186,11 +182,10 @@ final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2
   };
 }
 
-/// The [IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken.oauth2ClientCredentials] choice: sets `oauth2_client_credentials`.
-final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOauth2ClientCredentials
-    extends
-        IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
-  const IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOauth2ClientCredentials(
+/// The [IntegrationsAuthConfigDecryptedCredentialCredential.oauth2ClientCredentials] choice: sets `oauth2_client_credentials`.
+final class IntegrationsAuthConfigDecryptedCredentialCredentialOauth2ClientCredentials
+    extends IntegrationsAuthConfigDecryptedCredentialCredential {
+  const IntegrationsAuthConfigDecryptedCredentialCredentialOauth2ClientCredentials(
     this.oauth2ClientCredentials,
   );
 
@@ -206,13 +201,10 @@ final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2
   };
 }
 
-/// The [IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken.jwt] choice: sets `jwt`.
-final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenJwt
-    extends
-        IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
-  const IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenJwt(
-    this.jwt,
-  );
+/// The [IntegrationsAuthConfigDecryptedCredentialCredential.jwt] choice: sets `jwt`.
+final class IntegrationsAuthConfigDecryptedCredentialCredentialJwt
+    extends IntegrationsAuthConfigDecryptedCredentialCredential {
+  const IntegrationsAuthConfigDecryptedCredentialCredentialJwt(this.jwt);
 
   final IntegrationsAuthConfigDecryptedCredentialJwt jwt;
 
@@ -223,11 +215,10 @@ final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2
   Map<String, Object?> encode() => {'jwt': jwt.encode()};
 }
 
-/// The [IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken.authToken] choice: sets `auth_token`.
-final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenAuthToken
-    extends
-        IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
-  const IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenAuthToken(
+/// The [IntegrationsAuthConfigDecryptedCredentialCredential.authToken] choice: sets `auth_token`.
+final class IntegrationsAuthConfigDecryptedCredentialCredentialAuthToken
+    extends IntegrationsAuthConfigDecryptedCredentialCredential {
+  const IntegrationsAuthConfigDecryptedCredentialCredentialAuthToken(
     this.authToken,
   );
 
@@ -240,11 +231,10 @@ final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2
   Map<String, Object?> encode() => {'auth_token': authToken.encode()};
 }
 
-/// The [IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken.serviceAccountCredentials] choice: sets `service_account_credentials`.
-final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenServiceAccountCredentials
-    extends
-        IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
-  const IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenServiceAccountCredentials(
+/// The [IntegrationsAuthConfigDecryptedCredentialCredential.serviceAccountCredentials] choice: sets `service_account_credentials`.
+final class IntegrationsAuthConfigDecryptedCredentialCredentialServiceAccountCredentials
+    extends IntegrationsAuthConfigDecryptedCredentialCredential {
+  const IntegrationsAuthConfigDecryptedCredentialCredentialServiceAccountCredentials(
     this.serviceAccountCredentials,
   );
 
@@ -260,11 +250,10 @@ final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2
   };
 }
 
-/// The [IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken.oidcToken] choice: sets `oidc_token`.
-final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOidcToken
-    extends
-        IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
-  const IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOidcToken(
+/// The [IntegrationsAuthConfigDecryptedCredentialCredential.oidcToken] choice: sets `oidc_token`.
+final class IntegrationsAuthConfigDecryptedCredentialCredentialOidcToken
+    extends IntegrationsAuthConfigDecryptedCredentialCredential {
+  const IntegrationsAuthConfigDecryptedCredentialCredentialOidcToken(
     this.oidcToken,
   );
 

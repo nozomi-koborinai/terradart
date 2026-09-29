@@ -261,3 +261,6 @@ prelude: |
       if (publicKey != null) 'public_key': [publicKey!.encode()],
     };
   }
+
+sealedNames:
+  "config, pem_csr": request

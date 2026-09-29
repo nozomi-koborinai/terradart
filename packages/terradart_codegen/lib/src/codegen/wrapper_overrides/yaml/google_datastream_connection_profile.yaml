@@ -26,3 +26,6 @@ paramOrder:
   - forward_ssh_connectivity
   - gcs_profile
   - private_connectivity
+
+sealedNames:
+  "forward_ssh_connectivity.password, forward_ssh_connectivity.private_key": credential

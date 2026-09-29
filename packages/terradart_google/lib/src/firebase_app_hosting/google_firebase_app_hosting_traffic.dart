@@ -92,18 +92,18 @@ class FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.rolloutPolicy(...)`.
-sealed class FirebaseAppHostingTrafficRolloutPolicyOrTarget {
-  const FirebaseAppHostingTrafficRolloutPolicyOrTarget();
+sealed class FirebaseAppHostingTrafficRouting {
+  const FirebaseAppHostingTrafficRouting();
 
   /// Sets `rollout_policy`.
-  const factory FirebaseAppHostingTrafficRolloutPolicyOrTarget.rolloutPolicy(
+  const factory FirebaseAppHostingTrafficRouting.rolloutPolicy(
     FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy rolloutPolicy,
-  ) = FirebaseAppHostingTrafficRolloutPolicyOrTargetRolloutPolicy;
+  ) = FirebaseAppHostingTrafficRoutingRolloutPolicy;
 
   /// Sets `target`.
-  const factory FirebaseAppHostingTrafficRolloutPolicyOrTarget.target(
+  const factory FirebaseAppHostingTrafficRouting.target(
     FirebaseAppHostingTrafficAppHostingTrafficTarget target,
-  ) = FirebaseAppHostingTrafficRolloutPolicyOrTargetTarget;
+  ) = FirebaseAppHostingTrafficRoutingTarget;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -115,12 +115,10 @@ sealed class FirebaseAppHostingTrafficRolloutPolicyOrTarget {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [FirebaseAppHostingTrafficRolloutPolicyOrTarget.rolloutPolicy] choice: sets `rollout_policy`.
-final class FirebaseAppHostingTrafficRolloutPolicyOrTargetRolloutPolicy
-    extends FirebaseAppHostingTrafficRolloutPolicyOrTarget {
-  const FirebaseAppHostingTrafficRolloutPolicyOrTargetRolloutPolicy(
-    this.rolloutPolicy,
-  );
+/// The [FirebaseAppHostingTrafficRouting.rolloutPolicy] choice: sets `rollout_policy`.
+final class FirebaseAppHostingTrafficRoutingRolloutPolicy
+    extends FirebaseAppHostingTrafficRouting {
+  const FirebaseAppHostingTrafficRoutingRolloutPolicy(this.rolloutPolicy);
 
   final FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy rolloutPolicy;
 
@@ -138,10 +136,10 @@ final class FirebaseAppHostingTrafficRolloutPolicyOrTargetRolloutPolicy
   };
 }
 
-/// The [FirebaseAppHostingTrafficRolloutPolicyOrTarget.target] choice: sets `target`.
-final class FirebaseAppHostingTrafficRolloutPolicyOrTargetTarget
-    extends FirebaseAppHostingTrafficRolloutPolicyOrTarget {
-  const FirebaseAppHostingTrafficRolloutPolicyOrTargetTarget(this.target);
+/// The [FirebaseAppHostingTrafficRouting.target] choice: sets `target`.
+final class FirebaseAppHostingTrafficRoutingTarget
+    extends FirebaseAppHostingTrafficRouting {
+  const FirebaseAppHostingTrafficRoutingTarget(this.target);
 
   final FirebaseAppHostingTrafficAppHostingTrafficTarget target;
 
@@ -215,8 +213,7 @@ final class GoogleFirebaseAppHostingTraffic extends Resource {
     required super.localName,
     required TfArg<String> backend,
     required TfArg<String> location,
-    required FirebaseAppHostingTrafficRolloutPolicyOrTarget
-    rolloutPolicyOrTarget,
+    required FirebaseAppHostingTrafficRouting routing,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -227,7 +224,7 @@ final class GoogleFirebaseAppHostingTraffic extends Resource {
          argMap: {
            'backend': backend,
            'location': location,
-           ...rolloutPolicyOrTarget.argMap,
+           ...routing.argMap,
            if (project != null) 'project': project,
          },
        );

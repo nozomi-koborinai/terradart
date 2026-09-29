@@ -52,3 +52,6 @@ extraGetters: |2
 
     /// Reference to `id` attribute.
     TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+sealedNames:
+  "network, private_service_connect_config": connectivity

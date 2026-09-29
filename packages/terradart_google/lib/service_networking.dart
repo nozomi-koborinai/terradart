@@ -14,10 +14,10 @@ export 'src/service_networking/google_service_networking_vpc_service_controls.da
 export 'src/service_networking/google_vpc_access_connector.dart'
     show
         GoogleVpcAccessConnector,
-        VpcAccessConnectorMaxInstancesOrMaxThroughput,
-        VpcAccessConnectorMaxInstancesOrMaxThroughputMaxInstances,
-        VpcAccessConnectorMaxInstancesOrMaxThroughputMaxThroughput,
-        VpcAccessConnectorMinThroughputOrMinInstances,
-        VpcAccessConnectorMinThroughputOrMinInstancesMinInstances,
-        VpcAccessConnectorMinThroughputOrMinInstancesMinThroughput,
+        VpcAccessConnectorMaxCapacity,
+        VpcAccessConnectorMaxCapacityMaxInstances,
+        VpcAccessConnectorMaxCapacityMaxThroughput,
+        VpcAccessConnectorMinCapacity,
+        VpcAccessConnectorMinCapacityMinInstances,
+        VpcAccessConnectorMinCapacityMinThroughput,
         VpcAccessConnectorSubnet;
