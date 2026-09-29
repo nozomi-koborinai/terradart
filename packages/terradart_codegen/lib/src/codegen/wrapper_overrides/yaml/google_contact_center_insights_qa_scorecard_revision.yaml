@@ -1,5 +1,6 @@
 outputDir: contact
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 # `snapshot` is computed-only; leave nested derivation off for this thin Wave.

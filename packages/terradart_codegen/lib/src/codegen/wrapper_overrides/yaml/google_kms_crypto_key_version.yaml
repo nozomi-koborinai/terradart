@@ -1,5 +1,6 @@
 outputDir: kms
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 dartTypeOverrides:

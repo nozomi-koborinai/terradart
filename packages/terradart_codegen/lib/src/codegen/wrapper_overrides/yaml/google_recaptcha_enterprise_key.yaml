@@ -1,6 +1,7 @@
 outputDir: recaptcha
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 

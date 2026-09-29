@@ -1,6 +1,7 @@
 outputDir: privateca
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 paramOrder:

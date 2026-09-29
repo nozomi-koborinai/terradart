@@ -1,6 +1,7 @@
 outputDir: beyondcorp
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 paramOrder:

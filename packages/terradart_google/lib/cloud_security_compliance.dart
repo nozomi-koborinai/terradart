@@ -98,7 +98,13 @@ export 'src/cloud_security_compliance/google_cloud_security_compliance_framework
         CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetailsParametersParameterValueStringListValue,
         CloudSecurityComplianceFrameworkDeploymentFramework,
         CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig,
+        CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigExistingTargetResourceOption,
+        CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigExistingTargetResourceOrTargetResourceCreationConfig,
         CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfig,
         CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfig,
+        CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfigOption,
+        CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigFolderCreationConfigOrProjectCreationConfig,
+        CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigOption,
         CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfig,
+        CloudSecurityComplianceFrameworkDeploymentTargetResourceConfigTargetResourceCreationConfigProjectCreationConfigOption,
         GoogleCloudSecurityComplianceFrameworkDeployment;

@@ -1,6 +1,7 @@
 outputDir: kms
 
 deriveClassDoc: true
+deriveExactlyOne: true
 curatedDoc: |-
   ///
   /// Example:

@@ -4,6 +4,7 @@
 outputDir: chronicle
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveEnums: true
 
 dartTypeOverrides:

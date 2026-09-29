@@ -283,7 +283,9 @@ final class ComputeLbStack extends Stack {
         location: TfArg.literal(region),
         certificateAuthority: TfArg.literal('app-root-ca'),
         lifetime: TfArg.literal('86400s'),
-        pemCsr: TfArg.variable('cm_cas_cert_csr_pem'),
+        pemCsrOrConfig: PrivatecaCertificatePemCsrOption(
+          pemCsr: TfArg.variable('cm_cas_cert_csr_pem'),
+        ),
         certificateTemplate: TfArg.ref(cmCertTemplate.id),
         dependsOn: [
           ResourceDependency(cmRootCa),

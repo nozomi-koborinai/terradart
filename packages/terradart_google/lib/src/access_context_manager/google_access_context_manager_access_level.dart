@@ -7,6 +7,60 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_access_context_manager_access_level`.
 const Set<String> _googleAccessContextManagerAccessLevelSensitive = <String>{};
 
+/// At most one of `basic`, `custom` on `google_access_context_manager_access_level`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AccessContextManagerAccessLevelBasicOrCustom {
+  const AccessContextManagerAccessLevelBasicOrCustom();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `basic` (one of the [AccessContextManagerAccessLevelBasicOrCustom] choices).
+final class AccessContextManagerAccessLevelBasicOption
+    extends AccessContextManagerAccessLevelBasicOrCustom {
+  const AccessContextManagerAccessLevelBasicOption({required this.basic});
+
+  final AccessContextManagerAccessLevelBasic basic;
+
+  @override
+  String get blockKey => 'basic';
+
+  @override
+  Map<String, Object?> encode() => {'basic': basic.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'basic': TfArg.literal(basic.encode()),
+  };
+}
+
+/// Sets `custom` (one of the [AccessContextManagerAccessLevelBasicOrCustom] choices).
+final class AccessContextManagerAccessLevelCustomOption
+    extends AccessContextManagerAccessLevelBasicOrCustom {
+  const AccessContextManagerAccessLevelCustomOption({required this.custom});
+
+  final AccessContextManagerAccessLevelCustom custom;
+
+  @override
+  String get blockKey => 'custom';
+
+  @override
+  Map<String, Object?> encode() => {'custom': custom.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'custom': TfArg.literal(custom.encode()),
+  };
+}
+
 /// Typed helper for the `basic` block of
 /// `google_access_context_manager_access_level` (derived from provider schema).
 @immutable
@@ -304,8 +358,7 @@ final class GoogleAccessContextManagerAccessLevel extends Resource {
     required TfArg<String> parent,
     required TfArg<String> title,
     TfArg<String>? description,
-    AccessContextManagerAccessLevelBasic? basic,
-    AccessContextManagerAccessLevelCustom? custom,
+    AccessContextManagerAccessLevelBasicOrCustom? basicOrCustom,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
@@ -318,8 +371,7 @@ final class GoogleAccessContextManagerAccessLevel extends Resource {
            'parent': parent,
            'title': title,
            if (description != null) 'description': description,
-           if (basic != null) 'basic': TfArg.literal(basic.encode()),
-           if (custom != null) 'custom': TfArg.literal(custom.encode()),
+           ...?basicOrCustom?.argMap,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
          },
        );

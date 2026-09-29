@@ -1,5 +1,6 @@
 outputDir: os_config
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 

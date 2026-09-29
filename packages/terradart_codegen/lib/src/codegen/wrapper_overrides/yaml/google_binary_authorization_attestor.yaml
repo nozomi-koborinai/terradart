@@ -1,6 +1,7 @@
 outputDir: binary_authorization
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-
