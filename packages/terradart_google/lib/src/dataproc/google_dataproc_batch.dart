@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
@@ -256,12 +258,12 @@ sealed class DataprocBatchEnvironmentConfigExecutionConfigNetwork {
 
   /// Sets `network_uri`.
   const factory DataprocBatchEnvironmentConfigExecutionConfigNetwork.networkUri(
-    TfArg<String> networkUri,
+    RefTo<GoogleComputeNetwork> networkUri,
   ) = DataprocBatchEnvironmentConfigExecutionConfigNetworkNetworkUri;
 
   /// Sets `subnetwork_uri`.
   const factory DataprocBatchEnvironmentConfigExecutionConfigNetwork.subnetworkUri(
-    TfArg<String> subnetworkUri,
+    RefTo<GoogleComputeSubnetwork> subnetworkUri,
   ) = DataprocBatchEnvironmentConfigExecutionConfigNetworkSubnetworkUri;
 
   /// The Terraform argument this choice sets.
@@ -277,13 +279,15 @@ final class DataprocBatchEnvironmentConfigExecutionConfigNetworkNetworkUri
     this.networkUri,
   );
 
-  final TfArg<String> networkUri;
+  final RefTo<GoogleComputeNetwork> networkUri;
 
   @override
   String get blockKey => 'network_uri';
 
   @override
-  Map<String, Object?> encode() => {'network_uri': networkUri.toTfJson()};
+  Map<String, Object?> encode() => {
+    'network_uri': networkUri.encodeAs('id').toTfJson(),
+  };
 }
 
 /// The [DataprocBatchEnvironmentConfigExecutionConfigNetwork.subnetworkUri] choice: sets `subnetwork_uri`.
@@ -293,13 +297,15 @@ final class DataprocBatchEnvironmentConfigExecutionConfigNetworkSubnetworkUri
     this.subnetworkUri,
   );
 
-  final TfArg<String> subnetworkUri;
+  final RefTo<GoogleComputeSubnetwork> subnetworkUri;
 
   @override
   String get blockKey => 'subnetwork_uri';
 
   @override
-  Map<String, Object?> encode() => {'subnetwork_uri': subnetworkUri.toTfJson()};
+  Map<String, Object?> encode() => {
+    'subnetwork_uri': subnetworkUri.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `environment_config.execution_config.authentication_config` block of

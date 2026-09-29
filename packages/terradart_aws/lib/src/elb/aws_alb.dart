@@ -101,7 +101,7 @@ sealed class AlbSubnet {
       AlbSubnetSubnetMapping;
 
   /// Sets `subnets`.
-  const factory AlbSubnet.subnets(TfArg<List<String>> subnets) =
+  const factory AlbSubnet.subnets(TfArg<List<RefTo<AwsSubnet>>> subnets) =
       AlbSubnetSubnets;
 
   /// The Terraform argument this choice sets.
@@ -140,16 +140,18 @@ final class AlbSubnetSubnetMapping extends AlbSubnet {
 final class AlbSubnetSubnets extends AlbSubnet {
   const AlbSubnetSubnets(this.subnets);
 
-  final TfArg<List<String>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   @override
   String get blockKey => 'subnets';
 
   @override
-  Map<String, Object?> encode() => {'subnets': subnets.toTfJson()};
+  Map<String, Object?> encode() => {
+    'subnets': subnets.encodeAs('id').toTfJson(),
+  };
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'subnets': subnets};
+  Map<String, TfArg<Object?>> get argMap => {'subnets': subnets.encodeAs('id')};
 }
 
 /// At most one of `name`, `name_prefix` on `aws_alb`: the provider rejects

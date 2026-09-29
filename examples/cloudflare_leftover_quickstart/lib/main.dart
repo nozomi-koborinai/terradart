@@ -1365,7 +1365,7 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareRuleset(
         localName: 'ruleset',
-        scope: .zoneId(TfArg.literal(zoneId)),
+        scope: .zoneId(RefTo.literal(zoneId)),
         kind: TfArg.literal(RulesetKind.zone),
         name: TfArg.literal(leftover),
         phase: TfArg.literal(RulesetPhase.httpRequestFirewallCustom),
