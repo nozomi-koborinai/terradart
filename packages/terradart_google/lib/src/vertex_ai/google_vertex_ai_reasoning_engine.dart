@@ -579,35 +579,33 @@ enum VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGener
 @immutable
 final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics {
   const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics({
-    required this.managedMemoryTopicOrCustomMemoryTopic,
+    required this.memoryTopic,
   });
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic
-  managedMemoryTopicOrCustomMemoryTopic;
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic
+  memoryTopic;
 
-  Map<String, Object?> encode() => {
-    ...managedMemoryTopicOrCustomMemoryTopic.encode(),
-  };
+  Map<String, Object?> encode() => {...memoryTopic.encode()};
 }
 
 /// Exactly one of `managed_memory_topic`, `custom_memory_topic` on the `context_spec.memory_bank_config.customization_configs.memory_topics` block of `google_vertex_ai_reasoning_engine`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.managedMemoryTopic(...)`.
-sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic();
+sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic();
 
   /// Sets `managed_memory_topic`.
-  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic.managedMemoryTopic(
+  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic.managedMemoryTopic(
     VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopic
     managedMemoryTopic,
-  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicManagedMemoryTopic;
+  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicManagedMemoryTopic;
 
   /// Sets `custom_memory_topic`.
-  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic.customMemoryTopic(
+  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic.customMemoryTopic(
     VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopic
     customMemoryTopic,
-  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicCustomMemoryTopic;
+  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicCustomMemoryTopic;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -615,11 +613,11 @@ sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConf
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic.managedMemoryTopic] choice: sets `managed_memory_topic`.
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicManagedMemoryTopic
+/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic.managedMemoryTopic] choice: sets `managed_memory_topic`.
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicManagedMemoryTopic
     extends
-        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicManagedMemoryTopic(
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicManagedMemoryTopic(
     this.managedMemoryTopic,
   );
 
@@ -635,11 +633,11 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   };
 }
 
-/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic.customMemoryTopic] choice: sets `custom_memory_topic`.
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicCustomMemoryTopic
+/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic.customMemoryTopic] choice: sets `custom_memory_topic`.
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicCustomMemoryTopic
     extends
-        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicCustomMemoryTopic(
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicCustomMemoryTopic(
     this.customMemoryTopic,
   );
 

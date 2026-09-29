@@ -6,9 +6,9 @@ library;
 export 'src/docdb/aws_docdb_cluster.dart'
     show
         AwsDocdbCluster,
-        DocdbClusterClusterIdentifierOrClusterIdentifierPrefix,
-        DocdbClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier,
-        DocdbClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix,
+        DocdbClusterClusterIdentifier,
+        DocdbClusterClusterIdentifierClusterIdentifier,
+        DocdbClusterClusterIdentifierClusterIdentifierPrefix,
         DocdbClusterEnabledCloudwatchLogsExports,
         DocdbClusterEngine,
         DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo,
@@ -20,34 +20,34 @@ export 'src/docdb/aws_docdb_cluster.dart'
         DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier,
         DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierRestoreToPointInTime,
         DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierSnapshotIdentifier,
-        DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime,
-        DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeRestoreToTime,
-        DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeUseLatestRestorableTime,
         DocdbClusterRestoreToPointInTimeRestoreType,
+        DocdbClusterRestoreToPointInTimeTime,
+        DocdbClusterRestoreToPointInTimeTimeRestoreToTime,
+        DocdbClusterRestoreToPointInTimeTimeUseLatestRestorableTime,
         DocdbClusterServerlessV2ScalingConfiguration,
         DocdbClusterStorageType;
 export 'src/docdb/aws_docdb_cluster_instance.dart'
     show
         AwsDocdbClusterInstance,
         DocdbClusterInstanceEngine,
-        DocdbClusterInstanceIdentifierOrIdentifierPrefix,
-        DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifier,
-        DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix;
+        DocdbClusterInstanceIdentifier,
+        DocdbClusterInstanceIdentifierIdentifier,
+        DocdbClusterInstanceIdentifierIdentifierPrefix;
 export 'src/docdb/aws_docdb_cluster_parameter_group.dart'
     show
         AwsDocdbClusterParameterGroup,
-        DocdbClusterParameterGroupNameOrNamePrefix,
-        DocdbClusterParameterGroupNameOrNamePrefixName,
-        DocdbClusterParameterGroupNameOrNamePrefixNamePrefix,
+        DocdbClusterParameterGroupName,
+        DocdbClusterParameterGroupNameName,
+        DocdbClusterParameterGroupNameNamePrefix,
         DocdbClusterParameterGroupParameter,
         DocdbClusterParameterGroupParameterApplyMethod;
 export 'src/docdb/aws_docdb_cluster_snapshot.dart' show AwsDocdbClusterSnapshot;
 export 'src/docdb/aws_docdb_event_subscription.dart'
     show
         AwsDocdbEventSubscription,
-        DocdbEventSubscriptionNameOrNamePrefix,
-        DocdbEventSubscriptionNameOrNamePrefixName,
-        DocdbEventSubscriptionNameOrNamePrefixNamePrefix;
+        DocdbEventSubscriptionName,
+        DocdbEventSubscriptionNameName,
+        DocdbEventSubscriptionNameNamePrefix;
 export 'src/docdb/aws_docdb_global_cluster.dart'
     show
         AwsDocdbGlobalCluster,
@@ -58,6 +58,6 @@ export 'src/docdb/aws_docdb_global_cluster.dart'
 export 'src/docdb/aws_docdb_subnet_group.dart'
     show
         AwsDocdbSubnetGroup,
-        DocdbSubnetGroupNameOrNamePrefix,
-        DocdbSubnetGroupNameOrNamePrefixName,
-        DocdbSubnetGroupNameOrNamePrefixNamePrefix;
+        DocdbSubnetGroupName,
+        DocdbSubnetGroupNameName,
+        DocdbSubnetGroupNameNamePrefix;

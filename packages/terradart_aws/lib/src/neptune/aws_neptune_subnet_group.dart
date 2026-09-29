@@ -11,17 +11,16 @@ const Set<String> _awsNeptuneSubnetGroupSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class NeptuneSubnetGroupNameOrNamePrefix {
-  const NeptuneSubnetGroupNameOrNamePrefix();
+sealed class NeptuneSubnetGroupName {
+  const NeptuneSubnetGroupName();
 
   /// Sets `name`.
-  const factory NeptuneSubnetGroupNameOrNamePrefix.name(TfArg<String> name) =
-      NeptuneSubnetGroupNameOrNamePrefixName;
+  const factory NeptuneSubnetGroupName.name(TfArg<String> name) =
+      NeptuneSubnetGroupNameName;
 
   /// Sets `name_prefix`.
-  const factory NeptuneSubnetGroupNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = NeptuneSubnetGroupNameOrNamePrefixNamePrefix;
+  const factory NeptuneSubnetGroupName.namePrefix(TfArg<String> namePrefix) =
+      NeptuneSubnetGroupNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class NeptuneSubnetGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NeptuneSubnetGroupNameOrNamePrefix.name] choice: sets `name`.
-final class NeptuneSubnetGroupNameOrNamePrefixName
-    extends NeptuneSubnetGroupNameOrNamePrefix {
-  const NeptuneSubnetGroupNameOrNamePrefixName(this.name);
+/// The [NeptuneSubnetGroupName.name] choice: sets `name`.
+final class NeptuneSubnetGroupNameName extends NeptuneSubnetGroupName {
+  const NeptuneSubnetGroupNameName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +48,9 @@ final class NeptuneSubnetGroupNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [NeptuneSubnetGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class NeptuneSubnetGroupNameOrNamePrefixNamePrefix
-    extends NeptuneSubnetGroupNameOrNamePrefix {
-  const NeptuneSubnetGroupNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [NeptuneSubnetGroupName.namePrefix] choice: sets `name_prefix`.
+final class NeptuneSubnetGroupNameNamePrefix extends NeptuneSubnetGroupName {
+  const NeptuneSubnetGroupNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -74,7 +71,7 @@ final class AwsNeptuneSubnetGroup extends Resource {
   AwsNeptuneSubnetGroup({
     required super.localName,
     TfArg<String>? description,
-    NeptuneSubnetGroupNameOrNamePrefix? nameOrNamePrefix,
+    NeptuneSubnetGroupName? name,
     TfArg<String>? region,
     required TfArg<List<String>> subnetIds,
     TfArg<Map<String, String>>? tags,
@@ -86,7 +83,7 @@ final class AwsNeptuneSubnetGroup extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            'subnet_ids': subnetIds,
            if (tags != null) 'tags': tags,

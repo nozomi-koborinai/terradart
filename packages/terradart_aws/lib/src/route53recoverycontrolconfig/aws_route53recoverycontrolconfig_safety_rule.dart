@@ -12,18 +12,18 @@ const Set<String> _awsRoute53recoverycontrolconfigSafetyRuleSensitive =
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.assertedControls(...)`.
-sealed class Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls {
-  const Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls();
+sealed class Route53recoverycontrolconfigSafetyRuleControls {
+  const Route53recoverycontrolconfigSafetyRuleControls();
 
   /// Sets `asserted_controls`.
-  const factory Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls.assertedControls(
+  const factory Route53recoverycontrolconfigSafetyRuleControls.assertedControls(
     TfArg<List<String>> assertedControls,
-  ) = Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControlsAssertedControls;
+  ) = Route53recoverycontrolconfigSafetyRuleControlsAssertedControls;
 
   /// Sets `gating_controls`.
-  const factory Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls.gatingControls(
+  const factory Route53recoverycontrolconfigSafetyRuleControls.gatingControls(
     TfArg<List<String>> gatingControls,
-  ) = Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControlsGatingControls;
+  ) = Route53recoverycontrolconfigSafetyRuleControlsGatingControls;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,11 +35,10 @@ sealed class Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingContr
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls.assertedControls] choice: sets `asserted_controls`.
-final class Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControlsAssertedControls
-    extends
-        Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls {
-  const Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControlsAssertedControls(
+/// The [Route53recoverycontrolconfigSafetyRuleControls.assertedControls] choice: sets `asserted_controls`.
+final class Route53recoverycontrolconfigSafetyRuleControlsAssertedControls
+    extends Route53recoverycontrolconfigSafetyRuleControls {
+  const Route53recoverycontrolconfigSafetyRuleControlsAssertedControls(
     this.assertedControls,
   );
 
@@ -59,11 +58,10 @@ final class Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingContro
   };
 }
 
-/// The [Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls.gatingControls] choice: sets `gating_controls`.
-final class Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControlsGatingControls
-    extends
-        Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls {
-  const Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControlsGatingControls(
+/// The [Route53recoverycontrolconfigSafetyRuleControls.gatingControls] choice: sets `gating_controls`.
+final class Route53recoverycontrolconfigSafetyRuleControlsGatingControls
+    extends Route53recoverycontrolconfigSafetyRuleControls {
+  const Route53recoverycontrolconfigSafetyRuleControlsGatingControls(
     this.gatingControls,
   );
 
@@ -124,8 +122,7 @@ final class AwsRoute53recoverycontrolconfigSafetyRule extends Resource {
 
   AwsRoute53recoverycontrolconfigSafetyRule({
     required super.localName,
-    required Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls
-    assertedControlsOrGatingControls,
+    required Route53recoverycontrolconfigSafetyRuleControls controls,
     required TfArg<String> controlPanelArn,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,
@@ -139,7 +136,7 @@ final class AwsRoute53recoverycontrolconfigSafetyRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...assertedControlsOrGatingControls.argMap,
+           ...controls.argMap,
            'control_panel_arn': controlPanelArn,
            'name': name,
            if (tags != null) 'tags': tags,

@@ -11,17 +11,16 @@ const Set<String> _awsRumAppMonitorSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.domain(...)`.
-sealed class RumAppMonitorDomainOrDomainList {
-  const RumAppMonitorDomainOrDomainList();
+sealed class RumAppMonitorDomain {
+  const RumAppMonitorDomain();
 
   /// Sets `domain`.
-  const factory RumAppMonitorDomainOrDomainList.domain(TfArg<String> domain) =
-      RumAppMonitorDomainOrDomainListDomain;
+  const factory RumAppMonitorDomain.domain(TfArg<String> domain) =
+      RumAppMonitorDomainDomain;
 
   /// Sets `domain_list`.
-  const factory RumAppMonitorDomainOrDomainList.domainList(
-    TfArg<List<String>> domainList,
-  ) = RumAppMonitorDomainOrDomainListDomainList;
+  const factory RumAppMonitorDomain.domainList(TfArg<List<String>> domainList) =
+      RumAppMonitorDomainDomainList;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class RumAppMonitorDomainOrDomainList {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [RumAppMonitorDomainOrDomainList.domain] choice: sets `domain`.
-final class RumAppMonitorDomainOrDomainListDomain
-    extends RumAppMonitorDomainOrDomainList {
-  const RumAppMonitorDomainOrDomainListDomain(this.domain);
+/// The [RumAppMonitorDomain.domain] choice: sets `domain`.
+final class RumAppMonitorDomainDomain extends RumAppMonitorDomain {
+  const RumAppMonitorDomainDomain(this.domain);
 
   final TfArg<String> domain;
 
@@ -50,10 +48,9 @@ final class RumAppMonitorDomainOrDomainListDomain
   Map<String, TfArg<Object?>> get argMap => {'domain': domain};
 }
 
-/// The [RumAppMonitorDomainOrDomainList.domainList] choice: sets `domain_list`.
-final class RumAppMonitorDomainOrDomainListDomainList
-    extends RumAppMonitorDomainOrDomainList {
-  const RumAppMonitorDomainOrDomainListDomainList(this.domainList);
+/// The [RumAppMonitorDomain.domainList] choice: sets `domain_list`.
+final class RumAppMonitorDomainDomainList extends RumAppMonitorDomain {
+  const RumAppMonitorDomainDomainList(this.domainList);
 
   final TfArg<List<String>> domainList;
 
@@ -158,7 +155,7 @@ final class AwsRumAppMonitor extends Resource {
   AwsRumAppMonitor({
     required super.localName,
     TfArg<bool>? cwLogEnabled,
-    required RumAppMonitorDomainOrDomainList domainOrDomainList,
+    required RumAppMonitorDomain domain,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -172,7 +169,7 @@ final class AwsRumAppMonitor extends Resource {
          terraformType: tfType,
          argMap: {
            if (cwLogEnabled != null) 'cw_log_enabled': cwLogEnabled,
-           ...domainOrDomainList.argMap,
+           ...domain.argMap,
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

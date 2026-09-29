@@ -1391,12 +1391,12 @@ final class AppmeshVirtualNodeSpecLoggingAccessLogFileFormatJson {
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
 final class AppmeshVirtualNodeSpecServiceDiscovery {
-  const AppmeshVirtualNodeSpecServiceDiscovery({this.awsCloudMapOrDns});
+  const AppmeshVirtualNodeSpecServiceDiscovery({this.serviceDiscovery});
 
-  final AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns?
-  awsCloudMapOrDns;
+  final AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscovery?
+  serviceDiscovery;
 
-  Map<String, Object?> encode() => {...?awsCloudMapOrDns?.encode()};
+  Map<String, Object?> encode() => {...?serviceDiscovery?.encode()};
 }
 
 /// At most one of `aws_cloud_map`, `dns` on the `spec.service_discovery` block of `aws_appmesh_virtual_node`: the provider rejects
@@ -1404,18 +1404,18 @@ final class AppmeshVirtualNodeSpecServiceDiscovery {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.awsCloudMap(...)`.
-sealed class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns {
-  const AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns();
+sealed class AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscovery {
+  const AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscovery();
 
   /// Sets `aws_cloud_map`.
-  const factory AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns.awsCloudMap(
+  const factory AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscovery.awsCloudMap(
     AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMap awsCloudMap,
-  ) = AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDnsAwsCloudMap;
+  ) = AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscoveryAwsCloudMap;
 
   /// Sets `dns`.
-  const factory AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns.dns(
+  const factory AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscovery.dns(
     AppmeshVirtualNodeSpecServiceDiscoveryDns dns,
-  ) = AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDnsDns;
+  ) = AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscoveryDns;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1423,10 +1423,10 @@ sealed class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns {
   Map<String, Object?> encode();
 }
 
-/// The [AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns.awsCloudMap] choice: sets `aws_cloud_map`.
-final class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDnsAwsCloudMap
-    extends AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns {
-  const AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDnsAwsCloudMap(
+/// The [AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscovery.awsCloudMap] choice: sets `aws_cloud_map`.
+final class AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscoveryAwsCloudMap
+    extends AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscovery {
+  const AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscoveryAwsCloudMap(
     this.awsCloudMap,
   );
 
@@ -1439,10 +1439,10 @@ final class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDnsAwsCloudMap
   Map<String, Object?> encode() => {'aws_cloud_map': awsCloudMap.encode()};
 }
 
-/// The [AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns.dns] choice: sets `dns`.
-final class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDnsDns
-    extends AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns {
-  const AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDnsDns(this.dns);
+/// The [AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscovery.dns] choice: sets `dns`.
+final class AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscoveryDns
+    extends AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscovery {
+  const AppmeshVirtualNodeSpecServiceDiscoveryServiceDiscoveryDns(this.dns);
 
   final AppmeshVirtualNodeSpecServiceDiscoveryDns dns;
 

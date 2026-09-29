@@ -11,9 +11,9 @@ export 'src/bigquery/google_bigquery_analytics_hub_data_exchange.dart'
         BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig,
         BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfig,
         BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfig,
-        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfig,
-        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfigDcrExchangeConfig,
-        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfigDefaultExchangeConfig,
+        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfig,
+        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfigDcrExchangeConfig,
+        BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigExchangeConfigDefaultExchangeConfig,
         GoogleBigqueryAnalyticsHubDataExchange;
 export 'src/bigquery/google_bigquery_analytics_hub_data_exchange_iam_binding.dart'
     show GoogleBigqueryAnalyticsHubDataExchangeIamBinding;
@@ -25,9 +25,9 @@ export 'src/bigquery/google_bigquery_analytics_hub_listing.dart'
     show
         BigqueryAnalyticsHubListingBigqueryDataset,
         BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources,
-        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine,
-        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutineRoutine,
-        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutineTable,
+        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources,
+        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesRoutine,
+        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesTable,
         BigqueryAnalyticsHubListingDataProvider,
         BigqueryAnalyticsHubListingDiscoveryType,
         BigqueryAnalyticsHubListingPublisher,

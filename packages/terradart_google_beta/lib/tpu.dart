@@ -13,10 +13,10 @@ export 'src/tpu/google_tpu_v2_queued_resource.dart'
 export 'src/tpu/google_tpu_v2_vm.dart'
     show
         GoogleTpuV2Vm,
+        TpuV2VmAccelerator,
+        TpuV2VmAcceleratorAcceleratorConfig,
+        TpuV2VmAcceleratorAcceleratorType,
         TpuV2VmAcceleratorConfig,
-        TpuV2VmAcceleratorTypeOrAcceleratorConfig,
-        TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorConfig,
-        TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorType,
         TpuV2VmDataDisks,
         TpuV2VmDataDisksMode,
         TpuV2VmNetworkConfig,

@@ -17,6 +17,9 @@ export 'src/workbench/google_workbench_instance.dart'
         WorkbenchInstanceGceSetupDataDisks,
         WorkbenchInstanceGceSetupDataDisksDiskEncryption,
         WorkbenchInstanceGceSetupDataDisksDiskType,
+        WorkbenchInstanceGceSetupImage,
+        WorkbenchInstanceGceSetupImageContainerImage,
+        WorkbenchInstanceGceSetupImageVmImage,
         WorkbenchInstanceGceSetupNetworkInterfaces,
         WorkbenchInstanceGceSetupNetworkInterfacesAccessConfigs,
         WorkbenchInstanceGceSetupNetworkInterfacesNicType,
@@ -24,10 +27,7 @@ export 'src/workbench/google_workbench_instance.dart'
         WorkbenchInstanceGceSetupReservationAffinityConsumeReservationType,
         WorkbenchInstanceGceSetupServiceAccounts,
         WorkbenchInstanceGceSetupShieldedInstanceConfig,
-        WorkbenchInstanceGceSetupVmImage,
-        WorkbenchInstanceGceSetupVmImageOrContainerImage,
-        WorkbenchInstanceGceSetupVmImageOrContainerImageContainerImage,
-        WorkbenchInstanceGceSetupVmImageOrContainerImageVmImage;
+        WorkbenchInstanceGceSetupVmImage;
 export 'src/workbench/google_workbench_instance_iam_binding.dart'
     show GoogleWorkbenchInstanceIamBinding;
 export 'src/workbench/google_workbench_instance_iam_member.dart'

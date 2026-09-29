@@ -22,18 +22,18 @@ enum DmsReplicationTaskMigrationType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.cdcStartPosition(...)`.
-sealed class DmsReplicationTaskCdcStartPositionOrCdcStartTime {
-  const DmsReplicationTaskCdcStartPositionOrCdcStartTime();
+sealed class DmsReplicationTaskCdcStart {
+  const DmsReplicationTaskCdcStart();
 
   /// Sets `cdc_start_position`.
-  const factory DmsReplicationTaskCdcStartPositionOrCdcStartTime.cdcStartPosition(
+  const factory DmsReplicationTaskCdcStart.cdcStartPosition(
     TfArg<String> cdcStartPosition,
-  ) = DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartPosition;
+  ) = DmsReplicationTaskCdcStartCdcStartPosition;
 
   /// Sets `cdc_start_time`.
-  const factory DmsReplicationTaskCdcStartPositionOrCdcStartTime.cdcStartTime(
+  const factory DmsReplicationTaskCdcStart.cdcStartTime(
     TfArg<String> cdcStartTime,
-  ) = DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartTime;
+  ) = DmsReplicationTaskCdcStartCdcStartTime;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,12 +45,10 @@ sealed class DmsReplicationTaskCdcStartPositionOrCdcStartTime {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DmsReplicationTaskCdcStartPositionOrCdcStartTime.cdcStartPosition] choice: sets `cdc_start_position`.
-final class DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartPosition
-    extends DmsReplicationTaskCdcStartPositionOrCdcStartTime {
-  const DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartPosition(
-    this.cdcStartPosition,
-  );
+/// The [DmsReplicationTaskCdcStart.cdcStartPosition] choice: sets `cdc_start_position`.
+final class DmsReplicationTaskCdcStartCdcStartPosition
+    extends DmsReplicationTaskCdcStart {
+  const DmsReplicationTaskCdcStartCdcStartPosition(this.cdcStartPosition);
 
   final TfArg<String> cdcStartPosition;
 
@@ -68,12 +66,10 @@ final class DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartPosition
   };
 }
 
-/// The [DmsReplicationTaskCdcStartPositionOrCdcStartTime.cdcStartTime] choice: sets `cdc_start_time`.
-final class DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartTime
-    extends DmsReplicationTaskCdcStartPositionOrCdcStartTime {
-  const DmsReplicationTaskCdcStartPositionOrCdcStartTimeCdcStartTime(
-    this.cdcStartTime,
-  );
+/// The [DmsReplicationTaskCdcStart.cdcStartTime] choice: sets `cdc_start_time`.
+final class DmsReplicationTaskCdcStartCdcStartTime
+    extends DmsReplicationTaskCdcStart {
+  const DmsReplicationTaskCdcStartCdcStartTime(this.cdcStartTime);
 
   final TfArg<String> cdcStartTime;
 
@@ -93,8 +89,7 @@ final class AwsDmsReplicationTask extends Resource {
 
   AwsDmsReplicationTask({
     required super.localName,
-    DmsReplicationTaskCdcStartPositionOrCdcStartTime?
-    cdcStartPositionOrCdcStartTime,
+    DmsReplicationTaskCdcStart? cdcStart,
     required TfArg<DmsReplicationTaskMigrationType> migrationType,
     TfArg<String>? region,
     required TfArg<String> replicationInstanceArn,
@@ -113,7 +108,7 @@ final class AwsDmsReplicationTask extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?cdcStartPositionOrCdcStartTime?.argMap,
+           ...?cdcStart?.argMap,
            'migration_type': migrationType,
            if (region != null) 'region': region,
            'replication_instance_arn': replicationInstanceArn,

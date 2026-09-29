@@ -23,18 +23,18 @@ enum SignerSigningProfilePermissionAction implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.statementId(...)`.
-sealed class SignerSigningProfilePermissionStatementIdOrStatementIdPrefix {
-  const SignerSigningProfilePermissionStatementIdOrStatementIdPrefix();
+sealed class SignerSigningProfilePermissionStatementId {
+  const SignerSigningProfilePermissionStatementId();
 
   /// Sets `statement_id`.
-  const factory SignerSigningProfilePermissionStatementIdOrStatementIdPrefix.statementId(
+  const factory SignerSigningProfilePermissionStatementId.statementId(
     TfArg<String> statementId,
-  ) = SignerSigningProfilePermissionStatementIdOrStatementIdPrefixStatementId;
+  ) = SignerSigningProfilePermissionStatementIdStatementId;
 
   /// Sets `statement_id_prefix`.
-  const factory SignerSigningProfilePermissionStatementIdOrStatementIdPrefix.statementIdPrefix(
+  const factory SignerSigningProfilePermissionStatementId.statementIdPrefix(
     TfArg<String> statementIdPrefix,
-  ) = SignerSigningProfilePermissionStatementIdOrStatementIdPrefixStatementIdPrefix;
+  ) = SignerSigningProfilePermissionStatementIdStatementIdPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -46,12 +46,10 @@ sealed class SignerSigningProfilePermissionStatementIdOrStatementIdPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SignerSigningProfilePermissionStatementIdOrStatementIdPrefix.statementId] choice: sets `statement_id`.
-final class SignerSigningProfilePermissionStatementIdOrStatementIdPrefixStatementId
-    extends SignerSigningProfilePermissionStatementIdOrStatementIdPrefix {
-  const SignerSigningProfilePermissionStatementIdOrStatementIdPrefixStatementId(
-    this.statementId,
-  );
+/// The [SignerSigningProfilePermissionStatementId.statementId] choice: sets `statement_id`.
+final class SignerSigningProfilePermissionStatementIdStatementId
+    extends SignerSigningProfilePermissionStatementId {
+  const SignerSigningProfilePermissionStatementIdStatementId(this.statementId);
 
   final TfArg<String> statementId;
 
@@ -65,10 +63,10 @@ final class SignerSigningProfilePermissionStatementIdOrStatementIdPrefixStatemen
   Map<String, TfArg<Object?>> get argMap => {'statement_id': statementId};
 }
 
-/// The [SignerSigningProfilePermissionStatementIdOrStatementIdPrefix.statementIdPrefix] choice: sets `statement_id_prefix`.
-final class SignerSigningProfilePermissionStatementIdOrStatementIdPrefixStatementIdPrefix
-    extends SignerSigningProfilePermissionStatementIdOrStatementIdPrefix {
-  const SignerSigningProfilePermissionStatementIdOrStatementIdPrefixStatementIdPrefix(
+/// The [SignerSigningProfilePermissionStatementId.statementIdPrefix] choice: sets `statement_id_prefix`.
+final class SignerSigningProfilePermissionStatementIdStatementIdPrefix
+    extends SignerSigningProfilePermissionStatementId {
+  const SignerSigningProfilePermissionStatementIdStatementIdPrefix(
     this.statementIdPrefix,
   );
 
@@ -99,8 +97,7 @@ final class AwsSignerSigningProfilePermission extends Resource {
     required TfArg<String> profileName,
     TfArg<String>? profileVersion,
     TfArg<String>? region,
-    SignerSigningProfilePermissionStatementIdOrStatementIdPrefix?
-    statementIdOrStatementIdPrefix,
+    SignerSigningProfilePermissionStatementId? statementId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -113,7 +110,7 @@ final class AwsSignerSigningProfilePermission extends Resource {
            'profile_name': profileName,
            if (profileVersion != null) 'profile_version': profileVersion,
            if (region != null) 'region': region,
-           ...?statementIdOrStatementIdPrefix?.argMap,
+           ...?statementId?.argMap,
          },
        );
 

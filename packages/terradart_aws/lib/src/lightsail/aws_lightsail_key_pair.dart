@@ -11,17 +11,16 @@ const Set<String> _awsLightsailKeyPairSensitive = <String>{'private_key'};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class LightsailKeyPairNameOrNamePrefix {
-  const LightsailKeyPairNameOrNamePrefix();
+sealed class LightsailKeyPairName {
+  const LightsailKeyPairName();
 
   /// Sets `name`.
-  const factory LightsailKeyPairNameOrNamePrefix.name(TfArg<String> name) =
-      LightsailKeyPairNameOrNamePrefixName;
+  const factory LightsailKeyPairName.name(TfArg<String> name) =
+      LightsailKeyPairNameName;
 
   /// Sets `name_prefix`.
-  const factory LightsailKeyPairNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = LightsailKeyPairNameOrNamePrefixNamePrefix;
+  const factory LightsailKeyPairName.namePrefix(TfArg<String> namePrefix) =
+      LightsailKeyPairNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class LightsailKeyPairNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LightsailKeyPairNameOrNamePrefix.name] choice: sets `name`.
-final class LightsailKeyPairNameOrNamePrefixName
-    extends LightsailKeyPairNameOrNamePrefix {
-  const LightsailKeyPairNameOrNamePrefixName(this.name);
+/// The [LightsailKeyPairName.name] choice: sets `name`.
+final class LightsailKeyPairNameName extends LightsailKeyPairName {
+  const LightsailKeyPairNameName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +48,9 @@ final class LightsailKeyPairNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [LightsailKeyPairNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class LightsailKeyPairNameOrNamePrefixNamePrefix
-    extends LightsailKeyPairNameOrNamePrefix {
-  const LightsailKeyPairNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [LightsailKeyPairName.namePrefix] choice: sets `name_prefix`.
+final class LightsailKeyPairNameNamePrefix extends LightsailKeyPairName {
+  const LightsailKeyPairNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -73,7 +70,7 @@ final class AwsLightsailKeyPair extends Resource {
 
   AwsLightsailKeyPair({
     required super.localName,
-    LightsailKeyPairNameOrNamePrefix? nameOrNamePrefix,
+    LightsailKeyPairName? name,
     TfArg<String>? pgpKey,
     TfArg<String>? publicKey,
     TfArg<String>? region,
@@ -85,7 +82,7 @@ final class AwsLightsailKeyPair extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (pgpKey != null) 'pgp_key': pgpKey,
            if (publicKey != null) 'public_key': publicKey,
            if (region != null) 'region': region,

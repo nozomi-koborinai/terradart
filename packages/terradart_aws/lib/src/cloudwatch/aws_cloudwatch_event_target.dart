@@ -12,23 +12,21 @@ const Set<String> _awsCloudwatchEventTargetSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.input(...)`.
-sealed class CloudwatchEventTargetInputOrInputPathOrInputTransformer {
-  const CloudwatchEventTargetInputOrInputPathOrInputTransformer();
+sealed class CloudwatchEventTargetInput {
+  const CloudwatchEventTargetInput();
 
   /// Sets `input`.
-  const factory CloudwatchEventTargetInputOrInputPathOrInputTransformer.input(
-    TfArg<String> input,
-  ) = CloudwatchEventTargetInputOrInputPathOrInputTransformerInput;
+  const factory CloudwatchEventTargetInput.input(TfArg<String> input) =
+      CloudwatchEventTargetInputInput;
 
   /// Sets `input_path`.
-  const factory CloudwatchEventTargetInputOrInputPathOrInputTransformer.inputPath(
-    TfArg<String> inputPath,
-  ) = CloudwatchEventTargetInputOrInputPathOrInputTransformerInputPath;
+  const factory CloudwatchEventTargetInput.inputPath(TfArg<String> inputPath) =
+      CloudwatchEventTargetInputInputPath;
 
   /// Sets `input_transformer`.
-  const factory CloudwatchEventTargetInputOrInputPathOrInputTransformer.inputTransformer(
+  const factory CloudwatchEventTargetInput.inputTransformer(
     CloudwatchEventTargetInputTransformer inputTransformer,
-  ) = CloudwatchEventTargetInputOrInputPathOrInputTransformerInputTransformer;
+  ) = CloudwatchEventTargetInputInputTransformer;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -40,12 +38,9 @@ sealed class CloudwatchEventTargetInputOrInputPathOrInputTransformer {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudwatchEventTargetInputOrInputPathOrInputTransformer.input] choice: sets `input`.
-final class CloudwatchEventTargetInputOrInputPathOrInputTransformerInput
-    extends CloudwatchEventTargetInputOrInputPathOrInputTransformer {
-  const CloudwatchEventTargetInputOrInputPathOrInputTransformerInput(
-    this.input,
-  );
+/// The [CloudwatchEventTargetInput.input] choice: sets `input`.
+final class CloudwatchEventTargetInputInput extends CloudwatchEventTargetInput {
+  const CloudwatchEventTargetInputInput(this.input);
 
   final TfArg<String> input;
 
@@ -59,12 +54,10 @@ final class CloudwatchEventTargetInputOrInputPathOrInputTransformerInput
   Map<String, TfArg<Object?>> get argMap => {'input': input};
 }
 
-/// The [CloudwatchEventTargetInputOrInputPathOrInputTransformer.inputPath] choice: sets `input_path`.
-final class CloudwatchEventTargetInputOrInputPathOrInputTransformerInputPath
-    extends CloudwatchEventTargetInputOrInputPathOrInputTransformer {
-  const CloudwatchEventTargetInputOrInputPathOrInputTransformerInputPath(
-    this.inputPath,
-  );
+/// The [CloudwatchEventTargetInput.inputPath] choice: sets `input_path`.
+final class CloudwatchEventTargetInputInputPath
+    extends CloudwatchEventTargetInput {
+  const CloudwatchEventTargetInputInputPath(this.inputPath);
 
   final TfArg<String> inputPath;
 
@@ -78,12 +71,10 @@ final class CloudwatchEventTargetInputOrInputPathOrInputTransformerInputPath
   Map<String, TfArg<Object?>> get argMap => {'input_path': inputPath};
 }
 
-/// The [CloudwatchEventTargetInputOrInputPathOrInputTransformer.inputTransformer] choice: sets `input_transformer`.
-final class CloudwatchEventTargetInputOrInputPathOrInputTransformerInputTransformer
-    extends CloudwatchEventTargetInputOrInputPathOrInputTransformer {
-  const CloudwatchEventTargetInputOrInputPathOrInputTransformerInputTransformer(
-    this.inputTransformer,
-  );
+/// The [CloudwatchEventTargetInput.inputTransformer] choice: sets `input_transformer`.
+final class CloudwatchEventTargetInputInputTransformer
+    extends CloudwatchEventTargetInput {
+  const CloudwatchEventTargetInputInputTransformer(this.inputTransformer);
 
   final CloudwatchEventTargetInputTransformer inputTransformer;
 
@@ -559,8 +550,7 @@ final class AwsCloudwatchEventTarget extends Resource {
     required TfArg<String> arn,
     TfArg<String>? eventBusName,
     TfArg<bool>? forceDestroy,
-    CloudwatchEventTargetInputOrInputPathOrInputTransformer?
-    inputOrInputPathOrInputTransformer,
+    CloudwatchEventTargetInput? input,
     TfArg<String>? region,
     TfArg<String>? roleArn,
     required TfArg<String> rule,
@@ -586,7 +576,7 @@ final class AwsCloudwatchEventTarget extends Resource {
            'arn': arn,
            if (eventBusName != null) 'event_bus_name': eventBusName,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
-           ...?inputOrInputPathOrInputTransformer?.argMap,
+           ...?input?.argMap,
            if (region != null) 'region': region,
            if (roleArn != null) 'role_arn': roleArn,
            'rule': rule,

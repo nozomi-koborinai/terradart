@@ -122,8 +122,8 @@ final class CloudformationStackInstancesDeploymentTargets {
 final class CloudformationStackInstancesOperationPreferences {
   const CloudformationStackInstancesOperationPreferences({
     this.concurrencyMode,
-    this.failureToleranceCountOrFailureTolerancePercentage,
-    this.maxConcurrentCountOrMaxConcurrentPercentage,
+    this.failureTolerance,
+    this.maxConcurrent,
     this.regionConcurrencyType,
     this.regionOrder,
   });
@@ -131,11 +131,11 @@ final class CloudformationStackInstancesOperationPreferences {
   final TfArg<CloudformationStackInstancesOperationPreferencesConcurrencyMode>?
   concurrencyMode;
 
-  final CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage?
-  failureToleranceCountOrFailureTolerancePercentage;
+  final CloudformationStackInstancesOperationPreferencesFailureTolerance?
+  failureTolerance;
 
-  final CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage?
-  maxConcurrentCountOrMaxConcurrentPercentage;
+  final CloudformationStackInstancesOperationPreferencesMaxConcurrent?
+  maxConcurrent;
 
   final TfArg<
     CloudformationStackInstancesOperationPreferencesRegionConcurrencyType
@@ -147,8 +147,8 @@ final class CloudformationStackInstancesOperationPreferences {
   Map<String, Object?> encode() => {
     if (concurrencyMode != null)
       'concurrency_mode': concurrencyMode!.toTfJson(),
-    ...?failureToleranceCountOrFailureTolerancePercentage?.encode(),
-    ...?maxConcurrentCountOrMaxConcurrentPercentage?.encode(),
+    ...?failureTolerance?.encode(),
+    ...?maxConcurrent?.encode(),
     if (regionConcurrencyType != null)
       'region_concurrency_type': regionConcurrencyType!.toTfJson(),
     if (regionOrder != null) 'region_order': regionOrder!.toTfJson(),
@@ -160,18 +160,18 @@ final class CloudformationStackInstancesOperationPreferences {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.failureToleranceCount(...)`.
-sealed class CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage {
-  const CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage();
+sealed class CloudformationStackInstancesOperationPreferencesFailureTolerance {
+  const CloudformationStackInstancesOperationPreferencesFailureTolerance();
 
   /// Sets `failure_tolerance_count`.
-  const factory CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage.failureToleranceCount(
+  const factory CloudformationStackInstancesOperationPreferencesFailureTolerance.failureToleranceCount(
     TfArg<num> failureToleranceCount,
-  ) = CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentageFailureToleranceCount;
+  ) = CloudformationStackInstancesOperationPreferencesFailureToleranceFailureToleranceCount;
 
   /// Sets `failure_tolerance_percentage`.
-  const factory CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage.failureTolerancePercentage(
+  const factory CloudformationStackInstancesOperationPreferencesFailureTolerance.failureTolerancePercentage(
     TfArg<num> failureTolerancePercentage,
-  ) = CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentageFailureTolerancePercentage;
+  ) = CloudformationStackInstancesOperationPreferencesFailureToleranceFailureTolerancePercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -179,11 +179,10 @@ sealed class CloudformationStackInstancesOperationPreferencesFailureToleranceCou
   Map<String, Object?> encode();
 }
 
-/// The [CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage.failureToleranceCount] choice: sets `failure_tolerance_count`.
-final class CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentageFailureToleranceCount
-    extends
-        CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage {
-  const CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentageFailureToleranceCount(
+/// The [CloudformationStackInstancesOperationPreferencesFailureTolerance.failureToleranceCount] choice: sets `failure_tolerance_count`.
+final class CloudformationStackInstancesOperationPreferencesFailureToleranceFailureToleranceCount
+    extends CloudformationStackInstancesOperationPreferencesFailureTolerance {
+  const CloudformationStackInstancesOperationPreferencesFailureToleranceFailureToleranceCount(
     this.failureToleranceCount,
   );
 
@@ -198,11 +197,10 @@ final class CloudformationStackInstancesOperationPreferencesFailureToleranceCoun
   };
 }
 
-/// The [CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage.failureTolerancePercentage] choice: sets `failure_tolerance_percentage`.
-final class CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentageFailureTolerancePercentage
-    extends
-        CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage {
-  const CloudformationStackInstancesOperationPreferencesFailureToleranceCountOrFailureTolerancePercentageFailureTolerancePercentage(
+/// The [CloudformationStackInstancesOperationPreferencesFailureTolerance.failureTolerancePercentage] choice: sets `failure_tolerance_percentage`.
+final class CloudformationStackInstancesOperationPreferencesFailureToleranceFailureTolerancePercentage
+    extends CloudformationStackInstancesOperationPreferencesFailureTolerance {
+  const CloudformationStackInstancesOperationPreferencesFailureToleranceFailureTolerancePercentage(
     this.failureTolerancePercentage,
   );
 
@@ -222,18 +220,18 @@ final class CloudformationStackInstancesOperationPreferencesFailureToleranceCoun
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.maxConcurrentCount(...)`.
-sealed class CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage {
-  const CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage();
+sealed class CloudformationStackInstancesOperationPreferencesMaxConcurrent {
+  const CloudformationStackInstancesOperationPreferencesMaxConcurrent();
 
   /// Sets `max_concurrent_count`.
-  const factory CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage.maxConcurrentCount(
+  const factory CloudformationStackInstancesOperationPreferencesMaxConcurrent.maxConcurrentCount(
     TfArg<num> maxConcurrentCount,
-  ) = CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentageMaxConcurrentCount;
+  ) = CloudformationStackInstancesOperationPreferencesMaxConcurrentMaxConcurrentCount;
 
   /// Sets `max_concurrent_percentage`.
-  const factory CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage.maxConcurrentPercentage(
+  const factory CloudformationStackInstancesOperationPreferencesMaxConcurrent.maxConcurrentPercentage(
     TfArg<num> maxConcurrentPercentage,
-  ) = CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentageMaxConcurrentPercentage;
+  ) = CloudformationStackInstancesOperationPreferencesMaxConcurrentMaxConcurrentPercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -241,11 +239,10 @@ sealed class CloudformationStackInstancesOperationPreferencesMaxConcurrentCountO
   Map<String, Object?> encode();
 }
 
-/// The [CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage.maxConcurrentCount] choice: sets `max_concurrent_count`.
-final class CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentageMaxConcurrentCount
-    extends
-        CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage {
-  const CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentageMaxConcurrentCount(
+/// The [CloudformationStackInstancesOperationPreferencesMaxConcurrent.maxConcurrentCount] choice: sets `max_concurrent_count`.
+final class CloudformationStackInstancesOperationPreferencesMaxConcurrentMaxConcurrentCount
+    extends CloudformationStackInstancesOperationPreferencesMaxConcurrent {
+  const CloudformationStackInstancesOperationPreferencesMaxConcurrentMaxConcurrentCount(
     this.maxConcurrentCount,
   );
 
@@ -260,11 +257,10 @@ final class CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOr
   };
 }
 
-/// The [CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage.maxConcurrentPercentage] choice: sets `max_concurrent_percentage`.
-final class CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentageMaxConcurrentPercentage
-    extends
-        CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage {
-  const CloudformationStackInstancesOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentageMaxConcurrentPercentage(
+/// The [CloudformationStackInstancesOperationPreferencesMaxConcurrent.maxConcurrentPercentage] choice: sets `max_concurrent_percentage`.
+final class CloudformationStackInstancesOperationPreferencesMaxConcurrentMaxConcurrentPercentage
+    extends CloudformationStackInstancesOperationPreferencesMaxConcurrent {
+  const CloudformationStackInstancesOperationPreferencesMaxConcurrentMaxConcurrentPercentage(
     this.maxConcurrentPercentage,
   );
 

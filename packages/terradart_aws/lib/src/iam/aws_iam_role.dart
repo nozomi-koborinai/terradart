@@ -12,16 +12,15 @@ const Set<String> _awsIamRoleSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class IamRoleNameOrNamePrefix {
-  const IamRoleNameOrNamePrefix();
+sealed class IamRoleName {
+  const IamRoleName();
 
   /// Sets `name`.
-  const factory IamRoleNameOrNamePrefix.name(TfArg<String> name) =
-      IamRoleNameOrNamePrefixName;
+  const factory IamRoleName.name(TfArg<String> name) = IamRoleNameName;
 
   /// Sets `name_prefix`.
-  const factory IamRoleNameOrNamePrefix.namePrefix(TfArg<String> namePrefix) =
-      IamRoleNameOrNamePrefixNamePrefix;
+  const factory IamRoleName.namePrefix(TfArg<String> namePrefix) =
+      IamRoleNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,9 +32,9 @@ sealed class IamRoleNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [IamRoleNameOrNamePrefix.name] choice: sets `name`.
-final class IamRoleNameOrNamePrefixName extends IamRoleNameOrNamePrefix {
-  const IamRoleNameOrNamePrefixName(this.name);
+/// The [IamRoleName.name] choice: sets `name`.
+final class IamRoleNameName extends IamRoleName {
+  const IamRoleNameName(this.name);
 
   final TfArg<String> name;
 
@@ -49,9 +48,9 @@ final class IamRoleNameOrNamePrefixName extends IamRoleNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [IamRoleNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class IamRoleNameOrNamePrefixNamePrefix extends IamRoleNameOrNamePrefix {
-  const IamRoleNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [IamRoleName.namePrefix] choice: sets `name_prefix`.
+final class IamRoleNameNamePrefix extends IamRoleName {
+  const IamRoleNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -100,7 +99,7 @@ final class AwsIamRole extends Resource {
     TfArg<bool>? forceDetachPolicies,
     TfArg<List<String>>? managedPolicyArns,
     TfArg<num>? maxSessionDuration,
-    IamRoleNameOrNamePrefix? nameOrNamePrefix,
+    IamRoleName? name,
     TfArg<String>? path,
     TfArg<String>? permissionsBoundary,
     TfArg<Map<String, String>>? tags,
@@ -120,7 +119,7 @@ final class AwsIamRole extends Resource {
              'managed_policy_arns': managedPolicyArns,
            if (maxSessionDuration != null)
              'max_session_duration': maxSessionDuration,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (path != null) 'path': path,
            if (permissionsBoundary != null)
              'permissions_boundary': permissionsBoundary,

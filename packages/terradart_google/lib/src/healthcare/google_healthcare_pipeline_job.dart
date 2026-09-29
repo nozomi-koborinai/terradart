@@ -12,23 +12,23 @@ const Set<String> _googleHealthcarePipelineJobSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.mappingPipelineJob(...)`.
-sealed class HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob {
-  const HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob();
+sealed class HealthcarePipelineJobPipelineJob {
+  const HealthcarePipelineJobPipelineJob();
 
   /// Sets `mapping_pipeline_job`.
-  const factory HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob.mappingPipelineJob(
+  const factory HealthcarePipelineJobPipelineJob.mappingPipelineJob(
     HealthcarePipelineJobMappingPipelineJob mappingPipelineJob,
-  ) = HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJobMappingPipelineJob;
+  ) = HealthcarePipelineJobPipelineJobMappingPipelineJob;
 
   /// Sets `reconciliation_pipeline_job`.
-  const factory HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob.reconciliationPipelineJob(
+  const factory HealthcarePipelineJobPipelineJob.reconciliationPipelineJob(
     HealthcarePipelineJobReconciliationPipelineJob reconciliationPipelineJob,
-  ) = HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJobReconciliationPipelineJob;
+  ) = HealthcarePipelineJobPipelineJobReconciliationPipelineJob;
 
   /// Sets `backfill_pipeline_job`.
-  const factory HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob.backfillPipelineJob(
+  const factory HealthcarePipelineJobPipelineJob.backfillPipelineJob(
     HealthcarePipelineJobBackfillPipelineJob backfillPipelineJob,
-  ) = HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJobBackfillPipelineJob;
+  ) = HealthcarePipelineJobPipelineJobBackfillPipelineJob;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -40,11 +40,10 @@ sealed class HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobO
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob.mappingPipelineJob] choice: sets `mapping_pipeline_job`.
-final class HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJobMappingPipelineJob
-    extends
-        HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob {
-  const HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJobMappingPipelineJob(
+/// The [HealthcarePipelineJobPipelineJob.mappingPipelineJob] choice: sets `mapping_pipeline_job`.
+final class HealthcarePipelineJobPipelineJobMappingPipelineJob
+    extends HealthcarePipelineJobPipelineJob {
+  const HealthcarePipelineJobPipelineJobMappingPipelineJob(
     this.mappingPipelineJob,
   );
 
@@ -64,11 +63,10 @@ final class HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOr
   };
 }
 
-/// The [HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob.reconciliationPipelineJob] choice: sets `reconciliation_pipeline_job`.
-final class HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJobReconciliationPipelineJob
-    extends
-        HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob {
-  const HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJobReconciliationPipelineJob(
+/// The [HealthcarePipelineJobPipelineJob.reconciliationPipelineJob] choice: sets `reconciliation_pipeline_job`.
+final class HealthcarePipelineJobPipelineJobReconciliationPipelineJob
+    extends HealthcarePipelineJobPipelineJob {
+  const HealthcarePipelineJobPipelineJobReconciliationPipelineJob(
     this.reconciliationPipelineJob,
   );
 
@@ -91,11 +89,10 @@ final class HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOr
   };
 }
 
-/// The [HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob.backfillPipelineJob] choice: sets `backfill_pipeline_job`.
-final class HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJobBackfillPipelineJob
-    extends
-        HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob {
-  const HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJobBackfillPipelineJob(
+/// The [HealthcarePipelineJobPipelineJob.backfillPipelineJob] choice: sets `backfill_pipeline_job`.
+final class HealthcarePipelineJobPipelineJobBackfillPipelineJob
+    extends HealthcarePipelineJobPipelineJob {
+  const HealthcarePipelineJobPipelineJobBackfillPipelineJob(
     this.backfillPipelineJob,
   );
 
@@ -134,13 +131,12 @@ final class HealthcarePipelineJobBackfillPipelineJob {
 @immutable
 final class HealthcarePipelineJobMappingPipelineJob {
   const HealthcarePipelineJobMappingPipelineJob({
-    this.fhirStoreDestinationOrReconciliationDestination,
+    this.destination,
     this.fhirStreamingSource,
     required this.mappingConfig,
   });
 
-  final HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination?
-  fhirStoreDestinationOrReconciliationDestination;
+  final HealthcarePipelineJobMappingPipelineJobDestination? destination;
 
   final HealthcarePipelineJobMappingPipelineJobFhirStreamingSource?
   fhirStreamingSource;
@@ -148,7 +144,7 @@ final class HealthcarePipelineJobMappingPipelineJob {
   final HealthcarePipelineJobMappingPipelineJobMappingConfig mappingConfig;
 
   Map<String, Object?> encode() => {
-    ...?fhirStoreDestinationOrReconciliationDestination?.encode(),
+    ...?destination?.encode(),
     if (fhirStreamingSource != null)
       'fhir_streaming_source': fhirStreamingSource!.encode(),
     'mapping_config': mappingConfig.encode(),
@@ -160,18 +156,18 @@ final class HealthcarePipelineJobMappingPipelineJob {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.fhirStoreDestination(...)`.
-sealed class HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination {
-  const HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination();
+sealed class HealthcarePipelineJobMappingPipelineJobDestination {
+  const HealthcarePipelineJobMappingPipelineJobDestination();
 
   /// Sets `fhir_store_destination`.
-  const factory HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination.fhirStoreDestination(
+  const factory HealthcarePipelineJobMappingPipelineJobDestination.fhirStoreDestination(
     TfArg<String> fhirStoreDestination,
-  ) = HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestinationFhirStoreDestination;
+  ) = HealthcarePipelineJobMappingPipelineJobDestinationFhirStoreDestination;
 
   /// Sets `reconciliation_destination`.
-  const factory HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination.reconciliationDestination(
+  const factory HealthcarePipelineJobMappingPipelineJobDestination.reconciliationDestination(
     TfArg<bool> reconciliationDestination,
-  ) = HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestinationReconciliationDestination;
+  ) = HealthcarePipelineJobMappingPipelineJobDestinationReconciliationDestination;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -179,11 +175,10 @@ sealed class HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconc
   Map<String, Object?> encode();
 }
 
-/// The [HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination.fhirStoreDestination] choice: sets `fhir_store_destination`.
-final class HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestinationFhirStoreDestination
-    extends
-        HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination {
-  const HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestinationFhirStoreDestination(
+/// The [HealthcarePipelineJobMappingPipelineJobDestination.fhirStoreDestination] choice: sets `fhir_store_destination`.
+final class HealthcarePipelineJobMappingPipelineJobDestinationFhirStoreDestination
+    extends HealthcarePipelineJobMappingPipelineJobDestination {
+  const HealthcarePipelineJobMappingPipelineJobDestinationFhirStoreDestination(
     this.fhirStoreDestination,
   );
 
@@ -198,11 +193,10 @@ final class HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconci
   };
 }
 
-/// The [HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination.reconciliationDestination] choice: sets `reconciliation_destination`.
-final class HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestinationReconciliationDestination
-    extends
-        HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination {
-  const HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestinationReconciliationDestination(
+/// The [HealthcarePipelineJobMappingPipelineJobDestination.reconciliationDestination] choice: sets `reconciliation_destination`.
+final class HealthcarePipelineJobMappingPipelineJobDestinationReconciliationDestination
+    extends HealthcarePipelineJobMappingPipelineJobDestination {
+  const HealthcarePipelineJobMappingPipelineJobDestinationReconciliationDestination(
     this.reconciliationDestination,
   );
 
@@ -361,8 +355,7 @@ final class GoogleHealthcarePipelineJob extends Resource {
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
     required TfArg<String> name,
-    HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob?
-    mappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob,
+    HealthcarePipelineJobPipelineJob? pipelineJob,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -376,8 +369,7 @@ final class GoogleHealthcarePipelineJob extends Resource {
            if (labels != null) 'labels': labels,
            'location': location,
            'name': name,
-           ...?mappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob
-               ?.argMap,
+           ...?pipelineJob?.argMap,
          },
        );
 

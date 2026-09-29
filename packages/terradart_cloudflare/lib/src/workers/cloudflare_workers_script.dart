@@ -41,18 +41,16 @@ enum WorkersScriptUsageModel implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.content(...)`.
-sealed class WorkersScriptContentOrContentFile {
-  const WorkersScriptContentOrContentFile();
+sealed class WorkersScriptContent {
+  const WorkersScriptContent();
 
   /// Sets `content`.
-  const factory WorkersScriptContentOrContentFile.content(
-    TfArg<String> content,
-  ) = WorkersScriptContentOrContentFileContent;
+  const factory WorkersScriptContent.content(TfArg<String> content) =
+      WorkersScriptContentContent;
 
   /// Sets `content_file`.
-  const factory WorkersScriptContentOrContentFile.contentFile(
-    TfArg<String> contentFile,
-  ) = WorkersScriptContentOrContentFileContentFile;
+  const factory WorkersScriptContent.contentFile(TfArg<String> contentFile) =
+      WorkersScriptContentContentFile;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -64,10 +62,9 @@ sealed class WorkersScriptContentOrContentFile {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [WorkersScriptContentOrContentFile.content] choice: sets `content`.
-final class WorkersScriptContentOrContentFileContent
-    extends WorkersScriptContentOrContentFile {
-  const WorkersScriptContentOrContentFileContent(this.content);
+/// The [WorkersScriptContent.content] choice: sets `content`.
+final class WorkersScriptContentContent extends WorkersScriptContent {
+  const WorkersScriptContentContent(this.content);
 
   final TfArg<String> content;
 
@@ -81,10 +78,9 @@ final class WorkersScriptContentOrContentFileContent
   Map<String, TfArg<Object?>> get argMap => {'content': content};
 }
 
-/// The [WorkersScriptContentOrContentFile.contentFile] choice: sets `content_file`.
-final class WorkersScriptContentOrContentFileContentFile
-    extends WorkersScriptContentOrContentFile {
-  const WorkersScriptContentOrContentFileContentFile(this.contentFile);
+/// The [WorkersScriptContent.contentFile] choice: sets `content_file`.
+final class WorkersScriptContentContentFile extends WorkersScriptContent {
+  const WorkersScriptContentContentFile(this.contentFile);
 
   final TfArg<String> contentFile;
 
@@ -617,17 +613,14 @@ final class WorkersScriptExportsCache {
 /// `cloudflare_workers_script` (derived from provider schema).
 @immutable
 final class WorkersScriptFiles {
-  const WorkersScriptFiles({
-    required this.contentBase64OrContentFile,
-    required this.contentType,
-  });
+  const WorkersScriptFiles({required this.content, required this.contentType});
 
-  final WorkersScriptFilesContentBase64OrContentFile contentBase64OrContentFile;
+  final WorkersScriptFilesContent content;
 
   final TfArg<String> contentType;
 
   Map<String, Object?> encode() => {
-    ...contentBase64OrContentFile.encode(),
+    ...content.encode(),
     'content_type': contentType.toTfJson(),
   };
 }
@@ -636,18 +629,18 @@ final class WorkersScriptFiles {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.contentBase64(...)`.
-sealed class WorkersScriptFilesContentBase64OrContentFile {
-  const WorkersScriptFilesContentBase64OrContentFile();
+sealed class WorkersScriptFilesContent {
+  const WorkersScriptFilesContent();
 
   /// Sets `content_base64`.
-  const factory WorkersScriptFilesContentBase64OrContentFile.contentBase64(
+  const factory WorkersScriptFilesContent.contentBase64(
     TfArg<String> contentBase64,
-  ) = WorkersScriptFilesContentBase64OrContentFileContentBase64;
+  ) = WorkersScriptFilesContentContentBase64;
 
   /// Sets `content_file`.
-  const factory WorkersScriptFilesContentBase64OrContentFile.contentFile(
+  const factory WorkersScriptFilesContent.contentFile(
     TfArg<String> contentFile,
-  ) = WorkersScriptFilesContentBase64OrContentFileContentFile;
+  ) = WorkersScriptFilesContentContentFile;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -655,12 +648,10 @@ sealed class WorkersScriptFilesContentBase64OrContentFile {
   Map<String, Object?> encode();
 }
 
-/// The [WorkersScriptFilesContentBase64OrContentFile.contentBase64] choice: sets `content_base64`.
-final class WorkersScriptFilesContentBase64OrContentFileContentBase64
-    extends WorkersScriptFilesContentBase64OrContentFile {
-  const WorkersScriptFilesContentBase64OrContentFileContentBase64(
-    this.contentBase64,
-  );
+/// The [WorkersScriptFilesContent.contentBase64] choice: sets `content_base64`.
+final class WorkersScriptFilesContentContentBase64
+    extends WorkersScriptFilesContent {
+  const WorkersScriptFilesContentContentBase64(this.contentBase64);
 
   final TfArg<String> contentBase64;
 
@@ -671,12 +662,10 @@ final class WorkersScriptFilesContentBase64OrContentFileContentBase64
   Map<String, Object?> encode() => {'content_base64': contentBase64.toTfJson()};
 }
 
-/// The [WorkersScriptFilesContentBase64OrContentFile.contentFile] choice: sets `content_file`.
-final class WorkersScriptFilesContentBase64OrContentFileContentFile
-    extends WorkersScriptFilesContentBase64OrContentFile {
-  const WorkersScriptFilesContentBase64OrContentFileContentFile(
-    this.contentFile,
-  );
+/// The [WorkersScriptFilesContent.contentFile] choice: sets `content_file`.
+final class WorkersScriptFilesContentContentFile
+    extends WorkersScriptFilesContent {
+  const WorkersScriptFilesContentContentFile(this.contentFile);
 
   final TfArg<String> contentFile;
 
@@ -1065,7 +1054,7 @@ final class CloudflareWorkersScript extends Resource {
     TfArg<String>? bodyPart,
     TfArg<String>? compatibilityDate,
     TfArg<List<String>>? compatibilityFlags,
-    WorkersScriptContentOrContentFile? contentOrContentFile,
+    WorkersScriptContent? content,
     TfArg<String>? contentSha256,
     TfArg<WorkersScriptContentType>? contentType,
     TfArg<bool>? force,
@@ -1100,7 +1089,7 @@ final class CloudflareWorkersScript extends Resource {
              'compatibility_date': compatibilityDate,
            if (compatibilityFlags != null)
              'compatibility_flags': compatibilityFlags,
-           ...?contentOrContentFile?.argMap,
+           ...?content?.argMap,
            if (contentSha256 != null) 'content_sha256': contentSha256,
            if (contentType != null) 'content_type': contentType,
            if (force != null) 'force': force,

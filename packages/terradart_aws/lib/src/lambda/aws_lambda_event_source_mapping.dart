@@ -105,20 +105,20 @@ final class LambdaEventSourceMappingEventSourceArnOrSelfManagedEventSourceSelfMa
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.amazonManagedKafkaEventSourceConfig(...)`.
-sealed class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig {
-  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig();
+sealed class LambdaEventSourceMappingManagedKafkaEventSourceConfig {
+  const LambdaEventSourceMappingManagedKafkaEventSourceConfig();
 
   /// Sets `amazon_managed_kafka_event_source_config`.
-  const factory LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig.amazonManagedKafkaEventSourceConfig(
+  const factory LambdaEventSourceMappingManagedKafkaEventSourceConfig.amazonManagedKafkaEventSourceConfig(
     LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfig
     amazonManagedKafkaEventSourceConfig,
-  ) = LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfigAmazonManagedKafkaEventSourceConfig;
+  ) = LambdaEventSourceMappingManagedKafkaEventSourceConfigAmazonManagedKafkaEventSourceConfig;
 
   /// Sets `self_managed_kafka_event_source_config`.
-  const factory LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig.selfManagedKafkaEventSourceConfig(
+  const factory LambdaEventSourceMappingManagedKafkaEventSourceConfig.selfManagedKafkaEventSourceConfig(
     LambdaEventSourceMappingSelfManagedKafkaEventSourceConfig
     selfManagedKafkaEventSourceConfig,
-  ) = LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfigSelfManagedKafkaEventSourceConfig;
+  ) = LambdaEventSourceMappingManagedKafkaEventSourceConfigSelfManagedKafkaEventSourceConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -130,11 +130,10 @@ sealed class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfMa
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig.amazonManagedKafkaEventSourceConfig] choice: sets `amazon_managed_kafka_event_source_config`.
-final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfigAmazonManagedKafkaEventSourceConfig
-    extends
-        LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig {
-  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfigAmazonManagedKafkaEventSourceConfig(
+/// The [LambdaEventSourceMappingManagedKafkaEventSourceConfig.amazonManagedKafkaEventSourceConfig] choice: sets `amazon_managed_kafka_event_source_config`.
+final class LambdaEventSourceMappingManagedKafkaEventSourceConfigAmazonManagedKafkaEventSourceConfig
+    extends LambdaEventSourceMappingManagedKafkaEventSourceConfig {
+  const LambdaEventSourceMappingManagedKafkaEventSourceConfigAmazonManagedKafkaEventSourceConfig(
     this.amazonManagedKafkaEventSourceConfig,
   );
 
@@ -158,11 +157,10 @@ final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfMan
   };
 }
 
-/// The [LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig.selfManagedKafkaEventSourceConfig] choice: sets `self_managed_kafka_event_source_config`.
-final class LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfigSelfManagedKafkaEventSourceConfig
-    extends
-        LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig {
-  const LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfigSelfManagedKafkaEventSourceConfig(
+/// The [LambdaEventSourceMappingManagedKafkaEventSourceConfig.selfManagedKafkaEventSourceConfig] choice: sets `self_managed_kafka_event_source_config`.
+final class LambdaEventSourceMappingManagedKafkaEventSourceConfigSelfManagedKafkaEventSourceConfig
+    extends LambdaEventSourceMappingManagedKafkaEventSourceConfig {
+  const LambdaEventSourceMappingManagedKafkaEventSourceConfigSelfManagedKafkaEventSourceConfig(
     this.selfManagedKafkaEventSourceConfig,
   );
 
@@ -705,8 +703,8 @@ final class AwsLambdaEventSourceMapping extends Resource {
     TfArg<List<String>>? topics,
     TfArg<num>? tumblingWindowInSeconds,
     TfArg<bool>? useResourceTimeoutForPropagation,
-    LambdaEventSourceMappingAmazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig?
-    amazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig,
+    LambdaEventSourceMappingManagedKafkaEventSourceConfig?
+    managedKafkaEventSourceConfig,
     LambdaEventSourceMappingDestinationConfig? destinationConfig,
     LambdaEventSourceMappingDocumentDbEventSourceConfig?
     documentDbEventSourceConfig,
@@ -755,8 +753,7 @@ final class AwsLambdaEventSourceMapping extends Resource {
            if (useResourceTimeoutForPropagation != null)
              'use_resource_timeout_for_propagation':
                  useResourceTimeoutForPropagation,
-           ...?amazonManagedKafkaEventSourceConfigOrSelfManagedKafkaEventSourceConfig
-               ?.argMap,
+           ...?managedKafkaEventSourceConfig?.argMap,
            if (destinationConfig != null)
              'destination_config': TfArg.literal(destinationConfig.encode()),
            if (documentDbEventSourceConfig != null)

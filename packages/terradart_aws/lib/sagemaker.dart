@@ -243,9 +243,6 @@ export 'src/sagemaker/aws_sagemaker_endpoint.dart'
         SagemakerEndpointDeploymentConfigAutoRollbackConfiguration,
         SagemakerEndpointDeploymentConfigAutoRollbackConfigurationAlarms,
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicy,
-        SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicy,
-        SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicyBlueGreenUpdatePolicy,
-        SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyOrRollingUpdatePolicyRollingUpdatePolicy,
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfiguration,
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySize,
         SagemakerEndpointDeploymentConfigBlueGreenUpdatePolicyTrafficRoutingConfigurationCanarySizeType,
@@ -256,7 +253,10 @@ export 'src/sagemaker/aws_sagemaker_endpoint.dart'
         SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSize,
         SagemakerEndpointDeploymentConfigRollingUpdatePolicyMaximumBatchSizeType,
         SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSize,
-        SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSizeType;
+        SagemakerEndpointDeploymentConfigRollingUpdatePolicyRollbackMaximumBatchSizeType,
+        SagemakerEndpointDeploymentConfigUpdatePolicy,
+        SagemakerEndpointDeploymentConfigUpdatePolicyBlueGreenUpdatePolicy,
+        SagemakerEndpointDeploymentConfigUpdatePolicyRollingUpdatePolicy;
 export 'src/sagemaker/aws_sagemaker_endpoint_configuration.dart'
     show
         AwsSagemakerEndpointConfiguration,
@@ -269,9 +269,9 @@ export 'src/sagemaker/aws_sagemaker_endpoint_configuration.dart'
         SagemakerEndpointConfigurationDataCaptureConfigCaptureContentTypeHeader,
         SagemakerEndpointConfigurationDataCaptureConfigCaptureOptions,
         SagemakerEndpointConfigurationDataCaptureConfigCaptureOptionsCaptureMode,
-        SagemakerEndpointConfigurationNameOrNamePrefix,
-        SagemakerEndpointConfigurationNameOrNamePrefixName,
-        SagemakerEndpointConfigurationNameOrNamePrefixNamePrefix,
+        SagemakerEndpointConfigurationName,
+        SagemakerEndpointConfigurationNameName,
+        SagemakerEndpointConfigurationNameNamePrefix,
         SagemakerEndpointConfigurationProductionVariants,
         SagemakerEndpointConfigurationProductionVariantsAcceleratorType,
         SagemakerEndpointConfigurationProductionVariantsCapacityReservationConfig,
@@ -588,9 +588,9 @@ export 'src/sagemaker/aws_sagemaker_pipeline.dart'
     show
         AwsSagemakerPipeline,
         SagemakerPipelineParallelismConfiguration,
-        SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location,
-        SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinition,
-        SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinitionS3Location,
+        SagemakerPipelinePipelineDefinition,
+        SagemakerPipelinePipelineDefinitionPipelineDefinition,
+        SagemakerPipelinePipelineDefinitionPipelineDefinitionS3Location,
         SagemakerPipelinePipelineDefinitionS3Location;
 export 'src/sagemaker/aws_sagemaker_project.dart'
     show
@@ -776,8 +776,8 @@ export 'src/sagemaker/aws_sagemaker_workteam.dart'
         SagemakerWorkteamWorkerAccessConfiguration,
         SagemakerWorkteamWorkerAccessConfigurationS3Presign,
         SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraints,
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsIamPolicyConstraints,
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsIamPolicyConstraintsSourceIp,
+        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsIamPolicyConstraintsVpcSourceIp,
         SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIp,
-        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOrVpcSourceIp,
-        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOrVpcSourceIpSourceIp,
-        SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsSourceIpOrVpcSourceIpVpcSourceIp,
         SagemakerWorkteamWorkerAccessConfigurationS3PresignIamPolicyConstraintsVpcSourceIp;

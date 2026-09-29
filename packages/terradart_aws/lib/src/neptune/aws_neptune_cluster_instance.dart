@@ -20,18 +20,18 @@ enum NeptuneClusterInstanceEngine implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.identifier(...)`.
-sealed class NeptuneClusterInstanceIdentifierOrIdentifierPrefix {
-  const NeptuneClusterInstanceIdentifierOrIdentifierPrefix();
+sealed class NeptuneClusterInstanceIdentifier {
+  const NeptuneClusterInstanceIdentifier();
 
   /// Sets `identifier`.
-  const factory NeptuneClusterInstanceIdentifierOrIdentifierPrefix.identifier(
+  const factory NeptuneClusterInstanceIdentifier.identifier(
     TfArg<String> identifier,
-  ) = NeptuneClusterInstanceIdentifierOrIdentifierPrefixIdentifier;
+  ) = NeptuneClusterInstanceIdentifierIdentifier;
 
   /// Sets `identifier_prefix`.
-  const factory NeptuneClusterInstanceIdentifierOrIdentifierPrefix.identifierPrefix(
+  const factory NeptuneClusterInstanceIdentifier.identifierPrefix(
     TfArg<String> identifierPrefix,
-  ) = NeptuneClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix;
+  ) = NeptuneClusterInstanceIdentifierIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,12 +43,10 @@ sealed class NeptuneClusterInstanceIdentifierOrIdentifierPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NeptuneClusterInstanceIdentifierOrIdentifierPrefix.identifier] choice: sets `identifier`.
-final class NeptuneClusterInstanceIdentifierOrIdentifierPrefixIdentifier
-    extends NeptuneClusterInstanceIdentifierOrIdentifierPrefix {
-  const NeptuneClusterInstanceIdentifierOrIdentifierPrefixIdentifier(
-    this.identifier,
-  );
+/// The [NeptuneClusterInstanceIdentifier.identifier] choice: sets `identifier`.
+final class NeptuneClusterInstanceIdentifierIdentifier
+    extends NeptuneClusterInstanceIdentifier {
+  const NeptuneClusterInstanceIdentifierIdentifier(this.identifier);
 
   final TfArg<String> identifier;
 
@@ -62,12 +60,10 @@ final class NeptuneClusterInstanceIdentifierOrIdentifierPrefixIdentifier
   Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
 }
 
-/// The [NeptuneClusterInstanceIdentifierOrIdentifierPrefix.identifierPrefix] choice: sets `identifier_prefix`.
-final class NeptuneClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix
-    extends NeptuneClusterInstanceIdentifierOrIdentifierPrefix {
-  const NeptuneClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix(
-    this.identifierPrefix,
-  );
+/// The [NeptuneClusterInstanceIdentifier.identifierPrefix] choice: sets `identifier_prefix`.
+final class NeptuneClusterInstanceIdentifierIdentifierPrefix
+    extends NeptuneClusterInstanceIdentifier {
+  const NeptuneClusterInstanceIdentifierIdentifierPrefix(this.identifierPrefix);
 
   final TfArg<String> identifierPrefix;
 
@@ -97,8 +93,7 @@ final class AwsNeptuneClusterInstance extends Resource {
     required TfArg<String> clusterIdentifier,
     TfArg<NeptuneClusterInstanceEngine>? engine,
     TfArg<String>? engineVersion,
-    NeptuneClusterInstanceIdentifierOrIdentifierPrefix?
-    identifierOrIdentifierPrefix,
+    NeptuneClusterInstanceIdentifier? identifier,
     required TfArg<String> instanceClass,
     TfArg<String>? neptuneParameterGroupName,
     TfArg<String>? neptuneSubnetGroupName,
@@ -124,7 +119,7 @@ final class AwsNeptuneClusterInstance extends Resource {
            'cluster_identifier': clusterIdentifier,
            if (engine != null) 'engine': engine,
            if (engineVersion != null) 'engine_version': engineVersion,
-           ...?identifierOrIdentifierPrefix?.argMap,
+           ...?identifier?.argMap,
            'instance_class': instanceClass,
            if (neptuneParameterGroupName != null)
              'neptune_parameter_group_name': neptuneParameterGroupName,

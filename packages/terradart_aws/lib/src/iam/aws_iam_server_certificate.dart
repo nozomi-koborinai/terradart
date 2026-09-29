@@ -11,17 +11,16 @@ const Set<String> _awsIamServerCertificateSensitive = <String>{'private_key'};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class IamServerCertificateNameOrNamePrefix {
-  const IamServerCertificateNameOrNamePrefix();
+sealed class IamServerCertificateName {
+  const IamServerCertificateName();
 
   /// Sets `name`.
-  const factory IamServerCertificateNameOrNamePrefix.name(TfArg<String> name) =
-      IamServerCertificateNameOrNamePrefixName;
+  const factory IamServerCertificateName.name(TfArg<String> name) =
+      IamServerCertificateNameName;
 
   /// Sets `name_prefix`.
-  const factory IamServerCertificateNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = IamServerCertificateNameOrNamePrefixNamePrefix;
+  const factory IamServerCertificateName.namePrefix(TfArg<String> namePrefix) =
+      IamServerCertificateNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class IamServerCertificateNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [IamServerCertificateNameOrNamePrefix.name] choice: sets `name`.
-final class IamServerCertificateNameOrNamePrefixName
-    extends IamServerCertificateNameOrNamePrefix {
-  const IamServerCertificateNameOrNamePrefixName(this.name);
+/// The [IamServerCertificateName.name] choice: sets `name`.
+final class IamServerCertificateNameName extends IamServerCertificateName {
+  const IamServerCertificateNameName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +48,10 @@ final class IamServerCertificateNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [IamServerCertificateNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class IamServerCertificateNameOrNamePrefixNamePrefix
-    extends IamServerCertificateNameOrNamePrefix {
-  const IamServerCertificateNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [IamServerCertificateName.namePrefix] choice: sets `name_prefix`.
+final class IamServerCertificateNameNamePrefix
+    extends IamServerCertificateName {
+  const IamServerCertificateNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -75,7 +73,7 @@ final class AwsIamServerCertificate extends Resource {
     required super.localName,
     required TfArg<String> certificateBody,
     TfArg<String>? certificateChain,
-    IamServerCertificateNameOrNamePrefix? nameOrNamePrefix,
+    IamServerCertificateName? name,
     TfArg<String>? path,
     required TfArg<String> privateKey,
     TfArg<Map<String, String>>? tags,
@@ -88,7 +86,7 @@ final class AwsIamServerCertificate extends Resource {
          argMap: {
            'certificate_body': certificateBody,
            if (certificateChain != null) 'certificate_chain': certificateChain,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (path != null) 'path': path,
            'private_key': privateKey,
            if (tags != null) 'tags': tags,

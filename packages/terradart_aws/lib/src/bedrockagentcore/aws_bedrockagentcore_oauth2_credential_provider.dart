@@ -1098,7 +1098,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosof
     this.clientSecret,
     this.clientSecretSource,
     this.clientSecretWo,
-    this.tenantIdOrTenantIdWo,
+    this.tenantId,
     this.tenantIdWoVersion,
     this.clientSecretConfig,
   });
@@ -1115,8 +1115,8 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosof
 
   final TfArg<String>? clientSecretWo;
 
-  final BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo?
-  tenantIdOrTenantIdWo;
+  final BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId?
+  tenantId;
 
   final TfArg<num>? tenantIdWoVersion;
 
@@ -1134,7 +1134,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosof
     if (clientSecretSource != null)
       'client_secret_source': clientSecretSource!.toTfJson(),
     if (clientSecretWo != null) 'client_secret_wo': clientSecretWo!.toTfJson(),
-    ...?tenantIdOrTenantIdWo?.encode(),
+    ...?tenantId?.encode(),
     if (tenantIdWoVersion != null)
       'tenant_id_wo_version': tenantIdWoVersion!.toTfJson(),
     if (clientSecretConfig != null)
@@ -1147,18 +1147,18 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosof
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.tenantId(...)`.
-sealed class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo();
+sealed class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId {
+  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId();
 
   /// Sets `tenant_id`.
-  const factory BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo.tenantId(
+  const factory BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId.tenantId(
     TfArg<String> tenantId,
-  ) = BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWoTenantId;
+  ) = BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdTenantId;
 
   /// Sets `tenant_id_wo`.
-  const factory BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo.tenantIdWo(
+  const factory BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId.tenantIdWo(
     TfArg<String> tenantIdWo,
-  ) = BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWoTenantIdWo;
+  ) = BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdTenantIdWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1166,11 +1166,11 @@ sealed class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicroso
   Map<String, Object?> encode();
 }
 
-/// The [BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo.tenantId] choice: sets `tenant_id`.
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWoTenantId
+/// The [BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId.tenantId] choice: sets `tenant_id`.
+final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdTenantId
     extends
-        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWoTenantId(
+        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId {
+  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdTenantId(
     this.tenantId,
   );
 
@@ -1183,11 +1183,11 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosof
   Map<String, Object?> encode() => {'tenant_id': tenantId.toTfJson()};
 }
 
-/// The [BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo.tenantIdWo] choice: sets `tenant_id_wo`.
-final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWoTenantIdWo
+/// The [BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId.tenantIdWo] choice: sets `tenant_id_wo`.
+final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdTenantIdWo
     extends
-        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo {
-  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWoTenantIdWo(
+        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantId {
+  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdTenantIdWo(
     this.tenantIdWo,
   );
 

@@ -12,17 +12,16 @@ const Set<String> _awsLaunchConfigurationSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class LaunchConfigurationNameOrNamePrefix {
-  const LaunchConfigurationNameOrNamePrefix();
+sealed class LaunchConfigurationName {
+  const LaunchConfigurationName();
 
   /// Sets `name`.
-  const factory LaunchConfigurationNameOrNamePrefix.name(TfArg<String> name) =
-      LaunchConfigurationNameOrNamePrefixName;
+  const factory LaunchConfigurationName.name(TfArg<String> name) =
+      LaunchConfigurationNameName;
 
   /// Sets `name_prefix`.
-  const factory LaunchConfigurationNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = LaunchConfigurationNameOrNamePrefixNamePrefix;
+  const factory LaunchConfigurationName.namePrefix(TfArg<String> namePrefix) =
+      LaunchConfigurationNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +33,9 @@ sealed class LaunchConfigurationNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LaunchConfigurationNameOrNamePrefix.name] choice: sets `name`.
-final class LaunchConfigurationNameOrNamePrefixName
-    extends LaunchConfigurationNameOrNamePrefix {
-  const LaunchConfigurationNameOrNamePrefixName(this.name);
+/// The [LaunchConfigurationName.name] choice: sets `name`.
+final class LaunchConfigurationNameName extends LaunchConfigurationName {
+  const LaunchConfigurationNameName(this.name);
 
   final TfArg<String> name;
 
@@ -51,10 +49,9 @@ final class LaunchConfigurationNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [LaunchConfigurationNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class LaunchConfigurationNameOrNamePrefixNamePrefix
-    extends LaunchConfigurationNameOrNamePrefix {
-  const LaunchConfigurationNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [LaunchConfigurationName.namePrefix] choice: sets `name_prefix`.
+final class LaunchConfigurationNameNamePrefix extends LaunchConfigurationName {
+  const LaunchConfigurationNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -73,18 +70,17 @@ final class LaunchConfigurationNameOrNamePrefixNamePrefix
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.userData(...)`.
-sealed class LaunchConfigurationUserDataOrUserDataBase64 {
-  const LaunchConfigurationUserDataOrUserDataBase64();
+sealed class LaunchConfigurationUserData {
+  const LaunchConfigurationUserData();
 
   /// Sets `user_data`.
-  const factory LaunchConfigurationUserDataOrUserDataBase64.userData(
-    TfArg<String> userData,
-  ) = LaunchConfigurationUserDataOrUserDataBase64UserData;
+  const factory LaunchConfigurationUserData.userData(TfArg<String> userData) =
+      LaunchConfigurationUserDataUserData;
 
   /// Sets `user_data_base64`.
-  const factory LaunchConfigurationUserDataOrUserDataBase64.userDataBase64(
+  const factory LaunchConfigurationUserData.userDataBase64(
     TfArg<String> userDataBase64,
-  ) = LaunchConfigurationUserDataOrUserDataBase64UserDataBase64;
+  ) = LaunchConfigurationUserDataUserDataBase64;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -96,10 +92,10 @@ sealed class LaunchConfigurationUserDataOrUserDataBase64 {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LaunchConfigurationUserDataOrUserDataBase64.userData] choice: sets `user_data`.
-final class LaunchConfigurationUserDataOrUserDataBase64UserData
-    extends LaunchConfigurationUserDataOrUserDataBase64 {
-  const LaunchConfigurationUserDataOrUserDataBase64UserData(this.userData);
+/// The [LaunchConfigurationUserData.userData] choice: sets `user_data`.
+final class LaunchConfigurationUserDataUserData
+    extends LaunchConfigurationUserData {
+  const LaunchConfigurationUserDataUserData(this.userData);
 
   final TfArg<String> userData;
 
@@ -113,12 +109,10 @@ final class LaunchConfigurationUserDataOrUserDataBase64UserData
   Map<String, TfArg<Object?>> get argMap => {'user_data': userData};
 }
 
-/// The [LaunchConfigurationUserDataOrUserDataBase64.userDataBase64] choice: sets `user_data_base64`.
-final class LaunchConfigurationUserDataOrUserDataBase64UserDataBase64
-    extends LaunchConfigurationUserDataOrUserDataBase64 {
-  const LaunchConfigurationUserDataOrUserDataBase64UserDataBase64(
-    this.userDataBase64,
-  );
+/// The [LaunchConfigurationUserData.userDataBase64] choice: sets `user_data_base64`.
+final class LaunchConfigurationUserDataUserDataBase64
+    extends LaunchConfigurationUserData {
+  const LaunchConfigurationUserDataUserDataBase64(this.userDataBase64);
 
   final TfArg<String> userDataBase64;
 
@@ -300,12 +294,12 @@ final class AwsLaunchConfiguration extends Resource {
     required TfArg<String> imageId,
     required TfArg<String> instanceType,
     TfArg<String>? keyName,
-    LaunchConfigurationNameOrNamePrefix? nameOrNamePrefix,
+    LaunchConfigurationName? name,
     TfArg<String>? placementTenancy,
     TfArg<String>? region,
     TfArg<List<String>>? securityGroups,
     TfArg<String>? spotPrice,
-    LaunchConfigurationUserDataOrUserDataBase64? userDataOrUserDataBase64,
+    LaunchConfigurationUserData? userData,
     List<LaunchConfigurationEbsBlockDevice>? ebsBlockDevice,
     List<LaunchConfigurationEphemeralBlockDevice>? ephemeralBlockDevice,
     LaunchConfigurationMetadataOptions? metadataOptions,
@@ -326,12 +320,12 @@ final class AwsLaunchConfiguration extends Resource {
            'image_id': imageId,
            'instance_type': instanceType,
            if (keyName != null) 'key_name': keyName,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (placementTenancy != null) 'placement_tenancy': placementTenancy,
            if (region != null) 'region': region,
            if (securityGroups != null) 'security_groups': securityGroups,
            if (spotPrice != null) 'spot_price': spotPrice,
-           ...?userDataOrUserDataBase64?.argMap,
+           ...?userData?.argMap,
            if (ebsBlockDevice != null)
              'ebs_block_device': TfArg.literal([
                for (final e in ebsBlockDevice) e.encode(),

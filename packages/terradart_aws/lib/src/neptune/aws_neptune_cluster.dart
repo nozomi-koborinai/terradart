@@ -41,18 +41,18 @@ enum NeptuneClusterStorageType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.clusterIdentifier(...)`.
-sealed class NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix {
-  const NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix();
+sealed class NeptuneClusterClusterIdentifier {
+  const NeptuneClusterClusterIdentifier();
 
   /// Sets `cluster_identifier`.
-  const factory NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifier(
+  const factory NeptuneClusterClusterIdentifier.clusterIdentifier(
     TfArg<String> clusterIdentifier,
-  ) = NeptuneClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier;
+  ) = NeptuneClusterClusterIdentifierClusterIdentifier;
 
   /// Sets `cluster_identifier_prefix`.
-  const factory NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifierPrefix(
+  const factory NeptuneClusterClusterIdentifier.clusterIdentifierPrefix(
     TfArg<String> clusterIdentifierPrefix,
-  ) = NeptuneClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix;
+  ) = NeptuneClusterClusterIdentifierClusterIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -64,10 +64,10 @@ sealed class NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifier] choice: sets `cluster_identifier`.
-final class NeptuneClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier
-    extends NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix {
-  const NeptuneClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier(
+/// The [NeptuneClusterClusterIdentifier.clusterIdentifier] choice: sets `cluster_identifier`.
+final class NeptuneClusterClusterIdentifierClusterIdentifier
+    extends NeptuneClusterClusterIdentifier {
+  const NeptuneClusterClusterIdentifierClusterIdentifier(
     this.clusterIdentifier,
   );
 
@@ -87,10 +87,10 @@ final class NeptuneClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdent
   };
 }
 
-/// The [NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifierPrefix] choice: sets `cluster_identifier_prefix`.
-final class NeptuneClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix
-    extends NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix {
-  const NeptuneClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix(
+/// The [NeptuneClusterClusterIdentifier.clusterIdentifierPrefix] choice: sets `cluster_identifier_prefix`.
+final class NeptuneClusterClusterIdentifierClusterIdentifierPrefix
+    extends NeptuneClusterClusterIdentifier {
+  const NeptuneClusterClusterIdentifierClusterIdentifierPrefix(
     this.clusterIdentifierPrefix,
   );
 
@@ -139,8 +139,7 @@ final class AwsNeptuneCluster extends Resource {
     TfArg<bool>? applyImmediately,
     TfArg<List<String>>? availabilityZones,
     TfArg<num>? backupRetentionPeriod,
-    NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix?
-    clusterIdentifierOrClusterIdentifierPrefix,
+    NeptuneClusterClusterIdentifier? clusterIdentifier,
     TfArg<bool>? copyTagsToSnapshot,
     TfArg<bool>? deletionProtection,
     List<TfArg<NeptuneClusterEnableCloudwatchLogsExports>>?
@@ -182,7 +181,7 @@ final class AwsNeptuneCluster extends Resource {
              'availability_zones': availabilityZones,
            if (backupRetentionPeriod != null)
              'backup_retention_period': backupRetentionPeriod,
-           ...?clusterIdentifierOrClusterIdentifierPrefix?.argMap,
+           ...?clusterIdentifier?.argMap,
            if (copyTagsToSnapshot != null)
              'copy_tags_to_snapshot': copyTagsToSnapshot,
            if (deletionProtection != null)

@@ -94,18 +94,18 @@ final class LaunchTemplateDefaultVersionOrUpdateDefaultVersionUpdateDefaultVersi
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.instanceRequirements(...)`.
-sealed class LaunchTemplateInstanceRequirementsOrInstanceType {
-  const LaunchTemplateInstanceRequirementsOrInstanceType();
+sealed class LaunchTemplateInstance {
+  const LaunchTemplateInstance();
 
   /// Sets `instance_requirements`.
-  const factory LaunchTemplateInstanceRequirementsOrInstanceType.instanceRequirements(
+  const factory LaunchTemplateInstance.instanceRequirements(
     LaunchTemplateInstanceRequirements instanceRequirements,
-  ) = LaunchTemplateInstanceRequirementsOrInstanceTypeInstanceRequirements;
+  ) = LaunchTemplateInstanceInstanceRequirements;
 
   /// Sets `instance_type`.
-  const factory LaunchTemplateInstanceRequirementsOrInstanceType.instanceType(
+  const factory LaunchTemplateInstance.instanceType(
     TfArg<String> instanceType,
-  ) = LaunchTemplateInstanceRequirementsOrInstanceTypeInstanceType;
+  ) = LaunchTemplateInstanceInstanceType;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -117,12 +117,10 @@ sealed class LaunchTemplateInstanceRequirementsOrInstanceType {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LaunchTemplateInstanceRequirementsOrInstanceType.instanceRequirements] choice: sets `instance_requirements`.
-final class LaunchTemplateInstanceRequirementsOrInstanceTypeInstanceRequirements
-    extends LaunchTemplateInstanceRequirementsOrInstanceType {
-  const LaunchTemplateInstanceRequirementsOrInstanceTypeInstanceRequirements(
-    this.instanceRequirements,
-  );
+/// The [LaunchTemplateInstance.instanceRequirements] choice: sets `instance_requirements`.
+final class LaunchTemplateInstanceInstanceRequirements
+    extends LaunchTemplateInstance {
+  const LaunchTemplateInstanceInstanceRequirements(this.instanceRequirements);
 
   final LaunchTemplateInstanceRequirements instanceRequirements;
 
@@ -140,12 +138,9 @@ final class LaunchTemplateInstanceRequirementsOrInstanceTypeInstanceRequirements
   };
 }
 
-/// The [LaunchTemplateInstanceRequirementsOrInstanceType.instanceType] choice: sets `instance_type`.
-final class LaunchTemplateInstanceRequirementsOrInstanceTypeInstanceType
-    extends LaunchTemplateInstanceRequirementsOrInstanceType {
-  const LaunchTemplateInstanceRequirementsOrInstanceTypeInstanceType(
-    this.instanceType,
-  );
+/// The [LaunchTemplateInstance.instanceType] choice: sets `instance_type`.
+final class LaunchTemplateInstanceInstanceType extends LaunchTemplateInstance {
+  const LaunchTemplateInstanceInstanceType(this.instanceType);
 
   final TfArg<String> instanceType;
 
@@ -164,17 +159,16 @@ final class LaunchTemplateInstanceRequirementsOrInstanceTypeInstanceType
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class LaunchTemplateNameOrNamePrefix {
-  const LaunchTemplateNameOrNamePrefix();
+sealed class LaunchTemplateName {
+  const LaunchTemplateName();
 
   /// Sets `name`.
-  const factory LaunchTemplateNameOrNamePrefix.name(TfArg<String> name) =
-      LaunchTemplateNameOrNamePrefixName;
+  const factory LaunchTemplateName.name(TfArg<String> name) =
+      LaunchTemplateNameName;
 
   /// Sets `name_prefix`.
-  const factory LaunchTemplateNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = LaunchTemplateNameOrNamePrefixNamePrefix;
+  const factory LaunchTemplateName.namePrefix(TfArg<String> namePrefix) =
+      LaunchTemplateNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -186,10 +180,9 @@ sealed class LaunchTemplateNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LaunchTemplateNameOrNamePrefix.name] choice: sets `name`.
-final class LaunchTemplateNameOrNamePrefixName
-    extends LaunchTemplateNameOrNamePrefix {
-  const LaunchTemplateNameOrNamePrefixName(this.name);
+/// The [LaunchTemplateName.name] choice: sets `name`.
+final class LaunchTemplateNameName extends LaunchTemplateName {
+  const LaunchTemplateNameName(this.name);
 
   final TfArg<String> name;
 
@@ -203,10 +196,9 @@ final class LaunchTemplateNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [LaunchTemplateNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class LaunchTemplateNameOrNamePrefixNamePrefix
-    extends LaunchTemplateNameOrNamePrefix {
-  const LaunchTemplateNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [LaunchTemplateName.namePrefix] choice: sets `name_prefix`.
+final class LaunchTemplateNameNamePrefix extends LaunchTemplateName {
+  const LaunchTemplateNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -430,15 +422,13 @@ enum LaunchTemplateCapacityReservationSpecificationCapacityReservationPreference
 @immutable
 final class LaunchTemplateCapacityReservationSpecificationCapacityReservationTarget {
   const LaunchTemplateCapacityReservationSpecificationCapacityReservationTarget({
-    this.capacityReservationIdOrCapacityReservationResourceGroupArn,
+    this.capacityReservation,
   });
 
-  final LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn?
-  capacityReservationIdOrCapacityReservationResourceGroupArn;
+  final LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservation?
+  capacityReservation;
 
-  Map<String, Object?> encode() => {
-    ...?capacityReservationIdOrCapacityReservationResourceGroupArn?.encode(),
-  };
+  Map<String, Object?> encode() => {...?capacityReservation?.encode()};
 }
 
 /// At most one of `capacity_reservation_id`, `capacity_reservation_resource_group_arn` on the `capacity_reservation_specification.capacity_reservation_target` block of `aws_launch_template`: the provider rejects
@@ -446,18 +436,18 @@ final class LaunchTemplateCapacityReservationSpecificationCapacityReservationTar
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.capacityReservationId(...)`.
-sealed class LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
-  const LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn();
+sealed class LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservation {
+  const LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservation();
 
   /// Sets `capacity_reservation_id`.
-  const factory LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn.capacityReservationId(
+  const factory LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationId(
     TfArg<String> capacityReservationId,
-  ) = LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationId;
+  ) = LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationId;
 
   /// Sets `capacity_reservation_resource_group_arn`.
-  const factory LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn.capacityReservationResourceGroupArn(
+  const factory LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationResourceGroupArn(
     TfArg<String> capacityReservationResourceGroupArn,
-  ) = LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationResourceGroupArn;
+  ) = LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -465,11 +455,11 @@ sealed class LaunchTemplateCapacityReservationSpecificationCapacityReservationTa
   Map<String, Object?> encode();
 }
 
-/// The [LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn.capacityReservationId] choice: sets `capacity_reservation_id`.
-final class LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationId
+/// The [LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationId] choice: sets `capacity_reservation_id`.
+final class LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationId
     extends
-        LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
-  const LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationId(
+        LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservation {
+  const LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationId(
     this.capacityReservationId,
   );
 
@@ -484,11 +474,11 @@ final class LaunchTemplateCapacityReservationSpecificationCapacityReservationTar
   };
 }
 
-/// The [LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn.capacityReservationResourceGroupArn] choice: sets `capacity_reservation_resource_group_arn`.
-final class LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationResourceGroupArn
+/// The [LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationResourceGroupArn] choice: sets `capacity_reservation_resource_group_arn`.
+final class LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArn
     extends
-        LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
-  const LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationResourceGroupArn(
+        LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservation {
+  const LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArn(
     this.capacityReservationResourceGroupArn,
   );
 
@@ -604,11 +594,11 @@ final class LaunchTemplateHibernationOptions {
 /// `aws_launch_template` (derived from provider schema).
 @immutable
 final class LaunchTemplateIamInstanceProfile {
-  const LaunchTemplateIamInstanceProfile({this.arnOrName});
+  const LaunchTemplateIamInstanceProfile({this.iamInstanceProfile});
 
-  final LaunchTemplateIamInstanceProfileArnOrName? arnOrName;
+  final LaunchTemplateIamInstanceProfileIamInstanceProfile? iamInstanceProfile;
 
-  Map<String, Object?> encode() => {...?arnOrName?.encode()};
+  Map<String, Object?> encode() => {...?iamInstanceProfile?.encode()};
 }
 
 /// At most one of `arn`, `name` on the `iam_instance_profile` block of `aws_launch_template`: the provider rejects
@@ -616,18 +606,18 @@ final class LaunchTemplateIamInstanceProfile {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.arn(...)`.
-sealed class LaunchTemplateIamInstanceProfileArnOrName {
-  const LaunchTemplateIamInstanceProfileArnOrName();
+sealed class LaunchTemplateIamInstanceProfileIamInstanceProfile {
+  const LaunchTemplateIamInstanceProfileIamInstanceProfile();
 
   /// Sets `arn`.
-  const factory LaunchTemplateIamInstanceProfileArnOrName.arn(
+  const factory LaunchTemplateIamInstanceProfileIamInstanceProfile.arn(
     TfArg<String> arn,
-  ) = LaunchTemplateIamInstanceProfileArnOrNameArn;
+  ) = LaunchTemplateIamInstanceProfileIamInstanceProfileArn;
 
   /// Sets `name`.
-  const factory LaunchTemplateIamInstanceProfileArnOrName.name(
+  const factory LaunchTemplateIamInstanceProfileIamInstanceProfile.name(
     TfArg<String> name,
-  ) = LaunchTemplateIamInstanceProfileArnOrNameName;
+  ) = LaunchTemplateIamInstanceProfileIamInstanceProfileName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -635,10 +625,10 @@ sealed class LaunchTemplateIamInstanceProfileArnOrName {
   Map<String, Object?> encode();
 }
 
-/// The [LaunchTemplateIamInstanceProfileArnOrName.arn] choice: sets `arn`.
-final class LaunchTemplateIamInstanceProfileArnOrNameArn
-    extends LaunchTemplateIamInstanceProfileArnOrName {
-  const LaunchTemplateIamInstanceProfileArnOrNameArn(this.arn);
+/// The [LaunchTemplateIamInstanceProfileIamInstanceProfile.arn] choice: sets `arn`.
+final class LaunchTemplateIamInstanceProfileIamInstanceProfileArn
+    extends LaunchTemplateIamInstanceProfileIamInstanceProfile {
+  const LaunchTemplateIamInstanceProfileIamInstanceProfileArn(this.arn);
 
   final TfArg<String> arn;
 
@@ -649,10 +639,10 @@ final class LaunchTemplateIamInstanceProfileArnOrNameArn
   Map<String, Object?> encode() => {'arn': arn.toTfJson()};
 }
 
-/// The [LaunchTemplateIamInstanceProfileArnOrName.name] choice: sets `name`.
-final class LaunchTemplateIamInstanceProfileArnOrNameName
-    extends LaunchTemplateIamInstanceProfileArnOrName {
-  const LaunchTemplateIamInstanceProfileArnOrNameName(this.name);
+/// The [LaunchTemplateIamInstanceProfileIamInstanceProfile.name] choice: sets `name`.
+final class LaunchTemplateIamInstanceProfileIamInstanceProfileName
+    extends LaunchTemplateIamInstanceProfileIamInstanceProfile {
+  const LaunchTemplateIamInstanceProfileIamInstanceProfileName(this.name);
 
   final TfArg<String> name;
 
@@ -768,14 +758,14 @@ final class LaunchTemplateInstanceRequirements {
     this.acceleratorManufacturers,
     this.acceleratorNames,
     this.acceleratorTypes,
-    this.allowedInstanceTypesOrExcludedInstanceTypes,
+    this.instanceTypes,
     this.bareMetal,
     this.burstablePerformance,
     this.cpuManufacturers,
     this.instanceGenerations,
     this.localStorage,
     this.localStorageTypes,
-    this.maxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice,
+    this.price,
     this.onDemandMaxPricePercentageOverLowestPrice,
     this.requireHibernateSupport,
     this.acceleratorCount,
@@ -798,8 +788,7 @@ final class LaunchTemplateInstanceRequirements {
   final List<TfArg<LaunchTemplateInstanceRequirementsAcceleratorTypes>>?
   acceleratorTypes;
 
-  final LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes?
-  allowedInstanceTypesOrExcludedInstanceTypes;
+  final LaunchTemplateInstanceRequirementsInstanceTypes? instanceTypes;
 
   final TfArg<LaunchTemplateInstanceRequirementsBareMetal>? bareMetal;
 
@@ -817,8 +806,7 @@ final class LaunchTemplateInstanceRequirements {
   final List<TfArg<LaunchTemplateInstanceRequirementsLocalStorageTypes>>?
   localStorageTypes;
 
-  final LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice?
-  maxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice;
+  final LaunchTemplateInstanceRequirementsPrice? price;
 
   final TfArg<num>? onDemandMaxPricePercentageOverLowestPrice;
 
@@ -856,7 +844,7 @@ final class LaunchTemplateInstanceRequirements {
       'accelerator_names': [for (final e in acceleratorNames!) e.toTfJson()],
     if (acceleratorTypes != null)
       'accelerator_types': [for (final e in acceleratorTypes!) e.toTfJson()],
-    ...?allowedInstanceTypesOrExcludedInstanceTypes?.encode(),
+    ...?instanceTypes?.encode(),
     if (bareMetal != null) 'bare_metal': bareMetal!.toTfJson(),
     if (burstablePerformance != null)
       'burstable_performance': burstablePerformance!.toTfJson(),
@@ -869,8 +857,7 @@ final class LaunchTemplateInstanceRequirements {
     if (localStorage != null) 'local_storage': localStorage!.toTfJson(),
     if (localStorageTypes != null)
       'local_storage_types': [for (final e in localStorageTypes!) e.toTfJson()],
-    ...?maxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice
-        ?.encode(),
+    ...?price?.encode(),
     if (onDemandMaxPricePercentageOverLowestPrice != null)
       'on_demand_max_price_percentage_over_lowest_price':
           onDemandMaxPricePercentageOverLowestPrice!.toTfJson(),
@@ -900,18 +887,18 @@ final class LaunchTemplateInstanceRequirements {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.allowedInstanceTypes(...)`.
-sealed class LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes {
-  const LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes();
+sealed class LaunchTemplateInstanceRequirementsInstanceTypes {
+  const LaunchTemplateInstanceRequirementsInstanceTypes();
 
   /// Sets `allowed_instance_types`.
-  const factory LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes.allowedInstanceTypes(
+  const factory LaunchTemplateInstanceRequirementsInstanceTypes.allowedInstanceTypes(
     TfArg<List<Object?>> allowedInstanceTypes,
-  ) = LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypesAllowedInstanceTypes;
+  ) = LaunchTemplateInstanceRequirementsInstanceTypesAllowedInstanceTypes;
 
   /// Sets `excluded_instance_types`.
-  const factory LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes.excludedInstanceTypes(
+  const factory LaunchTemplateInstanceRequirementsInstanceTypes.excludedInstanceTypes(
     TfArg<List<Object?>> excludedInstanceTypes,
-  ) = LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypesExcludedInstanceTypes;
+  ) = LaunchTemplateInstanceRequirementsInstanceTypesExcludedInstanceTypes;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -919,11 +906,10 @@ sealed class LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedIns
   Map<String, Object?> encode();
 }
 
-/// The [LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes.allowedInstanceTypes] choice: sets `allowed_instance_types`.
-final class LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypesAllowedInstanceTypes
-    extends
-        LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes {
-  const LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypesAllowedInstanceTypes(
+/// The [LaunchTemplateInstanceRequirementsInstanceTypes.allowedInstanceTypes] choice: sets `allowed_instance_types`.
+final class LaunchTemplateInstanceRequirementsInstanceTypesAllowedInstanceTypes
+    extends LaunchTemplateInstanceRequirementsInstanceTypes {
+  const LaunchTemplateInstanceRequirementsInstanceTypesAllowedInstanceTypes(
     this.allowedInstanceTypes,
   );
 
@@ -938,11 +924,10 @@ final class LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInst
   };
 }
 
-/// The [LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes.excludedInstanceTypes] choice: sets `excluded_instance_types`.
-final class LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypesExcludedInstanceTypes
-    extends
-        LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes {
-  const LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypesExcludedInstanceTypes(
+/// The [LaunchTemplateInstanceRequirementsInstanceTypes.excludedInstanceTypes] choice: sets `excluded_instance_types`.
+final class LaunchTemplateInstanceRequirementsInstanceTypesExcludedInstanceTypes
+    extends LaunchTemplateInstanceRequirementsInstanceTypes {
+  const LaunchTemplateInstanceRequirementsInstanceTypesExcludedInstanceTypes(
     this.excludedInstanceTypes,
   );
 
@@ -962,18 +947,18 @@ final class LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInst
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.maxSpotPriceAsPercentageOfOptimalOnDemandPrice(...)`.
-sealed class LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice {
-  const LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice();
+sealed class LaunchTemplateInstanceRequirementsPrice {
+  const LaunchTemplateInstanceRequirementsPrice();
 
   /// Sets `max_spot_price_as_percentage_of_optimal_on_demand_price`.
-  const factory LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice.maxSpotPriceAsPercentageOfOptimalOnDemandPrice(
+  const factory LaunchTemplateInstanceRequirementsPrice.maxSpotPriceAsPercentageOfOptimalOnDemandPrice(
     TfArg<num> maxSpotPriceAsPercentageOfOptimalOnDemandPrice,
-  ) = LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPriceMaxSpotPriceAsPercentageOfOptimalOnDemandPrice;
+  ) = LaunchTemplateInstanceRequirementsPriceMaxSpotPriceAsPercentageOfOptimalOnDemandPrice;
 
   /// Sets `spot_max_price_percentage_over_lowest_price`.
-  const factory LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice.spotMaxPricePercentageOverLowestPrice(
+  const factory LaunchTemplateInstanceRequirementsPrice.spotMaxPricePercentageOverLowestPrice(
     TfArg<num> spotMaxPricePercentageOverLowestPrice,
-  ) = LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPriceSpotMaxPricePercentageOverLowestPrice;
+  ) = LaunchTemplateInstanceRequirementsPriceSpotMaxPricePercentageOverLowestPrice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -981,11 +966,10 @@ sealed class LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimal
   Map<String, Object?> encode();
 }
 
-/// The [LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice.maxSpotPriceAsPercentageOfOptimalOnDemandPrice] choice: sets `max_spot_price_as_percentage_of_optimal_on_demand_price`.
-final class LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPriceMaxSpotPriceAsPercentageOfOptimalOnDemandPrice
-    extends
-        LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice {
-  const LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPriceMaxSpotPriceAsPercentageOfOptimalOnDemandPrice(
+/// The [LaunchTemplateInstanceRequirementsPrice.maxSpotPriceAsPercentageOfOptimalOnDemandPrice] choice: sets `max_spot_price_as_percentage_of_optimal_on_demand_price`.
+final class LaunchTemplateInstanceRequirementsPriceMaxSpotPriceAsPercentageOfOptimalOnDemandPrice
+    extends LaunchTemplateInstanceRequirementsPrice {
+  const LaunchTemplateInstanceRequirementsPriceMaxSpotPriceAsPercentageOfOptimalOnDemandPrice(
     this.maxSpotPriceAsPercentageOfOptimalOnDemandPrice,
   );
 
@@ -1002,11 +986,10 @@ final class LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalO
   };
 }
 
-/// The [LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice.spotMaxPricePercentageOverLowestPrice] choice: sets `spot_max_price_percentage_over_lowest_price`.
-final class LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPriceSpotMaxPricePercentageOverLowestPrice
-    extends
-        LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice {
-  const LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPriceSpotMaxPricePercentageOverLowestPrice(
+/// The [LaunchTemplateInstanceRequirementsPrice.spotMaxPricePercentageOverLowestPrice] choice: sets `spot_max_price_percentage_over_lowest_price`.
+final class LaunchTemplateInstanceRequirementsPriceSpotMaxPricePercentageOverLowestPrice
+    extends LaunchTemplateInstanceRequirementsPrice {
+  const LaunchTemplateInstanceRequirementsPriceSpotMaxPricePercentageOverLowestPrice(
     this.spotMaxPricePercentageOverLowestPrice,
   );
 
@@ -1678,8 +1661,8 @@ final class LaunchTemplatePlacement {
   const LaunchTemplatePlacement({
     this.affinity,
     this.availabilityZone,
-    this.groupIdOrGroupName,
-    this.hostIdOrHostResourceGroupArn,
+    this.group,
+    this.host,
     this.partitionNumber,
     this.spreadDomain,
     this.tenancy,
@@ -1689,10 +1672,9 @@ final class LaunchTemplatePlacement {
 
   final TfArg<String>? availabilityZone;
 
-  final LaunchTemplatePlacementGroupIdOrGroupName? groupIdOrGroupName;
+  final LaunchTemplatePlacementGroup? group;
 
-  final LaunchTemplatePlacementHostIdOrHostResourceGroupArn?
-  hostIdOrHostResourceGroupArn;
+  final LaunchTemplatePlacementHost? host;
 
   final TfArg<num>? partitionNumber;
 
@@ -1704,8 +1686,8 @@ final class LaunchTemplatePlacement {
     if (affinity != null) 'affinity': affinity!.toTfJson(),
     if (availabilityZone != null)
       'availability_zone': availabilityZone!.toTfJson(),
-    ...?groupIdOrGroupName?.encode(),
-    ...?hostIdOrHostResourceGroupArn?.encode(),
+    ...?group?.encode(),
+    ...?host?.encode(),
     if (partitionNumber != null)
       'partition_number': partitionNumber!.toTfJson(),
     if (spreadDomain != null) 'spread_domain': spreadDomain!.toTfJson(),
@@ -1718,18 +1700,17 @@ final class LaunchTemplatePlacement {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.groupId(...)`.
-sealed class LaunchTemplatePlacementGroupIdOrGroupName {
-  const LaunchTemplatePlacementGroupIdOrGroupName();
+sealed class LaunchTemplatePlacementGroup {
+  const LaunchTemplatePlacementGroup();
 
   /// Sets `group_id`.
-  const factory LaunchTemplatePlacementGroupIdOrGroupName.groupId(
-    TfArg<String> groupId,
-  ) = LaunchTemplatePlacementGroupIdOrGroupNameGroupId;
+  const factory LaunchTemplatePlacementGroup.groupId(TfArg<String> groupId) =
+      LaunchTemplatePlacementGroupGroupId;
 
   /// Sets `group_name`.
-  const factory LaunchTemplatePlacementGroupIdOrGroupName.groupName(
+  const factory LaunchTemplatePlacementGroup.groupName(
     TfArg<String> groupName,
-  ) = LaunchTemplatePlacementGroupIdOrGroupNameGroupName;
+  ) = LaunchTemplatePlacementGroupGroupName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1737,10 +1718,10 @@ sealed class LaunchTemplatePlacementGroupIdOrGroupName {
   Map<String, Object?> encode();
 }
 
-/// The [LaunchTemplatePlacementGroupIdOrGroupName.groupId] choice: sets `group_id`.
-final class LaunchTemplatePlacementGroupIdOrGroupNameGroupId
-    extends LaunchTemplatePlacementGroupIdOrGroupName {
-  const LaunchTemplatePlacementGroupIdOrGroupNameGroupId(this.groupId);
+/// The [LaunchTemplatePlacementGroup.groupId] choice: sets `group_id`.
+final class LaunchTemplatePlacementGroupGroupId
+    extends LaunchTemplatePlacementGroup {
+  const LaunchTemplatePlacementGroupGroupId(this.groupId);
 
   final TfArg<String> groupId;
 
@@ -1751,10 +1732,10 @@ final class LaunchTemplatePlacementGroupIdOrGroupNameGroupId
   Map<String, Object?> encode() => {'group_id': groupId.toTfJson()};
 }
 
-/// The [LaunchTemplatePlacementGroupIdOrGroupName.groupName] choice: sets `group_name`.
-final class LaunchTemplatePlacementGroupIdOrGroupNameGroupName
-    extends LaunchTemplatePlacementGroupIdOrGroupName {
-  const LaunchTemplatePlacementGroupIdOrGroupNameGroupName(this.groupName);
+/// The [LaunchTemplatePlacementGroup.groupName] choice: sets `group_name`.
+final class LaunchTemplatePlacementGroupGroupName
+    extends LaunchTemplatePlacementGroup {
+  const LaunchTemplatePlacementGroupGroupName(this.groupName);
 
   final TfArg<String> groupName;
 
@@ -1770,18 +1751,17 @@ final class LaunchTemplatePlacementGroupIdOrGroupNameGroupName
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.hostId(...)`.
-sealed class LaunchTemplatePlacementHostIdOrHostResourceGroupArn {
-  const LaunchTemplatePlacementHostIdOrHostResourceGroupArn();
+sealed class LaunchTemplatePlacementHost {
+  const LaunchTemplatePlacementHost();
 
   /// Sets `host_id`.
-  const factory LaunchTemplatePlacementHostIdOrHostResourceGroupArn.hostId(
-    TfArg<String> hostId,
-  ) = LaunchTemplatePlacementHostIdOrHostResourceGroupArnHostId;
+  const factory LaunchTemplatePlacementHost.hostId(TfArg<String> hostId) =
+      LaunchTemplatePlacementHostHostId;
 
   /// Sets `host_resource_group_arn`.
-  const factory LaunchTemplatePlacementHostIdOrHostResourceGroupArn.hostResourceGroupArn(
+  const factory LaunchTemplatePlacementHost.hostResourceGroupArn(
     TfArg<String> hostResourceGroupArn,
-  ) = LaunchTemplatePlacementHostIdOrHostResourceGroupArnHostResourceGroupArn;
+  ) = LaunchTemplatePlacementHostHostResourceGroupArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1789,10 +1769,10 @@ sealed class LaunchTemplatePlacementHostIdOrHostResourceGroupArn {
   Map<String, Object?> encode();
 }
 
-/// The [LaunchTemplatePlacementHostIdOrHostResourceGroupArn.hostId] choice: sets `host_id`.
-final class LaunchTemplatePlacementHostIdOrHostResourceGroupArnHostId
-    extends LaunchTemplatePlacementHostIdOrHostResourceGroupArn {
-  const LaunchTemplatePlacementHostIdOrHostResourceGroupArnHostId(this.hostId);
+/// The [LaunchTemplatePlacementHost.hostId] choice: sets `host_id`.
+final class LaunchTemplatePlacementHostHostId
+    extends LaunchTemplatePlacementHost {
+  const LaunchTemplatePlacementHostHostId(this.hostId);
 
   final TfArg<String> hostId;
 
@@ -1803,10 +1783,10 @@ final class LaunchTemplatePlacementHostIdOrHostResourceGroupArnHostId
   Map<String, Object?> encode() => {'host_id': hostId.toTfJson()};
 }
 
-/// The [LaunchTemplatePlacementHostIdOrHostResourceGroupArn.hostResourceGroupArn] choice: sets `host_resource_group_arn`.
-final class LaunchTemplatePlacementHostIdOrHostResourceGroupArnHostResourceGroupArn
-    extends LaunchTemplatePlacementHostIdOrHostResourceGroupArn {
-  const LaunchTemplatePlacementHostIdOrHostResourceGroupArnHostResourceGroupArn(
+/// The [LaunchTemplatePlacementHost.hostResourceGroupArn] choice: sets `host_resource_group_arn`.
+final class LaunchTemplatePlacementHostHostResourceGroupArn
+    extends LaunchTemplatePlacementHost {
+  const LaunchTemplatePlacementHostHostResourceGroupArn(
     this.hostResourceGroupArn,
   );
 
@@ -2082,11 +2062,10 @@ final class AwsLaunchTemplate extends Resource {
     TfArg<String>? imageId,
     TfArg<LaunchTemplateInstanceInitiatedShutdownBehavior>?
     instanceInitiatedShutdownBehavior,
-    LaunchTemplateInstanceRequirementsOrInstanceType?
-    instanceRequirementsOrInstanceType,
+    LaunchTemplateInstance? instance,
     TfArg<String>? kernelId,
     TfArg<String>? keyName,
-    LaunchTemplateNameOrNamePrefix? nameOrNamePrefix,
+    LaunchTemplateName? name,
     TfArg<String>? ramDiskId,
     TfArg<String>? region,
     LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds?
@@ -2129,10 +2108,10 @@ final class AwsLaunchTemplate extends Resource {
            if (instanceInitiatedShutdownBehavior != null)
              'instance_initiated_shutdown_behavior':
                  instanceInitiatedShutdownBehavior,
-           ...?instanceRequirementsOrInstanceType?.argMap,
+           ...?instance?.argMap,
            if (kernelId != null) 'kernel_id': kernelId,
            if (keyName != null) 'key_name': keyName,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (ramDiskId != null) 'ram_disk_id': ramDiskId,
            if (region != null) 'region': region,
            ...?securityGroupNamesOrVpcSecurityGroupIds?.argMap,

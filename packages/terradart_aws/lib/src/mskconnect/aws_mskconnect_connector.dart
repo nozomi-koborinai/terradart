@@ -11,34 +11,29 @@ const Set<String> _awsMskconnectConnectorSensitive = <String>{};
 /// `aws_mskconnect_connector` (derived from provider schema).
 @immutable
 final class MskconnectConnectorCapacity {
-  const MskconnectConnectorCapacity({
-    required this.autoscalingOrProvisionedCapacity,
-  });
+  const MskconnectConnectorCapacity({required this.capacity});
 
-  final MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity
-  autoscalingOrProvisionedCapacity;
+  final MskconnectConnectorCapacityCapacity capacity;
 
-  Map<String, Object?> encode() => {
-    ...autoscalingOrProvisionedCapacity.encode(),
-  };
+  Map<String, Object?> encode() => {...capacity.encode()};
 }
 
 /// Exactly one of `autoscaling`, `provisioned_capacity` on the `capacity` block of `aws_mskconnect_connector`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.autoscaling(...)`.
-sealed class MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity {
-  const MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity();
+sealed class MskconnectConnectorCapacityCapacity {
+  const MskconnectConnectorCapacityCapacity();
 
   /// Sets `autoscaling`.
-  const factory MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity.autoscaling(
+  const factory MskconnectConnectorCapacityCapacity.autoscaling(
     MskconnectConnectorCapacityAutoscaling autoscaling,
-  ) = MskconnectConnectorCapacityAutoscalingOrProvisionedCapacityAutoscaling;
+  ) = MskconnectConnectorCapacityCapacityAutoscaling;
 
   /// Sets `provisioned_capacity`.
-  const factory MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity.provisionedCapacity(
+  const factory MskconnectConnectorCapacityCapacity.provisionedCapacity(
     MskconnectConnectorCapacityProvisionedCapacity provisionedCapacity,
-  ) = MskconnectConnectorCapacityAutoscalingOrProvisionedCapacityProvisionedCapacity;
+  ) = MskconnectConnectorCapacityCapacityProvisionedCapacity;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -46,12 +41,10 @@ sealed class MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity {
   Map<String, Object?> encode();
 }
 
-/// The [MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity.autoscaling] choice: sets `autoscaling`.
-final class MskconnectConnectorCapacityAutoscalingOrProvisionedCapacityAutoscaling
-    extends MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity {
-  const MskconnectConnectorCapacityAutoscalingOrProvisionedCapacityAutoscaling(
-    this.autoscaling,
-  );
+/// The [MskconnectConnectorCapacityCapacity.autoscaling] choice: sets `autoscaling`.
+final class MskconnectConnectorCapacityCapacityAutoscaling
+    extends MskconnectConnectorCapacityCapacity {
+  const MskconnectConnectorCapacityCapacityAutoscaling(this.autoscaling);
 
   final MskconnectConnectorCapacityAutoscaling autoscaling;
 
@@ -62,10 +55,10 @@ final class MskconnectConnectorCapacityAutoscalingOrProvisionedCapacityAutoscali
   Map<String, Object?> encode() => {'autoscaling': autoscaling.encode()};
 }
 
-/// The [MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity.provisionedCapacity] choice: sets `provisioned_capacity`.
-final class MskconnectConnectorCapacityAutoscalingOrProvisionedCapacityProvisionedCapacity
-    extends MskconnectConnectorCapacityAutoscalingOrProvisionedCapacity {
-  const MskconnectConnectorCapacityAutoscalingOrProvisionedCapacityProvisionedCapacity(
+/// The [MskconnectConnectorCapacityCapacity.provisionedCapacity] choice: sets `provisioned_capacity`.
+final class MskconnectConnectorCapacityCapacityProvisionedCapacity
+    extends MskconnectConnectorCapacityCapacity {
+  const MskconnectConnectorCapacityCapacityProvisionedCapacity(
     this.provisionedCapacity,
   );
 

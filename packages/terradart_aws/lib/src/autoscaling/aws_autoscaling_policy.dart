@@ -24,18 +24,18 @@ enum AutoscalingPolicyPolicyType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.scalingAdjustment(...)`.
-sealed class AutoscalingPolicyScalingAdjustmentOrStepAdjustment {
-  const AutoscalingPolicyScalingAdjustmentOrStepAdjustment();
+sealed class AutoscalingPolicyAdjustment {
+  const AutoscalingPolicyAdjustment();
 
   /// Sets `scaling_adjustment`.
-  const factory AutoscalingPolicyScalingAdjustmentOrStepAdjustment.scalingAdjustment(
+  const factory AutoscalingPolicyAdjustment.scalingAdjustment(
     TfArg<num> scalingAdjustment,
-  ) = AutoscalingPolicyScalingAdjustmentOrStepAdjustmentScalingAdjustment;
+  ) = AutoscalingPolicyAdjustmentScalingAdjustment;
 
   /// Sets `step_adjustment`.
-  const factory AutoscalingPolicyScalingAdjustmentOrStepAdjustment.stepAdjustment(
+  const factory AutoscalingPolicyAdjustment.stepAdjustment(
     List<AutoscalingPolicyStepAdjustment> stepAdjustment,
-  ) = AutoscalingPolicyScalingAdjustmentOrStepAdjustmentStepAdjustment;
+  ) = AutoscalingPolicyAdjustmentStepAdjustment;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -47,12 +47,10 @@ sealed class AutoscalingPolicyScalingAdjustmentOrStepAdjustment {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AutoscalingPolicyScalingAdjustmentOrStepAdjustment.scalingAdjustment] choice: sets `scaling_adjustment`.
-final class AutoscalingPolicyScalingAdjustmentOrStepAdjustmentScalingAdjustment
-    extends AutoscalingPolicyScalingAdjustmentOrStepAdjustment {
-  const AutoscalingPolicyScalingAdjustmentOrStepAdjustmentScalingAdjustment(
-    this.scalingAdjustment,
-  );
+/// The [AutoscalingPolicyAdjustment.scalingAdjustment] choice: sets `scaling_adjustment`.
+final class AutoscalingPolicyAdjustmentScalingAdjustment
+    extends AutoscalingPolicyAdjustment {
+  const AutoscalingPolicyAdjustmentScalingAdjustment(this.scalingAdjustment);
 
   final TfArg<num> scalingAdjustment;
 
@@ -70,12 +68,10 @@ final class AutoscalingPolicyScalingAdjustmentOrStepAdjustmentScalingAdjustment
   };
 }
 
-/// The [AutoscalingPolicyScalingAdjustmentOrStepAdjustment.stepAdjustment] choice: sets `step_adjustment`.
-final class AutoscalingPolicyScalingAdjustmentOrStepAdjustmentStepAdjustment
-    extends AutoscalingPolicyScalingAdjustmentOrStepAdjustment {
-  const AutoscalingPolicyScalingAdjustmentOrStepAdjustmentStepAdjustment(
-    this.stepAdjustment,
-  );
+/// The [AutoscalingPolicyAdjustment.stepAdjustment] choice: sets `step_adjustment`.
+final class AutoscalingPolicyAdjustmentStepAdjustment
+    extends AutoscalingPolicyAdjustment {
+  const AutoscalingPolicyAdjustmentStepAdjustment(this.stepAdjustment);
 
   final List<AutoscalingPolicyStepAdjustment> stepAdjustment;
 
@@ -167,7 +163,7 @@ final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecification {
     required this.targetValue,
     this.customizedCapacityMetricSpecification,
     this.customizedLoadMetricSpecification,
-    this.customizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification,
+    this.scalingMetricSpecification,
     this.predefinedLoadMetricSpecification,
     this.predefinedMetricPairSpecification,
   });
@@ -180,8 +176,8 @@ final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecification {
   final AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedLoadMetricSpecification?
   customizedLoadMetricSpecification;
 
-  final AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification?
-  customizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification;
+  final AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecification?
+  scalingMetricSpecification;
 
   final AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedLoadMetricSpecification?
   predefinedLoadMetricSpecification;
@@ -197,8 +193,7 @@ final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecification {
     if (customizedLoadMetricSpecification != null)
       'customized_load_metric_specification': customizedLoadMetricSpecification!
           .encode(),
-    ...?customizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification
-        ?.encode(),
+    ...?scalingMetricSpecification?.encode(),
     if (predefinedLoadMetricSpecification != null)
       'predefined_load_metric_specification': predefinedLoadMetricSpecification!
           .encode(),
@@ -213,20 +208,20 @@ final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecification {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.customizedScalingMetricSpecification(...)`.
-sealed class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification {
-  const AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification();
+sealed class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecification {
+  const AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecification();
 
   /// Sets `customized_scaling_metric_specification`.
-  const factory AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification.customizedScalingMetricSpecification(
+  const factory AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecification.customizedScalingMetricSpecification(
     AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecification
     customizedScalingMetricSpecification,
-  ) = AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecificationCustomizedScalingMetricSpecification;
+  ) = AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecificationCustomizedScalingMetricSpecification;
 
   /// Sets `predefined_scaling_metric_specification`.
-  const factory AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification.predefinedScalingMetricSpecification(
+  const factory AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecification.predefinedScalingMetricSpecification(
     AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedScalingMetricSpecification
     predefinedScalingMetricSpecification,
-  ) = AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecificationPredefinedScalingMetricSpecification;
+  ) = AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecificationPredefinedScalingMetricSpecification;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -234,11 +229,11 @@ sealed class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationC
   Map<String, Object?> encode();
 }
 
-/// The [AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification.customizedScalingMetricSpecification] choice: sets `customized_scaling_metric_specification`.
-final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecificationCustomizedScalingMetricSpecification
+/// The [AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecification.customizedScalingMetricSpecification] choice: sets `customized_scaling_metric_specification`.
+final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecificationCustomizedScalingMetricSpecification
     extends
-        AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification {
-  const AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecificationCustomizedScalingMetricSpecification(
+        AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecification {
+  const AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecificationCustomizedScalingMetricSpecification(
     this.customizedScalingMetricSpecification,
   );
 
@@ -255,11 +250,11 @@ final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCu
   };
 }
 
-/// The [AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification.predefinedScalingMetricSpecification] choice: sets `predefined_scaling_metric_specification`.
-final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecificationPredefinedScalingMetricSpecification
+/// The [AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecification.predefinedScalingMetricSpecification] choice: sets `predefined_scaling_metric_specification`.
+final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecificationPredefinedScalingMetricSpecification
     extends
-        AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification {
-  const AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecificationPredefinedScalingMetricSpecification(
+        AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecification {
+  const AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationScalingMetricSpecificationPredefinedScalingMetricSpecification(
     this.predefinedScalingMetricSpecification,
   );
 
@@ -779,20 +774,20 @@ final class AutoscalingPolicyTargetTrackingConfiguration {
   const AutoscalingPolicyTargetTrackingConfiguration({
     this.disableScaleIn,
     required this.targetValue,
-    this.customizedMetricSpecificationOrPredefinedMetricSpecification,
+    this.metricSpecification,
   });
 
   final TfArg<bool>? disableScaleIn;
 
   final TfArg<num> targetValue;
 
-  final AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification?
-  customizedMetricSpecificationOrPredefinedMetricSpecification;
+  final AutoscalingPolicyTargetTrackingConfigurationMetricSpecification?
+  metricSpecification;
 
   Map<String, Object?> encode() => {
     if (disableScaleIn != null) 'disable_scale_in': disableScaleIn!.toTfJson(),
     'target_value': targetValue.toTfJson(),
-    ...?customizedMetricSpecificationOrPredefinedMetricSpecification?.encode(),
+    ...?metricSpecification?.encode(),
   };
 }
 
@@ -801,20 +796,20 @@ final class AutoscalingPolicyTargetTrackingConfiguration {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.customizedMetricSpecification(...)`.
-sealed class AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
-  const AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification();
+sealed class AutoscalingPolicyTargetTrackingConfigurationMetricSpecification {
+  const AutoscalingPolicyTargetTrackingConfigurationMetricSpecification();
 
   /// Sets `customized_metric_specification`.
-  const factory AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification.customizedMetricSpecification(
+  const factory AutoscalingPolicyTargetTrackingConfigurationMetricSpecification.customizedMetricSpecification(
     AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecification
     customizedMetricSpecification,
-  ) = AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationCustomizedMetricSpecification;
+  ) = AutoscalingPolicyTargetTrackingConfigurationMetricSpecificationCustomizedMetricSpecification;
 
   /// Sets `predefined_metric_specification`.
-  const factory AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification.predefinedMetricSpecification(
+  const factory AutoscalingPolicyTargetTrackingConfigurationMetricSpecification.predefinedMetricSpecification(
     AutoscalingPolicyTargetTrackingConfigurationPredefinedMetricSpecification
     predefinedMetricSpecification,
-  ) = AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationPredefinedMetricSpecification;
+  ) = AutoscalingPolicyTargetTrackingConfigurationMetricSpecificationPredefinedMetricSpecification;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -822,11 +817,10 @@ sealed class AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecifi
   Map<String, Object?> encode();
 }
 
-/// The [AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification.customizedMetricSpecification] choice: sets `customized_metric_specification`.
-final class AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationCustomizedMetricSpecification
-    extends
-        AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
-  const AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationCustomizedMetricSpecification(
+/// The [AutoscalingPolicyTargetTrackingConfigurationMetricSpecification.customizedMetricSpecification] choice: sets `customized_metric_specification`.
+final class AutoscalingPolicyTargetTrackingConfigurationMetricSpecificationCustomizedMetricSpecification
+    extends AutoscalingPolicyTargetTrackingConfigurationMetricSpecification {
+  const AutoscalingPolicyTargetTrackingConfigurationMetricSpecificationCustomizedMetricSpecification(
     this.customizedMetricSpecification,
   );
 
@@ -842,11 +836,10 @@ final class AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecific
   };
 }
 
-/// The [AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification.predefinedMetricSpecification] choice: sets `predefined_metric_specification`.
-final class AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationPredefinedMetricSpecification
-    extends
-        AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
-  const AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationPredefinedMetricSpecification(
+/// The [AutoscalingPolicyTargetTrackingConfigurationMetricSpecification.predefinedMetricSpecification] choice: sets `predefined_metric_specification`.
+final class AutoscalingPolicyTargetTrackingConfigurationMetricSpecificationPredefinedMetricSpecification
+    extends AutoscalingPolicyTargetTrackingConfigurationMetricSpecification {
+  const AutoscalingPolicyTargetTrackingConfigurationMetricSpecificationPredefinedMetricSpecification(
     this.predefinedMetricSpecification,
   );
 
@@ -1068,8 +1061,7 @@ final class AwsAutoscalingPolicy extends Resource {
     required TfArg<String> name,
     TfArg<AutoscalingPolicyPolicyType>? policyType,
     TfArg<String>? region,
-    AutoscalingPolicyScalingAdjustmentOrStepAdjustment?
-    scalingAdjustmentOrStepAdjustment,
+    AutoscalingPolicyAdjustment? adjustment,
     AutoscalingPolicyPredictiveScalingConfiguration?
     predictiveScalingConfiguration,
     AutoscalingPolicyTargetTrackingConfiguration? targetTrackingConfiguration,
@@ -1093,7 +1085,7 @@ final class AwsAutoscalingPolicy extends Resource {
            'name': name,
            if (policyType != null) 'policy_type': policyType,
            if (region != null) 'region': region,
-           ...?scalingAdjustmentOrStepAdjustment?.argMap,
+           ...?adjustment?.argMap,
            if (predictiveScalingConfiguration != null)
              'predictive_scaling_configuration': TfArg.literal(
                predictiveScalingConfiguration.encode(),

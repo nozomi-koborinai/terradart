@@ -6,9 +6,9 @@ library;
 export 'src/secretsmanager/aws_secretsmanager_secret.dart'
     show
         AwsSecretsmanagerSecret,
-        SecretsmanagerSecretNameOrNamePrefix,
-        SecretsmanagerSecretNameOrNamePrefixName,
-        SecretsmanagerSecretNameOrNamePrefixNamePrefix,
+        SecretsmanagerSecretName,
+        SecretsmanagerSecretNameName,
+        SecretsmanagerSecretNameNamePrefix,
         SecretsmanagerSecretReplica;
 export 'src/secretsmanager/aws_secretsmanager_secret_policy.dart'
     show AwsSecretsmanagerSecretPolicy;
@@ -23,9 +23,9 @@ export 'src/secretsmanager/aws_secretsmanager_secret_rotation.dart'
 export 'src/secretsmanager/aws_secretsmanager_secret_version.dart'
     show
         AwsSecretsmanagerSecretVersion,
-        SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWo,
-        SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWoSecretBinary,
-        SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWoSecretString,
-        SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWoSecretStringWo;
+        SecretsmanagerSecretVersionSecret,
+        SecretsmanagerSecretVersionSecretSecretBinary,
+        SecretsmanagerSecretVersionSecretSecretString,
+        SecretsmanagerSecretVersionSecretSecretStringWo;
 export 'src/secretsmanager/aws_secretsmanager_tag.dart'
     show AwsSecretsmanagerTag;

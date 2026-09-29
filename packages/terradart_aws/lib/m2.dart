@@ -7,9 +7,9 @@ export 'src/m2/aws_m2_application.dart'
     show
         AwsM2Application,
         M2ApplicationDefinition,
-        M2ApplicationDefinitionContentOrS3Location,
-        M2ApplicationDefinitionContentOrS3LocationContent,
-        M2ApplicationDefinitionContentOrS3LocationS3Location,
+        M2ApplicationDefinitionDefinition,
+        M2ApplicationDefinitionDefinitionContent,
+        M2ApplicationDefinitionDefinitionS3Location,
         M2ApplicationEngineType;
 export 'src/m2/aws_m2_deployment.dart' show AwsM2Deployment;
 export 'src/m2/aws_m2_environment.dart'
@@ -19,7 +19,7 @@ export 'src/m2/aws_m2_environment.dart'
         M2EnvironmentHighAvailabilityConfig,
         M2EnvironmentStorageConfiguration,
         M2EnvironmentStorageConfigurationEfs,
-        M2EnvironmentStorageConfigurationEfsOrFsx,
-        M2EnvironmentStorageConfigurationEfsOrFsxEfs,
-        M2EnvironmentStorageConfigurationEfsOrFsxFsx,
-        M2EnvironmentStorageConfigurationFsx;
+        M2EnvironmentStorageConfigurationFsx,
+        M2EnvironmentStorageConfigurationStorageConfiguration,
+        M2EnvironmentStorageConfigurationStorageConfigurationEfs,
+        M2EnvironmentStorageConfigurationStorageConfigurationFsx;

@@ -11,18 +11,16 @@ const Set<String> _awsAppstreamImageBuilderSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.imageArn(...)`.
-sealed class AppstreamImageBuilderImageArnOrImageName {
-  const AppstreamImageBuilderImageArnOrImageName();
+sealed class AppstreamImageBuilderImage {
+  const AppstreamImageBuilderImage();
 
   /// Sets `image_arn`.
-  const factory AppstreamImageBuilderImageArnOrImageName.imageArn(
-    TfArg<String> imageArn,
-  ) = AppstreamImageBuilderImageArnOrImageNameImageArn;
+  const factory AppstreamImageBuilderImage.imageArn(TfArg<String> imageArn) =
+      AppstreamImageBuilderImageImageArn;
 
   /// Sets `image_name`.
-  const factory AppstreamImageBuilderImageArnOrImageName.imageName(
-    TfArg<String> imageName,
-  ) = AppstreamImageBuilderImageArnOrImageNameImageName;
+  const factory AppstreamImageBuilderImage.imageName(TfArg<String> imageName) =
+      AppstreamImageBuilderImageImageName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +32,10 @@ sealed class AppstreamImageBuilderImageArnOrImageName {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AppstreamImageBuilderImageArnOrImageName.imageArn] choice: sets `image_arn`.
-final class AppstreamImageBuilderImageArnOrImageNameImageArn
-    extends AppstreamImageBuilderImageArnOrImageName {
-  const AppstreamImageBuilderImageArnOrImageNameImageArn(this.imageArn);
+/// The [AppstreamImageBuilderImage.imageArn] choice: sets `image_arn`.
+final class AppstreamImageBuilderImageImageArn
+    extends AppstreamImageBuilderImage {
+  const AppstreamImageBuilderImageImageArn(this.imageArn);
 
   final TfArg<String> imageArn;
 
@@ -51,10 +49,10 @@ final class AppstreamImageBuilderImageArnOrImageNameImageArn
   Map<String, TfArg<Object?>> get argMap => {'image_arn': imageArn};
 }
 
-/// The [AppstreamImageBuilderImageArnOrImageName.imageName] choice: sets `image_name`.
-final class AppstreamImageBuilderImageArnOrImageNameImageName
-    extends AppstreamImageBuilderImageArnOrImageName {
-  const AppstreamImageBuilderImageArnOrImageNameImageName(this.imageName);
+/// The [AppstreamImageBuilderImage.imageName] choice: sets `image_name`.
+final class AppstreamImageBuilderImageImageName
+    extends AppstreamImageBuilderImage {
+  const AppstreamImageBuilderImageImageName(this.imageName);
 
   final TfArg<String> imageName;
 
@@ -145,7 +143,7 @@ final class AwsAppstreamImageBuilder extends Resource {
     TfArg<String>? displayName,
     TfArg<bool>? enableDefaultInternetAccess,
     TfArg<String>? iamRoleArn,
-    required AppstreamImageBuilderImageArnOrImageName imageArnOrImageName,
+    required AppstreamImageBuilderImage image,
     required TfArg<String> instanceType,
     required TfArg<String> name,
     TfArg<String>? region,
@@ -167,7 +165,7 @@ final class AwsAppstreamImageBuilder extends Resource {
            if (enableDefaultInternetAccess != null)
              'enable_default_internet_access': enableDefaultInternetAccess,
            if (iamRoleArn != null) 'iam_role_arn': iamRoleArn,
-           ...imageArnOrImageName.argMap,
+           ...image.argMap,
            'instance_type': instanceType,
            'name': name,
            if (region != null) 'region': region,

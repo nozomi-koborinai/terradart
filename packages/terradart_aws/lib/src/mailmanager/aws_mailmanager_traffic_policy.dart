@@ -395,37 +395,37 @@ enum MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionOperator
 @immutable
 final class MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluate {
   const MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluate({
-    required this.analysisOrAttribute,
+    required this.evaluate,
   });
 
-  final MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute
-  analysisOrAttribute;
+  final MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluate
+  evaluate;
 
-  Map<String, Object?> encode() => {...analysisOrAttribute.encode()};
+  Map<String, Object?> encode() => {...evaluate.encode()};
 }
 
 /// Exactly one of `analysis`, `attribute` on the `policy_statement.condition.string_expression.evaluate` block of `aws_mailmanager_traffic_policy`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.analysis(...)`.
-sealed class MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute {
-  const MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute();
+sealed class MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluate {
+  const MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluate();
 
   /// Sets `analysis`.
-  const factory MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute.analysis(
+  const factory MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluate.analysis(
     List<
       MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysis
     >
     analysis,
-  ) = MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttributeAnalysis;
+  ) = MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluateAnalysis;
 
   /// Sets `attribute`.
-  const factory MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute.attribute(
+  const factory MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluate.attribute(
     TfArg<
       MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAttribute
     >
     attribute,
-  ) = MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttributeAttribute;
+  ) = MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluateAttribute;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -433,11 +433,11 @@ sealed class MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEva
   Map<String, Object?> encode();
 }
 
-/// The [MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute.analysis] choice: sets `analysis`.
-final class MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttributeAnalysis
+/// The [MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluate.analysis] choice: sets `analysis`.
+final class MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluateAnalysis
     extends
-        MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute {
-  const MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttributeAnalysis(
+        MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluate {
+  const MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluateAnalysis(
     this.analysis,
   );
 
@@ -455,11 +455,11 @@ final class MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEval
   };
 }
 
-/// The [MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute.attribute] choice: sets `attribute`.
-final class MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttributeAttribute
+/// The [MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluate.attribute] choice: sets `attribute`.
+final class MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluateAttribute
     extends
-        MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttribute {
-  const MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateAnalysisOrAttributeAttribute(
+        MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluate {
+  const MailmanagerTrafficPolicyPolicyStatementConditionStringExpressionEvaluateEvaluateAttribute(
     this.attribute,
   );
 

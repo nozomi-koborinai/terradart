@@ -11,17 +11,17 @@ export 'src/prometheus/aws_prometheus_anomaly_detector.dart'
         PrometheusAnomalyDetectorConfiguration,
         PrometheusAnomalyDetectorConfigurationRandomCutForest,
         PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAbove,
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatio,
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatioAmount,
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatioRatio,
+        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAbove,
+        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAboveAmount,
+        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAboveRatio,
         PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelow,
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatio,
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatioAmount,
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatioRatio,
+        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelow,
+        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelowAmount,
+        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelowRatio,
         PrometheusAnomalyDetectorMissingDataAction,
-        PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip,
-        PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkipMarkAsAnomaly,
-        PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkipSkip;
+        PrometheusAnomalyDetectorMissingDataActionMissingDataAction,
+        PrometheusAnomalyDetectorMissingDataActionMissingDataActionMarkAsAnomaly,
+        PrometheusAnomalyDetectorMissingDataActionMissingDataActionSkip;
 export 'src/prometheus/aws_prometheus_query_logging_configuration.dart'
     show
         AwsPrometheusQueryLoggingConfiguration,

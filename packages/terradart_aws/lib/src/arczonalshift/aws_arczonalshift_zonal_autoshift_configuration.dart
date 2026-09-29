@@ -26,18 +26,18 @@ enum ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.allowedWindows(...)`.
-sealed class ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows {
-  const ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows();
+sealed class ArczonalshiftZonalAutoshiftConfigurationWindows {
+  const ArczonalshiftZonalAutoshiftConfigurationWindows();
 
   /// Sets `allowed_windows`.
-  const factory ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows.allowedWindows(
+  const factory ArczonalshiftZonalAutoshiftConfigurationWindows.allowedWindows(
     TfArg<List<String>> allowedWindows,
-  ) = ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindowsAllowedWindows;
+  ) = ArczonalshiftZonalAutoshiftConfigurationWindowsAllowedWindows;
 
   /// Sets `blocked_windows`.
-  const factory ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows.blockedWindows(
+  const factory ArczonalshiftZonalAutoshiftConfigurationWindows.blockedWindows(
     TfArg<List<String>> blockedWindows,
-  ) = ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindowsBlockedWindows;
+  ) = ArczonalshiftZonalAutoshiftConfigurationWindowsBlockedWindows;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -49,11 +49,10 @@ sealed class ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWind
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows.allowedWindows] choice: sets `allowed_windows`.
-final class ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindowsAllowedWindows
-    extends
-        ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows {
-  const ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindowsAllowedWindows(
+/// The [ArczonalshiftZonalAutoshiftConfigurationWindows.allowedWindows] choice: sets `allowed_windows`.
+final class ArczonalshiftZonalAutoshiftConfigurationWindowsAllowedWindows
+    extends ArczonalshiftZonalAutoshiftConfigurationWindows {
+  const ArczonalshiftZonalAutoshiftConfigurationWindowsAllowedWindows(
     this.allowedWindows,
   );
 
@@ -71,11 +70,10 @@ final class ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindo
   Map<String, TfArg<Object?>> get argMap => {'allowed_windows': allowedWindows};
 }
 
-/// The [ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows.blockedWindows] choice: sets `blocked_windows`.
-final class ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindowsBlockedWindows
-    extends
-        ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows {
-  const ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindowsBlockedWindows(
+/// The [ArczonalshiftZonalAutoshiftConfigurationWindows.blockedWindows] choice: sets `blocked_windows`.
+final class ArczonalshiftZonalAutoshiftConfigurationWindowsBlockedWindows
+    extends ArczonalshiftZonalAutoshiftConfigurationWindows {
+  const ArczonalshiftZonalAutoshiftConfigurationWindowsBlockedWindows(
     this.blockedWindows,
   );
 
@@ -162,8 +160,7 @@ final class AwsArczonalshiftZonalAutoshiftConfiguration extends Resource {
 
   AwsArczonalshiftZonalAutoshiftConfiguration({
     required super.localName,
-    ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows?
-    allowedWindowsOrBlockedWindows,
+    ArczonalshiftZonalAutoshiftConfigurationWindows? windows,
     TfArg<List<String>>? blockedDates,
     TfArg<String>? region,
     required TfArg<String> resourceArn,
@@ -179,7 +176,7 @@ final class AwsArczonalshiftZonalAutoshiftConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?allowedWindowsOrBlockedWindows?.argMap,
+           ...?windows?.argMap,
            if (blockedDates != null) 'blocked_dates': blockedDates,
            if (region != null) 'region': region,
            'resource_arn': resourceArn,

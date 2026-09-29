@@ -95,18 +95,16 @@ final class InstanceHostResourceGroupArnOrPlacementGroupPlacementGroup
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.userData(...)`.
-sealed class InstanceUserDataOrUserDataBase64 {
-  const InstanceUserDataOrUserDataBase64();
+sealed class InstanceUserData {
+  const InstanceUserData();
 
   /// Sets `user_data`.
-  const factory InstanceUserDataOrUserDataBase64.userData(
-    TfArg<String> userData,
-  ) = InstanceUserDataOrUserDataBase64UserData;
+  const factory InstanceUserData.userData(TfArg<String> userData) =
+      InstanceUserDataUserData;
 
   /// Sets `user_data_base64`.
-  const factory InstanceUserDataOrUserDataBase64.userDataBase64(
-    TfArg<String> userDataBase64,
-  ) = InstanceUserDataOrUserDataBase64UserDataBase64;
+  const factory InstanceUserData.userDataBase64(TfArg<String> userDataBase64) =
+      InstanceUserDataUserDataBase64;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -118,10 +116,9 @@ sealed class InstanceUserDataOrUserDataBase64 {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [InstanceUserDataOrUserDataBase64.userData] choice: sets `user_data`.
-final class InstanceUserDataOrUserDataBase64UserData
-    extends InstanceUserDataOrUserDataBase64 {
-  const InstanceUserDataOrUserDataBase64UserData(this.userData);
+/// The [InstanceUserData.userData] choice: sets `user_data`.
+final class InstanceUserDataUserData extends InstanceUserData {
+  const InstanceUserDataUserData(this.userData);
 
   final TfArg<String> userData;
 
@@ -135,10 +132,9 @@ final class InstanceUserDataOrUserDataBase64UserData
   Map<String, TfArg<Object?>> get argMap => {'user_data': userData};
 }
 
-/// The [InstanceUserDataOrUserDataBase64.userDataBase64] choice: sets `user_data_base64`.
-final class InstanceUserDataOrUserDataBase64UserDataBase64
-    extends InstanceUserDataOrUserDataBase64 {
-  const InstanceUserDataOrUserDataBase64UserDataBase64(this.userDataBase64);
+/// The [InstanceUserData.userDataBase64] choice: sets `user_data_base64`.
+final class InstanceUserDataUserDataBase64 extends InstanceUserData {
+  const InstanceUserDataUserDataBase64(this.userDataBase64);
 
   final TfArg<String> userDataBase64;
 
@@ -161,35 +157,33 @@ final class InstanceUserDataOrUserDataBase64UserDataBase64
 @immutable
 final class InstanceCapacityReservationSpecification {
   const InstanceCapacityReservationSpecification({
-    required this.capacityReservationPreferenceOrCapacityReservationTarget,
+    required this.capacityReservation,
   });
 
-  final InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget
-  capacityReservationPreferenceOrCapacityReservationTarget;
+  final InstanceCapacityReservationSpecificationCapacityReservation
+  capacityReservation;
 
-  Map<String, Object?> encode() => {
-    ...capacityReservationPreferenceOrCapacityReservationTarget.encode(),
-  };
+  Map<String, Object?> encode() => {...capacityReservation.encode()};
 }
 
 /// Exactly one of `capacity_reservation_preference`, `capacity_reservation_target` on the `capacity_reservation_specification` block of `aws_instance`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.capacityReservationPreference(...)`.
-sealed class InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget {
-  const InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget();
+sealed class InstanceCapacityReservationSpecificationCapacityReservation {
+  const InstanceCapacityReservationSpecificationCapacityReservation();
 
   /// Sets `capacity_reservation_preference`.
-  const factory InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget.capacityReservationPreference(
+  const factory InstanceCapacityReservationSpecificationCapacityReservation.capacityReservationPreference(
     TfArg<InstanceCapacityReservationSpecificationCapacityReservationPreference>
     capacityReservationPreference,
-  ) = InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTargetCapacityReservationPreference;
+  ) = InstanceCapacityReservationSpecificationCapacityReservationCapacityReservationPreference;
 
   /// Sets `capacity_reservation_target`.
-  const factory InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget.capacityReservationTarget(
+  const factory InstanceCapacityReservationSpecificationCapacityReservation.capacityReservationTarget(
     InstanceCapacityReservationSpecificationCapacityReservationTarget
     capacityReservationTarget,
-  ) = InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTargetCapacityReservationTarget;
+  ) = InstanceCapacityReservationSpecificationCapacityReservationCapacityReservationTarget;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -197,11 +191,10 @@ sealed class InstanceCapacityReservationSpecificationCapacityReservationPreferen
   Map<String, Object?> encode();
 }
 
-/// The [InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget.capacityReservationPreference] choice: sets `capacity_reservation_preference`.
-final class InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTargetCapacityReservationPreference
-    extends
-        InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget {
-  const InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTargetCapacityReservationPreference(
+/// The [InstanceCapacityReservationSpecificationCapacityReservation.capacityReservationPreference] choice: sets `capacity_reservation_preference`.
+final class InstanceCapacityReservationSpecificationCapacityReservationCapacityReservationPreference
+    extends InstanceCapacityReservationSpecificationCapacityReservation {
+  const InstanceCapacityReservationSpecificationCapacityReservationCapacityReservationPreference(
     this.capacityReservationPreference,
   );
 
@@ -219,11 +212,10 @@ final class InstanceCapacityReservationSpecificationCapacityReservationPreferenc
   };
 }
 
-/// The [InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget.capacityReservationTarget] choice: sets `capacity_reservation_target`.
-final class InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTargetCapacityReservationTarget
-    extends
-        InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTarget {
-  const InstanceCapacityReservationSpecificationCapacityReservationPreferenceOrCapacityReservationTargetCapacityReservationTarget(
+/// The [InstanceCapacityReservationSpecificationCapacityReservation.capacityReservationTarget] choice: sets `capacity_reservation_target`.
+final class InstanceCapacityReservationSpecificationCapacityReservationCapacityReservationTarget
+    extends InstanceCapacityReservationSpecificationCapacityReservation {
+  const InstanceCapacityReservationSpecificationCapacityReservationCapacityReservationTarget(
     this.capacityReservationTarget,
   );
 
@@ -258,15 +250,13 @@ enum InstanceCapacityReservationSpecificationCapacityReservationPreference
 @immutable
 final class InstanceCapacityReservationSpecificationCapacityReservationTarget {
   const InstanceCapacityReservationSpecificationCapacityReservationTarget({
-    this.capacityReservationIdOrCapacityReservationResourceGroupArn,
+    this.capacityReservation,
   });
 
-  final InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn?
-  capacityReservationIdOrCapacityReservationResourceGroupArn;
+  final InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservation?
+  capacityReservation;
 
-  Map<String, Object?> encode() => {
-    ...?capacityReservationIdOrCapacityReservationResourceGroupArn?.encode(),
-  };
+  Map<String, Object?> encode() => {...?capacityReservation?.encode()};
 }
 
 /// At most one of `capacity_reservation_id`, `capacity_reservation_resource_group_arn` on the `capacity_reservation_specification.capacity_reservation_target` block of `aws_instance`: the provider rejects
@@ -274,18 +264,18 @@ final class InstanceCapacityReservationSpecificationCapacityReservationTarget {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.capacityReservationId(...)`.
-sealed class InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
-  const InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn();
+sealed class InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservation {
+  const InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservation();
 
   /// Sets `capacity_reservation_id`.
-  const factory InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn.capacityReservationId(
+  const factory InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationId(
     TfArg<String> capacityReservationId,
-  ) = InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationId;
+  ) = InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationId;
 
   /// Sets `capacity_reservation_resource_group_arn`.
-  const factory InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn.capacityReservationResourceGroupArn(
+  const factory InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationResourceGroupArn(
     TfArg<String> capacityReservationResourceGroupArn,
-  ) = InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationResourceGroupArn;
+  ) = InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -293,11 +283,11 @@ sealed class InstanceCapacityReservationSpecificationCapacityReservationTargetCa
   Map<String, Object?> encode();
 }
 
-/// The [InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn.capacityReservationId] choice: sets `capacity_reservation_id`.
-final class InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationId
+/// The [InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationId] choice: sets `capacity_reservation_id`.
+final class InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationId
     extends
-        InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
-  const InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationId(
+        InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservation {
+  const InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationId(
     this.capacityReservationId,
   );
 
@@ -312,11 +302,11 @@ final class InstanceCapacityReservationSpecificationCapacityReservationTargetCap
   };
 }
 
-/// The [InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn.capacityReservationResourceGroupArn] choice: sets `capacity_reservation_resource_group_arn`.
-final class InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationResourceGroupArn
+/// The [InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationResourceGroupArn] choice: sets `capacity_reservation_resource_group_arn`.
+final class InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArn
     extends
-        InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
-  const InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArnCapacityReservationResourceGroupArn(
+        InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservation {
+  const InstanceCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArn(
     this.capacityReservationResourceGroupArn,
   );
 
@@ -967,7 +957,7 @@ final class AwsInstance extends Resource {
     TfArg<String>? subnetId,
     TfArg<Map<String, String>>? tags,
     TfArg<InstanceTenancy>? tenancy,
-    InstanceUserDataOrUserDataBase64? userDataOrUserDataBase64,
+    InstanceUserData? userData,
     TfArg<bool>? userDataReplaceOnChange,
     TfArg<Map<String, String>>? volumeTags,
     TfArg<List<String>>? vpcSecurityGroupIds,
@@ -1030,7 +1020,7 @@ final class AwsInstance extends Resource {
            if (subnetId != null) 'subnet_id': subnetId,
            if (tags != null) 'tags': tags,
            if (tenancy != null) 'tenancy': tenancy,
-           ...?userDataOrUserDataBase64?.argMap,
+           ...?userData?.argMap,
            if (userDataReplaceOnChange != null)
              'user_data_replace_on_change': userDataReplaceOnChange,
            if (volumeTags != null) 'volume_tags': volumeTags,

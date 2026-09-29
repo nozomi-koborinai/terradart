@@ -202,7 +202,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsAlb(
         localName: 'alb',
-        subnetMappingOrSubnets: .subnetMapping([
+        subnet: .subnetMapping([
           AlbSubnetMapping(subnetId: TfArg.literal('subnet-0123456789abcdef0')),
         ]),
       ),
@@ -1008,7 +1008,7 @@ final class AwsLeftoverStack extends Stack {
         name: TfArg.literal(leftover),
         virtualGatewayName: TfArg.literal(leftover),
         spec: AppmeshGatewayRouteSpec(
-          grpcRouteOrHttp2RouteOrHttpRoute: .grpcRoute(
+          route: .grpcRoute(
             AppmeshGatewayRouteSpecGrpcRoute(
               action: AppmeshGatewayRouteSpecGrpcRouteAction(
                 target: AppmeshGatewayRouteSpecGrpcRouteActionTarget(
@@ -1105,7 +1105,7 @@ final class AwsLeftoverStack extends Stack {
         name: TfArg.literal(leftover),
         spec: AppmeshVirtualServiceSpec(
           provider: AppmeshVirtualServiceSpecProvider(
-            virtualNodeOrVirtualRouter: .virtualNode(
+            virtual: .virtualNode(
               AppmeshVirtualServiceSpecProviderVirtualNode(
                 virtualNodeName: TfArg.literal(leftover),
               ),
@@ -1164,7 +1164,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'apprunner_service',
         serviceName: TfArg.literal(leftover),
         sourceConfiguration: ApprunnerServiceSourceConfiguration(
-          codeRepositoryOrImageRepository: .codeRepository(
+          repository: .codeRepository(
             ApprunnerServiceSourceConfigurationCodeRepository(
               repositoryUrl: TfArg.literal('https://example.com'),
               sourceCodeVersion:
@@ -1237,7 +1237,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsAppstreamImageBuilder(
         localName: 'appstream_image_builder',
-        imageArnOrImageName: .imageArn(TfArg.literal(arn)),
+        image: .imageArn(TfArg.literal(arn)),
         instanceType: TfArg.literal(leftover),
         name: TfArg.literal(leftover),
       ),
@@ -1391,8 +1391,8 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsAppsyncSourceApiAssociation(
         localName: 'appsync_source_api_association',
-        mergedApiArnOrMergedApiId: .mergedApiArn(TfArg.literal(arn)),
-        sourceApiArnOrSourceApiId: .sourceApiArn(TfArg.literal(arn)),
+        mergedApi: .mergedApiArn(TfArg.literal(arn)),
+        sourceApi: .sourceApiArn(TfArg.literal(arn)),
       ),
     );
 
@@ -1637,9 +1637,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'autoscalingplans_scaling_plan',
         name: TfArg.literal(leftover),
         applicationSource: AutoscalingplansScalingPlanApplicationSource(
-          cloudformationStackArnOrTagFilter: .cloudformationStackArn(
-            TfArg.literal(arn),
-          ),
+          applicationSource: .cloudformationStackArn(TfArg.literal(arn)),
         ),
         scalingInstruction: [
           AutoscalingplansScalingPlanScalingInstruction(
@@ -1751,8 +1749,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'backup_restore_testing_selection',
         iamRoleArn: TfArg.literal(arn),
         name: TfArg.literal(leftover),
-        protectedResourceArnsOrProtectedResourceConditions:
-            .protectedResourceArns(TfArg.literal([arn])),
+        protectedResource: .protectedResourceArns(TfArg.literal([arn])),
         protectedResourceType: TfArg.literal(leftover),
         restoreTestingPlanName: TfArg.literal(leftover),
       ),
@@ -1860,7 +1857,7 @@ final class AwsLeftoverStack extends Stack {
         roleArn: TfArg.literal(arn),
         evaluationConfig: [
           BedrockEvaluationJobEvaluationConfig(
-            automatedOrHuman: .automated([
+            evaluationConfig: .automated([
               BedrockEvaluationJobEvaluationConfigAutomated(
                 datasetMetricConfig: [
                   BedrockEvaluationJobEvaluationConfigAutomatedDatasetMetricConfig(
@@ -1882,9 +1879,9 @@ final class AwsLeftoverStack extends Stack {
         ],
         inferenceConfig: [
           BedrockEvaluationJobInferenceConfig(
-            modelOrRagConfig: .model([
+            inferenceConfig: .model([
               BedrockEvaluationJobInferenceConfigModel(
-                bedrockModelOrPrecomputedInferenceSource: .bedrockModel([
+                model: .bedrockModel([
                   BedrockEvaluationJobInferenceConfigModelBedrockModel(
                     modelIdentifier: TfArg.literal(leftover),
                   ),
@@ -2133,9 +2130,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsBedrockagentcoreApiKeyCredentialProvider(
         localName: 'bedrockagentcore_api_key_credential_provider',
-        apiKeyOrApiKeySecretConfigOrApiKeyWo: .apiKey(
-          TfArg.variable('leftover_secret'),
-        ),
+        apiKey: .apiKey(TfArg.variable('leftover_secret')),
         name: TfArg.literal(leftover),
       ),
     );
@@ -2183,7 +2178,7 @@ final class AwsLeftoverStack extends Stack {
         level: TfArg.literal(BedrockagentcoreEvaluatorLevel.toolCall),
         evaluatorConfig: [
           BedrockagentcoreEvaluatorEvaluatorConfig(
-            codeBasedOrLlmAsAJudge: .codeBased([
+            evaluatorConfig: .codeBased([
               BedrockagentcoreEvaluatorEvaluatorConfigCodeBased(
                 lambdaConfig: [
                   BedrockagentcoreEvaluatorEvaluatorConfigCodeBasedLambdaConfig(
@@ -3901,7 +3896,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsCognitoManagedUserPoolClient(
         localName: 'cognito_managed_user_pool_client',
-        namePatternOrNamePrefix: .namePrefix(TfArg.literal(leftover)),
+        name: .namePrefix(TfArg.literal(leftover)),
         userPoolId: TfArg.literal(leftover),
       ),
     );
@@ -4578,7 +4573,7 @@ final class AwsLeftoverStack extends Stack {
         securityGroupArns: TfArg.literal([arn]),
         storageVirtualMachineArn: TfArg.literal(arn),
         protocol: DatasyncLocationFsxOntapFileSystemProtocol(
-          nfsOrSmb: .nfs(
+          protocol: .nfs(
             DatasyncLocationFsxOntapFileSystemProtocolNfs(
               mountOptions:
                   DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptions(
@@ -4914,9 +4909,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsDbProxyTarget(
         localName: 'db_proxy_target',
-        dbClusterIdentifierOrDbInstanceIdentifier: .dbClusterIdentifier(
-          TfArg.literal(leftover),
-        ),
+        db: .dbClusterIdentifier(TfArg.literal(leftover)),
         dbProxyName: TfArg.literal(leftover),
         targetGroupName: TfArg.literal(leftover),
       ),
@@ -5212,9 +5205,7 @@ final class AwsLeftoverStack extends Stack {
       AwsDmsCertificate(
         localName: 'dms_certificate',
         certificateId: TfArg.literal(leftover),
-        certificatePemOrCertificateWallet: .certificatePem(
-          TfArg.variable('leftover_secret'),
-        ),
+        certificate: .certificatePem(TfArg.variable('leftover_secret')),
       ),
     );
 
@@ -5518,7 +5509,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsDxHostedPrivateVirtualInterfaceAccepter(
         localName: 'dx_hosted_private_virtual_interface_accepter',
-        dxGatewayIdOrVpnGatewayId: .dxGatewayId(TfArg.literal(leftover)),
+        gatewayId: .dxGatewayId(TfArg.literal(leftover)),
         virtualInterfaceId: TfArg.literal(leftover),
       ),
     );
@@ -5593,7 +5584,7 @@ final class AwsLeftoverStack extends Stack {
           DxPrivateVirtualInterfaceAddressFamily.ipv4,
         ),
         connectionId: TfArg.literal(leftover),
-        dxGatewayIdOrVpnGatewayId: .dxGatewayId(TfArg.literal(leftover)),
+        gatewayId: .dxGatewayId(TfArg.literal(leftover)),
         name: TfArg.literal(leftover),
         vlan: TfArg.literal(200),
         bgpAsn: TfArg.literal(200),
@@ -5910,7 +5901,7 @@ final class AwsLeftoverStack extends Stack {
       AwsEc2Host(
         localName: 'ec2_host',
         availabilityZone: TfArg.literal('us-east-1a'),
-        instanceFamilyOrInstanceType: .instanceFamily(TfArg.literal(leftover)),
+        instance: .instanceFamily(TfArg.literal(leftover)),
       ),
     );
 
@@ -6844,7 +6835,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsEmrStudioSessionMapping(
         localName: 'emr_studio_session_mapping',
-        identityIdOrIdentityName: .identityId(TfArg.literal(leftover)),
+        identity: .identityId(TfArg.literal(leftover)),
         identityType: TfArg.literal(EmrStudioSessionMappingIdentityType.user),
         sessionPolicyArn: TfArg.literal(arn),
         studioId: TfArg.literal(leftover),
@@ -6859,7 +6850,7 @@ final class AwsLeftoverStack extends Stack {
           executionRoleArn: TfArg.literal(arn),
           releaseLabel: TfArg.literal(leftover),
           jobDriver: EmrcontainersJobTemplateJobTemplateDataJobDriver(
-            sparkSqlJobDriverOrSparkSubmitJobDriver: .sparkSqlJobDriver(
+            spark: .sparkSqlJobDriver(
               EmrcontainersJobTemplateJobTemplateDataJobDriverSparkSqlJobDriver(
                 entryPoint: TfArg.literal(leftover),
               ),
@@ -7107,9 +7098,7 @@ final class AwsLeftoverStack extends Stack {
         preferredSubnetId: TfArg.literal(leftover),
         storageCapacity: TfArg.literal(1024),
         subnetIds: TfArg.literal([leftover]),
-        throughputCapacityOrThroughputCapacityPerHaPair: .throughputCapacity(
-          TfArg.literal(128),
-        ),
+        throughputCapacity: .throughputCapacity(TfArg.literal(128)),
       ),
     );
 
@@ -7125,7 +7114,7 @@ final class AwsLeftoverStack extends Stack {
       AwsFsxOntapVolume(
         localName: 'fsx_ontap_volume',
         name: TfArg.literal(leftover),
-        sizeInBytesOrSizeInMegabytes: .sizeInBytes(TfArg.literal('64512')),
+        size: .sizeInBytes(TfArg.literal('64512')),
         storageVirtualMachineId: TfArg.literal('svm-0123456789abcdef0'),
       ),
     );
@@ -8111,9 +8100,7 @@ final class AwsLeftoverStack extends Stack {
         containerType: TfArg.literal(
           ImagebuilderContainerRecipeContainerType.docker,
         ),
-        dockerfileTemplateDataOrDockerfileTemplateUri: .dockerfileTemplateData(
-          TfArg.literal(leftover),
-        ),
+        dockerfileTemplate: .dockerfileTemplateData(TfArg.literal(leftover)),
         name: TfArg.literal(leftover),
         parentImage: TfArg.literal(leftover),
         version: TfArg.literal(leftover),
@@ -8146,9 +8133,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsImagebuilderImage(
         localName: 'imagebuilder_image',
-        containerRecipeArnOrImageRecipeArn: .containerRecipeArn(
-          TfArg.literal(arn),
-        ),
+        recipeArn: .containerRecipeArn(TfArg.literal(arn)),
         infrastructureConfigurationArn: TfArg.literal(arn),
       ),
     );
@@ -8156,7 +8141,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsImagebuilderImagePipeline(
         localName: 'imagebuilder_image_pipeline',
-        containerRecipeArnOrImageRecipeArn: .containerRecipeArn(
+        recipeArn: .containerRecipeArn(
           TfArg.literal(
             'arn:aws:imagebuilder:us-east-1:123456789012:container-recipe/leftover/1.0.0',
           ),
@@ -8709,7 +8694,7 @@ final class AwsLeftoverStack extends Stack {
       AwsKmsCiphertext(
         localName: 'kms_ciphertext',
         keyId: TfArg.literal(leftover),
-        plaintextOrPlaintextWo: .plaintext(TfArg.variable('leftover_secret')),
+        plaintext: .plaintext(TfArg.variable('leftover_secret')),
       ),
     );
 
@@ -8760,18 +8745,14 @@ final class AwsLeftoverStack extends Stack {
         localName: 'lakeformation_data_cells_filter',
         tableData: [
           LakeformationDataCellsFilterTableData(
-            columnNamesOrColumnWildcard: .columnNames(
-              TfArg.literal([leftover]),
-            ),
+            column: .columnNames(TfArg.literal([leftover])),
             databaseName: TfArg.literal(leftover),
             name: TfArg.literal(leftover),
             tableCatalogId: TfArg.literal(leftover),
             tableName: TfArg.literal(leftover),
             rowFilter: [
               LakeformationDataCellsFilterTableDataRowFilter(
-                allRowsWildcardOrFilterExpression: .filterExpression(
-                  TfArg.literal(leftover),
-                ),
+                rowFilter: .filterExpression(TfArg.literal(leftover)),
               ),
             ],
           ),
@@ -8823,12 +8804,11 @@ final class AwsLeftoverStack extends Stack {
         ],
         resourceData: [
           LakeformationOptInResourceData(
-            catalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns:
-                .database([
-                  LakeformationOptInResourceDataDatabase(
-                    name: TfArg.literal(leftover),
-                  ),
-                ]),
+            resourceData: .database([
+              LakeformationOptInResourceDataDatabase(
+                name: TfArg.literal(leftover),
+              ),
+            ]),
           ),
         ],
       ),
@@ -9074,7 +9054,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsLb(
         localName: 'lb',
-        subnetMappingOrSubnets: .subnetMapping([
+        subnet: .subnetMapping([
           LbSubnetMapping(subnetId: TfArg.literal('subnet-0123456789abcdef0')),
         ]),
       ),
@@ -9602,7 +9582,7 @@ final class AwsLeftoverStack extends Stack {
         name: TfArg.literal(leftover),
         definition: [
           M2ApplicationDefinition(
-            contentOrS3Location: .content(TfArg.literal(leftover)),
+            definition: .content(TfArg.literal(leftover)),
           ),
         ],
       ),
@@ -9644,7 +9624,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'macie2_classification_job',
         jobType: TfArg.literal(Macie2ClassificationJobJobType.oneTime),
         s3JobDefinition: Macie2ClassificationJobS3JobDefinition(
-          bucketCriteriaOrBucketDefinitions: .bucketCriteria(
+          bucket: .bucketCriteria(
             Macie2ClassificationJobS3JobDefinitionBucketCriteria(
               excludes: Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludes(
                 and: [
@@ -9966,7 +9946,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'msk_channel',
         channelName: TfArg.literal(leftover),
         clusterArn: TfArg.literal(arn),
-        icebergDestinationOrS3Destination: .icebergDestination([
+        destination: .icebergDestination([
           MskChannelIcebergDestination(
             appendOnly: TfArg.literal(true),
             serviceExecutionRoleArn: TfArg.literal(arn),
@@ -10056,13 +10036,9 @@ final class AwsLeftoverStack extends Stack {
           ),
         ],
         replicationInfoList: MskReplicatorReplicationInfoList(
-          sourceKafkaClusterArnOrSourceKafkaClusterId: .sourceKafkaClusterArn(
-            TfArg.literal(arn),
-          ),
+          sourceKafkaCluster: .sourceKafkaClusterArn(TfArg.literal(arn)),
           targetCompressionType: TfArg.literal(leftover),
-          targetKafkaClusterArnOrTargetKafkaClusterId: .targetKafkaClusterArn(
-            TfArg.literal(arn),
-          ),
+          targetKafkaCluster: .targetKafkaClusterArn(TfArg.literal(arn)),
           consumerGroupReplication: [
             MskReplicatorReplicationInfoListConsumerGroupReplication(
               consumerGroupsToReplicate: TfArg.literal([leftover]),
@@ -10139,7 +10115,7 @@ final class AwsLeftoverStack extends Stack {
         name: TfArg.literal(leftover),
         serviceExecutionRoleArn: TfArg.literal(arn),
         capacity: MskconnectConnectorCapacity(
-          autoscalingOrProvisionedCapacity: .autoscaling(
+          capacity: .autoscaling(
             MskconnectConnectorCapacityAutoscaling(
               maxWorkerCount: TfArg.literal(1),
               minWorkerCount: TfArg.literal(1),
@@ -11148,12 +11124,11 @@ final class AwsLeftoverStack extends Stack {
         localName: 'opensearchserverless_security_config',
         name: TfArg.literal(leftover),
         type: TfArg.literal(OpensearchserverlessSecurityConfigType.saml),
-        iamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions:
-            .iamFederationOptions([
-              OpensearchserverlessSecurityConfigIamFederationOptions(
-                groupAttribute: TfArg.literal(leftover),
-              ),
-            ]),
+        options: .iamFederationOptions([
+          OpensearchserverlessSecurityConfigIamFederationOptions(
+            groupAttribute: TfArg.literal(leftover),
+          ),
+        ]),
       ),
     );
 
@@ -11391,13 +11366,12 @@ final class AwsLeftoverStack extends Stack {
             Pinpointsmsvoicev2EventDestinationMatchingEventTypes.all,
           ),
         ],
-        cloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination:
-            .cloudwatchLogsDestination([
-              Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestination(
-                iamRoleArn: TfArg.literal(arn),
-                logGroupArn: TfArg.literal(arn),
-              ),
-            ]),
+        destination: .cloudwatchLogsDestination([
+          Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestination(
+            iamRoleArn: TfArg.literal(arn),
+            logGroupArn: TfArg.literal(arn),
+          ),
+        ]),
       ),
     );
 
@@ -11500,7 +11474,7 @@ final class AwsLeftoverStack extends Stack {
         ],
         missingDataAction: [
           PrometheusAnomalyDetectorMissingDataAction(
-            markAsAnomalyOrSkip: .markAsAnomaly(TfArg.literal(true)),
+            missingDataAction: .markAsAnomaly(TfArg.literal(true)),
           ),
         ],
       ),
@@ -12253,7 +12227,7 @@ final class AwsLeftoverStack extends Stack {
         name: TfArg.literal(leftover),
         schedule: TfArg.literal(leftover),
         targetAction: RedshiftScheduledActionTargetAction(
-          pauseClusterOrResizeClusterOrResumeCluster: .pauseCluster(
+          cluster: .pauseCluster(
             RedshiftScheduledActionTargetActionPauseCluster(
               clusterIdentifier: TfArg.literal(leftover),
             ),
@@ -12408,7 +12382,7 @@ final class AwsLeftoverStack extends Stack {
         ],
         output: [
           RekognitionStreamProcessorOutput(
-            kinesisDataStreamOrS3Destination: .kinesisDataStream([
+            output: .kinesisDataStream([
               RekognitionStreamProcessorOutputKinesisDataStream(
                 arn: TfArg.literal(arn),
               ),
@@ -12417,7 +12391,7 @@ final class AwsLeftoverStack extends Stack {
         ],
         settings: [
           RekognitionStreamProcessorSettings(
-            connectedHomeOrFaceSearch: .connectedHome([
+            settings: .connectedHome([
               RekognitionStreamProcessorSettingsConnectedHome(
                 labels: [
                   TfArg.literal(
@@ -12865,9 +12839,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsRoute53recoverycontrolconfigSafetyRule(
         localName: 'route53recoverycontrolconfig_safety_rule',
-        assertedControlsOrGatingControls: .assertedControls(
-          TfArg.literal([leftover]),
-        ),
+        controls: .assertedControls(TfArg.literal([leftover])),
         controlPanelArn: TfArg.literal(arn),
         name: TfArg.literal(leftover),
         waitPeriodMs: TfArg.literal(200),
@@ -12934,7 +12906,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsRumAppMonitor(
         localName: 'rum_app_monitor',
-        domainOrDomainList: .domain(TfArg.literal(leftover)),
+        domain: .domain(TfArg.literal(leftover)),
         name: TfArg.literal(leftover),
       ),
     );
@@ -13939,9 +13911,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsSagemakerPipeline(
         localName: 'sagemaker_pipeline',
-        pipelineDefinitionOrPipelineDefinitionS3Location: .pipelineDefinition(
-          TfArg.literal(policy),
-        ),
+        pipelineDefinition: .pipelineDefinition(TfArg.literal(policy)),
         pipelineDisplayName: TfArg.literal(leftover),
         pipelineName: TfArg.literal(leftover),
       ),
@@ -14231,7 +14201,7 @@ final class AwsLeftoverStack extends Stack {
         name: TfArg.literal(leftover),
         connectorProvider: [
           SecurityhubConnectorV2ConnectorProvider(
-            jiraCloudOrServiceNow: .jiraCloud([
+            connectorProvider: .jiraCloud([
               SecurityhubConnectorV2ConnectorProviderJiraCloud(
                 projectKey: TfArg.literal(leftover),
               ),
@@ -14528,9 +14498,7 @@ final class AwsLeftoverStack extends Stack {
         type: TfArg.literal(ServicecatalogProductType.cloudFormationTemplate),
         provisioningArtifactParameters:
             ServicecatalogProductProvisioningArtifactParameters(
-              templatePhysicalIdOrTemplateUrl: .templatePhysicalId(
-                TfArg.literal(leftover),
-              ),
+              template: .templatePhysicalId(TfArg.literal(leftover)),
             ),
       ),
     );
@@ -14547,9 +14515,8 @@ final class AwsLeftoverStack extends Stack {
       AwsServicecatalogProvisionedProduct(
         localName: 'servicecatalog_provisioned_product',
         name: TfArg.literal(leftover),
-        productIdOrProductName: .productId(TfArg.literal(leftover)),
-        provisioningArtifactIdOrProvisioningArtifactName:
-            .provisioningArtifactId(TfArg.literal(leftover)),
+        product: .productId(TfArg.literal(leftover)),
+        provisioningArtifact: .provisioningArtifactId(TfArg.literal(leftover)),
       ),
     );
 
@@ -14557,9 +14524,7 @@ final class AwsLeftoverStack extends Stack {
       AwsServicecatalogProvisioningArtifact(
         localName: 'servicecatalog_provisioning_artifact',
         productId: TfArg.literal(leftover),
-        templatePhysicalIdOrTemplateUrl: .templatePhysicalId(
-          TfArg.literal(leftover),
-        ),
+        template: .templatePhysicalId(TfArg.literal(leftover)),
       ),
     );
 
@@ -14793,21 +14758,20 @@ final class AwsLeftoverStack extends Stack {
                   .send,
             ),
           ],
-          cloudWatchDestinationOrEventBridgeDestinationOrKinesisFirehoseDestinationOrPinpointDestinationOrSnsDestination:
-              .cloudWatchDestination(
-                Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestination(
-                  dimensionConfiguration: [
-                    Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfiguration(
-                      defaultDimensionValue: TfArg.literal(leftover),
-                      dimensionName: TfArg.literal(leftover),
-                      dimensionValueSource: TfArg.literal(
-                        Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfigurationDimensionValueSource
-                            .messageTag,
-                      ),
-                    ),
-                  ],
+          destination: .cloudWatchDestination(
+            Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestination(
+              dimensionConfiguration: [
+                Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfiguration(
+                  defaultDimensionValue: TfArg.literal(leftover),
+                  dimensionName: TfArg.literal(leftover),
+                  dimensionValueSource: TfArg.literal(
+                    Sesv2ConfigurationSetEventDestinationEventDestinationCloudWatchDestinationDimensionConfigurationDimensionValueSource
+                        .messageTag,
+                  ),
                 ),
-              ),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -15080,7 +15044,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'spot_fleet_request',
         iamFleetRole: TfArg.literal(arn),
         targetCapacity: TfArg.literal(200),
-        launchSpecificationOrLaunchTemplateConfig: .launchSpecification([
+        launch: .launchSpecification([
           SpotFleetRequestLaunchSpecification(
             ami: TfArg.literal(leftover),
             instanceType: TfArg.literal(leftover),
@@ -15562,7 +15526,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsStoragegatewayUploadBuffer(
         localName: 'storagegateway_upload_buffer',
-        diskIdOrDiskPath: .diskId(TfArg.literal(leftover)),
+        disk: .diskId(TfArg.literal(leftover)),
         gatewayArn: TfArg.literal(arn),
       ),
     );
@@ -15795,9 +15759,7 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsTransferHostKey(
         localName: 'transfer_host_key',
-        hostKeyBodyOrHostKeyBodyWo: .hostKeyBodyWo(
-          TfArg.variable('leftover_secret'),
-        ),
+        hostKeyBody: .hostKeyBodyWo(TfArg.variable('leftover_secret')),
         serverId: TfArg.literal(leftover),
       ),
     );
@@ -16064,9 +16026,7 @@ final class AwsLeftoverStack extends Stack {
         localName: 'vpc_endpoint_connection_notification',
         connectionEvents: TfArg.literal([leftover]),
         connectionNotificationArn: TfArg.literal(arn),
-        vpcEndpointIdOrVpcEndpointServiceId: .vpcEndpointId(
-          TfArg.literal(leftover),
-        ),
+        vpcEndpoint: .vpcEndpointId(TfArg.literal(leftover)),
       ),
     );
 
@@ -16367,7 +16327,7 @@ final class AwsLeftoverStack extends Stack {
         priority: TfArg.literal(1),
         serviceIdentifier: TfArg.literal(leftover),
         action: VpclatticeListenerRuleAction(
-          fixedResponseOrForward: .fixedResponse(
+          action: .fixedResponse(
             VpclatticeListenerRuleActionFixedResponse(
               statusCode: TfArg.literal(200),
             ),
@@ -16385,8 +16345,7 @@ final class AwsLeftoverStack extends Stack {
       AwsVpclatticeResourceConfiguration(
         localName: 'vpclattice_resource_configuration',
         name: TfArg.literal(leftover),
-        resourceConfigurationGroupIdOrResourceGatewayIdentifier:
-            .resourceGatewayIdentifier(TfArg.literal(leftover)),
+        resource: .resourceGatewayIdentifier(TfArg.literal(leftover)),
         protocol: TfArg.literal(VpclatticeResourceConfigurationProtocol.tcp),
       ),
     );
@@ -17031,7 +16990,7 @@ final class AwsLeftoverStack extends Stack {
         ],
         eventFilter: [
           WorkspaceswebSessionLoggerEventFilter(
-            allOrInclude: .include([
+            eventFilter: .include([
               TfArg.literal(
                 WorkspaceswebSessionLoggerEventFilterInclude.websiteinteract,
               ),

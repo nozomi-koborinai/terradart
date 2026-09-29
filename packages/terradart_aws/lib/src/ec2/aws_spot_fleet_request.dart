@@ -77,18 +77,18 @@ enum SpotFleetRequestTargetCapacityUnitType implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.launchSpecification(...)`.
-sealed class SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig {
-  const SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig();
+sealed class SpotFleetRequestLaunch {
+  const SpotFleetRequestLaunch();
 
   /// Sets `launch_specification`.
-  const factory SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig.launchSpecification(
+  const factory SpotFleetRequestLaunch.launchSpecification(
     List<SpotFleetRequestLaunchSpecification> launchSpecification,
-  ) = SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfigLaunchSpecification;
+  ) = SpotFleetRequestLaunchLaunchSpecification;
 
   /// Sets `launch_template_config`.
-  const factory SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig.launchTemplateConfig(
+  const factory SpotFleetRequestLaunch.launchTemplateConfig(
     List<SpotFleetRequestLaunchTemplateConfig> launchTemplateConfig,
-  ) = SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfigLaunchTemplateConfig;
+  ) = SpotFleetRequestLaunchLaunchTemplateConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -100,12 +100,10 @@ sealed class SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig.launchSpecification] choice: sets `launch_specification`.
-final class SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfigLaunchSpecification
-    extends SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig {
-  const SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfigLaunchSpecification(
-    this.launchSpecification,
-  );
+/// The [SpotFleetRequestLaunch.launchSpecification] choice: sets `launch_specification`.
+final class SpotFleetRequestLaunchLaunchSpecification
+    extends SpotFleetRequestLaunch {
+  const SpotFleetRequestLaunchLaunchSpecification(this.launchSpecification);
 
   final List<SpotFleetRequestLaunchSpecification> launchSpecification;
 
@@ -125,12 +123,10 @@ final class SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfigLaunchSpeci
   };
 }
 
-/// The [SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig.launchTemplateConfig] choice: sets `launch_template_config`.
-final class SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfigLaunchTemplateConfig
-    extends SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig {
-  const SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfigLaunchTemplateConfig(
-    this.launchTemplateConfig,
-  );
+/// The [SpotFleetRequestLaunch.launchTemplateConfig] choice: sets `launch_template_config`.
+final class SpotFleetRequestLaunchLaunchTemplateConfig
+    extends SpotFleetRequestLaunch {
+  const SpotFleetRequestLaunchLaunchTemplateConfig(this.launchTemplateConfig);
 
   final List<SpotFleetRequestLaunchTemplateConfig> launchTemplateConfig;
 
@@ -1074,8 +1070,7 @@ final class AwsSpotFleetRequest extends Resource {
     TfArg<String>? validFrom,
     TfArg<String>? validUntil,
     TfArg<bool>? waitForFulfillment,
-    required SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig
-    launchSpecificationOrLaunchTemplateConfig,
+    required SpotFleetRequestLaunch launch,
     SpotFleetRequestSpotMaintenanceStrategies? spotMaintenanceStrategies,
     super.lifecycle,
     super.dependsOn,
@@ -1121,7 +1116,7 @@ final class AwsSpotFleetRequest extends Resource {
            if (validUntil != null) 'valid_until': validUntil,
            if (waitForFulfillment != null)
              'wait_for_fulfillment': waitForFulfillment,
-           ...launchSpecificationOrLaunchTemplateConfig.argMap,
+           ...launch.argMap,
            if (spotMaintenanceStrategies != null)
              'spot_maintenance_strategies': TfArg.literal(
                spotMaintenanceStrategies.encode(),

@@ -12,18 +12,18 @@ const Set<String> _googleTpuV2VmSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.acceleratorType(...)`.
-sealed class TpuV2VmAcceleratorTypeOrAcceleratorConfig {
-  const TpuV2VmAcceleratorTypeOrAcceleratorConfig();
+sealed class TpuV2VmAccelerator {
+  const TpuV2VmAccelerator();
 
   /// Sets `accelerator_type`.
-  const factory TpuV2VmAcceleratorTypeOrAcceleratorConfig.acceleratorType(
+  const factory TpuV2VmAccelerator.acceleratorType(
     TfArg<String> acceleratorType,
-  ) = TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorType;
+  ) = TpuV2VmAcceleratorAcceleratorType;
 
   /// Sets `accelerator_config`.
-  const factory TpuV2VmAcceleratorTypeOrAcceleratorConfig.acceleratorConfig(
+  const factory TpuV2VmAccelerator.acceleratorConfig(
     TpuV2VmAcceleratorConfig acceleratorConfig,
-  ) = TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorConfig;
+  ) = TpuV2VmAcceleratorAcceleratorConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,12 +35,9 @@ sealed class TpuV2VmAcceleratorTypeOrAcceleratorConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [TpuV2VmAcceleratorTypeOrAcceleratorConfig.acceleratorType] choice: sets `accelerator_type`.
-final class TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorType
-    extends TpuV2VmAcceleratorTypeOrAcceleratorConfig {
-  const TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorType(
-    this.acceleratorType,
-  );
+/// The [TpuV2VmAccelerator.acceleratorType] choice: sets `accelerator_type`.
+final class TpuV2VmAcceleratorAcceleratorType extends TpuV2VmAccelerator {
+  const TpuV2VmAcceleratorAcceleratorType(this.acceleratorType);
 
   final TfArg<String> acceleratorType;
 
@@ -58,12 +55,9 @@ final class TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorType
   };
 }
 
-/// The [TpuV2VmAcceleratorTypeOrAcceleratorConfig.acceleratorConfig] choice: sets `accelerator_config`.
-final class TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorConfig
-    extends TpuV2VmAcceleratorTypeOrAcceleratorConfig {
-  const TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorConfig(
-    this.acceleratorConfig,
-  );
+/// The [TpuV2VmAccelerator.acceleratorConfig] choice: sets `accelerator_config`.
+final class TpuV2VmAcceleratorAcceleratorConfig extends TpuV2VmAccelerator {
+  const TpuV2VmAcceleratorAcceleratorConfig(this.acceleratorConfig);
 
   final TpuV2VmAcceleratorConfig acceleratorConfig;
 
@@ -313,8 +307,7 @@ final class GoogleTpuV2Vm extends Resource {
 
   GoogleTpuV2Vm({
     required super.localName,
-    TpuV2VmAcceleratorTypeOrAcceleratorConfig?
-    acceleratorTypeOrAcceleratorConfig,
+    TpuV2VmAccelerator? accelerator,
     TfArg<String>? cidrBlock,
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
@@ -338,7 +331,7 @@ final class GoogleTpuV2Vm extends Resource {
          terraformType: tfType,
          provider: provider ?? 'google-beta',
          argMap: {
-           ...?acceleratorTypeOrAcceleratorConfig?.argMap,
+           ...?accelerator?.argMap,
            if (cidrBlock != null) 'cidr_block': cidrBlock,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (description != null) 'description': description,

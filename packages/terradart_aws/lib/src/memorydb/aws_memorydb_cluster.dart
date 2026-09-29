@@ -42,17 +42,16 @@ enum MemorydbClusterNetworkType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class MemorydbClusterNameOrNamePrefix {
-  const MemorydbClusterNameOrNamePrefix();
+sealed class MemorydbClusterName {
+  const MemorydbClusterName();
 
   /// Sets `name`.
-  const factory MemorydbClusterNameOrNamePrefix.name(TfArg<String> name) =
-      MemorydbClusterNameOrNamePrefixName;
+  const factory MemorydbClusterName.name(TfArg<String> name) =
+      MemorydbClusterNameName;
 
   /// Sets `name_prefix`.
-  const factory MemorydbClusterNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = MemorydbClusterNameOrNamePrefixNamePrefix;
+  const factory MemorydbClusterName.namePrefix(TfArg<String> namePrefix) =
+      MemorydbClusterNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -64,10 +63,9 @@ sealed class MemorydbClusterNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [MemorydbClusterNameOrNamePrefix.name] choice: sets `name`.
-final class MemorydbClusterNameOrNamePrefixName
-    extends MemorydbClusterNameOrNamePrefix {
-  const MemorydbClusterNameOrNamePrefixName(this.name);
+/// The [MemorydbClusterName.name] choice: sets `name`.
+final class MemorydbClusterNameName extends MemorydbClusterName {
+  const MemorydbClusterNameName(this.name);
 
   final TfArg<String> name;
 
@@ -81,10 +79,9 @@ final class MemorydbClusterNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [MemorydbClusterNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class MemorydbClusterNameOrNamePrefixNamePrefix
-    extends MemorydbClusterNameOrNamePrefix {
-  const MemorydbClusterNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [MemorydbClusterName.namePrefix] choice: sets `name_prefix`.
+final class MemorydbClusterNameNamePrefix extends MemorydbClusterName {
+  const MemorydbClusterNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -103,18 +100,18 @@ final class MemorydbClusterNameOrNamePrefixNamePrefix
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.snapshotArns(...)`.
-sealed class MemorydbClusterSnapshotArnsOrSnapshotName {
-  const MemorydbClusterSnapshotArnsOrSnapshotName();
+sealed class MemorydbClusterSnapshot {
+  const MemorydbClusterSnapshot();
 
   /// Sets `snapshot_arns`.
-  const factory MemorydbClusterSnapshotArnsOrSnapshotName.snapshotArns(
+  const factory MemorydbClusterSnapshot.snapshotArns(
     TfArg<List<String>> snapshotArns,
-  ) = MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotArns;
+  ) = MemorydbClusterSnapshotSnapshotArns;
 
   /// Sets `snapshot_name`.
-  const factory MemorydbClusterSnapshotArnsOrSnapshotName.snapshotName(
+  const factory MemorydbClusterSnapshot.snapshotName(
     TfArg<String> snapshotName,
-  ) = MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotName;
+  ) = MemorydbClusterSnapshotSnapshotName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -126,12 +123,10 @@ sealed class MemorydbClusterSnapshotArnsOrSnapshotName {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [MemorydbClusterSnapshotArnsOrSnapshotName.snapshotArns] choice: sets `snapshot_arns`.
-final class MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotArns
-    extends MemorydbClusterSnapshotArnsOrSnapshotName {
-  const MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotArns(
-    this.snapshotArns,
-  );
+/// The [MemorydbClusterSnapshot.snapshotArns] choice: sets `snapshot_arns`.
+final class MemorydbClusterSnapshotSnapshotArns
+    extends MemorydbClusterSnapshot {
+  const MemorydbClusterSnapshotSnapshotArns(this.snapshotArns);
 
   final TfArg<List<String>> snapshotArns;
 
@@ -145,12 +140,10 @@ final class MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotArns
   Map<String, TfArg<Object?>> get argMap => {'snapshot_arns': snapshotArns};
 }
 
-/// The [MemorydbClusterSnapshotArnsOrSnapshotName.snapshotName] choice: sets `snapshot_name`.
-final class MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotName
-    extends MemorydbClusterSnapshotArnsOrSnapshotName {
-  const MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotName(
-    this.snapshotName,
-  );
+/// The [MemorydbClusterSnapshot.snapshotName] choice: sets `snapshot_name`.
+final class MemorydbClusterSnapshotSnapshotName
+    extends MemorydbClusterSnapshot {
+  const MemorydbClusterSnapshotSnapshotName(this.snapshotName);
 
   final TfArg<String> snapshotName;
 
@@ -181,7 +174,7 @@ final class AwsMemorydbCluster extends Resource {
     TfArg<String>? kmsKeyArn,
     TfArg<String>? maintenanceWindow,
     TfArg<String>? multiRegionClusterName,
-    MemorydbClusterNameOrNamePrefix? nameOrNamePrefix,
+    MemorydbClusterName? name,
     TfArg<MemorydbClusterNetworkType>? networkType,
     required TfArg<String> nodeType,
     TfArg<num>? numReplicasPerShard,
@@ -190,7 +183,7 @@ final class AwsMemorydbCluster extends Resource {
     TfArg<num>? port,
     TfArg<String>? region,
     TfArg<List<String>>? securityGroupIds,
-    MemorydbClusterSnapshotArnsOrSnapshotName? snapshotArnsOrSnapshotName,
+    MemorydbClusterSnapshot? snapshot,
     TfArg<num>? snapshotRetentionLimit,
     TfArg<String>? snapshotWindow,
     TfArg<String>? snsTopicArn,
@@ -219,7 +212,7 @@ final class AwsMemorydbCluster extends Resource {
              'maintenance_window': maintenanceWindow,
            if (multiRegionClusterName != null)
              'multi_region_cluster_name': multiRegionClusterName,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (networkType != null) 'network_type': networkType,
            'node_type': nodeType,
            if (numReplicasPerShard != null)
@@ -230,7 +223,7 @@ final class AwsMemorydbCluster extends Resource {
            if (port != null) 'port': port,
            if (region != null) 'region': region,
            if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
-           ...?snapshotArnsOrSnapshotName?.argMap,
+           ...?snapshot?.argMap,
            if (snapshotRetentionLimit != null)
              'snapshot_retention_limit': snapshotRetentionLimit,
            if (snapshotWindow != null) 'snapshot_window': snapshotWindow,

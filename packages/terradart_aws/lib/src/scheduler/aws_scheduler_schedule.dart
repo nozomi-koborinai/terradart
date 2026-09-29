@@ -32,17 +32,16 @@ enum SchedulerScheduleState implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class SchedulerScheduleNameOrNamePrefix {
-  const SchedulerScheduleNameOrNamePrefix();
+sealed class SchedulerScheduleName {
+  const SchedulerScheduleName();
 
   /// Sets `name`.
-  const factory SchedulerScheduleNameOrNamePrefix.name(TfArg<String> name) =
-      SchedulerScheduleNameOrNamePrefixName;
+  const factory SchedulerScheduleName.name(TfArg<String> name) =
+      SchedulerScheduleNameName;
 
   /// Sets `name_prefix`.
-  const factory SchedulerScheduleNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = SchedulerScheduleNameOrNamePrefixNamePrefix;
+  const factory SchedulerScheduleName.namePrefix(TfArg<String> namePrefix) =
+      SchedulerScheduleNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -54,10 +53,9 @@ sealed class SchedulerScheduleNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SchedulerScheduleNameOrNamePrefix.name] choice: sets `name`.
-final class SchedulerScheduleNameOrNamePrefixName
-    extends SchedulerScheduleNameOrNamePrefix {
-  const SchedulerScheduleNameOrNamePrefixName(this.name);
+/// The [SchedulerScheduleName.name] choice: sets `name`.
+final class SchedulerScheduleNameName extends SchedulerScheduleName {
+  const SchedulerScheduleNameName(this.name);
 
   final TfArg<String> name;
 
@@ -71,10 +69,9 @@ final class SchedulerScheduleNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [SchedulerScheduleNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class SchedulerScheduleNameOrNamePrefixNamePrefix
-    extends SchedulerScheduleNameOrNamePrefix {
-  const SchedulerScheduleNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [SchedulerScheduleName.namePrefix] choice: sets `name_prefix`.
+final class SchedulerScheduleNameNamePrefix extends SchedulerScheduleName {
+  const SchedulerScheduleNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -513,7 +510,7 @@ final class AwsSchedulerSchedule extends Resource {
     TfArg<String>? endDate,
     TfArg<String>? groupName,
     TfArg<String>? kmsKeyArn,
-    SchedulerScheduleNameOrNamePrefix? nameOrNamePrefix,
+    SchedulerScheduleName? name,
     TfArg<String>? region,
     required TfArg<String> scheduleExpression,
     TfArg<String>? scheduleExpressionTimezone,
@@ -534,7 +531,7 @@ final class AwsSchedulerSchedule extends Resource {
            if (endDate != null) 'end_date': endDate,
            if (groupName != null) 'group_name': groupName,
            if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            'schedule_expression': scheduleExpression,
            if (scheduleExpressionTimezone != null)

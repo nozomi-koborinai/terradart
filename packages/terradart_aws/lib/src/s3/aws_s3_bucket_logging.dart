@@ -79,34 +79,29 @@ enum S3BucketLoggingTargetGrantGranteeType implements TerraformEnum {
 /// `aws_s3_bucket_logging` (derived from provider schema).
 @immutable
 final class S3BucketLoggingTargetObjectKeyFormat {
-  const S3BucketLoggingTargetObjectKeyFormat({
-    required this.partitionedPrefixOrSimplePrefix,
-  });
+  const S3BucketLoggingTargetObjectKeyFormat({required this.prefix});
 
-  final S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefix
-  partitionedPrefixOrSimplePrefix;
+  final S3BucketLoggingTargetObjectKeyFormatPrefix prefix;
 
-  Map<String, Object?> encode() => {
-    ...partitionedPrefixOrSimplePrefix.encode(),
-  };
+  Map<String, Object?> encode() => {...prefix.encode()};
 }
 
 /// Exactly one of `partitioned_prefix`, `simple_prefix` on the `target_object_key_format` block of `aws_s3_bucket_logging`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.partitionedPrefix(...)`.
-sealed class S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefix {
-  const S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefix();
+sealed class S3BucketLoggingTargetObjectKeyFormatPrefix {
+  const S3BucketLoggingTargetObjectKeyFormatPrefix();
 
   /// Sets `partitioned_prefix`.
-  const factory S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefix.partitionedPrefix(
+  const factory S3BucketLoggingTargetObjectKeyFormatPrefix.partitionedPrefix(
     S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix partitionedPrefix,
-  ) = S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefixPartitionedPrefix;
+  ) = S3BucketLoggingTargetObjectKeyFormatPrefixPartitionedPrefix;
 
   /// Sets `simple_prefix`.
-  const factory S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefix.simplePrefix(
+  const factory S3BucketLoggingTargetObjectKeyFormatPrefix.simplePrefix(
     S3BucketLoggingTargetObjectKeyFormatSimplePrefix simplePrefix,
-  ) = S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefixSimplePrefix;
+  ) = S3BucketLoggingTargetObjectKeyFormatPrefixSimplePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -114,11 +109,10 @@ sealed class S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefix
   Map<String, Object?> encode();
 }
 
-/// The [S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefix.partitionedPrefix] choice: sets `partitioned_prefix`.
-final class S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefixPartitionedPrefix
-    extends
-        S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefix {
-  const S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefixPartitionedPrefix(
+/// The [S3BucketLoggingTargetObjectKeyFormatPrefix.partitionedPrefix] choice: sets `partitioned_prefix`.
+final class S3BucketLoggingTargetObjectKeyFormatPrefixPartitionedPrefix
+    extends S3BucketLoggingTargetObjectKeyFormatPrefix {
+  const S3BucketLoggingTargetObjectKeyFormatPrefixPartitionedPrefix(
     this.partitionedPrefix,
   );
 
@@ -133,11 +127,10 @@ final class S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefixP
   };
 }
 
-/// The [S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefix.simplePrefix] choice: sets `simple_prefix`.
-final class S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefixSimplePrefix
-    extends
-        S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefix {
-  const S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixOrSimplePrefixSimplePrefix(
+/// The [S3BucketLoggingTargetObjectKeyFormatPrefix.simplePrefix] choice: sets `simple_prefix`.
+final class S3BucketLoggingTargetObjectKeyFormatPrefixSimplePrefix
+    extends S3BucketLoggingTargetObjectKeyFormatPrefix {
+  const S3BucketLoggingTargetObjectKeyFormatPrefixSimplePrefix(
     this.simplePrefix,
   );
 

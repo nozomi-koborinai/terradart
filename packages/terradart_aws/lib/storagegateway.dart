@@ -49,8 +49,8 @@ export 'src/storagegateway/aws_storagegateway_tape_pool.dart'
 export 'src/storagegateway/aws_storagegateway_upload_buffer.dart'
     show
         AwsStoragegatewayUploadBuffer,
-        StoragegatewayUploadBufferDiskIdOrDiskPath,
-        StoragegatewayUploadBufferDiskIdOrDiskPathDiskId,
-        StoragegatewayUploadBufferDiskIdOrDiskPathDiskPath;
+        StoragegatewayUploadBufferDisk,
+        StoragegatewayUploadBufferDiskDiskId,
+        StoragegatewayUploadBufferDiskDiskPath;
 export 'src/storagegateway/aws_storagegateway_working_storage.dart'
     show AwsStoragegatewayWorkingStorage;

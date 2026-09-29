@@ -26,18 +26,18 @@ enum ComprehendEntityRecognizerLanguageCode implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.versionName(...)`.
-sealed class ComprehendEntityRecognizerVersionNameOrVersionNamePrefix {
-  const ComprehendEntityRecognizerVersionNameOrVersionNamePrefix();
+sealed class ComprehendEntityRecognizerVersionName {
+  const ComprehendEntityRecognizerVersionName();
 
   /// Sets `version_name`.
-  const factory ComprehendEntityRecognizerVersionNameOrVersionNamePrefix.versionName(
+  const factory ComprehendEntityRecognizerVersionName.versionName(
     TfArg<String> versionName,
-  ) = ComprehendEntityRecognizerVersionNameOrVersionNamePrefixVersionName;
+  ) = ComprehendEntityRecognizerVersionNameVersionName;
 
   /// Sets `version_name_prefix`.
-  const factory ComprehendEntityRecognizerVersionNameOrVersionNamePrefix.versionNamePrefix(
+  const factory ComprehendEntityRecognizerVersionName.versionNamePrefix(
     TfArg<String> versionNamePrefix,
-  ) = ComprehendEntityRecognizerVersionNameOrVersionNamePrefixVersionNamePrefix;
+  ) = ComprehendEntityRecognizerVersionNameVersionNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -49,12 +49,10 @@ sealed class ComprehendEntityRecognizerVersionNameOrVersionNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ComprehendEntityRecognizerVersionNameOrVersionNamePrefix.versionName] choice: sets `version_name`.
-final class ComprehendEntityRecognizerVersionNameOrVersionNamePrefixVersionName
-    extends ComprehendEntityRecognizerVersionNameOrVersionNamePrefix {
-  const ComprehendEntityRecognizerVersionNameOrVersionNamePrefixVersionName(
-    this.versionName,
-  );
+/// The [ComprehendEntityRecognizerVersionName.versionName] choice: sets `version_name`.
+final class ComprehendEntityRecognizerVersionNameVersionName
+    extends ComprehendEntityRecognizerVersionName {
+  const ComprehendEntityRecognizerVersionNameVersionName(this.versionName);
 
   final TfArg<String> versionName;
 
@@ -68,10 +66,10 @@ final class ComprehendEntityRecognizerVersionNameOrVersionNamePrefixVersionName
   Map<String, TfArg<Object?>> get argMap => {'version_name': versionName};
 }
 
-/// The [ComprehendEntityRecognizerVersionNameOrVersionNamePrefix.versionNamePrefix] choice: sets `version_name_prefix`.
-final class ComprehendEntityRecognizerVersionNameOrVersionNamePrefixVersionNamePrefix
-    extends ComprehendEntityRecognizerVersionNameOrVersionNamePrefix {
-  const ComprehendEntityRecognizerVersionNameOrVersionNamePrefixVersionNamePrefix(
+/// The [ComprehendEntityRecognizerVersionName.versionNamePrefix] choice: sets `version_name_prefix`.
+final class ComprehendEntityRecognizerVersionNameVersionNamePrefix
+    extends ComprehendEntityRecognizerVersionName {
+  const ComprehendEntityRecognizerVersionNameVersionNamePrefix(
     this.versionNamePrefix,
   );
 
@@ -429,8 +427,7 @@ final class AwsComprehendEntityRecognizer extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    ComprehendEntityRecognizerVersionNameOrVersionNamePrefix?
-    versionNameOrVersionNamePrefix,
+    ComprehendEntityRecognizerVersionName? versionName,
     TfArg<String>? volumeKmsKeyId,
     required ComprehendEntityRecognizerInputDataConfig inputDataConfig,
     ComprehendEntityRecognizerVpcConfig? vpcConfig,
@@ -447,7 +444,7 @@ final class AwsComprehendEntityRecognizer extends Resource {
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           ...?versionNameOrVersionNamePrefix?.argMap,
+           ...?versionName?.argMap,
            if (volumeKmsKeyId != null) 'volume_kms_key_id': volumeKmsKeyId,
            'input_data_config': TfArg.literal(inputDataConfig.encode()),
            if (vpcConfig != null)

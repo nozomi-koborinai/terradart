@@ -70,31 +70,31 @@ final class PrometheusAnomalyDetectorConfigurationRandomCutForest {
 @immutable
 final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAbove {
   const PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAbove({
-    required this.amountOrRatio,
+    required this.ignoreNearExpectedFromAbove,
   });
 
-  final PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatio
-  amountOrRatio;
+  final PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAbove
+  ignoreNearExpectedFromAbove;
 
-  Map<String, Object?> encode() => {...amountOrRatio.encode()};
+  Map<String, Object?> encode() => {...ignoreNearExpectedFromAbove.encode()};
 }
 
 /// Exactly one of `amount`, `ratio` on the `configuration.random_cut_forest.ignore_near_expected_from_above` block of `aws_prometheus_anomaly_detector`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.amount(...)`.
-sealed class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatio {
-  const PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatio();
+sealed class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAbove {
+  const PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAbove();
 
   /// Sets `amount`.
-  const factory PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatio.amount(
+  const factory PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAbove.amount(
     TfArg<num> amount,
-  ) = PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatioAmount;
+  ) = PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAboveAmount;
 
   /// Sets `ratio`.
-  const factory PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatio.ratio(
+  const factory PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAbove.ratio(
     TfArg<num> ratio,
-  ) = PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatioRatio;
+  ) = PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAboveRatio;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -102,11 +102,11 @@ sealed class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpe
   Map<String, Object?> encode();
 }
 
-/// The [PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatio.amount] choice: sets `amount`.
-final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatioAmount
+/// The [PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAbove.amount] choice: sets `amount`.
+final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAboveAmount
     extends
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatio {
-  const PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatioAmount(
+        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAbove {
+  const PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAboveAmount(
     this.amount,
   );
 
@@ -119,11 +119,11 @@ final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpec
   Map<String, Object?> encode() => {'amount': amount.toTfJson()};
 }
 
-/// The [PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatio.ratio] choice: sets `ratio`.
-final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatioRatio
+/// The [PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAbove.ratio] choice: sets `ratio`.
+final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAboveRatio
     extends
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatio {
-  const PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmountOrRatioRatio(
+        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAbove {
+  const PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAboveRatio(
     this.ratio,
   );
 
@@ -141,31 +141,31 @@ final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpec
 @immutable
 final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelow {
   const PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelow({
-    required this.amountOrRatio,
+    required this.ignoreNearExpectedFromBelow,
   });
 
-  final PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatio
-  amountOrRatio;
+  final PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelow
+  ignoreNearExpectedFromBelow;
 
-  Map<String, Object?> encode() => {...amountOrRatio.encode()};
+  Map<String, Object?> encode() => {...ignoreNearExpectedFromBelow.encode()};
 }
 
 /// Exactly one of `amount`, `ratio` on the `configuration.random_cut_forest.ignore_near_expected_from_below` block of `aws_prometheus_anomaly_detector`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.amount(...)`.
-sealed class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatio {
-  const PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatio();
+sealed class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelow {
+  const PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelow();
 
   /// Sets `amount`.
-  const factory PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatio.amount(
+  const factory PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelow.amount(
     TfArg<num> amount,
-  ) = PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatioAmount;
+  ) = PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelowAmount;
 
   /// Sets `ratio`.
-  const factory PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatio.ratio(
+  const factory PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelow.ratio(
     TfArg<num> ratio,
-  ) = PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatioRatio;
+  ) = PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelowRatio;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -173,11 +173,11 @@ sealed class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpe
   Map<String, Object?> encode();
 }
 
-/// The [PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatio.amount] choice: sets `amount`.
-final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatioAmount
+/// The [PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelow.amount] choice: sets `amount`.
+final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelowAmount
     extends
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatio {
-  const PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatioAmount(
+        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelow {
+  const PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelowAmount(
     this.amount,
   );
 
@@ -190,11 +190,11 @@ final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpec
   Map<String, Object?> encode() => {'amount': amount.toTfJson()};
 }
 
-/// The [PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatio.ratio] choice: sets `ratio`.
-final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatioRatio
+/// The [PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelow.ratio] choice: sets `ratio`.
+final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelowRatio
     extends
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatio {
-  const PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmountOrRatioRatio(
+        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelow {
+  const PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelowRatio(
     this.ratio,
   );
 
@@ -212,31 +212,31 @@ final class PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpec
 @immutable
 final class PrometheusAnomalyDetectorMissingDataAction {
   const PrometheusAnomalyDetectorMissingDataAction({
-    required this.markAsAnomalyOrSkip,
+    required this.missingDataAction,
   });
 
-  final PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip
-  markAsAnomalyOrSkip;
+  final PrometheusAnomalyDetectorMissingDataActionMissingDataAction
+  missingDataAction;
 
-  Map<String, Object?> encode() => {...markAsAnomalyOrSkip.encode()};
+  Map<String, Object?> encode() => {...missingDataAction.encode()};
 }
 
 /// Exactly one of `mark_as_anomaly`, `skip` on the `missing_data_action` block of `aws_prometheus_anomaly_detector`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.markAsAnomaly(...)`.
-sealed class PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip {
-  const PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip();
+sealed class PrometheusAnomalyDetectorMissingDataActionMissingDataAction {
+  const PrometheusAnomalyDetectorMissingDataActionMissingDataAction();
 
   /// Sets `mark_as_anomaly`.
-  const factory PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip.markAsAnomaly(
+  const factory PrometheusAnomalyDetectorMissingDataActionMissingDataAction.markAsAnomaly(
     TfArg<bool> markAsAnomaly,
-  ) = PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkipMarkAsAnomaly;
+  ) = PrometheusAnomalyDetectorMissingDataActionMissingDataActionMarkAsAnomaly;
 
   /// Sets `skip`.
-  const factory PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip.skip(
+  const factory PrometheusAnomalyDetectorMissingDataActionMissingDataAction.skip(
     TfArg<bool> skip,
-  ) = PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkipSkip;
+  ) = PrometheusAnomalyDetectorMissingDataActionMissingDataActionSkip;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -244,10 +244,10 @@ sealed class PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip {
   Map<String, Object?> encode();
 }
 
-/// The [PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip.markAsAnomaly] choice: sets `mark_as_anomaly`.
-final class PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkipMarkAsAnomaly
-    extends PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip {
-  const PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkipMarkAsAnomaly(
+/// The [PrometheusAnomalyDetectorMissingDataActionMissingDataAction.markAsAnomaly] choice: sets `mark_as_anomaly`.
+final class PrometheusAnomalyDetectorMissingDataActionMissingDataActionMarkAsAnomaly
+    extends PrometheusAnomalyDetectorMissingDataActionMissingDataAction {
+  const PrometheusAnomalyDetectorMissingDataActionMissingDataActionMarkAsAnomaly(
     this.markAsAnomaly,
   );
 
@@ -262,10 +262,10 @@ final class PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkipMarkAsA
   };
 }
 
-/// The [PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip.skip] choice: sets `skip`.
-final class PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkipSkip
-    extends PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkip {
-  const PrometheusAnomalyDetectorMissingDataActionMarkAsAnomalyOrSkipSkip(
+/// The [PrometheusAnomalyDetectorMissingDataActionMissingDataAction.skip] choice: sets `skip`.
+final class PrometheusAnomalyDetectorMissingDataActionMissingDataActionSkip
+    extends PrometheusAnomalyDetectorMissingDataActionMissingDataAction {
+  const PrometheusAnomalyDetectorMissingDataActionMissingDataActionSkip(
     this.skip,
   );
 

@@ -521,7 +521,7 @@ final class ComputeLbStack extends Stack {
         // Reference `lbCert` by self_link rather than inlining the Terraform
         // interpolation string so that the cert resource is the source of
         // truth for the name.
-        certificateManagerCertificatesOrSslCertificates: .sslCertificates(
+        certificates: .sslCertificates(
           TfArg.literal([lbCert.selfLink.interpolation]),
         ),
         sslPolicy: TfArg.ref(lbSslPolicy.selfLink),
@@ -891,7 +891,7 @@ final class ComputeLbStack extends Stack {
         name: TfArg.literal('app-regional-https-proxy'),
         region: TfArg.literal(region),
         urlMap: TfArg.ref(regionUrlMap.selfLink),
-        certificateManagerCertificatesOrSslCertificates: .sslCertificates(
+        certificates: .sslCertificates(
           TfArg.literal([regionalSslCert.selfLink.interpolation]),
         ),
         sslPolicy: TfArg.ref(regionalSslPolicy.selfLink),

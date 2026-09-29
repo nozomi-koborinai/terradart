@@ -67,9 +67,9 @@ export 'src/os_config/google_os_config_patch_deployment.dart'
         OsConfigPatchDeploymentRecurringScheduleWeekly,
         OsConfigPatchDeploymentRollout,
         OsConfigPatchDeploymentRolloutDisruptionBudget,
-        OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOrPercentage,
-        OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOrPercentageFixed,
-        OsConfigPatchDeploymentRolloutDisruptionBudgetFixedOrPercentagePercentage,
+        OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudget,
+        OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudgetFixed,
+        OsConfigPatchDeploymentRolloutDisruptionBudgetDisruptionBudgetPercentage,
         OsConfigPatchDeploymentRolloutMode,
         OsConfigPatchDeploymentSchedule;
 export 'src/os_config/google_os_config_v2_policy_orchestrator.dart'

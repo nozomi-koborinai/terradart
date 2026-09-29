@@ -11,17 +11,16 @@ const Set<String> _awsDocdbSubnetGroupSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class DocdbSubnetGroupNameOrNamePrefix {
-  const DocdbSubnetGroupNameOrNamePrefix();
+sealed class DocdbSubnetGroupName {
+  const DocdbSubnetGroupName();
 
   /// Sets `name`.
-  const factory DocdbSubnetGroupNameOrNamePrefix.name(TfArg<String> name) =
-      DocdbSubnetGroupNameOrNamePrefixName;
+  const factory DocdbSubnetGroupName.name(TfArg<String> name) =
+      DocdbSubnetGroupNameName;
 
   /// Sets `name_prefix`.
-  const factory DocdbSubnetGroupNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = DocdbSubnetGroupNameOrNamePrefixNamePrefix;
+  const factory DocdbSubnetGroupName.namePrefix(TfArg<String> namePrefix) =
+      DocdbSubnetGroupNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class DocdbSubnetGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DocdbSubnetGroupNameOrNamePrefix.name] choice: sets `name`.
-final class DocdbSubnetGroupNameOrNamePrefixName
-    extends DocdbSubnetGroupNameOrNamePrefix {
-  const DocdbSubnetGroupNameOrNamePrefixName(this.name);
+/// The [DocdbSubnetGroupName.name] choice: sets `name`.
+final class DocdbSubnetGroupNameName extends DocdbSubnetGroupName {
+  const DocdbSubnetGroupNameName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +48,9 @@ final class DocdbSubnetGroupNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [DocdbSubnetGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class DocdbSubnetGroupNameOrNamePrefixNamePrefix
-    extends DocdbSubnetGroupNameOrNamePrefix {
-  const DocdbSubnetGroupNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [DocdbSubnetGroupName.namePrefix] choice: sets `name_prefix`.
+final class DocdbSubnetGroupNameNamePrefix extends DocdbSubnetGroupName {
+  const DocdbSubnetGroupNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -74,7 +71,7 @@ final class AwsDocdbSubnetGroup extends Resource {
   AwsDocdbSubnetGroup({
     required super.localName,
     TfArg<String>? description,
-    DocdbSubnetGroupNameOrNamePrefix? nameOrNamePrefix,
+    DocdbSubnetGroupName? name,
     TfArg<String>? region,
     required TfArg<List<String>> subnetIds,
     TfArg<Map<String, String>>? tags,
@@ -86,7 +83,7 @@ final class AwsDocdbSubnetGroup extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            'subnet_ids': subnetIds,
            if (tags != null) 'tags': tags,

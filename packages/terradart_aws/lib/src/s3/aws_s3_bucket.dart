@@ -104,17 +104,16 @@ final class S3BucketAclOrGrantGrant extends S3BucketAclOrGrant {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.bucket(...)`.
-sealed class S3BucketBucketOrBucketPrefix {
-  const S3BucketBucketOrBucketPrefix();
+sealed class S3BucketBucket {
+  const S3BucketBucket();
 
   /// Sets `bucket`.
-  const factory S3BucketBucketOrBucketPrefix.bucket(TfArg<String> bucket) =
-      S3BucketBucketOrBucketPrefixBucket;
+  const factory S3BucketBucket.bucket(TfArg<String> bucket) =
+      S3BucketBucketBucket;
 
   /// Sets `bucket_prefix`.
-  const factory S3BucketBucketOrBucketPrefix.bucketPrefix(
-    TfArg<String> bucketPrefix,
-  ) = S3BucketBucketOrBucketPrefixBucketPrefix;
+  const factory S3BucketBucket.bucketPrefix(TfArg<String> bucketPrefix) =
+      S3BucketBucketBucketPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -126,10 +125,9 @@ sealed class S3BucketBucketOrBucketPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [S3BucketBucketOrBucketPrefix.bucket] choice: sets `bucket`.
-final class S3BucketBucketOrBucketPrefixBucket
-    extends S3BucketBucketOrBucketPrefix {
-  const S3BucketBucketOrBucketPrefixBucket(this.bucket);
+/// The [S3BucketBucket.bucket] choice: sets `bucket`.
+final class S3BucketBucketBucket extends S3BucketBucket {
+  const S3BucketBucketBucket(this.bucket);
 
   final TfArg<String> bucket;
 
@@ -143,10 +141,9 @@ final class S3BucketBucketOrBucketPrefixBucket
   Map<String, TfArg<Object?>> get argMap => {'bucket': bucket};
 }
 
-/// The [S3BucketBucketOrBucketPrefix.bucketPrefix] choice: sets `bucket_prefix`.
-final class S3BucketBucketOrBucketPrefixBucketPrefix
-    extends S3BucketBucketOrBucketPrefix {
-  const S3BucketBucketOrBucketPrefixBucketPrefix(this.bucketPrefix);
+/// The [S3BucketBucket.bucketPrefix] choice: sets `bucket_prefix`.
+final class S3BucketBucketBucketPrefix extends S3BucketBucket {
+  const S3BucketBucketBucketPrefix(this.bucketPrefix);
 
   final TfArg<String> bucketPrefix;
 
@@ -830,7 +827,7 @@ final class AwsS3Bucket extends Resource {
     required super.localName,
     TfArg<S3BucketAccelerationStatus>? accelerationStatus,
     S3BucketAclOrGrant? aclOrGrant,
-    S3BucketBucketOrBucketPrefix? bucketOrBucketPrefix,
+    S3BucketBucket? bucket,
     TfArg<S3BucketBucketNamespace>? bucketNamespace,
     TfArg<bool>? forceDestroy,
     TfArg<bool>? objectLockEnabled,
@@ -856,7 +853,7 @@ final class AwsS3Bucket extends Resource {
            if (accelerationStatus != null)
              'acceleration_status': accelerationStatus,
            ...?aclOrGrant?.argMap,
-           ...?bucketOrBucketPrefix?.argMap,
+           ...?bucket?.argMap,
            if (bucketNamespace != null) 'bucket_namespace': bucketNamespace,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
            if (objectLockEnabled != null)
