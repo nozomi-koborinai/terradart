@@ -65,6 +65,15 @@ Per-package changelogs live alongside each package and are the system of record 
   networks, `name` → `id` on Pub/Sub topic IAM, ...); `.pinned('attr')` keeps
   the old one. See `MIGRATING.md`. A type a later provider pin adds is typed
   by the weekly bump when its inputs match the ledger.
+- **Sealed variants take `RefTo<R>`** (**breaking**; `terradart_aws`,
+  `terradart_cloudflare`, `terradart_google`) — a member of a sealed group
+  that the reference ledger matches is typed too, top-level or inside a
+  nested helper: `scope: .zoneId(zone.ref)` on `cloudflare_ruleset`,
+  `code: .s3Bucket(bucket.ref)` on `aws_lambda_function`, `subnet:
+  .subnets(.literal([a.ref, b.ref]))` on `aws_lb`. Typed inputs go to 322
+  google, 1,155 aws and 294 cloudflare. `terradart wrap` now lists every
+  input the ledger matches but that stays a string (`reference input not
+  typed:`). Synth output is unchanged. See `MIGRATING.md`.
 
 - **Sealed variants are factory constructors** (**breaking**;
   `terradart_codegen`, `terradart_migrate`, every provider package) — a
