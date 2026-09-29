@@ -59,10 +59,10 @@ export 'src/network/google_network_connectivity_policy_based_route.dart'
         NetworkConnectivityPolicyBasedRouteNextHopIlbIp,
         NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes,
         NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice,
-        NetworkConnectivityPolicyBasedRouteVirtualMachine,
-        NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment,
-        NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentInterconnectAttachment,
-        NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentVirtualMachine;
+        NetworkConnectivityPolicyBasedRouteScope,
+        NetworkConnectivityPolicyBasedRouteScopeInterconnectAttachment,
+        NetworkConnectivityPolicyBasedRouteScopeVirtualMachine,
+        NetworkConnectivityPolicyBasedRouteVirtualMachine;
 export 'src/network/google_network_connectivity_regional_endpoint.dart'
     show
         GoogleNetworkConnectivityRegionalEndpoint,
@@ -355,11 +355,11 @@ export 'src/network/google_network_services_endpoint_policy.dart'
 export 'src/network/google_network_services_gateway.dart'
     show
         GoogleNetworkServicesGateway,
-        NetworkServicesGatewayAllPortsOrPorts,
-        NetworkServicesGatewayAllPortsOrPortsAllPorts,
-        NetworkServicesGatewayAllPortsOrPortsPorts,
         NetworkServicesGatewayEnvoyHeaders,
         NetworkServicesGatewayIpVersion,
+        NetworkServicesGatewayPorts,
+        NetworkServicesGatewayPortsAllPorts,
+        NetworkServicesGatewayPortsPorts,
         NetworkServicesGatewayRoutingMode,
         NetworkServicesGatewayType;
 export 'src/network/google_network_services_grpc_route.dart'

@@ -727,18 +727,18 @@ class ComputeRegionUrlMapRegionUrlMapTestHeader {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.defaultUrlRedirect(...)`.
-sealed class ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction {
-  const ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction();
+sealed class ComputeRegionUrlMapDefaultAction {
+  const ComputeRegionUrlMapDefaultAction();
 
   /// Sets `default_url_redirect`.
-  const factory ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction.defaultUrlRedirect(
+  const factory ComputeRegionUrlMapDefaultAction.defaultUrlRedirect(
     ComputeRegionUrlMapRegionUrlMapUrlRedirect defaultUrlRedirect,
-  ) = ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect;
+  ) = ComputeRegionUrlMapDefaultActionDefaultUrlRedirect;
 
   /// Sets `default_route_action`.
-  const factory ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction.defaultRouteAction(
+  const factory ComputeRegionUrlMapDefaultAction.defaultRouteAction(
     ComputeRegionUrlMapRegionUrlMapRouteAction defaultRouteAction,
-  ) = ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction;
+  ) = ComputeRegionUrlMapDefaultActionDefaultRouteAction;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -750,10 +750,10 @@ sealed class ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction.defaultUrlRedirect] choice: sets `default_url_redirect`.
-final class ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect
-    extends ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction {
-  const ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect(
+/// The [ComputeRegionUrlMapDefaultAction.defaultUrlRedirect] choice: sets `default_url_redirect`.
+final class ComputeRegionUrlMapDefaultActionDefaultUrlRedirect
+    extends ComputeRegionUrlMapDefaultAction {
+  const ComputeRegionUrlMapDefaultActionDefaultUrlRedirect(
     this.defaultUrlRedirect,
   );
 
@@ -773,10 +773,10 @@ final class ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlR
   };
 }
 
-/// The [ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction.defaultRouteAction] choice: sets `default_route_action`.
-final class ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction
-    extends ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction {
-  const ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction(
+/// The [ComputeRegionUrlMapDefaultAction.defaultRouteAction] choice: sets `default_route_action`.
+final class ComputeRegionUrlMapDefaultActionDefaultRouteAction
+    extends ComputeRegionUrlMapDefaultAction {
+  const ComputeRegionUrlMapDefaultActionDefaultRouteAction(
     this.defaultRouteAction,
   );
 
@@ -923,8 +923,7 @@ final class GoogleComputeRegionUrlMap extends Resource {
     List<ComputeRegionUrlMapRegionUrlMapHostRule>? hostRules,
     List<ComputeRegionUrlMapRegionUrlMapPathMatcher>? pathMatchers,
     List<ComputeRegionUrlMapRegionUrlMapTest>? tests,
-    ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction?
-    defaultUrlRedirectOrDefaultRouteAction,
+    ComputeRegionUrlMapDefaultAction? defaultAction,
     ComputeRegionUrlMapRegionUrlMapHeaderAction? headerAction,
     TfArg<String>? project,
     super.lifecycle,
@@ -948,7 +947,7 @@ final class GoogleComputeRegionUrlMap extends Resource {
              ),
            if (tests != null)
              'test': TfArg.literal(tests.map((t) => t.toArgMap()).toList()),
-           ...?defaultUrlRedirectOrDefaultRouteAction?.argMap,
+           ...?defaultAction?.argMap,
            if (headerAction != null)
              'header_action': TfArg.literal([headerAction.toArgMap()]),
            if (project != null) 'project': project,

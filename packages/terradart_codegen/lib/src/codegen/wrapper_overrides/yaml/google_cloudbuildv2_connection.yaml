@@ -377,3 +377,6 @@ customSlots:
   bitbucket_cloud_config:
     paramDeclaration: 'Cloudbuildv2ConnectionBitbucketCloudConfig? bitbucketCloudConfig'
     argMapEntry: "if (bitbucketCloudConfig != null) 'bitbucket_cloud_config': TfArg.literal([bitbucketCloudConfig.toArgMap()]),"
+
+sealedNames:
+  "bitbucket_cloud_config, bitbucket_data_center_config, github_config, github_enterprise_config, gitlab_config": host

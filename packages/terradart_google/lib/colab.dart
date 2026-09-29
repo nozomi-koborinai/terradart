@@ -20,9 +20,9 @@ export 'src/colab/google_colab_notebook_execution.dart'
         ColabNotebookExecutionTemplateCompute,
         ColabNotebookExecutionWorkbenchRuntime,
         ColabNotebookExecutionWorkbenchRuntimeVmImage,
-        ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName,
-        ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameFamily,
-        ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameName,
+        ColabNotebookExecutionWorkbenchRuntimeVmImageImage,
+        ColabNotebookExecutionWorkbenchRuntimeVmImageImageFamily,
+        ColabNotebookExecutionWorkbenchRuntimeVmImageImageName,
         GoogleColabNotebookExecution;
 export 'src/colab/google_colab_runtime.dart'
     show

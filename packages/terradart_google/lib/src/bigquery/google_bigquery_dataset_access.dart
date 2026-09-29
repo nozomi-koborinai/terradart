@@ -121,48 +121,47 @@ class BigqueryDatasetAccessAuthorizedRoutine {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.userByEmail(...)`.
-sealed class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
-  const BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine();
+sealed class BigqueryDatasetAccessGrantee {
+  const BigqueryDatasetAccessGrantee();
 
   /// Sets `user_by_email`.
-  const factory BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.userByEmail(
+  const factory BigqueryDatasetAccessGrantee.userByEmail(
     TfArg<String> userByEmail,
-  ) = BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineUserByEmail;
+  ) = BigqueryDatasetAccessGranteeUserByEmail;
 
   /// Sets `group_by_email`.
-  const factory BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.groupByEmail(
+  const factory BigqueryDatasetAccessGrantee.groupByEmail(
     TfArg<String> groupByEmail,
-  ) = BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineGroupByEmail;
+  ) = BigqueryDatasetAccessGranteeGroupByEmail;
 
   /// Sets `domain`.
-  const factory BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.domain(
-    TfArg<String> domain,
-  ) = BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineDomain;
+  const factory BigqueryDatasetAccessGrantee.domain(TfArg<String> domain) =
+      BigqueryDatasetAccessGranteeDomain;
 
   /// Sets `special_group`.
-  const factory BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.specialGroup(
+  const factory BigqueryDatasetAccessGrantee.specialGroup(
     TfArg<BigqueryDatasetAccessPredefinedGroup> specialGroup,
-  ) = BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineSpecialGroup;
+  ) = BigqueryDatasetAccessGranteeSpecialGroup;
 
   /// Sets `iam_member`.
-  const factory BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.iamMember(
+  const factory BigqueryDatasetAccessGrantee.iamMember(
     TfArg<String> iamMember,
-  ) = BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineIamMember;
+  ) = BigqueryDatasetAccessGranteeIamMember;
 
   /// Sets `view`.
-  const factory BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.view(
+  const factory BigqueryDatasetAccessGrantee.view(
     BigqueryDatasetAccessAuthorizedView view,
-  ) = BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineView;
+  ) = BigqueryDatasetAccessGranteeView;
 
   /// Sets `dataset`.
-  const factory BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.authorizedDataset(
+  const factory BigqueryDatasetAccessGrantee.authorizedDataset(
     BigqueryDatasetAccessAuthorizedDataset authorizedDataset,
-  ) = BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineDataset;
+  ) = BigqueryDatasetAccessGranteeDataset;
 
   /// Sets `routine`.
-  const factory BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.routine(
+  const factory BigqueryDatasetAccessGrantee.routine(
     BigqueryDatasetAccessAuthorizedRoutine routine,
-  ) = BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineRoutine;
+  ) = BigqueryDatasetAccessGranteeRoutine;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -174,13 +173,10 @@ sealed class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGrou
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.userByEmail] choice: sets `user_by_email`.
-final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineUserByEmail
-    extends
-        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
-  const BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineUserByEmail(
-    this.userByEmail,
-  );
+/// The [BigqueryDatasetAccessGrantee.userByEmail] choice: sets `user_by_email`.
+final class BigqueryDatasetAccessGranteeUserByEmail
+    extends BigqueryDatasetAccessGrantee {
+  const BigqueryDatasetAccessGranteeUserByEmail(this.userByEmail);
 
   final TfArg<String> userByEmail;
 
@@ -194,13 +190,10 @@ final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroup
   Map<String, TfArg<Object?>> get argMap => {'user_by_email': userByEmail};
 }
 
-/// The [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.groupByEmail] choice: sets `group_by_email`.
-final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineGroupByEmail
-    extends
-        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
-  const BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineGroupByEmail(
-    this.groupByEmail,
-  );
+/// The [BigqueryDatasetAccessGrantee.groupByEmail] choice: sets `group_by_email`.
+final class BigqueryDatasetAccessGranteeGroupByEmail
+    extends BigqueryDatasetAccessGrantee {
+  const BigqueryDatasetAccessGranteeGroupByEmail(this.groupByEmail);
 
   final TfArg<String> groupByEmail;
 
@@ -214,13 +207,10 @@ final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroup
   Map<String, TfArg<Object?>> get argMap => {'group_by_email': groupByEmail};
 }
 
-/// The [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.domain] choice: sets `domain`.
-final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineDomain
-    extends
-        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
-  const BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineDomain(
-    this.domain,
-  );
+/// The [BigqueryDatasetAccessGrantee.domain] choice: sets `domain`.
+final class BigqueryDatasetAccessGranteeDomain
+    extends BigqueryDatasetAccessGrantee {
+  const BigqueryDatasetAccessGranteeDomain(this.domain);
 
   final TfArg<String> domain;
 
@@ -234,13 +224,10 @@ final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroup
   Map<String, TfArg<Object?>> get argMap => {'domain': domain};
 }
 
-/// The [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.specialGroup] choice: sets `special_group`.
-final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineSpecialGroup
-    extends
-        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
-  const BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineSpecialGroup(
-    this.specialGroup,
-  );
+/// The [BigqueryDatasetAccessGrantee.specialGroup] choice: sets `special_group`.
+final class BigqueryDatasetAccessGranteeSpecialGroup
+    extends BigqueryDatasetAccessGrantee {
+  const BigqueryDatasetAccessGranteeSpecialGroup(this.specialGroup);
 
   final TfArg<BigqueryDatasetAccessPredefinedGroup> specialGroup;
 
@@ -254,13 +241,10 @@ final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroup
   Map<String, TfArg<Object?>> get argMap => {'special_group': specialGroup};
 }
 
-/// The [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.iamMember] choice: sets `iam_member`.
-final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineIamMember
-    extends
-        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
-  const BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineIamMember(
-    this.iamMember,
-  );
+/// The [BigqueryDatasetAccessGrantee.iamMember] choice: sets `iam_member`.
+final class BigqueryDatasetAccessGranteeIamMember
+    extends BigqueryDatasetAccessGrantee {
+  const BigqueryDatasetAccessGranteeIamMember(this.iamMember);
 
   final TfArg<String> iamMember;
 
@@ -274,13 +258,10 @@ final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroup
   Map<String, TfArg<Object?>> get argMap => {'iam_member': iamMember};
 }
 
-/// The [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.view] choice: sets `view`.
-final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineView
-    extends
-        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
-  const BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineView(
-    this.view,
-  );
+/// The [BigqueryDatasetAccessGrantee.view] choice: sets `view`.
+final class BigqueryDatasetAccessGranteeView
+    extends BigqueryDatasetAccessGrantee {
+  const BigqueryDatasetAccessGranteeView(this.view);
 
   final BigqueryDatasetAccessAuthorizedView view;
 
@@ -296,13 +277,10 @@ final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroup
   };
 }
 
-/// The [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.authorizedDataset] choice: sets `dataset`.
-final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineDataset
-    extends
-        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
-  const BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineDataset(
-    this.authorizedDataset,
-  );
+/// The [BigqueryDatasetAccessGrantee.authorizedDataset] choice: sets `dataset`.
+final class BigqueryDatasetAccessGranteeDataset
+    extends BigqueryDatasetAccessGrantee {
+  const BigqueryDatasetAccessGranteeDataset(this.authorizedDataset);
 
   final BigqueryDatasetAccessAuthorizedDataset authorizedDataset;
 
@@ -318,13 +296,10 @@ final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroup
   };
 }
 
-/// The [BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine.routine] choice: sets `routine`.
-final class BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineRoutine
-    extends
-        BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine {
-  const BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineRoutine(
-    this.routine,
-  );
+/// The [BigqueryDatasetAccessGrantee.routine] choice: sets `routine`.
+final class BigqueryDatasetAccessGranteeRoutine
+    extends BigqueryDatasetAccessGrantee {
+  const BigqueryDatasetAccessGranteeRoutine(this.routine);
 
   final BigqueryDatasetAccessAuthorizedRoutine routine;
 
@@ -378,8 +353,7 @@ final class GoogleBigqueryDatasetAccess extends Resource {
     required super.localName,
     required TfArg<String> datasetId,
     TfArg<String>? role,
-    required BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine
-    userByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine,
+    required BigqueryDatasetAccessGrantee grantee,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -391,8 +365,7 @@ final class GoogleBigqueryDatasetAccess extends Resource {
          argMap: {
            'dataset_id': datasetId,
            if (role != null) 'role': role,
-           ...userByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine
-               .argMap,
+           ...grantee.argMap,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (project != null) 'project': project,
          },

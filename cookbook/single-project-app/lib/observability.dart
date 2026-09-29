@@ -28,7 +28,7 @@ GooglePubsubSubscription buildOrderSubscription({
   localName: 'orders_subscription',
   name: TfArg.literal('coffee-orders-sub'),
   topic: TfArg.ref(orderTopic.id),
-  bigqueryConfigOrPushConfigOrCloudStorageConfig: .pushConfig(
+  delivery: .pushConfig(
     PubsubSubscriptionPushConfig(
       pushEndpoint: TfArg.ref(coffeeService.uri),
       oidcToken: PubsubSubscriptionOidcToken(

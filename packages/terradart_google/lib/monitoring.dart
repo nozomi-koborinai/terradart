@@ -68,10 +68,10 @@ export 'src/monitoring/google_monitoring_slo.dart'
         MonitoringSloBasicSliLatency,
         MonitoringSloCalendarPeriod,
         MonitoringSloGoodTotalRatio,
+        MonitoringSloPeriod,
+        MonitoringSloPeriodCalendarPeriod,
+        MonitoringSloPeriodRollingPeriodDays,
         MonitoringSloRequestBasedSli,
-        MonitoringSloRollingPeriodDaysOrCalendarPeriod,
-        MonitoringSloRollingPeriodDaysOrCalendarPeriodCalendarPeriod,
-        MonitoringSloRollingPeriodDaysOrCalendarPeriodRollingPeriodDays,
         MonitoringSloSli,
         MonitoringSloWindowsBasedSli,
         MonitoringSloWindowsGoodTotalRatioThreshold;

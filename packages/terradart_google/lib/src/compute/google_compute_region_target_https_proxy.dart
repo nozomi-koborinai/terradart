@@ -129,7 +129,7 @@ final class ComputeRegionTargetHttpsProxyCertificatesSslCertificates
 ///   `//certificatemanager.googleapis.com/projects/{p}/locations/{l}/certificates/{r}`
 ///   form, or the bare `projects/.../locations/.../certificates/{r}`
 ///   self-link). The other choice of
-///   [certificateManagerCertificatesOrSslCertificates].
+///   [certificates].
 ///
 /// Example (classic regional SSL certificate, regional HTTPS LB):
 /// ```dart
@@ -138,12 +138,11 @@ final class ComputeRegionTargetHttpsProxyCertificatesSslCertificates
 ///   name: TfArg.literal('lb-https-proxy'),
 ///   urlMap: TfArg.ref(regionUrlMap.selfLink),
 ///   region: TfArg.literal('us-central1'),
-///   certificateManagerCertificatesOrSslCertificates:
-///       ComputeRegionTargetHttpsProxySslCertificatesOption(
-///         sslCertificates: TfArg.literal(const [
-///           'projects/my-proj/regions/us-central1/sslCertificates/my-cert',
-///         ]),
-///       ),
+///   certificates: .sslCertificates(
+///     TfArg.literal(const [
+///       'projects/my-proj/regions/us-central1/sslCertificates/my-cert',
+///     ]),
+///   ),
 ///   sslPolicy: TfArg.ref(var.region_ssl_policy_id),
 /// );
 /// ```

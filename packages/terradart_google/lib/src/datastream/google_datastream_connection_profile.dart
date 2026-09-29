@@ -116,15 +116,14 @@ final class DatastreamConnectionProfileBigqueryProfile {
 final class DatastreamConnectionProfileForwardSshConnectivity {
   const DatastreamConnectionProfileForwardSshConnectivity({
     required this.hostname,
-    this.passwordOrPrivateKey,
+    this.credential,
     this.port,
     required this.username,
   });
 
   final TfArg<String> hostname;
 
-  final DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey?
-  passwordOrPrivateKey;
+  final DatastreamConnectionProfileForwardSshConnectivityCredential? credential;
 
   final TfArg<num>? port;
 
@@ -132,7 +131,7 @@ final class DatastreamConnectionProfileForwardSshConnectivity {
 
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
-    ...?passwordOrPrivateKey?.encode(),
+    ...?credential?.encode(),
     if (port != null) 'port': port!.toTfJson(),
     'username': username.toTfJson(),
   };
@@ -143,18 +142,18 @@ final class DatastreamConnectionProfileForwardSshConnectivity {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.password(...)`.
-sealed class DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey {
-  const DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey();
+sealed class DatastreamConnectionProfileForwardSshConnectivityCredential {
+  const DatastreamConnectionProfileForwardSshConnectivityCredential();
 
   /// Sets `password`.
-  const factory DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey.password(
+  const factory DatastreamConnectionProfileForwardSshConnectivityCredential.password(
     TfArg<String> password,
-  ) = DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPassword;
+  ) = DatastreamConnectionProfileForwardSshConnectivityCredentialPassword;
 
   /// Sets `private_key`.
-  const factory DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey.privateKey(
+  const factory DatastreamConnectionProfileForwardSshConnectivityCredential.privateKey(
     TfArg<String> privateKey,
-  ) = DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPrivateKey;
+  ) = DatastreamConnectionProfileForwardSshConnectivityCredentialPrivateKey;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -162,11 +161,10 @@ sealed class DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateK
   Map<String, Object?> encode();
 }
 
-/// The [DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey.password] choice: sets `password`.
-final class DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPassword
-    extends
-        DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey {
-  const DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPassword(
+/// The [DatastreamConnectionProfileForwardSshConnectivityCredential.password] choice: sets `password`.
+final class DatastreamConnectionProfileForwardSshConnectivityCredentialPassword
+    extends DatastreamConnectionProfileForwardSshConnectivityCredential {
+  const DatastreamConnectionProfileForwardSshConnectivityCredentialPassword(
     this.password,
   );
 
@@ -179,11 +177,10 @@ final class DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKe
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
 
-/// The [DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey.privateKey] choice: sets `private_key`.
-final class DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPrivateKey
-    extends
-        DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey {
-  const DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPrivateKey(
+/// The [DatastreamConnectionProfileForwardSshConnectivityCredential.privateKey] choice: sets `private_key`.
+final class DatastreamConnectionProfileForwardSshConnectivityCredentialPrivateKey
+    extends DatastreamConnectionProfileForwardSshConnectivityCredential {
+  const DatastreamConnectionProfileForwardSshConnectivityCredentialPrivateKey(
     this.privateKey,
   );
 

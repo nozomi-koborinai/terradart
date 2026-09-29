@@ -58,3 +58,6 @@ paramOrder:
   - override_valid_time
   - project
   - deletion_policy
+
+sealedNames:
+  "decrypted_credential.auth_token, decrypted_credential.jwt, decrypted_credential.oauth2_authorization_code, decrypted_credential.oauth2_client_credentials, decrypted_credential.oidc_token, decrypted_credential.service_account_credentials, decrypted_credential.username_and_password": credential

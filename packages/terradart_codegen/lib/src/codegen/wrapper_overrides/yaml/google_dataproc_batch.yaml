@@ -219,3 +219,6 @@ extraGetters: |2
 
     /// Reference to `uuid` attribute.
     TfRef<String> get uuidRef => TfRef.attribute<String>(this, 'uuid');
+
+sealedNames:
+  "environment_config.execution_config.network_uri, environment_config.execution_config.subnetwork_uri": network

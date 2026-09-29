@@ -246,3 +246,6 @@ extraGetters: |2
 
     /// Reference to `id` attribute.
     TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+sealedNames:
+  "workbench_runtime.vm_image.family, workbench_runtime.vm_image.name": image

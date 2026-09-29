@@ -114,14 +114,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'basicOrCustom',
+          dartName: 'definition',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'basic': 'AccessContextManagerAccessLevelBasicOrCustomBasic',
-            'custom': 'AccessContextManagerAccessLevelBasicOrCustomCustom',
+            'basic': 'AccessContextManagerAccessLevelDefinitionBasic',
+            'custom': 'AccessContextManagerAccessLevelDefinitionCustom',
           },
         ),
         MigrateSlot(
@@ -5029,14 +5029,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'expireTimeOrTtl',
+          dartName: 'expiration',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'expire_time': 'ApigeeSecurityActionExpireTimeOrTtlExpireTime',
-            'ttl': 'ApigeeSecurityActionExpireTimeOrTtlTtl',
+            'expire_time': 'ApigeeSecurityActionExpirationExpireTime',
+            'ttl': 'ApigeeSecurityActionExpirationTtl',
           },
         ),
         MigrateSlot(
@@ -13000,16 +13000,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'pubsubTopicOrBigqueryDataset',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'pubsub_topic':
-                'BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetPubsubTopic',
+            'pubsub_topic': 'BigqueryAnalyticsHubListingSourcePubsubTopic',
             'bigquery_dataset':
-                'BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetBigqueryDataset',
+                'BigqueryAnalyticsHubListingSourceBigqueryDataset',
           },
         ),
         MigrateSlot(
@@ -14857,29 +14856,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'userByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine',
+          dartName: 'grantee',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'user_by_email':
-                'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineUserByEmail',
-            'group_by_email':
-                'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineGroupByEmail',
-            'domain':
-                'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineDomain',
-            'special_group':
-                'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineSpecialGroup',
-            'iam_member':
-                'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineIamMember',
-            'view':
-                'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineView',
-            'dataset':
-                'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineDataset',
-            'routine':
-                'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineRoutine',
+            'user_by_email': 'BigqueryDatasetAccessGranteeUserByEmail',
+            'group_by_email': 'BigqueryDatasetAccessGranteeGroupByEmail',
+            'domain': 'BigqueryDatasetAccessGranteeDomain',
+            'special_group': 'BigqueryDatasetAccessGranteeSpecialGroup',
+            'iam_member': 'BigqueryDatasetAccessGranteeIamMember',
+            'view': 'BigqueryDatasetAccessGranteeView',
+            'dataset': 'BigqueryDatasetAccessGranteeDataset',
+            'routine': 'BigqueryDatasetAccessGranteeRoutine',
           },
         ),
         MigrateSlot(
@@ -21339,18 +21329,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'cbnSnippetOrFieldExtractorsOrDynamicParsing',
+          dartName: 'definition',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'cbn_snippet':
-                'ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingCbnSnippet',
+            'cbn_snippet': 'ChronicleParserExtensionDefinitionCbnSnippet',
             'field_extractors':
-                'ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingFieldExtractors',
+                'ChronicleParserExtensionDefinitionFieldExtractors',
             'dynamic_parsing':
-                'ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingDynamicParsing',
+                'ChronicleParserExtensionDefinitionDynamicParsing',
           },
         ),
         MigrateSlot(
@@ -26485,23 +26474,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'githubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig',
+          dartName: 'host',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'github_config':
-                'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGithubConfig',
+            'github_config': 'Cloudbuildv2ConnectionHostGithubConfig',
             'github_enterprise_config':
-                'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGithubEnterpriseConfig',
-            'gitlab_config':
-                'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGitlabConfig',
+                'Cloudbuildv2ConnectionHostGithubEnterpriseConfig',
+            'gitlab_config': 'Cloudbuildv2ConnectionHostGitlabConfig',
             'bitbucket_cloud_config':
-                'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigBitbucketCloudConfig',
+                'Cloudbuildv2ConnectionHostBitbucketCloudConfig',
             'bitbucket_data_center_config':
-                'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigBitbucketDataCenterConfig',
+                'Cloudbuildv2ConnectionHostBitbucketDataCenterConfig',
           },
         ),
         MigrateSlot(
@@ -26967,15 +26953,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'customActionsOrTasks',
+          dartName: 'actions',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'custom_actions':
-                'ClouddeployCustomTargetTypeCustomActionsOrTasksCustomActions',
-            'tasks': 'ClouddeployCustomTargetTypeCustomActionsOrTasksTasks',
+            'custom_actions': 'ClouddeployCustomTargetTypeActionsCustomActions',
+            'tasks': 'ClouddeployCustomTargetTypeActionsTasks',
           },
         ),
         MigrateSlot(
@@ -45900,16 +45885,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'defaultUrlRedirectOrDefaultRouteAction',
+          dartName: 'defaultAction',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'default_url_redirect':
-                'ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect',
+                'ComputeRegionUrlMapDefaultActionDefaultUrlRedirect',
             'default_route_action':
-                'ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction',
+                'ComputeRegionUrlMapDefaultActionDefaultRouteAction',
           },
         ),
         MigrateSlot(
@@ -51224,16 +51209,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'defaultUrlRedirectOrDefaultRouteAction',
+          dartName: 'defaultAction',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'default_url_redirect':
-                'ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect',
+                'ComputeUrlMapDefaultActionDefaultUrlRedirect',
             'default_route_action':
-                'ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction',
+                'ComputeUrlMapDefaultActionDefaultRouteAction',
           },
         ),
         MigrateSlot(
@@ -73224,15 +73209,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'rolloutPolicyOrTarget',
+          dartName: 'routing',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'rollout_policy':
-                'FirebaseAppHostingTrafficRolloutPolicyOrTargetRolloutPolicy',
-            'target': 'FirebaseAppHostingTrafficRolloutPolicyOrTargetTarget',
+            'rollout_policy': 'FirebaseAppHostingTrafficRoutingRolloutPolicy',
+            'target': 'FirebaseAppHostingTrafficRoutingTarget',
           },
         ),
         MigrateSlot(
@@ -93517,16 +93501,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'rollingPeriodDaysOrCalendarPeriod',
+          dartName: 'period',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'rolling_period_days':
-                'MonitoringSloRollingPeriodDaysOrCalendarPeriodRollingPeriodDays',
-            'calendar_period':
-                'MonitoringSloRollingPeriodDaysOrCalendarPeriodCalendarPeriod',
+            'rolling_period_days': 'MonitoringSloPeriodRollingPeriodDays',
+            'calendar_period': 'MonitoringSloPeriodCalendarPeriod',
           },
         ),
         MigrateSlot(
@@ -96034,16 +96016,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'virtualMachineOrInterconnectAttachment',
+          dartName: 'scope',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'virtual_machine':
-                'NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentVirtualMachine',
+                'NetworkConnectivityPolicyBasedRouteScopeVirtualMachine',
             'interconnect_attachment':
-                'NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentInterconnectAttachment',
+                'NetworkConnectivityPolicyBasedRouteScopeInterconnectAttachment',
           },
         ),
         MigrateSlot(
@@ -100558,14 +100540,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'allPortsOrPorts',
+          dartName: 'ports',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'all_ports': 'NetworkServicesGatewayAllPortsOrPortsAllPorts',
-            'ports': 'NetworkServicesGatewayAllPortsOrPortsPorts',
+            'all_ports': 'NetworkServicesGatewayPortsAllPorts',
+            'ports': 'NetworkServicesGatewayPortsPorts',
           },
         ),
         MigrateSlot(
@@ -107395,14 +107377,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'pemCsrOrConfig',
+          dartName: 'request',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'pem_csr': 'PrivatecaCertificatePemCsrOrConfigPemCsr',
-            'config': 'PrivatecaCertificatePemCsrOrConfigConfig',
+            'pem_csr': 'PrivatecaCertificateRequestPemCsr',
+            'config': 'PrivatecaCertificateRequestConfig',
           },
         ),
         MigrateSlot(
@@ -109437,18 +109419,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'bigqueryConfigOrPushConfigOrCloudStorageConfig',
+          dartName: 'delivery',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'bigquery_config':
-                'PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigBigqueryConfig',
-            'push_config':
-                'PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigPushConfig',
+            'bigquery_config': 'PubsubSubscriptionDeliveryBigqueryConfig',
+            'push_config': 'PubsubSubscriptionDeliveryPushConfig',
             'cloud_storage_config':
-                'PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigCloudStorageConfig',
+                'PubsubSubscriptionDeliveryCloudStorageConfig',
           },
         ),
         MigrateSlot(
@@ -117997,18 +117977,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'nodeCountOrProcessingUnitsOrAutoscalingConfig',
+          dartName: 'capacity',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'node_count':
-                'SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigNodeCount',
+            'node_count': 'SpannerInstancePartitionCapacityNodeCount',
             'processing_units':
-                'SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigProcessingUnits',
+                'SpannerInstancePartitionCapacityProcessingUnits',
             'autoscaling_config':
-                'SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigAutoscalingConfig',
+                'SpannerInstancePartitionCapacityAutoscalingConfig',
           },
         ),
         MigrateSlot(
@@ -124732,16 +124711,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'networkOrPrivateServiceConnectConfig',
+          dartName: 'connectivity',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'network':
-                'VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigNetwork',
+            'network': 'VertexAiIndexEndpointConnectivityNetwork',
             'private_service_connect_config':
-                'VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigPrivateServiceConnectConfig',
+                'VertexAiIndexEndpointConnectivityPrivateServiceConnectConfig',
           },
         ),
         MigrateSlot(
@@ -125126,16 +125104,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'vectorDbConfigOrVertexAiSearchConfig',
+          dartName: 'backend',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'vector_db_config':
-                'VertexAiRagCorpusVectorDbConfigOrVertexAiSearchConfigVectorDbConfig',
+            'vector_db_config': 'VertexAiRagCorpusBackendVectorDbConfig',
             'vertex_ai_search_config':
-                'VertexAiRagCorpusVectorDbConfigOrVertexAiSearchConfigVertexAiSearchConfig',
+                'VertexAiRagCorpusBackendVertexAiSearchConfig',
           },
         ),
       ],
@@ -127445,30 +127422,26 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'minThroughputOrMinInstances',
+          dartName: 'minCapacity',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'min_throughput':
-                'VpcAccessConnectorMinThroughputOrMinInstancesMinThroughput',
-            'min_instances':
-                'VpcAccessConnectorMinThroughputOrMinInstancesMinInstances',
+            'min_throughput': 'VpcAccessConnectorMinCapacityMinThroughput',
+            'min_instances': 'VpcAccessConnectorMinCapacityMinInstances',
           },
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'maxInstancesOrMaxThroughput',
+          dartName: 'maxCapacity',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'max_instances':
-                'VpcAccessConnectorMaxInstancesOrMaxThroughputMaxInstances',
-            'max_throughput':
-                'VpcAccessConnectorMaxInstancesOrMaxThroughputMaxThroughput',
+            'max_instances': 'VpcAccessConnectorMaxCapacityMaxInstances',
+            'max_throughput': 'VpcAccessConnectorMaxCapacityMaxThroughput',
           },
         ),
         MigrateSlot(
@@ -129187,36 +129160,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'AccessContextManagerAccessLevelBasicOrCustomBasic': MigrateHelper(
-      className: 'AccessContextManagerAccessLevelBasicOrCustomBasic',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'basic',
-          dartName: 'basic',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'AccessContextManagerAccessLevelBasic',
-        ),
-      ],
-      shorthand: 'basic',
-    ),
-    'AccessContextManagerAccessLevelBasicOrCustomCustom': MigrateHelper(
-      className: 'AccessContextManagerAccessLevelBasicOrCustomCustom',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'custom',
-          dartName: 'custom',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'AccessContextManagerAccessLevelCustom',
-        ),
-      ],
-      shorthand: 'custom',
-    ),
     'AccessContextManagerAccessLevelConditionDevicePolicy': MigrateHelper(
       className: 'AccessContextManagerAccessLevelConditionDevicePolicy',
       slots: <MigrateSlot>[
@@ -129373,6 +129316,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'AccessContextManagerAccessLevelDefinitionBasic': MigrateHelper(
+      className: 'AccessContextManagerAccessLevelDefinitionBasic',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'basic',
+          dartName: 'basic',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'AccessContextManagerAccessLevelBasic',
+        ),
+      ],
+      shorthand: 'basic',
+    ),
+    'AccessContextManagerAccessLevelDefinitionCustom': MigrateHelper(
+      className: 'AccessContextManagerAccessLevelDefinitionCustom',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'custom',
+          dartName: 'custom',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'AccessContextManagerAccessLevelCustom',
+        ),
+      ],
+      shorthand: 'custom',
     ),
     'AccessContextManagerAccessLevelsAccessLevels': MigrateHelper(
       className: 'AccessContextManagerAccessLevelsAccessLevels',
@@ -135497,8 +135470,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ApigeeSecurityActionExpireTimeOrTtlExpireTime': MigrateHelper(
-      className: 'ApigeeSecurityActionExpireTimeOrTtlExpireTime',
+    'ApigeeSecurityActionExpirationExpireTime': MigrateHelper(
+      className: 'ApigeeSecurityActionExpirationExpireTime',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'expire_time',
@@ -135511,8 +135484,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'expireTime',
     ),
-    'ApigeeSecurityActionExpireTimeOrTtlTtl': MigrateHelper(
-      className: 'ApigeeSecurityActionExpireTimeOrTtlTtl',
+    'ApigeeSecurityActionExpirationTtl': MigrateHelper(
+      className: 'ApigeeSecurityActionExpirationTtl',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'ttl',
@@ -140879,40 +140852,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetBigqueryDataset':
-        MigrateHelper(
-          className:
-              'BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetBigqueryDataset',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'bigquery_dataset',
-              dartName: 'bigqueryDataset',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'BigqueryAnalyticsHubListingBigqueryDataset',
-            ),
-          ],
-          shorthand: 'bigqueryDataset',
-        ),
-    'BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetPubsubTopic':
-        MigrateHelper(
-          className:
-              'BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetPubsubTopic',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'pubsub_topic',
-              dartName: 'pubsubTopic',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'BigqueryAnalyticsHubListingPubsubTopic',
-            ),
-          ],
-          shorthand: 'pubsubTopic',
-        ),
     'BigqueryAnalyticsHubListingRestrictedExportConfig': MigrateHelper(
       className: 'BigqueryAnalyticsHubListingRestrictedExportConfig',
       slots: <MigrateSlot>[
@@ -140931,6 +140870,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
+    ),
+    'BigqueryAnalyticsHubListingSourceBigqueryDataset': MigrateHelper(
+      className: 'BigqueryAnalyticsHubListingSourceBigqueryDataset',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'bigquery_dataset',
+          dartName: 'bigqueryDataset',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'BigqueryAnalyticsHubListingBigqueryDataset',
+        ),
+      ],
+      shorthand: 'bigqueryDataset',
+    ),
+    'BigqueryAnalyticsHubListingSourcePubsubTopic': MigrateHelper(
+      className: 'BigqueryAnalyticsHubListingSourcePubsubTopic',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'pubsub_topic',
+          dartName: 'pubsubTopic',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'BigqueryAnalyticsHubListingPubsubTopic',
+        ),
+      ],
+      shorthand: 'pubsubTopic',
     ),
     'BigqueryAnalyticsHubQueryTemplateRoutine': MigrateHelper(
       className: 'BigqueryAnalyticsHubQueryTemplateRoutine',
@@ -141621,6 +141590,121 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'BigqueryDatasetAccessGranteeDataset': MigrateHelper(
+      className: 'BigqueryDatasetAccessGranteeDataset',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dataset',
+          dartName: 'authorizedDataset',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'BigqueryDatasetAccessAuthorizedDataset',
+        ),
+      ],
+      shorthand: 'authorizedDataset',
+    ),
+    'BigqueryDatasetAccessGranteeDomain': MigrateHelper(
+      className: 'BigqueryDatasetAccessGranteeDomain',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'domain',
+          dartName: 'domain',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'domain',
+    ),
+    'BigqueryDatasetAccessGranteeGroupByEmail': MigrateHelper(
+      className: 'BigqueryDatasetAccessGranteeGroupByEmail',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'group_by_email',
+          dartName: 'groupByEmail',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'groupByEmail',
+    ),
+    'BigqueryDatasetAccessGranteeIamMember': MigrateHelper(
+      className: 'BigqueryDatasetAccessGranteeIamMember',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'iam_member',
+          dartName: 'iamMember',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'iamMember',
+    ),
+    'BigqueryDatasetAccessGranteeRoutine': MigrateHelper(
+      className: 'BigqueryDatasetAccessGranteeRoutine',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'routine',
+          dartName: 'routine',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'BigqueryDatasetAccessAuthorizedRoutine',
+        ),
+      ],
+      shorthand: 'routine',
+    ),
+    'BigqueryDatasetAccessGranteeSpecialGroup': MigrateHelper(
+      className: 'BigqueryDatasetAccessGranteeSpecialGroup',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'special_group',
+          dartName: 'specialGroup',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'BigqueryDatasetAccessPredefinedGroup',
+        ),
+      ],
+      shorthand: 'specialGroup',
+    ),
+    'BigqueryDatasetAccessGranteeUserByEmail': MigrateHelper(
+      className: 'BigqueryDatasetAccessGranteeUserByEmail',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'user_by_email',
+          dartName: 'userByEmail',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'userByEmail',
+    ),
+    'BigqueryDatasetAccessGranteeView': MigrateHelper(
+      className: 'BigqueryDatasetAccessGranteeView',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'view',
+          dartName: 'view',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'BigqueryDatasetAccessAuthorizedView',
+        ),
+      ],
+      shorthand: 'view',
+    ),
     'BigqueryDatasetAccessGroupByEmail': MigrateHelper(
       className: 'BigqueryDatasetAccessGroupByEmail',
       slots: <MigrateSlot>[
@@ -141750,137 +141834,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineDataset':
-        MigrateHelper(
-          className:
-              'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineDataset',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'dataset',
-              dartName: 'authorizedDataset',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'BigqueryDatasetAccessAuthorizedDataset',
-            ),
-          ],
-          shorthand: 'authorizedDataset',
-        ),
-    'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineDomain':
-        MigrateHelper(
-          className:
-              'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineDomain',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'domain',
-              dartName: 'domain',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'domain',
-        ),
-    'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineGroupByEmail':
-        MigrateHelper(
-          className:
-              'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineGroupByEmail',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'group_by_email',
-              dartName: 'groupByEmail',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'groupByEmail',
-        ),
-    'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineIamMember':
-        MigrateHelper(
-          className:
-              'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineIamMember',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'iam_member',
-              dartName: 'iamMember',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'iamMember',
-        ),
-    'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineRoutine':
-        MigrateHelper(
-          className:
-              'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineRoutine',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'routine',
-              dartName: 'routine',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'BigqueryDatasetAccessAuthorizedRoutine',
-            ),
-          ],
-          shorthand: 'routine',
-        ),
-    'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineSpecialGroup':
-        MigrateHelper(
-          className:
-              'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineSpecialGroup',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'special_group',
-              dartName: 'specialGroup',
-              kind: MigrateSlotKind.enumValue,
-              required: true,
-              positional: true,
-              dartType: 'BigqueryDatasetAccessPredefinedGroup',
-            ),
-          ],
-          shorthand: 'specialGroup',
-        ),
-    'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineUserByEmail':
-        MigrateHelper(
-          className:
-              'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineUserByEmail',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'user_by_email',
-              dartName: 'userByEmail',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'userByEmail',
-        ),
-    'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineView':
-        MigrateHelper(
-          className:
-              'BigqueryDatasetAccessUserByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutineView',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'view',
-              dartName: 'view',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'BigqueryDatasetAccessAuthorizedView',
-            ),
-          ],
-          shorthand: 'view',
-        ),
     'BigqueryDatasetAccessView': MigrateHelper(
       className: 'BigqueryDatasetAccessView',
       slots: <MigrateSlot>[
@@ -149010,163 +148963,146 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'anomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3Settings',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'anomali_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAnomaliSettings',
+            'anomali_settings': 'ChronicleFeedDetailsSourceAnomaliSettings',
             'azure_ad_context_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureAdContextSettings',
+                'ChronicleFeedDetailsSourceAzureAdContextSettings',
             'cloud_passage_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsCloudPassageSettings',
+                'ChronicleFeedDetailsSourceCloudPassageSettings',
             'cortex_xdr_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsCortexXdrSettings',
-            'duo_auth_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsDuoAuthSettings',
+                'ChronicleFeedDetailsSourceCortexXdrSettings',
+            'duo_auth_settings': 'ChronicleFeedDetailsSourceDuoAuthSettings',
             'duo_user_context_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsDuoUserContextSettings',
+                'ChronicleFeedDetailsSourceDuoUserContextSettings',
             'microsoft_graph_alert_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMicrosoftGraphAlertSettings',
+                'ChronicleFeedDetailsSourceMicrosoftGraphAlertSettings',
             'microsoft_security_center_alert_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMicrosoftSecurityCenterAlertSettings',
+                'ChronicleFeedDetailsSourceMicrosoftSecurityCenterAlertSettings',
             'mimecast_mail_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMimecastMailSettings',
-            'office365_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsOffice365Settings',
+                'ChronicleFeedDetailsSourceMimecastMailSettings',
+            'office365_settings': 'ChronicleFeedDetailsSourceOffice365Settings',
             'proofpoint_mail_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsProofpointMailSettings',
+                'ChronicleFeedDetailsSourceProofpointMailSettings',
             'recorded_future_ioc_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsRecordedFutureIocSettings',
-            'workday_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkdaySettings',
-            'pan_ioc_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsPanIocSettings',
-            'okta_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsOktaSettings',
+                'ChronicleFeedDetailsSourceRecordedFutureIocSettings',
+            'workday_settings': 'ChronicleFeedDetailsSourceWorkdaySettings',
+            'pan_ioc_settings': 'ChronicleFeedDetailsSourcePanIocSettings',
+            'okta_settings': 'ChronicleFeedDetailsSourceOktaSettings',
             'okta_user_context_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsOktaUserContextSettings',
+                'ChronicleFeedDetailsSourceOktaUserContextSettings',
             'fox_it_stix_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsFoxItStixSettings',
+                'ChronicleFeedDetailsSourceFoxItStixSettings',
             'threat_connect_ioc_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsThreatConnectIocSettings',
+                'ChronicleFeedDetailsSourceThreatConnectIocSettings',
             'service_now_cmdb_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsServiceNowCmdbSettings',
+                'ChronicleFeedDetailsSourceServiceNowCmdbSettings',
             'imperva_waf_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsImpervaWafSettings',
+                'ChronicleFeedDetailsSourceImpervaWafSettings',
             'thinkst_canary_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsThinkstCanarySettings',
+                'ChronicleFeedDetailsSourceThinkstCanarySettings',
             'rh_isac_ioc_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsRhIsacIocSettings',
+                'ChronicleFeedDetailsSourceRhIsacIocSettings',
             'rapid7_insight_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsRapid7InsightSettings',
+                'ChronicleFeedDetailsSourceRapid7InsightSettings',
             'salesforce_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsSalesforceSettings',
+                'ChronicleFeedDetailsSourceSalesforceSettings',
             'netskope_alert_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsNetskopeAlertSettings',
+                'ChronicleFeedDetailsSourceNetskopeAlertSettings',
             'azure_mdm_intune_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureMdmIntuneSettings',
-            'azure_ad_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureAdSettings',
+                'ChronicleFeedDetailsSourceAzureMdmIntuneSettings',
+            'azure_ad_settings': 'ChronicleFeedDetailsSourceAzureAdSettings',
             'proofpoint_on_demand_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsProofpointOnDemandSettings',
+                'ChronicleFeedDetailsSourceProofpointOnDemandSettings',
             'workspace_users_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceUsersSettings',
+                'ChronicleFeedDetailsSourceWorkspaceUsersSettings',
             'workspace_activity_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceActivitySettings',
+                'ChronicleFeedDetailsSourceWorkspaceActivitySettings',
             'workspace_alerts_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceAlertsSettings',
+                'ChronicleFeedDetailsSourceWorkspaceAlertsSettings',
             'workspace_privileges_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspacePrivilegesSettings',
+                'ChronicleFeedDetailsSourceWorkspacePrivilegesSettings',
             'workspace_mobile_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceMobileSettings',
+                'ChronicleFeedDetailsSourceWorkspaceMobileSettings',
             'workspace_chrome_os_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceChromeOsSettings',
+                'ChronicleFeedDetailsSourceWorkspaceChromeOsSettings',
             'workspace_groups_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceGroupsSettings',
+                'ChronicleFeedDetailsSourceWorkspaceGroupsSettings',
             'azure_ad_audit_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureAdAuditSettings',
+                'ChronicleFeedDetailsSourceAzureAdAuditSettings',
             'symantec_event_export_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsSymantecEventExportSettings',
-            'qualys_vm_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsQualysVmSettings',
+                'ChronicleFeedDetailsSourceSymantecEventExportSettings',
+            'qualys_vm_settings': 'ChronicleFeedDetailsSourceQualysVmSettings',
             'pan_prisma_cloud_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsPanPrismaCloudSettings',
-            'gcs_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGcsSettings',
-            'http_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsHttpSettings',
-            'sftp_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsSftpSettings',
-            'amazon_s3_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonS3Settings',
+                'ChronicleFeedDetailsSourcePanPrismaCloudSettings',
+            'gcs_settings': 'ChronicleFeedDetailsSourceGcsSettings',
+            'http_settings': 'ChronicleFeedDetailsSourceHttpSettings',
+            'sftp_settings': 'ChronicleFeedDetailsSourceSftpSettings',
+            'amazon_s3_settings': 'ChronicleFeedDetailsSourceAmazonS3Settings',
             'azure_blob_store_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureBlobStoreSettings',
+                'ChronicleFeedDetailsSourceAzureBlobStoreSettings',
             'amazon_sqs_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonSqsSettings',
+                'ChronicleFeedDetailsSourceAmazonSqsSettings',
             'google_cloud_identity_devices_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGoogleCloudIdentityDevicesSettings',
+                'ChronicleFeedDetailsSourceGoogleCloudIdentityDevicesSettings',
             'google_cloud_identity_device_users_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGoogleCloudIdentityDeviceUsersSettings',
+                'ChronicleFeedDetailsSourceGoogleCloudIdentityDeviceUsersSettings',
             'crowdstrike_detects_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsCrowdstrikeDetectsSettings',
+                'ChronicleFeedDetailsSourceCrowdstrikeDetectsSettings',
             'mandiant_ioc_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMandiantIocSettings',
+                'ChronicleFeedDetailsSourceMandiantIocSettings',
             'sentinelone_alert_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsSentineloneAlertSettings',
+                'ChronicleFeedDetailsSourceSentineloneAlertSettings',
             'qualys_scan_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsQualysScanSettings',
-            'pubsub_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsPubsubSettings',
+                'ChronicleFeedDetailsSourceQualysScanSettings',
+            'pubsub_settings': 'ChronicleFeedDetailsSourcePubsubSettings',
             'amazon_kinesis_firehose_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonKinesisFirehoseSettings',
-            'webhook_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWebhookSettings',
+                'ChronicleFeedDetailsSourceAmazonKinesisFirehoseSettings',
+            'webhook_settings': 'ChronicleFeedDetailsSourceWebhookSettings',
             'dummy_log_type_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsDummyLogTypeSettings',
+                'ChronicleFeedDetailsSourceDummyLogTypeSettings',
             'https_push_google_cloud_pubsub_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsHttpsPushGoogleCloudPubsubSettings',
+                'ChronicleFeedDetailsSourceHttpsPushGoogleCloudPubsubSettings',
             'https_push_amazon_kinesis_firehose_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsHttpsPushAmazonKinesisFirehoseSettings',
+                'ChronicleFeedDetailsSourceHttpsPushAmazonKinesisFirehoseSettings',
             'https_push_webhook_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsHttpsPushWebhookSettings',
+                'ChronicleFeedDetailsSourceHttpsPushWebhookSettings',
             'aws_ec2_hosts_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAwsEc2HostsSettings',
+                'ChronicleFeedDetailsSourceAwsEc2HostsSettings',
             'aws_ec2_instances_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAwsEc2InstancesSettings',
+                'ChronicleFeedDetailsSourceAwsEc2InstancesSettings',
             'aws_ec2_vpcs_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAwsEc2VpcsSettings',
-            'aws_iam_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAwsIamSettings',
+                'ChronicleFeedDetailsSourceAwsEc2VpcsSettings',
+            'aws_iam_settings': 'ChronicleFeedDetailsSourceAwsIamSettings',
             'netskope_alert_v2_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsNetskopeAlertV2Settings',
-            'gcs_v2_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGcsV2Settings',
+                'ChronicleFeedDetailsSourceNetskopeAlertV2Settings',
+            'gcs_v2_settings': 'ChronicleFeedDetailsSourceGcsV2Settings',
             'amazon_s3_v2_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonS3V2Settings',
+                'ChronicleFeedDetailsSourceAmazonS3V2Settings',
             'amazon_sqs_v2_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonSqsV2Settings',
+                'ChronicleFeedDetailsSourceAmazonSqsV2Settings',
             'azure_event_hub_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureEventHubSettings',
+                'ChronicleFeedDetailsSourceAzureEventHubSettings',
             'trellix_hx_hosts_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsTrellixHxHostsSettings',
+                'ChronicleFeedDetailsSourceTrellixHxHostsSettings',
             'azure_blob_store_v2_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureBlobStoreV2Settings',
+                'ChronicleFeedDetailsSourceAzureBlobStoreV2Settings',
             'trellix_hx_alerts_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsTrellixHxAlertsSettings',
+                'ChronicleFeedDetailsSourceTrellixHxAlertsSettings',
             'google_cloud_storage_event_driven_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGoogleCloudStorageEventDrivenSettings',
+                'ChronicleFeedDetailsSourceGoogleCloudStorageEventDrivenSettings',
             'crowdstrike_alerts_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsCrowdstrikeAlertsSettings',
+                'ChronicleFeedDetailsSourceCrowdstrikeAlertsSettings',
             'trellix_hx_bulk_acqs_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsTrellixHxBulkAcqsSettings',
+                'ChronicleFeedDetailsSourceTrellixHxBulkAcqsSettings',
             'mimecast_mail_v2_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMimecastMailV2Settings',
+                'ChronicleFeedDetailsSourceMimecastMailV2Settings',
             'threat_connect_ioc_v3_settings':
-                'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsThreatConnectIocV3Settings',
+                'ChronicleFeedDetailsSourceThreatConnectIocV3Settings',
           },
         ),
       ],
@@ -149599,1285 +149535,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonKinesisFirehoseSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonKinesisFirehoseSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'amazon_kinesis_firehose_settings',
-              dartName: 'amazonKinesisFirehoseSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAmazonKinesisFirehoseSettings',
-            ),
-          ],
-          shorthand: 'amazonKinesisFirehoseSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonS3Settings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonS3Settings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'amazon_s3_settings',
-              dartName: 'amazonS3Settings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAmazonS3Settings',
-            ),
-          ],
-          shorthand: 'amazonS3Settings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonS3V2Settings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonS3V2Settings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'amazon_s3_v2_settings',
-              dartName: 'amazonS3V2Settings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAmazonS3V2Settings',
-            ),
-          ],
-          shorthand: 'amazonS3V2Settings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonSqsSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonSqsSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'amazon_sqs_settings',
-              dartName: 'amazonSqsSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAmazonSqsSettings',
-            ),
-          ],
-          shorthand: 'amazonSqsSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonSqsV2Settings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAmazonSqsV2Settings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'amazon_sqs_v2_settings',
-              dartName: 'amazonSqsV2Settings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAmazonSqsV2Settings',
-            ),
-          ],
-          shorthand: 'amazonSqsV2Settings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAnomaliSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAnomaliSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'anomali_settings',
-              dartName: 'anomaliSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAnomaliSettings',
-            ),
-          ],
-          shorthand: 'anomaliSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAwsEc2HostsSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAwsEc2HostsSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'aws_ec2_hosts_settings',
-              dartName: 'awsEc2HostsSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAwsEc2HostsSettings',
-            ),
-          ],
-          shorthand: 'awsEc2HostsSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAwsEc2InstancesSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAwsEc2InstancesSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'aws_ec2_instances_settings',
-              dartName: 'awsEc2InstancesSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAwsEc2InstancesSettings',
-            ),
-          ],
-          shorthand: 'awsEc2InstancesSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAwsEc2VpcsSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAwsEc2VpcsSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'aws_ec2_vpcs_settings',
-              dartName: 'awsEc2VpcsSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAwsEc2VpcsSettings',
-            ),
-          ],
-          shorthand: 'awsEc2VpcsSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAwsIamSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAwsIamSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'aws_iam_settings',
-              dartName: 'awsIamSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAwsIamSettings',
-            ),
-          ],
-          shorthand: 'awsIamSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureAdAuditSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureAdAuditSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'azure_ad_audit_settings',
-              dartName: 'azureAdAuditSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAzureAdAuditSettings',
-            ),
-          ],
-          shorthand: 'azureAdAuditSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureAdContextSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureAdContextSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'azure_ad_context_settings',
-              dartName: 'azureAdContextSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAzureAdContextSettings',
-            ),
-          ],
-          shorthand: 'azureAdContextSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureAdSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureAdSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'azure_ad_settings',
-              dartName: 'azureAdSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAzureAdSettings',
-            ),
-          ],
-          shorthand: 'azureAdSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureBlobStoreSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureBlobStoreSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'azure_blob_store_settings',
-              dartName: 'azureBlobStoreSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAzureBlobStoreSettings',
-            ),
-          ],
-          shorthand: 'azureBlobStoreSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureBlobStoreV2Settings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureBlobStoreV2Settings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'azure_blob_store_v2_settings',
-              dartName: 'azureBlobStoreV2Settings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAzureBlobStoreV2Settings',
-            ),
-          ],
-          shorthand: 'azureBlobStoreV2Settings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureEventHubSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureEventHubSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'azure_event_hub_settings',
-              dartName: 'azureEventHubSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAzureEventHubSettings',
-            ),
-          ],
-          shorthand: 'azureEventHubSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureMdmIntuneSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsAzureMdmIntuneSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'azure_mdm_intune_settings',
-              dartName: 'azureMdmIntuneSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsAzureMdmIntuneSettings',
-            ),
-          ],
-          shorthand: 'azureMdmIntuneSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsCloudPassageSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsCloudPassageSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'cloud_passage_settings',
-              dartName: 'cloudPassageSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsCloudPassageSettings',
-            ),
-          ],
-          shorthand: 'cloudPassageSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsCortexXdrSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsCortexXdrSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'cortex_xdr_settings',
-              dartName: 'cortexXdrSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsCortexXdrSettings',
-            ),
-          ],
-          shorthand: 'cortexXdrSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsCrowdstrikeAlertsSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsCrowdstrikeAlertsSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'crowdstrike_alerts_settings',
-              dartName: 'crowdstrikeAlertsSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsCrowdstrikeAlertsSettings',
-            ),
-          ],
-          shorthand: 'crowdstrikeAlertsSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsCrowdstrikeDetectsSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsCrowdstrikeDetectsSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'crowdstrike_detects_settings',
-              dartName: 'crowdstrikeDetectsSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsCrowdstrikeDetectsSettings',
-            ),
-          ],
-          shorthand: 'crowdstrikeDetectsSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsDummyLogTypeSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsDummyLogTypeSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'dummy_log_type_settings',
-              dartName: 'dummyLogTypeSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsDummyLogTypeSettings',
-            ),
-          ],
-          shorthand: 'dummyLogTypeSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsDuoAuthSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsDuoAuthSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'duo_auth_settings',
-              dartName: 'duoAuthSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsDuoAuthSettings',
-            ),
-          ],
-          shorthand: 'duoAuthSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsDuoUserContextSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsDuoUserContextSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'duo_user_context_settings',
-              dartName: 'duoUserContextSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsDuoUserContextSettings',
-            ),
-          ],
-          shorthand: 'duoUserContextSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsFoxItStixSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsFoxItStixSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'fox_it_stix_settings',
-              dartName: 'foxItStixSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsFoxItStixSettings',
-            ),
-          ],
-          shorthand: 'foxItStixSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGcsSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGcsSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'gcs_settings',
-              dartName: 'gcsSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsGcsSettings',
-            ),
-          ],
-          shorthand: 'gcsSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGcsV2Settings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGcsV2Settings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'gcs_v2_settings',
-              dartName: 'gcsV2Settings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsGcsV2Settings',
-            ),
-          ],
-          shorthand: 'gcsV2Settings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGoogleCloudIdentityDeviceUsersSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGoogleCloudIdentityDeviceUsersSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'google_cloud_identity_device_users_settings',
-              dartName: 'googleCloudIdentityDeviceUsersSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettings',
-            ),
-          ],
-          shorthand: 'googleCloudIdentityDeviceUsersSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGoogleCloudIdentityDevicesSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGoogleCloudIdentityDevicesSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'google_cloud_identity_devices_settings',
-              dartName: 'googleCloudIdentityDevicesSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsGoogleCloudIdentityDevicesSettings',
-            ),
-          ],
-          shorthand: 'googleCloudIdentityDevicesSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGoogleCloudStorageEventDrivenSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsGoogleCloudStorageEventDrivenSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'google_cloud_storage_event_driven_settings',
-              dartName: 'googleCloudStorageEventDrivenSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'ChronicleFeedDetailsGoogleCloudStorageEventDrivenSettings',
-            ),
-          ],
-          shorthand: 'googleCloudStorageEventDrivenSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsHttpSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsHttpSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'http_settings',
-              dartName: 'httpSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsHttpSettings',
-            ),
-          ],
-          shorthand: 'httpSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsHttpsPushAmazonKinesisFirehoseSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsHttpsPushAmazonKinesisFirehoseSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'https_push_amazon_kinesis_firehose_settings',
-              dartName: 'httpsPushAmazonKinesisFirehoseSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'ChronicleFeedDetailsHttpsPushAmazonKinesisFirehoseSettings',
-            ),
-          ],
-          shorthand: 'httpsPushAmazonKinesisFirehoseSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsHttpsPushGoogleCloudPubsubSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsHttpsPushGoogleCloudPubsubSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'https_push_google_cloud_pubsub_settings',
-              dartName: 'httpsPushGoogleCloudPubsubSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsHttpsPushGoogleCloudPubsubSettings',
-            ),
-          ],
-          shorthand: 'httpsPushGoogleCloudPubsubSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsHttpsPushWebhookSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsHttpsPushWebhookSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'https_push_webhook_settings',
-              dartName: 'httpsPushWebhookSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsHttpsPushWebhookSettings',
-            ),
-          ],
-          shorthand: 'httpsPushWebhookSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsImpervaWafSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsImpervaWafSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'imperva_waf_settings',
-              dartName: 'impervaWafSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsImpervaWafSettings',
-            ),
-          ],
-          shorthand: 'impervaWafSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMandiantIocSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMandiantIocSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'mandiant_ioc_settings',
-              dartName: 'mandiantIocSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsMandiantIocSettings',
-            ),
-          ],
-          shorthand: 'mandiantIocSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMicrosoftGraphAlertSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMicrosoftGraphAlertSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'microsoft_graph_alert_settings',
-              dartName: 'microsoftGraphAlertSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsMicrosoftGraphAlertSettings',
-            ),
-          ],
-          shorthand: 'microsoftGraphAlertSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMicrosoftSecurityCenterAlertSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMicrosoftSecurityCenterAlertSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'microsoft_security_center_alert_settings',
-              dartName: 'microsoftSecurityCenterAlertSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettings',
-            ),
-          ],
-          shorthand: 'microsoftSecurityCenterAlertSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMimecastMailSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMimecastMailSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'mimecast_mail_settings',
-              dartName: 'mimecastMailSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsMimecastMailSettings',
-            ),
-          ],
-          shorthand: 'mimecastMailSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMimecastMailV2Settings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsMimecastMailV2Settings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'mimecast_mail_v2_settings',
-              dartName: 'mimecastMailV2Settings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsMimecastMailV2Settings',
-            ),
-          ],
-          shorthand: 'mimecastMailV2Settings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsNetskopeAlertSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsNetskopeAlertSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'netskope_alert_settings',
-              dartName: 'netskopeAlertSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsNetskopeAlertSettings',
-            ),
-          ],
-          shorthand: 'netskopeAlertSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsNetskopeAlertV2Settings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsNetskopeAlertV2Settings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'netskope_alert_v2_settings',
-              dartName: 'netskopeAlertV2Settings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsNetskopeAlertV2Settings',
-            ),
-          ],
-          shorthand: 'netskopeAlertV2Settings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsOffice365Settings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsOffice365Settings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'office365_settings',
-              dartName: 'office365Settings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsOffice365Settings',
-            ),
-          ],
-          shorthand: 'office365Settings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsOktaSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsOktaSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'okta_settings',
-              dartName: 'oktaSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsOktaSettings',
-            ),
-          ],
-          shorthand: 'oktaSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsOktaUserContextSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsOktaUserContextSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'okta_user_context_settings',
-              dartName: 'oktaUserContextSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsOktaUserContextSettings',
-            ),
-          ],
-          shorthand: 'oktaUserContextSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsPanIocSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsPanIocSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'pan_ioc_settings',
-              dartName: 'panIocSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsPanIocSettings',
-            ),
-          ],
-          shorthand: 'panIocSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsPanPrismaCloudSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsPanPrismaCloudSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'pan_prisma_cloud_settings',
-              dartName: 'panPrismaCloudSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsPanPrismaCloudSettings',
-            ),
-          ],
-          shorthand: 'panPrismaCloudSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsProofpointMailSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsProofpointMailSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'proofpoint_mail_settings',
-              dartName: 'proofpointMailSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsProofpointMailSettings',
-            ),
-          ],
-          shorthand: 'proofpointMailSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsProofpointOnDemandSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsProofpointOnDemandSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'proofpoint_on_demand_settings',
-              dartName: 'proofpointOnDemandSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsProofpointOnDemandSettings',
-            ),
-          ],
-          shorthand: 'proofpointOnDemandSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsPubsubSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsPubsubSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'pubsub_settings',
-              dartName: 'pubsubSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsPubsubSettings',
-            ),
-          ],
-          shorthand: 'pubsubSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsQualysScanSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsQualysScanSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'qualys_scan_settings',
-              dartName: 'qualysScanSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsQualysScanSettings',
-            ),
-          ],
-          shorthand: 'qualysScanSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsQualysVmSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsQualysVmSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'qualys_vm_settings',
-              dartName: 'qualysVmSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsQualysVmSettings',
-            ),
-          ],
-          shorthand: 'qualysVmSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsRapid7InsightSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsRapid7InsightSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'rapid7_insight_settings',
-              dartName: 'rapid7InsightSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsRapid7InsightSettings',
-            ),
-          ],
-          shorthand: 'rapid7InsightSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsRecordedFutureIocSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsRecordedFutureIocSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'recorded_future_ioc_settings',
-              dartName: 'recordedFutureIocSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsRecordedFutureIocSettings',
-            ),
-          ],
-          shorthand: 'recordedFutureIocSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsRhIsacIocSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsRhIsacIocSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'rh_isac_ioc_settings',
-              dartName: 'rhIsacIocSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsRhIsacIocSettings',
-            ),
-          ],
-          shorthand: 'rhIsacIocSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsSalesforceSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsSalesforceSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'salesforce_settings',
-              dartName: 'salesforceSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsSalesforceSettings',
-            ),
-          ],
-          shorthand: 'salesforceSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsSentineloneAlertSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsSentineloneAlertSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'sentinelone_alert_settings',
-              dartName: 'sentineloneAlertSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsSentineloneAlertSettings',
-            ),
-          ],
-          shorthand: 'sentineloneAlertSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsServiceNowCmdbSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsServiceNowCmdbSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'service_now_cmdb_settings',
-              dartName: 'serviceNowCmdbSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsServiceNowCmdbSettings',
-            ),
-          ],
-          shorthand: 'serviceNowCmdbSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsSftpSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsSftpSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'sftp_settings',
-              dartName: 'sftpSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsSftpSettings',
-            ),
-          ],
-          shorthand: 'sftpSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsSymantecEventExportSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsSymantecEventExportSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'symantec_event_export_settings',
-              dartName: 'symantecEventExportSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsSymantecEventExportSettings',
-            ),
-          ],
-          shorthand: 'symantecEventExportSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsThinkstCanarySettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsThinkstCanarySettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'thinkst_canary_settings',
-              dartName: 'thinkstCanarySettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsThinkstCanarySettings',
-            ),
-          ],
-          shorthand: 'thinkstCanarySettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsThreatConnectIocSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsThreatConnectIocSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'threat_connect_ioc_settings',
-              dartName: 'threatConnectIocSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsThreatConnectIocSettings',
-            ),
-          ],
-          shorthand: 'threatConnectIocSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsThreatConnectIocV3Settings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsThreatConnectIocV3Settings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'threat_connect_ioc_v3_settings',
-              dartName: 'threatConnectIocV3Settings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsThreatConnectIocV3Settings',
-            ),
-          ],
-          shorthand: 'threatConnectIocV3Settings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsTrellixHxAlertsSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsTrellixHxAlertsSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'trellix_hx_alerts_settings',
-              dartName: 'trellixHxAlertsSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsTrellixHxAlertsSettings',
-            ),
-          ],
-          shorthand: 'trellixHxAlertsSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsTrellixHxBulkAcqsSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsTrellixHxBulkAcqsSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'trellix_hx_bulk_acqs_settings',
-              dartName: 'trellixHxBulkAcqsSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsTrellixHxBulkAcqsSettings',
-            ),
-          ],
-          shorthand: 'trellixHxBulkAcqsSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsTrellixHxHostsSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsTrellixHxHostsSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'trellix_hx_hosts_settings',
-              dartName: 'trellixHxHostsSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsTrellixHxHostsSettings',
-            ),
-          ],
-          shorthand: 'trellixHxHostsSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWebhookSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWebhookSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'webhook_settings',
-              dartName: 'webhookSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsWebhookSettings',
-            ),
-          ],
-          shorthand: 'webhookSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkdaySettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkdaySettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'workday_settings',
-              dartName: 'workdaySettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsWorkdaySettings',
-            ),
-          ],
-          shorthand: 'workdaySettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceActivitySettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceActivitySettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'workspace_activity_settings',
-              dartName: 'workspaceActivitySettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsWorkspaceActivitySettings',
-            ),
-          ],
-          shorthand: 'workspaceActivitySettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceAlertsSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceAlertsSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'workspace_alerts_settings',
-              dartName: 'workspaceAlertsSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsWorkspaceAlertsSettings',
-            ),
-          ],
-          shorthand: 'workspaceAlertsSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceChromeOsSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceChromeOsSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'workspace_chrome_os_settings',
-              dartName: 'workspaceChromeOsSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsWorkspaceChromeOsSettings',
-            ),
-          ],
-          shorthand: 'workspaceChromeOsSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceGroupsSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceGroupsSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'workspace_groups_settings',
-              dartName: 'workspaceGroupsSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsWorkspaceGroupsSettings',
-            ),
-          ],
-          shorthand: 'workspaceGroupsSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceMobileSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceMobileSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'workspace_mobile_settings',
-              dartName: 'workspaceMobileSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsWorkspaceMobileSettings',
-            ),
-          ],
-          shorthand: 'workspaceMobileSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspacePrivilegesSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspacePrivilegesSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'workspace_privileges_settings',
-              dartName: 'workspacePrivilegesSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsWorkspacePrivilegesSettings',
-            ),
-          ],
-          shorthand: 'workspacePrivilegesSettings',
-        ),
-    'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceUsersSettings':
-        MigrateHelper(
-          className:
-              'ChronicleFeedDetailsAnomaliSettingsOrAzureAdContextSettingsOrCloudPassageSettingsOrCortexXdrSettingsOrDuoAuthSettingsOrDuoUserContextSettingsOrMicrosoftGraphAlertSettingsOrMicrosoftSecurityCenterAlertSettingsOrMimecastMailSettingsOrOffice365SettingsOrProofpointMailSettingsOrRecordedFutureIocSettingsOrWorkdaySettingsOrPanIocSettingsOrOktaSettingsOrOktaUserContextSettingsOrFoxItStixSettingsOrThreatConnectIocSettingsOrServiceNowCmdbSettingsOrImpervaWafSettingsOrThinkstCanarySettingsOrRhIsacIocSettingsOrRapid7InsightSettingsOrSalesforceSettingsOrNetskopeAlertSettingsOrAzureMdmIntuneSettingsOrAzureAdSettingsOrProofpointOnDemandSettingsOrWorkspaceUsersSettingsOrWorkspaceActivitySettingsOrWorkspaceAlertsSettingsOrWorkspacePrivilegesSettingsOrWorkspaceMobileSettingsOrWorkspaceChromeOsSettingsOrWorkspaceGroupsSettingsOrAzureAdAuditSettingsOrSymantecEventExportSettingsOrQualysVmSettingsOrPanPrismaCloudSettingsOrGcsSettingsOrHttpSettingsOrSftpSettingsOrAmazonS3SettingsOrAzureBlobStoreSettingsOrAmazonSqsSettingsOrGoogleCloudIdentityDevicesSettingsOrGoogleCloudIdentityDeviceUsersSettingsOrCrowdstrikeDetectsSettingsOrMandiantIocSettingsOrSentineloneAlertSettingsOrQualysScanSettingsOrPubsubSettingsOrAmazonKinesisFirehoseSettingsOrWebhookSettingsOrDummyLogTypeSettingsOrHttpsPushGoogleCloudPubsubSettingsOrHttpsPushAmazonKinesisFirehoseSettingsOrHttpsPushWebhookSettingsOrAwsEc2HostsSettingsOrAwsEc2InstancesSettingsOrAwsEc2VpcsSettingsOrAwsIamSettingsOrNetskopeAlertV2SettingsOrGcsV2SettingsOrAmazonS3V2SettingsOrAmazonSqsV2SettingsOrAzureEventHubSettingsOrTrellixHxHostsSettingsOrAzureBlobStoreV2SettingsOrTrellixHxAlertsSettingsOrGoogleCloudStorageEventDrivenSettingsOrCrowdstrikeAlertsSettingsOrTrellixHxBulkAcqsSettingsOrMimecastMailV2SettingsOrThreatConnectIocV3SettingsWorkspaceUsersSettings',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'workspace_users_settings',
-              dartName: 'workspaceUsersSettings',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleFeedDetailsWorkspaceUsersSettings',
-            ),
-          ],
-          shorthand: 'workspaceUsersSettings',
-        ),
     'ChronicleFeedDetailsAwsEc2HostsSettings': MigrateHelper(
       className: 'ChronicleFeedDetailsAwsEc2HostsSettings',
       slots: <MigrateSlot>[
@@ -153574,6 +152231,1147 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ChronicleFeedDetailsSourceAmazonKinesisFirehoseSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAmazonKinesisFirehoseSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'amazon_kinesis_firehose_settings',
+          dartName: 'amazonKinesisFirehoseSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAmazonKinesisFirehoseSettings',
+        ),
+      ],
+      shorthand: 'amazonKinesisFirehoseSettings',
+    ),
+    'ChronicleFeedDetailsSourceAmazonS3Settings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAmazonS3Settings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'amazon_s3_settings',
+          dartName: 'amazonS3Settings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAmazonS3Settings',
+        ),
+      ],
+      shorthand: 'amazonS3Settings',
+    ),
+    'ChronicleFeedDetailsSourceAmazonS3V2Settings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAmazonS3V2Settings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'amazon_s3_v2_settings',
+          dartName: 'amazonS3V2Settings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAmazonS3V2Settings',
+        ),
+      ],
+      shorthand: 'amazonS3V2Settings',
+    ),
+    'ChronicleFeedDetailsSourceAmazonSqsSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAmazonSqsSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'amazon_sqs_settings',
+          dartName: 'amazonSqsSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAmazonSqsSettings',
+        ),
+      ],
+      shorthand: 'amazonSqsSettings',
+    ),
+    'ChronicleFeedDetailsSourceAmazonSqsV2Settings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAmazonSqsV2Settings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'amazon_sqs_v2_settings',
+          dartName: 'amazonSqsV2Settings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAmazonSqsV2Settings',
+        ),
+      ],
+      shorthand: 'amazonSqsV2Settings',
+    ),
+    'ChronicleFeedDetailsSourceAnomaliSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAnomaliSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'anomali_settings',
+          dartName: 'anomaliSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAnomaliSettings',
+        ),
+      ],
+      shorthand: 'anomaliSettings',
+    ),
+    'ChronicleFeedDetailsSourceAwsEc2HostsSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAwsEc2HostsSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'aws_ec2_hosts_settings',
+          dartName: 'awsEc2HostsSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAwsEc2HostsSettings',
+        ),
+      ],
+      shorthand: 'awsEc2HostsSettings',
+    ),
+    'ChronicleFeedDetailsSourceAwsEc2InstancesSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAwsEc2InstancesSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'aws_ec2_instances_settings',
+          dartName: 'awsEc2InstancesSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAwsEc2InstancesSettings',
+        ),
+      ],
+      shorthand: 'awsEc2InstancesSettings',
+    ),
+    'ChronicleFeedDetailsSourceAwsEc2VpcsSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAwsEc2VpcsSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'aws_ec2_vpcs_settings',
+          dartName: 'awsEc2VpcsSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAwsEc2VpcsSettings',
+        ),
+      ],
+      shorthand: 'awsEc2VpcsSettings',
+    ),
+    'ChronicleFeedDetailsSourceAwsIamSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAwsIamSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'aws_iam_settings',
+          dartName: 'awsIamSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAwsIamSettings',
+        ),
+      ],
+      shorthand: 'awsIamSettings',
+    ),
+    'ChronicleFeedDetailsSourceAzureAdAuditSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAzureAdAuditSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'azure_ad_audit_settings',
+          dartName: 'azureAdAuditSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAzureAdAuditSettings',
+        ),
+      ],
+      shorthand: 'azureAdAuditSettings',
+    ),
+    'ChronicleFeedDetailsSourceAzureAdContextSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAzureAdContextSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'azure_ad_context_settings',
+          dartName: 'azureAdContextSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAzureAdContextSettings',
+        ),
+      ],
+      shorthand: 'azureAdContextSettings',
+    ),
+    'ChronicleFeedDetailsSourceAzureAdSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAzureAdSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'azure_ad_settings',
+          dartName: 'azureAdSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAzureAdSettings',
+        ),
+      ],
+      shorthand: 'azureAdSettings',
+    ),
+    'ChronicleFeedDetailsSourceAzureBlobStoreSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAzureBlobStoreSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'azure_blob_store_settings',
+          dartName: 'azureBlobStoreSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAzureBlobStoreSettings',
+        ),
+      ],
+      shorthand: 'azureBlobStoreSettings',
+    ),
+    'ChronicleFeedDetailsSourceAzureBlobStoreV2Settings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAzureBlobStoreV2Settings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'azure_blob_store_v2_settings',
+          dartName: 'azureBlobStoreV2Settings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAzureBlobStoreV2Settings',
+        ),
+      ],
+      shorthand: 'azureBlobStoreV2Settings',
+    ),
+    'ChronicleFeedDetailsSourceAzureEventHubSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAzureEventHubSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'azure_event_hub_settings',
+          dartName: 'azureEventHubSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAzureEventHubSettings',
+        ),
+      ],
+      shorthand: 'azureEventHubSettings',
+    ),
+    'ChronicleFeedDetailsSourceAzureMdmIntuneSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceAzureMdmIntuneSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'azure_mdm_intune_settings',
+          dartName: 'azureMdmIntuneSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsAzureMdmIntuneSettings',
+        ),
+      ],
+      shorthand: 'azureMdmIntuneSettings',
+    ),
+    'ChronicleFeedDetailsSourceCloudPassageSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceCloudPassageSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cloud_passage_settings',
+          dartName: 'cloudPassageSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsCloudPassageSettings',
+        ),
+      ],
+      shorthand: 'cloudPassageSettings',
+    ),
+    'ChronicleFeedDetailsSourceCortexXdrSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceCortexXdrSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cortex_xdr_settings',
+          dartName: 'cortexXdrSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsCortexXdrSettings',
+        ),
+      ],
+      shorthand: 'cortexXdrSettings',
+    ),
+    'ChronicleFeedDetailsSourceCrowdstrikeAlertsSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceCrowdstrikeAlertsSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'crowdstrike_alerts_settings',
+          dartName: 'crowdstrikeAlertsSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsCrowdstrikeAlertsSettings',
+        ),
+      ],
+      shorthand: 'crowdstrikeAlertsSettings',
+    ),
+    'ChronicleFeedDetailsSourceCrowdstrikeDetectsSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceCrowdstrikeDetectsSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'crowdstrike_detects_settings',
+          dartName: 'crowdstrikeDetectsSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsCrowdstrikeDetectsSettings',
+        ),
+      ],
+      shorthand: 'crowdstrikeDetectsSettings',
+    ),
+    'ChronicleFeedDetailsSourceDummyLogTypeSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceDummyLogTypeSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dummy_log_type_settings',
+          dartName: 'dummyLogTypeSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsDummyLogTypeSettings',
+        ),
+      ],
+      shorthand: 'dummyLogTypeSettings',
+    ),
+    'ChronicleFeedDetailsSourceDuoAuthSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceDuoAuthSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'duo_auth_settings',
+          dartName: 'duoAuthSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsDuoAuthSettings',
+        ),
+      ],
+      shorthand: 'duoAuthSettings',
+    ),
+    'ChronicleFeedDetailsSourceDuoUserContextSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceDuoUserContextSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'duo_user_context_settings',
+          dartName: 'duoUserContextSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsDuoUserContextSettings',
+        ),
+      ],
+      shorthand: 'duoUserContextSettings',
+    ),
+    'ChronicleFeedDetailsSourceFoxItStixSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceFoxItStixSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'fox_it_stix_settings',
+          dartName: 'foxItStixSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsFoxItStixSettings',
+        ),
+      ],
+      shorthand: 'foxItStixSettings',
+    ),
+    'ChronicleFeedDetailsSourceGcsSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceGcsSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'gcs_settings',
+          dartName: 'gcsSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsGcsSettings',
+        ),
+      ],
+      shorthand: 'gcsSettings',
+    ),
+    'ChronicleFeedDetailsSourceGcsV2Settings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceGcsV2Settings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'gcs_v2_settings',
+          dartName: 'gcsV2Settings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsGcsV2Settings',
+        ),
+      ],
+      shorthand: 'gcsV2Settings',
+    ),
+    'ChronicleFeedDetailsSourceGoogleCloudIdentityDeviceUsersSettings':
+        MigrateHelper(
+          className:
+              'ChronicleFeedDetailsSourceGoogleCloudIdentityDeviceUsersSettings',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'google_cloud_identity_device_users_settings',
+              dartName: 'googleCloudIdentityDeviceUsersSettings',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettings',
+            ),
+          ],
+          shorthand: 'googleCloudIdentityDeviceUsersSettings',
+        ),
+    'ChronicleFeedDetailsSourceGoogleCloudIdentityDevicesSettings':
+        MigrateHelper(
+          className:
+              'ChronicleFeedDetailsSourceGoogleCloudIdentityDevicesSettings',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'google_cloud_identity_devices_settings',
+              dartName: 'googleCloudIdentityDevicesSettings',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper: 'ChronicleFeedDetailsGoogleCloudIdentityDevicesSettings',
+            ),
+          ],
+          shorthand: 'googleCloudIdentityDevicesSettings',
+        ),
+    'ChronicleFeedDetailsSourceGoogleCloudStorageEventDrivenSettings':
+        MigrateHelper(
+          className:
+              'ChronicleFeedDetailsSourceGoogleCloudStorageEventDrivenSettings',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'google_cloud_storage_event_driven_settings',
+              dartName: 'googleCloudStorageEventDrivenSettings',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'ChronicleFeedDetailsGoogleCloudStorageEventDrivenSettings',
+            ),
+          ],
+          shorthand: 'googleCloudStorageEventDrivenSettings',
+        ),
+    'ChronicleFeedDetailsSourceHttpSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceHttpSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'http_settings',
+          dartName: 'httpSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsHttpSettings',
+        ),
+      ],
+      shorthand: 'httpSettings',
+    ),
+    'ChronicleFeedDetailsSourceHttpsPushAmazonKinesisFirehoseSettings':
+        MigrateHelper(
+          className:
+              'ChronicleFeedDetailsSourceHttpsPushAmazonKinesisFirehoseSettings',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'https_push_amazon_kinesis_firehose_settings',
+              dartName: 'httpsPushAmazonKinesisFirehoseSettings',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'ChronicleFeedDetailsHttpsPushAmazonKinesisFirehoseSettings',
+            ),
+          ],
+          shorthand: 'httpsPushAmazonKinesisFirehoseSettings',
+        ),
+    'ChronicleFeedDetailsSourceHttpsPushGoogleCloudPubsubSettings':
+        MigrateHelper(
+          className:
+              'ChronicleFeedDetailsSourceHttpsPushGoogleCloudPubsubSettings',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'https_push_google_cloud_pubsub_settings',
+              dartName: 'httpsPushGoogleCloudPubsubSettings',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper: 'ChronicleFeedDetailsHttpsPushGoogleCloudPubsubSettings',
+            ),
+          ],
+          shorthand: 'httpsPushGoogleCloudPubsubSettings',
+        ),
+    'ChronicleFeedDetailsSourceHttpsPushWebhookSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceHttpsPushWebhookSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'https_push_webhook_settings',
+          dartName: 'httpsPushWebhookSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsHttpsPushWebhookSettings',
+        ),
+      ],
+      shorthand: 'httpsPushWebhookSettings',
+    ),
+    'ChronicleFeedDetailsSourceImpervaWafSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceImpervaWafSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'imperva_waf_settings',
+          dartName: 'impervaWafSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsImpervaWafSettings',
+        ),
+      ],
+      shorthand: 'impervaWafSettings',
+    ),
+    'ChronicleFeedDetailsSourceMandiantIocSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceMandiantIocSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mandiant_ioc_settings',
+          dartName: 'mandiantIocSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsMandiantIocSettings',
+        ),
+      ],
+      shorthand: 'mandiantIocSettings',
+    ),
+    'ChronicleFeedDetailsSourceMicrosoftGraphAlertSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceMicrosoftGraphAlertSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'microsoft_graph_alert_settings',
+          dartName: 'microsoftGraphAlertSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsMicrosoftGraphAlertSettings',
+        ),
+      ],
+      shorthand: 'microsoftGraphAlertSettings',
+    ),
+    'ChronicleFeedDetailsSourceMicrosoftSecurityCenterAlertSettings':
+        MigrateHelper(
+          className:
+              'ChronicleFeedDetailsSourceMicrosoftSecurityCenterAlertSettings',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'microsoft_security_center_alert_settings',
+              dartName: 'microsoftSecurityCenterAlertSettings',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettings',
+            ),
+          ],
+          shorthand: 'microsoftSecurityCenterAlertSettings',
+        ),
+    'ChronicleFeedDetailsSourceMimecastMailSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceMimecastMailSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mimecast_mail_settings',
+          dartName: 'mimecastMailSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsMimecastMailSettings',
+        ),
+      ],
+      shorthand: 'mimecastMailSettings',
+    ),
+    'ChronicleFeedDetailsSourceMimecastMailV2Settings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceMimecastMailV2Settings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mimecast_mail_v2_settings',
+          dartName: 'mimecastMailV2Settings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsMimecastMailV2Settings',
+        ),
+      ],
+      shorthand: 'mimecastMailV2Settings',
+    ),
+    'ChronicleFeedDetailsSourceNetskopeAlertSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceNetskopeAlertSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'netskope_alert_settings',
+          dartName: 'netskopeAlertSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsNetskopeAlertSettings',
+        ),
+      ],
+      shorthand: 'netskopeAlertSettings',
+    ),
+    'ChronicleFeedDetailsSourceNetskopeAlertV2Settings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceNetskopeAlertV2Settings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'netskope_alert_v2_settings',
+          dartName: 'netskopeAlertV2Settings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsNetskopeAlertV2Settings',
+        ),
+      ],
+      shorthand: 'netskopeAlertV2Settings',
+    ),
+    'ChronicleFeedDetailsSourceOffice365Settings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceOffice365Settings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'office365_settings',
+          dartName: 'office365Settings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsOffice365Settings',
+        ),
+      ],
+      shorthand: 'office365Settings',
+    ),
+    'ChronicleFeedDetailsSourceOktaSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceOktaSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'okta_settings',
+          dartName: 'oktaSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsOktaSettings',
+        ),
+      ],
+      shorthand: 'oktaSettings',
+    ),
+    'ChronicleFeedDetailsSourceOktaUserContextSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceOktaUserContextSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'okta_user_context_settings',
+          dartName: 'oktaUserContextSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsOktaUserContextSettings',
+        ),
+      ],
+      shorthand: 'oktaUserContextSettings',
+    ),
+    'ChronicleFeedDetailsSourcePanIocSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourcePanIocSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'pan_ioc_settings',
+          dartName: 'panIocSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsPanIocSettings',
+        ),
+      ],
+      shorthand: 'panIocSettings',
+    ),
+    'ChronicleFeedDetailsSourcePanPrismaCloudSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourcePanPrismaCloudSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'pan_prisma_cloud_settings',
+          dartName: 'panPrismaCloudSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsPanPrismaCloudSettings',
+        ),
+      ],
+      shorthand: 'panPrismaCloudSettings',
+    ),
+    'ChronicleFeedDetailsSourceProofpointMailSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceProofpointMailSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'proofpoint_mail_settings',
+          dartName: 'proofpointMailSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsProofpointMailSettings',
+        ),
+      ],
+      shorthand: 'proofpointMailSettings',
+    ),
+    'ChronicleFeedDetailsSourceProofpointOnDemandSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceProofpointOnDemandSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'proofpoint_on_demand_settings',
+          dartName: 'proofpointOnDemandSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsProofpointOnDemandSettings',
+        ),
+      ],
+      shorthand: 'proofpointOnDemandSettings',
+    ),
+    'ChronicleFeedDetailsSourcePubsubSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourcePubsubSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'pubsub_settings',
+          dartName: 'pubsubSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsPubsubSettings',
+        ),
+      ],
+      shorthand: 'pubsubSettings',
+    ),
+    'ChronicleFeedDetailsSourceQualysScanSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceQualysScanSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'qualys_scan_settings',
+          dartName: 'qualysScanSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsQualysScanSettings',
+        ),
+      ],
+      shorthand: 'qualysScanSettings',
+    ),
+    'ChronicleFeedDetailsSourceQualysVmSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceQualysVmSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'qualys_vm_settings',
+          dartName: 'qualysVmSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsQualysVmSettings',
+        ),
+      ],
+      shorthand: 'qualysVmSettings',
+    ),
+    'ChronicleFeedDetailsSourceRapid7InsightSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceRapid7InsightSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'rapid7_insight_settings',
+          dartName: 'rapid7InsightSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsRapid7InsightSettings',
+        ),
+      ],
+      shorthand: 'rapid7InsightSettings',
+    ),
+    'ChronicleFeedDetailsSourceRecordedFutureIocSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceRecordedFutureIocSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'recorded_future_ioc_settings',
+          dartName: 'recordedFutureIocSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsRecordedFutureIocSettings',
+        ),
+      ],
+      shorthand: 'recordedFutureIocSettings',
+    ),
+    'ChronicleFeedDetailsSourceRhIsacIocSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceRhIsacIocSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'rh_isac_ioc_settings',
+          dartName: 'rhIsacIocSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsRhIsacIocSettings',
+        ),
+      ],
+      shorthand: 'rhIsacIocSettings',
+    ),
+    'ChronicleFeedDetailsSourceSalesforceSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceSalesforceSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'salesforce_settings',
+          dartName: 'salesforceSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsSalesforceSettings',
+        ),
+      ],
+      shorthand: 'salesforceSettings',
+    ),
+    'ChronicleFeedDetailsSourceSentineloneAlertSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceSentineloneAlertSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'sentinelone_alert_settings',
+          dartName: 'sentineloneAlertSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsSentineloneAlertSettings',
+        ),
+      ],
+      shorthand: 'sentineloneAlertSettings',
+    ),
+    'ChronicleFeedDetailsSourceServiceNowCmdbSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceServiceNowCmdbSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'service_now_cmdb_settings',
+          dartName: 'serviceNowCmdbSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsServiceNowCmdbSettings',
+        ),
+      ],
+      shorthand: 'serviceNowCmdbSettings',
+    ),
+    'ChronicleFeedDetailsSourceSftpSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceSftpSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'sftp_settings',
+          dartName: 'sftpSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsSftpSettings',
+        ),
+      ],
+      shorthand: 'sftpSettings',
+    ),
+    'ChronicleFeedDetailsSourceSymantecEventExportSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceSymantecEventExportSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'symantec_event_export_settings',
+          dartName: 'symantecEventExportSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsSymantecEventExportSettings',
+        ),
+      ],
+      shorthand: 'symantecEventExportSettings',
+    ),
+    'ChronicleFeedDetailsSourceThinkstCanarySettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceThinkstCanarySettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'thinkst_canary_settings',
+          dartName: 'thinkstCanarySettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsThinkstCanarySettings',
+        ),
+      ],
+      shorthand: 'thinkstCanarySettings',
+    ),
+    'ChronicleFeedDetailsSourceThreatConnectIocSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceThreatConnectIocSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'threat_connect_ioc_settings',
+          dartName: 'threatConnectIocSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsThreatConnectIocSettings',
+        ),
+      ],
+      shorthand: 'threatConnectIocSettings',
+    ),
+    'ChronicleFeedDetailsSourceThreatConnectIocV3Settings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceThreatConnectIocV3Settings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'threat_connect_ioc_v3_settings',
+          dartName: 'threatConnectIocV3Settings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsThreatConnectIocV3Settings',
+        ),
+      ],
+      shorthand: 'threatConnectIocV3Settings',
+    ),
+    'ChronicleFeedDetailsSourceTrellixHxAlertsSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceTrellixHxAlertsSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'trellix_hx_alerts_settings',
+          dartName: 'trellixHxAlertsSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsTrellixHxAlertsSettings',
+        ),
+      ],
+      shorthand: 'trellixHxAlertsSettings',
+    ),
+    'ChronicleFeedDetailsSourceTrellixHxBulkAcqsSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceTrellixHxBulkAcqsSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'trellix_hx_bulk_acqs_settings',
+          dartName: 'trellixHxBulkAcqsSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsTrellixHxBulkAcqsSettings',
+        ),
+      ],
+      shorthand: 'trellixHxBulkAcqsSettings',
+    ),
+    'ChronicleFeedDetailsSourceTrellixHxHostsSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceTrellixHxHostsSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'trellix_hx_hosts_settings',
+          dartName: 'trellixHxHostsSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsTrellixHxHostsSettings',
+        ),
+      ],
+      shorthand: 'trellixHxHostsSettings',
+    ),
+    'ChronicleFeedDetailsSourceWebhookSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceWebhookSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'webhook_settings',
+          dartName: 'webhookSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsWebhookSettings',
+        ),
+      ],
+      shorthand: 'webhookSettings',
+    ),
+    'ChronicleFeedDetailsSourceWorkdaySettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceWorkdaySettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'workday_settings',
+          dartName: 'workdaySettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsWorkdaySettings',
+        ),
+      ],
+      shorthand: 'workdaySettings',
+    ),
+    'ChronicleFeedDetailsSourceWorkspaceActivitySettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceWorkspaceActivitySettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'workspace_activity_settings',
+          dartName: 'workspaceActivitySettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsWorkspaceActivitySettings',
+        ),
+      ],
+      shorthand: 'workspaceActivitySettings',
+    ),
+    'ChronicleFeedDetailsSourceWorkspaceAlertsSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceWorkspaceAlertsSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'workspace_alerts_settings',
+          dartName: 'workspaceAlertsSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsWorkspaceAlertsSettings',
+        ),
+      ],
+      shorthand: 'workspaceAlertsSettings',
+    ),
+    'ChronicleFeedDetailsSourceWorkspaceChromeOsSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceWorkspaceChromeOsSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'workspace_chrome_os_settings',
+          dartName: 'workspaceChromeOsSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsWorkspaceChromeOsSettings',
+        ),
+      ],
+      shorthand: 'workspaceChromeOsSettings',
+    ),
+    'ChronicleFeedDetailsSourceWorkspaceGroupsSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceWorkspaceGroupsSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'workspace_groups_settings',
+          dartName: 'workspaceGroupsSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsWorkspaceGroupsSettings',
+        ),
+      ],
+      shorthand: 'workspaceGroupsSettings',
+    ),
+    'ChronicleFeedDetailsSourceWorkspaceMobileSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceWorkspaceMobileSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'workspace_mobile_settings',
+          dartName: 'workspaceMobileSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsWorkspaceMobileSettings',
+        ),
+      ],
+      shorthand: 'workspaceMobileSettings',
+    ),
+    'ChronicleFeedDetailsSourceWorkspacePrivilegesSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceWorkspacePrivilegesSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'workspace_privileges_settings',
+          dartName: 'workspacePrivilegesSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsWorkspacePrivilegesSettings',
+        ),
+      ],
+      shorthand: 'workspacePrivilegesSettings',
+    ),
+    'ChronicleFeedDetailsSourceWorkspaceUsersSettings': MigrateHelper(
+      className: 'ChronicleFeedDetailsSourceWorkspaceUsersSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'workspace_users_settings',
+          dartName: 'workspaceUsersSettings',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleFeedDetailsWorkspaceUsersSettings',
+        ),
+      ],
+      shorthand: 'workspaceUsersSettings',
+    ),
     'ChronicleFeedDetailsSymantecEventExportSettings': MigrateHelper(
       className: 'ChronicleFeedDetailsSymantecEventExportSettings',
       slots: <MigrateSlot>[
@@ -154938,56 +154736,50 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingCbnSnippet':
-        MigrateHelper(
-          className:
-              'ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingCbnSnippet',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'cbn_snippet',
-              dartName: 'cbnSnippet',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'cbnSnippet',
+    'ChronicleParserExtensionDefinitionCbnSnippet': MigrateHelper(
+      className: 'ChronicleParserExtensionDefinitionCbnSnippet',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cbn_snippet',
+          dartName: 'cbnSnippet',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingDynamicParsing':
-        MigrateHelper(
-          className:
-              'ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingDynamicParsing',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'dynamic_parsing',
-              dartName: 'dynamicParsing',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleParserExtensionDynamicParsing',
-            ),
-          ],
-          shorthand: 'dynamicParsing',
+      ],
+      shorthand: 'cbnSnippet',
+    ),
+    'ChronicleParserExtensionDefinitionDynamicParsing': MigrateHelper(
+      className: 'ChronicleParserExtensionDefinitionDynamicParsing',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dynamic_parsing',
+          dartName: 'dynamicParsing',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleParserExtensionDynamicParsing',
         ),
-    'ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingFieldExtractors':
-        MigrateHelper(
-          className:
-              'ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingFieldExtractors',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'field_extractors',
-              dartName: 'fieldExtractors',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ChronicleParserExtensionFieldExtractors',
-            ),
-          ],
-          shorthand: 'fieldExtractors',
+      ],
+      shorthand: 'dynamicParsing',
+    ),
+    'ChronicleParserExtensionDefinitionFieldExtractors': MigrateHelper(
+      className: 'ChronicleParserExtensionDefinitionFieldExtractors',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'field_extractors',
+          dartName: 'fieldExtractors',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ChronicleParserExtensionFieldExtractors',
         ),
+      ],
+      shorthand: 'fieldExtractors',
+    ),
     'ChronicleParserExtensionDynamicParsing': MigrateHelper(
       className: 'ChronicleParserExtensionDynamicParsing',
       slots: <MigrateSlot>[
@@ -156117,20 +155909,55 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'httpGetOrGrpc',
+          dartName: 'check',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'http_get':
-                'CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcHttpGet',
+                'CloudRunServiceTemplateSpecContainersLivenessProbeCheckHttpGet',
             'grpc':
-                'CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcGrpc',
+                'CloudRunServiceTemplateSpecContainersLivenessProbeCheckGrpc',
           },
         ),
       ],
     ),
+    'CloudRunServiceTemplateSpecContainersLivenessProbeCheckGrpc':
+        MigrateHelper(
+          className:
+              'CloudRunServiceTemplateSpecContainersLivenessProbeCheckGrpc',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'grpc',
+              dartName: 'grpc',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper: 'CloudRunServiceTemplateSpecContainersLivenessProbeGrpc',
+            ),
+          ],
+          shorthand: 'grpc',
+        ),
+    'CloudRunServiceTemplateSpecContainersLivenessProbeCheckHttpGet':
+        MigrateHelper(
+          className:
+              'CloudRunServiceTemplateSpecContainersLivenessProbeCheckHttpGet',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'http_get',
+              dartName: 'httpGet',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet',
+            ),
+          ],
+          shorthand: 'httpGet',
+        ),
     'CloudRunServiceTemplateSpecContainersLivenessProbeGrpc': MigrateHelper(
       className: 'CloudRunServiceTemplateSpecContainersLivenessProbeGrpc',
       slots: <MigrateSlot>[
@@ -156200,41 +156027,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcGrpc':
-        MigrateHelper(
-          className:
-              'CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcGrpc',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'grpc',
-              dartName: 'grpc',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'CloudRunServiceTemplateSpecContainersLivenessProbeGrpc',
-            ),
-          ],
-          shorthand: 'grpc',
-        ),
-    'CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcHttpGet':
-        MigrateHelper(
-          className:
-              'CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcHttpGet',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'http_get',
-              dartName: 'httpGet',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet',
-            ),
-          ],
-          shorthand: 'httpGet',
-        ),
     'CloudRunServiceTemplateSpecContainersPorts': MigrateHelper(
       className: 'CloudRunServiceTemplateSpecContainersPorts',
       slots: <MigrateSlot>[
@@ -156294,20 +156086,55 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'httpGetOrGrpc',
+          dartName: 'check',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'http_get':
-                'CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcHttpGet',
+                'CloudRunServiceTemplateSpecContainersReadinessProbeCheckHttpGet',
             'grpc':
-                'CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcGrpc',
+                'CloudRunServiceTemplateSpecContainersReadinessProbeCheckGrpc',
           },
         ),
       ],
     ),
+    'CloudRunServiceTemplateSpecContainersReadinessProbeCheckGrpc':
+        MigrateHelper(
+          className:
+              'CloudRunServiceTemplateSpecContainersReadinessProbeCheckGrpc',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'grpc',
+              dartName: 'grpc',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper: 'CloudRunServiceTemplateSpecContainersReadinessProbeGrpc',
+            ),
+          ],
+          shorthand: 'grpc',
+        ),
+    'CloudRunServiceTemplateSpecContainersReadinessProbeCheckHttpGet':
+        MigrateHelper(
+          className:
+              'CloudRunServiceTemplateSpecContainersReadinessProbeCheckHttpGet',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'http_get',
+              dartName: 'httpGet',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'CloudRunServiceTemplateSpecContainersReadinessProbeHttpGet',
+            ),
+          ],
+          shorthand: 'httpGet',
+        ),
     'CloudRunServiceTemplateSpecContainersReadinessProbeGrpc': MigrateHelper(
       className: 'CloudRunServiceTemplateSpecContainersReadinessProbeGrpc',
       slots: <MigrateSlot>[
@@ -156346,41 +156173,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcGrpc':
-        MigrateHelper(
-          className:
-              'CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcGrpc',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'grpc',
-              dartName: 'grpc',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'CloudRunServiceTemplateSpecContainersReadinessProbeGrpc',
-            ),
-          ],
-          shorthand: 'grpc',
-        ),
-    'CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcHttpGet':
-        MigrateHelper(
-          className:
-              'CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcHttpGet',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'http_get',
-              dartName: 'httpGet',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'CloudRunServiceTemplateSpecContainersReadinessProbeHttpGet',
-            ),
-          ],
-          shorthand: 'httpGet',
-        ),
     'CloudRunServiceTemplateSpecContainersResources': MigrateHelper(
       className: 'CloudRunServiceTemplateSpecContainersResources',
       slots: <MigrateSlot>[
@@ -156433,22 +156225,73 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'tcpSocketOrHttpGetOrGrpc',
+          dartName: 'check',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'tcp_socket':
-                'CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcTcpSocket',
+                'CloudRunServiceTemplateSpecContainersStartupProbeCheckTcpSocket',
             'http_get':
-                'CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcHttpGet',
+                'CloudRunServiceTemplateSpecContainersStartupProbeCheckHttpGet',
             'grpc':
-                'CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcGrpc',
+                'CloudRunServiceTemplateSpecContainersStartupProbeCheckGrpc',
           },
         ),
       ],
     ),
+    'CloudRunServiceTemplateSpecContainersStartupProbeCheckGrpc': MigrateHelper(
+      className: 'CloudRunServiceTemplateSpecContainersStartupProbeCheckGrpc',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'grpc',
+          dartName: 'grpc',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'CloudRunServiceTemplateSpecContainersStartupProbeGrpc',
+        ),
+      ],
+      shorthand: 'grpc',
+    ),
+    'CloudRunServiceTemplateSpecContainersStartupProbeCheckHttpGet':
+        MigrateHelper(
+          className:
+              'CloudRunServiceTemplateSpecContainersStartupProbeCheckHttpGet',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'http_get',
+              dartName: 'httpGet',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'CloudRunServiceTemplateSpecContainersStartupProbeHttpGet',
+            ),
+          ],
+          shorthand: 'httpGet',
+        ),
+    'CloudRunServiceTemplateSpecContainersStartupProbeCheckTcpSocket':
+        MigrateHelper(
+          className:
+              'CloudRunServiceTemplateSpecContainersStartupProbeCheckTcpSocket',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'tcp_socket',
+              dartName: 'tcpSocket',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'CloudRunServiceTemplateSpecContainersStartupProbeTcpSocket',
+            ),
+          ],
+          shorthand: 'tcpSocket',
+        ),
     'CloudRunServiceTemplateSpecContainersStartupProbeGrpc': MigrateHelper(
       className: 'CloudRunServiceTemplateSpecContainersStartupProbeGrpc',
       slots: <MigrateSlot>[
@@ -156530,59 +156373,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcGrpc':
-        MigrateHelper(
-          className:
-              'CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcGrpc',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'grpc',
-              dartName: 'grpc',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'CloudRunServiceTemplateSpecContainersStartupProbeGrpc',
-            ),
-          ],
-          shorthand: 'grpc',
-        ),
-    'CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcHttpGet':
-        MigrateHelper(
-          className:
-              'CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcHttpGet',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'http_get',
-              dartName: 'httpGet',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'CloudRunServiceTemplateSpecContainersStartupProbeHttpGet',
-            ),
-          ],
-          shorthand: 'httpGet',
-        ),
-    'CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcTcpSocket':
-        MigrateHelper(
-          className:
-              'CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcTcpSocket',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'tcp_socket',
-              dartName: 'tcpSocket',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'CloudRunServiceTemplateSpecContainersStartupProbeTcpSocket',
-            ),
-          ],
-          shorthand: 'tcpSocket',
-        ),
     'CloudRunServiceTemplateSpecContainersVolumeMounts': MigrateHelper(
       className: 'CloudRunServiceTemplateSpecContainersVolumeMounts',
       slots: <MigrateSlot>[
@@ -158415,52 +158205,47 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'useDefaultOrPolicy',
+          dartName: 'policy',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'use_default':
-                'CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyUseDefault',
-            'policy':
-                'CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyPolicy',
+                'CloudRunV2WorkerPoolBinaryAuthorizationPolicyUseDefault',
+            'policy': 'CloudRunV2WorkerPoolBinaryAuthorizationPolicyPolicy',
           },
         ),
       ],
     ),
-    'CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyPolicy':
-        MigrateHelper(
-          className:
-              'CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyPolicy',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'policy',
-              dartName: 'policy',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'policy',
+    'CloudRunV2WorkerPoolBinaryAuthorizationPolicyPolicy': MigrateHelper(
+      className: 'CloudRunV2WorkerPoolBinaryAuthorizationPolicyPolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'policy',
+          dartName: 'policy',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyUseDefault':
-        MigrateHelper(
-          className:
-              'CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyUseDefault',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'use_default',
-              dartName: 'useDefault',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'useDefault',
+      ],
+      shorthand: 'policy',
+    ),
+    'CloudRunV2WorkerPoolBinaryAuthorizationPolicyUseDefault': MigrateHelper(
+      className: 'CloudRunV2WorkerPoolBinaryAuthorizationPolicyUseDefault',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'use_default',
+          dartName: 'useDefault',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
         ),
+      ],
+      shorthand: 'useDefault',
+    ),
     'CloudRunV2WorkerPoolEmptyDirVolume': MigrateHelper(
       className: 'CloudRunV2WorkerPoolEmptyDirVolume',
       slots: <MigrateSlot>[
@@ -162318,91 +162103,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigBitbucketCloudConfig':
-        MigrateHelper(
-          className:
-              'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigBitbucketCloudConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'bitbucket_cloud_config',
-              dartName: 'bitbucketCloudConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'Cloudbuildv2ConnectionBitbucketCloudConfig',
-            ),
-          ],
-          shorthand: 'bitbucketCloudConfig',
-        ),
-    'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigBitbucketDataCenterConfig':
-        MigrateHelper(
-          className:
-              'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigBitbucketDataCenterConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'bitbucket_data_center_config',
-              dartName: 'bitbucketDataCenterConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'Cloudbuildv2ConnectionBitbucketDataCenterConfig',
-            ),
-          ],
-          shorthand: 'bitbucketDataCenterConfig',
-        ),
-    'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGithubConfig':
-        MigrateHelper(
-          className:
-              'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGithubConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'github_config',
-              dartName: 'githubConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'Cloudbuildv2ConnectionGithubConfig',
-            ),
-          ],
-          shorthand: 'githubConfig',
-        ),
-    'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGithubEnterpriseConfig':
-        MigrateHelper(
-          className:
-              'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGithubEnterpriseConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'github_enterprise_config',
-              dartName: 'githubEnterpriseConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'Cloudbuildv2ConnectionGithubEnterpriseConfig',
-            ),
-          ],
-          shorthand: 'githubEnterpriseConfig',
-        ),
-    'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGitlabConfig':
-        MigrateHelper(
-          className:
-              'Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfigGitlabConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'gitlab_config',
-              dartName: 'gitlabConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'Cloudbuildv2ConnectionGitlabConfig',
-            ),
-          ],
-          shorthand: 'gitlabConfig',
-        ),
     'Cloudbuildv2ConnectionGithubEnterpriseConfig': MigrateHelper(
       className: 'Cloudbuildv2ConnectionGithubEnterpriseConfig',
       slots: <MigrateSlot>[
@@ -162515,6 +162215,81 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'Cloudbuildv2ConnectionHostBitbucketCloudConfig': MigrateHelper(
+      className: 'Cloudbuildv2ConnectionHostBitbucketCloudConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'bitbucket_cloud_config',
+          dartName: 'bitbucketCloudConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'Cloudbuildv2ConnectionBitbucketCloudConfig',
+        ),
+      ],
+      shorthand: 'bitbucketCloudConfig',
+    ),
+    'Cloudbuildv2ConnectionHostBitbucketDataCenterConfig': MigrateHelper(
+      className: 'Cloudbuildv2ConnectionHostBitbucketDataCenterConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'bitbucket_data_center_config',
+          dartName: 'bitbucketDataCenterConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'Cloudbuildv2ConnectionBitbucketDataCenterConfig',
+        ),
+      ],
+      shorthand: 'bitbucketDataCenterConfig',
+    ),
+    'Cloudbuildv2ConnectionHostGithubConfig': MigrateHelper(
+      className: 'Cloudbuildv2ConnectionHostGithubConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'github_config',
+          dartName: 'githubConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'Cloudbuildv2ConnectionGithubConfig',
+        ),
+      ],
+      shorthand: 'githubConfig',
+    ),
+    'Cloudbuildv2ConnectionHostGithubEnterpriseConfig': MigrateHelper(
+      className: 'Cloudbuildv2ConnectionHostGithubEnterpriseConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'github_enterprise_config',
+          dartName: 'githubEnterpriseConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'Cloudbuildv2ConnectionGithubEnterpriseConfig',
+        ),
+      ],
+      shorthand: 'githubEnterpriseConfig',
+    ),
+    'Cloudbuildv2ConnectionHostGitlabConfig': MigrateHelper(
+      className: 'Cloudbuildv2ConnectionHostGitlabConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'gitlab_config',
+          dartName: 'gitlabConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'Cloudbuildv2ConnectionGitlabConfig',
+        ),
+      ],
+      shorthand: 'gitlabConfig',
+    ),
     'Cloudbuildv2ConnectionServiceDirectoryConfig': MigrateHelper(
       className: 'Cloudbuildv2ConnectionServiceDirectoryConfig',
       slots: <MigrateSlot>[
@@ -162538,6 +162313,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'ClouddeployCustomTargetTypeActionsCustomActions': MigrateHelper(
+      className: 'ClouddeployCustomTargetTypeActionsCustomActions',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'custom_actions',
+          dartName: 'customActions',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ClouddeployCustomTargetTypeCustomActions',
+        ),
+      ],
+      shorthand: 'customActions',
+    ),
+    'ClouddeployCustomTargetTypeActionsTasks': MigrateHelper(
+      className: 'ClouddeployCustomTargetTypeActionsTasks',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'tasks',
+          dartName: 'tasks',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ClouddeployCustomTargetTypeTasks',
+        ),
+      ],
+      shorthand: 'tasks',
     ),
     'ClouddeployCustomTargetTypeCustomActions': MigrateHelper(
       className: 'ClouddeployCustomTargetTypeCustomActions',
@@ -162581,18 +162386,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'gitOrGoogleCloudStorageOrGoogleCloudBuildRepo',
+          dartName: 'source',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'git':
-                'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGit',
+                'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGit',
             'google_cloud_storage':
-                'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudStorage',
+                'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudStorage',
             'google_cloud_build_repo':
-                'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudBuildRepo',
+                'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudBuildRepo',
           },
         ),
       ],
@@ -162624,60 +162429,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               dartType: 'String',
             ),
           ],
-        ),
-    'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGit':
-        MigrateHelper(
-          className:
-              'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGit',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'git',
-              dartName: 'git',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGit',
-            ),
-          ],
-          shorthand: 'git',
-        ),
-    'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudBuildRepo':
-        MigrateHelper(
-          className:
-              'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudBuildRepo',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'google_cloud_build_repo',
-              dartName: 'googleCloudBuildRepo',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudBuildRepo',
-            ),
-          ],
-          shorthand: 'googleCloudBuildRepo',
-        ),
-    'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudStorage':
-        MigrateHelper(
-          className:
-              'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudStorage',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'google_cloud_storage',
-              dartName: 'googleCloudStorage',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudStorage',
-            ),
-          ],
-          shorthand: 'googleCloudStorage',
         ),
     'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudBuildRepo':
         MigrateHelper(
@@ -162728,38 +162479,60 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'ClouddeployCustomTargetTypeCustomActionsOrTasksCustomActions':
+    'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGit':
         MigrateHelper(
           className:
-              'ClouddeployCustomTargetTypeCustomActionsOrTasksCustomActions',
+              'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGit',
           slots: <MigrateSlot>[
             MigrateSlot(
-              tfName: 'custom_actions',
-              dartName: 'customActions',
+              tfName: 'git',
+              dartName: 'git',
               kind: MigrateSlotKind.helper,
               required: true,
               wrapped: false,
               positional: true,
-              helper: 'ClouddeployCustomTargetTypeCustomActions',
+              helper:
+                  'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGit',
             ),
           ],
-          shorthand: 'customActions',
+          shorthand: 'git',
         ),
-    'ClouddeployCustomTargetTypeCustomActionsOrTasksTasks': MigrateHelper(
-      className: 'ClouddeployCustomTargetTypeCustomActionsOrTasksTasks',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'tasks',
-          dartName: 'tasks',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'ClouddeployCustomTargetTypeTasks',
+    'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudBuildRepo':
+        MigrateHelper(
+          className:
+              'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudBuildRepo',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'google_cloud_build_repo',
+              dartName: 'googleCloudBuildRepo',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudBuildRepo',
+            ),
+          ],
+          shorthand: 'googleCloudBuildRepo',
         ),
-      ],
-      shorthand: 'tasks',
-    ),
+    'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudStorage':
+        MigrateHelper(
+          className:
+              'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesSourceGoogleCloudStorage',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'google_cloud_storage',
+              dartName: 'googleCloudStorage',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudStorage',
+            ),
+          ],
+          shorthand: 'googleCloudStorage',
+        ),
     'ClouddeployCustomTargetTypeTasks': MigrateHelper(
       className: 'ClouddeployCustomTargetTypeTasks',
       slots: <MigrateSlot>[
@@ -163978,16 +163751,15 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'familyOrName',
+          dartName: 'image',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'family':
-                'ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameFamily',
-            'name':
-                'ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameName',
+                'ColabNotebookExecutionWorkbenchRuntimeVmImageImageFamily',
+            'name': 'ColabNotebookExecutionWorkbenchRuntimeVmImageImageName',
           },
         ),
         MigrateSlot(
@@ -163999,38 +163771,34 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameFamily':
-        MigrateHelper(
-          className:
-              'ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameFamily',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'family',
-              dartName: 'family',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'family',
+    'ColabNotebookExecutionWorkbenchRuntimeVmImageImageFamily': MigrateHelper(
+      className: 'ColabNotebookExecutionWorkbenchRuntimeVmImageImageFamily',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'family',
+          dartName: 'family',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
-    'ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameName':
-        MigrateHelper(
-          className:
-              'ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameName',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'name',
-              dartName: 'name',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'name',
+      ],
+      shorthand: 'family',
+    ),
+    'ColabNotebookExecutionWorkbenchRuntimeVmImageImageName': MigrateHelper(
+      className: 'ColabNotebookExecutionWorkbenchRuntimeVmImageImageName',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
         ),
+      ],
+      shorthand: 'name',
+    ),
     'ColabRuntimeNotebookRuntimeTemplateRef': MigrateHelper(
       className: 'ColabRuntimeNotebookRuntimeTemplateRef',
       slots: <MigrateSlot>[
@@ -167015,16 +166783,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'nameOrPredefinedRolloutPlan',
+          dartName: 'plan',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'name':
-                'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanName',
+                'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanName',
             'predefined_rollout_plan':
-                'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanPredefinedRolloutPlan',
+                'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanPredefinedRolloutPlan',
           },
         ),
         MigrateSlot(
@@ -167036,10 +166804,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanName':
+    'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanName':
         MigrateHelper(
           className:
-              'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanName',
+              'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanName',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'name',
@@ -167052,10 +166820,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'name',
         ),
-    'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanPredefinedRolloutPlan':
+    'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanPredefinedRolloutPlan':
         MigrateHelper(
           className:
-              'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanPredefinedRolloutPlan',
+              'ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanPredefinedRolloutPlan',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'predefined_rollout_plan',
@@ -173494,40 +173262,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'sslCertificates',
     ),
-    'ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction':
-        MigrateHelper(
-          className:
-              'ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'default_route_action',
-              dartName: 'defaultRouteAction',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ComputeRegionUrlMapRegionUrlMapRouteAction',
-            ),
-          ],
-          shorthand: 'defaultRouteAction',
+    'ComputeRegionUrlMapDefaultActionDefaultRouteAction': MigrateHelper(
+      className: 'ComputeRegionUrlMapDefaultActionDefaultRouteAction',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'default_route_action',
+          dartName: 'defaultRouteAction',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComputeRegionUrlMapRegionUrlMapRouteAction',
         ),
-    'ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect':
-        MigrateHelper(
-          className:
-              'ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'default_url_redirect',
-              dartName: 'defaultUrlRedirect',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ComputeRegionUrlMapRegionUrlMapUrlRedirect',
-            ),
-          ],
-          shorthand: 'defaultUrlRedirect',
+      ],
+      shorthand: 'defaultRouteAction',
+    ),
+    'ComputeRegionUrlMapDefaultActionDefaultUrlRedirect': MigrateHelper(
+      className: 'ComputeRegionUrlMapDefaultActionDefaultUrlRedirect',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'default_url_redirect',
+          dartName: 'defaultUrlRedirect',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComputeRegionUrlMapRegionUrlMapUrlRedirect',
         ),
+      ],
+      shorthand: 'defaultUrlRedirect',
+    ),
     'ComputeRegionUrlMapRegionUrlMapCachePolicy': MigrateHelper(
       className: 'ComputeRegionUrlMapRegionUrlMapCachePolicy',
       slots: <MigrateSlot>[
@@ -174242,16 +174006,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'instancePropertiesOrSourceInstanceTemplate',
+          dartName: 'instanceSpec',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'instance_properties':
-                'ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateInstanceProperties',
+                'ComputeReservationSpecificReservationInstanceSpecInstanceProperties',
             'source_instance_template':
-                'ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateSourceInstanceTemplate',
+                'ComputeReservationSpecificReservationInstanceSpecSourceInstanceTemplate',
           },
         ),
       ],
@@ -174338,10 +174102,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateInstanceProperties':
+    'ComputeReservationSpecificReservationInstanceSpecInstanceProperties':
         MigrateHelper(
           className:
-              'ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateInstanceProperties',
+              'ComputeReservationSpecificReservationInstanceSpecInstanceProperties',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'instance_properties',
@@ -174355,10 +174119,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'instanceProperties',
         ),
-    'ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateSourceInstanceTemplate':
+    'ComputeReservationSpecificReservationInstanceSpecSourceInstanceTemplate':
         MigrateHelper(
           className:
-              'ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateSourceInstanceTemplate',
+              'ComputeReservationSpecificReservationInstanceSpecSourceInstanceTemplate',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'source_instance_template',
@@ -176002,40 +175766,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'sslCertificates',
     ),
-    'ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction':
-        MigrateHelper(
-          className:
-              'ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'default_route_action',
-              dartName: 'defaultRouteAction',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ComputeUrlMapUrlMapRouteAction',
-            ),
-          ],
-          shorthand: 'defaultRouteAction',
+    'ComputeUrlMapDefaultActionDefaultRouteAction': MigrateHelper(
+      className: 'ComputeUrlMapDefaultActionDefaultRouteAction',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'default_route_action',
+          dartName: 'defaultRouteAction',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComputeUrlMapUrlMapRouteAction',
         ),
-    'ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect':
-        MigrateHelper(
-          className:
-              'ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'default_url_redirect',
-              dartName: 'defaultUrlRedirect',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ComputeUrlMapUrlMapUrlRedirect',
-            ),
-          ],
-          shorthand: 'defaultUrlRedirect',
+      ],
+      shorthand: 'defaultRouteAction',
+    ),
+    'ComputeUrlMapDefaultActionDefaultUrlRedirect': MigrateHelper(
+      className: 'ComputeUrlMapDefaultActionDefaultUrlRedirect',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'default_url_redirect',
+          dartName: 'defaultUrlRedirect',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ComputeUrlMapUrlMapUrlRedirect',
         ),
+      ],
+      shorthand: 'defaultUrlRedirect',
+    ),
     'ComputeUrlMapUrlMapCachePolicy': MigrateHelper(
       className: 'ComputeUrlMapUrlMapCachePolicy',
       slots: <MigrateSlot>[
@@ -182352,16 +182112,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: '',
-              dartName: 'expireTimeOrTtl',
+              dartName: 'expiration',
               kind: MigrateSlotKind.sealed,
               required: true,
               wrapped: false,
               merged: true,
               variants: <String, String>{
                 'expire_time':
-                    'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtlExpireTime',
+                    'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpirationExpireTime',
                 'ttl':
-                    'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtlTtl',
+                    'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpirationTtl',
               },
             ),
             MigrateSlot(
@@ -182380,10 +182140,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtlExpireTime':
+    'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpirationExpireTime':
         MigrateHelper(
           className:
-              'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtlExpireTime',
+              'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpirationExpireTime',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'expire_time',
@@ -182396,10 +182156,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'expireTime',
         ),
-    'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtlTtl':
+    'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpirationTtl':
         MigrateHelper(
           className:
-              'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpireTimeOrTtlTtl',
+              'DatabaseMigrationServiceConnectionProfileCloudsqlSettingsIpConfigAuthorizedNetworksExpirationTtl',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'ttl',
@@ -182624,16 +182384,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'passwordOrPrivateKey',
+          dartName: 'credential',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'password':
-                'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKeyPassword',
+                'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredentialPassword',
             'private_key':
-                'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKeyPrivateKey',
+                'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredentialPrivateKey',
           },
         ),
         MigrateSlot(
@@ -182652,10 +182412,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKeyPassword':
+    'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredentialPassword':
         MigrateHelper(
           className:
-              'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKeyPassword',
+              'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredentialPassword',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'password',
@@ -182668,10 +182428,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'password',
         ),
-    'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKeyPrivateKey':
+    'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredentialPrivateKey':
         MigrateHelper(
           className:
-              'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKeyPrivateKey',
+              'DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityCredentialPrivateKey',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'private_key',
@@ -184204,16 +183964,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'networkUriOrSubnetworkUri',
+          dartName: 'network',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'network_uri':
-                'DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriNetworkUri',
+                'DataprocBatchEnvironmentConfigExecutionConfigNetworkNetworkUri',
             'subnetwork_uri':
-                'DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriSubnetworkUri',
+                'DataprocBatchEnvironmentConfigExecutionConfigNetworkSubnetworkUri',
           },
         ),
         MigrateSlot(
@@ -184263,10 +184023,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriNetworkUri':
+    'DataprocBatchEnvironmentConfigExecutionConfigNetworkNetworkUri':
         MigrateHelper(
           className:
-              'DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriNetworkUri',
+              'DataprocBatchEnvironmentConfigExecutionConfigNetworkNetworkUri',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'network_uri',
@@ -184279,10 +184039,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'networkUri',
         ),
-    'DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriSubnetworkUri':
+    'DataprocBatchEnvironmentConfigExecutionConfigNetworkSubnetworkUri':
         MigrateHelper(
           className:
-              'DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriSubnetworkUri',
+              'DataprocBatchEnvironmentConfigExecutionConfigNetworkSubnetworkUri',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'subnetwork_uri',
@@ -189946,16 +189706,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'passwordOrPrivateKey',
+          dartName: 'credential',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'password':
-                'DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPassword',
+                'DatastreamConnectionProfileForwardSshConnectivityCredentialPassword',
             'private_key':
-                'DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPrivateKey',
+                'DatastreamConnectionProfileForwardSshConnectivityCredentialPrivateKey',
           },
         ),
         MigrateSlot(
@@ -189974,10 +189734,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPassword':
+    'DatastreamConnectionProfileForwardSshConnectivityCredentialPassword':
         MigrateHelper(
           className:
-              'DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPassword',
+              'DatastreamConnectionProfileForwardSshConnectivityCredentialPassword',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'password',
@@ -189990,10 +189750,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'password',
         ),
-    'DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPrivateKey':
+    'DatastreamConnectionProfileForwardSshConnectivityCredentialPrivateKey':
         MigrateHelper(
           className:
-              'DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPrivateKey',
+              'DatastreamConnectionProfileForwardSshConnectivityCredentialPrivateKey',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'private_key',
@@ -191190,16 +190950,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'mergeOrAppendOnly',
+          dartName: 'writeMode',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'merge':
-                'DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyMerge',
+                'DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeMerge',
             'append_only':
-                'DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyAppendOnly',
+                'DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeAppendOnly',
           },
         ),
         MigrateSlot(
@@ -191317,42 +191077,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               'DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge',
           slots: <MigrateSlot>[],
         ),
-    'DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyAppendOnly':
-        MigrateHelper(
-          className:
-              'DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyAppendOnly',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'append_only',
-              dartName: 'appendOnly',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly',
-            ),
-          ],
-          shorthand: 'appendOnly',
-        ),
-    'DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyMerge':
-        MigrateHelper(
-          className:
-              'DatastreamStreamDestinationConfigBigqueryDestinationConfigMergeOrAppendOnlyMerge',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'merge',
-              dartName: 'merge',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge',
-            ),
-          ],
-          shorthand: 'merge',
-        ),
     'DatastreamStreamDestinationConfigBigqueryDestinationConfigSingleTargetDataset':
         MigrateHelper(
           className:
@@ -191417,6 +191141,42 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               dartType: 'String',
             ),
           ],
+        ),
+    'DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeAppendOnly':
+        MigrateHelper(
+          className:
+              'DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeAppendOnly',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'append_only',
+              dartName: 'appendOnly',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'DatastreamStreamDestinationConfigBigqueryDestinationConfigAppendOnly',
+            ),
+          ],
+          shorthand: 'appendOnly',
+        ),
+    'DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeMerge':
+        MigrateHelper(
+          className:
+              'DatastreamStreamDestinationConfigBigqueryDestinationConfigWriteModeMerge',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'merge',
+              dartName: 'merge',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'DatastreamStreamDestinationConfigBigqueryDestinationConfigMerge',
+            ),
+          ],
+          shorthand: 'merge',
         ),
     'DatastreamStreamDestinationConfigDestinationConfigBigqueryDestinationConfig':
         MigrateHelper(
@@ -192190,16 +191950,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'binaryLogPositionOrGtid',
+          dartName: 'cdcMethod',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'binary_log_position':
-                'DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidBinaryLogPosition',
+                'DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodBinaryLogPosition',
             'gtid':
-                'DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidGtid',
+                'DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodGtid',
           },
         ),
         MigrateSlot(
@@ -192226,10 +191986,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               'DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPosition',
           slots: <MigrateSlot>[],
         ),
-    'DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidBinaryLogPosition':
+    'DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodBinaryLogPosition':
         MigrateHelper(
           className:
-              'DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidBinaryLogPosition',
+              'DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodBinaryLogPosition',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'binary_log_position',
@@ -192244,23 +192004,21 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'binaryLogPosition',
         ),
-    'DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidGtid':
-        MigrateHelper(
-          className:
-              'DatastreamStreamSourceConfigMysqlSourceConfigBinaryLogPositionOrGtidGtid',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'gtid',
-              dartName: 'gtid',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'DatastreamStreamSourceConfigMysqlSourceConfigGtid',
-            ),
-          ],
-          shorthand: 'gtid',
+    'DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodGtid': MigrateHelper(
+      className: 'DatastreamStreamSourceConfigMysqlSourceConfigCdcMethodGtid',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'gtid',
+          dartName: 'gtid',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'DatastreamStreamSourceConfigMysqlSourceConfigGtid',
         ),
+      ],
+      shorthand: 'gtid',
+    ),
     'DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjects': MigrateHelper(
       className: 'DatastreamStreamSourceConfigMysqlSourceConfigExcludeObjects',
       slots: <MigrateSlot>[
@@ -198779,14 +198537,14 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'flowOrPage',
+          dartName: 'start',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'flow': 'DialogflowCxTestCaseTestConfigFlowOrPageFlow',
-            'page': 'DialogflowCxTestCaseTestConfigFlowOrPagePage',
+            'flow': 'DialogflowCxTestCaseTestConfigStartFlow',
+            'page': 'DialogflowCxTestCaseTestConfigStartPage',
           },
         ),
         MigrateSlot(
@@ -198798,8 +198556,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'DialogflowCxTestCaseTestConfigFlowOrPageFlow': MigrateHelper(
-      className: 'DialogflowCxTestCaseTestConfigFlowOrPageFlow',
+    'DialogflowCxTestCaseTestConfigStartFlow': MigrateHelper(
+      className: 'DialogflowCxTestCaseTestConfigStartFlow',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'flow',
@@ -198812,8 +198570,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'flow',
     ),
-    'DialogflowCxTestCaseTestConfigFlowOrPagePage': MigrateHelper(
-      className: 'DialogflowCxTestCaseTestConfigFlowOrPagePage',
+    'DialogflowCxTestCaseTestConfigStartPage': MigrateHelper(
+      className: 'DialogflowCxTestCaseTestConfigStartPage',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'page',
@@ -200292,20 +200050,38 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'agentCreationConfigOrDialogflowAgentToLink',
+          dartName: 'agent',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'agent_creation_config':
-                'DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkAgentCreationConfig',
+                'DiscoveryEngineChatEngineChatEngineConfigAgentAgentCreationConfig',
             'dialogflow_agent_to_link':
-                'DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkDialogflowAgentToLink',
+                'DiscoveryEngineChatEngineChatEngineConfigAgentDialogflowAgentToLink',
           },
         ),
       ],
     ),
+    'DiscoveryEngineChatEngineChatEngineConfigAgentAgentCreationConfig':
+        MigrateHelper(
+          className:
+              'DiscoveryEngineChatEngineChatEngineConfigAgentAgentCreationConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'agent_creation_config',
+              dartName: 'agentCreationConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig',
+            ),
+          ],
+          shorthand: 'agentCreationConfig',
+        ),
     'DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig':
         MigrateHelper(
           className:
@@ -200341,28 +200117,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkAgentCreationConfig':
+    'DiscoveryEngineChatEngineChatEngineConfigAgentDialogflowAgentToLink':
         MigrateHelper(
           className:
-              'DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkAgentCreationConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'agent_creation_config',
-              dartName: 'agentCreationConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig',
-            ),
-          ],
-          shorthand: 'agentCreationConfig',
-        ),
-    'DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkDialogflowAgentToLink':
-        MigrateHelper(
-          className:
-              'DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkDialogflowAgentToLink',
+              'DiscoveryEngineChatEngineChatEngineConfigAgentDialogflowAgentToLink',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'dialogflow_agent_to_link',
@@ -203007,25 +202765,23 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'FirebaseAppHostingTrafficRolloutPolicyOrTargetRolloutPolicy':
-        MigrateHelper(
-          className:
-              'FirebaseAppHostingTrafficRolloutPolicyOrTargetRolloutPolicy',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'rollout_policy',
-              dartName: 'rolloutPolicy',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy',
-            ),
-          ],
-          shorthand: 'rolloutPolicy',
+    'FirebaseAppHostingTrafficRoutingRolloutPolicy': MigrateHelper(
+      className: 'FirebaseAppHostingTrafficRoutingRolloutPolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'rollout_policy',
+          dartName: 'rolloutPolicy',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy',
         ),
-    'FirebaseAppHostingTrafficRolloutPolicyOrTargetTarget': MigrateHelper(
-      className: 'FirebaseAppHostingTrafficRolloutPolicyOrTargetTarget',
+      ],
+      shorthand: 'rolloutPolicy',
+    ),
+    'FirebaseAppHostingTrafficRoutingTarget': MigrateHelper(
+      className: 'FirebaseAppHostingTrafficRoutingTarget',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'target',
@@ -203632,21 +203388,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName:
-              'allNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels',
+          dartName: 'scope',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'all_namespaces':
-                'GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsAllNamespaces',
+                'GkeBackupBackupPlanBackupConfigScopeAllNamespaces',
             'selected_namespaces':
-                'GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedNamespaces',
+                'GkeBackupBackupPlanBackupConfigScopeSelectedNamespaces',
             'selected_applications':
-                'GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedApplications',
+                'GkeBackupBackupPlanBackupConfigScopeSelectedApplications',
             'selected_namespace_labels':
-                'GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedNamespaceLabels',
+                'GkeBackupBackupPlanBackupConfigScopeSelectedNamespaceLabels',
           },
         ),
         MigrateSlot(
@@ -203680,43 +203435,51 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsAllNamespaces':
-        MigrateHelper(
-          className:
-              'GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsAllNamespaces',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'all_namespaces',
-              dartName: 'allNamespaces',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'bool',
-            ),
-          ],
-          shorthand: 'allNamespaces',
+    'GkeBackupBackupPlanBackupConfigEncryptionKey': MigrateHelper(
+      className: 'GkeBackupBackupPlanBackupConfigEncryptionKey',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'gcp_kms_encryption_key',
+          dartName: 'gcpKmsEncryptionKey',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
         ),
-    'GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedApplications':
-        MigrateHelper(
-          className:
-              'GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedApplications',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'selected_applications',
-              dartName: 'selectedApplications',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'GkeBackupBackupPlanBackupConfigSelectedApplications',
-            ),
-          ],
-          shorthand: 'selectedApplications',
+      ],
+    ),
+    'GkeBackupBackupPlanBackupConfigScopeAllNamespaces': MigrateHelper(
+      className: 'GkeBackupBackupPlanBackupConfigScopeAllNamespaces',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'all_namespaces',
+          dartName: 'allNamespaces',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'bool',
         ),
-    'GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedNamespaceLabels':
+      ],
+      shorthand: 'allNamespaces',
+    ),
+    'GkeBackupBackupPlanBackupConfigScopeSelectedApplications': MigrateHelper(
+      className: 'GkeBackupBackupPlanBackupConfigScopeSelectedApplications',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'selected_applications',
+          dartName: 'selectedApplications',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'GkeBackupBackupPlanBackupConfigSelectedApplications',
+        ),
+      ],
+      shorthand: 'selectedApplications',
+    ),
+    'GkeBackupBackupPlanBackupConfigScopeSelectedNamespaceLabels':
         MigrateHelper(
           className:
-              'GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedNamespaceLabels',
+              'GkeBackupBackupPlanBackupConfigScopeSelectedNamespaceLabels',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'selected_namespace_labels',
@@ -203730,34 +203493,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'selectedNamespaceLabels',
         ),
-    'GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedNamespaces':
-        MigrateHelper(
-          className:
-              'GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedNamespaces',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'selected_namespaces',
-              dartName: 'selectedNamespaces',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'GkeBackupBackupPlanBackupConfigSelectedNamespaces',
-            ),
-          ],
-          shorthand: 'selectedNamespaces',
-        ),
-    'GkeBackupBackupPlanBackupConfigEncryptionKey': MigrateHelper(
-      className: 'GkeBackupBackupPlanBackupConfigEncryptionKey',
+    'GkeBackupBackupPlanBackupConfigScopeSelectedNamespaces': MigrateHelper(
+      className: 'GkeBackupBackupPlanBackupConfigScopeSelectedNamespaces',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'gcp_kms_encryption_key',
-          dartName: 'gcpKmsEncryptionKey',
-          kind: MigrateSlotKind.scalar,
+          tfName: 'selected_namespaces',
+          dartName: 'selectedNamespaces',
+          kind: MigrateSlotKind.helper,
           required: true,
-          dartType: 'String',
+          wrapped: false,
+          positional: true,
+          helper: 'GkeBackupBackupPlanBackupConfigSelectedNamespaces',
         ),
       ],
+      shorthand: 'selectedNamespaces',
     ),
     'GkeBackupBackupPlanBackupConfigSelectedApplications': MigrateHelper(
       className: 'GkeBackupBackupPlanBackupConfigSelectedApplications',
@@ -206772,18 +206521,18 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'f5ConfigOrManualLbConfigOrMetalLbConfig',
+          dartName: 'lbConfig',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'f5_config':
-                'GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigF5Config',
+                'GkeonpremVmwareAdminClusterLoadBalancerLbConfigF5Config',
             'manual_lb_config':
-                'GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigManualLbConfig',
+                'GkeonpremVmwareAdminClusterLoadBalancerLbConfigManualLbConfig',
             'metal_lb_config':
-                'GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigMetalLbConfig',
+                'GkeonpremVmwareAdminClusterLoadBalancerLbConfigMetalLbConfig',
           },
         ),
         MigrateSlot(
@@ -206822,27 +206571,25 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigF5Config':
-        MigrateHelper(
-          className:
-              'GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigF5Config',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'f5_config',
-              dartName: 'f5Config',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'GkeonpremVmwareAdminClusterLoadBalancerF5Config',
-            ),
-          ],
-          shorthand: 'f5Config',
+    'GkeonpremVmwareAdminClusterLoadBalancerLbConfigF5Config': MigrateHelper(
+      className: 'GkeonpremVmwareAdminClusterLoadBalancerLbConfigF5Config',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'f5_config',
+          dartName: 'f5Config',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'GkeonpremVmwareAdminClusterLoadBalancerF5Config',
         ),
-    'GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigManualLbConfig':
+      ],
+      shorthand: 'f5Config',
+    ),
+    'GkeonpremVmwareAdminClusterLoadBalancerLbConfigManualLbConfig':
         MigrateHelper(
           className:
-              'GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigManualLbConfig',
+              'GkeonpremVmwareAdminClusterLoadBalancerLbConfigManualLbConfig',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'manual_lb_config',
@@ -206856,10 +206603,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'manualLbConfig',
         ),
-    'GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigMetalLbConfig':
+    'GkeonpremVmwareAdminClusterLoadBalancerLbConfigMetalLbConfig':
         MigrateHelper(
           className:
-              'GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigMetalLbConfig',
+              'GkeonpremVmwareAdminClusterLoadBalancerLbConfigMetalLbConfig',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'metal_lb_config',
@@ -207450,18 +207197,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'f5ConfigOrManualLbConfigOrMetalLbConfig',
+          dartName: 'lbConfig',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'f5_config':
-                'GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigF5Config',
+            'f5_config': 'GkeonpremVmwareClusterLoadBalancerLbConfigF5Config',
             'manual_lb_config':
-                'GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigManualLbConfig',
+                'GkeonpremVmwareClusterLoadBalancerLbConfigManualLbConfig',
             'metal_lb_config':
-                'GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigMetalLbConfig',
+                'GkeonpremVmwareClusterLoadBalancerLbConfigMetalLbConfig',
           },
         ),
         MigrateSlot(
@@ -207500,57 +207246,51 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigF5Config':
-        MigrateHelper(
-          className:
-              'GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigF5Config',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'f5_config',
-              dartName: 'f5Config',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'GkeonpremVmwareClusterLoadBalancerF5Config',
-            ),
-          ],
-          shorthand: 'f5Config',
+    'GkeonpremVmwareClusterLoadBalancerLbConfigF5Config': MigrateHelper(
+      className: 'GkeonpremVmwareClusterLoadBalancerLbConfigF5Config',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'f5_config',
+          dartName: 'f5Config',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'GkeonpremVmwareClusterLoadBalancerF5Config',
         ),
-    'GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigManualLbConfig':
-        MigrateHelper(
-          className:
-              'GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigManualLbConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'manual_lb_config',
-              dartName: 'manualLbConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'GkeonpremVmwareClusterLoadBalancerManualLbConfig',
-            ),
-          ],
-          shorthand: 'manualLbConfig',
+      ],
+      shorthand: 'f5Config',
+    ),
+    'GkeonpremVmwareClusterLoadBalancerLbConfigManualLbConfig': MigrateHelper(
+      className: 'GkeonpremVmwareClusterLoadBalancerLbConfigManualLbConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'manual_lb_config',
+          dartName: 'manualLbConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'GkeonpremVmwareClusterLoadBalancerManualLbConfig',
         ),
-    'GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigMetalLbConfig':
-        MigrateHelper(
-          className:
-              'GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigMetalLbConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'metal_lb_config',
-              dartName: 'metalLbConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'GkeonpremVmwareClusterLoadBalancerMetalLbConfig',
-            ),
-          ],
-          shorthand: 'metalLbConfig',
+      ],
+      shorthand: 'manualLbConfig',
+    ),
+    'GkeonpremVmwareClusterLoadBalancerLbConfigMetalLbConfig': MigrateHelper(
+      className: 'GkeonpremVmwareClusterLoadBalancerLbConfigMetalLbConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'metal_lb_config',
+          dartName: 'metalLbConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'GkeonpremVmwareClusterLoadBalancerMetalLbConfig',
         ),
+      ],
+      shorthand: 'metalLbConfig',
+    ),
     'GkeonpremVmwareClusterLoadBalancerManualLbConfig': MigrateHelper(
       className: 'GkeonpremVmwareClusterLoadBalancerManualLbConfig',
       slots: <MigrateSlot>[
@@ -211704,27 +211444,25 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName:
-              'usernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken',
+          dartName: 'credential',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'username_and_password':
-                'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenUsernameAndPassword',
+                'IntegrationsAuthConfigDecryptedCredentialCredentialUsernameAndPassword',
             'oauth2_authorization_code':
-                'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOauth2AuthorizationCode',
+                'IntegrationsAuthConfigDecryptedCredentialCredentialOauth2AuthorizationCode',
             'oauth2_client_credentials':
-                'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOauth2ClientCredentials',
-            'jwt':
-                'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenJwt',
+                'IntegrationsAuthConfigDecryptedCredentialCredentialOauth2ClientCredentials',
+            'jwt': 'IntegrationsAuthConfigDecryptedCredentialCredentialJwt',
             'auth_token':
-                'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenAuthToken',
+                'IntegrationsAuthConfigDecryptedCredentialCredentialAuthToken',
             'service_account_credentials':
-                'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenServiceAccountCredentials',
+                'IntegrationsAuthConfigDecryptedCredentialCredentialServiceAccountCredentials',
             'oidc_token':
-                'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOidcToken',
+                'IntegrationsAuthConfigDecryptedCredentialCredentialOidcToken',
           },
         ),
       ],
@@ -211748,6 +211486,127 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'IntegrationsAuthConfigDecryptedCredentialCredentialAuthToken':
+        MigrateHelper(
+          className:
+              'IntegrationsAuthConfigDecryptedCredentialCredentialAuthToken',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'auth_token',
+              dartName: 'authToken',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper: 'IntegrationsAuthConfigDecryptedCredentialAuthToken',
+            ),
+          ],
+          shorthand: 'authToken',
+        ),
+    'IntegrationsAuthConfigDecryptedCredentialCredentialJwt': MigrateHelper(
+      className: 'IntegrationsAuthConfigDecryptedCredentialCredentialJwt',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'jwt',
+          dartName: 'jwt',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'IntegrationsAuthConfigDecryptedCredentialJwt',
+        ),
+      ],
+      shorthand: 'jwt',
+    ),
+    'IntegrationsAuthConfigDecryptedCredentialCredentialOauth2AuthorizationCode':
+        MigrateHelper(
+          className:
+              'IntegrationsAuthConfigDecryptedCredentialCredentialOauth2AuthorizationCode',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'oauth2_authorization_code',
+              dartName: 'oauth2AuthorizationCode',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'IntegrationsAuthConfigDecryptedCredentialOauth2AuthorizationCode',
+            ),
+          ],
+          shorthand: 'oauth2AuthorizationCode',
+        ),
+    'IntegrationsAuthConfigDecryptedCredentialCredentialOauth2ClientCredentials':
+        MigrateHelper(
+          className:
+              'IntegrationsAuthConfigDecryptedCredentialCredentialOauth2ClientCredentials',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'oauth2_client_credentials',
+              dartName: 'oauth2ClientCredentials',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentials',
+            ),
+          ],
+          shorthand: 'oauth2ClientCredentials',
+        ),
+    'IntegrationsAuthConfigDecryptedCredentialCredentialOidcToken':
+        MigrateHelper(
+          className:
+              'IntegrationsAuthConfigDecryptedCredentialCredentialOidcToken',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'oidc_token',
+              dartName: 'oidcToken',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper: 'IntegrationsAuthConfigDecryptedCredentialOidcToken',
+            ),
+          ],
+          shorthand: 'oidcToken',
+        ),
+    'IntegrationsAuthConfigDecryptedCredentialCredentialServiceAccountCredentials':
+        MigrateHelper(
+          className:
+              'IntegrationsAuthConfigDecryptedCredentialCredentialServiceAccountCredentials',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'service_account_credentials',
+              dartName: 'serviceAccountCredentials',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'IntegrationsAuthConfigDecryptedCredentialServiceAccountCredentials',
+            ),
+          ],
+          shorthand: 'serviceAccountCredentials',
+        ),
+    'IntegrationsAuthConfigDecryptedCredentialCredentialUsernameAndPassword':
+        MigrateHelper(
+          className:
+              'IntegrationsAuthConfigDecryptedCredentialCredentialUsernameAndPassword',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'username_and_password',
+              dartName: 'usernameAndPassword',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword',
+            ),
+          ],
+          shorthand: 'usernameAndPassword',
+        ),
     'IntegrationsAuthConfigDecryptedCredentialJwt': MigrateHelper(
       className: 'IntegrationsAuthConfigDecryptedCredentialJwt',
       slots: <MigrateSlot>[
@@ -212029,129 +211888,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               dartType: 'String',
             ),
           ],
-        ),
-    'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenAuthToken':
-        MigrateHelper(
-          className:
-              'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenAuthToken',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'auth_token',
-              dartName: 'authToken',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'IntegrationsAuthConfigDecryptedCredentialAuthToken',
-            ),
-          ],
-          shorthand: 'authToken',
-        ),
-    'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenJwt':
-        MigrateHelper(
-          className:
-              'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenJwt',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'jwt',
-              dartName: 'jwt',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'IntegrationsAuthConfigDecryptedCredentialJwt',
-            ),
-          ],
-          shorthand: 'jwt',
-        ),
-    'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOauth2AuthorizationCode':
-        MigrateHelper(
-          className:
-              'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOauth2AuthorizationCode',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'oauth2_authorization_code',
-              dartName: 'oauth2AuthorizationCode',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'IntegrationsAuthConfigDecryptedCredentialOauth2AuthorizationCode',
-            ),
-          ],
-          shorthand: 'oauth2AuthorizationCode',
-        ),
-    'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOauth2ClientCredentials':
-        MigrateHelper(
-          className:
-              'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOauth2ClientCredentials',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'oauth2_client_credentials',
-              dartName: 'oauth2ClientCredentials',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentials',
-            ),
-          ],
-          shorthand: 'oauth2ClientCredentials',
-        ),
-    'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOidcToken':
-        MigrateHelper(
-          className:
-              'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenOidcToken',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'oidc_token',
-              dartName: 'oidcToken',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'IntegrationsAuthConfigDecryptedCredentialOidcToken',
-            ),
-          ],
-          shorthand: 'oidcToken',
-        ),
-    'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenServiceAccountCredentials':
-        MigrateHelper(
-          className:
-              'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenServiceAccountCredentials',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'service_account_credentials',
-              dartName: 'serviceAccountCredentials',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'IntegrationsAuthConfigDecryptedCredentialServiceAccountCredentials',
-            ),
-          ],
-          shorthand: 'serviceAccountCredentials',
-        ),
-    'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenUsernameAndPassword':
-        MigrateHelper(
-          className:
-              'IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcTokenUsernameAndPassword',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'username_and_password',
-              dartName: 'usernameAndPassword',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword',
-            ),
-          ],
-          shorthand: 'usernameAndPassword',
         ),
     'IntegrationsClientCloudKmsConfig': MigrateHelper(
       className: 'IntegrationsClientCloudKmsConfig',
@@ -215350,6 +215086,34 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'MonitoringSloPeriodCalendarPeriod': MigrateHelper(
+      className: 'MonitoringSloPeriodCalendarPeriod',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'calendar_period',
+          dartName: 'calendarPeriod',
+          kind: MigrateSlotKind.enumValue,
+          required: true,
+          positional: true,
+          dartType: 'MonitoringSloCalendarPeriod',
+        ),
+      ],
+      shorthand: 'calendarPeriod',
+    ),
+    'MonitoringSloPeriodRollingPeriodDays': MigrateHelper(
+      className: 'MonitoringSloPeriodRollingPeriodDays',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'rolling_period_days',
+          dartName: 'rollingPeriodDays',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
+        ),
+      ],
+      shorthand: 'rollingPeriodDays',
+    ),
     'MonitoringSloRequestBasedSli': MigrateHelper(
       className: 'MonitoringSloRequestBasedSli',
       slots: <MigrateSlot>[
@@ -215363,38 +215127,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'MonitoringSloRollingPeriodDaysOrCalendarPeriodCalendarPeriod':
-        MigrateHelper(
-          className:
-              'MonitoringSloRollingPeriodDaysOrCalendarPeriodCalendarPeriod',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'calendar_period',
-              dartName: 'calendarPeriod',
-              kind: MigrateSlotKind.enumValue,
-              required: true,
-              positional: true,
-              dartType: 'MonitoringSloCalendarPeriod',
-            ),
-          ],
-          shorthand: 'calendarPeriod',
-        ),
-    'MonitoringSloRollingPeriodDaysOrCalendarPeriodRollingPeriodDays':
-        MigrateHelper(
-          className:
-              'MonitoringSloRollingPeriodDaysOrCalendarPeriodRollingPeriodDays',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'rolling_period_days',
-              dartName: 'rollingPeriodDays',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'num',
-            ),
-          ],
-          shorthand: 'rollingPeriodDays',
-        ),
     'MonitoringSloWindowsBasedSli': MigrateHelper(
       className: 'MonitoringSloWindowsBasedSli',
       slots: <MigrateSlot>[
@@ -216598,22 +216330,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'otherRoutes',
         ),
-    'NetworkConnectivityPolicyBasedRouteVirtualMachine': MigrateHelper(
-      className: 'NetworkConnectivityPolicyBasedRouteVirtualMachine',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'tags',
-          dartName: 'tags',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'List<Object?>',
-        ),
-      ],
-    ),
-    'NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentInterconnectAttachment':
+    'NetworkConnectivityPolicyBasedRouteScopeInterconnectAttachment':
         MigrateHelper(
           className:
-              'NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentInterconnectAttachment',
+              'NetworkConnectivityPolicyBasedRouteScopeInterconnectAttachment',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'interconnect_attachment',
@@ -216628,23 +216348,33 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'interconnectAttachment',
         ),
-    'NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentVirtualMachine':
-        MigrateHelper(
-          className:
-              'NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentVirtualMachine',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'virtual_machine',
-              dartName: 'virtualMachine',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'NetworkConnectivityPolicyBasedRouteVirtualMachine',
-            ),
-          ],
-          shorthand: 'virtualMachine',
+    'NetworkConnectivityPolicyBasedRouteScopeVirtualMachine': MigrateHelper(
+      className: 'NetworkConnectivityPolicyBasedRouteScopeVirtualMachine',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'virtual_machine',
+          dartName: 'virtualMachine',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'NetworkConnectivityPolicyBasedRouteVirtualMachine',
         ),
+      ],
+      shorthand: 'virtualMachine',
+    ),
+    'NetworkConnectivityPolicyBasedRouteVirtualMachine': MigrateHelper(
+      className: 'NetworkConnectivityPolicyBasedRouteVirtualMachine',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'tags',
+          dartName: 'tags',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<Object?>',
+        ),
+      ],
+    ),
     'NetworkConnectivityServiceConnectionPolicyPscConfig': MigrateHelper(
       className: 'NetworkConnectivityServiceConnectionPolicyPscConfig',
       slots: <MigrateSlot>[
@@ -220047,8 +219777,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'NetworkServicesGatewayAllPortsOrPortsAllPorts': MigrateHelper(
-      className: 'NetworkServicesGatewayAllPortsOrPortsAllPorts',
+    'NetworkServicesGatewayPortsAllPorts': MigrateHelper(
+      className: 'NetworkServicesGatewayPortsAllPorts',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'all_ports',
@@ -220061,8 +219791,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'allPorts',
     ),
-    'NetworkServicesGatewayAllPortsOrPortsPorts': MigrateHelper(
-      className: 'NetworkServicesGatewayAllPortsOrPortsPorts',
+    'NetworkServicesGatewayPortsPorts': MigrateHelper(
+      className: 'NetworkServicesGatewayPortsPorts',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'ports',
@@ -222570,16 +222300,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'localPathOrGcsObject',
+          dartName: 'script',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'local_path':
-                'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOrGcsObjectLocalPath',
+                'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScriptLocalPath',
             'gcs_object':
-                'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOrGcsObjectGcsObject',
+                'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScriptGcsObject',
           },
         ),
       ],
@@ -222612,10 +222342,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOrGcsObjectGcsObject':
+    'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScriptGcsObject':
         MigrateHelper(
           className:
-              'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOrGcsObjectGcsObject',
+              'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScriptGcsObject',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'gcs_object',
@@ -222630,10 +222360,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'gcsObject',
         ),
-    'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOrGcsObjectLocalPath':
+    'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScriptLocalPath':
         MigrateHelper(
           className:
-              'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigLocalPathOrGcsObjectLocalPath',
+              'OsConfigPatchDeploymentPatchConfigPostStepLinuxExecStepConfigScriptLocalPath',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'local_path',
@@ -222667,16 +222397,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'localPathOrGcsObject',
+          dartName: 'script',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'local_path':
-                'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOrGcsObjectLocalPath',
+                'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScriptLocalPath',
             'gcs_object':
-                'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOrGcsObjectGcsObject',
+                'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScriptGcsObject',
           },
         ),
       ],
@@ -222709,10 +222439,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOrGcsObjectGcsObject':
+    'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScriptGcsObject':
         MigrateHelper(
           className:
-              'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOrGcsObjectGcsObject',
+              'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScriptGcsObject',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'gcs_object',
@@ -222727,10 +222457,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'gcsObject',
         ),
-    'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOrGcsObjectLocalPath':
+    'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScriptLocalPath':
         MigrateHelper(
           className:
-              'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigLocalPathOrGcsObjectLocalPath',
+              'OsConfigPatchDeploymentPatchConfigPostStepWindowsExecStepConfigScriptLocalPath',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'local_path',
@@ -222786,16 +222516,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'localPathOrGcsObject',
+          dartName: 'script',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'local_path':
-                'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOrGcsObjectLocalPath',
+                'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScriptLocalPath',
             'gcs_object':
-                'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOrGcsObjectGcsObject',
+                'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScriptGcsObject',
           },
         ),
       ],
@@ -222828,10 +222558,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOrGcsObjectGcsObject':
+    'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScriptGcsObject':
         MigrateHelper(
           className:
-              'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOrGcsObjectGcsObject',
+              'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScriptGcsObject',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'gcs_object',
@@ -222846,10 +222576,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'gcsObject',
         ),
-    'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOrGcsObjectLocalPath':
+    'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScriptLocalPath':
         MigrateHelper(
           className:
-              'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigLocalPathOrGcsObjectLocalPath',
+              'OsConfigPatchDeploymentPatchConfigPreStepLinuxExecStepConfigScriptLocalPath',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'local_path',
@@ -222883,16 +222613,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'localPathOrGcsObject',
+          dartName: 'script',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'local_path':
-                'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOrGcsObjectLocalPath',
+                'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScriptLocalPath',
             'gcs_object':
-                'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOrGcsObjectGcsObject',
+                'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScriptGcsObject',
           },
         ),
       ],
@@ -222925,10 +222655,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOrGcsObjectGcsObject':
+    'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScriptGcsObject':
         MigrateHelper(
           className:
-              'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOrGcsObjectGcsObject',
+              'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScriptGcsObject',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'gcs_object',
@@ -222943,10 +222673,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'gcsObject',
         ),
-    'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOrGcsObjectLocalPath':
+    'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScriptLocalPath':
         MigrateHelper(
           className:
-              'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigLocalPathOrGcsObjectLocalPath',
+              'OsConfigPatchDeploymentPatchConfigPreStepWindowsExecStepConfigScriptLocalPath',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'local_path',
@@ -226950,35 +226680,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'PrivatecaCertificatePemCsrOrConfigConfig': MigrateHelper(
-      className: 'PrivatecaCertificatePemCsrOrConfigConfig',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'config',
-          dartName: 'config',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'PrivatecaCertificateConfig',
-        ),
-      ],
-      shorthand: 'config',
-    ),
-    'PrivatecaCertificatePemCsrOrConfigPemCsr': MigrateHelper(
-      className: 'PrivatecaCertificatePemCsrOrConfigPemCsr',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'pem_csr',
-          dartName: 'pemCsr',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'pemCsr',
-    ),
     'PrivatecaCertificatePublicKey': MigrateHelper(
       className: 'PrivatecaCertificatePublicKey',
       slots: <MigrateSlot>[
@@ -226997,6 +226698,35 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'PrivatecaCertificateRequestConfig': MigrateHelper(
+      className: 'PrivatecaCertificateRequestConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'config',
+          dartName: 'config',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'PrivatecaCertificateConfig',
+        ),
+      ],
+      shorthand: 'config',
+    ),
+    'PrivatecaCertificateRequestPemCsr': MigrateHelper(
+      className: 'PrivatecaCertificateRequestPemCsr',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'pem_csr',
+          dartName: 'pemCsr',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'pemCsr',
     ),
     'PrivatecaCertificateSubject': MigrateHelper(
       className: 'PrivatecaCertificateSubject',
@@ -227710,57 +227440,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigBigqueryConfig':
-        MigrateHelper(
-          className:
-              'PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigBigqueryConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'bigquery_config',
-              dartName: 'bigqueryConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'PubsubSubscriptionBigQueryConfig',
-            ),
-          ],
-          shorthand: 'bigqueryConfig',
-        ),
-    'PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigCloudStorageConfig':
-        MigrateHelper(
-          className:
-              'PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigCloudStorageConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'cloud_storage_config',
-              dartName: 'cloudStorageConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'PubsubSubscriptionCloudStorageConfig',
-            ),
-          ],
-          shorthand: 'cloudStorageConfig',
-        ),
-    'PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigPushConfig':
-        MigrateHelper(
-          className:
-              'PubsubSubscriptionBigqueryConfigOrPushConfigOrCloudStorageConfigPushConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'push_config',
-              dartName: 'pushConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'PubsubSubscriptionPushConfig',
-            ),
-          ],
-          shorthand: 'pushConfig',
-        ),
     'PubsubSubscriptionCloudStorageConfig': MigrateHelper(
       className: 'PubsubSubscriptionCloudStorageConfig',
       slots: <MigrateSlot>[
@@ -227840,6 +227519,51 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'int',
         ),
       ],
+    ),
+    'PubsubSubscriptionDeliveryBigqueryConfig': MigrateHelper(
+      className: 'PubsubSubscriptionDeliveryBigqueryConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'bigquery_config',
+          dartName: 'bigqueryConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'PubsubSubscriptionBigQueryConfig',
+        ),
+      ],
+      shorthand: 'bigqueryConfig',
+    ),
+    'PubsubSubscriptionDeliveryCloudStorageConfig': MigrateHelper(
+      className: 'PubsubSubscriptionDeliveryCloudStorageConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cloud_storage_config',
+          dartName: 'cloudStorageConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'PubsubSubscriptionCloudStorageConfig',
+        ),
+      ],
+      shorthand: 'cloudStorageConfig',
+    ),
+    'PubsubSubscriptionDeliveryPushConfig': MigrateHelper(
+      className: 'PubsubSubscriptionDeliveryPushConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'push_config',
+          dartName: 'pushConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'PubsubSubscriptionPushConfig',
+        ),
+      ],
+      shorthand: 'pushConfig',
     ),
     'PubsubSubscriptionExpirationPolicy': MigrateHelper(
       className: 'PubsubSubscriptionExpirationPolicy',
@@ -230933,38 +230657,38 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'maxProcessingUnitsOrMaxNodes',
+          dartName: 'maxCapacity',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'max_processing_units':
-                'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodesMaxProcessingUnits',
+                'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacityMaxProcessingUnits',
             'max_nodes':
-                'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodesMaxNodes',
+                'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacityMaxNodes',
           },
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'minProcessingUnitsOrMinNodes',
+          dartName: 'minCapacity',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'min_processing_units':
-                'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodesMinProcessingUnits',
+                'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacityMinProcessingUnits',
             'min_nodes':
-                'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodesMinNodes',
+                'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacityMinNodes',
           },
         ),
       ],
     ),
-    'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodesMaxNodes':
+    'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacityMaxNodes':
         MigrateHelper(
           className:
-              'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodesMaxNodes',
+              'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacityMaxNodes',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'max_nodes',
@@ -230977,10 +230701,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'maxNodes',
         ),
-    'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodesMaxProcessingUnits':
+    'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacityMaxProcessingUnits':
         MigrateHelper(
           className:
-              'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxProcessingUnitsOrMaxNodesMaxProcessingUnits',
+              'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMaxCapacityMaxProcessingUnits',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'max_processing_units',
@@ -230993,10 +230717,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'maxProcessingUnits',
         ),
-    'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodesMinNodes':
+    'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacityMinNodes':
         MigrateHelper(
           className:
-              'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodesMinNodes',
+              'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacityMinNodes',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'min_nodes',
@@ -231009,10 +230733,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'minNodes',
         ),
-    'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodesMinProcessingUnits':
+    'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacityMinProcessingUnits':
         MigrateHelper(
           className:
-              'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinProcessingUnitsOrMinNodesMinProcessingUnits',
+              'SpannerInstancePartitionAutoscalingConfigAutoscalingLimitsMinCapacityMinProcessingUnits',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'min_processing_units',
@@ -231053,55 +230777,49 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigAutoscalingConfig':
-        MigrateHelper(
-          className:
-              'SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigAutoscalingConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'autoscaling_config',
-              dartName: 'autoscalingConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'SpannerInstancePartitionAutoscalingConfig',
-            ),
-          ],
-          shorthand: 'autoscalingConfig',
+    'SpannerInstancePartitionCapacityAutoscalingConfig': MigrateHelper(
+      className: 'SpannerInstancePartitionCapacityAutoscalingConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'autoscaling_config',
+          dartName: 'autoscalingConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'SpannerInstancePartitionAutoscalingConfig',
         ),
-    'SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigNodeCount':
-        MigrateHelper(
-          className:
-              'SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigNodeCount',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'node_count',
-              dartName: 'nodeCount',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'num',
-            ),
-          ],
-          shorthand: 'nodeCount',
+      ],
+      shorthand: 'autoscalingConfig',
+    ),
+    'SpannerInstancePartitionCapacityNodeCount': MigrateHelper(
+      className: 'SpannerInstancePartitionCapacityNodeCount',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'node_count',
+          dartName: 'nodeCount',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
         ),
-    'SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigProcessingUnits':
-        MigrateHelper(
-          className:
-              'SpannerInstancePartitionNodeCountOrProcessingUnitsOrAutoscalingConfigProcessingUnits',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'processing_units',
-              dartName: 'processingUnits',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'num',
-            ),
-          ],
-          shorthand: 'processingUnits',
+      ],
+      shorthand: 'nodeCount',
+    ),
+    'SpannerInstancePartitionCapacityProcessingUnits': MigrateHelper(
+      className: 'SpannerInstancePartitionCapacityProcessingUnits',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'processing_units',
+          dartName: 'processingUnits',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'num',
         ),
+      ],
+      shorthand: 'processingUnits',
+    ),
     'SqlDatabaseInstanceAuthorizedNetwork': MigrateHelper(
       className: 'SqlDatabaseInstanceAuthorizedNetwork',
       slots: <MigrateSlot>[
@@ -237577,6 +237295,37 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'VertexAiIndexEndpointConnectivityNetwork': MigrateHelper(
+      className: 'VertexAiIndexEndpointConnectivityNetwork',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'network',
+          dartName: 'network',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'network',
+    ),
+    'VertexAiIndexEndpointConnectivityPrivateServiceConnectConfig':
+        MigrateHelper(
+          className:
+              'VertexAiIndexEndpointConnectivityPrivateServiceConnectConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'private_service_connect_config',
+              dartName: 'privateServiceConnectConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper: 'VertexAiIndexEndpointPrivateServiceConnectConfig',
+            ),
+          ],
+          shorthand: 'privateServiceConnectConfig',
+        ),
     'VertexAiIndexEndpointDeployedIndexAutomaticResources': MigrateHelper(
       className: 'VertexAiIndexEndpointDeployedIndexAutomaticResources',
       slots: <MigrateSlot>[
@@ -237685,39 +237434,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigNetwork':
-        MigrateHelper(
-          className:
-              'VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigNetwork',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'network',
-              dartName: 'network',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'network',
-        ),
-    'VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigPrivateServiceConnectConfig':
-        MigrateHelper(
-          className:
-              'VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigPrivateServiceConnectConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'private_service_connect_config',
-              dartName: 'privateServiceConnectConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'VertexAiIndexEndpointPrivateServiceConnectConfig',
-            ),
-          ],
-          shorthand: 'privateServiceConnectConfig',
-        ),
     'VertexAiIndexEndpointPrivateServiceConnectConfig': MigrateHelper(
       className: 'VertexAiIndexEndpointPrivateServiceConnectConfig',
       slots: <MigrateSlot>[
@@ -238117,6 +237833,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
+    'VertexAiRagCorpusBackendVectorDbConfig': MigrateHelper(
+      className: 'VertexAiRagCorpusBackendVectorDbConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'vector_db_config',
+          dartName: 'vectorDbConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'VertexAiRagCorpusVectorDbConfig',
+        ),
+      ],
+      shorthand: 'vectorDbConfig',
+    ),
+    'VertexAiRagCorpusBackendVertexAiSearchConfig': MigrateHelper(
+      className: 'VertexAiRagCorpusBackendVertexAiSearchConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'vertex_ai_search_config',
+          dartName: 'vertexAiSearchConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'VertexAiRagCorpusVertexAiSearchConfig',
+        ),
+      ],
+      shorthand: 'vertexAiSearchConfig',
+    ),
     'VertexAiRagCorpusEncryptionSpec': MigrateHelper(
       className: 'VertexAiRagCorpusEncryptionSpec',
       slots: <MigrateSlot>[
@@ -238142,18 +237888,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'ragManagedDbOrPineconeOrVertexVectorSearch',
+          dartName: 'backend',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'rag_managed_db':
-                'VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchRagManagedDb',
-            'pinecone':
-                'VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchPinecone',
+                'VertexAiRagCorpusVectorDbConfigBackendRagManagedDb',
+            'pinecone': 'VertexAiRagCorpusVectorDbConfigBackendPinecone',
             'vertex_vector_search':
-                'VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchVertexVectorSearch',
+                'VertexAiRagCorpusVectorDbConfigBackendVertexVectorSearch',
           },
         ),
         MigrateSlot(
@@ -238230,40 +237975,51 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           ],
           shorthand: 'apiKeyString',
         ),
-    'VertexAiRagCorpusVectorDbConfigOrVertexAiSearchConfigVectorDbConfig':
-        MigrateHelper(
-          className:
-              'VertexAiRagCorpusVectorDbConfigOrVertexAiSearchConfigVectorDbConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'vector_db_config',
-              dartName: 'vectorDbConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'VertexAiRagCorpusVectorDbConfig',
-            ),
-          ],
-          shorthand: 'vectorDbConfig',
+    'VertexAiRagCorpusVectorDbConfigBackendPinecone': MigrateHelper(
+      className: 'VertexAiRagCorpusVectorDbConfigBackendPinecone',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'pinecone',
+          dartName: 'pinecone',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'VertexAiRagCorpusVectorDbConfigPinecone',
         ),
-    'VertexAiRagCorpusVectorDbConfigOrVertexAiSearchConfigVertexAiSearchConfig':
-        MigrateHelper(
-          className:
-              'VertexAiRagCorpusVectorDbConfigOrVertexAiSearchConfigVertexAiSearchConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'vertex_ai_search_config',
-              dartName: 'vertexAiSearchConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'VertexAiRagCorpusVertexAiSearchConfig',
-            ),
-          ],
-          shorthand: 'vertexAiSearchConfig',
+      ],
+      shorthand: 'pinecone',
+    ),
+    'VertexAiRagCorpusVectorDbConfigBackendRagManagedDb': MigrateHelper(
+      className: 'VertexAiRagCorpusVectorDbConfigBackendRagManagedDb',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'rag_managed_db',
+          dartName: 'ragManagedDb',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'VertexAiRagCorpusVectorDbConfigRagManagedDb',
         ),
+      ],
+      shorthand: 'ragManagedDb',
+    ),
+    'VertexAiRagCorpusVectorDbConfigBackendVertexVectorSearch': MigrateHelper(
+      className: 'VertexAiRagCorpusVectorDbConfigBackendVertexVectorSearch',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'vertex_vector_search',
+          dartName: 'vertexVectorSearch',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'VertexAiRagCorpusVectorDbConfigVertexVectorSearch',
+        ),
+      ],
+      shorthand: 'vertexVectorSearch',
+    ),
     'VertexAiRagCorpusVectorDbConfigPinecone': MigrateHelper(
       className: 'VertexAiRagCorpusVectorDbConfigPinecone',
       slots: <MigrateSlot>[
@@ -238344,57 +238100,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       className: 'VertexAiRagCorpusVectorDbConfigRagManagedDbKnn',
       slots: <MigrateSlot>[],
     ),
-    'VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchPinecone':
-        MigrateHelper(
-          className:
-              'VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchPinecone',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'pinecone',
-              dartName: 'pinecone',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'VertexAiRagCorpusVectorDbConfigPinecone',
-            ),
-          ],
-          shorthand: 'pinecone',
-        ),
-    'VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchRagManagedDb':
-        MigrateHelper(
-          className:
-              'VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchRagManagedDb',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'rag_managed_db',
-              dartName: 'ragManagedDb',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'VertexAiRagCorpusVectorDbConfigRagManagedDb',
-            ),
-          ],
-          shorthand: 'ragManagedDb',
-        ),
-    'VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchVertexVectorSearch':
-        MigrateHelper(
-          className:
-              'VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchVertexVectorSearch',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'vertex_vector_search',
-              dartName: 'vertexVectorSearch',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'VertexAiRagCorpusVectorDbConfigVertexVectorSearch',
-            ),
-          ],
-          shorthand: 'vertexVectorSearch',
-        ),
     'VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDbAnn': MigrateHelper(
       className: 'VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDbAnn',
       slots: <MigrateSlot>[
@@ -239296,16 +239001,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'defaultTtlOrGranularTtlConfig',
+          dartName: 'ttl',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'default_ttl':
-                'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfigDefaultTtl',
+                'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlDefaultTtl',
             'granular_ttl_config':
-                'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfigGranularTtlConfig',
+                'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlGranularTtlConfig',
           },
         ),
         MigrateSlot(
@@ -239317,40 +239022,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfigDefaultTtl':
-        MigrateHelper(
-          className:
-              'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfigDefaultTtl',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'default_ttl',
-              dartName: 'defaultTtl',
-              kind: MigrateSlotKind.scalar,
-              required: true,
-              positional: true,
-              dartType: 'String',
-            ),
-          ],
-          shorthand: 'defaultTtl',
-        ),
-    'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfigGranularTtlConfig':
-        MigrateHelper(
-          className:
-              'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfigGranularTtlConfig',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'granular_ttl_config',
-              dartName: 'granularTtlConfig',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper:
-                  'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig',
-            ),
-          ],
-          shorthand: 'granularTtlConfig',
-        ),
     'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig':
         MigrateHelper(
           className:
@@ -239378,6 +239049,40 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               dartType: 'String',
             ),
           ],
+        ),
+    'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlDefaultTtl':
+        MigrateHelper(
+          className:
+              'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlDefaultTtl',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'default_ttl',
+              dartName: 'defaultTtl',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              positional: true,
+              dartType: 'String',
+            ),
+          ],
+          shorthand: 'defaultTtl',
+        ),
+    'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlGranularTtlConfig':
+        MigrateHelper(
+          className:
+              'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlGranularTtlConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'granular_ttl_config',
+              dartName: 'granularTtlConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              positional: true,
+              helper:
+                  'VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig',
+            ),
+          ],
+          shorthand: 'granularTtlConfig',
         ),
     'VertexAiReasoningEngineEncryptionSpec': MigrateHelper(
       className: 'VertexAiReasoningEngineEncryptionSpec',
@@ -239432,16 +239137,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'containerSpecOrSourceCodeSpec',
+          dartName: 'deployment',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'container_spec':
-                'VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecContainerSpec',
+                'VertexAiReasoningEngineSpecDeploymentContainerSpec',
             'source_code_spec':
-                'VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecSourceCodeSpec',
+                'VertexAiReasoningEngineSpecDeploymentSourceCodeSpec',
           },
         ),
         MigrateSlot(
@@ -239500,40 +239205,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecContainerSpec':
-        MigrateHelper(
-          className:
-              'VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecContainerSpec',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'container_spec',
-              dartName: 'containerSpec',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'VertexAiReasoningEngineSpecContainerSpec',
-            ),
-          ],
-          shorthand: 'containerSpec',
+    'VertexAiReasoningEngineSpecDeploymentContainerSpec': MigrateHelper(
+      className: 'VertexAiReasoningEngineSpecDeploymentContainerSpec',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'container_spec',
+          dartName: 'containerSpec',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'VertexAiReasoningEngineSpecContainerSpec',
         ),
-    'VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecSourceCodeSpec':
-        MigrateHelper(
-          className:
-              'VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecSourceCodeSpec',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'source_code_spec',
-              dartName: 'sourceCodeSpec',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'VertexAiReasoningEngineSpecSourceCodeSpec',
-            ),
-          ],
-          shorthand: 'sourceCodeSpec',
+      ],
+      shorthand: 'containerSpec',
+    ),
+    'VertexAiReasoningEngineSpecDeploymentSourceCodeSpec': MigrateHelper(
+      className: 'VertexAiReasoningEngineSpecDeploymentSourceCodeSpec',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'source_code_spec',
+          dartName: 'sourceCodeSpec',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'VertexAiReasoningEngineSpecSourceCodeSpec',
         ),
+      ],
+      shorthand: 'sourceCodeSpec',
+    ),
     'VertexAiReasoningEngineSpecDeploymentSpec': MigrateHelper(
       className: 'VertexAiReasoningEngineSpecDeploymentSpec',
       slots: <MigrateSlot>[
@@ -239817,16 +239518,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'imageSpecOrPythonSpec',
+          dartName: 'runtime',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'image_spec':
-                'VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecImageSpec',
+                'VertexAiReasoningEngineSpecSourceCodeSpecRuntimeImageSpec',
             'python_spec':
-                'VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecPythonSpec',
+                'VertexAiReasoningEngineSpecSourceCodeSpecRuntimePythonSpec',
           },
         ),
         MigrateSlot(
@@ -239946,40 +239647,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecImageSpec':
-        MigrateHelper(
-          className:
-              'VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecImageSpec',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'image_spec',
-              dartName: 'imageSpec',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'VertexAiReasoningEngineSpecSourceCodeSpecImageSpec',
-            ),
-          ],
-          shorthand: 'imageSpec',
-        ),
-    'VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecPythonSpec':
-        MigrateHelper(
-          className:
-              'VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecPythonSpec',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'python_spec',
-              dartName: 'pythonSpec',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              wrapped: false,
-              positional: true,
-              helper: 'VertexAiReasoningEngineSpecSourceCodeSpecPythonSpec',
-            ),
-          ],
-          shorthand: 'pythonSpec',
-        ),
     'VertexAiReasoningEngineSpecSourceCodeSpecInlineSource': MigrateHelper(
       className: 'VertexAiReasoningEngineSpecSourceCodeSpecInlineSource',
       slots: <MigrateSlot>[
@@ -240024,6 +239691,36 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'VertexAiReasoningEngineSpecSourceCodeSpecRuntimeImageSpec': MigrateHelper(
+      className: 'VertexAiReasoningEngineSpecSourceCodeSpecRuntimeImageSpec',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'image_spec',
+          dartName: 'imageSpec',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'VertexAiReasoningEngineSpecSourceCodeSpecImageSpec',
+        ),
+      ],
+      shorthand: 'imageSpec',
+    ),
+    'VertexAiReasoningEngineSpecSourceCodeSpecRuntimePythonSpec': MigrateHelper(
+      className: 'VertexAiReasoningEngineSpecSourceCodeSpecRuntimePythonSpec',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'python_spec',
+          dartName: 'pythonSpec',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'VertexAiReasoningEngineSpecSourceCodeSpecPythonSpec',
+        ),
+      ],
+      shorthand: 'pythonSpec',
     ),
     'VertexAiSemanticGovernancePolicyEngineGatewayConfigs': MigrateHelper(
       className: 'VertexAiSemanticGovernancePolicyEngineGatewayConfigs',
@@ -240695,8 +240392,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'VpcAccessConnectorMaxInstancesOrMaxThroughputMaxInstances': MigrateHelper(
-      className: 'VpcAccessConnectorMaxInstancesOrMaxThroughputMaxInstances',
+    'VpcAccessConnectorMaxCapacityMaxInstances': MigrateHelper(
+      className: 'VpcAccessConnectorMaxCapacityMaxInstances',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'max_instances',
@@ -240709,8 +240406,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'maxInstances',
     ),
-    'VpcAccessConnectorMaxInstancesOrMaxThroughputMaxThroughput': MigrateHelper(
-      className: 'VpcAccessConnectorMaxInstancesOrMaxThroughputMaxThroughput',
+    'VpcAccessConnectorMaxCapacityMaxThroughput': MigrateHelper(
+      className: 'VpcAccessConnectorMaxCapacityMaxThroughput',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'max_throughput',
@@ -240723,8 +240420,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'maxThroughput',
     ),
-    'VpcAccessConnectorMinThroughputOrMinInstancesMinInstances': MigrateHelper(
-      className: 'VpcAccessConnectorMinThroughputOrMinInstancesMinInstances',
+    'VpcAccessConnectorMinCapacityMinInstances': MigrateHelper(
+      className: 'VpcAccessConnectorMinCapacityMinInstances',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'min_instances',
@@ -240737,8 +240434,8 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       ],
       shorthand: 'minInstances',
     ),
-    'VpcAccessConnectorMinThroughputOrMinInstancesMinThroughput': MigrateHelper(
-      className: 'VpcAccessConnectorMinThroughputOrMinInstancesMinThroughput',
+    'VpcAccessConnectorMinCapacityMinThroughput': MigrateHelper(
+      className: 'VpcAccessConnectorMinCapacityMinThroughput',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'min_throughput',

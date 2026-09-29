@@ -12,18 +12,18 @@ const Set<String> _googleAccessContextManagerAccessLevelSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.basic(...)`.
-sealed class AccessContextManagerAccessLevelBasicOrCustom {
-  const AccessContextManagerAccessLevelBasicOrCustom();
+sealed class AccessContextManagerAccessLevelDefinition {
+  const AccessContextManagerAccessLevelDefinition();
 
   /// Sets `basic`.
-  const factory AccessContextManagerAccessLevelBasicOrCustom.basic(
+  const factory AccessContextManagerAccessLevelDefinition.basic(
     AccessContextManagerAccessLevelBasic basic,
-  ) = AccessContextManagerAccessLevelBasicOrCustomBasic;
+  ) = AccessContextManagerAccessLevelDefinitionBasic;
 
   /// Sets `custom`.
-  const factory AccessContextManagerAccessLevelBasicOrCustom.custom(
+  const factory AccessContextManagerAccessLevelDefinition.custom(
     AccessContextManagerAccessLevelCustom custom,
-  ) = AccessContextManagerAccessLevelBasicOrCustomCustom;
+  ) = AccessContextManagerAccessLevelDefinitionCustom;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,10 +35,10 @@ sealed class AccessContextManagerAccessLevelBasicOrCustom {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AccessContextManagerAccessLevelBasicOrCustom.basic] choice: sets `basic`.
-final class AccessContextManagerAccessLevelBasicOrCustomBasic
-    extends AccessContextManagerAccessLevelBasicOrCustom {
-  const AccessContextManagerAccessLevelBasicOrCustomBasic(this.basic);
+/// The [AccessContextManagerAccessLevelDefinition.basic] choice: sets `basic`.
+final class AccessContextManagerAccessLevelDefinitionBasic
+    extends AccessContextManagerAccessLevelDefinition {
+  const AccessContextManagerAccessLevelDefinitionBasic(this.basic);
 
   final AccessContextManagerAccessLevelBasic basic;
 
@@ -54,10 +54,10 @@ final class AccessContextManagerAccessLevelBasicOrCustomBasic
   };
 }
 
-/// The [AccessContextManagerAccessLevelBasicOrCustom.custom] choice: sets `custom`.
-final class AccessContextManagerAccessLevelBasicOrCustomCustom
-    extends AccessContextManagerAccessLevelBasicOrCustom {
-  const AccessContextManagerAccessLevelBasicOrCustomCustom(this.custom);
+/// The [AccessContextManagerAccessLevelDefinition.custom] choice: sets `custom`.
+final class AccessContextManagerAccessLevelDefinitionCustom
+    extends AccessContextManagerAccessLevelDefinition {
+  const AccessContextManagerAccessLevelDefinitionCustom(this.custom);
 
   final AccessContextManagerAccessLevelCustom custom;
 
@@ -370,7 +370,7 @@ final class GoogleAccessContextManagerAccessLevel extends Resource {
     required TfArg<String> parent,
     required TfArg<String> title,
     TfArg<String>? description,
-    AccessContextManagerAccessLevelBasicOrCustom? basicOrCustom,
+    AccessContextManagerAccessLevelDefinition? definition,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
@@ -383,7 +383,7 @@ final class GoogleAccessContextManagerAccessLevel extends Resource {
            'parent': parent,
            'title': title,
            if (description != null) 'description': description,
-           ...?basicOrCustom?.argMap,
+           ...?definition?.argMap,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
          },
        );

@@ -845,3 +845,6 @@ customSlots:
   default_route_action:
     paramDeclaration: 'ComputeUrlMapUrlMapRouteAction? defaultRouteAction'
     argMapEntry: "if (defaultRouteAction != null) 'default_route_action': TfArg.literal([defaultRouteAction.toArgMap()]),"
+
+sealedNames:
+  "default_route_action, default_url_redirect": default_action
