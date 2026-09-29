@@ -1,6 +1,7 @@
 outputDir: cloud_build
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// A **private pool** runs Cloud Build jobs on dedicated worker VMs inside

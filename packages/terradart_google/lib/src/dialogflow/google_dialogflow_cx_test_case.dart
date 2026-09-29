@@ -208,23 +208,59 @@ final class DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTrigg
 @immutable
 final class DialogflowCxTestCaseTestConfig {
   const DialogflowCxTestCaseTestConfig({
-    this.flow,
-    this.page,
+    this.flowOrPage,
     this.trackingParameters,
   });
 
-  final TfArg<String>? flow;
-
-  final TfArg<String>? page;
+  final DialogflowCxTestCaseTestConfigFlowOrPage? flowOrPage;
 
   final TfArg<List<Object?>>? trackingParameters;
 
   Map<String, Object?> encode() => {
-    if (flow != null) 'flow': flow!.toTfJson(),
-    if (page != null) 'page': page!.toTfJson(),
+    ...?flowOrPage?.encode(),
     if (trackingParameters != null)
       'tracking_parameters': trackingParameters!.toTfJson(),
   };
+}
+
+/// At most one of `flow`, `page` on the `test_config` block of `google_dialogflow_cx_test_case`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DialogflowCxTestCaseTestConfigFlowOrPage {
+  const DialogflowCxTestCaseTestConfigFlowOrPage();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `flow` (one of the [DialogflowCxTestCaseTestConfigFlowOrPage] choices).
+final class DialogflowCxTestCaseTestConfigFlowOption
+    extends DialogflowCxTestCaseTestConfigFlowOrPage {
+  const DialogflowCxTestCaseTestConfigFlowOption({required this.flow});
+
+  final TfArg<String> flow;
+
+  @override
+  String get blockKey => 'flow';
+
+  @override
+  Map<String, Object?> encode() => {'flow': flow.toTfJson()};
+}
+
+/// Sets `page` (one of the [DialogflowCxTestCaseTestConfigFlowOrPage] choices).
+final class DialogflowCxTestCaseTestConfigPageOption
+    extends DialogflowCxTestCaseTestConfigFlowOrPage {
+  const DialogflowCxTestCaseTestConfigPageOption({required this.page});
+
+  final TfArg<String> page;
+
+  @override
+  String get blockKey => 'page';
+
+  @override
+  Map<String, Object?> encode() => {'page': page.toTfJson()};
 }
 
 /// Factory wrapper for `google_dialogflow_cx_test_case`.

@@ -1,5 +1,7 @@
 outputDir: cloud_run
 deriveClassDoc: true
+deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 dartTypeOverrides:

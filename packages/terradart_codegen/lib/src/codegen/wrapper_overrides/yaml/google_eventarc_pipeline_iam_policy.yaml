@@ -4,6 +4,7 @@
 outputDir: eventarc
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 # TODO(wrap-init): every *_iam_binding / *_iam_policy override states its authoritative replace semantics (AGENTS.md Generation Policy); refine the seed below.
 curatedDoc: |-

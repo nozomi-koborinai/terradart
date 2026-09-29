@@ -1,6 +1,7 @@
 outputDir: firebase_app_hosting
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Required identity:

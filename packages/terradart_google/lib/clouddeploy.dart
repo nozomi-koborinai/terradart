@@ -9,7 +9,25 @@ library;
 export 'src/clouddeploy/google_clouddeploy_automation.dart'
     show GoogleClouddeployAutomation;
 export 'src/clouddeploy/google_clouddeploy_custom_target_type.dart'
-    show GoogleClouddeployCustomTargetType;
+    show
+        ClouddeployCustomTargetTypeCustomActions,
+        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModules,
+        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGit,
+        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOption,
+        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo,
+        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudBuildRepo,
+        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudBuildRepoOption,
+        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudStorage,
+        ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudStorageOption,
+        ClouddeployCustomTargetTypeCustomActionsOption,
+        ClouddeployCustomTargetTypeCustomActionsOrTasks,
+        ClouddeployCustomTargetTypeTasks,
+        ClouddeployCustomTargetTypeTasksDeploy,
+        ClouddeployCustomTargetTypeTasksDeployContainer,
+        ClouddeployCustomTargetTypeTasksOption,
+        ClouddeployCustomTargetTypeTasksRender,
+        ClouddeployCustomTargetTypeTasksRenderContainer,
+        GoogleClouddeployCustomTargetType;
 export 'src/clouddeploy/google_clouddeploy_custom_target_type_iam_binding.dart'
     show GoogleClouddeployCustomTargetTypeIamBinding;
 export 'src/clouddeploy/google_clouddeploy_custom_target_type_iam_member.dart'

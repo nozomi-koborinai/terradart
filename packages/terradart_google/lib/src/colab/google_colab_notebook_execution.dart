@@ -187,22 +187,61 @@ final class ColabNotebookExecutionWorkbenchRuntime {
 @immutable
 final class ColabNotebookExecutionWorkbenchRuntimeVmImage {
   const ColabNotebookExecutionWorkbenchRuntimeVmImage({
-    this.family,
-    this.name,
+    required this.familyOrName,
     this.project,
   });
 
-  final TfArg<String>? family;
-
-  final TfArg<String>? name;
+  final ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName familyOrName;
 
   final TfArg<String>? project;
 
   Map<String, Object?> encode() => {
-    if (family != null) 'family': family!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    ...familyOrName.encode(),
     if (project != null) 'project': project!.toTfJson(),
   };
+}
+
+/// Exactly one of `family`, `name` on the `workbench_runtime.vm_image` block of `google_colab_notebook_execution`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName {
+  const ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `family` (one of the [ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName] choices).
+final class ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOption
+    extends ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName {
+  const ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOption({
+    required this.family,
+  });
+
+  final TfArg<String> family;
+
+  @override
+  String get blockKey => 'family';
+
+  @override
+  Map<String, Object?> encode() => {'family': family.toTfJson()};
+}
+
+/// Sets `name` (one of the [ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName] choices).
+final class ColabNotebookExecutionWorkbenchRuntimeVmImageNameOption
+    extends ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName {
+  const ColabNotebookExecutionWorkbenchRuntimeVmImageNameOption({
+    required this.name,
+  });
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
 /// Factory wrapper for `google_colab_notebook_execution`.

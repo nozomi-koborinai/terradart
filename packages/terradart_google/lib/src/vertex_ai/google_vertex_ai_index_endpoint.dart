@@ -7,6 +7,65 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_vertex_ai_index_endpoint`.
 const Set<String> _googleVertexAiIndexEndpointSensitive = <String>{};
 
+/// At most one of `network`, `private_service_connect_config` on `google_vertex_ai_index_endpoint`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig {
+  const VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `network` (one of the [VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig] choices).
+final class VertexAiIndexEndpointNetworkOption
+    extends VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig {
+  const VertexAiIndexEndpointNetworkOption({required this.network});
+
+  final TfArg<String> network;
+
+  @override
+  String get blockKey => 'network';
+
+  @override
+  Map<String, Object?> encode() => {'network': network.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'network': network};
+}
+
+/// Sets `private_service_connect_config` (one of the [VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig] choices).
+final class VertexAiIndexEndpointPrivateServiceConnectConfigOption
+    extends VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig {
+  const VertexAiIndexEndpointPrivateServiceConnectConfigOption({
+    required this.privateServiceConnectConfig,
+  });
+
+  final VertexAiIndexEndpointPrivateServiceConnectConfig
+  privateServiceConnectConfig;
+
+  @override
+  String get blockKey => 'private_service_connect_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'private_service_connect_config': privateServiceConnectConfig.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'private_service_connect_config': TfArg.literal(
+      privateServiceConnectConfig.encode(),
+    ),
+  };
+}
+
 /// Typed helper for the `encryption_spec` block of
 /// `google_vertex_ai_index_endpoint` (derived from provider schema).
 @immutable
@@ -103,10 +162,9 @@ final class GoogleVertexAiIndexEndpoint extends Resource {
     required TfArg<String> displayName,
     TfArg<String>? region,
     TfArg<String>? description,
-    TfArg<String>? network,
+    VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig?
+    networkOrPrivateServiceConnectConfig,
     TfArg<bool>? publicEndpointEnabled,
-    VertexAiIndexEndpointPrivateServiceConnectConfig?
-    privateServiceConnectConfig,
     VertexAiIndexEndpointEncryptionSpec? encryptionSpec,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
@@ -121,13 +179,9 @@ final class GoogleVertexAiIndexEndpoint extends Resource {
            'display_name': displayName,
            if (region != null) 'region': region,
            if (description != null) 'description': description,
-           if (network != null) 'network': network,
+           ...?networkOrPrivateServiceConnectConfig?.argMap,
            if (publicEndpointEnabled != null)
              'public_endpoint_enabled': publicEndpointEnabled,
-           if (privateServiceConnectConfig != null)
-             'private_service_connect_config': TfArg.literal(
-               privateServiceConnectConfig.encode(),
-             ),
            if (encryptionSpec != null)
              'encryption_spec': TfArg.literal(encryptionSpec.encode()),
            if (labels != null) 'labels': labels,

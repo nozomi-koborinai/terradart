@@ -1,5 +1,6 @@
 outputDir: integration_connectors
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true

@@ -22,24 +22,68 @@ enum DiscoveryEngineChatEngineIndustryVertical implements TerraformEnum {
 final class DiscoveryEngineChatEngineChatEngineConfig {
   const DiscoveryEngineChatEngineChatEngineConfig({
     this.allowCrossRegion,
-    this.dialogflowAgentToLink,
-    this.agentCreationConfig,
+    required this.agentCreationConfigOrDialogflowAgentToLink,
   });
 
   final TfArg<bool>? allowCrossRegion;
 
-  final TfArg<String>? dialogflowAgentToLink;
-
-  final DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig?
-  agentCreationConfig;
+  final DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink
+  agentCreationConfigOrDialogflowAgentToLink;
 
   Map<String, Object?> encode() => {
     if (allowCrossRegion != null)
       'allow_cross_region': allowCrossRegion!.toTfJson(),
-    if (dialogflowAgentToLink != null)
-      'dialogflow_agent_to_link': dialogflowAgentToLink!.toTfJson(),
-    if (agentCreationConfig != null)
-      'agent_creation_config': agentCreationConfig!.encode(),
+    ...agentCreationConfigOrDialogflowAgentToLink.encode(),
+  };
+}
+
+/// Exactly one of `agent_creation_config`, `dialogflow_agent_to_link` on the `chat_engine_config` block of `google_discovery_engine_chat_engine`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink {
+  const DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `agent_creation_config` (one of the [DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink] choices).
+final class DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOption
+    extends
+        DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink {
+  const DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOption({
+    required this.agentCreationConfig,
+  });
+
+  final DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig
+  agentCreationConfig;
+
+  @override
+  String get blockKey => 'agent_creation_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'agent_creation_config': agentCreationConfig.encode(),
+  };
+}
+
+/// Sets `dialogflow_agent_to_link` (one of the [DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink] choices).
+final class DiscoveryEngineChatEngineChatEngineConfigDialogflowAgentToLinkOption
+    extends
+        DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink {
+  const DiscoveryEngineChatEngineChatEngineConfigDialogflowAgentToLinkOption({
+    required this.dialogflowAgentToLink,
+  });
+
+  final TfArg<String> dialogflowAgentToLink;
+
+  @override
+  String get blockKey => 'dialogflow_agent_to_link';
+
+  @override
+  Map<String, Object?> encode() => {
+    'dialogflow_agent_to_link': dialogflowAgentToLink.toTfJson(),
   };
 }
 

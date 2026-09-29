@@ -114,18 +114,59 @@ final class ModelArmorTemplateFilterConfigRaiSettingsRaiFilters {
 @immutable
 final class ModelArmorTemplateFilterConfigSdpSettings {
   const ModelArmorTemplateFilterConfigSdpSettings({
-    this.advancedConfig,
-    this.basicConfig,
+    this.advancedConfigOrBasicConfig,
   });
 
-  final ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfig? advancedConfig;
+  final ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig?
+  advancedConfigOrBasicConfig;
 
-  final ModelArmorTemplateFilterConfigSdpSettingsBasicConfig? basicConfig;
+  Map<String, Object?> encode() => {...?advancedConfigOrBasicConfig?.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (advancedConfig != null) 'advanced_config': advancedConfig!.encode(),
-    if (basicConfig != null) 'basic_config': basicConfig!.encode(),
-  };
+/// At most one of `advanced_config`, `basic_config` on the `filter_config.sdp_settings` block of `google_model_armor_template`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig {
+  const ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `advanced_config` (one of the [ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig] choices).
+final class ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOption
+    extends
+        ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig {
+  const ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOption({
+    required this.advancedConfig,
+  });
+
+  final ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfig advancedConfig;
+
+  @override
+  String get blockKey => 'advanced_config';
+
+  @override
+  Map<String, Object?> encode() => {'advanced_config': advancedConfig.encode()};
+}
+
+/// Sets `basic_config` (one of the [ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig] choices).
+final class ModelArmorTemplateFilterConfigSdpSettingsBasicConfigOption
+    extends
+        ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig {
+  const ModelArmorTemplateFilterConfigSdpSettingsBasicConfigOption({
+    required this.basicConfig,
+  });
+
+  final ModelArmorTemplateFilterConfigSdpSettingsBasicConfig basicConfig;
+
+  @override
+  String get blockKey => 'basic_config';
+
+  @override
+  Map<String, Object?> encode() => {'basic_config': basicConfig.encode()};
 }
 
 /// Typed helper for the `filter_config.sdp_settings.advanced_config` block of
@@ -238,18 +279,59 @@ final class ModelArmorTemplateTemplateMetadata {
 @immutable
 final class ModelArmorTemplateTemplateMetadataFilterVersionSelector {
   const ModelArmorTemplateTemplateMetadataFilterVersionSelector({
-    this.alias,
-    this.version,
+    this.aliasOrVersion,
   });
 
-  final TfArg<String>? alias;
+  final ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion?
+  aliasOrVersion;
 
-  final TfArg<String>? version;
+  Map<String, Object?> encode() => {...?aliasOrVersion?.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (alias != null) 'alias': alias!.toTfJson(),
-    if (version != null) 'version': version!.toTfJson(),
-  };
+/// At most one of `alias`, `version` on the `template_metadata.filter_version_selector` block of `google_model_armor_template`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion {
+  const ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `alias` (one of the [ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion] choices).
+final class ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOption
+    extends
+        ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion {
+  const ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOption({
+    required this.alias,
+  });
+
+  final TfArg<String> alias;
+
+  @override
+  String get blockKey => 'alias';
+
+  @override
+  Map<String, Object?> encode() => {'alias': alias.toTfJson()};
+}
+
+/// Sets `version` (one of the [ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion] choices).
+final class ModelArmorTemplateTemplateMetadataFilterVersionSelectorVersionOption
+    extends
+        ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion {
+  const ModelArmorTemplateTemplateMetadataFilterVersionSelectorVersionOption({
+    required this.version,
+  });
+
+  final TfArg<String> version;
+
+  @override
+  String get blockKey => 'version';
+
+  @override
+  Map<String, Object?> encode() => {'version': version.toTfJson()};
 }
 
 /// Typed helper for the `template_metadata.multi_language_detection` block of

@@ -65,9 +65,12 @@ final class FleetStack extends Stack {
         scopeRbacRoleBindingId: TfArg.literal('terradart-scope-rbac'),
         user: TfArg.literal('terradart-fleet-rbac@example.com'),
         role: GkeHubScopeRbacRoleBindingRole(
-          predefinedRole: TfArg.literal(
-            GkeHubScopeRbacRoleBindingRolePredefinedRole.view,
-          ),
+          predefinedRoleOrCustomRole:
+              GkeHubScopeRbacRoleBindingRolePredefinedRoleOption(
+                predefinedRole: TfArg.literal(
+                  GkeHubScopeRbacRoleBindingRolePredefinedRole.view,
+                ),
+              ),
         ),
         dependsOn: [ResourceDependency(scope)],
       ),

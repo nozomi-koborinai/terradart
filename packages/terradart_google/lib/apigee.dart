@@ -131,9 +131,12 @@ export 'src/apigee/google_apigee_security_action.dart'
         ApigeeSecurityActionAllow,
         ApigeeSecurityActionConditionConfig,
         ApigeeSecurityActionDeny,
+        ApigeeSecurityActionExpireTimeOption,
+        ApigeeSecurityActionExpireTimeOrTtl,
         ApigeeSecurityActionFlag,
         ApigeeSecurityActionFlagHeaders,
         ApigeeSecurityActionState,
+        ApigeeSecurityActionTtlOption,
         GoogleApigeeSecurityAction;
 export 'src/apigee/google_apigee_security_feedback.dart'
     show

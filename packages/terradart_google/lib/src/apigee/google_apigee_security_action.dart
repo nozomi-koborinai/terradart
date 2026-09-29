@@ -17,6 +17,56 @@ enum ApigeeSecurityActionState implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `expire_time`, `ttl` on `google_apigee_security_action`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ApigeeSecurityActionExpireTimeOrTtl {
+  const ApigeeSecurityActionExpireTimeOrTtl();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `expire_time` (one of the [ApigeeSecurityActionExpireTimeOrTtl] choices).
+final class ApigeeSecurityActionExpireTimeOption
+    extends ApigeeSecurityActionExpireTimeOrTtl {
+  const ApigeeSecurityActionExpireTimeOption({required this.expireTime});
+
+  final TfArg<String> expireTime;
+
+  @override
+  String get blockKey => 'expire_time';
+
+  @override
+  Map<String, Object?> encode() => {'expire_time': expireTime.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'expire_time': expireTime};
+}
+
+/// Sets `ttl` (one of the [ApigeeSecurityActionExpireTimeOrTtl] choices).
+final class ApigeeSecurityActionTtlOption
+    extends ApigeeSecurityActionExpireTimeOrTtl {
+  const ApigeeSecurityActionTtlOption({required this.ttl});
+
+  final TfArg<String> ttl;
+
+  @override
+  String get blockKey => 'ttl';
+
+  @override
+  Map<String, Object?> encode() => {'ttl': ttl.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'ttl': ttl};
+}
+
 /// Typed helper for the `allow` block of
 /// `google_apigee_security_action` (derived from provider schema).
 @immutable
@@ -146,11 +196,10 @@ final class GoogleApigeeSecurityAction extends Resource {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     required TfArg<String> envId,
-    TfArg<String>? expireTime,
+    ApigeeSecurityActionExpireTimeOrTtl? expireTimeOrTtl,
     required TfArg<String> orgId,
     required TfArg<String> securityActionId,
     required TfArg<ApigeeSecurityActionState> state,
-    TfArg<String>? ttl,
     required ApigeeSecurityActionConditionConfig conditionConfig,
     ApigeeSecurityActionDeny? deny,
     super.lifecycle,
@@ -164,11 +213,10 @@ final class GoogleApigeeSecurityAction extends Resource {
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (description != null) 'description': description,
            'env_id': envId,
-           if (expireTime != null) 'expire_time': expireTime,
+           ...?expireTimeOrTtl?.argMap,
            'org_id': orgId,
            'security_action_id': securityActionId,
            'state': state,
-           if (ttl != null) 'ttl': ttl,
            'condition_config': TfArg.literal(conditionConfig.encode()),
            if (deny != null) 'deny': TfArg.literal(deny.encode()),
          },

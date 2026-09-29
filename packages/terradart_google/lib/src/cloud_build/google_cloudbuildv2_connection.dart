@@ -289,6 +289,143 @@ class Cloudbuildv2ConnectionBitbucketCloudConfig {
   };
 }
 
+/// At most one of `github_config`, `github_enterprise_config`, `gitlab_config`, `bitbucket_cloud_config`, `bitbucket_data_center_config` on `google_cloudbuildv2_connection`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig {
+  const Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `github_config` (one of the [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig] choices).
+final class Cloudbuildv2ConnectionGithubConfigOption
+    extends
+        Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig {
+  const Cloudbuildv2ConnectionGithubConfigOption({required this.githubConfig});
+
+  final Cloudbuildv2ConnectionGithubConfig githubConfig;
+
+  @override
+  String get blockKey => 'github_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'github_config': [githubConfig.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'github_config': TfArg.literal([githubConfig.toArgMap()]),
+  };
+}
+
+/// Sets `github_enterprise_config` (one of the [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig] choices).
+final class Cloudbuildv2ConnectionGithubEnterpriseConfigOption
+    extends
+        Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig {
+  const Cloudbuildv2ConnectionGithubEnterpriseConfigOption({
+    required this.githubEnterpriseConfig,
+  });
+
+  final Cloudbuildv2ConnectionGithubEnterpriseConfig githubEnterpriseConfig;
+
+  @override
+  String get blockKey => 'github_enterprise_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'github_enterprise_config': [githubEnterpriseConfig.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'github_enterprise_config': TfArg.literal([
+      githubEnterpriseConfig.toArgMap(),
+    ]),
+  };
+}
+
+/// Sets `gitlab_config` (one of the [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig] choices).
+final class Cloudbuildv2ConnectionGitlabConfigOption
+    extends
+        Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig {
+  const Cloudbuildv2ConnectionGitlabConfigOption({required this.gitlabConfig});
+
+  final Cloudbuildv2ConnectionGitlabConfig gitlabConfig;
+
+  @override
+  String get blockKey => 'gitlab_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'gitlab_config': [gitlabConfig.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'gitlab_config': TfArg.literal([gitlabConfig.toArgMap()]),
+  };
+}
+
+/// Sets `bitbucket_cloud_config` (one of the [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig] choices).
+final class Cloudbuildv2ConnectionBitbucketCloudConfigOption
+    extends
+        Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig {
+  const Cloudbuildv2ConnectionBitbucketCloudConfigOption({
+    required this.bitbucketCloudConfig,
+  });
+
+  final Cloudbuildv2ConnectionBitbucketCloudConfig bitbucketCloudConfig;
+
+  @override
+  String get blockKey => 'bitbucket_cloud_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'bitbucket_cloud_config': [bitbucketCloudConfig.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'bitbucket_cloud_config': TfArg.literal([bitbucketCloudConfig.toArgMap()]),
+  };
+}
+
+/// Sets `bitbucket_data_center_config` (one of the [Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig] choices).
+final class Cloudbuildv2ConnectionBitbucketDataCenterConfigOption
+    extends
+        Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig {
+  const Cloudbuildv2ConnectionBitbucketDataCenterConfigOption({
+    required this.bitbucketDataCenterConfig,
+  });
+
+  final Cloudbuildv2ConnectionBitbucketDataCenterConfig
+  bitbucketDataCenterConfig;
+
+  @override
+  String get blockKey => 'bitbucket_data_center_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'bitbucket_data_center_config': [bitbucketDataCenterConfig.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'bitbucket_data_center_config': TfArg.literal([
+      bitbucketDataCenterConfig.toArgMap(),
+    ]),
+  };
+}
+
 /// Factory wrapper for `google_cloudbuildv2_connection`.
 ///
 /// A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Data
@@ -349,11 +486,8 @@ final class GoogleCloudbuildv2Connection extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    Cloudbuildv2ConnectionGithubConfig? githubConfig,
-    Cloudbuildv2ConnectionGithubEnterpriseConfig? githubEnterpriseConfig,
-    Cloudbuildv2ConnectionGitlabConfig? gitlabConfig,
-    Cloudbuildv2ConnectionBitbucketDataCenterConfig? bitbucketDataCenterConfig,
-    Cloudbuildv2ConnectionBitbucketCloudConfig? bitbucketCloudConfig,
+    Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig?
+    githubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig,
     TfArg<bool>? disabled,
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? project,
@@ -366,22 +500,8 @@ final class GoogleCloudbuildv2Connection extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           if (githubConfig != null)
-             'github_config': TfArg.literal([githubConfig.toArgMap()]),
-           if (githubEnterpriseConfig != null)
-             'github_enterprise_config': TfArg.literal([
-               githubEnterpriseConfig.toArgMap(),
-             ]),
-           if (gitlabConfig != null)
-             'gitlab_config': TfArg.literal([gitlabConfig.toArgMap()]),
-           if (bitbucketDataCenterConfig != null)
-             'bitbucket_data_center_config': TfArg.literal([
-               bitbucketDataCenterConfig.toArgMap(),
-             ]),
-           if (bitbucketCloudConfig != null)
-             'bitbucket_cloud_config': TfArg.literal([
-               bitbucketCloudConfig.toArgMap(),
-             ]),
+           ...?githubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig
+               ?.argMap,
            if (disabled != null) 'disabled': disabled,
            if (annotations != null) 'annotations': annotations,
            if (project != null) 'project': project,

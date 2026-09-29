@@ -34,6 +34,68 @@ enum DialogflowCxSecuritySettingsRetentionStrategy implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `retention_window_days`, `retention_strategy` on `google_dialogflow_cx_security_settings`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy {
+  const DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `retention_window_days` (one of the [DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy] choices).
+final class DialogflowCxSecuritySettingsRetentionWindowDaysOption
+    extends DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy {
+  const DialogflowCxSecuritySettingsRetentionWindowDaysOption({
+    required this.retentionWindowDays,
+  });
+
+  final TfArg<num> retentionWindowDays;
+
+  @override
+  String get blockKey => 'retention_window_days';
+
+  @override
+  Map<String, Object?> encode() => {
+    'retention_window_days': retentionWindowDays.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'retention_window_days': retentionWindowDays,
+  };
+}
+
+/// Sets `retention_strategy` (one of the [DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy] choices).
+final class DialogflowCxSecuritySettingsRetentionStrategyOption
+    extends DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy {
+  const DialogflowCxSecuritySettingsRetentionStrategyOption({
+    required this.retentionStrategy,
+  });
+
+  final TfArg<DialogflowCxSecuritySettingsRetentionStrategy> retentionStrategy;
+
+  @override
+  String get blockKey => 'retention_strategy';
+
+  @override
+  Map<String, Object?> encode() => {
+    'retention_strategy': retentionStrategy.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'retention_strategy': retentionStrategy,
+  };
+}
+
 /// Typed helper for the `audio_export_settings` block of
 /// `google_dialogflow_cx_security_settings` (derived from provider schema).
 @immutable
@@ -122,8 +184,8 @@ final class GoogleDialogflowCxSecuritySettings extends Resource {
     TfArg<DialogflowCxSecuritySettingsRedactionScope>? redactionScope,
     TfArg<String>? inspectTemplate,
     TfArg<String>? deidentifyTemplate,
-    TfArg<num>? retentionWindowDays,
-    TfArg<DialogflowCxSecuritySettingsRetentionStrategy>? retentionStrategy,
+    DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy?
+    retentionWindowDaysOrRetentionStrategy,
     TfArg<List<String>>? purgeDataTypes,
     DialogflowCxSecuritySettingsAudioExportSettings? audioExportSettings,
     DialogflowCxSecuritySettingsInsightsExportSettings? insightsExportSettings,
@@ -144,10 +206,7 @@ final class GoogleDialogflowCxSecuritySettings extends Resource {
            if (inspectTemplate != null) 'inspect_template': inspectTemplate,
            if (deidentifyTemplate != null)
              'deidentify_template': deidentifyTemplate,
-           if (retentionWindowDays != null)
-             'retention_window_days': retentionWindowDays,
-           if (retentionStrategy != null)
-             'retention_strategy': retentionStrategy,
+           ...?retentionWindowDaysOrRetentionStrategy?.argMap,
            if (purgeDataTypes != null) 'purge_data_types': purgeDataTypes,
            if (audioExportSettings != null)
              'audio_export_settings': TfArg.literal(

@@ -1,6 +1,7 @@
 outputDir: cloud_functions
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

@@ -90,6 +90,35 @@ autoscaling and the autoscaling limits), and the included / excluded bucket
 and location filters of the three `GoogleStorageControl*IntelligenceConfig`
 resources.
 
+AI / ML, serverless, containers and CI/CD (35 groups on 25 resources):
+
+| Before | After |
+|--------|-------|
+| `GoogleCloudbuildv2Connection(githubConfig: Cloudbuildv2ConnectionGithubConfig(...), ...)` | `GoogleCloudbuildv2Connection(githubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig: Cloudbuildv2ConnectionGithubConfigOption(githubConfig: Cloudbuildv2ConnectionGithubConfig(...)), ...)` |
+| `GoogleFirebaseAppHostingTraffic(target: FirebaseAppHostingTrafficAppHostingTrafficTarget(...), ...)` | `GoogleFirebaseAppHostingTraffic(rolloutPolicyOrTarget: FirebaseAppHostingTrafficTargetOption(target: FirebaseAppHostingTrafficAppHostingTrafficTarget(...)), ...)` |
+| `GkeHubScopeRbacRoleBindingRole(predefinedRole: TfArg.literal(...))` | `GkeHubScopeRbacRoleBindingRole(predefinedRoleOrCustomRole: GkeHubScopeRbacRoleBindingRolePredefinedRoleOption(predefinedRole: TfArg.literal(...)))` |
+| `GoogleGkeBackupBackupPlan(backupConfig: TfArg.literal({'all_namespaces': ..., ...}), retentionPolicy: TfArg.literal({...}), ...)` | `GoogleGkeBackupBackupPlan(backupConfig: GkeBackupBackupPlanBackupConfig(allNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels: GkeBackupBackupPlanBackupConfigAllNamespacesOption(allNamespaces: TfArg.literal(true)), ...), retentionPolicy: GkeBackupBackupPlanRetentionPolicy(...), ...)` |
+| `GoogleClouddeployCustomTargetType(customActions: TfArg.literal({...}), ...)` | `GoogleClouddeployCustomTargetType(customActionsOrTasks: ClouddeployCustomTargetTypeCustomActionsOption(customActions: ClouddeployCustomTargetTypeCustomActions(...)), ...)` |
+| `IntegrationsAuthConfigDecryptedCredential(usernameAndPassword: ..., ...)` | `IntegrationsAuthConfigDecryptedCredential(usernameAndPasswordOrOauth2AuthorizationCodeOr...: IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOption(usernameAndPassword: ...), ...)` |
+
+Four resources whose sealed groups sit in blocks that used to be untyped
+maps take typed nested helpers now: `GoogleGkeBackupBackupPlan`,
+`GoogleClouddeployCustomTargetType`, `GoogleCloudRunV2WorkerPool` and
+`GoogleVertexAiRagCorpus` (replace `TfArg.literal({...})` with the helper
+class of the same block). The other groups: `GoogleCloudRunService`'s
+liveness / readiness / startup probe handlers, `GoogleCloudRunV2WorkerPool`,
+`GoogleArtifactRegistryRepository`, `GoogleAgentIdentityAuthProvider`,
+`GoogleApigeeSecurityAction`, `GoogleCesTool`,
+`GoogleDialogflowCxSecuritySettings`, `GoogleDialogflowCxTestCase`,
+`GoogleDiscoveryEngineChatEngine`, `GoogleGkeonpremBareMetalCluster`,
+`GoogleGkeonpremVmwareAdminCluster`, `GoogleGkeonpremVmwareCluster`,
+`GoogleModelArmorTemplate`, `GoogleVertexAiFeaturestore`,
+`GoogleVertexAiIndex`, `GoogleVertexAiIndexEndpoint`,
+`GoogleVertexAiRagCorpus` (vector DB / Vertex AI Search, the vector DB
+kind, KNN / ANN, API key source), `GoogleVertexAiReasoningEngine`
+(container / source-code spec, image / Python spec) and
+`GoogleWorkbenchInstance`.
+
 ### `terradart_cloudflare` exactly-one inputs are sealed types
 
 **Breaking (`terradart_cloudflare`)** — 13 input groups across 5 resources

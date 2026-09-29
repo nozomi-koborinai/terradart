@@ -23,18 +23,58 @@ final class VertexAiFeaturestoreEncryptionSpec {
 @immutable
 final class VertexAiFeaturestoreOnlineServingConfig {
   const VertexAiFeaturestoreOnlineServingConfig({
-    this.fixedNodeCount,
-    this.scaling,
+    required this.fixedNodeCountOrScaling,
   });
 
-  final TfArg<num>? fixedNodeCount;
+  final VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling
+  fixedNodeCountOrScaling;
 
-  final VertexAiFeaturestoreOnlineServingConfigScaling? scaling;
+  Map<String, Object?> encode() => {...fixedNodeCountOrScaling.encode()};
+}
 
+/// Exactly one of `fixed_node_count`, `scaling` on the `online_serving_config` block of `google_vertex_ai_featurestore`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling {
+  const VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `fixed_node_count` (one of the [VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling] choices).
+final class VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOption
+    extends VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling {
+  const VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOption({
+    required this.fixedNodeCount,
+  });
+
+  final TfArg<num> fixedNodeCount;
+
+  @override
+  String get blockKey => 'fixed_node_count';
+
+  @override
   Map<String, Object?> encode() => {
-    if (fixedNodeCount != null) 'fixed_node_count': fixedNodeCount!.toTfJson(),
-    if (scaling != null) 'scaling': scaling!.encode(),
+    'fixed_node_count': fixedNodeCount.toTfJson(),
   };
+}
+
+/// Sets `scaling` (one of the [VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling] choices).
+final class VertexAiFeaturestoreOnlineServingConfigScalingOption
+    extends VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling {
+  const VertexAiFeaturestoreOnlineServingConfigScalingOption({
+    required this.scaling,
+  });
+
+  final VertexAiFeaturestoreOnlineServingConfigScaling scaling;
+
+  @override
+  String get blockKey => 'scaling';
+
+  @override
+  Map<String, Object?> encode() => {'scaling': scaling.encode()};
 }
 
 /// Typed helper for the `online_serving_config.scaling` block of

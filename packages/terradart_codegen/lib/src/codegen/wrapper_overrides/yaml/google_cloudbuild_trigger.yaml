@@ -1,6 +1,7 @@
 outputDir: cloud_build
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// The resource has **two competing repository-connection forms** that

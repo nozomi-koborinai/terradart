@@ -1,5 +1,6 @@
 outputDir: apihub
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-
