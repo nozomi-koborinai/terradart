@@ -586,7 +586,7 @@ class WrapperEmitter {
     if (isRequired) {
       return "'$snakeName': $camel,";
     }
-    return "if ($camel != null) '$snakeName': $camel,";
+    return "'$snakeName': ?$camel,";
   }
 
   /// [_argMapEntry] for a bare `List<TfArg<...>>` parameter: each element

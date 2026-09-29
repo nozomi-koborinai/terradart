@@ -58,10 +58,9 @@ final class GoogleProjectService extends Resource {
          terraformType: tfType,
          argMap: {
            'service': service,
-           if (project != null) 'project': project,
-           if (disableOnDestroy != null) 'disable_on_destroy': disableOnDestroy,
-           if (disableDependentServices != null)
-             'disable_dependent_services': disableDependentServices,
+           'project': ?project,
+           'disable_on_destroy': ?disableOnDestroy,
+           'disable_dependent_services': ?disableDependentServices,
          },
        );
 
