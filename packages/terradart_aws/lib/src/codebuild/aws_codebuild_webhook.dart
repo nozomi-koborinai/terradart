@@ -86,9 +86,56 @@ final class CodebuildWebhookFilterFilterGroup extends CodebuildWebhookFilter {
 /// `aws_codebuild_webhook` (derived from provider schema).
 @immutable
 final class CodebuildWebhookFilterGroup {
-  const CodebuildWebhookFilterGroup();
+  const CodebuildWebhookFilterGroup({this.filter});
 
-  Map<String, Object?> encode() => {};
+  final List<CodebuildWebhookFilterGroupFilter>? filter;
+
+  Map<String, Object?> encode() => {
+    if (filter != null) 'filter': [for (final e in filter!) e.encode()],
+  };
+}
+
+/// Typed helper for the `filter_group.filter` block of
+/// `aws_codebuild_webhook` (derived from provider schema).
+@immutable
+final class CodebuildWebhookFilterGroupFilter {
+  const CodebuildWebhookFilterGroupFilter({
+    this.excludeMatchedPattern,
+    required this.pattern,
+    required this.type,
+  });
+
+  final TfArg<bool>? excludeMatchedPattern;
+
+  final TfArg<String> pattern;
+
+  final TfArg<CodebuildWebhookFilterGroupFilterType> type;
+
+  Map<String, Object?> encode() => {
+    if (excludeMatchedPattern != null)
+      'exclude_matched_pattern': excludeMatchedPattern!.toTfJson(),
+    'pattern': pattern.toTfJson(),
+    'type': type.toTfJson(),
+  };
+}
+
+/// `type` — derived from the provider schema description.
+enum CodebuildWebhookFilterGroupFilterType implements TerraformEnum {
+  event('EVENT'),
+  baseRef('BASE_REF'),
+  headRef('HEAD_REF'),
+  actorAccountId('ACTOR_ACCOUNT_ID'),
+  filePath('FILE_PATH'),
+  commitMessage('COMMIT_MESSAGE'),
+  workflowName('WORKFLOW_NAME'),
+  tagName('TAG_NAME'),
+  releaseName('RELEASE_NAME'),
+  repositoryName('REPOSITORY_NAME'),
+  organizationName('ORGANIZATION_NAME');
+
+  const CodebuildWebhookFilterGroupFilterType(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `pull_request_build_policy` block of

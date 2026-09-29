@@ -93,6 +93,8 @@ export 'src/codebuild/aws_codebuild_webhook.dart'
         CodebuildWebhookFilterBranchFilter,
         CodebuildWebhookFilterFilterGroup,
         CodebuildWebhookFilterGroup,
+        CodebuildWebhookFilterGroupFilter,
+        CodebuildWebhookFilterGroupFilterType,
         CodebuildWebhookPullRequestBuildPolicy,
         CodebuildWebhookPullRequestBuildPolicyApproverRoles,
         CodebuildWebhookPullRequestBuildPolicyRequiresCommentApproval,

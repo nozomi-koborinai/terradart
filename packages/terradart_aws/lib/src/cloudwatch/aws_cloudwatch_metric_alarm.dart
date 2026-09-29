@@ -366,6 +366,7 @@ final class CloudwatchMetricAlarmMetricQuery {
     this.label,
     this.period,
     this.returnData,
+    this.metric,
   });
 
   final TfArg<String>? accountId;
@@ -380,6 +381,8 @@ final class CloudwatchMetricAlarmMetricQuery {
 
   final TfArg<bool>? returnData;
 
+  final CloudwatchMetricAlarmMetricQueryMetric? metric;
+
   Map<String, Object?> encode() => {
     if (accountId != null) 'account_id': accountId!.toTfJson(),
     if (expression != null) 'expression': expression!.toTfJson(),
@@ -387,7 +390,91 @@ final class CloudwatchMetricAlarmMetricQuery {
     if (label != null) 'label': label!.toTfJson(),
     if (period != null) 'period': period!.toTfJson(),
     if (returnData != null) 'return_data': returnData!.toTfJson(),
+    if (metric != null) 'metric': metric!.encode(),
   };
+}
+
+/// Typed helper for the `metric_query.metric` block of
+/// `aws_cloudwatch_metric_alarm` (derived from provider schema).
+@immutable
+final class CloudwatchMetricAlarmMetricQueryMetric {
+  const CloudwatchMetricAlarmMetricQueryMetric({
+    this.dimensions,
+    required this.metricName,
+    this.namespace,
+    required this.period,
+    required this.stat,
+    this.unit,
+  });
+
+  final TfArg<Map<String, String>>? dimensions;
+
+  final TfArg<String> metricName;
+
+  final TfArg<String>? namespace;
+
+  final TfArg<num> period;
+
+  final TfArg<CloudwatchMetricAlarmMetricQueryMetricStat> stat;
+
+  final TfArg<CloudwatchMetricAlarmMetricQueryMetricUnit>? unit;
+
+  Map<String, Object?> encode() => {
+    if (dimensions != null) 'dimensions': dimensions!.toTfJson(),
+    'metric_name': metricName.toTfJson(),
+    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    'period': period.toTfJson(),
+    'stat': stat.toTfJson(),
+    if (unit != null) 'unit': unit!.toTfJson(),
+  };
+}
+
+/// `stat` — derived from the provider schema description.
+enum CloudwatchMetricAlarmMetricQueryMetricStat implements TerraformEnum {
+  samplecount('SampleCount'),
+  average('Average'),
+  sum('Sum'),
+  minimum('Minimum'),
+  maximum('Maximum');
+
+  const CloudwatchMetricAlarmMetricQueryMetricStat(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `unit` — derived from the provider schema description.
+enum CloudwatchMetricAlarmMetricQueryMetricUnit implements TerraformEnum {
+  seconds('Seconds'),
+  microseconds('Microseconds'),
+  milliseconds('Milliseconds'),
+  bytes('Bytes'),
+  kilobytes('Kilobytes'),
+  megabytes('Megabytes'),
+  gigabytes('Gigabytes'),
+  terabytes('Terabytes'),
+  bits('Bits'),
+  kilobits('Kilobits'),
+  megabits('Megabits'),
+  gigabits('Gigabits'),
+  terabits('Terabits'),
+  percent('Percent'),
+  count('Count'),
+  bytesSecond('Bytes/Second'),
+  kilobytesSecond('Kilobytes/Second'),
+  megabytesSecond('Megabytes/Second'),
+  gigabytesSecond('Gigabytes/Second'),
+  terabytesSecond('Terabytes/Second'),
+  bitsSecond('Bits/Second'),
+  kilobitsSecond('Kilobits/Second'),
+  megabitsSecond('Megabits/Second'),
+  gigabitsSecond('Gigabits/Second'),
+  terabitsSecond('Terabits/Second'),
+  countSecond('Count/Second'),
+  none('None');
+
+  const CloudwatchMetricAlarmMetricQueryMetricUnit(this.terraformValue);
+  @override
+  final String terraformValue;
 }
 
 /// Typed helper for the `warm_up_configuration` block of
