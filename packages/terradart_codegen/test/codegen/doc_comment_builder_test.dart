@@ -4,10 +4,10 @@ import 'package:terradart_codegen/src/ir/resource_def.dart';
 import 'package:test/test.dart';
 
 ResourceDef _def({String? description}) => ResourceDef(
-      terraformType: 'google_pubsub_schema',
-      description: description,
-      root: const BlockDef(attributes: []),
-    );
+  terraformType: 'google_pubsub_schema',
+  description: description,
+  root: const BlockDef(attributes: []),
+);
 
 void main() {
   group('buildClassDocComment', () {
@@ -17,11 +17,14 @@ void main() {
     });
 
     test('appends the resource summary after a blank doc line', () {
-      final doc = buildClassDocComment(_def(
-        description: 'A schema is a format that messages must follow, '
-            'creating a contract between publisher and subscriber that '
-            'Pub/Sub will enforce.',
-      ));
+      final doc = buildClassDocComment(
+        _def(
+          description:
+              'A schema is a format that messages must follow, '
+              'creating a contract between publisher and subscriber that '
+              'Pub/Sub will enforce.',
+        ),
+      );
       expect(
         doc,
         startsWith('/// Factory wrapper for `google_pubsub_schema`.\n///\n'),
@@ -38,13 +41,10 @@ void main() {
     });
 
     test('preserves paragraph breaks as blank doc lines', () {
-      final doc = buildClassDocComment(_def(
-        description: 'First paragraph.\n\nSecond paragraph.',
-      ));
-      expect(
-        doc,
-        contains('/// First paragraph.\n///\n/// Second paragraph.'),
+      final doc = buildClassDocComment(
+        _def(description: 'First paragraph.\n\nSecond paragraph.'),
       );
+      expect(doc, contains('/// First paragraph.\n///\n/// Second paragraph.'));
     });
 
     test('collapses the source hard-wraps within a paragraph', () {
@@ -91,8 +91,10 @@ void main() {
       final doc = buildClassDocComment(_def(description: 'word ' * 60));
       // At least one wrapped body line should pack close to the 76-col target,
       // proving words are packed greedily (not emitted one per line).
-      final bodyLines =
-          doc.split('\n').where((l) => l.startsWith('/// word')).toList();
+      final bodyLines = doc
+          .split('\n')
+          .where((l) => l.startsWith('/// word'))
+          .toList();
       expect(bodyLines, isNotEmpty);
       expect(
         bodyLines.any((l) => l.length > 70),

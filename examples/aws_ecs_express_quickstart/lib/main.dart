@@ -32,19 +32,20 @@ const _port = 8080;
 /// ECS Express stack: repository, roles, cluster, logs, and the service.
 final class AwsEcsExpressStack extends Stack {
   AwsEcsExpressStack({required String region, required String imageTag})
-      : super(
-          providers: [
-            AwsProvider(
-              region: region,
-              defaultTags: const {'app': 'terradart-ecs-express-quickstart'},
-            ),
-          ],
-        ) {
+    : super(
+        providers: [
+          AwsProvider(
+            region: region,
+            defaultTags: const {'app': 'terradart-ecs-express-quickstart'},
+          ),
+        ],
+      ) {
     final repo = AwsEcrRepository(
       localName: 'server',
       name: TfArg.literal(_name),
-      imageTagMutability:
-          TfArg.literal(EcrRepositoryImageTagMutability.mutable),
+      imageTagMutability: TfArg.literal(
+        EcrRepositoryImageTagMutability.mutable,
+      ),
       forceDelete: TfArg.literal(true),
       imageScanningConfiguration: EcrRepositoryImageScanningConfiguration(
         scanOnPush: TfArg.literal(true),
@@ -78,14 +79,16 @@ final class AwsEcsExpressStack extends Stack {
       localName: 'execution',
       name: '$_name-execution',
       service: 'ecs-tasks.amazonaws.com',
-      policyArn: 'arn:aws:iam::aws:policy/service-role/'
+      policyArn:
+          'arn:aws:iam::aws:policy/service-role/'
           'AmazonECSTaskExecutionRolePolicy',
     );
     final infrastructure = _role(
       localName: 'infrastructure',
       name: '$_name-infrastructure',
       service: 'ecs.amazonaws.com',
-      policyArn: 'arn:aws:iam::aws:policy/service-role/'
+      policyArn:
+          'arn:aws:iam::aws:policy/service-role/'
           'AmazonECSInfrastructureRoleforExpressGatewayServices',
     );
 

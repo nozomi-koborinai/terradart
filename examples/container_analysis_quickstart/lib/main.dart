@@ -14,10 +14,7 @@ import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_time/terradart_time.dart';
 
-String _iamPolicyDataJson({
-  required String role,
-  required String member,
-}) {
+String _iamPolicyDataJson({required String role, required String member}) {
   return jsonEncode({
     'bindings': [
       {
@@ -30,12 +27,12 @@ String _iamPolicyDataJson({
 
 final class ContainerAnalysisStack extends Stack {
   ContainerAnalysisStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.containerAnalysis],
@@ -66,14 +63,9 @@ final class ContainerAnalysisStack extends Stack {
       GoogleContainerAnalysisNoteIamMember(
         localName: 'note_viewer',
         note: TfArg.ref(note.nameRef),
-        role: TfArg.literal(
-          'roles/containeranalysis.notes.occurrences.viewer',
-        ),
+        role: TfArg.literal('roles/containeranalysis.notes.occurrences.viewer'),
         member: TfArg.ref(viewer.iamMember),
-        dependsOn: [
-          ResourceDependency(note),
-          ResourceDependency(viewer),
-        ],
+        dependsOn: [ResourceDependency(note), ResourceDependency(viewer)],
       ),
     );
 
@@ -81,14 +73,9 @@ final class ContainerAnalysisStack extends Stack {
       GoogleContainerAnalysisNoteIamBinding(
         localName: 'note_viewer_binding',
         note: TfArg.ref(note.nameRef),
-        role: TfArg.literal(
-          'roles/containeranalysis.notes.occurrences.viewer',
-        ),
+        role: TfArg.literal('roles/containeranalysis.notes.occurrences.viewer'),
         members: TfArg.literal([viewer.iamMember.interpolation]),
-        dependsOn: [
-          ResourceDependency(note),
-          ResourceDependency(viewer),
-        ],
+        dependsOn: [ResourceDependency(note), ResourceDependency(viewer)],
       ),
     );
 
@@ -103,10 +90,7 @@ final class ContainerAnalysisStack extends Stack {
                 'serviceAccount:ca-note-viewer@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [
-          ResourceDependency(note),
-          ResourceDependency(noteBinding),
-        ],
+        dependsOn: [ResourceDependency(note), ResourceDependency(noteBinding)],
       ),
     );
   }

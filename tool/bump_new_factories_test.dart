@@ -43,13 +43,10 @@ const terradartCatalog = <CatalogEntry>[
   });
 
   test('a new factory is an added type the catalog now lists', () {
-    final factories = newFactories(
-      {
-        'added_resources': ['aws_new', 'aws_never_wrapped'],
-        'added_data_sources': ['aws_new'],
-      },
-      readCatalog(catalog),
-    );
+    final factories = newFactories({
+      'added_resources': ['aws_new', 'aws_never_wrapped'],
+      'added_data_sources': ['aws_new'],
+    }, readCatalog(catalog));
     expect(factories.map((f) => '${f.kind} ${f.className}'), [
       'resource AwsNew',
       'dataSource AwsNewData',
@@ -62,12 +59,12 @@ const terradartCatalog = <CatalogEntry>[
       (tfType: 'google_new', className: 'GoogleNew', kind: 'resource'),
     ];
     String append(String yaml) => appendAwaitingExampleDebt(
-          yaml,
-          factories: factories,
-          source: 'hashicorp/google',
-          providerVersion: '7.47.0',
-          detectedAt: '2026-10-04',
-        );
+      yaml,
+      factories: factories,
+      source: 'hashicorp/google',
+      providerVersion: '7.47.0',
+      detectedAt: '2026-10-04',
+    );
     final once = append(existing);
     expect(once, startsWith(existing));
     expect(once, contains('# Awaiting an example:'));
@@ -97,21 +94,16 @@ const terradartCatalog = <CatalogEntry>[
     final debt = File(exampleDebtPath).readAsStringSync();
     final appended = appendAwaitingExampleDebt(
       debt,
-      factories: [
-        (tfType: 'google_x', className: 'GoogleX', kind: 'resource'),
-      ],
+      factories: [(tfType: 'google_x', className: 'GoogleX', kind: 'resource')],
       source: 'hashicorp/google',
       providerVersion: '7.47.0',
       detectedAt: '2026-10-04',
     );
     final added = appended.substring(debt.trimRight().length).split('\n');
-    expect(
-      added.where((l) => l.isNotEmpty && !l.startsWith('#')),
-      [
-        'GoogleX: awaiting-example: google_x added in hashicorp/google 7.47.0 '
-            '(schema bump 2026-10-04)',
-      ],
-    );
+    expect(added.where((l) => l.isNotEmpty && !l.startsWith('#')), [
+      'GoogleX: awaiting-example: google_x added in hashicorp/google 7.47.0 '
+          '(schema bump 2026-10-04)',
+    ]);
   });
 
   group('barrels', () {
@@ -131,23 +123,28 @@ barrels:
       final next = addMissingBarrels(manifest, {'alpha', 'beta', 'zeta'});
       expect(
         next,
-        contains('      /// Alpha.\n'
-            '  beta:\n'
-            '    doc: |-\n'
-            '      /// `beta` factories, added by the weekly schema bump.\n'
-            '  gamma:'),
+        contains(
+          '      /// Alpha.\n'
+          '  beta:\n'
+          '    doc: |-\n'
+          '      /// `beta` factories, added by the weekly schema bump.\n'
+          '  gamma:',
+        ),
       );
       expect(
         next,
-        endsWith('  zeta:\n    doc: |-\n'
-            '      /// `zeta` factories, added by the weekly schema bump.\n'),
+        endsWith(
+          '  zeta:\n    doc: |-\n'
+          '      /// `zeta` factories, added by the weekly schema bump.\n',
+        ),
       );
       expect(addMissingBarrels(next, {'alpha', 'beta', 'zeta'}), next);
     });
 
     test('every committed lane already has an entry per override barrel', () {
-      for (final lane
-          in parseWrapLanes(File(providersPath).readAsStringSync())) {
+      for (final lane in parseWrapLanes(
+        File(providersPath).readAsStringSync(),
+      )) {
         final text = File(lane.barrelsManifest).readAsStringSync();
         expect(
           addMissingBarrels(text, overrideBarrels(lane.overridesRoot)),
@@ -180,10 +177,9 @@ files:
         guessMmUpstreams('google_network_connectivity_gateway_route', sources),
         ['mmv1/products/networkconnectivity/GatewayRoute.yaml'],
       );
-      expect(
-        guessMmUpstreams('google_compute_region_health_source', sources),
-        ['mmv1/products/compute/RegionHealthSource.yaml'],
-      );
+      expect(guessMmUpstreams('google_compute_region_health_source', sources), [
+        'mmv1/products/compute/RegionHealthSource.yaml',
+      ]);
       expect(guessMmUpstreams('google_unknown_thing', sources), isEmpty);
     });
 
@@ -233,10 +229,11 @@ files:
     });
 
     test('adds a data-source row per new data source, in key order', () {
-      final next = addMmDataSourceRows(
-        sources,
-        ['google_zeta', 'google_alpha', 'google_compute_network'],
-      );
+      final next = addMmDataSourceRows(sources, [
+        'google_zeta',
+        'google_alpha',
+        'google_compute_network',
+      ]);
       expect(
         next,
         endsWith(

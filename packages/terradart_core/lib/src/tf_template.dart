@@ -49,8 +49,9 @@ List<String> templateSequenceBodies(String template) {
         final c = template[j];
         if (c == '"') {
           final close = _closingQuote(template, j + 1);
-          nested
-              .addAll(templateSequenceBodies(template.substring(j + 1, close)));
+          nested.addAll(
+            templateSequenceBodies(template.substring(j + 1, close)),
+          );
           body.write(' ');
           j = close + 1;
           continue;

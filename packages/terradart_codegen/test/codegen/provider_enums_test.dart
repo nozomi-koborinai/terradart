@@ -15,34 +15,35 @@ Attribute _attr(
   TypeDef type = const StringType(),
   String? description,
   bool computedOnly = false,
-}) =>
-    Attribute(
-      name: name,
-      type: type,
-      description: description,
-      constraints: computedOnly
-          ? const Constraints(computed: true)
-          : const Constraints(optional: true),
-    );
+}) => Attribute(
+  name: name,
+  type: type,
+  description: description,
+  constraints: computedOnly
+      ? const Constraints(computed: true)
+      : const Constraints(optional: true),
+);
 
 ProviderSchemaIR _ir(List<Attribute> attrs) => ProviderSchemaIR(
-      providerName: 'x',
-      providerSource: 'example/x',
-      providerVersion: '1.0.0',
-      resources: {
-        'x_thing': ResourceDef(
-          terraformType: 'x_thing',
-          root: BlockDef(attributes: attrs),
-        ),
-      },
-      dataSources: const {},
-    );
+  providerName: 'x',
+  providerSource: 'example/x',
+  providerVersion: '1.0.0',
+  resources: {
+    'x_thing': ResourceDef(
+      terraformType: 'x_thing',
+      root: BlockDef(attributes: attrs),
+    ),
+  },
+  dataSources: const {},
+);
 
-List<String>? _values(ProviderSchemaIR ir, String attr) =>
-    ir.resources['x_thing']!.root.attributes
-        .firstWhere((a) => a.name == attr)
-        .constraints
-        .enumValues;
+List<String>? _values(ProviderSchemaIR ir, String attr) => ir
+    .resources['x_thing']!
+    .root
+    .attributes
+    .firstWhere((a) => a.name == attr)
+    .constraints
+    .enumValues;
 
 void main() {
   const available = 'Available values: "a", "b".';
@@ -54,12 +55,14 @@ void main() {
   });
 
   test('a hint beats the description, at any depth', () {
-    const enums = ProviderEnums.on(hints: {
-      'x_thing': {
-        'mode': ['h1', 'h2'],
-        'settings.level': ['l1'],
+    const enums = ProviderEnums.on(
+      hints: {
+        'x_thing': {
+          'mode': ['h1', 'h2'],
+          'settings.level': ['l1'],
+        },
       },
-    });
+    );
     final ir = enums.enrich(_ir([_attr('mode', description: available)]));
     expect(_values(ir, 'mode'), ['h1', 'h2']);
     expect(enums.resolver('x_thing')(['settings', 'level'], available), ['l1']);
@@ -97,12 +100,22 @@ properties:
   });
 
   test('top-level string and list-of-string inputs are enriched', () {
-    final ir = const ProviderEnums.on().enrich(_ir([
-      _attr('status', description: available, computedOnly: true),
-      _attr('tags', type: const ListType(StringType()), description: available),
-      _attr('ports', type: const SetType(NumberType()), description: available),
-      _attr('mode', description: available),
-    ]));
+    final ir = const ProviderEnums.on().enrich(
+      _ir([
+        _attr('status', description: available, computedOnly: true),
+        _attr(
+          'tags',
+          type: const ListType(StringType()),
+          description: available,
+        ),
+        _attr(
+          'ports',
+          type: const SetType(NumberType()),
+          description: available,
+        ),
+        _attr('mode', description: available),
+      ]),
+    );
     expect(_values(ir, 'status'), isNull);
     expect(_values(ir, 'tags'), ['a', 'b']);
     expect(_values(ir, 'ports'), isNull);
@@ -111,12 +124,18 @@ properties:
 
   test('typeDerivedEnums types deriveEnums inputs; explicit entries win', () {
     const enums = ProviderEnums.on();
-    final ir = enums.enrich(_ir([
-      _attr('mode', description: available),
-      _attr('kind', description: available),
-      _attr('slot', description: available),
-      _attr('tags', type: const SetType(StringType()), description: available),
-    ]));
+    final ir = enums.enrich(
+      _ir([
+        _attr('mode', description: available),
+        _attr('kind', description: available),
+        _attr('slot', description: available),
+        _attr(
+          'tags',
+          type: const SetType(StringType()),
+          description: available,
+        ),
+      ]),
+    );
     final typed = enums.typeDerivedEnums({
       'x_thing': const WrapperOverride(
         outputDir: 'thing',

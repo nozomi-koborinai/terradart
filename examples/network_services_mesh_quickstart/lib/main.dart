@@ -17,11 +17,9 @@ import 'package:terradart_google/provider.dart';
 /// Network Services stack: Mesh + config-only routes + endpoint policy.
 final class NetworkServicesMeshStack extends Stack {
   NetworkServicesMeshStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiNetworkServices = add(
       GoogleProjectService(
         localName: 'api_networkservices',
@@ -137,17 +135,17 @@ final class NetworkServicesMeshStack extends Stack {
         endpointMatcher: NetworkServicesEndpointPolicyEndpointMatcher(
           metadataLabelMatcher:
               NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcher(
-            metadataLabelMatchCriteria: TfArg.literal(
-              NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabelMatchCriteria
-                  .matchAny,
-            ),
-            metadataLabels: [
-              NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabels(
-                labelName: TfArg.literal('app'),
-                labelValue: TfArg.literal('terradart'),
+                metadataLabelMatchCriteria: TfArg.literal(
+                  NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabelMatchCriteria
+                      .matchAny,
+                ),
+                metadataLabels: [
+                  NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabels(
+                    labelName: TfArg.literal('app'),
+                    labelValue: TfArg.literal('terradart'),
+                  ),
+                ],
               ),
-            ],
-          ),
         ),
         dependsOn: [ResourceDependency(apiNetworkServices)],
       ),

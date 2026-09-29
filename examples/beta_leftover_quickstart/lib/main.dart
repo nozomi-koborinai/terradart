@@ -36,11 +36,11 @@ import 'package:terradart_google_beta/vertex_ai.dart';
 
 final class BetaLeftoverStack extends Stack {
   BetaLeftoverStack({required String projectId})
-      : super(
-          providers: [
-            GoogleBetaProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleBetaProvider(project: projectId, region: 'us-central1'),
+        ],
+      ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
     addVariable(
@@ -68,15 +68,15 @@ final class BetaLeftoverStack extends Stack {
         api: TfArg.literal('terradart-leftover'),
         openapiDocumentsOrGrpcServices:
             ApiGatewayApiConfigOpenapiDocumentsOption(
-          openapiDocuments: [
-            ApiGatewayApiConfigOpenapiDocuments(
-              document: ApiGatewayApiConfigOpenapiDocumentsDocument(
-                contents: TfArg.literal('b3BlbmFwaTogIjMuMC4wIg=='),
-                path: TfArg.literal('openapi.yaml'),
-              ),
+              openapiDocuments: [
+                ApiGatewayApiConfigOpenapiDocuments(
+                  document: ApiGatewayApiConfigOpenapiDocumentsDocument(
+                    contents: TfArg.literal('b3BlbmFwaTogIjMuMC4wIg=='),
+                    path: TfArg.literal('openapi.yaml'),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
       ),
     );
     add(
@@ -434,11 +434,7 @@ final class BetaLeftoverStack extends Stack {
         resource: TfArg.literal('terradart-leftover'),
       ),
     );
-    add(
-      GoogleFirebaseAiLogicConfig(
-        localName: 'firebase_ai_logic_config',
-      ),
-    );
+    add(GoogleFirebaseAiLogicConfig(localName: 'firebase_ai_logic_config'));
     add(
       GoogleFirebaseAiLogicPromptTemplate(
         localName: 'firebase_ai_logic_prompt_template',
@@ -505,27 +501,15 @@ final class BetaLeftoverStack extends Stack {
         siteId: TfArg.literal('terradart-leftover'),
       ),
     );
-    add(
-      GoogleFirebaseHostingSite(
-        localName: 'firebase_hosting_site',
-      ),
-    );
+    add(GoogleFirebaseHostingSite(localName: 'firebase_hosting_site'));
     add(
       GoogleFirebaseHostingVersion(
         localName: 'firebase_hosting_version',
         siteId: TfArg.literal('terradart-leftover'),
       ),
     );
-    add(
-      GoogleFirebaseProject(
-        localName: 'firebase_project',
-      ),
-    );
-    add(
-      GoogleFirebaseStorageBucket(
-        localName: 'firebase_storage_bucket',
-      ),
-    );
+    add(GoogleFirebaseProject(localName: 'firebase_project'));
+    add(GoogleFirebaseStorageBucket(localName: 'firebase_storage_bucket'));
     add(
       GoogleFirebaseStorageDefaultBucket(
         localName: 'firebase_storage_default_bucket',
@@ -907,11 +891,7 @@ final class BetaLeftoverStack extends Stack {
         policyData: TfArg.literal('{"bindings":[]}'),
       ),
     );
-    add(
-      GoogleVertexAiMetadataStore(
-        localName: 'vertex_ai_metadata_store',
-      ),
-    );
+    add(GoogleVertexAiMetadataStore(localName: 'vertex_ai_metadata_store'));
     add(
       GoogleVertexAiModelGardenEnableModel(
         localName: 'vertex_ai_model_garden_enable_model',

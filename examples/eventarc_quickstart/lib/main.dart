@@ -13,11 +13,9 @@ import 'package:terradart_google/provider.dart';
 
 final class EventarcStack extends Stack {
   EventarcStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     // Eventarc Advanced (MessageBus, GoogleApiSource, Enrollment, Pipeline) is
     // GA only in a limited set of regions; asia-northeast1 is not one of them.
     // us-central1 supports both Eventarc Advanced and Eventarc Standard, and a

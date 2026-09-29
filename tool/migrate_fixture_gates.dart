@@ -65,7 +65,8 @@ Future<void> main(List<String> args) async {
     );
     ok = ok && passed;
   }
-  ok = await _mergeEnvGate(
+  ok =
+      await _mergeEnvGate(
         repoRoot: repoRoot,
         skipValidate: skipValidate,
         keep: keep,
@@ -85,11 +86,7 @@ Future<bool> _mergeEnvGate({
   required bool keep,
 }) async {
   final input = Directory(
-    p.join(
-      repoRoot,
-      'packages/terradart_migrate/test/fixtures',
-      _mergeFixture,
-    ),
+    p.join(repoRoot, 'packages/terradart_migrate/test/fixtures', _mergeFixture),
   );
   final plain = Directory.systemTemp.createTempSync('terradart_merge_plain_');
   final temp = Directory.systemTemp.createTempSync('terradart_merge_envs_');

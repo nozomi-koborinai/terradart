@@ -15,11 +15,9 @@ import 'package:terradart_google/provider.dart';
 /// Compute default network tier Stack: project STANDARD singleton.
 final class ComputeDefaultNetworkTierStack extends Stack {
   ComputeDefaultNetworkTierStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',
@@ -31,9 +29,7 @@ final class ComputeDefaultNetworkTierStack extends Stack {
     add(
       GoogleComputeProjectDefaultNetworkTier(
         localName: 'defaults',
-        networkTier: TfArg.literal(
-          ComputeProjectDefaultNetworkTier.standard,
-        ),
+        networkTier: TfArg.literal(ComputeProjectDefaultNetworkTier.standard),
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );

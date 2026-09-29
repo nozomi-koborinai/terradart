@@ -6,7 +6,8 @@ import 'doc_expectations.dart';
 
 void main() {
   test('fixGoogleCounts sets every count phrase to the catalog', () {
-    const stale = '**1 curated resource factories + 2 data sources** '
+    const stale =
+        '**1 curated resource factories + 2 data sources** '
         '(3 catalog entries), (GA catalog, 3 entries), 7 resource factories';
     expect(
       fixGoogleCounts(stale),

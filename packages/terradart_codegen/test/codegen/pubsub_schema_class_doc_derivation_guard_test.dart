@@ -17,10 +17,7 @@ void main() {
       final dart = File(
         '../terradart_google/lib/src/pubsub/google_pubsub_schema.dart',
       ).readAsStringSync();
-      expect(
-        dart,
-        contains('/// Factory wrapper for `google_pubsub_schema`.'),
-      );
+      expect(dart, contains('/// Factory wrapper for `google_pubsub_schema`.'));
       expect(
         dart,
         contains('/// A schema is a format that messages must follow,'),

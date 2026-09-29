@@ -10,8 +10,10 @@ void main() {
       final argMap = builder.buildForPath('secret_data', 'plaintext-value');
       expect(argMap, hasLength(1));
       expect(argMap['secret_data'], isA<TfArg<String>>());
-      expect((argMap['secret_data']! as TfArgLiteral<String>).value,
-          equals('plaintext-value'));
+      expect(
+        (argMap['secret_data']! as TfArgLiteral<String>).value,
+        equals('plaintext-value'),
+      );
     });
 
     test('depth-2 path wraps the leaf in `TfArg.literal([{leaf: value}])`', () {
@@ -24,10 +26,11 @@ void main() {
       expect(outer, isA<TfArgLiteral<List<dynamic>>>());
       final encoded = (outer! as TfArgLiteral<List<dynamic>>).value;
       expect(
-          encoded,
-          equals([
-            {'encryption_key': 'plaintext-value'},
-          ]));
+        encoded,
+        equals([
+          {'encryption_key': 'plaintext-value'},
+        ]),
+      );
     });
 
     test('depth-4 path produces nested [{...}] structure', () {
@@ -38,18 +41,19 @@ void main() {
       final outer = argMap['boot_disk'];
       expect(outer, isA<TfArgLiteral<List<dynamic>>>());
       expect(
-          (outer! as TfArgLiteral<List<dynamic>>).value,
-          equals([
-            {
-              'initialize_params': [
-                {
-                  'source_image_encryption_key': [
-                    {'raw_key': 'plaintext'},
-                  ],
-                },
-              ],
-            },
-          ]));
+        (outer! as TfArgLiteral<List<dynamic>>).value,
+        equals([
+          {
+            'initialize_params': [
+              {
+                'source_image_encryption_key': [
+                  {'raw_key': 'plaintext'},
+                ],
+              },
+            ],
+          },
+        ]),
+      );
     });
   });
 }

@@ -24,12 +24,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class DataConnectStack extends Stack {
   DataConnectStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     // Enable the Firebase Data Connect API and wait for propagation before
     // the service applies.
     final apiDeps = Apis.enable(

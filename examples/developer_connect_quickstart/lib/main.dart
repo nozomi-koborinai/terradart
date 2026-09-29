@@ -17,11 +17,9 @@ import 'package:terradart_google/provider.dart';
 /// Developer Connect stack: unused GitHub account connector (no connection).
 final class DeveloperConnectStack extends Stack {
   DeveloperConnectStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiDeveloperConnect = add(
       GoogleProjectService(
         localName: 'api_developerconnect',
@@ -37,9 +35,9 @@ final class DeveloperConnectStack extends Stack {
         accountConnectorId: TfArg.literal('terradart-github'),
         providerOauthConfig:
             DeveloperConnectAccountConnectorProviderOauthConfig(
-          systemProviderId: TfArg.literal('GITHUB'),
-          scopes: TfArg.literal(['repo']),
-        ),
+              systemProviderId: TfArg.literal('GITHUB'),
+              scopes: TfArg.literal(['repo']),
+            ),
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: [ResourceDependency(apiDeveloperConnect)],
       ),

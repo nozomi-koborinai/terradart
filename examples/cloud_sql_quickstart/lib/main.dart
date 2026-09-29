@@ -28,14 +28,12 @@ import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/service_networking.dart';
 
 final class CloudSqlStack extends Stack {
-  CloudSqlStack({
-    required String projectId,
-    required String dbPassword,
-  }) : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-        ) {
+  CloudSqlStack({required String projectId, required String dbPassword})
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+      ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
     addVariable(
@@ -205,9 +203,7 @@ final class CloudSqlStack extends Stack {
         cluster: TfArg.ref(alloyCluster.id),
         instanceId: TfArg.literal('primary'),
         instanceType: TfArg.literal(AlloydbInstanceType.primary),
-        machineConfig: AlloydbInstanceMachineConfig(
-          cpuCount: TfArg.literal(2),
-        ),
+        machineConfig: AlloydbInstanceMachineConfig(cpuCount: TfArg.literal(2)),
       ),
     );
 

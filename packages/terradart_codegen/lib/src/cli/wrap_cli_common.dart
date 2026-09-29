@@ -8,8 +8,9 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 
 /// `namespace/name` shape for `--provider` values.
-final RegExp providerIdPattern =
-    RegExp(r'^[a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9-]*$');
+final RegExp providerIdPattern = RegExp(
+  r'^[a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9-]*$',
+);
 
 /// Reads `<source>/provider_version.txt` — the sidecar the schema-bump
 /// workflow writes next to `schema.json` recording which provider release

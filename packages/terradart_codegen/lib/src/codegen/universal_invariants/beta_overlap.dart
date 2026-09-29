@@ -12,7 +12,7 @@ List<String> overlappingResourceTypes({
   Set<String> names(Map<String, dynamic> schema) {
     final providerSchemas =
         (schema['provider_schemas'] as Map?)?.cast<String, dynamic>() ??
-            const {};
+        const {};
     final out = <String>{};
     for (final body in providerSchemas.values) {
       final resources = ((body as Map?)?['resource_schemas'] as Map?)

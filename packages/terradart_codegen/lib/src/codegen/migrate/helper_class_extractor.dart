@@ -118,20 +118,17 @@ final class ExtractedHelper {
   bool get isIrregular => irregularReason != null;
 
   ExtractedHelper _withBlockKey(String key) => ExtractedHelper(
-        name: name,
-        fields: fields,
-        parent: parent,
-        blockKey: key,
-        irregularReason: irregularReason,
-      );
+    name: name,
+    fields: fields,
+    parent: parent,
+    blockKey: key,
+    irregularReason: irregularReason,
+  );
 }
 
 /// Everything [HelperClassExtractor.extract] found in one source file.
 final class HelperExtraction {
-  const HelperExtraction({
-    required this.helpers,
-    required this.sealedClasses,
-  });
+  const HelperExtraction({required this.helpers, required this.sealedClasses});
 
   /// Helper class name → extraction (sealed *variants* included, sealed
   /// abstract roots excluded).
@@ -280,7 +277,8 @@ class HelperClassExtractor {
     // A variant's key getter is `blockKey` by convention; a sealed group
     // that names it differently (`tierKey`, `planeKey`) still has exactly
     // one constant string getter per variant.
-    final blockKey = getters['blockKey'] ??
+    final blockKey =
+        getters['blockKey'] ??
         (decl.parent != null && getters.length == 1
             ? getters.values.single
             : null);
@@ -334,15 +332,17 @@ class HelperClassExtractor {
       if (key == null && !merged && hasEncoding) {
         reasons.add('field `${p.field}` has no encode entry');
       }
-      fields.add(ExtractedField(
-        name: p.name,
-        typeSource: type,
-        required: p.required,
-        positional: p.positional,
-        tfKey: key,
-        merged: merged,
-        keyedEncoding: keyedEncoding,
-      ));
+      fields.add(
+        ExtractedField(
+          name: p.name,
+          typeSource: type,
+          required: p.required,
+          positional: p.positional,
+          tfKey: key,
+          merged: merged,
+          keyedEncoding: keyedEncoding,
+        ),
+      );
     }
 
     // A variant without a `blockKey` getter answers to the one top-level
@@ -416,8 +416,9 @@ class HelperClassExtractor {
     final reasons = <String>[];
 
     final brace = paramsText.indexOf('{');
-    final positionalText =
-        brace < 0 ? paramsText : paramsText.substring(0, brace);
+    final positionalText = brace < 0
+        ? paramsText
+        : paramsText.substring(0, brace);
     final namedText = brace < 0
         ? ''
         : paramsText.substring(brace + 1, paramsText.lastIndexOf('}'));
@@ -435,28 +436,34 @@ class HelperClassExtractor {
         }
         if (piece.startsWith('this.') || piece.startsWith('super.')) {
           final field = piece.substring(piece.indexOf('.') + 1).trim();
-          params.add(_Param(
-            name: field,
-            field: field,
-            required: required,
-            positional: !named,
-          ));
+          params.add(
+            _Param(
+              name: field,
+              field: field,
+              required: required,
+              positional: !named,
+            ),
+          );
           continue;
         }
-        final plain =
-            RegExp(r'^(.+?)\s+(\w+)$', dotAll: true).firstMatch(piece);
+        final plain = RegExp(
+          r'^(.+?)\s+(\w+)$',
+          dotAll: true,
+        ).firstMatch(piece);
         final target = plain == null ? null : initializers[plain.group(2)!];
         if (plain == null || target == null) {
           reasons.add('unrecognised constructor parameter `$piece`');
           continue;
         }
-        params.add(_Param(
-          name: plain.group(2)!,
-          field: target,
-          required: required,
-          positional: !named,
-          typeOverride: _collapse(plain.group(1)!),
-        ));
+        params.add(
+          _Param(
+            name: plain.group(2)!,
+            field: target,
+            required: required,
+            positional: !named,
+            typeOverride: _collapse(plain.group(1)!),
+          ),
+        );
       }
     }
 
@@ -643,8 +650,10 @@ class HelperClassExtractor {
   /// `(key, value, quoted)` for a `'key': value` / `identifier: value`
   /// entry.
   static (String, String, bool)? _keyedEntry(String entry) {
-    final m = RegExp(r"^(?:'([^']+)'|(\w+))\s*:\s*(.*)$", dotAll: true)
-        .firstMatch(entry);
+    final m = RegExp(
+      r"^(?:'([^']+)'|(\w+))\s*:\s*(.*)$",
+      dotAll: true,
+    ).firstMatch(entry);
     if (m == null) return null;
     final quoted = m.group(1);
     return (quoted ?? m.group(2)!, m.group(3)!, quoted != null);
@@ -707,8 +716,9 @@ class HelperClassExtractor {
   /// access does not count).
   static List<String> _fieldRefs(String expr, Set<String> fieldNames) {
     final seen = <String>{};
-    for (final m
-        in RegExp(r'(?<![.\w$])([a-z_][A-Za-z0-9_]*)\b').allMatches(expr)) {
+    for (final m in RegExp(
+      r'(?<![.\w$])([a-z_][A-Za-z0-9_]*)\b',
+    ).allMatches(expr)) {
       final id = m.group(1)!;
       if (fieldNames.contains(id)) seen.add(id);
     }
@@ -849,10 +859,10 @@ final class _Encoding {
   });
 
   const _Encoding.empty()
-      : keys = const {},
-        merged = const {},
-        keyed = const {},
-        topLevelKeys = const [];
+    : keys = const {},
+      merged = const {},
+      keyed = const {},
+      topLevelKeys = const [];
 
   /// Field → Terraform key path.
   final Map<String, String> keys;

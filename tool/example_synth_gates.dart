@@ -103,11 +103,12 @@ Future<void> _checkTerraformValidate(
       );
       continue;
     }
-    final init = await Process.run(
-      'terraform',
-      ['init', '-backend=false', '-input=false', '-reconfigure'],
-      workingDirectory: tfOut.path,
-    );
+    final init = await Process.run('terraform', [
+      'init',
+      '-backend=false',
+      '-input=false',
+      '-reconfigure',
+    ], workingDirectory: tfOut.path);
     if (init.exitCode != 0) {
       errors.add(
         'examples/$slug: terraform init failed (exit ${init.exitCode})\n'
@@ -115,11 +116,9 @@ Future<void> _checkTerraformValidate(
       );
       continue;
     }
-    final validate = await Process.run(
-      'terraform',
-      ['validate'],
-      workingDirectory: tfOut.path,
-    );
+    final validate = await Process.run('terraform', [
+      'validate',
+    ], workingDirectory: tfOut.path);
     if (validate.exitCode != 0) {
       errors.add(
         'examples/$slug: terraform validate failed (exit ${validate.exitCode})\n'
@@ -222,16 +221,16 @@ void _checkSynthCoverage(
     }
     for (final m in tfRe.allMatches(catalog.readAsStringSync())) {
       catalogClasses.add(m.group(2)!);
-      factories.add(
-        (tfType: m.group(1)!, className: m.group(2)!, kind: m.group(3)!),
-      );
+      factories.add((
+        tfType: m.group(1)!,
+        className: m.group(2)!,
+        kind: m.group(3)!,
+      ));
     }
   }
 
   final debt = _exampleDebt(errors);
-  final classToTfType = {
-    for (final f in factories) f.className: f.tfType,
-  };
+  final classToTfType = {for (final f in factories) f.className: f.tfType};
   var covered = 0;
   for (final f in factories) {
     final used = f.kind == 'dataSource'
@@ -341,7 +340,8 @@ void checkIamAdjunctDebtEntry({
         '${className.substring(0, className.length - 'IamBinding'.length)}'
         'IamMember';
   } else if (className.endsWith('IamPolicy')) {
-    sibling = '${className.substring(0, className.length - 'IamPolicy'.length)}'
+    sibling =
+        '${className.substring(0, className.length - 'IamPolicy'.length)}'
         'IamMember';
   } else {
     errors.add(

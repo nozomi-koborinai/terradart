@@ -8,28 +8,32 @@ import 'package:test/test.dart';
 
 void main() {
   group('emitSensitiveStaticSet', () {
-    test('two sensitive fields produce a sorted snake_case top-level const',
-        () {
+    test('two sensitive fields produce a sorted snake_case top-level const', () {
       final res = const ResourceDef(
         terraformType: 'google_secret_manager_secret_version',
-        root: BlockDef(attributes: [
-          Attribute(
-            name: 'secret_data',
-            type: StringType(),
-            constraints: Constraints(required: true, sensitive: true),
-          ),
-          Attribute(
-            name: 'secret_data_wo',
-            type: StringType(),
-            constraints:
-                Constraints(optional: true, sensitive: true, writeOnly: true),
-          ),
-          Attribute(
-            name: 'name',
-            type: StringType(),
-            constraints: Constraints(required: true),
-          ),
-        ]),
+        root: BlockDef(
+          attributes: [
+            Attribute(
+              name: 'secret_data',
+              type: StringType(),
+              constraints: Constraints(required: true, sensitive: true),
+            ),
+            Attribute(
+              name: 'secret_data_wo',
+              type: StringType(),
+              constraints: Constraints(
+                optional: true,
+                sensitive: true,
+                writeOnly: true,
+              ),
+            ),
+            Attribute(
+              name: 'name',
+              type: StringType(),
+              constraints: Constraints(required: true),
+            ),
+          ],
+        ),
       );
       expect(
         emitSensitiveStaticSet(res),
@@ -44,20 +48,24 @@ void main() {
     test('a map of blocks contributes a * segment', () {
       final res = const ResourceDef(
         terraformType: 'cloudflare_pages_project',
-        root: BlockDef(nestedBlocks: [
-          NestedBlockDef(
-            name: 'env_vars',
-            nesting: NestingMode.map,
-            constraints: Constraints(optional: true),
-            block: BlockDef(attributes: [
-              Attribute(
-                name: 'value',
-                type: StringType(),
-                constraints: Constraints(required: true, sensitive: true),
+        root: BlockDef(
+          nestedBlocks: [
+            NestedBlockDef(
+              name: 'env_vars',
+              nesting: NestingMode.map,
+              constraints: Constraints(optional: true),
+              block: BlockDef(
+                attributes: [
+                  Attribute(
+                    name: 'value',
+                    type: StringType(),
+                    constraints: Constraints(required: true, sensitive: true),
+                  ),
+                ],
               ),
-            ]),
-          ),
-        ]),
+            ),
+          ],
+        ),
       );
       expect(sensitiveFieldPaths(res), ['env_vars.*.value']);
     });
@@ -65,13 +73,15 @@ void main() {
     test('zero sensitive fields produces an empty top-level const', () {
       final res = const ResourceDef(
         terraformType: 'google_pubsub_topic',
-        root: BlockDef(attributes: [
-          Attribute(
-            name: 'name',
-            type: StringType(),
-            constraints: Constraints(required: true),
-          ),
-        ]),
+        root: BlockDef(
+          attributes: [
+            Attribute(
+              name: 'name',
+              type: StringType(),
+              constraints: Constraints(required: true),
+            ),
+          ],
+        ),
       );
       expect(
         emitSensitiveStaticSet(res),
@@ -92,13 +102,15 @@ void main() {
               name: 'push_config',
               nesting: NestingMode.list,
               constraints: Constraints(),
-              block: BlockDef(attributes: [
-                Attribute(
-                  name: 'oidc_token',
-                  type: StringType(),
-                  constraints: Constraints(optional: true, sensitive: true),
-                ),
-              ]),
+              block: BlockDef(
+                attributes: [
+                  Attribute(
+                    name: 'oidc_token',
+                    type: StringType(),
+                    constraints: Constraints(optional: true, sensitive: true),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -116,10 +128,14 @@ void main() {
 
   group('sensitiveConstName', () {
     test('camelCases the Terraform type and adds `Sensitive` suffix', () {
-      expect(sensitiveConstName('google_pubsub_topic'),
-          equals('googlePubsubTopicSensitive'));
-      expect(sensitiveConstName('google_secret_manager_secret_version'),
-          equals('googleSecretManagerSecretVersionSensitive'));
+      expect(
+        sensitiveConstName('google_pubsub_topic'),
+        equals('googlePubsubTopicSensitive'),
+      );
+      expect(
+        sensitiveConstName('google_secret_manager_secret_version'),
+        equals('googleSecretManagerSecretVersionSensitive'),
+      );
     });
   });
 }

@@ -38,11 +38,11 @@ class WrapInitEmitter {
         }
         _emitCommented(buf, key, value);
       case TodoAxis(
-          :final key,
-          :final todoMessage,
-          :final seed,
-          :final skeleton
-        ):
+        :final key,
+        :final todoMessage,
+        :final seed,
+        :final skeleton,
+      ):
         buf.writeln('# TODO(wrap-init): $todoMessage');
         _emitTodo(buf, key, seed: seed, skeleton: skeleton);
       case BannerOnlyAxis(:final key, :final banner):

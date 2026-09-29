@@ -12,19 +12,20 @@ import 'wrap_promote_command.dart';
 /// Returns `int` so each command can pick its own exit code. `null` from a
 /// command means "no explicit code — treat as success".
 CommandRunner<int> buildCliRunner() {
-  final runner = CommandRunner<int>(
-    'terradart',
-    'Maintain terradart curated factories from Terraform provider schemas.',
-  )
-    ..argParser.addFlag(
-      'version',
-      negatable: false,
-      help: 'Print the terradart CLI version and exit.',
-    )
-    ..addCommand(WrapCommand())
-    ..addCommand(WrapInitCommand(providers: providerRulesById))
-    ..addCommand(WrapPromoteCommand(providers: providerRulesById))
-    ..addCommand(LintOverrideCommand())
-    ..addCommand(VersionCommand());
+  final runner =
+      CommandRunner<int>(
+          'terradart',
+          'Maintain terradart curated factories from Terraform provider schemas.',
+        )
+        ..argParser.addFlag(
+          'version',
+          negatable: false,
+          help: 'Print the terradart CLI version and exit.',
+        )
+        ..addCommand(WrapCommand())
+        ..addCommand(WrapInitCommand(providers: providerRulesById))
+        ..addCommand(WrapPromoteCommand(providers: providerRulesById))
+        ..addCommand(LintOverrideCommand())
+        ..addCommand(VersionCommand());
   return runner;
 }

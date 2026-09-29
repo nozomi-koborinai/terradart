@@ -14,8 +14,9 @@ class PathWalker {
     BlockDef current = root;
     for (var i = 0; i < pathSegments.length - 1; i++) {
       final segment = pathSegments[i];
-      final next =
-          current.nestedBlocks.where((n) => n.name == segment).firstOrNull;
+      final next = current.nestedBlocks
+          .where((n) => n.name == segment)
+          .firstOrNull;
       if (next == null) return null;
       current = next.block;
     }

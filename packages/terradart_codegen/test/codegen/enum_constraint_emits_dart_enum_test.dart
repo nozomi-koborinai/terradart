@@ -4,15 +4,18 @@ import 'package:test/test.dart';
 
 void main() {
   group('emitEnumDeclaration', () {
-    test('emits a complete TerraformEnum with raw values and terraformValue',
-        () {
-      final name = enumName(
-        resourceType: 'google_pubsub_topic',
-        fieldPath: 'schema_settings.encoding',
-        members: const ['ENCODING_UNSPECIFIED', 'JSON', 'BINARY'],
-      );
-      final src = emitEnumDeclaration(name);
-      expect(src, equals('''
+    test(
+      'emits a complete TerraformEnum with raw values and terraformValue',
+      () {
+        final name = enumName(
+          resourceType: 'google_pubsub_topic',
+          fieldPath: 'schema_settings.encoding',
+          members: const ['ENCODING_UNSPECIFIED', 'JSON', 'BINARY'],
+        );
+        final src = emitEnumDeclaration(name);
+        expect(
+          src,
+          equals('''
 /// Pubsub Topic enum for `encoding`.
 enum PubsubTopicEncoding implements TerraformEnum {
   encodingUnspecified('ENCODING_UNSPECIFIED'),
@@ -23,8 +26,10 @@ enum PubsubTopicEncoding implements TerraformEnum {
   @override
   final String terraformValue;
 }
-'''));
-    });
+'''),
+        );
+      },
+    );
 
     test('a single-member enum is still emitted with its raw value', () {
       final name = enumName(

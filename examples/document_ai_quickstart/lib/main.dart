@@ -20,11 +20,9 @@ import 'package:terradart_google/provider.dart';
 /// Document AI Stack: OCR processor + default version + schema.
 final class DocAiStack extends Stack {
   DocAiStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiDocumentAi = add(
       GoogleProjectService(
         localName: 'api_documentai',

@@ -24,8 +24,9 @@ String emitEnumDeclaration(EnumName name) {
   for (var i = 0; i < name.dartMembers.length; i++) {
     final isLast = i == name.dartMembers.length - 1;
     buf.writeln(
-        "  ${name.dartMembers[i]}('${dartSingleQuotedBody(name.rawValues[i])}')"
-        "${isLast ? ';' : ','}");
+      "  ${name.dartMembers[i]}('${dartSingleQuotedBody(name.rawValues[i])}')"
+      "${isLast ? ';' : ','}",
+    );
   }
   buf
     ..writeln()

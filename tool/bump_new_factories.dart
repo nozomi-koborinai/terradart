@@ -83,9 +83,9 @@ String _snake(String camel) => camel
     .toLowerCase();
 
 String _camel(String snake) => [
-      for (final w in snake.split('_'))
-        if (w.isNotEmpty) w[0].toUpperCase() + w.substring(1),
-    ].join();
+  for (final w in snake.split('_'))
+    if (w.isNotEmpty) w[0].toUpperCase() + w.substring(1),
+].join();
 
 /// Likely mmv1 paths for [type], best first, learned from the rows of
 /// [mmSources] (tool/mm_yaml_sources.yaml): each `google_<x>_<resource>` row
@@ -113,9 +113,10 @@ List<String> guessMmUpstreams(String type, String mmSources) {
   ]..sort((a, b) => b.length.compareTo(a.length));
   return [
     for (final prefix in prefixes.take(2))
-      for (final product in (products[prefix]!.entries.toList()
-            ..sort((a, b) => b.value.compareTo(a.value)))
-          .take(2))
+      for (final product
+          in (products[prefix]!.entries.toList()
+                ..sort((a, b) => b.value.compareTo(a.value)))
+              .take(2))
         'mmv1/products/${product.key}/'
             '${_camel(type.substring(prefix.length))}.yaml',
   ];
@@ -134,7 +135,7 @@ String addMmSourceRows(String mmSources, Map<String, String?> upstreams) {
       ..writeln(
         upstream == null
             ? '    upstream: null  # schema bump: no mmv1 YAML at the guessed '
-                'paths; probe upstream by hand'
+                  'paths; probe upstream by hand'
             : '    upstream: $upstream',
       );
   }
@@ -188,7 +189,8 @@ List<String> scaffoldDataSourceOverrides(
   for (final type in dataSources) {
     final file = File(p.join(overridesRoot, 'data_$type.yaml'));
     if (file.existsSync()) continue;
-    final def = defs[type] ??
+    final def =
+        defs[type] ??
         (throw StateError('$type is not a data source of the lane schema'));
     file.writeAsStringSync(dataSourceOverrideYaml(dataSourceParamOrder(def)));
     written.add(type);
@@ -201,15 +203,15 @@ typedef MmFetch = Future<String?> Function(String upstreamPath);
 
 /// An [MmFetch] reading [manifest]'s upstream at [ref].
 MmFetch mmFetchAt(Manifest manifest, String ref) => (upstreamPath) async {
-      try {
-        final r = await http.get(
-          Uri.parse(manifest.urlFor(upstreamPath, ref: ref)),
-        );
-        return r.statusCode == 200 ? r.body : null;
-      } on Exception {
-        return null;
-      }
-    };
+  try {
+    final r = await http.get(
+      Uri.parse(manifest.urlFor(upstreamPath, ref: ref)),
+    );
+    return r.statusCode == 200 ? r.body : null;
+  } on Exception {
+    return null;
+  }
+};
 
 /// Gives every type of [resources] a tool/mm_yaml_sources.yaml row (every
 /// curated override needs one) and, when a guessed path resolves, its MM
@@ -239,11 +241,10 @@ Future<Map<String, String?>> resolveMmUpstreams(
 
 /// Every `outputDir` the override YAMLs under [overridesRoot] name.
 Set<String> overrideBarrels(String overridesRoot) => {
-      for (final f in Directory(overridesRoot).listSync().whereType<File>())
-        if (f.path.endsWith('.yaml'))
-          if (loadYaml(f.readAsStringSync()) case {'outputDir': final String d})
-            d,
-    };
+  for (final f in Directory(overridesRoot).listSync().whereType<File>())
+    if (f.path.endsWith('.yaml'))
+      if (loadYaml(f.readAsStringSync()) case {'outputDir': final String d}) d,
+};
 
 /// [manifest] (a barrels manifest, `barrels:` last) with a placeholder
 /// entry for every barrel of [barrels] it lacks, in key order. `wrap` fails
@@ -251,8 +252,8 @@ Set<String> overrideBarrels(String overridesRoot) => {
 /// service would otherwise stop the whole regenerate.
 @visibleForTesting
 String addMissingBarrels(String manifest, Set<String> barrels) {
-  final existing =
-      ((loadYaml(manifest) as YamlMap)['barrels'] as YamlMap).keys.toSet();
+  final existing = ((loadYaml(manifest) as YamlMap)['barrels'] as YamlMap).keys
+      .toSet();
   final missing = barrels.difference(existing).toList()..sort();
   if (missing.isEmpty) return manifest;
   final lines = manifest.trimRight().split('\n');
@@ -281,12 +282,12 @@ typedef CatalogFactory = ({String tfType, String className, String kind});
 
 /// Every `CatalogEntry` in a `_catalog.g.dart` [source].
 List<CatalogFactory> readCatalog(String source) => [
-      for (final m in RegExp(
-        r"tfType:\s*'([^']+)'[\s\S]*?className:\s*'([^']+)'[\s\S]*?"
-        r'kind:\s*CatalogKind\.(\w+)',
-      ).allMatches(source))
-        (tfType: m[1]!, className: m[2]!, kind: m[3]!),
-    ];
+  for (final m in RegExp(
+    r"tfType:\s*'([^']+)'[\s\S]*?className:\s*'([^']+)'[\s\S]*?"
+    r'kind:\s*CatalogKind\.(\w+)',
+  ).allMatches(source))
+    (tfType: m[1]!, className: m[2]!, kind: m[3]!),
+];
 
 /// The added types of [diff] that [catalog] now lists, resources first.
 @visibleForTesting
@@ -301,7 +302,7 @@ List<CatalogFactory> newFactories(
       ('dataSource', 'added_data_sources'),
     ])
       for (final type in ((diff[key] as List?) ?? const []).cast<String>())
-        if (byKey['$kind:$type'] case final f?) f,
+        ?byKey['$kind:$type'],
   ];
 }
 
@@ -341,10 +342,10 @@ String appendAwaitingExampleDebt(
 }
 
 Map<String, String> _flags(List<String> args) => {
-      for (final a in args.skip(1))
-        if (a.startsWith('--') && a.contains('='))
-          a.substring(2, a.indexOf('=')): a.substring(a.indexOf('=') + 1),
-    };
+  for (final a in args.skip(1))
+    if (a.startsWith('--') && a.contains('='))
+      a.substring(2, a.indexOf('=')): a.substring(a.indexOf('=') + 1),
+};
 
 Never _usage() {
   stderr.writeln(
@@ -364,9 +365,9 @@ Future<void> main(List<String> args) async {
   final diffPath = flags['diff'];
   final outPath = flags['out'];
   if (laneName == null || diffPath == null || outPath == null) _usage();
-  final lane = parseBumpLanes(File(providersPath).readAsStringSync())
-      .where((l) => l.lane.name == laneName)
-      .firstOrNull;
+  final lane = parseBumpLanes(
+    File(providersPath).readAsStringSync(),
+  ).where((l) => l.lane.name == laneName).firstOrNull;
   if (lane == null) {
     stderr.writeln('bump_new_factories: no bump lane "$laneName"');
     exit(64);
@@ -386,7 +387,8 @@ Future<void> main(List<String> args) async {
         outPath,
         detectedAt,
         version,
-        exampleCovered: lane.exampleGenerator != null &&
+        exampleCovered:
+            lane.exampleGenerator != null &&
             flags['example-generator-ok'] != 'false',
       );
     default:
@@ -402,33 +404,33 @@ Future<int> _scaffold(
   List<String> added(String key) =>
       ((diff[key] as List?) ?? const []).cast<String>();
   final resources = added('added_resources');
-  final dataSources =
-      lane.dataSources ? added('added_data_sources') : <String>[];
+  final dataSources = lane.dataSources
+      ? added('added_data_sources')
+      : <String>[];
   final ProcessResult? result;
   if (resources.isEmpty && dataSources.isEmpty) {
     result = null;
   } else if (lane.scaffold == 'wrap-init') {
     result = await _wrapInit(lane, resources, dataSources);
   } else {
-    result = await Process.run(
-      Platform.resolvedExecutable,
-      [
-        'run',
-        'tool/scaffold_lane_overrides.dart',
-        '--provider',
-        lane.lane.source,
-      ],
-      workingDirectory: codegenDir,
-    );
+    result = await Process.run(Platform.resolvedExecutable, [
+      'run',
+      'tool/scaffold_lane_overrides.dart',
+      '--provider',
+      lane.lane.source,
+    ], workingDirectory: codegenDir);
   }
   final code = result?.exitCode ?? 0;
-  var log =
-      result == null ? 'no new types' : '${result.stdout}${result.stderr}';
+  var log = result == null
+      ? 'no new types'
+      : '${result.stdout}${result.stderr}';
   if (result != null && code == 0) {
     final manifest = File(lane.lane.barrelsManifest);
     final text = manifest.readAsStringSync();
-    final next =
-        addMissingBarrels(text, overrideBarrels(lane.lane.overridesRoot));
+    final next = addMissingBarrels(
+      text,
+      overrideBarrels(lane.lane.overridesRoot),
+    );
     if (next != text) {
       manifest.writeAsStringSync(next);
       log += '\nadded barrel entries to ${lane.lane.barrelsManifest}';
@@ -443,8 +445,8 @@ Future<int> _scaffold(
         'log_excerpt': code == 0
             ? ''
             : log.length > 2000
-                ? log.substring(log.length - 2000)
-                : log,
+            ? log.substring(log.length - 2000)
+            : log,
       }),
     );
   return code == 0 ? 0 : 1;
@@ -488,8 +490,9 @@ Future<ProcessResult> _wrapInit(
   try {
     final written = scaffoldDataSourceOverrides(
       dataSources,
-      schema:
-          File(p.join(lane.lane.schemaDir, 'schema.json')).readAsStringSync(),
+      schema: File(
+        p.join(lane.lane.schemaDir, 'schema.json'),
+      ).readAsStringSync(),
       overridesRoot: lane.lane.overridesRoot,
     );
     if (lane.mm) {
@@ -513,8 +516,9 @@ void _record(
   required bool exampleCovered,
 }) {
   final catalog = readCatalog(
-    File(p.join(lane.lane.outputPackage, 'lib', 'src', '_catalog.g.dart'))
-        .readAsStringSync(),
+    File(
+      p.join(lane.lane.outputPackage, 'lib', 'src', '_catalog.g.dart'),
+    ).readAsStringSync(),
   );
   final factories = newFactories(diff, catalog);
   if (factories.isNotEmpty) {
@@ -552,8 +556,10 @@ void _record(
       );
     }
   }
-  print('bump_new_factories: ${factories.length} new factories'
-      '${factories.isEmpty ? '' : ': ${factories.map((f) => f.className).join(', ')}'}');
+  print(
+    'bump_new_factories: ${factories.length} new factories'
+    '${factories.isEmpty ? '' : ': ${factories.map((f) => f.className).join(', ')}'}',
+  );
   File(outPath)
     ..createSync(recursive: true)
     ..writeAsStringSync(

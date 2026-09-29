@@ -20,11 +20,9 @@ import 'package:terradart_google/provider.dart';
 /// Network Security lists Stack: an address group + a URL list.
 final class ListsStack extends Stack {
   ListsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiNetworkSecurity = add(
       GoogleProjectService(
         localName: 'api_networksecurity',
@@ -93,10 +91,7 @@ final class ListsStack extends Stack {
         location: TfArg.literal('us-central1'),
         role: TfArg.literal('roles/viewer'),
         member: TfArg.ref(auditor.iamMember),
-        dependsOn: [
-          ResourceDependency(blocklist),
-          ResourceDependency(auditor),
-        ],
+        dependsOn: [ResourceDependency(blocklist), ResourceDependency(auditor)],
       ),
     );
 

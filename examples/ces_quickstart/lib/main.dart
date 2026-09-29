@@ -18,12 +18,12 @@ import 'package:terradart_time/terradart_time.dart';
 /// tool + OpenAPI toolset + few-shot example + API deployment.
 final class CesStack extends Stack {
   CesStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.ces],
@@ -134,9 +134,7 @@ final class CesStack extends Stack {
         instruction: TfArg.literal('You are a helpful assistant.'),
         llmAgent: const CesAgentLlmAgent(),
         tools: TfArg.literal([search.nameRef.interpolation]),
-        toolsets: [
-          CesAgentToolsets(toolset: TfArg.ref(openapi.nameRef)),
-        ],
+        toolsets: [CesAgentToolsets(toolset: TfArg.ref(openapi.nameRef))],
         guardrails: TfArg.literal([safety.nameRef.interpolation]),
         dependsOn: [
           ResourceDependency(app),
@@ -153,10 +151,7 @@ final class CesStack extends Stack {
         location: TfArg.ref(app.locationRef),
         appId: TfArg.ref(app.appIdRef),
         agentId: TfArg.ref(agent.agentIdRef),
-        dependsOn: [
-          ResourceDependency(app),
-          ResourceDependency(agent),
-        ],
+        dependsOn: [ResourceDependency(app), ResourceDependency(agent)],
       ),
     );
 
@@ -172,17 +167,10 @@ final class CesStack extends Stack {
         messages: [
           CesExampleMessages(
             role: TfArg.literal('user'),
-            chunks: [
-              CesExampleMessagesChunks(
-                text: TfArg.literal('Hello'),
-              ),
-            ],
+            chunks: [CesExampleMessagesChunks(text: TfArg.literal('Hello'))],
           ),
         ],
-        dependsOn: [
-          ResourceDependency(app),
-          ResourceDependency(agent),
-        ],
+        dependsOn: [ResourceDependency(app), ResourceDependency(agent)],
       ),
     );
 
@@ -214,10 +202,7 @@ final class CesStack extends Stack {
           channelType: TfArg.literal('API'),
           profileId: TfArg.literal('terradart-ces-api'),
         ),
-        dependsOn: [
-          ResourceDependency(app),
-          ResourceDependency(version),
-        ],
+        dependsOn: [ResourceDependency(app), ResourceDependency(version)],
       ),
     );
   }

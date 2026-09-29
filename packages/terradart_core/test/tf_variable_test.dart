@@ -133,10 +133,7 @@ void main() {
       stack.add(
         FakePubsubTopic(
           localName: 'orders',
-          argMap: {
-            'name': TfArg.literal('orders'),
-            ...topicArgs,
-          },
+          argMap: {'name': TfArg.literal('orders'), ...topicArgs},
         ),
       );
       return stack;
@@ -222,27 +219,31 @@ void main() {
           },
         ).synth(),
         throwsA(
-          isA<StateError>()
-              .having((e) => e.message, 'message', contains('api_token')),
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            contains('api_token'),
+          ),
         ),
       );
     });
 
     test('an undeclared reference on a data source is caught', () {
-      final stack = TestStack(
-        providers: const [
-          FakeStackProvider(
-            providerName: 'google',
-            source: 'hashicorp/google',
-            versionConstraint: '~> 7.0',
-          ),
-        ],
-      )..addData(
-          FakeProjectData(
-            localName: 'current',
-            argMap: {'project_id': TfArg.variable<String>('project_id')},
-          ),
-        );
+      final stack =
+          TestStack(
+            providers: const [
+              FakeStackProvider(
+                providerName: 'google',
+                source: 'hashicorp/google',
+                versionConstraint: '~> 7.0',
+              ),
+            ],
+          )..addData(
+            FakeProjectData(
+              localName: 'current',
+              argMap: {'project_id': TfArg.variable<String>('project_id')},
+            ),
+          );
       expect(
         () => stack.synth(),
         throwsA(

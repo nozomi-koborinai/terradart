@@ -24,10 +24,7 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
-String _iamPolicyDataJson({
-  required String role,
-  required String member,
-}) {
+String _iamPolicyDataJson({required String role, required String member}) {
   return jsonEncode({
     'bindings': [
       {
@@ -42,11 +39,9 @@ String _iamPolicyDataJson({
 /// Set, network firewall IAM adjuncts, and a project metadata item.
 final class NetworkRouteStack extends Stack {
   NetworkRouteStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',
@@ -182,8 +177,9 @@ final class NetworkRouteStack extends Stack {
         localName: 'regional_edge_policy',
         name: TfArg.literal('terradart-regional-edge-policy'),
         region: TfArg.literal('us-central1'),
-        description:
-            TfArg.literal('Regional network firewall policy (IAM demo)'),
+        description: TfArg.literal(
+          'Regional network firewall policy (IAM demo)',
+        ),
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );

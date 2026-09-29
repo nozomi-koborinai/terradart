@@ -27,13 +27,14 @@ Future<void> main(List<String> args) async {
   final strict = config.strict;
   final mustBeReferenced = config.mustBeReferenced;
 
-  final quickstarts = Directory('examples')
-      .listSync()
-      .whereType<Directory>()
-      .map((d) => d.path.split(Platform.pathSeparator).last)
-      .where((name) => name.endsWith('_quickstart'))
-      .toList()
-    ..sort();
+  final quickstarts =
+      Directory('examples')
+          .listSync()
+          .whereType<Directory>()
+          .map((d) => d.path.split(Platform.pathSeparator).last)
+          .where((name) => name.endsWith('_quickstart'))
+          .toList()
+        ..sort();
 
   var strictViolations = 0;
 

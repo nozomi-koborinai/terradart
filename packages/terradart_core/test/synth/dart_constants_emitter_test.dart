@@ -125,39 +125,44 @@ abstract final class OrdersStackExports {
   });
 
   group('DartConstantsEmitter output compiles', () {
-    test('a value with quotes, dollars, and backslashes passes dart analyze',
-        () async {
-      final out = DartConstantsEmitter.emit(
-        stackName: 'TrickyStack',
-        constants: [
-          DartConstantSpec(
-            name: 'greeting',
-            dartType: 'String',
-            rhs: dartStringLiteral(r"it's $5 \ done"),
-          ),
-          DartConstantSpec(
-            name: 'plain',
-            dartType: 'String',
-            rhs: dartStringLiteral('orders-prod'),
-          ),
-        ],
-      );
-      final dir = await Directory.systemTemp.createTemp('terradart_constants_');
-      try {
-        final file = File('${dir.path}/tricky.app.dart');
-        await file.writeAsString(out);
-        final result = await Process.run(
-          Platform.resolvedExecutable,
-          ['analyze', '--fatal-infos', file.path],
+    test(
+      'a value with quotes, dollars, and backslashes passes dart analyze',
+      () async {
+        final out = DartConstantsEmitter.emit(
+          stackName: 'TrickyStack',
+          constants: [
+            DartConstantSpec(
+              name: 'greeting',
+              dartType: 'String',
+              rhs: dartStringLiteral(r"it's $5 \ done"),
+            ),
+            DartConstantSpec(
+              name: 'plain',
+              dartType: 'String',
+              rhs: dartStringLiteral('orders-prod'),
+            ),
+          ],
         );
-        expect(
-          result.exitCode,
-          0,
-          reason: 'dart analyze failed:\n${result.stdout}\n${result.stderr}',
+        final dir = await Directory.systemTemp.createTemp(
+          'terradart_constants_',
         );
-      } finally {
-        await dir.delete(recursive: true);
-      }
-    });
+        try {
+          final file = File('${dir.path}/tricky.app.dart');
+          await file.writeAsString(out);
+          final result = await Process.run(Platform.resolvedExecutable, [
+            'analyze',
+            '--fatal-infos',
+            file.path,
+          ]);
+          expect(
+            result.exitCode,
+            0,
+            reason: 'dart analyze failed:\n${result.stdout}\n${result.stderr}',
+          );
+        } finally {
+          await dir.delete(recursive: true);
+        }
+      },
+    );
   });
 }

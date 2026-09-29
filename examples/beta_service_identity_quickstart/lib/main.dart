@@ -16,11 +16,11 @@ import 'package:terradart_google_beta/provider.dart';
 /// Beta stack: one project service identity.
 final class ServiceAgentStack extends Stack {
   ServiceAgentStack({required String projectId})
-      : super(
-          providers: [
-            GoogleBetaProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleBetaProvider(project: projectId, region: 'us-central1'),
+        ],
+      ) {
     add(
       GoogleProjectServiceIdentity(
         localName: 'pubsub_agent',

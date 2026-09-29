@@ -104,8 +104,8 @@ class DataSourceWrapperEmitter {
     final sensitiveConst = filePrivateSensitiveConstName(
       def.terraformType,
     ); // _googleProjectSensitive
-    final requiredOverrides =
-        (override.requiredParams ?? const <String>[]).toSet();
+    final requiredOverrides = (override.requiredParams ?? const <String>[])
+        .toSet();
 
     // Imports. Same alphabetical-within-`package:`-group convention as the
     // resource emitter; `extraImports` come first so consumers can sort
@@ -119,15 +119,16 @@ class DataSourceWrapperEmitter {
             resourceBlock: _requireRawSchema(def.terraformType),
             resourcePrefix: 'Data${shortResourcePascal(def.terraformType)}',
             customSlotKeys: const <String>{},
-            excludedPaths:
-                (override.nestedTypeExcludes ?? const <String>[]).toSet(),
+            excludedPaths: (override.nestedTypeExcludes ?? const <String>[])
+                .toSet(),
             shareIdenticalShapes: override.dedupeNestedTypes,
             enumValues: providerEnums.resolver(null),
           )
         : const <NestedBlockSpec>[];
 
     final extraImports = override.extraImports ?? const <String>[];
-    final needsMeta = nestedTypeSpecs.isNotEmpty &&
+    final needsMeta =
+        nestedTypeSpecs.isNotEmpty &&
         !extraImports.any((i) => i.contains('package:meta/meta.dart'));
     if (needsMeta) {
       buf.writeln("import 'package:meta/meta.dart';");
@@ -174,10 +175,12 @@ class DataSourceWrapperEmitter {
     buf.writeln();
 
     if (nestedTypeSpecs.isNotEmpty) {
-      buf.write(renderNestedTypes(
-        nestedTypeSpecs,
-        resourceTerraformType: def.terraformType,
-      ));
+      buf.write(
+        renderNestedTypes(
+          nestedTypeSpecs,
+          resourceTerraformType: def.terraformType,
+        ),
+      );
       buf.writeln();
     }
 
@@ -203,8 +206,10 @@ class DataSourceWrapperEmitter {
     // of that (no fan-outs, no `BigQueryConfig` helpers, no deprecation
     // policy). We still respect dartTypeOverrides and requiredOverrides
     // for parity with the resource path; they're cheap.
-    final paramOrder =
-        orderedDataSourceConstructorParams(def, override.paramOrder);
+    final paramOrder = orderedDataSourceConstructorParams(
+      def,
+      override.paramOrder,
+    );
     final argMapOrder = override.argMapOrder ?? paramOrder;
     final dartTypeOverrides =
         override.dartTypeOverrides ?? const <String, String>{};
@@ -312,7 +317,8 @@ class DataSourceWrapperEmitter {
     }
     for (final nested in def.root.nestedBlocks) {
       if (_skipNestedBlock(nested)) continue;
-      final isRequired = nested.constraints.required ||
+      final isRequired =
+          nested.constraints.required ||
           requiredOverrides.contains(nested.name);
       out[nested.name] = _nestedBlockParam(nested, isRequired: isRequired);
     }
@@ -332,7 +338,8 @@ class DataSourceWrapperEmitter {
     }
     for (final nested in def.root.nestedBlocks) {
       if (_skipNestedBlock(nested)) continue;
-      final isRequired = nested.constraints.required ||
+      final isRequired =
+          nested.constraints.required ||
           requiredOverrides.contains(nested.name);
       out[nested.name] = _argMapEntry(nested.name, isRequired);
     }
@@ -355,10 +362,7 @@ class DataSourceWrapperEmitter {
     return '${modifier}TfArg<$dartType>$nullSuffix $dartName';
   }
 
-  String _nestedBlockParam(
-    NestedBlockDef nested, {
-    required bool isRequired,
-  }) {
+  String _nestedBlockParam(NestedBlockDef nested, {required bool isRequired}) {
     final dartName = snakeToDartIdent(nested.name);
     final innerType = nestedBlockIsObject(nested)
         ? 'Map<String, dynamic>'

@@ -15,42 +15,40 @@ MigrateManifest manifest({
   List<MigrateSlot> helperSlots = const [],
   Map<String, String> members = const {'PULL': 'pull'},
   String barrel = 'pubsub',
-}) =>
-    MigrateManifest(
-      package: 'terradart_google',
-      entries: [
-        MigrateEntry(
-          tfType: 'google_pubsub_topic',
-          className: 'GooglePubsubTopic',
-          barrel: barrel,
-          kind: CatalogKind.resource,
-          slots: slots,
-          getters: getters,
-        ),
-      ],
-      helpers: {
-        'PubsubPushConfig': MigrateHelper(
-          className: 'PubsubPushConfig',
-          slots: helperSlots,
-        ),
-      },
-      enums: {'PubsubMode': MigrateEnum(name: 'PubsubMode', members: members)},
-    );
+}) => MigrateManifest(
+  package: 'terradart_google',
+  entries: [
+    MigrateEntry(
+      tfType: 'google_pubsub_topic',
+      className: 'GooglePubsubTopic',
+      barrel: barrel,
+      kind: CatalogKind.resource,
+      slots: slots,
+      getters: getters,
+    ),
+  ],
+  helpers: {
+    'PubsubPushConfig': MigrateHelper(
+      className: 'PubsubPushConfig',
+      slots: helperSlots,
+    ),
+  },
+  enums: {'PubsubMode': MigrateEnum(name: 'PubsubMode', members: members)},
+);
 
 MigrateSlot slot(
   String name, {
   bool required = false,
   String type = 'String',
   Map<String, String>? variants,
-}) =>
-    MigrateSlot(
-      tfName: name,
-      dartName: name,
-      kind: variants == null ? MigrateSlotKind.scalar : MigrateSlotKind.sealed,
-      required: required,
-      dartType: variants == null ? type : null,
-      variants: variants,
-    );
+}) => MigrateSlot(
+  tfName: name,
+  dartName: name,
+  kind: variants == null ? MigrateSlotKind.scalar : MigrateSlotKind.sealed,
+  required: required,
+  dartType: variants == null ? type : null,
+  variants: variants,
+);
 
 List<Object?> breaking(MigrateManifest before, MigrateManifest after) =>
     diffApiSurface(apiSurface([before]), apiSurface([after]))['breaking']
@@ -108,7 +106,10 @@ void main() {
     expect(
       breaking(
         manifest(slots: [slot('size')]),
-        manifest(slots: [slot('size', type: 'int')], barrel: 'pub_sub'),
+        manifest(
+          slots: [slot('size', type: 'int')],
+          barrel: 'pub_sub',
+        ),
       ),
       [
         'changed class:terradart_google:GooglePubsubTopic: '
@@ -131,10 +132,7 @@ void main() {
 
   test('a new required slot on an existing class is breaking', () {
     expect(
-      breaking(
-        manifest(),
-        manifest(slots: [slot('name', required: true)]),
-      ),
+      breaking(manifest(), manifest(slots: [slot('name', required: true)])),
       ['new required slot:terradart_google:GooglePubsubTopic.name'],
     );
   });
@@ -168,10 +166,7 @@ void main() {
       googleMigrateManifest,
       googleBetaMigrateManifest,
     ]);
-    expect(
-      surface.keys,
-      contains('class:terradart_google:GooglePubsubTopic'),
-    );
+    expect(surface.keys, contains('class:terradart_google:GooglePubsubTopic'));
     expect(
       surface.keys.where((k) => k.startsWith('class:terradart_google_beta:')),
       isNotEmpty,

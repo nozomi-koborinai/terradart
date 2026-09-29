@@ -25,11 +25,9 @@ import 'package:terradart_google/provider.dart';
 /// settings and their project bindings.
 final class GeminiStack extends Stack {
   GeminiStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final current = addData(GoogleProject(localName: 'current'));
     final projectTarget = 'projects/${current.number.interpolation}';
 

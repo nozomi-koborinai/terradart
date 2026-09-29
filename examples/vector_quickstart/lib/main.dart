@@ -22,11 +22,9 @@ import 'package:terradart_google/vector.dart';
 /// Vector Search stack: schema collection + one payload data object.
 final class VectorSearchStack extends Stack {
   VectorSearchStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     const location = 'us-central1';
     // Match collection vector_schema dimensions; zeros avoid inventing content.
     final zeroEmbedding = List<Object?>.filled(768, 0.0);

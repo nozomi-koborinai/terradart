@@ -15,11 +15,9 @@ import 'package:terradart_google/sourcerepo.dart';
 /// Cloud Source Repositories stack: repository + IAM member.
 final class SourcerepoStack extends Stack {
   SourcerepoStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiSource = add(
       GoogleProjectService(
         localName: 'api_sourcerepo',
@@ -50,10 +48,7 @@ final class SourcerepoStack extends Stack {
         repository: TfArg.ref(repo.nameRef),
         role: TfArg.literal('roles/source.reader'),
         member: TfArg.ref(reader.iamMember),
-        dependsOn: [
-          ResourceDependency(repo),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [ResourceDependency(repo), ResourceDependency(reader)],
       ),
     );
   }

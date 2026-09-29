@@ -31,28 +31,40 @@ Never _fail(String message) {
 void main(List<String> args) {
   final providerId = switch (args) {
     ['--provider', final id] => id,
-    _ => _fail('usage: dart run tool/scaffold_lane_overrides.dart '
-        '--provider <source>'),
+    _ => _fail(
+      'usage: dart run tool/scaffold_lane_overrides.dart '
+      '--provider <source>',
+    ),
   };
-  final rules = providerRulesById[providerId] ??
-      _fail('no ProviderRules for $providerId '
-          '(known: ${providerRulesById.keys.join(', ')})');
+  final rules =
+      providerRulesById[providerId] ??
+      _fail(
+        'no ProviderRules for $providerId '
+        '(known: ${providerRulesById.keys.join(', ')})',
+      );
 
   final repoRoot = p.normalize(
-      p.join(p.dirname(Platform.script.toFilePath()), '..', '..', '..'));
-  final providers = loadYaml(
-    File(p.join(repoRoot, 'tool', 'providers.yaml')).readAsStringSync(),
-  )['providers'] as YamlMap;
-  final lane = providers.values.cast<YamlMap?>().firstWhere(
-            (entry) => entry?['source'] == providerId,
-            orElse: () => null,
-          ) ??
+    p.join(p.dirname(Platform.script.toFilePath()), '..', '..', '..'),
+  );
+  final providers =
+      loadYaml(
+            File(p.join(repoRoot, 'tool', 'providers.yaml')).readAsStringSync(),
+          )['providers']
+          as YamlMap;
+  final lane =
+      providers.values.cast<YamlMap?>().firstWhere(
+        (entry) => entry?['source'] == providerId,
+        orElse: () => null,
+      ) ??
       _fail('no tool/providers.yaml lane with source $providerId');
 
-  final schema = jsonDecode(
-    File(p.join(repoRoot, lane['schemaDir'] as String, 'schema.json'))
-        .readAsStringSync(),
-  ) as Map<String, dynamic>;
+  final schema =
+      jsonDecode(
+            File(
+              p.join(repoRoot, lane['schemaDir'] as String, 'schema.json'),
+            ).readAsStringSync(),
+          )
+          as Map<String, dynamic>;
   final provider =
       (schema['provider_schemas'] as Map).values.single as Map<String, dynamic>;
   List<String> sortedKeys(String key) =>
@@ -62,8 +74,8 @@ void main(List<String> args) {
 
   final derive = rules.typedNestedDefaults
       ? 'deriveClassDoc: true\n'
-          'deriveOutputGetters: true\n'
-          'deriveNestedTypes: true\n'
+            'deriveOutputGetters: true\n'
+            'deriveNestedTypes: true\n'
       : 'deriveClassDoc: true\n';
   final resolver = OutputDirResolver(
     aliases: rules.outputDirAliases,

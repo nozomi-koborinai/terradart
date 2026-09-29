@@ -72,8 +72,9 @@ base class _LunchRequestTypeFactory extends SchemanticType<LunchRequest> {
 
   @override
   JsonSchemaMetadata get schemaMetadata => JsonSchemaMetadata(
-        name: 'LunchRequest',
-        definition: $Schema.object(
+    name: 'LunchRequest',
+    definition: $Schema
+        .object(
           properties: {
             'area': $Schema.string(
               description: 'Area or station where the user wants to eat.',
@@ -92,9 +93,10 @@ base class _LunchRequestTypeFactory extends SchemanticType<LunchRequest> {
             ),
           },
           required: ['area', 'mood', 'budgetYen'],
-        ).value,
-        dependencies: [],
-      );
+        )
+        .value,
+    dependencies: [],
+  );
 }
 
 base class LunchSuggestion {
@@ -167,17 +169,19 @@ base class _LunchSuggestionTypeFactory extends SchemanticType<LunchSuggestion> {
 
   @override
   JsonSchemaMetadata get schemaMetadata => JsonSchemaMetadata(
-        name: 'LunchSuggestion',
-        definition: $Schema.object(
+    name: 'LunchSuggestion',
+    definition: $Schema
+        .object(
           properties: {
             'name': $Schema.string(minLength: 1, maxLength: 80),
             'reason': $Schema.string(minLength: 1, maxLength: 240),
             'estimatedPriceYen': $Schema.integer(minimum: 0, maximum: 50000),
           },
           required: ['name', 'reason', 'estimatedPriceYen'],
-        ).value,
-        dependencies: [],
-      );
+        )
+        .value,
+    dependencies: [],
+  );
 }
 
 base class LunchResponse {
@@ -242,8 +246,9 @@ base class _LunchResponseTypeFactory extends SchemanticType<LunchResponse> {
 
   @override
   JsonSchemaMetadata get schemaMetadata => JsonSchemaMetadata(
-        name: 'LunchResponse',
-        definition: $Schema.object(
+    name: 'LunchResponse',
+    definition: $Schema
+        .object(
           properties: {
             'message': $Schema.string(minLength: 1, maxLength: 400),
             'suggestions': $Schema.list(
@@ -251,7 +256,8 @@ base class _LunchResponseTypeFactory extends SchemanticType<LunchResponse> {
             ),
           },
           required: ['message', 'suggestions'],
-        ).value,
-        dependencies: [LunchSuggestion.$schema],
-      );
+        )
+        .value,
+    dependencies: [LunchSuggestion.$schema],
+  );
 }

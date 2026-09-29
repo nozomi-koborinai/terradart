@@ -69,20 +69,22 @@ void main() {
         expect(o.outputDir, 'test_out');
       });
 
-      test('derive_class_doc_on -> deriveClassDoc true + curatedDoc parsed',
-          () {
-        final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/happy',
-        );
-        final result = loader.load().resources;
-        final o = result['derive_class_doc_on']!;
-        expect(o.deriveClassDoc, isTrue);
-        // `equals` (not `contains`) pins the curatedDoc contract: the `|-`
-        // chomp strips the trailing newline, so the parsed value is exactly
-        // the single `///` line with no leading separator or trailing `\n`.
-        expect(o.curatedDoc, equals('/// Curated example block.'));
-        expect(o.outputDir, 'test_out');
-      });
+      test(
+        'derive_class_doc_on -> deriveClassDoc true + curatedDoc parsed',
+        () {
+          final loader = YamlOverrideLoader(
+            rootDir: 'test/fixtures/semantic_hints_loader/happy',
+          );
+          final result = loader.load().resources;
+          final o = result['derive_class_doc_on']!;
+          expect(o.deriveClassDoc, isTrue);
+          // `equals` (not `contains`) pins the curatedDoc contract: the `|-`
+          // chomp strips the trailing newline, so the parsed value is exactly
+          // the single `///` line with no leading separator or trailing `\n`.
+          expect(o.curatedDoc, equals('/// Curated example block.'));
+          expect(o.outputDir, 'test_out');
+        },
+      );
 
       test('derive_nested_types_on -> deriveNestedTypes true', () {
         final loader = YamlOverrideLoader(
@@ -96,16 +98,18 @@ void main() {
       });
 
       test(
-          'nested_type_excludes_only -> deriveNestedTypes + nestedTypeExcludes '
-          'round-trip', () {
-        final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/happy',
-        );
-        final result = loader.load().resources;
-        final o = result['nested_type_excludes_only']!;
-        expect(o.deriveNestedTypes, isTrue);
-        expect(o.nestedTypeExcludes, equals(['basic.conditions', 'foo.bar']));
-      });
+        'nested_type_excludes_only -> deriveNestedTypes + nestedTypeExcludes '
+        'round-trip',
+        () {
+          final loader = YamlOverrideLoader(
+            rootDir: 'test/fixtures/semantic_hints_loader/happy',
+          );
+          final result = loader.load().resources;
+          final o = result['nested_type_excludes_only']!;
+          expect(o.deriveNestedTypes, isTrue);
+          expect(o.nestedTypeExcludes, equals(['basic.conditions', 'foo.bar']));
+        },
+      );
 
       test('param_order_only -> only paramOrder set', () {
         final loader = YamlOverrideLoader(
@@ -118,16 +122,17 @@ void main() {
       });
 
       test(
-          'arg_map_order_only -> paramOrder + argMapOrder set, permutation valid',
-          () {
-        final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/happy',
-        );
-        final result = loader.load().resources;
-        final o = result['arg_map_order_only']!;
-        expect(o.paramOrder, equals(['alpha', 'beta']));
-        expect(o.argMapOrder, equals(['beta', 'alpha']));
-      });
+        'arg_map_order_only -> paramOrder + argMapOrder set, permutation valid',
+        () {
+          final loader = YamlOverrideLoader(
+            rootDir: 'test/fixtures/semantic_hints_loader/happy',
+          );
+          final result = loader.load().resources;
+          final o = result['arg_map_order_only']!;
+          expect(o.paramOrder, equals(['alpha', 'beta']));
+          expect(o.argMapOrder, equals(['beta', 'alpha']));
+        },
+      );
 
       test('extra_getters_only -> trailing newline preserved', () {
         final loader = YamlOverrideLoader(
@@ -166,10 +171,7 @@ void main() {
         final o = result['dart_type_overrides_only']!;
         expect(
           o.dartTypeOverrides,
-          equals({
-            'ack_deadline_seconds': 'int',
-            'count': 'int',
-          }),
+          equals({'ack_deadline_seconds': 'int', 'count': 'int'}),
         );
       });
 
@@ -221,8 +223,7 @@ void main() {
         );
       });
 
-      test(
-          'full_axis -> all axes set (schemaStubComment retired; '
+      test('full_axis -> all axes set (schemaStubComment retired; '
           'deriveNestedTypes + nestedTypeExcludes added)', () {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
@@ -237,10 +238,7 @@ void main() {
         expect(o.deprecatedParams, equals({'y': 'use z'}));
         expect(o.extraImports, equals(["import 'package:meta/meta.dart';"]));
         expect(o.prelude, equals('sealed class Bar {}\n'));
-        expect(
-          o.customSlots!['s']!.paramDeclaration,
-          equals('required Bar b'),
-        );
+        expect(o.customSlots!['s']!.paramDeclaration, equals('required Bar b'));
         expect(o.deriveNestedTypes, isTrue);
         expect(o.nestedTypeExcludes, equals(['basic.conditions']));
       });
@@ -259,7 +257,8 @@ void main() {
 
       test('unknown top-level key -> FormatException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'unknown_top_level_key',
         );
         expect(
@@ -272,7 +271,8 @@ void main() {
         // The axis was retired with the 2026-07 doc wave; the loader fails
         // loudly with the migration path so it cannot quietly come back.
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'retired_class_doc_comment',
         );
         expect(
@@ -286,31 +286,35 @@ void main() {
       // unknown-top-level-key rejection so any leftover yaml axis (or
       // future yaml edits that reintroduce it) fail loud at load time
       // rather than silently dropping the value.
-      test('schemaStubComment is no longer a recognized top-level key',
-          () async {
-        final tmpDir =
-            await Directory.systemTemp.createTemp('plan5x_stubcomment_');
-        try {
-          await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
+      test(
+        'schemaStubComment is no longer a recognized top-level key',
+        () async {
+          final tmpDir = await Directory.systemTemp.createTemp(
+            'plan5x_stubcomment_',
+          );
+          try {
+            await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
 outputDir: pubsub
 schemaStubComment: |-
   // leftover from Plan 4.x
 ''');
-          final loader = YamlOverrideLoader(rootDir: tmpDir.path);
-          expect(
-            loader.load,
-            throwsFormatExceptionWith(
-              'unknown top-level key: schemaStubComment',
-            ),
-          );
-        } finally {
-          await tmpDir.delete(recursive: true);
-        }
-      });
+            final loader = YamlOverrideLoader(rootDir: tmpDir.path);
+            expect(
+              loader.load,
+              throwsFormatExceptionWith(
+                'unknown top-level key: schemaStubComment',
+              ),
+            );
+          } finally {
+            await tmpDir.delete(recursive: true);
+          }
+        },
+      );
 
       test('top-level not mapping -> FormatException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'top_level_not_mapping',
         );
         expect(
@@ -321,7 +325,8 @@ schemaStubComment: |-
 
       test('paramOrder empty list -> FormatException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'param_order_empty',
         );
         expect(
@@ -332,7 +337,8 @@ schemaStubComment: |-
 
       test('paramOrder value not string -> FormatException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'param_order_value_not_string',
         );
         expect(
@@ -343,18 +349,17 @@ schemaStubComment: |-
 
       test('dartTypeOverrides value not string -> FormatException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'dart_type_overrides_value_not_string',
         );
-        expect(
-          loader.load,
-          throwsFormatExceptionWith('must be a string'),
-        );
+        expect(loader.load, throwsFormatExceptionWith('must be a string'));
       });
 
       test('deriveEnums not a boolean -> FormatException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'derive_enums_not_bool',
         );
         expect(
@@ -367,7 +372,8 @@ schemaStubComment: |-
 
       test('deriveOutputGetters not a boolean -> FormatException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'derive_getters_not_bool',
         );
         expect(
@@ -378,11 +384,11 @@ schemaStubComment: |-
         );
       });
 
-      test(
-          'nestedTypeExcludes without deriveNestedTypes -> FormatException '
+      test('nestedTypeExcludes without deriveNestedTypes -> FormatException '
           '(mirrors the classDocComment retirement style)', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'nested_type_excludes_without_derive',
         );
         expect(
@@ -393,34 +399,36 @@ schemaStubComment: |-
         );
       });
 
-      test('dedupeNestedTypes without deriveNestedTypes -> FormatException',
-          () {
-        final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
-              'dedupe_nested_types_without_derive',
-        );
-        expect(
-          loader.load,
-          throwsFormatExceptionWith(
-            'dedupeNestedTypes requires deriveNestedTypes',
-          ),
-        );
-      });
+      test(
+        'dedupeNestedTypes without deriveNestedTypes -> FormatException',
+        () {
+          final loader = YamlOverrideLoader(
+            rootDir:
+                'test/fixtures/semantic_hints_loader/failure/'
+                'dedupe_nested_types_without_derive',
+          );
+          expect(
+            loader.load,
+            throwsFormatExceptionWith(
+              'dedupeNestedTypes requires deriveNestedTypes',
+            ),
+          );
+        },
+      );
 
       test('deprecatedParams value not string -> FormatException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'deprecated_params_value_not_string',
         );
-        expect(
-          loader.load,
-          throwsFormatExceptionWith('must be a string'),
-        );
+        expect(loader.load, throwsFormatExceptionWith('must be a string'));
       });
 
       test('customSlots not mapping -> FormatException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'custom_slots_not_mapping',
         );
         expect(
@@ -431,18 +439,17 @@ schemaStubComment: |-
 
       test('customSlots entry not mapping -> FormatException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'custom_slots_entry_not_mapping',
         );
-        expect(
-          loader.load,
-          throwsFormatExceptionWith('must be a mapping'),
-        );
+        expect(loader.load, throwsFormatExceptionWith('must be a mapping'));
       });
 
       test('customSlots missing paramDeclaration -> FormatException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'custom_slots_missing_param_declaration',
         );
         expect(
@@ -453,7 +460,8 @@ schemaStubComment: |-
 
       test('customSlots missing argMapEntry -> FormatException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'custom_slots_missing_arg_map_entry',
         );
         expect(
@@ -464,18 +472,17 @@ schemaStubComment: |-
 
       test('customSlots unknown subkey -> FormatException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'custom_slots_unknown_subkey',
         );
-        expect(
-          loader.load,
-          throwsFormatExceptionWith('unknown key: extra'),
-        );
+        expect(loader.load, throwsFormatExceptionWith('unknown key: extra'));
       });
 
       test('argMapOrder not permutation -> FormatException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'arg_map_order_not_permutation',
         );
         expect(
@@ -488,7 +495,8 @@ schemaStubComment: |-
 
       test('yaml syntax error -> YamlException', () {
         final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+          rootDir:
+              'test/fixtures/semantic_hints_loader/failure/'
               'yaml_syntax_error',
         );
         expect(loader.load, throwsA(isA<YamlException>()));
@@ -507,15 +515,12 @@ schemaStubComment: |-
     });
 
     group('production round-trip', () {
-      test(
-        'production yaml/ directory loads without errors',
-        () {
-          final loader = YamlOverrideLoader(
-            rootDir: 'lib/src/codegen/wrapper_overrides/yaml',
-          );
-          expect(loader.load, returnsNormally);
-        },
-      );
+      test('production yaml/ directory loads without errors', () {
+        final loader = YamlOverrideLoader(
+          rootDir: 'lib/src/codegen/wrapper_overrides/yaml',
+        );
+        expect(loader.load, returnsNormally);
+      });
     });
   });
 
@@ -523,8 +528,9 @@ schemaStubComment: |-
     test('separates resources and dataSources by kind field', () async {
       final tmpDir = await Directory.systemTemp.createTemp('phase4_loader_');
       try {
-        await File(p.join(tmpDir.path, 'google_pubsub_topic.yaml'))
-            .writeAsString('''
+        await File(
+          p.join(tmpDir.path, 'google_pubsub_topic.yaml'),
+        ).writeAsString('''
 outputDir: pubsub
 deriveClassDoc: true
 ''');
@@ -556,50 +562,55 @@ deriveClassDoc: true
       }
     });
 
-    test('data_ prefix keys a twin data source without clobbering the resource',
-        () async {
-      final tmpDir = await Directory.systemTemp.createTemp('phase4_loader_');
-      try {
-        await File(p.join(tmpDir.path, 'google_compute_network.yaml'))
-            .writeAsString('''
+    test(
+      'data_ prefix keys a twin data source without clobbering the resource',
+      () async {
+        final tmpDir = await Directory.systemTemp.createTemp('phase4_loader_');
+        try {
+          await File(
+            p.join(tmpDir.path, 'google_compute_network.yaml'),
+          ).writeAsString('''
 outputDir: compute
 deriveClassDoc: true
 ''');
-        await File(p.join(tmpDir.path, 'data_google_compute_network.yaml'))
-            .writeAsString('''
+          await File(
+            p.join(tmpDir.path, 'data_google_compute_network.yaml'),
+          ).writeAsString('''
 kind: data_source
 outputDir: data
 schemaStubBodyMode: bare
 deriveClassDoc: true
 ''');
 
-        final loaded = loadWrapperOverrides(rootDir: tmpDir.path);
-        expect(loaded.resources.keys, ['google_compute_network']);
-        expect(loaded.dataSources.keys, ['google_compute_network']);
-        expect(loaded.length, 2);
-        expect(
-          loaded.asLintMap().keys,
-          containsAll(
-              ['google_compute_network', 'data.google_compute_network']),
-        );
-        expect(
-          () => loaded.all,
-          throwsA(isA<StateError>()),
-        );
-      } finally {
-        await tmpDir.delete(recursive: true);
-      }
-    });
+          final loaded = loadWrapperOverrides(rootDir: tmpDir.path);
+          expect(loaded.resources.keys, ['google_compute_network']);
+          expect(loaded.dataSources.keys, ['google_compute_network']);
+          expect(loaded.length, 2);
+          expect(
+            loaded.asLintMap().keys,
+            containsAll([
+              'google_compute_network',
+              'data.google_compute_network',
+            ]),
+          );
+          expect(() => loaded.all, throwsA(isA<StateError>()));
+        } finally {
+          await tmpDir.delete(recursive: true);
+        }
+      },
+    );
 
     test('--only terraform type loads the data_ twin when present', () async {
       final tmpDir = await Directory.systemTemp.createTemp('phase4_loader_');
       try {
-        await File(p.join(tmpDir.path, 'google_compute_network.yaml'))
-            .writeAsString('''
+        await File(
+          p.join(tmpDir.path, 'google_compute_network.yaml'),
+        ).writeAsString('''
 outputDir: compute
 ''');
-        await File(p.join(tmpDir.path, 'data_google_compute_network.yaml'))
-            .writeAsString('''
+        await File(
+          p.join(tmpDir.path, 'data_google_compute_network.yaml'),
+        ).writeAsString('''
 kind: data_source
 outputDir: data
 ''');
@@ -793,30 +804,31 @@ fileLeadingComment: |-
     // (FormatException, code path: `unknown top-level key`), well before
     // the resource-vs-data-source axis routing runs.
     test(
-        'schemaStubComment on data source is rejected as unknown top-level key',
-        () async {
-      final tmpDir = await Directory.systemTemp.createTemp('phase4_axis_');
-      try {
-        await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
+      'schemaStubComment on data source is rejected as unknown top-level key',
+      () async {
+        final tmpDir = await Directory.systemTemp.createTemp('phase4_axis_');
+        try {
+          await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
 kind: data_source
 outputDir: data
 schemaStubComment: |-
   // forbidden
 ''');
-        expect(
-          () => loadWrapperOverrides(rootDir: tmpDir.path),
-          throwsA(
-            isA<FormatException>().having(
-              (e) => e.message,
-              'message',
-              contains('unknown top-level key: schemaStubComment'),
+          expect(
+            () => loadWrapperOverrides(rootDir: tmpDir.path),
+            throwsA(
+              isA<FormatException>().having(
+                (e) => e.message,
+                'message',
+                contains('unknown top-level key: schemaStubComment'),
+              ),
             ),
-          ),
-        );
-      } finally {
-        await tmpDir.delete(recursive: true);
-      }
-    });
+          );
+        } finally {
+          await tmpDir.delete(recursive: true);
+        }
+      },
+    );
 
     test('prelude on data source raises E201', () async {
       final tmpDir = await Directory.systemTemp.createTemp('phase4_axis_');
@@ -871,22 +883,26 @@ deriveClassDoc: true
   });
 
   group(
-      'production round-trip (71 entries — Phase 4.1 13 + Phase 4.5 Wave 0+1+2+3 15 + Plan 5.C Wave 4 Round 1 3 + Plan 5.C Wave 4 Round 2 9 + Plan 5.C Wave 4 Round 3 9 + Plan 5.F Wave 5 Batch 1 +6 + Plan 5.F Wave 5 Batch 2 +5 + Plan 5.F Wave 5 Batch 3 +6 + Plan 5.F Wave 5 Batch 4 +5 new)',
-      () {
-    test(
-      'lib/src/codegen/wrapper_overrides/yaml/ loads one override per '
-      'terradart_google catalog entry',
-      () {
+    'production round-trip (71 entries — Phase 4.1 13 + Phase 4.5 Wave 0+1+2+3 15 + Plan 5.C Wave 4 Round 1 3 + Plan 5.C Wave 4 Round 2 9 + Plan 5.C Wave 4 Round 3 9 + Plan 5.F Wave 5 Batch 1 +6 + Plan 5.F Wave 5 Batch 2 +5 + Plan 5.F Wave 5 Batch 3 +6 + Plan 5.F Wave 5 Batch 4 +5 new)',
+    () {
+      test('lib/src/codegen/wrapper_overrides/yaml/ loads one override per '
+          'terradart_google catalog entry', () {
         final loaded = loadWrapperOverrides(
-          rootDir:
-              p.absolute('lib', 'src', 'codegen', 'wrapper_overrides', 'yaml'),
+          rootDir: p.absolute(
+            'lib',
+            'src',
+            'codegen',
+            'wrapper_overrides',
+            'yaml',
+          ),
         );
         // The weekly schema bump scaffolds overrides for new upstream types,
         // so the count moves; the catalog wrap generated is the reference.
         final kinds = RegExp(r'kind: CatalogKind\.(\w+)')
             .allMatches(
-              File('../terradart_google/lib/src/_catalog.g.dart')
-                  .readAsStringSync(),
+              File(
+                '../terradart_google/lib/src/_catalog.g.dart',
+              ).readAsStringSync(),
             )
             .map((m) => m[1])
             .toList();
@@ -901,57 +917,63 @@ deriveClassDoc: true
         expect(loaded.resources.length, greaterThan(1000));
         expect(loaded.dataSources.keys, contains('google_project'));
         expect(loaded.dataSources.keys, contains('google_compute_network'));
-      },
-    );
+      });
 
-    test(
-      'IAM binding/policy overrides document authoritative replace semantics '
-      '(AGENTS.md Generation Policy)',
-      () {
-        final loaded = loadWrapperOverrides(
-          rootDir:
-              p.absolute('lib', 'src', 'codegen', 'wrapper_overrides', 'yaml'),
-        );
-        final missingDoc = <String>[];
-        final missingWarning = <String>[];
-        for (final entry in loaded.resources.entries) {
-          final type = entry.key;
-          if (!type.endsWith('_iam_binding') && !type.endsWith('_iam_policy')) {
-            continue;
+      test(
+        'IAM binding/policy overrides document authoritative replace semantics '
+        '(AGENTS.md Generation Policy)',
+        () {
+          final loaded = loadWrapperOverrides(
+            rootDir: p.absolute(
+              'lib',
+              'src',
+              'codegen',
+              'wrapper_overrides',
+              'yaml',
+            ),
+          );
+          final missingDoc = <String>[];
+          final missingWarning = <String>[];
+          for (final entry in loaded.resources.entries) {
+            final type = entry.key;
+            if (!type.endsWith('_iam_binding') &&
+                !type.endsWith('_iam_policy')) {
+              continue;
+            }
+            final doc = entry.value.curatedDoc?.trim() ?? '';
+            if (doc.isEmpty) {
+              missingDoc.add(type);
+              continue;
+            }
+            final lower = doc.toLowerCase();
+            final warns =
+                lower.contains('authoritative') ||
+                lower.contains('replaces') ||
+                lower.contains('replace') ||
+                lower.contains('overwrite') ||
+                lower.contains('overwrites');
+            if (!warns) {
+              missingWarning.add(type);
+            }
           }
-          final doc = entry.value.curatedDoc?.trim() ?? '';
-          if (doc.isEmpty) {
-            missingDoc.add(type);
-            continue;
-          }
-          final lower = doc.toLowerCase();
-          final warns = lower.contains('authoritative') ||
-              lower.contains('replaces') ||
-              lower.contains('replace') ||
-              lower.contains('overwrite') ||
-              lower.contains('overwrites');
-          if (!warns) {
-            missingWarning.add(type);
-          }
-        }
-        expect(
-          missingDoc,
-          isEmpty,
-          reason: 'Every curated *_iam_binding / *_iam_policy needs '
-              'curatedDoc (authoritative / replace semantics).',
-        );
-        expect(
-          missingWarning,
-          isEmpty,
-          reason: 'curatedDoc for *_iam_binding / *_iam_policy must mention '
-              'authoritative, replace(s), or overwrite(s).',
-        );
-      },
-    );
+          expect(
+            missingDoc,
+            isEmpty,
+            reason:
+                'Every curated *_iam_binding / *_iam_policy needs '
+                'curatedDoc (authoritative / replace semantics).',
+          );
+          expect(
+            missingWarning,
+            isEmpty,
+            reason:
+                'curatedDoc for *_iam_binding / *_iam_policy must mention '
+                'authoritative, replace(s), or overwrite(s).',
+          );
+        },
+      );
 
-    test(
-      'google_beta/yaml/ loads 112 resources',
-      () {
+      test('google_beta/yaml/ loads 112 resources', () {
         final loaded = loadWrapperOverrides(
           rootDir: p.absolute(
             'lib',
@@ -964,13 +986,10 @@ deriveClassDoc: true
         );
         expect(loaded.resources.length, 112);
         expect(loaded.dataSources, isEmpty);
-      },
-    );
+      });
 
-    test(
-      'every google_beta override opts into the gates its --mm-hints lane '
-      'feeds (typed helpers, enums, sealed exactly_one_of slots)',
-      () {
+      test('every google_beta override opts into the gates its --mm-hints lane '
+          'feeds (typed helpers, enums, sealed exactly_one_of slots)', () {
         final loaded = loadWrapperOverrides(
           rootDir: p.absolute(
             'lib',
@@ -992,17 +1011,15 @@ deriveClassDoc: true
         expect(
           missing,
           isEmpty,
-          reason: 'Set deriveNestedTypes, deriveOutputGetters, deriveEnums '
+          reason:
+              'Set deriveNestedTypes, deriveOutputGetters, deriveEnums '
               'and deriveExactlyOne (wrap-init --provider '
               'hashicorp/google-beta fills them).',
         );
-      },
-    );
+      });
 
-    test(
-      'google_beta IAM binding/policy overrides document authoritative '
-      'replace semantics',
-      () {
+      test('google_beta IAM binding/policy overrides document authoritative '
+          'replace semantics', () {
         final loaded = loadWrapperOverrides(
           rootDir: p.absolute(
             'lib',
@@ -1026,7 +1043,8 @@ deriveClassDoc: true
             continue;
           }
           final lower = doc.toLowerCase();
-          final warns = lower.contains('authoritative') ||
+          final warns =
+              lower.contains('authoritative') ||
               lower.contains('replaces') ||
               lower.contains('replace') ||
               lower.contains('overwrite') ||
@@ -1037,9 +1055,9 @@ deriveClassDoc: true
         }
         expect(missingDoc, isEmpty);
         expect(missingWarning, isEmpty);
-      },
-    );
-  });
+      });
+    },
+  );
 
   group('customSlots.<slot>.migrate', () {
     Future<Directory> registry(String yaml) async {
@@ -1079,12 +1097,12 @@ $slotHead    migrate:
 
     test('rejects unknown kinds, missing reasons and unknown keys', () async {
       Matcher fails(String substring) => throwsA(
-            isA<FormatException>().having(
-              (e) => e.message,
-              'message',
-              contains(substring),
-            ),
-          );
+        isA<FormatException>().having(
+          (e) => e.message,
+          'message',
+          contains(substring),
+        ),
+      );
       final badKind = await registry('''
 $slotHead    migrate:
       kind: auto

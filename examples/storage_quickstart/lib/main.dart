@@ -35,19 +35,19 @@ import 'package:terradart_google/storage.dart';
 
 final class AssetsStack extends Stack {
   AssetsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-            // `provider "google" { alias = "eu" ... }`: a second configuration
-            // of the same provider. Resources use the default one unless they
-            // opt in with `provider: 'google.eu'`.
-            GoogleProvider(
-              alias: 'eu',
-              project: projectId,
-              region: 'europe-west1',
-            ),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+          // `provider "google" { alias = "eu" ... }`: a second configuration
+          // of the same provider. Resources use the default one unless they
+          // opt in with `provider: 'google.eu'`.
+          GoogleProvider(
+            alias: 'eu',
+            project: projectId,
+            region: 'europe-west1',
+          ),
+        ],
+      ) {
     final assets = GoogleStorageBucket(
       localName: 'assets',
       name: TfArg.literal('my-app-assets-prod'),
@@ -55,8 +55,9 @@ final class AssetsStack extends Stack {
       storageClass: TfArg.literal(BucketStorageClass.standard),
       forceDestroy: TfArg.literal(false),
       uniformBucketLevelAccess: TfArg.literal(true),
-      hierarchicalNamespace:
-          StorageBucketHierarchicalNamespace(enabled: TfArg.literal(true)),
+      hierarchicalNamespace: StorageBucketHierarchicalNamespace(
+        enabled: TfArg.literal(true),
+      ),
       versioning: StorageBucketVersioning(enabled: TfArg.literal(true)),
       // `timeouts { ... }` in HCL: how long Terraform waits per operation.
       // Provider-neutral, like `lifecycle` — the provider decides which
@@ -302,8 +303,9 @@ final class AssetsStack extends Stack {
         localName: 'assets_object_events',
         bucket: TfArg.ref(assets.nameRef),
         topic: TfArg.ref(objectEventsTopic.id),
-        payloadFormat:
-            TfArg.literal(StorageNotificationPayloadFormat.jsonApiV1),
+        payloadFormat: TfArg.literal(
+          StorageNotificationPayloadFormat.jsonApiV1,
+        ),
         eventTypes: const [
           StorageNotificationEventType.objectFinalize,
           StorageNotificationEventType.objectDelete,

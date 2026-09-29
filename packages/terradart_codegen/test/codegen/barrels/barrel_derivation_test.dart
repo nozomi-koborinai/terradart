@@ -10,18 +10,17 @@ CatalogEntryData _entry({
   required String className,
   required String barrel,
   List<String> nestedTypes = const [],
-}) =>
-    CatalogEntryData(
-      tfType: tfType,
-      className: className,
-      barrel: barrel,
-      kind: 'resource',
-      summary: 's',
-      docComment: 'd',
-      constructorParams: const ['localName'],
-      sensitiveFields: const [],
-      nestedTypes: nestedTypes,
-    );
+}) => CatalogEntryData(
+  tfType: tfType,
+  className: className,
+  barrel: barrel,
+  kind: 'resource',
+  summary: 's',
+  docComment: 'd',
+  constructorParams: const ['localName'],
+  sensitiveFields: const [],
+  nestedTypes: nestedTypes,
+);
 
 void main() {
   group('loadBarrelManifest', () {
@@ -39,26 +38,25 @@ void main() {
         contains('firestore_fields.dart'),
       );
       expect(manifest.umbrellaDoc, contains('umbrella'));
-      expect(
-        manifest.umbrellaExtraExports.single,
-        contains("'provider.dart'"),
-      );
+      expect(manifest.umbrellaExtraExports.single, contains("'provider.dart'"));
     });
 
     test('doc is required per barrel', () {
       final tmp = Directory.systemTemp.createTempSync('barrels_yaml_');
       addTearDown(() => tmp.deleteSync(recursive: true));
       final path = '${tmp.path}/barrels.yaml';
-      File(path).writeAsStringSync(
-        'umbrellaDoc: |-\n  /// u\nbarrels:\n  pubsub: {}\n',
-      );
+      File(
+        path,
+      ).writeAsStringSync('umbrellaDoc: |-\n  /// u\nbarrels:\n  pubsub: {}\n');
       expect(
         () => loadBarrelManifest(path),
-        throwsA(isA<FormatException>().having(
-          (e) => e.message,
-          'message',
-          contains('doc is required'),
-        )),
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            contains('doc is required'),
+          ),
+        ),
       );
     });
 
@@ -72,11 +70,13 @@ void main() {
       );
       expect(
         () => loadBarrelManifest(path),
-        throwsA(isA<FormatException>().having(
-          (e) => e.message,
-          'message',
-          contains('unknown key: bogus'),
-        )),
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            contains('unknown key: bogus'),
+          ),
+        ),
       );
     });
   });
@@ -86,11 +86,14 @@ void main() {
         BarrelManifest(
           umbrellaDoc: '/// Umbrella.',
           umbrellaExtraExports: const ["export 'provider.dart';"],
-          barrels: barrels ??
+          barrels:
+              barrels ??
               {
                 'pubsub': const BarrelSpec(doc: '/// Pub/Sub.'),
-                'sql':
-                    const BarrelSpec(doc: '/// Cloud SQL.', file: 'cloud_sql'),
+                'sql': const BarrelSpec(
+                  doc: '/// Cloud SQL.',
+                  file: 'cloud_sql',
+                ),
               },
         );
 
@@ -110,15 +113,14 @@ void main() {
 
     test('emits sorted show sets, file overrides, and the umbrella', () {
       final files = buildBarrelFiles(entries: entries, manifest: manifest());
-      expect(
-        files.keys.toSet(),
-        {'pubsub', 'cloud_sql', 'terradart_google'},
-      );
+      expect(files.keys.toSet(), {'pubsub', 'cloud_sql', 'terradart_google'});
       // Show names sort alphabetically (className merged with nestedTypes).
       expect(
         files['pubsub'],
-        contains("export 'src/pubsub/google_pubsub_topic.dart' "
-            'show ATopicEnum, GooglePubsubTopic, ZTopicHelper;'),
+        contains(
+          "export 'src/pubsub/google_pubsub_topic.dart' "
+          'show ATopicEnum, GooglePubsubTopic, ZTopicHelper;',
+        ),
       );
       // The sql barrel exports from src/sql/ under its cloud_sql file stem.
       expect(files['cloud_sql'], contains("export 'src/sql/"));
@@ -135,13 +137,15 @@ void main() {
     test('extraExports append verbatim after the generated exports', () {
       final files = buildBarrelFiles(
         entries: entries,
-        manifest: manifest(barrels: {
-          'pubsub': const BarrelSpec(
-            doc: '/// Pub/Sub.',
-            extraExports: ["export 'src/pubsub/hand.dart' show Hand;"],
-          ),
-          'sql': const BarrelSpec(doc: '/// Cloud SQL.', file: 'cloud_sql'),
-        }),
+        manifest: manifest(
+          barrels: {
+            'pubsub': const BarrelSpec(
+              doc: '/// Pub/Sub.',
+              extraExports: ["export 'src/pubsub/hand.dart' show Hand;"],
+            ),
+            'sql': const BarrelSpec(doc: '/// Cloud SQL.', file: 'cloud_sql'),
+          },
+        ),
       );
       expect(
         files['pubsub'],
@@ -153,15 +157,17 @@ void main() {
       expect(
         () => buildBarrelFiles(
           entries: entries,
-          manifest: manifest(barrels: {
-            'pubsub': const BarrelSpec(doc: '/// Pub/Sub.'),
-          }),
+          manifest: manifest(
+            barrels: {'pubsub': const BarrelSpec(doc: '/// Pub/Sub.')},
+          ),
         ),
-        throwsA(isA<StateError>().having(
-          (e) => e.message,
-          'message',
-          contains('missing catalog barrel(s): sql'),
-        )),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            contains('missing catalog barrel(s): sql'),
+          ),
+        ),
       );
     });
 
@@ -173,12 +179,16 @@ void main() {
       };
       expect(
         () => buildBarrelFiles(
-            entries: entries, manifest: manifest(barrels: specs)),
-        throwsA(isA<StateError>().having(
-          (e) => e.message,
-          'message',
-          contains('stale barrel(s) with no catalog entries: gone'),
-        )),
+          entries: entries,
+          manifest: manifest(barrels: specs),
+        ),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            contains('stale barrel(s) with no catalog entries: gone'),
+          ),
+        ),
       );
     });
   });

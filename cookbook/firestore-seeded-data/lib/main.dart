@@ -19,13 +19,13 @@ import 'package:terradart_google/provider.dart';
 ///   - 1 google_firestore_backup_schedule (daily, 7-day retention)
 final class FirestoreSeededDataStack extends Stack {
   FirestoreSeededDataStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-          backend: const LocalBackend(),
-          devMode: true,
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+        backend: const LocalBackend(),
+        devMode: true,
+      ) {
     final apiFirestore = add(
       GoogleProjectService(
         localName: 'api_firestore',

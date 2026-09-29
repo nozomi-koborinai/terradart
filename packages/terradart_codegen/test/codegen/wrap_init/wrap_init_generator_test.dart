@@ -19,17 +19,25 @@ void main() {
   setUpAll(() {
     final pubsubSrc = File(
       p.join(
-          'test', 'fixtures', 'schema', 'google_pubsub_topic_v7.schema.json'),
+        'test',
+        'fixtures',
+        'schema',
+        'google_pubsub_topic_v7.schema.json',
+      ),
     ).readAsStringSync();
-    final pubsubIr = const SchemaJsonParser()
-        .parseString(pubsubSrc, providerVersion: '7.31.0');
+    final pubsubIr = const SchemaJsonParser().parseString(
+      pubsubSrc,
+      providerVersion: '7.31.0',
+    );
     googlePubsubTopic = pubsubIr.resources['google_pubsub_topic']!;
 
     final projSrc = File(
       p.join('test', 'fixtures', 'schema', 'google_project_v7.schema.json'),
     ).readAsStringSync();
-    final projIr = const SchemaJsonParser()
-        .parseString(projSrc, providerVersion: '7.31.0');
+    final projIr = const SchemaJsonParser().parseString(
+      projSrc,
+      providerVersion: '7.31.0',
+    );
     googleProject = projIr.dataSources['google_project']!;
   });
 
@@ -61,21 +69,24 @@ void main() {
         kind: WrapperOverrideKind.dataSource,
         mm: null,
       );
-      final kindAxis = draft.axes
-          .firstWhere((WrapInitAxis a) => a.key == 'kind') as FilledAxis;
+      final kindAxis =
+          draft.axes.firstWhere((WrapInitAxis a) => a.key == 'kind')
+              as FilledAxis;
       expect(kindAxis.value, 'data_source');
     });
 
     test('authoritative IAM adjuncts seed a replace-semantics curatedDoc', () {
-      TodoAxis curatedDoc(String type) => generator()
-          .generate(
-            terraformType: type,
-            def: googlePubsubTopic,
-            kind: WrapperOverrideKind.resource,
-            mm: null,
-          )
-          .axes
-          .firstWhere((WrapInitAxis a) => a.key == 'curatedDoc') as TodoAxis;
+      TodoAxis curatedDoc(String type) =>
+          generator()
+                  .generate(
+                    terraformType: type,
+                    def: googlePubsubTopic,
+                    kind: WrapperOverrideKind.resource,
+                    mm: null,
+                  )
+                  .axes
+                  .firstWhere((WrapInitAxis a) => a.key == 'curatedDoc')
+              as TodoAxis;
       expect(curatedDoc('google_pubsub_topic').seed, isNull);
       final binding = curatedDoc('google_pubsub_topic_iam_binding').seed;
       expect(binding, startsWith('/// Authoritative IAM binding'));
@@ -102,8 +113,10 @@ void main() {
       }
 
       expect(paramOrder(fill: false), isNull);
-      expect(paramOrder(fill: true),
-          orderedConstructorParams(googlePubsubTopic, null));
+      expect(
+        paramOrder(fill: true),
+        orderedConstructorParams(googlePubsubTopic, null),
+      );
       expect(paramOrder(fill: true), contains('name'));
       expect(paramOrder(fill: true), isNot(contains('id')));
     });
@@ -115,9 +128,11 @@ void main() {
         kind: WrapperOverrideKind.dataSource,
         mm: null,
       );
-      final axis = draft.axes.firstWhere(
-        (WrapInitAxis a) => a.key == 'schemaStubBodyMode',
-      ) as FilledAxis;
+      final axis =
+          draft.axes.firstWhere(
+                (WrapInitAxis a) => a.key == 'schemaStubBodyMode',
+              )
+              as FilledAxis;
       expect(axis.value, 'bare');
     });
 
@@ -139,9 +154,9 @@ void main() {
         kind: WrapperOverrideKind.resource,
         mm: null,
       );
-      final axis = draft.axes.firstWhere(
-        (WrapInitAxis a) => a.key == 'paramOrder',
-      ) as CommentedAxis;
+      final axis =
+          draft.axes.firstWhere((WrapInitAxis a) => a.key == 'paramOrder')
+              as CommentedAxis;
       final value = axis.value as List<String>;
       expect(value, isNotEmpty);
       // Verify first entry exists in the schema — order is schema-natural, so
@@ -161,9 +176,9 @@ void main() {
         kind: WrapperOverrideKind.resource,
         mm: null,
       );
-      final axis = draft.axes.firstWhere(
-        (WrapInitAxis a) => a.key == 'paramOrder',
-      ) as CommentedAxis;
+      final axis =
+          draft.axes.firstWhere((WrapInitAxis a) => a.key == 'paramOrder')
+              as CommentedAxis;
       // banner comes from wrap_init_templates.paramOrderCommentedBanner
       expect(axis.banner, contains('paramOrder is commented'));
     });

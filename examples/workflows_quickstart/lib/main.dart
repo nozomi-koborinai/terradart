@@ -19,11 +19,9 @@ import 'package:terradart_google/workflows.dart';
 /// Workflows Stack: a single orchestration workflow defined from inline YAML.
 final class WorkflowStack extends Stack {
   WorkflowStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiWorkflows = add(
       GoogleProjectService(
         localName: 'api_workflows',
@@ -38,8 +36,9 @@ final class WorkflowStack extends Stack {
         name: TfArg.literal('terradart-hello'),
         region: TfArg.literal('us-central1'),
         description: TfArg.literal('Returns a greeting (terradart demo)'),
-        callLogLevel:
-            TfArg.literal(WorkflowsWorkflowCallLogLevel.logErrorsOnly),
+        callLogLevel: TfArg.literal(
+          WorkflowsWorkflowCallLogLevel.logErrorsOnly,
+        ),
         // The provider defaults deletion_protection to true, which blocks
         // teardown; set it false so the example can be created and destroyed.
         deletionProtection: TfArg.literal(false),

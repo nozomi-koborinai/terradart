@@ -20,11 +20,9 @@ import 'package:terradart_google/provider.dart';
 
 final class ApigeeAnalyticsStack extends Stack {
   ApigeeAnalyticsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.apigee],

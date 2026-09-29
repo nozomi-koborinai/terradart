@@ -18,7 +18,9 @@ void main() {
         '../terradart_google/lib/src/pubsub/google_pubsub_schema.dart',
       ).readAsStringSync();
       expect(
-          dart, contains('enum PubsubSchemaType implements TerraformEnum {'));
+        dart,
+        contains('enum PubsubSchemaType implements TerraformEnum {'),
+      );
       expect(dart, contains("typeUnspecified('TYPE_UNSPECIFIED'),"));
       expect(dart, contains('final String terraformValue;'));
     });

@@ -15,11 +15,11 @@ import 'package:terradart_google/storage_control.dart';
 /// Storage Intelligence stack: project config in DISABLED edition.
 final class StorageIntelligenceStack extends Stack {
   StorageIntelligenceStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+      ) {
     final apiStorage = add(
       GoogleProjectService(
         localName: 'api_storage',

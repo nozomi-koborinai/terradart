@@ -12,8 +12,9 @@ import 'package:test/test.dart';
 /// emitter's raw output and the hand-written expected source through this
 /// same formatter, so the test pins the format-stable *contract* rather
 /// than the emitter's own (irrelevant) internal whitespace choices.
-final _formatter =
-    DartFormatter(languageVersion: DartFormatter.latestLanguageVersion);
+final _formatter = DartFormatter(
+  languageVersion: DartFormatter.latestLanguageVersion,
+);
 
 String _fmt(String source) => _formatter.format(source);
 
@@ -24,14 +25,14 @@ const _schemaPath = 'test/fixtures/wrap/source/schema.json';
 Map<String, dynamic> _blockOf(String terraformType) {
   final decoded =
       jsonDecode(File(_schemaPath).readAsStringSync()) as Map<String, dynamic>;
-  final providerSchemas =
-      (decoded['provider_schemas'] as Map).cast<String, dynamic>();
-  final providerBody =
-      (providerSchemas.values.single as Map).cast<String, dynamic>();
-  final resourceSchemas =
-      (providerBody['resource_schemas'] as Map).cast<String, dynamic>();
-  final resource =
-      (resourceSchemas[terraformType] as Map).cast<String, dynamic>();
+  final providerSchemas = (decoded['provider_schemas'] as Map)
+      .cast<String, dynamic>();
+  final providerBody = (providerSchemas.values.single as Map)
+      .cast<String, dynamic>();
+  final resourceSchemas = (providerBody['resource_schemas'] as Map)
+      .cast<String, dynamic>();
+  final resource = (resourceSchemas[terraformType] as Map)
+      .cast<String, dynamic>();
   return (resource['block'] as Map).cast<String, dynamic>();
 }
 
@@ -45,55 +46,55 @@ String _resourcePrefixOf(String terraformType) {
 
 void main() {
   group(
-      'renderNestedTypes: byte-pinned idiom (google_app_engine_domain_mapping.ssl_settings)',
-      () {
-    // NOTE on `sslManagementType.required`: the brief's pinned idiom text
-    // renders `sslManagementType` as optional. The REAL provider schema
-    // (test/fixtures/wrap/source/schema.json) actually marks
-    // `ssl_management_type` `"required": true` — confirmed by the already
-    // -committed, already-green `nested_type_collector_test.dart`
-    // ("ssl_management_type" test expects `.required, isTrue`). This test
-    // deliberately hand-constructs `required: false` to match the brief's
-    // literal pinned text byte-for-byte (the point of this test is pinning
-    // the FORMAT/idiom, not replaying this one resource's real schema). The
-    // group below ("real collector output") separately renders the ACTUAL
-    // collector output for this resource and confirms the required-attr
-    // shape kicks in correctly for the real `required: true` data.
-    test('matches the hand-written helper idiom byte-for-byte (post-format)',
+    'renderNestedTypes: byte-pinned idiom (google_app_engine_domain_mapping.ssl_settings)',
+    () {
+      // NOTE on `sslManagementType.required`: the brief's pinned idiom text
+      // renders `sslManagementType` as optional. The REAL provider schema
+      // (test/fixtures/wrap/source/schema.json) actually marks
+      // `ssl_management_type` `"required": true` — confirmed by the already
+      // -committed, already-green `nested_type_collector_test.dart`
+      // ("ssl_management_type" test expects `.required, isTrue`). This test
+      // deliberately hand-constructs `required: false` to match the brief's
+      // literal pinned text byte-for-byte (the point of this test is pinning
+      // the FORMAT/idiom, not replaying this one resource's real schema). The
+      // group below ("real collector output") separately renders the ACTUAL
+      // collector output for this resource and confirms the required-attr
+      // shape kicks in correctly for the real `required: true` data.
+      test(
+        'matches the hand-written helper idiom byte-for-byte (post-format)',
         () {
-      final certificateId = const NestedAttrSpec(
-        tfName: 'certificate_id',
-        dartName: 'certificateId',
-        dartType: 'String',
-        required: false,
-      );
-      final sslManagementType = const NestedAttrSpec(
-        tfName: 'ssl_management_type',
-        dartName: 'sslManagementType',
-        dartType: 'AppEngineDomainMappingSslSettingsSslManagementType',
-        required: false,
-        enumValues: ['AUTOMATIC', 'MANUAL'],
-      );
-      final sslSettings = NestedBlockSpec(
-        tfName: 'ssl_settings',
-        path: const ['ssl_settings'],
-        className: 'AppEngineDomainMappingSslSettings',
-        repeated: false,
-        required: false,
-        // Deliberately reversed vs. tfName-alphabetical order, to prove
-        // renderNestedTypes re-sorts attrs itself rather than trusting
-        // caller-supplied order.
-        attrs: [sslManagementType, certificateId],
-        children: const [],
-        excludedChildren: const [],
-      );
+          final certificateId = const NestedAttrSpec(
+            tfName: 'certificate_id',
+            dartName: 'certificateId',
+            dartType: 'String',
+            required: false,
+          );
+          final sslManagementType = const NestedAttrSpec(
+            tfName: 'ssl_management_type',
+            dartName: 'sslManagementType',
+            dartType: 'AppEngineDomainMappingSslSettingsSslManagementType',
+            required: false,
+            enumValues: ['AUTOMATIC', 'MANUAL'],
+          );
+          final sslSettings = NestedBlockSpec(
+            tfName: 'ssl_settings',
+            path: const ['ssl_settings'],
+            className: 'AppEngineDomainMappingSslSettings',
+            repeated: false,
+            required: false,
+            // Deliberately reversed vs. tfName-alphabetical order, to prove
+            // renderNestedTypes re-sorts attrs itself rather than trusting
+            // caller-supplied order.
+            attrs: [sslManagementType, certificateId],
+            children: const [],
+            excludedChildren: const [],
+          );
 
-      final actual = renderNestedTypes(
-        [sslSettings],
-        resourceTerraformType: 'google_app_engine_domain_mapping',
-      );
+          final actual = renderNestedTypes([
+            sslSettings,
+          ], resourceTerraformType: 'google_app_engine_domain_mapping');
 
-      const expected = '''
+          const expected = '''
 /// Typed helper for the `ssl_settings` block of
 /// `google_app_engine_domain_mapping` (derived from provider schema).
 @immutable
@@ -126,55 +127,57 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
 }
 ''';
 
-      expect(_fmt(actual), _fmt(expected));
-    });
-  });
+          expect(_fmt(actual), _fmt(expected));
+        },
+      );
+    },
+  );
 
   group('renderNestedTypes: real collector output', () {
-    test('ssl_management_type renders as required (real schema: required=true)',
-        () {
-      const terraformType = 'google_app_engine_domain_mapping';
-      final specs = collectNestedTypes(
-        resourceBlock: _blockOf(terraformType),
-        resourcePrefix: _resourcePrefixOf(terraformType),
-        customSlotKeys: const {},
-        excludedPaths: const {},
-      );
-
-      final formatted = _fmt(renderNestedTypes(
-        specs,
-        resourceTerraformType: terraformType,
-      ));
-
-      // required attr: `required this.x`, non-nullable field, unconditional
-      // encode entry (no `if (x != null)` guard, no `!` before the call).
-      // Fragments are checked independently, not as one contiguous string,
-      // because the class name is long enough that dart_style wraps the
-      // field declaration across lines (same reason the main idiom test
-      // above shows `sslManagementType`'s own field split in two).
-      expect(formatted, contains('required this.sslManagementType'));
-      expect(
-        formatted,
-        contains('TfArg<AppEngineDomainMappingSslSettingsSslManagementType>'),
-      );
-      expect(
-        formatted,
-        matches(RegExp(r'TfArg<\w+SslManagementType>\s+sslManagementType;')),
-      );
-      expect(
-        formatted,
-        contains("'ssl_management_type': sslManagementType.toTfJson(),"),
-      );
-      expect(formatted, isNot(contains('sslManagementType!.toTfJson()')));
-      expect(formatted, isNot(contains('if (sslManagementType != null)')));
-
-      // certificate_id stays optional (schema: optional + computed).
-      expect(formatted, contains('this.certificateId,'));
-      expect(formatted, contains('final TfArg<String>? certificateId;'));
-    });
-
     test(
-        'google_access_context_manager_access_level: basic.conditions is '
+      'ssl_management_type renders as required (real schema: required=true)',
+      () {
+        const terraformType = 'google_app_engine_domain_mapping';
+        final specs = collectNestedTypes(
+          resourceBlock: _blockOf(terraformType),
+          resourcePrefix: _resourcePrefixOf(terraformType),
+          customSlotKeys: const {},
+          excludedPaths: const {},
+        );
+
+        final formatted = _fmt(
+          renderNestedTypes(specs, resourceTerraformType: terraformType),
+        );
+
+        // required attr: `required this.x`, non-nullable field, unconditional
+        // encode entry (no `if (x != null)` guard, no `!` before the call).
+        // Fragments are checked independently, not as one contiguous string,
+        // because the class name is long enough that dart_style wraps the
+        // field declaration across lines (same reason the main idiom test
+        // above shows `sslManagementType`'s own field split in two).
+        expect(formatted, contains('required this.sslManagementType'));
+        expect(
+          formatted,
+          contains('TfArg<AppEngineDomainMappingSslSettingsSslManagementType>'),
+        );
+        expect(
+          formatted,
+          matches(RegExp(r'TfArg<\w+SslManagementType>\s+sslManagementType;')),
+        );
+        expect(
+          formatted,
+          contains("'ssl_management_type': sslManagementType.toTfJson(),"),
+        );
+        expect(formatted, isNot(contains('sslManagementType!.toTfJson()')));
+        expect(formatted, isNot(contains('if (sslManagementType != null)')));
+
+        // certificate_id stays optional (schema: optional + computed).
+        expect(formatted, contains('this.certificateId,'));
+        expect(formatted, contains('final TfArg<String>? certificateId;'));
+      },
+    );
+
+    test('google_access_context_manager_access_level: basic.conditions is '
         'both required AND repeated (Task 3 carry-over — untested combo, '
         'real data)', () {
       const terraformType = 'google_access_context_manager_access_level';
@@ -185,10 +188,9 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         excludedPaths: const {},
       );
 
-      final formatted = _fmt(renderNestedTypes(
-        specs,
-        resourceTerraformType: terraformType,
-      ));
+      final formatted = _fmt(
+        renderNestedTypes(specs, resourceTerraformType: terraformType),
+      );
 
       // `conditions` (nesting_mode: list, min_items: 1, no max_items) is a
       // CHILD of `basic`, so it renders as a bare (non-`TfArg`) class
@@ -222,95 +224,89 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
 
   group('renderNestedTypes: additional shape rules', () {
     test(
-        'a repeated child block renders as List<Child>? and encodes via .encode()',
-        () {
-      final conditions = const NestedBlockSpec(
-        tfName: 'conditions',
-        path: ['basic', 'conditions'],
-        className: 'AccessLevelBasicConditions',
-        repeated: true,
-        required: false,
-        attrs: [],
-        children: [],
-        excludedChildren: [],
-      );
-      final basic = NestedBlockSpec(
-        tfName: 'basic',
-        path: const ['basic'],
-        className: 'AccessLevelBasic',
-        repeated: false,
-        required: false,
-        attrs: const [],
-        children: [conditions],
-        excludedChildren: const [],
-      );
+      'a repeated child block renders as List<Child>? and encodes via .encode()',
+      () {
+        final conditions = const NestedBlockSpec(
+          tfName: 'conditions',
+          path: ['basic', 'conditions'],
+          className: 'AccessLevelBasicConditions',
+          repeated: true,
+          required: false,
+          attrs: [],
+          children: [],
+          excludedChildren: [],
+        );
+        final basic = NestedBlockSpec(
+          tfName: 'basic',
+          path: const ['basic'],
+          className: 'AccessLevelBasic',
+          repeated: false,
+          required: false,
+          attrs: const [],
+          children: [conditions],
+          excludedChildren: const [],
+        );
 
-      final formatted = _fmt(renderNestedTypes(
-        [basic],
-        resourceTerraformType: 'google_access_context_manager_access_level',
-      ));
+        final formatted = _fmt(
+          renderNestedTypes(
+            [basic],
+            resourceTerraformType: 'google_access_context_manager_access_level',
+          ),
+        );
 
-      expect(
-        formatted,
-        contains('final List<AccessLevelBasicConditions>? conditions;'),
-      );
-      expect(formatted, contains('if (conditions != null)'));
-      expect(
-        formatted,
-        contains(
-          "'conditions': [for (final e in conditions!) e.encode()],",
-        ),
-      );
-      // Depth-first: the child's own class is rendered too.
-      expect(
-        formatted,
-        contains('final class AccessLevelBasicConditions {'),
-      );
-    });
+        expect(
+          formatted,
+          contains('final List<AccessLevelBasicConditions>? conditions;'),
+        );
+        expect(formatted, contains('if (conditions != null)'));
+        expect(
+          formatted,
+          contains("'conditions': [for (final e in conditions!) e.encode()],"),
+        );
+        // Depth-first: the child's own class is rendered too.
+        expect(formatted, contains('final class AccessLevelBasicConditions {'));
+      },
+    );
 
     test(
-        'a required attr renders required this.x, non-nullable field, unconditional entry',
-        () {
-      final requiredAttr = const NestedAttrSpec(
-        tfName: 'display_name',
-        dartName: 'displayName',
-        dartType: 'String',
-        required: true,
-      );
-      final spec = NestedBlockSpec(
-        tfName: 'thing',
-        path: const ['thing'],
-        className: 'FooThing',
-        repeated: false,
-        required: false,
-        attrs: [requiredAttr],
-        children: const [],
-        excludedChildren: const [],
-      );
+      'a required attr renders required this.x, non-nullable field, unconditional entry',
+      () {
+        final requiredAttr = const NestedAttrSpec(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          dartType: 'String',
+          required: true,
+        );
+        final spec = NestedBlockSpec(
+          tfName: 'thing',
+          path: const ['thing'],
+          className: 'FooThing',
+          repeated: false,
+          required: false,
+          attrs: [requiredAttr],
+          children: const [],
+          excludedChildren: const [],
+        );
 
-      final formatted = _fmt(renderNestedTypes(
-        [spec],
-        resourceTerraformType: 'google_foo',
-      ));
+        final formatted = _fmt(
+          renderNestedTypes([spec], resourceTerraformType: 'google_foo'),
+        );
 
-      // A single named param collapses onto one line under dart_style (no
-      // trailing comma) — assert on the parameter text itself, not on a
-      // trailing comma that only appears when the line is long enough to
-      // force a multi-line parameter list.
-      expect(formatted, contains('required this.displayName'));
-      expect(formatted, contains('final TfArg<String> displayName;'));
-      // Same collapse-to-one-line caveat as the constructor param above: a
-      // lone map entry that fits on one line loses its trailing comma too.
-      expect(
-        formatted,
-        contains("'display_name': displayName.toTfJson()"),
-      );
-      expect(formatted, isNot(contains('displayName!.toTfJson()')));
-      expect(formatted, isNot(contains('if (displayName != null)')));
-    });
+        // A single named param collapses onto one line under dart_style (no
+        // trailing comma) — assert on the parameter text itself, not on a
+        // trailing comma that only appears when the line is long enough to
+        // force a multi-line parameter list.
+        expect(formatted, contains('required this.displayName'));
+        expect(formatted, contains('final TfArg<String> displayName;'));
+        // Same collapse-to-one-line caveat as the constructor param above: a
+        // lone map entry that fits on one line loses its trailing comma too.
+        expect(formatted, contains("'display_name': displayName.toTfJson()"));
+        expect(formatted, isNot(contains('displayName!.toTfJson()')));
+        expect(formatted, isNot(contains('if (displayName != null)')));
+      },
+    );
 
-    test(
-        'a scalar, optional excludedChildren entry renders a '
+    test('a scalar, optional excludedChildren entry renders a '
         'TfArg<Map<String, dynamic>>? passthrough', () {
       final spec = const NestedBlockSpec(
         tfName: 'thing',
@@ -329,10 +325,9 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         ],
       );
 
-      final formatted = _fmt(renderNestedTypes(
-        [spec],
-        resourceTerraformType: 'google_foo',
-      ));
+      final formatted = _fmt(
+        renderNestedTypes([spec], resourceTerraformType: 'google_foo'),
+      );
 
       expect(
         formatted,
@@ -347,48 +342,47 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
     });
 
     test(
-        'a repeated excludedChildren entry renders TfArg<List<Map<String, '
-        'dynamic>>>? (a single TfArg wrapping a list, not List<TfArg<...>>?)',
-        () {
-      final spec = const NestedBlockSpec(
-        tfName: 'thing',
-        path: ['thing'],
-        className: 'FooThing',
-        repeated: false,
-        required: false,
-        attrs: [],
-        children: [],
-        excludedChildren: [
-          ExcludedNestedBlock(
-            tfName: 'resources',
-            repeated: true,
-            required: false,
+      'a repeated excludedChildren entry renders TfArg<List<Map<String, '
+      'dynamic>>>? (a single TfArg wrapping a list, not List<TfArg<...>>?)',
+      () {
+        final spec = const NestedBlockSpec(
+          tfName: 'thing',
+          path: ['thing'],
+          className: 'FooThing',
+          repeated: false,
+          required: false,
+          attrs: [],
+          children: [],
+          excludedChildren: [
+            ExcludedNestedBlock(
+              tfName: 'resources',
+              repeated: true,
+              required: false,
+            ),
+          ],
+        );
+
+        final formatted = _fmt(
+          renderNestedTypes([spec], resourceTerraformType: 'google_foo'),
+        );
+
+        expect(
+          formatted,
+          contains('final TfArg<List<Map<String, dynamic>>>? resources;'),
+        );
+        expect(
+          formatted,
+          contains(
+            "if (resources != null) 'resources': resources!.toTfJson(),",
           ),
-        ],
-      );
+        );
+        // NOT the per-element shape a repeated *typed* attribute/child uses.
+        expect(formatted, isNot(contains('List<TfArg<Map<String, dynamic>>>')));
+        expect(formatted, isNot(contains('for (final e in resources')));
+      },
+    );
 
-      final formatted = _fmt(renderNestedTypes(
-        [spec],
-        resourceTerraformType: 'google_foo',
-      ));
-
-      expect(
-        formatted,
-        contains('final TfArg<List<Map<String, dynamic>>>? resources;'),
-      );
-      expect(
-        formatted,
-        contains(
-          "if (resources != null) 'resources': resources!.toTfJson(),",
-        ),
-      );
-      // NOT the per-element shape a repeated *typed* attribute/child uses.
-      expect(formatted, isNot(contains('List<TfArg<Map<String, dynamic>>>')));
-      expect(formatted, isNot(contains('for (final e in resources')));
-    });
-
-    test(
-        'a required, repeated excludedChildren entry renders a non-nullable '
+    test('a required, repeated excludedChildren entry renders a non-nullable '
         'field with an unconditional entry (google_os_config_os_policy_'
         'assignment\'s real os_policies.resource_groups.resources shape)', () {
       final spec = const NestedBlockSpec(
@@ -408,31 +402,23 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         ],
       );
 
-      final formatted = _fmt(renderNestedTypes(
-        [spec],
-        resourceTerraformType: 'google_foo',
-      ));
-
-      expect(
-        formatted,
-        contains('required this.resources'),
+      final formatted = _fmt(
+        renderNestedTypes([spec], resourceTerraformType: 'google_foo'),
       );
+
+      expect(formatted, contains('required this.resources'));
       expect(
         formatted,
         contains('final TfArg<List<Map<String, dynamic>>> resources;'),
       );
       // Lone map entry collapses onto one line under dart_style (no trailing
       // comma) — same caveat as the "required attr" test above.
-      expect(
-        formatted,
-        contains("'resources': resources.toTfJson()"),
-      );
+      expect(formatted, contains("'resources': resources.toTfJson()"));
       expect(formatted, isNot(contains('resources!')));
       expect(formatted, isNot(contains('if (resources != null)')));
     });
 
-    test(
-        'google_os_config_os_policy_assignment: the real excluded '
+    test('google_os_config_os_policy_assignment: the real excluded '
         'os_policies.resource_groups.resources renders required + repeated '
         '(real collector output, not a hand-built spec)', () {
       const terraformType = 'google_os_config_os_policy_assignment';
@@ -443,15 +429,11 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         excludedPaths: const {'os_policies.resource_groups.resources'},
       );
 
-      final formatted = _fmt(renderNestedTypes(
-        specs,
-        resourceTerraformType: terraformType,
-      ));
-
-      expect(
-        formatted,
-        contains('required this.resources'),
+      final formatted = _fmt(
+        renderNestedTypes(specs, resourceTerraformType: terraformType),
       );
+
+      expect(formatted, contains('required this.resources'));
       expect(
         formatted,
         contains('final TfArg<List<Map<String, dynamic>>> resources;'),
@@ -460,51 +442,52 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
     });
 
     test(
-        'a repeated enum attribute renders List<TfArg<EnumClass>>? and encodes each element',
-        () {
-      final repeatedEnumAttr = const NestedAttrSpec(
-        tfName: 'allowed_statuses',
-        dartName: 'allowedStatuses',
-        dartType: 'FooThingAllowedStatuses',
-        required: false,
-        enumValues: ['ESSENTIAL', 'FULL'],
-        repeated: true,
-      );
-      final spec = NestedBlockSpec(
-        tfName: 'thing',
-        path: const ['thing'],
-        className: 'FooThing',
-        repeated: false,
-        required: false,
-        attrs: [repeatedEnumAttr],
-        children: const [],
-        excludedChildren: const [],
-      );
+      'a repeated enum attribute renders List<TfArg<EnumClass>>? and encodes each element',
+      () {
+        final repeatedEnumAttr = const NestedAttrSpec(
+          tfName: 'allowed_statuses',
+          dartName: 'allowedStatuses',
+          dartType: 'FooThingAllowedStatuses',
+          required: false,
+          enumValues: ['ESSENTIAL', 'FULL'],
+          repeated: true,
+        );
+        final spec = NestedBlockSpec(
+          tfName: 'thing',
+          path: const ['thing'],
+          className: 'FooThing',
+          repeated: false,
+          required: false,
+          attrs: [repeatedEnumAttr],
+          children: const [],
+          excludedChildren: const [],
+        );
 
-      final formatted = _fmt(renderNestedTypes(
-        [spec],
-        resourceTerraformType: 'google_foo',
-      ));
+        final formatted = _fmt(
+          renderNestedTypes([spec], resourceTerraformType: 'google_foo'),
+        );
 
-      expect(
-        formatted,
-        contains(
-            'final List<TfArg<FooThingAllowedStatuses>>? allowedStatuses;'),
-      );
-      expect(formatted, contains('if (allowedStatuses != null)'));
-      expect(
-        formatted,
-        contains(
-          "'allowed_statuses': [for (final e in allowedStatuses!) e.toTfJson()],",
-        ),
-      );
-      expect(
-        formatted,
-        contains('enum FooThingAllowedStatuses implements TerraformEnum {'),
-      );
-      expect(formatted, contains("essential('ESSENTIAL'),"));
-      expect(formatted, contains("full('FULL');"));
-    });
+        expect(
+          formatted,
+          contains(
+            'final List<TfArg<FooThingAllowedStatuses>>? allowedStatuses;',
+          ),
+        );
+        expect(formatted, contains('if (allowedStatuses != null)'));
+        expect(
+          formatted,
+          contains(
+            "'allowed_statuses': [for (final e in allowedStatuses!) e.toTfJson()],",
+          ),
+        );
+        expect(
+          formatted,
+          contains('enum FooThingAllowedStatuses implements TerraformEnum {'),
+        );
+        expect(formatted, contains("essential('ESSENTIAL'),"));
+        expect(formatted, contains("full('FULL');"));
+      },
+    );
 
     test('hyphenated schema enum values become legal Dart members', () {
       final retryConditions = const NestedAttrSpec(
@@ -526,18 +509,16 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         excludedChildren: const [],
       );
 
-      final formatted = _fmt(renderNestedTypes(
-        [spec],
-        resourceTerraformType: 'google_foo',
-      ));
+      final formatted = _fmt(
+        renderNestedTypes([spec], resourceTerraformType: 'google_foo'),
+      );
 
       expect(formatted, contains("connectFailure('connect-failure')"));
       expect(formatted, contains("deadlineExceeded('deadline-exceeded')"));
       expect(formatted, isNot(contains('connect-failure(')));
     });
 
-    test(
-        'field order: attrs (alphabetical) first, then block-type children '
+    test('field order: attrs (alphabetical) first, then block-type children '
         '— derived and excluded merged (alphabetical) — second', () {
       final zzzAttr = const NestedAttrSpec(
         tfName: 'zzz_attr',
@@ -581,10 +562,9 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         ],
       );
 
-      final formatted = _fmt(renderNestedTypes(
-        [spec],
-        resourceTerraformType: 'google_foo',
-      ));
+      final formatted = _fmt(
+        renderNestedTypes([spec], resourceTerraformType: 'google_foo'),
+      );
 
       final aaaIdx = formatted.indexOf('aaaAttr');
       final zzzIdx = formatted.indexOf('zzzAttr');
@@ -624,10 +604,14 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         excludedChildren: [],
       );
 
-      final first =
-          renderNestedTypes([a, b], resourceTerraformType: 'google_foo');
-      final second =
-          renderNestedTypes([a, b], resourceTerraformType: 'google_foo');
+      final first = renderNestedTypes([
+        a,
+        b,
+      ], resourceTerraformType: 'google_foo');
+      final second = renderNestedTypes([
+        a,
+        b,
+      ], resourceTerraformType: 'google_foo');
       expect(first, second);
     });
 
@@ -663,8 +647,11 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         excludedChildren: [],
       );
 
-      final canonical =
-          renderNestedTypes([a, b, c], resourceTerraformType: 'google_foo');
+      final canonical = renderNestedTypes([
+        a,
+        b,
+        c,
+      ], resourceTerraformType: 'google_foo');
       for (final permuted in [
         [a, c, b],
         [b, a, c],
@@ -724,7 +711,9 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
       expect(nestedParamType(spec), 'Map<String, RiskBehaviorBehaviors>?');
       final slot = nestedTypeConstructorSlot(spec, isRequired: true);
       expect(
-          slot.param, 'required Map<String, RiskBehaviorBehaviors> behaviors');
+        slot.param,
+        'required Map<String, RiskBehaviorBehaviors> behaviors',
+      );
       expect(
         slot.argMapEntry,
         "'behaviors': TfArg.literal({for (final e in behaviors.entries) "
@@ -764,10 +753,9 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
           ),
         ],
       );
-      final actual = renderNestedTypes(
-        [spec],
-        resourceTerraformType: 'cloudflare_pages_project',
-      );
+      final actual = renderNestedTypes([
+        spec,
+      ], resourceTerraformType: 'cloudflare_pages_project');
       expect(
         actual,
         contains('final Map<String, PagesPreviewEnvVars>? envVars;'),
@@ -784,8 +772,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
   });
 
   group('reserved Dart identifiers', () {
-    test('field named default encodes as defaultCase, tf key stays default',
-        () {
+    test('field named default encodes as defaultCase, tf key stays default', () {
       final spec = const NestedBlockSpec(
         tfName: 'schema',
         path: ['schema'],
@@ -811,10 +798,9 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         excludedChildren: [],
       );
 
-      final actual = renderNestedTypes(
-        [spec],
-        resourceTerraformType: 'google_ces_tool',
-      );
+      final actual = renderNestedTypes([
+        spec,
+      ], resourceTerraformType: 'google_ces_tool');
 
       expect(actual, contains('this.defaultCase,'));
       expect(actual, contains('this.enumCase,'));
@@ -823,7 +809,8 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
       expect(
         actual,
         contains(
-            "if (defaultCase != null) 'default': defaultCase!.toTfJson(),"),
+          "if (defaultCase != null) 'default': defaultCase!.toTfJson(),",
+        ),
       );
       expect(
         actual,

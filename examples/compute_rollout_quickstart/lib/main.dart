@@ -21,11 +21,9 @@ import 'package:terradart_google/provider.dart';
 /// Compute rollout stack: custom plan + global Ops Agent extension policy.
 final class ComputeRolloutStack extends Stack {
   ComputeRolloutStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final current = addData(GoogleProject(localName: 'current'));
 
     final apiCompute = add(
@@ -49,16 +47,16 @@ final class ComputeRolloutStack extends Stack {
               ComputeRolloutPlanWavesSelectors(
                 locationSelector:
                     ComputeRolloutPlanWavesSelectorsLocationSelector(
-                  includedLocations: TfArg.literal(['us-central1-a']),
-                ),
+                      includedLocations: TfArg.literal(['us-central1-a']),
+                    ),
               ),
             ],
             validation: ComputeRolloutPlanWavesValidation(
               type: TfArg.literal('time'),
               timeBasedValidationMetadata:
                   ComputeRolloutPlanWavesValidationTimeBasedValidationMetadata(
-                waitDuration: TfArg.literal('0s'),
-              ),
+                    waitDuration: TfArg.literal('0s'),
+                  ),
             ),
             orchestrationOptions: ComputeRolloutPlanWavesOrchestrationOptions(
               maxConcurrentLocations: TfArg.literal(10),
@@ -94,22 +92,17 @@ final class ComputeRolloutStack extends Stack {
           ComputeGlobalVmExtensionPolicyInstanceSelectors(
             labelSelector:
                 ComputeGlobalVmExtensionPolicyInstanceSelectorsLabelSelector(
-              inclusionLabels: TfArg.literal({
-                'terradart-smoke': 'never',
-              }),
-            ),
+                  inclusionLabels: TfArg.literal({'terradart-smoke': 'never'}),
+                ),
           ),
         ],
         rolloutOperation: ComputeGlobalVmExtensionPolicyRolloutOperation(
           rolloutInput:
               ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput(
-            name: TfArg.literal(planResourceName),
-          ),
+                name: TfArg.literal(planResourceName),
+              ),
         ),
-        dependsOn: [
-          ResourceDependency(apiCompute),
-          ResourceDependency(plan),
-        ],
+        dependsOn: [ResourceDependency(apiCompute), ResourceDependency(plan)],
       ),
     );
   }

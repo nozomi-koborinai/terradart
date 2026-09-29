@@ -42,8 +42,10 @@ class WrapPromoteMarker {
     final buf = StringBuffer()
       ..writeln()
       ..writeln(beginMarker)
-      ..writeln('# Generated on $date. Rename placeholders, copy/integrate '
-          'into the main yaml above, fill in encode() bodies, then delete this block.')
+      ..writeln(
+        '# Generated on $date. Rename placeholders, copy/integrate '
+        'into the main yaml above, fill in encode() bodies, then delete this block.',
+      )
       ..writeln()
       ..write(content);
     if (!content.endsWith('\n')) buf.writeln();

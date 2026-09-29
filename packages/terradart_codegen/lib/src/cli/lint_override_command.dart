@@ -22,13 +22,15 @@ class LintOverrideCommand extends Command<int> {
     argParser
       ..addOption(
         'dir',
-        help: 'Override-YAML directory to lint. Defaults to the bundled '
+        help:
+            'Override-YAML directory to lint. Defaults to the bundled '
             'package:terradart_codegen registry.',
         valueHelp: 'DIR',
       )
       ..addOption(
         'mm-dir',
-        help: 'MM YAML fixture directory for phase-2 lint rules. Defaults to '
+        help:
+            'MM YAML fixture directory for phase-2 lint rules. Defaults to '
             'test/fixtures/wrap/source/mm beside the bundled override root.',
         valueHelp: 'DIR',
       );
@@ -94,10 +96,12 @@ class LintOverrideCommand extends Command<int> {
     );
     if (staleDebt.isNotEmpty) {
       stderr.writeln(
-          'lint-override: stale tool/exactly_one_lint_debt.yaml entries:');
+        'lint-override: stale tool/exactly_one_lint_debt.yaml entries:',
+      );
       for (final tf in staleDebt) {
         stderr.writeln(
-            '  $tf (override no longer violates exactly-one-optional-fanout)');
+          '  $tf (override no longer violates exactly-one-optional-fanout)',
+        );
       }
       return CliExitCodes.dataError;
     }
@@ -113,7 +117,8 @@ class LintOverrideCommand extends Command<int> {
     );
     if (staleMigrateDebt.isNotEmpty) {
       stderr.writeln(
-          'lint-override: stale tool/migrate_manifest_debt.yaml entries:');
+        'lint-override: stale tool/migrate_manifest_debt.yaml entries:',
+      );
       for (final tf in staleMigrateDebt) {
         stderr.writeln(
           '  $tf (override no longer violates migrate-shape-underivable)',
@@ -132,9 +137,7 @@ class LintOverrideCommand extends Command<int> {
     );
 
     if (violations.isEmpty) {
-      stdout.writeln(
-        'lint-override: ${loaded.length} overrides clean.',
-      );
+      stdout.writeln('lint-override: ${loaded.length} overrides clean.');
       return CliExitCodes.success;
     }
 
@@ -179,7 +182,7 @@ String? lintDebtToolDirForOverrideRoot(String overrideYamlRoot) {
     'terradart_codegen',
     'lib',
     'src',
-    'codegen'
+    'codegen',
   ];
   if (i < codegenPath.length) return null;
   final above = parts.sublist(i - codegenPath.length, i);

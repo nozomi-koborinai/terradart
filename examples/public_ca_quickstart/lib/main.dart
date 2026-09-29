@@ -15,11 +15,9 @@ import 'package:terradart_google/public_ca.dart';
 /// Public CA stack: EAB key only.
 final class PublicCaStack extends Stack {
   PublicCaStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiPublicCa = add(
       GoogleProjectService(
         localName: 'api_publicca',

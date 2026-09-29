@@ -18,11 +18,9 @@ import 'package:terradart_google/provider.dart';
 /// PAM stack: unused project entitlement (no grant).
 final class PrivilegedAccessManagerStack extends Stack {
   PrivilegedAccessManagerStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final parent = 'projects/$projectId';
     final projectResource =
         '//cloudresourcemanager.googleapis.com/projects/$projectId';
@@ -58,27 +56,24 @@ final class PrivilegedAccessManagerStack extends Stack {
         privilegedAccess: PrivilegedAccessManagerEntitlementPrivilegedAccess(
           gcpIamAccess:
               PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccess(
-            resourceType: TfArg.literal(
-              'cloudresourcemanager.googleapis.com/Project',
-            ),
-            resource: TfArg.literal(projectResource),
-            roleBindings: [
-              PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccessRoleBindings(
-                role: TfArg.literal('roles/browser'),
+                resourceType: TfArg.literal(
+                  'cloudresourcemanager.googleapis.com/Project',
+                ),
+                resource: TfArg.literal(projectResource),
+                roleBindings: [
+                  PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccessRoleBindings(
+                    role: TfArg.literal('roles/browser'),
+                  ),
+                ],
               ),
-            ],
-          ),
         ),
         requesterJustificationConfig:
             const PrivilegedAccessManagerEntitlementRequesterJustificationConfig(
-          unstructured:
-              PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured(),
-        ),
+              unstructured:
+                  PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured(),
+            ),
         deletionPolicy: TfArg.literal('DELETE'),
-        dependsOn: [
-          ResourceDependency(apiPam),
-          ResourceDependency(requester),
-        ],
+        dependsOn: [ResourceDependency(apiPam), ResourceDependency(requester)],
       ),
     );
   }

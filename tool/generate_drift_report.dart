@@ -212,8 +212,9 @@ class ReportInputs {
 
 @visibleForTesting
 ReportInputs readInputs(String dir, {ReportLane lane = ReportLane.google}) {
-  final state = jsonDecode(File('$dir/state.json').readAsStringSync())
-      as Map<String, dynamic>;
+  final state =
+      jsonDecode(File('$dir/state.json').readAsStringSync())
+          as Map<String, dynamic>;
   final wrapCheck = File('$dir/wrap_check.txt').readAsStringSync();
   final wrapCheckExit = int.parse(
     File('$dir/wrap_check_exit').readAsStringSync().trim(),
@@ -226,8 +227,9 @@ ReportInputs readInputs(String dir, {ReportLane lane = ReportLane.google}) {
   final mm = mmFile.existsSync()
       ? jsonDecode(mmFile.readAsStringSync()) as Map<String, dynamic>
       : null;
-  final schema = jsonDecode(File('$dir/schema_diff.json').readAsStringSync())
-      as Map<String, dynamic>;
+  final schema =
+      jsonDecode(File('$dir/schema_diff.json').readAsStringSync())
+          as Map<String, dynamic>;
   final betaFile = File('$dir/beta_bump.json');
   final beta = betaFile.existsSync()
       ? jsonDecode(betaFile.readAsStringSync()) as Map<String, dynamic>
@@ -571,8 +573,9 @@ String buildGateSection(ReportInputs i) {
 String buildNewResourceSection(ReportInputs i) {
   final prefix = i.lane.typePrefix;
   final generated = {
-    for (final f in ((i.newFactories?['factories'] as List?) ?? const [])
-        .cast<Map<String, dynamic>>())
+    for (final f
+        in ((i.newFactories?['factories'] as List?) ?? const [])
+            .cast<Map<String, dynamic>>())
       '${f['kind']}:${f['tf_type']}': f['class_name'] as String,
   };
   String line(String type, String kind) {
@@ -619,8 +622,8 @@ String buildNewResourceSection(ReportInputs i) {
     'New types do not block auto-merge. Each generated factory has a '
     'default override (review it later) and a `tool/curation_backlog.yaml` '
     'entry for API polish; ${coveredByGenerator ? 'the lane\'s leftover '
-        'example generator covers it in an example' : 'an `awaiting-example:` '
-        'line in `tool/example_debt.yaml` holds its example coverage'}. Types '
+              'example generator covers it in an example' : 'an `awaiting-example:` '
+              'line in `tool/example_debt.yaml` holds its example coverage'}. Types '
     'without a factory are in the backlog only.',
   );
   return b.toString().trimRight();
@@ -637,9 +640,7 @@ String buildRemovedResourceSection(ReportInputs i) {
   if (removed.isEmpty) {
     return '## ✅ Removed curated types\n\n- none detected.';
   }
-  final b = StringBuffer(
-    '## ⚠️ Removed curated types (${removed.length})\n\n',
-  );
+  final b = StringBuffer('## ⚠️ Removed curated types (${removed.length})\n\n');
   b.writeln(
     'These curated types existed in the previous schema but are gone in the '
     'new one, so their wrappers will break:',

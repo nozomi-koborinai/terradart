@@ -49,25 +49,16 @@ final class TestStack extends Stack {
 /// `terraformType` is `'fake_thing'`; `supportsDeletionProtection` defaults
 /// to `false` (base class behaviour).
 final class FakeResource extends Resource {
-  FakeResource({
-    required super.localName,
-    required TfArg<String> name,
-  }) : super(
-          terraformType: 'fake_thing',
-          argMap: {'name': name},
-        );
+  FakeResource({required super.localName, required TfArg<String> name})
+    : super(terraformType: 'fake_thing', argMap: {'name': name});
 
   @override
   Set<String> get sensitiveFields => const {};
 }
 
 final class FakePubsubTopic extends Resource {
-  FakePubsubTopic({
-    required super.localName,
-    required super.argMap,
-  }) : super(
-          terraformType: 'google_pubsub_topic',
-        );
+  FakePubsubTopic({required super.localName, required super.argMap})
+    : super(terraformType: 'google_pubsub_topic');
 
   FakePubsubTopic.withMeta({
     required super.localName,
@@ -76,33 +67,23 @@ final class FakePubsubTopic extends Resource {
     super.dependsOn,
     super.provider,
     super.timeouts,
-  }) : super(
-          terraformType: 'google_pubsub_topic',
-        );
+  }) : super(terraformType: 'google_pubsub_topic');
 
   @override
   Set<String> get sensitiveFields => const {};
 }
 
 final class FakePubsubSubscription extends Resource {
-  FakePubsubSubscription({
-    required super.localName,
-    required super.argMap,
-  }) : super(
-          terraformType: 'google_pubsub_subscription',
-        );
+  FakePubsubSubscription({required super.localName, required super.argMap})
+    : super(terraformType: 'google_pubsub_subscription');
 
   @override
   Set<String> get sensitiveFields => const {};
 }
 
 final class FakeSecretVersion extends Resource {
-  FakeSecretVersion({
-    required super.localName,
-    required super.argMap,
-  }) : super(
-          terraformType: 'google_secret_manager_secret_version',
-        );
+  FakeSecretVersion({required super.localName, required super.argMap})
+    : super(terraformType: 'google_secret_manager_secret_version');
 
   @override
   Set<String> get sensitiveFields => const {'secret_data'};
@@ -114,9 +95,7 @@ final class FakeProjectData extends Data {
     required super.argMap,
     super.provider,
     super.timeouts,
-  }) : super(
-          terraformType: 'google_project',
-        );
+  }) : super(terraformType: 'google_project');
 
   @override
   Set<String> get sensitiveFields => const {};

@@ -39,11 +39,8 @@ ReportInputs _baseInputs({
             'unchanged': 15 - mmChanged.length - mmFailed.length,
           }
         : null,
-    schemaDiff: schemaDiff ??
-        {
-          'added_resources': added,
-          'removed_resources': removed,
-        },
+    schemaDiff:
+        schemaDiff ?? {'added_resources': added, 'removed_resources': removed},
     lane: lane,
   );
 }
@@ -55,10 +52,9 @@ void main() {
     });
 
     test('present and mentions the major when one is available', () {
-      final out = buildNewMajorBanner(_baseInputs(
-        newMajor: true,
-        maxMajor: '8',
-      ));
+      final out = buildNewMajorBanner(
+        _baseInputs(newMajor: true, maxMajor: '8'),
+      );
       expect(out, isNotNull);
       expect(out!, contains('`hashicorp/google` v8'));
       expect(out, contains('tracking v7'));
@@ -75,11 +71,9 @@ void main() {
     });
 
     test('reflects wrap divergence and gate failures', () {
-      final out = buildSummaryTable(_baseInputs(
-        wrapExit: 1,
-        gatesExit: 1,
-        removed: ['google_zombie'],
-      ));
+      final out = buildSummaryTable(
+        _baseInputs(wrapExit: 1, gatesExit: 1, removed: ['google_zombie']),
+      );
       expect(out, contains('⚠️ divergence'));
       expect(out, contains('❌ failures'));
       expect(out, contains('⚠️ 1'));
@@ -93,25 +87,29 @@ void main() {
     });
 
     test('lists changed files with URL', () {
-      final out = buildMmYamlSection(_baseInputs(
-        mmChanged: [
-          {
-            'file': 'google_kms_crypto_key.yaml',
-            'upstream_url':
-                'https://raw.githubusercontent.com/x/y/main/mmv1/products/kms/CryptoKey.yaml',
-          },
-        ],
-      ))!;
+      final out = buildMmYamlSection(
+        _baseInputs(
+          mmChanged: [
+            {
+              'file': 'google_kms_crypto_key.yaml',
+              'upstream_url':
+                  'https://raw.githubusercontent.com/x/y/main/mmv1/products/kms/CryptoKey.yaml',
+            },
+          ],
+        ),
+      )!;
       expect(out, contains('google_kms_crypto_key.yaml'));
       expect(out, contains('CryptoKey.yaml'));
     });
 
     test('lists sync failures', () {
-      final out = buildMmYamlSection(_baseInputs(
-        mmFailed: [
-          {'file': 'google_x.yaml', 'reason': 'HTTP 404'},
-        ],
-      ))!;
+      final out = buildMmYamlSection(
+        _baseInputs(
+          mmFailed: [
+            {'file': 'google_x.yaml', 'reason': 'HTTP 404'},
+          ],
+        ),
+      )!;
       expect(out, contains('Sync failures'));
       expect(out, contains('HTTP 404'));
     });
@@ -129,10 +127,9 @@ void main() {
 
     test('truncates very long wrap stdout', () {
       final big = 'X' * 20000;
-      final out = buildDivergenceSection(_baseInputs(
-        wrapExit: 1,
-        wrapStdout: big,
-      ));
+      final out = buildDivergenceSection(
+        _baseInputs(wrapExit: 1, wrapStdout: big),
+      );
       expect(out.length, lessThan(20000 + 500));
       expect(out, contains('truncated'));
     });
@@ -141,13 +138,14 @@ void main() {
   group('buildGateSection', () {
     test('green when exit 0', () {
       expect(
-          buildGateSection(_baseInputs()), contains('Universal QA gates pass'));
+        buildGateSection(_baseInputs()),
+        contains('Universal QA gates pass'),
+      );
     });
     test('shows failures when exit nonzero', () {
-      final out = buildGateSection(_baseInputs(
-        gatesExit: 1,
-        gatesStdout: 'Gate 2 failed',
-      ));
+      final out = buildGateSection(
+        _baseInputs(gatesExit: 1, gatesStdout: 'Gate 2 failed'),
+      );
       expect(out, contains('failures'));
       expect(out, contains('Gate 2 failed'));
     });
@@ -158,12 +156,14 @@ void main() {
       expect(buildNewResourceSection(_baseInputs()), contains('none'));
     });
     test('lists new resources + backlog note', () {
-      final out = buildNewResourceSection(_baseInputs(
-        added: [
-          'google_cloud_run_v2_worker_pool',
-          'google_dataform_repository'
-        ],
-      ));
+      final out = buildNewResourceSection(
+        _baseInputs(
+          added: [
+            'google_cloud_run_v2_worker_pool',
+            'google_dataform_repository',
+          ],
+        ),
+      );
       expect(out, contains('google_cloud_run_v2_worker_pool'));
       expect(out, contains('google_dataform_repository'));
       expect(out, contains('curation_backlog.yaml'));
@@ -175,9 +175,9 @@ void main() {
       expect(buildRemovedResourceSection(_baseInputs()), contains('none'));
     });
     test('lists removed and warns', () {
-      final out = buildRemovedResourceSection(_baseInputs(
-        removed: ['google_legacy_resource'],
-      ));
+      final out = buildRemovedResourceSection(
+        _baseInputs(removed: ['google_legacy_resource']),
+      );
       expect(out, contains('google_legacy_resource'));
       expect(out, contains('wrappers will break'));
     });
@@ -192,20 +192,22 @@ void main() {
     });
 
     test('full-mix report contains every section', () {
-      final out = buildReport(_baseInputs(
-        newMajor: true,
-        maxMajor: '8',
-        current: '7.31.0',
-        latest: '7.32.1',
-        mmChanged: [
-          {'file': 'google_kms_crypto_key.yaml', 'upstream_url': 'u'},
-        ],
-        wrapExit: 1,
-        wrapStdout: 'mismatch in pubsub',
-        gatesExit: 0,
-        added: ['google_new_thing'],
-        removed: [],
-      ));
+      final out = buildReport(
+        _baseInputs(
+          newMajor: true,
+          maxMajor: '8',
+          current: '7.31.0',
+          latest: '7.32.1',
+          mmChanged: [
+            {'file': 'google_kms_crypto_key.yaml', 'upstream_url': 'u'},
+          ],
+          wrapExit: 1,
+          wrapStdout: 'mismatch in pubsub',
+          gatesExit: 0,
+          added: ['google_new_thing'],
+          removed: [],
+        ),
+      );
       expect(out, contains('NEW MAJOR AVAILABLE'));
       expect(out, contains('7.31.0 → **7.32.1**'));
       expect(out, contains('google_kms_crypto_key.yaml'));
@@ -223,19 +225,18 @@ void main() {
     ReportInputs awsInputs({
       List<String> addedData = const [],
       List<String> removedData = const [],
-    }) =>
-        _baseInputs(
-          withMm: false,
-          lane: aws,
-          current: '6.66.0',
-          latest: '6.67.0',
-          schemaDiff: {
-            'added_resources': <String>[],
-            'removed_resources': <String>[],
-            'added_data_sources': addedData,
-            'removed_data_sources': removedData,
-          },
-        );
+    }) => _baseInputs(
+      withMm: false,
+      lane: aws,
+      current: '6.66.0',
+      latest: '6.67.0',
+      schemaDiff: {
+        'added_resources': <String>[],
+        'removed_resources': <String>[],
+        'added_data_sources': addedData,
+        'removed_data_sources': removedData,
+      },
+    );
 
     test('titles the report with the lane source and omits MM', () {
       final out = buildReport(awsInputs());
@@ -254,10 +255,9 @@ void main() {
     });
 
     test('data-source removals block auto-merge, additions do not', () {
-      final blockers = autoMergeBlockers(awsInputs(
-        addedData: ['aws_a'],
-        removedData: ['aws_b'],
-      ));
+      final blockers = autoMergeBlockers(
+        awsInputs(addedData: ['aws_a'], removedData: ['aws_b']),
+      );
       expect(blockers, contains('1 curated data source(s) removed upstream'));
       expect(blockers.where((b) => b.contains('new')), isEmpty);
     });
@@ -285,10 +285,7 @@ void main() {
       );
       final out = buildNewResourceSection(i);
       expect(out, contains('- `aws_x` → `AwsX`'));
-      expect(
-        out,
-        contains('- `aws_x` (data source) — no factory generated'),
-      );
+      expect(out, contains('- `aws_x` (data source) — no factory generated'));
       expect(out, contains('leftover example generator'));
     });
 

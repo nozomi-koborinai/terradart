@@ -12,12 +12,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class ConfigDeploymentStack extends Stack {
   ConfigDeploymentStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.config],

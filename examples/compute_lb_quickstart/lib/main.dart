@@ -51,11 +51,11 @@ import 'package:terradart_google/provider.dart';
 
 final class ComputeLbStack extends Stack {
   ComputeLbStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+      ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
     addVariable(
@@ -297,11 +297,11 @@ final class ComputeLbStack extends Stack {
       name: TfArg.literal('app-cm-issuance'),
       certificateAuthorityConfig:
           CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
-        certificateAuthorityServiceConfig:
-            CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(
-          caPool: TfArg.ref(cmCaPool.id),
-        ),
-      ),
+            certificateAuthorityServiceConfig:
+                CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(
+                  caPool: TfArg.ref(cmCaPool.id),
+                ),
+          ),
       keyAlgorithm: TfArg.literal(
         CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,
       ),
@@ -359,13 +359,8 @@ final class ComputeLbStack extends Stack {
         match: CertificateManagerCertificateMapEntryMatch.hostname(
           TfArg.literal('app.example.com'),
         ),
-        certificates: TfArg.literal([
-          cmCert.id.interpolation,
-        ]),
-        dependsOn: [
-          ResourceDependency(cmMap),
-          ResourceDependency(cmCert),
-        ],
+        certificates: TfArg.literal([cmCert.id.interpolation]),
+        dependsOn: [ResourceDependency(cmMap), ResourceDependency(cmCert)],
       ),
     );
 
@@ -406,8 +401,9 @@ final class ComputeLbStack extends Stack {
         zone: TfArg.literal(zone),
         network: TfArg.ref(lbVpc.selfLink),
         subnetwork: TfArg.ref(lbSubnet.selfLink),
-        networkEndpointType:
-            TfArg.literal(NetworkEndpointGroupType.gceVmIpPort),
+        networkEndpointType: TfArg.literal(
+          NetworkEndpointGroupType.gceVmIpPort,
+        ),
         defaultPort: TfArg.literal(443),
         // Document the chain to the backing VM even though endpoint
         // registration itself is out of scope for this resource.
@@ -476,9 +472,7 @@ final class ComputeLbStack extends Stack {
             capacityScaler: TfArg.literal(1.0),
           ),
         ],
-        healthChecks: TfArg.literal([
-          lbHealthCheck.selfLink.interpolation,
-        ]),
+        healthChecks: TfArg.literal([lbHealthCheck.selfLink.interpolation]),
         securityPolicy: TfArg.ref(lbArmor.selfLink),
       ),
     );
@@ -527,9 +521,7 @@ final class ComputeLbStack extends Stack {
         // Reference `lbCert` by self_link rather than inlining the Terraform
         // interpolation string so that the cert resource is the source of
         // truth for the name.
-        sslCertificates: TfArg.literal([
-          lbCert.selfLink.interpolation,
-        ]),
+        sslCertificates: TfArg.literal([lbCert.selfLink.interpolation]),
         sslPolicy: TfArg.ref(lbSslPolicy.selfLink),
       ),
     );
@@ -557,8 +549,9 @@ final class ComputeLbStack extends Stack {
         localName: 'lb_ssl_proxy',
         name: TfArg.literal('app-lb-ssl-proxy'),
         backendService: TfArg.ref(lbBackend.selfLink),
-        sslCertificates:
-            TfArg.literal([selfManagedCert.selfLink.interpolation]),
+        sslCertificates: TfArg.literal([
+          selfManagedCert.selfLink.interpolation,
+        ]),
         dependsOn: [ResourceDependency(selfManagedCert)],
       ),
     );
@@ -620,10 +613,12 @@ final class ComputeLbStack extends Stack {
         name: TfArg.literal('app-regional-backend'),
         region: TfArg.literal(region),
         protocol: TfArg.literal(RegionBackendServiceProtocol.tcp),
-        loadBalancingScheme:
-            TfArg.literal(RegionBackendServiceLoadBalancingScheme.internal),
-        healthChecks:
-            TfArg.literal([regionalHealthCheck.selfLink.interpolation]),
+        loadBalancingScheme: TfArg.literal(
+          RegionBackendServiceLoadBalancingScheme.internal,
+        ),
+        healthChecks: TfArg.literal([
+          regionalHealthCheck.selfLink.interpolation,
+        ]),
         backends: [
           ComputeRegionBackendServiceRegionBackendServiceBackend(
             group: TfArg.ref(lbNeg.selfLink),
@@ -686,13 +681,12 @@ final class ComputeLbStack extends Stack {
           ComputeRegionSecurityPolicyRegionSecurityPolicyRule(
             priority: TfArg.literal(2147483647),
             action: TfArg.literal('allow'),
-            match:
-                ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch.config(
+            match: ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch.config(
               versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
               config:
                   ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchConfig(
-                srcIpRanges: const ['*'],
-              ),
+                    srcIpRanges: const ['*'],
+                  ),
             ),
             description: TfArg.literal('default allow-all'),
           ),
@@ -730,8 +724,9 @@ final class ComputeLbStack extends Stack {
       GoogleComputeGlobalNetworkEndpointGroup(
         localName: 'global_internet_neg',
         name: TfArg.literal('app-global-internet-neg'),
-        networkEndpointType:
-            TfArg.literal(GlobalNetworkEndpointGroupType.internetIpPort),
+        networkEndpointType: TfArg.literal(
+          GlobalNetworkEndpointGroupType.internetIpPort,
+        ),
         defaultPort: TfArg.literal(443),
       ),
     );
@@ -781,10 +776,10 @@ final class ComputeLbStack extends Stack {
         ],
         networkPerformanceConfig:
             const ComputeInstanceTemplateInstanceTemplateNetworkPerformanceConfig(
-          totalEgressBandwidthTier:
-              ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier
-                  .tier1,
-        ),
+              totalEgressBandwidthTier:
+                  ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier
+                      .tier1,
+            ),
       ),
     );
 
@@ -894,8 +889,9 @@ final class ComputeLbStack extends Stack {
         name: TfArg.literal('app-regional-https-proxy'),
         region: TfArg.literal(region),
         urlMap: TfArg.ref(regionUrlMap.selfLink),
-        sslCertificates:
-            TfArg.literal([regionalSslCert.selfLink.interpolation]),
+        sslCertificates: TfArg.literal([
+          regionalSslCert.selfLink.interpolation,
+        ]),
         sslPolicy: TfArg.ref(regionalSslPolicy.selfLink),
         dependsOn: [
           ResourceDependency(regionalSslCert),
@@ -929,12 +925,13 @@ final class ComputeLbStack extends Stack {
         target: TfArg.ref(regionalMig.selfLink),
         autoscalingPolicy:
             ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy(
-          minReplicas: TfArg.literal(2),
-          maxReplicas: TfArg.literal(6),
-          cpuUtilization: ComputeRegionAutoscalerRegionAutoscalerCpuUtilization(
-            target: TfArg.literal(0.65),
-          ),
-        ),
+              minReplicas: TfArg.literal(2),
+              maxReplicas: TfArg.literal(6),
+              cpuUtilization:
+                  ComputeRegionAutoscalerRegionAutoscalerCpuUtilization(
+                    target: TfArg.literal(0.65),
+                  ),
+            ),
       ),
     );
 
@@ -992,9 +989,7 @@ final class ComputeLbStack extends Stack {
         localName: 'lb_iap_binding',
         webBackendService: TfArg.ref(lbBackend.nameRef),
         role: TfArg.literal('roles/iap.httpsResourceAccessor'),
-        members: TfArg.literal([
-          'group:platform-admins@example.com',
-        ]),
+        members: TfArg.literal(['group:platform-admins@example.com']),
         dependsOn: [ResourceDependency(lbBackend)],
       ),
     );

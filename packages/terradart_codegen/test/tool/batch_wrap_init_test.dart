@@ -34,13 +34,7 @@ void main() {
     });
 
     test('rejects both --resources and --prefix', () {
-      expect(
-        parseArgs([
-          '--resources=google_x',
-          '--prefix=google_',
-        ]),
-        isNull,
-      );
+      expect(parseArgs(['--resources=google_x', '--prefix=google_']), isNull);
     });
 
     test('rejects neither selector', () {
@@ -61,13 +55,15 @@ void main() {
 
     test('explicit list is returned sorted', () {
       final schema = File('${tmp.path}/schema.json')
-        ..writeAsStringSync(jsonEncode(<String, dynamic>{
-          'provider_schemas': <String, dynamic>{
-            'registry.terraform.io/hashicorp/google': <String, dynamic>{
-              'resource_schemas': <String, dynamic>{},
+        ..writeAsStringSync(
+          jsonEncode(<String, dynamic>{
+            'provider_schemas': <String, dynamic>{
+              'registry.terraform.io/hashicorp/google': <String, dynamic>{
+                'resource_schemas': <String, dynamic>{},
+              },
             },
-          },
-        }));
+          }),
+        );
       final output = Directory('${tmp.path}/out')..createSync();
 
       expect(
@@ -83,20 +79,23 @@ void main() {
 
     test('prefix filter skips existing override yaml', () {
       final schema = File('${tmp.path}/schema.json')
-        ..writeAsStringSync(jsonEncode(<String, dynamic>{
-          'provider_schemas': <String, dynamic>{
-            'registry.terraform.io/hashicorp/google': <String, dynamic>{
-              'resource_schemas': <String, dynamic>{
-                'google_container_cluster': <String, dynamic>{},
-                'google_container_node_pool': <String, dynamic>{},
-                'google_container_registry': <String, dynamic>{},
+        ..writeAsStringSync(
+          jsonEncode(<String, dynamic>{
+            'provider_schemas': <String, dynamic>{
+              'registry.terraform.io/hashicorp/google': <String, dynamic>{
+                'resource_schemas': <String, dynamic>{
+                  'google_container_cluster': <String, dynamic>{},
+                  'google_container_node_pool': <String, dynamic>{},
+                  'google_container_registry': <String, dynamic>{},
+                },
               },
             },
-          },
-        }));
+          }),
+        );
       final output = Directory('${tmp.path}/out')..createSync();
-      File('${output.path}/google_container_cluster.yaml')
-          .writeAsStringSync('x');
+      File(
+        '${output.path}/google_container_cluster.yaml',
+      ).writeAsStringSync('x');
 
       expect(
         resolveResources(

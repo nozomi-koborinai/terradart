@@ -39,8 +39,9 @@ void main() {
         if (ent is! File) continue;
         if (!ent.path.endsWith('.yaml')) continue;
         final terraformType = p.basenameWithoutExtension(ent.path);
-        mmOverrides[terraformType] =
-            const MmYamlParser().parseString(ent.readAsStringSync());
+        mmOverrides[terraformType] = const MmYamlParser().parseString(
+          ent.readAsStringSync(),
+        );
       }
       ir = const IrMerger().merge(base: rawIr, overrides: mmOverrides);
     });
@@ -50,13 +51,12 @@ void main() {
         // Only terradart_google ships wrap-promote sealed classes; terradart_codegen
         // contains the emitter (legitimately includes the placeholder string) and
         // golden fixtures (.golden, not .dart), both correctly outside this root.
-        final root = Directory(
-          p.join('..', 'terradart_google', 'lib', 'src'),
-        );
+        final root = Directory(p.join('..', 'terradart_google', 'lib', 'src'));
         expect(
           root.existsSync(),
           isTrue,
-          reason: 'terradart_google/lib/src not found from '
+          reason:
+              'terradart_google/lib/src not found from '
               'terradart_codegen working dir',
         );
 
@@ -72,7 +72,8 @@ void main() {
         expect(
           offenders,
           isEmpty,
-          reason: 'wrap-promote sealed-class scaffold left a TODO in '
+          reason:
+              'wrap-promote sealed-class scaffold left a TODO in '
               'shipped Dart. Replace UnimplementedError(...) bodies '
               'with actual encode() implementations.\n'
               'Offenders: ${offenders.join(", ")}',
@@ -82,13 +83,12 @@ void main() {
 
     group('Gate 5: identifier sanity (lowerCamelCase enum members)', () {
       test('every emitted enum member is lowerCamelCase', () {
-        final root = Directory(
-          p.join('..', 'terradart_google', 'lib', 'src'),
-        );
+        final root = Directory(p.join('..', 'terradart_google', 'lib', 'src'));
         expect(
           root.existsSync(),
           isTrue,
-          reason: 'terradart_google/lib/src not found from '
+          reason:
+              'terradart_google/lib/src not found from '
               'terradart_codegen working dir',
         );
         // ^[a-z]: must start with lowercase letter.
@@ -118,7 +118,8 @@ void main() {
         expect(
           offenders,
           isEmpty,
-          reason: 'Emitted enum member identifier violates lowerCamelCase '
+          reason:
+              'Emitted enum member identifier violates lowerCamelCase '
               '(^[a-z]([a-z0-9]|[A-Z][a-z0-9]+)*\$). This is the TG-2 '
               'bug class — wrap-promote ValidValuesEmitter producing '
               'garbage Dart identifiers like `addCOSTTOMED` or `3DES`.\n'
@@ -185,7 +186,8 @@ void main() {
         expect(
           offenders,
           isEmpty,
-          reason: 'paramOrder must list every required schema attribute '
+          reason:
+              'paramOrder must list every required schema attribute '
               '(or the attribute must be covered via customSlots). '
               'A required attr absent from both is silently dropped from '
               'the factory constructor.\n'
@@ -202,13 +204,12 @@ void main() {
         // Pre-extract every emitted enum across all wrapper + schema files,
         // keyed by Dart enum name.
         final emittedEnums = <String, EmittedEnum>{};
-        final root = Directory(
-          p.join('..', 'terradart_google', 'lib', 'src'),
-        );
+        final root = Directory(p.join('..', 'terradart_google', 'lib', 'src'));
         expect(
           root.existsSync(),
           isTrue,
-          reason: 'terradart_google/lib/src not found from '
+          reason:
+              'terradart_google/lib/src not found from '
               'terradart_codegen working dir',
         );
         // Scan scope is intentionally terradart_google/lib/src so that wrapper
@@ -244,8 +245,10 @@ void main() {
             //                                   doesn't reference an enum
 
             final emitted = emittedEnums[bareEnumName]!;
-            final attr =
-                walker.resolveAttribute(def.root, fieldPath.split('.'));
+            final attr = walker.resolveAttribute(
+              def.root,
+              fieldPath.split('.'),
+            );
             if (attr == null) {
               offenders.add(
                 '$terraformType: dartTypeOverrides field "$fieldPath" '
@@ -263,7 +266,7 @@ void main() {
             // Dart's default Set uses reference equality; compare structurally.
             final equal =
                 emittedTerraformValues.containsAll(schemaEnumValues) &&
-                    schemaEnumValues.containsAll(emittedTerraformValues);
+                schemaEnumValues.containsAll(emittedTerraformValues);
             if (!equal) {
               offenders.add(
                 '$terraformType.$fieldPath ($bareEnumName): '
@@ -276,7 +279,8 @@ void main() {
         expect(
           offenders,
           isEmpty,
-          reason: 'Enum terraformValue strings drifted from the schema '
+          reason:
+              'Enum terraformValue strings drifted from the schema '
               'enum_values. This is the TG-2 bug class extended — even '
               'with correct Dart identifiers, the wire-value set may '
               'have grown or shrunk vs. the schema.\n'
@@ -294,7 +298,8 @@ void main() {
       expect(
         violations,
         isEmpty,
-        reason: 'Found unprefixed nested helper classes. Each must start with '
+        reason:
+            'Found unprefixed nested helper classes. Each must start with '
             'its parent resource\'s <Service><Resource> prefix. '
             'See packages/terradart_codegen/test/codegen/naming_audit/rename_list.json '
             'for the canonical list.\n'
@@ -308,9 +313,13 @@ void main() {
       final violations = TfArgWrap.scan(
         rootDir: p.join('..', 'terradart_google', 'lib', 'src'),
       );
-      expect(violations, isEmpty,
-          reason: 'Plain Dart-type fields on nested helpers found:\n'
-              '${violations.join('\n')}');
+      expect(
+        violations,
+        isEmpty,
+        reason:
+            'Plain Dart-type fields on nested helpers found:\n'
+            '${violations.join('\n')}',
+      );
     });
   });
 
@@ -349,26 +358,39 @@ void main() {
         minLength: 4,
         allowList: allowList,
       );
-      expect(violations, isEmpty,
-          reason: 'Short enum values found (consider verbose-natural form '
-              'or add to allowList if legitimately short):\n'
-              '${violations.join('\n')}');
+      expect(
+        violations,
+        isEmpty,
+        reason:
+            'Short enum values found (consider verbose-natural form '
+            'or add to allowList if legitimately short):\n'
+            '${violations.join('\n')}',
+      );
     });
   });
 
   group('Gate 9: beta-only catalog does not overlap the GA schema', () {
     test('no source_beta resource type exists in the GA fixture', () {
-      final ga = jsonDecode(
-        File('test/fixtures/wrap/source/schema.json').readAsStringSync(),
-      ) as Map<String, dynamic>;
-      final beta = jsonDecode(
-        File('test/fixtures/wrap/source_beta/schema.json').readAsStringSync(),
-      ) as Map<String, dynamic>;
+      final ga =
+          jsonDecode(
+                File(
+                  'test/fixtures/wrap/source/schema.json',
+                ).readAsStringSync(),
+              )
+              as Map<String, dynamic>;
+      final beta =
+          jsonDecode(
+                File(
+                  'test/fixtures/wrap/source_beta/schema.json',
+                ).readAsStringSync(),
+              )
+              as Map<String, dynamic>;
       final promoted = overlappingResourceTypes(gaSchema: ga, betaSchema: beta);
       expect(
         promoted,
         isEmpty,
-        reason: 'beta-only type(s) promoted to GA: ${promoted.join(', ')}.\n'
+        reason:
+            'beta-only type(s) promoted to GA: ${promoted.join(', ')}.\n'
             'Playbook (maintainer, Tier 3 — never auto-repair):\n'
             '1. Remove the factory from terradart_google_beta (breaking: '
             'minor bump + MIGRATING.md).\n'

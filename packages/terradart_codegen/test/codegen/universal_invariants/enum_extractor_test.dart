@@ -3,9 +3,10 @@ import 'package:test/test.dart';
 
 void main() {
   group('EnumExtractor', () {
-    test('extracts (member, terraformValue) pairs from a canonical enum block',
-        () {
-      const src = '''
+    test(
+      'extracts (member, terraformValue) pairs from a canonical enum block',
+      () {
+        const src = '''
 enum BucketStorageClass {
   standard('STANDARD'),
   nearline('NEARLINE'),
@@ -15,19 +16,20 @@ enum BucketStorageClass {
   final String terraformValue;
 }
 ''';
-      final enums = const EnumExtractor().extract(src);
-      expect(enums, hasLength(1));
-      final ev = enums.single;
-      expect(ev.name, equals('BucketStorageClass'));
-      expect(
-        ev.members,
-        equals({
-          'standard': 'STANDARD',
-          'nearline': 'NEARLINE',
-          'archive': 'ARCHIVE',
-        }),
-      );
-    });
+        final enums = const EnumExtractor().extract(src);
+        expect(enums, hasLength(1));
+        final ev = enums.single;
+        expect(ev.name, equals('BucketStorageClass'));
+        expect(
+          ev.members,
+          equals({
+            'standard': 'STANDARD',
+            'nearline': 'NEARLINE',
+            'archive': 'ARCHIVE',
+          }),
+        );
+      },
+    );
 
     test('accepts @override and a dart_style-wrapped constructor', () {
       const src = '''

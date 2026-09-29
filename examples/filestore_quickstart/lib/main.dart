@@ -15,12 +15,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class FilestoreSnapshotStack extends Stack {
   FilestoreSnapshotStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.compute, Barrels.filestore],

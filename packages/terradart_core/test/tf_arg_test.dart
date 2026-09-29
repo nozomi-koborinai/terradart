@@ -53,17 +53,21 @@ void main() {
   });
 
   group('Phase 4.5.1 TG-4: TfArgLiteral enum serialization', () {
-    test('Enum with `terraformValue` getter → toTfJson returns that String',
-        () {
-      final arg = TfArg.literal(_SampleEnum.alpha);
-      expect(arg.toTfJson(), 'ALPHA_VALUE');
-    });
+    test(
+      'Enum with `terraformValue` getter → toTfJson returns that String',
+      () {
+        final arg = TfArg.literal(_SampleEnum.alpha);
+        expect(arg.toTfJson(), 'ALPHA_VALUE');
+      },
+    );
 
-    test('Enum without `terraformValue` getter → toTfJson throws ArgumentError',
-        () {
-      final arg = TfArg.literal(_BareEnum.first);
-      expect(arg.toTfJson, throwsA(isA<ArgumentError>()));
-    });
+    test(
+      'Enum without `terraformValue` getter → toTfJson throws ArgumentError',
+      () {
+        final arg = TfArg.literal(_BareEnum.first);
+        expect(arg.toTfJson, throwsA(isA<ArgumentError>()));
+      },
+    );
 
     test('String literal: toTfJson unchanged', () {
       expect(TfArg.literal('hello').toTfJson(), 'hello');
@@ -86,10 +90,7 @@ void main() {
     });
 
     test('zero duration encodes as "0s"', () {
-      expect(
-        TfArg.duration(Duration.zero).toTfJson(),
-        equals('0s'),
-      );
+      expect(TfArg.duration(Duration.zero).toTfJson(), equals('0s'));
     });
 
     test('rejects sub-second durations with ArgumentError', () {
@@ -117,8 +118,9 @@ void main() {
       final arg = TfArg.expression<String>(r'${lower(var.name)}-x');
       expect(arg.toTfJson(), equals(r'${lower(var.name)}-x'));
       expect(
-        TfArg.expression<String>(r'%{ if var.a }a%{ else }b%{ endif }')
-            .toTfJson(),
+        TfArg.expression<String>(
+          r'%{ if var.a }a%{ else }b%{ endif }',
+        ).toTfJson(),
         equals(r'%{ if var.a }a%{ else }b%{ endif }'),
       );
     });
@@ -137,10 +139,7 @@ void main() {
       final arg = TfArgExpression<String>(
         r'${var.a}-${lower(var.b_2)}-${var.with-dash}%{ if var.c }x%{ endif }',
       );
-      expect(
-        arg.referencedVariables,
-        equals({'a', 'b_2', 'with-dash', 'c'}),
-      );
+      expect(arg.referencedVariables, equals({'a', 'b_2', 'with-dash', 'c'}));
     });
 
     test('referencedVariables ignores escapes, strings and lookalikes', () {
@@ -172,38 +171,27 @@ void main() {
     });
 
     test('TfArgVariable rejects empty name', () {
-      expect(
-        () => TfArgVariable<String>(''),
-        throwsA(isA<ArgumentError>()),
-      );
+      expect(() => TfArgVariable<String>(''), throwsA(isA<ArgumentError>()));
     });
   });
 
   group('TfArg sealed exhaustive (4-way)', () {
     test('switch covers Literal, Ref, Variable, Expression', () {
       String dispatch(TfArg<String> arg) => switch (arg) {
-            TfArgLiteral<String>() => 'literal',
-            TfArgRef<String>() => 'ref',
-            TfArgVariable<String>() => 'variable',
-            TfArgExpression<String>() => 'expression',
-          };
+        TfArgLiteral<String>() => 'literal',
+        TfArgRef<String>() => 'ref',
+        TfArgVariable<String>() => 'variable',
+        TfArgExpression<String>() => 'expression',
+      };
 
       expect(dispatch(const TfArgLiteral<String>('x')), equals('literal'));
       expect(
         dispatch(
-          TfArg.ref(
-            TfRef.attribute<String>(
-              _FakeAddressed('data.x.y'),
-              'z',
-            ),
-          ),
+          TfArg.ref(TfRef.attribute<String>(_FakeAddressed('data.x.y'), 'z')),
         ),
         equals('ref'),
       );
-      expect(
-        dispatch(TfArgVariable<String>('z')),
-        equals('variable'),
-      );
+      expect(dispatch(TfArgVariable<String>('z')), equals('variable'));
     });
   });
 

@@ -8,10 +8,7 @@ final class _FakeResource extends Resource {
     required super.localName,
     required TfArg<String> name,
     super.lifecycle,
-  }) : super(
-          terraformType: 'fake_thing',
-          argMap: {'name': name},
-        );
+  }) : super(terraformType: 'fake_thing', argMap: {'name': name});
 
   @override
   Set<String> get sensitiveFields => const {};
@@ -77,19 +74,13 @@ void main() {
   // directives are the standard escape hatch for this read-back pattern.
   group('Resource.supportsDeletionProtection', () {
     test('defaults to false on Resource base class', () {
-      final r = _FakeResource(
-        localName: 'a',
-        name: const TfArgLiteral('x'),
-      );
+      final r = _FakeResource(localName: 'a', name: const TfArgLiteral('x'));
       // ignore: invalid_use_of_protected_member
       expect(r.supportsDeletionProtection, isFalse);
     });
 
     test('can be overridden to true', () {
-      final r = _CapableResource(
-        localName: 'b',
-        name: const TfArgLiteral('y'),
-      );
+      final r = _CapableResource(localName: 'b', name: const TfArgLiteral('y'));
       // ignore: invalid_use_of_protected_member
       expect(r.supportsDeletionProtection, isTrue);
     });
@@ -98,10 +89,7 @@ void main() {
 
 final class _CapableResource extends Resource {
   _CapableResource({required super.localName, required TfArg<String> name})
-      : super(
-          terraformType: 'fake_capable_thing',
-          argMap: {'name': name},
-        );
+    : super(terraformType: 'fake_capable_thing', argMap: {'name': name});
 
   @override
   Set<String> get sensitiveFields => const {};

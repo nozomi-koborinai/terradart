@@ -21,16 +21,18 @@ void main() {
         'yaml',
       ),
     );
-    final overrides = overrideDir
-        .listSync()
-        .whereType<File>()
-        .where((f) => f.path.endsWith('.yaml'))
-        .map((f) => p.basenameWithoutExtension(f.path))
-        .toList()
-      ..sort();
+    final overrides =
+        overrideDir
+            .listSync()
+            .whereType<File>()
+            .where((f) => f.path.endsWith('.yaml'))
+            .map((f) => p.basenameWithoutExtension(f.path))
+            .toList()
+          ..sort();
 
-    final manifestFile =
-        File(p.join(_repoRoot, 'tool', 'mm_yaml_sources.yaml'));
+    final manifestFile = File(
+      p.join(_repoRoot, 'tool', 'mm_yaml_sources.yaml'),
+    );
     final manifest = loadYaml(manifestFile.readAsStringSync()) as YamlMap;
     final files = manifest['files'] as YamlMap;
     final manifestKeys = files.keys.cast<String>().toList()..sort();
@@ -38,7 +40,8 @@ void main() {
     expect(
       manifestKeys,
       overrides,
-      reason: 'tool/mm_yaml_sources.yaml must list every curated override '
+      reason:
+          'tool/mm_yaml_sources.yaml must list every curated override '
           '(upstream path or null). Missing: ${overrides.toSet().difference(manifestKeys.toSet())}. '
           'Extra: ${manifestKeys.toSet().difference(overrides.toSet())}.',
     );

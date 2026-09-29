@@ -22,11 +22,9 @@ import 'package:terradart_google/provider.dart';
 /// Parameter Manager Stack: a global + a regional config parameter.
 final class ParamsStack extends Stack {
   ParamsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiParams = add(
       GoogleProjectService(
         localName: 'api_parametermanager',
@@ -57,10 +55,7 @@ final class ParamsStack extends Stack {
     );
 
     // Literal parameter id -- emitted as a Dart constant at synth time.
-    addExport(
-      'APP_CONFIG_PARAMETER_ID',
-      StringExport('terradart-app-config'),
-    );
+    addExport('APP_CONFIG_PARAMETER_ID', StringExport('terradart-app-config'));
 
     // Full parameter resource name -- Terraform output only (computed).
     addExport(

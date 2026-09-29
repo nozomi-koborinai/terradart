@@ -40,10 +40,7 @@ const _overrideRoot = 'lib/src/codegen/wrapper_overrides/yaml';
 const _schemaPath = 'test/fixtures/wrap/source/schema.json';
 const _mmDir = 'test/fixtures/wrap/source/mm';
 
-typedef _Setup = ({
-  Map<String, ResourceDef> resources,
-  LoadedOverrides loaded,
-});
+typedef _Setup = ({Map<String, ResourceDef> resources, LoadedOverrides loaded});
 
 _Setup _setup() {
   final schemaSrc = File(_schemaPath).readAsStringSync();
@@ -53,15 +50,16 @@ _Setup _setup() {
   final mmDirRef = Directory(_mmDir);
   if (mmDirRef.existsSync()) {
     for (final file in mmDirRef.listSync().whereType<File>().where(
-          (f) => f.path.endsWith('.yaml'),
-        )) {
+      (f) => f.path.endsWith('.yaml'),
+    )) {
       final key = p.basenameWithoutExtension(file.path);
       mm[key] = const MmYamlParser().parseString(file.readAsStringSync());
     }
   }
 
-  final ir =
-      mm.isEmpty ? baseIr : const IrMerger().merge(base: baseIr, overrides: mm);
+  final ir = mm.isEmpty
+      ? baseIr
+      : const IrMerger().merge(base: baseIr, overrides: mm);
   final loaded = loadWrapperOverrides(rootDir: _overrideRoot);
   return (resources: ir.resources, loaded: loaded);
 }
@@ -92,8 +90,10 @@ List<_HandEnum> _extractHandEnums(String prelude) {
     final block = prelude.substring(m.start, i);
     final members = <String>[];
     final raws = <String>[];
-    for (final c in RegExp(r"^\s*(\w+)\('([^']*)'\)\s*[,;]", multiLine: true)
-        .allMatches(block)) {
+    for (final c in RegExp(
+      r"^\s*(\w+)\('([^']*)'\)\s*[,;]",
+      multiLine: true,
+    ).allMatches(block)) {
       members.add(c.group(1)!);
       raws.add(c.group(2)!);
     }
@@ -191,7 +191,8 @@ void main() {
         final d = derived[hand.name];
         final String cls;
         if (d != null) {
-          cls = _sameList(d.dartMembers, hand.members) &&
+          cls =
+              _sameList(d.dartMembers, hand.members) &&
                   _sameList(d.rawValues, hand.raws)
               ? 'DERIVABLE_EXACT'
               : 'MEMBER_DRIFT';
@@ -226,45 +227,53 @@ void main() {
         );
       }
 
-      rows.add([
-        type,
-        override.deriveEnums.toString(),
-        shape,
-        handEnums.length.toString(),
-        byClass['DERIVABLE_EXACT']!.length.toString(),
-        byClass['MEMBER_DRIFT']!.length.toString(),
-        byClass['NAME_DRIFT']!.length.toString(),
-        byClass['NOT_DERIVABLE']!.length.toString(),
-        classes
-            .where((c) => byClass[c]!.isNotEmpty && c != 'DERIVABLE_EXACT')
-            .map((c) => '$c:${(byClass[c]!..sort()).join(",")}')
-            .join(' '),
-      ].join('\t'));
+      rows.add(
+        [
+          type,
+          override.deriveEnums.toString(),
+          shape,
+          handEnums.length.toString(),
+          byClass['DERIVABLE_EXACT']!.length.toString(),
+          byClass['MEMBER_DRIFT']!.length.toString(),
+          byClass['NAME_DRIFT']!.length.toString(),
+          byClass['NOT_DERIVABLE']!.length.toString(),
+          classes
+              .where((c) => byClass[c]!.isNotEmpty && c != 'DERIVABLE_EXACT')
+              .map((c) => '$c:${(byClass[c]!..sort()).join(",")}')
+              .join(' '),
+        ].join('\t'),
+      );
     }
 
-    final tsvPath =
-        p.join(Directory.systemTemp.path, 'enum_derivation_probe.tsv');
+    final tsvPath = p.join(
+      Directory.systemTemp.path,
+      'enum_derivation_probe.tsv',
+    );
     File(tsvPath).writeAsStringSync(rows.join('\n'));
 
     // ignore: avoid_print
-    print([
-      'ENUM DERIVATION PROBE:',
-      'files-with-hand-enums=$withHandEnums (skipped-no-schema=$skipped)',
-      'hand-enums=$handEnumTotal',
-      ...classes.map((c) => '$c=${totals[c]}'),
-      'flip-candidates(enum-only+all-exact+gate-off)='
-          '${flipCandidates.length}',
-      'gate-on-with-hand-enums=${gateOnWithHandEnums.length}',
-      'report=$tsvPath',
-    ].join(' '));
+    print(
+      [
+        'ENUM DERIVATION PROBE:',
+        'files-with-hand-enums=$withHandEnums (skipped-no-schema=$skipped)',
+        'hand-enums=$handEnumTotal',
+        ...classes.map((c) => '$c=${totals[c]}'),
+        'flip-candidates(enum-only+all-exact+gate-off)='
+            '${flipCandidates.length}',
+        'gate-on-with-hand-enums=${gateOnWithHandEnums.length}',
+        'report=$tsvPath',
+      ].join(' '),
+    );
     if (flipCandidates.isNotEmpty) {
       // ignore: avoid_print
       print('FLIP CANDIDATES: ${(flipCandidates..sort()).join(', ')}');
     }
     if (gateOnWithHandEnums.isNotEmpty) {
       // ignore: avoid_print
-      print('GATE-ON WITH HAND ENUMS (E=exact/M=member-drift/N=name-drift/'
-          'X=not-derivable): ${(gateOnWithHandEnums..sort()).join('; ')}');
+      print(
+        'GATE-ON WITH HAND ENUMS (E=exact/M=member-drift/N=name-drift/'
+        'X=not-derivable): ${(gateOnWithHandEnums..sort()).join('; ')}',
+      );
     }
 
     expect(

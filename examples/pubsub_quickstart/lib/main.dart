@@ -19,10 +19,7 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
 
-String _iamPolicyDataJson({
-  required String role,
-  required String member,
-}) {
+String _iamPolicyDataJson({required String role, required String member}) {
   return jsonEncode({
     'bindings': [
       {
@@ -40,11 +37,9 @@ String _iamPolicyDataJson({
 /// Dart subscribers via the generated `<stack>.app.dart` file.
 final class OrdersStack extends Stack {
   OrdersStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final current = addData(GoogleProject(localName: 'current'));
 
     final ordersSchema = add(
@@ -126,8 +121,9 @@ final class OrdersStack extends Stack {
         localName: 'orders',
         name: TfArg.literal('orders-prod'),
         // 7-day retention so late-arriving subscribers can backfill.
-        messageRetentionDuration:
-            TfArg.literal(const Duration(days: 7).toTfDurationString()),
+        messageRetentionDuration: TfArg.literal(
+          const Duration(days: 7).toTfDurationString(),
+        ),
       ),
     );
 

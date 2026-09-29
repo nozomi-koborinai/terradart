@@ -139,7 +139,8 @@ Future<void> main(List<String> args) async {
       errors.add('$readme: stale ^0.x.0-dev constraint');
     }
     if (text.contains('^0.') && !text.contains('^0.$minor.')) {
-      final hasOld = RegExp(r'\^0\.(10|11|1)\.').hasMatch(text) ||
+      final hasOld =
+          RegExp(r'\^0\.(10|11|1)\.').hasMatch(text) ||
           text.contains('^0.1.0-dev');
       if (hasOld) {
         errors.add('$readme: caret minor should be ^0.$minor.x');
@@ -159,10 +160,13 @@ Future<void> main(List<String> args) async {
 }
 
 int _workspaceMinor() {
-  final pubspec =
-      File('packages/terradart_core/pubspec.yaml').readAsStringSync();
-  final match =
-      RegExp(r'^version:\s*0\.(\d+)\.\d+', multiLine: true).firstMatch(pubspec);
+  final pubspec = File(
+    'packages/terradart_core/pubspec.yaml',
+  ).readAsStringSync();
+  final match = RegExp(
+    r'^version:\s*0\.(\d+)\.\d+',
+    multiLine: true,
+  ).firstMatch(pubspec);
   if (match == null) {
     stderr.writeln(
       'Could not parse packages/terradart_core/pubspec.yaml version',

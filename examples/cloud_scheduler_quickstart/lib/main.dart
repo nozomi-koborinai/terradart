@@ -19,12 +19,12 @@ import 'package:terradart_time/terradart_time.dart';
 /// Cloud Scheduler job + Pub/Sub topic Stack.
 final class NightlyCleanupStack extends Stack {
   NightlyCleanupStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     // Enable the Cloud Scheduler and Pub/Sub APIs and wait for propagation
     // before the topic and job apply.
     final apiDeps = Apis.enable(

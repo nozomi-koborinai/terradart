@@ -148,14 +148,16 @@ MigrateEntryBuild buildMigrateEntry({
   String? barrelFile,
 }) {
   final isDataSource = kind == 'dataSource';
-  final className =
-      isDataSource ? dataSourceClassName(tfType) : snakeToPascal(tfType);
+  final className = isDataSource
+      ? dataSourceClassName(tfType)
+      : snakeToPascal(tfType);
 
   final extraction =
       fileHelpers ?? const HelperClassExtractor().extract(emittedSource);
   final enums =
       fileEnums ?? const EnumExtractor.lenient().extract(emittedSource);
-  final ctx = context ??
+  final ctx =
+      context ??
       ShapeContext(
         helpers: extraction,
         enumNames: {for (final e in enums) e.name},
@@ -206,19 +208,22 @@ MigrateEntryBuild buildMigrateEntry({
     if (custom != null) {
       slots.add(_customSlot(name, custom, ctx));
     } else if (spec != null) {
-      slots.add(MigrateSlotData(
-        tfName: spec.tfName,
-        dartName: snakeToDartIdent(spec.tfName),
-        kind: MigrateSlotKind.helper,
-        required: spec.required || requiredOverrides.contains(name),
-        repeated: spec.repeated,
-        keyed: spec.keyed,
-        wrapped: false,
-        helper: spec.className,
-      ));
+      slots.add(
+        MigrateSlotData(
+          tfName: spec.tfName,
+          dartName: snakeToDartIdent(spec.tfName),
+          kind: MigrateSlotKind.helper,
+          required: spec.required || requiredOverrides.contains(name),
+          repeated: spec.repeated,
+          keyed: spec.keyed,
+          wrapped: false,
+          helper: spec.className,
+        ),
+      );
     } else if (attr != null) {
-      slots
-          .add(_attributeSlot(attr, requiredOverrides, dartTypeOverrides, ctx));
+      slots.add(
+        _attributeSlot(attr, requiredOverrides, dartTypeOverrides, ctx),
+      );
     } else if (block != null) {
       slots.add(_passthroughSlot(block, requiredOverrides));
     } else {
@@ -328,14 +333,16 @@ MigrateHelperData _helper(ExtractedHelper h, ShapeContext ctx) {
     var shape = resolveEnumPayload(classifyDartType(f.typeSource, ctx), ctx);
     if (f.merged) shape = mergedShape(shape);
     if (shape.keyed && !f.keyedEncoding) shape = unkeyedMapShape(f.typeSource);
-    slots.add(_fromShape(
-      shape,
-      tfName: f.tfKey ?? '',
-      dartName: f.name,
-      required: f.required,
-      positional: f.positional,
-      merged: f.merged,
-    ));
+    slots.add(
+      _fromShape(
+        shape,
+        tfName: f.tfKey ?? '',
+        dartName: f.name,
+        required: f.required,
+        positional: f.positional,
+        merged: f.merged,
+      ),
+    );
   }
   return MigrateHelperData(
     className: h.name,

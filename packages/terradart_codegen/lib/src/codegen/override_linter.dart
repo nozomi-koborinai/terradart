@@ -64,13 +64,16 @@ List<LintViolation> lintOverride(
   // outright with a migration hint, which fires earlier than any lint.
 
   if (override.curatedDoc != null && !override.deriveClassDoc) {
-    violations.add(LintViolation(
-      tfType: tfType,
-      rule: 'curated-doc-without-derive-class-doc',
-      detail: 'curatedDoc is set but deriveClassDoc is false. curatedDoc is '
-          'only emitted when deriveClassDoc is true, so it is dead config. '
-          'Set deriveClassDoc: true or remove curatedDoc.',
-    ));
+    violations.add(
+      LintViolation(
+        tfType: tfType,
+        rule: 'curated-doc-without-derive-class-doc',
+        detail:
+            'curatedDoc is set but deriveClassDoc is false. curatedDoc is '
+            'only emitted when deriveClassDoc is true, so it is dead config. '
+            'Set deriveClassDoc: true or remove curatedDoc.',
+      ),
+    );
   }
 
   // Belt-and-suspenders alongside the loader's eager FormatException (see
@@ -79,14 +82,17 @@ List<LintViolation> lintOverride(
   // an override built some other way (a test, a future non-yaml source)
   // could still combine the two fields incorrectly.
   if (override.nestedTypeExcludes != null && !override.deriveNestedTypes) {
-    violations.add(LintViolation(
-      tfType: tfType,
-      rule: 'nested-excludes-without-derive',
-      detail: 'nestedTypeExcludes is set but deriveNestedTypes is false. '
-          'nestedTypeExcludes only has an effect inside the deriveNestedTypes '
-          'codegen gate, so it is dead config. Set deriveNestedTypes: true or '
-          'remove nestedTypeExcludes.',
-    ));
+    violations.add(
+      LintViolation(
+        tfType: tfType,
+        rule: 'nested-excludes-without-derive',
+        detail:
+            'nestedTypeExcludes is set but deriveNestedTypes is false. '
+            'nestedTypeExcludes only has an effect inside the deriveNestedTypes '
+            'codegen gate, so it is dead config. Set deriveNestedTypes: true or '
+            'remove nestedTypeExcludes.',
+      ),
+    );
   }
 
   violations.addAll(lintDeadCustomSlots(tfType, override));
@@ -109,10 +115,7 @@ List<LintViolation> lintOverride(
 
 /// Inputs of the migration-manifest shape rules.
 final class MigrateShapeLintInput {
-  const MigrateShapeLintInput({
-    required this.context,
-    this.debt = const {},
-  });
+  const MigrateShapeLintInput({required this.context, this.debt = const {}});
 
   /// Symbol table the slot / field types resolve against: the helper
   /// classes, sealed roots and enums declared across every override's
@@ -174,11 +177,13 @@ List<LintViolation> lintMigrateShapes(
   final ctx = input.context;
 
   void flag(String detail) {
-    underivable.add(LintViolation(
-      tfType: tfType,
-      rule: 'migrate-shape-underivable',
-      detail: detail,
-    ));
+    underivable.add(
+      LintViolation(
+        tfType: tfType,
+        rule: 'migrate-shape-underivable',
+        detail: detail,
+      ),
+    );
   }
 
   final prelude = override.prelude;
@@ -195,8 +200,10 @@ List<LintViolation> lintMigrateShapes(
         continue;
       }
       for (final f in h.fields) {
-        var shape =
-            resolveEnumPayload(classifyDartType(f.typeSource, ctx), ctx);
+        var shape = resolveEnumPayload(
+          classifyDartType(f.typeSource, ctx),
+          ctx,
+        );
         if (f.merged) shape = mergedShape(shape);
         if (shape.keyed && !f.keyedEncoding) {
           shape = unkeyedMapShape(f.typeSource);
@@ -227,14 +234,17 @@ List<LintViolation> lintMigrateShapes(
     }
     final hint = slot.migrate;
     if (hint != null && !derived.isManual) {
-      violations.add(LintViolation(
-        tfType: tfType,
-        rule: 'migrate-hint-stale',
-        detail: 'customSlots["${entry.key}"].migrate declares the slot '
-            'manual, but the migration manifest derives it as '
-            '${derived.kind.name}. Remove the hint so the manifest carries '
-            'the working recipe.',
-      ));
+      violations.add(
+        LintViolation(
+          tfType: tfType,
+          rule: 'migrate-hint-stale',
+          detail:
+              'customSlots["${entry.key}"].migrate declares the slot '
+              'manual, but the migration manifest derives it as '
+              '${derived.kind.name}. Remove the hint so the manifest carries '
+              'the working recipe.',
+        ),
+      );
     } else if (hint == null && derived.isManual) {
       flag(
         'customSlots["${entry.key}"] cannot be derived for the migration '
@@ -306,7 +316,8 @@ List<LintViolation> lintDeadCustomSlots(
       LintViolation(
         tfType: tfType,
         rule: 'custom-slot-missing-param-order',
-        detail: 'customSlots [${slots.keys.join(', ')}] are declared but '
+        detail:
+            'customSlots [${slots.keys.join(', ')}] are declared but '
             'paramOrder is omitted. The emitter only resolves customSlots '
             'through paramOrder/argMapOrder names, so virtual slots are '
             'silently dropped from the generated constructor. Declare '
@@ -319,24 +330,30 @@ List<LintViolation> lintDeadCustomSlots(
   final argMapOrder = override.argMapOrder;
   for (final key in slots.keys) {
     if (!paramOrder.contains(key)) {
-      violations.add(LintViolation(
-        tfType: tfType,
-        rule: 'custom-slot-not-in-param-order',
-        detail: 'customSlots["$key"] is not listed in paramOrder, so the '
-            'emitter silently skips it: the generated constructor has no '
-            'matching parameter and the argMapEntry is dead config. Add '
-            '"$key" to paramOrder (and argMapOrder when set) or delete the '
-            'slot and its prelude helper types.',
-      ));
+      violations.add(
+        LintViolation(
+          tfType: tfType,
+          rule: 'custom-slot-not-in-param-order',
+          detail:
+              'customSlots["$key"] is not listed in paramOrder, so the '
+              'emitter silently skips it: the generated constructor has no '
+              'matching parameter and the argMapEntry is dead config. Add '
+              '"$key" to paramOrder (and argMapOrder when set) or delete the '
+              'slot and its prelude helper types.',
+        ),
+      );
     } else if (argMapOrder != null && !argMapOrder.contains(key)) {
-      violations.add(LintViolation(
-        tfType: tfType,
-        rule: 'custom-slot-not-in-arg-map-order',
-        detail: 'customSlots["$key"] is listed in paramOrder but missing '
-            'from argMapOrder, so the constructor parameter is emitted while '
-            'its argMap entry is dropped — the argument would be silently '
-            'ignored at synth time. Add "$key" to argMapOrder.',
-      ));
+      violations.add(
+        LintViolation(
+          tfType: tfType,
+          rule: 'custom-slot-not-in-arg-map-order',
+          detail:
+              'customSlots["$key"] is listed in paramOrder but missing '
+              'from argMapOrder, so the constructor parameter is emitted while '
+              'its argMap entry is dropped — the argument would be silently '
+              'ignored at synth time. Add "$key" to argMapOrder.',
+        ),
+      );
     }
   }
   return violations;
@@ -500,7 +517,8 @@ LintViolation _exactlyOneViolation({
   return LintViolation(
     tfType: tfType,
     rule: rule,
-    detail: 'MM YAML declares exactly_one_of on [${group.join(', ')}] but '
+    detail:
+        'MM YAML declares exactly_one_of on [${group.join(', ')}] but '
         '$detail',
   );
 }

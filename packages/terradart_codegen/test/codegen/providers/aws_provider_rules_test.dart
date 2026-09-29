@@ -9,18 +9,18 @@ import 'package:test/test.dart';
 
 void main() {
   ResourceDef resourceWith(List<String> computed) => ResourceDef(
-        terraformType: 'aws_sqs_queue',
-        root: BlockDef(
-          attributes: [
-            for (final name in computed)
-              Attribute(
-                name: name,
-                type: const StringType(),
-                constraints: const Constraints(computed: true),
-              ),
-          ],
-        ),
-      );
+    terraformType: 'aws_sqs_queue',
+    root: BlockDef(
+      attributes: [
+        for (final name in computed)
+          Attribute(
+            name: name,
+            type: const StringType(),
+            constraints: const Constraints(computed: true),
+          ),
+      ],
+    ),
+  );
 
   group('AwsProviderRules', () {
     const rules = AwsProviderRules();

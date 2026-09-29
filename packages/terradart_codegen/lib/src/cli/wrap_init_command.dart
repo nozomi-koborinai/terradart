@@ -42,7 +42,8 @@ class WrapInitCommand extends Command<int> {
       )
       ..addOption(
         'kind',
-        help: 'Override kind when the schema has both a resource and a '
+        help:
+            'Override kind when the schema has both a resource and a '
             'data source of the same name. Omit when only one exists.',
         allowed: ['resource', 'data_source'],
         valueHelp: 'resource|data_source',
@@ -56,7 +57,8 @@ class WrapInitCommand extends Command<int> {
       ..addFlag(
         'fill-param-order',
         negatable: false,
-        help: 'Write paramOrder in the natural constructor order instead of '
+        help:
+            'Write paramOrder in the natural constructor order instead of '
             'the commented schema list, so the override passes the '
             'universal invariants unedited (the schema bump scaffold).',
       );
@@ -182,10 +184,7 @@ class WrapInitCommand extends Command<int> {
         : null;
 
     // 4. E402 guard before any generation.
-    final stem = overrideFileStem(
-      terraformType: resourceName,
-      kind: kind,
-    );
+    final stem = overrideFileStem(terraformType: resourceName, kind: kind);
     final outFile = File(p.join(output, '$stem.yaml'));
     if (outFile.existsSync() && !force) {
       stderr.writeln(

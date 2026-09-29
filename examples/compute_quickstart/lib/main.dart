@@ -54,10 +54,7 @@ import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_time/terradart_time.dart';
 
-String _iamPolicyDataJson({
-  required String role,
-  required String member,
-}) {
+String _iamPolicyDataJson({required String role, required String member}) {
   return jsonEncode({
     'bindings': [
       {
@@ -71,12 +68,12 @@ String _iamPolicyDataJson({
 /// Network stack: a VPC + a public IP for a load balancer.
 final class NetworkStack extends Stack {
   NetworkStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+          const TimeProvider(),
+        ],
+      ) {
     // Enable the Compute + Filestore APIs and wait for propagation before
     // the resources below apply; otherwise apply fails with SERVICE_DISABLED.
     // Every API-gated resource below carries `dependsOn: apiDeps`.
@@ -93,10 +90,7 @@ final class NetworkStack extends Stack {
     // real number is interpolated. Data source + IAM members are not
     // API-gated, so no `dependsOn: apiDeps` is required here.
     final current = addData(
-      GoogleProject(
-        localName: 'current',
-        projectId: TfArg.literal(projectId),
-      ),
+      GoogleProject(localName: 'current', projectId: TfArg.literal(projectId)),
     );
 
     // Service accounts that the instance- and disk-scoped IAM bindings below
@@ -405,10 +399,7 @@ final class NetworkStack extends Stack {
         region: TfArg.literal('asia-northeast1'),
         type: TfArg.literal('pd-balanced'),
         size: TfArg.literal(10),
-        replicaZones: TfArg.literal([
-          'asia-northeast1-a',
-          'asia-northeast1-b',
-        ]),
+        replicaZones: TfArg.literal(['asia-northeast1-a', 'asia-northeast1-b']),
         dependsOn: apiDeps,
       ),
     );
@@ -771,8 +762,9 @@ final class NetworkStack extends Stack {
       GoogleComputeNetworkFirewallPolicyWithRules(
         localName: 'ops_edge_with_rules',
         name: TfArg.literal('ops-edge-with-rules'),
-        description:
-            TfArg.literal('Global firewall policy with embedded rules'),
+        description: TfArg.literal(
+          'Global firewall policy with embedded rules',
+        ),
         rule: [
           ComputeNetworkFirewallPolicyWithRulesRule(
             action: TfArg.literal('allow'),
@@ -807,10 +799,7 @@ final class NetworkStack extends Stack {
           ComputeNetworkAttachmentConnectionPreference.acceptAutomatic,
         ),
         subnetworks: TfArg.literal([workloadSubnet.selfLink.interpolation]),
-        dependsOn: [
-          ResourceDependency(workloadSubnet),
-          ...apiDeps,
-        ],
+        dependsOn: [ResourceDependency(workloadSubnet), ...apiDeps],
       ),
     );
 
@@ -821,8 +810,9 @@ final class NetworkStack extends Stack {
         zone: TfArg.literal('asia-northeast1-a'),
         network: TfArg.ref(mainVpc.selfLink),
         subnetwork: TfArg.ref(workloadSubnet.selfLink),
-        networkEndpointType:
-            TfArg.literal(NetworkEndpointGroupType.gceVmIpPort),
+        networkEndpointType: TfArg.literal(
+          NetworkEndpointGroupType.gceVmIpPort,
+        ),
         defaultPort: TfArg.literal(80),
         dependsOn: apiDeps,
       ),
@@ -887,8 +877,9 @@ final class NetworkStack extends Stack {
         name: TfArg.literal('ops-bastion-target'),
         instance: TfArg.ref(bastion.selfLink),
         zone: TfArg.literal('asia-northeast1-a'),
-        description:
-            TfArg.literal('Protocol-forwarding target for the bastion'),
+        description: TfArg.literal(
+          'Protocol-forwarding target for the bastion',
+        ),
         natPolicy: TfArg.literal(ComputeTargetInstanceNatPolicy.noNat),
         dependsOn: [ResourceDependency(bastion)],
       ),
@@ -904,8 +895,9 @@ final class NetworkStack extends Stack {
         localName: 'ops_regional_edge_policy',
         name: TfArg.literal('ops-regional-edge-policy'),
         region: TfArg.literal('asia-northeast1'),
-        description:
-            TfArg.literal('Regional network firewall policy (rule + IAM demo)'),
+        description: TfArg.literal(
+          'Regional network firewall policy (rule + IAM demo)',
+        ),
         dependsOn: apiDeps,
       ),
     );
@@ -968,8 +960,9 @@ final class NetworkStack extends Stack {
         localName: 'ops_regional_edge_with_rules',
         name: TfArg.literal('ops-regional-edge-with-rules'),
         region: TfArg.literal('asia-northeast1'),
-        description:
-            TfArg.literal('Regional firewall policy with embedded rules'),
+        description: TfArg.literal(
+          'Regional firewall policy with embedded rules',
+        ),
         rule: [
           ComputeRegionNetworkFirewallPolicyWithRulesRule(
             action: TfArg.literal('allow'),
@@ -1078,10 +1071,7 @@ final class NetworkStack extends Stack {
         name: TfArg.literal('templated-worker'),
         sourceInstanceTemplate: TfArg.ref(bulkWorkerTemplate.selfLink),
         zone: TfArg.literal('asia-northeast1-a'),
-        dependsOn: [
-          ResourceDependency(bulkWorkerTemplate),
-          ...apiDeps,
-        ],
+        dependsOn: [ResourceDependency(bulkWorkerTemplate), ...apiDeps],
       ),
     );
 
@@ -1117,9 +1107,7 @@ final class NetworkStack extends Stack {
       GoogleComputeDiskAsyncReplication(
         localName: 'async_replication',
         primaryDisk: TfArg.ref(asyncPrimary.id),
-        secondaryDisk: TfArg.literal({
-          'disk': asyncSecondary.id.interpolation,
-        }),
+        secondaryDisk: TfArg.literal({'disk': asyncSecondary.id.interpolation}),
         dependsOn: [
           ResourceDependency(asyncPrimary),
           ResourceDependency(asyncSecondary),
@@ -1260,10 +1248,7 @@ final class NetworkStack extends Stack {
         name: TfArg.literal('ops-agent-zone-policy'),
         zone: TfArg.literal('asia-northeast1-a'),
         extensionPolicies: TfArg.literal([
-          {
-            'extension_name': 'ops-agent',
-            'pinned_version': '2.66.0',
-          },
+          {'extension_name': 'ops-agent', 'pinned_version': '2.66.0'},
         ]),
         description: TfArg.literal('Zonal Ops Agent extension policy (demo)'),
         dependsOn: apiDeps,

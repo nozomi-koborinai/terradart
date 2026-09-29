@@ -15,20 +15,16 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class OrgLeftoverStack extends Stack {
   OrgLeftoverStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     const org = 'organizations/123456789';
     final apiDeps = Apis.enable(
       this,
-      barrels: [
-        Barrels.compute,
-        Barrels.storageControl,
-        Barrels.network,
-      ],
+      barrels: [Barrels.compute, Barrels.storageControl, Barrels.network],
       propagationDelay: const Duration(seconds: 60),
     );
 
@@ -139,9 +135,7 @@ final class OrgLeftoverStack extends Stack {
         versions: [
           NetworkServicesWasmPluginVersions(
             versionName: TfArg.literal('v1'),
-            imageUri: TfArg.literal(
-              'us-docker.pkg.dev/example/wasm/plugin:v1',
-            ),
+            imageUri: TfArg.literal('us-docker.pkg.dev/example/wasm/plugin:v1'),
           ),
         ],
         deletionPolicy: TfArg.literal('DELETE'),

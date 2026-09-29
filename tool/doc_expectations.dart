@@ -97,10 +97,9 @@ _CatalogCounts _readCatalogCounts() {
     );
   }
   final text = file.readAsStringSync();
-  final kinds = RegExp(r'kind: CatalogKind\.(\w+)')
-      .allMatches(text)
-      .map((m) => m.group(1))
-      .toList();
+  final kinds = RegExp(
+    r'kind: CatalogKind\.(\w+)',
+  ).allMatches(text).map((m) => m.group(1)).toList();
   if (kinds.isEmpty) {
     throw StateError('doc_expectations: no CatalogEntry kinds in ${file.path}');
   }
@@ -129,12 +128,12 @@ class ExactPinLane {
 
   /// `(resources, dataSources)` from the package's `_catalog.g.dart`.
   (int, int) get counts {
-    final text =
-        File('packages/$package/lib/src/_catalog.g.dart').readAsStringSync();
-    final kinds = RegExp(r'kind: CatalogKind\.(\w+)')
-        .allMatches(text)
-        .map((m) => m.group(1))
-        .toList();
+    final text = File(
+      'packages/$package/lib/src/_catalog.g.dart',
+    ).readAsStringSync();
+    final kinds = RegExp(
+      r'kind: CatalogKind\.(\w+)',
+    ).allMatches(text).map((m) => m.group(1)).toList();
     return (
       kinds.where((k) => k == 'resource').length,
       kinds.where((k) => k == 'dataSource').length,

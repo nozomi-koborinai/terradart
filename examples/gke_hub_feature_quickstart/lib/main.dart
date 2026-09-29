@@ -16,11 +16,9 @@ import 'package:terradart_google/provider.dart';
 /// GKE Hub feature stack: Multi-Cluster Service Discovery.
 final class GkeHubFeatureStack extends Stack {
   GkeHubFeatureStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiGkeHub = add(
       GoogleProjectService(
         localName: 'api_gkehub',
@@ -42,10 +40,7 @@ final class GkeHubFeatureStack extends Stack {
         localName: 'mcsd',
         name: TfArg.literal('multiclusterservicediscovery'),
         location: TfArg.literal('global'),
-        dependsOn: [
-          ResourceDependency(apiGkeHub),
-          ResourceDependency(apiMcsd),
-        ],
+        dependsOn: [ResourceDependency(apiGkeHub), ResourceDependency(apiMcsd)],
       ),
     );
 

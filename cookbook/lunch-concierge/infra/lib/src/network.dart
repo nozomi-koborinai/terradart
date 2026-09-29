@@ -58,10 +58,7 @@ LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
       network: TfArg.ref(vpc.selfLink),
       service: TfArg.literal('servicenetworking.googleapis.com'),
       reservedPeeringRanges: TfArg.literal([psaRange.nameRef.interpolation]),
-      dependsOn: [
-        ...apiDeps,
-        ResourceDependency(psaRange),
-      ],
+      dependsOn: [...apiDeps, ResourceDependency(psaRange)],
     ),
   );
 

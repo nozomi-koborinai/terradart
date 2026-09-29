@@ -42,10 +42,10 @@ final class _LunchPageState extends State<LunchPage> {
     try {
       final action =
           defineRemoteAction<LunchRequest, LunchResponse, void, void>(
-        url: '/api/lunch',
-        inputSchema: LunchRequest.$schema,
-        outputSchema: LunchResponse.$schema,
-      );
+            url: '/api/lunch',
+            inputSchema: LunchRequest.$schema,
+            outputSchema: LunchResponse.$schema,
+          );
       final result = await action(
         input: LunchRequest(
           area: _areaController.text,
@@ -114,8 +114,9 @@ final class _LunchPageState extends State<LunchPage> {
                               'TERRADART COOKBOOK — LUNCH CONCIERGE',
                               style: monoTextStyle(
                                 size: 10,
-                                color:
-                                    LunchPalette.muted.withValues(alpha: 0.7),
+                                color: LunchPalette.muted.withValues(
+                                  alpha: 0.7,
+                                ),
                                 letterSpacing: 3,
                               ),
                             ),

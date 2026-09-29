@@ -18,8 +18,13 @@ void main() {
     test('missing <resource> positional → usage error', () {
       final runner = buildCliRunner();
       expect(
-        () => runner
-            .run(['wrap-promote', '--source', '/tmp', '--output', '/tmp']),
+        () => runner.run([
+          'wrap-promote',
+          '--source',
+          '/tmp',
+          '--output',
+          '/tmp',
+        ]),
         throwsA(isA<UsageException>()),
       );
     });
@@ -47,33 +52,34 @@ void main() {
     });
 
     test(
-        '--provider hashicorp/azurerm → usage error with registry-driven message',
-        () {
-      final runner = buildCliRunner();
-      expect(
-        () => runner.run([
-          'wrap-promote',
-          'google_pubsub_topic',
-          '--provider',
-          'hashicorp/azurerm',
-          '--source',
-          '/tmp',
-          '--output',
-          '/tmp',
-        ]),
-        throwsA(
-          isA<UsageException>().having(
-            (e) => e.message,
-            'message',
-            allOf(
-              contains('hashicorp/azurerm'),
-              contains('not supported'),
-              contains('Available: hashicorp/google'),
+      '--provider hashicorp/azurerm → usage error with registry-driven message',
+      () {
+        final runner = buildCliRunner();
+        expect(
+          () => runner.run([
+            'wrap-promote',
+            'google_pubsub_topic',
+            '--provider',
+            'hashicorp/azurerm',
+            '--source',
+            '/tmp',
+            '--output',
+            '/tmp',
+          ]),
+          throwsA(
+            isA<UsageException>().having(
+              (e) => e.message,
+              'message',
+              allOf(
+                contains('hashicorp/azurerm'),
+                contains('not supported'),
+                contains('Available: hashicorp/google'),
+              ),
             ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   });
 
   group('WrapPromoteCommand happy + errors', () {
@@ -226,14 +232,8 @@ void main() {
           expect(code2, 0);
           final after2 = yamlPath.readAsStringSync();
           // Exactly one marker pair in the file.
-          expect(
-            '=== wrap-promote additions'.allMatches(after2).length,
-            1,
-          );
-          expect(
-            '=== end wrap-promote additions'.allMatches(after2).length,
-            1,
-          );
+          expect('=== wrap-promote additions'.allMatches(after2).length, 1);
+          expect('=== end wrap-promote additions'.allMatches(after2).length, 1);
           // The pre-existing outputDir line is preserved.
           expect(after2, contains('outputDir: synthetic'));
         } finally {

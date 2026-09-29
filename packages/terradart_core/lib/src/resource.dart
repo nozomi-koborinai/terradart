@@ -7,10 +7,7 @@ import 'tf_timeouts.dart';
 
 /// Whether a Stack entry is a `resource` block or a `data` block in
 /// Terraform JSON.
-enum ResourceKind {
-  resource,
-  data,
-}
+enum ResourceKind { resource, data }
 
 /// Base of every user-instantiable Terraform resource.
 ///

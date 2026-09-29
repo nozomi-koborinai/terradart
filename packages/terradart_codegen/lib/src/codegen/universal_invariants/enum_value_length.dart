@@ -43,12 +43,14 @@ class EnumValueLength {
           final cleaned = value
               .split('\n')
               .map((l) => l.trim())
-              .where((l) =>
-                  l.isNotEmpty &&
-                  !l.startsWith('///') &&
-                  !l.startsWith('//') &&
-                  !l.startsWith('const ') &&
-                  !l.startsWith('final '))
+              .where(
+                (l) =>
+                    l.isNotEmpty &&
+                    !l.startsWith('///') &&
+                    !l.startsWith('//') &&
+                    !l.startsWith('const ') &&
+                    !l.startsWith('final '),
+              )
               .join('\n')
               .trim();
           if (cleaned.isEmpty) continue;

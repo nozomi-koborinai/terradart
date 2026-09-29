@@ -52,8 +52,9 @@ Future<void> main(List<String> args) async {
     p.join(p.dirname(Platform.script.toFilePath()), '..'),
   );
   final ok = await _gate(repoRoot: repoRoot, keep: keep);
-  stdout
-      .writeln(ok ? 'migrate_moved_gates: OK' : 'migrate_moved_gates: FAILED');
+  stdout.writeln(
+    ok ? 'migrate_moved_gates: OK' : 'migrate_moved_gates: FAILED',
+  );
   exitCode = ok ? 0 : 1;
 }
 
@@ -164,22 +165,23 @@ Future<bool> _gate({required String repoRoot, required bool keep}) async {
       );
       return _finish(temp, errors, keep: keep);
     }
-    final show = await Process.run(
-      'terraform',
-      ['show', '-json', 'plan.out'],
-      workingDirectory: dir.path,
-    );
+    final show = await Process.run('terraform', [
+      'show',
+      '-json',
+      'plan.out',
+    ], workingDirectory: dir.path);
     if (show.exitCode != 0) {
       errors.add('terraform show exited ${show.exitCode}:\n${show.stderr}');
       return _finish(temp, errors, keep: keep);
     }
     final planJson = jsonDecode(show.stdout as String) as Map<String, dynamic>;
     final moves = <String, String>{};
-    for (final change in (planJson['resource_changes'] as List? ?? const [])
-        .cast<Map<String, dynamic>>()) {
+    for (final change
+        in (planJson['resource_changes'] as List? ?? const [])
+            .cast<Map<String, dynamic>>()) {
       final address = change['address'] as String;
-      final actions =
-          ((change['change'] as Map)['actions'] as List).cast<String>();
+      final actions = ((change['change'] as Map)['actions'] as List)
+          .cast<String>();
       if (actions.length != 1 || actions.single != 'no-op') {
         errors.add('$address: ${actions.join(', ')} (expected no-op)');
       }

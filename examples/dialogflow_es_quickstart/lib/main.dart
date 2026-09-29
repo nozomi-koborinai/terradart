@@ -17,12 +17,12 @@ import 'package:terradart_time/terradart_time.dart';
 /// / version / environment.
 final class DialogflowEsStack extends Stack {
   DialogflowEsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.dialogflow],
@@ -49,13 +49,8 @@ final class DialogflowEsStack extends Stack {
       TimeSleep(
         localName: 'agent_ready',
         createDuration: TfArg.duration(const Duration(seconds: 20)),
-        triggers: TfArg.literal({
-          'agent': agent.id.interpolation,
-        }),
-        dependsOn: [
-          ...apiDeps,
-          ResourceDependency(agent),
-        ],
+        triggers: TfArg.literal({'agent': agent.id.interpolation}),
+        dependsOn: [...apiDeps, ResourceDependency(agent)],
       ),
     );
     final onAgent = [ResourceDependency(agentReady)];
@@ -108,10 +103,7 @@ final class DialogflowEsStack extends Stack {
         location: TfArg.literal('global'),
         agentVersion: TfArg.ref(version.id),
         description: TfArg.literal('terradart es env'),
-        dependsOn: [
-          ...onAgent,
-          ResourceDependency(version),
-        ],
+        dependsOn: [...onAgent, ResourceDependency(version)],
       ),
     );
   }

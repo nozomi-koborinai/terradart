@@ -14,12 +14,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class ApphubStack extends Stack {
   ApphubStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     final current = addData(GoogleProject(localName: 'current'));
 
     final apiDeps = Apis.enable(
@@ -32,9 +32,7 @@ final class ApphubStack extends Stack {
       GoogleApphubBoundary(
         localName: 'host',
         location: TfArg.literal('global'),
-        crmNode: TfArg.literal(
-          'projects/${current.number.interpolation}',
-        ),
+        crmNode: TfArg.literal('projects/${current.number.interpolation}'),
         dependsOn: apiDeps,
       ),
     );

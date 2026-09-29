@@ -54,10 +54,10 @@ final class TfVariable {
   /// The `variable "<name>"` block body. The name itself is the map key
   /// synth files this under, not part of the body.
   Map<String, Object?> toTfJson() => {
-        if (type != null) 'type': type,
-        if (description != null) 'description': description,
-        if (defaultValue != null) 'default': defaultValue,
-        if (sensitive != null) 'sensitive': sensitive,
-        if (nullable != null) 'nullable': nullable,
-      };
+    if (type != null) 'type': type,
+    if (description != null) 'description': description,
+    if (defaultValue != null) 'default': defaultValue,
+    if (sensitive != null) 'sensitive': sensitive,
+    if (nullable != null) 'nullable': nullable,
+  };
 }

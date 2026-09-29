@@ -14,10 +14,11 @@ void main() {
     final getters = extractOutputGetters(src);
     expect(getters.map((g) => g.dartName), ['nameRef', 'labels', 'uris']);
     expect(getters.map((g) => g.tfName), ['name', 'effective_labels', 'uris']);
-    expect(
-      getters.map((g) => g.dartType),
-      ['String', 'Map<String, String>', 'List<String>'],
-    );
+    expect(getters.map((g) => g.dartType), [
+      'String',
+      'Map<String, String>',
+      'List<String>',
+    ]);
   });
 
   test('ignores unrelated getters', () {

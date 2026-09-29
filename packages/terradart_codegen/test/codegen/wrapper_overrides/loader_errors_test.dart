@@ -34,22 +34,24 @@ void main() {
 
   group('LoaderErrorReport', () {
     test('aggregates multiple errors with summary', () {
-      final report = LoaderErrorReport(errors: [
-        LoaderError(
-          code: LoaderErrorCode.unknownKind,
-          message: 'unknown kind "X".',
-          filePath: 'a.yaml',
-          line: 1,
-          column: 1,
-        ),
-        LoaderError(
-          code: LoaderErrorCode.outputDirRequired,
-          message: 'outputDir is required.',
-          filePath: 'b.yaml',
-          line: 1,
-          column: 1,
-        ),
-      ]);
+      final report = LoaderErrorReport(
+        errors: [
+          LoaderError(
+            code: LoaderErrorCode.unknownKind,
+            message: 'unknown kind "X".',
+            filePath: 'a.yaml',
+            line: 1,
+            column: 1,
+          ),
+          LoaderError(
+            code: LoaderErrorCode.outputDirRequired,
+            message: 'outputDir is required.',
+            filePath: 'b.yaml',
+            line: 1,
+            column: 1,
+          ),
+        ],
+      );
       final formatted = report.format();
       expect(formatted, contains('[E101]'));
       expect(formatted, contains('[E102]'));
@@ -58,15 +60,17 @@ void main() {
     });
 
     test('throws self when fatal()', () {
-      final report = LoaderErrorReport(errors: [
-        LoaderError(
-          code: LoaderErrorCode.unknownKind,
-          message: 'x',
-          filePath: 'a.yaml',
-          line: 1,
-          column: 1,
-        ),
-      ]);
+      final report = LoaderErrorReport(
+        errors: [
+          LoaderError(
+            code: LoaderErrorCode.unknownKind,
+            message: 'x',
+            filePath: 'a.yaml',
+            line: 1,
+            column: 1,
+          ),
+        ],
+      );
       expect(() => report.fatal(), throwsA(isA<LoaderErrorReport>()));
     });
   });

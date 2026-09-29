@@ -42,11 +42,7 @@ bool isAwsProviderSource(Directory root) =>
 /// One Go function or method: its body tokens and the imports of the file
 /// that declares it.
 final class GoFunc {
-  const GoFunc({
-    required this.body,
-    required this.imports,
-    required this.file,
-  });
+  const GoFunc({required this.body, required this.imports, required this.file});
 
   final List<GoToken> body;
 
@@ -163,13 +159,13 @@ final class GoPackage {
       final eq = _isPunct(toks, j + 1, '=')
           ? j + 1
           : _isIdent(toks, j + 1) && _isPunct(toks, j + 2, '=')
-              ? j + 2
-              : _isIdent(toks, j + 1) &&
-                      _isPunct(toks, j + 2, '.') &&
-                      _isIdent(toks, j + 3) &&
-                      _isPunct(toks, j + 4, '=')
-                  ? j + 4
-                  : -1;
+          ? j + 2
+          : _isIdent(toks, j + 1) &&
+                _isPunct(toks, j + 2, '.') &&
+                _isIdent(toks, j + 3) &&
+                _isPunct(toks, j + 4, '=')
+          ? j + 4
+          : -1;
       if (eq > 0 && eq + 1 < to && toks[eq + 1].kind == GoTok.string) {
         consts[toks[j].text] = toks[eq + 1].text;
         j = eq + 2;
@@ -184,12 +180,15 @@ final _annotatedFunc = RegExp(
   r'((?:^//[^\n]*\n)+)func\s+(?:\([^)]*\)\s*)?(\w+)',
   multiLine: true,
 );
-final _resourceAnnotation =
-    RegExp(r'@(SDKResource|FrameworkResource)\("([a-z0-9_]+)"');
+final _resourceAnnotation = RegExp(
+  r'@(SDKResource|FrameworkResource)\("([a-z0-9_]+)"',
+);
 final _importBlock = RegExp(r'^import\s*\(([^)]*)\)', multiLine: true);
 final _importLine = RegExp(r'^\s*(\w+|\.|_)?\s*"([^"]+)"', multiLine: true);
-final _importSingle =
-    RegExp(r'^import\s+(\w+|\.|_)?\s*"([^"]+)"', multiLine: true);
+final _importSingle = RegExp(
+  r'^import\s+(\w+|\.|_)?\s*"([^"]+)"',
+  multiLine: true,
+);
 
 /// A Go file's imports: alias (or the path's last element) → path.
 Map<String, String> parseGoImports(String src) {
@@ -394,11 +393,7 @@ const _enumTypeValidators = {
   'FrameworkValidate',
   'FrameworkValidateIgnoreCase',
 };
-const _anyValidators = {
-  'stringvalidator',
-  'listvalidator',
-  'setvalidator',
-};
+const _anyValidators = {'stringvalidator', 'listvalidator', 'setvalidator'};
 const _enumCustomTypes = {
   'StringEnumType',
   'SetOfStringEnumType',
@@ -446,9 +441,9 @@ _FuncScan _scanFunc(
   final scan = _FuncScan();
   final frames = <({String? key, String closer})>[];
   List<String> openKeys() => [
-        for (final fr in frames)
-          if (fr.key != null) fr.key!,
-      ];
+    for (final fr in frames)
+      if (fr.key != null) fr.key!,
+  ];
 
   /// The attribute key ending at the `:` at [colon], if any.
   String? keyBefore(int colon) {
@@ -588,10 +583,7 @@ _FuncScan _scanFunc(
       if (members == null || (attribute && here.isEmpty)) {
         scan.unresolvedGroups++;
       } else {
-        final all = [
-          if (attribute) (path: here, abs: false),
-          ...members,
-        ];
+        final all = [if (attribute) (path: here, abs: false), ...members];
         switch (t[i + 2].text) {
           case 'ExactlyOneOf':
             scan.groups.add(all);
@@ -614,7 +606,8 @@ _FuncScan _scanFunc(
         _isPunct(t, i + 3, '(')) {
       final close = _matching(t, i + 3);
       final r = eval.expr(t, i + 4, self, f.imports, 0);
-      final ok = r != null &&
+      final ok =
+          r != null &&
           _isPunct(t, r.end, ',') &&
           _isIdent(t, r.end + 1) &&
           r.end + 2 == close;
@@ -720,8 +713,9 @@ List<_Member>? _pathExprs(
     } else {
       return null;
     }
-    while (
-        _isPunct(t, i, '.') && _isIdent(t, i + 1) && _isPunct(t, i + 2, '(')) {
+    while (_isPunct(t, i, '.') &&
+        _isIdent(t, i + 1) &&
+        _isPunct(t, i + 2, '(')) {
       final step = t[i + 1].text;
       final end = _matching(t, i + 2);
       if (step == 'AtParent' && end == i + 3) {
@@ -764,9 +758,9 @@ Map<String, ({String module, String version})> awsSdkTypesModules(
   final out = <String, ({String module, String version})>{};
   for (final f in _goFiles(Directory(p.join(root.path, 'internal')))) {
     for (final path in parseGoImports(f.readAsStringSync()).values) {
-      final m =
-          RegExp(r'^(github\.com/aws/aws-sdk-go-v2/service/[a-z0-9]+)/types$')
-              .firstMatch(path);
+      final m = RegExp(
+        r'^(github\.com/aws/aws-sdk-go-v2/service/[a-z0-9]+)/types$',
+      ).firstMatch(path);
       final version = m == null ? null : versions[m.group(1)];
       if (version != null) {
         out[path] = (module: m!.group(1)!, version: version);
@@ -778,10 +772,10 @@ Map<String, ({String module, String version})> awsSdkTypesModules(
 
 /// `<sdkDir>/<module subpath>/types/enums.go` for [path].
 String sdkEnumsFile(String sdkDir, String typesImportPath) => p.join(
-      sdkDir,
-      typesImportPath.replaceFirst('github.com/aws/aws-sdk-go-v2/', ''),
-      'enums.go',
-    );
+  sdkDir,
+  typesImportPath.replaceFirst('github.com/aws/aws-sdk-go-v2/', ''),
+  'enums.go',
+);
 
 /// Downloads each module's `types/enums.go` at its go.mod version into
 /// [sdkDir] (a module without one has no enums and is skipped).
@@ -795,8 +789,10 @@ Future<void> downloadAwsSdkEnums(
     Future<void> worker() async {
       while (pending.isNotEmpty) {
         final e = pending.removeLast();
-        final sub =
-            e.value.module.replaceFirst('github.com/aws/aws-sdk-go-v2/', '');
+        final sub = e.value.module.replaceFirst(
+          'github.com/aws/aws-sdk-go-v2/',
+          '',
+        );
         final url = Uri.parse(
           'https://raw.githubusercontent.com/aws/aws-sdk-go-v2/'
           '$sub/${e.value.version}/$sub/types/enums.go',
@@ -856,18 +852,22 @@ typedef AwsTypeHints = ({
 
 /// Scans hashicorp/aws at [root], with SDK enums read from [sdkDir].
 AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
-  final module = RegExp(r'^module\s+(\S+)', multiLine: true)
-      .firstMatch(File(p.join(root.path, 'go.mod')).readAsStringSync())!
-      .group(1)!;
+  final module = RegExp(
+    r'^module\s+(\S+)',
+    multiLine: true,
+  ).firstMatch(File(p.join(root.path, 'go.mod')).readAsStringSync())!.group(1)!;
   final packages = <String, GoPackage>{};
   GoPackage load(Directory dir, String importPath) {
     final pkg = GoPackage();
-    final files = dir
-        .listSync()
-        .whereType<File>()
-        .where((f) => f.path.endsWith('.go') && !f.path.endsWith('_test.go'))
-        .toList()
-      ..sort((a, b) => a.path.compareTo(b.path));
+    final files =
+        dir
+            .listSync()
+            .whereType<File>()
+            .where(
+              (f) => f.path.endsWith('.go') && !f.path.endsWith('_test.go'),
+            )
+            .toList()
+          ..sort((a, b) => a.path.compareTo(b.path));
     for (final f in files) {
       pkg.addFile(
         f.readAsStringSync(),
@@ -883,15 +883,17 @@ AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
     for (final f in _goFiles(sdk)) {
       final rel = p.relative(p.dirname(f.path), from: sdkDir);
       final path = 'github.com/aws/aws-sdk-go-v2/${p.split(rel).join('/')}';
-      (packages[path] ??= GoPackage())
-          .addFile(f.readAsStringSync(), file: f.path);
+      (packages[path] ??= GoPackage()).addFile(
+        f.readAsStringSync(),
+        file: f.path,
+      );
     }
   }
-  final services = Directory(p.join(root.path, 'internal', 'service'))
-      .listSync()
-      .whereType<Directory>()
-      .toList()
-    ..sort((a, b) => a.path.compareTo(b.path));
+  final services =
+      Directory(
+          p.join(root.path, 'internal', 'service'),
+        ).listSync().whereType<Directory>().toList()
+        ..sort((a, b) => a.path.compareTo(b.path));
   final servicePkgs = {
     for (final dir in services)
       dir: load(dir, '$module/internal/service/${p.basename(dir.path)}'),
@@ -902,20 +904,21 @@ AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
   for (final pkg in servicePkgs.values) {
     final scans = <String, _FuncScan>{};
     _FuncScan scanOf(String key) => scans[key] ??= () {
-          final s = _scanFunc(pkg.funcs[key]!, pkg, names, eval);
-          result.validators += s.hints.length + s.unresolved;
-          result.unresolved += s.unresolved;
-          result.groupValidators += s.groups.length + s.unresolvedGroups;
-          result.unresolvedGroups += s.unresolvedGroups;
-          result.openSets += s.openSets;
-          return s;
-        }();
+      final s = _scanFunc(pkg.funcs[key]!, pkg, names, eval);
+      result.validators += s.hints.length + s.unresolved;
+      result.unresolved += s.unresolved;
+      result.groupValidators += s.groups.length + s.unresolvedGroups;
+      result.unresolvedGroups += s.unresolvedGroups;
+      result.openSets += s.openSets;
+      return s;
+    }();
     ({
       List<_LocalHint> hints,
       List<List<_Member>> groups,
       List<List<_Member>> atLeast,
       List<(_Member, _Member)> conflicts,
-    }) expand(String key, Set<String> seen) {
+    })
+    expand(String key, Set<String> seen) {
       if (!pkg.funcs.containsKey(key) || !seen.add(key)) {
         return (
           hints: const [],
@@ -1001,9 +1004,8 @@ AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
         conflicts: conflicts,
       );
       List<List<List<String>>> split(List<List<String>> gs) => [
-            for (final g in gs)
-              ([...g]..sort()).map((m) => m.split('.')).toList(),
-          ];
+        for (final g in gs) ([...g]..sort()).map((m) => m.split('.')).toList(),
+      ];
       for (final type in types) {
         result.byType[type] = (
           sourcePath: ctor.file,

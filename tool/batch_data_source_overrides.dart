@@ -83,8 +83,9 @@ void main() {
   final dataSources = ir.dataSources.keys.toList()..sort();
 
   final manifest = loadYaml(File(_manifestPath).readAsStringSync()) as YamlMap;
-  final manifestKeys =
-      (manifest['files'] as YamlMap).keys.cast<String>().toSet();
+  final manifestKeys = (manifest['files'] as YamlMap).keys
+      .cast<String>()
+      .toSet();
 
   var written = 0;
   var refreshed = 0;

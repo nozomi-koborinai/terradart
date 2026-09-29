@@ -20,11 +20,9 @@ import 'package:terradart_google/provider.dart';
 /// Project IAM audit config + deny policy Stack.
 final class ProjectIamAuditConfigStack extends Stack {
   ProjectIamAuditConfigStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiIam = add(
       GoogleProjectService(
         localName: 'api_iam',
@@ -42,7 +40,8 @@ final class ProjectIamAuditConfigStack extends Stack {
           ProjectIamAuditConfigAuditLogConfig(
             logType: TfArg.literal(
               ProjectIamAuditConfigAuditLogConfigLogType
-                  .adminRead.terraformValue,
+                  .adminRead
+                  .terraformValue,
             ),
           ),
         ],
@@ -84,10 +83,7 @@ final class ProjectIamAuditConfigStack extends Stack {
             ),
           ),
         ],
-        dependsOn: [
-          ResourceDependency(apiIam),
-          ResourceDependency(denied),
-        ],
+        dependsOn: [ResourceDependency(apiIam), ResourceDependency(denied)],
       ),
     );
   }

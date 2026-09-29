@@ -51,10 +51,7 @@ void main() {
       );
 
       final resolver = LiteralResolver.fromStack(stack);
-      expect(
-        resolver.lookup('google_pubsub_topic.orders', 'name'),
-        isNull,
-      );
+      expect(resolver.lookup('google_pubsub_topic.orders', 'name'), isNull);
     });
 
     test('returns null for missing resource or attribute', () {
@@ -63,8 +60,7 @@ void main() {
       expect(resolver.lookup('google_pubsub_topic.nope', 'name'), isNull);
     });
 
-    test(
-        'returns null when attr is missing on a resource that has '
+    test('returns null when attr is missing on a resource that has '
         'other literals', () {
       final stack = TestStack();
       stack.add(

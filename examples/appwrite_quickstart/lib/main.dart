@@ -35,15 +35,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Appwrite demo stack covering the full curated catalog at this pin.
 final class AppwriteDemoStack extends Stack {
   AppwriteDemoStack()
-      : super(
-          providers: [
-            const AppwriteProvider(
-              endpoint: 'https://cloud.appwrite.io/v1',
-              organizationId: 'terradart-demo-org',
-              projectId: 'terradart-demo',
-            ),
-          ],
-        ) {
+    : super(
+        providers: [
+          const AppwriteProvider(
+            endpoint: 'https://cloud.appwrite.io/v1',
+            organizationId: 'terradart-demo-org',
+            projectId: 'terradart-demo',
+          ),
+        ],
+      ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
     addVariable(
@@ -64,10 +64,7 @@ final class AppwriteDemoStack extends Stack {
     );
 
     add(
-      AppwriteProject(
-        localName: 'demo',
-        name: TfArg.literal('terradart-demo'),
-      ),
+      AppwriteProject(localName: 'demo', name: TfArg.literal('terradart-demo')),
     );
 
     final bucket = add(
@@ -88,10 +85,7 @@ final class AppwriteDemoStack extends Stack {
     );
 
     final db = add(
-      AppwriteTablesdb(
-        localName: 'main',
-        name: TfArg.literal('main'),
-      ),
+      AppwriteTablesdb(localName: 'main', name: TfArg.literal('main')),
     );
     final table = add(
       AppwriteTablesdbTable(
@@ -150,8 +144,9 @@ final class AppwriteDemoStack extends Stack {
         localName: 'pg_offsite',
         databaseId: TfArg.ref(pg.id),
         bucket: TfArg.literal('terradart-pg-backups'),
-        storageProvider:
-            TfArg.literal(PostgresqlBackupStorageStorageProvider.s3),
+        storageProvider: TfArg.literal(
+          PostgresqlBackupStorageStorageProvider.s3,
+        ),
         accessKey: TfArg.variable('backup_access_key'),
         secretKey: TfArg.variable('backup_secret_key'),
       ),
@@ -247,10 +242,7 @@ final class AppwriteDemoStack extends Stack {
     );
 
     final team = add(
-      AppwriteAuthTeam(
-        localName: 'editors',
-        name: TfArg.literal('editors'),
-      ),
+      AppwriteAuthTeam(localName: 'editors', name: TfArg.literal('editors')),
     );
     final user = add(
       AppwriteAuthUser(
@@ -372,61 +364,32 @@ final class AppwriteDemoStack extends Stack {
     );
 
     addData(
-      DataAppwriteAuthTeam(
-        localName: 'editors_ds',
-        id: TfArg.ref(team.id),
-      ),
+      DataAppwriteAuthTeam(localName: 'editors_ds', id: TfArg.ref(team.id)),
     );
     addData(
-      DataAppwriteAuthUser(
-        localName: 'demo_user_ds',
-        id: TfArg.ref(user.id),
-      ),
+      DataAppwriteAuthUser(localName: 'demo_user_ds', id: TfArg.ref(user.id)),
     );
-    addData(
-      DataAppwriteFunction(
-        localName: 'fn_ds',
-        id: TfArg.ref(fn.id),
-      ),
-    );
+    addData(DataAppwriteFunction(localName: 'fn_ds', id: TfArg.ref(fn.id)));
     addData(
       DataAppwriteMessagingTopic(
         localName: 'topic_ds',
         id: TfArg.ref(topic.id),
       ),
     );
-    addData(
-      DataAppwriteSite(
-        localName: 'site_ds',
-        id: TfArg.ref(site.id),
-      ),
-    );
+    addData(DataAppwriteSite(localName: 'site_ds', id: TfArg.ref(site.id)));
     addData(
       DataAppwriteStorageBucket(
         localName: 'bucket_ds',
         id: TfArg.ref(bucket.id),
       ),
     );
-    addData(
-      DataAppwriteTablesdb(
-        localName: 'db_ds',
-        id: TfArg.ref(db.id),
-      ),
-    );
-    addData(
-      DataAppwriteWebhook(
-        localName: 'hook_ds',
-        id: TfArg.ref(hook.id),
-      ),
-    );
+    addData(DataAppwriteTablesdb(localName: 'db_ds', id: TfArg.ref(db.id)));
+    addData(DataAppwriteWebhook(localName: 'hook_ds', id: TfArg.ref(hook.id)));
 
     addData(DataAppwritePostgresqlSpecifications(localName: 'pg_specs'));
     addData(DataAppwritePostgresqlDatabases(localName: 'pg_list'));
     addData(
-      DataAppwritePostgresqlDatabase(
-        localName: 'pg_ds',
-        id: TfArg.ref(pg.id),
-      ),
+      DataAppwritePostgresqlDatabase(localName: 'pg_ds', id: TfArg.ref(pg.id)),
     );
     addData(
       DataAppwritePostgresqlDatabaseStatus(
@@ -450,10 +413,7 @@ final class AppwriteDemoStack extends Stack {
     addData(DataAppwriteMysqlSpecifications(localName: 'mysql_specs'));
     addData(DataAppwriteMysqlDatabases(localName: 'mysql_list'));
     addData(
-      DataAppwriteMysqlDatabase(
-        localName: 'mysql_ds',
-        id: TfArg.ref(mysql.id),
-      ),
+      DataAppwriteMysqlDatabase(localName: 'mysql_ds', id: TfArg.ref(mysql.id)),
     );
     addData(
       DataAppwriteMysqlDatabaseStatus(
@@ -471,10 +431,7 @@ final class AppwriteDemoStack extends Stack {
     addData(DataAppwriteMongoSpecifications(localName: 'mongo_specs'));
     addData(DataAppwriteMongoDatabases(localName: 'mongo_list'));
     addData(
-      DataAppwriteMongoDatabase(
-        localName: 'mongo_ds',
-        id: TfArg.ref(mongo.id),
-      ),
+      DataAppwriteMongoDatabase(localName: 'mongo_ds', id: TfArg.ref(mongo.id)),
     );
     addData(
       DataAppwriteMongoDatabaseStatus(

@@ -67,20 +67,19 @@ final class Constraints {
     int? minLength,
     int? maxLength,
     String? deprecationMessage,
-  }) =>
-      Constraints(
-        required: required ?? this.required,
-        optional: optional ?? this.optional,
-        computed: computed ?? this.computed,
-        sensitive: sensitive ?? this.sensitive,
-        writeOnly: writeOnly ?? this.writeOnly,
-        forceNew: forceNew ?? this.forceNew,
-        enumValues: enumValues ?? this.enumValues,
-        regex: regex ?? this.regex,
-        min: min ?? this.min,
-        max: max ?? this.max,
-        minLength: minLength ?? this.minLength,
-        maxLength: maxLength ?? this.maxLength,
-        deprecationMessage: deprecationMessage ?? this.deprecationMessage,
-      );
+  }) => Constraints(
+    required: required ?? this.required,
+    optional: optional ?? this.optional,
+    computed: computed ?? this.computed,
+    sensitive: sensitive ?? this.sensitive,
+    writeOnly: writeOnly ?? this.writeOnly,
+    forceNew: forceNew ?? this.forceNew,
+    enumValues: enumValues ?? this.enumValues,
+    regex: regex ?? this.regex,
+    min: min ?? this.min,
+    max: max ?? this.max,
+    minLength: minLength ?? this.minLength,
+    maxLength: maxLength ?? this.maxLength,
+    deprecationMessage: deprecationMessage ?? this.deprecationMessage,
+  );
 }

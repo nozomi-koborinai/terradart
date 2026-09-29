@@ -15,11 +15,9 @@ import 'package:terradart_google/provider.dart';
 /// Network Security stack: gateway security policy + ALLOW rule.
 final class NetworkSecurityGatewayPolicyStack extends Stack {
   NetworkSecurityGatewayPolicyStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiNetworkSecurity = add(
       GoogleProjectService(
         localName: 'api_networksecurity',

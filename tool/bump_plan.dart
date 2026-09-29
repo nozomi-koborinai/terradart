@@ -55,26 +55,26 @@ class BumpLane {
 
   /// The keys schema-bump.yml reads as `matrix.<key>`.
   Map<String, Object> toMatrix() => {
-        'lane': lane.name,
-        'mode': mode,
-        'source': lane.source,
-        'refresh': refresh,
-        'scaffold': scaffold,
-        'overrides_root': lane.overridesRoot,
-        'schema_dir': lane.schemaDir,
-        'package': lane.outputPackage,
-        'catalog': p.join(lane.outputPackage, 'lib', 'src', '_catalog.g.dart'),
-        'manifest': lane.migrateManifest,
-        'mm': mm,
-        'data_sources': dataSources,
-        'api_lanes': [lane.name, if (rideAlong case final r?) r.name].join(','),
-        'ride_along': rideAlong?.name ?? '',
-        'ride_along_source': rideAlong?.source ?? '',
-        'ride_along_schema_dir': rideAlong?.schemaDir ?? '',
-        'ride_along_package': rideAlong?.outputPackage ?? '',
-        'ride_along_manifest': rideAlong?.migrateManifest ?? '',
-        'example_generator': exampleGenerator ?? '',
-      };
+    'lane': lane.name,
+    'mode': mode,
+    'source': lane.source,
+    'refresh': refresh,
+    'scaffold': scaffold,
+    'overrides_root': lane.overridesRoot,
+    'schema_dir': lane.schemaDir,
+    'package': lane.outputPackage,
+    'catalog': p.join(lane.outputPackage, 'lib', 'src', '_catalog.g.dart'),
+    'manifest': lane.migrateManifest,
+    'mm': mm,
+    'data_sources': dataSources,
+    'api_lanes': [lane.name, if (rideAlong case final r?) r.name].join(','),
+    'ride_along': rideAlong?.name ?? '',
+    'ride_along_source': rideAlong?.source ?? '',
+    'ride_along_schema_dir': rideAlong?.schemaDir ?? '',
+    'ride_along_package': rideAlong?.outputPackage ?? '',
+    'ride_along_manifest': rideAlong?.migrateManifest ?? '',
+    'example_generator': exampleGenerator ?? '',
+  };
 }
 
 /// Every lane of [providersYaml] with a `bump:` entry, in file order.

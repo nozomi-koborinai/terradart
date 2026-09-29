@@ -33,12 +33,12 @@ Gd1ozQD/ZDN4XrbtjkrBJLbF1H43p+46BNJ2L1d+HW4X7S07vAk=
 
 final class VmComplianceStack extends Stack {
   VmComplianceStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     const zone = 'us-central1-a';
 
     final apiDeps = Apis.enable(
@@ -100,10 +100,7 @@ final class VmComplianceStack extends Stack {
         attestor: TfArg.ref(attestor.nameRef),
         role: TfArg.literal('roles/viewer'),
         member: TfArg.ref(ciSigner.iamMember),
-        dependsOn: [
-          ResourceDependency(attestor),
-          ResourceDependency(ciSigner),
-        ],
+        dependsOn: [ResourceDependency(attestor), ResourceDependency(ciSigner)],
       ),
     );
 
@@ -186,43 +183,43 @@ final class VmComplianceStack extends Stack {
         orchestratedResource: OsConfigV2PolicyOrchestratorOrchestratedResource(
           osPolicyAssignmentV1Payload:
               OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1Payload(
-            osPolicies: [
-              OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies(
-                id: TfArg.literal('test-os-policy'),
-                mode: TfArg.literal('VALIDATION'),
-                resourceGroups: [
-                  OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups(
-                    resources: TfArg.literal([
-                      {
-                        'id': 'resource-tf',
-                        'file': {
-                          'content': 'file-content-tf',
-                          'path': 'file-path-tf-1',
-                          'state': 'PRESENT',
-                        },
-                      },
-                    ]),
+                osPolicies: [
+                  OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies(
+                    id: TfArg.literal('test-os-policy'),
+                    mode: TfArg.literal('VALIDATION'),
+                    resourceGroups: [
+                      OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups(
+                        resources: TfArg.literal([
+                          {
+                            'id': 'resource-tf',
+                            'file': {
+                              'content': 'file-content-tf',
+                              'path': 'file-path-tf-1',
+                              'state': 'PRESENT',
+                            },
+                          },
+                        ]),
+                      ),
+                    ],
                   ),
                 ],
+                instanceFilter:
+                    OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter(
+                      inventories: [
+                        OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories(
+                          osShortName: TfArg.literal('windows-10'),
+                        ),
+                      ],
+                    ),
+                rollout:
+                    OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout(
+                      disruptionBudget:
+                          OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget(
+                            percent: TfArg.literal(100),
+                          ),
+                      minWaitDuration: TfArg.literal('60s'),
+                    ),
               ),
-            ],
-            instanceFilter:
-                OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter(
-              inventories: [
-                OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories(
-                  osShortName: TfArg.literal('windows-10'),
-                ),
-              ],
-            ),
-            rollout:
-                OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout(
-              disruptionBudget:
-                  OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget(
-                percent: TfArg.literal(100),
-              ),
-              minWaitDuration: TfArg.literal('60s'),
-            ),
-          ),
         ),
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: apiDeps,

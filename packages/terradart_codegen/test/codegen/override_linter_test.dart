@@ -35,7 +35,8 @@ void main() {
         customSlots: {
           'maintenance_policy': CustomSlot(
             paramDeclaration: 'Policy? maintenancePolicy',
-            argMapEntry: "if (maintenancePolicy != null) 'maintenance_policy': "
+            argMapEntry:
+                "if (maintenancePolicy != null) 'maintenance_policy': "
                 'TfArg.literal([maintenancePolicy.toArgMap()]),',
           ),
         },
@@ -55,41 +56,48 @@ void main() {
         customSlots: {
           'maintenance_policy': CustomSlot(
             paramDeclaration: 'Policy? maintenancePolicy',
-            argMapEntry: "if (maintenancePolicy != null) 'maintenance_policy': "
+            argMapEntry:
+                "if (maintenancePolicy != null) 'maintenance_policy': "
                 'TfArg.literal([maintenancePolicy.toArgMap()]),',
           ),
           'persistence_config': CustomSlot(
             paramDeclaration: 'Persistence? persistenceConfig',
-            argMapEntry: "if (persistenceConfig != null) 'persistence_config': "
+            argMapEntry:
+                "if (persistenceConfig != null) 'persistence_config': "
                 'TfArg.literal([persistenceConfig.toArgMap()]),',
           ),
         },
       );
-      final rules =
-          lintOverride('google_redis_instance', o).map((v) => v.rule).toList();
+      final rules = lintOverride(
+        'google_redis_instance',
+        o,
+      ).map((v) => v.rule).toList();
       expect(rules, [
         'custom-slot-not-in-param-order',
         'custom-slot-not-in-param-order',
       ]);
     });
 
-    test('flags customSlot key missing from an explicit argMapOrder (rule e)',
-        () {
-      const o = WrapperOverride(
-        outputDir: 'scheduler',
-        paramOrder: ['name', 'target'],
-        argMapOrder: ['name'],
-        customSlots: {
-          'target': CustomSlot(
-            paramDeclaration: 'required Target target',
-            argMapEntry: 'target.blockKey: TfArg.literal([target.toArgMap()]),',
-          ),
-        },
-      );
-      final violations = lintOverride('google_x', o);
-      expect(violations, hasLength(1));
-      expect(violations.single.rule, 'custom-slot-not-in-arg-map-order');
-    });
+    test(
+      'flags customSlot key missing from an explicit argMapOrder (rule e)',
+      () {
+        const o = WrapperOverride(
+          outputDir: 'scheduler',
+          paramOrder: ['name', 'target'],
+          argMapOrder: ['name'],
+          customSlots: {
+            'target': CustomSlot(
+              paramDeclaration: 'required Target target',
+              argMapEntry:
+                  'target.blockKey: TfArg.literal([target.toArgMap()]),',
+            ),
+          },
+        );
+        final violations = lintOverride('google_x', o);
+        expect(violations, hasLength(1));
+        expect(violations.single.rule, 'custom-slot-not-in-arg-map-order');
+      },
+    );
 
     test('clean: customSlot keys listed in paramOrder and argMapOrder', () {
       const o = WrapperOverride(
@@ -286,8 +294,7 @@ void main() {
       expect(lintOverride('google_x', o), isEmpty);
     });
 
-    test(
-        'flags nestedTypeExcludes without deriveNestedTypes as dead config '
+    test('flags nestedTypeExcludes without deriveNestedTypes as dead config '
         '(belt-and-suspenders for the loader-level FormatException)', () {
       const o = WrapperOverride(
         outputDir: 'x',
@@ -368,11 +375,10 @@ final class PubsubTarget extends Target {
     MigrateShapeLintInput input(
       Map<String, WrapperOverride> overrides, {
       Set<String> debt = const {},
-    }) =>
-        MigrateShapeLintInput(
-          context: preludeShapeContext(overrides),
-          debt: debt,
-        );
+    }) => MigrateShapeLintInput(
+      context: preludeShapeContext(overrides),
+      debt: debt,
+    );
 
     test('flags an irregular prelude helper', () {
       const o = WrapperOverride(outputDir: 'x', prelude: irregularPrelude);
@@ -403,8 +409,9 @@ class Policy {
 
     test('flags a map of helpers only when it is not encoded keyed', () {
       WrapperOverride policy(String encode) => WrapperOverride(
-            outputDir: 'x',
-            prelude: '''
+        outputDir: 'x',
+        prelude:
+            '''
 class Schedule {
   const Schedule({required this.cron});
   final TfArg<String> cron;
@@ -418,18 +425,23 @@ class Policy {
   };
 }
 ''',
-          );
+      );
       final keyed = policy(
         '{for (final e in schedules!.entries) e.key: e.value.encode()}',
       );
-      expect(lintMigrateShapes('google_x', keyed, input({'google_x': keyed})),
-          isEmpty);
+      expect(
+        lintMigrateShapes('google_x', keyed, input({'google_x': keyed})),
+        isEmpty,
+      );
       final listed = policy(
         '[for (final e in schedules!.entries) '
         "{...e.value.encode(), 'name': e.key}]",
       );
-      final v =
-          lintMigrateShapes('google_x', listed, input({'google_x': listed}));
+      final v = lintMigrateShapes(
+        'google_x',
+        listed,
+        input({'google_x': listed}),
+      );
       expect(v.single.detail, contains('not encoded as a keyed map'));
     });
 
@@ -462,10 +474,7 @@ class Policy {
           ),
         },
       );
-      expect(
-        lintMigrateShapes('google_x', o, input({'google_x': o})),
-        isEmpty,
-      );
+      expect(lintMigrateShapes('google_x', o, input({'google_x': o})), isEmpty);
     });
 
     test('a hint on a derivable slot is stale (never suppressed by debt)', () {
@@ -497,10 +506,7 @@ class Policy {
         prelude: sealedPrelude,
         customSlots: {'target': sealedSlot},
       );
-      expect(
-        lintMigrateShapes('google_x', o, input({'google_x': o})),
-        isEmpty,
-      );
+      expect(lintMigrateShapes('google_x', o, input({'google_x': o})), isEmpty);
     });
 
     test('clean: helper declared in another override prelude resolves', () {
@@ -559,8 +565,9 @@ class Shared {
     test('lintOverride / lintOverrides run the rule when given the input', () {
       const bad = WrapperOverride(outputDir: 'x', prelude: irregularPrelude);
       final registry = {'google_bad': bad};
-      final input =
-          MigrateShapeLintInput(context: preludeShapeContext(registry));
+      final input = MigrateShapeLintInput(
+        context: preludeShapeContext(registry),
+      );
       expect(lintOverride('google_bad', bad), isEmpty);
       expect(
         lintOverride('google_bad', bad, migrate: input).single.rule,

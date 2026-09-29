@@ -39,8 +39,10 @@ void main() {
       resources: ['google_project_service_identity'],
     );
     expect(out['format_version'], '1.0');
-    final schemas = (out['provider_schemas']
-        as Map)['registry.terraform.io/hashicorp/google-beta'] as Map;
+    final schemas =
+        (out['provider_schemas']
+                as Map)['registry.terraform.io/hashicorp/google-beta']
+            as Map;
     final resources = schemas['resource_schemas'] as Map;
     expect(resources.keys, ['google_project_service_identity']);
     expect(
@@ -60,8 +62,10 @@ void main() {
       resources: ['google_project_service_identity'],
       dataSources: ['google_project'],
     );
-    final schemas = (out['provider_schemas']
-        as Map)['registry.terraform.io/hashicorp/google-beta'] as Map;
+    final schemas =
+        (out['provider_schemas']
+                as Map)['registry.terraform.io/hashicorp/google-beta']
+            as Map;
     expect((schemas['data_source_schemas'] as Map).keys, ['google_project']);
     expect((schemas['resource_schemas'] as Map).keys, [
       'google_project_service_identity',
@@ -142,10 +146,10 @@ void main() {
 
     test('is false when the data sources are left out', () {
       expect(
-        covers(
-          ['google_compute_instance', 'google_project_service_identity'],
-          const [],
-        ),
+        covers([
+          'google_compute_instance',
+          'google_project_service_identity',
+        ], const []),
         isFalse,
       );
     });
@@ -220,17 +224,14 @@ void main() {
 
   group('resourceNamesFromFixture', () {
     test('returns the sorted resource keys of the fixture', () {
-      expect(
-        resourceNamesFromFixture(full),
-        ['google_compute_instance', 'google_project_service_identity'],
-      );
+      expect(resourceNamesFromFixture(full), [
+        'google_compute_instance',
+        'google_project_service_identity',
+      ]);
     });
 
     test('ignores data sources', () {
-      expect(
-        resourceNamesFromFixture(full),
-        isNot(contains('google_project')),
-      );
+      expect(resourceNamesFromFixture(full), isNot(contains('google_project')));
     });
 
     test('dataSourceNamesFromFixture returns sorted data-source keys', () {

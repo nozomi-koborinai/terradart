@@ -14,11 +14,11 @@ import 'package:terradart_google/provider.dart';
 
 final class LatencyAlertStack extends Stack {
   LatencyAlertStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+      ) {
     final apiMonitoring = add(
       GoogleProjectService(
         localName: 'api_monitoring',
@@ -82,10 +82,7 @@ final class LatencyAlertStack extends Stack {
         ),
         target: MonitoringUptimeCheckConfigMonitoredResource(
           type: TfArg.literal('uptime_url'),
-          labels: {
-            'host': 'api.example.com',
-            'project_id': projectId,
-          },
+          labels: {'host': 'api.example.com', 'project_id': projectId},
         ),
         selectedRegions: const [
           MonitoringUptimeCheckRegion.usa,
@@ -106,8 +103,9 @@ final class LatencyAlertStack extends Stack {
         metricKind: TfArg.literal(MonitoringMetricKind.gauge),
         valueType: TfArg.literal(MonitoringValueType.doubleValue),
         displayName: TfArg.literal('API latency (custom)'),
-        description:
-            TfArg.literal('Custom gauge for API latency in milliseconds.'),
+        description: TfArg.literal(
+          'Custom gauge for API latency in milliseconds.',
+        ),
         dependsOn: [ResourceDependency(apiMonitoring)],
       ),
     );
@@ -197,8 +195,9 @@ final class LatencyAlertStack extends Stack {
                   alignmentPeriod: TfArg.literal('60s'),
                   perSeriesAligner: Aligner.percentile95,
                   crossSeriesReducer: Reducer.percentile95,
-                  groupByFields:
-                      TfArg.literal(const ['resource.label.revision_name']),
+                  groupByFields: TfArg.literal(const [
+                    'resource.label.revision_name',
+                  ]),
                 ),
               ],
             ),

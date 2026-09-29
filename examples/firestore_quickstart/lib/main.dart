@@ -20,11 +20,11 @@ import 'package:terradart_google/provider.dart';
 
 final class MessagesStack extends Stack {
   MessagesStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+      ) {
     final db = GoogleFirestoreDatabase(
       localName: 'messages',
       name: TfArg.literal('quickstart-db'),

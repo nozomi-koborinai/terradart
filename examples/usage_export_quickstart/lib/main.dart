@@ -15,11 +15,9 @@ import 'package:terradart_google/storage.dart';
 /// Usage export Stack: empty reports bucket + project usage export singleton.
 final class UsageExportStack extends Stack {
   UsageExportStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',

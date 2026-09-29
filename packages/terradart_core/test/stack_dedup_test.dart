@@ -6,10 +6,7 @@ import 'package:test/test.dart';
 
 final class _R extends Resource {
   _R({required super.localName, required String type})
-      : super(
-          terraformType: type,
-          argMap: const {},
-        );
+    : super(terraformType: type, argMap: const {});
 
   @override
   Set<String> get sensitiveFields => const {};
@@ -17,10 +14,7 @@ final class _R extends Resource {
 
 final class _D extends Data {
   _D({required super.localName, required String type})
-      : super(
-          terraformType: type,
-          argMap: const {},
-        );
+    : super(terraformType: type, argMap: const {});
 
   @override
   Set<String> get sensitiveFields => const {};
@@ -77,14 +71,16 @@ void main() {
       expect(stack.resources, hasLength(2));
     });
 
-    test('resource and data with same type+localName coexist (kind differs)',
-        () {
-      final stack = _S();
-      stack.add(_R(localName: 'main', type: 'google_project'));
-      stack.addData(_D(localName: 'main', type: 'google_project'));
-      expect(stack.resources, hasLength(1));
-      expect(stack.dataSources, hasLength(1));
-    });
+    test(
+      'resource and data with same type+localName coexist (kind differs)',
+      () {
+        final stack = _S();
+        stack.add(_R(localName: 'main', type: 'google_project'));
+        stack.addData(_D(localName: 'main', type: 'google_project'));
+        expect(stack.resources, hasLength(1));
+        expect(stack.dataSources, hasLength(1));
+      },
+    );
 
     test('two data sources with same (data, type, localName) -> error', () {
       final stack = _S();
@@ -96,14 +92,15 @@ void main() {
     });
 
     test(
-        'cross-collection scenario: addData then add the SAME (type,localName) -> ok (different kind)',
-        () {
-      final stack = _S();
-      stack.addData(_D(localName: 'shared', type: 'google_project'));
-      stack.add(_R(localName: 'shared', type: 'google_project'));
-      // Both registered because kind differs.
-      expect(stack.resources, hasLength(1));
-      expect(stack.dataSources, hasLength(1));
-    });
+      'cross-collection scenario: addData then add the SAME (type,localName) -> ok (different kind)',
+      () {
+        final stack = _S();
+        stack.addData(_D(localName: 'shared', type: 'google_project'));
+        stack.add(_R(localName: 'shared', type: 'google_project'));
+        // Both registered because kind differs.
+        expect(stack.resources, hasLength(1));
+        expect(stack.dataSources, hasLength(1));
+      },
+    );
   });
 }
