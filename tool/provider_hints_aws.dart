@@ -789,7 +789,8 @@ final class AwsHintsScan {
   AwsHintsScan(this.byType);
 
   /// Terraform type → the file that declares it, its hints and its
-  /// exactly-one groups (member paths from the resource root).
+  /// exactly-one and at-most-one groups (member paths from the resource
+  /// root).
   final Map<String, AwsTypeHints> byType;
   var validators = 0;
   var unresolved = 0;
@@ -805,6 +806,7 @@ typedef AwsTypeHints = ({
   String sourcePath,
   List<GoEnumHint> hints,
   List<List<List<String>>> groups,
+  List<List<List<String>>> atMostOne,
 });
 
 /// Scans hashicorp/aws at [root], with SDK enums read from [sdkDir].
@@ -934,6 +936,7 @@ AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
           sourcePath: ctor.file,
           hints: byPath.values.toList(),
           groups: groups.values.toList(),
+          atMostOne: const [],
         );
       }
     }

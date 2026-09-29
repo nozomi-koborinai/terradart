@@ -28,8 +28,12 @@
 // `ExactlyOneOf` set (`<kind>validator.ExactlyOneOf` counts the attribute
 // it sits on, `resourcevalidator.ExactlyOneOf` in `ConfigValidators` does
 // not), and every `AtLeastOneOf` set whose members all pairwise
-// `ConflictsWith` / `Conflicting`. A mutually exclusive set nothing
-// requires one of is only listed on stdout — the provider accepts none.
+// `ConflictsWith` / `Conflicting`. The other conflicts become
+// `at_most_one_of_groups`: each set of one block's inputs that pairwise
+// conflict with each other and with nothing else, outside every
+// exactly-one group (`exclusiveGroups` in terradart_codegen, shared with
+// the Magic Modules `conflicts` reader). A conflict no group expresses is
+// listed on stdout.
 //
 // hashicorp/aws (SDKv2 and framework, hand-written) is scanned by
 // tool/provider_hints_aws.dart instead: resources are the functions its
@@ -73,6 +77,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/codegen/exclusive_groups.dart';
 
 import 'provider_hints_aws.dart';
 
@@ -216,10 +221,12 @@ typedef FrameworkSchemaScan = ({
   /// set whose members all pairwise `ConflictsWith` / `Conflicting`.
   List<List<List<String>>> groups,
 
-  /// Mutually exclusive sets no rule requires one of (at most one): the
-  /// provider accepts none, so a required sealed slot would reject a valid
-  /// configuration. Reported, never written to the hints.
+  /// Pairwise conflicting sets no rule requires one of (at most one): the
+  /// provider accepts none of their members ([exclusiveGroups]).
   List<List<List<String>>> atMostOne,
+
+  /// Conflicts neither kind of group expresses, with the reason.
+  List<String> unsealed,
 
   /// Relation validators whose paths are not literal path expressions.
   int unresolved,
@@ -233,9 +240,9 @@ FrameworkSchemaScan scanFrameworkSchema(String src) {
   final toks = tokenizeGo(src);
   final frames = <({String? key, String closer})>[];
   final byPath = <String, GoEnumHint>{};
-  final exact = <List<List<String>>>[];
-  final atLeast = <List<List<String>>>[];
-  final conflictSets = <List<List<String>>>[];
+  final exact = <List<String>>[];
+  final atLeast = <List<String>>[];
+  final conflicts = <(String, String)>[];
   var unresolved = 0;
   bool punct(int i, String t) =>
       i < toks.length && toks[i].kind == GoTok.punct && toks[i].text == t;
@@ -264,14 +271,16 @@ FrameworkSchemaScan scanFrameworkSchema(String src) {
       if (paths == null || (self && here.isEmpty)) {
         unresolved++;
       } else {
-        final members = [if (self) here, ...paths];
+        final members = [
+          for (final m in [if (self) here, ...paths]) m.join('.'),
+        ];
         switch (toks[i + 2].text) {
           case 'ExactlyOneOf':
             exact.add(members);
           case 'AtLeastOneOf':
             atLeast.add(members);
           default:
-            conflictSets.add(members);
+            conflicts.addAll(conflictPairs(members, anchored: self));
         }
       }
       i = close + 1;
@@ -335,80 +344,35 @@ FrameworkSchemaScan scanFrameworkSchema(String src) {
   if (frames.isNotEmpty) {
     throw const FormatException('unclosed bracket in schema.go');
   }
-  final (:groups, :atMostOne) = exactlyOneFromRelations(
-    exact: exact,
-    atLeast: atLeast,
-    conflictSets: conflictSets,
+  final groups = exclusiveGroups(
+    exactlyOne: exact,
+    atLeastOne: atLeast,
+    conflicts: conflicts,
   );
+  List<List<List<String>>> split(List<List<String>> gs) => [
+        for (final g in gs) [for (final m in g) m.split('.')],
+      ];
   return (
     hints: byPath.values.toList(),
-    groups: groups,
-    atMostOne: atMostOne,
+    groups: split(groups.exactlyOne),
+    atMostOne: split(groups.atMostOne),
+    unsealed: groups.unsealed,
     unresolved: unresolved,
   );
 }
 
-/// Combines framework relation validators into exactly-one groups: every
-/// [exact] set, and every [atLeast] set whose members all pairwise
-/// conflict (a [conflictSets] entry holds each pair of its members). Sets
-/// are compared as sets, so `ExactlyOneOf` on both members yields one
-/// group, in the order first seen. [conflictSets] no group covers come back
-/// as [atMostOne].
-({List<List<List<String>>> groups, List<List<List<String>>> atMostOne})
-    exactlyOneFromRelations({
-  required List<List<List<String>>> exact,
-  required List<List<List<String>>> atLeast,
-  required List<List<List<String>>> conflictSets,
-}) {
-  String dotted(List<String> m) => m.join('.');
-  Set<String> keys(List<List<String>> s) => {for (final m in s) dotted(m)};
-  final pairs = <String>{};
-  for (final s in conflictSets) {
-    final k = keys(s).toList()..sort();
-    for (var a = 0; a < k.length; a++) {
-      for (var b = a + 1; b < k.length; b++) {
-        pairs.add('${k[a]}\u0000${k[b]}');
-      }
-    }
-  }
-  bool allConflict(Set<String> s) {
-    final k = s.toList()..sort();
-    for (var a = 0; a < k.length; a++) {
-      for (var b = a + 1; b < k.length; b++) {
-        if (!pairs.contains('${k[a]}\u0000${k[b]}')) return false;
-      }
-    }
-    return true;
-  }
-
-  final seen = <String>{};
-  final groups = <List<List<String>>>[];
-  void add(List<List<String>> g) {
-    final k = keys(g);
-    if (k.length < 2 || !seen.add((k.toList()..sort()).join(','))) return;
-    final unique = <String>{};
-    groups.add([
-      for (final m in g)
-        if (unique.add(dotted(m))) m,
-    ]);
-  }
-
-  for (final g in exact) {
-    add(g);
-  }
-  for (final g in atLeast) {
-    if (allConflict(keys(g))) add(g);
-  }
-  final covered = [for (final g in groups) keys(g)];
-  final atMostOneSeen = <String>{};
-  final atMostOne = <List<List<String>>>[];
-  for (final s in conflictSets) {
-    final k = keys(s);
-    if (k.length < 2 || covered.any((g) => g.containsAll(k))) continue;
-    if (atMostOneSeen.add((k.toList()..sort()).join(','))) atMostOne.add(s);
-  }
-  return (groups: groups, atMostOne: atMostOne);
-}
+/// The conflicting pairs one relation validator declares over [members]
+/// (dotted paths): an attribute's `ConflictsWith` ([anchored], the
+/// attribute first) conflicts with each other member, a
+/// `resourcevalidator.Conflicting` set pairwise.
+List<(String, String)> conflictPairs(
+  List<String> members, {
+  required bool anchored,
+}) =>
+    [
+      for (var a = 0; a < (anchored ? 1 : members.length); a++)
+        for (var b = a + 1; b < members.length; b++) (members[a], members[b]),
+    ];
 
 /// Index of the bracket closing the one at [open].
 int _matchingTok(List<GoToken> t, int open) {
@@ -601,6 +565,7 @@ String renderHintsYaml({
   required String sourcePath,
   required List<GoEnumHint> hints,
   List<List<List<String>>> groups = const [],
+  List<List<List<String>>> atMostOne = const [],
 }) {
   final tree = <String, Object?>{};
   for (final h in [...hints]..sort((a, b) => a.dotted.compareTo(b.dotted))) {
@@ -640,10 +605,14 @@ String renderHintsYaml({
   }
 
   if (tree.isNotEmpty) writeProps(tree, '');
-  if (groups.isNotEmpty) {
-    buf.writeln('exactly_one_of_groups:');
+  for (final (key, list) in [
+    ('exactly_one_of_groups', groups),
+    ('at_most_one_of_groups', atMostOne),
+  ]) {
+    if (list.isEmpty) continue;
+    buf.writeln('$key:');
     final sorted = [
-      for (final g in groups) [for (final m in g) m.join('.')],
+      for (final g in list) [for (final m in g) m.join('.')],
     ]..sort((a, b) => a.join(',').compareTo(b.join(',')));
     for (final g in sorted) {
       buf.writeln('  - [${g.map(jsonEncode).join(', ')}]');
@@ -652,8 +621,9 @@ String renderHintsYaml({
   return buf.toString();
 }
 
-/// Why an exactly-one group of the schema.json resource [block] cannot be
-/// typed, or null: every member must be an input of the same block.
+/// Why an exactly-one or at-most-one group of the schema.json resource
+/// [block] cannot be typed, or null: every member must be an input of the
+/// same block.
 String? groupSkipReason(Map<String, dynamic> block, List<List<String>> group) {
   final parent = group.first.sublist(0, group.first.length - 1).join('.');
   for (final m in group) {
@@ -721,9 +691,11 @@ const _frameworkGroups =
     '`resourcevalidator.ExactlyOneOf` in `ConfigValidators`, or an\n'
     '`AtLeastOneOf` set whose members all pairwise `ConflictsWith` /\n'
     '`Conflicting`), as dotted paths that share one parent block; `wrap`\n'
-    'turns each into a sealed type. A `ConflictsWith` set no rule requires\n'
-    'one of is at most one, which a sealed type cannot express: the tool\n'
-    'lists it on stdout instead.';
+    'turns each into a required sealed type. `at_most_one_of_groups` lists\n'
+    'the other sets of one block\'s inputs that pairwise `ConflictsWith` /\n'
+    '`Conflicting` (and conflict with nothing else): the provider accepts\n'
+    'none of them, so `wrap` turns each into a nullable sealed type. A\n'
+    'conflict neither expresses is listed on stdout.';
 const _awsGroups =
     '\n\n`exactly_one_of_groups` lists the input sets the provider requires\n'
     'exactly one of (`ExactlyOneOf` in SDKv2 schemas, `*validator.ExactlyOneOf`\n'
@@ -805,7 +777,7 @@ Future<void> main(List<String> args) async {
       sourceDir != null ? Directory(sourceDir) : await _download(repo, version);
   final aws = isAwsProviderSource(root);
   final found = <String, AwsTypeHints>{};
-  final atMostOne = <String>[];
+  final unsealed = <String>[];
   var groupValidators = 0;
   var unresolvedGroups = 0;
   if (aws) {
@@ -847,25 +819,24 @@ Future<void> main(List<String> args) async {
         } on FormatException catch (e) {
           _fail(_exitData, '$sourcePath: ${e.message}');
         }
-        groupValidators += scan.groups.length;
+        groupValidators += scan.groups.length + scan.atMostOne.length;
         unresolvedGroups += scan.unresolved;
         for (final type in types) {
           found[type] = (
             sourcePath: sourcePath,
             hints: scan.hints,
             groups: scan.groups,
+            atMostOne: scan.atMostOne,
           );
-          for (final s in scan.atMostOne) {
-            atMostOne.add(
-              '$type [${s.map((m) => m.join('.')).join(', ')}]',
-            );
+          for (final s in scan.unsealed) {
+            unsealed.add('$type $s');
           }
         }
       }
     }
-    print('extract_provider_hints: $groupValidators exactly-one group(s) in '
-        'resource schemas, $unresolvedGroups relation validator(s) not '
-        'evaluable (dropped)');
+    print('extract_provider_hints: $groupValidators exactly-one / '
+        'at-most-one group(s) in resource schemas, $unresolvedGroups '
+        'relation validator(s) not evaluable (dropped)');
   }
 
   final out = Directory(p.join(schemaDir, 'hints'));
@@ -877,22 +848,29 @@ Future<void> main(List<String> args) async {
   var files = 0;
   var hintCount = 0;
   var groupCount = 0;
+  var atMostOneCount = 0;
   for (final type in found.keys.toList()..sort()) {
     final block = resources[type];
     if (block == null) continue;
-    final (:sourcePath, :hints, :groups) = found[type]!;
-    final keptGroups = <List<List<String>>>[];
-    for (final g in groups) {
-      final reason = groupSkipReason(block, g);
-      if (reason == null) {
-        keptGroups.add(g);
-      } else {
-        skipped.add(
-          '$type exactly_one_of [${g.map((m) => m.join('.')).join(', ')}] '
-          '($reason)',
-        );
+    final (:sourcePath, :hints, :groups, :atMostOne) = found[type]!;
+    List<List<List<String>>> keep(List<List<List<String>>> gs, String kind) {
+      final kept = <List<List<String>>>[];
+      for (final g in gs) {
+        final reason = groupSkipReason(block, g);
+        if (reason == null) {
+          kept.add(g);
+        } else {
+          skipped.add(
+            '$type $kind [${g.map((m) => m.join('.')).join(', ')}] '
+            '($reason)',
+          );
+        }
       }
+      return kept;
     }
+
+    final keptGroups = keep(groups, 'exactly_one_of');
+    final keptAtMostOne = keep(atMostOne, 'at_most_one_of');
     final kept = <GoEnumHint>[];
     for (final h in hints) {
       switch (resolveHint(block, h.path)) {
@@ -906,7 +884,7 @@ Future<void> main(List<String> args) async {
           notString.add('$type.${h.dotted}');
       }
     }
-    if (kept.isEmpty && keptGroups.isEmpty) continue;
+    if (kept.isEmpty && keptGroups.isEmpty && keptAtMostOne.isEmpty) continue;
     File(p.join(out.path, '$type.yaml')).writeAsStringSync(
       renderHintsYaml(
         repo: repo,
@@ -914,11 +892,13 @@ Future<void> main(List<String> args) async {
         sourcePath: sourcePath,
         hints: kept,
         groups: keptGroups,
+        atMostOne: keptAtMostOne,
       ),
     );
     files++;
     hintCount += kept.length;
     groupCount += keptGroups.length;
+    atMostOneCount += keptAtMostOne.length;
   }
   if (notString.isNotEmpty) {
     out.deleteSync(recursive: true);
@@ -931,13 +911,13 @@ Future<void> main(List<String> args) async {
   for (final s in skipped) {
     print('skipped: $s');
   }
-  for (final s in atMostOne) {
-    print('at most one (not sealed, the provider accepts none): $s');
+  for (final s in unsealed) {
+    print('conflict not sealed: $s');
   }
   File(p.join(out.path, 'README.md')).writeAsStringSync(
     _readme(repo: repo, schemaDir: schemaDir, aws: aws),
   );
-  print('extract_provider_hints: wrote $hintCount enum hint(s) and '
-      '$groupCount exactly-one group(s) for $files resource(s) to '
-      '${out.path}');
+  print('extract_provider_hints: wrote $hintCount enum hint(s), '
+      '$groupCount exactly-one group(s) and $atMostOneCount at-most-one '
+      'group(s) for $files resource(s) to ${out.path}');
 }
