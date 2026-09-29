@@ -5,6 +5,15 @@ terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); al
 ## Pre-flight (local)
 
 - [ ] CI green on main
+- [ ] **Pay down the schema-bump ledgers.** No scheduled agent pays them down; release preparation does. The weekly schema bump merges with placeholders a human still owes, and this check reports them (`tool/bump_version.sh` runs it first):
+
+  ```bash
+  dart tool/release_ledger_check.dart            # since the last v* tag
+  dart tool/release_ledger_check.dart --since v0.X.W
+  ```
+
+  - `tool/sealed_name_debt.yaml` must be empty — the check fails otherwise, and so does the bump. A temporary `Or` name must not ship: once it is published, renaming it is a breaking change. Name each group with a `sealedNames` entry in its override and re-run `terradart wrap` (`AGENTS.md` **Generation Policy**).
+  - `awaiting-example:` lines in `tool/example_debt.yaml` and entries in `tool/curation_backlog.yaml` are reported with the ones new since the last tag. Pay them down first (a Wave via [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md), example backfill via [`terradart-backfill-examples`](.agents/skills/terradart-backfill-examples/SKILL.md)) or accept them explicitly by pasting the report into the release PR body. Normal PR CI never fails on a non-empty backlog.
 - [ ] Bump every pubspec to the target version with a single command:
 
   ```bash
@@ -34,7 +43,7 @@ terradart bumps every workspace package in lockstep (`tool/bump_version.sh`); al
   ```
 
   Note: once `prepare_publish.sh` strips `resolution: workspace`, a package's dry-run may fail version-solving until the previous-phase packages are on pub.dev at the new version. This is the phase ordering in `publish.yml` and not a regression — only the `terradart_core` and `terradart_hcl` dry-runs must be clean locally. CI's `publish_dry_run` job runs the workspace dry-run on every PR.
-- [ ] Commit the bump + CHANGELOG + MIGRATING.md updates to a feature branch and open a release PR.
+- [ ] Commit the bump + CHANGELOG + MIGRATING.md updates to a feature branch and open a release PR whose body carries the release ledger report.
 
 ## Publish (preferred: tag-driven via `publish.yml`)
 
