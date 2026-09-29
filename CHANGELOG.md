@@ -28,6 +28,13 @@ Per-package changelogs live alongside each package and are the system of record 
   `--mm-hints` enum retyping GA does not use. The derivation adopts a
   hand-written helper slot as a sealed variant. Generated output is
   unchanged until GA overrides opt in.
+- **Hand-written `terradart_google` sealed types take dot shorthands** —
+  the 58 sealed types GA overrides write by hand (`payload`, `source`,
+  `trust`, health-check `protocol`, …) declare one `const factory` per
+  variant, named after its member, so they read like the derived ones:
+  `payload: .writeOnly(secretDataWo: ...)`, `source: .secret(...)`,
+  `protocol: .http(port: ...)`. The variant classes keep working, and
+  `terradart-migrate` emits the shorthand.
 
 ### Changed
 

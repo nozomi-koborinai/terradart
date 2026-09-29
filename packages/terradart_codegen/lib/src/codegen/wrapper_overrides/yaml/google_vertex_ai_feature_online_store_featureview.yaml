@@ -77,6 +77,18 @@ prelude: |
   sealed class VertexAiFeatureOnlineStoreFeatureviewSource {
     const VertexAiFeatureOnlineStoreFeatureviewSource();
 
+    /// `big_query_source` — materialize a BigQuery view on each sync.
+    const factory VertexAiFeatureOnlineStoreFeatureviewSource.bigQuerySource({
+      required TfArg<String> uri,
+      required TfArg<List<String>> entityIdColumns,
+    }) = VertexAiFeatureOnlineStoreFeatureviewBigQuerySource;
+
+    /// `feature_registry_source` — sync selected Feature Registry features.
+    const factory VertexAiFeatureOnlineStoreFeatureviewSource.featureRegistrySource({
+      required List<VertexAiFeatureOnlineStoreFeatureviewFeatureGroup> featureGroups,
+      TfArg<String>? projectNumber,
+    }) = VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource;
+
     String get blockKey;
 
     List<Map<String, Object?>> encode();

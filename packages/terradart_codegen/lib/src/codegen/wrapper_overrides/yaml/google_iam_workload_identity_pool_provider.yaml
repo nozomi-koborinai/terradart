@@ -83,6 +83,28 @@ prelude: |
   sealed class IamWorkloadIdentityPoolProviderTrustSource {
     const IamWorkloadIdentityPoolProviderTrustSource();
 
+    /// OIDC trust configuration (generic OIDC / GitHub Actions).
+    const factory IamWorkloadIdentityPoolProviderTrustSource.oidc({
+      List<TfArg<String>>? allowedAudiences,
+      required TfArg<String> issuerUri,
+      TfArg<String>? jwksJson,
+    }) = IamWorkloadIdentityPoolProviderOidcTrust;
+
+    /// AWS trust configuration.
+    const factory IamWorkloadIdentityPoolProviderTrustSource.aws({
+      TfArg<String>? accountId,
+    }) = IamWorkloadIdentityPoolProviderAwsTrust;
+
+    /// SAML 2.0 trust configuration.
+    const factory IamWorkloadIdentityPoolProviderTrustSource.saml({
+      required TfArg<String> idpMetadataXml,
+    }) = IamWorkloadIdentityPoolProviderSamlTrust;
+
+    /// X.509 certificate trust configuration.
+    const factory IamWorkloadIdentityPoolProviderTrustSource.x509({
+      IamWorkloadIdentityPoolProviderX509TrustStore? trustStore,
+    }) = IamWorkloadIdentityPoolProviderX509Trust;
+
     /// argMap key under which this trust source is emitted.
     String get blockKey;
 
