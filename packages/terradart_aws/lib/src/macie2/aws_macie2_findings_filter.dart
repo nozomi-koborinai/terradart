@@ -22,17 +22,16 @@ enum Macie2FindingsFilterAction implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class Macie2FindingsFilterNameOrNamePrefix {
-  const Macie2FindingsFilterNameOrNamePrefix();
+sealed class Macie2FindingsFilterName {
+  const Macie2FindingsFilterName();
 
   /// Sets `name`.
-  const factory Macie2FindingsFilterNameOrNamePrefix.name(TfArg<String> name) =
-      Macie2FindingsFilterNameOrNamePrefixName;
+  const factory Macie2FindingsFilterName.name(TfArg<String> name) =
+      Macie2FindingsFilterNameName;
 
   /// Sets `name_prefix`.
-  const factory Macie2FindingsFilterNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = Macie2FindingsFilterNameOrNamePrefixNamePrefix;
+  const factory Macie2FindingsFilterName.namePrefix(TfArg<String> namePrefix) =
+      Macie2FindingsFilterNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,10 +43,9 @@ sealed class Macie2FindingsFilterNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Macie2FindingsFilterNameOrNamePrefix.name] choice: sets `name`.
-final class Macie2FindingsFilterNameOrNamePrefixName
-    extends Macie2FindingsFilterNameOrNamePrefix {
-  const Macie2FindingsFilterNameOrNamePrefixName(this.name);
+/// The [Macie2FindingsFilterName.name] choice: sets `name`.
+final class Macie2FindingsFilterNameName extends Macie2FindingsFilterName {
+  const Macie2FindingsFilterNameName(this.name);
 
   final TfArg<String> name;
 
@@ -61,10 +59,10 @@ final class Macie2FindingsFilterNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [Macie2FindingsFilterNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class Macie2FindingsFilterNameOrNamePrefixNamePrefix
-    extends Macie2FindingsFilterNameOrNamePrefix {
-  const Macie2FindingsFilterNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [Macie2FindingsFilterName.namePrefix] choice: sets `name_prefix`.
+final class Macie2FindingsFilterNameNamePrefix
+    extends Macie2FindingsFilterName {
+  const Macie2FindingsFilterNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -143,7 +141,7 @@ final class AwsMacie2FindingsFilter extends Resource {
     required super.localName,
     required TfArg<Macie2FindingsFilterAction> action,
     TfArg<String>? description,
-    Macie2FindingsFilterNameOrNamePrefix? nameOrNamePrefix,
+    Macie2FindingsFilterName? name,
     TfArg<num>? position,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -157,7 +155,7 @@ final class AwsMacie2FindingsFilter extends Resource {
          argMap: {
            'action': action,
            if (description != null) 'description': description,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (position != null) 'position': position,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

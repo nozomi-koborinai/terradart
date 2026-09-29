@@ -220,33 +220,30 @@ final class VertexAiRagCorpusVectorDbConfigApiAuth {
 @immutable
 final class VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfig {
   const VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfig({
-    required this.apiKeySecretVersionOrApiKeyString,
+    required this.apiKey,
   });
 
-  final VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyString
-  apiKeySecretVersionOrApiKeyString;
+  final VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKey apiKey;
 
-  Map<String, Object?> encode() => {
-    ...apiKeySecretVersionOrApiKeyString.encode(),
-  };
+  Map<String, Object?> encode() => {...apiKey.encode()};
 }
 
 /// Exactly one of `api_key_secret_version`, `api_key_string` on the `vector_db_config.api_auth.api_key_config` block of `google_vertex_ai_rag_corpus`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.apiKeySecretVersion(...)`.
-sealed class VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyString {
-  const VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyString();
+sealed class VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKey {
+  const VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKey();
 
   /// Sets `api_key_secret_version`.
-  const factory VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyString.apiKeySecretVersion(
+  const factory VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKey.apiKeySecretVersion(
     TfArg<String> apiKeySecretVersion,
-  ) = VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyStringApiKeySecretVersion;
+  ) = VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeyApiKeySecretVersion;
 
   /// Sets `api_key_string`.
-  const factory VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyString.apiKeyString(
+  const factory VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKey.apiKeyString(
     TfArg<String> apiKeyString,
-  ) = VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyStringApiKeyString;
+  ) = VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeyApiKeyString;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -254,11 +251,10 @@ sealed class VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersi
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyString.apiKeySecretVersion] choice: sets `api_key_secret_version`.
-final class VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyStringApiKeySecretVersion
-    extends
-        VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyString {
-  const VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyStringApiKeySecretVersion(
+/// The [VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKey.apiKeySecretVersion] choice: sets `api_key_secret_version`.
+final class VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeyApiKeySecretVersion
+    extends VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKey {
+  const VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeyApiKeySecretVersion(
     this.apiKeySecretVersion,
   );
 
@@ -273,11 +269,10 @@ final class VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersio
   };
 }
 
-/// The [VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyString.apiKeyString] choice: sets `api_key_string`.
-final class VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyStringApiKeyString
-    extends
-        VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyString {
-  const VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyStringApiKeyString(
+/// The [VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKey.apiKeyString] choice: sets `api_key_string`.
+final class VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeyApiKeyString
+    extends VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKey {
+  const VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeyApiKeyString(
     this.apiKeyString,
   );
 
@@ -335,29 +330,31 @@ final class VertexAiRagCorpusVectorDbConfigRagEmbeddingModelConfigVertexPredicti
 /// `google_vertex_ai_rag_corpus` (derived from provider schema).
 @immutable
 final class VertexAiRagCorpusVectorDbConfigRagManagedDb {
-  const VertexAiRagCorpusVectorDbConfigRagManagedDb({required this.knnOrAnn});
+  const VertexAiRagCorpusVectorDbConfigRagManagedDb({
+    required this.ragManagedDb,
+  });
 
-  final VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnn knnOrAnn;
+  final VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDb ragManagedDb;
 
-  Map<String, Object?> encode() => {...knnOrAnn.encode()};
+  Map<String, Object?> encode() => {...ragManagedDb.encode()};
 }
 
 /// Exactly one of `knn`, `ann` on the `vector_db_config.rag_managed_db` block of `google_vertex_ai_rag_corpus`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.knn(...)`.
-sealed class VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnn {
-  const VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnn();
+sealed class VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDb {
+  const VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDb();
 
   /// Sets `knn`.
-  const factory VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnn.knn(
+  const factory VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDb.knn(
     VertexAiRagCorpusVectorDbConfigRagManagedDbKnn knn,
-  ) = VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnnKnn;
+  ) = VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDbKnn;
 
   /// Sets `ann`.
-  const factory VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnn.ann(
+  const factory VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDb.ann(
     VertexAiRagCorpusVectorDbConfigRagManagedDbAnn ann,
-  ) = VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnnAnn;
+  ) = VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDbAnn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -365,10 +362,10 @@ sealed class VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnn {
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnn.knn] choice: sets `knn`.
-final class VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnnKnn
-    extends VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnn {
-  const VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnnKnn(this.knn);
+/// The [VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDb.knn] choice: sets `knn`.
+final class VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDbKnn
+    extends VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDb {
+  const VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDbKnn(this.knn);
 
   final VertexAiRagCorpusVectorDbConfigRagManagedDbKnn knn;
 
@@ -379,10 +376,10 @@ final class VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnnKnn
   Map<String, Object?> encode() => {'knn': knn.encode()};
 }
 
-/// The [VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnn.ann] choice: sets `ann`.
-final class VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnnAnn
-    extends VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnn {
-  const VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnnAnn(this.ann);
+/// The [VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDb.ann] choice: sets `ann`.
+final class VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDbAnn
+    extends VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDb {
+  const VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDbAnn(this.ann);
 
   final VertexAiRagCorpusVectorDbConfigRagManagedDbAnn ann;
 

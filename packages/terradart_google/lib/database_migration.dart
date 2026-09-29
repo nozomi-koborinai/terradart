@@ -26,6 +26,10 @@ export 'src/database_migration/google_database_migration_service_connection_prof
         DatabaseMigrationServiceConnectionProfileMysqlSsl,
         DatabaseMigrationServiceConnectionProfileMysqlSslType,
         DatabaseMigrationServiceConnectionProfileOracle,
+        DatabaseMigrationServiceConnectionProfileOracleConnectivity,
+        DatabaseMigrationServiceConnectionProfileOracleConnectivityForwardSshConnectivity,
+        DatabaseMigrationServiceConnectionProfileOracleConnectivityPrivateConnectivity,
+        DatabaseMigrationServiceConnectionProfileOracleConnectivityStaticServiceIpConnectivity,
         DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity,
         DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKey,
         DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivityPasswordOrPrivateKeyPassword,
@@ -33,10 +37,6 @@ export 'src/database_migration/google_database_migration_service_connection_prof
         DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivity,
         DatabaseMigrationServiceConnectionProfileOracleSsl,
         DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivity,
-        DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity,
-        DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity,
-        DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity,
-        DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityStaticServiceIpConnectivity,
         DatabaseMigrationServiceConnectionProfilePostgresql,
         DatabaseMigrationServiceConnectionProfilePostgresqlPrivateConnectivity,
         DatabaseMigrationServiceConnectionProfilePostgresqlSsl,
@@ -44,6 +44,10 @@ export 'src/database_migration/google_database_migration_service_connection_prof
         GoogleDatabaseMigrationServiceConnectionProfile;
 export 'src/database_migration/google_database_migration_service_migration_job.dart'
     show
+        DatabaseMigrationServiceMigrationJobConnectivity,
+        DatabaseMigrationServiceMigrationJobConnectivityReverseSshConnectivity,
+        DatabaseMigrationServiceMigrationJobConnectivityStaticIpConnectivity,
+        DatabaseMigrationServiceMigrationJobConnectivityVpcPeeringConnectivity,
         DatabaseMigrationServiceMigrationJobDumpFlags,
         DatabaseMigrationServiceMigrationJobDumpFlagsDumpFlags,
         DatabaseMigrationServiceMigrationJobDumpType,
@@ -60,10 +64,6 @@ export 'src/database_migration/google_database_migration_service_migration_job.d
         DatabaseMigrationServiceMigrationJobReverseSshConnectivity,
         DatabaseMigrationServiceMigrationJobState,
         DatabaseMigrationServiceMigrationJobStaticIpConnectivity,
-        DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity,
-        DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivityReverseSshConnectivity,
-        DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivityStaticIpConnectivity,
-        DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivityVpcPeeringConnectivity,
         DatabaseMigrationServiceMigrationJobType,
         DatabaseMigrationServiceMigrationJobVpcPeeringConnectivity,
         GoogleDatabaseMigrationServiceMigrationJob;

@@ -11,17 +11,16 @@ const Set<String> _awsLbTrustStoreSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class LbTrustStoreNameOrNamePrefix {
-  const LbTrustStoreNameOrNamePrefix();
+sealed class LbTrustStoreName {
+  const LbTrustStoreName();
 
   /// Sets `name`.
-  const factory LbTrustStoreNameOrNamePrefix.name(TfArg<String> name) =
-      LbTrustStoreNameOrNamePrefixName;
+  const factory LbTrustStoreName.name(TfArg<String> name) =
+      LbTrustStoreNameName;
 
   /// Sets `name_prefix`.
-  const factory LbTrustStoreNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = LbTrustStoreNameOrNamePrefixNamePrefix;
+  const factory LbTrustStoreName.namePrefix(TfArg<String> namePrefix) =
+      LbTrustStoreNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class LbTrustStoreNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LbTrustStoreNameOrNamePrefix.name] choice: sets `name`.
-final class LbTrustStoreNameOrNamePrefixName
-    extends LbTrustStoreNameOrNamePrefix {
-  const LbTrustStoreNameOrNamePrefixName(this.name);
+/// The [LbTrustStoreName.name] choice: sets `name`.
+final class LbTrustStoreNameName extends LbTrustStoreName {
+  const LbTrustStoreNameName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +48,9 @@ final class LbTrustStoreNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [LbTrustStoreNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class LbTrustStoreNameOrNamePrefixNamePrefix
-    extends LbTrustStoreNameOrNamePrefix {
-  const LbTrustStoreNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [LbTrustStoreName.namePrefix] choice: sets `name_prefix`.
+final class LbTrustStoreNameNamePrefix extends LbTrustStoreName {
+  const LbTrustStoreNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -76,7 +73,7 @@ final class AwsLbTrustStore extends Resource {
     required TfArg<String> caCertificatesBundleS3Bucket,
     required TfArg<String> caCertificatesBundleS3Key,
     TfArg<String>? caCertificatesBundleS3ObjectVersion,
-    LbTrustStoreNameOrNamePrefix? nameOrNamePrefix,
+    LbTrustStoreName? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -91,7 +88,7 @@ final class AwsLbTrustStore extends Resource {
            if (caCertificatesBundleS3ObjectVersion != null)
              'ca_certificates_bundle_s3_object_version':
                  caCertificatesBundleS3ObjectVersion,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
          },

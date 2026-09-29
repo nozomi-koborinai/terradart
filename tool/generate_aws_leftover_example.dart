@@ -1042,7 +1042,12 @@ String _dummy(
 }) {
   if (depth > _maxDepth) return "TfArg.literal('leftover')";
   final n = p.name;
-  final value = _lookup('$owner.$n');
+  // A sealed slot named like one of its members takes the value inside the
+  // variant `_sealedChoice` builds, not as itself.
+  final sealed = _sealedVariants.containsKey(
+    p.type.replaceFirst(RegExp(r'\?$'), ''),
+  );
+  final value = sealed ? null : _lookup('$owner.$n');
   if (value != null) {
     final enumType = _enumSlotType(p.type);
     if (enumType != null) {

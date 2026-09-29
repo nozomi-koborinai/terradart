@@ -660,7 +660,7 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration {
     this.scaleInCooldown,
     this.scaleOutCooldown,
     required this.targetValue,
-    this.customizedMetricSpecificationOrPredefinedMetricSpecification,
+    this.metricSpecification,
   });
 
   final TfArg<bool>? disableScaleIn;
@@ -671,8 +671,8 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration {
 
   final TfArg<num> targetValue;
 
-  final AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification?
-  customizedMetricSpecificationOrPredefinedMetricSpecification;
+  final AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification?
+  metricSpecification;
 
   Map<String, Object?> encode() => {
     if (disableScaleIn != null) 'disable_scale_in': disableScaleIn!.toTfJson(),
@@ -681,7 +681,7 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration {
     if (scaleOutCooldown != null)
       'scale_out_cooldown': scaleOutCooldown!.toTfJson(),
     'target_value': targetValue.toTfJson(),
-    ...?customizedMetricSpecificationOrPredefinedMetricSpecification?.encode(),
+    ...?metricSpecification?.encode(),
   };
 }
 
@@ -690,20 +690,20 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.customizedMetricSpecification(...)`.
-sealed class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification();
+sealed class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification {
+  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification();
 
   /// Sets `customized_metric_specification`.
-  const factory AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification.customizedMetricSpecification(
+  const factory AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification.customizedMetricSpecification(
     AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecification
     customizedMetricSpecification,
-  ) = AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationCustomizedMetricSpecification;
+  ) = AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecificationCustomizedMetricSpecification;
 
   /// Sets `predefined_metric_specification`.
-  const factory AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification.predefinedMetricSpecification(
+  const factory AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification.predefinedMetricSpecification(
     AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification
     predefinedMetricSpecification,
-  ) = AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationPredefinedMetricSpecification;
+  ) = AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecificationPredefinedMetricSpecification;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -711,11 +711,11 @@ sealed class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomi
   Map<String, Object?> encode();
 }
 
-/// The [AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification.customizedMetricSpecification] choice: sets `customized_metric_specification`.
-final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationCustomizedMetricSpecification
+/// The [AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification.customizedMetricSpecification] choice: sets `customized_metric_specification`.
+final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecificationCustomizedMetricSpecification
     extends
-        AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationCustomizedMetricSpecification(
+        AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification {
+  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecificationCustomizedMetricSpecification(
     this.customizedMetricSpecification,
   );
 
@@ -731,11 +731,11 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomiz
   };
 }
 
-/// The [AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification.predefinedMetricSpecification] choice: sets `predefined_metric_specification`.
-final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationPredefinedMetricSpecification
+/// The [AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification.predefinedMetricSpecification] choice: sets `predefined_metric_specification`.
+final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecificationPredefinedMetricSpecification
     extends
-        AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
-  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationPredefinedMetricSpecification(
+        AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification {
+  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecificationPredefinedMetricSpecification(
     this.predefinedMetricSpecification,
   );
 

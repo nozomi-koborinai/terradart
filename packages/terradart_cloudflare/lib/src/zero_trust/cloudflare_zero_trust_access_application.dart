@@ -113,30 +113,27 @@ final class ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsDestination
 @immutable
 final class ZeroTrustAccessApplicationCorsHeaders {
   const ZeroTrustAccessApplicationCorsHeaders({
-    this.allowAllHeadersOrAllowedHeaders,
-    required this.allowAllMethodsOrAllowedMethods,
-    required this.allowAllOriginsOrAllowedOrigins,
+    this.headers,
+    required this.methods,
+    required this.origins,
     this.allowCredentials,
     this.maxAge,
   });
 
-  final ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders?
-  allowAllHeadersOrAllowedHeaders;
+  final ZeroTrustAccessApplicationCorsHeadersHeaders? headers;
 
-  final ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods
-  allowAllMethodsOrAllowedMethods;
+  final ZeroTrustAccessApplicationCorsHeadersMethods methods;
 
-  final ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins
-  allowAllOriginsOrAllowedOrigins;
+  final ZeroTrustAccessApplicationCorsHeadersOrigins origins;
 
   final TfArg<bool>? allowCredentials;
 
   final TfArg<num>? maxAge;
 
   Map<String, Object?> encode() => {
-    ...?allowAllHeadersOrAllowedHeaders?.encode(),
-    ...allowAllMethodsOrAllowedMethods.encode(),
-    ...allowAllOriginsOrAllowedOrigins.encode(),
+    ...?headers?.encode(),
+    ...methods.encode(),
+    ...origins.encode(),
     if (allowCredentials != null)
       'allow_credentials': allowCredentials!.toTfJson(),
     if (maxAge != null) 'max_age': maxAge!.toTfJson(),
@@ -147,19 +144,19 @@ final class ZeroTrustAccessApplicationCorsHeaders {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.allowAllMethods(...)`.
-sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods {
-  const ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods();
+sealed class ZeroTrustAccessApplicationCorsHeadersMethods {
+  const ZeroTrustAccessApplicationCorsHeadersMethods();
 
   /// Sets `allow_all_methods`.
-  const factory ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods.allowAllMethods(
+  const factory ZeroTrustAccessApplicationCorsHeadersMethods.allowAllMethods(
     TfArg<bool> allowAllMethods,
-  ) = ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethodsAllowAllMethods;
+  ) = ZeroTrustAccessApplicationCorsHeadersMethodsAllowAllMethods;
 
   /// Sets `allowed_methods`.
-  const factory ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods.allowedMethods(
+  const factory ZeroTrustAccessApplicationCorsHeadersMethods.allowedMethods(
     List<TfArg<ZeroTrustAccessApplicationCorsHeadersAllowedMethods>>
     allowedMethods,
-  ) = ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethodsAllowedMethods;
+  ) = ZeroTrustAccessApplicationCorsHeadersMethodsAllowedMethods;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -167,11 +164,10 @@ sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethod
   Map<String, Object?> encode();
 }
 
-/// The [ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods.allowAllMethods] choice: sets `allow_all_methods`.
-final class ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethodsAllowAllMethods
-    extends
-        ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods {
-  const ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethodsAllowAllMethods(
+/// The [ZeroTrustAccessApplicationCorsHeadersMethods.allowAllMethods] choice: sets `allow_all_methods`.
+final class ZeroTrustAccessApplicationCorsHeadersMethodsAllowAllMethods
+    extends ZeroTrustAccessApplicationCorsHeadersMethods {
+  const ZeroTrustAccessApplicationCorsHeadersMethodsAllowAllMethods(
     this.allowAllMethods,
   );
 
@@ -186,11 +182,10 @@ final class ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods
   };
 }
 
-/// The [ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods.allowedMethods] choice: sets `allowed_methods`.
-final class ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethodsAllowedMethods
-    extends
-        ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods {
-  const ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethodsAllowedMethods(
+/// The [ZeroTrustAccessApplicationCorsHeadersMethods.allowedMethods] choice: sets `allowed_methods`.
+final class ZeroTrustAccessApplicationCorsHeadersMethodsAllowedMethods
+    extends ZeroTrustAccessApplicationCorsHeadersMethods {
+  const ZeroTrustAccessApplicationCorsHeadersMethodsAllowedMethods(
     this.allowedMethods,
   );
 
@@ -210,18 +205,18 @@ final class ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.allowAllOrigins(...)`.
-sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins {
-  const ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins();
+sealed class ZeroTrustAccessApplicationCorsHeadersOrigins {
+  const ZeroTrustAccessApplicationCorsHeadersOrigins();
 
   /// Sets `allow_all_origins`.
-  const factory ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins.allowAllOrigins(
+  const factory ZeroTrustAccessApplicationCorsHeadersOrigins.allowAllOrigins(
     TfArg<bool> allowAllOrigins,
-  ) = ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOriginsAllowAllOrigins;
+  ) = ZeroTrustAccessApplicationCorsHeadersOriginsAllowAllOrigins;
 
   /// Sets `allowed_origins`.
-  const factory ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins.allowedOrigins(
+  const factory ZeroTrustAccessApplicationCorsHeadersOrigins.allowedOrigins(
     TfArg<List<Object?>> allowedOrigins,
-  ) = ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOriginsAllowedOrigins;
+  ) = ZeroTrustAccessApplicationCorsHeadersOriginsAllowedOrigins;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -229,11 +224,10 @@ sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigin
   Map<String, Object?> encode();
 }
 
-/// The [ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins.allowAllOrigins] choice: sets `allow_all_origins`.
-final class ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOriginsAllowAllOrigins
-    extends
-        ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins {
-  const ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOriginsAllowAllOrigins(
+/// The [ZeroTrustAccessApplicationCorsHeadersOrigins.allowAllOrigins] choice: sets `allow_all_origins`.
+final class ZeroTrustAccessApplicationCorsHeadersOriginsAllowAllOrigins
+    extends ZeroTrustAccessApplicationCorsHeadersOrigins {
+  const ZeroTrustAccessApplicationCorsHeadersOriginsAllowAllOrigins(
     this.allowAllOrigins,
   );
 
@@ -248,11 +242,10 @@ final class ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins
   };
 }
 
-/// The [ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins.allowedOrigins] choice: sets `allowed_origins`.
-final class ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOriginsAllowedOrigins
-    extends
-        ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins {
-  const ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOriginsAllowedOrigins(
+/// The [ZeroTrustAccessApplicationCorsHeadersOrigins.allowedOrigins] choice: sets `allowed_origins`.
+final class ZeroTrustAccessApplicationCorsHeadersOriginsAllowedOrigins
+    extends ZeroTrustAccessApplicationCorsHeadersOrigins {
+  const ZeroTrustAccessApplicationCorsHeadersOriginsAllowedOrigins(
     this.allowedOrigins,
   );
 
@@ -272,18 +265,18 @@ final class ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.allowAllHeaders(...)`.
-sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders {
-  const ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders();
+sealed class ZeroTrustAccessApplicationCorsHeadersHeaders {
+  const ZeroTrustAccessApplicationCorsHeadersHeaders();
 
   /// Sets `allow_all_headers`.
-  const factory ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders.allowAllHeaders(
+  const factory ZeroTrustAccessApplicationCorsHeadersHeaders.allowAllHeaders(
     TfArg<bool> allowAllHeaders,
-  ) = ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeadersAllowAllHeaders;
+  ) = ZeroTrustAccessApplicationCorsHeadersHeadersAllowAllHeaders;
 
   /// Sets `allowed_headers`.
-  const factory ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders.allowedHeaders(
+  const factory ZeroTrustAccessApplicationCorsHeadersHeaders.allowedHeaders(
     TfArg<List<Object?>> allowedHeaders,
-  ) = ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeadersAllowedHeaders;
+  ) = ZeroTrustAccessApplicationCorsHeadersHeadersAllowedHeaders;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -291,11 +284,10 @@ sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeader
   Map<String, Object?> encode();
 }
 
-/// The [ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders.allowAllHeaders] choice: sets `allow_all_headers`.
-final class ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeadersAllowAllHeaders
-    extends
-        ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders {
-  const ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeadersAllowAllHeaders(
+/// The [ZeroTrustAccessApplicationCorsHeadersHeaders.allowAllHeaders] choice: sets `allow_all_headers`.
+final class ZeroTrustAccessApplicationCorsHeadersHeadersAllowAllHeaders
+    extends ZeroTrustAccessApplicationCorsHeadersHeaders {
+  const ZeroTrustAccessApplicationCorsHeadersHeadersAllowAllHeaders(
     this.allowAllHeaders,
   );
 
@@ -310,11 +302,10 @@ final class ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders
   };
 }
 
-/// The [ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders.allowedHeaders] choice: sets `allowed_headers`.
-final class ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeadersAllowedHeaders
-    extends
-        ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders {
-  const ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeadersAllowedHeaders(
+/// The [ZeroTrustAccessApplicationCorsHeadersHeaders.allowedHeaders] choice: sets `allowed_headers`.
+final class ZeroTrustAccessApplicationCorsHeadersHeadersAllowedHeaders
+    extends ZeroTrustAccessApplicationCorsHeadersHeaders {
+  const ZeroTrustAccessApplicationCorsHeadersHeadersAllowedHeaders(
     this.allowedHeaders,
   );
 

@@ -36,18 +36,18 @@ enum ComprehendDocumentClassifierMode implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.versionName(...)`.
-sealed class ComprehendDocumentClassifierVersionNameOrVersionNamePrefix {
-  const ComprehendDocumentClassifierVersionNameOrVersionNamePrefix();
+sealed class ComprehendDocumentClassifierVersionName {
+  const ComprehendDocumentClassifierVersionName();
 
   /// Sets `version_name`.
-  const factory ComprehendDocumentClassifierVersionNameOrVersionNamePrefix.versionName(
+  const factory ComprehendDocumentClassifierVersionName.versionName(
     TfArg<String> versionName,
-  ) = ComprehendDocumentClassifierVersionNameOrVersionNamePrefixVersionName;
+  ) = ComprehendDocumentClassifierVersionNameVersionName;
 
   /// Sets `version_name_prefix`.
-  const factory ComprehendDocumentClassifierVersionNameOrVersionNamePrefix.versionNamePrefix(
+  const factory ComprehendDocumentClassifierVersionName.versionNamePrefix(
     TfArg<String> versionNamePrefix,
-  ) = ComprehendDocumentClassifierVersionNameOrVersionNamePrefixVersionNamePrefix;
+  ) = ComprehendDocumentClassifierVersionNameVersionNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -59,12 +59,10 @@ sealed class ComprehendDocumentClassifierVersionNameOrVersionNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ComprehendDocumentClassifierVersionNameOrVersionNamePrefix.versionName] choice: sets `version_name`.
-final class ComprehendDocumentClassifierVersionNameOrVersionNamePrefixVersionName
-    extends ComprehendDocumentClassifierVersionNameOrVersionNamePrefix {
-  const ComprehendDocumentClassifierVersionNameOrVersionNamePrefixVersionName(
-    this.versionName,
-  );
+/// The [ComprehendDocumentClassifierVersionName.versionName] choice: sets `version_name`.
+final class ComprehendDocumentClassifierVersionNameVersionName
+    extends ComprehendDocumentClassifierVersionName {
+  const ComprehendDocumentClassifierVersionNameVersionName(this.versionName);
 
   final TfArg<String> versionName;
 
@@ -78,10 +76,10 @@ final class ComprehendDocumentClassifierVersionNameOrVersionNamePrefixVersionNam
   Map<String, TfArg<Object?>> get argMap => {'version_name': versionName};
 }
 
-/// The [ComprehendDocumentClassifierVersionNameOrVersionNamePrefix.versionNamePrefix] choice: sets `version_name_prefix`.
-final class ComprehendDocumentClassifierVersionNameOrVersionNamePrefixVersionNamePrefix
-    extends ComprehendDocumentClassifierVersionNameOrVersionNamePrefix {
-  const ComprehendDocumentClassifierVersionNameOrVersionNamePrefixVersionNamePrefix(
+/// The [ComprehendDocumentClassifierVersionName.versionNamePrefix] choice: sets `version_name_prefix`.
+final class ComprehendDocumentClassifierVersionNameVersionNamePrefix
+    extends ComprehendDocumentClassifierVersionName {
+  const ComprehendDocumentClassifierVersionNameVersionNamePrefix(
     this.versionNamePrefix,
   );
 
@@ -357,8 +355,7 @@ final class AwsComprehendDocumentClassifier extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    ComprehendDocumentClassifierVersionNameOrVersionNamePrefix?
-    versionNameOrVersionNamePrefix,
+    ComprehendDocumentClassifierVersionName? versionName,
     TfArg<String>? volumeKmsKeyId,
     required ComprehendDocumentClassifierInputDataConfig inputDataConfig,
     ComprehendDocumentClassifierOutputDataConfig? outputDataConfig,
@@ -377,7 +374,7 @@ final class AwsComprehendDocumentClassifier extends Resource {
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           ...?versionNameOrVersionNamePrefix?.argMap,
+           ...?versionName?.argMap,
            if (volumeKmsKeyId != null) 'volume_kms_key_id': volumeKmsKeyId,
            'input_data_config': TfArg.literal(inputDataConfig.encode()),
            if (outputDataConfig != null)

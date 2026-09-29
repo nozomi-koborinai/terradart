@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/exactly_one_derivation.dart';
+import 'package:terradart_codegen/src/codegen/exactly_one_types.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_collector.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_emitter.dart';
 import 'package:terradart_codegen/src/codegen/provider_enums.dart';
@@ -120,6 +121,29 @@ void main() {
         throwsFormatException,
       );
     });
+  });
+
+  test('sealedNames keys go unjudged when no group source is loaded', () {
+    final def = ResourceDef(
+      terraformType: 'aws_thing',
+      root: BlockDef(attributes: [_attr('a'), _attr('b')]),
+    );
+    const o = WrapperOverride(
+      outputDir: 'thing',
+      deriveExactlyOne: true,
+      sealedNames: {'a, b': 'source'},
+    );
+    Iterable<String> errors(ProviderEnums enums) => deriveExactlyOneSlots(
+      {'aws_thing': o},
+      {'aws_thing': def},
+      providerEnums: enums,
+      rawSchemas: const {},
+    ).nameErrors;
+    expect(errors(ProviderEnums.off), isEmpty);
+    expect(
+      errors(const ProviderEnums.on(exactlyOneGroups: {'aws_other': []})),
+      ['aws_thing sealedNames "a, b" matches no sealed group'],
+    );
   });
 
   test('deriveExactlyOneSlots seals a group of optional inputs', () {
@@ -259,13 +283,14 @@ void main() {
     );
   });
 
-  test('a group larger than maxExactlyOneMembers stays unsealed', () {
-    final names = [for (var i = 0; i < 17; i++) 'm$i'];
+  test('a group of any size seals, named by its human name', () {
+    final names = [for (var i = 0; i < 40; i++) 'feed$i'];
     final derived = deriveExactlyOneSlots(
       {
-        'aws_thing': const WrapperOverride(
+        'aws_thing': WrapperOverride(
           outputDir: 'thing',
           deriveExactlyOne: true,
+          sealedNames: {names.reversed.join(', '): 'source'},
         ),
       },
       {
@@ -281,46 +306,230 @@ void main() {
       ),
       rawSchemas: const {},
     );
-    expect(derived.skipped, [
-      'aws_thing [${names.join(', ')}]: the group has 17 members, more '
-          'than 16 a sealed name joins',
-    ]);
-    expect(derived.overrides['aws_thing']!.customSlots, isNull);
+    expect(derived.skipped, isEmpty);
+    expect(derived.nameErrors, isEmpty);
+    expect(
+      derived.overrides['aws_thing']!.customSlots!['source']!.paramDeclaration,
+      'required ThingSource source',
+    );
+    expect(derived.names.single.name.source, SealedNameSource.human);
+  });
 
-    final specs = collectNestedTypes(
-      resourceBlock: {
-        'block_types': {
-          'settings': {
-            'nesting_mode': 'list',
-            'max_items': 1,
-            'block': {
-              'attributes': {
-                for (final n in names) n: {'type': 'string', 'optional': true},
+  group('sealed concept names', () {
+    test('derive from a shared prefix, suffix, or the whole block', () {
+      expect(deriveSealedConcept(['name', 'name_prefix']), 'name');
+      expect(
+        deriveSealedConcept(['content_base64', 'content_file']),
+        'content',
+      );
+      expect(
+        deriveSealedConcept(['mysql_source_config', 'oracle_source_config']),
+        'source_config',
+      );
+      expect(deriveSealedConcept(['public_key', 'public_keys']), 'public_key');
+      expect(
+        deriveSealedConcept(['ipv6_address_count', 'ipv6_addresses']),
+        'ipv6_address',
+      );
+      expect(
+        deriveSealedConcept(['size_in_bytes', 'size_in_megabytes']),
+        'size',
+      );
+      expect(deriveSealedConcept(['enable_x', 'enable_y']), isNull);
+      expect(deriveSealedConcept(['role_arn', 'user_arn']), isNull);
+      expect(deriveSealedConcept(['region', 'aws_region']), isNull);
+      expect(
+        deriveSealedConcept(['s3', 'gcs'], wholeBlockName: 'source'),
+        'source',
+      );
+      expect(deriveSealedConcept(['s3', 'gcs']), isNull);
+    });
+
+    test('a human name wins; a clash or a repeat is an error', () {
+      String? none(String _) => null;
+      expect(
+        resolveSealedName(
+          members: ['a', 'b'],
+          human: 'code',
+          derived: null,
+          clashes: none,
+        ),
+        (concept: 'code', source: SealedNameSource.human, error: null),
+      );
+      expect(
+        resolveSealedName(
+          members: ['a', 'b'],
+          human: null,
+          derived: 'code',
+          clashes: (c) => c == 'code' ? 'taken' : null,
+        ),
+        (concept: 'a_or_b', source: SealedNameSource.fallback, error: null),
+      );
+      expect(
+        resolveSealedName(
+          members: ['a', 'b'],
+          human: 'code',
+          derived: 'code',
+          clashes: none,
+        ).error,
+        contains('repeats the derived name'),
+      );
+      expect(
+        resolveSealedName(
+          members: ['a', 'b'],
+          human: 'code',
+          derived: null,
+          clashes: (_) => 'the slot code is taken',
+        ).error,
+        contains('the slot code is taken'),
+      );
+    });
+
+    test('group keys are member paths in any order', () {
+      expect(sealedGroupKey(' b ,a'), {'a', 'b'});
+      expect(
+        sealedGroupKeyOf(['settings'], ['y', 'x']),
+        'settings.x, settings.y',
+      );
+      expect(sealedGroupKeyOf(const [], ['b', 'a']), 'a, b');
+    });
+
+    test('a nested group takes its human name from the block', () {
+      final specs = collectNestedTypes(
+        resourceBlock: {
+          'block_types': {
+            'settings': {
+              'nesting_mode': 'list',
+              'max_items': 1,
+              'block': {
+                'attributes': {
+                  'x': {'type': 'string', 'optional': true},
+                  'y': {'type': 'string', 'optional': true},
+                  'z': {'type': 'string', 'optional': true},
+                },
               },
             },
           },
         },
-      },
-      resourcePrefix: 'Thing',
-      customSlotKeys: const {},
-      excludedPaths: const {},
-      exactlyOneGroups: {
-        'settings': [names],
-      },
-    );
-    expect(
-      renderNestedTypes(specs, resourceTerraformType: 'aws_thing'),
-      isNot(contains('sealed class')),
-    );
-    expect(
-      unsealedNestedGroups(specs, {
-        'settings': [names],
-      }),
-      [
-        'settings [${names.join(', ')}]: the group has 17 members, more '
-            'than 16 a sealed name joins',
-      ],
-    );
+        resourcePrefix: 'Thing',
+        customSlotKeys: const {},
+        excludedPaths: const {},
+        exactlyOneGroups: {
+          'settings': [
+            ['x', 'y'],
+          ],
+        },
+        sealedNames: {'settings.y, settings.x': 'target'},
+      );
+      final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
+      expect(src, contains('final ThingSettingsTarget target;'));
+      expect(src, contains('const factory ThingSettingsTarget.x('));
+      expect(nestedSealedNames(specs), [
+        (
+          key: 'settings.x, settings.y',
+          concept: 'target',
+          source: SealedNameSource.human,
+          derived: null,
+          error: null,
+        ),
+      ]);
+    });
+
+    test('a nested name clashes with a sealed type another block chose', () {
+      final specs = collectNestedTypes(
+        resourceBlock: {
+          'block_types': {
+            'foo': {
+              'nesting_mode': 'list',
+              'max_items': 1,
+              'block': {
+                'attributes': {
+                  'p': {'type': 'string', 'optional': true},
+                  'q': {'type': 'string', 'optional': true},
+                },
+                'block_types': {
+                  'bar': {
+                    'nesting_mode': 'list',
+                    'max_items': 1,
+                    'block': {
+                      'attributes': {
+                        'r': {'type': 'string', 'optional': true},
+                        's': {'type': 'string', 'optional': true},
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        resourcePrefix: 'Thing',
+        customSlotKeys: const {},
+        excludedPaths: const {},
+        exactlyOneGroups: {
+          'foo': [
+            ['p', 'q'],
+          ],
+          'foo.bar': [
+            ['r', 's'],
+          ],
+        },
+        sealedNames: {
+          'foo.p, foo.q': 'bar_match',
+          'foo.bar.r, foo.bar.s': 'match',
+        },
+      );
+      final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
+      expect(
+        RegExp(r'sealed class ThingFooBarMatch\b').allMatches(src),
+        hasLength(1),
+      );
+      final child = nestedSealedNames(
+        specs,
+      ).singleWhere((n) => n.key == 'foo.bar.r, foo.bar.s');
+      expect(child.concept, 'r_or_s');
+      expect(child.error, contains('ThingFooBarMatch'));
+    });
+
+    test('a shared helper takes its name from any copy', () {
+      Map<String, dynamic> settings() => {
+        'nesting_mode': 'list',
+        'max_items': 1,
+        'block': {
+          'attributes': {
+            'x': {'type': 'string', 'optional': true},
+            'y': {'type': 'string', 'optional': true},
+            'z': {'type': 'string', 'optional': true},
+          },
+        },
+      };
+      final specs = collectNestedTypes(
+        resourceBlock: {
+          'block_types': {'one': settings(), 'two': settings()},
+        },
+        resourcePrefix: 'Thing',
+        customSlotKeys: const {},
+        excludedPaths: const {},
+        shareIdenticalShapes: true,
+        exactlyOneGroups: const {
+          'one': [
+            ['x', 'y'],
+          ],
+          'two': [
+            ['x', 'y'],
+          ],
+        },
+        sealedNames: {'two.x, two.y': 'target'},
+      );
+      expect(
+        renderNestedTypes(specs, resourceTerraformType: 'aws_thing'),
+        contains(' target;'),
+      );
+      expect(
+        nestedSealedKeys(specs),
+        containsAll(['one.x, one.y', 'two.x, two.y']),
+      );
+    });
   });
 
   test('unsealedNestedGroups follows shared helpers to every copy', () {

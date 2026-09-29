@@ -13,9 +13,9 @@ export 'src/redshift/aws_redshift_cluster.dart'
         RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoManageMasterPassword,
         RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword,
         RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo,
-        RedshiftClusterSnapshotArnOrSnapshotIdentifier,
-        RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotArn,
-        RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotIdentifier;
+        RedshiftClusterSnapshot,
+        RedshiftClusterSnapshotSnapshotArn,
+        RedshiftClusterSnapshotSnapshotIdentifier;
 export 'src/redshift/aws_redshift_cluster_iam_roles.dart'
     show AwsRedshiftClusterIamRoles;
 export 'src/redshift/aws_redshift_cluster_snapshot.dart'
@@ -75,11 +75,11 @@ export 'src/redshift/aws_redshift_scheduled_action.dart'
     show
         AwsRedshiftScheduledAction,
         RedshiftScheduledActionTargetAction,
+        RedshiftScheduledActionTargetActionCluster,
+        RedshiftScheduledActionTargetActionClusterPauseCluster,
+        RedshiftScheduledActionTargetActionClusterResizeCluster,
+        RedshiftScheduledActionTargetActionClusterResumeCluster,
         RedshiftScheduledActionTargetActionPauseCluster,
-        RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeCluster,
-        RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterPauseCluster,
-        RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterResizeCluster,
-        RedshiftScheduledActionTargetActionPauseClusterOrResizeClusterOrResumeClusterResumeCluster,
         RedshiftScheduledActionTargetActionResizeCluster,
         RedshiftScheduledActionTargetActionResumeCluster;
 export 'src/redshift/aws_redshift_snapshot_copy.dart'
@@ -89,9 +89,9 @@ export 'src/redshift/aws_redshift_snapshot_copy_grant.dart'
 export 'src/redshift/aws_redshift_snapshot_schedule.dart'
     show
         AwsRedshiftSnapshotSchedule,
-        RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix,
-        RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifier,
-        RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifierPrefix;
+        RedshiftSnapshotScheduleIdentifier,
+        RedshiftSnapshotScheduleIdentifierIdentifier,
+        RedshiftSnapshotScheduleIdentifierIdentifierPrefix;
 export 'src/redshift/aws_redshift_snapshot_schedule_association.dart'
     show AwsRedshiftSnapshotScheduleAssociation;
 export 'src/redshift/aws_redshift_subnet_group.dart'

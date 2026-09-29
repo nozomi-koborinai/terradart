@@ -100,7 +100,7 @@ final class AwsEcsExpressStack extends Stack {
 
     final logs = AwsCloudwatchLogGroup(
       localName: 'server',
-      nameOrNamePrefix: .name(TfArg.literal('/ecs/$_name')),
+      name: .name(TfArg.literal('/ecs/$_name')),
       retentionInDays: TfArg.literal(14),
     );
     add(logs);
@@ -168,7 +168,7 @@ final class AwsEcsExpressStack extends Stack {
     addData(trust);
     final role = AwsIamRole(
       localName: localName,
-      nameOrNamePrefix: .name(TfArg.literal(name)),
+      name: .name(TfArg.literal(name)),
       assumeRolePolicy: TfArg.ref(trust.json),
     );
     add(role);

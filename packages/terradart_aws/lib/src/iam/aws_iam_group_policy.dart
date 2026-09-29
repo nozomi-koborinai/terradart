@@ -11,17 +11,16 @@ const Set<String> _awsIamGroupPolicySensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class IamGroupPolicyNameOrNamePrefix {
-  const IamGroupPolicyNameOrNamePrefix();
+sealed class IamGroupPolicyName {
+  const IamGroupPolicyName();
 
   /// Sets `name`.
-  const factory IamGroupPolicyNameOrNamePrefix.name(TfArg<String> name) =
-      IamGroupPolicyNameOrNamePrefixName;
+  const factory IamGroupPolicyName.name(TfArg<String> name) =
+      IamGroupPolicyNameName;
 
   /// Sets `name_prefix`.
-  const factory IamGroupPolicyNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = IamGroupPolicyNameOrNamePrefixNamePrefix;
+  const factory IamGroupPolicyName.namePrefix(TfArg<String> namePrefix) =
+      IamGroupPolicyNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class IamGroupPolicyNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [IamGroupPolicyNameOrNamePrefix.name] choice: sets `name`.
-final class IamGroupPolicyNameOrNamePrefixName
-    extends IamGroupPolicyNameOrNamePrefix {
-  const IamGroupPolicyNameOrNamePrefixName(this.name);
+/// The [IamGroupPolicyName.name] choice: sets `name`.
+final class IamGroupPolicyNameName extends IamGroupPolicyName {
+  const IamGroupPolicyNameName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +48,9 @@ final class IamGroupPolicyNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [IamGroupPolicyNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class IamGroupPolicyNameOrNamePrefixNamePrefix
-    extends IamGroupPolicyNameOrNamePrefix {
-  const IamGroupPolicyNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [IamGroupPolicyName.namePrefix] choice: sets `name_prefix`.
+final class IamGroupPolicyNameNamePrefix extends IamGroupPolicyName {
+  const IamGroupPolicyNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -74,7 +71,7 @@ final class AwsIamGroupPolicy extends Resource {
   AwsIamGroupPolicy({
     required super.localName,
     required TfArg<String> group,
-    IamGroupPolicyNameOrNamePrefix? nameOrNamePrefix,
+    IamGroupPolicyName? name,
     required TfArg<String> policy,
     super.lifecycle,
     super.dependsOn,
@@ -82,11 +79,7 @@ final class AwsIamGroupPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {
-           'group': group,
-           ...?nameOrNamePrefix?.argMap,
-           'policy': policy,
-         },
+         argMap: {'group': group, ...?name?.argMap, 'policy': policy},
        );
 
   @override

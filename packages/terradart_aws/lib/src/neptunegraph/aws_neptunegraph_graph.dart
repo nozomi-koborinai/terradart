@@ -12,18 +12,17 @@ const Set<String> _awsNeptunegraphGraphSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.graphName(...)`.
-sealed class NeptunegraphGraphGraphNameOrGraphNamePrefix {
-  const NeptunegraphGraphGraphNameOrGraphNamePrefix();
+sealed class NeptunegraphGraphGraphName {
+  const NeptunegraphGraphGraphName();
 
   /// Sets `graph_name`.
-  const factory NeptunegraphGraphGraphNameOrGraphNamePrefix.graphName(
-    TfArg<String> graphName,
-  ) = NeptunegraphGraphGraphNameOrGraphNamePrefixGraphName;
+  const factory NeptunegraphGraphGraphName.graphName(TfArg<String> graphName) =
+      NeptunegraphGraphGraphNameGraphName;
 
   /// Sets `graph_name_prefix`.
-  const factory NeptunegraphGraphGraphNameOrGraphNamePrefix.graphNamePrefix(
+  const factory NeptunegraphGraphGraphName.graphNamePrefix(
     TfArg<String> graphNamePrefix,
-  ) = NeptunegraphGraphGraphNameOrGraphNamePrefixGraphNamePrefix;
+  ) = NeptunegraphGraphGraphNameGraphNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,10 +34,10 @@ sealed class NeptunegraphGraphGraphNameOrGraphNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NeptunegraphGraphGraphNameOrGraphNamePrefix.graphName] choice: sets `graph_name`.
-final class NeptunegraphGraphGraphNameOrGraphNamePrefixGraphName
-    extends NeptunegraphGraphGraphNameOrGraphNamePrefix {
-  const NeptunegraphGraphGraphNameOrGraphNamePrefixGraphName(this.graphName);
+/// The [NeptunegraphGraphGraphName.graphName] choice: sets `graph_name`.
+final class NeptunegraphGraphGraphNameGraphName
+    extends NeptunegraphGraphGraphName {
+  const NeptunegraphGraphGraphNameGraphName(this.graphName);
 
   final TfArg<String> graphName;
 
@@ -52,12 +51,10 @@ final class NeptunegraphGraphGraphNameOrGraphNamePrefixGraphName
   Map<String, TfArg<Object?>> get argMap => {'graph_name': graphName};
 }
 
-/// The [NeptunegraphGraphGraphNameOrGraphNamePrefix.graphNamePrefix] choice: sets `graph_name_prefix`.
-final class NeptunegraphGraphGraphNameOrGraphNamePrefixGraphNamePrefix
-    extends NeptunegraphGraphGraphNameOrGraphNamePrefix {
-  const NeptunegraphGraphGraphNameOrGraphNamePrefixGraphNamePrefix(
-    this.graphNamePrefix,
-  );
+/// The [NeptunegraphGraphGraphName.graphNamePrefix] choice: sets `graph_name_prefix`.
+final class NeptunegraphGraphGraphNameGraphNamePrefix
+    extends NeptunegraphGraphGraphName {
+  const NeptunegraphGraphGraphNameGraphNamePrefix(this.graphNamePrefix);
 
   final TfArg<String> graphNamePrefix;
 
@@ -98,7 +95,7 @@ final class AwsNeptunegraphGraph extends Resource {
   AwsNeptunegraphGraph({
     required super.localName,
     TfArg<bool>? deletionProtection,
-    NeptunegraphGraphGraphNameOrGraphNamePrefix? graphNameOrGraphNamePrefix,
+    NeptunegraphGraphGraphName? graphName,
     TfArg<String>? kmsKeyIdentifier,
     required TfArg<num> provisionedMemory,
     TfArg<bool>? publicConnectivity,
@@ -115,7 +112,7 @@ final class AwsNeptunegraphGraph extends Resource {
          argMap: {
            if (deletionProtection != null)
              'deletion_protection': deletionProtection,
-           ...?graphNameOrGraphNamePrefix?.argMap,
+           ...?graphName?.argMap,
            if (kmsKeyIdentifier != null) 'kms_key_identifier': kmsKeyIdentifier,
            'provisioned_memory': provisionedMemory,
            if (publicConnectivity != null)

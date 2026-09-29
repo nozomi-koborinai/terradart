@@ -12,12 +12,11 @@ export 'src/emr/aws_emr_cluster.dart'
         AwsEmrCluster,
         EmrClusterAutoTerminationPolicy,
         EmrClusterBootstrapAction,
-        EmrClusterConfigurationsOrConfigurationsJson,
-        EmrClusterConfigurationsOrConfigurationsJsonConfigurations,
-        EmrClusterConfigurationsOrConfigurationsJsonConfigurationsJson,
+        EmrClusterConfigurations,
+        EmrClusterConfigurationsConfigurations,
+        EmrClusterConfigurationsConfigurationsJson,
         EmrClusterCoreInstanceFleet,
         EmrClusterCoreInstanceFleetInstanceTypeConfigs,
-        EmrClusterCoreInstanceFleetInstanceTypeConfigsConfigurations,
         EmrClusterCoreInstanceFleetInstanceTypeConfigsEbsConfig,
         EmrClusterCoreInstanceFleetLaunchSpecifications,
         EmrClusterCoreInstanceFleetLaunchSpecificationsOnDemandSpecification,
@@ -25,14 +24,13 @@ export 'src/emr/aws_emr_cluster.dart'
         EmrClusterCoreInstanceGroup,
         EmrClusterCoreInstanceGroupEbsConfig,
         EmrClusterEc2Attributes,
-        EmrClusterEc2AttributesSubnetIdOrSubnetIds,
-        EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetId,
-        EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetIds,
+        EmrClusterEc2AttributesSubnetId,
+        EmrClusterEc2AttributesSubnetIdSubnetId,
+        EmrClusterEc2AttributesSubnetIdSubnetIds,
         EmrClusterKerberosAttributes,
         EmrClusterListStepsStates,
         EmrClusterMasterInstanceFleet,
         EmrClusterMasterInstanceFleetInstanceTypeConfigs,
-        EmrClusterMasterInstanceFleetInstanceTypeConfigsConfigurations,
         EmrClusterMasterInstanceFleetInstanceTypeConfigsEbsConfig,
         EmrClusterMasterInstanceFleetLaunchSpecifications,
         EmrClusterMasterInstanceFleetLaunchSpecificationsOnDemandSpecification,
@@ -63,14 +61,14 @@ export 'src/emr/aws_emr_managed_scaling_policy.dart'
 export 'src/emr/aws_emr_security_configuration.dart'
     show
         AwsEmrSecurityConfiguration,
-        EmrSecurityConfigurationNameOrNamePrefix,
-        EmrSecurityConfigurationNameOrNamePrefixName,
-        EmrSecurityConfigurationNameOrNamePrefixNamePrefix;
+        EmrSecurityConfigurationName,
+        EmrSecurityConfigurationNameName,
+        EmrSecurityConfigurationNameNamePrefix;
 export 'src/emr/aws_emr_studio.dart' show AwsEmrStudio, EmrStudioAuthMode;
 export 'src/emr/aws_emr_studio_session_mapping.dart'
     show
         AwsEmrStudioSessionMapping,
-        EmrStudioSessionMappingIdentityIdOrIdentityName,
-        EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityId,
-        EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityName,
+        EmrStudioSessionMappingIdentity,
+        EmrStudioSessionMappingIdentityIdentityId,
+        EmrStudioSessionMappingIdentityIdentityName,
         EmrStudioSessionMappingIdentityType;

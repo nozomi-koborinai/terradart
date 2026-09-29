@@ -31,17 +31,15 @@ enum Wafv2IpSetScope implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class Wafv2IpSetNameOrNamePrefix {
-  const Wafv2IpSetNameOrNamePrefix();
+sealed class Wafv2IpSetName {
+  const Wafv2IpSetName();
 
   /// Sets `name`.
-  const factory Wafv2IpSetNameOrNamePrefix.name(TfArg<String> name) =
-      Wafv2IpSetNameOrNamePrefixName;
+  const factory Wafv2IpSetName.name(TfArg<String> name) = Wafv2IpSetNameName;
 
   /// Sets `name_prefix`.
-  const factory Wafv2IpSetNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = Wafv2IpSetNameOrNamePrefixNamePrefix;
+  const factory Wafv2IpSetName.namePrefix(TfArg<String> namePrefix) =
+      Wafv2IpSetNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -53,9 +51,9 @@ sealed class Wafv2IpSetNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Wafv2IpSetNameOrNamePrefix.name] choice: sets `name`.
-final class Wafv2IpSetNameOrNamePrefixName extends Wafv2IpSetNameOrNamePrefix {
-  const Wafv2IpSetNameOrNamePrefixName(this.name);
+/// The [Wafv2IpSetName.name] choice: sets `name`.
+final class Wafv2IpSetNameName extends Wafv2IpSetName {
+  const Wafv2IpSetNameName(this.name);
 
   final TfArg<String> name;
 
@@ -69,10 +67,9 @@ final class Wafv2IpSetNameOrNamePrefixName extends Wafv2IpSetNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [Wafv2IpSetNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class Wafv2IpSetNameOrNamePrefixNamePrefix
-    extends Wafv2IpSetNameOrNamePrefix {
-  const Wafv2IpSetNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [Wafv2IpSetName.namePrefix] choice: sets `name_prefix`.
+final class Wafv2IpSetNameNamePrefix extends Wafv2IpSetName {
+  const Wafv2IpSetNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -95,7 +92,7 @@ final class AwsWafv2IpSet extends Resource {
     TfArg<List<String>>? addresses,
     TfArg<String>? description,
     required TfArg<Wafv2IpSetIpAddressVersion> ipAddressVersion,
-    Wafv2IpSetNameOrNamePrefix? nameOrNamePrefix,
+    Wafv2IpSetName? name,
     TfArg<String>? region,
     required TfArg<Wafv2IpSetScope> scope,
     TfArg<Map<String, String>>? tags,
@@ -109,7 +106,7 @@ final class AwsWafv2IpSet extends Resource {
            if (addresses != null) 'addresses': addresses,
            if (description != null) 'description': description,
            'ip_address_version': ipAddressVersion,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            'scope': scope,
            if (tags != null) 'tags': tags,

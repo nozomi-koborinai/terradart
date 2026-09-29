@@ -11,18 +11,18 @@ const Set<String> _awsEc2SecondarySubnetSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.availabilityZone(...)`.
-sealed class Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId {
-  const Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId();
+sealed class Ec2SecondarySubnetAvailabilityZone {
+  const Ec2SecondarySubnetAvailabilityZone();
 
   /// Sets `availability_zone`.
-  const factory Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId.availabilityZone(
+  const factory Ec2SecondarySubnetAvailabilityZone.availabilityZone(
     TfArg<String> availabilityZone,
-  ) = Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZone;
+  ) = Ec2SecondarySubnetAvailabilityZoneAvailabilityZone;
 
   /// Sets `availability_zone_id`.
-  const factory Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId.availabilityZoneId(
+  const factory Ec2SecondarySubnetAvailabilityZone.availabilityZoneId(
     TfArg<String> availabilityZoneId,
-  ) = Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZoneId;
+  ) = Ec2SecondarySubnetAvailabilityZoneAvailabilityZoneId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +34,10 @@ sealed class Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId.availabilityZone] choice: sets `availability_zone`.
-final class Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZone
-    extends Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId {
-  const Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZone(
+/// The [Ec2SecondarySubnetAvailabilityZone.availabilityZone] choice: sets `availability_zone`.
+final class Ec2SecondarySubnetAvailabilityZoneAvailabilityZone
+    extends Ec2SecondarySubnetAvailabilityZone {
+  const Ec2SecondarySubnetAvailabilityZoneAvailabilityZone(
     this.availabilityZone,
   );
 
@@ -57,10 +57,10 @@ final class Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZo
   };
 }
 
-/// The [Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId.availabilityZoneId] choice: sets `availability_zone_id`.
-final class Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZoneId
-    extends Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId {
-  const Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneIdAvailabilityZoneId(
+/// The [Ec2SecondarySubnetAvailabilityZone.availabilityZoneId] choice: sets `availability_zone_id`.
+final class Ec2SecondarySubnetAvailabilityZoneAvailabilityZoneId
+    extends Ec2SecondarySubnetAvailabilityZone {
+  const Ec2SecondarySubnetAvailabilityZoneAvailabilityZoneId(
     this.availabilityZoneId,
   );
 
@@ -86,8 +86,7 @@ final class AwsEc2SecondarySubnet extends Resource {
 
   AwsEc2SecondarySubnet({
     required super.localName,
-    Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId?
-    availabilityZoneOrAvailabilityZoneId,
+    Ec2SecondarySubnetAvailabilityZone? availabilityZone,
     required TfArg<String> ipv4CidrBlock,
     TfArg<String>? region,
     required TfArg<String> secondaryNetworkId,
@@ -99,7 +98,7 @@ final class AwsEc2SecondarySubnet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?availabilityZoneOrAvailabilityZoneId?.argMap,
+           ...?availabilityZone?.argMap,
            'ipv4_cidr_block': ipv4CidrBlock,
            if (region != null) 'region': region,
            'secondary_network_id': secondaryNetworkId,

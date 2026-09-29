@@ -11,18 +11,18 @@ const Set<String> _googleComputeRegionTargetHttpsProxySensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.certificateManagerCertificates(...)`.
-sealed class ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
-  const ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates();
+sealed class ComputeRegionTargetHttpsProxyCertificates {
+  const ComputeRegionTargetHttpsProxyCertificates();
 
   /// Sets `certificate_manager_certificates`.
-  const factory ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.certificateManagerCertificates(
+  const factory ComputeRegionTargetHttpsProxyCertificates.certificateManagerCertificates(
     TfArg<List<String>> certificateManagerCertificates,
-  ) = ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesCertificateManagerCertificates;
+  ) = ComputeRegionTargetHttpsProxyCertificatesCertificateManagerCertificates;
 
   /// Sets `ssl_certificates`.
-  const factory ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.sslCertificates(
+  const factory ComputeRegionTargetHttpsProxyCertificates.sslCertificates(
     TfArg<List<String>> sslCertificates,
-  ) = ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesSslCertificates;
+  ) = ComputeRegionTargetHttpsProxyCertificatesSslCertificates;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,11 +34,10 @@ sealed class ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCer
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.certificateManagerCertificates] choice: sets `certificate_manager_certificates`.
-final class ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesCertificateManagerCertificates
-    extends
-        ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
-  const ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesCertificateManagerCertificates(
+/// The [ComputeRegionTargetHttpsProxyCertificates.certificateManagerCertificates] choice: sets `certificate_manager_certificates`.
+final class ComputeRegionTargetHttpsProxyCertificatesCertificateManagerCertificates
+    extends ComputeRegionTargetHttpsProxyCertificates {
+  const ComputeRegionTargetHttpsProxyCertificatesCertificateManagerCertificates(
     this.certificateManagerCertificates,
   );
 
@@ -59,11 +58,10 @@ final class ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCert
   };
 }
 
-/// The [ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.sslCertificates] choice: sets `ssl_certificates`.
-final class ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesSslCertificates
-    extends
-        ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
-  const ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesSslCertificates(
+/// The [ComputeRegionTargetHttpsProxyCertificates.sslCertificates] choice: sets `ssl_certificates`.
+final class ComputeRegionTargetHttpsProxyCertificatesSslCertificates
+    extends ComputeRegionTargetHttpsProxyCertificates {
+  const ComputeRegionTargetHttpsProxyCertificatesSslCertificates(
     this.sslCertificates,
   );
 
@@ -174,8 +172,7 @@ final class GoogleComputeRegionTargetHttpsProxy extends Resource {
     required TfArg<String> name,
     required TfArg<String> urlMap,
     required TfArg<String> region,
-    ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates?
-    certificateManagerCertificatesOrSslCertificates,
+    ComputeRegionTargetHttpsProxyCertificates? certificates,
     TfArg<String>? sslPolicy,
     TfArg<String>? serverTlsPolicy,
     TfArg<num>? httpKeepAliveTimeoutSec,
@@ -191,7 +188,7 @@ final class GoogleComputeRegionTargetHttpsProxy extends Resource {
            'name': name,
            'url_map': urlMap,
            'region': region,
-           ...?certificateManagerCertificatesOrSslCertificates?.argMap,
+           ...?certificates?.argMap,
            if (sslPolicy != null) 'ssl_policy': sslPolicy,
            if (serverTlsPolicy != null) 'server_tls_policy': serverTlsPolicy,
            if (httpKeepAliveTimeoutSec != null)

@@ -11,18 +11,18 @@ const Set<String> _googleComputeVpnTunnelSensitive = <String>{'shared_secret'};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.peerExternalGateway(...)`.
-sealed class ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway {
-  const ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway();
+sealed class ComputeVpnTunnelPeer {
+  const ComputeVpnTunnelPeer();
 
   /// Sets `peer_external_gateway`.
-  const factory ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway.peerExternalGateway(
+  const factory ComputeVpnTunnelPeer.peerExternalGateway(
     TfArg<String> peerExternalGateway,
-  ) = ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerExternalGateway;
+  ) = ComputeVpnTunnelPeerPeerExternalGateway;
 
   /// Sets `peer_gcp_gateway`.
-  const factory ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway.peerGcpGateway(
+  const factory ComputeVpnTunnelPeer.peerGcpGateway(
     TfArg<String> peerGcpGateway,
-  ) = ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerGcpGateway;
+  ) = ComputeVpnTunnelPeerPeerGcpGateway;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,12 +34,10 @@ sealed class ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway.peerExternalGateway] choice: sets `peer_external_gateway`.
-final class ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerExternalGateway
-    extends ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway {
-  const ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerExternalGateway(
-    this.peerExternalGateway,
-  );
+/// The [ComputeVpnTunnelPeer.peerExternalGateway] choice: sets `peer_external_gateway`.
+final class ComputeVpnTunnelPeerPeerExternalGateway
+    extends ComputeVpnTunnelPeer {
+  const ComputeVpnTunnelPeerPeerExternalGateway(this.peerExternalGateway);
 
   final TfArg<String> peerExternalGateway;
 
@@ -57,12 +55,9 @@ final class ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerExternalGatew
   };
 }
 
-/// The [ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway.peerGcpGateway] choice: sets `peer_gcp_gateway`.
-final class ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerGcpGateway
-    extends ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway {
-  const ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerGcpGateway(
-    this.peerGcpGateway,
-  );
+/// The [ComputeVpnTunnelPeer.peerGcpGateway] choice: sets `peer_gcp_gateway`.
+final class ComputeVpnTunnelPeerPeerGcpGateway extends ComputeVpnTunnelPeer {
+  const ComputeVpnTunnelPeerPeerGcpGateway(this.peerGcpGateway);
 
   final TfArg<String> peerGcpGateway;
 
@@ -97,8 +92,7 @@ final class GoogleComputeVpnTunnel extends Resource {
     TfArg<String>? vpnGateway,
     TfArg<num>? vpnGatewayInterface,
     TfArg<String>? peerIp,
-    ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway?
-    peerExternalGatewayOrPeerGcpGateway,
+    ComputeVpnTunnelPeer? peer,
     TfArg<num>? peerExternalGatewayInterface,
     TfArg<String>? sharedSecret,
     TfArg<String>? sharedSecretWo,
@@ -125,7 +119,7 @@ final class GoogleComputeVpnTunnel extends Resource {
            if (vpnGatewayInterface != null)
              'vpn_gateway_interface': vpnGatewayInterface,
            if (peerIp != null) 'peer_ip': peerIp,
-           ...?peerExternalGatewayOrPeerGcpGateway?.argMap,
+           ...?peer?.argMap,
            if (peerExternalGatewayInterface != null)
              'peer_external_gateway_interface': peerExternalGatewayInterface,
            if (sharedSecret != null) 'shared_secret': sharedSecret,

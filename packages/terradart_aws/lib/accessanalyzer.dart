@@ -6,13 +6,13 @@ library;
 export 'src/accessanalyzer/aws_accessanalyzer_analyzer.dart'
     show
         AccessanalyzerAnalyzerConfiguration,
+        AccessanalyzerAnalyzerConfigurationAccess,
+        AccessanalyzerAnalyzerConfigurationAccessInternalAccess,
+        AccessanalyzerAnalyzerConfigurationAccessUnusedAccess,
         AccessanalyzerAnalyzerConfigurationInternalAccess,
         AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRule,
         AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusion,
         AccessanalyzerAnalyzerConfigurationInternalAccessAnalysisRuleInclusionResourceTypes,
-        AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess,
-        AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccessInternalAccess,
-        AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccessUnusedAccess,
         AccessanalyzerAnalyzerConfigurationUnusedAccess,
         AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRule,
         AccessanalyzerAnalyzerConfigurationUnusedAccessAnalysisRuleExclusion,

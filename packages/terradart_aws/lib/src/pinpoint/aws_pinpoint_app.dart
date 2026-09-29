@@ -12,17 +12,15 @@ const Set<String> _awsPinpointAppSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class PinpointAppNameOrNamePrefix {
-  const PinpointAppNameOrNamePrefix();
+sealed class PinpointAppName {
+  const PinpointAppName();
 
   /// Sets `name`.
-  const factory PinpointAppNameOrNamePrefix.name(TfArg<String> name) =
-      PinpointAppNameOrNamePrefixName;
+  const factory PinpointAppName.name(TfArg<String> name) = PinpointAppNameName;
 
   /// Sets `name_prefix`.
-  const factory PinpointAppNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = PinpointAppNameOrNamePrefixNamePrefix;
+  const factory PinpointAppName.namePrefix(TfArg<String> namePrefix) =
+      PinpointAppNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +32,9 @@ sealed class PinpointAppNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [PinpointAppNameOrNamePrefix.name] choice: sets `name`.
-final class PinpointAppNameOrNamePrefixName
-    extends PinpointAppNameOrNamePrefix {
-  const PinpointAppNameOrNamePrefixName(this.name);
+/// The [PinpointAppName.name] choice: sets `name`.
+final class PinpointAppNameName extends PinpointAppName {
+  const PinpointAppNameName(this.name);
 
   final TfArg<String> name;
 
@@ -51,10 +48,9 @@ final class PinpointAppNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [PinpointAppNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class PinpointAppNameOrNamePrefixNamePrefix
-    extends PinpointAppNameOrNamePrefix {
-  const PinpointAppNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [PinpointAppName.namePrefix] choice: sets `name_prefix`.
+final class PinpointAppNameNamePrefix extends PinpointAppName {
+  const PinpointAppNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -153,7 +149,7 @@ final class AwsPinpointApp extends Resource {
 
   AwsPinpointApp({
     required super.localName,
-    PinpointAppNameOrNamePrefix? nameOrNamePrefix,
+    PinpointAppName? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     PinpointAppCampaignHook? campaignHook,
@@ -166,7 +162,7 @@ final class AwsPinpointApp extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            if (campaignHook != null)

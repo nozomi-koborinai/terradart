@@ -46,18 +46,18 @@ enum FsxOntapFileSystemStorageType implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.throughputCapacity(...)`.
-sealed class FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair {
-  const FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair();
+sealed class FsxOntapFileSystemThroughputCapacity {
+  const FsxOntapFileSystemThroughputCapacity();
 
   /// Sets `throughput_capacity`.
-  const factory FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair.throughputCapacity(
+  const factory FsxOntapFileSystemThroughputCapacity.throughputCapacity(
     TfArg<num> throughputCapacity,
-  ) = FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThroughputCapacity;
+  ) = FsxOntapFileSystemThroughputCapacityThroughputCapacity;
 
   /// Sets `throughput_capacity_per_ha_pair`.
-  const factory FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair.throughputCapacityPerHaPair(
+  const factory FsxOntapFileSystemThroughputCapacity.throughputCapacityPerHaPair(
     TfArg<num> throughputCapacityPerHaPair,
-  ) = FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThroughputCapacityPerHaPair;
+  ) = FsxOntapFileSystemThroughputCapacityThroughputCapacityPerHaPair;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -69,10 +69,10 @@ sealed class FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair.throughputCapacity] choice: sets `throughput_capacity`.
-final class FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThroughputCapacity
-    extends FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair {
-  const FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThroughputCapacity(
+/// The [FsxOntapFileSystemThroughputCapacity.throughputCapacity] choice: sets `throughput_capacity`.
+final class FsxOntapFileSystemThroughputCapacityThroughputCapacity
+    extends FsxOntapFileSystemThroughputCapacity {
+  const FsxOntapFileSystemThroughputCapacityThroughputCapacity(
     this.throughputCapacity,
   );
 
@@ -92,10 +92,10 @@ final class FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThr
   };
 }
 
-/// The [FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair.throughputCapacityPerHaPair] choice: sets `throughput_capacity_per_ha_pair`.
-final class FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThroughputCapacityPerHaPair
-    extends FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair {
-  const FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPairThroughputCapacityPerHaPair(
+/// The [FsxOntapFileSystemThroughputCapacity.throughputCapacityPerHaPair] choice: sets `throughput_capacity_per_ha_pair`.
+final class FsxOntapFileSystemThroughputCapacityThroughputCapacityPerHaPair
+    extends FsxOntapFileSystemThroughputCapacity {
+  const FsxOntapFileSystemThroughputCapacityThroughputCapacityPerHaPair(
     this.throughputCapacityPerHaPair,
   );
 
@@ -163,8 +163,7 @@ final class AwsFsxOntapFileSystem extends Resource {
     TfArg<FsxOntapFileSystemStorageType>? storageType,
     required TfArg<List<String>> subnetIds,
     TfArg<Map<String, String>>? tags,
-    required FsxOntapFileSystemThroughputCapacityOrThroughputCapacityPerHaPair
-    throughputCapacityOrThroughputCapacityPerHaPair,
+    required FsxOntapFileSystemThroughputCapacity throughputCapacity,
     TfArg<String>? weeklyMaintenanceStartTime,
     FsxOntapFileSystemDiskIopsConfiguration? diskIopsConfiguration,
     super.lifecycle,
@@ -193,7 +192,7 @@ final class AwsFsxOntapFileSystem extends Resource {
            if (storageType != null) 'storage_type': storageType,
            'subnet_ids': subnetIds,
            if (tags != null) 'tags': tags,
-           ...throughputCapacityOrThroughputCapacityPerHaPair.argMap,
+           ...throughputCapacity.argMap,
            if (weeklyMaintenanceStartTime != null)
              'weekly_maintenance_start_time': weeklyMaintenanceStartTime,
            if (diskIopsConfiguration != null)

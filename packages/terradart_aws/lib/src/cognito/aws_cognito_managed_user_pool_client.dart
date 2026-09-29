@@ -54,18 +54,18 @@ enum CognitoManagedUserPoolClientPreventUserExistenceErrors
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.namePattern(...)`.
-sealed class CognitoManagedUserPoolClientNamePatternOrNamePrefix {
-  const CognitoManagedUserPoolClientNamePatternOrNamePrefix();
+sealed class CognitoManagedUserPoolClientName {
+  const CognitoManagedUserPoolClientName();
 
   /// Sets `name_pattern`.
-  const factory CognitoManagedUserPoolClientNamePatternOrNamePrefix.namePattern(
+  const factory CognitoManagedUserPoolClientName.namePattern(
     TfArg<String> namePattern,
-  ) = CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePattern;
+  ) = CognitoManagedUserPoolClientNameNamePattern;
 
   /// Sets `name_prefix`.
-  const factory CognitoManagedUserPoolClientNamePatternOrNamePrefix.namePrefix(
+  const factory CognitoManagedUserPoolClientName.namePrefix(
     TfArg<String> namePrefix,
-  ) = CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePrefix;
+  ) = CognitoManagedUserPoolClientNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -77,12 +77,10 @@ sealed class CognitoManagedUserPoolClientNamePatternOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CognitoManagedUserPoolClientNamePatternOrNamePrefix.namePattern] choice: sets `name_pattern`.
-final class CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePattern
-    extends CognitoManagedUserPoolClientNamePatternOrNamePrefix {
-  const CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePattern(
-    this.namePattern,
-  );
+/// The [CognitoManagedUserPoolClientName.namePattern] choice: sets `name_pattern`.
+final class CognitoManagedUserPoolClientNameNamePattern
+    extends CognitoManagedUserPoolClientName {
+  const CognitoManagedUserPoolClientNameNamePattern(this.namePattern);
 
   final TfArg<String> namePattern;
 
@@ -96,12 +94,10 @@ final class CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePattern
   Map<String, TfArg<Object?>> get argMap => {'name_pattern': namePattern};
 }
 
-/// The [CognitoManagedUserPoolClientNamePatternOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePrefix
-    extends CognitoManagedUserPoolClientNamePatternOrNamePrefix {
-  const CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePrefix(
-    this.namePrefix,
-  );
+/// The [CognitoManagedUserPoolClientName.namePrefix] choice: sets `name_prefix`.
+final class CognitoManagedUserPoolClientNameNamePrefix
+    extends CognitoManagedUserPoolClientName {
+  const CognitoManagedUserPoolClientNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -120,14 +116,14 @@ final class CognitoManagedUserPoolClientNamePatternOrNamePrefixNamePrefix
 @immutable
 final class CognitoManagedUserPoolClientAnalyticsConfiguration {
   const CognitoManagedUserPoolClientAnalyticsConfiguration({
-    required this.applicationArnOrApplicationId,
+    required this.application,
     this.externalId,
     this.roleArn,
     this.userDataShared,
   });
 
-  final CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId
-  applicationArnOrApplicationId;
+  final CognitoManagedUserPoolClientAnalyticsConfigurationApplication
+  application;
 
   final TfArg<String>? externalId;
 
@@ -136,7 +132,7 @@ final class CognitoManagedUserPoolClientAnalyticsConfiguration {
   final TfArg<bool>? userDataShared;
 
   Map<String, Object?> encode() => {
-    ...applicationArnOrApplicationId.encode(),
+    ...application.encode(),
     if (externalId != null) 'external_id': externalId!.toTfJson(),
     if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
     if (userDataShared != null) 'user_data_shared': userDataShared!.toTfJson(),
@@ -147,18 +143,18 @@ final class CognitoManagedUserPoolClientAnalyticsConfiguration {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.applicationArn(...)`.
-sealed class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
-  const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId();
+sealed class CognitoManagedUserPoolClientAnalyticsConfigurationApplication {
+  const CognitoManagedUserPoolClientAnalyticsConfigurationApplication();
 
   /// Sets `application_arn`.
-  const factory CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationArn(
+  const factory CognitoManagedUserPoolClientAnalyticsConfigurationApplication.applicationArn(
     TfArg<String> applicationArn,
-  ) = CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationArn;
+  ) = CognitoManagedUserPoolClientAnalyticsConfigurationApplicationApplicationArn;
 
   /// Sets `application_id`.
-  const factory CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationId(
+  const factory CognitoManagedUserPoolClientAnalyticsConfigurationApplication.applicationId(
     TfArg<String> applicationId,
-  ) = CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationId;
+  ) = CognitoManagedUserPoolClientAnalyticsConfigurationApplicationApplicationId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -166,11 +162,10 @@ sealed class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrA
   Map<String, Object?> encode();
 }
 
-/// The [CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationArn] choice: sets `application_arn`.
-final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationArn
-    extends
-        CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
-  const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationArn(
+/// The [CognitoManagedUserPoolClientAnalyticsConfigurationApplication.applicationArn] choice: sets `application_arn`.
+final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationApplicationArn
+    extends CognitoManagedUserPoolClientAnalyticsConfigurationApplication {
+  const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationApplicationArn(
     this.applicationArn,
   );
 
@@ -185,11 +180,10 @@ final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrAp
   };
 }
 
-/// The [CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationId] choice: sets `application_id`.
-final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationId
-    extends
-        CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
-  const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationId(
+/// The [CognitoManagedUserPoolClientAnalyticsConfigurationApplication.applicationId] choice: sets `application_id`.
+final class CognitoManagedUserPoolClientAnalyticsConfigurationApplicationApplicationId
+    extends CognitoManagedUserPoolClientAnalyticsConfigurationApplication {
+  const CognitoManagedUserPoolClientAnalyticsConfigurationApplicationApplicationId(
     this.applicationId,
   );
 
@@ -278,8 +272,7 @@ final class AwsCognitoManagedUserPoolClient extends Resource {
     explicitAuthFlows,
     TfArg<num>? idTokenValidity,
     TfArg<List<String>>? logoutUrls,
-    required CognitoManagedUserPoolClientNamePatternOrNamePrefix
-    namePatternOrNamePrefix,
+    required CognitoManagedUserPoolClientName name,
     TfArg<CognitoManagedUserPoolClientPreventUserExistenceErrors>?
     preventUserExistenceErrors,
     TfArg<List<String>>? readAttributes,
@@ -327,7 +320,7 @@ final class AwsCognitoManagedUserPoolClient extends Resource {
              ]),
            if (idTokenValidity != null) 'id_token_validity': idTokenValidity,
            if (logoutUrls != null) 'logout_urls': logoutUrls,
-           ...namePatternOrNamePrefix.argMap,
+           ...name.argMap,
            if (preventUserExistenceErrors != null)
              'prevent_user_existence_errors': preventUserExistenceErrors,
            if (readAttributes != null) 'read_attributes': readAttributes,

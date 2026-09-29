@@ -309,7 +309,7 @@ final class GkeonpremVmwareAdminClusterNetworkConfig {
     required this.podAddressCidrBlocks,
     required this.serviceAddressCidrBlocks,
     this.vcenterNetwork,
-    required this.staticIpConfigOrDhcpIpConfig,
+    required this.ipConfig,
     this.haControlPlaneConfig,
     this.hostConfig,
   });
@@ -320,8 +320,7 @@ final class GkeonpremVmwareAdminClusterNetworkConfig {
 
   final TfArg<String>? vcenterNetwork;
 
-  final GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig
-  staticIpConfigOrDhcpIpConfig;
+  final GkeonpremVmwareAdminClusterNetworkConfigIpConfig ipConfig;
 
   final GkeonpremVmwareAdminClusterNetworkConfigHaControlPlaneConfig?
   haControlPlaneConfig;
@@ -332,7 +331,7 @@ final class GkeonpremVmwareAdminClusterNetworkConfig {
     'pod_address_cidr_blocks': podAddressCidrBlocks.toTfJson(),
     'service_address_cidr_blocks': serviceAddressCidrBlocks.toTfJson(),
     if (vcenterNetwork != null) 'vcenter_network': vcenterNetwork!.toTfJson(),
-    ...staticIpConfigOrDhcpIpConfig.encode(),
+    ...ipConfig.encode(),
     if (haControlPlaneConfig != null)
       'ha_control_plane_config': haControlPlaneConfig!.encode(),
     if (hostConfig != null) 'host_config': hostConfig!.encode(),
@@ -343,18 +342,18 @@ final class GkeonpremVmwareAdminClusterNetworkConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.staticIpConfig(...)`.
-sealed class GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig {
-  const GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig();
+sealed class GkeonpremVmwareAdminClusterNetworkConfigIpConfig {
+  const GkeonpremVmwareAdminClusterNetworkConfigIpConfig();
 
   /// Sets `static_ip_config`.
-  const factory GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig.staticIpConfig(
+  const factory GkeonpremVmwareAdminClusterNetworkConfigIpConfig.staticIpConfig(
     GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfig staticIpConfig,
-  ) = GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfigStaticIpConfig;
+  ) = GkeonpremVmwareAdminClusterNetworkConfigIpConfigStaticIpConfig;
 
   /// Sets `dhcp_ip_config`.
-  const factory GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig.dhcpIpConfig(
+  const factory GkeonpremVmwareAdminClusterNetworkConfigIpConfig.dhcpIpConfig(
     GkeonpremVmwareAdminClusterNetworkConfigDhcpIpConfig dhcpIpConfig,
-  ) = GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfigDhcpIpConfig;
+  ) = GkeonpremVmwareAdminClusterNetworkConfigIpConfigDhcpIpConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -362,11 +361,10 @@ sealed class GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfi
   Map<String, Object?> encode();
 }
 
-/// The [GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig.staticIpConfig] choice: sets `static_ip_config`.
-final class GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfigStaticIpConfig
-    extends
-        GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig {
-  const GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfigStaticIpConfig(
+/// The [GkeonpremVmwareAdminClusterNetworkConfigIpConfig.staticIpConfig] choice: sets `static_ip_config`.
+final class GkeonpremVmwareAdminClusterNetworkConfigIpConfigStaticIpConfig
+    extends GkeonpremVmwareAdminClusterNetworkConfigIpConfig {
+  const GkeonpremVmwareAdminClusterNetworkConfigIpConfigStaticIpConfig(
     this.staticIpConfig,
   );
 
@@ -381,11 +379,10 @@ final class GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig
   };
 }
 
-/// The [GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig.dhcpIpConfig] choice: sets `dhcp_ip_config`.
-final class GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfigDhcpIpConfig
-    extends
-        GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig {
-  const GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfigDhcpIpConfig(
+/// The [GkeonpremVmwareAdminClusterNetworkConfigIpConfig.dhcpIpConfig] choice: sets `dhcp_ip_config`.
+final class GkeonpremVmwareAdminClusterNetworkConfigIpConfigDhcpIpConfig
+    extends GkeonpremVmwareAdminClusterNetworkConfigIpConfig {
+  const GkeonpremVmwareAdminClusterNetworkConfigIpConfigDhcpIpConfig(
     this.dhcpIpConfig,
   );
 

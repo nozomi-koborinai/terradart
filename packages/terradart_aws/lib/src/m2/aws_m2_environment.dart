@@ -34,29 +34,30 @@ final class M2EnvironmentHighAvailabilityConfig {
 /// `aws_m2_environment` (derived from provider schema).
 @immutable
 final class M2EnvironmentStorageConfiguration {
-  const M2EnvironmentStorageConfiguration({required this.efsOrFsx});
+  const M2EnvironmentStorageConfiguration({required this.storageConfiguration});
 
-  final M2EnvironmentStorageConfigurationEfsOrFsx efsOrFsx;
+  final M2EnvironmentStorageConfigurationStorageConfiguration
+  storageConfiguration;
 
-  Map<String, Object?> encode() => {...efsOrFsx.encode()};
+  Map<String, Object?> encode() => {...storageConfiguration.encode()};
 }
 
 /// Exactly one of `efs`, `fsx` on the `storage_configuration` block of `aws_m2_environment`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.efs(...)`.
-sealed class M2EnvironmentStorageConfigurationEfsOrFsx {
-  const M2EnvironmentStorageConfigurationEfsOrFsx();
+sealed class M2EnvironmentStorageConfigurationStorageConfiguration {
+  const M2EnvironmentStorageConfigurationStorageConfiguration();
 
   /// Sets `efs`.
-  const factory M2EnvironmentStorageConfigurationEfsOrFsx.efs(
+  const factory M2EnvironmentStorageConfigurationStorageConfiguration.efs(
     List<M2EnvironmentStorageConfigurationEfs> efs,
-  ) = M2EnvironmentStorageConfigurationEfsOrFsxEfs;
+  ) = M2EnvironmentStorageConfigurationStorageConfigurationEfs;
 
   /// Sets `fsx`.
-  const factory M2EnvironmentStorageConfigurationEfsOrFsx.fsx(
+  const factory M2EnvironmentStorageConfigurationStorageConfiguration.fsx(
     List<M2EnvironmentStorageConfigurationFsx> fsx,
-  ) = M2EnvironmentStorageConfigurationEfsOrFsxFsx;
+  ) = M2EnvironmentStorageConfigurationStorageConfigurationFsx;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -64,10 +65,10 @@ sealed class M2EnvironmentStorageConfigurationEfsOrFsx {
   Map<String, Object?> encode();
 }
 
-/// The [M2EnvironmentStorageConfigurationEfsOrFsx.efs] choice: sets `efs`.
-final class M2EnvironmentStorageConfigurationEfsOrFsxEfs
-    extends M2EnvironmentStorageConfigurationEfsOrFsx {
-  const M2EnvironmentStorageConfigurationEfsOrFsxEfs(this.efs);
+/// The [M2EnvironmentStorageConfigurationStorageConfiguration.efs] choice: sets `efs`.
+final class M2EnvironmentStorageConfigurationStorageConfigurationEfs
+    extends M2EnvironmentStorageConfigurationStorageConfiguration {
+  const M2EnvironmentStorageConfigurationStorageConfigurationEfs(this.efs);
 
   final List<M2EnvironmentStorageConfigurationEfs> efs;
 
@@ -80,10 +81,10 @@ final class M2EnvironmentStorageConfigurationEfsOrFsxEfs
   };
 }
 
-/// The [M2EnvironmentStorageConfigurationEfsOrFsx.fsx] choice: sets `fsx`.
-final class M2EnvironmentStorageConfigurationEfsOrFsxFsx
-    extends M2EnvironmentStorageConfigurationEfsOrFsx {
-  const M2EnvironmentStorageConfigurationEfsOrFsxFsx(this.fsx);
+/// The [M2EnvironmentStorageConfigurationStorageConfiguration.fsx] choice: sets `fsx`.
+final class M2EnvironmentStorageConfigurationStorageConfigurationFsx
+    extends M2EnvironmentStorageConfigurationStorageConfiguration {
+  const M2EnvironmentStorageConfigurationStorageConfigurationFsx(this.fsx);
 
   final List<M2EnvironmentStorageConfigurationFsx> fsx;
 

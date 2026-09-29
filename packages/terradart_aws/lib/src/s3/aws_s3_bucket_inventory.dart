@@ -100,12 +100,11 @@ enum S3BucketInventoryDestinationBucketFormat implements TerraformEnum {
 /// `aws_s3_bucket_inventory` (derived from provider schema).
 @immutable
 final class S3BucketInventoryDestinationBucketEncryption {
-  const S3BucketInventoryDestinationBucketEncryption({this.sseKmsOrSseS3});
+  const S3BucketInventoryDestinationBucketEncryption({this.sse});
 
-  final S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3?
-  sseKmsOrSseS3;
+  final S3BucketInventoryDestinationBucketEncryptionSse? sse;
 
-  Map<String, Object?> encode() => {...?sseKmsOrSseS3?.encode()};
+  Map<String, Object?> encode() => {...?sse?.encode()};
 }
 
 /// At most one of `sse_kms`, `sse_s3` on the `destination.bucket.encryption` block of `aws_s3_bucket_inventory`: the provider rejects
@@ -113,18 +112,18 @@ final class S3BucketInventoryDestinationBucketEncryption {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.sseKms(...)`.
-sealed class S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3 {
-  const S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3();
+sealed class S3BucketInventoryDestinationBucketEncryptionSse {
+  const S3BucketInventoryDestinationBucketEncryptionSse();
 
   /// Sets `sse_kms`.
-  const factory S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3.sseKms(
+  const factory S3BucketInventoryDestinationBucketEncryptionSse.sseKms(
     S3BucketInventoryDestinationBucketEncryptionSseKms sseKms,
-  ) = S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3SseKms;
+  ) = S3BucketInventoryDestinationBucketEncryptionSseSseKms;
 
   /// Sets `sse_s3`.
-  const factory S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3.sseS3(
+  const factory S3BucketInventoryDestinationBucketEncryptionSse.sseS3(
     S3BucketInventoryDestinationBucketEncryptionSseS3 sseS3,
-  ) = S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3SseS3;
+  ) = S3BucketInventoryDestinationBucketEncryptionSseSseS3;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -132,12 +131,10 @@ sealed class S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3 {
   Map<String, Object?> encode();
 }
 
-/// The [S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3.sseKms] choice: sets `sse_kms`.
-final class S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3SseKms
-    extends S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3 {
-  const S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3SseKms(
-    this.sseKms,
-  );
+/// The [S3BucketInventoryDestinationBucketEncryptionSse.sseKms] choice: sets `sse_kms`.
+final class S3BucketInventoryDestinationBucketEncryptionSseSseKms
+    extends S3BucketInventoryDestinationBucketEncryptionSse {
+  const S3BucketInventoryDestinationBucketEncryptionSseSseKms(this.sseKms);
 
   final S3BucketInventoryDestinationBucketEncryptionSseKms sseKms;
 
@@ -148,12 +145,10 @@ final class S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3SseKms
   Map<String, Object?> encode() => {'sse_kms': sseKms.encode()};
 }
 
-/// The [S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3.sseS3] choice: sets `sse_s3`.
-final class S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3SseS3
-    extends S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3 {
-  const S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3SseS3(
-    this.sseS3,
-  );
+/// The [S3BucketInventoryDestinationBucketEncryptionSse.sseS3] choice: sets `sse_s3`.
+final class S3BucketInventoryDestinationBucketEncryptionSseSseS3
+    extends S3BucketInventoryDestinationBucketEncryptionSse {
+  const S3BucketInventoryDestinationBucketEncryptionSseSseS3(this.sseS3);
 
   final S3BucketInventoryDestinationBucketEncryptionSseS3 sseS3;
 

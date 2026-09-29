@@ -69,7 +69,7 @@ final class PrivilegedAccessManagerStack extends Stack {
         ),
         requesterJustificationConfig:
             const PrivilegedAccessManagerEntitlementRequesterJustificationConfig(
-              notMandatoryOrUnstructured: .unstructured(
+              requesterJustificationConfig: .unstructured(
                 PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured(),
               ),
             ),

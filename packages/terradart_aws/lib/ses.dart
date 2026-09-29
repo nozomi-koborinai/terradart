@@ -22,11 +22,11 @@ export 'src/ses/aws_ses_event_destination.dart'
     show
         AwsSesEventDestination,
         SesEventDestinationCloudwatchDestination,
-        SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination,
-        SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestinationCloudwatchDestination,
-        SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestinationKinesisDestination,
-        SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestinationSnsDestination,
         SesEventDestinationCloudwatchDestinationValueSource,
+        SesEventDestinationDestination,
+        SesEventDestinationDestinationCloudwatchDestination,
+        SesEventDestinationDestinationKinesisDestination,
+        SesEventDestinationDestinationSnsDestination,
         SesEventDestinationKinesisDestination,
         SesEventDestinationMatchingTypes,
         SesEventDestinationSnsDestination;

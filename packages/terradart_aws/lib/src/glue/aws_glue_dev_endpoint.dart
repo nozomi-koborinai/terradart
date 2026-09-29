@@ -26,18 +26,17 @@ enum GlueDevEndpointWorkerType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.publicKey(...)`.
-sealed class GlueDevEndpointPublicKeyOrPublicKeys {
-  const GlueDevEndpointPublicKeyOrPublicKeys();
+sealed class GlueDevEndpointPublicKey {
+  const GlueDevEndpointPublicKey();
 
   /// Sets `public_key`.
-  const factory GlueDevEndpointPublicKeyOrPublicKeys.publicKey(
-    TfArg<String> publicKey,
-  ) = GlueDevEndpointPublicKeyOrPublicKeysPublicKey;
+  const factory GlueDevEndpointPublicKey.publicKey(TfArg<String> publicKey) =
+      GlueDevEndpointPublicKeyPublicKey;
 
   /// Sets `public_keys`.
-  const factory GlueDevEndpointPublicKeyOrPublicKeys.publicKeys(
+  const factory GlueDevEndpointPublicKey.publicKeys(
     TfArg<List<String>> publicKeys,
-  ) = GlueDevEndpointPublicKeyOrPublicKeysPublicKeys;
+  ) = GlueDevEndpointPublicKeyPublicKeys;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -49,10 +48,9 @@ sealed class GlueDevEndpointPublicKeyOrPublicKeys {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [GlueDevEndpointPublicKeyOrPublicKeys.publicKey] choice: sets `public_key`.
-final class GlueDevEndpointPublicKeyOrPublicKeysPublicKey
-    extends GlueDevEndpointPublicKeyOrPublicKeys {
-  const GlueDevEndpointPublicKeyOrPublicKeysPublicKey(this.publicKey);
+/// The [GlueDevEndpointPublicKey.publicKey] choice: sets `public_key`.
+final class GlueDevEndpointPublicKeyPublicKey extends GlueDevEndpointPublicKey {
+  const GlueDevEndpointPublicKeyPublicKey(this.publicKey);
 
   final TfArg<String> publicKey;
 
@@ -66,10 +64,10 @@ final class GlueDevEndpointPublicKeyOrPublicKeysPublicKey
   Map<String, TfArg<Object?>> get argMap => {'public_key': publicKey};
 }
 
-/// The [GlueDevEndpointPublicKeyOrPublicKeys.publicKeys] choice: sets `public_keys`.
-final class GlueDevEndpointPublicKeyOrPublicKeysPublicKeys
-    extends GlueDevEndpointPublicKeyOrPublicKeys {
-  const GlueDevEndpointPublicKeyOrPublicKeysPublicKeys(this.publicKeys);
+/// The [GlueDevEndpointPublicKey.publicKeys] choice: sets `public_keys`.
+final class GlueDevEndpointPublicKeyPublicKeys
+    extends GlueDevEndpointPublicKey {
+  const GlueDevEndpointPublicKeyPublicKeys(this.publicKeys);
 
   final TfArg<List<String>> publicKeys;
 
@@ -96,7 +94,7 @@ final class AwsGlueDevEndpoint extends Resource {
     required TfArg<String> name,
     TfArg<num>? numberOfNodes,
     TfArg<num>? numberOfWorkers,
-    GlueDevEndpointPublicKeyOrPublicKeys? publicKeyOrPublicKeys,
+    GlueDevEndpointPublicKey? publicKey,
     TfArg<String>? region,
     required TfArg<String> roleArn,
     TfArg<String>? securityConfiguration,
@@ -119,7 +117,7 @@ final class AwsGlueDevEndpoint extends Resource {
            'name': name,
            if (numberOfNodes != null) 'number_of_nodes': numberOfNodes,
            if (numberOfWorkers != null) 'number_of_workers': numberOfWorkers,
-           ...?publicKeyOrPublicKeys?.argMap,
+           ...?publicKey?.argMap,
            if (region != null) 'region': region,
            'role_arn': roleArn,
            if (securityConfiguration != null)

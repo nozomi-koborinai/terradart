@@ -1,0 +1,339 @@
+# Sealed groups no rule names yet (terradart wrap).
+#
+# A group with no `sealedNames` entry and no derived name
+# (shared prefix / suffix, or its whole block) falls back to
+# its members joined with `Or`. `wrap` adds that group here
+# so a schema bump still merges; name it by adding
+# `sealedNames: {"<members>": <concept>}` to the override and
+# re-running wrap, which drops the entry. `wrap --check` fails
+# on a missing or stale entry.
+aws_acm_certificate:
+  "domain_name, private_key, private_key_wo": "awaiting-name: hashicorp/aws 6.66.0"
+aws_ami_launch_permission:
+  "account_id, group, organization_arn, organizational_unit_arn": "awaiting-name: hashicorp/aws 6.66.0"
+aws_appsync_resolver:
+  "data_source, pipeline_config": "awaiting-name: hashicorp/aws 6.66.0"
+aws_autoscaling_attachment:
+  "elb, lb_target_group_arn": "awaiting-name: hashicorp/aws 6.66.0"
+aws_autoscaling_group:
+  "availability_zones, vpc_zone_identifier": "awaiting-name: hashicorp/aws 6.66.0"
+  "launch_configuration, launch_template, mixed_instances_policy": "awaiting-name: hashicorp/aws 6.66.0"
+  "launch_template.id, launch_template.name": "awaiting-name: hashicorp/aws 6.66.0"
+aws_bedrockagent_agent_action_group:
+  "description, parent_action_group_signature": "awaiting-name: hashicorp/aws 6.66.0"
+aws_bedrockagent_prompt:
+  "variant.gen_ai_resource, variant.model_id": "awaiting-name: hashicorp/aws 6.66.0"
+aws_budgets_budget:
+  "cost_filter, filter_expression": "awaiting-name: hashicorp/aws 6.66.0"
+  "cost_types, metrics": "awaiting-name: hashicorp/aws 6.66.0"
+aws_cloudformation_stack_instances:
+  "accounts, deployment_targets": "awaiting-name: hashicorp/aws 6.66.0"
+aws_cloudformation_stack_set_instance:
+  "account_id, deployment_targets": "awaiting-name: hashicorp/aws 6.66.0"
+  "region, stack_set_instance_region": "awaiting-name: hashicorp/aws 6.66.0"
+aws_cloudhsm_v2_hsm:
+  "availability_zone, subnet_id": "awaiting-name: hashicorp/aws 6.66.0"
+aws_cloudtrail:
+  "advanced_event_selector, event_selector": "awaiting-name: hashicorp/aws 6.66.0"
+aws_cloudwatch_event_connection:
+  "auth_parameters.api_key, auth_parameters.basic, auth_parameters.oauth": "awaiting-name: hashicorp/aws 6.66.0"
+aws_cloudwatch_event_rule:
+  "is_enabled, state": "awaiting-name: hashicorp/aws 6.66.0"
+aws_cloudwatch_log_resource_policy:
+  "policy_name, resource_arn": "awaiting-name: hashicorp/aws 6.66.0"
+aws_cloudwatch_metric_alarm:
+  "evaluation_criteria, metric_name, metric_query": "awaiting-name: hashicorp/aws 6.66.0"
+  "extended_statistic, statistic": "awaiting-name: hashicorp/aws 6.66.0"
+aws_codebuild_webhook:
+  "branch_filter, filter_group": "awaiting-name: hashicorp/aws 6.66.0"
+aws_codeconnections_connection:
+  "host_arn, provider_type": "awaiting-name: hashicorp/aws 6.66.0"
+aws_codestarconnections_connection:
+  "host_arn, provider_type": "awaiting-name: hashicorp/aws 6.66.0"
+aws_cognito_managed_login_branding:
+  "settings, use_cognito_provided_values": "awaiting-name: hashicorp/aws 6.66.0"
+aws_cognito_user:
+  "password, temporary_password": "awaiting-name: hashicorp/aws 6.66.0"
+aws_comprehend_document_classifier:
+  "input_data_config.augmented_manifests, input_data_config.s3_uri": "awaiting-name: hashicorp/aws 6.66.0"
+aws_comprehend_entity_recognizer:
+  "input_data_config.annotations, input_data_config.entity_list": "awaiting-name: hashicorp/aws 6.66.0"
+  "input_data_config.augmented_manifests, input_data_config.documents": "awaiting-name: hashicorp/aws 6.66.0"
+aws_computeoptimizer_recommendation_preferences:
+  "preferred_resource.exclude_list, preferred_resource.include_list": "awaiting-name: hashicorp/aws 6.66.0"
+aws_config_aggregate_authorization:
+  "authorized_aws_region, region": "awaiting-name: hashicorp/aws 6.66.0"
+aws_connect_contact_flow:
+  "content, filename": "awaiting-name: hashicorp/aws 6.66.0"
+aws_connect_contact_flow_module:
+  "content, filename": "awaiting-name: hashicorp/aws 6.66.0"
+aws_db_instance:
+  "manage_master_user_password, password, password_wo": "awaiting-name: hashicorp/aws 6.66.0"
+aws_docdb_cluster:
+  "manage_master_user_password, master_password, master_password_wo": "awaiting-name: hashicorp/aws 6.66.0"
+  "restore_to_point_in_time, snapshot_identifier": "awaiting-name: hashicorp/aws 6.66.0"
+aws_docdb_global_cluster:
+  "engine, source_db_cluster_identifier": "awaiting-name: hashicorp/aws 6.66.0"
+aws_dynamodb_table:
+  "import_table, restore_backup_arn, restore_source_name, restore_source_table_arn": "awaiting-name: hashicorp/aws 6.66.0"
+aws_ebs_snapshot_import:
+  "disk_container.url, disk_container.user_bucket": "awaiting-name: hashicorp/aws 6.66.0"
+aws_ec2_client_vpn_authorization_rule:
+  "access_group_id, authorize_all_groups": "awaiting-name: hashicorp/aws 6.66.0"
+aws_ec2_traffic_mirror_target:
+  "gateway_load_balancer_endpoint_id, network_interface_id, network_load_balancer_arn": "awaiting-name: hashicorp/aws 6.66.0"
+aws_ecs_task_set:
+  "capacity_provider_strategy, launch_type": "awaiting-name: hashicorp/aws 6.66.0"
+aws_eip_association:
+  "instance_id, network_interface_id": "awaiting-name: hashicorp/aws 6.66.0"
+aws_eks_node_group:
+  "launch_template.id, launch_template.name": "awaiting-name: hashicorp/aws 6.66.0"
+aws_elastic_beanstalk_environment:
+  "platform_arn, solution_stack_name, template_name": "awaiting-name: hashicorp/aws 6.66.0"
+aws_elasticache_cluster:
+  "engine, replication_group_id": "awaiting-name: hashicorp/aws 6.66.0"
+aws_elasticache_replication_group:
+  "auth_token, auth_token_wo, user_group_ids": "awaiting-name: hashicorp/aws 6.66.0"
+  "node_group_configuration, preferred_cache_cluster_azs": "awaiting-name: hashicorp/aws 6.66.0"
+aws_flow_log:
+  "eni_id, regional_nat_gateway_id, subnet_id, transit_gateway_attachment_id, transit_gateway_id, vpc_id": "awaiting-name: hashicorp/aws 6.66.0"
+aws_fsx_windows_file_system:
+  "active_directory_id, self_managed_active_directory": "awaiting-name: hashicorp/aws 6.66.0"
+aws_gamelift_fleet:
+  "build_id, script_id": "awaiting-name: hashicorp/aws 6.66.0"
+aws_gamelift_game_server_group:
+  "launch_template.id, launch_template.name": "awaiting-name: hashicorp/aws 6.66.0"
+aws_gamelift_script:
+  "storage_location, zip_file": "awaiting-name: hashicorp/aws 6.66.0"
+aws_imagebuilder_component:
+  "data, uri": "awaiting-name: hashicorp/aws 6.66.0"
+aws_imagebuilder_workflow:
+  "data, uri": "awaiting-name: hashicorp/aws 6.66.0"
+aws_instance:
+  "host_resource_group_arn, placement_group": "awaiting-name: hashicorp/aws 6.66.0"
+  "launch_template.id, launch_template.name": "awaiting-name: hashicorp/aws 6.66.0"
+aws_kinesis_firehose_delivery_stream:
+  "elasticsearch_configuration.cluster_endpoint, elasticsearch_configuration.domain_arn": "awaiting-name: hashicorp/aws 6.66.0"
+  "kinesis_source_configuration, msk_source_configuration, server_side_encryption": "awaiting-name: hashicorp/aws 6.66.0"
+  "opensearch_configuration.cluster_endpoint, opensearch_configuration.domain_arn": "awaiting-name: hashicorp/aws 6.66.0"
+aws_kinesis_stream:
+  "shard_count, warm_throughput_mib_ps": "awaiting-name: hashicorp/aws 6.66.0"
+aws_lakeformation_permissions:
+  "catalog_resource, data_cells_filter, data_location, database, lf_tag, lf_tag_policy, table, table_with_columns": "awaiting-name: hashicorp/aws 6.66.0"
+aws_lakeformation_resource_lf_tag:
+  "database, table, table_with_columns": "awaiting-name: hashicorp/aws 6.66.0"
+aws_lakeformation_resource_lf_tags:
+  "database, table, table_with_columns": "awaiting-name: hashicorp/aws 6.66.0"
+aws_lambda_event_source_mapping:
+  "event_source_arn, self_managed_event_source": "awaiting-name: hashicorp/aws 6.66.0"
+aws_lambda_function:
+  "filename, image_uri, s3_bucket": "awaiting-name: hashicorp/aws 6.66.0"
+aws_launch_template:
+  "default_version, update_default_version": "awaiting-name: hashicorp/aws 6.66.0"
+  "security_group_names, vpc_security_group_ids": "awaiting-name: hashicorp/aws 6.66.0"
+aws_lex_intent:
+  "conclusion_statement, follow_up_prompt": "awaiting-name: hashicorp/aws 6.66.0"
+aws_neptune_global_cluster:
+  "engine, source_db_cluster_identifier": "awaiting-name: hashicorp/aws 6.66.0"
+aws_network_acl_rule:
+  "cidr_block, ipv6_cidr_block": "awaiting-name: hashicorp/aws 6.66.0"
+aws_networkfirewall_firewall:
+  "transit_gateway_id, vpc_id": "awaiting-name: hashicorp/aws 6.66.0"
+aws_pinpoint_gcm_channel:
+  "api_key, service_json": "awaiting-name: hashicorp/aws 6.66.0"
+aws_rbin_rule:
+  "exclude_resource_tags, resource_tags": "awaiting-name: hashicorp/aws 6.66.0"
+aws_rds_cluster:
+  "manage_master_user_password, master_password, master_password_wo": "awaiting-name: hashicorp/aws 6.66.0"
+aws_rds_custom_db_engine_version:
+  "filename, manifest": "awaiting-name: hashicorp/aws 6.66.0"
+aws_redshift_cluster:
+  "manage_master_password, master_password, master_password_wo": "awaiting-name: hashicorp/aws 6.66.0"
+aws_redshift_data_share_consumer_association:
+  "associate_entire_account, consumer_arn, consumer_region": "awaiting-name: hashicorp/aws 6.66.0"
+aws_redshiftserverless_namespace:
+  "admin_user_password, admin_user_password_wo, manage_admin_password": "awaiting-name: hashicorp/aws 6.66.0"
+aws_route:
+  "carrier_gateway_id, destination_ipv6_cidr_block": "awaiting-name: hashicorp/aws 6.66.0"
+  "destination_cidr_block, egress_only_gateway_id": "awaiting-name: hashicorp/aws 6.66.0"
+  "destination_prefix_list_id, vpc_endpoint_id": "awaiting-name: hashicorp/aws 6.66.0"
+aws_route53_record:
+  "alias, records": "awaiting-name: hashicorp/aws 6.66.0"
+aws_route53_zone:
+  "delegation_set_id, vpc": "awaiting-name: hashicorp/aws 6.66.0"
+aws_route_table_association:
+  "gateway_id, subnet_id": "awaiting-name: hashicorp/aws 6.66.0"
+aws_s3_bucket:
+  "acl, grant": "awaiting-name: hashicorp/aws 6.66.0"
+  "website.index_document, website.redirect_all_requests_to": "awaiting-name: hashicorp/aws 6.66.0"
+aws_s3_bucket_acl:
+  "access_control_policy, acl": "awaiting-name: hashicorp/aws 6.66.0"
+aws_s3_bucket_object:
+  "content, content_base64, source": "awaiting-name: hashicorp/aws 6.66.0"
+  "etag, kms_key_id": "awaiting-name: hashicorp/aws 6.66.0"
+aws_s3_bucket_object_lock_configuration:
+  "rule.default_retention.days, rule.default_retention.years": "awaiting-name: hashicorp/aws 6.66.0"
+aws_s3_object:
+  "content, content_base64, source": "awaiting-name: hashicorp/aws 6.66.0"
+  "etag, kms_key_id": "awaiting-name: hashicorp/aws 6.66.0"
+aws_s3_object_copy:
+  "acl, grant": "awaiting-name: hashicorp/aws 6.66.0"
+aws_sagemaker_app:
+  "space_name, user_profile_name": "awaiting-name: hashicorp/aws 6.66.0"
+aws_sagemaker_hyper_parameter_tuning_job:
+  "training_job_definition.algorithm_specification.algorithm_name, training_job_definition.algorithm_specification.training_image": "awaiting-name: hashicorp/aws 6.66.0"
+  "training_job_definition.hyper_parameter_tuning_resource_config, training_job_definition.resource_config": "awaiting-name: hashicorp/aws 6.66.0"
+  "training_job_definitions.algorithm_specification.algorithm_name, training_job_definitions.algorithm_specification.training_image": "awaiting-name: hashicorp/aws 6.66.0"
+  "training_job_definitions.hyper_parameter_tuning_resource_config, training_job_definitions.resource_config": "awaiting-name: hashicorp/aws 6.66.0"
+aws_sagemaker_workforce:
+  "cognito_config, oidc_config": "awaiting-name: hashicorp/aws 6.66.0"
+aws_secretsmanager_secret_rotation:
+  "rotation_rules.automatically_after_days, rotation_rules.schedule_expression": "awaiting-name: hashicorp/aws 6.66.0"
+aws_servicequotas_template:
+  "aws_region, region": "awaiting-name: hashicorp/aws 6.66.0"
+aws_shield_protection_group:
+  "members, resource_type": "awaiting-name: hashicorp/aws 6.66.0"
+aws_spot_instance_request:
+  "host_resource_group_arn, placement_group, placement_group_id": "awaiting-name: hashicorp/aws 6.66.0"
+  "launch_template.id, launch_template.name": "awaiting-name: hashicorp/aws 6.66.0"
+aws_ssm_parameter:
+  "insecure_value, value, value_wo": "awaiting-name: hashicorp/aws 6.66.0"
+aws_storagegateway_gateway:
+  "activation_key, gateway_ip_address": "awaiting-name: hashicorp/aws 6.66.0"
+aws_transcribe_vocabulary:
+  "phrases, vocabulary_file_uri": "awaiting-name: hashicorp/aws 6.66.0"
+aws_transcribe_vocabulary_filter:
+  "vocabulary_filter_file_uri, words": "awaiting-name: hashicorp/aws 6.66.0"
+aws_vpc:
+  "cidr_block, ipv4_netmask_length": "awaiting-name: hashicorp/aws 6.66.0"
+aws_vpc_block_public_access_exclusion:
+  "subnet_id, vpc_id": "awaiting-name: hashicorp/aws 6.66.0"
+aws_vpc_endpoint:
+  "resource_configuration_arn, service_name, service_network_arn": "awaiting-name: hashicorp/aws 6.66.0"
+aws_vpc_ipam_pool_cidr:
+  "cidr, netmask_length": "awaiting-name: hashicorp/aws 6.66.0"
+aws_vpc_ipam_pool_cidr_allocation:
+  "cidr, netmask_length": "awaiting-name: hashicorp/aws 6.66.0"
+aws_wafv2_rule_group:
+  "rule, rules_json": "awaiting-name: hashicorp/aws 6.66.0"
+aws_wafv2_web_acl_rule:
+  "action, override_action": "awaiting-name: hashicorp/aws 6.66.0"
+aws_wafv2_web_acl_rule_group_association:
+  "managed_rule_group, rule_group_reference": "awaiting-name: hashicorp/aws 6.66.0"
+cloudflare_account_member:
+  "policies, roles": "awaiting-name: cloudflare/cloudflare 5.26.0"
+cloudflare_dns_record:
+  "content, data": "awaiting-name: cloudflare/cloudflare 5.26.0"
+cloudflare_list:
+  "items.asn, items.hostname, items.ip, items.redirect": "awaiting-name: cloudflare/cloudflare 5.26.0"
+cloudflare_ruleset:
+  "account_id, zone_id": "awaiting-name: cloudflare/cloudflare 5.26.0"
+  "rules.action_parameters.asset_name, rules.action_parameters.content": "awaiting-name: cloudflare/cloudflare 5.26.0"
+  "rules.action_parameters.expression, rules.action_parameters.values": "awaiting-name: cloudflare/cloudflare 5.26.0"
+  "rules.action_parameters.from_list, rules.action_parameters.from_value": "awaiting-name: cloudflare/cloudflare 5.26.0"
+  "rules.action_parameters.headers.expression, rules.action_parameters.headers.value": "awaiting-name: cloudflare/cloudflare 5.26.0"
+cloudflare_worker_version:
+  "assets.directory, assets.jwt": "awaiting-name: cloudflare/cloudflare 5.26.0"
+cloudflare_workers_script:
+  "assets.directory, assets.jwt": "awaiting-name: cloudflare/cloudflare 5.26.0"
+cloudflare_zero_trust_access_application:
+  "destinations, self_hosted_domains": "awaiting-name: cloudflare/cloudflare 5.26.0"
+  "policies.id, policies.include": "awaiting-name: cloudflare/cloudflare 5.26.0"
+cloudflare_zero_trust_device_custom_profile:
+  "exclude, include": "awaiting-name: cloudflare/cloudflare 5.26.0"
+cloudflare_zero_trust_device_default_profile:
+  "exclude, include": "awaiting-name: cloudflare/cloudflare 5.26.0"
+google_access_context_manager_access_level:
+  "basic, custom": "awaiting-name: hashicorp/google 8.4.0"
+google_api_gateway_api_config:
+  "grpc_services, openapi_documents": "awaiting-name: hashicorp/google-beta 8.4.0"
+google_apigee_security_action:
+  "expire_time, ttl": "awaiting-name: hashicorp/google 8.4.0"
+google_bigquery_analytics_hub_listing:
+  "bigquery_dataset, pubsub_topic": "awaiting-name: hashicorp/google 8.4.0"
+google_bigquery_dataset_access:
+  "dataset, domain, group_by_email, iam_member, routine, special_group, user_by_email, view": "awaiting-name: hashicorp/google 8.4.0"
+google_chronicle_feed:
+  "details.amazon_kinesis_firehose_settings, details.amazon_s3_settings, details.amazon_s3_v2_settings, details.amazon_sqs_settings, details.amazon_sqs_v2_settings, details.anomali_settings, details.aws_ec2_hosts_settings, details.aws_ec2_instances_settings, details.aws_ec2_vpcs_settings, details.aws_iam_settings, details.azure_ad_audit_settings, details.azure_ad_context_settings, details.azure_ad_settings, details.azure_blob_store_settings, details.azure_blob_store_v2_settings, details.azure_event_hub_settings, details.azure_mdm_intune_settings, details.cloud_passage_settings, details.cortex_xdr_settings, details.crowdstrike_alerts_settings, details.crowdstrike_detects_settings, details.dummy_log_type_settings, details.duo_auth_settings, details.duo_user_context_settings, details.fox_it_stix_settings, details.gcs_settings, details.gcs_v2_settings, details.google_cloud_identity_device_users_settings, details.google_cloud_identity_devices_settings, details.google_cloud_storage_event_driven_settings, details.http_settings, details.https_push_amazon_kinesis_firehose_settings, details.https_push_google_cloud_pubsub_settings, details.https_push_webhook_settings, details.imperva_waf_settings, details.mandiant_ioc_settings, details.microsoft_graph_alert_settings, details.microsoft_security_center_alert_settings, details.mimecast_mail_settings, details.mimecast_mail_v2_settings, details.netskope_alert_settings, details.netskope_alert_v2_settings, details.office365_settings, details.okta_settings, details.okta_user_context_settings, details.pan_ioc_settings, details.pan_prisma_cloud_settings, details.proofpoint_mail_settings, details.proofpoint_on_demand_settings, details.pubsub_settings, details.qualys_scan_settings, details.qualys_vm_settings, details.rapid7_insight_settings, details.recorded_future_ioc_settings, details.rh_isac_ioc_settings, details.salesforce_settings, details.sentinelone_alert_settings, details.service_now_cmdb_settings, details.sftp_settings, details.symantec_event_export_settings, details.thinkst_canary_settings, details.threat_connect_ioc_settings, details.threat_connect_ioc_v3_settings, details.trellix_hx_alerts_settings, details.trellix_hx_bulk_acqs_settings, details.trellix_hx_hosts_settings, details.webhook_settings, details.workday_settings, details.workspace_activity_settings, details.workspace_alerts_settings, details.workspace_chrome_os_settings, details.workspace_groups_settings, details.workspace_mobile_settings, details.workspace_privileges_settings, details.workspace_users_settings": "awaiting-name: hashicorp/google 8.4.0"
+google_chronicle_parser_extension:
+  "cbn_snippet, dynamic_parsing, field_extractors": "awaiting-name: hashicorp/google 8.4.0"
+google_cloud_run_service:
+  "template.spec.containers.liveness_probe.grpc, template.spec.containers.liveness_probe.http_get": "awaiting-name: hashicorp/google 8.4.0"
+  "template.spec.containers.readiness_probe.grpc, template.spec.containers.readiness_probe.http_get": "awaiting-name: hashicorp/google 8.4.0"
+  "template.spec.containers.startup_probe.grpc, template.spec.containers.startup_probe.http_get, template.spec.containers.startup_probe.tcp_socket": "awaiting-name: hashicorp/google 8.4.0"
+google_cloud_run_v2_worker_pool:
+  "binary_authorization.policy, binary_authorization.use_default": "awaiting-name: hashicorp/google 8.4.0"
+google_cloudbuildv2_connection:
+  "bitbucket_cloud_config, bitbucket_data_center_config, github_config, github_enterprise_config, gitlab_config": "awaiting-name: hashicorp/google 8.4.0"
+google_clouddeploy_custom_target_type:
+  "custom_actions, tasks": "awaiting-name: hashicorp/google 8.4.0"
+  "custom_actions.include_skaffold_modules.git, custom_actions.include_skaffold_modules.google_cloud_build_repo, custom_actions.include_skaffold_modules.google_cloud_storage": "awaiting-name: hashicorp/google 8.4.0"
+google_colab_notebook_execution:
+  "workbench_runtime.vm_image.family, workbench_runtime.vm_image.name": "awaiting-name: hashicorp/google 8.4.0"
+google_compute_global_vm_extension_policy:
+  "rollout_operation.rollout_input.name, rollout_operation.rollout_input.predefined_rollout_plan": "awaiting-name: hashicorp/google 8.4.0"
+google_compute_region_url_map:
+  "default_route_action, default_url_redirect": "awaiting-name: hashicorp/google 8.4.0"
+google_compute_reservation:
+  "specific_reservation.instance_properties, specific_reservation.source_instance_template": "awaiting-name: hashicorp/google 8.4.0"
+google_compute_url_map:
+  "default_route_action, default_url_redirect": "awaiting-name: hashicorp/google 8.4.0"
+google_database_migration_service_connection_profile:
+  "cloudsql.settings.ip_config.authorized_networks.expire_time, cloudsql.settings.ip_config.authorized_networks.ttl": "awaiting-name: hashicorp/google 8.4.0"
+  "oracle.forward_ssh_connectivity.password, oracle.forward_ssh_connectivity.private_key": "awaiting-name: hashicorp/google 8.4.0"
+google_dataproc_batch:
+  "environment_config.execution_config.network_uri, environment_config.execution_config.subnetwork_uri": "awaiting-name: hashicorp/google 8.4.0"
+google_datastream_connection_profile:
+  "forward_ssh_connectivity.password, forward_ssh_connectivity.private_key": "awaiting-name: hashicorp/google 8.4.0"
+google_datastream_stream:
+  "destination_config.bigquery_destination_config.append_only, destination_config.bigquery_destination_config.merge": "awaiting-name: hashicorp/google 8.4.0"
+  "source_config.mysql_source_config.binary_log_position, source_config.mysql_source_config.gtid": "awaiting-name: hashicorp/google 8.4.0"
+google_dialogflow_cx_test_case:
+  "test_config.flow, test_config.page": "awaiting-name: hashicorp/google 8.4.0"
+google_discovery_engine_chat_engine:
+  "chat_engine_config.agent_creation_config, chat_engine_config.dialogflow_agent_to_link": "awaiting-name: hashicorp/google 8.4.0"
+google_firebase_app_hosting_traffic:
+  "rollout_policy, target": "awaiting-name: hashicorp/google 8.4.0"
+google_firebase_hosting_channel:
+  "expire_time, ttl": "awaiting-name: hashicorp/google-beta 8.4.0"
+google_gke_backup_backup_plan:
+  "backup_config.all_namespaces, backup_config.selected_applications, backup_config.selected_namespace_labels, backup_config.selected_namespaces": "awaiting-name: hashicorp/google 8.4.0"
+google_gkeonprem_vmware_admin_cluster:
+  "load_balancer.f5_config, load_balancer.manual_lb_config, load_balancer.metal_lb_config": "awaiting-name: hashicorp/google 8.4.0"
+google_gkeonprem_vmware_cluster:
+  "load_balancer.f5_config, load_balancer.manual_lb_config, load_balancer.metal_lb_config": "awaiting-name: hashicorp/google 8.4.0"
+google_integrations_auth_config:
+  "decrypted_credential.auth_token, decrypted_credential.jwt, decrypted_credential.oauth2_authorization_code, decrypted_credential.oauth2_client_credentials, decrypted_credential.oidc_token, decrypted_credential.service_account_credentials, decrypted_credential.username_and_password": "awaiting-name: hashicorp/google 8.4.0"
+google_monitoring_slo:
+  "calendar_period, rolling_period_days": "awaiting-name: hashicorp/google 8.4.0"
+google_network_connectivity_policy_based_route:
+  "interconnect_attachment, virtual_machine": "awaiting-name: hashicorp/google 8.4.0"
+google_network_services_gateway:
+  "all_ports, ports": "awaiting-name: hashicorp/google 8.4.0"
+google_os_config_patch_deployment:
+  "patch_config.post_step.linux_exec_step_config.gcs_object, patch_config.post_step.linux_exec_step_config.local_path": "awaiting-name: hashicorp/google 8.4.0"
+  "patch_config.post_step.windows_exec_step_config.gcs_object, patch_config.post_step.windows_exec_step_config.local_path": "awaiting-name: hashicorp/google 8.4.0"
+  "patch_config.pre_step.linux_exec_step_config.gcs_object, patch_config.pre_step.linux_exec_step_config.local_path": "awaiting-name: hashicorp/google 8.4.0"
+  "patch_config.pre_step.windows_exec_step_config.gcs_object, patch_config.pre_step.windows_exec_step_config.local_path": "awaiting-name: hashicorp/google 8.4.0"
+google_privateca_certificate:
+  "config, pem_csr": "awaiting-name: hashicorp/google 8.4.0"
+google_pubsub_subscription:
+  "bigquery_config, cloud_storage_config, push_config": "awaiting-name: hashicorp/google 8.4.0"
+google_spanner_instance_partition:
+  "autoscaling_config, node_count, processing_units": "awaiting-name: hashicorp/google 8.4.0"
+  "autoscaling_config.autoscaling_limits.max_nodes, autoscaling_config.autoscaling_limits.max_processing_units": "awaiting-name: hashicorp/google 8.4.0"
+  "autoscaling_config.autoscaling_limits.min_nodes, autoscaling_config.autoscaling_limits.min_processing_units": "awaiting-name: hashicorp/google 8.4.0"
+google_tpu_v2_vm:
+  "network_config, network_configs": "awaiting-name: hashicorp/google-beta 8.4.0"
+google_vertex_ai_index_endpoint:
+  "network, private_service_connect_config": "awaiting-name: hashicorp/google 8.4.0"
+google_vertex_ai_rag_corpus:
+  "vector_db_config, vertex_ai_search_config": "awaiting-name: hashicorp/google 8.4.0"
+  "vector_db_config.pinecone, vector_db_config.rag_managed_db, vector_db_config.vertex_vector_search": "awaiting-name: hashicorp/google 8.4.0"
+google_vertex_ai_reasoning_engine:
+  "context_spec.memory_bank_config.ttl_config.default_ttl, context_spec.memory_bank_config.ttl_config.granular_ttl_config": "awaiting-name: hashicorp/google 8.4.0"
+  "spec.container_spec, spec.source_code_spec": "awaiting-name: hashicorp/google 8.4.0"
+  "spec.source_code_spec.image_spec, spec.source_code_spec.python_spec": "awaiting-name: hashicorp/google 8.4.0"
+google_vpc_access_connector:
+  "max_instances, max_throughput": "awaiting-name: hashicorp/google 8.4.0"
+  "min_instances, min_throughput": "awaiting-name: hashicorp/google 8.4.0"

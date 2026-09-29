@@ -269,6 +269,19 @@ final class WrapperOverride {
   /// to `false`.
   final bool deriveExactlyOne;
 
+  /// Human concept names for the sealed slots [deriveExactlyOne] derives,
+  /// like a protobuf `oneof` name: group key → snake_case concept
+  /// (`filename, image_uri, s3_bucket: code`). The key lists the group's
+  /// members as dotted paths from the resource root, comma-separated, in
+  /// any order (`settings.x, settings.y` for a group inside the `settings`
+  /// block). The slot or field takes the concept's camelCase name and the
+  /// sealed type is `<prefix><Concept>` (`LambdaFunctionCode`).
+  ///
+  /// A name wins over the derived one (`sealedConceptName`); `wrap` fails
+  /// on an entry that matches no sealed group, repeats the derived name, or
+  /// collides with another slot or class.
+  final Map<String, String>? sealedNames;
+
   /// Snake-case slot name → custom constructor / argMap snippets.
   ///
   /// Two use cases:
@@ -353,6 +366,7 @@ final class WrapperOverride {
     this.nestedTypeExcludes,
     this.dedupeNestedTypes = false,
     this.deriveExactlyOne = false,
+    this.sealedNames,
   });
 
   /// This override with [dartTypeOverrides] replaced.
@@ -404,6 +418,7 @@ final class WrapperOverride {
     nestedTypeExcludes: nestedTypeExcludes,
     dedupeNestedTypes: dedupeNestedTypes,
     deriveExactlyOne: deriveExactlyOne,
+    sealedNames: sealedNames,
   );
 }
 

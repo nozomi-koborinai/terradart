@@ -54,18 +54,18 @@ enum EksNodeGroupCapacityType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.nodeGroupName(...)`.
-sealed class EksNodeGroupNodeGroupNameOrNodeGroupNamePrefix {
-  const EksNodeGroupNodeGroupNameOrNodeGroupNamePrefix();
+sealed class EksNodeGroupNodeGroupName {
+  const EksNodeGroupNodeGroupName();
 
   /// Sets `node_group_name`.
-  const factory EksNodeGroupNodeGroupNameOrNodeGroupNamePrefix.nodeGroupName(
+  const factory EksNodeGroupNodeGroupName.nodeGroupName(
     TfArg<String> nodeGroupName,
-  ) = EksNodeGroupNodeGroupNameOrNodeGroupNamePrefixNodeGroupName;
+  ) = EksNodeGroupNodeGroupNameNodeGroupName;
 
   /// Sets `node_group_name_prefix`.
-  const factory EksNodeGroupNodeGroupNameOrNodeGroupNamePrefix.nodeGroupNamePrefix(
+  const factory EksNodeGroupNodeGroupName.nodeGroupNamePrefix(
     TfArg<String> nodeGroupNamePrefix,
-  ) = EksNodeGroupNodeGroupNameOrNodeGroupNamePrefixNodeGroupNamePrefix;
+  ) = EksNodeGroupNodeGroupNameNodeGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -77,12 +77,10 @@ sealed class EksNodeGroupNodeGroupNameOrNodeGroupNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [EksNodeGroupNodeGroupNameOrNodeGroupNamePrefix.nodeGroupName] choice: sets `node_group_name`.
-final class EksNodeGroupNodeGroupNameOrNodeGroupNamePrefixNodeGroupName
-    extends EksNodeGroupNodeGroupNameOrNodeGroupNamePrefix {
-  const EksNodeGroupNodeGroupNameOrNodeGroupNamePrefixNodeGroupName(
-    this.nodeGroupName,
-  );
+/// The [EksNodeGroupNodeGroupName.nodeGroupName] choice: sets `node_group_name`.
+final class EksNodeGroupNodeGroupNameNodeGroupName
+    extends EksNodeGroupNodeGroupName {
+  const EksNodeGroupNodeGroupNameNodeGroupName(this.nodeGroupName);
 
   final TfArg<String> nodeGroupName;
 
@@ -98,12 +96,10 @@ final class EksNodeGroupNodeGroupNameOrNodeGroupNamePrefixNodeGroupName
   Map<String, TfArg<Object?>> get argMap => {'node_group_name': nodeGroupName};
 }
 
-/// The [EksNodeGroupNodeGroupNameOrNodeGroupNamePrefix.nodeGroupNamePrefix] choice: sets `node_group_name_prefix`.
-final class EksNodeGroupNodeGroupNameOrNodeGroupNamePrefixNodeGroupNamePrefix
-    extends EksNodeGroupNodeGroupNameOrNodeGroupNamePrefix {
-  const EksNodeGroupNodeGroupNameOrNodeGroupNamePrefixNodeGroupNamePrefix(
-    this.nodeGroupNamePrefix,
-  );
+/// The [EksNodeGroupNodeGroupName.nodeGroupNamePrefix] choice: sets `node_group_name_prefix`.
+final class EksNodeGroupNodeGroupNameNodeGroupNamePrefix
+    extends EksNodeGroupNodeGroupName {
+  const EksNodeGroupNodeGroupNameNodeGroupNamePrefix(this.nodeGroupNamePrefix);
 
   final TfArg<String> nodeGroupNamePrefix;
 
@@ -193,28 +189,26 @@ final class EksNodeGroupLaunchTemplateIdOrNameName
 final class EksNodeGroupNodeRepairConfig {
   const EksNodeGroupNodeRepairConfig({
     this.enabled,
-    this.maxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentage,
-    this.maxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentage,
+    this.maxParallelNodesRepaired,
+    this.maxUnhealthyNodeThreshold,
     this.nodeRepairConfigOverrides,
   });
 
   final TfArg<bool>? enabled;
 
-  final EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentage?
-  maxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentage;
+  final EksNodeGroupNodeRepairConfigMaxParallelNodesRepaired?
+  maxParallelNodesRepaired;
 
-  final EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentage?
-  maxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentage;
+  final EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThreshold?
+  maxUnhealthyNodeThreshold;
 
   final List<EksNodeGroupNodeRepairConfigNodeRepairConfigOverrides>?
   nodeRepairConfigOverrides;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
-    ...?maxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentage
-        ?.encode(),
-    ...?maxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentage
-        ?.encode(),
+    ...?maxParallelNodesRepaired?.encode(),
+    ...?maxUnhealthyNodeThreshold?.encode(),
     if (nodeRepairConfigOverrides != null)
       'node_repair_config_overrides': [
         for (final e in nodeRepairConfigOverrides!) e.encode(),
@@ -227,18 +221,18 @@ final class EksNodeGroupNodeRepairConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.maxParallelNodesRepairedCount(...)`.
-sealed class EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentage {
-  const EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentage();
+sealed class EksNodeGroupNodeRepairConfigMaxParallelNodesRepaired {
+  const EksNodeGroupNodeRepairConfigMaxParallelNodesRepaired();
 
   /// Sets `max_parallel_nodes_repaired_count`.
-  const factory EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentage.maxParallelNodesRepairedCount(
+  const factory EksNodeGroupNodeRepairConfigMaxParallelNodesRepaired.maxParallelNodesRepairedCount(
     TfArg<num> maxParallelNodesRepairedCount,
-  ) = EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentageMaxParallelNodesRepairedCount;
+  ) = EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedMaxParallelNodesRepairedCount;
 
   /// Sets `max_parallel_nodes_repaired_percentage`.
-  const factory EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentage.maxParallelNodesRepairedPercentage(
+  const factory EksNodeGroupNodeRepairConfigMaxParallelNodesRepaired.maxParallelNodesRepairedPercentage(
     TfArg<num> maxParallelNodesRepairedPercentage,
-  ) = EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentageMaxParallelNodesRepairedPercentage;
+  ) = EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedMaxParallelNodesRepairedPercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -246,11 +240,10 @@ sealed class EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParal
   Map<String, Object?> encode();
 }
 
-/// The [EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentage.maxParallelNodesRepairedCount] choice: sets `max_parallel_nodes_repaired_count`.
-final class EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentageMaxParallelNodesRepairedCount
-    extends
-        EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentage {
-  const EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentageMaxParallelNodesRepairedCount(
+/// The [EksNodeGroupNodeRepairConfigMaxParallelNodesRepaired.maxParallelNodesRepairedCount] choice: sets `max_parallel_nodes_repaired_count`.
+final class EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedMaxParallelNodesRepairedCount
+    extends EksNodeGroupNodeRepairConfigMaxParallelNodesRepaired {
+  const EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedMaxParallelNodesRepairedCount(
     this.maxParallelNodesRepairedCount,
   );
 
@@ -266,11 +259,10 @@ final class EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParall
   };
 }
 
-/// The [EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentage.maxParallelNodesRepairedPercentage] choice: sets `max_parallel_nodes_repaired_percentage`.
-final class EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentageMaxParallelNodesRepairedPercentage
-    extends
-        EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentage {
-  const EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParallelNodesRepairedPercentageMaxParallelNodesRepairedPercentage(
+/// The [EksNodeGroupNodeRepairConfigMaxParallelNodesRepaired.maxParallelNodesRepairedPercentage] choice: sets `max_parallel_nodes_repaired_percentage`.
+final class EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedMaxParallelNodesRepairedPercentage
+    extends EksNodeGroupNodeRepairConfigMaxParallelNodesRepaired {
+  const EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedMaxParallelNodesRepairedPercentage(
     this.maxParallelNodesRepairedPercentage,
   );
 
@@ -291,18 +283,18 @@ final class EksNodeGroupNodeRepairConfigMaxParallelNodesRepairedCountOrMaxParall
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.maxUnhealthyNodeThresholdCount(...)`.
-sealed class EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentage {
-  const EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentage();
+sealed class EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThreshold {
+  const EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThreshold();
 
   /// Sets `max_unhealthy_node_threshold_count`.
-  const factory EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentage.maxUnhealthyNodeThresholdCount(
+  const factory EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThreshold.maxUnhealthyNodeThresholdCount(
     TfArg<num> maxUnhealthyNodeThresholdCount,
-  ) = EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentageMaxUnhealthyNodeThresholdCount;
+  ) = EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdMaxUnhealthyNodeThresholdCount;
 
   /// Sets `max_unhealthy_node_threshold_percentage`.
-  const factory EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentage.maxUnhealthyNodeThresholdPercentage(
+  const factory EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThreshold.maxUnhealthyNodeThresholdPercentage(
     TfArg<num> maxUnhealthyNodeThresholdPercentage,
-  ) = EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentageMaxUnhealthyNodeThresholdPercentage;
+  ) = EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdMaxUnhealthyNodeThresholdPercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -310,11 +302,10 @@ sealed class EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhe
   Map<String, Object?> encode();
 }
 
-/// The [EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentage.maxUnhealthyNodeThresholdCount] choice: sets `max_unhealthy_node_threshold_count`.
-final class EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentageMaxUnhealthyNodeThresholdCount
-    extends
-        EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentage {
-  const EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentageMaxUnhealthyNodeThresholdCount(
+/// The [EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThreshold.maxUnhealthyNodeThresholdCount] choice: sets `max_unhealthy_node_threshold_count`.
+final class EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdMaxUnhealthyNodeThresholdCount
+    extends EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThreshold {
+  const EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdMaxUnhealthyNodeThresholdCount(
     this.maxUnhealthyNodeThresholdCount,
   );
 
@@ -330,11 +321,10 @@ final class EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhea
   };
 }
 
-/// The [EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentage.maxUnhealthyNodeThresholdPercentage] choice: sets `max_unhealthy_node_threshold_percentage`.
-final class EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentageMaxUnhealthyNodeThresholdPercentage
-    extends
-        EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentage {
-  const EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdCountOrMaxUnhealthyNodeThresholdPercentageMaxUnhealthyNodeThresholdPercentage(
+/// The [EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThreshold.maxUnhealthyNodeThresholdPercentage] choice: sets `max_unhealthy_node_threshold_percentage`.
+final class EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdMaxUnhealthyNodeThresholdPercentage
+    extends EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThreshold {
+  const EksNodeGroupNodeRepairConfigMaxUnhealthyNodeThresholdMaxUnhealthyNodeThresholdPercentage(
     this.maxUnhealthyNodeThresholdPercentage,
   );
 
@@ -471,17 +461,16 @@ enum EksNodeGroupTaintEffect implements TerraformEnum {
 @immutable
 final class EksNodeGroupUpdateConfig {
   const EksNodeGroupUpdateConfig({
-    required this.maxUnavailableOrMaxUnavailablePercentage,
+    required this.maxUnavailable,
     this.updateStrategy,
   });
 
-  final EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage
-  maxUnavailableOrMaxUnavailablePercentage;
+  final EksNodeGroupUpdateConfigMaxUnavailable maxUnavailable;
 
   final TfArg<EksNodeGroupUpdateConfigUpdateStrategy>? updateStrategy;
 
   Map<String, Object?> encode() => {
-    ...maxUnavailableOrMaxUnavailablePercentage.encode(),
+    ...maxUnavailable.encode(),
     if (updateStrategy != null) 'update_strategy': updateStrategy!.toTfJson(),
   };
 }
@@ -490,18 +479,18 @@ final class EksNodeGroupUpdateConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.maxUnavailable(...)`.
-sealed class EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage {
-  const EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage();
+sealed class EksNodeGroupUpdateConfigMaxUnavailable {
+  const EksNodeGroupUpdateConfigMaxUnavailable();
 
   /// Sets `max_unavailable`.
-  const factory EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage.maxUnavailable(
+  const factory EksNodeGroupUpdateConfigMaxUnavailable.maxUnavailable(
     TfArg<num> maxUnavailable,
-  ) = EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentageMaxUnavailable;
+  ) = EksNodeGroupUpdateConfigMaxUnavailableMaxUnavailable;
 
   /// Sets `max_unavailable_percentage`.
-  const factory EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage.maxUnavailablePercentage(
+  const factory EksNodeGroupUpdateConfigMaxUnavailable.maxUnavailablePercentage(
     TfArg<num> maxUnavailablePercentage,
-  ) = EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentageMaxUnavailablePercentage;
+  ) = EksNodeGroupUpdateConfigMaxUnavailableMaxUnavailablePercentage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -509,10 +498,10 @@ sealed class EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage {
   Map<String, Object?> encode();
 }
 
-/// The [EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage.maxUnavailable] choice: sets `max_unavailable`.
-final class EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentageMaxUnavailable
-    extends EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage {
-  const EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentageMaxUnavailable(
+/// The [EksNodeGroupUpdateConfigMaxUnavailable.maxUnavailable] choice: sets `max_unavailable`.
+final class EksNodeGroupUpdateConfigMaxUnavailableMaxUnavailable
+    extends EksNodeGroupUpdateConfigMaxUnavailable {
+  const EksNodeGroupUpdateConfigMaxUnavailableMaxUnavailable(
     this.maxUnavailable,
   );
 
@@ -527,10 +516,10 @@ final class EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentageMaxU
   };
 }
 
-/// The [EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage.maxUnavailablePercentage] choice: sets `max_unavailable_percentage`.
-final class EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentageMaxUnavailablePercentage
-    extends EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentage {
-  const EksNodeGroupUpdateConfigMaxUnavailableOrMaxUnavailablePercentageMaxUnavailablePercentage(
+/// The [EksNodeGroupUpdateConfigMaxUnavailable.maxUnavailablePercentage] choice: sets `max_unavailable_percentage`.
+final class EksNodeGroupUpdateConfigMaxUnavailableMaxUnavailablePercentage
+    extends EksNodeGroupUpdateConfigMaxUnavailable {
+  const EksNodeGroupUpdateConfigMaxUnavailableMaxUnavailablePercentage(
     this.maxUnavailablePercentage,
   );
 
@@ -607,8 +596,7 @@ final class AwsEksNodeGroup extends Resource {
     TfArg<bool>? forceUpdateVersion,
     TfArg<List<String>>? instanceTypes,
     TfArg<Map<String, String>>? labels,
-    EksNodeGroupNodeGroupNameOrNodeGroupNamePrefix?
-    nodeGroupNameOrNodeGroupNamePrefix,
+    EksNodeGroupNodeGroupName? nodeGroupName,
     required TfArg<String> nodeRoleArn,
     TfArg<String>? region,
     TfArg<String>? releaseVersion,
@@ -637,7 +625,7 @@ final class AwsEksNodeGroup extends Resource {
              'force_update_version': forceUpdateVersion,
            if (instanceTypes != null) 'instance_types': instanceTypes,
            if (labels != null) 'labels': labels,
-           ...?nodeGroupNameOrNodeGroupNamePrefix?.argMap,
+           ...?nodeGroupName?.argMap,
            'node_role_arn': nodeRoleArn,
            if (region != null) 'region': region,
            if (releaseVersion != null) 'release_version': releaseVersion,
