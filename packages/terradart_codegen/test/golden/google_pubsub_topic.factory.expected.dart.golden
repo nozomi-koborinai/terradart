@@ -27,49 +27,359 @@ enum PubsubTopicPlatformLogsSeverity implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `ingestion_data_source_settings` block of
+/// `google_pubsub_topic` (derived from provider schema).
 @immutable
-class PubsubTopicSchemaSettings {
-  const PubsubTopicSchemaSettings({
-    this.schema,
-    this.encoding,
-    this.firstRevisionId,
-    this.lastRevisionId,
+final class PubsubTopicIngestionDataSourceSettings {
+  const PubsubTopicIngestionDataSourceSettings({
+    this.awsKinesis,
+    this.awsMsk,
+    this.azureEventHubs,
+    this.cloudStorage,
+    this.confluentCloud,
+    this.platformLogsSettings,
   });
 
-  final TfArg<String>? schema;
-  final PubsubTopicSchemaEncoding? encoding;
-  final TfArg<String>? firstRevisionId;
-  final TfArg<String>? lastRevisionId;
+  final PubsubTopicIngestionDataSourceSettingsAwsKinesis? awsKinesis;
+
+  final PubsubTopicIngestionDataSourceSettingsAwsMsk? awsMsk;
+
+  final PubsubTopicIngestionDataSourceSettingsAzureEventHubs? azureEventHubs;
+
+  final PubsubTopicIngestionDataSourceSettingsCloudStorage? cloudStorage;
+
+  final PubsubTopicIngestionDataSourceSettingsConfluentCloud? confluentCloud;
+
+  final PubsubTopicIngestionDataSourceSettingsPlatformLogsSettings?
+  platformLogsSettings;
 
   Map<String, Object?> encode() => {
-    if (schema != null) 'schema': schema!.toTfJson(),
-    if (encoding != null) 'encoding': encoding!.terraformValue,
-    if (firstRevisionId != null)
-      'first_revision_id': firstRevisionId!.toTfJson(),
-    if (lastRevisionId != null) 'last_revision_id': lastRevisionId!.toTfJson(),
+    'aws_kinesis': ?awsKinesis?.encode(),
+    'aws_msk': ?awsMsk?.encode(),
+    'azure_event_hubs': ?azureEventHubs?.encode(),
+    'cloud_storage': ?cloudStorage?.encode(),
+    'confluent_cloud': ?confluentCloud?.encode(),
+    'platform_logs_settings': ?platformLogsSettings?.encode(),
   };
 }
 
+/// Typed helper for the `ingestion_data_source_settings.aws_kinesis` block of
+/// `google_pubsub_topic` (derived from provider schema).
 @immutable
-class PubsubTopicPlatformLogsSettings {
-  const PubsubTopicPlatformLogsSettings({this.severity});
+final class PubsubTopicIngestionDataSourceSettingsAwsKinesis {
+  const PubsubTopicIngestionDataSourceSettingsAwsKinesis({
+    required this.awsRoleArn,
+    required this.consumerArn,
+    required this.gcpServiceAccount,
+    required this.streamArn,
+  });
 
-  final PubsubTopicPlatformLogsSeverity? severity;
+  final TfArg<String> awsRoleArn;
+
+  final TfArg<String> consumerArn;
+
+  final TfArg<String> gcpServiceAccount;
+
+  final TfArg<String> streamArn;
 
   Map<String, Object?> encode() => {
-    if (severity != null) 'severity': severity!.terraformValue,
+    'aws_role_arn': awsRoleArn.toTfJson(),
+    'consumer_arn': consumerArn.toTfJson(),
+    'gcp_service_account': gcpServiceAccount.toTfJson(),
+    'stream_arn': streamArn.toTfJson(),
   };
 }
 
+/// Typed helper for the `ingestion_data_source_settings.aws_msk` block of
+/// `google_pubsub_topic` (derived from provider schema).
 @immutable
-class PubsubTopicIngestionDataSourceSettings {
-  const PubsubTopicIngestionDataSourceSettings({this.platformLogsSettings});
+final class PubsubTopicIngestionDataSourceSettingsAwsMsk {
+  const PubsubTopicIngestionDataSourceSettingsAwsMsk({
+    required this.awsRoleArn,
+    required this.clusterArn,
+    required this.gcpServiceAccount,
+    required this.topic,
+  });
 
-  final PubsubTopicPlatformLogsSettings? platformLogsSettings;
+  final TfArg<String> awsRoleArn;
+
+  final TfArg<String> clusterArn;
+
+  final TfArg<String> gcpServiceAccount;
+
+  final TfArg<String> topic;
 
   Map<String, Object?> encode() => {
-    if (platformLogsSettings != null)
-      'platform_logs_settings': [platformLogsSettings!.encode()],
+    'aws_role_arn': awsRoleArn.toTfJson(),
+    'cluster_arn': clusterArn.toTfJson(),
+    'gcp_service_account': gcpServiceAccount.toTfJson(),
+    'topic': topic.toTfJson(),
+  };
+}
+
+/// Typed helper for the `ingestion_data_source_settings.azure_event_hubs` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicIngestionDataSourceSettingsAzureEventHubs {
+  const PubsubTopicIngestionDataSourceSettingsAzureEventHubs({
+    this.clientId,
+    this.eventHub,
+    this.gcpServiceAccount,
+    this.namespace,
+    this.resourceGroup,
+    this.subscriptionId,
+    this.tenantId,
+  });
+
+  final TfArg<String>? clientId;
+
+  final TfArg<String>? eventHub;
+
+  final TfArg<String>? gcpServiceAccount;
+
+  final TfArg<String>? namespace;
+
+  final TfArg<String>? resourceGroup;
+
+  final TfArg<String>? subscriptionId;
+
+  final TfArg<String>? tenantId;
+
+  Map<String, Object?> encode() => {
+    'client_id': ?clientId?.toTfJson(),
+    'event_hub': ?eventHub?.toTfJson(),
+    'gcp_service_account': ?gcpServiceAccount?.toTfJson(),
+    'namespace': ?namespace?.toTfJson(),
+    'resource_group': ?resourceGroup?.toTfJson(),
+    'subscription_id': ?subscriptionId?.toTfJson(),
+    'tenant_id': ?tenantId?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `ingestion_data_source_settings.cloud_storage` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicIngestionDataSourceSettingsCloudStorage {
+  const PubsubTopicIngestionDataSourceSettingsCloudStorage({
+    required this.bucket,
+    this.matchGlob,
+    this.minimumObjectCreateTime,
+    this.avroFormat,
+    this.pubsubAvroFormat,
+    this.textFormat,
+  });
+
+  final TfArg<String> bucket;
+
+  final TfArg<String>? matchGlob;
+
+  final TfArg<String>? minimumObjectCreateTime;
+
+  final PubsubTopicIngestionDataSourceSettingsCloudStorageAvroFormat?
+  avroFormat;
+
+  final PubsubTopicIngestionDataSourceSettingsCloudStoragePubsubAvroFormat?
+  pubsubAvroFormat;
+
+  final PubsubTopicIngestionDataSourceSettingsCloudStorageTextFormat?
+  textFormat;
+
+  Map<String, Object?> encode() => {
+    'bucket': bucket.toTfJson(),
+    'match_glob': ?matchGlob?.toTfJson(),
+    'minimum_object_create_time': ?minimumObjectCreateTime?.toTfJson(),
+    'avro_format': ?avroFormat?.encode(),
+    'pubsub_avro_format': ?pubsubAvroFormat?.encode(),
+    'text_format': ?textFormat?.encode(),
+  };
+}
+
+/// Typed helper for the `ingestion_data_source_settings.cloud_storage.avro_format` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicIngestionDataSourceSettingsCloudStorageAvroFormat {
+  const PubsubTopicIngestionDataSourceSettingsCloudStorageAvroFormat();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `ingestion_data_source_settings.cloud_storage.pubsub_avro_format` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicIngestionDataSourceSettingsCloudStoragePubsubAvroFormat {
+  const PubsubTopicIngestionDataSourceSettingsCloudStoragePubsubAvroFormat();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `ingestion_data_source_settings.cloud_storage.text_format` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicIngestionDataSourceSettingsCloudStorageTextFormat {
+  const PubsubTopicIngestionDataSourceSettingsCloudStorageTextFormat({
+    this.delimiter,
+  });
+
+  final TfArg<String>? delimiter;
+
+  Map<String, Object?> encode() => {'delimiter': ?delimiter?.toTfJson()};
+}
+
+/// Typed helper for the `ingestion_data_source_settings.confluent_cloud` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicIngestionDataSourceSettingsConfluentCloud {
+  const PubsubTopicIngestionDataSourceSettingsConfluentCloud({
+    required this.bootstrapServer,
+    this.clusterId,
+    required this.gcpServiceAccount,
+    required this.identityPoolId,
+    required this.topic,
+  });
+
+  final TfArg<String> bootstrapServer;
+
+  final TfArg<String>? clusterId;
+
+  final TfArg<String> gcpServiceAccount;
+
+  final TfArg<String> identityPoolId;
+
+  final TfArg<String> topic;
+
+  Map<String, Object?> encode() => {
+    'bootstrap_server': bootstrapServer.toTfJson(),
+    'cluster_id': ?clusterId?.toTfJson(),
+    'gcp_service_account': gcpServiceAccount.toTfJson(),
+    'identity_pool_id': identityPoolId.toTfJson(),
+    'topic': topic.toTfJson(),
+  };
+}
+
+/// Typed helper for the `ingestion_data_source_settings.platform_logs_settings` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicIngestionDataSourceSettingsPlatformLogsSettings {
+  const PubsubTopicIngestionDataSourceSettingsPlatformLogsSettings({
+    this.severity,
+  });
+
+  final TfArg<PubsubTopicPlatformLogsSeverity>? severity;
+
+  Map<String, Object?> encode() => {'severity': ?severity?.toTfJson()};
+}
+
+/// Typed helper for the `message_storage_policy` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicMessageStoragePolicy {
+  const PubsubTopicMessageStoragePolicy({
+    required this.allowedPersistenceRegions,
+    this.enforceInTransit,
+  });
+
+  final TfArg<List<Object?>> allowedPersistenceRegions;
+
+  final TfArg<bool>? enforceInTransit;
+
+  Map<String, Object?> encode() => {
+    'allowed_persistence_regions': allowedPersistenceRegions.toTfJson(),
+    'enforce_in_transit': ?enforceInTransit?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `message_transforms` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicMessageTransforms {
+  const PubsubTopicMessageTransforms({
+    this.disabled,
+    this.aiInference,
+    this.javascriptUdf,
+  });
+
+  final TfArg<bool>? disabled;
+
+  final PubsubTopicMessageTransformsAiInference? aiInference;
+
+  final PubsubTopicMessageTransformsJavascriptUdf? javascriptUdf;
+
+  Map<String, Object?> encode() => {
+    'disabled': ?disabled?.toTfJson(),
+    'ai_inference': ?aiInference?.encode(),
+    'javascript_udf': ?javascriptUdf?.encode(),
+  };
+}
+
+/// Typed helper for the `message_transforms.ai_inference` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicMessageTransformsAiInference {
+  const PubsubTopicMessageTransformsAiInference({
+    required this.endpoint,
+    this.serviceAccountEmail,
+    this.unstructuredInference,
+  });
+
+  final TfArg<String> endpoint;
+
+  final TfArg<String>? serviceAccountEmail;
+
+  final PubsubTopicMessageTransformsAiInferenceUnstructuredInference?
+  unstructuredInference;
+
+  Map<String, Object?> encode() => {
+    'endpoint': endpoint.toTfJson(),
+    'service_account_email': ?serviceAccountEmail?.toTfJson(),
+    'unstructured_inference': ?unstructuredInference?.encode(),
+  };
+}
+
+/// Typed helper for the `message_transforms.ai_inference.unstructured_inference` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicMessageTransformsAiInferenceUnstructuredInference {
+  const PubsubTopicMessageTransformsAiInferenceUnstructuredInference({
+    this.parameters,
+  });
+
+  final TfArg<Map<String, String>>? parameters;
+
+  Map<String, Object?> encode() => {'parameters': ?parameters?.toTfJson()};
+}
+
+/// Typed helper for the `message_transforms.javascript_udf` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicMessageTransformsJavascriptUdf {
+  const PubsubTopicMessageTransformsJavascriptUdf({
+    required this.code,
+    required this.functionName,
+  });
+
+  final TfArg<String> code;
+
+  final TfArg<String> functionName;
+
+  Map<String, Object?> encode() => {
+    'code': code.toTfJson(),
+    'function_name': functionName.toTfJson(),
+  };
+}
+
+/// Typed helper for the `schema_settings` block of
+/// `google_pubsub_topic` (derived from provider schema).
+@immutable
+final class PubsubTopicSchemaSettings {
+  const PubsubTopicSchemaSettings({this.encoding, required this.schema});
+
+  final TfArg<PubsubTopicSchemaEncoding>? encoding;
+
+  final TfArg<String> schema;
+
+  Map<String, Object?> encode() => {
+    'encoding': ?encoding?.toTfJson(),
+    'schema': schema.toTfJson(),
   };
 }
 
@@ -77,13 +387,15 @@ class PubsubTopicIngestionDataSourceSettings {
 ///
 /// Example:
 /// ```dart
-/// final orders = GooglePubsubTopic(
+/// final o = GooglePubsubTopic(
 ///   localName: 'orders',
-///   name: TfArg.literal('orders-prod'),
-///   messageRetentionDuration:
-///       TfArg.literal(const Duration(days: 7).toTfDurationString()),
-///   schemaSettings: const PubsubTopicSchemaSettings(
-///     encoding: PubsubTopicSchemaEncoding.json,
+///   name: .literal('orders-prod'),
+///   messageRetentionDuration: .literal(
+///     const Duration(days: 7).toTfDurationString(),
+///   ),
+///   schemaSettings: PubsubTopicSchemaSettings(
+///     schema: .literal('projects/p/schemas/orders'),
+///     encoding: .literal(.json),
 ///   ),
 ///   lifecycle: const LifecycleOptions(preventDestroy: true),
 /// );
@@ -96,11 +408,11 @@ final class GooglePubsubTopic extends Resource {
     required TfArg<String> name,
     TfArg<String>? kmsKeyName,
     TfArg<Map<String, String>>? labels,
-    TfArg<Map<String, dynamic>>? messageStoragePolicy,
+    PubsubTopicMessageStoragePolicy? messageStoragePolicy,
     PubsubTopicSchemaSettings? schemaSettings,
     TfArg<String>? messageRetentionDuration,
     PubsubTopicIngestionDataSourceSettings? ingestionDataSourceSettings,
-    TfArg<List<Map<String, dynamic>>>? messageTransforms,
+    List<PubsubTopicMessageTransforms>? messageTransforms,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? project,
     super.lifecycle,
@@ -113,15 +425,21 @@ final class GooglePubsubTopic extends Resource {
            'name': name,
            'kms_key_name': ?kmsKeyName,
            'labels': ?labels,
-           'message_storage_policy': ?messageStoragePolicy,
+           if (messageStoragePolicy != null)
+             'message_storage_policy': TfArg.literal(
+               messageStoragePolicy.encode(),
+             ),
            if (schemaSettings != null)
-             'schema_settings': TfArg.literal([schemaSettings.encode()]),
+             'schema_settings': TfArg.literal(schemaSettings.encode()),
            'message_retention_duration': ?messageRetentionDuration,
            if (ingestionDataSourceSettings != null)
-             'ingestion_data_source_settings': TfArg.literal([
+             'ingestion_data_source_settings': TfArg.literal(
                ingestionDataSourceSettings.encode(),
+             ),
+           if (messageTransforms != null)
+             'message_transforms': TfArg.literal([
+               for (final e in messageTransforms) e.encode(),
              ]),
-           'message_transforms': ?messageTransforms,
            'tags': ?tags,
            'project': ?project,
          },

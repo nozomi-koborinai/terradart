@@ -68,9 +68,9 @@ final class RolloutPolicy extends TrafficChoice {
       expect(pByName['disabled']!.required, isFalse);
     });
 
-    test('parses google_cloud_scheduler_job.yaml prelude end-to-end', () {
+    test('parses google_cloudfunctions2_function.yaml prelude end-to-end', () {
       final yaml = File(
-        'lib/src/codegen/wrapper_overrides/yaml/google_cloud_scheduler_job.yaml',
+        'lib/src/codegen/wrapper_overrides/yaml/google_cloudfunctions2_function.yaml',
       ).readAsStringSync();
       // Crude prelude slice: from the `prelude:` key to the end of the yaml.
       // Component B-3 (Gate 6) parses yaml properly via the yaml package; this
@@ -83,19 +83,14 @@ final class RolloutPolicy extends TrafficChoice {
       final extracted = const SealedClassExtractor().extract(preludeText);
       expect(
         extracted.map((s) => s.name),
-        contains('CloudSchedulerJobSchedulerTarget'),
+        contains('Cloudfunctions2FunctionSourceConfig'),
       );
-      final scheduler = extracted.singleWhere(
-        (s) => s.name == 'CloudSchedulerJobSchedulerTarget',
+      final source = extracted.singleWhere(
+        (s) => s.name == 'Cloudfunctions2FunctionSourceConfig',
       );
-      // CloudSchedulerJobSchedulerTarget has 3 known members (v1.0 naming).
       expect(
-        scheduler.members.map((m) => m.name),
-        containsAll([
-          'CloudSchedulerJobPubsubTarget',
-          'CloudSchedulerJobHttpTarget',
-          'CloudSchedulerJobAppEngineHttpTarget',
-        ]),
+        source.members.map((m) => m.name),
+        containsAll(['StorageSource', 'RepoSource']),
       );
     });
   });

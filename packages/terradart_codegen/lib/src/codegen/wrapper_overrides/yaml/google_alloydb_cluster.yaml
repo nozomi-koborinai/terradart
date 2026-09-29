@@ -56,14 +56,14 @@ curatedDoc: |-
   /// ```dart
   /// GoogleAlloydbCluster(
   ///   localName: 'app',
-  ///   clusterId: TfArg.literal('app-cluster'),
-  ///   location: TfArg.literal('asia-northeast1'),
+  ///   clusterId: .literal('app-cluster'),
+  ///   location: .literal('asia-northeast1'),
   ///   networkConfig: AlloydbClusterNetworkConfig(
-  ///     network: .of(vpc),
-  ///     allocatedIpRange: TfArg.ref(psaRange.nameRef),
+  ///     network: vpc.ref,
+  ///     allocatedIpRange: .ref(psaRange.nameRef),
   ///   ),
   ///   initialUser: AlloydbClusterInitialUser(
-  ///     user: TfArg.literal('postgres'),
+  ///     user: .literal('postgres'),
   ///     password: .passwordWo(.literal(dbPassword)),
   ///     passwordWoVersion: .literal('1'),
   ///   ),

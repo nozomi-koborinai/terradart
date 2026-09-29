@@ -33,7 +33,8 @@ final class ProviderEnums {
     : exactlyOneGroups = const {},
       atMostOneGroups = const {},
       caseInsensitive = false,
-      availableValuesDialect = false;
+      availableValuesDialect = false,
+      _groupSource = null;
 
   /// The gate closed: no enrichment, the default description resolver.
   static const ProviderEnums off = ProviderEnums._(enabled: false, hints: {});
@@ -46,7 +47,8 @@ final class ProviderEnums {
     this.atMostOneGroups = const <String, List<List<String>>>{},
     this.caseInsensitive = true,
     this.availableValuesDialect = true,
-  }) : enabled = true;
+  }) : enabled = true,
+       _groupSource = null;
 
   /// `wrap --mm-hints`: the same gate with Magic Modules YAML as the hint
   /// source — each resource's `enum_values` by path, its `exactly_one_of`
@@ -93,7 +95,8 @@ final class ProviderEnums {
   }) : enabled = from.enabled,
        hints = from.hints,
        caseInsensitive = from.caseInsensitive,
-       availableValuesDialect = from.availableValuesDialect;
+       availableValuesDialect = from.availableValuesDialect,
+       _groupSource = from.hasGroupSource;
 
   /// These groups without the members [defs] has no input for, and without
   /// every group that leaves fewer than two members. Magic Modules YAML is
@@ -216,9 +219,14 @@ final class ProviderEnums {
   }
 
   /// Whether any exclusive-group source is loaded. Without one, no group
-  /// exists to match, so a `sealedNames` key cannot be judged stale.
+  /// exists to match, so a `sealedNames` key cannot be judged stale. A copy
+  /// keeps its source's answer: trimming members leaves the source loaded,
+  /// and an override's own groups are no source for the other names.
   bool get hasGroupSource =>
-      enabled || exactlyOneGroups.isNotEmpty || atMostOneGroups.isNotEmpty;
+      _groupSource ??
+      (enabled || exactlyOneGroups.isNotEmpty || atMostOneGroups.isNotEmpty);
+
+  final bool? _groupSource;
 
   const ProviderEnums._groups({
     required this.exactlyOneGroups,
@@ -226,7 +234,8 @@ final class ProviderEnums {
   }) : enabled = false,
        hints = const {},
        caseInsensitive = false,
-       availableValuesDialect = false;
+       availableValuesDialect = false,
+       _groupSource = null;
 
   /// Reads `<sourceDir>/hints/*.yaml` (a missing directory means no hints).
   ///

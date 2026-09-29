@@ -105,14 +105,11 @@ export 'src/bigquery/google_bigquery_data_transfer_config.dart'
     show
         BigqueryDataTransferConfigEmailPreferences,
         BigqueryDataTransferConfigEncryptionConfiguration,
-        BigqueryDataTransferConfigPlaintextSecretAccessKey,
         BigqueryDataTransferConfigScheduleOptions,
-        BigqueryDataTransferConfigSecretAccessKey,
         BigqueryDataTransferConfigSensitiveParams,
         BigqueryDataTransferConfigSensitiveParamsSecretAccessKey,
         BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyChoice,
         BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyWo,
-        BigqueryDataTransferConfigWriteOnlySecretAccessKey,
         GoogleBigqueryDataTransferConfig;
 export 'src/bigquery/google_bigquery_data_transfer_data_source_enrollment.dart'
     show GoogleBigqueryDataTransferDataSourceEnrollment;
@@ -202,6 +199,8 @@ export 'src/bigquery/google_bigquery_job.dart'
         BigqueryJobCopySourceTables,
         BigqueryJobCopyWriteDisposition,
         BigqueryJobExtract,
+        BigqueryJobExtractCompression,
+        BigqueryJobExtractDestinationFormat,
         BigqueryJobExtractSource,
         BigqueryJobExtractSourceModel,
         BigqueryJobExtractSourceModelChoice,
@@ -212,8 +211,10 @@ export 'src/bigquery/google_bigquery_job.dart'
         BigqueryJobLoadDestinationEncryptionConfiguration,
         BigqueryJobLoadDestinationTable,
         BigqueryJobLoadParquetOptions,
+        BigqueryJobLoadSourceFormat,
         BigqueryJobLoadTimePartitioning,
         BigqueryJobLoadWriteDisposition,
+        BigqueryJobParameterMode,
         BigqueryJobQuery,
         BigqueryJobQueryConnectionProperties,
         BigqueryJobQueryCreateDisposition,

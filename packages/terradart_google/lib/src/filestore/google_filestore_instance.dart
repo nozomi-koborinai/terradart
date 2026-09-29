@@ -188,7 +188,7 @@ final class FilestoreInstanceFileSharesNfsExportOptions {
     'anon_gid': ?anonGid?.toTfJson(),
     'anon_uid': ?anonUid?.toTfJson(),
     'ip_ranges': ?ipRanges?.toTfJson(),
-    'network': ?network?.encodeAs('id').toTfJson(),
+    'network': ?network?.encodeAs('name').toTfJson(),
     'squash_mode': ?squashMode?.toTfJson(),
   };
 }

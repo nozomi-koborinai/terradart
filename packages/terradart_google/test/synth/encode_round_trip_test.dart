@@ -323,17 +323,6 @@ final Map<String, Object Function()> _syntheticInstances = {
   'EdgecontainerClusterControlPlaneLocal': () =>
       const EdgecontainerClusterControlPlaneLocal(),
 
-  // --- BigqueryDataTransferConfigSecretAccessKey (2) — data_transfer_config -
-  'BigqueryDataTransferConfigWriteOnlySecretAccessKey': () =>
-      BigqueryDataTransferConfigWriteOnlySecretAccessKey(
-        secretAccessKeyWo: TfArg.literal('mock-key'),
-        secretAccessKeyWoVersion: TfArg.literal('1'),
-      ),
-  'BigqueryDataTransferConfigPlaintextSecretAccessKey': () =>
-      BigqueryDataTransferConfigPlaintextSecretAccessKey(
-        secretAccessKey: TfArg.literal('mock-key'),
-      ),
-
   // --- SecretManagerSecretVersionPayload (2) — secret_manager_secret_version
   'SecretManagerSecretVersionWriteOnlyPayload': () =>
       SecretManagerSecretVersionWriteOnlyPayload(
