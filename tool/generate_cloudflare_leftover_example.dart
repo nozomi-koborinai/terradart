@@ -9,6 +9,8 @@
 
 import 'dart:io';
 
+import 'dot_shorthands.dart';
+
 const _skipResourceTypes = {'cloudflare_zone', 'cloudflare_dns_record'};
 
 const _skipDataTypes = {'cloudflare_firewall_rule'};
@@ -147,7 +149,12 @@ void main() {
 
   File(_outPath)
     ..createSync(recursive: true)
-    ..writeAsStringSync(buf.toString());
+    ..writeAsStringSync(
+      dotShorthands(
+        buf.toString(),
+        packageEnums('packages/terradart_cloudflare/lib/src'),
+      ),
+    );
   final fmt = Process.runSync('dart', ['format', _outPath]);
   if (fmt.exitCode != 0) {
     stderr.writeln('dart format failed on $_outPath:\n${fmt.stderr}');

@@ -103,6 +103,18 @@ way: `DataAwsNatGateway(vpcId: vpc.ref)`,
 `DataGoogleKmsCryptoKeyVersion(cryptoKey: key.ref)`. A string that is not a
 block of the Stack takes `.literal(...)`; synth output does not change.
 
+**Breaking (`terradart_appwrite`)** — Appwrite arguments that name another
+Appwrite resource take `RefTo<Target>` the same way, emitting its `id`:
+`project_id`, `database_id` (the database of the same family: TablesDB,
+MongoDB, MySQL or PostgreSQL), `table_id` / `related_table_id`, `bucket_id`,
+`topic_id`, `function_id` and `site_id`.
+
+| Before | After |
+|--------|-------|
+| `databaseId: .ref(db.id)` | `databaseId: db.ref` |
+| `bucketId: .ref(bucket.id)` | `bucketId: bucket.ref` |
+| `projectId: .literal('my-project')` | unchanged (`RefTo.literal`) |
+
 ### Sealed arguments are built with dot shorthands
 
 **Breaking (`terradart_aws`, every package with a derived sealed type)** —

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+import '../sites/appwrite_site.dart' show AppwriteSite;
+
 /// Sensitive field paths for `appwrite_site_deployment`.
 const Set<String> _appwriteSiteDeploymentSensitive = <String>{};
 
@@ -31,11 +34,11 @@ final class AppwriteSiteDeployment extends Resource {
     TfArg<String>? installCommand,
     TfArg<String>? outputDirectory,
     TfArg<String>? owner,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<String>? reference,
     TfArg<String>? repository,
     TfArg<String>? rootDirectory,
-    required TfArg<String> siteId,
+    required RefTo<AppwriteSite> siteId,
     required TfArg<SiteDeploymentSourceType> sourceType,
     TfArg<String>? type,
     TfArg<bool>? waitForReady,
@@ -53,11 +56,11 @@ final class AppwriteSiteDeployment extends Resource {
            'install_command': ?installCommand,
            'output_directory': ?outputDirectory,
            'owner': ?owner,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'reference': ?reference,
            'repository': ?repository,
            'root_directory': ?rootDirectory,
-           'site_id': siteId,
+           'site_id': siteId.encodeAs('id'),
            'source_type': sourceType,
            'type': ?type,
            'wait_for_ready': ?waitForReady,

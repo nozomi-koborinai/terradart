@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../project/appwrite_project.dart' show AppwriteProject;
 
 /// Sensitive field paths for `appwrite_mongo_specifications`.
 const Set<String> _appwriteMongoSpecificationsSensitive = <String>{};
@@ -17,10 +18,13 @@ final class DataAppwriteMongoSpecifications extends Data {
 
   DataAppwriteMongoSpecifications({
     required super.localName,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'project_id': ?projectId});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'project_id': ?projectId?.encodeAs('id')},
+       );
 
   @override
   Set<String> get sensitiveFields => _appwriteMongoSpecificationsSensitive;

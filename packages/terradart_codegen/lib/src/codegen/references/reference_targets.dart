@@ -13,6 +13,7 @@ final class ReferenceRule {
     required this.target,
     required this.attribute,
     required this.slots,
+    this.types,
     this.attributes = const {},
     this.exclude = const {},
   });
@@ -27,6 +28,10 @@ final class ReferenceRule {
   /// Matched against an input's dotted path from the resource root
   /// (`network`, `network_interface.subnetwork`).
   final RegExp slots;
+
+  /// When set, only the inputs of resource and data source types it matches
+  /// (`^appwrite_mysql_`), for a path several targets share.
+  final RegExp? types;
 
   /// `<resource type>.<path>` → the attribute that input emits instead.
   /// The same input of the type's data source follows the entry; a
@@ -63,7 +68,14 @@ List<ReferenceRule> loadReferenceRules(String path, String providerSource) {
 
 ReferenceRule _parseRule(Object? raw, {required String context}) {
   if (raw is! YamlMap) throw FormatException('$context: expected a map');
-  const known = {'target', 'attribute', 'slots', 'attributes', 'exclude'};
+  const known = {
+    'target',
+    'attribute',
+    'slots',
+    'types',
+    'attributes',
+    'exclude',
+  };
   for (final key in raw.keys) {
     if (!known.contains(key)) {
       throw FormatException('$context: unknown key "$key"');
@@ -90,6 +102,7 @@ ReferenceRule _parseRule(Object? raw, {required String context}) {
     target: target,
     attribute: requireString('attribute'),
     slots: RegExp(requireString('slots')),
+    types: raw.containsKey('types') ? RegExp(requireString('types')) : null,
     attributes: {
       if (attributes is YamlMap)
         for (final e in attributes.entries) '${e.key}': '${e.value}',
@@ -215,6 +228,7 @@ ReferenceResolution resolveReferences({
     for (final MapEntry(key: (:type, :data), value: slots) in inputs.entries) {
       for (final MapEntry(key: path, value: list) in slots.entries) {
         if (!rule.slots.hasMatch(path)) continue;
+        if (rule.types case final types? when !types.hasMatch(type)) continue;
         // The target's own top-level input is its identity, not a reference.
         if (type == rule.target && !path.contains('.')) continue;
         final key = data ? 'data.$type.$path' : '$type.$path';

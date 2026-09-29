@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../messaging/appwrite_messaging_topic.dart' show AppwriteMessagingTopic;
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_messaging_subscriber`.
 const Set<String> _appwriteMessagingSubscriberSensitive = <String>{};
 
@@ -14,9 +17,9 @@ final class AppwriteMessagingSubscriber extends Resource {
 
   AppwriteMessagingSubscriber({
     required super.localName,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     required TfArg<String> targetId,
-    required TfArg<String> topicId,
+    required RefTo<AppwriteMessagingTopic> topicId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -24,9 +27,9 @@ final class AppwriteMessagingSubscriber extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'target_id': targetId,
-           'topic_id': topicId,
+           'topic_id': topicId.encodeAs('id'),
          },
        );
 
