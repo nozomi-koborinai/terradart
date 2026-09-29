@@ -10,10 +10,23 @@ export 'src/gke_backup/google_gke_backup_backup_channel.dart'
     show GoogleGkeBackupBackupChannel;
 export 'src/gke_backup/google_gke_backup_backup_plan.dart'
     show
+        GkeBackupBackupPlanBackupConfig,
+        GkeBackupBackupPlanBackupConfigAllNamespacesOption,
+        GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels,
+        GkeBackupBackupPlanBackupConfigEncryptionKey,
+        GkeBackupBackupPlanBackupConfigSelectedApplications,
+        GkeBackupBackupPlanBackupConfigSelectedApplicationsNamespacedNames,
+        GkeBackupBackupPlanBackupConfigSelectedApplicationsOption,
+        GkeBackupBackupPlanBackupConfigSelectedNamespaceLabels,
+        GkeBackupBackupPlanBackupConfigSelectedNamespaceLabelsOption,
+        GkeBackupBackupPlanBackupConfigSelectedNamespaceLabelsResourceLabels,
+        GkeBackupBackupPlanBackupConfigSelectedNamespaces,
+        GkeBackupBackupPlanBackupConfigSelectedNamespacesOption,
         GkeBackupBackupPlanBackupSchedule,
         GkeBackupBackupPlanDayOfWeek,
         GkeBackupBackupPlanExclusionWindow,
         GkeBackupBackupPlanExclusionWindowDaysOfWeek,
+        GkeBackupBackupPlanRetentionPolicy,
         GkeBackupBackupPlanRpoConfig,
         GoogleGkeBackupBackupPlan;
 export 'src/gke_backup/google_gke_backup_backup_plan_iam_binding.dart'

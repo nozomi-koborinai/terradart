@@ -115,26 +115,83 @@ final class GkeonpremVmwareAdminClusterControlPlaneNode {
 @immutable
 final class GkeonpremVmwareAdminClusterLoadBalancer {
   const GkeonpremVmwareAdminClusterLoadBalancer({
-    this.f5Config,
-    this.manualLbConfig,
-    this.metalLbConfig,
+    required this.f5ConfigOrManualLbConfigOrMetalLbConfig,
     required this.vipConfig,
   });
 
-  final GkeonpremVmwareAdminClusterLoadBalancerF5Config? f5Config;
-
-  final GkeonpremVmwareAdminClusterLoadBalancerManualLbConfig? manualLbConfig;
-
-  final GkeonpremVmwareAdminClusterLoadBalancerMetalLbConfig? metalLbConfig;
+  final GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig
+  f5ConfigOrManualLbConfigOrMetalLbConfig;
 
   final GkeonpremVmwareAdminClusterLoadBalancerVipConfig vipConfig;
 
   Map<String, Object?> encode() => {
-    if (f5Config != null) 'f5_config': f5Config!.encode(),
-    if (manualLbConfig != null) 'manual_lb_config': manualLbConfig!.encode(),
-    if (metalLbConfig != null) 'metal_lb_config': metalLbConfig!.encode(),
+    ...f5ConfigOrManualLbConfigOrMetalLbConfig.encode(),
     'vip_config': vipConfig.encode(),
   };
+}
+
+/// Exactly one of `f5_config`, `manual_lb_config`, `metal_lb_config` on the `load_balancer` block of `google_gkeonprem_vmware_admin_cluster`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig {
+  const GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `f5_config` (one of the [GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig] choices).
+final class GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOption
+    extends
+        GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig {
+  const GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOption({
+    required this.f5Config,
+  });
+
+  final GkeonpremVmwareAdminClusterLoadBalancerF5Config f5Config;
+
+  @override
+  String get blockKey => 'f5_config';
+
+  @override
+  Map<String, Object?> encode() => {'f5_config': f5Config.encode()};
+}
+
+/// Sets `manual_lb_config` (one of the [GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig] choices).
+final class GkeonpremVmwareAdminClusterLoadBalancerManualLbConfigOption
+    extends
+        GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig {
+  const GkeonpremVmwareAdminClusterLoadBalancerManualLbConfigOption({
+    required this.manualLbConfig,
+  });
+
+  final GkeonpremVmwareAdminClusterLoadBalancerManualLbConfig manualLbConfig;
+
+  @override
+  String get blockKey => 'manual_lb_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'manual_lb_config': manualLbConfig.encode(),
+  };
+}
+
+/// Sets `metal_lb_config` (one of the [GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig] choices).
+final class GkeonpremVmwareAdminClusterLoadBalancerMetalLbConfigOption
+    extends
+        GkeonpremVmwareAdminClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig {
+  const GkeonpremVmwareAdminClusterLoadBalancerMetalLbConfigOption({
+    required this.metalLbConfig,
+  });
+
+  final GkeonpremVmwareAdminClusterLoadBalancerMetalLbConfig metalLbConfig;
+
+  @override
+  String get blockKey => 'metal_lb_config';
+
+  @override
+  Map<String, Object?> encode() => {'metal_lb_config': metalLbConfig.encode()};
 }
 
 /// Typed helper for the `load_balancer.f5_config` block of
@@ -235,10 +292,9 @@ final class GkeonpremVmwareAdminClusterNetworkConfig {
     required this.podAddressCidrBlocks,
     required this.serviceAddressCidrBlocks,
     this.vcenterNetwork,
-    this.dhcpIpConfig,
+    required this.staticIpConfigOrDhcpIpConfig,
     this.haControlPlaneConfig,
     this.hostConfig,
-    this.staticIpConfig,
   });
 
   final TfArg<List<Object?>> podAddressCidrBlocks;
@@ -247,25 +303,70 @@ final class GkeonpremVmwareAdminClusterNetworkConfig {
 
   final TfArg<String>? vcenterNetwork;
 
-  final GkeonpremVmwareAdminClusterNetworkConfigDhcpIpConfig? dhcpIpConfig;
+  final GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig
+  staticIpConfigOrDhcpIpConfig;
 
   final GkeonpremVmwareAdminClusterNetworkConfigHaControlPlaneConfig?
   haControlPlaneConfig;
 
   final GkeonpremVmwareAdminClusterNetworkConfigHostConfig? hostConfig;
 
-  final GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfig? staticIpConfig;
-
   Map<String, Object?> encode() => {
     'pod_address_cidr_blocks': podAddressCidrBlocks.toTfJson(),
     'service_address_cidr_blocks': serviceAddressCidrBlocks.toTfJson(),
     if (vcenterNetwork != null) 'vcenter_network': vcenterNetwork!.toTfJson(),
-    if (dhcpIpConfig != null) 'dhcp_ip_config': dhcpIpConfig!.encode(),
+    ...staticIpConfigOrDhcpIpConfig.encode(),
     if (haControlPlaneConfig != null)
       'ha_control_plane_config': haControlPlaneConfig!.encode(),
     if (hostConfig != null) 'host_config': hostConfig!.encode(),
-    if (staticIpConfig != null) 'static_ip_config': staticIpConfig!.encode(),
   };
+}
+
+/// Exactly one of `static_ip_config`, `dhcp_ip_config` on the `network_config` block of `google_gkeonprem_vmware_admin_cluster`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig {
+  const GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `static_ip_config` (one of the [GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig] choices).
+final class GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOption
+    extends
+        GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig {
+  const GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOption({
+    required this.staticIpConfig,
+  });
+
+  final GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfig staticIpConfig;
+
+  @override
+  String get blockKey => 'static_ip_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'static_ip_config': staticIpConfig.encode(),
+  };
+}
+
+/// Sets `dhcp_ip_config` (one of the [GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig] choices).
+final class GkeonpremVmwareAdminClusterNetworkConfigDhcpIpConfigOption
+    extends
+        GkeonpremVmwareAdminClusterNetworkConfigStaticIpConfigOrDhcpIpConfig {
+  const GkeonpremVmwareAdminClusterNetworkConfigDhcpIpConfigOption({
+    required this.dhcpIpConfig,
+  });
+
+  final GkeonpremVmwareAdminClusterNetworkConfigDhcpIpConfig dhcpIpConfig;
+
+  @override
+  String get blockKey => 'dhcp_ip_config';
+
+  @override
+  Map<String, Object?> encode() => {'dhcp_ip_config': dhcpIpConfig.encode()};
 }
 
 /// Typed helper for the `network_config.dhcp_ip_config` block of

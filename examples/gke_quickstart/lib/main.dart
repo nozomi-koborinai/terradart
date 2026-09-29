@@ -173,14 +173,17 @@ final class GkeQuickstartStack extends Stack {
         // GKE Backup requires the plan to declare a backup scope; without one
         // the API rejects creation with INVALID_BACKUP_SCOPE. Back up every
         // namespace (plus secrets + volume data) — the canonical basic scope.
-        backupConfig: TfArg.literal({
-          'all_namespaces': TfArg.literal(true),
-          'include_secrets': TfArg.literal(true),
-          'include_volume_data': TfArg.literal(true),
-        }),
-        retentionPolicy: TfArg.literal({
-          'backup_retain_days': TfArg.literal(7),
-        }),
+        backupConfig: GkeBackupBackupPlanBackupConfig(
+          allNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels:
+              GkeBackupBackupPlanBackupConfigAllNamespacesOption(
+                allNamespaces: TfArg.literal(true),
+              ),
+          includeSecrets: TfArg.literal(true),
+          includeVolumeData: TfArg.literal(true),
+        ),
+        retentionPolicy: GkeBackupBackupPlanRetentionPolicy(
+          backupRetainDays: TfArg.literal(7),
+        ),
         dependsOn: [
           ResourceDependency(apiGkeBackup),
           ResourceDependency(cluster),

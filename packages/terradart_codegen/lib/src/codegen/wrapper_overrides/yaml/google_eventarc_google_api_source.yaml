@@ -1,5 +1,6 @@
 outputDir: eventarc
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 extraImports:

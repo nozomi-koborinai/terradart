@@ -29,7 +29,13 @@ export 'src/model_armor/google_model_armor_template.dart'
         ModelArmorTemplateFilterConfigRaiSettingsRaiFilters,
         ModelArmorTemplateFilterConfigSdpSettings,
         ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfig,
+        ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOption,
+        ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig,
         ModelArmorTemplateFilterConfigSdpSettingsBasicConfig,
+        ModelArmorTemplateFilterConfigSdpSettingsBasicConfigOption,
         ModelArmorTemplateTemplateMetadata,
         ModelArmorTemplateTemplateMetadataFilterVersionSelector,
+        ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOption,
+        ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion,
+        ModelArmorTemplateTemplateMetadataFilterVersionSelectorVersionOption,
         ModelArmorTemplateTemplateMetadataMultiLanguageDetection;

@@ -336,8 +336,7 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbe {
     this.initialDelaySeconds,
     this.periodSeconds,
     this.timeoutSeconds,
-    this.grpc,
-    this.httpGet,
+    required this.httpGetOrGrpc,
   });
 
   final TfArg<num>? failureThreshold;
@@ -348,9 +347,8 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunServiceTemplateSpecContainersLivenessProbeGrpc? grpc;
-
-  final CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet? httpGet;
+  final CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc
+  httpGetOrGrpc;
 
   Map<String, Object?> encode() => {
     if (failureThreshold != null)
@@ -359,9 +357,51 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbe {
       'initial_delay_seconds': initialDelaySeconds!.toTfJson(),
     if (periodSeconds != null) 'period_seconds': periodSeconds!.toTfJson(),
     if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
-    if (grpc != null) 'grpc': grpc!.encode(),
-    if (httpGet != null) 'http_get': httpGet!.encode(),
+    ...httpGetOrGrpc.encode(),
   };
+}
+
+/// Exactly one of `http_get`, `grpc` on the `template.spec.containers.liveness_probe` block of `google_cloud_run_service`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc {
+  const CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `http_get` (one of the [CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc] choices).
+final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOption
+    extends CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc {
+  const CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOption({
+    required this.httpGet,
+  });
+
+  final CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet httpGet;
+
+  @override
+  String get blockKey => 'http_get';
+
+  @override
+  Map<String, Object?> encode() => {'http_get': httpGet.encode()};
+}
+
+/// Sets `grpc` (one of the [CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc] choices).
+final class CloudRunServiceTemplateSpecContainersLivenessProbeGrpcOption
+    extends CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc {
+  const CloudRunServiceTemplateSpecContainersLivenessProbeGrpcOption({
+    required this.grpc,
+  });
+
+  final CloudRunServiceTemplateSpecContainersLivenessProbeGrpc grpc;
+
+  @override
+  String get blockKey => 'grpc';
+
+  @override
+  Map<String, Object?> encode() => {'grpc': grpc.encode()};
 }
 
 /// Typed helper for the `template.spec.containers.liveness_probe.grpc` block of
@@ -461,8 +501,7 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbe {
     this.periodSeconds,
     this.successThreshold,
     this.timeoutSeconds,
-    this.grpc,
-    this.httpGet,
+    required this.httpGetOrGrpc,
   });
 
   final TfArg<num>? failureThreshold;
@@ -473,9 +512,8 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunServiceTemplateSpecContainersReadinessProbeGrpc? grpc;
-
-  final CloudRunServiceTemplateSpecContainersReadinessProbeHttpGet? httpGet;
+  final CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc
+  httpGetOrGrpc;
 
   Map<String, Object?> encode() => {
     if (failureThreshold != null)
@@ -484,9 +522,51 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbe {
     if (successThreshold != null)
       'success_threshold': successThreshold!.toTfJson(),
     if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
-    if (grpc != null) 'grpc': grpc!.encode(),
-    if (httpGet != null) 'http_get': httpGet!.encode(),
+    ...httpGetOrGrpc.encode(),
   };
+}
+
+/// Exactly one of `http_get`, `grpc` on the `template.spec.containers.readiness_probe` block of `google_cloud_run_service`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc {
+  const CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `http_get` (one of the [CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc] choices).
+final class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOption
+    extends CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc {
+  const CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOption({
+    required this.httpGet,
+  });
+
+  final CloudRunServiceTemplateSpecContainersReadinessProbeHttpGet httpGet;
+
+  @override
+  String get blockKey => 'http_get';
+
+  @override
+  Map<String, Object?> encode() => {'http_get': httpGet.encode()};
+}
+
+/// Sets `grpc` (one of the [CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc] choices).
+final class CloudRunServiceTemplateSpecContainersReadinessProbeGrpcOption
+    extends CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc {
+  const CloudRunServiceTemplateSpecContainersReadinessProbeGrpcOption({
+    required this.grpc,
+  });
+
+  final CloudRunServiceTemplateSpecContainersReadinessProbeGrpc grpc;
+
+  @override
+  String get blockKey => 'grpc';
+
+  @override
+  Map<String, Object?> encode() => {'grpc': grpc.encode()};
 }
 
 /// Typed helper for the `template.spec.containers.readiness_probe.grpc` block of
@@ -555,9 +635,7 @@ final class CloudRunServiceTemplateSpecContainersStartupProbe {
     this.initialDelaySeconds,
     this.periodSeconds,
     this.timeoutSeconds,
-    this.grpc,
-    this.httpGet,
-    this.tcpSocket,
+    required this.tcpSocketOrHttpGetOrGrpc,
   });
 
   final TfArg<num>? failureThreshold;
@@ -568,11 +646,8 @@ final class CloudRunServiceTemplateSpecContainersStartupProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunServiceTemplateSpecContainersStartupProbeGrpc? grpc;
-
-  final CloudRunServiceTemplateSpecContainersStartupProbeHttpGet? httpGet;
-
-  final CloudRunServiceTemplateSpecContainersStartupProbeTcpSocket? tcpSocket;
+  final CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc
+  tcpSocketOrHttpGetOrGrpc;
 
   Map<String, Object?> encode() => {
     if (failureThreshold != null)
@@ -581,10 +656,70 @@ final class CloudRunServiceTemplateSpecContainersStartupProbe {
       'initial_delay_seconds': initialDelaySeconds!.toTfJson(),
     if (periodSeconds != null) 'period_seconds': periodSeconds!.toTfJson(),
     if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
-    if (grpc != null) 'grpc': grpc!.encode(),
-    if (httpGet != null) 'http_get': httpGet!.encode(),
-    if (tcpSocket != null) 'tcp_socket': tcpSocket!.encode(),
+    ...tcpSocketOrHttpGetOrGrpc.encode(),
   };
+}
+
+/// Exactly one of `tcp_socket`, `http_get`, `grpc` on the `template.spec.containers.startup_probe` block of `google_cloud_run_service`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc {
+  const CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `tcp_socket` (one of the [CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc] choices).
+final class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOption
+    extends
+        CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc {
+  const CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOption({
+    required this.tcpSocket,
+  });
+
+  final CloudRunServiceTemplateSpecContainersStartupProbeTcpSocket tcpSocket;
+
+  @override
+  String get blockKey => 'tcp_socket';
+
+  @override
+  Map<String, Object?> encode() => {'tcp_socket': tcpSocket.encode()};
+}
+
+/// Sets `http_get` (one of the [CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc] choices).
+final class CloudRunServiceTemplateSpecContainersStartupProbeHttpGetOption
+    extends
+        CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc {
+  const CloudRunServiceTemplateSpecContainersStartupProbeHttpGetOption({
+    required this.httpGet,
+  });
+
+  final CloudRunServiceTemplateSpecContainersStartupProbeHttpGet httpGet;
+
+  @override
+  String get blockKey => 'http_get';
+
+  @override
+  Map<String, Object?> encode() => {'http_get': httpGet.encode()};
+}
+
+/// Sets `grpc` (one of the [CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc] choices).
+final class CloudRunServiceTemplateSpecContainersStartupProbeGrpcOption
+    extends
+        CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc {
+  const CloudRunServiceTemplateSpecContainersStartupProbeGrpcOption({
+    required this.grpc,
+  });
+
+  final CloudRunServiceTemplateSpecContainersStartupProbeGrpc grpc;
+
+  @override
+  String get blockKey => 'grpc';
+
+  @override
+  Map<String, Object?> encode() => {'grpc': grpc.encode()};
 }
 
 /// Typed helper for the `template.spec.containers.startup_probe.grpc` block of

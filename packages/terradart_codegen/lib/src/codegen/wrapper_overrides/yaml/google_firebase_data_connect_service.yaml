@@ -1,6 +1,7 @@
 outputDir: firebase_data_connect
 
 deriveClassDoc: true
+deriveExactlyOne: true
 curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after

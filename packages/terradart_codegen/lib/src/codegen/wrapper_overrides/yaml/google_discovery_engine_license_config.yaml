@@ -1,5 +1,6 @@
 outputDir: discovery_engine
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true

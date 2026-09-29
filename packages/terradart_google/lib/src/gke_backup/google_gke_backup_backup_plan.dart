@@ -69,6 +69,252 @@ class GkeBackupBackupPlanBackupSchedule {
   };
 }
 
+/// Typed helper for the `backup_config` block of
+/// `google_gke_backup_backup_plan` (derived from provider schema).
+@immutable
+final class GkeBackupBackupPlanBackupConfig {
+  const GkeBackupBackupPlanBackupConfig({
+    required this.allNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels,
+    this.includeSecrets,
+    this.includeVolumeData,
+    this.permissiveMode,
+    this.encryptionKey,
+  });
+
+  final GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels
+  allNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels;
+
+  final TfArg<bool>? includeSecrets;
+
+  final TfArg<bool>? includeVolumeData;
+
+  final TfArg<bool>? permissiveMode;
+
+  final GkeBackupBackupPlanBackupConfigEncryptionKey? encryptionKey;
+
+  Map<String, Object?> encode() => {
+    ...allNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels
+        .encode(),
+    if (includeSecrets != null) 'include_secrets': includeSecrets!.toTfJson(),
+    if (includeVolumeData != null)
+      'include_volume_data': includeVolumeData!.toTfJson(),
+    if (permissiveMode != null) 'permissive_mode': permissiveMode!.toTfJson(),
+    if (encryptionKey != null) 'encryption_key': encryptionKey!.encode(),
+  };
+}
+
+/// Exactly one of `all_namespaces`, `selected_namespaces`, `selected_applications`, `selected_namespace_labels` on the `backup_config` block of `google_gke_backup_backup_plan`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels {
+  const GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `all_namespaces` (one of the [GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels] choices).
+final class GkeBackupBackupPlanBackupConfigAllNamespacesOption
+    extends
+        GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels {
+  const GkeBackupBackupPlanBackupConfigAllNamespacesOption({
+    required this.allNamespaces,
+  });
+
+  final TfArg<bool> allNamespaces;
+
+  @override
+  String get blockKey => 'all_namespaces';
+
+  @override
+  Map<String, Object?> encode() => {'all_namespaces': allNamespaces.toTfJson()};
+}
+
+/// Sets `selected_namespaces` (one of the [GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels] choices).
+final class GkeBackupBackupPlanBackupConfigSelectedNamespacesOption
+    extends
+        GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels {
+  const GkeBackupBackupPlanBackupConfigSelectedNamespacesOption({
+    required this.selectedNamespaces,
+  });
+
+  final GkeBackupBackupPlanBackupConfigSelectedNamespaces selectedNamespaces;
+
+  @override
+  String get blockKey => 'selected_namespaces';
+
+  @override
+  Map<String, Object?> encode() => {
+    'selected_namespaces': selectedNamespaces.encode(),
+  };
+}
+
+/// Sets `selected_applications` (one of the [GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels] choices).
+final class GkeBackupBackupPlanBackupConfigSelectedApplicationsOption
+    extends
+        GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels {
+  const GkeBackupBackupPlanBackupConfigSelectedApplicationsOption({
+    required this.selectedApplications,
+  });
+
+  final GkeBackupBackupPlanBackupConfigSelectedApplications
+  selectedApplications;
+
+  @override
+  String get blockKey => 'selected_applications';
+
+  @override
+  Map<String, Object?> encode() => {
+    'selected_applications': selectedApplications.encode(),
+  };
+}
+
+/// Sets `selected_namespace_labels` (one of the [GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels] choices).
+final class GkeBackupBackupPlanBackupConfigSelectedNamespaceLabelsOption
+    extends
+        GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels {
+  const GkeBackupBackupPlanBackupConfigSelectedNamespaceLabelsOption({
+    required this.selectedNamespaceLabels,
+  });
+
+  final GkeBackupBackupPlanBackupConfigSelectedNamespaceLabels
+  selectedNamespaceLabels;
+
+  @override
+  String get blockKey => 'selected_namespace_labels';
+
+  @override
+  Map<String, Object?> encode() => {
+    'selected_namespace_labels': selectedNamespaceLabels.encode(),
+  };
+}
+
+/// Typed helper for the `backup_config.encryption_key` block of
+/// `google_gke_backup_backup_plan` (derived from provider schema).
+@immutable
+final class GkeBackupBackupPlanBackupConfigEncryptionKey {
+  const GkeBackupBackupPlanBackupConfigEncryptionKey({
+    required this.gcpKmsEncryptionKey,
+  });
+
+  final TfArg<String> gcpKmsEncryptionKey;
+
+  Map<String, Object?> encode() => {
+    'gcp_kms_encryption_key': gcpKmsEncryptionKey.toTfJson(),
+  };
+}
+
+/// Typed helper for the `backup_config.selected_applications` block of
+/// `google_gke_backup_backup_plan` (derived from provider schema).
+@immutable
+final class GkeBackupBackupPlanBackupConfigSelectedApplications {
+  const GkeBackupBackupPlanBackupConfigSelectedApplications({
+    required this.namespacedNames,
+  });
+
+  final List<GkeBackupBackupPlanBackupConfigSelectedApplicationsNamespacedNames>
+  namespacedNames;
+
+  Map<String, Object?> encode() => {
+    'namespaced_names': [for (final e in namespacedNames) e.encode()],
+  };
+}
+
+/// Typed helper for the `backup_config.selected_applications.namespaced_names` block of
+/// `google_gke_backup_backup_plan` (derived from provider schema).
+@immutable
+final class GkeBackupBackupPlanBackupConfigSelectedApplicationsNamespacedNames {
+  const GkeBackupBackupPlanBackupConfigSelectedApplicationsNamespacedNames({
+    required this.name,
+    required this.namespace,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<String> namespace;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'namespace': namespace.toTfJson(),
+  };
+}
+
+/// Typed helper for the `backup_config.selected_namespace_labels` block of
+/// `google_gke_backup_backup_plan` (derived from provider schema).
+@immutable
+final class GkeBackupBackupPlanBackupConfigSelectedNamespaceLabels {
+  const GkeBackupBackupPlanBackupConfigSelectedNamespaceLabels({
+    required this.resourceLabels,
+  });
+
+  final List<
+    GkeBackupBackupPlanBackupConfigSelectedNamespaceLabelsResourceLabels
+  >
+  resourceLabels;
+
+  Map<String, Object?> encode() => {
+    'resource_labels': [for (final e in resourceLabels) e.encode()],
+  };
+}
+
+/// Typed helper for the `backup_config.selected_namespace_labels.resource_labels` block of
+/// `google_gke_backup_backup_plan` (derived from provider schema).
+@immutable
+final class GkeBackupBackupPlanBackupConfigSelectedNamespaceLabelsResourceLabels {
+  const GkeBackupBackupPlanBackupConfigSelectedNamespaceLabelsResourceLabels({
+    required this.key,
+    required this.value,
+  });
+
+  final TfArg<String> key;
+
+  final TfArg<String> value;
+
+  Map<String, Object?> encode() => {
+    'key': key.toTfJson(),
+    'value': value.toTfJson(),
+  };
+}
+
+/// Typed helper for the `backup_config.selected_namespaces` block of
+/// `google_gke_backup_backup_plan` (derived from provider schema).
+@immutable
+final class GkeBackupBackupPlanBackupConfigSelectedNamespaces {
+  const GkeBackupBackupPlanBackupConfigSelectedNamespaces({
+    required this.namespaces,
+  });
+
+  final TfArg<List<Object?>> namespaces;
+
+  Map<String, Object?> encode() => {'namespaces': namespaces.toTfJson()};
+}
+
+/// Typed helper for the `retention_policy` block of
+/// `google_gke_backup_backup_plan` (derived from provider schema).
+@immutable
+final class GkeBackupBackupPlanRetentionPolicy {
+  const GkeBackupBackupPlanRetentionPolicy({
+    this.backupDeleteLockDays,
+    this.backupRetainDays,
+    this.locked,
+  });
+
+  final TfArg<num>? backupDeleteLockDays;
+
+  final TfArg<num>? backupRetainDays;
+
+  final TfArg<bool>? locked;
+
+  Map<String, Object?> encode() => {
+    if (backupDeleteLockDays != null)
+      'backup_delete_lock_days': backupDeleteLockDays!.toTfJson(),
+    if (backupRetainDays != null)
+      'backup_retain_days': backupRetainDays!.toTfJson(),
+    if (locked != null) 'locked': locked!.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_gke_backup_backup_plan`.
 ///
 /// Represents a Backup Plan instance.
@@ -94,9 +340,9 @@ final class GoogleGkeBackupBackupPlan extends Resource {
     TfArg<String>? description,
     TfArg<bool>? deactivated,
     TfArg<Map<String, String>>? labels,
-    TfArg<Map<String, dynamic>>? backupConfig,
+    GkeBackupBackupPlanBackupConfig? backupConfig,
     GkeBackupBackupPlanBackupSchedule? backupSchedule,
-    TfArg<Map<String, dynamic>>? retentionPolicy,
+    GkeBackupBackupPlanRetentionPolicy? retentionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -111,10 +357,12 @@ final class GoogleGkeBackupBackupPlan extends Resource {
            if (description != null) 'description': description,
            if (deactivated != null) 'deactivated': deactivated,
            if (labels != null) 'labels': labels,
-           if (backupConfig != null) 'backup_config': backupConfig,
+           if (backupConfig != null)
+             'backup_config': TfArg.literal(backupConfig.encode()),
            if (backupSchedule != null)
              'backup_schedule': TfArg.literal([backupSchedule.encode()]),
-           if (retentionPolicy != null) 'retention_policy': retentionPolicy,
+           if (retentionPolicy != null)
+             'retention_policy': TfArg.literal(retentionPolicy.encode()),
            if (project != null) 'project': project,
          },
        );

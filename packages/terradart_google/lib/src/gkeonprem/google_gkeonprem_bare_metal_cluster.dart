@@ -220,30 +220,87 @@ enum GkeonpremBareMetalClusterControlPlaneControlPlaneNodePoolConfigNodePoolConf
 @immutable
 final class GkeonpremBareMetalClusterLoadBalancer {
   const GkeonpremBareMetalClusterLoadBalancer({
-    this.bgpLbConfig,
-    this.manualLbConfig,
-    this.metalLbConfig,
+    required this.metalLbConfigOrManualLbConfigOrBgpLbConfig,
     required this.portConfig,
     required this.vipConfig,
   });
 
-  final GkeonpremBareMetalClusterLoadBalancerBgpLbConfig? bgpLbConfig;
-
-  final GkeonpremBareMetalClusterLoadBalancerManualLbConfig? manualLbConfig;
-
-  final GkeonpremBareMetalClusterLoadBalancerMetalLbConfig? metalLbConfig;
+  final GkeonpremBareMetalClusterLoadBalancerMetalLbConfigOrManualLbConfigOrBgpLbConfig
+  metalLbConfigOrManualLbConfigOrBgpLbConfig;
 
   final GkeonpremBareMetalClusterLoadBalancerPortConfig portConfig;
 
   final GkeonpremBareMetalClusterLoadBalancerVipConfig vipConfig;
 
   Map<String, Object?> encode() => {
-    if (bgpLbConfig != null) 'bgp_lb_config': bgpLbConfig!.encode(),
-    if (manualLbConfig != null) 'manual_lb_config': manualLbConfig!.encode(),
-    if (metalLbConfig != null) 'metal_lb_config': metalLbConfig!.encode(),
+    ...metalLbConfigOrManualLbConfigOrBgpLbConfig.encode(),
     'port_config': portConfig.encode(),
     'vip_config': vipConfig.encode(),
   };
+}
+
+/// Exactly one of `metal_lb_config`, `manual_lb_config`, `bgp_lb_config` on the `load_balancer` block of `google_gkeonprem_bare_metal_cluster`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class GkeonpremBareMetalClusterLoadBalancerMetalLbConfigOrManualLbConfigOrBgpLbConfig {
+  const GkeonpremBareMetalClusterLoadBalancerMetalLbConfigOrManualLbConfigOrBgpLbConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `metal_lb_config` (one of the [GkeonpremBareMetalClusterLoadBalancerMetalLbConfigOrManualLbConfigOrBgpLbConfig] choices).
+final class GkeonpremBareMetalClusterLoadBalancerMetalLbConfigOption
+    extends
+        GkeonpremBareMetalClusterLoadBalancerMetalLbConfigOrManualLbConfigOrBgpLbConfig {
+  const GkeonpremBareMetalClusterLoadBalancerMetalLbConfigOption({
+    required this.metalLbConfig,
+  });
+
+  final GkeonpremBareMetalClusterLoadBalancerMetalLbConfig metalLbConfig;
+
+  @override
+  String get blockKey => 'metal_lb_config';
+
+  @override
+  Map<String, Object?> encode() => {'metal_lb_config': metalLbConfig.encode()};
+}
+
+/// Sets `manual_lb_config` (one of the [GkeonpremBareMetalClusterLoadBalancerMetalLbConfigOrManualLbConfigOrBgpLbConfig] choices).
+final class GkeonpremBareMetalClusterLoadBalancerManualLbConfigOption
+    extends
+        GkeonpremBareMetalClusterLoadBalancerMetalLbConfigOrManualLbConfigOrBgpLbConfig {
+  const GkeonpremBareMetalClusterLoadBalancerManualLbConfigOption({
+    required this.manualLbConfig,
+  });
+
+  final GkeonpremBareMetalClusterLoadBalancerManualLbConfig manualLbConfig;
+
+  @override
+  String get blockKey => 'manual_lb_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'manual_lb_config': manualLbConfig.encode(),
+  };
+}
+
+/// Sets `bgp_lb_config` (one of the [GkeonpremBareMetalClusterLoadBalancerMetalLbConfigOrManualLbConfigOrBgpLbConfig] choices).
+final class GkeonpremBareMetalClusterLoadBalancerBgpLbConfigOption
+    extends
+        GkeonpremBareMetalClusterLoadBalancerMetalLbConfigOrManualLbConfigOrBgpLbConfig {
+  const GkeonpremBareMetalClusterLoadBalancerBgpLbConfigOption({
+    required this.bgpLbConfig,
+  });
+
+  final GkeonpremBareMetalClusterLoadBalancerBgpLbConfig bgpLbConfig;
+
+  @override
+  String get blockKey => 'bgp_lb_config';
+
+  @override
+  Map<String, Object?> encode() => {'bgp_lb_config': bgpLbConfig.encode()};
 }
 
 /// Typed helper for the `load_balancer.bgp_lb_config` block of

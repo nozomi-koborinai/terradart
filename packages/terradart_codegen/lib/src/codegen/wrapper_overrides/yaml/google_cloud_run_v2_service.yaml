@@ -1,6 +1,7 @@
 outputDir: cloud_run
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Example (minimal hello-world service):

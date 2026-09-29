@@ -1,6 +1,7 @@
 outputDir: cloudfunctions
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 paramOrder:

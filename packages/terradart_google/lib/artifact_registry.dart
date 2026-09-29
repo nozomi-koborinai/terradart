@@ -50,6 +50,9 @@ export 'src/artifact_registry/google_artifact_registry_repository.dart'
         ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig,
         ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy,
         ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig,
+        ArtifactRegistryRepositoryRemoteRepositoryConfigOption,
+        ArtifactRegistryRepositoryVirtualRepositoryConfigOption,
+        ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig,
         ArtifactRegistryVulnerabilityEnablementConfig,
         ArtifactRegistryYumRepositoryBase,
         GoogleArtifactRegistryRepository;

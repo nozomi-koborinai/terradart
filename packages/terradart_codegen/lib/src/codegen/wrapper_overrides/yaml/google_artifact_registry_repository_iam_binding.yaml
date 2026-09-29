@@ -1,6 +1,7 @@
 outputDir: artifact_registry
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

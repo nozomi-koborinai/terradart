@@ -703,6 +703,76 @@ class ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig {
   };
 }
 
+/// At most one of `virtual_repository_config`, `remote_repository_config` on `google_artifact_registry_repository`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig {
+  const ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `virtual_repository_config` (one of the [ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig] choices).
+final class ArtifactRegistryRepositoryVirtualRepositoryConfigOption
+    extends
+        ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig {
+  const ArtifactRegistryRepositoryVirtualRepositoryConfigOption({
+    required this.virtualRepositoryConfig,
+  });
+
+  final ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig
+  virtualRepositoryConfig;
+
+  @override
+  String get blockKey => 'virtual_repository_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'virtual_repository_config': [virtualRepositoryConfig.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'virtual_repository_config': TfArg.literal([
+      virtualRepositoryConfig.toArgMap(),
+    ]),
+  };
+}
+
+/// Sets `remote_repository_config` (one of the [ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig] choices).
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigOption
+    extends
+        ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigOption({
+    required this.remoteRepositoryConfig,
+  });
+
+  final ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig
+  remoteRepositoryConfig;
+
+  @override
+  String get blockKey => 'remote_repository_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'remote_repository_config': [remoteRepositoryConfig.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'remote_repository_config': TfArg.literal([
+      remoteRepositoryConfig.toArgMap(),
+    ]),
+  };
+}
+
 /// Factory wrapper for `google_artifact_registry_repository`.
 ///
 /// A repository for storing artifacts
@@ -720,10 +790,8 @@ final class GoogleArtifactRegistryRepository extends Resource {
     TfArg<Map<String, String>>? labels,
     ArtifactRegistryRepositoryArtifactRegistryDockerConfig? dockerConfig,
     ArtifactRegistryRepositoryArtifactRegistryMavenConfig? mavenConfig,
-    ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig?
-    virtualRepositoryConfig,
-    ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig?
-    remoteRepositoryConfig,
+    ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig?
+    virtualRepositoryConfigOrRemoteRepositoryConfig,
     List<ArtifactRegistryRepositoryArtifactRegistryCleanupPolicy>?
     cleanupPolicies,
     TfArg<bool>? cleanupPolicyDryRun,
@@ -748,14 +816,7 @@ final class GoogleArtifactRegistryRepository extends Resource {
              'docker_config': TfArg.literal([dockerConfig.toArgMap()]),
            if (mavenConfig != null)
              'maven_config': TfArg.literal([mavenConfig.toArgMap()]),
-           if (virtualRepositoryConfig != null)
-             'virtual_repository_config': TfArg.literal([
-               virtualRepositoryConfig.toArgMap(),
-             ]),
-           if (remoteRepositoryConfig != null)
-             'remote_repository_config': TfArg.literal([
-               remoteRepositoryConfig.toArgMap(),
-             ]),
+           ...?virtualRepositoryConfigOrRemoteRepositoryConfig?.argMap,
            if (cleanupPolicies != null)
              'cleanup_policies': TfArg.literal(
                cleanupPolicies.map((p) => p.toArgMap()).toList(),
