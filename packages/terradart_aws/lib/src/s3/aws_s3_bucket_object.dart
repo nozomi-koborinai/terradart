@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
 import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 
 /// Sensitive field paths for `aws_s3_bucket_object`.
@@ -170,7 +171,7 @@ sealed class S3BucketObjectIntegrity {
       S3BucketObjectIntegrityEtag;
 
   /// Sets `kms_key_id`.
-  const factory S3BucketObjectIntegrity.kmsKeyId(TfArg<String> kmsKeyId) =
+  const factory S3BucketObjectIntegrity.kmsKeyId(RefTo<AwsKmsKey> kmsKeyId) =
       S3BucketObjectIntegrityKmsKeyId;
 
   /// The Terraform argument this choice sets.
@@ -203,16 +204,20 @@ final class S3BucketObjectIntegrityEtag extends S3BucketObjectIntegrity {
 final class S3BucketObjectIntegrityKmsKeyId extends S3BucketObjectIntegrity {
   const S3BucketObjectIntegrityKmsKeyId(this.kmsKeyId);
 
-  final TfArg<String> kmsKeyId;
+  final RefTo<AwsKmsKey> kmsKeyId;
 
   @override
   String get blockKey => 'kms_key_id';
 
   @override
-  Map<String, Object?> encode() => {'kms_key_id': kmsKeyId.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_id': kmsKeyId.encodeAs('arn').toTfJson(),
+  };
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'kms_key_id': kmsKeyId};
+  Map<String, TfArg<Object?>> get argMap => {
+    'kms_key_id': kmsKeyId.encodeAs('arn'),
+  };
 }
 
 /// Factory wrapper for `aws_s3_bucket_object`.

@@ -406,6 +406,53 @@ class WrapCommand extends Command<int> {
     final rawDataSourceSchemas = needsRawDataSourceSchemas
         ? _rawSchemaBlocks(schemaSrc, schemasKey: 'data_source_schemas')
         : const <String, Map<String, dynamic>>{};
+    // `--reference-targets`: the ledger is checked against the schema on
+    // every run; `--typed-references` also types what it matches.
+    final referenceLedger = results['reference-targets'] as String?;
+    final typedReferences = results['typed-references'] as bool;
+    if (typedReferences && referenceLedger == null) {
+      stderr.writeln(
+        'terradart wrap: --typed-references needs --reference-targets.',
+      );
+      return CliExitCodes.dataError;
+    }
+    var references = const <String, Map<String, ResolvedReference>>{};
+    if (referenceLedger != null) {
+      final List<ReferenceRule> rules;
+      try {
+        rules = loadReferenceRules(referenceLedger, provider);
+      } on FormatException catch (e) {
+        stderr.writeln('[E406] terradart wrap: ${e.message}');
+        return CliExitCodes.dataError;
+      }
+      final dataSchemas = _rawSchemaBlocks(
+        schemaSrc,
+        schemasKey: 'data_source_schemas',
+      );
+      final resolution = resolveReferences(
+        rules: rules,
+        resourceSchemas: _rawSchemaBlocks(
+          schemaSrc,
+          schemasKey: 'resource_schemas',
+        ),
+        curated: typedOverrides.keys,
+        targetDirs: {
+          if (only != null) ..._generatedResourceDirs(output),
+          for (final e in typedOverrides.entries) e.key: e.value.outputDir,
+        },
+        dataSourceSchemas: {
+          for (final type in loaded.dataSources.keys) type: ?dataSchemas[type],
+        },
+        complete: only == null,
+      );
+      if (resolution.errors.isNotEmpty) {
+        for (final e in resolution.errors) {
+          stderr.writeln('[E406] terradart wrap: $referenceLedger: $e');
+        }
+        return CliExitCodes.dataError;
+      }
+      if (typedReferences) references = resolution.byResource;
+    }
     // `deriveExactlyOne`: the hints' top-level exactly-one and at-most-one
     // groups become sealed custom slots before anything reads the overrides.
     final exactlyOne = deriveExactlyOneSlots(
@@ -413,6 +460,7 @@ class WrapCommand extends Command<int> {
       ir.resources,
       providerEnums: providerEnums,
       rawSchemas: rawResourceSchemas,
+      references: references,
     );
     final resourceOverrides = exactlyOne.overrides;
     for (final s in exactlyOne.skipped) {
@@ -466,53 +514,6 @@ class WrapCommand extends Command<int> {
       }
     }
 
-    // `--reference-targets`: the ledger is checked against the schema on
-    // every run; `--typed-references` also types what it matches.
-    final referenceLedger = results['reference-targets'] as String?;
-    final typedReferences = results['typed-references'] as bool;
-    if (typedReferences && referenceLedger == null) {
-      stderr.writeln(
-        'terradart wrap: --typed-references needs --reference-targets.',
-      );
-      return CliExitCodes.dataError;
-    }
-    var references = const <String, Map<String, ResolvedReference>>{};
-    if (referenceLedger != null) {
-      final List<ReferenceRule> rules;
-      try {
-        rules = loadReferenceRules(referenceLedger, provider);
-      } on FormatException catch (e) {
-        stderr.writeln('[E406] terradart wrap: ${e.message}');
-        return CliExitCodes.dataError;
-      }
-      final dataSchemas = _rawSchemaBlocks(
-        schemaSrc,
-        schemasKey: 'data_source_schemas',
-      );
-      final resolution = resolveReferences(
-        rules: rules,
-        resourceSchemas: _rawSchemaBlocks(
-          schemaSrc,
-          schemasKey: 'resource_schemas',
-        ),
-        curated: resourceOverrides.keys,
-        targetDirs: {
-          if (only != null) ..._generatedResourceDirs(output),
-          for (final e in resourceOverrides.entries) e.key: e.value.outputDir,
-        },
-        dataSourceSchemas: {
-          for (final type in loaded.dataSources.keys) type: ?dataSchemas[type],
-        },
-        complete: only == null,
-      );
-      if (resolution.errors.isNotEmpty) {
-        for (final e in resolution.errors) {
-          stderr.writeln('[E406] terradart wrap: $referenceLedger: $e');
-        }
-        return CliExitCodes.dataError;
-      }
-      if (typedReferences) references = resolution.byResource;
-    }
     final resourceEmitter = WrapperEmitter(
       overrides: resourceOverrides,
       rawResourceSchemas: rawResourceSchemas,
@@ -520,7 +521,7 @@ class WrapCommand extends Command<int> {
       providerEnums: providerEnums,
       references: references,
     );
-    var typedReferenceCount = 0;
+    final typedReferenceKeys = {...exactlyOne.typedReferences};
     final dataSourceEmitter = DataSourceWrapperEmitter(
       overrides: loaded.dataSources,
       rawDataSourceSchemas: rawDataSourceSchemas,
@@ -553,7 +554,7 @@ class WrapCommand extends Command<int> {
         providerSource: provider,
         extraSensitiveFields: entry.value.extraSensitiveFields,
       );
-      typedReferenceCount += resourceEmitter.typedReferences.length;
+      typedReferenceKeys.addAll(resourceEmitter.typedReferences);
       final dartSrc = generatedFileHeader + formatter.format(raw);
       buffer[p.join(entry.value.outputDir, '${entry.key}.dart')] = dartSrc;
       catalogEntries.add(
@@ -590,8 +591,21 @@ class WrapCommand extends Command<int> {
     }
     if (typedReferences) {
       stdout.writeln(
-        'terradart wrap: $typedReferenceCount inputs typed as references.',
+        'terradart wrap: ${typedReferenceKeys.length} inputs typed as '
+        'references.',
       );
+      // An input the ledger matches but whose slot an override types by
+      // hand, or whose block has no derived helper, stays a string.
+      for (final MapEntry(key: type, value: slots) in references.entries) {
+        for (final path in slots.keys) {
+          if (!typedReferenceKeys.contains('$type.$path')) {
+            stderr.writeln(
+              'terradart wrap: reference input not typed: '
+              '$type.$path',
+            );
+          }
+        }
+      }
     }
 
     for (final entry in loaded.dataSources.entries) {

@@ -1,6 +1,7 @@
 import '../exactly_one_types.dart';
 import '../naming.dart';
 import '../references/reference_slots.dart';
+import '../references/reference_targets.dart';
 import 'nested_type_collector.dart';
 
 /// Renders the Dart source for a resource's derived nested-block helper
@@ -259,13 +260,16 @@ List<_Member> _members(NestedBlockSpec spec) {
         required: attr.required,
         keyed: false,
         plan: _planAttr(attr),
-        variant: _variant(
-          tfName: attr.tfName,
-          ident: safeDartIdentifier(attr.dartName),
-          elementType: attr.dartType,
-          repeated: attr.repeated,
-          wrapInTfArg: true,
-        ),
+        variant: switch (attr.reference) {
+          final reference? => _referenceVariant(attr, reference),
+          null => _variant(
+            tfName: attr.tfName,
+            ident: safeDartIdentifier(attr.dartName),
+            elementType: attr.dartType,
+            repeated: attr.repeated,
+            wrapInTfArg: true,
+          ),
+        },
       ),
   ];
 
@@ -598,6 +602,22 @@ ExactlyOneVariant _variant({
     encodeExpr: repeated
         ? '[for (final e in $ident) e$accessor]'
         : '$ident$accessor',
+    argMapExpr: null,
+    deprecation: null,
+  );
+}
+
+/// The sealed-variant shape of a reference-typed member.
+ExactlyOneVariant _referenceVariant(
+  NestedAttrSpec attr,
+  ResolvedReference reference,
+) {
+  final ident = safeDartIdentifier(attr.dartName);
+  return (
+    tfName: attr.tfName,
+    ident: ident,
+    fieldType: reference.dartType,
+    encodeExpr: "$ident.encodeAs('${reference.attribute}').toTfJson()",
     argMapExpr: null,
     deprecation: null,
   );

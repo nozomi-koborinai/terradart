@@ -9,6 +9,7 @@ import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
 import '../ec2/aws_subnet.dart' show AwsSubnet;
 import '../iam/aws_iam_role.dart' show AwsIamRole;
 import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 
 /// Sensitive field paths for `aws_lambda_function`.
 const Set<String> _awsLambdaFunctionSensitive = <String>{};
@@ -117,7 +118,7 @@ sealed class LambdaFunctionCode {
       LambdaFunctionCodeImageUri;
 
   /// Sets `s3_bucket`.
-  const factory LambdaFunctionCode.s3Bucket(TfArg<String> s3Bucket) =
+  const factory LambdaFunctionCode.s3Bucket(RefTo<AwsS3Bucket> s3Bucket) =
       LambdaFunctionCodeS3Bucket;
 
   /// The Terraform argument this choice sets.
@@ -166,16 +167,20 @@ final class LambdaFunctionCodeImageUri extends LambdaFunctionCode {
 final class LambdaFunctionCodeS3Bucket extends LambdaFunctionCode {
   const LambdaFunctionCodeS3Bucket(this.s3Bucket);
 
-  final TfArg<String> s3Bucket;
+  final RefTo<AwsS3Bucket> s3Bucket;
 
   @override
   String get blockKey => 's3_bucket';
 
   @override
-  Map<String, Object?> encode() => {'s3_bucket': s3Bucket.toTfJson()};
+  Map<String, Object?> encode() => {
+    's3_bucket': s3Bucket.encodeAs('id').toTfJson(),
+  };
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'s3_bucket': s3Bucket};
+  Map<String, TfArg<Object?>> get argMap => {
+    's3_bucket': s3Bucket.encodeAs('id'),
+  };
 }
 
 /// Typed helper for the `capacity_provider_config` block of

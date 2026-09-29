@@ -20,7 +20,7 @@ sealed class VertexAiIndexEndpointConnectivity {
 
   /// Sets `network`.
   const factory VertexAiIndexEndpointConnectivity.network(
-    TfArg<String> network,
+    RefTo<GoogleComputeNetwork> network,
   ) = VertexAiIndexEndpointConnectivityNetwork;
 
   /// Sets `private_service_connect_config`.
@@ -44,16 +44,18 @@ final class VertexAiIndexEndpointConnectivityNetwork
     extends VertexAiIndexEndpointConnectivity {
   const VertexAiIndexEndpointConnectivityNetwork(this.network);
 
-  final TfArg<String> network;
+  final RefTo<GoogleComputeNetwork> network;
 
   @override
   String get blockKey => 'network';
 
   @override
-  Map<String, Object?> encode() => {'network': network.toTfJson()};
+  Map<String, Object?> encode() => {
+    'network': network.encodeAs('id').toTfJson(),
+  };
 
   @override
-  Map<String, TfArg<Object?>> get argMap => {'network': network};
+  Map<String, TfArg<Object?>> get argMap => {'network': network.encodeAs('id')};
 }
 
 /// The [VertexAiIndexEndpointConnectivity.privateServiceConnectConfig] choice: sets `private_service_connect_config`.
