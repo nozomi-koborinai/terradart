@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_region_network_policy_traffic_classification_rule`.
@@ -8,7 +9,145 @@ const Set<String>
 _googleComputeRegionNetworkPolicyTrafficClassificationRuleSensitive =
     <String>{};
 
+/// Typed helper for the `action` block of
+/// `google_compute_region_network_policy_traffic_classification_rule` (derived from provider schema).
+@immutable
+final class ComputeRegionNetworkPolicyTrafficClassificationRuleAction {
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleAction({
+    this.dscpMode,
+    this.dscpValue,
+    this.trafficClass,
+    this.type,
+  });
+
+  final TfArg<
+    ComputeRegionNetworkPolicyTrafficClassificationRuleActionDscpMode
+  >?
+  dscpMode;
+
+  final TfArg<num>? dscpValue;
+
+  final TfArg<
+    ComputeRegionNetworkPolicyTrafficClassificationRuleActionTrafficClass
+  >?
+  trafficClass;
+
+  final TfArg<ComputeRegionNetworkPolicyTrafficClassificationRuleActionType>?
+  type;
+
+  Map<String, Object?> encode() => {
+    if (dscpMode != null) 'dscp_mode': dscpMode!.toTfJson(),
+    if (dscpValue != null) 'dscp_value': dscpValue!.toTfJson(),
+    if (trafficClass != null) 'traffic_class': trafficClass!.toTfJson(),
+    if (type != null) 'type': type!.toTfJson(),
+  };
+}
+
+/// `dscp_mode` — derived from the provider schema description.
+enum ComputeRegionNetworkPolicyTrafficClassificationRuleActionDscpMode
+    implements TerraformEnum {
+  auto('AUTO'),
+  custom('CUSTOM');
+
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleActionDscpMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `traffic_class` — derived from the provider schema description.
+enum ComputeRegionNetworkPolicyTrafficClassificationRuleActionTrafficClass
+    implements TerraformEnum {
+  tc1('TC1'),
+  tc2('TC2'),
+  tc3('TC3'),
+  tc4('TC4'),
+  tc5('TC5'),
+  tc6('TC6');
+
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleActionTrafficClass(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `type` — derived from the provider schema description.
+enum ComputeRegionNetworkPolicyTrafficClassificationRuleActionType
+    implements TerraformEnum {
+  applyTrafficClassification('apply_traffic_classification');
+
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleActionType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `match` block of
+/// `google_compute_region_network_policy_traffic_classification_rule` (derived from provider schema).
+@immutable
+final class ComputeRegionNetworkPolicyTrafficClassificationRuleMatch {
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleMatch({
+    this.destIpRanges,
+    this.srcIpRanges,
+    required this.layer4Configs,
+  });
+
+  final TfArg<List<Object?>>? destIpRanges;
+
+  final TfArg<List<Object?>>? srcIpRanges;
+
+  final List<
+    ComputeRegionNetworkPolicyTrafficClassificationRuleMatchLayer4Configs
+  >
+  layer4Configs;
+
+  Map<String, Object?> encode() => {
+    if (destIpRanges != null) 'dest_ip_ranges': destIpRanges!.toTfJson(),
+    if (srcIpRanges != null) 'src_ip_ranges': srcIpRanges!.toTfJson(),
+    'layer4_configs': [for (final e in layer4Configs) e.encode()],
+  };
+}
+
+/// Typed helper for the `match.layer4_configs` block of
+/// `google_compute_region_network_policy_traffic_classification_rule` (derived from provider schema).
+@immutable
+final class ComputeRegionNetworkPolicyTrafficClassificationRuleMatchLayer4Configs {
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleMatchLayer4Configs({
+    required this.ipProtocol,
+    this.ports,
+  });
+
+  final TfArg<String> ipProtocol;
+
+  final TfArg<List<Object?>>? ports;
+
+  Map<String, Object?> encode() => {
+    'ip_protocol': ipProtocol.toTfJson(),
+    if (ports != null) 'ports': ports!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `target_secure_tags` block of
+/// `google_compute_region_network_policy_traffic_classification_rule` (derived from provider schema).
+@immutable
+final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTags {
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTags({
+    this.name,
+  });
+
+  final TfArg<String>? name;
+
+  Map<String, Object?> encode() => {if (name != null) 'name': name!.toTfJson()};
+}
+
 /// Factory wrapper for `google_compute_region_network_policy_traffic_classification_rule`.
+///
+/// Represents a traffic classification rule that describes one or more match
+/// conditions along with the action to be taken when traffic matches this
+/// condition.
 final class GoogleComputeRegionNetworkPolicyTrafficClassificationRule
     extends Resource {
   static const String tfType =
@@ -25,9 +164,10 @@ final class GoogleComputeRegionNetworkPolicyTrafficClassificationRule
     TfArg<String>? region,
     TfArg<String>? ruleName,
     TfArg<List<String>>? targetServiceAccounts,
-    TfArg<Map<String, dynamic>>? action,
-    required TfArg<Map<String, dynamic>> match,
-    TfArg<List<Map<String, dynamic>>>? targetSecureTags,
+    ComputeRegionNetworkPolicyTrafficClassificationRuleAction? action,
+    required ComputeRegionNetworkPolicyTrafficClassificationRuleMatch match,
+    List<ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTags>?
+    targetSecureTags,
     super.lifecycle,
     super.dependsOn,
     String? provider,
@@ -46,13 +186,30 @@ final class GoogleComputeRegionNetworkPolicyTrafficClassificationRule
            if (ruleName != null) 'rule_name': ruleName,
            if (targetServiceAccounts != null)
              'target_service_accounts': targetServiceAccounts,
-           if (action != null) 'action': action,
-           'match': match,
-           if (targetSecureTags != null) 'target_secure_tags': targetSecureTags,
+           if (action != null) 'action': TfArg.literal(action.encode()),
+           'match': TfArg.literal(match.encode()),
+           if (targetSecureTags != null)
+             'target_secure_tags': TfArg.literal([
+               for (final e in targetSecureTags) e.encode(),
+             ]),
          },
        );
 
   @override
   Set<String> get sensitiveFields =>
       _googleComputeRegionNetworkPolicyTrafficClassificationRuleSensitive;
+
+  /// Reference to `kind` attribute.
+  TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `rule_tuple_count` attribute.
+  TfRef<num> get ruleTupleCount =>
+      TfRef.attribute<num>(this, 'rule_tuple_count');
 }

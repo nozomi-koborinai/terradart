@@ -6,7 +6,21 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_firebase_hosting_release`.
 const Set<String> _googleFirebaseHostingReleaseSensitive = <String>{};
 
+/// Firebase Hosting Release enum for `type`.
+enum FirebaseHostingReleaseType implements TerraformEnum {
+  deploy('DEPLOY'),
+  rollback('ROLLBACK'),
+  siteDisable('SITE_DISABLE');
+
+  const FirebaseHostingReleaseType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_firebase_hosting_release`.
+///
+/// A Release is a particular collection of configurations that is set to be
+/// public at a particular time.
 final class GoogleFirebaseHostingRelease extends Resource {
   static const String tfType = 'google_firebase_hosting_release';
 
@@ -15,7 +29,7 @@ final class GoogleFirebaseHostingRelease extends Resource {
     TfArg<String>? channelId,
     TfArg<String>? message,
     required TfArg<String> siteId,
-    TfArg<String>? type,
+    TfArg<FirebaseHostingReleaseType>? type,
     TfArg<String>? versionName,
     super.lifecycle,
     super.dependsOn,
@@ -35,4 +49,13 @@ final class GoogleFirebaseHostingRelease extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleFirebaseHostingReleaseSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `release_id` attribute.
+  TfRef<String> get releaseId => TfRef.attribute<String>(this, 'release_id');
 }

@@ -1,4 +1,6 @@
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google_beta/api_gateway.dart';
+import 'package:terradart_google_beta/compute.dart';
 import 'package:terradart_google_beta/folder.dart';
 import 'package:terradart_google_beta/organization.dart';
 import 'package:terradart_google_beta/project.dart';
@@ -33,7 +35,74 @@ final class _TestStack extends Stack {
   }
 }
 
+final class _TypedStack extends Stack {
+  _TypedStack() : super(providers: [const GoogleBetaProvider()]) {
+    add(
+      GoogleApiGatewayApiConfig(
+        localName: 'config',
+        api: TfArg.literal('api'),
+        openapiDocumentsOrGrpcServices: ApiGatewayApiConfigGrpcServicesOption(
+          grpcServices: [
+            ApiGatewayApiConfigGrpcServices(
+              fileDescriptorSet:
+                  ApiGatewayApiConfigGrpcServicesFileDescriptorSet(
+                contents: TfArg.literal('ZGVzYw=='),
+                path: TfArg.literal('api.pb'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+    add(
+      GoogleComputeNetworkFirewallPolicyPacketMirroringRule(
+        localName: 'mirror',
+        action: TfArg.literal('mirror'),
+        direction: TfArg.literal(
+          ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.egress,
+        ),
+        firewallPolicy: TfArg.literal('policy'),
+        priority: TfArg.literal(1000),
+        match: ComputeNetworkFirewallPolicyPacketMirroringRuleMatch(
+          layer4Configs: [
+            ComputeNetworkFirewallPolicyPacketMirroringRuleMatchLayer4Configs(
+              ipProtocol: TfArg.literal('tcp'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 void main() {
+  test('an MM exactly_one_of group synths only the chosen variant', () {
+    final resources =
+        _TypedStack().synth().tfJson['resource'] as Map<String, dynamic>;
+    final config = (resources['google_api_gateway_api_config']
+        as Map<String, dynamic>)['config'] as Map<String, dynamic>;
+    expect(config['grpc_services'], [
+      {
+        'file_descriptor_set': {'contents': 'ZGVzYw==', 'path': 'api.pb'},
+      },
+    ]);
+    expect(config, isNot(contains('openapi_documents')));
+  });
+
+  test('an MM enum input synths its Terraform value', () {
+    final resources =
+        _TypedStack().synth().tfJson['resource'] as Map<String, dynamic>;
+    final rule = (resources[
+            'google_compute_network_firewall_policy_packet_mirroring_rule']
+        as Map<String, dynamic>)['mirror'] as Map<String, dynamic>;
+    expect(rule['direction'], 'EGRESS');
+    expect(rule['match'], {
+      'layer4_configs': [
+        {'ip_protocol': 'tcp'},
+      ],
+    });
+  });
+
   test('synths the beta provider block and the service identity resource', () {
     final json = _TestStack().synth().tfJson;
 

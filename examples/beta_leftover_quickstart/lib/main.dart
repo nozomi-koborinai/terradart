@@ -66,14 +66,17 @@ final class BetaLeftoverStack extends Stack {
       GoogleApiGatewayApiConfig(
         localName: 'api_gateway_api_config',
         api: TfArg.literal('terradart-leftover'),
-        openapiDocuments: TfArg.literal([
-          {
-            'document': {
-              'contents': 'b3BlbmFwaTogIjMuMC4wIg==',
-              'path': 'openapi.yaml',
-            },
-          },
-        ]),
+        openapiDocumentsOrGrpcServices:
+            ApiGatewayApiConfigOpenapiDocumentsOption(
+          openapiDocuments: [
+            ApiGatewayApiConfigOpenapiDocuments(
+              document: ApiGatewayApiConfigOpenapiDocumentsDocument(
+                contents: TfArg.literal('b3BlbmFwaTogIjMuMC4wIg=='),
+                path: TfArg.literal('openapi.yaml'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
     add(
@@ -244,10 +247,10 @@ final class BetaLeftoverStack extends Stack {
       GoogleComputeFutureReservation(
         localName: 'compute_future_reservation',
         name: TfArg.literal('terradart-leftover'),
-        timeWindow: TfArg.literal({
-          'start_time': '2026-01-01T00:00:00Z',
-          'end_time': '2026-01-02T00:00:00Z',
-        }),
+        timeWindow: ComputeFutureReservationTimeWindow(
+          startTime: TfArg.literal('2026-01-01T00:00:00Z'),
+          endTime: TfArg.literal('2026-01-02T00:00:00Z'),
+        ),
       ),
     );
     add(
@@ -291,15 +294,19 @@ final class BetaLeftoverStack extends Stack {
       GoogleComputeNetworkFirewallPolicyPacketMirroringRule(
         localName: 'compute_network_firewall_policy_packet_mirroring_rule',
         action: TfArg.literal('mirror'),
-        direction: TfArg.literal('INGRESS'),
+        direction: TfArg.literal(
+          ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.ingress,
+        ),
         firewallPolicy: TfArg.literal('terradart-leftover'),
         priority: TfArg.literal(1000),
-        match: TfArg.literal({
-          'src_ip_ranges': ['0.0.0.0/0'],
-          'layer4_configs': [
-            {'ip_protocol': 'tcp'},
+        match: ComputeNetworkFirewallPolicyPacketMirroringRuleMatch(
+          srcIpRanges: TfArg.literal(['0.0.0.0/0']),
+          layer4Configs: [
+            ComputeNetworkFirewallPolicyPacketMirroringRuleMatchLayer4Configs(
+              ipProtocol: TfArg.literal('tcp'),
+            ),
           ],
-        }),
+        ),
       ),
     );
     add(
@@ -367,12 +374,14 @@ final class BetaLeftoverStack extends Stack {
         localName: 'compute_region_network_policy_traffic_classification_rule',
         networkPolicy: TfArg.literal('terradart-leftover'),
         priority: TfArg.literal(1000),
-        match: TfArg.literal({
-          'src_ip_ranges': ['0.0.0.0/0'],
-          'layer4_configs': [
-            {'ip_protocol': 'tcp'},
+        match: ComputeRegionNetworkPolicyTrafficClassificationRuleMatch(
+          srcIpRanges: TfArg.literal(['0.0.0.0/0']),
+          layer4Configs: [
+            ComputeRegionNetworkPolicyTrafficClassificationRuleMatchLayer4Configs(
+              ipProtocol: TfArg.literal('tcp'),
+            ),
           ],
-        }),
+        ),
       ),
     );
     add(
@@ -382,7 +391,11 @@ final class BetaLeftoverStack extends Stack {
         membershipId: TfArg.literal('terradart-leftover'),
         membershipRbacRoleBindingId: TfArg.literal('terradart-leftover'),
         user: TfArg.literal('terradart-leftover'),
-        role: TfArg.literal({'predefined_role': 'ADMIN'}),
+        role: GkeHubMembershipRbacRoleBindingRole(
+          predefinedRole: TfArg.literal(
+            GkeHubMembershipRbacRoleBindingRolePredefinedRole.admin,
+          ),
+        ),
       ),
     );
     add(
@@ -466,10 +479,10 @@ final class BetaLeftoverStack extends Stack {
       GoogleFirebaseExtensionsInstance(
         localName: 'firebase_extensions_instance',
         instanceId: TfArg.literal('terradart-leftover'),
-        config: TfArg.literal({
-          'extension_ref': 'firebase/firestore-send-email',
-          'params': {'LOCATION': 'us-central1'},
-        }),
+        config: FirebaseExtensionsInstanceConfig(
+          extensionRef: TfArg.literal('firebase/firestore-send-email'),
+          params: TfArg.literal({'LOCATION': 'us-central1'}),
+        ),
       ),
     );
     add(
@@ -536,11 +549,13 @@ final class BetaLeftoverStack extends Stack {
       GoogleCloudIdentityPolicy(
         localName: 'cloud_identity_policy',
         customer: TfArg.literal('terradart-leftover'),
-        policyQuery: TfArg.literal({'org_unit': 'terradart-leftover'}),
-        setting: TfArg.literal({
-          'type': 'settings/terradart-leftover',
-          'value_json': '{}',
-        }),
+        policyQuery: CloudIdentityPolicyPolicyQuery(
+          orgUnit: TfArg.literal('terradart-leftover'),
+        ),
+        setting: CloudIdentityPolicySetting(
+          type: TfArg.literal('settings/terradart-leftover'),
+          valueJson: TfArg.literal('{}'),
+        ),
       ),
     );
     add(
@@ -563,7 +578,7 @@ final class BetaLeftoverStack extends Stack {
     add(
       GoogleNetworkSecurityAuthorizationPolicy(
         localName: 'network_security_authorization_policy',
-        action: TfArg.literal('ALLOW'),
+        action: TfArg.literal(NetworkSecurityAuthorizationPolicyAction.allow),
         name: TfArg.literal('terradart-leftover'),
       ),
     );
@@ -580,7 +595,9 @@ final class BetaLeftoverStack extends Stack {
       GoogleNetworkSecuritySacRealm(
         localName: 'network_security_sac_realm',
         name: TfArg.literal('terradart-leftover'),
-        securityService: TfArg.literal('SECURITY_SERVICE_UNSPECIFIED'),
+        securityService: TfArg.literal(
+          NetworkSecuritySacRealmSecurityService.securityServiceUnspecified,
+        ),
       ),
     );
     add(
@@ -601,9 +618,9 @@ final class BetaLeftoverStack extends Stack {
       GoogleOsConfigGuestPolicies(
         localName: 'os_config_guest_policies',
         guestPolicyId: TfArg.literal('terradart-leftover'),
-        assignment: TfArg.literal({
-          'zones': ['us-central1-a'],
-        }),
+        assignment: OsConfigGuestPoliciesAssignment(
+          zones: TfArg.literal(['us-central1-a']),
+        ),
       ),
     );
     add(

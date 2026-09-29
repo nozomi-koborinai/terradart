@@ -12,11 +12,16 @@
 // refreshing a fixture), so it only runs when named. On a `providerEnums`
 // lane whose hints were extracted at another provider version than
 // `<schemaDir>/provider_version.txt`, regen first re-extracts them from the
-// `bump.repo` source (tool/extract_provider_hints.dart, network).
+// `bump.repo` source (tool/extract_provider_hints.dart, network). On an
+// `mmSync` lane whose `<schemaDir>/mm_sources.yaml` no longer matches the
+// fixture ([staleMmSync]), regen first re-syncs the Magic Modules YAML
+// (tool/sync_lane_mm_yaml.dart, network); the wrap gate fails on a stale
+// sync instead, so a fixture change never ships without its MM hints.
 // exit: 0 every selected gate passed; 1 a gate failed, a lane path is
 //       missing, or the arguments / providers.yaml are invalid.
 // ignore_for_file: avoid_print
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
@@ -30,6 +35,15 @@ const providersPath = 'tool/providers.yaml';
 /// repo-relative in providers.yaml and rebased onto it.
 const codegenDir = 'packages/terradart_codegen';
 
+/// The record tool/sync_lane_mm_yaml.dart writes beside an `mmSync` lane's
+/// `mm/` directory.
+const mmSourcesFile = 'mm_sources.yaml';
+
+/// `mmSync:` — where tool/sync_lane_mm_yaml.dart resolves each fixture
+/// resource to its Magic Modules YAML: the provider repo whose release tag
+/// carries the generated Go source, and the services directory in it.
+typedef MmSync = ({String providerRepo, String servicesDir});
+
 /// One `providers:` entry, reduced to the fields the gates read.
 class WrapLane {
   const WrapLane({
@@ -42,6 +56,8 @@ class WrapLane {
     required this.resourceProvider,
     required this.migrateManifest,
     this.providerEnums = false,
+    this.mmHints = false,
+    this.mmSync,
     this.hintsRepo,
   });
 
@@ -57,6 +73,14 @@ class WrapLane {
   /// `wrap --provider-enums`: type enum-valued inputs from `<schemaDir>/hints`
   /// and the `Available values:` description dialect.
   final bool providerEnums;
+
+  /// `wrap --mm-hints`: type enum-valued inputs and seal `exactly_one_of`
+  /// groups from the Magic Modules YAML in `<schemaDir>/mm`.
+  final bool mmHints;
+
+  /// `mmSync:`, or null when the lane's MM YAML (if any) is synced from a
+  /// hand-kept manifest (google, tool/mm_yaml_sources.yaml).
+  final MmSync? mmSync;
 
   /// `bump.repo`: the GitHub repo regen re-extracts stale hints from.
   final String? hintsRepo;
@@ -102,6 +126,7 @@ enum WrapGate {
             provider,
           ],
           if (lane.providerEnums) '--provider-enums',
+          if (lane.mmHints) '--mm-hints',
           '--migrate-manifest',
           rel(lane.migrateManifest),
           if (this == WrapGate.wrap) '--check',
@@ -150,6 +175,29 @@ WrapLane _parseLane(String name, Object? entry) {
   if (providerEnums is! bool) {
     throw FormatException('lane $name: providerEnums must be a bool');
   }
+  final mmHints = entry['mmHints'] ?? false;
+  if (mmHints is! bool) {
+    throw FormatException('lane $name: mmHints must be a bool');
+  }
+  if (mmHints && providerEnums) {
+    throw FormatException(
+      'lane $name: mmHints and providerEnums are exclusive hint sources',
+    );
+  }
+  MmSync? mmSync;
+  switch (entry['mmSync']) {
+    case null:
+      break;
+    case {
+        'providerRepo': final String providerRepo,
+        'servicesDir': final String servicesDir,
+      }:
+      mmSync = (providerRepo: providerRepo, servicesDir: servicesDir);
+    default:
+      throw FormatException(
+        'lane $name: mmSync needs providerRepo and servicesDir strings',
+      );
+  }
   final bump = entry['bump'];
   final hintsRepo = bump is YamlMap ? bump['repo'] : null;
   return WrapLane(
@@ -162,6 +210,8 @@ WrapLane _parseLane(String name, Object? entry) {
     resourceProvider: resourceProvider as String?,
     migrateManifest: field('migrateManifest'),
     providerEnums: providerEnums,
+    mmHints: mmHints,
+    mmSync: mmSync,
     hintsRepo: hintsRepo is String ? hintsRepo : null,
   );
 }
@@ -182,6 +232,42 @@ List<String> staleHints(String schemaDir) {
           '${p.basename(file.path)}: '
               '${doc is YamlMap ? doc['provider_version'] : null}',
   ]..sort();
+}
+
+/// Why [schemaDir]'s MM sync no longer matches its fixture: empty when
+/// `mm_sources.yaml` records the fixture's `provider_version.txt` and lists
+/// exactly the resources of `schema.json`.
+List<String> staleMmSync(String schemaDir) {
+  final record = File(p.join(schemaDir, mmSourcesFile));
+  if (!record.existsSync()) return ['$mmSourcesFile is missing'];
+  final doc = loadYaml(record.readAsStringSync());
+  if (doc is! YamlMap || doc['files'] is! YamlMap) {
+    return ['$mmSourcesFile is malformed'];
+  }
+  final version =
+      File(p.join(schemaDir, 'provider_version.txt')).readAsStringSync().trim();
+  final recorded = '${doc['provider_version']}';
+  final schema = jsonDecode(
+    File(p.join(schemaDir, 'schema.json')).readAsStringSync(),
+  ) as Map<String, dynamic>;
+  final resources = <String>{
+    for (final provider
+        in (schema['provider_schemas'] as Map<String, dynamic>).values)
+      ...((provider as Map<String, dynamic>)['resource_schemas']
+                  as Map<String, dynamic>? ??
+              const {})
+          .keys,
+  };
+  final listed = {for (final k in (doc['files'] as YamlMap).keys) '$k'};
+  final added = resources.difference(listed).toList()..sort();
+  final removed = listed.difference(resources).toList()..sort();
+  return [
+    if (recorded != version)
+      '$mmSourcesFile records provider $recorded, the fixture is $version',
+    if (added.isNotEmpty) '$mmSourcesFile lacks ${added.join(', ')}',
+    if (removed.isNotEmpty)
+      '$mmSourcesFile lists ${removed.join(', ')}, absent from schema.json',
+  ];
 }
 
 /// `lane <name>: missing <field> <path>` for every required path that does
@@ -266,6 +352,17 @@ Future<int> _reextractHints(WrapLane lane, String repoRoot) async {
   return process.exitCode;
 }
 
+Future<int> _resyncMm(WrapLane lane, String repoRoot) async {
+  print('>> sync_lane_mm_yaml (${lane.name})');
+  final process = await Process.start(
+    Platform.resolvedExecutable,
+    ['run', 'tool/sync_lane_mm_yaml.dart', '--lane=${lane.name}'],
+    workingDirectory: repoRoot,
+    mode: ProcessStartMode.inheritStdio,
+  );
+  return process.exitCode;
+}
+
 Never _usage(String message) {
   print('wrap_lanes: $message');
   print(
@@ -335,6 +432,25 @@ Future<void> main(List<String> args) async {
         if (code != 0) {
           failed.add('${lane.name} (hints, exit $code)');
           continue;
+        }
+      }
+      if (gate != WrapGate.lint && lane.mmSync != null) {
+        final stale = staleMmSync(p.join(repoRoot, lane.schemaDir));
+        if (stale.isNotEmpty && gate == WrapGate.wrap) {
+          for (final reason in stale) {
+            print('wrap_lanes: lane ${lane.name}: $reason');
+          }
+          print('wrap_lanes: lane ${lane.name}: stale MM YAML; run '
+              'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen');
+          failed.add('${lane.name} (mm sync)');
+          continue;
+        }
+        if (stale.isNotEmpty) {
+          final code = await _resyncMm(lane, repoRoot);
+          if (code != 0) {
+            failed.add('${lane.name} (mm sync, exit $code)');
+            continue;
+          }
         }
       }
       print('>> ${gate.label} (${lane.name})');

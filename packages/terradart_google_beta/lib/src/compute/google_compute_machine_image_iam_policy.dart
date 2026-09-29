@@ -37,4 +37,10 @@ final class GoogleComputeMachineImageIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleComputeMachineImageIamPolicySensitive;
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

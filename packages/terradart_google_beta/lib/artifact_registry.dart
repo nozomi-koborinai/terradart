@@ -4,4 +4,6 @@
 library;
 
 export 'src/artifact_registry/google_artifact_registry_vpcsc_config.dart'
-    show GoogleArtifactRegistryVpcscConfig;
+    show
+        ArtifactRegistryVpcscConfigVpcscPolicy,
+        GoogleArtifactRegistryVpcscConfig;

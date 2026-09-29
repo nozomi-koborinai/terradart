@@ -7,6 +7,12 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirebaseProjectSensitive = <String>{};
 
 /// Factory wrapper for `google_firebase_project`.
+///
+/// A Google Cloud Firebase instance. This enables Firebase resources on a given
+/// Google Project. Since a FirebaseProject is actually also a GCP Project, a
+/// FirebaseProject uses underlying GCP identifiers (most importantly, the
+/// projectId) as its own for easy interop with GCP APIs. Once Firebase has been
+/// added to a Google Project it cannot be removed.
 final class GoogleFirebaseProject extends Resource {
   static const String tfType = 'google_firebase_project';
 
@@ -25,4 +31,15 @@ final class GoogleFirebaseProject extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleFirebaseProjectSensitive;
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayName =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `project_number` attribute.
+  TfRef<String> get projectNumber =>
+      TfRef.attribute<String>(this, 'project_number');
 }

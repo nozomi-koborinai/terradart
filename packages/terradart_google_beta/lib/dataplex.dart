@@ -4,4 +4,4 @@
 library;
 
 export 'src/dataplex/google_dataplex_data_asset.dart'
-    show GoogleDataplexDataAsset;
+    show DataplexDataAssetAccessGroupConfigs, GoogleDataplexDataAsset;

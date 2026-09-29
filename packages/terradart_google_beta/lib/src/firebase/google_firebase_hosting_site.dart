@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirebaseHostingSiteSensitive = <String>{};
 
 /// Factory wrapper for `google_firebase_hosting_site`.
+///
+/// A `Site` represents a Firebase Hosting site.
 final class GoogleFirebaseHostingSite extends Resource {
   static const String tfType = 'google_firebase_hosting_site';
 
@@ -33,4 +35,16 @@ final class GoogleFirebaseHostingSite extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleFirebaseHostingSiteSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `default_url` attribute.
+  TfRef<String> get defaultUrl => TfRef.attribute<String>(this, 'default_url');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 }

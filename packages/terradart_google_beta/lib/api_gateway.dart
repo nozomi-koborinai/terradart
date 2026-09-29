@@ -5,24 +5,42 @@ library;
 
 export 'src/api_gateway/google_api_gateway_api.dart' show GoogleApiGatewayApi;
 export 'src/api_gateway/google_api_gateway_api_config.dart'
-    show GoogleApiGatewayApiConfig;
+    show
+        ApiGatewayApiConfigGatewayConfig,
+        ApiGatewayApiConfigGatewayConfigBackendConfig,
+        ApiGatewayApiConfigGrpcServices,
+        ApiGatewayApiConfigGrpcServicesFileDescriptorSet,
+        ApiGatewayApiConfigGrpcServicesOption,
+        ApiGatewayApiConfigGrpcServicesSource,
+        ApiGatewayApiConfigManagedServiceConfigs,
+        ApiGatewayApiConfigOpenapiDocuments,
+        ApiGatewayApiConfigOpenapiDocumentsDocument,
+        ApiGatewayApiConfigOpenapiDocumentsOption,
+        ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices,
+        GoogleApiGatewayApiConfig;
 export 'src/api_gateway/google_api_gateway_api_config_iam_binding.dart'
-    show GoogleApiGatewayApiConfigIamBinding;
+    show
+        ApiGatewayApiConfigIamBindingCondition,
+        GoogleApiGatewayApiConfigIamBinding;
 export 'src/api_gateway/google_api_gateway_api_config_iam_member.dart'
-    show GoogleApiGatewayApiConfigIamMember;
+    show
+        ApiGatewayApiConfigIamMemberCondition,
+        GoogleApiGatewayApiConfigIamMember;
 export 'src/api_gateway/google_api_gateway_api_config_iam_policy.dart'
     show GoogleApiGatewayApiConfigIamPolicy;
 export 'src/api_gateway/google_api_gateway_api_iam_binding.dart'
-    show GoogleApiGatewayApiIamBinding;
+    show ApiGatewayApiIamBindingCondition, GoogleApiGatewayApiIamBinding;
 export 'src/api_gateway/google_api_gateway_api_iam_member.dart'
-    show GoogleApiGatewayApiIamMember;
+    show ApiGatewayApiIamMemberCondition, GoogleApiGatewayApiIamMember;
 export 'src/api_gateway/google_api_gateway_api_iam_policy.dart'
     show GoogleApiGatewayApiIamPolicy;
 export 'src/api_gateway/google_api_gateway_gateway.dart'
     show GoogleApiGatewayGateway;
 export 'src/api_gateway/google_api_gateway_gateway_iam_binding.dart'
-    show GoogleApiGatewayGatewayIamBinding;
+    show
+        ApiGatewayGatewayIamBindingCondition,
+        GoogleApiGatewayGatewayIamBinding;
 export 'src/api_gateway/google_api_gateway_gateway_iam_member.dart'
-    show GoogleApiGatewayGatewayIamMember;
+    show ApiGatewayGatewayIamMemberCondition, GoogleApiGatewayGatewayIamMember;
 export 'src/api_gateway/google_api_gateway_gateway_iam_policy.dart'
     show GoogleApiGatewayGatewayIamPolicy;

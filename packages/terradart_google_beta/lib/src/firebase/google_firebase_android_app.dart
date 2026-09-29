@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirebaseAndroidAppSensitive = <String>{};
 
 /// Factory wrapper for `google_firebase_android_app`.
+///
+/// A Google Cloud Firebase Android application instance
 final class GoogleFirebaseAndroidApp extends Resource {
   static const String tfType = 'google_firebase_android_app';
 
@@ -39,4 +41,16 @@ final class GoogleFirebaseAndroidApp extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleFirebaseAndroidAppSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }
