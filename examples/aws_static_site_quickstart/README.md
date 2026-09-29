@@ -24,7 +24,7 @@ You also need AWS credentials that can manage S3, CloudFront, ACM, and Route 53 
 
 ## Prerequisites
 
-- Dart SDK >= 3.6 (Flutter SDK for the web build)
+- Dart SDK >= 3.10 (Flutter SDK for the web build)
 - Terraform CLI >= 1.11.0
 - AWS credentials through the SDK chain (`AWS_PROFILE`, `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY`, or an instance role); none are needed for synth
 

@@ -34,12 +34,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class CloudBuildStack extends Stack {
   CloudBuildStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+          const TimeProvider(),
+        ],
+      ) {
     const region = 'asia-northeast1';
 
     // ---- 0. Enable APIs + the build service account ----------------------
@@ -106,10 +106,10 @@ final class CloudBuildStack extends Stack {
           appInstallationId: TfArg.literal(12345),
           authorizerCredential:
               Cloudbuildv2ConnectionGithubAuthorizerCredential(
-            oauthTokenSecretVersion: TfArg.literal(
-              'projects/p/secrets/github-oauth/versions/1',
-            ),
-          ),
+                oauthTokenSecretVersion: TfArg.literal(
+                  'projects/p/secrets/github-oauth/versions/1',
+                ),
+              ),
         ),
         dependsOn: apiDeps,
       ),
@@ -125,10 +125,7 @@ final class CloudBuildStack extends Stack {
         location: TfArg.literal(region),
         role: TfArg.literal('roles/cloudbuild.connectionViewer'),
         member: TfArg.ref<String>(buildSa.iamMember),
-        dependsOn: [
-          ResourceDependency(lbConn),
-          ResourceDependency(buildSa),
-        ],
+        dependsOn: [ResourceDependency(lbConn), ResourceDependency(buildSa)],
       ),
     );
 

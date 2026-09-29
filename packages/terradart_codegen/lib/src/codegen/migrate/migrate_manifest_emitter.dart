@@ -28,7 +28,8 @@ class MigrateManifestEmitter {
     bool caseInsensitiveEnums = false,
   }) {
     final constName = constNameFor(package);
-    final entries = [for (final b in builds) b.entry]..sort((a, b) {
+    final entries = [for (final b in builds) b.entry]
+      ..sort((a, b) {
         final byType = a.tfType.compareTo(b.tfType);
         if (byType != 0) return byType;
         return _kindRank(a.kind).compareTo(_kindRank(b.kind));
@@ -48,13 +49,16 @@ class MigrateManifestEmitter {
 
     final buf = StringBuffer()
       ..writeln('// GENERATED FILE - DO NOT EDIT')
-      ..writeln('// Regenerate with `terradart wrap --migrate-manifest <this '
-          'file>` (lanes: tool/providers.yaml).')
+      ..writeln(
+        '// Regenerate with `terradart wrap --migrate-manifest <this '
+        'file>` (lanes: tool/providers.yaml).',
+      )
       ..writeln("import '../migrate_manifest.dart';")
       ..writeln()
       ..writeln(
-          '/// The migration manifest of `$package`: one [MigrateEntry] per '
-          'curated factory.')
+        '/// The migration manifest of `$package`: one [MigrateEntry] per '
+        'curated factory.',
+      )
       ..writeln('const MigrateManifest $constName = MigrateManifest(')
       ..writeln('  package: ${_str(package)},')
       ..writeln('  entries: <MigrateEntry>[');

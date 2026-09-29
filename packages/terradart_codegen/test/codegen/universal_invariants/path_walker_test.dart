@@ -47,10 +47,10 @@ void main() {
           ),
         ],
       );
-      final attr = walker.resolveAttribute(
-        block,
-        ['customer_encryption', 'encryption_key'],
-      );
+      final attr = walker.resolveAttribute(block, [
+        'customer_encryption',
+        'encryption_key',
+      ]);
       expect(attr, isNotNull);
       expect(attr!.constraints.sensitive, isTrue);
     });

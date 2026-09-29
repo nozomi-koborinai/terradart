@@ -26,12 +26,12 @@ import 'package:terradart_time/terradart_time.dart';
 /// policy-based route, IAM.
 final class NccHubStack extends Stack {
   NccHubStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     const region = 'us-central1';
 
     final apiDeps = Apis.enable(
@@ -119,8 +119,9 @@ final class NccHubStack extends Stack {
         localName: 'storage_rep',
         name: TfArg.literal('terradart-storage-rep'),
         location: TfArg.literal(region),
-        targetGoogleApi:
-            TfArg.literal('storage.us-central1.rep.googleapis.com'),
+        targetGoogleApi: TfArg.literal(
+          'storage.us-central1.rep.googleapis.com',
+        ),
         accessType: TfArg.literal(
           NetworkConnectivityRegionalEndpointAccessType.regional,
         ),
@@ -172,10 +173,7 @@ final class NccHubStack extends Stack {
         hub: TfArg.ref(hub.id),
         role: TfArg.literal('roles/networkconnectivity.viewer'),
         member: TfArg.ref(inventory.iamMember),
-        dependsOn: [
-          ResourceDependency(hub),
-          ResourceDependency(inventory),
-        ],
+        dependsOn: [ResourceDependency(hub), ResourceDependency(inventory)],
       ),
     );
   }

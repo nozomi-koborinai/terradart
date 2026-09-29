@@ -18,10 +18,7 @@ import 'wrapper_override.dart';
 class LoadedOverrides {
   /// Creates a [LoadedOverrides] from already-split resource / data source
   /// maps.
-  const LoadedOverrides({
-    required this.resources,
-    required this.dataSources,
-  });
+  const LoadedOverrides({required this.resources, required this.dataSources});
 
   /// Override entries with [WrapperOverrideKind.resource].
   final Map<String, WrapperOverride> resources;
@@ -35,8 +32,9 @@ class LoadedOverrides {
   /// (resource / data-source twins). Iterate [entries] or use [asLintMap]
   /// instead — colliding keys must not silently overwrite.
   Map<String, WrapperOverride> get all {
-    final overlap =
-        resources.keys.toSet().intersection(dataSources.keys.toSet());
+    final overlap = resources.keys.toSet().intersection(
+      dataSources.keys.toSet(),
+    );
     if (overlap.isNotEmpty) {
       throw StateError(
         'LoadedOverrides.all is undefined for ${overlap.length} '
@@ -63,10 +61,10 @@ class LoadedOverrides {
   /// never overwrite the resource twin. Non-colliding data sources keep
   /// their terraform type key (`google_project`).
   Map<String, WrapperOverride> asLintMap() => {
-        ...resources,
-        for (final e in dataSources.entries)
-          resources.containsKey(e.key) ? 'data.${e.key}' : e.key: e.value,
-      };
+    ...resources,
+    for (final e in dataSources.entries)
+      resources.containsKey(e.key) ? 'data.${e.key}' : e.key: e.value,
+  };
 }
 
 /// Override YAML file stem for [terraformType] / [kind].
@@ -89,10 +87,7 @@ String overrideFileStem({
 ///
 /// `data_google_compute_network` + `kind: data_source` →
 /// `google_compute_network`. Legacy `google_project.yaml` keeps its stem.
-String terraformTypeFromOverrideStem(
-  String stem,
-  WrapperOverrideKind kind,
-) {
+String terraformTypeFromOverrideStem(String stem, WrapperOverrideKind kind) {
   if (kind == WrapperOverrideKind.dataSource &&
       stem.startsWith('data_') &&
       stem.length > 5) {
@@ -194,20 +189,19 @@ class YamlOverrideLoader {
   LoadedOverrides load({String? only}) {
     final dir = Directory(rootDir);
     if (!dir.existsSync()) {
-      throw StateError(
-        'YamlOverrideLoader: rootDir does not exist: $rootDir',
-      );
+      throw StateError('YamlOverrideLoader: rootDir does not exist: $rootDir');
     }
     final List<File> yamlFiles;
     if (only != null) {
       yamlFiles = _resolveOnlyFiles(only);
     } else {
-      yamlFiles = dir
-          .listSync()
-          .whereType<File>()
-          .where((f) => f.path.endsWith('.yaml'))
-          .toList()
-        ..sort((a, b) => a.path.compareTo(b.path));
+      yamlFiles =
+          dir
+              .listSync()
+              .whereType<File>()
+              .where((f) => f.path.endsWith('.yaml'))
+              .toList()
+            ..sort((a, b) => a.path.compareTo(b.path));
     }
 
     final errors = <LoaderError>[];
@@ -227,20 +221,20 @@ class YamlOverrideLoader {
       if (yaml == null) {
         // Empty yaml: outputDir is required (E102) — there is no node to
         // attach a span to, so we point at line 1, column 1.
-        errors.add(LoaderError(
-          code: LoaderErrorCode.outputDirRequired,
-          message: 'outputDir is required, e.g. "outputDir: pubsub".',
-          filePath: file.path,
-          line: 1,
-          column: 1,
-          hint: 'Add `outputDir: <dir>` as a top-level key.',
-        ));
+        errors.add(
+          LoaderError(
+            code: LoaderErrorCode.outputDirRequired,
+            message: 'outputDir is required, e.g. "outputDir: pubsub".',
+            filePath: file.path,
+            line: 1,
+            column: 1,
+            hint: 'Add `outputDir: <dir>` as a top-level key.',
+          ),
+        );
         continue;
       }
       if (yaml is! YamlMap) {
-        throw FormatException(
-          '${file.path}: top-level must be a YAML mapping',
-        );
+        throw FormatException('${file.path}: top-level must be a YAML mapping');
       }
       final override = _parseOverride(yaml, file.path, errors);
       if (override == null) continue;
@@ -274,10 +268,7 @@ class YamlOverrideLoader {
       LoaderErrorReport(errors: errors).fatal();
     }
 
-    return LoadedOverrides(
-      resources: resources,
-      dataSources: dataSources,
-    );
+    return LoadedOverrides(resources: resources, dataSources: dataSources);
   }
 
   /// Resolves `--only` to one or two yaml files: the exact stem, plus the
@@ -344,8 +335,11 @@ class YamlOverrideLoader {
     }
     final deriveNestedTypes =
         _readBool(yaml, 'deriveNestedTypes', filePath) ?? false;
-    final nestedTypeExcludes =
-        _readStringList(yaml, 'nestedTypeExcludes', filePath);
+    final nestedTypeExcludes = _readStringList(
+      yaml,
+      'nestedTypeExcludes',
+      filePath,
+    );
     if (nestedTypeExcludes != null && !deriveNestedTypes) {
       // Mirrors the retired-`classDocComment` style above: fail loudly at
       // load time instead of silently accepting dead config the emitter
@@ -379,14 +373,17 @@ class YamlOverrideLoader {
         outputDir != 'data') {
       final node = yaml.nodes['outputDir']!;
       final span = node.span;
-      errors.add(LoaderError(
-        code: LoaderErrorCode.outputDirMismatchForDataSource,
-        message: 'data sources must live under "data/" directory '
-            '(got "$outputDir").',
-        filePath: filePath,
-        line: span.start.line + 1,
-        column: span.start.column + 1,
-      ));
+      errors.add(
+        LoaderError(
+          code: LoaderErrorCode.outputDirMismatchForDataSource,
+          message:
+              'data sources must live under "data/" directory '
+              '(got "$outputDir").',
+          filePath: filePath,
+          line: span.start.line + 1,
+          column: span.start.column + 1,
+        ),
+      );
     }
 
     // E201: data sources reject resource-only axes. Listed axes are the ones
@@ -407,17 +404,20 @@ class YamlOverrideLoader {
         final axisNode = yaml.nodes[axis];
         if (axisNode != null) {
           final span = axisNode.span;
-          errors.add(LoaderError(
-            code: LoaderErrorCode.axisNotAllowedForDataSource,
-            message: 'axis "$axis" is not allowed for kind: data_source.',
-            filePath: filePath,
-            line: span.start.line + 1,
-            column: span.start.column + 1,
-            hint: 'Allowed axes for data sources: kind, outputDir, '
-                'schemaStubBodyMode, fileLeadingComment, '
-                'paramOrder, argMapOrder, requiredParams, '
-                'dartTypeOverrides, extraImports, extraGetters.',
-          ));
+          errors.add(
+            LoaderError(
+              code: LoaderErrorCode.axisNotAllowedForDataSource,
+              message: 'axis "$axis" is not allowed for kind: data_source.',
+              filePath: filePath,
+              line: span.start.line + 1,
+              column: span.start.column + 1,
+              hint:
+                  'Allowed axes for data sources: kind, outputDir, '
+                  'schemaStubBodyMode, fileLeadingComment, '
+                  'paramOrder, argMapOrder, requiredParams, '
+                  'dartTypeOverrides, extraImports, extraGetters.',
+            ),
+          );
         }
       }
     }
@@ -436,8 +436,11 @@ class YamlOverrideLoader {
       dartTypeOverrides: _readStringMap(yaml, 'dartTypeOverrides', filePath),
       deprecatedParams: _readStringMap(yaml, 'deprecatedParams', filePath),
       extraImports: _readStringList(yaml, 'extraImports', filePath),
-      extraSensitiveFields:
-          _readStringList(yaml, 'extraSensitiveFields', filePath),
+      extraSensitiveFields: _readStringList(
+        yaml,
+        'extraSensitiveFields',
+        filePath,
+      ),
       prelude: _readString(yaml, 'prelude', filePath),
       deriveEnums: _readBool(yaml, 'deriveEnums', filePath) ?? false,
       deriveOutputGetters:
@@ -466,14 +469,17 @@ class YamlOverrideLoader {
     final v = node.value;
     if (v is! String) {
       final span = node.span;
-      errors.add(LoaderError(
-        code: LoaderErrorCode.unknownKind,
-        message: 'kind must be a string ("resource" or "data_source"); '
-            'got ${v.runtimeType}.',
-        filePath: filePath,
-        line: span.start.line + 1,
-        column: span.start.column + 1,
-      ));
+      errors.add(
+        LoaderError(
+          code: LoaderErrorCode.unknownKind,
+          message:
+              'kind must be a string ("resource" or "data_source"); '
+              'got ${v.runtimeType}.',
+          filePath: filePath,
+          line: span.start.line + 1,
+          column: span.start.column + 1,
+        ),
+      );
       return null;
     }
     switch (v) {
@@ -483,14 +489,16 @@ class YamlOverrideLoader {
         return WrapperOverrideKind.dataSource;
     }
     final span = node.span;
-    errors.add(LoaderError(
-      code: LoaderErrorCode.unknownKind,
-      message: 'unknown kind "$v". Allowed: resource, data_source.',
-      filePath: filePath,
-      line: span.start.line + 1,
-      column: span.start.column + 1,
-      hint: 'Set `kind: resource` or `kind: data_source`.',
-    ));
+    errors.add(
+      LoaderError(
+        code: LoaderErrorCode.unknownKind,
+        message: 'unknown kind "$v". Allowed: resource, data_source.',
+        filePath: filePath,
+        line: span.start.line + 1,
+        column: span.start.column + 1,
+        hint: 'Set `kind: resource` or `kind: data_source`.',
+      ),
+    );
     return null;
   }
 
@@ -513,53 +521,62 @@ class YamlOverrideLoader {
   ) {
     final node = yaml.nodes['outputDir'];
     if (node == null) {
-      errors.add(LoaderError(
-        code: LoaderErrorCode.outputDirRequired,
-        message: 'outputDir is required, e.g. "outputDir: pubsub".',
-        filePath: filePath,
-        line: 1,
-        column: 1,
-        hint: 'Add `outputDir: <dir>` as a top-level key.',
-      ));
+      errors.add(
+        LoaderError(
+          code: LoaderErrorCode.outputDirRequired,
+          message: 'outputDir is required, e.g. "outputDir: pubsub".',
+          filePath: filePath,
+          line: 1,
+          column: 1,
+          hint: 'Add `outputDir: <dir>` as a top-level key.',
+        ),
+      );
       return null;
     }
     final v = node.value;
     final span = node.span;
     if (v is! String) {
-      errors.add(LoaderError(
-        code: LoaderErrorCode.outputDirInvalid,
-        message: 'outputDir must be a string; got ${v.runtimeType}.',
-        filePath: filePath,
-        line: span.start.line + 1,
-        column: span.start.column + 1,
-      ));
+      errors.add(
+        LoaderError(
+          code: LoaderErrorCode.outputDirInvalid,
+          message: 'outputDir must be a string; got ${v.runtimeType}.',
+          filePath: filePath,
+          line: span.start.line + 1,
+          column: span.start.column + 1,
+        ),
+      );
       return null;
     }
     final trimmed = v.trim();
     if (trimmed.isEmpty) {
-      errors.add(LoaderError(
-        code: LoaderErrorCode.outputDirRequired,
-        message: 'outputDir is required, e.g. "outputDir: pubsub".',
-        filePath: filePath,
-        line: span.start.line + 1,
-        column: span.start.column + 1,
-        hint: 'Add `outputDir: <dir>` as a top-level key.',
-      ));
+      errors.add(
+        LoaderError(
+          code: LoaderErrorCode.outputDirRequired,
+          message: 'outputDir is required, e.g. "outputDir: pubsub".',
+          filePath: filePath,
+          line: span.start.line + 1,
+          column: span.start.column + 1,
+          hint: 'Add `outputDir: <dir>` as a top-level key.',
+        ),
+      );
       return null;
     }
     if (trimmed.contains('/') ||
         trimmed.contains(r'\') ||
         trimmed == '..' ||
         trimmed == '.') {
-      errors.add(LoaderError(
-        code: LoaderErrorCode.outputDirInvalid,
-        message: 'outputDir must be a single directory name '
-            r'(no /, \, .., or .). Got "'
-            '$trimmed".',
-        filePath: filePath,
-        line: span.start.line + 1,
-        column: span.start.column + 1,
-      ));
+      errors.add(
+        LoaderError(
+          code: LoaderErrorCode.outputDirInvalid,
+          message:
+              'outputDir must be a single directory name '
+              r'(no /, \, .., or .). Got "'
+              '$trimmed".',
+          filePath: filePath,
+          line: span.start.line + 1,
+          column: span.start.column + 1,
+        ),
+      );
       return null;
     }
     return trimmed;
@@ -587,14 +604,17 @@ class YamlOverrideLoader {
     final v = node.value;
     final span = node.span;
     if (v is! String) {
-      errors.add(LoaderError(
-        code: LoaderErrorCode.outputDirInvalid,
-        message: 'schemaStubBodyMode must be a string '
-            '("nosuchmethod" or "bare"); got ${v.runtimeType}.',
-        filePath: filePath,
-        line: span.start.line + 1,
-        column: span.start.column + 1,
-      ));
+      errors.add(
+        LoaderError(
+          code: LoaderErrorCode.outputDirInvalid,
+          message:
+              'schemaStubBodyMode must be a string '
+              '("nosuchmethod" or "bare"); got ${v.runtimeType}.',
+          filePath: filePath,
+          line: span.start.line + 1,
+          column: span.start.column + 1,
+        ),
+      );
       return SchemaStubBodyMode.nosuchmethod;
     }
     switch (v) {
@@ -603,16 +623,20 @@ class YamlOverrideLoader {
       case 'bare':
         return SchemaStubBodyMode.bare;
     }
-    errors.add(LoaderError(
-      code: LoaderErrorCode.outputDirInvalid,
-      message: 'unknown schemaStubBodyMode "$v". '
-          'Allowed: nosuchmethod, bare.',
-      filePath: filePath,
-      line: span.start.line + 1,
-      column: span.start.column + 1,
-      hint: 'Set `schemaStubBodyMode: nosuchmethod` or '
-          '`schemaStubBodyMode: bare`.',
-    ));
+    errors.add(
+      LoaderError(
+        code: LoaderErrorCode.outputDirInvalid,
+        message:
+            'unknown schemaStubBodyMode "$v". '
+            'Allowed: nosuchmethod, bare.',
+        filePath: filePath,
+        line: span.start.line + 1,
+        column: span.start.column + 1,
+        hint:
+            'Set `schemaStubBodyMode: nosuchmethod` or '
+            '`schemaStubBodyMode: bare`.',
+      ),
+    );
     return SchemaStubBodyMode.nosuchmethod;
   }
 
@@ -637,14 +661,17 @@ class YamlOverrideLoader {
     final v = node.value;
     if (v is! String) {
       final span = node.span;
-      errors.add(LoaderError(
-        code: LoaderErrorCode.outputDirInvalid,
-        message: 'fileLeadingComment must be a string (block scalar); '
-            'got ${v.runtimeType}.',
-        filePath: filePath,
-        line: span.start.line + 1,
-        column: span.start.column + 1,
-      ));
+      errors.add(
+        LoaderError(
+          code: LoaderErrorCode.outputDirInvalid,
+          message:
+              'fileLeadingComment must be a string (block scalar); '
+              'got ${v.runtimeType}.',
+          filePath: filePath,
+          line: span.start.line + 1,
+          column: span.start.column + 1,
+        ),
+      );
       return null;
     }
     return v;
@@ -654,9 +681,7 @@ class YamlOverrideLoader {
     final v = yaml[key];
     if (v == null) return null;
     if (v is! String) {
-      throw FormatException(
-        '$filePath: "$key" must be a string',
-      );
+      throw FormatException('$filePath: "$key" must be a string');
     }
     return v;
   }
@@ -676,14 +701,10 @@ class YamlOverrideLoader {
     final v = yaml[key];
     if (v == null) return null;
     if (v is! YamlList) {
-      throw FormatException(
-        '$filePath: "$key" must be a list',
-      );
+      throw FormatException('$filePath: "$key" must be a list');
     }
     if (v.isEmpty) {
-      throw FormatException(
-        '$filePath: "$key" must not be empty',
-      );
+      throw FormatException('$filePath: "$key" must not be empty');
     }
     final out = <String>[];
     for (final item in v) {
@@ -698,27 +719,24 @@ class YamlOverrideLoader {
   }
 
   Map<String, String>? _readStringMap(
-      YamlMap yaml, String key, String filePath) {
+    YamlMap yaml,
+    String key,
+    String filePath,
+  ) {
     final v = yaml[key];
     if (v == null) return null;
     if (v is! YamlMap) {
-      throw FormatException(
-        '$filePath: "$key" must be a mapping',
-      );
+      throw FormatException('$filePath: "$key" must be a mapping');
     }
     final out = <String, String>{};
     for (final entry in v.entries) {
       final k = entry.key;
       final val = entry.value;
       if (k is! String) {
-        throw FormatException(
-          '$filePath: "$key" keys must be strings',
-        );
+        throw FormatException('$filePath: "$key" keys must be strings');
       }
       if (val is! String) {
-        throw FormatException(
-          '$filePath: "$key.$k" must be a string',
-        );
+        throw FormatException('$filePath: "$key.$k" must be a string');
       }
       out[k] = val;
     }
@@ -729,18 +747,14 @@ class YamlOverrideLoader {
     final v = yaml['customSlots'];
     if (v == null) return null;
     if (v is! YamlMap) {
-      throw FormatException(
-        '$filePath: "customSlots" must be a mapping',
-      );
+      throw FormatException('$filePath: "customSlots" must be a mapping');
     }
     final out = <String, CustomSlot>{};
     for (final entry in v.entries) {
       final slotName = entry.key;
       final slotMap = entry.value;
       if (slotName is! String) {
-        throw FormatException(
-          '$filePath: "customSlots" keys must be strings',
-        );
+        throw FormatException('$filePath: "customSlots" keys must be strings');
       }
       if (slotMap is! YamlMap) {
         throw FormatException(
@@ -788,11 +802,7 @@ class YamlOverrideLoader {
   ///
   /// Only `kind: manual` exists today; `reason` is mandatory and non-empty so
   /// the manifest never carries a bare "manual" without an explanation.
-  MigrateHint? _readMigrateHint(
-    Object? raw,
-    String slotName,
-    String filePath,
-  ) {
+  MigrateHint? _readMigrateHint(Object? raw, String slotName, String filePath) {
     if (raw == null) return null;
     if (raw is! YamlMap) {
       throw FormatException(

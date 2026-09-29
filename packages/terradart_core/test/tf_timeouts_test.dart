@@ -10,10 +10,7 @@ void main() {
     test('emits only the operations that are set, in Terraform order', () {
       const t = TfTimeouts(create: '30m', delete: '1h30m');
       expect(t.isEmpty, isFalse);
-      expect(
-        t.toTfJson(),
-        equals({'create': '30m', 'delete': '1h30m'}),
-      );
+      expect(t.toTfJson(), equals({'create': '30m', 'delete': '1h30m'}));
       expect(t.toTfJson()!.keys.toList(), equals(['create', 'delete']));
     });
 

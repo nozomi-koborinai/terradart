@@ -5,13 +5,8 @@ import 'package:terradart_core/src/tf_ref.dart';
 import 'package:test/test.dart';
 
 final class _FakeProjectData extends Data {
-  _FakeProjectData({
-    required super.localName,
-    required TfArg<String> projectId,
-  }) : super(
-          terraformType: 'google_project',
-          argMap: {'project_id': projectId},
-        );
+  _FakeProjectData({required super.localName, required TfArg<String> projectId})
+    : super(terraformType: 'google_project', argMap: {'project_id': projectId});
 
   @override
   Set<String> get sensitiveFields => const {};

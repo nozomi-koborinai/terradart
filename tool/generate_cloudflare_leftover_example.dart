@@ -1,4 +1,5 @@
 #!/usr/bin/env dart
+
 // Generates examples/cloudflare_leftover_quickstart/lib/main.dart — one
 // constructor call per leftover Cloudflare factory (resource or data source).
 // Dummy values satisfy Dart types so synth + terraform validate can cover
@@ -8,14 +9,9 @@
 
 import 'dart:io';
 
-const _skipResourceTypes = {
-  'cloudflare_zone',
-  'cloudflare_dns_record',
-};
+const _skipResourceTypes = {'cloudflare_zone', 'cloudflare_dns_record'};
 
-const _skipDataTypes = {
-  'cloudflare_firewall_rule',
-};
+const _skipDataTypes = {'cloudflare_firewall_rule'};
 
 const _srcRoot = 'packages/terradart_cloudflare/lib/src';
 const _outPath = 'examples/cloudflare_leftover_quickstart/lib/main.dart';
@@ -26,17 +22,18 @@ const _secretVar = 'leftover_secret';
 const _secretVarRef = "TfArg.variable('$_secretVar')";
 
 void main() {
-  final files = Directory(_srcRoot)
-      .listSync(recursive: true)
-      .whereType<File>()
-      .where(
-        (f) =>
-            f.path.endsWith('.dart') &&
-            !f.path.endsWith('_catalog.g.dart') &&
-            !f.path.endsWith('catalog_entry.dart'),
-      )
-      .toList()
-    ..sort((a, b) => a.path.compareTo(b.path));
+  final files =
+      Directory(_srcRoot)
+          .listSync(recursive: true)
+          .whereType<File>()
+          .where(
+            (f) =>
+                f.path.endsWith('.dart') &&
+                !f.path.endsWith('_catalog.g.dart') &&
+                !f.path.endsWith('catalog_entry.dart'),
+          )
+          .toList()
+        ..sort((a, b) => a.path.compareTo(b.path));
 
   final parsedFiles = <String, _ParsedFile>{};
   for (final file in files) {
@@ -102,12 +99,8 @@ void main() {
     ..writeln('  CloudflareLeftoverStack()')
     ..writeln('      : super(providers: [const CloudflareProvider()]) {')
     ..writeln("    const leftover = 'leftover';")
-    ..writeln(
-      "    const accountId = '00000000000000000000000000000001';",
-    )
-    ..writeln(
-      "    const zoneId = '00000000000000000000000000000002';",
-    )
+    ..writeln("    const accountId = '00000000000000000000000000000001';")
+    ..writeln("    const zoneId = '00000000000000000000000000000002';")
     ..writeln();
 
   // Body first: the preamble can only decide whether to declare the
@@ -340,9 +333,7 @@ class _Extra {
 
 /// The member a sealed exactly-one slot sets, where the first variant is
 /// not the one the dummy configuration needs.
-const _sealedMember = <String, String>{
-  'RulesetAccountIdOrZoneId': 'zoneId',
-};
+const _sealedMember = <String, String>{'RulesetAccountIdOrZoneId': 'zoneId'};
 
 /// The variant of sealed type [sealed] to construct: the one setting its
 /// `_sealedMember` entry, else the first.
@@ -371,17 +362,11 @@ String _sealedChoice(
   return '$variant(${member.name}: $value,)';
 }
 
-const _preferZoneId = {
-  'DataCloudflareRuleset',
-  'DataCloudflareRulesets',
-};
+const _preferZoneId = {'DataCloudflareRuleset', 'DataCloudflareRulesets'};
 
 /// Data sources whose scope id is itself the lookup: the provider takes
 /// exactly one of it and `filter`.
-const _scopeIsLookup = {
-  'DataCloudflareAccount',
-  'DataCloudflareZone',
-};
+const _scopeIsLookup = {'DataCloudflareAccount', 'DataCloudflareZone'};
 
 List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
   final requiredNames = {for (final p in f.requiredParams) p.name};

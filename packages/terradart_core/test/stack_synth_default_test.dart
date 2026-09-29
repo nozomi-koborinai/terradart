@@ -11,15 +11,15 @@ import 'helpers/fake_resources.dart';
 /// path. Used to exercise the [StateError] path in [Stack.writeTo].
 final class _StackWithUnsetExportPath extends Stack {
   _StackWithUnsetExportPath()
-      : super(
-          providers: const [
-            FakeStackProvider(
-              providerName: 'google',
-              source: 'hashicorp/google',
-              versionConstraint: '~> 7.0',
-            ),
-          ],
-        ) {
+    : super(
+        providers: const [
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+          ),
+        ],
+      ) {
     addExport('FOO', StringExport('bar'));
   }
 }
@@ -29,15 +29,15 @@ final class _StackWithUnsetExportPath extends Stack {
 /// `.dart` file.
 final class _StackWithExportPath extends Stack {
   _StackWithExportPath({required this.constantsPath})
-      : super(
-          providers: const [
-            FakeStackProvider(
-              providerName: 'google',
-              source: 'hashicorp/google',
-              versionConstraint: '~> 7.0',
-            ),
-          ],
-        ) {
+    : super(
+        providers: const [
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+          ),
+        ],
+      ) {
     addExport('FOO', StringExport('bar'));
     setAppExportsOutputPath(constantsPath);
   }
@@ -117,49 +117,44 @@ void main() {
       expect(content, contains('  "terraform"'));
     });
 
-    test(
-      'throws StateError when AppExports produced Dart constants '
-      'but no output path was set',
-      () async {
-        final stack = _StackWithUnsetExportPath();
+    test('throws StateError when AppExports produced Dart constants '
+        'but no output path was set', () async {
+      final stack = _StackWithUnsetExportPath();
 
-        await expectLater(
-          () async => stack.writeTo(tempDir.path),
-          throwsA(
-            isA<StateError>().having(
-              (e) => e.message,
-              'message',
-              contains('setAppExportsOutputPath'),
-            ),
+      await expectLater(
+        () async => stack.writeTo(tempDir.path),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            contains('setAppExportsOutputPath'),
           ),
-        );
+        ),
+      );
 
-        // Atomic failure: nothing should have been written under outDir.
-        expect(
-          await File('${tempDir.path}/main.tf.json').exists(),
-          isFalse,
-          reason: 'writeTo must fail before any I/O; a partial main.tf.json on '
-              'disk would mislead users into thinking synth half-succeeded.',
-        );
-      },
-    );
+      // Atomic failure: nothing should have been written under outDir.
+      expect(
+        await File('${tempDir.path}/main.tf.json').exists(),
+        isFalse,
+        reason:
+            'writeTo must fail before any I/O; a partial main.tf.json on '
+            'disk would mislead users into thinking synth half-succeeded.',
+      );
+    });
 
-    test(
-      'writes both main.tf.json and the constants .dart file when '
-      'setAppExportsOutputPath is set',
-      () async {
-        final constantsPath = '${tempDir.path}/gen/exports.dart';
-        final stack = _StackWithExportPath(constantsPath: constantsPath);
+    test('writes both main.tf.json and the constants .dart file when '
+        'setAppExportsOutputPath is set', () async {
+      final constantsPath = '${tempDir.path}/gen/exports.dart';
+      final stack = _StackWithExportPath(constantsPath: constantsPath);
 
-        await stack.writeTo(tempDir.path);
+      await stack.writeTo(tempDir.path);
 
-        expect(await File('${tempDir.path}/main.tf.json').exists(), isTrue);
-        expect(await File(constantsPath).exists(), isTrue);
+      expect(await File('${tempDir.path}/main.tf.json').exists(), isTrue);
+      expect(await File(constantsPath).exists(), isTrue);
 
-        final dartSource = await File(constantsPath).readAsString();
-        expect(dartSource, contains("r'bar'"));
-      },
-    );
+      final dartSource = await File(constantsPath).readAsString();
+      expect(dartSource, contains("r'bar'"));
+    });
   });
 
   group('Stack.synth (in-memory)', () {

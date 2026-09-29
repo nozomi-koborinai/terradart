@@ -24,11 +24,9 @@ import 'package:terradart_google/provider.dart';
 /// Data Catalog stack: entry group, taxonomy/policy tag, tag template, IAM.
 final class DataCatalogStack extends Stack {
   DataCatalogStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiDataCatalog = add(
       GoogleProjectService(
         localName: 'api_datacatalog',
@@ -112,9 +110,7 @@ final class DataCatalogStack extends Stack {
         fields: [
           DataCatalogTagField(
             fieldName: TfArg.literal('source'),
-            value: DataCatalogTagStringValue(
-              TfArg.literal('terradart-smoke'),
-            ),
+            value: DataCatalogTagStringValue(TfArg.literal('terradart-smoke')),
           ),
         ],
         deletionPolicy: TfArg.literal('DELETE'),
@@ -140,10 +136,7 @@ final class DataCatalogStack extends Stack {
         region: TfArg.literal('us-central1'),
         role: TfArg.literal('roles/datacatalog.viewer'),
         member: TfArg.ref(reader.iamMember),
-        dependsOn: [
-          ResourceDependency(group),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [ResourceDependency(group), ResourceDependency(reader)],
       ),
     );
 
@@ -154,10 +147,7 @@ final class DataCatalogStack extends Stack {
         region: TfArg.literal('us-central1'),
         role: TfArg.literal('roles/datacatalog.viewer'),
         member: TfArg.ref(reader.iamMember),
-        dependsOn: [
-          ResourceDependency(taxonomy),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [ResourceDependency(taxonomy), ResourceDependency(reader)],
       ),
     );
 
@@ -167,10 +157,7 @@ final class DataCatalogStack extends Stack {
         policyTag: TfArg.ref(emailTag.id),
         role: TfArg.literal('roles/datacatalog.viewer'),
         member: TfArg.ref(reader.iamMember),
-        dependsOn: [
-          ResourceDependency(emailTag),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [ResourceDependency(emailTag), ResourceDependency(reader)],
       ),
     );
 

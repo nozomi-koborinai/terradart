@@ -25,12 +25,13 @@ void main() {
   });
 
   test("schema-bump.yml schedules exactly the lanes' crons", () {
-    final workflow =
-        File('.github/workflows/schema-bump.yml').readAsStringSync();
-    final scheduled = RegExp(r"^\s*- cron: '([^']+)'", multiLine: true)
-        .allMatches(workflow)
-        .map((m) => m[1])
-        .toSet();
+    final workflow = File(
+      '.github/workflows/schema-bump.yml',
+    ).readAsStringSync();
+    final scheduled = RegExp(
+      r"^\s*- cron: '([^']+)'",
+      multiLine: true,
+    ).allMatches(workflow).map((m) => m[1]).toSet();
     expect(scheduled, lanes.map((l) => l.cron).toSet());
   });
 

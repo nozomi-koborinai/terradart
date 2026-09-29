@@ -32,7 +32,7 @@ The service has no `network_configuration`, so Express Mode places it in the reg
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - Docker, to build and push the image
 - AWS credentials through the SDK chain (`AWS_PROFILE`, `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY`, or an instance role); none are needed for synth

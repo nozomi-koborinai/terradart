@@ -105,10 +105,8 @@ final class ExcludedNestedBlock {
 
 /// Resolves one leaf attribute's enum value set, or null for a free-form
 /// value. [path] runs from the resource root to the attribute itself.
-typedef EnumValuesResolver = List<String>? Function(
-  List<String> path,
-  String? description,
-);
+typedef EnumValuesResolver =
+    List<String>? Function(List<String> path, String? description);
 
 /// The default [EnumValuesResolver]: the description dialects every lane
 /// reads.
@@ -206,7 +204,8 @@ List<NestedBlockSpec> _shareIdenticalShapes(List<NestedBlockSpec> roots) {
       for (final e in spec.excludedChildren)
         [e.tfName, e.repeated, e.keyed, e.required, 'excluded'].join('|'),
     ]..sort();
-    final key = '${attrKeys.join(';')}#${childKeys.join(';')}'
+    final key =
+        '${attrKeys.join(';')}#${childKeys.join(';')}'
         '#${jsonEncode(spec.exactlyOne)}#${jsonEncode(spec.atMostOne)}';
     final id = shapeIds.putIfAbsent(key, () => shapeIds.length);
     shapeOf[spec] = id;
@@ -288,26 +287,30 @@ _ChildScan _scanChildren(
     final childPath = [...path, tfName];
     if (excludedPaths.contains(childPath.join('.'))) {
       final cardinality = _blockCardinality(childBody, tfName: tfName);
-      excludedChildren.add(ExcludedNestedBlock(
-        tfName: tfName,
-        repeated: cardinality.repeated,
-        keyed: cardinality.keyed,
-        required: cardinality.required,
-      ));
+      excludedChildren.add(
+        ExcludedNestedBlock(
+          tfName: tfName,
+          repeated: cardinality.repeated,
+          keyed: cardinality.keyed,
+          required: cardinality.required,
+        ),
+      );
       return;
     }
 
-    children.add(_buildSpec(
-      tfName,
-      childBody,
-      path: childPath,
-      resourcePrefix: resourcePrefix,
-      customSlotKeys: customSlotKeys,
-      excludedPaths: excludedPaths,
-      enumValues: enumValues,
-      exactlyOneGroups: exactlyOneGroups,
-      atMostOneGroups: atMostOneGroups,
-    ));
+    children.add(
+      _buildSpec(
+        tfName,
+        childBody,
+        path: childPath,
+        resourcePrefix: resourcePrefix,
+        customSlotKeys: customSlotKeys,
+        excludedPaths: excludedPaths,
+        enumValues: enumValues,
+        exactlyOneGroups: exactlyOneGroups,
+        atMostOneGroups: atMostOneGroups,
+      ),
+    );
   }
 
   final blockTypes = _optionalMap(block['block_types'], context: 'block_types');
@@ -320,13 +323,17 @@ _ChildScan _scanChildren(
 
   final attributes = _optionalMap(block['attributes'], context: 'attributes');
   for (final entry in attributes.entries) {
-    final attrBody =
-        _requireMap(entry.value, context: 'attributes.${entry.key}');
+    final attrBody = _requireMap(
+      entry.value,
+      context: 'attributes.${entry.key}',
+    );
     final nestedTypeRaw = attrBody['nested_type'];
     if (nestedTypeRaw == null) continue;
     if (_isComputedOnly(attrBody)) continue;
-    final nestedType = _requireMap(nestedTypeRaw,
-        context: 'attributes.${entry.key}.nested_type');
+    final nestedType = _requireMap(
+      nestedTypeRaw,
+      context: 'attributes.${entry.key}.nested_type',
+    );
     consider(
       tfName: entry.key,
       childBody: _nestedTypeAsBlockBody(attrBody, nestedType),
@@ -460,22 +467,21 @@ List<NestedAttrSpec> _collectAttrs(
 
     final typeInfo = _attrTypeInfo(
       rawType: body['type'],
-      enumValues: enumValues(
-        [...path, tfName],
-        body['description'] as String?,
-      ),
+      enumValues: enumValues([...path, tfName], body['description'] as String?),
       className: className,
       tfName: tfName,
     );
 
-    out.add(NestedAttrSpec(
-      tfName: tfName,
-      dartName: snakeToCamel(tfName),
-      dartType: typeInfo.dartType,
-      required: isRequired,
-      enumValues: typeInfo.enumValues,
-      repeated: typeInfo.repeated,
-    ));
+    out.add(
+      NestedAttrSpec(
+        tfName: tfName,
+        dartName: snakeToCamel(tfName),
+        dartType: typeInfo.dartType,
+        required: isRequired,
+        enumValues: typeInfo.enumValues,
+        repeated: typeInfo.repeated,
+      ),
+    );
   }
   return out;
 }
@@ -532,7 +538,7 @@ _AttrTypeInfo _attrTypeInfo({
   return (
     dartType: _scalarDartType(rawType),
     repeated: false,
-    enumValues: null
+    enumValues: null,
   );
 }
 

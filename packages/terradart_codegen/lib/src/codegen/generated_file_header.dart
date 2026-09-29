@@ -9,6 +9,7 @@
 ///   which conflicts with the project's per-package `prefer_relative_imports`
 ///   lint. Scoping the ignore to generated files preserves the lint for
 ///   hand-written code.
-const String generatedFileHeader = '// GENERATED FILE - DO NOT EDIT\n'
+const String generatedFileHeader =
+    '// GENERATED FILE - DO NOT EDIT\n'
     '// Run `terradart wrap` to regenerate.\n'
     '// ignore_for_file: prefer_relative_imports\n';

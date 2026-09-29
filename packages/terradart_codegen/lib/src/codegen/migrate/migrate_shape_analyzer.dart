@@ -18,7 +18,7 @@ final class SlotShape {
   });
 
   const SlotShape.manual(String reason)
-      : this(kind: MigrateSlotKind.manual, reason: reason);
+    : this(kind: MigrateSlotKind.manual, reason: reason);
 
   final MigrateSlotKind kind;
   final String? dartType;
@@ -43,7 +43,7 @@ final class ShapeContext {
 
 const _passthroughTypes = {
   'Map<String, dynamic>',
-  'List<Map<String, dynamic>>'
+  'List<Map<String, dynamic>>',
 };
 const _plainLeafTypes = {
   'String',
@@ -226,9 +226,8 @@ SlotShape mergedShape(SlotShape shape) {
 /// the keyed map [isKeyedHelperEncoding] recognises: the helpers land on the
 /// wire some other way (a list with the key moved into a block field), which
 /// no manifest slot describes.
-SlotShape unkeyedMapShape(String typeSource) => SlotShape.manual(
-      '`$typeSource` is not encoded as a keyed map of helpers',
-    );
+SlotShape unkeyedMapShape(String typeSource) =>
+    SlotShape.manual('`$typeSource` is not encoded as a keyed map of helpers');
 
 /// The parts of a [CustomSlot] the manifest needs, read from its verbatim
 /// `paramDeclaration` / `argMapEntry` snippets.
@@ -284,9 +283,9 @@ CustomSlotShape parseCustomSlot(CustomSlot slot) {
   final entry = slot.argMapEntry;
   final dynamicKey = RegExp(r'\b\w+\.blockKey\s*:').hasMatch(entry);
   final name = RegExp.escape(dartName);
-  final spread =
-      RegExp(r'^\s*\.\.\.(?:' + name + r'|\?' + name + r'\?)\.argMap\s*,?\s*$')
-          .hasMatch(entry);
+  final spread = RegExp(
+    r'^\s*\.\.\.(?:' + name + r'|\?' + name + r'\?)\.argMap\s*,?\s*$',
+  ).hasMatch(entry);
   final tfKey = RegExp(r"'([a-z0-9_]+)'\s*:").firstMatch(entry)?.group(1);
   return CustomSlotShape(
     dartName: dartName,
@@ -317,8 +316,10 @@ SlotShape customSlotShape(
 /// entry alone (ignoring any `migrate:` hint) — what the lint compares a
 /// hint against.
 SlotShape deriveCustomSlotShape(CustomSlotShape parsed, ShapeContext ctx) {
-  final shape =
-      resolveEnumPayload(classifyDartType(parsed.typeSource, ctx), ctx);
+  final shape = resolveEnumPayload(
+    classifyDartType(parsed.typeSource, ctx),
+    ctx,
+  );
   if (shape.isManual) return shape;
   if (parsed.dynamicKey && shape.kind != MigrateSlotKind.sealed) {
     return const SlotShape.manual(

@@ -22,12 +22,12 @@ import 'package:terradart_time/terradart_time.dart';
 /// Transfer / inventory / ACL stack.
 final class StorageTransferStack extends Stack {
   StorageTransferStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+          const TimeProvider(),
+        ],
+      ) {
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.storage],
@@ -166,17 +166,17 @@ final class StorageTransferStack extends Stack {
         ),
         objectMetadataReportOptions:
             StorageInsightsReportConfigObjectMetadataReportOptions(
-          metadataFields: TfArg.literal(['name', 'size']),
-          storageDestinationOptions:
-              StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions(
-            bucket: TfArg.ref(src.nameRef),
-            destinationPath: TfArg.literal('insights-reports/'),
-          ),
-          storageFilters:
-              StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters(
-            bucket: TfArg.ref(src.nameRef),
-          ),
-        ),
+              metadataFields: TfArg.literal(['name', 'size']),
+              storageDestinationOptions:
+                  StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions(
+                    bucket: TfArg.ref(src.nameRef),
+                    destinationPath: TfArg.literal('insights-reports/'),
+                  ),
+              storageFilters:
+                  StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters(
+                    bucket: TfArg.ref(src.nameRef),
+                  ),
+            ),
         dependsOn: [
           ...apiDeps,
           ResourceDependency(src),

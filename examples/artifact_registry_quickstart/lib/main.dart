@@ -19,11 +19,11 @@ import 'package:terradart_google/tags.dart';
 /// location tag binding.
 final class ArtifactRegistryStack extends Stack {
   ArtifactRegistryStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+      ) {
     const location = 'asia-northeast1';
     const repositoryId = 'terradart-docker';
 
@@ -43,9 +43,9 @@ final class ArtifactRegistryStack extends Stack {
         location: TfArg.literal(location),
         platformLogsConfig:
             const ArtifactRegistryProjectConfigPlatformLogsConfig(
-          loggingState: ArtifactRegistryPlatformLogsLoggingState.enabled,
-          severityLevel: ArtifactRegistryPlatformLogsSeverityLevel.info,
-        ),
+              loggingState: ArtifactRegistryPlatformLogsLoggingState.enabled,
+              severityLevel: ArtifactRegistryPlatformLogsSeverityLevel.info,
+            ),
         dependsOn: [ResourceDependency(apiAr)],
       ),
     );

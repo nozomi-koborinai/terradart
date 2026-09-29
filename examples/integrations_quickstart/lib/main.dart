@@ -24,12 +24,12 @@ import 'package:terradart_time/terradart_time.dart';
 /// Application Integration stack: regional client + dummy auth config.
 final class IntegrationsStack extends Stack {
   IntegrationsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-east1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-east1'),
+          const TimeProvider(),
+        ],
+      ) {
     // Quick setup enables Integration + Secret Manager + Connectors; without
     // the sibling APIs, `clients:provision` can 400 with "project is not
     // enabled in the selected region" even after integrations.googleapis.com
@@ -88,15 +88,12 @@ final class IntegrationsStack extends Stack {
           credentialType: TfArg.literal('USERNAME_AND_PASSWORD'),
           usernameAndPassword:
               IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword(
-            username: TfArg.literal('terradart-dummy'),
-            password: TfArg.literal('terradart-dummy-password'),
-          ),
+                username: TfArg.literal('terradart-dummy'),
+                password: TfArg.literal('terradart-dummy-password'),
+              ),
         ),
         deletionPolicy: TfArg.literal('DELETE'),
-        dependsOn: [
-          ResourceDependency(client),
-          ResourceDependency(apiWait),
-        ],
+        dependsOn: [ResourceDependency(client), ResourceDependency(apiWait)],
       ),
     );
   }

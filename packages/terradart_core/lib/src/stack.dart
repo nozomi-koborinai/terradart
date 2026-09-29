@@ -93,8 +93,8 @@ abstract base class Stack {
     required List<StackProvider> providers,
     StackBackend? backend,
     this.devMode = false,
-  })  : _providers = List<StackProvider>.unmodifiable(providers),
-        _backend = backend;
+  }) : _providers = List<StackProvider>.unmodifiable(providers),
+       _backend = backend;
 
   /// When true, synth-time injection flips `deletion_protection` to
   /// `false` on any registered resource whose
@@ -385,9 +385,9 @@ abstract base class Stack {
     }
 
     await Directory(outDir).create(recursive: true);
-    await File('$outDir/main.tf.json').writeAsString(
-      const JsonEncoder.withIndent('  ').convert(result.tfJson),
-    );
+    await File(
+      '$outDir/main.tf.json',
+    ).writeAsString(const JsonEncoder.withIndent('  ').convert(result.tfJson));
 
     if (result.dartConstants != null) {
       final f = File(result.dartConstantsPath!);

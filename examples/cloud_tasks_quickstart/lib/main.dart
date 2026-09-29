@@ -16,12 +16,12 @@ import 'package:terradart_time/terradart_time.dart';
 /// Cloud Tasks queue + IAM enqueuer Stack.
 final class EmailJobsStack extends Stack {
   EmailJobsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     // ---- API enablement ---------------------------------------------------
     //
     // [Apis.enable] enables the Cloud Tasks API and waits 60s for propagation

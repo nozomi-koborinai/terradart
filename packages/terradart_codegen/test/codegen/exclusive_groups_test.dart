@@ -34,35 +34,31 @@ void main() {
     expect(g.unsealed, isEmpty);
   });
 
-  test('turns each pairwise conflicting component into an at-most-one group',
-      () {
-    final g = exclusiveGroups(
-      conflicts: [
-        ('content', 'data'),
-        ('item.ip', 'item.asn'),
-        ('item.ip', 'item.hostname'),
-        ('item.asn', 'item.hostname'),
-      ],
-    );
-    expect(g.atMostOne, [
-      ['content', 'data'],
-      ['item.ip', 'item.asn', 'item.hostname'],
-    ]);
-    expect(g.unsealed, isEmpty);
-  });
+  test(
+    'turns each pairwise conflicting component into an at-most-one group',
+    () {
+      final g = exclusiveGroups(
+        conflicts: [
+          ('content', 'data'),
+          ('item.ip', 'item.asn'),
+          ('item.ip', 'item.hostname'),
+          ('item.asn', 'item.hostname'),
+        ],
+      );
+      expect(g.atMostOne, [
+        ['content', 'data'],
+        ['item.ip', 'item.asn', 'item.hostname'],
+      ]);
+      expect(g.unsealed, isEmpty);
+    },
+  );
 
   test('reports conflicts no group expresses', () {
     final g = exclusiveGroups(
       exactlyOne: [
         ['a', 'b'],
       ],
-      conflicts: [
-        ('a', 'b'),
-        ('a', 'c'),
-        ('x', 's.y'),
-        ('p', 'q'),
-        ('p', 'r'),
-      ],
+      conflicts: [('a', 'b'), ('a', 'c'), ('x', 's.y'), ('p', 'q'), ('p', 'r')],
     );
     expect(g.exactlyOne, [
       ['a', 'b'],

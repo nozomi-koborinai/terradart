@@ -9,7 +9,8 @@ Future<void> main() async {
   final projectId = Platform.environment['GCP_PROJECT_ID'];
   if (projectId == null || projectId.isEmpty) {
     stderr.writeln(
-        'error: set GCP_PROJECT_ID env var (target GCP project, e.g. terradart-validate)');
+      'error: set GCP_PROJECT_ID env var (target GCP project, e.g. terradart-validate)',
+    );
     exit(64);
   }
   final dbPassword = Platform.environment['DB_PASSWORD'];
@@ -20,7 +21,8 @@ Future<void> main() async {
   final alertEmail = Platform.environment['ALERT_EMAIL'];
   if (alertEmail == null || alertEmail.isEmpty) {
     stderr.writeln(
-        'error: set ALERT_EMAIL env var (notification channel destination)');
+      'error: set ALERT_EMAIL env var (notification channel destination)',
+    );
     exit(64);
   }
   final stack = SingleProjectAppStack(

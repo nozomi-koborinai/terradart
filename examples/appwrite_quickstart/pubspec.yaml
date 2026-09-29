@@ -3,7 +3,7 @@ description: Smallest terradart_appwrite example -- an Appwrite project and a st
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

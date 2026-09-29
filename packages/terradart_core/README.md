@@ -1,7 +1,7 @@
 # terradart_core
 
 [![pub: terradart_core](https://img.shields.io/pub/v/terradart_core.svg?label=pub%3A%20core)](https://pub.dev/packages/terradart_core)
-[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.6-blue.svg)](https://dart.dev)
+[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.10-blue.svg)](https://dart.dev)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/nozomi-koborinai/terradart/blob/main/LICENSE)
 
 Core runtime for [TerraDart](https://terradart.dev) — a Dart-first infrastructure-as-code layer for Terraform that produces drop-in `main.tf.json` for the standard `terraform` CLI.

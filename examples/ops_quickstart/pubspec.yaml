@@ -3,7 +3,7 @@ description: Ops quickstart — Wave 2 + Wave 11 logging project ops (sink, buck
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

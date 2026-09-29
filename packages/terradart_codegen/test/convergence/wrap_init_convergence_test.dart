@@ -49,73 +49,77 @@ void main() {
     providerRules: rules,
   );
 
-  final ir = const SchemaJsonParser()
-      .parseString(File(_schemaPath).readAsStringSync());
+  final ir = const SchemaJsonParser().parseString(
+    File(_schemaPath).readAsStringSync(),
+  );
   final loaded = loadWrapperOverrides(rootDir: _overrideRoot);
 
   test(
-      'TRACER: committed vs wrap-init drift on kind/outputDir/schemaStubBodyMode',
-      () {
-    final mismatches = <String>[];
-    var skipped = 0;
-    var checked = 0;
+    'TRACER: committed vs wrap-init drift on kind/outputDir/schemaStubBodyMode',
+    () {
+      final mismatches = <String>[];
+      var skipped = 0;
+      var checked = 0;
 
-    for (final entry in loaded.entries) {
-      final tfType = entry.key;
-      final committed = entry.value;
-      final kind = committed.kind;
+      for (final entry in loaded.entries) {
+        final tfType = entry.key;
+        final committed = entry.value;
+        final kind = committed.kind;
 
-      final def = kind == WrapperOverrideKind.resource
-          ? ir.resources[tfType]
-          : ir.dataSources[tfType];
-      if (def == null) {
-        skipped++;
-        continue; // no schema fixture for this override
+        final def = kind == WrapperOverrideKind.resource
+            ? ir.resources[tfType]
+            : ir.dataSources[tfType];
+        if (def == null) {
+          skipped++;
+          continue; // no schema fixture for this override
+        }
+
+        final mmFile = File(p.join(_mmDir, '$tfType.yaml'));
+        final mm = mmFile.existsSync()
+            ? const MmYamlParser().parseString(mmFile.readAsStringSync())
+            : null;
+
+        final draft = generator.generate(
+          terraformType: tfType,
+          def: def,
+          kind: kind,
+          mm: mm,
+        );
+
+        final cKind = committed.kind.name;
+        final cDir = committed.outputDir;
+        final cStub = committed.schemaStubBodyMode.name;
+        final dKind = _derivedKind(draft);
+        final dDir = _derivedOutputDir(draft);
+        final dStub = _derivedStub(draft);
+
+        final diffs = <String>[];
+        if (cKind != dKind) diffs.add('kind: committed=$cKind derived=$dKind');
+        if (cDir != dDir) diffs.add('outputDir: committed=$cDir derived=$dDir');
+        if (cStub != dStub) {
+          diffs.add('schemaStubBodyMode: committed=$cStub derived=$dStub');
+        }
+        if (diffs.isNotEmpty) mismatches.add('$tfType -> ${diffs.join('; ')}');
+        checked++;
       }
 
-      final mmFile = File(p.join(_mmDir, '$tfType.yaml'));
-      final mm = mmFile.existsSync()
-          ? const MmYamlParser().parseString(mmFile.readAsStringSync())
-          : null;
-
-      final draft = generator.generate(
-        terraformType: tfType,
-        def: def,
-        kind: kind,
-        mm: mm,
-      );
-
-      final cKind = committed.kind.name;
-      final cDir = committed.outputDir;
-      final cStub = committed.schemaStubBodyMode.name;
-      final dKind = _derivedKind(draft);
-      final dDir = _derivedOutputDir(draft);
-      final dStub = _derivedStub(draft);
-
-      final diffs = <String>[];
-      if (cKind != dKind) diffs.add('kind: committed=$cKind derived=$dKind');
-      if (cDir != dDir) diffs.add('outputDir: committed=$cDir derived=$dDir');
-      if (cStub != dStub) {
-        diffs.add('schemaStubBodyMode: committed=$cStub derived=$dStub');
-      }
-      if (diffs.isNotEmpty) mismatches.add('$tfType -> ${diffs.join('; ')}');
-      checked++;
-    }
-
-    // ignore: avoid_print
-    print('CONVERGENCE TRACER: checked=$checked skipped=$skipped '
-        'mismatches=${mismatches.length}');
-    for (final m in mismatches) {
       // ignore: avoid_print
-      print('  MISMATCH $m');
-    }
-    // Tracer never fails — it only measures. The asserting test below now guards
-    // all three axes (kind + outputDir + schemaStubBodyMode). The one residual
-    // tracer mismatch is google_project's raw kind spelling (committed
-    // `dataSource` vs wrap-init emit `data_source`); the assertion normalizes it
-    // via `_committedKind`, so it is not a real drift.
-    expect(true, isTrue);
-  });
+      print(
+        'CONVERGENCE TRACER: checked=$checked skipped=$skipped '
+        'mismatches=${mismatches.length}',
+      );
+      for (final m in mismatches) {
+        // ignore: avoid_print
+        print('  MISMATCH $m');
+      }
+      // Tracer never fails — it only measures. The asserting test below now guards
+      // all three axes (kind + outputDir + schemaStubBodyMode). The one residual
+      // tracer mismatch is google_project's raw kind spelling (committed
+      // `dataSource` vs wrap-init emit `data_source`); the assertion normalizes it
+      // via `_committedKind`, so it is not a real drift.
+      expect(true, isTrue);
+    },
+  );
 
   // Phase D assertion. Scope: kind + outputDir + schemaStubBodyMode.
   //
@@ -126,62 +130,71 @@ void main() {
   // alias map (or a new product whose prefix is missing) trips this assertion
   // even though `wrap --check` stays green (it reads the override as truth).
   test(
-      'committed overrides match the wrap-init anchor (kind + outputDir + schemaStubBodyMode)',
-      () {
-    final offenders = <String>[];
-    var skipped = 0;
+    'committed overrides match the wrap-init anchor (kind + outputDir + schemaStubBodyMode)',
+    () {
+      final offenders = <String>[];
+      var skipped = 0;
 
-    for (final entry in loaded.entries) {
-      final tfType = entry.key;
-      final committed = entry.value;
-      final kind = committed.kind;
+      for (final entry in loaded.entries) {
+        final tfType = entry.key;
+        final committed = entry.value;
+        final kind = committed.kind;
 
-      final def = kind == WrapperOverrideKind.resource
-          ? ir.resources[tfType]
-          : ir.dataSources[tfType];
-      if (def == null) {
-        skipped++;
-        continue;
-      }
+        final def = kind == WrapperOverrideKind.resource
+            ? ir.resources[tfType]
+            : ir.dataSources[tfType];
+        if (def == null) {
+          skipped++;
+          continue;
+        }
 
-      final mmFile = File(p.join(_mmDir, '$tfType.yaml'));
-      final mm = mmFile.existsSync()
-          ? const MmYamlParser().parseString(mmFile.readAsStringSync())
-          : null;
+        final mmFile = File(p.join(_mmDir, '$tfType.yaml'));
+        final mm = mmFile.existsSync()
+            ? const MmYamlParser().parseString(mmFile.readAsStringSync())
+            : null;
 
-      final draft = generator.generate(
-        terraformType: tfType,
-        def: def,
-        kind: kind,
-        mm: mm,
-      );
+        final draft = generator.generate(
+          terraformType: tfType,
+          def: def,
+          kind: kind,
+          mm: mm,
+        );
 
-      final diffs = <String>[];
-      if (_committedKind(committed.kind) != _derivedKind(draft)) {
-        diffs.add('kind: committed=${_committedKind(committed.kind)} '
-            'derived=${_derivedKind(draft)}');
-      }
-      if (committed.outputDir != _derivedOutputDir(draft)) {
-        diffs.add('outputDir: committed=${committed.outputDir} '
-            'derived=${_derivedOutputDir(draft)}');
-      }
-      if (committed.schemaStubBodyMode.name != _derivedStub(draft)) {
-        diffs.add(
+        final diffs = <String>[];
+        if (_committedKind(committed.kind) != _derivedKind(draft)) {
+          diffs.add(
+            'kind: committed=${_committedKind(committed.kind)} '
+            'derived=${_derivedKind(draft)}',
+          );
+        }
+        if (committed.outputDir != _derivedOutputDir(draft)) {
+          diffs.add(
+            'outputDir: committed=${committed.outputDir} '
+            'derived=${_derivedOutputDir(draft)}',
+          );
+        }
+        if (committed.schemaStubBodyMode.name != _derivedStub(draft)) {
+          diffs.add(
             'schemaStubBodyMode: committed=${committed.schemaStubBodyMode.name} '
-            'derived=${_derivedStub(draft)}');
+            'derived=${_derivedStub(draft)}',
+          );
+        }
+        if (diffs.isNotEmpty) offenders.add('$tfType -> ${diffs.join('; ')}');
       }
-      if (diffs.isNotEmpty) offenders.add('$tfType -> ${diffs.join('; ')}');
-    }
 
-    // ignore: avoid_print
-    print('CONVERGENCE (kind+outputDir+stub): skipped=$skipped '
-        '(no schema fixture)');
-    expect(
-      offenders,
-      isEmpty,
-      reason: 'These overrides drifted from the wrap-init anchor on '
-          'kind/schemaStubBodyMode: $offenders. Fix the override or the '
-          'derivation; do not silence by narrowing scope.',
-    );
-  });
+      // ignore: avoid_print
+      print(
+        'CONVERGENCE (kind+outputDir+stub): skipped=$skipped '
+        '(no schema fixture)',
+      );
+      expect(
+        offenders,
+        isEmpty,
+        reason:
+            'These overrides drifted from the wrap-init anchor on '
+            'kind/schemaStubBodyMode: $offenders. Fix the override or the '
+            'derivation; do not silence by narrowing scope.',
+      );
+    },
+  );
 }

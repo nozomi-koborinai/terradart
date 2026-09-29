@@ -30,14 +30,14 @@ const _originId = 'site-bucket';
 /// Static site stack: bucket, certificate, distribution, and DNS records.
 final class AwsStaticSiteStack extends Stack {
   AwsStaticSiteStack({required String siteDomain, required String hostedZone})
-      : super(
-          providers: [
-            const AwsProvider(
-              region: 'us-east-1',
-              defaultTags: {'app': 'terradart-static-site-quickstart'},
-            ),
-          ],
-        ) {
+    : super(
+        providers: [
+          const AwsProvider(
+            region: 'us-east-1',
+            defaultTags: {'app': 'terradart-static-site-quickstart'},
+          ),
+        ],
+      ) {
     final zone = DataAwsRoute53Zone(
       localName: 'site',
       name: TfArg.literal(hostedZone),

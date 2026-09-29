@@ -27,8 +27,9 @@ void main() {
     test('terradartCliVersion is a non-empty semver-ish string', () {
       expect(terradartCliVersion, isNotEmpty);
       expect(
-        RegExp(r'^\d+\.\d+\.\d+(-[A-Za-z0-9.-]+)?$')
-            .hasMatch(terradartCliVersion),
+        RegExp(
+          r'^\d+\.\d+\.\d+(-[A-Za-z0-9.-]+)?$',
+        ).hasMatch(terradartCliVersion),
         isTrue,
         reason: 'expected semver, got "$terradartCliVersion"',
       );

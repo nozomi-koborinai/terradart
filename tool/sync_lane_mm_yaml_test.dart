@@ -29,16 +29,13 @@ void main() {
 
   test('resourceGoFiles keys each service resource file by name', () {
     expect(
-      resourceGoFiles(
-        [
-          'google-beta/services/apigateway/resource_api_gateway_api.go',
-          'google-beta/services/apigateway/iam_api_gateway_api.go',
-          'google-beta/services/apigateway/resource_api_gateway_api_test.go',
-          'google-beta/provider/resource_x.go',
-          'google-beta/services/compute/nested/resource_y.go',
-        ],
-        'google-beta/services',
-      ),
+      resourceGoFiles([
+        'google-beta/services/apigateway/resource_api_gateway_api.go',
+        'google-beta/services/apigateway/iam_api_gateway_api.go',
+        'google-beta/services/apigateway/resource_api_gateway_api_test.go',
+        'google-beta/provider/resource_x.go',
+        'google-beta/services/compute/nested/resource_y.go',
+      ], 'google-beta/services'),
       {
         'resource_api_gateway_api.go':
             'google-beta/services/apigateway/resource_api_gateway_api.go',
@@ -55,27 +52,29 @@ void main() {
     );
   });
 
-  test('renderMmSources lists every type in order, with the reason of a miss',
-      () {
-    final out = renderMmSources(
-      lane: 'google-beta',
-      providerVersion: '8.4.0',
-      ref: 'abc',
-      sources: {
-        'google_b': (upstream: null, reason: 'hand-written (b.go)'),
-        'google_a': (upstream: 'mmv1/products/a/A.yaml', reason: null),
-      },
-    );
-    expect(
-      out,
-      endsWith(
-        'provider_version: 8.4.0\n'
-        'upstream_ref: abc\n'
-        'files:\n'
-        '  google_a: mmv1/products/a/A.yaml\n'
-        '  google_b: null  # hand-written (b.go)\n',
-      ),
-    );
-    expect(out, startsWith('# GENERATED'));
-  });
+  test(
+    'renderMmSources lists every type in order, with the reason of a miss',
+    () {
+      final out = renderMmSources(
+        lane: 'google-beta',
+        providerVersion: '8.4.0',
+        ref: 'abc',
+        sources: {
+          'google_b': (upstream: null, reason: 'hand-written (b.go)'),
+          'google_a': (upstream: 'mmv1/products/a/A.yaml', reason: null),
+        },
+      );
+      expect(
+        out,
+        endsWith(
+          'provider_version: 8.4.0\n'
+          'upstream_ref: abc\n'
+          'files:\n'
+          '  google_a: mmv1/products/a/A.yaml\n'
+          '  google_b: null  # hand-written (b.go)\n',
+        ),
+      );
+      expect(out, startsWith('# GENERATED'));
+    },
+  );
 }

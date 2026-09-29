@@ -46,12 +46,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class ApiServiceStack extends Stack {
   ApiServiceStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+          const TimeProvider(),
+        ],
+      ) {
     // ---- API enablement + Wave 25 VPC Access + Wave 32 Redis --------------
     //
     // [Apis.enable] enables the Compute, Run, Secret Manager, Service
@@ -207,10 +207,7 @@ final class ApiServiceStack extends Stack {
         connectMode: TfArg.literal(
           RedisInstanceConnectMode.privateServiceAccess,
         ),
-        dependsOn: [
-          ...apiDeps,
-          ResourceDependency(psaConnection),
-        ],
+        dependsOn: [...apiDeps, ResourceDependency(psaConnection)],
       ),
     );
 
@@ -231,10 +228,7 @@ final class ApiServiceStack extends Stack {
         // (no PSA range) fails apply with "Google private service access is
         // not enabled".
         authorizedNetwork: TfArg.ref(vpc.id),
-        dependsOn: [
-          ...apiDeps,
-          ResourceDependency(psaConnection),
-        ],
+        dependsOn: [...apiDeps, ResourceDependency(psaConnection)],
       ),
     );
 
@@ -261,8 +255,9 @@ final class ApiServiceStack extends Stack {
             env: [
               CloudRunV2ServiceEnvVar(
                 name: TfArg.literal('LOG_LEVEL'),
-                source:
-                    CloudRunV2ServiceEnvVarFromLiteral(TfArg.literal('info')),
+                source: CloudRunV2ServiceEnvVarFromLiteral(
+                  TfArg.literal('info'),
+                ),
               ),
               CloudRunV2ServiceEnvVar(
                 name: TfArg.literal('DB_PASSWORD'),

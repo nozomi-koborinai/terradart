@@ -54,11 +54,11 @@ const _exitExtract = 69;
 List<String> resourceNamesFromFixture(Map<String, dynamic> fixture) {
   final providerSchemas =
       (fixture['provider_schemas'] as Map?)?.cast<String, dynamic>() ??
-          const {};
+      const {};
   final names = <String>{};
   for (final body in providerSchemas.values) {
-    final resources =
-        ((body as Map?)?['resource_schemas'] as Map?)?.cast<String, dynamic>();
+    final resources = ((body as Map?)?['resource_schemas'] as Map?)
+        ?.cast<String, dynamic>();
     if (resources != null) names.addAll(resources.keys);
   }
   if (names.isEmpty) {
@@ -73,7 +73,7 @@ List<String> resourceNamesFromFixture(Map<String, dynamic> fixture) {
 List<String> dataSourceNamesFromFixture(Map<String, dynamic> fixture) {
   final providerSchemas =
       (fixture['provider_schemas'] as Map?)?.cast<String, dynamic>() ??
-          const {};
+      const {};
   final names = <String>{};
   for (final body in providerSchemas.values) {
     final dataSources = ((body as Map?)?['data_source_schemas'] as Map?)
@@ -96,10 +96,10 @@ Map<String, dynamic> filterSchemaSubset(
   List<String> dataSources = const [],
 }) {
   final providerKey = 'registry.terraform.io/$providerSource';
-  final providerSchemas =
-      (full['provider_schemas'] as Map?)?.cast<String, dynamic>();
-  final providerBody =
-      (providerSchemas?[providerKey] as Map?)?.cast<String, dynamic>();
+  final providerSchemas = (full['provider_schemas'] as Map?)
+      ?.cast<String, dynamic>();
+  final providerBody = (providerSchemas?[providerKey] as Map?)
+      ?.cast<String, dynamic>();
   if (providerBody == null) {
     throw StateError(
       'provider key $providerKey not found in schema '
@@ -108,7 +108,7 @@ Map<String, dynamic> filterSchemaSubset(
   }
   final allResources =
       (providerBody['resource_schemas'] as Map?)?.cast<String, dynamic>() ??
-          const {};
+      const {};
   final missing = resources.where((r) => !allResources.containsKey(r)).toList();
   if (missing.isNotEmpty) {
     throw StateError(
@@ -118,9 +118,10 @@ Map<String, dynamic> filterSchemaSubset(
   }
   final allDataSources =
       (providerBody['data_source_schemas'] as Map?)?.cast<String, dynamic>() ??
-          const {};
-  final missingData =
-      dataSources.where((d) => !allDataSources.containsKey(d)).toList();
+      const {};
+  final missingData = dataSources
+      .where((d) => !allDataSources.containsKey(d))
+      .toList();
   if (missingData.isNotEmpty) {
     throw StateError(
       'requested data source(s) absent from $providerKey: '
@@ -131,9 +132,7 @@ Map<String, dynamic> filterSchemaSubset(
     'format_version': full['format_version'],
     'provider_schemas': {
       providerKey: {
-        'resource_schemas': {
-          for (final r in resources) r: allResources[r],
-        },
+        'resource_schemas': {for (final r in resources) r: allResources[r]},
         if (dataSources.isNotEmpty)
           'data_source_schemas': {
             for (final d in dataSources) d: allDataSources[d],
@@ -153,9 +152,11 @@ bool coversFullCatalog(
   required List<String> resources,
   required List<String> dataSources,
 }) {
-  final providerBody = ((full['provider_schemas']
-          as Map?)?['registry.terraform.io/$providerSource'] as Map?)
-      ?.cast<String, dynamic>();
+  final providerBody =
+      ((full['provider_schemas']
+                  as Map?)?['registry.terraform.io/$providerSource']
+              as Map?)
+          ?.cast<String, dynamic>();
   if (providerBody == null) return false;
   Set<String> keys(String field) =>
       ((providerBody[field] as Map?)?.keys.cast<String>() ?? const <String>[])
@@ -255,15 +256,15 @@ Future<void> main(List<String> args) async {
     // Union: the fixture's current set is the base, --resources adds to it
     // (used by terradart-add-beta-resource to append a new type without a
     // baked-in name list).
-    final fixture = jsonDecode(File(resourcesFrom).readAsStringSync())
-        as Map<String, dynamic>;
+    final fixture =
+        jsonDecode(File(resourcesFrom).readAsStringSync())
+            as Map<String, dynamic>;
     resources = {...resourceNamesFromFixture(fixture), ...resources}.toList()
       ..sort();
     dataSources = {
       ...dataSourceNamesFromFixture(fixture),
       ...dataSources,
-    }.toList()
-      ..sort();
+    }.toList()..sort();
   }
   if (provider == null || out == null || (!allResources && resources.isEmpty)) {
     stderr.writeln(
@@ -365,8 +366,9 @@ terraform {
   }
 
   final outDir = Directory(out)..createSync(recursive: true);
-  File('${outDir.path}/schema.json')
-      .writeAsStringSync('${jsonEncode(subset)}\n');
+  File(
+    '${outDir.path}/schema.json',
+  ).writeAsStringSync('${jsonEncode(subset)}\n');
   if (version != null) {
     File('${outDir.path}/provider_version.txt').writeAsStringSync('$version\n');
   }

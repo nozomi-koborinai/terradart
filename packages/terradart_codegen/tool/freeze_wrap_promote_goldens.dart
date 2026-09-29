@@ -33,17 +33,21 @@ void main() {
   );
 
   for (final (terraformType, schemaFile, mmFile) in _scenarios) {
-    final schemaSrc = File(p.join('test', 'fixtures', 'schema', schemaFile))
-        .readAsStringSync();
-    final ir = const SchemaJsonParser()
-        .parseString(schemaSrc, providerVersion: '7.31.0');
+    final schemaSrc = File(
+      p.join('test', 'fixtures', 'schema', schemaFile),
+    ).readAsStringSync();
+    final ir = const SchemaJsonParser().parseString(
+      schemaSrc,
+      providerVersion: '7.31.0',
+    );
     final def = ir.resources[terraformType];
     if (def == null) {
       stderr.writeln('Resource $terraformType not in $schemaFile.');
       exit(1);
     }
-    final mmSrc =
-        File(p.join('test', 'fixtures', 'mm', mmFile)).readAsStringSync();
+    final mmSrc = File(
+      p.join('test', 'fixtures', 'mm', mmFile),
+    ).readAsStringSync();
     final mm = const MmYamlParser().parseString(mmSrc);
 
     final yaml = generator.generate(

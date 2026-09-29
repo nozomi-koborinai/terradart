@@ -37,14 +37,18 @@ void main() {
 
   group('S3Backend', () {
     test('backendType is "s3"', () {
-      const backend =
-          S3Backend(bucket: 'my-state', key: 'app/terraform.tfstate');
+      const backend = S3Backend(
+        bucket: 'my-state',
+        key: 'app/terraform.tfstate',
+      );
       expect(backend.backendType, equals('s3'));
     });
 
     test('toTfJson emits only bucket and key when nothing else is set', () {
-      const backend =
-          S3Backend(bucket: 'my-state', key: 'app/terraform.tfstate');
+      const backend = S3Backend(
+        bucket: 'my-state',
+        key: 'app/terraform.tfstate',
+      );
       expect(
         backend.toTfJson(),
         equals(<String, Object?>{

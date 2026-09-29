@@ -71,13 +71,15 @@ void main() {
       expect(src, contains('kind: CatalogKind.dataSource'));
     });
 
-    test('starts with an accepted generated marker and imports catalog_entry',
-        () {
-      final src = CatalogMetadataEmitter().emit(const []);
-      expect(src.startsWith('// GENERATED FILE - DO NOT EDIT'), isTrue);
-      expect(src, contains("import 'catalog_entry.dart';"));
-      expect(src, contains('const List<CatalogEntry> terradartCatalog'));
-    });
+    test(
+      'starts with an accepted generated marker and imports catalog_entry',
+      () {
+        final src = CatalogMetadataEmitter().emit(const []);
+        expect(src.startsWith('// GENERATED FILE - DO NOT EDIT'), isTrue);
+        expect(src, contains("import 'catalog_entry.dart';"));
+        expect(src, contains('const List<CatalogEntry> terradartCatalog'));
+      },
+    );
 
     test('escapes backslash, single-quote, dollar, and newline in strings', () {
       final src = CatalogMetadataEmitter().emit([
@@ -86,11 +88,17 @@ void main() {
           className: 'GoogleDemo',
           barrel: 'demo',
           kind: 'resource',
-          summary: r"It's a $var with\back and" '\n' 'newline.',
+          summary:
+              r"It's a $var with\back and"
+              '\n'
+              'newline.',
           constructorParams: <String>[],
           nestedTypes: <String>[],
           sensitiveFields: <String>[],
-          docComment: r"It's a $var with\back and" '\n' 'newline.',
+          docComment:
+              r"It's a $var with\back and"
+              '\n'
+              'newline.',
         ),
       ]);
       // Single-quote escaped.

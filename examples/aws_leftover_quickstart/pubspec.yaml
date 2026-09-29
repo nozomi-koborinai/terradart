@@ -3,7 +3,7 @@ description: Fills remaining terradart_aws factories at the current pin — synt
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

@@ -39,8 +39,8 @@ base class ModuleCall implements TfAddressed {
     this.dependsOn,
     this.count,
     this.forEach,
-  })  : inputs = Map<String, TfArg<dynamic>?>.unmodifiable(inputs),
-        providers = Map<String, String>.unmodifiable(providers) {
+  }) : inputs = Map<String, TfArg<dynamic>?>.unmodifiable(inputs),
+       providers = Map<String, String>.unmodifiable(providers) {
     if (localName.trim().isEmpty) {
       throw ArgumentError.value(localName, 'localName', 'must not be empty');
     }

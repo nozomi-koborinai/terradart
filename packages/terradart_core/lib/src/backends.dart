@@ -34,9 +34,9 @@ final class GcsBackend implements StackBackend {
 
   @override
   Map<String, Object?> toTfJson() => {
-        if (bucket != null) 'bucket': bucket,
-        if (prefix != null) 'prefix': prefix,
-      };
+    if (bucket != null) 'bucket': bucket,
+    if (prefix != null) 'prefix': prefix,
+  };
 }
 
 /// `terraform { backend "local" { ... } }` configuration.
@@ -57,9 +57,7 @@ final class LocalBackend implements StackBackend {
   String get backendType => 'local';
 
   @override
-  Map<String, Object?> toTfJson() => {
-        if (path != null) 'path': path,
-      };
+  Map<String, Object?> toTfJson() => {if (path != null) 'path': path};
 }
 
 /// `terraform { backend "s3" { ... } }` configuration.
@@ -108,19 +106,18 @@ final class S3Backend implements StackBackend {
     required String accountId,
     String? bucket,
     String? key,
-  }) =>
-      S3Backend(
-        bucket: bucket,
-        key: key,
-        region: 'auto',
-        endpoints: {'s3': 'https://$accountId.r2.cloudflarestorage.com'},
-        usePathStyle: true,
-        skipCredentialsValidation: true,
-        skipRegionValidation: true,
-        skipRequestingAccountId: true,
-        skipMetadataApiCheck: true,
-        skipS3Checksum: true,
-      );
+  }) => S3Backend(
+    bucket: bucket,
+    key: key,
+    region: 'auto',
+    endpoints: {'s3': 'https://$accountId.r2.cloudflarestorage.com'},
+    usePathStyle: true,
+    skipCredentialsValidation: true,
+    skipRegionValidation: true,
+    skipRequestingAccountId: true,
+    skipMetadataApiCheck: true,
+    skipS3Checksum: true,
+  );
 
   /// S3 bucket holding the Terraform state file, or `null` for a partial
   /// configuration that supplies it with `-backend-config`.
@@ -164,19 +161,19 @@ final class S3Backend implements StackBackend {
 
   @override
   Map<String, Object?> toTfJson() => {
-        if (bucket != null) 'bucket': bucket,
-        if (key != null) 'key': key,
-        if (region != null) 'region': region,
-        if (endpoints != null) 'endpoints': endpoints,
-        if (usePathStyle != null) 'use_path_style': usePathStyle,
-        if (skipCredentialsValidation != null)
-          'skip_credentials_validation': skipCredentialsValidation,
-        if (skipRegionValidation != null)
-          'skip_region_validation': skipRegionValidation,
-        if (skipRequestingAccountId != null)
-          'skip_requesting_account_id': skipRequestingAccountId,
-        if (skipMetadataApiCheck != null)
-          'skip_metadata_api_check': skipMetadataApiCheck,
-        if (skipS3Checksum != null) 'skip_s3_checksum': skipS3Checksum,
-      };
+    if (bucket != null) 'bucket': bucket,
+    if (key != null) 'key': key,
+    if (region != null) 'region': region,
+    if (endpoints != null) 'endpoints': endpoints,
+    if (usePathStyle != null) 'use_path_style': usePathStyle,
+    if (skipCredentialsValidation != null)
+      'skip_credentials_validation': skipCredentialsValidation,
+    if (skipRegionValidation != null)
+      'skip_region_validation': skipRegionValidation,
+    if (skipRequestingAccountId != null)
+      'skip_requesting_account_id': skipRequestingAccountId,
+    if (skipMetadataApiCheck != null)
+      'skip_metadata_api_check': skipMetadataApiCheck,
+    if (skipS3Checksum != null) 'skip_s3_checksum': skipS3Checksum,
+  };
 }

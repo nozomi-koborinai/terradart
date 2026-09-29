@@ -18,32 +18,36 @@ class SealedClassExtractor {
   List<SealedClass> extract(String preludeText) {
     final sealedDecls = _sealedDeclPattern.allMatches(preludeText).toList();
     if (sealedDecls.isEmpty) return const [];
-    return sealedDecls.map((sealedMatch) {
-      final sealedName = sealedMatch.group(1)!;
-      final members = <SealedClassMember>[];
-      for (final memberMatch
-          in _memberDeclPatternFor(sealedName).allMatches(preludeText)) {
-        final memberName = memberMatch.group(1)!;
-        final bodyStart = memberMatch.end;
-        final body = _extractClassBody(preludeText, bodyStart);
-        members.add(SealedClassMember(
-          name: memberName,
-          params: _extractParams(body),
-        ));
-      }
-      return SealedClass(name: sealedName, members: members);
-    }).toList(growable: false);
+    return sealedDecls
+        .map((sealedMatch) {
+          final sealedName = sealedMatch.group(1)!;
+          final members = <SealedClassMember>[];
+          for (final memberMatch in _memberDeclPatternFor(
+            sealedName,
+          ).allMatches(preludeText)) {
+            final memberName = memberMatch.group(1)!;
+            final bodyStart = memberMatch.end;
+            final body = _extractClassBody(preludeText, bodyStart);
+            members.add(
+              SealedClassMember(name: memberName, params: _extractParams(body)),
+            );
+          }
+          return SealedClass(name: sealedName, members: members);
+        })
+        .toList(growable: false);
   }
 
-  static final _sealedDeclPattern =
-      RegExp(r'sealed\s+class\s+(\w+)\s*\{', multiLine: true);
+  static final _sealedDeclPattern = RegExp(
+    r'sealed\s+class\s+(\w+)\s*\{',
+    multiLine: true,
+  );
 
   static RegExp _memberDeclPatternFor(String sealedName) => RegExp(
-        r'final\s+class\s+(\w+)\s+extends\s+' +
-            RegExp.escape(sealedName) +
-            r'\s*\{',
-        multiLine: true,
-      );
+    r'final\s+class\s+(\w+)\s+extends\s+' +
+        RegExp.escape(sealedName) +
+        r'\s*\{',
+    multiLine: true,
+  );
 
   static final _ctorParamPattern = RegExp(
     r'const\s+\w+\s*\(\s*\{([^}]*)\}\s*\)\s*[;:]',
@@ -79,8 +83,9 @@ class SealedClassExtractor {
       //   required this.splits
       //   this.codebaseBranch
       final required = trimmed.startsWith('required ');
-      final afterRequired =
-          required ? trimmed.substring('required '.length) : trimmed;
+      final afterRequired = required
+          ? trimmed.substring('required '.length)
+          : trimmed;
       if (!afterRequired.startsWith('this.')) continue;
       final name = afterRequired.substring('this.'.length).trim();
       if (name.isEmpty) continue;

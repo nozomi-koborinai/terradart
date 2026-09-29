@@ -57,18 +57,21 @@ class WrapCommand extends Command<int> {
       ..addFlag(
         'check',
         negatable: false,
-        help: 'CI gate mode: fail (E301) if any emitted file differs from '
+        help:
+            'CI gate mode: fail (E301) if any emitted file differs from '
             'its on-disk counterpart. Implies no writes.',
       )
       ..addFlag(
         'force',
         negatable: false,
-        help: 'Overwrite files that are missing or have a non-TerraDart '
+        help:
+            'Overwrite files that are missing or have a non-TerraDart '
             'generated-file header (E401 is suppressed).',
       )
       ..addOption(
         'migrate-manifest',
-        help: 'Also emit the migration manifest (the machine-readable '
+        help:
+            'Also emit the migration manifest (the machine-readable '
             'HCL → Dart recipe `terradart migrate` follows) to this file — '
             'in terradart_migrate, `lib/src/manifest/<registry>.g.dart`. '
             'Whole-registry artifact: skipped under --only. `--check` '
@@ -77,14 +80,16 @@ class WrapCommand extends Command<int> {
       )
       ..addOption(
         'migrate-package',
-        help: 'Dart package name recorded in the migration manifest '
+        help:
+            'Dart package name recorded in the migration manifest '
             '(`terradart_google`). Defaults to the `name:` of the pubspec '
             'two levels above --output (`<output>/../../pubspec.yaml`).',
         valueHelp: 'NAME',
       )
       ..addOption(
         'only',
-        help: 'Regenerate only this Terraform type (and its data_<type> '
+        help:
+            'Regenerate only this Terraform type (and its data_<type> '
             'twin when present). Skips every other yaml override under '
             'the registry — useful when a sibling yaml has unstripped '
             '`wrap-promote` markers that would otherwise break the '
@@ -93,7 +98,8 @@ class WrapCommand extends Command<int> {
       )
       ..addOption(
         'overrides-root',
-        help: 'Directory of wrapper-override YAMLs. Defaults to the '
+        help:
+            'Directory of wrapper-override YAMLs. Defaults to the '
             'committed google registry '
             '(src/codegen/wrapper_overrides/yaml/); other providers pass '
             'their own root.',
@@ -101,14 +107,16 @@ class WrapCommand extends Command<int> {
       )
       ..addOption(
         'barrels-manifest',
-        help: 'Authored barrels manifest. Defaults to the committed google '
+        help:
+            'Authored barrels manifest. Defaults to the committed google '
             'manifest (src/codegen/barrels/barrels.yaml); other providers '
             'pass their own (its umbrellaFile axis names the umbrella).',
         valueHelp: 'FILE',
       )
       ..addOption(
         'resource-provider',
-        help: 'Pin every emitted wrapper\'s Terraform provider '
+        help:
+            'Pin every emitted wrapper\'s Terraform provider '
             'meta-argument (e.g. "google-beta"). Required for providers '
             'that share the default provider\'s type prefix; omit for the '
             'implied default.',
@@ -117,7 +125,8 @@ class WrapCommand extends Command<int> {
       ..addFlag(
         'provider-enums',
         negatable: false,
-        help: 'Type enum-valued inputs from provider-sourced value sets: '
+        help:
+            'Type enum-valued inputs from provider-sourced value sets: '
             '<source>/hints/*.yaml (extracted from the provider source) and '
             'the `Available values:` description dialect. Off for lanes '
             'whose schema carries that dialect without a validator behind it.',
@@ -125,7 +134,8 @@ class WrapCommand extends Command<int> {
       ..addFlag(
         'mm-hints',
         negatable: false,
-        help: 'The --provider-enums gate with the Magic Modules YAML of '
+        help:
+            'The --provider-enums gate with the Magic Modules YAML of '
             '<source>/mm as the hint source: its enum_values type the '
             '`deriveEnums` inputs and its exactly_one_of groups feed '
             '`deriveExactlyOne`. Exclusive with --provider-enums.',
@@ -221,8 +231,9 @@ class WrapCommand extends Command<int> {
         if (!basename.endsWith('.yaml')) continue;
         final resourceType = basename.substring(0, basename.length - 5);
         try {
-          mmOverrides[resourceType] =
-              const MmYamlParser().parseString(entity.readAsStringSync());
+          mmOverrides[resourceType] = const MmYamlParser().parseString(
+            entity.readAsStringSync(),
+          );
         } catch (e) {
           // Surface malformed MM YAML rather than silently dropping it: a
           // dropped file would make the `deriveEnums` gate emit nothing,
@@ -280,7 +291,8 @@ class WrapCommand extends Command<int> {
     } else {
       final yamlRootUri = await Isolate.resolvePackageUri(
         Uri.parse(
-            'package:terradart_codegen/src/codegen/wrapper_overrides/yaml/'),
+          'package:terradart_codegen/src/codegen/wrapper_overrides/yaml/',
+        ),
       );
       if (yamlRootUri == null) {
         stderr.writeln(
@@ -293,16 +305,15 @@ class WrapCommand extends Command<int> {
     }
     final LoadedOverrides loaded;
     try {
-      loaded = loadWrapperOverrides(
-        rootDir: yamlRootPath,
-        only: only,
-      );
+      loaded = loadWrapperOverrides(rootDir: yamlRootPath, only: only);
     } on StateError catch (e) {
       stderr.writeln('terradart wrap: $e');
       return CliExitCodes.dataError;
     }
-    final typedOverrides =
-        providerEnums.typeDerivedEnums(loaded.resources, ir.resources);
+    final typedOverrides = providerEnums.typeDerivedEnums(
+      loaded.resources,
+      ir.resources,
+    );
 
     // 3. Emit every override into an in-memory map keyed by repo-relative
     //    output path. Doing this before any filesystem mutation lets the
@@ -338,10 +349,12 @@ class WrapCommand extends Command<int> {
     // loaded override actually sets the gate keeps today's (dark) run
     // exactly as cheap as before this gate existed — every committed
     // override currently leaves `deriveNestedTypes` at its `false` default.
-    final needsRawResourceSchemas =
-        typedOverrides.values.any((o) => o.deriveNestedTypes);
-    final needsRawDataSourceSchemas =
-        loaded.dataSources.values.any((o) => o.deriveNestedTypes);
+    final needsRawResourceSchemas = typedOverrides.values.any(
+      (o) => o.deriveNestedTypes,
+    );
+    final needsRawDataSourceSchemas = loaded.dataSources.values.any(
+      (o) => o.deriveNestedTypes,
+    );
     final rawResourceSchemas = needsRawResourceSchemas
         ? _rawSchemaBlocks(schemaSrc, schemasKey: 'resource_schemas')
         : const <String, Map<String, dynamic>>{};
@@ -494,8 +507,9 @@ class WrapCommand extends Command<int> {
       // does not pull the whole catalog into a user's compile.
       final providerVersion = readProviderVersion(source);
       if (providerVersion.isNotEmpty) {
-        buffer['_provider_version.g.dart'] =
-            formatter.format(providerVersionSource(providerVersion));
+        buffer['_provider_version.g.dart'] = formatter.format(
+          providerVersionSource(providerVersion),
+        );
       }
 
       // Barrels: every per-service barrel (+ `data` + the umbrella) derives
@@ -510,7 +524,8 @@ class WrapCommand extends Command<int> {
       } else {
         final manifestUri = await Isolate.resolvePackageUri(
           Uri.parse(
-              'package:terradart_codegen/src/codegen/barrels/barrels.yaml'),
+            'package:terradart_codegen/src/codegen/barrels/barrels.yaml',
+          ),
         );
         if (manifestUri == null) {
           stderr.writeln(
@@ -555,8 +570,8 @@ class WrapCommand extends Command<int> {
           caseInsensitiveEnums:
               providerEnums.enabled && providerEnums.caseInsensitive,
         );
-        buffer[p.relative(migrateManifestPath, from: output)] =
-            formatter.format(manifestRaw);
+        buffer[p.relative(migrateManifestPath, from: output)] = formatter
+            .format(manifestRaw);
       }
       for (final entry in barrelFiles.entries) {
         // `--output` is `.../lib/src`; barrels live one level up in `lib/`.

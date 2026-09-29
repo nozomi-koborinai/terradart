@@ -48,11 +48,9 @@ import 'package:terradart_google/transcoder.dart';
 
 final class DeferredLeftoverStack extends Stack {
   DeferredLeftoverStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
     addVariable(
@@ -67,8 +65,9 @@ final class DeferredLeftoverStack extends Stack {
         domain: TfArg.literal('terradart-leftover'),
         targetDnsIpAddresses: TfArg.literal(['terradart-leftover']),
         targetDomainName: TfArg.literal('terradart-leftover'),
-        trustDirection:
-            TfArg.literal(ActiveDirectoryDomainTrustTrustDirection.inbound),
+        trustDirection: TfArg.literal(
+          ActiveDirectoryDomainTrustTrustDirection.inbound,
+        ),
         trustHandshakeSecret: TfArg.variable('ad_trust_handshake_secret'),
         trustType: TfArg.literal(ActiveDirectoryDomainTrustTrustType.forest),
       ),
@@ -105,9 +104,7 @@ final class DeferredLeftoverStack extends Stack {
         localName: 'billingbudget',
         billingAccount: TfArg.literal('billingAccounts/000000-000000-000000'),
         deletionPolicy: TfArg.literal('DELETE'),
-        amount: BillingBudgetAmount(
-          lastPeriodAmount: TfArg.literal(true),
-        ),
+        amount: BillingBudgetAmount(lastPeriodAmount: TfArg.literal(true)),
       ),
     );
 
@@ -124,8 +121,9 @@ final class DeferredLeftoverStack extends Stack {
         localName: 'billingsubaccount',
         deletionPolicy: TfArg.literal('DELETE'),
         displayName: TfArg.literal('terradart-leftover'),
-        masterBillingAccount:
-            TfArg.literal('billingAccounts/000000-000000-000000'),
+        masterBillingAccount: TfArg.literal(
+          'billingAccounts/000000-000000-000000',
+        ),
       ),
     );
 
@@ -139,8 +137,8 @@ final class DeferredLeftoverStack extends Stack {
         feedOutputConfig: CloudAssetFolderFeedFeedOutputConfig(
           pubsubDestination:
               CloudAssetFolderFeedFeedOutputConfigPubsubDestination(
-            topic: TfArg.literal('terradart-leftover'),
-          ),
+                topic: TfArg.literal('terradart-leftover'),
+              ),
         ),
       ),
     );
@@ -155,8 +153,8 @@ final class DeferredLeftoverStack extends Stack {
         feedOutputConfig: CloudAssetOrganizationFeedFeedOutputConfig(
           pubsubDestination:
               CloudAssetOrganizationFeedFeedOutputConfigPubsubDestination(
-            topic: TfArg.literal('terradart-leftover'),
-          ),
+                topic: TfArg.literal('terradart-leftover'),
+              ),
         ),
       ),
     );
@@ -167,8 +165,9 @@ final class DeferredLeftoverStack extends Stack {
         deletionPolicy: TfArg.literal('DELETE'),
         labels: TfArg.literal({'terradart': 'leftover'}),
         parent: TfArg.literal('organizations/123456789'),
-        groupKey:
-            CloudIdentityGroupGroupKey(id: TfArg.literal('terradart-leftover')),
+        groupKey: CloudIdentityGroupGroupKey(
+          id: TfArg.literal('terradart-leftover'),
+        ),
       ),
     );
 
@@ -228,9 +227,9 @@ final class DeferredLeftoverStack extends Stack {
             enforcementMode: TfArg.literal('terradart-leftover'),
             cloudControlDetails:
                 CloudSecurityComplianceFrameworkDeploymentCloudControlMetadataCloudControlDetails(
-              majorRevisionId: TfArg.literal('terradart-leftover'),
-              name: TfArg.literal('terradart-leftover'),
-            ),
+                  majorRevisionId: TfArg.literal('terradart-leftover'),
+                  name: TfArg.literal('terradart-leftover'),
+                ),
           ),
         ],
         framework: CloudSecurityComplianceFrameworkDeploymentFramework(
@@ -239,8 +238,8 @@ final class DeferredLeftoverStack extends Stack {
         ),
         targetResourceConfig:
             CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig(
-          existingTargetResource: TfArg.literal('organizations/123456789'),
-        ),
+              existingTargetResource: TfArg.literal('organizations/123456789'),
+            ),
       ),
     );
 
@@ -273,26 +272,25 @@ final class DeferredLeftoverStack extends Stack {
             phoneNumber: TfArg.literal('+15555550100'),
             postalAddress:
                 ClouddomainsRegistrationContactSettingsAdminContactPostalAddress(
-              regionCode: TfArg.literal('US'),
-            ),
+                  regionCode: TfArg.literal('US'),
+                ),
           ),
           registrantContact:
               ClouddomainsRegistrationContactSettingsRegistrantContact(
-            email: TfArg.literal('leftover@example.com'),
-            phoneNumber: TfArg.literal('+15555550100'),
-            postalAddress:
-                ClouddomainsRegistrationContactSettingsRegistrantContactPostalAddress(
-              regionCode: TfArg.literal('US'),
-            ),
-          ),
-          technicalContact:
-              ClouddomainsRegistrationContactSettingsTechnicalContact(
+                email: TfArg.literal('leftover@example.com'),
+                phoneNumber: TfArg.literal('+15555550100'),
+                postalAddress:
+                    ClouddomainsRegistrationContactSettingsRegistrantContactPostalAddress(
+                      regionCode: TfArg.literal('US'),
+                    ),
+              ),
+          technicalContact: ClouddomainsRegistrationContactSettingsTechnicalContact(
             email: TfArg.literal('leftover@example.com'),
             phoneNumber: TfArg.literal('+15555550100'),
             postalAddress:
                 ClouddomainsRegistrationContactSettingsTechnicalContactPostalAddress(
-              regionCode: TfArg.literal('US'),
-            ),
+                  regionCode: TfArg.literal('US'),
+                ),
           ),
         ),
         yearlyPrice: const ClouddomainsRegistrationYearlyPrice(),
@@ -308,11 +306,7 @@ final class DeferredLeftoverStack extends Stack {
       ),
     );
 
-    add(
-      GoogleContainerRegistry(
-        localName: 'containerregistry',
-      ),
-    );
+    add(GoogleContainerRegistry(localName: 'containerregistry'));
 
     add(
       GoogleDataLossPreventionDiscoveryConfig(
@@ -361,11 +355,11 @@ final class DeferredLeftoverStack extends Stack {
         privateConnectionId: TfArg.literal('terradart-leftover'),
         vpcPeeringConfig:
             DatabaseMigrationServicePrivateConnectionVpcPeeringConfig(
-          subnet: TfArg.literal('10.0.0.0/29'),
-          vpcName: TfArg.literal(
-            'projects/ci-test-project-id/global/networks/default',
-          ),
-        ),
+              subnet: TfArg.literal('10.0.0.0/29'),
+              vpcName: TfArg.literal(
+                'projects/ci-test-project-id/global/networks/default',
+              ),
+            ),
       ),
     );
 
@@ -421,9 +415,9 @@ final class DeferredLeftoverStack extends Stack {
           destinationConnectionProfile: TfArg.literal('terradart-leftover'),
           gcsDestinationConfig:
               const DatastreamStreamDestinationConfigGcsDestinationConfig(
-            avroFileFormat:
-                DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat(),
-          ),
+                avroFileFormat:
+                    DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat(),
+              ),
         ),
         sourceConfig: DatastreamStreamSourceConfig(
           sourceConnectionProfile: TfArg.literal('terradart-leftover'),
@@ -553,8 +547,9 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleFolderOrganizationPolicy(
         localName: 'folderorganizationpolicy',
-        constraint:
-            TfArg.literal('constraints/compute.disableSerialPortAccess'),
+        constraint: TfArg.literal(
+          'constraints/compute.disableSerialPortAccess',
+        ),
         deletionPolicy: TfArg.literal('DELETE'),
         folder: TfArg.literal('folders/123456789'),
       ),
@@ -904,8 +899,9 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleOrganizationPolicy(
         localName: 'organizationpolicy',
-        constraint:
-            TfArg.literal('constraints/compute.disableSerialPortAccess'),
+        constraint: TfArg.literal(
+          'constraints/compute.disableSerialPortAccess',
+        ),
         deletionPolicy: TfArg.literal('DELETE'),
         orgId: TfArg.literal('organizations/123456789'),
       ),
@@ -968,8 +964,9 @@ final class DeferredLeftoverStack extends Stack {
     add(
       GoogleProjectOrganizationPolicy(
         localName: 'projectorganizationpolicy',
-        constraint:
-            TfArg.literal('constraints/compute.disableSerialPortAccess'),
+        constraint: TfArg.literal(
+          'constraints/compute.disableSerialPortAccess',
+        ),
         deletionPolicy: TfArg.literal('DELETE'),
         project: TfArg.literal(projectId),
       ),

@@ -32,9 +32,7 @@ final class CloudflareProviderRules extends ProviderRules {
   List<String> universalGetters(ResourceDef def) {
     final attrs = def.root.attributes.map((a) => a.name).toSet();
     if (attrs.contains('id')) {
-      return [
-        "TfRef<String> get id => TfRef.attribute<String>(this, 'id');",
-      ];
+      return ["TfRef<String> get id => TfRef.attribute<String>(this, 'id');"];
     }
     return const [];
   }

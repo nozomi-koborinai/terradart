@@ -47,10 +47,7 @@ void main() {
         },
       ]);
       expect(cache.argMap['persistence_config']!.toTfJson(), [
-        {
-          'persistence_mode': 'RDB',
-          'rdb_snapshot_period': 'TWELVE_HOURS',
-        },
+        {'persistence_mode': 'RDB', 'rdb_snapshot_period': 'TWELVE_HOURS'},
       ]);
     });
 

@@ -50,8 +50,7 @@ enum LoaderErrorCode {
   wrapPromoteRequiresMm('E404'),
 
   /// E501: atomic write failed and the rollback path was taken.
-  atomicWriteFailed('E501'),
-  ;
+  atomicWriteFailed('E501');
 
   const LoaderErrorCode(this.tag);
 

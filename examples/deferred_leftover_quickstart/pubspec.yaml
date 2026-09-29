@@ -3,7 +3,7 @@ description: terradart example — apply-excluded remaining leftover factories.
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

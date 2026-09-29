@@ -357,8 +357,8 @@ final class WrapperOverride {
 
   /// This override with [dartTypeOverrides] replaced.
   WrapperOverride withDartTypeOverrides(
-          Map<String, String> dartTypeOverrides) =>
-      _copy(dartTypeOverrides: dartTypeOverrides);
+    Map<String, String> dartTypeOverrides,
+  ) => _copy(dartTypeOverrides: dartTypeOverrides);
 
   /// This override with the slots `deriveExactlyOne` synthesizes: the
   /// constructor order without the group members, the sealed slots, and
@@ -368,42 +368,37 @@ final class WrapperOverride {
     required Map<String, CustomSlot> customSlots,
     required String prelude,
   }) =>
-      _copy(
-        paramOrder: paramOrder,
-        customSlots: customSlots,
-        prelude: prelude,
-      );
+      _copy(paramOrder: paramOrder, customSlots: customSlots, prelude: prelude);
 
   WrapperOverride _copy({
     List<String>? paramOrder,
     Map<String, String>? dartTypeOverrides,
     Map<String, CustomSlot>? customSlots,
     String? prelude,
-  }) =>
-      WrapperOverride(
-        outputDir: outputDir,
-        kind: kind,
-        schemaStubBodyMode: schemaStubBodyMode,
-        fileLeadingComment: fileLeadingComment,
-        paramOrder: paramOrder ?? this.paramOrder,
-        argMapOrder: argMapOrder,
-        extraGetters: extraGetters,
-        requiredParams: requiredParams,
-        dartTypeOverrides: dartTypeOverrides ?? this.dartTypeOverrides,
-        deprecatedParams: deprecatedParams,
-        extraImports: extraImports,
-        extraSensitiveFields: extraSensitiveFields,
-        prelude: prelude ?? this.prelude,
-        customSlots: customSlots ?? this.customSlots,
-        deriveEnums: deriveEnums,
-        deriveOutputGetters: deriveOutputGetters,
-        deriveClassDoc: deriveClassDoc,
-        curatedDoc: curatedDoc,
-        deriveNestedTypes: deriveNestedTypes,
-        nestedTypeExcludes: nestedTypeExcludes,
-        dedupeNestedTypes: dedupeNestedTypes,
-        deriveExactlyOne: deriveExactlyOne,
-      );
+  }) => WrapperOverride(
+    outputDir: outputDir,
+    kind: kind,
+    schemaStubBodyMode: schemaStubBodyMode,
+    fileLeadingComment: fileLeadingComment,
+    paramOrder: paramOrder ?? this.paramOrder,
+    argMapOrder: argMapOrder,
+    extraGetters: extraGetters,
+    requiredParams: requiredParams,
+    dartTypeOverrides: dartTypeOverrides ?? this.dartTypeOverrides,
+    deprecatedParams: deprecatedParams,
+    extraImports: extraImports,
+    extraSensitiveFields: extraSensitiveFields,
+    prelude: prelude ?? this.prelude,
+    customSlots: customSlots ?? this.customSlots,
+    deriveEnums: deriveEnums,
+    deriveOutputGetters: deriveOutputGetters,
+    deriveClassDoc: deriveClassDoc,
+    curatedDoc: curatedDoc,
+    deriveNestedTypes: deriveNestedTypes,
+    nestedTypeExcludes: nestedTypeExcludes,
+    dedupeNestedTypes: dedupeNestedTypes,
+    deriveExactlyOne: deriveExactlyOne,
+  );
 }
 
 /// One slot's worth of verbatim constructor + argMap snippets.

@@ -17,11 +17,9 @@ import 'package:terradart_google/provider.dart';
 /// Cloud Observability Stack: a Trace scope over the current project.
 final class ObservabilityStack extends Stack {
   ObservabilityStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiObservability = add(
       GoogleProjectService(
         localName: 'api_observability',

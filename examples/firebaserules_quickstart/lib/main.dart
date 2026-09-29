@@ -17,11 +17,9 @@ import 'package:terradart_google/provider.dart';
 /// Firebase Rules stack: unused deny-all ruleset (no release).
 final class FirebaserulesStack extends Stack {
   FirebaserulesStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiRules = add(
       GoogleProjectService(
         localName: 'api_firebaserules',

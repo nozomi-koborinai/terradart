@@ -14,12 +14,12 @@ const _placeholderSshPublicKey =
 
 final class OracleDbSystemStack extends Stack {
   OracleDbSystemStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-east4'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-east4'),
+          const TimeProvider(),
+        ],
+      ) {
     const location = 'us-east4';
     const odbNetworkId = 'terradart-dbs-odbnet';
     const odbSubnetId = 'terradart-dbs-odbsub';
@@ -70,7 +70,8 @@ final class OracleDbSystemStack extends Stack {
           'shape': 'VM.Standard2.1',
           'compute_count': 2,
           'database_edition': OracleDatabaseDbSystemDatabaseEdition
-              .enterpriseEdition.terraformValue,
+              .enterpriseEdition
+              .terraformValue,
           'initial_data_storage_size_gb': 256,
           'license_model':
               OracleDatabaseDbSystemLicenseModel.licenseIncluded.terraformValue,

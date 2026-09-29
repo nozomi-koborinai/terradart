@@ -3,7 +3,7 @@ description: Workflows end-to-end example -- a serverless orchestration workflow
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

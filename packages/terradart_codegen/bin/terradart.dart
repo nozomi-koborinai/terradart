@@ -12,29 +12,29 @@ import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 
 Future<void> main(List<String> args) => Chain.capture(
-      () async {
-        final runner = buildCliRunner();
+  () async {
+    final runner = buildCliRunner();
 
-        // Top-level `--version` short-circuit. Only fires when the flag
-        // sits at the front of the argv before any subcommand.
-        if (_isTopLevelVersionInvocation(args)) {
-          stdout.writeln(terradartCliVersion);
-          exitCode = CliExitCodes.success;
-          return;
-        }
+    // Top-level `--version` short-circuit. Only fires when the flag
+    // sits at the front of the argv before any subcommand.
+    if (_isTopLevelVersionInvocation(args)) {
+      stdout.writeln(terradartCliVersion);
+      exitCode = CliExitCodes.success;
+      return;
+    }
 
-        final code = await runner.run(args) ?? CliExitCodes.success;
-        exitCode = code;
-      },
-      onError: (Object e, Chain chain) {
-        if (e is UsageException) {
-          stderr.writeln(e);
-          exit(ExitCode.usage.code); // 64
-        }
-        stderr.writeln('terradart: $e\n${chain.terse}');
-        exit(ExitCode.software.code); // 70
-      },
-    );
+    final code = await runner.run(args) ?? CliExitCodes.success;
+    exitCode = code;
+  },
+  onError: (Object e, Chain chain) {
+    if (e is UsageException) {
+      stderr.writeln(e);
+      exit(ExitCode.usage.code); // 64
+    }
+    stderr.writeln('terradart: $e\n${chain.terse}');
+    exit(ExitCode.software.code); // 70
+  },
+);
 
 bool _isTopLevelVersionInvocation(List<String> args) {
   for (final arg in args) {
@@ -62,7 +62,8 @@ Future<WrapperEmitter> buildWrapperEmitterFromPackageYaml() async {
       '(package:terradart_codegen/src/codegen/wrapper_overrides/yaml/)',
     );
   }
-  final LoadedOverrides loaded =
-      loadWrapperOverrides(rootDir: yamlRootUri.toFilePath());
+  final LoadedOverrides loaded = loadWrapperOverrides(
+    rootDir: yamlRootUri.toFilePath(),
+  );
   return WrapperEmitter(overrides: loaded.resources);
 }

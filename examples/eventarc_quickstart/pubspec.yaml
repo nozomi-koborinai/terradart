@@ -3,7 +3,7 @@ description: Eventarc quickstart — Waves 17 (channel, message bus, pipeline, t
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

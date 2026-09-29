@@ -18,11 +18,9 @@ import 'package:terradart_google/provider.dart';
 /// Data Policy V2 stack: raw access + email mask + reader IAM.
 final class DataPolicyV2Stack extends Stack {
   DataPolicyV2Stack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final api = add(
       GoogleProjectService(
         localName: 'api_bigquerydatapolicy',
@@ -54,9 +52,9 @@ final class DataPolicyV2Stack extends Stack {
         ),
         dataMaskingPolicy:
             const BigqueryDatapolicyv2DataPolicyDataMaskingPolicy(
-          predefinedExpression:
-              BigqueryDatapolicyv2DataPolicyPredefinedExpression.emailMask,
-        ),
+              predefinedExpression:
+                  BigqueryDatapolicyv2DataPolicyPredefinedExpression.emailMask,
+            ),
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: [ResourceDependency(api)],
       ),
@@ -77,10 +75,7 @@ final class DataPolicyV2Stack extends Stack {
         location: TfArg.literal('us-central1'),
         role: TfArg.literal('roles/bigquerydatapolicy.maskedReader'),
         member: TfArg.ref(reader.iamMember),
-        dependsOn: [
-          ResourceDependency(emailMask),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [ResourceDependency(emailMask), ResourceDependency(reader)],
       ),
     );
   }

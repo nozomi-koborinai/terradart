@@ -73,8 +73,8 @@ import 'package:test/test.dart';
 final Map<String, Object Function()> _syntheticInstances = {
   // --- AgentRegistryServiceSpec (3) — google_agent_registry_service -------
   'AgentRegistryServiceAgentSpec': () => const AgentRegistryServiceAgentSpec(
-        type: AgentRegistryServiceAgentSpecType.noSpec,
-      ),
+    type: AgentRegistryServiceAgentSpecType.noSpec,
+  ),
   'AgentRegistryServiceMcpServerSpec': () =>
       const AgentRegistryServiceMcpServerSpec(
         type: AgentRegistryServiceMcpServerSpecType.noSpec,
@@ -100,48 +100,50 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- Access (8) — bigquery_dataset ---------------------------------------
   'BigqueryDatasetAccessUserByEmail': () => BigqueryDatasetAccessUserByEmail(
-      userByEmail: TfArg.literal('user@example.com')),
+    userByEmail: TfArg.literal('user@example.com'),
+  ),
   'BigqueryDatasetAccessGroupByEmail': () => BigqueryDatasetAccessGroupByEmail(
-      groupByEmail: TfArg.literal('group@example.com')),
+    groupByEmail: TfArg.literal('group@example.com'),
+  ),
   'BigqueryDatasetAccessSpecialGroup': () => BigqueryDatasetAccessSpecialGroup(
-      specialGroup: TfArg.literal('projectReaders')),
+    specialGroup: TfArg.literal('projectReaders'),
+  ),
   'BigqueryDatasetAccessDomain': () =>
       BigqueryDatasetAccessDomain(domain: TfArg.literal('example.com')),
   'BigqueryDatasetAccessIamMember': () =>
       BigqueryDatasetAccessIamMember(iamMember: TfArg.literal('allUsers')),
   'BigqueryDatasetAccessView': () => BigqueryDatasetAccessView(
-        view: BigqueryDatasetDatasetView(
-          projectId: TfArg.literal('p'),
-          datasetId: TfArg.literal('d'),
-          tableId: TfArg.literal('t'),
-        ),
-      ),
+    view: BigqueryDatasetDatasetView(
+      projectId: TfArg.literal('p'),
+      datasetId: TfArg.literal('d'),
+      tableId: TfArg.literal('t'),
+    ),
+  ),
   'BigqueryDatasetAccessDataset': () => BigqueryDatasetAccessDataset(
-        dataset: BigqueryDatasetDatasetAccessChild(
-          dataset: BigqueryDatasetDatasetReference(
-            projectId: TfArg.literal('p'),
-            datasetId: TfArg.literal('d'),
-          ),
-          targetTypes: [TfArg.literal('VIEWS')],
-        ),
+    dataset: BigqueryDatasetDatasetAccessChild(
+      dataset: BigqueryDatasetDatasetReference(
+        projectId: TfArg.literal('p'),
+        datasetId: TfArg.literal('d'),
       ),
+      targetTypes: [TfArg.literal('VIEWS')],
+    ),
+  ),
   'BigqueryDatasetAccessRoutine': () => BigqueryDatasetAccessRoutine(
-        routine: BigqueryDatasetDatasetRoutineRef(
-          projectId: TfArg.literal('p'),
-          datasetId: TfArg.literal('d'),
-          routineId: TfArg.literal('r'),
-        ),
-      ),
+    routine: BigqueryDatasetDatasetRoutineRef(
+      projectId: TfArg.literal('p'),
+      datasetId: TfArg.literal('d'),
+      routineId: TfArg.literal('r'),
+    ),
+  ),
 
   // --- BigtableAppProfileRouting (3) — google_bigtable_app_profile -----------
   'BigtableAppProfileSingleClusterRouting': () =>
-      BigtableAppProfileSingleClusterRouting(
-        clusterId: TfArg.literal('c1'),
-      ),
+      BigtableAppProfileSingleClusterRouting(clusterId: TfArg.literal('c1')),
   'BigtableAppProfileStandardIsolation': () =>
       BigtableAppProfileStandardIsolation(
-        priority:
-            TfArg.literal(BigtableAppProfileIsolationPriority.priorityHigh),
+        priority: TfArg.literal(
+          BigtableAppProfileIsolationPriority.priorityHigh,
+        ),
       ),
   'BigtableAppProfileDataBoostIsolation': () =>
       BigtableAppProfileDataBoostIsolation(
@@ -162,9 +164,7 @@ final Map<String, Object Function()> _syntheticInstances = {
         minTotalInstances: TfArg.literal(1),
       ),
   'AppEngineFlexibleAppVersionManualScalingMode': () =>
-      AppEngineFlexibleAppVersionManualScalingMode(
-        instances: TfArg.literal(1),
-      ),
+      AppEngineFlexibleAppVersionManualScalingMode(instances: TfArg.literal(1)),
 
   // --- EnvVarSource (2) — cloud_run_v2_service -----------------------------
   'CloudRunV2ServiceEnvVarFromLiteral': () =>
@@ -182,17 +182,17 @@ final Map<String, Object Function()> _syntheticInstances = {
   'CloudRunV2ServiceGcsVolume': () =>
       CloudRunV2ServiceGcsVolume(bucket: TfArg.literal('mock-bucket')),
   'CloudRunV2ServiceNfsVolume': () => CloudRunV2ServiceNfsVolume(
-        server: TfArg.literal('nfs.example.com'),
-        path: TfArg.literal('/exports/data'),
-      ),
+    server: TfArg.literal('nfs.example.com'),
+    path: TfArg.literal('/exports/data'),
+  ),
 
   // --- JobEnvVarSource (2) — cloud_run_v2_job ------------------------------
   'CloudRunV2JobEnvVarFromLiteral': () =>
       CloudRunV2JobEnvVarFromLiteral(TfArg.literal('mock-value')),
   'CloudRunV2JobEnvVarFromSecret': () => CloudRunV2JobEnvVarFromSecret(
-        secret: TfArg.literal('mock-secret'),
-        version: TfArg.literal('latest'),
-      ),
+    secret: TfArg.literal('mock-secret'),
+    version: TfArg.literal('latest'),
+  ),
 
   // --- JobVolumeSource (5) — cloud_run_v2_job ------------------------------
   'CloudRunV2JobVolumeSecret': () =>
@@ -206,9 +206,9 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- DiscoveryEngineControlAction (5) — google_discovery_engine_control ---
   'DiscoveryEngineControlBoostAction': () => DiscoveryEngineControlBoostAction(
-        dataStore: TfArg.literal('mock-store'),
-        filter: TfArg.literal('true'),
-      ),
+    dataStore: TfArg.literal('mock-store'),
+    filter: TfArg.literal('true'),
+  ),
   'DiscoveryEngineControlFilterAction': () =>
       DiscoveryEngineControlFilterAction(
         dataStore: TfArg.literal('mock-store'),
@@ -248,18 +248,21 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- CloudSchedulerJobSchedulerTarget (3) — cloud_scheduler_job ---------------------------
   'CloudSchedulerJobPubsubTarget': () => CloudSchedulerJobPubsubTarget(
-      topicName: TfArg.literal('projects/p/topics/t')),
+    topicName: TfArg.literal('projects/p/topics/t'),
+  ),
   'CloudSchedulerJobHttpTarget': () => CloudSchedulerJobHttpTarget(
-      uri: TfArg.literal('https://example.com/webhook')),
+    uri: TfArg.literal('https://example.com/webhook'),
+  ),
   'CloudSchedulerJobAppEngineHttpTarget': () =>
       CloudSchedulerJobAppEngineHttpTarget(
-          relativeUri: TfArg.literal('/handler')),
+        relativeUri: TfArg.literal('/handler'),
+      ),
 
   // --- SourceConfig (2) — cloudfunctions2_function -------------------------
   'StorageSource': () => StorageSource(
-        bucket: TfArg.literal('mock-bucket'),
-        object: TfArg.literal('mock-object.zip'),
-      ),
+    bucket: TfArg.literal('mock-bucket'),
+    object: TfArg.literal('mock-object.zip'),
+  ),
   'RepoSource': () => RepoSource(repoName: TfArg.literal('mock-repo')),
 
   // --- UpdatePolicy (2) — cloudfunctions2_function -------------------------
@@ -308,13 +311,11 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- ComputeFirewallRulePolicy (2) — compute_firewall --------------------
   'ComputeFirewallAllowPolicy': () => ComputeFirewallAllowPolicy(
-        protocol: TfArg.literal('tcp'),
-        ports: ['443'],
-      ),
-  'ComputeFirewallDenyPolicy': () => ComputeFirewallDenyPolicy(
-        protocol: TfArg.literal('tcp'),
-        ports: ['22'],
-      ),
+    protocol: TfArg.literal('tcp'),
+    ports: ['443'],
+  ),
+  'ComputeFirewallDenyPolicy': () =>
+      ComputeFirewallDenyPolicy(protocol: TfArg.literal('tcp'), ports: ['22']),
 
   // --- ComputeResourcePolicySnapshotSchedule (3) — compute_resource_policy --
   'ComputeResourcePolicyHourlySchedule': () =>
@@ -337,106 +338,98 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- ComputeRouteNextHop (5) — compute_route -----------------------------
   'ComputeRouteGatewayNextHop': () => ComputeRouteGatewayNextHop(
-      nextHopGateway: TfArg.literal('default-internet-gateway')),
+    nextHopGateway: TfArg.literal('default-internet-gateway'),
+  ),
   'ComputeRouteIpNextHop': () =>
       ComputeRouteIpNextHop(nextHopIp: TfArg.literal('10.0.0.1')),
   'ComputeRouteInstanceNextHop': () => ComputeRouteInstanceNextHop(
-      nextHopInstance: TfArg.literal('mock-instance')),
+    nextHopInstance: TfArg.literal('mock-instance'),
+  ),
   'ComputeRouteIlbNextHop': () => ComputeRouteIlbNextHop(
-      nextHopIlb: TfArg.literal('projects/p/regions/r/forwardingRules/fr')),
+    nextHopIlb: TfArg.literal('projects/p/regions/r/forwardingRules/fr'),
+  ),
   'ComputeRouteVpnTunnelNextHop': () => ComputeRouteVpnTunnelNextHop(
-      nextHopVpnTunnel: TfArg.literal('projects/p/regions/r/vpnTunnels/t')),
+    nextHopVpnTunnel: TfArg.literal('projects/p/regions/r/vpnTunnels/t'),
+  ),
 
   // --- ComputeSnapshotSource (2) — compute_snapshot ------------------------
   'ComputeSnapshotDiskSource': () => ComputeSnapshotDiskSource(
-        sourceDisk: TfArg.literal('projects/p/zones/z/disks/d'),
-      ),
+    sourceDisk: TfArg.literal('projects/p/zones/z/disks/d'),
+  ),
   'ComputeSnapshotInstantSource': () => ComputeSnapshotInstantSource(
-        sourceInstantSnapshot:
-            TfArg.literal('projects/p/zones/z/instantSnapshots/s'),
-      ),
+    sourceInstantSnapshot: TfArg.literal(
+      'projects/p/zones/z/instantSnapshots/s',
+    ),
+  ),
 
   // --- ComputeImageSource (3) — compute_image ------------------------------
   'ComputeImageDiskSource': () => ComputeImageDiskSource(
-        sourceDisk: TfArg.literal('projects/p/zones/z/disks/d'),
-      ),
+    sourceDisk: TfArg.literal('projects/p/zones/z/disks/d'),
+  ),
   'ComputeImageImageSource': () => ComputeImageImageSource(
-        sourceImage: TfArg.literal('projects/p/global/images/i'),
-      ),
+    sourceImage: TfArg.literal('projects/p/global/images/i'),
+  ),
   'ComputeImageSnapshotSource': () => ComputeImageSnapshotSource(
-        sourceSnapshot: TfArg.literal('projects/p/global/snapshots/s'),
-      ),
+    sourceSnapshot: TfArg.literal('projects/p/global/snapshots/s'),
+  ),
 
   // --- BigqueryConnectionBackend (7) — bigquery_connection -----------------
   'BigqueryConnectionCloudSql': () => BigqueryConnectionCloudSql(
-        instanceId: TfArg.literal('p:us:inst'),
-        database: TfArg.literal('db'),
-        type: BigqueryConnectionCloudSqlType.postgres,
-        credential: BigqueryConnectionCloudSqlCredential(
-          username: TfArg.literal('user'),
-          password: TfArg.literal('secret'),
-        ),
-      ),
-  'BigqueryConnectionCloudSpanner': () => BigqueryConnectionCloudSpanner(
-        database: TfArg.literal('db'),
-      ),
+    instanceId: TfArg.literal('p:us:inst'),
+    database: TfArg.literal('db'),
+    type: BigqueryConnectionCloudSqlType.postgres,
+    credential: BigqueryConnectionCloudSqlCredential(
+      username: TfArg.literal('user'),
+      password: TfArg.literal('secret'),
+    ),
+  ),
+  'BigqueryConnectionCloudSpanner': () =>
+      BigqueryConnectionCloudSpanner(database: TfArg.literal('db')),
   'BigqueryConnectionAws': () => BigqueryConnectionAws(
-        accessRole: BigqueryConnectionAwsAccessRole(
-          iamRoleId: TfArg.literal('arn:aws:iam::123:role/bq'),
-        ),
-      ),
-  'BigqueryConnectionAzure': () => BigqueryConnectionAzure(
-        customerTenantId: TfArg.literal('tenant'),
-      ),
+    accessRole: BigqueryConnectionAwsAccessRole(
+      iamRoleId: TfArg.literal('arn:aws:iam::123:role/bq'),
+    ),
+  ),
+  'BigqueryConnectionAzure': () =>
+      BigqueryConnectionAzure(customerTenantId: TfArg.literal('tenant')),
   'BigqueryConnectionCloudResource': () =>
       const BigqueryConnectionCloudResource(),
   'BigqueryConnectionSpark': () => const BigqueryConnectionSpark(),
   'BigqueryConnectionConfiguration': () => BigqueryConnectionConfiguration(
-        connectorId: TfArg.literal('google-cloudsql-postgres'),
-        asset: BigqueryConnectionConfigurationAsset(
-          database: TfArg.literal('db'),
-        ),
-      ),
+    connectorId: TfArg.literal('google-cloudsql-postgres'),
+    asset: BigqueryConnectionConfigurationAsset(database: TfArg.literal('db')),
+  ),
 
   // --- BigqueryJobConfiguration (4) — bigquery_job -------------------------
-  'BigqueryJobQuery': () => BigqueryJobQuery(
-        query: TfArg.literal('SELECT 1'),
-      ),
+  'BigqueryJobQuery': () => BigqueryJobQuery(query: TfArg.literal('SELECT 1')),
   'BigqueryJobLoad': () => BigqueryJobLoad(
-        sourceUris: TfArg.literal(['gs://bucket/obj']),
-        destinationTable: BigqueryJobDestinationTable(
-          tableId: TfArg.literal('t'),
-        ),
-      ),
+    sourceUris: TfArg.literal(['gs://bucket/obj']),
+    destinationTable: BigqueryJobDestinationTable(tableId: TfArg.literal('t')),
+  ),
   'BigqueryJobExtract': () => BigqueryJobExtract(
-        destinationUris: TfArg.literal(['gs://bucket/out-*.csv']),
-        sourceTable: BigqueryJobDestinationTable(
-          tableId: TfArg.literal('t'),
-        ),
-      ),
+    destinationUris: TfArg.literal(['gs://bucket/out-*.csv']),
+    sourceTable: BigqueryJobDestinationTable(tableId: TfArg.literal('t')),
+  ),
   'BigqueryJobCopy': () => BigqueryJobCopy(
-        sourceTables: [
-          BigqueryJobDestinationTable(tableId: TfArg.literal('src')),
-        ],
-        destinationTable: BigqueryJobDestinationTable(
-          tableId: TfArg.literal('dst'),
-        ),
-      ),
+    sourceTables: [BigqueryJobDestinationTable(tableId: TfArg.literal('src'))],
+    destinationTable: BigqueryJobDestinationTable(
+      tableId: TfArg.literal('dst'),
+    ),
+  ),
 
   // --- CloudbuildTriggerBuildSpec (3) — cloudbuild_trigger -----------------
-  'CloudbuildTriggerFilenameSpec': () => CloudbuildTriggerFilenameSpec(
-        filename: TfArg.literal('cloudbuild.yaml'),
-      ),
+  'CloudbuildTriggerFilenameSpec': () =>
+      CloudbuildTriggerFilenameSpec(filename: TfArg.literal('cloudbuild.yaml')),
   'CloudbuildTriggerInlineBuildSpec': () => CloudbuildTriggerInlineBuildSpec(
-        build: CloudbuildTriggerBuild(
-          step: [
-            CloudbuildTriggerBuildStep(
-              name: TfArg.literal('gcr.io/cloud-builders/docker'),
-              args: TfArg.literal(['build', '.']),
-            ),
-          ],
+    build: CloudbuildTriggerBuild(
+      step: [
+        CloudbuildTriggerBuildStep(
+          name: TfArg.literal('gcr.io/cloud-builders/docker'),
+          args: TfArg.literal(['build', '.']),
         ),
-      ),
+      ],
+    ),
+  ),
   'CloudbuildTriggerGitFileSourceSpec': () =>
       CloudbuildTriggerGitFileSourceSpec(
         gitFileSource: CloudbuildTriggerGitFileSource(
@@ -447,11 +440,11 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- ConfigDeploymentBlueprintSource (2) — google_config_deployment ------
   'ConfigDeploymentBlueprintFromGcs': () => ConfigDeploymentBlueprintFromGcs(
-        gcsSource: TfArg.literal('gs://mock-bucket/blueprint.zip'),
-      ),
+    gcsSource: TfArg.literal('gs://mock-bucket/blueprint.zip'),
+  ),
   'ConfigDeploymentBlueprintFromGit': () => ConfigDeploymentBlueprintFromGit(
-        repo: TfArg.literal('https://github.com/example/terraform-blueprint'),
-      ),
+    repo: TfArg.literal('https://github.com/example/terraform-blueprint'),
+  ),
 
   // --- DataplexDatascanSpec (4) — google_dataplex_datascan -----------------
   'DataplexDatascanDataProfileSpec': () =>
@@ -464,26 +457,24 @@ final Map<String, Object Function()> _syntheticInstances = {
       const DataplexDatascanDataDocumentationSpec(),
 
   // --- DataplexTaskWorkload (2) — google_dataplex_task ---------------------
-  'DataplexTaskSparkWorkload': () => DataplexTaskSparkWorkload(
-        sqlScript: TfArg.literal('SELECT 1'),
-      ),
+  'DataplexTaskSparkWorkload': () =>
+      DataplexTaskSparkWorkload(sqlScript: TfArg.literal('SELECT 1')),
   'DataplexTaskNotebookWorkload': () => DataplexTaskNotebookWorkload(
-        notebook: TfArg.literal('gs://mock-bucket/notebook.ipynb'),
-      ),
+    notebook: TfArg.literal('gs://mock-bucket/notebook.ipynb'),
+  ),
 
   // --- DataprocBatchWorkload (4) — google_dataproc_batch -------------------
   'DataprocBatchPysparkWorkload': () => DataprocBatchPysparkWorkload(
-        mainPythonFileUri: TfArg.literal('gs://mock-bucket/main.py'),
-      ),
-  'DataprocBatchSparkWorkload': () => DataprocBatchSparkWorkload(
-        mainClass: TfArg.literal('com.example.Main'),
-      ),
+    mainPythonFileUri: TfArg.literal('gs://mock-bucket/main.py'),
+  ),
+  'DataprocBatchSparkWorkload': () =>
+      DataprocBatchSparkWorkload(mainClass: TfArg.literal('com.example.Main')),
   'DataprocBatchSparkSqlWorkload': () => DataprocBatchSparkSqlWorkload(
-        queryFileUri: TfArg.literal('gs://mock-bucket/query.sql'),
-      ),
+    queryFileUri: TfArg.literal('gs://mock-bucket/query.sql'),
+  ),
   'DataprocBatchSparkRWorkload': () => DataprocBatchSparkRWorkload(
-        mainRFileUri: TfArg.literal('gs://mock-bucket/main.R'),
-      ),
+    mainRFileUri: TfArg.literal('gs://mock-bucket/main.R'),
+  ),
 
   // --- SpannerBackupScheduleBackupSpec (2) — google_spanner_backup_schedule
   'SpannerBackupScheduleFullBackupSpec': () =>
@@ -499,8 +490,8 @@ final Map<String, Object Function()> _syntheticInstances = {
         ),
       ),
   'ColabNotebookExecutionGcsSource': () => ColabNotebookExecutionGcsSource(
-        uri: TfArg.literal('gs://mock-bucket/notebook.ipynb'),
-      ),
+    uri: TfArg.literal('gs://mock-bucket/notebook.ipynb'),
+  ),
   'ColabNotebookExecutionDirectSource': () =>
       ColabNotebookExecutionDirectSource(
         content: TfArg.literal('eyJuYiI6MX0='),
@@ -633,22 +624,22 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- MonitoringSloSli (3) — monitoring_slo ---------------------------------
   'MonitoringSloBasicSli': () => MonitoringSloBasicSli(
-        availability: MonitoringSloBasicSliAvailability(
-          enabled: TfArg.literal(true),
-        ),
-      ),
+    availability: MonitoringSloBasicSliAvailability(
+      enabled: TfArg.literal(true),
+    ),
+  ),
   'MonitoringSloRequestBasedSli': () => MonitoringSloRequestBasedSli(
-        goodTotalRatio: MonitoringSloGoodTotalRatio(
-          goodServiceFilter: TfArg.literal('metric.type="test"'),
-        ),
-      ),
+    goodTotalRatio: MonitoringSloGoodTotalRatio(
+      goodServiceFilter: TfArg.literal('metric.type="test"'),
+    ),
+  ),
   'MonitoringSloWindowsBasedSli': () => MonitoringSloWindowsBasedSli(
-        goodBadMetricFilter: TfArg.literal('metric.type="test"'),
-        windowPeriod: TfArg.literal('3600s'),
-        goodTotalRatioThreshold: MonitoringSloWindowsGoodTotalRatioThreshold(
-          threshold: TfArg.literal(0.95),
-        ),
-      ),
+    goodBadMetricFilter: TfArg.literal('metric.type="test"'),
+    windowPeriod: TfArg.literal('3600s'),
+    goodTotalRatioThreshold: MonitoringSloWindowsGoodTotalRatioThreshold(
+      threshold: TfArg.literal(0.95),
+    ),
+  ),
 
   // --- IamWorkloadIdentityPoolProviderTrustSource (4) — iam WIF provider ---
   'IamWorkloadIdentityPoolProviderOidcTrust': () =>
@@ -666,12 +657,12 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- IamWorkforcePoolProviderTrustSource (2) — leftover workforce IdP ---
   'IamWorkforcePoolProviderOidcTrust': () => IamWorkforcePoolProviderOidcTrust(
-        issuerUri: TfArg.literal('https://accounts.google.com'),
-        clientId: TfArg.literal('client.apps.googleusercontent.com'),
-      ),
+    issuerUri: TfArg.literal('https://accounts.google.com'),
+    clientId: TfArg.literal('client.apps.googleusercontent.com'),
+  ),
   'IamWorkforcePoolProviderSamlTrust': () => IamWorkforcePoolProviderSamlTrust(
-        idpMetadataXml: TfArg.literal('<xml/>'),
-      ),
+    idpMetadataXml: TfArg.literal('<xml/>'),
+  ),
 
   // --- IndexFieldSpec (4) — firestore_index --------------------------------
   'FirestoreIndexIndexFieldOrder': () =>
@@ -682,7 +673,8 @@ final Map<String, Object Function()> _syntheticInstances = {
       const FirestoreIndexIndexFieldSearchConfig(),
   'FirestoreIndexIndexFieldVectorConfig': () =>
       const FirestoreIndexIndexFieldVectorConfig(
-          dimension: TfArgLiteral<int>(768)),
+        dimension: TfArgLiteral<int>(768),
+      ),
 
   // --- SecretManagerSecretReplication (2) — secret_manager_secret ------------
   // After v1.0 naming audit the subclasses are now public:
@@ -691,16 +683,19 @@ final Map<String, Object Function()> _syntheticInstances = {
   'SecretManagerSecretAutoReplication': () =>
       SecretManagerSecretReplication.auto(),
   'SecretManagerSecretUserManagedReplication': () =>
-      SecretManagerSecretReplication.userManaged(
-          [SecretManagerSecretReplica(location: TfArg.literal('us-east1'))]),
+      SecretManagerSecretReplication.userManaged([
+        SecretManagerSecretReplica(location: TfArg.literal('us-east1')),
+      ]),
 
   // --- BucketObjectContent (2) — storage_bucket_object ---------------------
   'StorageBucketObjectBucketObjectFromSource': () =>
       StorageBucketObjectBucketObjectFromSource(
-          source: TfArg.literal('./mock/path.bin')),
+        source: TfArg.literal('./mock/path.bin'),
+      ),
   'StorageBucketObjectBucketObjectFromContent': () =>
       StorageBucketObjectBucketObjectFromContent(
-          content: TfArg.literal('mock-inline-payload')),
+        content: TfArg.literal('mock-inline-payload'),
+      ),
 
   // --- StorageBatchOperationsJobOperation (4) — batch_operations_job -------
   'StorageBatchOperationsJobPutMetadata': () =>
@@ -725,8 +720,8 @@ final Map<String, Object Function()> _syntheticInstances = {
   // --- DataCatalogEntryKind (2) — data_catalog_entry -----------------------
   'DataCatalogEntryFileset': () => const DataCatalogEntryFileset(),
   'DataCatalogEntryCustomType': () => DataCatalogEntryCustomType(
-        userSpecifiedType: TfArg.literal('my_custom_type'),
-      ),
+    userSpecifiedType: TfArg.literal('my_custom_type'),
+  ),
 
   // --- DataCatalogTagTemplateFieldType (2) — tag_template ------------------
   'DataCatalogTagTemplatePrimitiveFieldType': () =>
@@ -748,9 +743,8 @@ final Map<String, Object Function()> _syntheticInstances = {
   'DataCatalogTagBoolValue': () => DataCatalogTagBoolValue(TfArg.literal(true)),
   'DataCatalogTagDoubleValue': () =>
       DataCatalogTagDoubleValue(TfArg.literal(1.0)),
-  'DataCatalogTagTimestampValue': () => DataCatalogTagTimestampValue(
-        TfArg.literal('2026-01-01T00:00:00Z'),
-      ),
+  'DataCatalogTagTimestampValue': () =>
+      DataCatalogTagTimestampValue(TfArg.literal('2026-01-01T00:00:00Z')),
   'DataCatalogTagEnumValue': () =>
       DataCatalogTagEnumValue(TfArg.literal('EMAIL')),
 
@@ -769,15 +763,11 @@ final Map<String, Object Function()> _syntheticInstances = {
   // --- NetworkConnectivitySpokeAttachment (6) — network_connectivity_spoke -
   'NetworkConnectivitySpokeLinkedVpcNetwork': () =>
       NetworkConnectivitySpokeLinkedVpcNetwork(
-        uri: TfArg.literal(
-          'projects/p/global/networks/net',
-        ),
+        uri: TfArg.literal('projects/p/global/networks/net'),
       ),
   'NetworkConnectivitySpokeLinkedVpnTunnels': () =>
       NetworkConnectivitySpokeLinkedVpnTunnels(
-        uris: TfArg.literal([
-          'projects/p/regions/us-central1/vpnTunnels/t1',
-        ]),
+        uris: TfArg.literal(['projects/p/regions/us-central1/vpnTunnels/t1']),
         siteToSiteDataTransfer: TfArg.literal(false),
       ),
   'NetworkConnectivitySpokeLinkedInterconnectAttachments': () =>
@@ -805,15 +795,15 @@ final Map<String, Object Function()> _syntheticInstances = {
         peering: TfArg.literal('producer-peering'),
       ),
   'NetworkConnectivitySpokeGateway': () => NetworkConnectivitySpokeGateway(
-        capacity: TfArg.literal(
-          NetworkConnectivitySpokeGatewayCapacity.capacity1Gbps,
-        ),
-        ipRangeReservations: [
-          NetworkConnectivitySpokeGatewayIpRangeReservation(
-            ipRange: TfArg.literal('10.1.2.0/23'),
-          ),
-        ],
+    capacity: TfArg.literal(
+      NetworkConnectivitySpokeGatewayCapacity.capacity1Gbps,
+    ),
+    ipRangeReservations: [
+      NetworkConnectivitySpokeGatewayIpRangeReservation(
+        ipRange: TfArg.literal('10.1.2.0/23'),
       ),
+    ],
+  ),
 
   // --- CertificateManagerCertificateProvisioningSource (2) — certificate_manager_certificate
   'CertificateManagerCertificateManagedProvisioning': () =>
@@ -890,21 +880,21 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- StorageFtpServerConfig (2) — storage_ftp_server --------------------
   'StorageFtpServerInternalConfig': () => StorageFtpServerInternalConfig(
-        consumerAcceptList: [
-          StorageFtpServerConsumerAccept(
-            project: TfArg.literal('projects/consumer'),
-            connectionLimit: TfArg.literal(10),
-          ),
-        ],
-        consumerRejectList: [
-          StorageFtpServerConsumerReject(
-            project: TfArg.literal('projects/blocked'),
-          ),
-        ],
+    consumerAcceptList: [
+      StorageFtpServerConsumerAccept(
+        project: TfArg.literal('projects/consumer'),
+        connectionLimit: TfArg.literal(10),
       ),
+    ],
+    consumerRejectList: [
+      StorageFtpServerConsumerReject(
+        project: TfArg.literal('projects/blocked'),
+      ),
+    ],
+  ),
   'StorageFtpServerExternalConfig': () => StorageFtpServerExternalConfig(
-        allowedCidrBlocks: TfArg.literal(const ['203.0.113.0/24']),
-      ),
+    allowedCidrBlocks: TfArg.literal(const ['203.0.113.0/24']),
+  ),
 
   // --- VertexAiEndpointWithModelGardenDeploymentModel (2) — model garden ---
   'VertexAiEndpointWithModelGardenDeploymentPublisherModel': () =>
@@ -932,12 +922,13 @@ void main() {
         'yaml',
       ),
     );
-    final yamlFiles = yamlDir
-        .listSync()
-        .whereType<File>()
-        .where((f) => f.path.endsWith('.yaml'))
-        .toList()
-      ..sort((a, b) => a.path.compareTo(b.path));
+    final yamlFiles =
+        yamlDir
+            .listSync()
+            .whereType<File>()
+            .where((f) => f.path.endsWith('.yaml'))
+            .toList()
+          ..sort((a, b) => a.path.compareTo(b.path));
 
     for (final yamlFile in yamlFiles) {
       final yamlSource = yamlFile.readAsStringSync();
@@ -950,14 +941,14 @@ void main() {
 
       for (final sealed in sealedClasses) {
         for (final member in sealed.members) {
-          test(
-              '${sealed.name}.${member.name}: encode() round-trips '
+          test('${sealed.name}.${member.name}: encode() round-trips '
               'with required keys present', () {
             final thunk = _syntheticInstances[member.name];
             expect(
               thunk,
               isNotNull,
-              reason: 'Gate 6 lookup table missing entry for ${member.name}. '
+              reason:
+                  'Gate 6 lookup table missing entry for ${member.name}. '
                   'Add a constructor thunk to _syntheticInstances in '
                   'encode_round_trip_test.dart. See Plan 5.D PR 2 Task 10.',
             );
@@ -1037,7 +1028,8 @@ void main() {
               expect(
                 allKeys,
                 contains(schemaKey),
-                reason: 'required attr "$schemaKey" '
+                reason:
+                    'required attr "$schemaKey" '
                     '(camel: ${param.name}) must appear as a key somewhere '
                     'in the encoded payload (top-level or nested under a '
                     'discriminator block). Top-level keys observed: '
@@ -1054,7 +1046,8 @@ void main() {
             expect(
               tfArgLeaks,
               isEmpty,
-              reason: 'encoded values must be TfArg-unwrapped '
+              reason:
+                  'encoded values must be TfArg-unwrapped '
                   '(.toTfJson() should have been called). Found raw '
                   'TfArg instances at: $tfArgLeaks',
             );

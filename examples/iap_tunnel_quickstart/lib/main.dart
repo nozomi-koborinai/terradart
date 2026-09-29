@@ -17,11 +17,9 @@ import 'package:terradart_google/provider.dart';
 /// IAP tunnel stack: destination group only.
 final class IapTunnelStack extends Stack {
   IapTunnelStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiIap = add(
       GoogleProjectService(
         localName: 'api_iap',
@@ -68,10 +66,7 @@ final class IapTunnelStack extends Stack {
         localName: 'tunnel_project_grant',
         role: TfArg.literal('roles/iap.tunnelResourceAccessor'),
         member: TfArg.ref(tunnelUser.iamMember),
-        dependsOn: [
-          ResourceDependency(apiIap),
-          ResourceDependency(tunnelUser),
-        ],
+        dependsOn: [ResourceDependency(apiIap), ResourceDependency(tunnelUser)],
       ),
     );
   }

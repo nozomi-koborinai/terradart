@@ -22,11 +22,9 @@ import 'package:terradart_google/provider.dart';
 /// NetApp metadata stack: vault + disabled policy + host group.
 final class NetappMetadataStack extends Stack {
   NetappMetadataStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     const location = 'us-central1';
 
     final apiNetapp = add(
@@ -42,8 +40,9 @@ final class NetappMetadataStack extends Stack {
         localName: 'vault',
         name: TfArg.literal('terradart-smoke-vault'),
         location: TfArg.literal(location),
-        description:
-            TfArg.literal('Empty vault for TerraDart smoke (no backups)'),
+        description: TfArg.literal(
+          'Empty vault for TerraDart smoke (no backups)',
+        ),
         dependsOn: [ResourceDependency(apiNetapp)],
       ),
     );
@@ -70,11 +69,10 @@ final class NetappMetadataStack extends Stack {
         location: TfArg.literal(location),
         type: TfArg.literal(NetappHostGroupType.iscsiInitiator),
         osType: TfArg.literal(NetappHostGroupOsType.linux),
-        hosts: TfArg.literal([
-          'iqn.1994-05.com.redhat:terradart-smoke-never',
-        ]),
-        description:
-            TfArg.literal('Smoke initiator list (not wired to volumes)'),
+        hosts: TfArg.literal(['iqn.1994-05.com.redhat:terradart-smoke-never']),
+        description: TfArg.literal(
+          'Smoke initiator list (not wired to volumes)',
+        ),
         dependsOn: [ResourceDependency(apiNetapp)],
       ),
     );

@@ -8,37 +8,36 @@ MigrateEntryBuild _build(
   String kind = 'resource',
   List<MigrateHelperData> helpers = const [],
   List<MigrateEnumData> enums = const [],
-}) =>
-    MigrateEntryBuild(
-      entry: MigrateEntryData(
-        tfType: tfType,
-        className: 'X',
-        barrel: 'pubsub',
-        kind: kind,
-        slots: const [
-          MigrateSlotData(
-            tfName: 'name',
-            dartName: 'name',
-            kind: MigrateSlotKind.scalar,
-            required: true,
-            dartType: 'String',
-          ),
-          MigrateSlotData(
-            tfName: '',
-            dartName: 'target',
-            kind: MigrateSlotKind.sealed,
-            required: true,
-            merged: true,
-            variants: {'pubsub_target': 'PubsubTarget'},
-          ),
-        ],
-        getters: const [
-          MigrateGetterData(tfName: 'id', dartName: 'id', dartType: 'String'),
-        ],
+}) => MigrateEntryBuild(
+  entry: MigrateEntryData(
+    tfType: tfType,
+    className: 'X',
+    barrel: 'pubsub',
+    kind: kind,
+    slots: const [
+      MigrateSlotData(
+        tfName: 'name',
+        dartName: 'name',
+        kind: MigrateSlotKind.scalar,
+        required: true,
+        dartType: 'String',
       ),
-      helpers: helpers,
-      enums: enums,
-    );
+      MigrateSlotData(
+        tfName: '',
+        dartName: 'target',
+        kind: MigrateSlotKind.sealed,
+        required: true,
+        merged: true,
+        variants: {'pubsub_target': 'PubsubTarget'},
+      ),
+    ],
+    getters: const [
+      MigrateGetterData(tfName: 'id', dartName: 'id', dartType: 'String'),
+    ],
+  ),
+  helpers: helpers,
+  enums: enums,
+);
 
 const _helper = MigrateHelperData(
   className: 'PubsubTarget',
@@ -56,19 +55,16 @@ const _helper = MigrateHelperData(
 void main() {
   group('MigrateManifestEmitter', () {
     test('emits a formatted, deterministic manifest', () {
-      final src = MigrateManifestEmitter().emit(
-        [
-          _build('google_b', kind: 'dataSource'),
-          _build('google_b', helpers: const [_helper]),
-          _build(
-            'google_a',
-            enums: const [
-              MigrateEnumData(name: 'Color', members: {'RED': 'red'}),
-            ],
-          ),
-        ],
-        package: 'terradart_google_beta',
-      );
+      final src = MigrateManifestEmitter().emit([
+        _build('google_b', kind: 'dataSource'),
+        _build('google_b', helpers: const [_helper]),
+        _build(
+          'google_a',
+          enums: const [
+            MigrateEnumData(name: 'Color', members: {'RED': 'red'}),
+          ],
+        ),
+      ], package: 'terradart_google_beta');
       final formatted = DartFormatter(
         languageVersion: DartFormatter.latestLanguageVersion,
       ).format(src);

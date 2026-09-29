@@ -21,18 +21,15 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class AccessControlsStack extends Stack {
   AccessControlsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     // Declared here so the TfArg.variable references below resolve;
     // the values themselves arrive at `terraform apply -var` time.
-    addVariable(
-      'ops_organization_id',
-      const TfVariable(type: 'string'),
-    );
+    addVariable('ops_organization_id', const TfVariable(type: 'string'));
 
     final apiDeps = Apis.enable(
       this,
@@ -77,10 +74,7 @@ final class AccessControlsStack extends Stack {
           restrictedServices: TfArg.literal(['storage.googleapis.com']),
           accessLevels: TfArg.literal([usOnly.nameRef.interpolation]),
         ),
-        dependsOn: [
-          ResourceDependency(policy),
-          ResourceDependency(usOnly),
-        ],
+        dependsOn: [ResourceDependency(policy), ResourceDependency(usOnly)],
       ),
     );
 
@@ -187,9 +181,7 @@ final class AccessControlsStack extends Stack {
     add(
       GoogleAccessContextManagerAuthorizedOrgsDesc(
         localName: 'demo_orgs',
-        parent: TfArg.literal(
-          'accessPolicies/${policy.name.interpolation}',
-        ),
+        parent: TfArg.literal('accessPolicies/${policy.name.interpolation}'),
         name: TfArg.literal(
           'accessPolicies/${policy.name.interpolation}'
           '/authorizedOrgsDescs/terradart_desc',
@@ -287,8 +279,7 @@ final class AccessControlsStack extends Stack {
         localName: 'attach_ingress',
         perimeter: TfArg.ref(attach.nameRef),
         title: TfArg.literal('allow identities'),
-        ingressFrom:
-            AccessContextManagerServicePerimeterIngressPolicyIngressFrom(
+        ingressFrom: AccessContextManagerServicePerimeterIngressPolicyIngressFrom(
           identityType: TfArg.literal(
             AccessContextManagerServicePerimeterIngressPolicyIngressFromIdentityType
                 .anyIdentity,
@@ -320,11 +311,11 @@ final class AccessControlsStack extends Stack {
         title: TfArg.literal('dry-run ingress'),
         ingressFrom:
             AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFrom(
-          identityType: TfArg.literal(
-            AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFromIdentityType
-                .anyIdentity,
-          ),
-        ),
+              identityType: TfArg.literal(
+                AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFromIdentityType
+                    .anyIdentity,
+              ),
+            ),
         dependsOn: [ResourceDependency(dryRun)],
       ),
     );
@@ -336,11 +327,11 @@ final class AccessControlsStack extends Stack {
         title: TfArg.literal('dry-run egress'),
         egressFrom:
             AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFrom(
-          identityType: TfArg.literal(
-            AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFromIdentityType
-                .anyIdentity,
-          ),
-        ),
+              identityType: TfArg.literal(
+                AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFromIdentityType
+                    .anyIdentity,
+              ),
+            ),
         dependsOn: [ResourceDependency(dryRun)],
       ),
     );

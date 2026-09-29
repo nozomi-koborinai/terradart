@@ -7,7 +7,7 @@ This guide matches the [README quickstart](https://github.com/nozomi-koborinai/t
 
 ## Prerequisites
 
-- Dart SDK ≥ 3.6
+- Dart SDK ≥ 3.10
 - Terraform CLI ≥ 1.11.0
 - Credentials for your target provider (e.g. Google Cloud Application Default Credentials `gcloud auth application-default login`, or provider environment variables)
 

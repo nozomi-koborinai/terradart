@@ -16,11 +16,9 @@ import 'package:terradart_google/provider.dart';
 /// Network Security stack: backend authentication config metadata.
 final class NetworkSecurityBackendAuthStack extends Stack {
   NetworkSecurityBackendAuthStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiNetworkSecurity = add(
       GoogleProjectService(
         localName: 'api_networksecurity',

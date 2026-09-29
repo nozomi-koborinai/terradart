@@ -18,12 +18,12 @@ const _placeholderGridImageId =
 
 final class OracleExadataStack extends Stack {
   OracleExadataStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-east4'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-east4'),
+          const TimeProvider(),
+        ],
+      ) {
     const location = 'us-east4';
     const odbNetworkId = 'terradart-exa-odbnet';
     const clientSubnetId = 'terradart-exa-client';

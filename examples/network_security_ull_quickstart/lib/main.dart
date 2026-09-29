@@ -9,12 +9,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class NetworkSecurityUllStack extends Stack {
   NetworkSecurityUllStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-south1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-south1'),
+          const TimeProvider(),
+        ],
+      ) {
     const zone = 'us-south1-d';
 
     final apiDeps = Apis.enable(

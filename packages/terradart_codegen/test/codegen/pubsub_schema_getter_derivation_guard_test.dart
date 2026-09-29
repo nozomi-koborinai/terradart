@@ -25,7 +25,8 @@ void main() {
       expect(
         dart,
         contains(
-            "TfRef<String> get id => TfRef.attribute<String>(this, 'id');"),
+          "TfRef<String> get id => TfRef.attribute<String>(this, 'id');",
+        ),
       );
       expect(dart, contains('/// Reference to `name` attribute.'));
     });

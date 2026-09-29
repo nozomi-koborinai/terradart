@@ -1,7 +1,7 @@
 # terradart_codegen
 
 [![pub: terradart_codegen](https://img.shields.io/pub/v/terradart_codegen.svg?label=pub%3A%20codegen)](https://pub.dev/packages/terradart_codegen)
-[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.6-blue.svg)](https://dart.dev)
+[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.10-blue.svg)](https://dart.dev)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/nozomi-koborinai/terradart/blob/main/LICENSE)
 
 Maintainer tooling for [TerraDart](https://terradart.dev). Parses `terraform providers schema -json` (plus optional Magic Modules YAML overlays) into a unified provider IR and emits typed Dart factory wrappers for [`terradart_google`](https://pub.dev/packages/terradart_google) and other provider packages.

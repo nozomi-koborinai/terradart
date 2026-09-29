@@ -4,7 +4,7 @@ End-to-end terradart example for Resource Manager Tags. Provisions a project-sco
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Resource Manager API enabled and credentials configured (`gcloud auth application-default login`).
 

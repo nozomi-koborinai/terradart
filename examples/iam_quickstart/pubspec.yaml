@@ -3,7 +3,7 @@ description: terradart example -- all four curated _iam_member resources in one 
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

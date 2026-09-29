@@ -20,11 +20,9 @@ import 'package:terradart_google/provider.dart';
 /// Cloud Run v1 stack: hello service + invoker member (no allUsers).
 final class CloudRunV1Stack extends Stack {
   CloudRunV1Stack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiRun = add(
       GoogleProjectService(
         localName: 'api_run',

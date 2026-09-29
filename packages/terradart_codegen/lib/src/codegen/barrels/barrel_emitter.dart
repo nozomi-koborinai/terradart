@@ -15,7 +15,8 @@ import 'barrel_manifest.dart';
 /// Two-line header for generated barrels. Line 1 is the E401 marker; the
 /// wrapper header's `ignore_for_file: prefer_relative_imports` third line is
 /// omitted because barrels contain only relative exports.
-const String barrelFileHeader = '// GENERATED FILE - DO NOT EDIT\n'
+const String barrelFileHeader =
+    '// GENERATED FILE - DO NOT EDIT\n'
     '// Run `terradart wrap` to regenerate.\n';
 
 /// Builds every barrel file (file stem under `lib/` → raw Dart source,
@@ -38,20 +39,18 @@ Map<String, String> buildBarrelFiles({
     names.addAll(entry.nestedTypes);
   }
 
-  final missing = byBarrel.keys
-      .where((b) => !manifest.barrels.containsKey(b))
-      .toList()
-    ..sort();
+  final missing =
+      byBarrel.keys.where((b) => !manifest.barrels.containsKey(b)).toList()
+        ..sort();
   if (missing.isNotEmpty) {
     throw StateError(
       'barrels.yaml is missing catalog barrel(s): ${missing.join(', ')}. '
       'Add each with a `doc:` (see lib/src/codegen/barrels/barrels.yaml).',
     );
   }
-  final stale = manifest.barrels.keys
-      .where((b) => !byBarrel.containsKey(b))
-      .toList()
-    ..sort();
+  final stale =
+      manifest.barrels.keys.where((b) => !byBarrel.containsKey(b)).toList()
+        ..sort();
   if (stale.isNotEmpty) {
     throw StateError(
       'barrels.yaml has stale barrel(s) with no catalog entries: '
@@ -89,9 +88,7 @@ String _emitBarrel({
     ..writeln();
   for (final tfType in files.keys.toList()..sort()) {
     final names = files[tfType]!.toList()..sort();
-    buf.writeln(
-      "export 'src/$barrel/$tfType.dart' show ${names.join(', ')};",
-    );
+    buf.writeln("export 'src/$barrel/$tfType.dart' show ${names.join(', ')};");
   }
   for (final extra in spec.extraExports) {
     buf.writeln(extra);

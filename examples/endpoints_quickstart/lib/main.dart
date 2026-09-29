@@ -71,12 +71,12 @@ securityDefinitions:
 /// Cloud Endpoints stack: OpenAPI service config + additive service IAM.
 final class EndpointsStack extends Stack {
   EndpointsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     final serviceName = 'terradart.endpoints.$projectId.cloud.goog';
 
     // `google_endpoints_*` is absent from terraformApiPrefixRules — enable
@@ -139,10 +139,7 @@ final class EndpointsStack extends Stack {
         serviceName: TfArg.literal(serviceName),
         role: TfArg.literal('roles/viewer'),
         member: TfArg.ref(sa.iamMember),
-        dependsOn: [
-          ResourceDependency(service),
-          ResourceDependency(sa),
-        ],
+        dependsOn: [ResourceDependency(service), ResourceDependency(sa)],
       ),
     );
   }

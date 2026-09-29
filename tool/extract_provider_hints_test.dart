@@ -177,7 +177,8 @@ func split(s string) []string { return strings.FieldsFunc(s, func(r rune) bool {
   });
 
   test('resourceTypeNames expands a fmt.Sprintf variant pattern', () {
-    const go = 'resp.TypeName = fmt.Sprintf("%s_%s_database", '
+    const go =
+        'resp.TypeName = fmt.Sprintf("%s_%s_database", '
         'req.ProviderTypeName, r.engine)';
     expect(
       resourceTypeNames(
@@ -436,10 +437,10 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
       final scan = scanAwsProvider(root, sdkDir: sdkDir);
       expect(scan.byType.keys, {'aws_widget', 'aws_widget_gadget'});
       Map<String, String> hints(String type) => {
-            for (final h in scan.byType[type]!.hints)
-              h.path.join('.'):
-                  '${h.values.join('|')}${h.caseInsensitive ? ' (ci)' : ''}',
-          };
+        for (final h in scan.byType[type]!.hints)
+          h.path.join('.'):
+              '${h.values.join('|')}${h.caseInsensitive ? ' (ci)' : ''}',
+      };
       expect(
         scan.byType['aws_widget']!.sourcePath,
         p.join('internal', 'service', 'widget', 'widget.go'),
@@ -449,10 +450,7 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
         'color': 'red|blue (ci)',
         'settings.level': 'low|high',
       });
-      expect(hints('aws_widget_gadget'), {
-        'mode': 'FAST|SLOW',
-        'name': 'a|b',
-      });
+      expect(hints('aws_widget_gadget'), {'mode': 'FAST|SLOW', 'name': 'a|b'});
       expect(scan.validators, 6);
       expect(scan.unresolved, 1, reason: 'unknownValues() is not evaluable');
       expect(scan.openSets, 1, reason: '"" is one alternative beside an ARN');
@@ -462,9 +460,9 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
       writeProvider();
       final scan = scanAwsProvider(root, sdkDir: sdkDir);
       Set<String> groups(String type) => {
-            for (final g in scan.byType[type]!.groups)
-              g.map((m) => m.join('.')).join(','),
-          };
+        for (final g in scan.byType[type]!.groups)
+          g.map((m) => m.join('.')).join(','),
+      };
       expect(groups('aws_widget'), {
         'color,type',
         'settings.depth,settings.level',
@@ -475,9 +473,9 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
         'north,south',
       });
       Set<String> atMostOne(String type) => {
-            for (final g in scan.byType[type]!.atMostOne)
-              g.map((m) => m.join('.')).join(','),
-          };
+        for (final g in scan.byType[type]!.atMostOne)
+          g.map((m) => m.join('.')).join(','),
+      };
       expect(atMostOne('aws_widget'), {'name,name_prefix'});
       expect(atMostOne('aws_widget_gadget'), {'down,up', 'ratio,weight'});
       expect(scan.unsealed, isEmpty);
@@ -633,12 +631,12 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
   for (final fixture in _fixtures) {
     group('the committed ${p.basename(fixture)} hints', () {
       final hintsDir = Directory(p.join(fixture, 'hints'));
-      final version = File(p.join(fixture, 'provider_version.txt'))
-          .readAsStringSync()
-          .trim();
-      final schema = jsonDecode(
-        File(p.join(fixture, 'schema.json')).readAsStringSync(),
-      ) as Map<String, dynamic>;
+      final version = File(
+        p.join(fixture, 'provider_version.txt'),
+      ).readAsStringSync().trim();
+      final schema =
+          jsonDecode(File(p.join(fixture, 'schema.json')).readAsStringSync())
+              as Map<String, dynamic>;
       final provider = (schema['provider_schemas'] as Map).values.single as Map;
       final resources = provider['resource_schemas'] as Map<String, dynamic>;
       final files = hintsDir
@@ -688,11 +686,7 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
             final members = [
               for (final m in g as YamlList) m.toString().split('.'),
             ];
-            expect(
-              groupSkipReason(block, members),
-              isNull,
-              reason: '$type $g',
-            );
+            expect(groupSkipReason(block, members), isNull, reason: '$type $g');
           }
         }
       });

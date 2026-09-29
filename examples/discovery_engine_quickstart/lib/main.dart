@@ -11,10 +11,7 @@ import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_time/terradart_time.dart';
 
-String _iamPolicyDataJson({
-  required String role,
-  required String member,
-}) {
+String _iamPolicyDataJson({required String role, required String member}) {
   return jsonEncode({
     'bindings': [
       {
@@ -27,12 +24,12 @@ String _iamPolicyDataJson({
 
 final class DiscoveryEngineCatalogStack extends Stack {
   DiscoveryEngineCatalogStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.discoveryEngine],
@@ -223,8 +220,9 @@ final class DiscoveryEngineCatalogStack extends Stack {
         collectionDisplayName: TfArg.literal('terradart jira'),
         dataSource: TfArg.literal('jira'),
         refreshInterval: TfArg.literal('1800s'),
-        jsonParams:
-            TfArg.literal('{"instance_uri":"https://example.atlassian.net"}'),
+        jsonParams: TfArg.literal(
+          '{"instance_uri":"https://example.atlassian.net"}',
+        ),
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: apiDeps,
       ),

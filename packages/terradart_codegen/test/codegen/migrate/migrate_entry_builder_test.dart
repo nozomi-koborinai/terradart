@@ -67,7 +67,8 @@ final class _Fixture {
         if (override.deriveNestedTypes)
           tfType: rawBlock(tfType, schemasKey: 'data_source_schemas'),
       };
-      final src = generatedFileHeader +
+      final src =
+          generatedFileHeader +
           _formatter.format(
             DataSourceWrapperEmitter(
               overrides: loaded.dataSources,
@@ -89,7 +90,8 @@ final class _Fixture {
       if (override.deriveNestedTypes)
         tfType: rawBlock(tfType, schemasKey: 'resource_schemas'),
     };
-    final src = generatedFileHeader +
+    final src =
+        generatedFileHeader +
         _formatter.format(
           WrapperEmitter(
             overrides: loaded.resources,
@@ -189,8 +191,12 @@ final class GoogleThing extends Resource {
       );
       expect(b.entry.className, 'GoogleThing');
       expect(b.entry.barrel, 'thing');
-      expect(b.entry.slots.map((s) => s.dartName),
-          ['name', 'labels', 'config', 'settings']);
+      expect(b.entry.slots.map((s) => s.dartName), [
+        'name',
+        'labels',
+        'config',
+        'settings',
+      ]);
 
       final name = _slot(b, 'name');
       expect(name.kind, MigrateSlotKind.scalar);
@@ -415,8 +421,10 @@ class Holder {
       final helper = _helper(b, pushConfig.helper!);
       expect(helper.reason, isNull);
       expect(helper.slots.map((s) => s.tfName), contains('push_endpoint'));
-      expect(b.entry.slots.where((s) => s.kind == MigrateSlotKind.manual),
-          isEmpty);
+      expect(
+        b.entry.slots.where((s) => s.kind == MigrateSlotKind.manual),
+        isEmpty,
+      );
       expect(b.entry.getters.map((g) => g.dartName), contains('nameRef'));
     });
 
@@ -434,48 +442,56 @@ class Holder {
       expect(pubsub.slots.map((s) => s.tfName), contains('topic_name'));
     });
 
-    test('google_secret_manager_secret_version: spread sealed payload slot',
-        () {
-      final b = fixture.build('google_secret_manager_secret_version');
-      final payload = _slot(b, 'payload');
-      expect(payload.kind, MigrateSlotKind.sealed);
-      expect(payload.merged, isTrue);
-      expect(payload.tfName, isEmpty);
-      expect(payload.required, isTrue);
-      expect(payload.variants, {
-        'secret_data_wo': 'SecretManagerSecretVersionWriteOnlyPayload',
-        'secret_data': 'SecretManagerSecretVersionPlaintextPayload',
-      });
-      final writeOnly =
-          _helper(b, 'SecretManagerSecretVersionWriteOnlyPayload');
-      expect(writeOnly.reason, isNull);
-      expect(
-        writeOnly.slots.map((s) => (s.tfName, s.required)),
-        [('secret_data_wo', true), ('secret_data_wo_version', true)],
-      );
-    });
+    test(
+      'google_secret_manager_secret_version: spread sealed payload slot',
+      () {
+        final b = fixture.build('google_secret_manager_secret_version');
+        final payload = _slot(b, 'payload');
+        expect(payload.kind, MigrateSlotKind.sealed);
+        expect(payload.merged, isTrue);
+        expect(payload.tfName, isEmpty);
+        expect(payload.required, isTrue);
+        expect(payload.variants, {
+          'secret_data_wo': 'SecretManagerSecretVersionWriteOnlyPayload',
+          'secret_data': 'SecretManagerSecretVersionPlaintextPayload',
+        });
+        final writeOnly = _helper(
+          b,
+          'SecretManagerSecretVersionWriteOnlyPayload',
+        );
+        expect(writeOnly.reason, isNull);
+        expect(writeOnly.slots.map((s) => (s.tfName, s.required)), [
+          ('secret_data_wo', true),
+          ('secret_data_wo_version', true),
+        ]);
+      },
+    );
 
-    test('google_cloud_run_v2_service: custom slots and merged sealed fields',
-        () {
-      final b = fixture.build('google_cloud_run_v2_service');
-      final template = _slot(b, 'template');
-      expect(template.kind, MigrateSlotKind.helper);
-      expect(template.tfName, 'template');
-      final volume = b.helpers.singleWhere(
-        (h) => h.className == 'CloudRunV2ServiceServiceVolume',
-      );
-      expect(volume.reason, isNull);
-      final source = volume.slots.singleWhere((s) => s.dartName == 'source');
-      expect(source.kind, MigrateSlotKind.sealed);
-      expect(source.merged, isTrue);
-      expect(source.variants, isNotEmpty);
-      // Every variant the manifest names is itself in the helper table.
-      for (final className in source.variants!.values) {
-        expect(b.helpers.map((h) => h.className), contains(className));
-      }
-      expect(b.entry.slots.where((s) => s.kind == MigrateSlotKind.manual),
-          isEmpty);
-    });
+    test(
+      'google_cloud_run_v2_service: custom slots and merged sealed fields',
+      () {
+        final b = fixture.build('google_cloud_run_v2_service');
+        final template = _slot(b, 'template');
+        expect(template.kind, MigrateSlotKind.helper);
+        expect(template.tfName, 'template');
+        final volume = b.helpers.singleWhere(
+          (h) => h.className == 'CloudRunV2ServiceServiceVolume',
+        );
+        expect(volume.reason, isNull);
+        final source = volume.slots.singleWhere((s) => s.dartName == 'source');
+        expect(source.kind, MigrateSlotKind.sealed);
+        expect(source.merged, isTrue);
+        expect(source.variants, isNotEmpty);
+        // Every variant the manifest names is itself in the helper table.
+        for (final className in source.variants!.values) {
+          expect(b.helpers.map((h) => h.className), contains(className));
+        }
+        expect(
+          b.entry.slots.where((s) => s.kind == MigrateSlotKind.manual),
+          isEmpty,
+        );
+      },
+    );
 
     test('google_netapp_backup_vault: deriveNestedTypes helper slots', () {
       final b = fixture.build('google_netapp_backup_vault');

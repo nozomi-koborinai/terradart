@@ -21,12 +21,7 @@ const String kBetaProviderVersionConstraint = '~> 8.0';
 /// there is no `TfArgRef` use case here. Pass literal strings only.
 @immutable
 final class GoogleBetaProvider implements StackProvider {
-  const GoogleBetaProvider({
-    this.alias,
-    this.project,
-    this.region,
-    this.zone,
-  });
+  const GoogleBetaProvider({this.alias, this.project, this.region, this.zone});
 
   /// Provider alias (`provider "google-beta" { alias = "eu" }`), or `null` for
   /// the default configuration. Select it on a resource with
@@ -56,8 +51,8 @@ final class GoogleBetaProvider implements StackProvider {
 
   @override
   Map<String, Object?> get configArgs => {
-        if (project != null) 'project': project,
-        if (region != null) 'region': region,
-        if (zone != null) 'zone': zone,
-      };
+    if (project != null) 'project': project,
+    if (region != null) 'region': region,
+    if (zone != null) 'zone': zone,
+  };
 }

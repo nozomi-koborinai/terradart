@@ -16,7 +16,7 @@ Bug reports / questions / feature requests: pick a template when [opening an iss
 
 Requirements:
 
-- Dart SDK ≥ 3.6 (Pub Workspaces requirement).
+- Dart SDK ≥ 3.10 (every package declares `sdk: ^3.10.0`).
 - `terraform` CLI ≥ 1.11.0 (for end-to-end tests; write-only args require 1.11+).
 - `git` ≥ 2.30.
 

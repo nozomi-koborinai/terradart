@@ -26,11 +26,11 @@ import 'package:terradart_google/provider.dart';
 
 final class GkeQuickstartStack extends Stack {
   GkeQuickstartStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+      ) {
     const region = 'asia-northeast1';
     const clusterName = 'main-gke';
 
@@ -86,9 +86,7 @@ final class GkeQuickstartStack extends Stack {
         }),
         // Backup for GKE (Wave 10) requires the agent addon on the cluster.
         addonsConfig: TfArg.literal({
-          'gke_backup_agent_config': {
-            'enabled': TfArg.literal(true),
-          },
+          'gke_backup_agent_config': {'enabled': TfArg.literal(true)},
         }),
         dependsOn: [
           ResourceDependency(apiContainer),
@@ -118,9 +116,7 @@ final class GkeQuickstartStack extends Stack {
         localName: 'main',
         membershipId: TfArg.literal('main-cluster'),
         endpoint: TfArg.literal({
-          'gke_cluster': {
-            'resource_link': TfArg.ref(cluster.id),
-          },
+          'gke_cluster': {'resource_link': TfArg.ref(cluster.id)},
         }),
         authority: TfArg.literal({
           'issuer': TfArg.literal(

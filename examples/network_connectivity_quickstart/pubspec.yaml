@@ -3,7 +3,7 @@ description: terradart example — Network Connectivity CCI transport.
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

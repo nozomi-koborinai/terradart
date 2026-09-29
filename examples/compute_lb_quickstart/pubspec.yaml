@@ -3,7 +3,7 @@ description: Wave 6 Batch 1 quickstart -- L7 Global Application Load Balancer ch
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

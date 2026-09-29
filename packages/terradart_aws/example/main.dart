@@ -10,14 +10,14 @@ import 'package:terradart_core/terradart_core.dart';
 /// `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY`, or an instance role).
 final class HelloStack extends Stack {
   HelloStack()
-      : super(
-          providers: [
-            const AwsProvider(
-              region: 'us-east-1',
-              defaultTags: {'app': 'hello-dart'},
-            ),
-          ],
-        ) {
+    : super(
+        providers: [
+          const AwsProvider(
+            region: 'us-east-1',
+            defaultTags: {'app': 'hello-dart'},
+          ),
+        ],
+      ) {
     final trust = DataAwsIamPolicyDocument(
       localName: 'lambda_trust',
       statement: [

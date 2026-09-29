@@ -12,7 +12,7 @@ The external source-replica setup needs the real replication password; the place
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Cloud SQL Admin API and Service Networking API
   enabled and credentials configured

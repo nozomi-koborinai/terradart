@@ -10,8 +10,6 @@ import 'package:terradart_example_iam_quickstart/main.dart';
 
 Future<void> main() async {
   final projectId = Platform.environment['GCP_PROJECT_ID'] ?? 'YOUR-PROJECT-ID';
-  final stack = IamShowcaseStack(
-    projectId: projectId,
-  );
+  final stack = IamShowcaseStack(projectId: projectId);
   await stack.writeTo('tf-out');
 }

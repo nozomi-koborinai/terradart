@@ -28,10 +28,9 @@ void main() {
         'source': kBetaProviderSource,
         'version': kProviderVersionConstraint,
       });
-      expect(
-        (json['provider']! as Map<String, dynamic>)['google-beta'],
-        {'project': 'demo'},
-      );
+      expect((json['provider']! as Map<String, dynamic>)['google-beta'], {
+        'project': 'demo',
+      });
     });
   });
 
@@ -72,8 +71,10 @@ void main() {
       );
       final json = stack.synth().tfJson;
       final resources = json['resource']! as Map<String, dynamic>;
-      final block = (resources['google_project_service_identity']!
-          as Map<String, dynamic>)['cloudasset']! as Map<String, dynamic>;
+      final block =
+          (resources['google_project_service_identity']!
+                  as Map<String, dynamic>)['cloudasset']!
+              as Map<String, dynamic>;
       expect(block['provider'], 'google-beta');
       expect(block['service'], 'cloudasset.googleapis.com');
     });

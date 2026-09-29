@@ -23,10 +23,7 @@ import 'package:terradart_google/dns.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 
-String _iamPolicyDataJson({
-  required String role,
-  required String member,
-}) {
+String _iamPolicyDataJson({required String role, required String member}) {
   return jsonEncode({
     'bindings': [
       {
@@ -39,11 +36,11 @@ String _iamPolicyDataJson({
 
 final class InternalDnsStack extends Stack {
   InternalDnsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+      ) {
     final vpc = GoogleComputeNetwork(
       localName: 'gnd_vpc',
       name: TfArg.literal('gnd-vpc'),
@@ -55,14 +52,13 @@ final class InternalDnsStack extends Stack {
       localName: 'internal',
       name: TfArg.literal('internal-corp'),
       dnsName: TfArg.literal('internal.corp.'),
-      description:
-          TfArg.literal('Private DNS for internal services in gnd-vpc.'),
+      description: TfArg.literal(
+        'Private DNS for internal services in gnd-vpc.',
+      ),
       visibility: TfArg.literal(DnsZoneVisibility.private),
       privateVisibilityConfig: DnsManagedZonePrivateVisibilityConfig(
         networks: [
-          DnsManagedZonePrivateVisibilityNetwork(
-            networkUrl: TfArg.ref(vpc.id),
-          ),
+          DnsManagedZonePrivateVisibilityNetwork(networkUrl: TfArg.ref(vpc.id)),
         ],
       ),
       // NOTE: DNSSEC is a public-internet chain-of-trust feature and is only

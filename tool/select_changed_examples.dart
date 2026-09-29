@@ -28,14 +28,15 @@ import 'dart:convert';
 import 'dart:io';
 
 /// Every `examples/*_quickstart` slug (suffix stripped), sorted.
-List<String> allSlugs() => Directory('examples')
-    .listSync()
-    .whereType<Directory>()
-    .map((d) => d.path.split(Platform.pathSeparator).last)
-    .where((n) => n.endsWith('_quickstart'))
-    .map((n) => n.substring(0, n.length - '_quickstart'.length))
-    .toList()
-  ..sort();
+List<String> allSlugs() =>
+    Directory('examples')
+        .listSync()
+        .whereType<Directory>()
+        .map((d) => d.path.split(Platform.pathSeparator).last)
+        .where((n) => n.endsWith('_quickstart'))
+        .map((n) => n.substring(0, n.length - '_quickstart'.length))
+        .toList()
+      ..sort();
 
 /// Pure selection logic — unit-tested in select_changed_examples_test.dart.
 ///

@@ -20,11 +20,11 @@ import 'package:terradart_google/storage.dart';
 
 final class HttpFunctionStack extends Stack {
   HttpFunctionStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+      ) {
     final sourceBucket = GoogleStorageBucket(
       localName: 'fn_source',
       name: TfArg.literal('$projectId-fn-source'),
@@ -72,9 +72,7 @@ final class HttpFunctionStack extends Stack {
           timeoutSeconds: TfArg.literal(60),
           minInstanceCount: TfArg.literal(0),
           maxInstanceCount: TfArg.literal(4),
-          ingressSettings: TfArg.literal(
-            IngressSettings.allowInternalAndGclb,
-          ),
+          ingressSettings: TfArg.literal(IngressSettings.allowInternalAndGclb),
           serviceAccountEmail: TfArg.ref(runtimeSa.email),
           environmentVariables: TfArg.literal({'LOG_LEVEL': 'info'}),
         ),

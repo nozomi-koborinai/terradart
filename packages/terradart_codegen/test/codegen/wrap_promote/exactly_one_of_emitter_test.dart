@@ -10,14 +10,18 @@ void main() {
   late final ResourceDef googleCloudSchedulerJob;
 
   setUpAll(() {
-    final src = File(p.join(
-      'test',
-      'fixtures',
-      'schema',
-      'google_cloud_scheduler_job_v7.schema.json',
-    )).readAsStringSync();
-    final ir =
-        const SchemaJsonParser().parseString(src, providerVersion: '7.31.0');
+    final src = File(
+      p.join(
+        'test',
+        'fixtures',
+        'schema',
+        'google_cloud_scheduler_job_v7.schema.json',
+      ),
+    ).readAsStringSync();
+    final ir = const SchemaJsonParser().parseString(
+      src,
+      providerVersion: '7.31.0',
+    );
     googleCloudSchedulerJob = ir.resources['google_cloud_scheduler_job']!;
   });
 
@@ -29,7 +33,7 @@ void main() {
         groupMembers: [
           'pubsub_target',
           'http_target',
-          'app_engine_http_target'
+          'app_engine_http_target',
         ],
         resourcePascal: 'GoogleCloudSchedulerJob',
         def: googleCloudSchedulerJob,
@@ -38,41 +42,48 @@ void main() {
     });
 
     test(
-        'emits helper class for each group member with required + optional fields',
-        () {
-      final out = emitter.emit(
-        groupMembers: [
-          'pubsub_target',
-          'http_target',
-          'app_engine_http_target'
-        ],
-        resourcePascal: 'GoogleCloudSchedulerJob',
-        def: googleCloudSchedulerJob,
-      );
-      // Each member yields a final class extending the sealed.
-      expect(
+      'emits helper class for each group member with required + optional fields',
+      () {
+        final out = emitter.emit(
+          groupMembers: [
+            'pubsub_target',
+            'http_target',
+            'app_engine_http_target',
+          ],
+          resourcePascal: 'GoogleCloudSchedulerJob',
+          def: googleCloudSchedulerJob,
+        );
+        // Each member yields a final class extending the sealed.
+        expect(
           out,
           contains(
-              'final class PubsubTarget extends GoogleCloudSchedulerJobTarget'));
-      expect(
+            'final class PubsubTarget extends GoogleCloudSchedulerJobTarget',
+          ),
+        );
+        expect(
           out,
           contains(
-              'final class HttpTarget extends GoogleCloudSchedulerJobTarget'));
-      expect(
+            'final class HttpTarget extends GoogleCloudSchedulerJobTarget',
+          ),
+        );
+        expect(
           out,
           contains(
-              'final class AppEngineHttpTarget extends GoogleCloudSchedulerJobTarget'));
-      // PubsubTarget has at least `topic_name` (required per provider schema).
-      expect(out, contains('required this.topicName'));
-      expect(out, contains('final TfArg<String> topicName'));
-    });
+            'final class AppEngineHttpTarget extends GoogleCloudSchedulerJobTarget',
+          ),
+        );
+        // PubsubTarget has at least `topic_name` (required per provider schema).
+        expect(out, contains('required this.topicName'));
+        expect(out, contains('final TfArg<String> topicName'));
+      },
+    );
 
     test('emits blockKey getter with the snake_case member name', () {
       final out = emitter.emit(
         groupMembers: [
           'pubsub_target',
           'http_target',
-          'app_engine_http_target'
+          'app_engine_http_target',
         ],
         resourcePascal: 'GoogleCloudSchedulerJob',
         def: googleCloudSchedulerJob,
@@ -82,24 +93,31 @@ void main() {
       expect(out, contains("String get blockKey => 'app_engine_http_target'"));
     });
 
-    test('emits customSlots virtual slot with paramDeclaration + argMapEntry',
-        () {
-      final out = emitter.emit(
-        groupMembers: [
-          'pubsub_target',
-          'http_target',
-          'app_engine_http_target'
-        ],
-        resourcePascal: 'GoogleCloudSchedulerJob',
-        def: googleCloudSchedulerJob,
-      );
-      expect(out, contains('customSlots:'));
-      expect(out, contains('  target:'));
-      expect(
+    test(
+      'emits customSlots virtual slot with paramDeclaration + argMapEntry',
+      () {
+        final out = emitter.emit(
+          groupMembers: [
+            'pubsub_target',
+            'http_target',
+            'app_engine_http_target',
+          ],
+          resourcePascal: 'GoogleCloudSchedulerJob',
+          def: googleCloudSchedulerJob,
+        );
+        expect(out, contains('customSlots:'));
+        expect(out, contains('  target:'));
+        expect(
           out,
           contains(
-              "    paramDeclaration: 'required GoogleCloudSchedulerJobTarget target'"));
-      expect(out, contains("target.blockKey: TfArg.literal(target.encode())"));
-    });
+            "    paramDeclaration: 'required GoogleCloudSchedulerJobTarget target'",
+          ),
+        );
+        expect(
+          out,
+          contains("target.blockKey: TfArg.literal(target.encode())"),
+        );
+      },
+    );
   });
 }

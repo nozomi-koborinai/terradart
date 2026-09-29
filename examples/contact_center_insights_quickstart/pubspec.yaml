@@ -3,7 +3,7 @@ description: Contact Center AI Insights quickstart — analysis rule, view, and 
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

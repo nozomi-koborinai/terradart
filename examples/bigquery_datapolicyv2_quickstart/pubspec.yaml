@@ -3,7 +3,7 @@ description: BigQuery Data Policy V2 quickstart — raw-data access + masking po
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

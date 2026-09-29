@@ -19,11 +19,9 @@ import 'package:terradart_google/provider.dart';
 
 final class AppHostingStack extends Stack {
   AppHostingStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     // Service account that Cloud Build and Cloud Run execute as.
     final sa = add(
       GoogleServiceAccount(

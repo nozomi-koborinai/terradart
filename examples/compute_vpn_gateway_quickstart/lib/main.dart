@@ -22,11 +22,9 @@ import 'package:terradart_google/provider.dart';
 /// VPN gateway stack: VPC + classic / HA / external gateway shells.
 final class ComputeVpnGatewayStack extends Stack {
   ComputeVpnGatewayStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     const region = 'us-central1';
 
     final apiCompute = add(
@@ -53,10 +51,7 @@ final class ComputeVpnGatewayStack extends Stack {
         network: TfArg.ref(vpc.id),
         region: TfArg.literal(region),
         description: TfArg.literal('Classic VPN gateway shell (no tunnels)'),
-        dependsOn: [
-          ResourceDependency(apiCompute),
-          ResourceDependency(vpc),
-        ],
+        dependsOn: [ResourceDependency(apiCompute), ResourceDependency(vpc)],
       ),
     );
 
@@ -68,10 +63,7 @@ final class ComputeVpnGatewayStack extends Stack {
         region: TfArg.literal(region),
         description: TfArg.literal('HA VPN gateway shell (no tunnels)'),
         stackType: TfArg.literal(ComputeHaVpnGatewayStackType.ipv4Only),
-        dependsOn: [
-          ResourceDependency(apiCompute),
-          ResourceDependency(vpc),
-        ],
+        dependsOn: [ResourceDependency(apiCompute), ResourceDependency(vpc)],
       ),
     );
 

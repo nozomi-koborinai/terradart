@@ -12,7 +12,7 @@ ULL mirroring needs a real internal forwarding rule and zonal Network Security r
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Network Security API enabled
 

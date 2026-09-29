@@ -148,10 +148,10 @@ void main() {
       typePrefix: const AwsProviderRules().terraformTypePrefix,
     );
     String barrel(String type) => resolver.resolve(
-          terraformType: type,
-          mmProduct: null,
-          kind: WrapperOverrideKind.resource,
-        );
+      terraformType: type,
+      mmProduct: null,
+      kind: WrapperOverrideKind.resource,
+    );
 
     test('EC2 / VPC resource-named types fold into ec2', () {
       expect(

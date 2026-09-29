@@ -35,11 +35,7 @@ void main() {
       // schema_settings is a nested object — its child fields are namespaced
       // with a dot separator: 'schema_settings.encoding'.
       final c = result.fieldOverrides['schema_settings.encoding']!;
-      expect(c.enumValues, [
-        'ENCODING_UNSPECIFIED',
-        'JSON',
-        'BINARY',
-      ]);
+      expect(c.enumValues, ['ENCODING_UNSPECIFIED', 'JSON', 'BINARY']);
     });
 
     test('empty YAML produces empty overrides', () {
@@ -212,9 +208,10 @@ properties:
     });
   });
 
-  test('enumValuesByPath reaches Array item properties; fieldOverrides not',
-      () {
-    final result = const MmYamlParser().parseString('''
+  test(
+    'enumValuesByPath reaches Array item properties; fieldOverrides not',
+    () {
+      final result = const MmYamlParser().parseString('''
 properties:
   - name: mode
     type: Enum
@@ -228,10 +225,11 @@ properties:
           type: Enum
           enum_values: [ALLOW, DENY]
 ''');
-    expect(result.enumValuesByPath, {
-      'mode': ['A', 'B'],
-      'rules.action': ['ALLOW', 'DENY'],
-    });
-    expect(result.fieldOverrides.keys, ['mode']);
-  });
+      expect(result.enumValuesByPath, {
+        'mode': ['A', 'B'],
+        'rules.action': ['ALLOW', 'DENY'],
+      });
+      expect(result.fieldOverrides.keys, ['mode']);
+    },
+  );
 }

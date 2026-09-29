@@ -4,7 +4,7 @@ Demonstrates the **write-only** field pattern (`secret_data_wo` + `secret_data_w
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0 (required for write-only args)
 - A GCP project with the Secret Manager API enabled.
 

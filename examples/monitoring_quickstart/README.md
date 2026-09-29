@@ -4,7 +4,7 @@ End-to-end terradart example for a Cloud Monitoring alert policy. Provisions an 
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Cloud Monitoring API enabled and credentials configured (`gcloud auth application-default login`).
 

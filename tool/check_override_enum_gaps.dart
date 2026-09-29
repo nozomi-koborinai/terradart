@@ -24,18 +24,21 @@ final _root = Directory.current.path == '/workspace'
     ? Directory.current
     : Directory(p.join(Directory.current.path));
 
-final _schema = jsonDecode(
-  File(
-    p.join(
-      _root.path,
-      'packages/terradart_codegen/test/fixtures/wrap/source/schema.json',
-    ),
-  ).readAsStringSync(),
-) as Map<String, dynamic>;
+final _schema =
+    jsonDecode(
+          File(
+            p.join(
+              _root.path,
+              'packages/terradart_codegen/test/fixtures/wrap/source/schema.json',
+            ),
+          ).readAsStringSync(),
+        )
+        as Map<String, dynamic>;
 
-final _resources = (_schema['provider_schemas']
-        as Map<String, dynamic>)['registry.terraform.io/hashicorp/google']
-    as Map<String, dynamic>;
+final _resources =
+    (_schema['provider_schemas']
+            as Map<String, dynamic>)['registry.terraform.io/hashicorp/google']
+        as Map<String, dynamic>;
 
 final _resourceSchemas = _resources['resource_schemas'] as Map<String, dynamic>;
 
@@ -112,9 +115,7 @@ String? _generatedSource(String tfType, Map<String, dynamic> ov) {
 }
 
 Set<String> _customSlotTerraformKeys(Map<String, dynamic> ov) {
-  final slots = Map<String, dynamic>.from(
-    ov['customSlots'] as YamlMap? ?? {},
-  );
+  final slots = Map<String, dynamic>.from(ov['customSlots'] as YamlMap? ?? {});
   final keys = <String>{};
   for (final entry in slots.entries) {
     keys.add(entry.key);
@@ -255,8 +256,9 @@ void main(List<String> args) {
     final thin = _isThin(ov);
     final stringFields = _ctorStringFields(tfType, ov);
     final genTextRaw = _generatedSource(tfType, ov);
-    final genText =
-        genTextRaw == null ? null : _normalizeWhitespace(genTextRaw);
+    final genText = genTextRaw == null
+        ? null
+        : _normalizeWhitespace(genTextRaw);
 
     final attrs =
         ((schema as Map)['block'] as Map)['attributes'] as Map<String, dynamic>;
@@ -281,9 +283,7 @@ void main(List<String> args) {
 
     if (genText == null) continue;
 
-    final block = Map<String, dynamic>.from(
-      ((schema)['block'] as Map),
-    );
+    final block = Map<String, dynamic>.from(((schema)['block'] as Map));
     for (final site in _collectNestedEnumSites(block)) {
       final label = _blockPathLabel(site.blockPath, site.attr);
       final camel = _camel(site.attr);
@@ -342,8 +342,9 @@ void main(List<String> args) {
   }
   final suppressed = failing.where((g) => debt.containsKey(keyOf(g))).length;
   final effective = failing.where((g) => !debt.containsKey(keyOf(g))).toList();
-  final debtNote =
-      suppressed == 0 ? '' : '; $suppressed in tool/enum_gap_debt.yaml';
+  final debtNote = suppressed == 0
+      ? ''
+      : '; $suppressed in tool/enum_gap_debt.yaml';
 
   // `frozenByExcludeGaps` never fails, even under --strict-nested — it's a
   // maintainer's reviewed `nestedTypeExcludes` decision (recorded on the

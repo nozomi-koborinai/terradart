@@ -3,7 +3,7 @@ description: Network Services Mesh end-to-end example — global mesh plus HTTP/
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

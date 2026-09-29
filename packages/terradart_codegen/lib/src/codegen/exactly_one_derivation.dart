@@ -31,7 +31,8 @@ import 'wrapper_overrides/wrapper_override.dart';
   Map<String, WrapperOverride> overrides,
   List<String> skipped,
   List<String> skippedAtMostOne,
-}) deriveExactlyOneSlots(
+})
+deriveExactlyOneSlots(
   Map<String, WrapperOverride> overrides,
   Map<String, ResourceDef> defs, {
   required ProviderEnums providerEnums,
@@ -87,16 +88,15 @@ import 'wrapper_overrides/wrapper_override.dart';
       for (final s in unsealedNestedGroups(specs, nested)) '$type $s',
     ]);
     skippedAtMostOne.addAll([
-      for (final s
-          in unsealedNestedGroups(specs, nestedOptional, optional: true))
+      for (final s in unsealedNestedGroups(
+        specs,
+        nestedOptional,
+        optional: true,
+      ))
         '$type $s',
     ]);
   }
-  return (
-    overrides: out,
-    skipped: skipped,
-    skippedAtMostOne: skippedAtMostOne,
-  );
+  return (overrides: out, skipped: skipped, skippedAtMostOne: skippedAtMostOne);
 }
 
 WrapperOverride _derive(
@@ -222,13 +222,15 @@ WrapperOverride _derive(
     ];
     declarations
       ..writeln()
-      ..write(renderExactlyOneTypes(
-        prefix: prefix,
-        members: group,
-        where: '`$type`',
-        variants: variants,
-        optional: optional,
-      ));
+      ..write(
+        renderExactlyOneTypes(
+          prefix: prefix,
+          members: group,
+          where: '`$type`',
+          variants: variants,
+          optional: optional,
+        ),
+      );
   }
   if (taken.isEmpty) return o;
   return o.withExactlyOneSlots(

@@ -10,11 +10,9 @@ import 'package:terradart_google/provider.dart';
 
 final class DataSourceLeftoverStack extends Stack {
   DataSourceLeftoverStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     // Dummy ids only — this stack is never applied.
     const leftover = 'terradart-leftover';
     final saEmail = 'terradart@$projectId.iam.gserviceaccount.com';
@@ -115,11 +113,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleAlloydbLocations(
-        localName: 'alloydb_locations',
-      ),
-    );
+    addData(DataGoogleAlloydbLocations(localName: 'alloydb_locations'));
 
     addData(
       DataGoogleAlloydbSupportedDatabaseFlags(
@@ -513,11 +507,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleBigqueryDatasets(
-        localName: 'bigquery_datasets',
-      ),
-    );
+    addData(DataGoogleBigqueryDatasets(localName: 'bigquery_datasets'));
 
     addData(
       DataGoogleBigqueryDefaultServiceAccount(
@@ -571,11 +561,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleBillingAccount(
-        localName: 'billing_account',
-      ),
-    );
+    addData(DataGoogleBillingAccount(localName: 'billing_account'));
 
     addData(
       DataGoogleBillingAccountIamPolicy(
@@ -612,16 +598,10 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleClientConfig(
-        localName: 'client_config',
-      ),
-    );
+    addData(DataGoogleClientConfig(localName: 'client_config'));
 
     addData(
-      DataGoogleClientOpenidUserinfo(
-        localName: 'client_openid_userinfo',
-      ),
+      DataGoogleClientOpenidUserinfo(localName: 'client_openid_userinfo'),
     );
 
     addData(
@@ -660,9 +640,7 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
-      DataGoogleCloudIdentityPolicies(
-        localName: 'cloud_identity_policies',
-      ),
+      DataGoogleCloudIdentityPolicies(localName: 'cloud_identity_policies'),
     );
 
     addData(
@@ -689,11 +667,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleCloudRunLocations(
-        localName: 'cloud_run_locations',
-      ),
-    );
+    addData(DataGoogleCloudRunLocations(localName: 'cloud_run_locations'));
 
     addData(
       DataGoogleCloudRunService(
@@ -839,9 +813,7 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
-      DataGoogleComposerImageVersions(
-        localName: 'composer_image_versions',
-      ),
+      DataGoogleComposerImageVersions(localName: 'composer_image_versions'),
     );
 
     addData(
@@ -867,11 +839,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleComputeAddresses(
-        localName: 'compute_addresses',
-      ),
-    );
+    addData(DataGoogleComputeAddresses(localName: 'compute_addresses'));
 
     addData(
       DataGoogleComputeBackendBucket(
@@ -922,9 +890,7 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
-      DataGoogleComputeForwardingRules(
-        localName: 'compute_forwarding_rules',
-      ),
+      DataGoogleComputeForwardingRules(localName: 'compute_forwarding_rules'),
     );
 
     addData(
@@ -969,22 +935,12 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleComputeImages(
-        localName: 'compute_images',
-      ),
-    );
+    addData(DataGoogleComputeImages(localName: 'compute_images'));
+
+    addData(DataGoogleComputeInstance(localName: 'compute_instance'));
 
     addData(
-      DataGoogleComputeInstance(
-        localName: 'compute_instance',
-      ),
-    );
-
-    addData(
-      DataGoogleComputeInstanceGroup(
-        localName: 'compute_instance_group',
-      ),
+      DataGoogleComputeInstanceGroup(localName: 'compute_instance_group'),
     );
 
     addData(
@@ -994,9 +950,7 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
-      DataGoogleComputeInstanceGroups(
-        localName: 'compute_instance_groups',
-      ),
+      DataGoogleComputeInstanceGroups(localName: 'compute_instance_groups'),
     );
 
     addData(
@@ -1055,23 +1009,11 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleComputeLbIpRanges(
-        localName: 'compute_lb_ip_ranges',
-      ),
-    );
+    addData(DataGoogleComputeLbIpRanges(localName: 'compute_lb_ip_ranges'));
 
-    addData(
-      DataGoogleComputeMachineTypes(
-        localName: 'compute_machine_types',
-      ),
-    );
+    addData(DataGoogleComputeMachineTypes(localName: 'compute_machine_types'));
 
-    addData(
-      DataGoogleComputeNetwork(
-        localName: 'compute_network',
-      ),
-    );
+    addData(DataGoogleComputeNetwork(localName: 'compute_network'));
 
     addData(
       DataGoogleComputeNetworkAttachment(
@@ -1108,17 +1050,9 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleComputeNetworks(
-        localName: 'compute_networks',
-      ),
-    );
+    addData(DataGoogleComputeNetworks(localName: 'compute_networks'));
 
-    addData(
-      DataGoogleComputeNodeTypes(
-        localName: 'compute_node_types',
-      ),
-    );
+    addData(DataGoogleComputeNodeTypes(localName: 'compute_node_types'));
 
     addData(
       DataGoogleComputeRegionBackendService(
@@ -1215,11 +1149,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleComputeRegions(
-        localName: 'compute_regions',
-      ),
-    );
+    addData(DataGoogleComputeRegions(localName: 'compute_regions'));
 
     addData(
       DataGoogleComputeReservation(
@@ -1276,16 +1206,10 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleComputeRouters(
-        localName: 'compute_routers',
-      ),
-    );
+    addData(DataGoogleComputeRouters(localName: 'compute_routers'));
 
     addData(
-      DataGoogleComputeSecurityPolicy(
-        localName: 'compute_security_policy',
-      ),
+      DataGoogleComputeSecurityPolicy(localName: 'compute_security_policy'),
     );
 
     addData(
@@ -1346,11 +1270,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleComputeSubnetwork(
-        localName: 'compute_subnetwork',
-      ),
-    );
+    addData(DataGoogleComputeSubnetwork(localName: 'compute_subnetwork'));
 
     addData(
       DataGoogleComputeSubnetworkIamPolicy(
@@ -1359,11 +1279,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleComputeSubnetworks(
-        localName: 'compute_subnetworks',
-      ),
-    );
+    addData(DataGoogleComputeSubnetworks(localName: 'compute_subnetworks'));
 
     addData(
       DataGoogleComputeTargetHttpProxy(
@@ -1386,11 +1302,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleComputeZones(
-        localName: 'compute_zones',
-      ),
-    );
+    addData(DataGoogleComputeZones(localName: 'compute_zones'));
 
     addData(
       DataGoogleContainerAnalysisNoteIamPolicy(
@@ -1418,15 +1330,11 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
-      DataGoogleContainerAwsVersions(
-        localName: 'container_aws_versions',
-      ),
+      DataGoogleContainerAwsVersions(localName: 'container_aws_versions'),
     );
 
     addData(
-      DataGoogleContainerAzureVersions(
-        localName: 'container_azure_versions',
-      ),
+      DataGoogleContainerAzureVersions(localName: 'container_azure_versions'),
     );
 
     addData(
@@ -1437,9 +1345,7 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
-      DataGoogleContainerEngineVersions(
-        localName: 'container_engine_versions',
-      ),
+      DataGoogleContainerEngineVersions(localName: 'container_engine_versions'),
     );
 
     addData(
@@ -1696,11 +1602,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleDnsManagedZones(
-        localName: 'dns_managed_zones',
-      ),
-    );
+    addData(DataGoogleDnsManagedZones(localName: 'dns_managed_zones'));
 
     addData(
       DataGoogleDnsRecordSet(
@@ -1750,10 +1652,7 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
-      DataGoogleFolder(
-        localName: 'folder',
-        folder: TfArg.literal(leftover),
-      ),
+      DataGoogleFolder(localName: 'folder', folder: TfArg.literal(leftover)),
     );
 
     addData(
@@ -1882,17 +1781,10 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleIamPolicy(
-        localName: 'iam_policy',
-      ),
-    );
+    addData(DataGoogleIamPolicy(localName: 'iam_policy'));
 
     addData(
-      DataGoogleIamRole(
-        localName: 'iam_role',
-        name: TfArg.literal(leftover),
-      ),
+      DataGoogleIamRole(localName: 'iam_role', name: TfArg.literal(leftover)),
     );
 
     addData(
@@ -1990,11 +1882,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleIapTunnelIamPolicy(
-        localName: 'iap_tunnel_iam_policy',
-      ),
-    );
+    addData(DataGoogleIapTunnelIamPolicy(localName: 'iap_tunnel_iam_policy'));
 
     addData(
       DataGoogleIapTunnelInstanceIamPolicy(
@@ -2024,11 +1912,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleIapWebIamPolicy(
-        localName: 'iap_web_iam_policy',
-      ),
-    );
+    addData(DataGoogleIapWebIamPolicy(localName: 'iap_web_iam_policy'));
 
     addData(
       DataGoogleIapWebRegionBackendServiceIamPolicy(
@@ -2298,11 +2182,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleNetblockIpRanges(
-        localName: 'netblock_ip_ranges',
-      ),
-    );
+    addData(DataGoogleNetblockIpRanges(localName: 'netblock_ip_ranges'));
 
     addData(
       DataGoogleNetworkConnectivityHubIamPolicy(
@@ -2459,11 +2339,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleOrganization(
-        localName: 'organization',
-      ),
-    );
+    addData(DataGoogleOrganization(localName: 'organization'));
 
     addData(
       DataGoogleOrganizationIamCustomRole(
@@ -2486,11 +2362,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleOrganizations(
-        localName: 'organizations',
-      ),
-    );
+    addData(DataGoogleOrganizations(localName: 'organizations'));
 
     addData(
       DataGoogleParameterManagerParameter(
@@ -2578,17 +2450,9 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      GoogleProject(
-        localName: 'project',
-      ),
-    );
+    addData(GoogleProject(localName: 'project'));
 
-    addData(
-      DataGoogleProjectAncestry(
-        localName: 'project_ancestry',
-      ),
-    );
+    addData(DataGoogleProjectAncestry(localName: 'project_ancestry'));
 
     addData(
       DataGoogleProjectIamCustomRole(
@@ -2598,9 +2462,7 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
-      DataGoogleProjectIamCustomRoles(
-        localName: 'project_iam_custom_roles',
-      ),
+      DataGoogleProjectIamCustomRoles(localName: 'project_iam_custom_roles'),
     );
 
     addData(
@@ -2762,9 +2624,7 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
-      DataGoogleSecretManagerSecrets(
-        localName: 'secret_manager_secrets',
-      ),
+      DataGoogleSecretManagerSecrets(localName: 'secret_manager_secrets'),
     );
 
     addData(
@@ -2825,11 +2685,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleServiceAccounts(
-        localName: 'service_accounts',
-      ),
-    );
+    addData(DataGoogleServiceAccounts(localName: 'service_accounts'));
 
     addData(
       DataGoogleServiceDirectoryNamespaceIamPolicy(
@@ -2945,9 +2801,7 @@ final class DataSourceLeftoverStack extends Stack {
     );
 
     addData(
-      DataGoogleSqlDatabaseInstances(
-        localName: 'sql_database_instances',
-      ),
+      DataGoogleSqlDatabaseInstances(localName: 'sql_database_instances'),
     );
 
     addData(
@@ -2957,11 +2811,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleSqlTiers(
-        localName: 'sql_tiers',
-      ),
-    );
+    addData(DataGoogleSqlTiers(localName: 'sql_tiers'));
 
     addData(
       DataGoogleStorageBucket(
@@ -2977,11 +2827,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleStorageBucketObject(
-        localName: 'storage_bucket_object',
-      ),
-    );
+    addData(DataGoogleStorageBucketObject(localName: 'storage_bucket_object'));
 
     addData(
       DataGoogleStorageBucketObjectContent(
@@ -3005,11 +2851,7 @@ final class DataSourceLeftoverStack extends Stack {
       ),
     );
 
-    addData(
-      DataGoogleStorageBuckets(
-        localName: 'storage_buckets',
-      ),
-    );
+    addData(DataGoogleStorageBuckets(localName: 'storage_buckets'));
 
     addData(
       DataGoogleStorageControlFolderIntelligenceConfig(

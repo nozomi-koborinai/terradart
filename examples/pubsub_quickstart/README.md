@@ -4,7 +4,7 @@ The smallest end-to-end terradart example. Provisions a `google_pubsub_topic`, a
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Pub/Sub API enabled and credentials configured (`gcloud auth application-default login`).
 

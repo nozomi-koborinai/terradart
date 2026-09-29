@@ -50,10 +50,7 @@ void main() {
         _googleProject,
         providerSource: 'hashicorp/google',
       );
-      expect(
-        out,
-        contains('final class GoogleProject extends Data {'),
-      );
+      expect(out, contains('final class GoogleProject extends Data {'));
     });
 
     // L2b-2 — Level A byte-identical: the full production override (sourced
@@ -65,37 +62,37 @@ void main() {
     // This is the make-or-break check for the data source emitter. The
     // golden is the source of truth: if formatted output diverges, the
     // emitter is wrong, not the golden.
-    test('L2b-2 Level A: production yaml emit matches golden byte-for-byte',
-        () {
-      final overrides = loadWrapperOverrides(
-        rootDir: 'lib/src/codegen/wrapper_overrides/yaml',
-      ).dataSources;
-      final emitter = DataSourceWrapperEmitter(overrides: overrides);
-      final raw = emitter.emit(
-        _googleProject,
-        providerSource: 'hashicorp/google',
-      );
-      final formatter = DartFormatter(
-        languageVersion: DartFormatter.latestLanguageVersion,
-      );
-      final String formatted;
-      try {
-        formatted = formatter.format(raw);
-      } on FormatterException catch (e) {
-        fail(
-          'Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw',
+    test(
+      'L2b-2 Level A: production yaml emit matches golden byte-for-byte',
+      () {
+        final overrides = loadWrapperOverrides(
+          rootDir: 'lib/src/codegen/wrapper_overrides/yaml',
+        ).dataSources;
+        final emitter = DataSourceWrapperEmitter(overrides: overrides);
+        final raw = emitter.emit(
+          _googleProject,
+          providerSource: 'hashicorp/google',
         );
-      }
-      // The golden carries the 2-line `// GENERATED FILE` header that the
-      // wrap pipeline prepends to every emitted file. The emitter itself
-      // doesn't emit that header (the pipeline does), so we prepend
-      // before comparing.
-      final actual = '$generatedFileHeader$formatted';
-      final expected = File(
-        'test/golden/google_project.factory.expected.dart.golden',
-      ).readAsStringSync();
-      expect(actual, equals(expected));
-    });
+        final formatter = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        );
+        final String formatted;
+        try {
+          formatted = formatter.format(raw);
+        } on FormatterException catch (e) {
+          fail('Emitter output does not parse as Dart:\n$e\n--- raw ---\n$raw');
+        }
+        // The golden carries the 2-line `// GENERATED FILE` header that the
+        // wrap pipeline prepends to every emitted file. The emitter itself
+        // doesn't emit that header (the pipeline does), so we prepend
+        // before comparing.
+        final actual = '$generatedFileHeader$formatted';
+        final expected = File(
+          'test/golden/google_project.factory.expected.dart.golden',
+        ).readAsStringSync();
+        expect(actual, equals(expected));
+      },
+    );
 
     // L2b-3 — extraGetters axis is honored.
     //

@@ -38,12 +38,13 @@ List<({String dartType, String name})> _requiredCtorParams(String ctor) {
 
 void main() {
   final catalogued = catalogClassNames('packages/terradart_google/lib/src');
-  final files = Directory(_dataDir)
-      .listSync()
-      .whereType<File>()
-      .where((f) => f.path.endsWith('.dart'))
-      .toList()
-    ..sort((a, b) => a.path.compareTo(b.path));
+  final files =
+      Directory(_dataDir)
+          .listSync()
+          .whereType<File>()
+          .where((f) => f.path.endsWith('.dart'))
+          .toList()
+        ..sort((a, b) => a.path.compareTo(b.path));
 
   final calls = <String>[];
   final usedLocal = <String>{};

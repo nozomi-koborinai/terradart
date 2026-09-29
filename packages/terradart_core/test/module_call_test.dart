@@ -46,14 +46,8 @@ void main() {
         providers: const {'google': 'google.eu'},
       );
       inputs['account_id'] = const TfArgLiteral<String>('b');
-      expect(
-        (call.inputs['account_id']! as TfArgLiteral).value,
-        equals('a'),
-      );
-      expect(
-        () => call.providers['google'] = 'google',
-        throwsUnsupportedError,
-      );
+      expect((call.inputs['account_id']! as TfArgLiteral).value, equals('a'));
+      expect(() => call.providers['google'] = 'google', throwsUnsupportedError);
     });
 
     test('an empty localName or source is refused', () {
@@ -85,12 +79,8 @@ void main() {
   group('Stack.addModule', () {
     test('registers in order and returns the same instance', () {
       final stack = TestStack(providers: const [google]);
-      final a = stack.addModule(
-        ModuleCall(localName: 'a', source: './a'),
-      );
-      final b = stack.addModule(
-        ModuleCall(localName: 'b', source: './b'),
-      );
+      final a = stack.addModule(ModuleCall(localName: 'a', source: './a'));
+      final b = stack.addModule(ModuleCall(localName: 'b', source: './b'));
       expect(stack.modules, equals([a, b]));
       expect(identical(stack.modules.first, a), isTrue);
     });
@@ -241,13 +231,8 @@ void main() {
       );
       final stack = TestStack(providers: const [google])
         ..add(topic)
-        ..addModule(
-          ModuleCall(localName: 'events', source: './modules/events'),
-        )
-        ..addMoved(
-          'google_pubsub_topic.legacy',
-          'google_pubsub_topic.orders',
-        );
+        ..addModule(ModuleCall(localName: 'events', source: './modules/events'))
+        ..addMoved('google_pubsub_topic.legacy', 'google_pubsub_topic.orders');
       expect(
         stack.synth().tfJson.keys.toList(),
         equals(['terraform', 'resource', 'module', 'moved']),

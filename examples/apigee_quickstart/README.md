@@ -13,7 +13,7 @@ To apply this stack you need an existing Apigee organization (`organizations/{or
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Apigee API enabled
 - An **existing** Apigee organization (`organizations/{org_name}`) — Terraform cannot create the org in this example

@@ -22,7 +22,9 @@ files:
       expect(m.upstreamBranch, 'main');
       expect(m.files.length, 2);
       expect(
-          m.files['google_kms_crypto_key'], 'mmv1/products/kms/CryptoKey.yaml');
+        m.files['google_kms_crypto_key'],
+        'mmv1/products/kms/CryptoKey.yaml',
+      );
       expect(m.files['google_synthetic'], isNull);
     });
 
@@ -63,11 +65,7 @@ files:
       final m = Manifest(
         upstreamRepo: 'x/y',
         upstreamBranch: 'main',
-        files: {
-          'a': 'pathA',
-          'b': null,
-          'c': 'pathC',
-        },
+        files: {'a': 'pathA', 'b': null, 'c': 'pathC'},
       );
       expect(m.realFileCount, 2);
     });
@@ -96,7 +94,9 @@ files: {}
       final m = pinned();
       expect(m.upstreamBranch, isNull);
       expect(
-          m.providerPin!.providerRepo, 'hashicorp/terraform-provider-google');
+        m.providerPin!.providerRepo,
+        'hashicorp/terraform-provider-google',
+      );
       expect(m.providerPin!.refFile, '${tmp.path}/mm_upstream_ref.txt');
       expect(
         m.urlFor('mmv1/products/kms/CryptoKey.yaml', ref: sha),
@@ -153,28 +153,30 @@ files: {}
       expect(
         resolveUpstreamRef(
           pinned(),
-          commitMessages: (_, __) async => ['Update CHANGELOG'],
+          commitMessages: (_, _) async => ['Update CHANGELOG'],
         ),
         throwsStateError,
       );
     });
 
-    test('--ref overrides the pin; an unpinned manifest reads its branch',
-        () async {
-      expect(
-        await resolveUpstreamRef(
-          pinned(),
-          override: 'main',
-          commitMessages: (_, __) => fail('must not look up the tag'),
-        ),
-        'main',
-      );
-      final branch = parseManifest(
-        'upstream_repo: x/y\nupstream_branch: main\nfiles: {}\n',
-      );
-      expect(await resolveUpstreamRef(branch), 'main');
-      expect(recordedUpstreamRef(branch), 'main');
-    });
+    test(
+      '--ref overrides the pin; an unpinned manifest reads its branch',
+      () async {
+        expect(
+          await resolveUpstreamRef(
+            pinned(),
+            override: 'main',
+            commitMessages: (_, _) => fail('must not look up the tag'),
+          ),
+          'main',
+        );
+        final branch = parseManifest(
+          'upstream_repo: x/y\nupstream_branch: main\nfiles: {}\n',
+        );
+        expect(await resolveUpstreamRef(branch), 'main');
+        expect(recordedUpstreamRef(branch), 'main');
+      },
+    );
 
     test('recordedUpstreamRef reads the ref file the sync wrote', () {
       final m = pinned();

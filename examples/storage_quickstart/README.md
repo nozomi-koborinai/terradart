@@ -8,7 +8,7 @@ The bucket objects upload local files (`config/app.json`, `legacy/readme.txt`) t
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Cloud Storage API enabled and credentials configured (`gcloud auth application-default login`).
 

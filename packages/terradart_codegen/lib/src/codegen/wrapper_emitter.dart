@@ -98,8 +98,8 @@ class WrapperEmitter {
     ); // _googlePubsubTopicSensitive
 
     final override = overrides[def.terraformType];
-    final requiredOverrides =
-        (override?.requiredParams ?? const <String>[]).toSet();
+    final requiredOverrides = (override?.requiredParams ?? const <String>[])
+        .toSet();
     // Hoisted ahead of its historical position (immediately before the
     // constructor section) because the `deriveNestedTypes` gate below needs
     // `customSlotKeys` before it renders the prelude section — customSlots
@@ -111,8 +111,8 @@ class WrapperEmitter {
             resourceBlock: _requireRawSchema(def.terraformType),
             resourcePrefix: shortResourcePascal(def.terraformType),
             customSlotKeys: customSlots.keys.toSet(),
-            excludedPaths:
-                (override?.nestedTypeExcludes ?? const <String>[]).toSet(),
+            excludedPaths: (override?.nestedTypeExcludes ?? const <String>[])
+                .toSet(),
             shareIdenticalShapes: override?.dedupeNestedTypes ?? false,
             enumValues: providerEnums.resolver(def.terraformType),
             exactlyOneGroups: providerEnums.nestedExactlyOneGroups(
@@ -136,7 +136,8 @@ class WrapperEmitter {
     // `package:terradart_annotations` import (package deleted). Only
     // `package:terradart_core` + override-supplied `extraImports`.
     final extraImports = override?.extraImports ?? const <String>[];
-    final needsMeta = nestedTypeSpecs.isNotEmpty &&
+    final needsMeta =
+        nestedTypeSpecs.isNotEmpty &&
         !extraImports.any((i) => i.contains('package:meta/meta.dart'));
     if (needsMeta) {
       buf.writeln("import 'package:meta/meta.dart';");
@@ -163,8 +164,7 @@ class WrapperEmitter {
     final mergedExtras = <String>{
       ...?extraSensitiveFields,
       ...?override?.extraSensitiveFields,
-    }.toList()
-      ..sort();
+    }.toList()..sort();
     buf.writeln(
       emitFilePrivateSensitiveSet(
         def,
@@ -206,10 +206,12 @@ class WrapperEmitter {
     }
 
     if (nestedTypeSpecs.isNotEmpty) {
-      buf.write(renderNestedTypes(
-        nestedTypeSpecs,
-        resourceTerraformType: def.terraformType,
-      ));
+      buf.write(
+        renderNestedTypes(
+          nestedTypeSpecs,
+          resourceTerraformType: def.terraformType,
+        ),
+      );
       buf.writeln();
     }
 
@@ -253,8 +255,11 @@ class WrapperEmitter {
       dartTypeOverrides,
       deprecations,
     );
-    final argMapByName =
-        _argMapEntriesByName(def, requiredOverrides, dartTypeOverrides);
+    final argMapByName = _argMapEntriesByName(
+      def,
+      requiredOverrides,
+      dartTypeOverrides,
+    );
     for (final entry in customSlots.entries) {
       paramsByName[entry.key] = entry.value.paramDeclaration;
       argMapByName[entry.key] = entry.value.argMapEntry;
@@ -334,8 +339,9 @@ class WrapperEmitter {
     // schema exposes a top-level `deletion_protection` attribute, indicating
     // the Terraform provider honours the soft-delete guard at runtime. The
     // base class defaults to `false`; this override opts the wrapper in.
-    final hasDeletionProtection =
-        def.root.attributes.any((a) => a.name == 'deletion_protection');
+    final hasDeletionProtection = def.root.attributes.any(
+      (a) => a.name == 'deletion_protection',
+    );
     if (hasDeletionProtection) {
       buf.writeln();
       buf.writeln('  @override');
@@ -384,10 +390,9 @@ class WrapperEmitter {
   /// instead of colliding with it.
   static Set<String> _extraGetterNames(String? extraGetters) {
     if (extraGetters == null) return const {};
-    return RegExp(r'\bget (\w+)')
-        .allMatches(extraGetters)
-        .map((m) => m.group(1)!)
-        .toSet();
+    return RegExp(
+      r'\bget (\w+)',
+    ).allMatches(extraGetters).map((m) => m.group(1)!).toSet();
   }
 
   // ---------------------------------------------------------------------
@@ -424,7 +429,8 @@ class WrapperEmitter {
     }
     for (final nested in def.root.nestedBlocks) {
       if (skipNestedBlock(nested)) continue;
-      final isRequired = nested.constraints.required ||
+      final isRequired =
+          nested.constraints.required ||
           requiredOverrides.contains(nested.name);
       out[nested.name] = _nestedBlockParam(nested, isRequired: isRequired);
     }
@@ -449,7 +455,8 @@ class WrapperEmitter {
     }
     for (final nested in def.root.nestedBlocks) {
       if (skipNestedBlock(nested)) continue;
-      final isRequired = nested.constraints.required ||
+      final isRequired =
+          nested.constraints.required ||
           requiredOverrides.contains(nested.name);
       out[nested.name] = _argMapEntry(nested.name, isRequired);
     }
@@ -484,10 +491,7 @@ class WrapperEmitter {
   /// Renders `[required] TfArg<Map|List<Map>>[?] camelName` for a nested
   /// block, collapsing object-valued nestings ([nestedBlockIsObject]) to
   /// `Map<String, dynamic>` and the rest to `List<Map<String, dynamic>>`.
-  String _nestedBlockParam(
-    NestedBlockDef nested, {
-    required bool isRequired,
-  }) {
+  String _nestedBlockParam(NestedBlockDef nested, {required bool isRequired}) {
     final dartName = snakeToDartIdent(nested.name);
     final innerType = nestedBlockIsObject(nested)
         ? 'Map<String, dynamic>'
@@ -535,8 +539,7 @@ class WrapperEmitter {
   ({String param, String argMapEntry}) _nestedTypeSlot(
     NestedBlockSpec spec, {
     required bool isRequired,
-  }) =>
-      nestedTypeConstructorSlot(spec, isRequired: isRequired);
+  }) => nestedTypeConstructorSlot(spec, isRequired: isRequired);
 
   /// Looks up [terraformType]'s raw provider-schema `block` map in
   /// [rawResourceSchemas], failing loudly when it's missing — this only

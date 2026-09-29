@@ -16,11 +16,9 @@ import 'package:terradart_google/spanner.dart';
 /// Spanner stack: user-managed instance config only (no instance).
 final class SpannerInstanceConfigStack extends Stack {
   SpannerInstanceConfigStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiSpanner = add(
       GoogleProjectService(
         localName: 'api_spanner',

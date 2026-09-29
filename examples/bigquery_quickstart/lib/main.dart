@@ -23,10 +23,7 @@ import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 
-String _iamPolicyDataJson({
-  required String role,
-  required String member,
-}) {
+String _iamPolicyDataJson({required String role, required String member}) {
   return jsonEncode({
     'bindings': [
       {
@@ -39,11 +36,11 @@ String _iamPolicyDataJson({
 
 final class AnalyticsStack extends Stack {
   AnalyticsStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+      ) {
     // The dataset's legacy ACL (below) grants a real in-stack identity, so
     // `terraform apply` validates the principal exists. Declared ahead of the
     // dataset so the access entry can reference the SA's email.
@@ -148,8 +145,9 @@ final class AnalyticsStack extends Stack {
         localName: 'email_mask',
         location: TfArg.literal('asia-northeast1'),
         dataPolicyId: TfArg.literal('mask-email'),
-        dataPolicyType:
-            TfArg.literal(BigqueryDatapolicyDataPolicyType.dataMaskingPolicy),
+        dataPolicyType: TfArg.literal(
+          BigqueryDatapolicyDataPolicyType.dataMaskingPolicy,
+        ),
         dataMaskingPolicy: const BigqueryDatapolicyDataPolicyDataMaskingPolicy(
           predefinedExpression:
               BigqueryDatapolicyDataPolicyPredefinedExpression.emailMask,
@@ -254,10 +252,7 @@ final class AnalyticsStack extends Stack {
         destinationDataset: TfArg.literal({
           'location': 'asia-northeast1',
           'dataset_reference': [
-            {
-              'dataset_id': 'analytics_prod',
-              'project_id': projectId,
-            },
+            {'dataset_id': 'analytics_prod', 'project_id': projectId},
           ],
         }),
       ),
@@ -398,8 +393,9 @@ final class AnalyticsStack extends Stack {
         localName: 'project_writers_reader',
         datasetId: TfArg.ref(dataset.datasetIdRef),
         role: TfArg.literal('READER'),
-        specialGroup:
-            TfArg.literal(BigqueryDatasetAccessPredefinedGroup.projectWriters),
+        specialGroup: TfArg.literal(
+          BigqueryDatasetAccessPredefinedGroup.projectWriters,
+        ),
         dependsOn: [ResourceDependency(dataset)],
       ),
     );

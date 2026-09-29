@@ -58,9 +58,9 @@ class EnumExtractor {
   static final RegExp _escape = RegExp(r'\\(.)');
 
   static String _unescape(String body) => body.replaceAllMapped(
-        _escape,
-        (m) => m.group(1) == 'n' ? '\n' : m.group(1)!,
-      );
+    _escape,
+    (m) => m.group(1) == 'n' ? '\n' : m.group(1)!,
+  );
 
   List<EmittedEnum> extract(String dartSource) {
     final result = <EmittedEnum>[];

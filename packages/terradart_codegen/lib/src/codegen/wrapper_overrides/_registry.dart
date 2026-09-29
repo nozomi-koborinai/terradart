@@ -19,9 +19,6 @@ import 'yaml_loader.dart';
 /// opened — useful when one of them carries an unstripped wrap-promote
 /// marker block that would otherwise abort the full-registry load with a
 /// `Duplicate mapping key` parse error.
-LoadedOverrides loadWrapperOverrides({
-  required String rootDir,
-  String? only,
-}) {
+LoadedOverrides loadWrapperOverrides({required String rootDir, String? only}) {
   return YamlOverrideLoader(rootDir: rootDir).load(only: only);
 }

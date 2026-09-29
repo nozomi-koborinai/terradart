@@ -20,11 +20,9 @@ import 'package:terradart_google/provider.dart';
 /// WIF trust-domain stack: pool + namespace + managed identity.
 final class WifTrustDomainStack extends Stack {
   WifTrustDomainStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     const poolId = 'terradart-trust';
     const namespaceId = 'terradart-apps';
     const identityId = 'terradart-runner';

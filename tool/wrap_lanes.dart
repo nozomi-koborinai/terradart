@@ -89,11 +89,11 @@ class WrapLane {
   /// The migration manifest is absent until the lane's first wrap, so it is
   /// left to `wrap --check` to report.
   Map<String, String> get requiredPaths => {
-        'schemaDir': schemaDir,
-        'outputPackage': outputPackage,
-        'overridesRoot': overridesRoot,
-        'barrelsManifest': barrelsManifest,
-      };
+    'schemaDir': schemaDir,
+    'outputPackage': outputPackage,
+    'overridesRoot': overridesRoot,
+    'barrelsManifest': barrelsManifest,
+  };
 }
 
 enum WrapGate {
@@ -110,35 +110,35 @@ enum WrapGate {
     String rel(String repoPath) => p.relative(repoPath, from: codegenDir);
     return switch (this) {
       WrapGate.wrap || WrapGate.regen => [
-          'wrap',
-          '--provider',
-          lane.source,
-          '--source',
-          rel(lane.schemaDir),
-          '--output',
-          rel(p.join(lane.outputPackage, 'lib', 'src')),
-          '--overrides-root',
-          rel(lane.overridesRoot),
-          '--barrels-manifest',
-          rel(lane.barrelsManifest),
-          if (lane.resourceProvider case final provider?) ...[
-            '--resource-provider',
-            provider,
-          ],
-          if (lane.providerEnums) '--provider-enums',
-          if (lane.mmHints) '--mm-hints',
-          '--migrate-manifest',
-          rel(lane.migrateManifest),
-          if (this == WrapGate.wrap) '--check',
+        'wrap',
+        '--provider',
+        lane.source,
+        '--source',
+        rel(lane.schemaDir),
+        '--output',
+        rel(p.join(lane.outputPackage, 'lib', 'src')),
+        '--overrides-root',
+        rel(lane.overridesRoot),
+        '--barrels-manifest',
+        rel(lane.barrelsManifest),
+        if (lane.resourceProvider case final provider?) ...[
+          '--resource-provider',
+          provider,
         ],
+        if (lane.providerEnums) '--provider-enums',
+        if (lane.mmHints) '--mm-hints',
+        '--migrate-manifest',
+        rel(lane.migrateManifest),
+        if (this == WrapGate.wrap) '--check',
+      ],
       // wrap reads MM YAML from <schemaDir>/mm; lint reads the same place.
       WrapGate.lint => [
-          'lint-override',
-          '--dir',
-          rel(lane.overridesRoot),
-          '--mm-dir',
-          rel(p.join(lane.schemaDir, 'mm')),
-        ],
+        'lint-override',
+        '--dir',
+        rel(lane.overridesRoot),
+        '--mm-dir',
+        rel(p.join(lane.schemaDir, 'mm')),
+      ],
     };
   }
 }
@@ -189,9 +189,9 @@ WrapLane _parseLane(String name, Object? entry) {
     case null:
       break;
     case {
-        'providerRepo': final String providerRepo,
-        'servicesDir': final String servicesDir,
-      }:
+      'providerRepo': final String providerRepo,
+      'servicesDir': final String servicesDir,
+    }:
       mmSync = (providerRepo: providerRepo, servicesDir: servicesDir);
     default:
       throw FormatException(
@@ -244,12 +244,13 @@ List<String> staleMmSync(String schemaDir) {
   if (doc is! YamlMap || doc['files'] is! YamlMap) {
     return ['$mmSourcesFile is malformed'];
   }
-  final version =
-      File(p.join(schemaDir, 'provider_version.txt')).readAsStringSync().trim();
+  final version = File(
+    p.join(schemaDir, 'provider_version.txt'),
+  ).readAsStringSync().trim();
   final recorded = '${doc['provider_version']}';
-  final schema = jsonDecode(
-    File(p.join(schemaDir, 'schema.json')).readAsStringSync(),
-  ) as Map<String, dynamic>;
+  final schema =
+      jsonDecode(File(p.join(schemaDir, 'schema.json')).readAsStringSync())
+          as Map<String, dynamic>;
   final resources = <String>{
     for (final provider
         in (schema['provider_schemas'] as Map<String, dynamic>).values)
@@ -273,13 +274,12 @@ List<String> staleMmSync(String schemaDir) {
 /// `lane <name>: missing <field> <path>` for every required path that does
 /// not exist under [repoRoot].
 List<String> missingLanePaths(List<WrapLane> lanes, String repoRoot) => [
-      for (final lane in lanes)
-        for (final MapEntry(key: field, value: path)
-            in lane.requiredPaths.entries)
-          if (FileSystemEntity.typeSync(p.join(repoRoot, path)) ==
-              FileSystemEntityType.notFound)
-            'lane ${lane.name}: missing $field $path',
-    ];
+  for (final lane in lanes)
+    for (final MapEntry(key: field, value: path) in lane.requiredPaths.entries)
+      if (FileSystemEntity.typeSync(p.join(repoRoot, path)) ==
+          FileSystemEntityType.notFound)
+        'lane ${lane.name}: missing $field $path',
+];
 
 /// `<ledger>: <entry> names no override in any lane` for every entry of
 /// [ledgers] (repo-relative ledger path to its entry names) outside
@@ -288,13 +288,12 @@ List<String> missingLanePaths(List<WrapLane> lanes, String repoRoot) => [
 List<String> unownedLedgerEntries(
   Map<String, Iterable<String>> ledgers,
   Set<String> overrideNames,
-) =>
-    [
-      for (final MapEntry(key: ledger, value: entries) in ledgers.entries)
-        for (final entry in entries)
-          if (!overrideNames.contains(entry))
-            '$ledger: $entry names no override in any lane',
-    ];
+) => [
+  for (final MapEntry(key: ledger, value: entries) in ledgers.entries)
+    for (final entry in entries)
+      if (!overrideNames.contains(entry))
+        '$ledger: $entry names no override in any lane',
+];
 
 /// Ledger failures across every lane in [lanes]: a lane whose overrides
 /// root does not resolve the shared ledgers under `<repoRoot>/tool`, and
@@ -310,32 +309,32 @@ List<String> ledgerOwnershipFailures(List<WrapLane> lanes, String repoRoot) {
   ];
   final names = <String>{
     for (final lane in lanes)
-      ...loadWrapperOverrides(rootDir: p.join(repoRoot, lane.overridesRoot))
-          .asLintMap()
-          .keys,
+      ...loadWrapperOverrides(
+        rootDir: p.join(repoRoot, lane.overridesRoot),
+      ).asLintMap().keys,
   };
   return [
     ...failures,
-    ...unownedLedgerEntries(
-      {
-        for (final file in lintDebtLedgerFileNames)
-          'tool/$file': loadLintDebtLedger(p.join(toolDir, file)).keys,
-      },
-      names,
-    ),
+    ...unownedLedgerEntries({
+      for (final file in lintDebtLedgerFileNames)
+        'tool/$file': loadLintDebtLedger(p.join(toolDir, file)).keys,
+    }, names),
   ];
 }
 
 Future<int> _reextractHints(WrapLane lane, String repoRoot) async {
   final repo = lane.hintsRepo;
   if (repo == null) {
-    print('wrap_lanes: lane ${lane.name}: stale hints and no bump.repo to '
-        're-extract them from');
+    print(
+      'wrap_lanes: lane ${lane.name}: stale hints and no bump.repo to '
+      're-extract them from',
+    );
     return 1;
   }
   final schemaDir = p.join(repoRoot, lane.schemaDir);
-  final version =
-      File(p.join(schemaDir, 'provider_version.txt')).readAsStringSync().trim();
+  final version = File(
+    p.join(schemaDir, 'provider_version.txt'),
+  ).readAsStringSync().trim();
   print('>> extract_provider_hints ($repo $version)');
   final process = await Process.start(
     Platform.resolvedExecutable,
@@ -395,8 +394,9 @@ Future<void> main(List<String> args) async {
     }
   }
 
-  final repoRoot =
-      p.normalize(p.join(p.dirname(Platform.script.toFilePath()), '..'));
+  final repoRoot = p.normalize(
+    p.join(p.dirname(Platform.script.toFilePath()), '..'),
+  );
   final List<WrapLane> allLanes;
   try {
     allLanes = parseWrapLanes(
@@ -411,8 +411,10 @@ Future<void> main(List<String> args) async {
       if (only == null || lane.name == only) lane,
   ];
   if (lanes.isEmpty) {
-    _usage('unknown lane $only (known: '
-        '${allLanes.map((l) => l.name).join(', ')})');
+    _usage(
+      'unknown lane $only (known: '
+      '${allLanes.map((l) => l.name).join(', ')})',
+    );
   }
 
   final missing = missingLanePaths(lanes, repoRoot);
@@ -440,8 +442,10 @@ Future<void> main(List<String> args) async {
           for (final reason in stale) {
             print('wrap_lanes: lane ${lane.name}: $reason');
           }
-          print('wrap_lanes: lane ${lane.name}: stale MM YAML; run '
-              'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen');
+          print(
+            'wrap_lanes: lane ${lane.name}: stale MM YAML; run '
+            'dart tool/wrap_lanes.dart --lane ${lane.name} --gate regen',
+          );
           failed.add('${lane.name} (mm sync)');
           continue;
         }

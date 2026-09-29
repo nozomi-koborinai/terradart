@@ -31,11 +31,9 @@ import 'package:terradart_google/provider.dart';
 /// deploy policy.
 final class DeployStack extends Stack {
   DeployStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final current = addData(GoogleProject(localName: 'current'));
 
     final apiClouddeploy = add(
@@ -79,10 +77,7 @@ final class DeployStack extends Stack {
         description: TfArg.literal('App delivery pipeline'),
         serialPipeline: TfArg.literal(<String, Object?>{
           'stages': [
-            {
-              'target_id': 'terradart-run-target',
-              'profiles': <String>[],
-            },
+            {'target_id': 'terradart-run-target', 'profiles': <String>[]},
           ],
         }),
         dependsOn: [
@@ -129,10 +124,7 @@ final class DeployStack extends Stack {
         location: TfArg.literal('us-central1'),
         role: TfArg.literal('roles/clouddeploy.viewer'),
         member: TfArg.ref(deployer.iamMember),
-        dependsOn: [
-          ResourceDependency(pipeline),
-          ResourceDependency(deployer),
-        ],
+        dependsOn: [ResourceDependency(pipeline), ResourceDependency(deployer)],
       ),
     );
 
@@ -143,10 +135,7 @@ final class DeployStack extends Stack {
         location: TfArg.literal('us-central1'),
         role: TfArg.literal('roles/clouddeploy.releaser'),
         member: TfArg.ref(deployer.iamMember),
-        dependsOn: [
-          ResourceDependency(pipeline),
-          ResourceDependency(deployer),
-        ],
+        dependsOn: [ResourceDependency(pipeline), ResourceDependency(deployer)],
       ),
     );
 

@@ -4,7 +4,7 @@ End-to-end terradart example for Network Security reusable lists. Enables the Ne
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with credentials configured (`gcloud auth application-default login`). The Network Security API is enabled by the stack.
 

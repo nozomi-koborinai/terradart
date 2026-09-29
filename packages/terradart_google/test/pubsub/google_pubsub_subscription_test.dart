@@ -123,23 +123,30 @@ void main() {
       );
     });
 
-    test('PubsubSubscriptionOidcToken nested under PubsubSubscriptionPushConfig', () {
-      const cfg = PubsubSubscriptionPushConfig(
-        pushEndpoint: TfArgLiteral<String>('https://example.com/push'),
-        oidcToken: PubsubSubscriptionOidcToken(
-          serviceAccountEmail: TfArgLiteral<String>(
-            'sa@example.iam.gserviceaccount.com',
+    test(
+      'PubsubSubscriptionOidcToken nested under PubsubSubscriptionPushConfig',
+      () {
+        const cfg = PubsubSubscriptionPushConfig(
+          pushEndpoint: TfArgLiteral<String>('https://example.com/push'),
+          oidcToken: PubsubSubscriptionOidcToken(
+            serviceAccountEmail: TfArgLiteral<String>(
+              'sa@example.iam.gserviceaccount.com',
+            ),
           ),
-        ),
-      );
-      expect(
-        cfg.encode()['oidc_token'],
-        equals({'service_account_email': 'sa@example.iam.gserviceaccount.com'}),
-      );
-    });
+        );
+        expect(
+          cfg.encode()['oidc_token'],
+          equals({
+            'service_account_email': 'sa@example.iam.gserviceaccount.com',
+          }),
+        );
+      },
+    );
 
     test('PubsubSubscriptionNoWrapper round-trips write_metadata', () {
-      const w = PubsubSubscriptionNoWrapper(writeMetadata: TfArgLiteral<bool>(true));
+      const w = PubsubSubscriptionNoWrapper(
+        writeMetadata: TfArgLiteral<bool>(true),
+      );
       expect(w.encode(), equals({'write_metadata': true}));
     });
 
@@ -176,7 +183,9 @@ void main() {
     });
 
     test('PubsubSubscriptionExpirationPolicy ttl', () {
-      const e = PubsubSubscriptionExpirationPolicy(ttl: TfArgLiteral<String>('86400s'));
+      const e = PubsubSubscriptionExpirationPolicy(
+        ttl: TfArgLiteral<String>('86400s'),
+      );
       expect(e.encode(), equals({'ttl': '86400s'}));
     });
   });

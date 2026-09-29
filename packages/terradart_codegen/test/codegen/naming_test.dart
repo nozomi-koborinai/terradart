@@ -4,8 +4,10 @@ import 'package:test/test.dart';
 void main() {
   group('Naming', () {
     test('snakeToCamel', () {
-      expect(snakeToCamel('message_retention_duration'),
-          'messageRetentionDuration');
+      expect(
+        snakeToCamel('message_retention_duration'),
+        'messageRetentionDuration',
+      );
       expect(snakeToCamel('id'), 'id');
       expect(snakeToCamel('kms_key_name'), 'kmsKeyName');
     });
@@ -16,8 +18,10 @@ void main() {
     });
 
     test('terraformAbstractClassName prefixes \$', () {
-      expect(terraformAbstractClassName('google_pubsub_topic'),
-          r'$GooglePubsubTopic');
+      expect(
+        terraformAbstractClassName('google_pubsub_topic'),
+        r'$GooglePubsubTopic',
+      );
     });
 
     test('nestedAbstractClassName prefixes \$ and PascalCases', () {
@@ -25,8 +29,10 @@ void main() {
     });
 
     test('shortResourcePascal strips the google_ prefix then PascalCases', () {
-      expect(shortResourcePascal('google_app_engine_domain_mapping'),
-          'AppEngineDomainMapping');
+      expect(
+        shortResourcePascal('google_app_engine_domain_mapping'),
+        'AppEngineDomainMapping',
+      );
     });
 
     test('shortResourcePascal strips cloudflare_ and appwrite_ prefixes', () {
@@ -40,25 +46,31 @@ void main() {
       expect(shortResourcePascal('aws_s3_bucket'), 'S3Bucket');
     });
 
-    test('shortResourcePascal leaves a non-google_ type untouched (Pascal)',
-        () {
-      expect(shortResourcePascal('foo_bar'), 'FooBar');
-    });
+    test(
+      'shortResourcePascal leaves a non-google_ type untouched (Pascal)',
+      () {
+        expect(shortResourcePascal('foo_bar'), 'FooBar');
+      },
+    );
 
-    test('enumName builds Pascal name and screaming-snake to camel members',
-        () {
-      final e = enumName(
-        resourceType: 'google_pubsub_topic',
-        fieldPath: 'schema_settings.encoding',
-        members: const ['ENCODING_UNSPECIFIED', 'JSON', 'BINARY'],
-      );
-      expect(e.dartName, 'PubsubTopicEncoding');
-      expect(e.dartMembers, ['encodingUnspecified', 'json', 'binary']);
-    });
+    test(
+      'enumName builds Pascal name and screaming-snake to camel members',
+      () {
+        final e = enumName(
+          resourceType: 'google_pubsub_topic',
+          fieldPath: 'schema_settings.encoding',
+          members: const ['ENCODING_UNSPECIFIED', 'JSON', 'BINARY'],
+        );
+        expect(e.dartName, 'PubsubTopicEncoding');
+        expect(e.dartMembers, ['encodingUnspecified', 'json', 'binary']);
+      },
+    );
 
     test('resourceFileName converts to snake-case .dart name', () {
       expect(
-          resourceFileName('google_pubsub_topic'), 'google_pubsub_topic.dart');
+        resourceFileName('google_pubsub_topic'),
+        'google_pubsub_topic.dart',
+      );
     });
 
     test('screamingToCamel converts without collision', () {
@@ -135,16 +147,15 @@ void main() {
       );
     });
     test('suffixes enum-reserved members', () {
-      expect(
-        enumMemberNames(['values', 'index', 'override', 'name']),
-        ['valuesCase', 'indexCase', 'overrideCase', 'name'],
-      );
+      expect(enumMemberNames(['values', 'index', 'override', 'name']), [
+        'valuesCase',
+        'indexCase',
+        'overrideCase',
+        'name',
+      ]);
     });
     test('dedupes collisions in value order', () {
-      expect(
-        enumMemberNames(['a b', 'a.b', 'a/b']),
-        ['aB', 'aB2', 'aB3'],
-      );
+      expect(enumMemberNames(['a b', 'a.b', 'a/b']), ['aB', 'aB2', 'aB3']);
     });
   });
 

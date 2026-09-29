@@ -8,7 +8,7 @@ Stage a real function source zip in the source bucket before applying; synth doe
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Cloud Functions API, Cloud Build API, Cloud Run Admin API, and IAM API enabled, and credentials configured (`gcloud auth application-default login`).
 - A `hello-http.zip` source archive next to `tf-out/` (the example references it as `./hello-http.zip`).

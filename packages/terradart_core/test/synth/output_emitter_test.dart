@@ -78,60 +78,64 @@ void main() {
       expect(out.description, equals('Orders topic name'));
     });
 
-    test('ResourceIdExport on computed field -> output only, no Dart const',
-        () {
-      final stack = TestStack();
-      final topic = stack.add(
-        FakePubsubTopic(
-          localName: 'orders',
-          argMap: const {'name': TfArgLiteral<String>('orders-prod')},
-        ),
-      );
-      // .id is a computed attribute — not present in argMap.
-      stack.addExport(
-        'ordersTopicId',
-        ResourceIdExport(
-          TfRef.attribute<String>(topic, 'id'),
-          emitTerraformOutput: true,
-        ),
-      );
+    test(
+      'ResourceIdExport on computed field -> output only, no Dart const',
+      () {
+        final stack = TestStack();
+        final topic = stack.add(
+          FakePubsubTopic(
+            localName: 'orders',
+            argMap: const {'name': TfArgLiteral<String>('orders-prod')},
+          ),
+        );
+        // .id is a computed attribute — not present in argMap.
+        stack.addExport(
+          'ordersTopicId',
+          ResourceIdExport(
+            TfRef.attribute<String>(topic, 'id'),
+            emitTerraformOutput: true,
+          ),
+        );
 
-      final res = OutputEmitter.run(
-        stack: stack,
-        resolver: LiteralResolver.fromStack(stack),
-      );
+        final res = OutputEmitter.run(
+          stack: stack,
+          resolver: LiteralResolver.fromStack(stack),
+        );
 
-      expect(res.dartConstants, isEmpty);
-      expect(
-        res.terraformOutputs.single.value,
-        equals(r'${google_pubsub_topic.orders.id}'),
-      );
-    });
+        expect(res.dartConstants, isEmpty);
+        expect(
+          res.terraformOutputs.single.value,
+          equals(r'${google_pubsub_topic.orders.id}'),
+        );
+      },
+    );
 
-    test('computed ref forces output even when emitTerraformOutput is false',
-        () {
-      // Critical: a literal-unresolvable ref MUST be emitted as a TF output
-      // (otherwise the value would simply disappear).
-      final stack = TestStack();
-      final topic = stack.add(
-        FakePubsubTopic(
-          localName: 'orders',
-          argMap: const {'name': TfArgLiteral<String>('orders-prod')},
-        ),
-      );
-      stack.addExport(
-        'ordersTopicId',
-        ResourceIdExport(TfRef.attribute<String>(topic, 'id')),
-      );
+    test(
+      'computed ref forces output even when emitTerraformOutput is false',
+      () {
+        // Critical: a literal-unresolvable ref MUST be emitted as a TF output
+        // (otherwise the value would simply disappear).
+        final stack = TestStack();
+        final topic = stack.add(
+          FakePubsubTopic(
+            localName: 'orders',
+            argMap: const {'name': TfArgLiteral<String>('orders-prod')},
+          ),
+        );
+        stack.addExport(
+          'ordersTopicId',
+          ResourceIdExport(TfRef.attribute<String>(topic, 'id')),
+        );
 
-      final res = OutputEmitter.run(
-        stack: stack,
-        resolver: LiteralResolver.fromStack(stack),
-      );
+        final res = OutputEmitter.run(
+          stack: stack,
+          resolver: LiteralResolver.fromStack(stack),
+        );
 
-      expect(res.dartConstants, isEmpty);
-      expect(res.terraformOutputs, hasLength(1));
-    });
+        expect(res.dartConstants, isEmpty);
+        expect(res.terraformOutputs, hasLength(1));
+      },
+    );
 
     test('sensitive ResourceIdExport -> output only, sensitive=true', () {
       final stack = TestStack();
@@ -211,64 +215,66 @@ void main() {
     });
 
     test(
-        'ResourceAttributeExport<String> with literal -> Dart const via encoder',
-        () {
-      final stack = TestStack();
-      final topic = stack.add(
-        FakePubsubTopic(
-          localName: 'orders',
-          argMap: const {
-            'message_retention_duration': TfArgLiteral<String>('604800s'),
-          },
-        ),
-      );
-      stack.addExport(
-        'retentionString',
-        ResourceAttributeExport<String>(
-          ref: TfRef.attribute<String>(topic, 'message_retention_duration'),
-          dartType: 'String',
-          literalEncoder: (v) => "r'$v'",
-        ),
-      );
+      'ResourceAttributeExport<String> with literal -> Dart const via encoder',
+      () {
+        final stack = TestStack();
+        final topic = stack.add(
+          FakePubsubTopic(
+            localName: 'orders',
+            argMap: const {
+              'message_retention_duration': TfArgLiteral<String>('604800s'),
+            },
+          ),
+        );
+        stack.addExport(
+          'retentionString',
+          ResourceAttributeExport<String>(
+            ref: TfRef.attribute<String>(topic, 'message_retention_duration'),
+            dartType: 'String',
+            literalEncoder: (v) => "r'$v'",
+          ),
+        );
 
-      final res = OutputEmitter.run(
-        stack: stack,
-        resolver: LiteralResolver.fromStack(stack),
-      );
-
-      expect(res.dartConstants.single.rhs, equals("r'604800s'"));
-    });
-
-    test(
-        'rejects encoder mismatch for ResourceAttributeExport (wrong literal type)',
-        () {
-      // If a literal stored under (addr, attr) is incompatible with T,
-      // emitter should throw with a clear error rather than silently
-      // produce broken Dart. Set up: literal is a String, export expects int.
-      final stack = TestStack();
-      final topic = stack.add(
-        FakePubsubTopic(
-          localName: 'orders',
-          argMap: const {'name': TfArgLiteral<String>('orders-prod')},
-        ),
-      );
-      stack.addExport(
-        'badInt',
-        ResourceAttributeExport<int>(
-          ref: TfRef.attribute<int>(topic, 'name'),
-          dartType: 'int',
-          literalEncoder: (v) => v.toString(),
-        ),
-      );
-
-      expect(
-        () => OutputEmitter.run(
+        final res = OutputEmitter.run(
           stack: stack,
           resolver: LiteralResolver.fromStack(stack),
-        ),
-        throwsA(isA<StateError>()),
-      );
-    });
+        );
+
+        expect(res.dartConstants.single.rhs, equals("r'604800s'"));
+      },
+    );
+
+    test(
+      'rejects encoder mismatch for ResourceAttributeExport (wrong literal type)',
+      () {
+        // If a literal stored under (addr, attr) is incompatible with T,
+        // emitter should throw with a clear error rather than silently
+        // produce broken Dart. Set up: literal is a String, export expects int.
+        final stack = TestStack();
+        final topic = stack.add(
+          FakePubsubTopic(
+            localName: 'orders',
+            argMap: const {'name': TfArgLiteral<String>('orders-prod')},
+          ),
+        );
+        stack.addExport(
+          'badInt',
+          ResourceAttributeExport<int>(
+            ref: TfRef.attribute<int>(topic, 'name'),
+            dartType: 'int',
+            literalEncoder: (v) => v.toString(),
+          ),
+        );
+
+        expect(
+          () => OutputEmitter.run(
+            stack: stack,
+            resolver: LiteralResolver.fromStack(stack),
+          ),
+          throwsA(isA<StateError>()),
+        );
+      },
+    );
 
     test('description carried through to Dart constant doc', () {
       final stack = TestStack();
@@ -288,9 +294,9 @@ void main() {
 
   group('OutputEmitter emits valid names and compilable literals', () {
     OutputEmissionResult run(TestStack stack) => OutputEmitter.run(
-          stack: stack,
-          resolver: LiteralResolver.fromStack(stack),
-        );
+      stack: stack,
+      resolver: LiteralResolver.fromStack(stack),
+    );
 
     test('escapes a resolved literal containing a single quote', () {
       final stack = TestStack();
@@ -307,18 +313,23 @@ void main() {
       expect(run(stack).dartConstants.single.rhs, equals(r"'user\'s-topic'"));
     });
 
-    test('rejects a Dart-constant export whose key is not a Dart identifier',
-        () {
-      final stack = TestStack();
-      stack.addExport('orders-topic', StringExport('v1'));
-      expect(
-        () => run(stack),
-        throwsA(
-          isA<StateError>()
-              .having((e) => e.message, 'message', contains('orders-topic')),
-        ),
-      );
-    });
+    test(
+      'rejects a Dart-constant export whose key is not a Dart identifier',
+      () {
+        final stack = TestStack();
+        stack.addExport('orders-topic', StringExport('v1'));
+        expect(
+          () => run(stack),
+          throwsA(
+            isA<StateError>().having(
+              (e) => e.message,
+              'message',
+              contains('orders-topic'),
+            ),
+          ),
+        );
+      },
+    );
 
     test('rejects a Dart-constant export whose key is a reserved word', () {
       final stack = TestStack();
@@ -326,52 +337,59 @@ void main() {
       expect(() => run(stack), throwsA(isA<StateError>()));
     });
 
-    test('allows a hyphenated key when the export is Terraform-output-only',
-        () {
-      final stack = TestStack();
-      final topic = stack.add(
-        FakePubsubTopic(
-          localName: 'orders',
-          argMap: const {'name': TfArgLiteral<String>('orders-prod')},
-        ),
-      );
-      // `id` has no literal in argMap, so no Dart constant is emitted.
-      stack.addExport(
-        'orders-topic-id',
-        ResourceIdExport(
-          TfRef.attribute<String>(topic, 'id'),
-          emitTerraformOutput: true,
-        ),
-      );
-      final res = run(stack);
-      expect(res.dartConstants, isEmpty);
-      expect(res.terraformOutputs.single.name, equals('orders-topic-id'));
-    });
+    test(
+      'allows a hyphenated key when the export is Terraform-output-only',
+      () {
+        final stack = TestStack();
+        final topic = stack.add(
+          FakePubsubTopic(
+            localName: 'orders',
+            argMap: const {'name': TfArgLiteral<String>('orders-prod')},
+          ),
+        );
+        // `id` has no literal in argMap, so no Dart constant is emitted.
+        stack.addExport(
+          'orders-topic-id',
+          ResourceIdExport(
+            TfRef.attribute<String>(topic, 'id'),
+            emitTerraformOutput: true,
+          ),
+        );
+        final res = run(stack);
+        expect(res.dartConstants, isEmpty);
+        expect(res.terraformOutputs.single.name, equals('orders-topic-id'));
+      },
+    );
 
-    test('rejects a terraformOutputName that is not a Terraform identifier',
-        () {
-      final stack = TestStack();
-      final topic = stack.add(
-        FakePubsubTopic(
-          localName: 'orders',
-          argMap: const {'name': TfArgLiteral<String>('orders-prod')},
-        ),
-      );
-      stack.addExport(
-        'ordersTopicId',
-        ResourceIdExport(
-          TfRef.attribute<String>(topic, 'id'),
-          emitTerraformOutput: true,
-          terraformOutputName: 'orders topic',
-        ),
-      );
-      expect(
-        () => run(stack),
-        throwsA(
-          isA<StateError>()
-              .having((e) => e.message, 'message', contains('orders topic')),
-        ),
-      );
-    });
+    test(
+      'rejects a terraformOutputName that is not a Terraform identifier',
+      () {
+        final stack = TestStack();
+        final topic = stack.add(
+          FakePubsubTopic(
+            localName: 'orders',
+            argMap: const {'name': TfArgLiteral<String>('orders-prod')},
+          ),
+        );
+        stack.addExport(
+          'ordersTopicId',
+          ResourceIdExport(
+            TfRef.attribute<String>(topic, 'id'),
+            emitTerraformOutput: true,
+            terraformOutputName: 'orders topic',
+          ),
+        );
+        expect(
+          () => run(stack),
+          throwsA(
+            isA<StateError>().having(
+              (e) => e.message,
+              'message',
+              contains('orders topic'),
+            ),
+          ),
+        );
+      },
+    );
   });
 }

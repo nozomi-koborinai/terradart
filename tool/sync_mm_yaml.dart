@@ -96,8 +96,9 @@ Future<void> main(List<String> args) async {
     }
 
     final remoteBytes = response.bodyBytes;
-    final localBytes =
-        localFile.existsSync() ? localFile.readAsBytesSync() : <int>[];
+    final localBytes = localFile.existsSync()
+        ? localFile.readAsBytesSync()
+        : <int>[];
     if (_bytesEqual(remoteBytes, localBytes)) {
       unchanged++;
     } else {
@@ -274,11 +275,10 @@ Manifest parseManifest(String yaml) {
   }
   ProviderPin? pin;
   if (pinNode != null) {
-    if (pinNode
-        case {
-          'provider_repo': final String providerRepo,
-          'provider_version_file': final String versionFile,
-        } when pinNode is YamlMap) {
+    if (pinNode case {
+      'provider_repo': final String providerRepo,
+      'provider_version_file': final String versionFile,
+    } when pinNode is YamlMap) {
       final refFile = pinNode['ref_file'];
       if (refFile != null && refFile is! String) {
         throw const FormatException('upstream_ref.ref_file must be a string');

@@ -67,9 +67,9 @@ final class CloudflareProvider implements StackProvider {
 
   @override
   Map<String, Object?> get configArgs => {
-        if (baseUrl != null) 'base_url': baseUrl,
-        if (email != null) 'email': email,
-        if (userAgentOperatorSuffix != null)
-          'user_agent_operator_suffix': userAgentOperatorSuffix,
-      };
+    if (baseUrl != null) 'base_url': baseUrl,
+    if (email != null) 'email': email,
+    if (userAgentOperatorSuffix != null)
+      'user_agent_operator_suffix': userAgentOperatorSuffix,
+  };
 }

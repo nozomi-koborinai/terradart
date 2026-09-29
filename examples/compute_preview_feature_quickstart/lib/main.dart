@@ -14,11 +14,9 @@ import 'package:terradart_google/provider.dart';
 /// Compute preview feature stack: `alpha-api-access` unspecified.
 final class ComputePreviewFeatureStack extends Stack {
   ComputePreviewFeatureStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',

@@ -15,25 +15,25 @@ import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/storage.dart';
 
 final class RemoteBackendStack extends Stack {
-  RemoteBackendStack({
-    required this.projectId,
-    required this.bucketName,
-  }) : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-          backend: const LocalBackend(),
-        ) {
-    add(GoogleStorageBucket(
-      localName: 'tfstate',
-      name: TfArg.literal(bucketName),
-      location: TfArg.literal('asia-northeast1'),
-      uniformBucketLevelAccess: TfArg.literal(true),
-      versioning: StorageBucketVersioning(enabled: TfArg.literal(true)),
-      // forceDestroy: false is the default; explicit here for clarity.
-      // State buckets are long-lived; destroy must be a deliberate action.
-      forceDestroy: TfArg.literal(false),
-    ));
+  RemoteBackendStack({required this.projectId, required this.bucketName})
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+        backend: const LocalBackend(),
+      ) {
+    add(
+      GoogleStorageBucket(
+        localName: 'tfstate',
+        name: TfArg.literal(bucketName),
+        location: TfArg.literal('asia-northeast1'),
+        uniformBucketLevelAccess: TfArg.literal(true),
+        versioning: StorageBucketVersioning(enabled: TfArg.literal(true)),
+        // forceDestroy: false is the default; explicit here for clarity.
+        // State buckets are long-lived; destroy must be a deliberate action.
+        forceDestroy: TfArg.literal(false),
+      ),
+    );
   }
 
   final String projectId;

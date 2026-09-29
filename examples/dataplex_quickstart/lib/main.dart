@@ -21,12 +21,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class DataplexCatalogStack extends Stack {
   DataplexCatalogStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     final apiDeps = Apis.enable(
       this,
       barrels: [
@@ -360,10 +360,7 @@ final class DataplexCatalogStack extends Stack {
         location: TfArg.literal('us-central1'),
         role: TfArg.literal('roles/dataplex.catalogViewer'),
         member: TfArg.ref(reader.iamMember),
-        dependsOn: [
-          ResourceDependency(glossary),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [ResourceDependency(glossary), ResourceDependency(reader)],
       ),
     );
 
@@ -420,10 +417,7 @@ final class DataplexCatalogStack extends Stack {
         location: TfArg.literal('us-central1'),
         role: TfArg.literal('roles/dataplex.viewer'),
         member: TfArg.ref(reader.iamMember),
-        dependsOn: [
-          ResourceDependency(lake),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [ResourceDependency(lake), ResourceDependency(reader)],
       ),
     );
 
@@ -450,18 +444,13 @@ final class DataplexCatalogStack extends Stack {
         type: TfArg.literal(DataplexZoneType.raw),
         displayName: TfArg.literal('Raw zone'),
         description: TfArg.literal('Raw data partition in the analytics lake'),
-        discoverySpec: DataplexZoneDiscoverySpec(
-          enabled: TfArg.literal(false),
-        ),
+        discoverySpec: DataplexZoneDiscoverySpec(enabled: TfArg.literal(false)),
         resourceSpec: DataplexZoneResourceSpec(
           locationType: TfArg.literal(
             DataplexZoneResourceSpecLocationType.singleRegion,
           ),
         ),
-        dependsOn: [
-          ResourceDependency(lake),
-          ...apiDeps,
-        ],
+        dependsOn: [ResourceDependency(lake), ...apiDeps],
       ),
     );
 
@@ -529,10 +518,7 @@ final class DataplexCatalogStack extends Stack {
         location: TfArg.literal('us-central1'),
         role: TfArg.literal('roles/dataplex.viewer'),
         member: TfArg.ref(reader.iamMember),
-        dependsOn: [
-          ResourceDependency(rawZone),
-          ResourceDependency(reader),
-        ],
+        dependsOn: [ResourceDependency(rawZone), ResourceDependency(reader)],
       ),
     );
 
@@ -602,7 +588,8 @@ final class DataplexCatalogStack extends Stack {
           serviceAccount: TfArg.literal(reader.email.interpolation),
           // Spark-SQL tasks require an output location, passed via TASK_ARGS.
           args: TfArg.literal({
-            'TASK_ARGS': '--output_location,'
+            'TASK_ARGS':
+                '--output_location,'
                 'gs://terradart-dataplex-lake-data/task-output,'
                 '--output_format,json',
           }),

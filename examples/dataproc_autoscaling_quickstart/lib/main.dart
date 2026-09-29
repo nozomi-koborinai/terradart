@@ -18,11 +18,9 @@ import 'package:terradart_google/provider.dart';
 /// Dataproc autoscaling policy + workflow template stack (metadata only).
 final class DataprocAutoscalingStack extends Stack {
   DataprocAutoscalingStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiDataproc = add(
       GoogleProjectService(
         localName: 'api_dataproc',
@@ -83,8 +81,8 @@ final class DataprocAutoscalingStack extends Stack {
             config: DataprocWorkflowTemplatePlacementManagedClusterConfig(
               gceClusterConfig:
                   DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfig(
-                zone: TfArg.literal('us-central1-a'),
-              ),
+                    zone: TfArg.literal('us-central1-a'),
+                  ),
             ),
           ),
         ),

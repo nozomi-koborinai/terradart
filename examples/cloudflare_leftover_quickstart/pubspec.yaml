@@ -3,7 +3,7 @@ description: Fills remaining terradart_cloudflare factories at the current pin â
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

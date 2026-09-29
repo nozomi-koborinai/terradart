@@ -21,11 +21,9 @@ import 'package:terradart_google/storage.dart';
 /// DLP Stack: templates + stored info type + paused job trigger + scan bucket.
 final class DlpStack extends Stack {
   DlpStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final parent = 'projects/$projectId';
 
     final apiDlp = add(
@@ -123,18 +121,14 @@ final class DlpStack extends Stack {
         status: TfArg.literal(DataLossPreventionJobTriggerStatus.paused),
         triggers: TfArg.literal([
           {
-            'schedule': {
-              'recurrence_period_duration': '86400s',
-            },
+            'schedule': {'recurrence_period_duration': '86400s'},
           },
         ]),
         inspectJob: TfArg.literal({
           'inspect_template_name': inspect.nameRef.interpolation,
           'storage_config': {
             'cloud_storage_options': {
-              'file_set': {
-                'url': 'gs://${scanBucket.nameRef.interpolation}/',
-              },
+              'file_set': {'url': 'gs://${scanBucket.nameRef.interpolation}/'},
             },
           },
           // Empty notification action — avoids BigQuery save_findings deps.

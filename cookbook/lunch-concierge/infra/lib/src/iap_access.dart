@@ -16,15 +16,15 @@ final class IapWebCloudRunServiceIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: tfType,
-          argMap: {
-            'cloud_run_service_name': cloudRunServiceName,
-            'role': role,
-            'member': member,
-            if (location != null) 'location': location,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: tfType,
+         argMap: {
+           'cloud_run_service_name': cloudRunServiceName,
+           'role': role,
+           'member': member,
+           'location': ?location,
+           'project': ?project,
+         },
+       );
 
   @override
   Set<String> get sensitiveFields => const <String>{};

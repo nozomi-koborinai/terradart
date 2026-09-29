@@ -8,7 +8,7 @@ Needs a project registered with Firebase and real App Check credentials: a debug
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Firebase App Check API and reCAPTCHA Enterprise API enabled. A registered Firebase web app ID is required.
 

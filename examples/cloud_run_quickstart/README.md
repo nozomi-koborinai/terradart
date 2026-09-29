@@ -8,7 +8,7 @@ The Memorystore for Redis and Memcached instances bill hourly while they exist. 
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with credentials configured (`gcloud auth application-default login`). The stack enables the Compute, Run, Secret Manager, Service Networking, VPC Access, Redis, and Memcache APIs via `Apis.enable`.
 

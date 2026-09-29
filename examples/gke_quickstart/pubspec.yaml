@@ -3,7 +3,7 @@ description: GKE quickstart — VPC, cluster, node pool, and GKE Hub fleet membe
 publish_to: none
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.10.0
 
 resolution: workspace
 

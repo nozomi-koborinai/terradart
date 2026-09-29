@@ -70,8 +70,7 @@ void main() {
       expect(sa.lifecycle?.preventDestroy, isTrue);
     });
 
-    test(
-        'id / email / name / uniqueId / member produce stable TfRef '
+    test('id / email / name / uniqueId / member produce stable TfRef '
         'interpolations', () {
       final sa = GoogleServiceAccount(
         localName: 'publisher',

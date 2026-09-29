@@ -113,21 +113,24 @@ Iterable<String> _keysDeep(Object? value) sync* {
 const _fixtureDir = '../terradart_codegen/test/fixtures/wrap/source_aws';
 
 Map<String, dynamic> _fixtureSchema() {
-  final root = jsonDecode(File('$_fixtureDir/schema.json').readAsStringSync())
-      as Map<String, dynamic>;
+  final root =
+      jsonDecode(File('$_fixtureDir/schema.json').readAsStringSync())
+          as Map<String, dynamic>;
   return (root['provider_schemas'] as Map<String, dynamic>).values.single
       as Map<String, dynamic>;
 }
 
-Set<String> _catalogTypes(CatalogKind kind) =>
-    {for (final e in terradartCatalog.where((e) => e.kind == kind)) e.tfType};
+Set<String> _catalogTypes(CatalogKind kind) => {
+  for (final e in terradartCatalog.where((e) => e.kind == kind)) e.tfType,
+};
 
 void main() {
   test('synths the aws provider with the exact fixture pin', () {
     final json = _TestStack().synth().tfJson;
     final required =
         ((json['terraform'] as Map<String, dynamic>)['required_providers']
-            as Map<String, dynamic>)['aws'] as Map<String, dynamic>;
+                as Map<String, dynamic>)['aws']
+            as Map<String, dynamic>;
     expect(required['source'], 'hashicorp/aws');
     expect(required['version'], kAwsProviderVersionConstraint);
     expect(
@@ -210,14 +213,16 @@ void main() {
   test('wires the trust policy and the role ARN by reference', () {
     final json = _TestStack().synth().tfJson;
     final resources = json['resource'] as Map<String, dynamic>;
-    final role = (resources['aws_iam_role'] as Map<String, dynamic>)['fn']
-        as Map<String, dynamic>;
+    final role =
+        (resources['aws_iam_role'] as Map<String, dynamic>)['fn']
+            as Map<String, dynamic>;
     expect(
       role['assume_role_policy'],
       r'${data.aws_iam_policy_document.trust.json}',
     );
-    final fn = (resources['aws_lambda_function']
-        as Map<String, dynamic>)['hello'] as Map<String, dynamic>;
+    final fn =
+        (resources['aws_lambda_function'] as Map<String, dynamic>)['hello']
+            as Map<String, dynamic>;
     expect(fn['role'], r'${aws_iam_role.fn.arn}');
     expect(fn.containsKey('tags_all'), isFalse);
     expect(fn.containsKey('provider'), isFalse);

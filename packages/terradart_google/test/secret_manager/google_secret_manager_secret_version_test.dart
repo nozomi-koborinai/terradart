@@ -90,8 +90,11 @@ void main() {
         const TfVariable(type: 'string', sensitive: true),
       );
       stack.add(plaintext(TfArg.variable('secret_value')));
-      final resource = ((stack.synth().tfJson['resource']
-          as Map)['google_secret_manager_secret_version'] as Map)['v'] as Map;
+      final resource =
+          ((stack.synth().tfJson['resource']
+                      as Map)['google_secret_manager_secret_version']
+                  as Map)['v']
+              as Map;
       expect(resource['secret_data'], equals(r'${var.secret_value}'));
     });
 
@@ -113,14 +116,16 @@ void main() {
 
   test('the payload is exhaustive over the two variants', () {
     String key(SecretManagerSecretVersionPayload p) => switch (p) {
-          SecretManagerSecretVersionWriteOnlyPayload() => 'secret_data_wo',
-          SecretManagerSecretVersionPlaintextPayload() => 'secret_data',
-        };
+      SecretManagerSecretVersionWriteOnlyPayload() => 'secret_data_wo',
+      SecretManagerSecretVersionPlaintextPayload() => 'secret_data',
+    };
     expect(
-      key(SecretManagerSecretVersionWriteOnlyPayload(
-        secretDataWo: TfArg.literal('s'),
-        secretDataWoVersion: TfArg.literal('1'),
-      )),
+      key(
+        SecretManagerSecretVersionWriteOnlyPayload(
+          secretDataWo: TfArg.literal('s'),
+          secretDataWoVersion: TfArg.literal('1'),
+        ),
+      ),
       'secret_data_wo',
     );
   });

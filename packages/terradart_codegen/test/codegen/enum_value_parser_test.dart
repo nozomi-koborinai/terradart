@@ -13,14 +13,16 @@ void main() {
   test('valid-values-are quoted prose', () {
     expect(
       parseEnumValuesFromDescription(
-          'Valid values are: "PAGELESS", "PAGINATED".'),
+        'Valid values are: "PAGELESS", "PAGINATED".',
+      ),
       ['PAGELESS', 'PAGINATED'],
     );
   });
   test('bare screaming list', () {
     expect(
       parseEnumValuesFromDescription(
-          'Possible values: JOB_TYPE_UNSPECIFIED, PIPELINE, QUERY'),
+        'Possible values: JOB_TYPE_UNSPECIFIED, PIPELINE, QUERY',
+      ),
       ['JOB_TYPE_UNSPECIFIED', 'PIPELINE', 'QUERY'],
     );
   });
@@ -47,10 +49,9 @@ void main() {
         ),
         ['apac', 'weur'],
       );
-      expect(
-        parseAvailableValues('Available values: "cloudflare.standard".'),
-        ['cloudflare.standard'],
-      );
+      expect(parseAvailableValues('Available values: "cloudflare.standard".'), [
+        'cloudflare.standard',
+      ]);
     });
     test('ignores unquoted numbers and other dialects', () {
       expect(parseAvailableValues('Available values: 301, 302, 307.'), isNull);

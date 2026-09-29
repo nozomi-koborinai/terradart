@@ -35,11 +35,13 @@ class WrapPromoteGenerator {
 
     // 1. exactly_one_of groups → sealed class skeletons + customSlots.
     for (final group in mm.exactlyOneOfGroups) {
-      body.write(exactlyEmitter.emit(
-        groupMembers: group,
-        resourcePascal: resourcePascal,
-        def: def,
-      ));
+      body.write(
+        exactlyEmitter.emit(
+          groupMembers: group,
+          resourcePascal: resourcePascal,
+          def: def,
+        ),
+      );
       body.writeln();
     }
 
@@ -65,11 +67,13 @@ class WrapPromoteGenerator {
     final enumBodies = <String>[];
     final dartTypeOverrideEntries = <String>[];
     allEnums.forEach((field, ev) {
-      enumBodies.add(validEmitter.emit(
-        fieldName: field,
-        enumValues: ev,
-        resourcePascal: resourcePascal,
-      ));
+      enumBodies.add(
+        validEmitter.emit(
+          fieldName: field,
+          enumValues: ev,
+          resourcePascal: resourcePascal,
+        ),
+      );
       final leaf = validEmitter.leafFieldName(field);
       final enumName = validEmitter.enumNameFor(
         fieldName: field,
@@ -84,7 +88,8 @@ class WrapPromoteGenerator {
       body.write(enumBodies.join('\n'));
       body.writeln();
       body.writeln(
-          '# dartTypeOverrides entry (uncomment + integrate into the main yaml):');
+        '# dartTypeOverrides entry (uncomment + integrate into the main yaml):',
+      );
       body.writeln('# dartTypeOverrides:');
       for (final entry in dartTypeOverrideEntries) {
         body.writeln(entry);

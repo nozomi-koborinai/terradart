@@ -9,59 +9,59 @@ import 'package:test/test.dart';
 
 /// Minimal optional string attribute fixture.
 Attribute _attr(String name) => Attribute(
-      name: name,
-      type: const StringType(),
-      constraints: const Constraints(optional: true),
-    );
+  name: name,
+  type: const StringType(),
+  constraints: const Constraints(optional: true),
+);
 
 /// Minimal single-nesting block fixture.
 NestedBlockDef _block(String name) => NestedBlockDef(
-      name: name,
-      nesting: NestingMode.single,
-      block: const BlockDef(),
-      constraints: const Constraints(optional: true),
-    );
+  name: name,
+  nesting: NestingMode.single,
+  block: const BlockDef(),
+  constraints: const Constraints(optional: true),
+);
 
 ResourceDef _def({
   required String tfType,
   List<Attribute> attributes = const [],
   List<NestedBlockDef> nestedBlocks = const [],
   String? description,
-}) =>
-    ResourceDef(
-      terraformType: tfType,
-      description: description,
-      root: BlockDef(attributes: attributes, nestedBlocks: nestedBlocks),
-    );
+}) => ResourceDef(
+  terraformType: tfType,
+  description: description,
+  root: BlockDef(attributes: attributes, nestedBlocks: nestedBlocks),
+);
 
 void main() {
   group('catalogConstructorParams', () {
-    test('prepends localName and snake→camels plain IR slots in slot order',
-        () {
-      // No override paramOrder → IR-natural order (attributes then blocks).
-      final def = _def(
-        tfType: 'google_pubsub_topic',
-        attributes: [_attr('name'), _attr('kms_key_name')],
-        nestedBlocks: [_block('message_storage_policy')],
-      );
-      const override = WrapperOverride(outputDir: 'pubsub');
-
-      final params = catalogConstructorParams(def, override);
-
-      expect(params.first, 'localName');
-      expect(params, [
-        'localName',
-        'name',
-        'kmsKeyName',
-        'messageStoragePolicy',
-      ]);
-      // Universal bookends are NOT included.
-      expect(params, isNot(contains('lifecycle')));
-      expect(params, isNot(contains('dependsOn')));
-    });
-
     test(
-        'resolves a customSlot rename to the emitted identifier, not '
+      'prepends localName and snake→camels plain IR slots in slot order',
+      () {
+        // No override paramOrder → IR-natural order (attributes then blocks).
+        final def = _def(
+          tfType: 'google_pubsub_topic',
+          attributes: [_attr('name'), _attr('kms_key_name')],
+          nestedBlocks: [_block('message_storage_policy')],
+        );
+        const override = WrapperOverride(outputDir: 'pubsub');
+
+        final params = catalogConstructorParams(def, override);
+
+        expect(params.first, 'localName');
+        expect(params, [
+          'localName',
+          'name',
+          'kmsKeyName',
+          'messageStoragePolicy',
+        ]);
+        // Universal bookends are NOT included.
+        expect(params, isNot(contains('lifecycle')));
+        expect(params, isNot(contains('dependsOn')));
+      },
+    );
+
+    test('resolves a customSlot rename to the emitted identifier, not '
         'snakeToCamel(slotName)', () {
       // The url_map pattern: an IR-ish slot `host_rule` whose customSlot
       // renames the Dart param to the PLURAL `hostRules`. The catalog must
@@ -92,30 +92,32 @@ void main() {
       expect(params, isNot(contains('test')));
     });
 
-    test('resolves a virtual customSlot (no IR slot) like scheduler target',
-        () {
-      // `target` exists only in paramOrder + customSlots (no IR attribute /
-      // block); its identifier comes from the paramDeclaration.
-      final def = _def(
-        tfType: 'google_cloud_scheduler_job',
-        attributes: [_attr('name'), _attr('region')],
-      );
-      const override = WrapperOverride(
-        outputDir: 'cloud_scheduler',
-        paramOrder: ['name', 'region', 'target'],
-        customSlots: {
-          'target': CustomSlot(
-            paramDeclaration:
-                'required CloudSchedulerJobSchedulerTarget target',
-            argMapEntry: 'target.blockKey: x,',
-          ),
-        },
-      );
+    test(
+      'resolves a virtual customSlot (no IR slot) like scheduler target',
+      () {
+        // `target` exists only in paramOrder + customSlots (no IR attribute /
+        // block); its identifier comes from the paramDeclaration.
+        final def = _def(
+          tfType: 'google_cloud_scheduler_job',
+          attributes: [_attr('name'), _attr('region')],
+        );
+        const override = WrapperOverride(
+          outputDir: 'cloud_scheduler',
+          paramOrder: ['name', 'region', 'target'],
+          customSlots: {
+            'target': CustomSlot(
+              paramDeclaration:
+                  'required CloudSchedulerJobSchedulerTarget target',
+              argMapEntry: 'target.blockKey: x,',
+            ),
+          },
+        );
 
-      final params = catalogConstructorParams(def, override);
+        final params = catalogConstructorParams(def, override);
 
-      expect(params, ['localName', 'name', 'region', 'target']);
-    });
+        expect(params, ['localName', 'name', 'region', 'target']);
+      },
+    );
   });
 
   group('paramIdentifier', () {
@@ -129,14 +131,17 @@ void main() {
         'target',
       );
       expect(
-          paramIdentifier('BigQueryConfig? bigqueryConfig'), 'bigqueryConfig');
+        paramIdentifier('BigQueryConfig? bigqueryConfig'),
+        'bigqueryConfig',
+      );
     });
   });
 
   group('scanNestedTypes', () {
-    test('returns helper types in declaration order, excluding the main class',
-        () {
-      const source = '''
+    test(
+      'returns helper types in declaration order, excluding the main class',
+      () {
+        const source = '''
 // GENERATED FILE - DO NOT EDIT
 import 'package:terradart_core/terradart_core.dart';
 
@@ -161,11 +166,12 @@ final class GoogleX extends Resource {
 }
 ''';
 
-      final names = scanNestedTypes(source, mainClass: 'GoogleX');
+        final names = scanNestedTypes(source, mainClass: 'GoogleX');
 
-      expect(names, ['BarEnum', 'FooHelper', 'BazHelper']);
-      expect(names, isNot(contains('GoogleX')));
-    });
+        expect(names, ['BarEnum', 'FooHelper', 'BazHelper']);
+        expect(names, isNot(contains('GoogleX')));
+      },
+    );
 
     test('matches sealed / abstract / base qualifiers', () {
       const source = '''
@@ -224,8 +230,10 @@ final class GoogleZ extends Resource {
     });
 
     test('no trailing period returns the whole (collapsed) doc', () {
-      expect(firstSentence('A summary with no period'),
-          'A summary with no period');
+      expect(
+        firstSentence('A summary with no period'),
+        'A summary with no period',
+      );
       expect(
         firstSentence('Line one\nline two no period'),
         'Line one line two no period',
@@ -251,16 +259,17 @@ final class GoogleZ extends Resource {
       );
     });
 
-    test('a single sentence ending in an abbreviation degrades to whole doc',
-        () {
-      // No real boundary after the abbreviation → return the whole thing.
-      expect(firstSentence('See the docs e.g.'), 'See the docs e.g.');
-    });
+    test(
+      'a single sentence ending in an abbreviation degrades to whole doc',
+      () {
+        // No real boundary after the abbreviation → return the whole thing.
+        expect(firstSentence('See the docs e.g.'), 'See the docs e.g.');
+      },
+    );
   });
 
   group('buildCatalogEntry (integration of the pieces)', () {
-    test(
-        'maps a resource: strips doc markers, derives summary, sorts '
+    test('maps a resource: strips doc markers, derives summary, sorts '
         'sensitive fields, scans nested types', () {
       final def = _def(
         tfType: 'google_demo_thing',
@@ -306,33 +315,35 @@ class DemoHelper {}
       expect(entry.nestedTypes, ['DemoHelper']);
     });
 
-    test('falls back to IR description (marker-free) when deriveClassDoc off',
-        () {
-      final def = _def(
-        tfType: 'google_project',
-        attributes: [_attr('project_id')],
-        description: 'Retrieve project metadata. Use downstream.',
-      );
-      const override = WrapperOverride(
-        outputDir: 'data',
-        kind: WrapperOverrideKind.dataSource,
-      );
+    test(
+      'falls back to IR description (marker-free) when deriveClassDoc off',
+      () {
+        final def = _def(
+          tfType: 'google_project',
+          attributes: [_attr('project_id')],
+          description: 'Retrieve project metadata. Use downstream.',
+        );
+        const override = WrapperOverride(
+          outputDir: 'data',
+          kind: WrapperOverrideKind.dataSource,
+        );
 
-      final entry = buildCatalogEntry(
-        tfType: 'google_project',
-        override: override,
-        def: def,
-        kind: 'dataSource',
-        emittedSource: 'final class GoogleProject extends Data {}',
-      );
+        final entry = buildCatalogEntry(
+          tfType: 'google_project',
+          override: override,
+          def: def,
+          kind: 'dataSource',
+          emittedSource: 'final class GoogleProject extends Data {}',
+        );
 
-      expect(entry.kind, 'dataSource');
-      expect(entry.className, 'GoogleProject');
-      expect(entry.docComment, 'Retrieve project metadata. Use downstream.');
-      expect(entry.summary, 'Retrieve project metadata.');
-      expect(entry.sensitiveFields, isEmpty);
-      expect(entry.nestedTypes, isEmpty);
-    });
+        expect(entry.kind, 'dataSource');
+        expect(entry.className, 'GoogleProject');
+        expect(entry.docComment, 'Retrieve project metadata. Use downstream.');
+        expect(entry.summary, 'Retrieve project metadata.');
+        expect(entry.sensitiveFields, isEmpty);
+        expect(entry.nestedTypes, isEmpty);
+      },
+    );
 
     test('data-source catalog includes a required lookup id', () {
       final def = _def(
@@ -383,8 +394,7 @@ class DemoHelper {}
       expect(entry.className, 'DataGoogleComputeNetwork');
     });
 
-    test(
-        'deriveClassDoc derives docComment from buildClassDocComment + '
+    test('deriveClassDoc derives docComment from buildClassDocComment + '
         'curatedDoc', () {
       // Phase A4: when `deriveClassDoc` is true the catalog must mirror the
       // emitted wrapper doc (factory line + rewrapped IR description +

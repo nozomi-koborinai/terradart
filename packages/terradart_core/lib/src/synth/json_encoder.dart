@@ -39,7 +39,8 @@ class TfJsonEncoder {
     // child modules pin what they use — so there is nothing to require and
     // nothing for Terraform to imply. Any resource or data source of its own
     // brings the guard back.
-    final modulesOnly = stack.modules.isNotEmpty &&
+    final modulesOnly =
+        stack.modules.isNotEmpty &&
         stack.resources.isEmpty &&
         stack.dataSources.isEmpty;
     if (stack.providers.isEmpty && !modulesOnly) {
@@ -92,10 +93,7 @@ class TfJsonEncoder {
 
     final requiredProviders = <String, dynamic>{
       for (final p in stack.providers)
-        p.providerName: {
-          'source': p.source,
-          'version': p.versionConstraint,
-        },
+        p.providerName: {'source': p.source, 'version': p.versionConstraint},
     };
 
     final out = <String, dynamic>{
@@ -192,9 +190,9 @@ class TfJsonEncoder {
         throw StateError(
           alias == null
               ? 'Provider "${p.providerName}" is registered twice without an '
-                  'alias. Give every configuration after the default one an '
-                  "`alias:` and select it with `provider: '${p.providerName}"
-                  ".<alias>'` on the resource."
+                    'alias. Give every configuration after the default one an '
+                    "`alias:` and select it with `provider: '${p.providerName}"
+                    ".<alias>'` on the resource."
               : 'Provider alias "$ref" is registered twice.',
         );
       }
@@ -224,16 +222,11 @@ class TfJsonEncoder {
   static Map<String, dynamic>? variableBlock(Stack stack) {
     _validateVariableReferences(stack);
     if (stack.variables.isEmpty) return null;
-    return {
-      for (final e in stack.variables.entries) e.key: e.value.toTfJson(),
-    };
+    return {for (final e in stack.variables.entries) e.key: e.value.toTfJson()};
   }
 
   static void _validateVariableReferences(Stack stack) {
-    final declared = {
-      ...stack.variables.keys,
-      ...stack.externalVariables,
-    };
+    final declared = {...stack.variables.keys, ...stack.externalVariables};
     // name -> addresses that reference it, insertion-ordered so the
     // error message is stable across runs.
     final undeclared = <String, Set<String>>{};
@@ -527,7 +520,8 @@ class TfJsonEncoder {
     // `@protected` on the Resource getters expresses subclass-only contract
     // intent; the synth pipeline is the privileged in-library consumer that
     // reads them. `ignore` is the standard escape hatch for this case.
-    final argMap = devModeInjectDeletionProtection &&
+    final argMap =
+        devModeInjectDeletionProtection &&
             // ignore: invalid_use_of_protected_member
             r.supportsDeletionProtection &&
             !r.argMap.containsKey('deletion_protection')

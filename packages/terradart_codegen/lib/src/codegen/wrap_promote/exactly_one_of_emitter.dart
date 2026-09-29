@@ -39,7 +39,8 @@ class ExactlyOneOfEmitter {
     final buf = StringBuffer();
     buf.writeln('# --- exactly_one_of group: ${groupMembers.join(', ')} ---');
     buf.writeln(
-        '# TODO(wrap-promote): rename `$sealedName` and its helper classes below to domain names.');
+      '# TODO(wrap-promote): rename `$sealedName` and its helper classes below to domain names.',
+    );
     buf.writeln('prelude: |');
     buf.writeln('  sealed class $sealedName {');
     buf.writeln('    const $sealedName();');
@@ -55,7 +56,8 @@ class ExactlyOneOfEmitter {
         );
         buf.writeln();
         buf.writeln(
-            '  // TODO(wrap-promote): nested block `$member` not found in provider schema.');
+          '  // TODO(wrap-promote): nested block `$member` not found in provider schema.',
+        );
         continue;
       }
       final memberPascal = snakeToPascal(member);
@@ -70,11 +72,14 @@ class ExactlyOneOfEmitter {
       buf.writeln('    @override');
       buf.writeln('    Map<String, Object?> encode() {');
       buf.writeln(
-          '      // TODO(wrap-promote): implement encode for $memberPascal.');
+        '      // TODO(wrap-promote): implement encode for $memberPascal.',
+      );
       buf.writeln(
-          "      // Pattern: { if (optional != null) 'optional_key': optional!.toTfJson(), 'required_key': required.toTfJson(), ... }");
+        "      // Pattern: { if (optional != null) 'optional_key': optional!.toTfJson(), 'required_key': required.toTfJson(), ... }",
+      );
       buf.writeln(
-          "      throw UnimplementedError('TODO(wrap-promote): implement encode for $memberPascal');");
+        "      throw UnimplementedError('TODO(wrap-promote): implement encode for $memberPascal');",
+      );
       buf.writeln('    }');
       buf.writeln('  }');
     }
@@ -83,7 +88,8 @@ class ExactlyOneOfEmitter {
     buf.writeln('  $slotName:');
     buf.writeln("    paramDeclaration: 'required $sealedName $slotName'");
     buf.writeln(
-        '    argMapEntry: "$slotName.blockKey: TfArg.literal($slotName.encode()),"');
+      '    argMapEntry: "$slotName.blockKey: TfArg.literal($slotName.encode()),"',
+    );
     return buf.toString();
   }
 
@@ -95,13 +101,15 @@ class ExactlyOneOfEmitter {
       final attrRequired = attr.constraints.required;
       final camel = snakeToCamel(attrName);
       buf.writeln(
-          attrRequired ? '      required this.$camel,' : '      this.$camel,');
+        attrRequired ? '      required this.$camel,' : '      this.$camel,',
+      );
     }
     // Surface nested-block stubs as TODO.
     final List<NestedBlockDef> nestedBlocks = block.nestedBlocks;
     for (final nb in nestedBlocks) {
       buf.writeln(
-          '      // TODO(wrap-promote): nested block `${nb.name}` - fill in by hand');
+        '      // TODO(wrap-promote): nested block `${nb.name}` - fill in by hand',
+      );
     }
     buf.writeln('    });');
   }
@@ -113,9 +121,11 @@ class ExactlyOneOfEmitter {
       final attrRequired = attr.constraints.required;
       final camel = snakeToCamel(attrName);
       final dartType = writeDartType(attr.type);
-      buf.writeln(attrRequired
-          ? '    final TfArg<$dartType> $camel;'
-          : '    final TfArg<$dartType>? $camel;');
+      buf.writeln(
+        attrRequired
+            ? '    final TfArg<$dartType> $camel;'
+            : '    final TfArg<$dartType>? $camel;',
+      );
     }
   }
 

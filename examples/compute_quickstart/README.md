@@ -8,7 +8,7 @@ Beyond the network basics described above, this stack provisions Compute Engine 
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Compute Engine API enabled and credentials configured (`gcloud auth application-default login`).
 

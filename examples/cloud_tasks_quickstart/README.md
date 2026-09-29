@@ -8,7 +8,7 @@ A deleted Cloud Tasks queue name stays reserved for about seven days, so destroy
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with the Cloud Tasks API enabled.
 

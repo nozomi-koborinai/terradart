@@ -66,9 +66,7 @@ void main(List<String> args) {
     ..createSync(recursive: true)
     ..writeAsStringSync(const JsonEncoder.withIndent('  ').convert(diff));
   stdout.writeln(
-    'schema diff: ${[
-      for (final e in diff.entries) '${(e.value as List).length} ${e.key}',
-    ].join(', ')} → $outPath',
+    'schema diff: ${[for (final e in diff.entries) '${(e.value as List).length} ${e.key}'].join(', ')} → $outPath',
   );
 }
 
@@ -112,9 +110,7 @@ Map<String, Object> schemaResourceDiff({
 
 /// Terraform types in a generated `_catalog.g.dart`, split by kind.
 @visibleForTesting
-({Set<String> resources, Set<String> dataSources}) catalogTypes(
-  String source,
-) {
+({Set<String> resources, Set<String> dataSources}) catalogTypes(String source) {
   // dart format may wrap a long `tfType:` literal onto the next line.
   final entry = RegExp(
     r"tfType:\s*'([^']+)'[\s\S]*?kind:\s*CatalogKind\.(\w+)",

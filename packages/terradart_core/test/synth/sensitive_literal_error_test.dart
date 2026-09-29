@@ -22,17 +22,11 @@ void main() {
         fieldPath: 'customer_encryption.encryption_key',
       );
 
-      expect(
-        err.toString(),
-        contains('customer_encryption.encryption_key'),
-      );
+      expect(err.toString(), contains('customer_encryption.encryption_key'));
     });
 
     test('is a subclass of StateError', () {
-      final err = SensitiveLiteralError(
-        resourceAddress: 'x.y',
-        fieldPath: 'z',
-      );
+      final err = SensitiveLiteralError(resourceAddress: 'x.y', fieldPath: 'z');
       expect(err, isA<StateError>());
     });
   });

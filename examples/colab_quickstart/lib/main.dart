@@ -20,11 +20,9 @@ import 'package:terradart_google/storage.dart';
 /// Colab Enterprise stack: template + IAM + paused schedule.
 final class ColabStack extends Stack {
   ColabStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     const location = 'us-central1';
     final bucketName = '$projectId-terradart-colab';
 
@@ -100,10 +98,7 @@ final class ColabStack extends Stack {
           'network': network.id.interpolation,
           'subnetwork': subnet.id.interpolation,
         }),
-        dependsOn: [
-          ResourceDependency(apiAi),
-          ResourceDependency(subnet),
-        ],
+        dependsOn: [ResourceDependency(apiAi), ResourceDependency(subnet)],
       ),
     );
 
@@ -114,10 +109,7 @@ final class ColabStack extends Stack {
         role: TfArg.literal('roles/viewer'),
         member: TfArg.ref(runner.iamMember),
         location: TfArg.literal(location),
-        dependsOn: [
-          ResourceDependency(template),
-          ResourceDependency(runner),
-        ],
+        dependsOn: [ResourceDependency(template), ResourceDependency(runner)],
       ),
     );
 

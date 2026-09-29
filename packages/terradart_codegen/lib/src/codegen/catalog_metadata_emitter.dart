@@ -69,7 +69,8 @@ class CatalogMetadataEmitter {
   /// Renders the catalog source for [entries]. The returned string is
   /// unformatted (the wrap pipeline formats it) but always parseable.
   String emit(List<CatalogEntryData> entries) {
-    final sorted = [...entries]..sort((a, b) {
+    final sorted = [...entries]
+      ..sort((a, b) {
         final byType = a.tfType.compareTo(b.tfType);
         if (byType != 0) return byType;
         // Resource before dataSource when twins share a tfType, so

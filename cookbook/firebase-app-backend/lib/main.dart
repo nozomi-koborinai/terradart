@@ -23,14 +23,14 @@ import 'package:terradart_google_beta/provider.dart';
 ///   - 1 [GoogleCloudRunV2Service] (GA) - Cloud Run v2 backend API service
 final class FirebaseAppBackendStack extends Stack {
   FirebaseAppBackendStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
-            GoogleBetaProvider(project: projectId, region: 'asia-northeast1'),
-          ],
-          backend: const LocalBackend(),
-          devMode: true,
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+          GoogleBetaProvider(project: projectId, region: 'asia-northeast1'),
+        ],
+        backend: const LocalBackend(),
+        devMode: true,
+      ) {
     // -------------------------------------------------------------------------
     // 1. Enable required APIs
     // -------------------------------------------------------------------------
@@ -132,8 +132,9 @@ final class FirebaseAppBackendStack extends Stack {
           containers: [
             CloudRunV2ServiceServiceContainer(
               name: TfArg.literal('server'),
-              image:
-                  TfArg.literal('us-docker.pkg.dev/cloudrun/container/hello'),
+              image: TfArg.literal(
+                'us-docker.pkg.dev/cloudrun/container/hello',
+              ),
               ports: CloudRunV2ServiceContainerPort(
                 containerPort: TfArg.literal(8080),
               ),

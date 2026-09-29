@@ -16,7 +16,7 @@ Vector Search data objects are metered per write operation and for stored payloa
 
 ## Prerequisites
 
-- Dart SDK >= 3.6
+- Dart SDK >= 3.10
 - Terraform CLI >= 1.11.0
 - A GCP project with credentials configured (`gcloud auth application-default login`). APIs are enabled by the stack.
 

@@ -16,11 +16,9 @@ import 'package:terradart_google/provider.dart';
 /// Network Security stack: DNS Armor threat detector.
 final class NetworkSecurityDnsThreatStack extends Stack {
   NetworkSecurityDnsThreatStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-          ],
-        ) {
+    : super(
+        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+      ) {
     final apiNetworkSecurity = add(
       GoogleProjectService(
         localName: 'api_networksecurity',

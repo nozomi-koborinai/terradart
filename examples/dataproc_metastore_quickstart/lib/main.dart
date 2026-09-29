@@ -15,12 +15,12 @@ import 'package:terradart_time/terradart_time.dart';
 
 final class DataprocMetastoreStack extends Stack {
   DataprocMetastoreStack({required String projectId})
-      : super(
-          providers: [
-            GoogleProvider(project: projectId, region: 'us-central1'),
-            const TimeProvider(),
-          ],
-        ) {
+    : super(
+        providers: [
+          GoogleProvider(project: projectId, region: 'us-central1'),
+          const TimeProvider(),
+        ],
+      ) {
     const location = 'us-central1';
     const serviceId = 'terradart-metastore';
     const federationId = 'terradart-federation';

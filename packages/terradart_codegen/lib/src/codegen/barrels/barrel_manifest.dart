@@ -90,8 +90,11 @@ BarrelManifest loadBarrelManifest(String path) {
       (umbrellaFileNode is! String || umbrellaFileNode.trim().isEmpty)) {
     throw FormatException('$path: umbrellaFile must be a non-empty string');
   }
-  final umbrellaExtra =
-      _stringList(yaml['umbrellaExtraExports'], path, 'umbrellaExtraExports');
+  final umbrellaExtra = _stringList(
+    yaml['umbrellaExtraExports'],
+    path,
+    'umbrellaExtraExports',
+  );
 
   final barrelsNode = yaml['barrels'];
   if (barrelsNode is! YamlMap) {
@@ -130,8 +133,9 @@ BarrelManifest loadBarrelManifest(String path) {
     umbrellaDoc: umbrellaDoc.trimRight(),
     umbrellaExtraExports: umbrellaExtra,
     barrels: barrels,
-    umbrellaFile:
-        umbrellaFileNode is String ? umbrellaFileNode : 'terradart_google',
+    umbrellaFile: umbrellaFileNode is String
+        ? umbrellaFileNode
+        : 'terradart_google',
   );
 }
 
