@@ -74,6 +74,16 @@ Per-package changelogs live alongside each package and are the system of record 
   google, 1,155 aws and 294 cloudflare. `terradart wrap` now lists every
   input the ledger matches but that stays a string (`reference input not
   typed:`). Synth output is unchanged. See `MIGRATING.md`.
+- **Data-source arguments take `RefTo<R>`** (**breaking**;
+  `terradart_aws`, `terradart_cloudflare`, `terradart_google`) — the
+  reference ledger now matches data-source inputs too:
+  `DataAwsNatGateway(vpcId: vpc.ref)`,
+  `DataGoogleStorageBucketObjectContents(bucket: bucket.ref, ...)`,
+  `DataCloudflareZoneLockdowns(zoneId: zone.ref)`. A data source inherits its
+  resource twin's ledger `attributes` / `exclude` entries; a
+  `data.<type>.<path>` key applies to the data source alone. Typed inputs go
+  to 346 google, 1,197 aws and 782 cloudflare. Synth output is unchanged. See
+  `MIGRATING.md`.
 
 - **Sealed variants are factory constructors** (**breaking**;
   `terradart_codegen`, `terradart_migrate`, every provider package) — a
