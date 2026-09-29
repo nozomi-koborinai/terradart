@@ -7,6 +7,60 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_neptunegraph_graph`.
 const Set<String> _awsNeptunegraphGraphSensitive = <String>{};
 
+/// At most one of `graph_name`, `graph_name_prefix` on `aws_neptunegraph_graph`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class NeptunegraphGraphGraphNameOrGraphNamePrefix {
+  const NeptunegraphGraphGraphNameOrGraphNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `graph_name` (one of the [NeptunegraphGraphGraphNameOrGraphNamePrefix] choices).
+final class NeptunegraphGraphGraphNameOption
+    extends NeptunegraphGraphGraphNameOrGraphNamePrefix {
+  const NeptunegraphGraphGraphNameOption({required this.graphName});
+
+  final TfArg<String> graphName;
+
+  @override
+  String get blockKey => 'graph_name';
+
+  @override
+  Map<String, Object?> encode() => {'graph_name': graphName.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'graph_name': graphName};
+}
+
+/// Sets `graph_name_prefix` (one of the [NeptunegraphGraphGraphNameOrGraphNamePrefix] choices).
+final class NeptunegraphGraphGraphNamePrefixOption
+    extends NeptunegraphGraphGraphNameOrGraphNamePrefix {
+  const NeptunegraphGraphGraphNamePrefixOption({required this.graphNamePrefix});
+
+  final TfArg<String> graphNamePrefix;
+
+  @override
+  String get blockKey => 'graph_name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {
+    'graph_name_prefix': graphNamePrefix.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'graph_name_prefix': graphNamePrefix,
+  };
+}
+
 /// Typed helper for the `vector_search_configuration` block of
 /// `aws_neptunegraph_graph` (derived from provider schema).
 @immutable
@@ -30,8 +84,7 @@ final class AwsNeptunegraphGraph extends Resource {
   AwsNeptunegraphGraph({
     required super.localName,
     TfArg<bool>? deletionProtection,
-    TfArg<String>? graphName,
-    TfArg<String>? graphNamePrefix,
+    NeptunegraphGraphGraphNameOrGraphNamePrefix? graphNameOrGraphNamePrefix,
     TfArg<String>? kmsKeyIdentifier,
     required TfArg<num> provisionedMemory,
     TfArg<bool>? publicConnectivity,
@@ -48,8 +101,7 @@ final class AwsNeptunegraphGraph extends Resource {
          argMap: {
            if (deletionProtection != null)
              'deletion_protection': deletionProtection,
-           if (graphName != null) 'graph_name': graphName,
-           if (graphNamePrefix != null) 'graph_name_prefix': graphNamePrefix,
+           ...?graphNameOrGraphNamePrefix?.argMap,
            if (kmsKeyIdentifier != null) 'kms_key_identifier': kmsKeyIdentifier,
            'provisioned_memory': provisionedMemory,
            if (publicConnectivity != null)

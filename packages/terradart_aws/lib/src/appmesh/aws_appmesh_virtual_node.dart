@@ -1391,16 +1391,54 @@ final class AppmeshVirtualNodeSpecLoggingAccessLogFileFormatJson {
 /// `aws_appmesh_virtual_node` (derived from provider schema).
 @immutable
 final class AppmeshVirtualNodeSpecServiceDiscovery {
-  const AppmeshVirtualNodeSpecServiceDiscovery({this.awsCloudMap, this.dns});
+  const AppmeshVirtualNodeSpecServiceDiscovery({this.awsCloudMapOrDns});
 
-  final AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMap? awsCloudMap;
+  final AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns?
+  awsCloudMapOrDns;
 
-  final AppmeshVirtualNodeSpecServiceDiscoveryDns? dns;
+  Map<String, Object?> encode() => {...?awsCloudMapOrDns?.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (awsCloudMap != null) 'aws_cloud_map': awsCloudMap!.encode(),
-    if (dns != null) 'dns': dns!.encode(),
-  };
+/// At most one of `aws_cloud_map`, `dns` on the `spec.service_discovery` block of `aws_appmesh_virtual_node`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns {
+  const AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `aws_cloud_map` (one of the [AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns] choices).
+final class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOption
+    extends AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns {
+  const AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOption({
+    required this.awsCloudMap,
+  });
+
+  final AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMap awsCloudMap;
+
+  @override
+  String get blockKey => 'aws_cloud_map';
+
+  @override
+  Map<String, Object?> encode() => {'aws_cloud_map': awsCloudMap.encode()};
+}
+
+/// Sets `dns` (one of the [AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns] choices).
+final class AppmeshVirtualNodeSpecServiceDiscoveryDnsOption
+    extends AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns {
+  const AppmeshVirtualNodeSpecServiceDiscoveryDnsOption({required this.dns});
+
+  final AppmeshVirtualNodeSpecServiceDiscoveryDns dns;
+
+  @override
+  String get blockKey => 'dns';
+
+  @override
+  Map<String, Object?> encode() => {'dns': dns.encode()};
 }
 
 /// Typed helper for the `spec.service_discovery.aws_cloud_map` block of

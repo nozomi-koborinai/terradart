@@ -78,7 +78,10 @@ export 'src/cognito/aws_cognito_user.dart'
     show
         AwsCognitoUser,
         CognitoUserDesiredDeliveryMediums,
-        CognitoUserMessageAction;
+        CognitoUserMessageAction,
+        CognitoUserPasswordOption,
+        CognitoUserPasswordOrTemporaryPassword,
+        CognitoUserTemporaryPasswordOption;
 export 'src/cognito/aws_cognito_user_group.dart' show AwsCognitoUserGroup;
 export 'src/cognito/aws_cognito_user_in_group.dart' show AwsCognitoUserInGroup;
 export 'src/cognito/aws_cognito_user_pool.dart'
@@ -90,6 +93,8 @@ export 'src/cognito/aws_cognito_user_pool.dart'
         CognitoUserPoolAdminCreateUserConfig,
         CognitoUserPoolAdminCreateUserConfigInviteMessageTemplate,
         CognitoUserPoolAliasAttributes,
+        CognitoUserPoolAliasAttributesOption,
+        CognitoUserPoolAliasAttributesOrUsernameAttributes,
         CognitoUserPoolAutoVerifiedAttributes,
         CognitoUserPoolDeletionProtection,
         CognitoUserPoolDeviceConfiguration,
@@ -121,6 +126,7 @@ export 'src/cognito/aws_cognito_user_pool.dart'
         CognitoUserPoolUserPoolAddOnsAdvancedSecurityMode,
         CognitoUserPoolUserPoolTier,
         CognitoUserPoolUsernameAttributes,
+        CognitoUserPoolUsernameAttributesOption,
         CognitoUserPoolUsernameConfiguration,
         CognitoUserPoolVerificationMessageTemplate,
         CognitoUserPoolVerificationMessageTemplateDefaultEmailOption,

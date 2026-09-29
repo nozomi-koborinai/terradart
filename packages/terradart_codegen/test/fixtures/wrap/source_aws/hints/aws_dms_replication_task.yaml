@@ -8,3 +8,5 @@ properties:
       - "full-load"
       - "cdc"
       - "full-load-and-cdc"
+at_most_one_of_groups:
+  - ["cdc_start_position", "cdc_start_time"]

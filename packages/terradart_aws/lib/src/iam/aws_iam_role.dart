@@ -7,6 +7,54 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_iam_role`.
 const Set<String> _awsIamRoleSensitive = <String>{};
 
+/// At most one of `name`, `name_prefix` on `aws_iam_role`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class IamRoleNameOrNamePrefix {
+  const IamRoleNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [IamRoleNameOrNamePrefix] choices).
+final class IamRoleNameOption extends IamRoleNameOrNamePrefix {
+  const IamRoleNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [IamRoleNameOrNamePrefix] choices).
+final class IamRoleNamePrefixOption extends IamRoleNameOrNamePrefix {
+  const IamRoleNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `inline_policy` block of
 /// `aws_iam_role` (derived from provider schema).
 @immutable
@@ -42,8 +90,7 @@ final class AwsIamRole extends Resource {
     TfArg<bool>? forceDetachPolicies,
     TfArg<List<String>>? managedPolicyArns,
     TfArg<num>? maxSessionDuration,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    IamRoleNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? path,
     TfArg<String>? permissionsBoundary,
     TfArg<Map<String, String>>? tags,
@@ -63,8 +110,7 @@ final class AwsIamRole extends Resource {
              'managed_policy_arns': managedPolicyArns,
            if (maxSessionDuration != null)
              'max_session_duration': maxSessionDuration,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (path != null) 'path': path,
            if (permissionsBoundary != null)
              'permissions_boundary': permissionsBoundary,

@@ -7,6 +7,55 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_db_option_group`.
 const Set<String> _awsDbOptionGroupSensitive = <String>{};
 
+/// At most one of `name`, `name_prefix` on `aws_db_option_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DbOptionGroupNameOrNamePrefix {
+  const DbOptionGroupNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [DbOptionGroupNameOrNamePrefix] choices).
+final class DbOptionGroupNameOption extends DbOptionGroupNameOrNamePrefix {
+  const DbOptionGroupNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [DbOptionGroupNameOrNamePrefix] choices).
+final class DbOptionGroupNamePrefixOption
+    extends DbOptionGroupNameOrNamePrefix {
+  const DbOptionGroupNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `option` block of
 /// `aws_db_option_group` (derived from provider schema).
 @immutable
@@ -72,8 +121,7 @@ final class AwsDbOptionGroup extends Resource {
     required super.localName,
     required TfArg<String> engineName,
     required TfArg<String> majorEngineVersion,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    DbOptionGroupNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? optionGroupDescription,
     TfArg<String>? region,
     TfArg<bool>? skipDestroy,
@@ -88,8 +136,7 @@ final class AwsDbOptionGroup extends Resource {
          argMap: {
            'engine_name': engineName,
            'major_engine_version': majorEngineVersion,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (optionGroupDescription != null)
              'option_group_description': optionGroupDescription,
            if (region != null) 'region': region,

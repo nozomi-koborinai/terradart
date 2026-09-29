@@ -13,3 +13,7 @@ properties:
               - "PET"
               - "PACKAGE"
               - "ALL"
+at_most_one_of_groups:
+  - ["output.kinesis_data_stream", "output.s3_destination"]
+  - ["regions_of_interest.bounding_box", "regions_of_interest.polygon"]
+  - ["settings.connected_home", "settings.face_search"]

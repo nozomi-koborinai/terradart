@@ -1164,8 +1164,11 @@ final class AwsLeftoverStack extends Stack {
         name: TfArg.literal(leftover),
         spec: AppmeshVirtualServiceSpec(
           provider: AppmeshVirtualServiceSpecProvider(
-            virtualNode: AppmeshVirtualServiceSpecProviderVirtualNode(
-              virtualNodeName: TfArg.literal(leftover),
+            virtualNodeOrVirtualRouter:
+                AppmeshVirtualServiceSpecProviderVirtualNodeOption(
+              virtualNode: AppmeshVirtualServiceSpecProviderVirtualNode(
+                virtualNodeName: TfArg.literal(leftover),
+              ),
             ),
           ),
         ),
@@ -1722,7 +1725,10 @@ final class AwsLeftoverStack extends Stack {
         localName: 'autoscalingplans_scaling_plan',
         name: TfArg.literal(leftover),
         applicationSource: AutoscalingplansScalingPlanApplicationSource(
-          cloudformationStackArn: TfArg.literal(arn),
+          cloudformationStackArnOrTagFilter:
+              AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOption(
+            cloudformationStackArn: TfArg.literal(arn),
+          ),
         ),
         scalingInstruction: [
           AutoscalingplansScalingPlanScalingInstruction(
@@ -5665,10 +5671,12 @@ final class AwsLeftoverStack extends Stack {
     add(
       AwsDocdbGlobalCluster(
         localName: 'docdb_global_cluster',
-        globalClusterIdentifier: TfArg.literal(leftover),
-        engine: TfArg.literal(
-          DocdbGlobalClusterEngine.docdb,
+        engineOrSourceDbClusterIdentifier: DocdbGlobalClusterEngineOption(
+          engine: TfArg.literal(
+            DocdbGlobalClusterEngine.docdb,
+          ),
         ),
+        globalClusterIdentifier: TfArg.literal(leftover),
       ),
     );
 
@@ -7687,7 +7695,9 @@ final class AwsLeftoverStack extends Stack {
           ),
         ],
         launchTemplate: GameliftGameServerGroupLaunchTemplate(
-          id: TfArg.literal('lt-0123456789abcdef0'),
+          idOrName: GameliftGameServerGroupLaunchTemplateIdOption(
+            id: TfArg.literal('lt-0123456789abcdef0'),
+          ),
         ),
       ),
     );
@@ -10298,20 +10308,24 @@ final class AwsLeftoverStack extends Stack {
           Macie2ClassificationJobJobType.oneTime,
         ),
         s3JobDefinition: Macie2ClassificationJobS3JobDefinition(
-          bucketCriteria: Macie2ClassificationJobS3JobDefinitionBucketCriteria(
-            excludes:
-                Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludes(
-              and: [
-                Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAnd(
-                  simpleCriterion:
-                      Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriterion(
-                    comparator: TfArg.literal(
-                      Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriterionComparator
-                          .eq,
+          bucketCriteriaOrBucketDefinitions:
+              Macie2ClassificationJobS3JobDefinitionBucketCriteriaOption(
+            bucketCriteria:
+                Macie2ClassificationJobS3JobDefinitionBucketCriteria(
+              excludes:
+                  Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludes(
+                and: [
+                  Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAnd(
+                    simpleCriterion:
+                        Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriterion(
+                      comparator: TfArg.literal(
+                        Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludesAndSimpleCriterionComparator
+                            .eq,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -13210,25 +13224,31 @@ final class AwsLeftoverStack extends Stack {
         ],
         output: [
           RekognitionStreamProcessorOutput(
-            kinesisDataStream: [
-              RekognitionStreamProcessorOutputKinesisDataStream(
-                arn: TfArg.literal(arn),
-              ),
-            ],
+            kinesisDataStreamOrS3Destination:
+                RekognitionStreamProcessorOutputKinesisDataStreamOption(
+              kinesisDataStream: [
+                RekognitionStreamProcessorOutputKinesisDataStream(
+                  arn: TfArg.literal(arn),
+                ),
+              ],
+            ),
           ),
         ],
         settings: [
           RekognitionStreamProcessorSettings(
-            connectedHome: [
-              RekognitionStreamProcessorSettingsConnectedHome(
-                labels: [
-                  TfArg.literal(
-                    RekognitionStreamProcessorSettingsConnectedHomeLabels
-                        .person,
-                  ),
-                ],
-              ),
-            ],
+            connectedHomeOrFaceSearch:
+                RekognitionStreamProcessorSettingsConnectedHomeOption(
+              connectedHome: [
+                RekognitionStreamProcessorSettingsConnectedHome(
+                  labels: [
+                    TfArg.literal(
+                      RekognitionStreamProcessorSettingsConnectedHomeLabels
+                          .person,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
@@ -13374,8 +13394,13 @@ final class AwsLeftoverStack extends Stack {
       AwsRoute(
         localName: 'route',
         routeTableId: TfArg.literal(leftover),
-        destinationCidrBlock: TfArg.literal('10.0.0.0/16'),
-        carrierGatewayId: TfArg.literal(leftover),
+        destinationCidrBlockOrEgressOnlyGatewayId:
+            RouteDestinationCidrBlockOption(
+          destinationCidrBlock: TfArg.literal('10.0.0.0/16'),
+        ),
+        carrierGatewayIdOrDestinationIpv6CidrBlock: RouteCarrierGatewayIdOption(
+          carrierGatewayId: TfArg.literal(leftover),
+        ),
       ),
     );
 
@@ -17818,24 +17843,26 @@ final class AwsLeftoverStack extends Stack {
         name: TfArg.literal(leftover),
         priority: TfArg.literal(200),
         webAclArn: TfArg.literal(arn),
-        action: [
-          Wafv2WebAclRuleAction(
-            allow: [
-              Wafv2WebAclRuleActionAllow(
-                customRequestHandling: [
-                  Wafv2WebAclRuleActionAllowCustomRequestHandling(
-                    insertHeader: [
-                      Wafv2WebAclRuleActionAllowCustomRequestHandlingInsertHeader(
-                        name: TfArg.literal(leftover),
-                        value: TfArg.literal(leftover),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
+        actionOrOverrideAction: Wafv2WebAclRuleActionOption(
+          action: [
+            Wafv2WebAclRuleAction(
+              allow: [
+                Wafv2WebAclRuleActionAllow(
+                  customRequestHandling: [
+                    Wafv2WebAclRuleActionAllowCustomRequestHandling(
+                      insertHeader: [
+                        Wafv2WebAclRuleActionAllowCustomRequestHandlingInsertHeader(
+                          name: TfArg.literal(leftover),
+                          value: TfArg.literal(leftover),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
         statement: [
           Wafv2WebAclRuleStatement(
             andStatement: [

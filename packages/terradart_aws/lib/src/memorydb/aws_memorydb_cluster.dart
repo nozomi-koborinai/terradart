@@ -37,6 +37,105 @@ enum MemorydbClusterNetworkType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `name`, `name_prefix` on `aws_memorydb_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class MemorydbClusterNameOrNamePrefix {
+  const MemorydbClusterNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [MemorydbClusterNameOrNamePrefix] choices).
+final class MemorydbClusterNameOption extends MemorydbClusterNameOrNamePrefix {
+  const MemorydbClusterNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [MemorydbClusterNameOrNamePrefix] choices).
+final class MemorydbClusterNamePrefixOption
+    extends MemorydbClusterNameOrNamePrefix {
+  const MemorydbClusterNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
+/// At most one of `snapshot_arns`, `snapshot_name` on `aws_memorydb_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class MemorydbClusterSnapshotArnsOrSnapshotName {
+  const MemorydbClusterSnapshotArnsOrSnapshotName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `snapshot_arns` (one of the [MemorydbClusterSnapshotArnsOrSnapshotName] choices).
+final class MemorydbClusterSnapshotArnsOption
+    extends MemorydbClusterSnapshotArnsOrSnapshotName {
+  const MemorydbClusterSnapshotArnsOption({required this.snapshotArns});
+
+  final TfArg<List<String>> snapshotArns;
+
+  @override
+  String get blockKey => 'snapshot_arns';
+
+  @override
+  Map<String, Object?> encode() => {'snapshot_arns': snapshotArns.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'snapshot_arns': snapshotArns};
+}
+
+/// Sets `snapshot_name` (one of the [MemorydbClusterSnapshotArnsOrSnapshotName] choices).
+final class MemorydbClusterSnapshotNameOption
+    extends MemorydbClusterSnapshotArnsOrSnapshotName {
+  const MemorydbClusterSnapshotNameOption({required this.snapshotName});
+
+  final TfArg<String> snapshotName;
+
+  @override
+  String get blockKey => 'snapshot_name';
+
+  @override
+  Map<String, Object?> encode() => {'snapshot_name': snapshotName.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'snapshot_name': snapshotName};
+}
+
 /// Factory wrapper for `aws_memorydb_cluster`.
 final class AwsMemorydbCluster extends Resource {
   static const String tfType = 'aws_memorydb_cluster';
@@ -54,8 +153,7 @@ final class AwsMemorydbCluster extends Resource {
     TfArg<String>? kmsKeyArn,
     TfArg<String>? maintenanceWindow,
     TfArg<String>? multiRegionClusterName,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    MemorydbClusterNameOrNamePrefix? nameOrNamePrefix,
     TfArg<MemorydbClusterNetworkType>? networkType,
     required TfArg<String> nodeType,
     TfArg<num>? numReplicasPerShard,
@@ -64,8 +162,7 @@ final class AwsMemorydbCluster extends Resource {
     TfArg<num>? port,
     TfArg<String>? region,
     TfArg<List<String>>? securityGroupIds,
-    TfArg<List<String>>? snapshotArns,
-    TfArg<String>? snapshotName,
+    MemorydbClusterSnapshotArnsOrSnapshotName? snapshotArnsOrSnapshotName,
     TfArg<num>? snapshotRetentionLimit,
     TfArg<String>? snapshotWindow,
     TfArg<String>? snsTopicArn,
@@ -94,8 +191,7 @@ final class AwsMemorydbCluster extends Resource {
              'maintenance_window': maintenanceWindow,
            if (multiRegionClusterName != null)
              'multi_region_cluster_name': multiRegionClusterName,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (networkType != null) 'network_type': networkType,
            'node_type': nodeType,
            if (numReplicasPerShard != null)
@@ -106,8 +202,7 @@ final class AwsMemorydbCluster extends Resource {
            if (port != null) 'port': port,
            if (region != null) 'region': region,
            if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
-           if (snapshotArns != null) 'snapshot_arns': snapshotArns,
-           if (snapshotName != null) 'snapshot_name': snapshotName,
+           ...?snapshotArnsOrSnapshotName?.argMap,
            if (snapshotRetentionLimit != null)
              'snapshot_retention_limit': snapshotRetentionLimit,
            if (snapshotWindow != null) 'snapshot_window': snapshotWindow,

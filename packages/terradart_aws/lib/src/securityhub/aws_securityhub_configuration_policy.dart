@@ -39,14 +39,12 @@ final class SecurityhubConfigurationPolicyConfigurationPolicy {
 @immutable
 final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfiguration {
   const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfiguration({
-    this.disabledControlIdentifiers,
-    this.enabledControlIdentifiers,
+    this.disabledControlIdentifiersOrEnabledControlIdentifiers,
     this.securityControlCustomParameter,
   });
 
-  final TfArg<List<Object?>>? disabledControlIdentifiers;
-
-  final TfArg<List<Object?>>? enabledControlIdentifiers;
+  final SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers?
+  disabledControlIdentifiersOrEnabledControlIdentifiers;
 
   final List<
     SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameter
@@ -54,14 +52,61 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
   securityControlCustomParameter;
 
   Map<String, Object?> encode() => {
-    if (disabledControlIdentifiers != null)
-      'disabled_control_identifiers': disabledControlIdentifiers!.toTfJson(),
-    if (enabledControlIdentifiers != null)
-      'enabled_control_identifiers': enabledControlIdentifiers!.toTfJson(),
+    ...?disabledControlIdentifiersOrEnabledControlIdentifiers?.encode(),
     if (securityControlCustomParameter != null)
       'security_control_custom_parameter': [
         for (final e in securityControlCustomParameter!) e.encode(),
       ],
+  };
+}
+
+/// At most one of `disabled_control_identifiers`, `enabled_control_identifiers` on the `configuration_policy.security_controls_configuration` block of `aws_securityhub_configuration_policy`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers {
+  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `disabled_control_identifiers` (one of the [SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers] choices).
+final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOption
+    extends
+        SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers {
+  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOption({
+    required this.disabledControlIdentifiers,
+  });
+
+  final TfArg<List<Object?>> disabledControlIdentifiers;
+
+  @override
+  String get blockKey => 'disabled_control_identifiers';
+
+  @override
+  Map<String, Object?> encode() => {
+    'disabled_control_identifiers': disabledControlIdentifiers.toTfJson(),
+  };
+}
+
+/// Sets `enabled_control_identifiers` (one of the [SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers] choices).
+final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationEnabledControlIdentifiersOption
+    extends
+        SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers {
+  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationEnabledControlIdentifiersOption({
+    required this.enabledControlIdentifiers,
+  });
+
+  final TfArg<List<Object?>> enabledControlIdentifiers;
+
+  @override
+  String get blockKey => 'enabled_control_identifiers';
+
+  @override
+  Map<String, Object?> encode() => {
+    'enabled_control_identifiers': enabledControlIdentifiers.toTfJson(),
   };
 }
 

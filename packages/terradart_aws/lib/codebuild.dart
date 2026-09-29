@@ -88,10 +88,13 @@ export 'src/codebuild/aws_codebuild_source_credential.dart'
 export 'src/codebuild/aws_codebuild_webhook.dart'
     show
         AwsCodebuildWebhook,
+        CodebuildWebhookBranchFilterOption,
+        CodebuildWebhookBranchFilterOrFilterGroup,
         CodebuildWebhookBuildType,
         CodebuildWebhookFilterGroup,
         CodebuildWebhookFilterGroupFilter,
         CodebuildWebhookFilterGroupFilterType,
+        CodebuildWebhookFilterGroupOption,
         CodebuildWebhookPullRequestBuildPolicy,
         CodebuildWebhookPullRequestBuildPolicyApproverRoles,
         CodebuildWebhookPullRequestBuildPolicyRequiresCommentApproval,

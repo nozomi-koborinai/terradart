@@ -8,3 +8,6 @@ properties:
       - "json"
       - "opentelemetry0.7"
       - "opentelemetry1.0"
+at_most_one_of_groups:
+  - ["exclude_filter", "include_filter"]
+  - ["name", "name_prefix"]

@@ -1098,8 +1098,7 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosof
     this.clientSecret,
     this.clientSecretSource,
     this.clientSecretWo,
-    this.tenantId,
-    this.tenantIdWo,
+    this.tenantIdOrTenantIdWo,
     this.tenantIdWoVersion,
     this.clientSecretConfig,
   });
@@ -1116,9 +1115,8 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosof
 
   final TfArg<String>? clientSecretWo;
 
-  final TfArg<String>? tenantId;
-
-  final TfArg<String>? tenantIdWo;
+  final BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo?
+  tenantIdOrTenantIdWo;
 
   final TfArg<num>? tenantIdWoVersion;
 
@@ -1136,13 +1134,58 @@ final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosof
     if (clientSecretSource != null)
       'client_secret_source': clientSecretSource!.toTfJson(),
     if (clientSecretWo != null) 'client_secret_wo': clientSecretWo!.toTfJson(),
-    if (tenantId != null) 'tenant_id': tenantId!.toTfJson(),
-    if (tenantIdWo != null) 'tenant_id_wo': tenantIdWo!.toTfJson(),
+    ...?tenantIdOrTenantIdWo?.encode(),
     if (tenantIdWoVersion != null)
       'tenant_id_wo_version': tenantIdWoVersion!.toTfJson(),
     if (clientSecretConfig != null)
       'client_secret_config': [for (final e in clientSecretConfig!) e.encode()],
   };
+}
+
+/// At most one of `tenant_id`, `tenant_id_wo` on the `oauth2_provider_config.microsoft_oauth2_provider_config` block of `aws_bedrockagentcore_oauth2_credential_provider`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo {
+  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `tenant_id` (one of the [BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo] choices).
+final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOption
+    extends
+        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo {
+  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOption({
+    required this.tenantId,
+  });
+
+  final TfArg<String> tenantId;
+
+  @override
+  String get blockKey => 'tenant_id';
+
+  @override
+  Map<String, Object?> encode() => {'tenant_id': tenantId.toTfJson()};
+}
+
+/// Sets `tenant_id_wo` (one of the [BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo] choices).
+final class BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdWoOption
+    extends
+        BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdOrTenantIdWo {
+  const BedrockagentcoreOauth2CredentialProviderOauth2ProviderConfigMicrosoftOauth2ProviderConfigTenantIdWoOption({
+    required this.tenantIdWo,
+  });
+
+  final TfArg<String> tenantIdWo;
+
+  @override
+  String get blockKey => 'tenant_id_wo';
+
+  @override
+  Map<String, Object?> encode() => {'tenant_id_wo': tenantIdWo.toTfJson()};
 }
 
 /// Typed helper for the `oauth2_provider_config.microsoft_oauth2_provider_config.client_secret_config` block of

@@ -29,6 +29,98 @@ enum KinesisFirehoseDeliveryStreamDestination implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `kinesis_source_configuration`, `msk_source_configuration`, `server_side_encryption` on `aws_kinesis_firehose_delivery_stream`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption {
+  const KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `kinesis_source_configuration` (one of the [KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption] choices).
+final class KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOption
+    extends
+        KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption {
+  const KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOption({
+    required this.kinesisSourceConfiguration,
+  });
+
+  final KinesisFirehoseDeliveryStreamKinesisSourceConfiguration
+  kinesisSourceConfiguration;
+
+  @override
+  String get blockKey => 'kinesis_source_configuration';
+
+  @override
+  Map<String, Object?> encode() => {
+    'kinesis_source_configuration': kinesisSourceConfiguration.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'kinesis_source_configuration': TfArg.literal(
+      kinesisSourceConfiguration.encode(),
+    ),
+  };
+}
+
+/// Sets `msk_source_configuration` (one of the [KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption] choices).
+final class KinesisFirehoseDeliveryStreamMskSourceConfigurationOption
+    extends
+        KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption {
+  const KinesisFirehoseDeliveryStreamMskSourceConfigurationOption({
+    required this.mskSourceConfiguration,
+  });
+
+  final KinesisFirehoseDeliveryStreamMskSourceConfiguration
+  mskSourceConfiguration;
+
+  @override
+  String get blockKey => 'msk_source_configuration';
+
+  @override
+  Map<String, Object?> encode() => {
+    'msk_source_configuration': mskSourceConfiguration.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'msk_source_configuration': TfArg.literal(mskSourceConfiguration.encode()),
+  };
+}
+
+/// Sets `server_side_encryption` (one of the [KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption] choices).
+final class KinesisFirehoseDeliveryStreamServerSideEncryptionOption
+    extends
+        KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption {
+  const KinesisFirehoseDeliveryStreamServerSideEncryptionOption({
+    required this.serverSideEncryption,
+  });
+
+  final KinesisFirehoseDeliveryStreamServerSideEncryption serverSideEncryption;
+
+  @override
+  String get blockKey => 'server_side_encryption';
+
+  @override
+  Map<String, Object?> encode() => {
+    'server_side_encryption': serverSideEncryption.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'server_side_encryption': TfArg.literal(serverSideEncryption.encode()),
+  };
+}
+
 /// Typed helper for the `elasticsearch_configuration` block of
 /// `aws_kinesis_firehose_delivery_stream` (derived from provider schema).
 @immutable
@@ -36,8 +128,7 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
   const KinesisFirehoseDeliveryStreamElasticsearchConfiguration({
     this.bufferingInterval,
     this.bufferingSize,
-    this.clusterEndpoint,
-    this.domainArn,
+    this.clusterEndpointOrDomainArn,
     required this.indexName,
     this.indexRotationPeriod,
     this.retryDuration,
@@ -54,9 +145,8 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
 
   final TfArg<num>? bufferingSize;
 
-  final TfArg<String>? clusterEndpoint;
-
-  final TfArg<String>? domainArn;
+  final KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn?
+  clusterEndpointOrDomainArn;
 
   final TfArg<String> indexName;
 
@@ -92,9 +182,7 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (clusterEndpoint != null)
-      'cluster_endpoint': clusterEndpoint!.toTfJson(),
-    if (domainArn != null) 'domain_arn': domainArn!.toTfJson(),
+    ...?clusterEndpointOrDomainArn?.encode(),
     'index_name': indexName.toTfJson(),
     if (indexRotationPeriod != null)
       'index_rotation_period': indexRotationPeriod!.toTfJson(),
@@ -109,6 +197,54 @@ final class KinesisFirehoseDeliveryStreamElasticsearchConfiguration {
     's3_configuration': s3Configuration.encode(),
     if (vpcConfig != null) 'vpc_config': vpcConfig!.encode(),
   };
+}
+
+/// At most one of `cluster_endpoint`, `domain_arn` on the `elasticsearch_configuration` block of `aws_kinesis_firehose_delivery_stream`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn {
+  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `cluster_endpoint` (one of the [KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn] choices).
+final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOption
+    extends
+        KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn {
+  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOption({
+    required this.clusterEndpoint,
+  });
+
+  final TfArg<String> clusterEndpoint;
+
+  @override
+  String get blockKey => 'cluster_endpoint';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cluster_endpoint': clusterEndpoint.toTfJson(),
+  };
+}
+
+/// Sets `domain_arn` (one of the [KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn] choices).
+final class KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainArnOption
+    extends
+        KinesisFirehoseDeliveryStreamElasticsearchConfigurationClusterEndpointOrDomainArn {
+  const KinesisFirehoseDeliveryStreamElasticsearchConfigurationDomainArnOption({
+    required this.domainArn,
+  });
+
+  final TfArg<String> domainArn;
+
+  @override
+  String get blockKey => 'domain_arn';
+
+  @override
+  Map<String, Object?> encode() => {'domain_arn': domainArn.toTfJson()};
 }
 
 /// `index_rotation_period` — derived from the provider schema description.
@@ -521,19 +657,64 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 @immutable
 final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializer {
   const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializer({
-    this.hiveJsonSerDe,
-    this.openXJsonSerDe,
+    this.hiveJsonSerDeOrOpenXJsonSerDe,
   });
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDe?
-  hiveJsonSerDe;
-
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerOpenXJsonSerDe?
-  openXJsonSerDe;
+  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe?
+  hiveJsonSerDeOrOpenXJsonSerDe;
 
   Map<String, Object?> encode() => {
-    if (hiveJsonSerDe != null) 'hive_json_ser_de': hiveJsonSerDe!.encode(),
-    if (openXJsonSerDe != null) 'open_x_json_ser_de': openXJsonSerDe!.encode(),
+    ...?hiveJsonSerDeOrOpenXJsonSerDe?.encode(),
+  };
+}
+
+/// At most one of `hive_json_ser_de`, `open_x_json_ser_de` on the `extended_s3_configuration.data_format_conversion_configuration.input_format_configuration.deserializer` block of `aws_kinesis_firehose_delivery_stream`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe {
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `hive_json_ser_de` (one of the [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe] choices).
+final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOption
+    extends
+        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe {
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOption({
+    required this.hiveJsonSerDe,
+  });
+
+  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDe
+  hiveJsonSerDe;
+
+  @override
+  String get blockKey => 'hive_json_ser_de';
+
+  @override
+  Map<String, Object?> encode() => {'hive_json_ser_de': hiveJsonSerDe.encode()};
+}
+
+/// Sets `open_x_json_ser_de` (one of the [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe] choices).
+final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerOpenXJsonSerDeOption
+    extends
+        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe {
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerOpenXJsonSerDeOption({
+    required this.openXJsonSerDe,
+  });
+
+  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerOpenXJsonSerDe
+  openXJsonSerDe;
+
+  @override
+  String get blockKey => 'open_x_json_ser_de';
+
+  @override
+  Map<String, Object?> encode() => {
+    'open_x_json_ser_de': openXJsonSerDe.encode(),
   };
 }
 
@@ -599,20 +780,61 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 @immutable
 final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializer {
   const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializer({
-    this.orcSerDe,
-    this.parquetSerDe,
+    this.orcSerDeOrParquetSerDe,
   });
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDe?
+  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe?
+  orcSerDeOrParquetSerDe;
+
+  Map<String, Object?> encode() => {...?orcSerDeOrParquetSerDe?.encode()};
+}
+
+/// At most one of `orc_ser_de`, `parquet_ser_de` on the `extended_s3_configuration.data_format_conversion_configuration.output_format_configuration.serializer` block of `aws_kinesis_firehose_delivery_stream`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe {
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `orc_ser_de` (one of the [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe] choices).
+final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOption
+    extends
+        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe {
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOption({
+    required this.orcSerDe,
+  });
+
+  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDe
   orcSerDe;
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDe?
+  @override
+  String get blockKey => 'orc_ser_de';
+
+  @override
+  Map<String, Object?> encode() => {'orc_ser_de': orcSerDe.encode()};
+}
+
+/// Sets `parquet_ser_de` (one of the [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe] choices).
+final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeOption
+    extends
+        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe {
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDeOption({
+    required this.parquetSerDe,
+  });
+
+  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDe
   parquetSerDe;
 
-  Map<String, Object?> encode() => {
-    if (orcSerDe != null) 'orc_ser_de': orcSerDe!.encode(),
-    if (parquetSerDe != null) 'parquet_ser_de': parquetSerDe!.encode(),
-  };
+  @override
+  String get blockKey => 'parquet_ser_de';
+
+  @override
+  Map<String, Object?> encode() => {'parquet_ser_de': parquetSerDe.encode()};
 }
 
 /// Typed helper for the `extended_s3_configuration.data_format_conversion_configuration.output_format_configuration.serializer.orc_ser_de` block of
@@ -1649,8 +1871,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
   const KinesisFirehoseDeliveryStreamOpensearchConfiguration({
     this.bufferingInterval,
     this.bufferingSize,
-    this.clusterEndpoint,
-    this.domainArn,
+    this.clusterEndpointOrDomainArn,
     required this.indexName,
     this.indexRotationPeriod,
     this.retryDuration,
@@ -1668,9 +1889,8 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
 
   final TfArg<num>? bufferingSize;
 
-  final TfArg<String>? clusterEndpoint;
-
-  final TfArg<String>? domainArn;
+  final KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn?
+  clusterEndpointOrDomainArn;
 
   final TfArg<String> indexName;
 
@@ -1707,9 +1927,7 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
     if (bufferingInterval != null)
       'buffering_interval': bufferingInterval!.toTfJson(),
     if (bufferingSize != null) 'buffering_size': bufferingSize!.toTfJson(),
-    if (clusterEndpoint != null)
-      'cluster_endpoint': clusterEndpoint!.toTfJson(),
-    if (domainArn != null) 'domain_arn': domainArn!.toTfJson(),
+    ...?clusterEndpointOrDomainArn?.encode(),
     'index_name': indexName.toTfJson(),
     if (indexRotationPeriod != null)
       'index_rotation_period': indexRotationPeriod!.toTfJson(),
@@ -1726,6 +1944,54 @@ final class KinesisFirehoseDeliveryStreamOpensearchConfiguration {
     's3_configuration': s3Configuration.encode(),
     if (vpcConfig != null) 'vpc_config': vpcConfig!.encode(),
   };
+}
+
+/// At most one of `cluster_endpoint`, `domain_arn` on the `opensearch_configuration` block of `aws_kinesis_firehose_delivery_stream`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn {
+  const KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `cluster_endpoint` (one of the [KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn] choices).
+final class KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOption
+    extends
+        KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn {
+  const KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOption({
+    required this.clusterEndpoint,
+  });
+
+  final TfArg<String> clusterEndpoint;
+
+  @override
+  String get blockKey => 'cluster_endpoint';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cluster_endpoint': clusterEndpoint.toTfJson(),
+  };
+}
+
+/// Sets `domain_arn` (one of the [KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn] choices).
+final class KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainArnOption
+    extends
+        KinesisFirehoseDeliveryStreamOpensearchConfigurationClusterEndpointOrDomainArn {
+  const KinesisFirehoseDeliveryStreamOpensearchConfigurationDomainArnOption({
+    required this.domainArn,
+  });
+
+  final TfArg<String> domainArn;
+
+  @override
+  String get blockKey => 'domain_arn';
+
+  @override
+  Map<String, Object?> encode() => {'domain_arn': domainArn.toTfJson()};
 }
 
 /// `index_rotation_period` — derived from the provider schema description.
@@ -3291,15 +3557,13 @@ final class AwsKinesisFirehoseDeliveryStream extends Resource {
     KinesisFirehoseDeliveryStreamHttpEndpointConfiguration?
     httpEndpointConfiguration,
     KinesisFirehoseDeliveryStreamIcebergConfiguration? icebergConfiguration,
-    KinesisFirehoseDeliveryStreamKinesisSourceConfiguration?
-    kinesisSourceConfiguration,
-    KinesisFirehoseDeliveryStreamMskSourceConfiguration? mskSourceConfiguration,
+    KinesisFirehoseDeliveryStreamKinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption?
+    kinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption,
     KinesisFirehoseDeliveryStreamOpensearchConfiguration?
     opensearchConfiguration,
     KinesisFirehoseDeliveryStreamOpensearchserverlessConfiguration?
     opensearchserverlessConfiguration,
     KinesisFirehoseDeliveryStreamRedshiftConfiguration? redshiftConfiguration,
-    KinesisFirehoseDeliveryStreamServerSideEncryption? serverSideEncryption,
     KinesisFirehoseDeliveryStreamSnowflakeConfiguration? snowflakeConfiguration,
     KinesisFirehoseDeliveryStreamSplunkConfiguration? splunkConfiguration,
     super.lifecycle,
@@ -3332,14 +3596,8 @@ final class AwsKinesisFirehoseDeliveryStream extends Resource {
              'iceberg_configuration': TfArg.literal(
                icebergConfiguration.encode(),
              ),
-           if (kinesisSourceConfiguration != null)
-             'kinesis_source_configuration': TfArg.literal(
-               kinesisSourceConfiguration.encode(),
-             ),
-           if (mskSourceConfiguration != null)
-             'msk_source_configuration': TfArg.literal(
-               mskSourceConfiguration.encode(),
-             ),
+           ...?kinesisSourceConfigurationOrMskSourceConfigurationOrServerSideEncryption
+               ?.argMap,
            if (opensearchConfiguration != null)
              'opensearch_configuration': TfArg.literal(
                opensearchConfiguration.encode(),
@@ -3351,10 +3609,6 @@ final class AwsKinesisFirehoseDeliveryStream extends Resource {
            if (redshiftConfiguration != null)
              'redshift_configuration': TfArg.literal(
                redshiftConfiguration.encode(),
-             ),
-           if (serverSideEncryption != null)
-             'server_side_encryption': TfArg.literal(
-               serverSideEncryption.encode(),
              ),
            if (snowflakeConfiguration != null)
              'snowflake_configuration': TfArg.literal(

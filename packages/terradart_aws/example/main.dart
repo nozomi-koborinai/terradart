@@ -36,7 +36,7 @@ final class HelloStack extends Stack {
     final role = AwsIamRole(
       localName: 'hello',
       assumeRolePolicy: TfArg.ref(trust.json),
-      name: TfArg.literal('hello-dart'),
+      nameOrNamePrefix: IamRoleNameOption(name: TfArg.literal('hello-dart')),
     );
     add(role);
     add(

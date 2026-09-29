@@ -26,18 +26,57 @@ enum AccessanalyzerAnalyzerType implements TerraformEnum {
 @immutable
 final class AccessanalyzerAnalyzerConfiguration {
   const AccessanalyzerAnalyzerConfiguration({
-    this.internalAccess,
-    this.unusedAccess,
+    this.internalAccessOrUnusedAccess,
   });
 
-  final AccessanalyzerAnalyzerConfigurationInternalAccess? internalAccess;
+  final AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess?
+  internalAccessOrUnusedAccess;
 
-  final AccessanalyzerAnalyzerConfigurationUnusedAccess? unusedAccess;
+  Map<String, Object?> encode() => {...?internalAccessOrUnusedAccess?.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (internalAccess != null) 'internal_access': internalAccess!.encode(),
-    if (unusedAccess != null) 'unused_access': unusedAccess!.encode(),
-  };
+/// At most one of `internal_access`, `unused_access` on the `configuration` block of `aws_accessanalyzer_analyzer`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess {
+  const AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `internal_access` (one of the [AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess] choices).
+final class AccessanalyzerAnalyzerConfigurationInternalAccessOption
+    extends AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess {
+  const AccessanalyzerAnalyzerConfigurationInternalAccessOption({
+    required this.internalAccess,
+  });
+
+  final AccessanalyzerAnalyzerConfigurationInternalAccess internalAccess;
+
+  @override
+  String get blockKey => 'internal_access';
+
+  @override
+  Map<String, Object?> encode() => {'internal_access': internalAccess.encode()};
+}
+
+/// Sets `unused_access` (one of the [AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess] choices).
+final class AccessanalyzerAnalyzerConfigurationUnusedAccessOption
+    extends AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess {
+  const AccessanalyzerAnalyzerConfigurationUnusedAccessOption({
+    required this.unusedAccess,
+  });
+
+  final AccessanalyzerAnalyzerConfigurationUnusedAccess unusedAccess;
+
+  @override
+  String get blockKey => 'unused_access';
+
+  @override
+  Map<String, Object?> encode() => {'unused_access': unusedAccess.encode()};
 }
 
 /// Typed helper for the `configuration.internal_access` block of

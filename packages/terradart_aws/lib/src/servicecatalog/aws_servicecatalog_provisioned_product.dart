@@ -134,6 +134,58 @@ final class ServicecatalogProvisionedProductProvisioningArtifactNameOption
   };
 }
 
+/// At most one of `path_id`, `path_name` on `aws_servicecatalog_provisioned_product`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ServicecatalogProvisionedProductPathIdOrPathName {
+  const ServicecatalogProvisionedProductPathIdOrPathName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `path_id` (one of the [ServicecatalogProvisionedProductPathIdOrPathName] choices).
+final class ServicecatalogProvisionedProductPathIdOption
+    extends ServicecatalogProvisionedProductPathIdOrPathName {
+  const ServicecatalogProvisionedProductPathIdOption({required this.pathId});
+
+  final TfArg<String> pathId;
+
+  @override
+  String get blockKey => 'path_id';
+
+  @override
+  Map<String, Object?> encode() => {'path_id': pathId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'path_id': pathId};
+}
+
+/// Sets `path_name` (one of the [ServicecatalogProvisionedProductPathIdOrPathName] choices).
+final class ServicecatalogProvisionedProductPathNameOption
+    extends ServicecatalogProvisionedProductPathIdOrPathName {
+  const ServicecatalogProvisionedProductPathNameOption({
+    required this.pathName,
+  });
+
+  final TfArg<String> pathName;
+
+  @override
+  String get blockKey => 'path_name';
+
+  @override
+  Map<String, Object?> encode() => {'path_name': pathName.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'path_name': pathName};
+}
+
 /// Typed helper for the `provisioning_parameters` block of
 /// `aws_servicecatalog_provisioned_product` (derived from provider schema).
 @immutable
@@ -295,8 +347,7 @@ final class AwsServicecatalogProvisionedProduct extends Resource {
     TfArg<bool>? ignoreErrors,
     required TfArg<String> name,
     TfArg<List<String>>? notificationArns,
-    TfArg<String>? pathId,
-    TfArg<String>? pathName,
+    ServicecatalogProvisionedProductPathIdOrPathName? pathIdOrPathName,
     required ServicecatalogProvisionedProductProductIdOrProductName
     productIdOrProductName,
     required ServicecatalogProvisionedProductProvisioningArtifactIdOrProvisioningArtifactName
@@ -319,8 +370,7 @@ final class AwsServicecatalogProvisionedProduct extends Resource {
            if (ignoreErrors != null) 'ignore_errors': ignoreErrors,
            'name': name,
            if (notificationArns != null) 'notification_arns': notificationArns,
-           if (pathId != null) 'path_id': pathId,
-           if (pathName != null) 'path_name': pathName,
+           ...?pathIdOrPathName?.argMap,
            ...productIdOrProductName.argMap,
            ...provisioningArtifactIdOrProvisioningArtifactName.argMap,
            if (region != null) 'region': region,

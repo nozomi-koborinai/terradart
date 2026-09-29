@@ -126,3 +126,7 @@ properties:
                       - api_name: target
                         enum_values:
                           - "S3_OBJECT"
+at_most_one_of_groups:
+  - ["name", "name_prefix"]
+  - ["s3_job_definition.bucket_criteria", "s3_job_definition.bucket_definitions"]
+  - ["schedule_frequency.daily_schedule", "schedule_frequency.monthly_schedule", "schedule_frequency.weekly_schedule"]

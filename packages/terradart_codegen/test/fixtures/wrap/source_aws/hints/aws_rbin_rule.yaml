@@ -20,3 +20,5 @@ properties:
       - api_name: retention_period_unit
         enum_values:
           - "DAYS"
+at_most_one_of_groups:
+  - ["exclude_resource_tags", "resource_tags"]

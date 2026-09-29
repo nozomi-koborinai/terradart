@@ -19,6 +19,66 @@ enum EcsTaskSetLaunchType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `capacity_provider_strategy`, `launch_type` on `aws_ecs_task_set`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class EcsTaskSetCapacityProviderStrategyOrLaunchType {
+  const EcsTaskSetCapacityProviderStrategyOrLaunchType();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `capacity_provider_strategy` (one of the [EcsTaskSetCapacityProviderStrategyOrLaunchType] choices).
+final class EcsTaskSetCapacityProviderStrategyOption
+    extends EcsTaskSetCapacityProviderStrategyOrLaunchType {
+  const EcsTaskSetCapacityProviderStrategyOption({
+    required this.capacityProviderStrategy,
+  });
+
+  final List<EcsTaskSetCapacityProviderStrategy> capacityProviderStrategy;
+
+  @override
+  String get blockKey => 'capacity_provider_strategy';
+
+  @override
+  Map<String, Object?> encode() => {
+    'capacity_provider_strategy': [
+      for (final e in capacityProviderStrategy) e.encode(),
+    ],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'capacity_provider_strategy': TfArg.literal([
+      for (final e in capacityProviderStrategy) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `launch_type` (one of the [EcsTaskSetCapacityProviderStrategyOrLaunchType] choices).
+final class EcsTaskSetLaunchTypeOption
+    extends EcsTaskSetCapacityProviderStrategyOrLaunchType {
+  const EcsTaskSetLaunchTypeOption({required this.launchType});
+
+  final TfArg<EcsTaskSetLaunchType> launchType;
+
+  @override
+  String get blockKey => 'launch_type';
+
+  @override
+  Map<String, Object?> encode() => {'launch_type': launchType.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'launch_type': launchType};
+}
+
 /// Typed helper for the `capacity_provider_strategy` block of
 /// `aws_ecs_task_set` (derived from provider schema).
 @immutable
@@ -154,7 +214,8 @@ final class AwsEcsTaskSet extends Resource {
     required TfArg<String> cluster,
     TfArg<String>? externalId,
     TfArg<bool>? forceDelete,
-    TfArg<EcsTaskSetLaunchType>? launchType,
+    EcsTaskSetCapacityProviderStrategyOrLaunchType?
+    capacityProviderStrategyOrLaunchType,
     TfArg<String>? platformVersion,
     TfArg<String>? region,
     required TfArg<String> service,
@@ -162,7 +223,6 @@ final class AwsEcsTaskSet extends Resource {
     required TfArg<String> taskDefinition,
     TfArg<bool>? waitUntilStable,
     TfArg<String>? waitUntilStableTimeout,
-    List<EcsTaskSetCapacityProviderStrategy>? capacityProviderStrategy,
     List<EcsTaskSetLoadBalancer>? loadBalancer,
     EcsTaskSetNetworkConfiguration? networkConfiguration,
     EcsTaskSetScale? scale,
@@ -177,7 +237,7 @@ final class AwsEcsTaskSet extends Resource {
            'cluster': cluster,
            if (externalId != null) 'external_id': externalId,
            if (forceDelete != null) 'force_delete': forceDelete,
-           if (launchType != null) 'launch_type': launchType,
+           ...?capacityProviderStrategyOrLaunchType?.argMap,
            if (platformVersion != null) 'platform_version': platformVersion,
            if (region != null) 'region': region,
            'service': service,
@@ -186,10 +246,6 @@ final class AwsEcsTaskSet extends Resource {
            if (waitUntilStable != null) 'wait_until_stable': waitUntilStable,
            if (waitUntilStableTimeout != null)
              'wait_until_stable_timeout': waitUntilStableTimeout,
-           if (capacityProviderStrategy != null)
-             'capacity_provider_strategy': TfArg.literal([
-               for (final e in capacityProviderStrategy) e.encode(),
-             ]),
            if (loadBalancer != null)
              'load_balancer': TfArg.literal([
                for (final e in loadBalancer) e.encode(),

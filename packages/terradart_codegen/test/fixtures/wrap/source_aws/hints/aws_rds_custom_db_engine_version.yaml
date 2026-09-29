@@ -8,3 +8,5 @@ properties:
       - "available"
       - "inactive"
       - "inactive-except-restore"
+at_most_one_of_groups:
+  - ["filename", "manifest"]

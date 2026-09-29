@@ -112,3 +112,5 @@ properties:
         enum_values:
           - "required"
           - "preferred"
+at_most_one_of_groups:
+  - ["alias_attributes", "username_attributes"]

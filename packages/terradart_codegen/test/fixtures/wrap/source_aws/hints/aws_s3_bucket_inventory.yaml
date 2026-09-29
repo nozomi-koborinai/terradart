@@ -42,3 +42,5 @@ properties:
         enum_values:
           - "Daily"
           - "Weekly"
+at_most_one_of_groups:
+  - ["destination.bucket.encryption.sse_kms", "destination.bucket.encryption.sse_s3"]

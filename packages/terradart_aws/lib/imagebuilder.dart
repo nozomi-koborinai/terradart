@@ -89,6 +89,9 @@ export 'src/imagebuilder/aws_imagebuilder_infrastructure_configuration.dart'
         ImagebuilderInfrastructureConfigurationLogging,
         ImagebuilderInfrastructureConfigurationLoggingS3Logs,
         ImagebuilderInfrastructureConfigurationPlacement,
+        ImagebuilderInfrastructureConfigurationPlacementHostIdOption,
+        ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn,
+        ImagebuilderInfrastructureConfigurationPlacementHostResourceGroupArnOption,
         ImagebuilderInfrastructureConfigurationPlacementTenancy;
 export 'src/imagebuilder/aws_imagebuilder_lifecycle_policy.dart'
     show

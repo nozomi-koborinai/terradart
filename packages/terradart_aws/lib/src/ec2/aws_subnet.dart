@@ -16,6 +16,120 @@ enum SubnetPrivateDnsHostnameTypeOnLaunch implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `availability_zone`, `availability_zone_id` on `aws_subnet`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SubnetAvailabilityZoneOrAvailabilityZoneId {
+  const SubnetAvailabilityZoneOrAvailabilityZoneId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `availability_zone` (one of the [SubnetAvailabilityZoneOrAvailabilityZoneId] choices).
+final class SubnetAvailabilityZoneOption
+    extends SubnetAvailabilityZoneOrAvailabilityZoneId {
+  const SubnetAvailabilityZoneOption({required this.availabilityZone});
+
+  final TfArg<String> availabilityZone;
+
+  @override
+  String get blockKey => 'availability_zone';
+
+  @override
+  Map<String, Object?> encode() => {
+    'availability_zone': availabilityZone.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'availability_zone': availabilityZone,
+  };
+}
+
+/// Sets `availability_zone_id` (one of the [SubnetAvailabilityZoneOrAvailabilityZoneId] choices).
+final class SubnetAvailabilityZoneIdOption
+    extends SubnetAvailabilityZoneOrAvailabilityZoneId {
+  const SubnetAvailabilityZoneIdOption({required this.availabilityZoneId});
+
+  final TfArg<String> availabilityZoneId;
+
+  @override
+  String get blockKey => 'availability_zone_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'availability_zone_id': availabilityZoneId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'availability_zone_id': availabilityZoneId,
+  };
+}
+
+/// At most one of `ipv6_cidr_block`, `ipv6_netmask_length` on `aws_subnet`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SubnetIpv6CidrBlockOrIpv6NetmaskLength {
+  const SubnetIpv6CidrBlockOrIpv6NetmaskLength();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `ipv6_cidr_block` (one of the [SubnetIpv6CidrBlockOrIpv6NetmaskLength] choices).
+final class SubnetIpv6CidrBlockOption
+    extends SubnetIpv6CidrBlockOrIpv6NetmaskLength {
+  const SubnetIpv6CidrBlockOption({required this.ipv6CidrBlock});
+
+  final TfArg<String> ipv6CidrBlock;
+
+  @override
+  String get blockKey => 'ipv6_cidr_block';
+
+  @override
+  Map<String, Object?> encode() => {
+    'ipv6_cidr_block': ipv6CidrBlock.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'ipv6_cidr_block': ipv6CidrBlock};
+}
+
+/// Sets `ipv6_netmask_length` (one of the [SubnetIpv6CidrBlockOrIpv6NetmaskLength] choices).
+final class SubnetIpv6NetmaskLengthOption
+    extends SubnetIpv6CidrBlockOrIpv6NetmaskLength {
+  const SubnetIpv6NetmaskLengthOption({required this.ipv6NetmaskLength});
+
+  final TfArg<num> ipv6NetmaskLength;
+
+  @override
+  String get blockKey => 'ipv6_netmask_length';
+
+  @override
+  Map<String, Object?> encode() => {
+    'ipv6_netmask_length': ipv6NetmaskLength.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'ipv6_netmask_length': ipv6NetmaskLength,
+  };
+}
+
 /// Factory wrapper for `aws_subnet`.
 final class AwsSubnet extends Resource {
   static const String tfType = 'aws_subnet';
@@ -23,8 +137,8 @@ final class AwsSubnet extends Resource {
   AwsSubnet({
     required super.localName,
     TfArg<bool>? assignIpv6AddressOnCreation,
-    TfArg<String>? availabilityZone,
-    TfArg<String>? availabilityZoneId,
+    SubnetAvailabilityZoneOrAvailabilityZoneId?
+    availabilityZoneOrAvailabilityZoneId,
     TfArg<String>? cidrBlock,
     TfArg<String>? customerOwnedIpv4Pool,
     TfArg<bool>? enableDns64,
@@ -33,10 +147,9 @@ final class AwsSubnet extends Resource {
     TfArg<bool>? enableResourceNameDnsAaaaRecordOnLaunch,
     TfArg<String>? ipv4IpamPoolId,
     TfArg<num>? ipv4NetmaskLength,
-    TfArg<String>? ipv6CidrBlock,
+    SubnetIpv6CidrBlockOrIpv6NetmaskLength? ipv6CidrBlockOrIpv6NetmaskLength,
     TfArg<String>? ipv6IpamPoolId,
     TfArg<bool>? ipv6Native,
-    TfArg<num>? ipv6NetmaskLength,
     TfArg<bool>? mapCustomerOwnedIpOnLaunch,
     TfArg<bool>? mapPublicIpOnLaunch,
     TfArg<String>? outpostArn,
@@ -53,9 +166,7 @@ final class AwsSubnet extends Resource {
          argMap: {
            if (assignIpv6AddressOnCreation != null)
              'assign_ipv6_address_on_creation': assignIpv6AddressOnCreation,
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (availabilityZoneId != null)
-             'availability_zone_id': availabilityZoneId,
+           ...?availabilityZoneOrAvailabilityZoneId?.argMap,
            if (cidrBlock != null) 'cidr_block': cidrBlock,
            if (customerOwnedIpv4Pool != null)
              'customer_owned_ipv4_pool': customerOwnedIpv4Pool,
@@ -71,11 +182,9 @@ final class AwsSubnet extends Resource {
            if (ipv4IpamPoolId != null) 'ipv4_ipam_pool_id': ipv4IpamPoolId,
            if (ipv4NetmaskLength != null)
              'ipv4_netmask_length': ipv4NetmaskLength,
-           if (ipv6CidrBlock != null) 'ipv6_cidr_block': ipv6CidrBlock,
+           ...?ipv6CidrBlockOrIpv6NetmaskLength?.argMap,
            if (ipv6IpamPoolId != null) 'ipv6_ipam_pool_id': ipv6IpamPoolId,
            if (ipv6Native != null) 'ipv6_native': ipv6Native,
-           if (ipv6NetmaskLength != null)
-             'ipv6_netmask_length': ipv6NetmaskLength,
            if (mapCustomerOwnedIpOnLaunch != null)
              'map_customer_owned_ip_on_launch': mapCustomerOwnedIpOnLaunch,
            if (mapPublicIpOnLaunch != null)

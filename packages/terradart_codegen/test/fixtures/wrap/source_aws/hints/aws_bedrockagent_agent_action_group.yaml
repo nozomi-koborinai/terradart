@@ -34,3 +34,6 @@ properties:
       - "ANTHROPIC.Computer"
       - "ANTHROPIC.Bash"
       - "ANTHROPIC.TextEditor"
+at_most_one_of_groups:
+  - ["api_schema.payload", "api_schema.s3"]
+  - ["description", "parent_action_group_signature"]

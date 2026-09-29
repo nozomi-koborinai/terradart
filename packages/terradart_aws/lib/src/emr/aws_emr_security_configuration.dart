@@ -6,6 +6,56 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_emr_security_configuration`.
 const Set<String> _awsEmrSecurityConfigurationSensitive = <String>{};
 
+/// At most one of `name`, `name_prefix` on `aws_emr_security_configuration`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class EmrSecurityConfigurationNameOrNamePrefix {
+  const EmrSecurityConfigurationNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [EmrSecurityConfigurationNameOrNamePrefix] choices).
+final class EmrSecurityConfigurationNameOption
+    extends EmrSecurityConfigurationNameOrNamePrefix {
+  const EmrSecurityConfigurationNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [EmrSecurityConfigurationNameOrNamePrefix] choices).
+final class EmrSecurityConfigurationNamePrefixOption
+    extends EmrSecurityConfigurationNameOrNamePrefix {
+  const EmrSecurityConfigurationNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Factory wrapper for `aws_emr_security_configuration`.
 final class AwsEmrSecurityConfiguration extends Resource {
   static const String tfType = 'aws_emr_security_configuration';
@@ -13,8 +63,7 @@ final class AwsEmrSecurityConfiguration extends Resource {
   AwsEmrSecurityConfiguration({
     required super.localName,
     required TfArg<String> configuration,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    EmrSecurityConfigurationNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
@@ -24,8 +73,7 @@ final class AwsEmrSecurityConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'configuration': configuration,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (region != null) 'region': region,
          },
        );

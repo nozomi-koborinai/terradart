@@ -13,3 +13,5 @@ properties:
     enum_values:
       - "DIMENSIONAL"
       - "CUSTOM"
+at_most_one_of_groups:
+  - ["monitor_dimension", "monitor_specification"]

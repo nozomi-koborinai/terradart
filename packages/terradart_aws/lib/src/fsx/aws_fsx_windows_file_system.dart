@@ -42,6 +42,71 @@ enum FsxWindowsFileSystemStorageType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `active_directory_id`, `self_managed_active_directory` on `aws_fsx_windows_file_system`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory {
+  const FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `active_directory_id` (one of the [FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory] choices).
+final class FsxWindowsFileSystemActiveDirectoryIdOption
+    extends FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory {
+  const FsxWindowsFileSystemActiveDirectoryIdOption({
+    required this.activeDirectoryId,
+  });
+
+  final TfArg<String> activeDirectoryId;
+
+  @override
+  String get blockKey => 'active_directory_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'active_directory_id': activeDirectoryId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'active_directory_id': activeDirectoryId,
+  };
+}
+
+/// Sets `self_managed_active_directory` (one of the [FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory] choices).
+final class FsxWindowsFileSystemSelfManagedActiveDirectoryOption
+    extends FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory {
+  const FsxWindowsFileSystemSelfManagedActiveDirectoryOption({
+    required this.selfManagedActiveDirectory,
+  });
+
+  final FsxWindowsFileSystemSelfManagedActiveDirectory
+  selfManagedActiveDirectory;
+
+  @override
+  String get blockKey => 'self_managed_active_directory';
+
+  @override
+  Map<String, Object?> encode() => {
+    'self_managed_active_directory': selfManagedActiveDirectory.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'self_managed_active_directory': TfArg.literal(
+      selfManagedActiveDirectory.encode(),
+    ),
+  };
+}
+
 /// Typed helper for the `audit_log_configuration` block of
 /// `aws_fsx_windows_file_system` (derived from provider schema).
 @immutable
@@ -189,7 +254,8 @@ final class AwsFsxWindowsFileSystem extends Resource {
 
   AwsFsxWindowsFileSystem({
     required super.localName,
-    TfArg<String>? activeDirectoryId,
+    FsxWindowsFileSystemActiveDirectoryIdOrSelfManagedActiveDirectory?
+    activeDirectoryIdOrSelfManagedActiveDirectory,
     TfArg<List<String>>? aliases,
     TfArg<num>? automaticBackupRetentionDays,
     TfArg<String>? backupId,
@@ -211,7 +277,6 @@ final class AwsFsxWindowsFileSystem extends Resource {
     TfArg<String>? weeklyMaintenanceStartTime,
     FsxWindowsFileSystemAuditLogConfiguration? auditLogConfiguration,
     FsxWindowsFileSystemDiskIopsConfiguration? diskIopsConfiguration,
-    FsxWindowsFileSystemSelfManagedActiveDirectory? selfManagedActiveDirectory,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -219,8 +284,7 @@ final class AwsFsxWindowsFileSystem extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (activeDirectoryId != null)
-             'active_directory_id': activeDirectoryId,
+           ...?activeDirectoryIdOrSelfManagedActiveDirectory?.argMap,
            if (aliases != null) 'aliases': aliases,
            if (automaticBackupRetentionDays != null)
              'automatic_backup_retention_days': automaticBackupRetentionDays,
@@ -252,10 +316,6 @@ final class AwsFsxWindowsFileSystem extends Resource {
            if (diskIopsConfiguration != null)
              'disk_iops_configuration': TfArg.literal(
                diskIopsConfiguration.encode(),
-             ),
-           if (selfManagedActiveDirectory != null)
-             'self_managed_active_directory': TfArg.literal(
-               selfManagedActiveDirectory.encode(),
              ),
          },
        );

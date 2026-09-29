@@ -7,6 +7,76 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_config_configuration_aggregator`.
 const Set<String> _awsConfigConfigurationAggregatorSensitive = <String>{};
 
+/// At most one of `account_aggregation_source`, `organization_aggregation_source` on `aws_config_configuration_aggregator`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource {
+  const ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `account_aggregation_source` (one of the [ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource] choices).
+final class ConfigConfigurationAggregatorAccountAggregationSourceOption
+    extends
+        ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource {
+  const ConfigConfigurationAggregatorAccountAggregationSourceOption({
+    required this.accountAggregationSource,
+  });
+
+  final ConfigConfigurationAggregatorAccountAggregationSource
+  accountAggregationSource;
+
+  @override
+  String get blockKey => 'account_aggregation_source';
+
+  @override
+  Map<String, Object?> encode() => {
+    'account_aggregation_source': accountAggregationSource.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'account_aggregation_source': TfArg.literal(
+      accountAggregationSource.encode(),
+    ),
+  };
+}
+
+/// Sets `organization_aggregation_source` (one of the [ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource] choices).
+final class ConfigConfigurationAggregatorOrganizationAggregationSourceOption
+    extends
+        ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource {
+  const ConfigConfigurationAggregatorOrganizationAggregationSourceOption({
+    required this.organizationAggregationSource,
+  });
+
+  final ConfigConfigurationAggregatorOrganizationAggregationSource
+  organizationAggregationSource;
+
+  @override
+  String get blockKey => 'organization_aggregation_source';
+
+  @override
+  Map<String, Object?> encode() => {
+    'organization_aggregation_source': organizationAggregationSource.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'organization_aggregation_source': TfArg.literal(
+      organizationAggregationSource.encode(),
+    ),
+  };
+}
+
 /// Typed helper for the `account_aggregation_source` block of
 /// `aws_config_configuration_aggregator` (derived from provider schema).
 @immutable
@@ -62,10 +132,8 @@ final class AwsConfigConfigurationAggregator extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    ConfigConfigurationAggregatorAccountAggregationSource?
-    accountAggregationSource,
-    ConfigConfigurationAggregatorOrganizationAggregationSource?
-    organizationAggregationSource,
+    ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource?
+    accountAggregationSourceOrOrganizationAggregationSource,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -76,14 +144,7 @@ final class AwsConfigConfigurationAggregator extends Resource {
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           if (accountAggregationSource != null)
-             'account_aggregation_source': TfArg.literal(
-               accountAggregationSource.encode(),
-             ),
-           if (organizationAggregationSource != null)
-             'organization_aggregation_source': TfArg.literal(
-               organizationAggregationSource.encode(),
-             ),
+           ...?accountAggregationSourceOrOrganizationAggregationSource?.argMap,
          },
        );
 

@@ -12,19 +12,64 @@ const Set<String> _awsAutoscalingplansScalingPlanSensitive = <String>{};
 @immutable
 final class AutoscalingplansScalingPlanApplicationSource {
   const AutoscalingplansScalingPlanApplicationSource({
-    this.cloudformationStackArn,
-    this.tagFilter,
+    this.cloudformationStackArnOrTagFilter,
   });
 
-  final TfArg<String>? cloudformationStackArn;
-
-  final List<AutoscalingplansScalingPlanApplicationSourceTagFilter>? tagFilter;
+  final AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter?
+  cloudformationStackArnOrTagFilter;
 
   Map<String, Object?> encode() => {
-    if (cloudformationStackArn != null)
-      'cloudformation_stack_arn': cloudformationStackArn!.toTfJson(),
-    if (tagFilter != null)
-      'tag_filter': [for (final e in tagFilter!) e.encode()],
+    ...?cloudformationStackArnOrTagFilter?.encode(),
+  };
+}
+
+/// At most one of `cloudformation_stack_arn`, `tag_filter` on the `application_source` block of `aws_autoscalingplans_scaling_plan`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter {
+  const AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `cloudformation_stack_arn` (one of the [AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter] choices).
+final class AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOption
+    extends
+        AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter {
+  const AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOption({
+    required this.cloudformationStackArn,
+  });
+
+  final TfArg<String> cloudformationStackArn;
+
+  @override
+  String get blockKey => 'cloudformation_stack_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cloudformation_stack_arn': cloudformationStackArn.toTfJson(),
+  };
+}
+
+/// Sets `tag_filter` (one of the [AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter] choices).
+final class AutoscalingplansScalingPlanApplicationSourceTagFilterOption
+    extends
+        AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter {
+  const AutoscalingplansScalingPlanApplicationSourceTagFilterOption({
+    required this.tagFilter,
+  });
+
+  final List<AutoscalingplansScalingPlanApplicationSourceTagFilter> tagFilter;
+
+  @override
+  String get blockKey => 'tag_filter';
+
+  @override
+  Map<String, Object?> encode() => {
+    'tag_filter': [for (final e in tagFilter) e.encode()],
   };
 }
 

@@ -76,3 +76,5 @@ properties:
                   - "EC2SpotFleetRequestAverageCPUUtilization"
                   - "EC2SpotFleetRequestAverageNetworkIn"
                   - "EC2SpotFleetRequestAverageNetworkOut"
+at_most_one_of_groups:
+  - ["application_source.cloudformation_stack_arn", "application_source.tag_filter"]

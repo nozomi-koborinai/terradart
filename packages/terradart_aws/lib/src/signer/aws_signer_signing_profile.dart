@@ -20,6 +20,56 @@ enum SignerSigningProfilePlatformId implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `name`, `name_prefix` on `aws_signer_signing_profile`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SignerSigningProfileNameOrNamePrefix {
+  const SignerSigningProfileNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [SignerSigningProfileNameOrNamePrefix] choices).
+final class SignerSigningProfileNameOption
+    extends SignerSigningProfileNameOrNamePrefix {
+  const SignerSigningProfileNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [SignerSigningProfileNameOrNamePrefix] choices).
+final class SignerSigningProfileNamePrefixOption
+    extends SignerSigningProfileNameOrNamePrefix {
+  const SignerSigningProfileNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `signature_validity_period` block of
 /// `aws_signer_signing_profile` (derived from provider schema).
 @immutable
@@ -69,8 +119,7 @@ final class AwsSignerSigningProfile extends Resource {
 
   AwsSignerSigningProfile({
     required super.localName,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    SignerSigningProfileNameOrNamePrefix? nameOrNamePrefix,
     required TfArg<SignerSigningProfilePlatformId> platformId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? signingParameters,
@@ -84,8 +133,7 @@ final class AwsSignerSigningProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            'platform_id': platformId,
            if (region != null) 'region': region,
            if (signingParameters != null)

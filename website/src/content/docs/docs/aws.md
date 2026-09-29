@@ -64,7 +64,7 @@ final class HelloLambdaStack extends Stack {
 
     final role = AwsIamRole(
       localName: 'hello',
-      name: TfArg.literal('hello-dart'),
+      nameOrNamePrefix: IamRoleNameOption(name: TfArg.literal('hello-dart')),
       assumeRolePolicy: TfArg.ref(trust.json),
     );
     add(role);
@@ -78,7 +78,9 @@ final class HelloLambdaStack extends Stack {
 
     final logs = AwsCloudwatchLogGroup(
       localName: 'hello',
-      name: TfArg.literal('/aws/lambda/hello-dart'),
+      nameOrNamePrefix: CloudwatchLogGroupNameOption(
+        name: TfArg.literal('/aws/lambda/hello-dart'),
+      ),
       retentionInDays: TfArg.literal(14),
     );
     add(logs);
@@ -148,7 +150,9 @@ final class DartServerStack extends Stack {
       addData(trust);
       final role = AwsIamRole(
         localName: name,
-        name: TfArg.literal('dart-server-$name'),
+        nameOrNamePrefix: IamRoleNameOption(
+          name: TfArg.literal('dart-server-$name'),
+        ),
         assumeRolePolicy: TfArg.ref(trust.json),
       );
       add(role);
@@ -218,7 +222,9 @@ final class FlutterWebStack extends Stack {
       : super(providers: [const AwsProvider(region: 'us-east-1')]) {
     final bucket = AwsS3Bucket(
       localName: 'site',
-      bucketPrefix: TfArg.literal('flutter-web-'),
+      bucketOrBucketPrefix: S3BucketBucketPrefixOption(
+        bucketPrefix: TfArg.literal('flutter-web-'),
+      ),
     );
     add(bucket);
     add(AwsS3BucketPublicAccessBlock(

@@ -18,6 +18,60 @@ enum CodebuildWebhookBuildType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `branch_filter`, `filter_group` on `aws_codebuild_webhook`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CodebuildWebhookBranchFilterOrFilterGroup {
+  const CodebuildWebhookBranchFilterOrFilterGroup();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `branch_filter` (one of the [CodebuildWebhookBranchFilterOrFilterGroup] choices).
+final class CodebuildWebhookBranchFilterOption
+    extends CodebuildWebhookBranchFilterOrFilterGroup {
+  const CodebuildWebhookBranchFilterOption({required this.branchFilter});
+
+  final TfArg<String> branchFilter;
+
+  @override
+  String get blockKey => 'branch_filter';
+
+  @override
+  Map<String, Object?> encode() => {'branch_filter': branchFilter.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'branch_filter': branchFilter};
+}
+
+/// Sets `filter_group` (one of the [CodebuildWebhookBranchFilterOrFilterGroup] choices).
+final class CodebuildWebhookFilterGroupOption
+    extends CodebuildWebhookBranchFilterOrFilterGroup {
+  const CodebuildWebhookFilterGroupOption({required this.filterGroup});
+
+  final List<CodebuildWebhookFilterGroup> filterGroup;
+
+  @override
+  String get blockKey => 'filter_group';
+
+  @override
+  Map<String, Object?> encode() => {
+    'filter_group': [for (final e in filterGroup) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'filter_group': TfArg.literal([for (final e in filterGroup) e.encode()]),
+  };
+}
+
 /// Typed helper for the `filter_group` block of
 /// `aws_codebuild_webhook` (derived from provider schema).
 @immutable
@@ -175,12 +229,11 @@ final class AwsCodebuildWebhook extends Resource {
 
   AwsCodebuildWebhook({
     required super.localName,
-    TfArg<String>? branchFilter,
+    CodebuildWebhookBranchFilterOrFilterGroup? branchFilterOrFilterGroup,
     TfArg<CodebuildWebhookBuildType>? buildType,
     TfArg<bool>? manualCreation,
     required TfArg<String> projectName,
     TfArg<String>? region,
-    List<CodebuildWebhookFilterGroup>? filterGroup,
     CodebuildWebhookPullRequestBuildPolicy? pullRequestBuildPolicy,
     CodebuildWebhookScopeConfiguration? scopeConfiguration,
     super.lifecycle,
@@ -190,15 +243,11 @@ final class AwsCodebuildWebhook extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (branchFilter != null) 'branch_filter': branchFilter,
+           ...?branchFilterOrFilterGroup?.argMap,
            if (buildType != null) 'build_type': buildType,
            if (manualCreation != null) 'manual_creation': manualCreation,
            'project_name': projectName,
            if (region != null) 'region': region,
-           if (filterGroup != null)
-             'filter_group': TfArg.literal([
-               for (final e in filterGroup) e.encode(),
-             ]),
            if (pullRequestBuildPolicy != null)
              'pull_request_build_policy': TfArg.literal(
                pullRequestBuildPolicy.encode(),

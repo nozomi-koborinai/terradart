@@ -36,6 +36,62 @@ enum EmrClusterScaleDownBehavior implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `configurations`, `configurations_json` on `aws_emr_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class EmrClusterConfigurationsOrConfigurationsJson {
+  const EmrClusterConfigurationsOrConfigurationsJson();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `configurations` (one of the [EmrClusterConfigurationsOrConfigurationsJson] choices).
+final class EmrClusterConfigurationsOption
+    extends EmrClusterConfigurationsOrConfigurationsJson {
+  const EmrClusterConfigurationsOption({required this.configurations});
+
+  final TfArg<String> configurations;
+
+  @override
+  String get blockKey => 'configurations';
+
+  @override
+  Map<String, Object?> encode() => {
+    'configurations': configurations.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'configurations': configurations};
+}
+
+/// Sets `configurations_json` (one of the [EmrClusterConfigurationsOrConfigurationsJson] choices).
+final class EmrClusterConfigurationsJsonOption
+    extends EmrClusterConfigurationsOrConfigurationsJson {
+  const EmrClusterConfigurationsJsonOption({required this.configurationsJson});
+
+  final TfArg<String> configurationsJson;
+
+  @override
+  String get blockKey => 'configurations_json';
+
+  @override
+  Map<String, Object?> encode() => {
+    'configurations_json': configurationsJson.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'configurations_json': configurationsJson,
+  };
+}
+
 /// Typed helper for the `auto_termination_policy` block of
 /// `aws_emr_cluster` (derived from provider schema).
 @immutable
@@ -350,8 +406,7 @@ final class EmrClusterEc2Attributes {
     required this.instanceProfile,
     this.keyName,
     this.serviceAccessSecurityGroup,
-    this.subnetId,
-    this.subnetIds,
+    this.subnetIdOrSubnetIds,
   });
 
   final TfArg<String>? additionalMasterSecurityGroups;
@@ -368,9 +423,7 @@ final class EmrClusterEc2Attributes {
 
   final TfArg<String>? serviceAccessSecurityGroup;
 
-  final TfArg<String>? subnetId;
-
-  final TfArg<List<Object?>>? subnetIds;
+  final EmrClusterEc2AttributesSubnetIdOrSubnetIds? subnetIdOrSubnetIds;
 
   Map<String, Object?> encode() => {
     if (additionalMasterSecurityGroups != null)
@@ -389,9 +442,48 @@ final class EmrClusterEc2Attributes {
     if (keyName != null) 'key_name': keyName!.toTfJson(),
     if (serviceAccessSecurityGroup != null)
       'service_access_security_group': serviceAccessSecurityGroup!.toTfJson(),
-    if (subnetId != null) 'subnet_id': subnetId!.toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.toTfJson(),
+    ...?subnetIdOrSubnetIds?.encode(),
   };
+}
+
+/// At most one of `subnet_id`, `subnet_ids` on the `ec2_attributes` block of `aws_emr_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class EmrClusterEc2AttributesSubnetIdOrSubnetIds {
+  const EmrClusterEc2AttributesSubnetIdOrSubnetIds();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `subnet_id` (one of the [EmrClusterEc2AttributesSubnetIdOrSubnetIds] choices).
+final class EmrClusterEc2AttributesSubnetIdOption
+    extends EmrClusterEc2AttributesSubnetIdOrSubnetIds {
+  const EmrClusterEc2AttributesSubnetIdOption({required this.subnetId});
+
+  final TfArg<String> subnetId;
+
+  @override
+  String get blockKey => 'subnet_id';
+
+  @override
+  Map<String, Object?> encode() => {'subnet_id': subnetId.toTfJson()};
+}
+
+/// Sets `subnet_ids` (one of the [EmrClusterEc2AttributesSubnetIdOrSubnetIds] choices).
+final class EmrClusterEc2AttributesSubnetIdsOption
+    extends EmrClusterEc2AttributesSubnetIdOrSubnetIds {
+  const EmrClusterEc2AttributesSubnetIdsOption({required this.subnetIds});
+
+  final TfArg<List<Object?>> subnetIds;
+
+  @override
+  String get blockKey => 'subnet_ids';
+
+  @override
+  Map<String, Object?> encode() => {'subnet_ids': subnetIds.toTfJson()};
 }
 
 /// Typed helper for the `kerberos_attributes` block of
@@ -701,8 +793,8 @@ final class AwsEmrCluster extends Resource {
     TfArg<String>? additionalInfo,
     TfArg<List<String>>? applications,
     TfArg<String>? autoscalingRole,
-    TfArg<String>? configurations,
-    TfArg<String>? configurationsJson,
+    EmrClusterConfigurationsOrConfigurationsJson?
+    configurationsOrConfigurationsJson,
     TfArg<String>? customAmiId,
     TfArg<num>? ebsRootVolumeSize,
     TfArg<bool>? keepJobFlowAliveWhenNoSteps,
@@ -741,9 +833,7 @@ final class AwsEmrCluster extends Resource {
            if (additionalInfo != null) 'additional_info': additionalInfo,
            if (applications != null) 'applications': applications,
            if (autoscalingRole != null) 'autoscaling_role': autoscalingRole,
-           if (configurations != null) 'configurations': configurations,
-           if (configurationsJson != null)
-             'configurations_json': configurationsJson,
+           ...?configurationsOrConfigurationsJson?.argMap,
            if (customAmiId != null) 'custom_ami_id': customAmiId,
            if (ebsRootVolumeSize != null)
              'ebs_root_volume_size': ebsRootVolumeSize,

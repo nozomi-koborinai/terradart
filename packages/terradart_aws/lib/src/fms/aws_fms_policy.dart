@@ -17,6 +17,60 @@ enum FmsPolicyResourceTagLogicalOperator implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `resource_type`, `resource_type_list` on `aws_fms_policy`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class FmsPolicyResourceTypeOrResourceTypeList {
+  const FmsPolicyResourceTypeOrResourceTypeList();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `resource_type` (one of the [FmsPolicyResourceTypeOrResourceTypeList] choices).
+final class FmsPolicyResourceTypeOption
+    extends FmsPolicyResourceTypeOrResourceTypeList {
+  const FmsPolicyResourceTypeOption({required this.resourceType});
+
+  final TfArg<String> resourceType;
+
+  @override
+  String get blockKey => 'resource_type';
+
+  @override
+  Map<String, Object?> encode() => {'resource_type': resourceType.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'resource_type': resourceType};
+}
+
+/// Sets `resource_type_list` (one of the [FmsPolicyResourceTypeOrResourceTypeList] choices).
+final class FmsPolicyResourceTypeListOption
+    extends FmsPolicyResourceTypeOrResourceTypeList {
+  const FmsPolicyResourceTypeListOption({required this.resourceTypeList});
+
+  final TfArg<List<String>> resourceTypeList;
+
+  @override
+  String get blockKey => 'resource_type_list';
+
+  @override
+  Map<String, Object?> encode() => {
+    'resource_type_list': resourceTypeList.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'resource_type_list': resourceTypeList,
+  };
+}
+
 /// Typed helper for the `exclude_map` block of
 /// `aws_fms_policy` (derived from provider schema).
 @immutable
@@ -405,8 +459,7 @@ final class AwsFmsPolicy extends Resource {
     TfArg<List<String>>? resourceSetIds,
     TfArg<FmsPolicyResourceTagLogicalOperator>? resourceTagLogicalOperator,
     TfArg<Map<String, String>>? resourceTags,
-    TfArg<String>? resourceType,
-    TfArg<List<String>>? resourceTypeList,
+    FmsPolicyResourceTypeOrResourceTypeList? resourceTypeOrResourceTypeList,
     TfArg<Map<String, String>>? tags,
     FmsPolicyExcludeMap? excludeMap,
     FmsPolicyIncludeMap? includeMap,
@@ -433,8 +486,7 @@ final class AwsFmsPolicy extends Resource {
            if (resourceTagLogicalOperator != null)
              'resource_tag_logical_operator': resourceTagLogicalOperator,
            if (resourceTags != null) 'resource_tags': resourceTags,
-           if (resourceType != null) 'resource_type': resourceType,
-           if (resourceTypeList != null) 'resource_type_list': resourceTypeList,
+           ...?resourceTypeOrResourceTypeList?.argMap,
            if (tags != null) 'tags': tags,
            if (excludeMap != null)
              'exclude_map': TfArg.literal(excludeMap.encode()),

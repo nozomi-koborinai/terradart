@@ -52,3 +52,6 @@ properties:
 exactly_one_of_groups:
   - ["restore_to_point_in_time.restore_to_time", "restore_to_point_in_time.use_latest_restorable_time"]
   - ["restore_to_point_in_time.source_cluster_identifier", "restore_to_point_in_time.source_cluster_resource_id"]
+at_most_one_of_groups:
+  - ["cluster_identifier", "cluster_identifier_prefix"]
+  - ["manage_master_user_password", "master_password", "master_password_wo"]

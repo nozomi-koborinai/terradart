@@ -24,19 +24,56 @@ final class AppmeshVirtualServiceSpec {
 /// `aws_appmesh_virtual_service` (derived from provider schema).
 @immutable
 final class AppmeshVirtualServiceSpecProvider {
-  const AppmeshVirtualServiceSpecProvider({
-    this.virtualNode,
-    this.virtualRouter,
+  const AppmeshVirtualServiceSpecProvider({this.virtualNodeOrVirtualRouter});
+
+  final AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter?
+  virtualNodeOrVirtualRouter;
+
+  Map<String, Object?> encode() => {...?virtualNodeOrVirtualRouter?.encode()};
+}
+
+/// At most one of `virtual_node`, `virtual_router` on the `spec.provider` block of `aws_appmesh_virtual_service`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter {
+  const AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `virtual_node` (one of the [AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter] choices).
+final class AppmeshVirtualServiceSpecProviderVirtualNodeOption
+    extends AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter {
+  const AppmeshVirtualServiceSpecProviderVirtualNodeOption({
+    required this.virtualNode,
   });
 
-  final AppmeshVirtualServiceSpecProviderVirtualNode? virtualNode;
+  final AppmeshVirtualServiceSpecProviderVirtualNode virtualNode;
 
-  final AppmeshVirtualServiceSpecProviderVirtualRouter? virtualRouter;
+  @override
+  String get blockKey => 'virtual_node';
 
-  Map<String, Object?> encode() => {
-    if (virtualNode != null) 'virtual_node': virtualNode!.encode(),
-    if (virtualRouter != null) 'virtual_router': virtualRouter!.encode(),
-  };
+  @override
+  Map<String, Object?> encode() => {'virtual_node': virtualNode.encode()};
+}
+
+/// Sets `virtual_router` (one of the [AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter] choices).
+final class AppmeshVirtualServiceSpecProviderVirtualRouterOption
+    extends AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter {
+  const AppmeshVirtualServiceSpecProviderVirtualRouterOption({
+    required this.virtualRouter,
+  });
+
+  final AppmeshVirtualServiceSpecProviderVirtualRouter virtualRouter;
+
+  @override
+  String get blockKey => 'virtual_router';
+
+  @override
+  Map<String, Object?> encode() => {'virtual_router': virtualRouter.encode()};
 }
 
 /// Typed helper for the `spec.provider.virtual_node` block of

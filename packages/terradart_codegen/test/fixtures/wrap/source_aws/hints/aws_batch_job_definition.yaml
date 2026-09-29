@@ -51,3 +51,5 @@ properties:
     enum_values:
       - "container"
       - "multinode"
+at_most_one_of_groups:
+  - ["container_properties", "ecs_properties", "eks_properties", "node_properties"]

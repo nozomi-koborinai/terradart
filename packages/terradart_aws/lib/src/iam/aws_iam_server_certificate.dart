@@ -6,6 +6,56 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_iam_server_certificate`.
 const Set<String> _awsIamServerCertificateSensitive = <String>{'private_key'};
 
+/// At most one of `name`, `name_prefix` on `aws_iam_server_certificate`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class IamServerCertificateNameOrNamePrefix {
+  const IamServerCertificateNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [IamServerCertificateNameOrNamePrefix] choices).
+final class IamServerCertificateNameOption
+    extends IamServerCertificateNameOrNamePrefix {
+  const IamServerCertificateNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [IamServerCertificateNameOrNamePrefix] choices).
+final class IamServerCertificateNamePrefixOption
+    extends IamServerCertificateNameOrNamePrefix {
+  const IamServerCertificateNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Factory wrapper for `aws_iam_server_certificate`.
 final class AwsIamServerCertificate extends Resource {
   static const String tfType = 'aws_iam_server_certificate';
@@ -14,8 +64,7 @@ final class AwsIamServerCertificate extends Resource {
     required super.localName,
     required TfArg<String> certificateBody,
     TfArg<String>? certificateChain,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    IamServerCertificateNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? path,
     required TfArg<String> privateKey,
     TfArg<Map<String, String>>? tags,
@@ -28,8 +77,7 @@ final class AwsIamServerCertificate extends Resource {
          argMap: {
            'certificate_body': certificateBody,
            if (certificateChain != null) 'certificate_chain': certificateChain,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (path != null) 'path': path,
            'private_key': privateKey,
            if (tags != null) 'tags': tags,

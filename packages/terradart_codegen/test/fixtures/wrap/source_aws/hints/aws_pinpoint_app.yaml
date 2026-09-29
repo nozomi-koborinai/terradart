@@ -9,3 +9,5 @@ properties:
         enum_values:
           - "DELIVERY"
           - "FILTER"
+at_most_one_of_groups:
+  - ["name", "name_prefix"]

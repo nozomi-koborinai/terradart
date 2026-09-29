@@ -10,3 +10,5 @@ properties:
       - "GitHubEnterpriseServer"
       - "GitLab"
       - "GitLabSelfManaged"
+at_most_one_of_groups:
+  - ["host_arn", "provider_type"]

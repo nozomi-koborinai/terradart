@@ -29,3 +29,5 @@ properties:
             enum_values:
               - "HOST_COUNT"
               - "FLEET_PERCENT"
+at_most_one_of_groups:
+  - ["traffic_routing_config.time_based_canary", "traffic_routing_config.time_based_linear"]

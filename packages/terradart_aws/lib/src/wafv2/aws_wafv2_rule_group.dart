@@ -17,6 +17,108 @@ enum Wafv2RuleGroupScope implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `name`, `name_prefix` on `aws_wafv2_rule_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class Wafv2RuleGroupNameOrNamePrefix {
+  const Wafv2RuleGroupNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [Wafv2RuleGroupNameOrNamePrefix] choices).
+final class Wafv2RuleGroupNameOption extends Wafv2RuleGroupNameOrNamePrefix {
+  const Wafv2RuleGroupNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [Wafv2RuleGroupNameOrNamePrefix] choices).
+final class Wafv2RuleGroupNamePrefixOption
+    extends Wafv2RuleGroupNameOrNamePrefix {
+  const Wafv2RuleGroupNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
+/// At most one of `rule`, `rules_json` on `aws_wafv2_rule_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class Wafv2RuleGroupRuleOrRulesJson {
+  const Wafv2RuleGroupRuleOrRulesJson();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `rule` (one of the [Wafv2RuleGroupRuleOrRulesJson] choices).
+final class Wafv2RuleGroupRuleOption extends Wafv2RuleGroupRuleOrRulesJson {
+  const Wafv2RuleGroupRuleOption({required this.rule});
+
+  final List<Wafv2RuleGroupRule> rule;
+
+  @override
+  String get blockKey => 'rule';
+
+  @override
+  Map<String, Object?> encode() => {
+    'rule': [for (final e in rule) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'rule': TfArg.literal([for (final e in rule) e.encode()]),
+  };
+}
+
+/// Sets `rules_json` (one of the [Wafv2RuleGroupRuleOrRulesJson] choices).
+final class Wafv2RuleGroupRulesJsonOption
+    extends Wafv2RuleGroupRuleOrRulesJson {
+  const Wafv2RuleGroupRulesJsonOption({required this.rulesJson});
+
+  final TfArg<String> rulesJson;
+
+  @override
+  String get blockKey => 'rules_json';
+
+  @override
+  Map<String, Object?> encode() => {'rules_json': rulesJson.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'rules_json': rulesJson};
+}
+
 /// Typed helper for the `custom_response_body` block of
 /// `aws_wafv2_rule_group` (derived from provider schema).
 @immutable
@@ -1515,14 +1617,12 @@ final class AwsWafv2RuleGroup extends Resource {
     required super.localName,
     required TfArg<num> capacity,
     TfArg<String>? description,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    Wafv2RuleGroupNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? region,
-    TfArg<String>? rulesJson,
+    Wafv2RuleGroupRuleOrRulesJson? ruleOrRulesJson,
     required TfArg<Wafv2RuleGroupScope> scope,
     TfArg<Map<String, String>>? tags,
     List<Wafv2RuleGroupCustomResponseBody>? customResponseBody,
-    List<Wafv2RuleGroupRule>? rule,
     required Wafv2RuleGroupVisibilityConfig visibilityConfig,
     super.lifecycle,
     super.dependsOn,
@@ -1533,18 +1633,15 @@ final class AwsWafv2RuleGroup extends Resource {
          argMap: {
            'capacity': capacity,
            if (description != null) 'description': description,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (region != null) 'region': region,
-           if (rulesJson != null) 'rules_json': rulesJson,
+           ...?ruleOrRulesJson?.argMap,
            'scope': scope,
            if (tags != null) 'tags': tags,
            if (customResponseBody != null)
              'custom_response_body': TfArg.literal([
                for (final e in customResponseBody) e.encode(),
              ]),
-           if (rule != null)
-             'rule': TfArg.literal([for (final e in rule) e.encode()]),
            'visibility_config': TfArg.literal(visibilityConfig.encode()),
          },
        );

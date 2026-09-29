@@ -36,6 +36,68 @@ enum NeptuneClusterStorageType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `cluster_identifier`, `cluster_identifier_prefix` on `aws_neptune_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix {
+  const NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `cluster_identifier` (one of the [NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix] choices).
+final class NeptuneClusterClusterIdentifierOption
+    extends NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix {
+  const NeptuneClusterClusterIdentifierOption({
+    required this.clusterIdentifier,
+  });
+
+  final TfArg<String> clusterIdentifier;
+
+  @override
+  String get blockKey => 'cluster_identifier';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cluster_identifier': clusterIdentifier.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cluster_identifier': clusterIdentifier,
+  };
+}
+
+/// Sets `cluster_identifier_prefix` (one of the [NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix] choices).
+final class NeptuneClusterClusterIdentifierPrefixOption
+    extends NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix {
+  const NeptuneClusterClusterIdentifierPrefixOption({
+    required this.clusterIdentifierPrefix,
+  });
+
+  final TfArg<String> clusterIdentifierPrefix;
+
+  @override
+  String get blockKey => 'cluster_identifier_prefix';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cluster_identifier_prefix': clusterIdentifierPrefix.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cluster_identifier_prefix': clusterIdentifierPrefix,
+  };
+}
+
 /// Typed helper for the `serverless_v2_scaling_configuration` block of
 /// `aws_neptune_cluster` (derived from provider schema).
 @immutable
@@ -65,8 +127,8 @@ final class AwsNeptuneCluster extends Resource {
     TfArg<bool>? applyImmediately,
     TfArg<List<String>>? availabilityZones,
     TfArg<num>? backupRetentionPeriod,
-    TfArg<String>? clusterIdentifier,
-    TfArg<String>? clusterIdentifierPrefix,
+    NeptuneClusterClusterIdentifierOrClusterIdentifierPrefix?
+    clusterIdentifierOrClusterIdentifierPrefix,
     TfArg<bool>? copyTagsToSnapshot,
     TfArg<bool>? deletionProtection,
     List<TfArg<NeptuneClusterEnableCloudwatchLogsExports>>?
@@ -108,10 +170,7 @@ final class AwsNeptuneCluster extends Resource {
              'availability_zones': availabilityZones,
            if (backupRetentionPeriod != null)
              'backup_retention_period': backupRetentionPeriod,
-           if (clusterIdentifier != null)
-             'cluster_identifier': clusterIdentifier,
-           if (clusterIdentifierPrefix != null)
-             'cluster_identifier_prefix': clusterIdentifierPrefix,
+           ...?clusterIdentifierOrClusterIdentifierPrefix?.argMap,
            if (copyTagsToSnapshot != null)
              'copy_tags_to_snapshot': copyTagsToSnapshot,
            if (deletionProtection != null)

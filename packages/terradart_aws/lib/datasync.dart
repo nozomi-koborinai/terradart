@@ -44,6 +44,12 @@ export 'src/datasync/aws_datasync_location_hdfs.dart'
     show
         AwsDatasyncLocationHdfs,
         DatasyncLocationHdfsAuthenticationType,
+        DatasyncLocationHdfsKerberosKeytabBase64Option,
+        DatasyncLocationHdfsKerberosKeytabOption,
+        DatasyncLocationHdfsKerberosKeytabOrKerberosKeytabBase64,
+        DatasyncLocationHdfsKerberosKrb5ConfBase64Option,
+        DatasyncLocationHdfsKerberosKrb5ConfOption,
+        DatasyncLocationHdfsKerberosKrb5ConfOrKerberosKrb5ConfBase64,
         DatasyncLocationHdfsNameNode,
         DatasyncLocationHdfsQopConfiguration,
         DatasyncLocationHdfsQopConfigurationDataTransferProtection,

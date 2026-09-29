@@ -100,3 +100,6 @@ properties:
       - "None"
 exactly_one_of_groups:
   - ["evaluation_criteria", "metric_name", "metric_query"]
+at_most_one_of_groups:
+  - ["extended_statistic", "statistic"]
+  - ["threshold", "threshold_metric_id"]

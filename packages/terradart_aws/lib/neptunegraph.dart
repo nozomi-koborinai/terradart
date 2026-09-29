@@ -4,6 +4,11 @@
 library;
 
 export 'src/neptunegraph/aws_neptunegraph_graph.dart'
-    show AwsNeptunegraphGraph, NeptunegraphGraphVectorSearchConfiguration;
+    show
+        AwsNeptunegraphGraph,
+        NeptunegraphGraphGraphNameOption,
+        NeptunegraphGraphGraphNameOrGraphNamePrefix,
+        NeptunegraphGraphGraphNamePrefixOption,
+        NeptunegraphGraphVectorSearchConfiguration;
 export 'src/neptunegraph/aws_neptunegraph_private_graph_endpoint.dart'
     show AwsNeptunegraphPrivateGraphEndpoint;

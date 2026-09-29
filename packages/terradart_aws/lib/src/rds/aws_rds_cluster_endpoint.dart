@@ -16,6 +16,62 @@ enum RdsClusterEndpointCustomEndpointType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `excluded_members`, `static_members` on `aws_rds_cluster_endpoint`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RdsClusterEndpointExcludedMembersOrStaticMembers {
+  const RdsClusterEndpointExcludedMembersOrStaticMembers();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `excluded_members` (one of the [RdsClusterEndpointExcludedMembersOrStaticMembers] choices).
+final class RdsClusterEndpointExcludedMembersOption
+    extends RdsClusterEndpointExcludedMembersOrStaticMembers {
+  const RdsClusterEndpointExcludedMembersOption({
+    required this.excludedMembers,
+  });
+
+  final TfArg<List<String>> excludedMembers;
+
+  @override
+  String get blockKey => 'excluded_members';
+
+  @override
+  Map<String, Object?> encode() => {
+    'excluded_members': excludedMembers.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'excluded_members': excludedMembers,
+  };
+}
+
+/// Sets `static_members` (one of the [RdsClusterEndpointExcludedMembersOrStaticMembers] choices).
+final class RdsClusterEndpointStaticMembersOption
+    extends RdsClusterEndpointExcludedMembersOrStaticMembers {
+  const RdsClusterEndpointStaticMembersOption({required this.staticMembers});
+
+  final TfArg<List<String>> staticMembers;
+
+  @override
+  String get blockKey => 'static_members';
+
+  @override
+  Map<String, Object?> encode() => {'static_members': staticMembers.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'static_members': staticMembers};
+}
+
 /// Factory wrapper for `aws_rds_cluster_endpoint`.
 final class AwsRdsClusterEndpoint extends Resource {
   static const String tfType = 'aws_rds_cluster_endpoint';
@@ -25,9 +81,9 @@ final class AwsRdsClusterEndpoint extends Resource {
     required TfArg<String> clusterEndpointIdentifier,
     required TfArg<String> clusterIdentifier,
     required TfArg<RdsClusterEndpointCustomEndpointType> customEndpointType,
-    TfArg<List<String>>? excludedMembers,
+    RdsClusterEndpointExcludedMembersOrStaticMembers?
+    excludedMembersOrStaticMembers,
     TfArg<String>? region,
-    TfArg<List<String>>? staticMembers,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -39,9 +95,8 @@ final class AwsRdsClusterEndpoint extends Resource {
            'cluster_endpoint_identifier': clusterEndpointIdentifier,
            'cluster_identifier': clusterIdentifier,
            'custom_endpoint_type': customEndpointType,
-           if (excludedMembers != null) 'excluded_members': excludedMembers,
+           ...?excludedMembersOrStaticMembers?.argMap,
            if (region != null) 'region': region,
-           if (staticMembers != null) 'static_members': staticMembers,
            if (tags != null) 'tags': tags,
          },
        );

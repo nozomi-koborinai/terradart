@@ -38,3 +38,5 @@ properties:
       - "remove"
 exactly_one_of_groups:
   - ["subnet_mapping", "subnets"]
+at_most_one_of_groups:
+  - ["name", "name_prefix"]

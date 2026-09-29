@@ -15,6 +15,62 @@ enum DocdbClusterInstanceEngine implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `identifier`, `identifier_prefix` on `aws_docdb_cluster_instance`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class DocdbClusterInstanceIdentifierOrIdentifierPrefix {
+  const DocdbClusterInstanceIdentifierOrIdentifierPrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `identifier` (one of the [DocdbClusterInstanceIdentifierOrIdentifierPrefix] choices).
+final class DocdbClusterInstanceIdentifierOption
+    extends DocdbClusterInstanceIdentifierOrIdentifierPrefix {
+  const DocdbClusterInstanceIdentifierOption({required this.identifier});
+
+  final TfArg<String> identifier;
+
+  @override
+  String get blockKey => 'identifier';
+
+  @override
+  Map<String, Object?> encode() => {'identifier': identifier.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
+}
+
+/// Sets `identifier_prefix` (one of the [DocdbClusterInstanceIdentifierOrIdentifierPrefix] choices).
+final class DocdbClusterInstanceIdentifierPrefixOption
+    extends DocdbClusterInstanceIdentifierOrIdentifierPrefix {
+  const DocdbClusterInstanceIdentifierPrefixOption({
+    required this.identifierPrefix,
+  });
+
+  final TfArg<String> identifierPrefix;
+
+  @override
+  String get blockKey => 'identifier_prefix';
+
+  @override
+  Map<String, Object?> encode() => {
+    'identifier_prefix': identifierPrefix.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'identifier_prefix': identifierPrefix,
+  };
+}
+
 /// Factory wrapper for `aws_docdb_cluster_instance`.
 final class AwsDocdbClusterInstance extends Resource {
   static const String tfType = 'aws_docdb_cluster_instance';
@@ -30,8 +86,8 @@ final class AwsDocdbClusterInstance extends Resource {
     TfArg<bool>? copyTagsToSnapshot,
     TfArg<bool>? enablePerformanceInsights,
     TfArg<DocdbClusterInstanceEngine>? engine,
-    TfArg<String>? identifier,
-    TfArg<String>? identifierPrefix,
+    DocdbClusterInstanceIdentifierOrIdentifierPrefix?
+    identifierOrIdentifierPrefix,
     required TfArg<String> instanceClass,
     TfArg<String>? performanceInsightsKmsKeyId,
     TfArg<String>? preferredMaintenanceWindow,
@@ -58,8 +114,7 @@ final class AwsDocdbClusterInstance extends Resource {
            if (enablePerformanceInsights != null)
              'enable_performance_insights': enablePerformanceInsights,
            if (engine != null) 'engine': engine,
-           if (identifier != null) 'identifier': identifier,
-           if (identifierPrefix != null) 'identifier_prefix': identifierPrefix,
+           ...?identifierOrIdentifierPrefix?.argMap,
            'instance_class': instanceClass,
            if (performanceInsightsKmsKeyId != null)
              'performance_insights_kms_key_id': performanceInsightsKmsKeyId,

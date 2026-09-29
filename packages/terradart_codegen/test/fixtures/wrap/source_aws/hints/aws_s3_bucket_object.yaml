@@ -44,3 +44,6 @@ properties:
       - "FSX_ONTAP"
       - "AWS_BACKUP_WARM"
       - "AWS_BACKUP_LOW_COST_WARM"
+at_most_one_of_groups:
+  - ["content", "content_base64", "source"]
+  - ["etag", "kms_key_id"]

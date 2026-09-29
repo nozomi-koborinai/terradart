@@ -138,6 +138,54 @@ final class LbSubnetsOption extends LbSubnetMappingOrSubnets {
   Map<String, TfArg<Object?>> get argMap => {'subnets': subnets};
 }
 
+/// At most one of `name`, `name_prefix` on `aws_lb`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LbNameOrNamePrefix {
+  const LbNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [LbNameOrNamePrefix] choices).
+final class LbNameOption extends LbNameOrNamePrefix {
+  const LbNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [LbNameOrNamePrefix] choices).
+final class LbNamePrefixOption extends LbNameOrNamePrefix {
+  const LbNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `access_logs` block of
 /// `aws_lb` (derived from provider schema).
 @immutable
@@ -272,8 +320,7 @@ final class AwsLb extends Resource {
     TfArg<bool>? internal,
     TfArg<LbIpAddressType>? ipAddressType,
     TfArg<LbLoadBalancerType>? loadBalancerType,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    LbNameOrNamePrefix? nameOrNamePrefix,
     TfArg<bool>? preserveHostHeader,
     TfArg<String>? region,
     TfArg<num>? secondaryIpsAutoAssignedPerSubnet,
@@ -324,8 +371,7 @@ final class AwsLb extends Resource {
            if (internal != null) 'internal': internal,
            if (ipAddressType != null) 'ip_address_type': ipAddressType,
            if (loadBalancerType != null) 'load_balancer_type': loadBalancerType,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (preserveHostHeader != null)
              'preserve_host_header': preserveHostHeader,
            if (region != null) 'region': region,

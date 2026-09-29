@@ -7,6 +7,72 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_cloudtrail`.
 const Set<String> _awsCloudtrailSensitive = <String>{};
 
+/// At most one of `advanced_event_selector`, `event_selector` on `aws_cloudtrail`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CloudtrailAdvancedEventSelectorOrEventSelector {
+  const CloudtrailAdvancedEventSelectorOrEventSelector();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `advanced_event_selector` (one of the [CloudtrailAdvancedEventSelectorOrEventSelector] choices).
+final class CloudtrailAdvancedEventSelectorOption
+    extends CloudtrailAdvancedEventSelectorOrEventSelector {
+  const CloudtrailAdvancedEventSelectorOption({
+    required this.advancedEventSelector,
+  });
+
+  final List<CloudtrailAdvancedEventSelector> advancedEventSelector;
+
+  @override
+  String get blockKey => 'advanced_event_selector';
+
+  @override
+  Map<String, Object?> encode() => {
+    'advanced_event_selector': [
+      for (final e in advancedEventSelector) e.encode(),
+    ],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'advanced_event_selector': TfArg.literal([
+      for (final e in advancedEventSelector) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `event_selector` (one of the [CloudtrailAdvancedEventSelectorOrEventSelector] choices).
+final class CloudtrailEventSelectorOption
+    extends CloudtrailAdvancedEventSelectorOrEventSelector {
+  const CloudtrailEventSelectorOption({required this.eventSelector});
+
+  final List<CloudtrailEventSelector> eventSelector;
+
+  @override
+  String get blockKey => 'event_selector';
+
+  @override
+  Map<String, Object?> encode() => {
+    'event_selector': [for (final e in eventSelector) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'event_selector': TfArg.literal([
+      for (final e in eventSelector) e.encode(),
+    ]),
+  };
+}
+
 /// Typed helper for the `advanced_event_selector` block of
 /// `aws_cloudtrail` (derived from provider schema).
 @immutable
@@ -198,8 +264,8 @@ final class AwsCloudtrail extends Resource {
     TfArg<String>? s3KeyPrefix,
     TfArg<String>? snsTopicName,
     TfArg<Map<String, String>>? tags,
-    List<CloudtrailAdvancedEventSelector>? advancedEventSelector,
-    List<CloudtrailEventSelector>? eventSelector,
+    CloudtrailAdvancedEventSelectorOrEventSelector?
+    advancedEventSelectorOrEventSelector,
     List<CloudtrailInsightSelector>? insightSelector,
     super.lifecycle,
     super.dependsOn,
@@ -228,14 +294,7 @@ final class AwsCloudtrail extends Resource {
            if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix,
            if (snsTopicName != null) 'sns_topic_name': snsTopicName,
            if (tags != null) 'tags': tags,
-           if (advancedEventSelector != null)
-             'advanced_event_selector': TfArg.literal([
-               for (final e in advancedEventSelector) e.encode(),
-             ]),
-           if (eventSelector != null)
-             'event_selector': TfArg.literal([
-               for (final e in eventSelector) e.encode(),
-             ]),
+           ...?advancedEventSelectorOrEventSelector?.argMap,
            if (insightSelector != null)
              'insight_selector': TfArg.literal([
                for (final e in insightSelector) e.encode(),

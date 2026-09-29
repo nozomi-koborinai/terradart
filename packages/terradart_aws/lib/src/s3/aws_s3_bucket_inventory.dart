@@ -100,16 +100,56 @@ enum S3BucketInventoryDestinationBucketFormat implements TerraformEnum {
 /// `aws_s3_bucket_inventory` (derived from provider schema).
 @immutable
 final class S3BucketInventoryDestinationBucketEncryption {
-  const S3BucketInventoryDestinationBucketEncryption({this.sseKms, this.sseS3});
+  const S3BucketInventoryDestinationBucketEncryption({this.sseKmsOrSseS3});
 
-  final S3BucketInventoryDestinationBucketEncryptionSseKms? sseKms;
+  final S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3?
+  sseKmsOrSseS3;
 
-  final S3BucketInventoryDestinationBucketEncryptionSseS3? sseS3;
+  Map<String, Object?> encode() => {...?sseKmsOrSseS3?.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (sseKms != null) 'sse_kms': sseKms!.encode(),
-    if (sseS3 != null) 'sse_s3': sseS3!.encode(),
-  };
+/// At most one of `sse_kms`, `sse_s3` on the `destination.bucket.encryption` block of `aws_s3_bucket_inventory`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3 {
+  const S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `sse_kms` (one of the [S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3] choices).
+final class S3BucketInventoryDestinationBucketEncryptionSseKmsOption
+    extends S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3 {
+  const S3BucketInventoryDestinationBucketEncryptionSseKmsOption({
+    required this.sseKms,
+  });
+
+  final S3BucketInventoryDestinationBucketEncryptionSseKms sseKms;
+
+  @override
+  String get blockKey => 'sse_kms';
+
+  @override
+  Map<String, Object?> encode() => {'sse_kms': sseKms.encode()};
+}
+
+/// Sets `sse_s3` (one of the [S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3] choices).
+final class S3BucketInventoryDestinationBucketEncryptionSseS3Option
+    extends S3BucketInventoryDestinationBucketEncryptionSseKmsOrSseS3 {
+  const S3BucketInventoryDestinationBucketEncryptionSseS3Option({
+    required this.sseS3,
+  });
+
+  final S3BucketInventoryDestinationBucketEncryptionSseS3 sseS3;
+
+  @override
+  String get blockKey => 'sse_s3';
+
+  @override
+  Map<String, Object?> encode() => {'sse_s3': sseS3.encode()};
 }
 
 /// Typed helper for the `destination.bucket.encryption.sse_kms` block of

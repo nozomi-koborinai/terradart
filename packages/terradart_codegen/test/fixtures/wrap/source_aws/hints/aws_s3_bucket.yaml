@@ -125,3 +125,7 @@ properties:
                   - "aws:kms:dsse"
 exactly_one_of_groups:
   - ["website.index_document", "website.redirect_all_requests_to"]
+at_most_one_of_groups:
+  - ["acl", "grant"]
+  - ["bucket", "bucket_prefix"]
+  - ["object_lock_configuration", "object_lock_enabled"]

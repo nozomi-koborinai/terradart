@@ -89,6 +89,55 @@ enum AlbTargetGroupTargetType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `name`, `name_prefix` on `aws_alb_target_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AlbTargetGroupNameOrNamePrefix {
+  const AlbTargetGroupNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [AlbTargetGroupNameOrNamePrefix] choices).
+final class AlbTargetGroupNameOption extends AlbTargetGroupNameOrNamePrefix {
+  const AlbTargetGroupNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [AlbTargetGroupNameOrNamePrefix] choices).
+final class AlbTargetGroupNamePrefixOption
+    extends AlbTargetGroupNameOrNamePrefix {
+  const AlbTargetGroupNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `health_check` block of
 /// `aws_alb_target_group` (derived from provider schema).
 @immutable
@@ -318,8 +367,7 @@ final class AwsAlbTargetGroup extends Resource {
     loadBalancingAnomalyMitigation,
     TfArg<AlbTargetGroupLoadBalancingCrossZoneEnabled>?
     loadBalancingCrossZoneEnabled,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    AlbTargetGroupNameOrNamePrefix? nameOrNamePrefix,
     TfArg<num>? port,
     TfArg<String>? preserveClientIp,
     TfArg<AlbTargetGroupProtocol>? protocol,
@@ -358,8 +406,7 @@ final class AwsAlbTargetGroup extends Resource {
                  loadBalancingAnomalyMitigation,
            if (loadBalancingCrossZoneEnabled != null)
              'load_balancing_cross_zone_enabled': loadBalancingCrossZoneEnabled,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (port != null) 'port': port,
            if (preserveClientIp != null) 'preserve_client_ip': preserveClientIp,
            if (protocol != null) 'protocol': protocol,

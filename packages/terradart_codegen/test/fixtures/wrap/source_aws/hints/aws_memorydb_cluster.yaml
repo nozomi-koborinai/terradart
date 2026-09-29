@@ -16,3 +16,6 @@ properties:
       - "ipv4"
       - "ipv6"
       - "dual_stack"
+at_most_one_of_groups:
+  - ["name", "name_prefix"]
+  - ["snapshot_arns", "snapshot_name"]

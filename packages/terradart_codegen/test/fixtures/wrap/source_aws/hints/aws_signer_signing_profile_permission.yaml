@@ -9,3 +9,5 @@ properties:
       - "signer:GetSigningProfile"
       - "signer:RevokeSignature"
       - "signer:SignPayload"
+at_most_one_of_groups:
+  - ["statement_id", "statement_id_prefix"]

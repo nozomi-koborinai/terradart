@@ -11,16 +11,53 @@ const Set<String> _awsNetworkmanagerDeviceSensitive = <String>{};
 /// `aws_networkmanager_device` (derived from provider schema).
 @immutable
 final class NetworkmanagerDeviceAwsLocation {
-  const NetworkmanagerDeviceAwsLocation({this.subnetArn, this.zone});
+  const NetworkmanagerDeviceAwsLocation({this.subnetArnOrZone});
 
-  final TfArg<String>? subnetArn;
+  final NetworkmanagerDeviceAwsLocationSubnetArnOrZone? subnetArnOrZone;
 
-  final TfArg<String>? zone;
+  Map<String, Object?> encode() => {...?subnetArnOrZone?.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (subnetArn != null) 'subnet_arn': subnetArn!.toTfJson(),
-    if (zone != null) 'zone': zone!.toTfJson(),
-  };
+/// At most one of `subnet_arn`, `zone` on the `aws_location` block of `aws_networkmanager_device`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class NetworkmanagerDeviceAwsLocationSubnetArnOrZone {
+  const NetworkmanagerDeviceAwsLocationSubnetArnOrZone();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `subnet_arn` (one of the [NetworkmanagerDeviceAwsLocationSubnetArnOrZone] choices).
+final class NetworkmanagerDeviceAwsLocationSubnetArnOption
+    extends NetworkmanagerDeviceAwsLocationSubnetArnOrZone {
+  const NetworkmanagerDeviceAwsLocationSubnetArnOption({
+    required this.subnetArn,
+  });
+
+  final TfArg<String> subnetArn;
+
+  @override
+  String get blockKey => 'subnet_arn';
+
+  @override
+  Map<String, Object?> encode() => {'subnet_arn': subnetArn.toTfJson()};
+}
+
+/// Sets `zone` (one of the [NetworkmanagerDeviceAwsLocationSubnetArnOrZone] choices).
+final class NetworkmanagerDeviceAwsLocationZoneOption
+    extends NetworkmanagerDeviceAwsLocationSubnetArnOrZone {
+  const NetworkmanagerDeviceAwsLocationZoneOption({required this.zone});
+
+  final TfArg<String> zone;
+
+  @override
+  String get blockKey => 'zone';
+
+  @override
+  Map<String, Object?> encode() => {'zone': zone.toTfJson()};
 }
 
 /// Typed helper for the `location` block of

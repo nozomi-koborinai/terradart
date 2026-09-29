@@ -24,16 +24,65 @@ enum ConnectContactFlowType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `content`, `filename` on `aws_connect_contact_flow`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ConnectContactFlowContentOrFilename {
+  const ConnectContactFlowContentOrFilename();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `content` (one of the [ConnectContactFlowContentOrFilename] choices).
+final class ConnectContactFlowContentOption
+    extends ConnectContactFlowContentOrFilename {
+  const ConnectContactFlowContentOption({required this.content});
+
+  final TfArg<String> content;
+
+  @override
+  String get blockKey => 'content';
+
+  @override
+  Map<String, Object?> encode() => {'content': content.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'content': content};
+}
+
+/// Sets `filename` (one of the [ConnectContactFlowContentOrFilename] choices).
+final class ConnectContactFlowFilenameOption
+    extends ConnectContactFlowContentOrFilename {
+  const ConnectContactFlowFilenameOption({required this.filename});
+
+  final TfArg<String> filename;
+
+  @override
+  String get blockKey => 'filename';
+
+  @override
+  Map<String, Object?> encode() => {'filename': filename.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'filename': filename};
+}
+
 /// Factory wrapper for `aws_connect_contact_flow`.
 final class AwsConnectContactFlow extends Resource {
   static const String tfType = 'aws_connect_contact_flow';
 
   AwsConnectContactFlow({
     required super.localName,
-    TfArg<String>? content,
+    ConnectContactFlowContentOrFilename? contentOrFilename,
     TfArg<String>? contentHash,
     TfArg<String>? description,
-    TfArg<String>? filename,
     required TfArg<String> instanceId,
     required TfArg<String> name,
     TfArg<String>? region,
@@ -46,10 +95,9 @@ final class AwsConnectContactFlow extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (content != null) 'content': content,
+           ...?contentOrFilename?.argMap,
            if (contentHash != null) 'content_hash': contentHash,
            if (description != null) 'description': description,
-           if (filename != null) 'filename': filename,
            'instance_id': instanceId,
            'name': name,
            if (region != null) 'region': region,

@@ -65,3 +65,5 @@ properties:
               - "P90"
               - "P95"
               - "P99_5"
+at_most_one_of_groups:
+  - ["preferred_resource.exclude_list", "preferred_resource.include_list"]

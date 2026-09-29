@@ -27,16 +27,24 @@ export 'src/route53/aws_route53_record.dart'
         Route53RecordAliasOption,
         Route53RecordAliasOrRecords,
         Route53RecordCidrRoutingPolicy,
+        Route53RecordCidrRoutingPolicyOption,
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy,
         Route53RecordFailoverRoutingPolicy,
+        Route53RecordFailoverRoutingPolicyOption,
         Route53RecordFailoverRoutingPolicyType,
         Route53RecordGeolocationRoutingPolicy,
+        Route53RecordGeolocationRoutingPolicyOption,
         Route53RecordGeoproximityRoutingPolicy,
         Route53RecordGeoproximityRoutingPolicyCoordinates,
+        Route53RecordGeoproximityRoutingPolicyOption,
         Route53RecordLatencyRoutingPolicy,
+        Route53RecordLatencyRoutingPolicyOption,
         Route53RecordLatencyRoutingPolicyRegion,
+        Route53RecordMultivalueAnswerRoutingPolicyOption,
         Route53RecordRecordsOption,
         Route53RecordType,
-        Route53RecordWeightedRoutingPolicy;
+        Route53RecordWeightedRoutingPolicy,
+        Route53RecordWeightedRoutingPolicyOption;
 export 'src/route53/aws_route53_records_exclusive.dart'
     show
         AwsRoute53RecordsExclusive,
@@ -102,6 +110,12 @@ export 'src/route53/aws_route53_vpc_association_authorization.dart'
     show
         AwsRoute53VpcAssociationAuthorization,
         Route53VpcAssociationAuthorizationVpcRegion;
-export 'src/route53/aws_route53_zone.dart' show AwsRoute53Zone, Route53ZoneVpc;
+export 'src/route53/aws_route53_zone.dart'
+    show
+        AwsRoute53Zone,
+        Route53ZoneDelegationSetIdOption,
+        Route53ZoneDelegationSetIdOrVpc,
+        Route53ZoneVpc,
+        Route53ZoneVpcOption;
 export 'src/route53/aws_route53_zone_association.dart'
     show AwsRoute53ZoneAssociation, Route53ZoneAssociationVpcRegion;

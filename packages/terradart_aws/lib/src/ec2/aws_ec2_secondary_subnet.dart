@@ -6,14 +6,76 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_ec2_secondary_subnet`.
 const Set<String> _awsEc2SecondarySubnetSensitive = <String>{};
 
+/// At most one of `availability_zone`, `availability_zone_id` on `aws_ec2_secondary_subnet`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId {
+  const Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `availability_zone` (one of the [Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId] choices).
+final class Ec2SecondarySubnetAvailabilityZoneOption
+    extends Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId {
+  const Ec2SecondarySubnetAvailabilityZoneOption({
+    required this.availabilityZone,
+  });
+
+  final TfArg<String> availabilityZone;
+
+  @override
+  String get blockKey => 'availability_zone';
+
+  @override
+  Map<String, Object?> encode() => {
+    'availability_zone': availabilityZone.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'availability_zone': availabilityZone,
+  };
+}
+
+/// Sets `availability_zone_id` (one of the [Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId] choices).
+final class Ec2SecondarySubnetAvailabilityZoneIdOption
+    extends Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId {
+  const Ec2SecondarySubnetAvailabilityZoneIdOption({
+    required this.availabilityZoneId,
+  });
+
+  final TfArg<String> availabilityZoneId;
+
+  @override
+  String get blockKey => 'availability_zone_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'availability_zone_id': availabilityZoneId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'availability_zone_id': availabilityZoneId,
+  };
+}
+
 /// Factory wrapper for `aws_ec2_secondary_subnet`.
 final class AwsEc2SecondarySubnet extends Resource {
   static const String tfType = 'aws_ec2_secondary_subnet';
 
   AwsEc2SecondarySubnet({
     required super.localName,
-    TfArg<String>? availabilityZone,
-    TfArg<String>? availabilityZoneId,
+    Ec2SecondarySubnetAvailabilityZoneOrAvailabilityZoneId?
+    availabilityZoneOrAvailabilityZoneId,
     required TfArg<String> ipv4CidrBlock,
     TfArg<String>? region,
     required TfArg<String> secondaryNetworkId,
@@ -25,9 +87,7 @@ final class AwsEc2SecondarySubnet extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (availabilityZone != null) 'availability_zone': availabilityZone,
-           if (availabilityZoneId != null)
-             'availability_zone_id': availabilityZoneId,
+           ...?availabilityZoneOrAvailabilityZoneId?.argMap,
            'ipv4_cidr_block': ipv4CidrBlock,
            if (region != null) 'region': region,
            'secondary_network_id': secondaryNetworkId,

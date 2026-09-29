@@ -3,4 +3,9 @@
 /// AWS Simple Workflow Service.
 library;
 
-export 'src/swf/aws_swf_domain.dart' show AwsSwfDomain;
+export 'src/swf/aws_swf_domain.dart'
+    show
+        AwsSwfDomain,
+        SwfDomainNameOption,
+        SwfDomainNameOrNamePrefix,
+        SwfDomainNamePrefixOption;

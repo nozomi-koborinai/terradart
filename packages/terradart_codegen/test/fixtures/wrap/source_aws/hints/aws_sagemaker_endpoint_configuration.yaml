@@ -650,3 +650,5 @@ properties:
               - "LEAST_OUTSTANDING_REQUESTS"
               - "RANDOM"
               - "PREFIX_AWARE"
+at_most_one_of_groups:
+  - ["name", "name_prefix"]

@@ -6,17 +6,68 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_vpc_ipam_pool_cidr_allocation`.
 const Set<String> _awsVpcIpamPoolCidrAllocationSensitive = <String>{};
 
+/// At most one of `cidr`, `netmask_length` on `aws_vpc_ipam_pool_cidr_allocation`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class VpcIpamPoolCidrAllocationCidrOrNetmaskLength {
+  const VpcIpamPoolCidrAllocationCidrOrNetmaskLength();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `cidr` (one of the [VpcIpamPoolCidrAllocationCidrOrNetmaskLength] choices).
+final class VpcIpamPoolCidrAllocationCidrOption
+    extends VpcIpamPoolCidrAllocationCidrOrNetmaskLength {
+  const VpcIpamPoolCidrAllocationCidrOption({required this.cidr});
+
+  final TfArg<String> cidr;
+
+  @override
+  String get blockKey => 'cidr';
+
+  @override
+  Map<String, Object?> encode() => {'cidr': cidr.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'cidr': cidr};
+}
+
+/// Sets `netmask_length` (one of the [VpcIpamPoolCidrAllocationCidrOrNetmaskLength] choices).
+final class VpcIpamPoolCidrAllocationNetmaskLengthOption
+    extends VpcIpamPoolCidrAllocationCidrOrNetmaskLength {
+  const VpcIpamPoolCidrAllocationNetmaskLengthOption({
+    required this.netmaskLength,
+  });
+
+  final TfArg<num> netmaskLength;
+
+  @override
+  String get blockKey => 'netmask_length';
+
+  @override
+  Map<String, Object?> encode() => {'netmask_length': netmaskLength.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'netmask_length': netmaskLength};
+}
+
 /// Factory wrapper for `aws_vpc_ipam_pool_cidr_allocation`.
 final class AwsVpcIpamPoolCidrAllocation extends Resource {
   static const String tfType = 'aws_vpc_ipam_pool_cidr_allocation';
 
   AwsVpcIpamPoolCidrAllocation({
     required super.localName,
-    TfArg<String>? cidr,
+    VpcIpamPoolCidrAllocationCidrOrNetmaskLength? cidrOrNetmaskLength,
     TfArg<String>? description,
     TfArg<List<String>>? disallowedCidrs,
     required TfArg<String> ipamPoolId,
-    TfArg<num>? netmaskLength,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -26,11 +77,10 @@ final class AwsVpcIpamPoolCidrAllocation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (cidr != null) 'cidr': cidr,
+           ...?cidrOrNetmaskLength?.argMap,
            if (description != null) 'description': description,
            if (disallowedCidrs != null) 'disallowed_cidrs': disallowedCidrs,
            'ipam_pool_id': ipamPoolId,
-           if (netmaskLength != null) 'netmask_length': netmaskLength,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
          },

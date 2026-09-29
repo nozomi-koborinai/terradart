@@ -18,6 +18,18 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Changed
 
+- **`terradart_aws` at-most-one groups are nullable sealed types**
+  (**breaking**) — 228 groups on 159 resources (168 on resource arguments,
+  60 in nested blocks; 59 are `name` / `name_prefix`), e.g.
+  `AwsIamRole(nameOrNamePrefix: IamRoleNameOption(name: ...))`. The AWS
+  hints extractor now reads SDKv2 `ConflictsWith` / `AtLeastOneOf` lists and
+  the framework `ConflictsWith` / `Conflicting` / `AtLeastOneOf` validators
+  and combines them per resource with `exclusiveGroups`, as on cloudflare;
+  that also promotes `AwsDocdbGlobalCluster` `engine` /
+  `source_db_cluster_identifier` to an exactly-one group (161 now). The
+  weekly aws bump's re-extraction refreshes them with the pin; the leftover
+  example generator picks variants of optional sealed slots too. Synth
+  output is unchanged. See `MIGRATING.md`.
 - **`terradart_cloudflare` at-most-one groups are nullable sealed types**
   (**breaking**) — 14 groups on 8 resources (5 on resource arguments, 9 in
   nested blocks), e.g. `CloudflareDnsRecord(contentOrData:

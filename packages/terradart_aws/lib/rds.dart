@@ -7,11 +7,18 @@ export 'src/rds/aws_rds_certificate.dart' show AwsRdsCertificate;
 export 'src/rds/aws_rds_cluster.dart'
     show
         AwsRdsCluster,
+        RdsClusterClusterIdentifierOption,
+        RdsClusterClusterIdentifierOrClusterIdentifierPrefix,
+        RdsClusterClusterIdentifierPrefixOption,
         RdsClusterClusterScalabilityType,
         RdsClusterDatabaseInsightsMode,
         RdsClusterEnabledCloudwatchLogsExports,
         RdsClusterEngineLifecycleSupport,
         RdsClusterEngineMode,
+        RdsClusterManageMasterUserPasswordOption,
+        RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo,
+        RdsClusterMasterPasswordOption,
+        RdsClusterMasterPasswordWoOption,
         RdsClusterNetworkType,
         RdsClusterRestoreToPointInTime,
         RdsClusterRestoreToPointInTimeRestoreToTimeOption,
@@ -28,11 +35,24 @@ export 'src/rds/aws_rds_cluster.dart'
 export 'src/rds/aws_rds_cluster_activity_stream.dart'
     show AwsRdsClusterActivityStream, RdsClusterActivityStreamMode;
 export 'src/rds/aws_rds_cluster_endpoint.dart'
-    show AwsRdsClusterEndpoint, RdsClusterEndpointCustomEndpointType;
-export 'src/rds/aws_rds_cluster_instance.dart' show AwsRdsClusterInstance;
+    show
+        AwsRdsClusterEndpoint,
+        RdsClusterEndpointCustomEndpointType,
+        RdsClusterEndpointExcludedMembersOption,
+        RdsClusterEndpointExcludedMembersOrStaticMembers,
+        RdsClusterEndpointStaticMembersOption;
+export 'src/rds/aws_rds_cluster_instance.dart'
+    show
+        AwsRdsClusterInstance,
+        RdsClusterInstanceIdentifierOption,
+        RdsClusterInstanceIdentifierOrIdentifierPrefix,
+        RdsClusterInstanceIdentifierPrefixOption;
 export 'src/rds/aws_rds_cluster_parameter_group.dart'
     show
         AwsRdsClusterParameterGroup,
+        RdsClusterParameterGroupNameOption,
+        RdsClusterParameterGroupNameOrNamePrefix,
+        RdsClusterParameterGroupNamePrefixOption,
         RdsClusterParameterGroupParameter,
         RdsClusterParameterGroupParameterApplyMethod;
 export 'src/rds/aws_rds_cluster_role_association.dart'
@@ -40,7 +60,12 @@ export 'src/rds/aws_rds_cluster_role_association.dart'
 export 'src/rds/aws_rds_cluster_snapshot_copy.dart'
     show AwsRdsClusterSnapshotCopy;
 export 'src/rds/aws_rds_custom_db_engine_version.dart'
-    show AwsRdsCustomDbEngineVersion, RdsCustomDbEngineVersionStatus;
+    show
+        AwsRdsCustomDbEngineVersion,
+        RdsCustomDbEngineVersionFilenameOption,
+        RdsCustomDbEngineVersionFilenameOrManifest,
+        RdsCustomDbEngineVersionManifestOption,
+        RdsCustomDbEngineVersionStatus;
 export 'src/rds/aws_rds_export_task.dart' show AwsRdsExportTask;
 export 'src/rds/aws_rds_global_cluster.dart'
     show

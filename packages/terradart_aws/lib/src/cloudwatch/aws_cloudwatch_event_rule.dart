@@ -19,6 +19,106 @@ enum CloudwatchEventRuleState implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `is_enabled`, `state` on `aws_cloudwatch_event_rule`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CloudwatchEventRuleIsEnabledOrState {
+  const CloudwatchEventRuleIsEnabledOrState();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `is_enabled` (one of the [CloudwatchEventRuleIsEnabledOrState] choices).
+final class CloudwatchEventRuleIsEnabledOption
+    extends CloudwatchEventRuleIsEnabledOrState {
+  const CloudwatchEventRuleIsEnabledOption({required this.isEnabled});
+
+  final TfArg<bool> isEnabled;
+
+  @override
+  String get blockKey => 'is_enabled';
+
+  @override
+  Map<String, Object?> encode() => {'is_enabled': isEnabled.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'is_enabled': isEnabled};
+}
+
+/// Sets `state` (one of the [CloudwatchEventRuleIsEnabledOrState] choices).
+final class CloudwatchEventRuleStateOption
+    extends CloudwatchEventRuleIsEnabledOrState {
+  const CloudwatchEventRuleStateOption({required this.state});
+
+  final TfArg<CloudwatchEventRuleState> state;
+
+  @override
+  String get blockKey => 'state';
+
+  @override
+  Map<String, Object?> encode() => {'state': state.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'state': state};
+}
+
+/// At most one of `name`, `name_prefix` on `aws_cloudwatch_event_rule`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CloudwatchEventRuleNameOrNamePrefix {
+  const CloudwatchEventRuleNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [CloudwatchEventRuleNameOrNamePrefix] choices).
+final class CloudwatchEventRuleNameOption
+    extends CloudwatchEventRuleNameOrNamePrefix {
+  const CloudwatchEventRuleNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [CloudwatchEventRuleNameOrNamePrefix] choices).
+final class CloudwatchEventRuleNamePrefixOption
+    extends CloudwatchEventRuleNameOrNamePrefix {
+  const CloudwatchEventRuleNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Factory wrapper for `aws_cloudwatch_event_rule`.
 final class AwsCloudwatchEventRule extends Resource {
   static const String tfType = 'aws_cloudwatch_event_rule';
@@ -29,13 +129,11 @@ final class AwsCloudwatchEventRule extends Resource {
     TfArg<String>? eventBusName,
     TfArg<String>? eventPattern,
     TfArg<bool>? forceDestroy,
-    TfArg<bool>? isEnabled,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    CloudwatchEventRuleIsEnabledOrState? isEnabledOrState,
+    CloudwatchEventRuleNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? region,
     TfArg<String>? roleArn,
     TfArg<String>? scheduleExpression,
-    TfArg<CloudwatchEventRuleState>? state,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
@@ -48,14 +146,12 @@ final class AwsCloudwatchEventRule extends Resource {
            if (eventBusName != null) 'event_bus_name': eventBusName,
            if (eventPattern != null) 'event_pattern': eventPattern,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (isEnabled != null) 'is_enabled': isEnabled,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?isEnabledOrState?.argMap,
+           ...?nameOrNamePrefix?.argMap,
            if (region != null) 'region': region,
            if (roleArn != null) 'role_arn': roleArn,
            if (scheduleExpression != null)
              'schedule_expression': scheduleExpression,
-           if (state != null) 'state': state,
            if (tags != null) 'tags': tags,
          },
        );

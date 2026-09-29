@@ -51,22 +51,69 @@ enum CodedeployDeploymentConfigMinimumHealthyHostsType
 final class CodedeployDeploymentConfigTrafficRoutingConfig {
   const CodedeployDeploymentConfigTrafficRoutingConfig({
     this.type,
-    this.timeBasedCanary,
-    this.timeBasedLinear,
+    this.timeBasedCanaryOrTimeBasedLinear,
   });
 
   final TfArg<CodedeployDeploymentConfigTrafficRoutingConfigType>? type;
 
-  final CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanary?
-  timeBasedCanary;
-
-  final CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinear?
-  timeBasedLinear;
+  final CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear?
+  timeBasedCanaryOrTimeBasedLinear;
 
   Map<String, Object?> encode() => {
     if (type != null) 'type': type!.toTfJson(),
-    if (timeBasedCanary != null) 'time_based_canary': timeBasedCanary!.encode(),
-    if (timeBasedLinear != null) 'time_based_linear': timeBasedLinear!.encode(),
+    ...?timeBasedCanaryOrTimeBasedLinear?.encode(),
+  };
+}
+
+/// At most one of `time_based_canary`, `time_based_linear` on the `traffic_routing_config` block of `aws_codedeploy_deployment_config`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear {
+  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `time_based_canary` (one of the [CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear] choices).
+final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOption
+    extends
+        CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear {
+  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOption({
+    required this.timeBasedCanary,
+  });
+
+  final CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanary
+  timeBasedCanary;
+
+  @override
+  String get blockKey => 'time_based_canary';
+
+  @override
+  Map<String, Object?> encode() => {
+    'time_based_canary': timeBasedCanary.encode(),
+  };
+}
+
+/// Sets `time_based_linear` (one of the [CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear] choices).
+final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinearOption
+    extends
+        CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear {
+  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinearOption({
+    required this.timeBasedLinear,
+  });
+
+  final CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinear
+  timeBasedLinear;
+
+  @override
+  String get blockKey => 'time_based_linear';
+
+  @override
+  Map<String, Object?> encode() => {
+    'time_based_linear': timeBasedLinear.encode(),
   };
 }
 

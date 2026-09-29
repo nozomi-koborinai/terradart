@@ -6,7 +6,10 @@ library;
 export 'src/codestarconnections/aws_codestarconnections_connection.dart'
     show
         AwsCodestarconnectionsConnection,
-        CodestarconnectionsConnectionProviderType;
+        CodestarconnectionsConnectionHostArnOption,
+        CodestarconnectionsConnectionHostArnOrProviderType,
+        CodestarconnectionsConnectionProviderType,
+        CodestarconnectionsConnectionProviderTypeOption;
 export 'src/codestarconnections/aws_codestarconnections_host.dart'
     show
         AwsCodestarconnectionsHost,

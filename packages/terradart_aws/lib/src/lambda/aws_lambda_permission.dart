@@ -16,6 +16,62 @@ enum LambdaPermissionFunctionUrlAuthType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `statement_id`, `statement_id_prefix` on `aws_lambda_permission`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LambdaPermissionStatementIdOrStatementIdPrefix {
+  const LambdaPermissionStatementIdOrStatementIdPrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `statement_id` (one of the [LambdaPermissionStatementIdOrStatementIdPrefix] choices).
+final class LambdaPermissionStatementIdOption
+    extends LambdaPermissionStatementIdOrStatementIdPrefix {
+  const LambdaPermissionStatementIdOption({required this.statementId});
+
+  final TfArg<String> statementId;
+
+  @override
+  String get blockKey => 'statement_id';
+
+  @override
+  Map<String, Object?> encode() => {'statement_id': statementId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'statement_id': statementId};
+}
+
+/// Sets `statement_id_prefix` (one of the [LambdaPermissionStatementIdOrStatementIdPrefix] choices).
+final class LambdaPermissionStatementIdPrefixOption
+    extends LambdaPermissionStatementIdOrStatementIdPrefix {
+  const LambdaPermissionStatementIdPrefixOption({
+    required this.statementIdPrefix,
+  });
+
+  final TfArg<String> statementIdPrefix;
+
+  @override
+  String get blockKey => 'statement_id_prefix';
+
+  @override
+  Map<String, Object?> encode() => {
+    'statement_id_prefix': statementIdPrefix.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'statement_id_prefix': statementIdPrefix,
+  };
+}
+
 /// Factory wrapper for `aws_lambda_permission`.
 final class AwsLambdaPermission extends Resource {
   static const String tfType = 'aws_lambda_permission';
@@ -33,8 +89,8 @@ final class AwsLambdaPermission extends Resource {
     TfArg<String>? region,
     TfArg<String>? sourceAccount,
     TfArg<String>? sourceArn,
-    TfArg<String>? statementId,
-    TfArg<String>? statementIdPrefix,
+    LambdaPermissionStatementIdOrStatementIdPrefix?
+    statementIdOrStatementIdPrefix,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -55,9 +111,7 @@ final class AwsLambdaPermission extends Resource {
            if (region != null) 'region': region,
            if (sourceAccount != null) 'source_account': sourceAccount,
            if (sourceArn != null) 'source_arn': sourceArn,
-           if (statementId != null) 'statement_id': statementId,
-           if (statementIdPrefix != null)
-             'statement_id_prefix': statementIdPrefix,
+           ...?statementIdOrStatementIdPrefix?.argMap,
          },
        );
 

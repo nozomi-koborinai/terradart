@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- **Breaking:** mutually exclusive inputs the provider also accepts none of are nullable sealed types — 228 groups on 159 resources (168 on resource arguments, 60 in nested blocks) take one optional argument (or helper field) whose variants each set one member. The most common is `name` / `name_prefix` (59 resources): `AwsIamRole(nameOrNamePrefix: IamRoleNameOption(name: ...))`, `AwsS3Bucket(bucketOrBucketPrefix: S3BucketBucketPrefixOption(bucketPrefix: ...))`. Leave it out to set none. Synth output is unchanged. See `MIGRATING.md`.
+- **Breaking:** `AwsDocdbGlobalCluster` takes `engineOrSourceDbClusterIdentifier` (required): the provider requires at least one of `engine` / `source_db_cluster_identifier` and they conflict, so it is an exactly-one group — 161 groups on 117 resources now. See `MIGRATING.md`.
+
 ## 0.30.0 - 2026-09-28
 
 - **Breaking:** inputs with a fixed value set are enums — 2903 string inputs on 811 resources (e.g. `AwsLambdaFunction.runtime` → `LambdaFunctionRuntime`, `AwsRoute53Record.type` → `Route53RecordType`). Synth output is unchanged. See `MIGRATING.md`.

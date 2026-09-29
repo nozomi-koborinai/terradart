@@ -64,6 +64,39 @@ fail at `terraform validate`; now it doesn't compile. `terradart-migrate`
 picks the variant from whichever member the source sets, and leaves the
 argument out when none is set.
 
+### `terradart_aws` at-most-one inputs are nullable sealed types
+
+**Breaking (`terradart_aws`)** — 228 input groups across 159 resources whose
+members conflict with each other, with no rule requiring one of them, take
+one optional sealed-type argument (or helper field) instead of several
+optional ones: the provider's SDKv2 `ConflictsWith` lists and framework
+`ConflictsWith` / `Conflicting` validators at the pinned version that no
+exactly-one group covers. 168 are on resource arguments and 60 inside nested
+blocks; 59 are `name` / `name_prefix`. Naming follows the exactly-one groups:
+the argument joins its members with `Or`, and each member is a
+`<Prefix><Member>Option` variant. Leave the argument out to set none of them
+(for `name` / `name_prefix`, the provider then generates a name). Synth
+output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `AwsIamRole(name: TfArg.literal('hello'), ...)` | `AwsIamRole(nameOrNamePrefix: IamRoleNameOption(name: TfArg.literal('hello')), ...)` |
+| `AwsCloudwatchLogGroup(name: TfArg.literal('/aws/lambda/hello'), ...)` | `AwsCloudwatchLogGroup(nameOrNamePrefix: CloudwatchLogGroupNameOption(name: TfArg.literal('/aws/lambda/hello')), ...)` |
+| `AwsS3Bucket(bucketPrefix: TfArg.literal('site-'), ...)` | `AwsS3Bucket(bucketOrBucketPrefix: S3BucketBucketPrefixOption(bucketPrefix: TfArg.literal('site-')), ...)` |
+| `AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration(predefinedMetricSpecification: spec, ...)` | `...(customizedMetricSpecificationOrPredefinedMetricSpecification: AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecificationOption(predefinedMetricSpecification: spec), ...)` |
+
+`AwsDocdbGlobalCluster` also gains a required sealed argument: the provider
+requires at least one of `engine` / `source_db_cluster_identifier` and they
+conflict, so exactly one is set —
+`AwsDocdbGlobalCluster(engineOrSourceDbClusterIdentifier: DocdbGlobalClusterEngineOption(engine: TfArg.literal(DocdbGlobalClusterEngine.docdb)), ...)`.
+
+Setting two members used to fail at `terraform validate`; now it doesn't
+compile. Two groups stay as separate arguments because one member has no
+typed shape: `AwsS3Bucket` `object_lock_configuration` /
+`object_lock_enabled` and `AwsWafv2WebAcl` `rule` / `rule_json`.
+`terradart-migrate` picks the variant from whichever member the source sets,
+and leaves the argument out when none is set.
+
 ### `terradart_google_beta` inputs are typed like `terradart_google`
 
 **Breaking (`terradart_google_beta`)** — beta factories now derive their

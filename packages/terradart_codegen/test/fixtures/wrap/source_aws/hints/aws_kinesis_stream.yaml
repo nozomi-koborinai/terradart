@@ -23,3 +23,5 @@ properties:
         enum_values:
           - "PROVISIONED"
           - "ON_DEMAND"
+at_most_one_of_groups:
+  - ["shard_count", "warm_throughput_mib_ps"]
