@@ -599,8 +599,10 @@ class WrapCommand extends Command<int> {
       for (final MapEntry(key: type, value: slots) in references.entries) {
         for (final path in slots.keys) {
           if (!typedReferenceKeys.contains('$type.$path')) {
-            stderr.writeln('terradart wrap: reference input not typed: '
-                '$type.$path');
+            stderr.writeln(
+              'terradart wrap: reference input not typed: '
+              '$type.$path',
+            );
           }
         }
       }
