@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- **Breaking** — `GoogleComputeRegionNetworkEndpointGroup`'s `cloudRun`, `cloudFunction` and `appEngine` are one nullable sealed argument, `serverless: .cloudRun(...)`. See [MIGRATING.md](../../MIGRATING.md).
 - Every resource has a `ref` getter returning `RefTo<ItsClass>`, and so does every data source that reads a resource of this package — the reference the arguments naming another resource take.
 - **Breaking** — 318 arguments that name another resource (network, subnetwork, service account, KMS crypto key, bucket, Pub/Sub topic and BigQuery dataset) take a `RefTo<Target>` instead of a `TfArg<String>`: `GoogleComputeSubnetwork(network: vpc.ref)`, `GooglePubsubSubscription(topic: topic.ref)`. The argument picks the attribute it emits; `.literal(...)`, `.variable(...)`, `.expression(...)` and `.arg(...)` take a value outside the Stack, and `.pinned('attr')` keeps emitting another attribute. See `MIGRATING.md`.
 - **Breaking** — compute and networking input groups the Magic Modules YAML declares mutually exclusive are sealed types: 16 groups on 13 resources (`exactly_one_of` → a required sealed argument or helper field, `conflicts` → a nullable one), e.g. `GoogleComputeTargetHttpsProxy(certificates: .sslCertificates(...))`. Every compute / network / DNS / service-networking / certificate-manager / VMware Engine / edge override sets `deriveExactlyOne`, so a later MM group seals on the weekly bump. See [MIGRATING.md](../../MIGRATING.md).

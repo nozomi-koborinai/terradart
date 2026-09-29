@@ -87,6 +87,7 @@ deriveExactlyOneSlots(
             atMostOneGroups: nestedOptional,
             sealedNames: o.sealedNames,
             references: (path) => refs[path.join('.')],
+            typeOverrides: o.nestedDartTypeOverrides,
           )
         : const <NestedBlockSpec>[];
     final typeNames = <SealedGroupName>[];

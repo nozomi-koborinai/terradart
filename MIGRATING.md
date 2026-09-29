@@ -1026,6 +1026,18 @@ unchanged, so no Terraform step is needed; fix the compile errors:
 factory. `terradart-migrate` emits the typed form for `google-beta`
 resources.
 
+### `GoogleComputeRegionNetworkEndpointGroup` serverless targets are one argument
+
+**Breaking (`terradart_google`)** — `cloudRun`, `cloudFunction` and
+`appEngine` are one nullable sealed argument, `serverless`. The Magic
+Modules group also names the beta-only `serverless_deployment`, which kept
+it unsealed; `terradart wrap` now drops group members the provider schema
+has no input for. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `GoogleComputeRegionNetworkEndpointGroup(cloudRun: ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(service: ...), ...)` | `GoogleComputeRegionNetworkEndpointGroup(serverless: .cloudRun(ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(service: ...)), ...)` |
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it

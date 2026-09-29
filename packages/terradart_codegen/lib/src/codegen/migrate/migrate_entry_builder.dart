@@ -196,6 +196,7 @@ MigrateEntryBuild buildMigrateEntry({
       atMostOneGroups: atMostOneGroups,
       sealedNames: override.sealedNames,
       references: (path) => references[path.join('.')],
+      typeOverrides: override.nestedDartTypeOverrides,
     );
     for (final s in collected) {
       specs[s.tfName] = s;

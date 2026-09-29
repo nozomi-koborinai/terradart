@@ -99,6 +99,67 @@ properties:
     });
   });
 
+  test(
+    'withinSchema drops members the schema has no input for, outputs too',
+    () {
+      const enums = ProviderEnums.on(
+        exactlyOneGroups: {
+          'x_thing': [
+            ['mode', 'other', 'beta_only'],
+            ['mode', 'beta_only'],
+            ['settings.level', 'settings.tier'],
+            ['mode', 'state'],
+          ],
+        },
+        atMostOneGroups: {
+          'x_thing': [
+            ['settings.level', 'wrong.depth'],
+          ],
+        },
+      );
+      final dropped = <String>[];
+      final ir = ProviderSchemaIR(
+        providerName: 'x',
+        providerSource: 'example/x',
+        providerVersion: '1.0.0',
+        resources: {
+          'x_thing': ResourceDef(
+            terraformType: 'x_thing',
+            root: BlockDef(
+              attributes: [
+                _attr('mode'),
+                _attr('other'),
+                _attr('state', computedOnly: true),
+              ],
+              nestedBlocks: [
+                NestedBlockDef(
+                  name: 'settings',
+                  nesting: NestingMode.list,
+                  constraints: const Constraints(optional: true),
+                  block: BlockDef(attributes: [_attr('level'), _attr('tier')]),
+                ),
+              ],
+            ),
+          ),
+        },
+        dataSources: const {},
+      );
+      final kept = enums.withinSchema(ir.resources, dropped: dropped.add);
+      expect(kept.exactlyOneGroups, {
+        'x_thing': [
+          ['mode', 'other'],
+          ['settings.level', 'settings.tier'],
+        ],
+      });
+      expect(kept.atMostOneGroups, isEmpty);
+      expect(dropped, [
+        'x_thing [mode, beta_only]',
+        'x_thing [mode, state]',
+        'x_thing [settings.level, wrong.depth]',
+      ]);
+    },
+  );
+
   test('top-level string and list-of-string inputs are enriched', () {
     final ir = const ProviderEnums.on().enrich(
       _ir([

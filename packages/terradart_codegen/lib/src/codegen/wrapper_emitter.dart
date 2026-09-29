@@ -69,6 +69,11 @@ class WrapperEmitter {
   /// reference.
   final List<String> typedReferences = [];
 
+  /// Every top-level block the last [emit] derived a helper for that no
+  /// constructor input or sealed variant takes, so no caller can reach it.
+  /// Its references are not counted in [typedReferences].
+  final List<String> unreachableHelpers = [];
+
   final Map<String, WrapperOverride> overrides;
 
   /// When set (e.g. `google-beta`), every emitted wrapper pins its
@@ -138,8 +143,30 @@ class WrapperEmitter {
             ),
             sealedNames: override?.sealedNames,
             references: (path) => refs[path.join('.')],
+            typeOverrides: override?.nestedDartTypeOverrides ?? const {},
           )
         : const <NestedBlockSpec>[];
+    final nestedTypeKeys = {...?override?.nestedDartTypeOverrides.keys};
+    if (nestedTypeKeys.isNotEmpty) {
+      void typed(NestedBlockSpec spec, List<String> at) {
+        for (final attr in spec.attrs) {
+          nestedTypeKeys.remove([...at, attr.tfName].join('.'));
+        }
+        for (final child in spec.children) {
+          typed(child, [...at, child.tfName]);
+        }
+      }
+
+      for (final spec in nestedTypeSpecs) {
+        typed(spec, [spec.tfName]);
+      }
+      if (nestedTypeKeys.isNotEmpty) {
+        throw StateError(
+          '${def.terraformType}: dartTypeOverrides ${nestedTypeKeys.join(', ')} '
+          'names no input of a derived nested helper',
+        );
+      }
+    }
 
     final paramOrder = orderedConstructorParams(def, override?.paramOrder);
     final dartTypeOverrides =
@@ -162,14 +189,21 @@ class WrapperEmitter {
       }
     }
 
+    final preludeSource = override?.prelude ?? '';
+    unreachableHelpers.clear();
     for (final spec in nestedTypeSpecs) {
       collectNestedRefs(spec, [spec.tfName]);
+      if (!paramOrder.contains(spec.tfName) &&
+          !preludeSource.contains(spec.className)) {
+        unreachableHelpers.add(spec.tfName);
+      }
     }
     typedReferences
       ..clear()
       ..addAll([
         for (final path in [...topLevelRefs.keys, ...nestedRefs.keys])
-          '${def.terraformType}.$path',
+          if (!unreachableHelpers.contains(path.split('.').first))
+            '${def.terraformType}.$path',
       ]);
 
     // Imports. `extraImports` is emitted FIRST so that `package:meta` (the
