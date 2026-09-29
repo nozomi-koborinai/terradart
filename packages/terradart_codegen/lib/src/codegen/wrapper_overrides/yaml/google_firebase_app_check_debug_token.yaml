@@ -1,6 +1,7 @@
 outputDir: firebase_app_check
 
 deriveClassDoc: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Required identity:

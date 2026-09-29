@@ -1,6 +1,7 @@
 outputDir: service_directory
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

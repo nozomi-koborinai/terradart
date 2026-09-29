@@ -1,6 +1,7 @@
 outputDir: colab
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

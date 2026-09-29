@@ -54,11 +54,17 @@ export 'src/cloud_build/google_cloudbuild_worker_pool.dart'
 export 'src/cloud_build/google_cloudbuildv2_connection.dart'
     show
         Cloudbuildv2ConnectionBitbucketCloudConfig,
+        Cloudbuildv2ConnectionBitbucketCloudConfigOption,
         Cloudbuildv2ConnectionBitbucketDataCenterConfig,
+        Cloudbuildv2ConnectionBitbucketDataCenterConfigOption,
         Cloudbuildv2ConnectionGithubAuthorizerCredential,
         Cloudbuildv2ConnectionGithubConfig,
+        Cloudbuildv2ConnectionGithubConfigOption,
+        Cloudbuildv2ConnectionGithubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig,
         Cloudbuildv2ConnectionGithubEnterpriseConfig,
+        Cloudbuildv2ConnectionGithubEnterpriseConfigOption,
         Cloudbuildv2ConnectionGitlabConfig,
+        Cloudbuildv2ConnectionGitlabConfigOption,
         Cloudbuildv2ConnectionServiceDirectoryConfig,
         Cloudbuildv2ConnectionUserCredential,
         GoogleCloudbuildv2Connection;

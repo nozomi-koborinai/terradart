@@ -1,5 +1,6 @@
 outputDir: document_ai
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

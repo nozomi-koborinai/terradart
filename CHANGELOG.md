@@ -40,6 +40,14 @@ Per-package changelogs live alongside each package and are the system of record 
   `GoogleBigqueryDatasetAccess`'s eight principal / target inputs are one
   sealed argument, which retires its `tool/exactly_one_lint_debt.yaml`
   entry. See `MIGRATING.md`.
+- **`terradart_google` AI / ML, serverless, container and CI/CD input
+  groups are sealed types** (**breaking**) — 35 Magic Modules groups on 25
+  resources (17 nullable, 18 required), e.g.
+  `GoogleCloudbuildv2Connection(githubConfigOr...: ...)` and the Cloud Run
+  probe handlers. `GoogleGkeBackupBackupPlan`,
+  `GoogleClouddeployCustomTargetType`, `GoogleCloudRunV2WorkerPool` and
+  `GoogleVertexAiRagCorpus` take typed nested helpers instead of map
+  literals. See `MIGRATING.md`.
 - **Minimum Dart SDK is 3.10** (**breaking**) — every package, example,
   and cookbook stack declares `sdk: ^3.10.0` (was `^3.6.0`;
   `terradart_hcl` and `terradart_migrate` already required 3.10). The

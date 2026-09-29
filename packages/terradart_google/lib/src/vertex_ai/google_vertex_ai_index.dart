@@ -86,19 +86,60 @@ final class VertexAiIndexMetadataConfig {
 @immutable
 final class VertexAiIndexMetadataConfigAlgorithmConfig {
   const VertexAiIndexMetadataConfigAlgorithmConfig({
-    this.bruteForceConfig,
-    this.treeAhConfig,
+    required this.treeAhConfigOrBruteForceConfig,
   });
 
-  final VertexAiIndexMetadataConfigAlgorithmConfigBruteForceConfig?
+  final VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig
+  treeAhConfigOrBruteForceConfig;
+
+  Map<String, Object?> encode() => {...treeAhConfigOrBruteForceConfig.encode()};
+}
+
+/// Exactly one of `tree_ah_config`, `brute_force_config` on the `metadata.config.algorithm_config` block of `google_vertex_ai_index`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig {
+  const VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `tree_ah_config` (one of the [VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig] choices).
+final class VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOption
+    extends
+        VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig {
+  const VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOption({
+    required this.treeAhConfig,
+  });
+
+  final VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfig treeAhConfig;
+
+  @override
+  String get blockKey => 'tree_ah_config';
+
+  @override
+  Map<String, Object?> encode() => {'tree_ah_config': treeAhConfig.encode()};
+}
+
+/// Sets `brute_force_config` (one of the [VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig] choices).
+final class VertexAiIndexMetadataConfigAlgorithmConfigBruteForceConfigOption
+    extends
+        VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig {
+  const VertexAiIndexMetadataConfigAlgorithmConfigBruteForceConfigOption({
+    required this.bruteForceConfig,
+  });
+
+  final VertexAiIndexMetadataConfigAlgorithmConfigBruteForceConfig
   bruteForceConfig;
 
-  final VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfig? treeAhConfig;
+  @override
+  String get blockKey => 'brute_force_config';
 
+  @override
   Map<String, Object?> encode() => {
-    if (bruteForceConfig != null)
-      'brute_force_config': bruteForceConfig!.encode(),
-    if (treeAhConfig != null) 'tree_ah_config': treeAhConfig!.encode(),
+    'brute_force_config': bruteForceConfig.encode(),
   };
 }
 

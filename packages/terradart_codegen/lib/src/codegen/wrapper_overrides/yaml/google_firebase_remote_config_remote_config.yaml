@@ -1,5 +1,6 @@
 outputDir: firebase_remote_config
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-

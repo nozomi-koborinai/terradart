@@ -93,10 +93,12 @@ final class DeployStack extends Stack {
         name: TfArg.literal('terradart-custom-target-type'),
         location: TfArg.literal('us-central1'),
         description: TfArg.literal('Custom target type (render + deploy)'),
-        customActions: TfArg.literal(<String, Object?>{
-          'render_action': 'render',
-          'deploy_action': 'deploy',
-        }),
+        customActionsOrTasks: ClouddeployCustomTargetTypeCustomActionsOption(
+          customActions: ClouddeployCustomTargetTypeCustomActions(
+            renderAction: TfArg.literal('render'),
+            deployAction: TfArg.literal('deploy'),
+          ),
+        ),
         dependsOn: [ResourceDependency(apiClouddeploy)],
       ),
     );

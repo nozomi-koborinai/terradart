@@ -88,6 +88,65 @@ class FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy {
   };
 }
 
+/// Exactly one of `rollout_policy`, `target` on `google_firebase_app_hosting_traffic`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class FirebaseAppHostingTrafficRolloutPolicyOrTarget {
+  const FirebaseAppHostingTrafficRolloutPolicyOrTarget();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `rollout_policy` (one of the [FirebaseAppHostingTrafficRolloutPolicyOrTarget] choices).
+final class FirebaseAppHostingTrafficRolloutPolicyOption
+    extends FirebaseAppHostingTrafficRolloutPolicyOrTarget {
+  const FirebaseAppHostingTrafficRolloutPolicyOption({
+    required this.rolloutPolicy,
+  });
+
+  final FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy rolloutPolicy;
+
+  @override
+  String get blockKey => 'rollout_policy';
+
+  @override
+  Map<String, Object?> encode() => {
+    'rollout_policy': [rolloutPolicy.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'rollout_policy': TfArg.literal([rolloutPolicy.toArgMap()]),
+  };
+}
+
+/// Sets `target` (one of the [FirebaseAppHostingTrafficRolloutPolicyOrTarget] choices).
+final class FirebaseAppHostingTrafficTargetOption
+    extends FirebaseAppHostingTrafficRolloutPolicyOrTarget {
+  const FirebaseAppHostingTrafficTargetOption({required this.target});
+
+  final FirebaseAppHostingTrafficAppHostingTrafficTarget target;
+
+  @override
+  String get blockKey => 'target';
+
+  @override
+  Map<String, Object?> encode() => {
+    'target': [target.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'target': TfArg.literal([target.toArgMap()]),
+  };
+}
+
 /// Factory wrapper for `google_firebase_app_hosting_traffic`.
 ///
 /// Controls traffic configuration for a backend.
@@ -144,8 +203,8 @@ final class GoogleFirebaseAppHostingTraffic extends Resource {
     required super.localName,
     required TfArg<String> backend,
     required TfArg<String> location,
-    FirebaseAppHostingTrafficAppHostingTrafficTarget? target,
-    FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy? rolloutPolicy,
+    required FirebaseAppHostingTrafficRolloutPolicyOrTarget
+    rolloutPolicyOrTarget,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -156,9 +215,7 @@ final class GoogleFirebaseAppHostingTraffic extends Resource {
          argMap: {
            'backend': backend,
            'location': location,
-           if (target != null) 'target': TfArg.literal([target.toArgMap()]),
-           if (rolloutPolicy != null)
-             'rollout_policy': TfArg.literal([rolloutPolicy.toArgMap()]),
+           ...rolloutPolicyOrTarget.argMap,
            if (project != null) 'project': project,
          },
        );

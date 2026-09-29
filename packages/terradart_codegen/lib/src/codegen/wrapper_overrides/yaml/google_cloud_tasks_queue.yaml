@@ -1,5 +1,6 @@
 outputDir: cloud_tasks
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 # Slot order chosen to mirror the hand-written constructor: identity

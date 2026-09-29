@@ -138,6 +138,71 @@ class CloudRunV2WorkerPoolTemplate {
   };
 }
 
+/// Typed helper for the `binary_authorization` block of
+/// `google_cloud_run_v2_worker_pool` (derived from provider schema).
+@immutable
+final class CloudRunV2WorkerPoolBinaryAuthorization {
+  const CloudRunV2WorkerPoolBinaryAuthorization({
+    this.breakglassJustification,
+    this.useDefaultOrPolicy,
+  });
+
+  final TfArg<String>? breakglassJustification;
+
+  final CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy?
+  useDefaultOrPolicy;
+
+  Map<String, Object?> encode() => {
+    if (breakglassJustification != null)
+      'breakglass_justification': breakglassJustification!.toTfJson(),
+    ...?useDefaultOrPolicy?.encode(),
+  };
+}
+
+/// At most one of `use_default`, `policy` on the `binary_authorization` block of `google_cloud_run_v2_worker_pool`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy {
+  const CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `use_default` (one of the [CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy] choices).
+final class CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOption
+    extends CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy {
+  const CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOption({
+    required this.useDefault,
+  });
+
+  final TfArg<bool> useDefault;
+
+  @override
+  String get blockKey => 'use_default';
+
+  @override
+  Map<String, Object?> encode() => {'use_default': useDefault.toTfJson()};
+}
+
+/// Sets `policy` (one of the [CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy] choices).
+final class CloudRunV2WorkerPoolBinaryAuthorizationPolicyOption
+    extends CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy {
+  const CloudRunV2WorkerPoolBinaryAuthorizationPolicyOption({
+    required this.policy,
+  });
+
+  final TfArg<String> policy;
+
+  @override
+  String get blockKey => 'policy';
+
+  @override
+  Map<String, Object?> encode() => {'policy': policy.toTfJson()};
+}
+
 /// Factory wrapper for `google_cloud_run_v2_worker_pool`.
 ///
 /// WorkerPool acts as a top-level container that manages a set of
@@ -160,7 +225,7 @@ final class GoogleCloudRunV2WorkerPool extends Resource {
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? project,
-    TfArg<Map<String, dynamic>>? binaryAuthorization,
+    CloudRunV2WorkerPoolBinaryAuthorization? binaryAuthorization,
     List<CloudRunV2WorkerPoolInstanceSplit>? instanceSplits,
     CloudRunV2WorkerPoolScaling? scaling,
     CloudRunV2WorkerPoolTemplate? template,
@@ -183,7 +248,9 @@ final class GoogleCloudRunV2WorkerPool extends Resource {
            'name': name,
            if (project != null) 'project': project,
            if (binaryAuthorization != null)
-             'binary_authorization': binaryAuthorization,
+             'binary_authorization': TfArg.literal(
+               binaryAuthorization.encode(),
+             ),
            if (instanceSplits != null)
              'instance_splits': TfArg.literal(
                instanceSplits.map((s) => s.toArgMap()).toList(),

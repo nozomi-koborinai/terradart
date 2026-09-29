@@ -78,49 +78,160 @@ final class IntegrationsAuthConfigClientCertificate {
 final class IntegrationsAuthConfigDecryptedCredential {
   const IntegrationsAuthConfigDecryptedCredential({
     required this.credentialType,
-    this.authToken,
-    this.jwt,
-    this.oauth2AuthorizationCode,
-    this.oauth2ClientCredentials,
-    this.oidcToken,
-    this.serviceAccountCredentials,
-    this.usernameAndPassword,
+    this.usernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken,
   });
 
   final TfArg<String> credentialType;
 
-  final IntegrationsAuthConfigDecryptedCredentialAuthToken? authToken;
-
-  final IntegrationsAuthConfigDecryptedCredentialJwt? jwt;
-
-  final IntegrationsAuthConfigDecryptedCredentialOauth2AuthorizationCode?
-  oauth2AuthorizationCode;
-
-  final IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentials?
-  oauth2ClientCredentials;
-
-  final IntegrationsAuthConfigDecryptedCredentialOidcToken? oidcToken;
-
-  final IntegrationsAuthConfigDecryptedCredentialServiceAccountCredentials?
-  serviceAccountCredentials;
-
-  final IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword?
-  usernameAndPassword;
+  final IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken?
+  usernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken;
 
   Map<String, Object?> encode() => {
     'credential_type': credentialType.toTfJson(),
-    if (authToken != null) 'auth_token': authToken!.encode(),
-    if (jwt != null) 'jwt': jwt!.encode(),
-    if (oauth2AuthorizationCode != null)
-      'oauth2_authorization_code': oauth2AuthorizationCode!.encode(),
-    if (oauth2ClientCredentials != null)
-      'oauth2_client_credentials': oauth2ClientCredentials!.encode(),
-    if (oidcToken != null) 'oidc_token': oidcToken!.encode(),
-    if (serviceAccountCredentials != null)
-      'service_account_credentials': serviceAccountCredentials!.encode(),
-    if (usernameAndPassword != null)
-      'username_and_password': usernameAndPassword!.encode(),
+    ...?usernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken
+        ?.encode(),
   };
+}
+
+/// At most one of `username_and_password`, `oauth2_authorization_code`, `oauth2_client_credentials`, `jwt`, `auth_token`, `service_account_credentials`, `oidc_token` on the `decrypted_credential` block of `google_integrations_auth_config`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
+  const IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `username_and_password` (one of the [IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken] choices).
+final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOption
+    extends
+        IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
+  const IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOption({
+    required this.usernameAndPassword,
+  });
+
+  final IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword
+  usernameAndPassword;
+
+  @override
+  String get blockKey => 'username_and_password';
+
+  @override
+  Map<String, Object?> encode() => {
+    'username_and_password': usernameAndPassword.encode(),
+  };
+}
+
+/// Sets `oauth2_authorization_code` (one of the [IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken] choices).
+final class IntegrationsAuthConfigDecryptedCredentialOauth2AuthorizationCodeOption
+    extends
+        IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
+  const IntegrationsAuthConfigDecryptedCredentialOauth2AuthorizationCodeOption({
+    required this.oauth2AuthorizationCode,
+  });
+
+  final IntegrationsAuthConfigDecryptedCredentialOauth2AuthorizationCode
+  oauth2AuthorizationCode;
+
+  @override
+  String get blockKey => 'oauth2_authorization_code';
+
+  @override
+  Map<String, Object?> encode() => {
+    'oauth2_authorization_code': oauth2AuthorizationCode.encode(),
+  };
+}
+
+/// Sets `oauth2_client_credentials` (one of the [IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken] choices).
+final class IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentialsOption
+    extends
+        IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
+  const IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentialsOption({
+    required this.oauth2ClientCredentials,
+  });
+
+  final IntegrationsAuthConfigDecryptedCredentialOauth2ClientCredentials
+  oauth2ClientCredentials;
+
+  @override
+  String get blockKey => 'oauth2_client_credentials';
+
+  @override
+  Map<String, Object?> encode() => {
+    'oauth2_client_credentials': oauth2ClientCredentials.encode(),
+  };
+}
+
+/// Sets `jwt` (one of the [IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken] choices).
+final class IntegrationsAuthConfigDecryptedCredentialJwtOption
+    extends
+        IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
+  const IntegrationsAuthConfigDecryptedCredentialJwtOption({required this.jwt});
+
+  final IntegrationsAuthConfigDecryptedCredentialJwt jwt;
+
+  @override
+  String get blockKey => 'jwt';
+
+  @override
+  Map<String, Object?> encode() => {'jwt': jwt.encode()};
+}
+
+/// Sets `auth_token` (one of the [IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken] choices).
+final class IntegrationsAuthConfigDecryptedCredentialAuthTokenOption
+    extends
+        IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
+  const IntegrationsAuthConfigDecryptedCredentialAuthTokenOption({
+    required this.authToken,
+  });
+
+  final IntegrationsAuthConfigDecryptedCredentialAuthToken authToken;
+
+  @override
+  String get blockKey => 'auth_token';
+
+  @override
+  Map<String, Object?> encode() => {'auth_token': authToken.encode()};
+}
+
+/// Sets `service_account_credentials` (one of the [IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken] choices).
+final class IntegrationsAuthConfigDecryptedCredentialServiceAccountCredentialsOption
+    extends
+        IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
+  const IntegrationsAuthConfigDecryptedCredentialServiceAccountCredentialsOption({
+    required this.serviceAccountCredentials,
+  });
+
+  final IntegrationsAuthConfigDecryptedCredentialServiceAccountCredentials
+  serviceAccountCredentials;
+
+  @override
+  String get blockKey => 'service_account_credentials';
+
+  @override
+  Map<String, Object?> encode() => {
+    'service_account_credentials': serviceAccountCredentials.encode(),
+  };
+}
+
+/// Sets `oidc_token` (one of the [IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken] choices).
+final class IntegrationsAuthConfigDecryptedCredentialOidcTokenOption
+    extends
+        IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken {
+  const IntegrationsAuthConfigDecryptedCredentialOidcTokenOption({
+    required this.oidcToken,
+  });
+
+  final IntegrationsAuthConfigDecryptedCredentialOidcToken oidcToken;
+
+  @override
+  String get blockKey => 'oidc_token';
+
+  @override
+  Map<String, Object?> encode() => {'oidc_token': oidcToken.encode()};
 }
 
 /// Typed helper for the `decrypted_credential.auth_token` block of

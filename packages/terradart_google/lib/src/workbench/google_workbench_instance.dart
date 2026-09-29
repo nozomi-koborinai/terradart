@@ -21,13 +21,12 @@ final class WorkbenchInstanceGceSetup {
     this.acceleratorConfigs,
     this.bootDisk,
     this.confidentialInstanceConfig,
-    this.containerImage,
+    this.vmImageOrContainerImage,
     this.dataDisks,
     this.networkInterfaces,
     this.reservationAffinity,
     this.serviceAccounts,
     this.shieldedInstanceConfig,
-    this.vmImage,
   });
 
   final TfArg<bool>? disablePublicIp;
@@ -49,7 +48,8 @@ final class WorkbenchInstanceGceSetup {
   final WorkbenchInstanceGceSetupConfidentialInstanceConfig?
   confidentialInstanceConfig;
 
-  final WorkbenchInstanceGceSetupContainerImage? containerImage;
+  final WorkbenchInstanceGceSetupVmImageOrContainerImage?
+  vmImageOrContainerImage;
 
   final WorkbenchInstanceGceSetupDataDisks? dataDisks;
 
@@ -60,8 +60,6 @@ final class WorkbenchInstanceGceSetup {
   final List<WorkbenchInstanceGceSetupServiceAccounts>? serviceAccounts;
 
   final WorkbenchInstanceGceSetupShieldedInstanceConfig? shieldedInstanceConfig;
-
-  final WorkbenchInstanceGceSetupVmImage? vmImage;
 
   Map<String, Object?> encode() => {
     if (disablePublicIp != null)
@@ -77,7 +75,7 @@ final class WorkbenchInstanceGceSetup {
     if (bootDisk != null) 'boot_disk': bootDisk!.encode(),
     if (confidentialInstanceConfig != null)
       'confidential_instance_config': confidentialInstanceConfig!.encode(),
-    if (containerImage != null) 'container_image': containerImage!.encode(),
+    ...?vmImageOrContainerImage?.encode(),
     if (dataDisks != null) 'data_disks': dataDisks!.encode(),
     if (networkInterfaces != null)
       'network_interfaces': [for (final e in networkInterfaces!) e.encode()],
@@ -87,8 +85,49 @@ final class WorkbenchInstanceGceSetup {
       'service_accounts': [for (final e in serviceAccounts!) e.encode()],
     if (shieldedInstanceConfig != null)
       'shielded_instance_config': shieldedInstanceConfig!.encode(),
-    if (vmImage != null) 'vm_image': vmImage!.encode(),
   };
+}
+
+/// At most one of `vm_image`, `container_image` on the `gce_setup` block of `google_workbench_instance`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class WorkbenchInstanceGceSetupVmImageOrContainerImage {
+  const WorkbenchInstanceGceSetupVmImageOrContainerImage();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `vm_image` (one of the [WorkbenchInstanceGceSetupVmImageOrContainerImage] choices).
+final class WorkbenchInstanceGceSetupVmImageOption
+    extends WorkbenchInstanceGceSetupVmImageOrContainerImage {
+  const WorkbenchInstanceGceSetupVmImageOption({required this.vmImage});
+
+  final WorkbenchInstanceGceSetupVmImage vmImage;
+
+  @override
+  String get blockKey => 'vm_image';
+
+  @override
+  Map<String, Object?> encode() => {'vm_image': vmImage.encode()};
+}
+
+/// Sets `container_image` (one of the [WorkbenchInstanceGceSetupVmImageOrContainerImage] choices).
+final class WorkbenchInstanceGceSetupContainerImageOption
+    extends WorkbenchInstanceGceSetupVmImageOrContainerImage {
+  const WorkbenchInstanceGceSetupContainerImageOption({
+    required this.containerImage,
+  });
+
+  final WorkbenchInstanceGceSetupContainerImage containerImage;
+
+  @override
+  String get blockKey => 'container_image';
+
+  @override
+  Map<String, Object?> encode() => {'container_image': containerImage.encode()};
 }
 
 /// Typed helper for the `gce_setup.accelerator_configs` block of

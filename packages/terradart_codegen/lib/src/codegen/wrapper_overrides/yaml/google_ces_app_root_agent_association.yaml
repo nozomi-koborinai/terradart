@@ -1,6 +1,7 @@
 outputDir: ces
 
 deriveClassDoc: true
+deriveExactlyOne: true
 deriveOutputGetters: true
 
 curatedDoc: |-
