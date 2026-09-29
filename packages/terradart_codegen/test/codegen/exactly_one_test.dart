@@ -6,6 +6,7 @@ import 'package:terradart_codegen/src/codegen/exactly_one_types.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_collector.dart';
 import 'package:terradart_codegen/src/codegen/nested_types/nested_type_emitter.dart';
 import 'package:terradart_codegen/src/codegen/provider_enums.dart';
+import 'package:terradart_codegen/src/codegen/references/reference_targets.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
 import 'package:terradart_codegen/src/ir/attribute.dart';
 import 'package:terradart_codegen/src/ir/constraints.dart';
@@ -228,6 +229,43 @@ void main() {
     expect(off.skipped, isEmpty);
   });
 
+  test('a member that names another resource takes its RefTo', () {
+    final def = ResourceDef(
+      terraformType: 'aws_thing',
+      root: BlockDef(attributes: [_attr('a'), _attr('b')]),
+    );
+    final derived = deriveExactlyOneSlots(
+      {
+        'aws_thing': const WrapperOverride(
+          outputDir: 'thing',
+          deriveExactlyOne: true,
+        ),
+      },
+      {'aws_thing': def},
+      providerEnums: _groups,
+      rawSchemas: const {},
+      references: const {
+        'aws_thing': {
+          'a': ResolvedReference(
+            target: 'aws_vpc',
+            className: 'AwsVpc',
+            outputDir: 'ec2',
+            attribute: 'id',
+            list: false,
+          ),
+        },
+      },
+    );
+    final prelude = derived.overrides['aws_thing']!.prelude!;
+    expect(
+      prelude,
+      contains('const factory ThingAOrB.a(RefTo<AwsVpc> a) = ThingAOrBA;'),
+    );
+    expect(prelude, contains("{'a': a.encodeAs('id').toTfJson()};"));
+    expect(prelude, contains("{'a': a.encodeAs('id')};"));
+    expect(prelude, contains('const factory ThingAOrB.b(TfArg<String> b)'));
+  });
+
   test('a nested exactly-one group becomes a sealed helper field', () {
     Map<String, dynamic> optional() => {'type': 'string', 'optional': true};
     final specs = collectNestedTypes(
@@ -266,6 +304,53 @@ void main() {
     );
     expect(src, isNot(contains('this.x,')));
     expect(src, contains('this.z'));
+  });
+
+  test('a nested sealed member that names another resource takes its '
+      'RefTo', () {
+    final specs = collectNestedTypes(
+      resourceBlock: {
+        'block_types': {
+          'settings': {
+            'nesting_mode': 'list',
+            'max_items': 1,
+            'block': {
+              'attributes': {
+                'x': {'type': 'string', 'optional': true},
+                'y': {'type': 'string', 'optional': true},
+                'z': {'type': 'string', 'optional': true},
+              },
+            },
+          },
+        },
+      },
+      resourcePrefix: 'Thing',
+      customSlotKeys: const {},
+      excludedPaths: const {},
+      exactlyOneGroups: const {
+        'settings': [
+          ['x', 'y'],
+        ],
+      },
+      references: (path) => path.join('.') == 'settings.x'
+          ? const ResolvedReference(
+              target: 'aws_vpc',
+              className: 'AwsVpc',
+              outputDir: 'ec2',
+              attribute: 'id',
+              list: false,
+            )
+          : null,
+    );
+    final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
+    expect(
+      src,
+      contains(
+        'const factory ThingSettingsXOrY.x(RefTo<AwsVpc> x) = '
+        'ThingSettingsXOrYX;',
+      ),
+    );
+    expect(src, contains("'x': x.encodeAs('id').toTfJson()"));
   });
 
   test('unsealedNestedGroups reports the nested groups left unsealed', () {

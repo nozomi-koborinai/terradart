@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A sealed variant whose member the reference-target ledger matches takes `RefTo<Target>` (`TfArg<List<RefTo<Target>>>` for a list) and encodes it with `encodeAs('<attribute>')`, top-level (`deriveExactlyOne`) and in nested helpers, instead of `TfArg<String>`. Nested sealed members used to count as typed in `inputs typed as references` while emitting a string.
 - `terradart wrap` drops each exclusive-group member the provider schema has no input for, and a group left with fewer than two members, printing `exclusive group names no schema input: <type> [<members>]` for the latter. Magic Modules YAML is shared by the GA and beta providers, so the GA lane read groups naming `min_version: beta` fields (`google_compute_region_network_endpoint_group` `serverless_deployment`) or fields at the wrong depth, which could never seal.
 - The Magic Modules parser lifts the fields of a `flatten_object` property into its parent, as Terraform does, in group paths and enum paths: `google_monitoring_slo`'s `service_level_indicator.basic_sli` groups are `basic_sli` groups now.
 - `dartTypeOverrides` takes dotted keys for inputs of derived nested helpers (`scheduling.on_host_maintenance: OnHostMaintenance`), so an override that moves to `deriveNestedTypes` keeps a hand-written enum; such an input is not derived as an enum or a reference. `wrap` fails on a dotted key that names no input of a derived helper.

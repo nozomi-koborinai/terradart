@@ -6,6 +6,7 @@ import 'naming.dart';
 import 'nested_types/nested_type_collector.dart';
 import 'nested_types/nested_type_emitter.dart';
 import 'provider_enums.dart';
+import 'references/reference_targets.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
 /// The `deriveExactlyOne` gate for a resource's own arguments: every
@@ -28,6 +29,9 @@ import 'wrapper_overrides/wrapper_override.dart';
 /// `skippedAtMostOne` with a reason and keep their plain slots. Exactly-one
 /// groups claim their members first.
 ///
+/// A member [references] names takes the `RefTo<Target>` the plain slot
+/// would have.
+///
 /// Every sealed group, top-level or nested, is named by
 /// [resolveSealedName] and listed in `names`; `nameErrors` lists each
 /// `sealedNames` entry that clashes, repeats the derived name, or matches
@@ -44,6 +48,7 @@ deriveExactlyOneSlots(
   Map<String, ResourceDef> defs, {
   required ProviderEnums providerEnums,
   required Map<String, Map<String, dynamic>> rawSchemas,
+  Map<String, Map<String, ResolvedReference>> references = const {},
 }) {
   final skipped = <String>[];
   final skippedAtMostOne = <String>[];
@@ -96,6 +101,7 @@ deriveExactlyOneSlots(
             skipped: skipped,
             skippedAtMostOne: skippedAtMostOne,
             names: typeNames,
+            references: references[type] ?? const {},
           );
     typeNames.addAll(nestedSealedNames(specs));
     final human = {
@@ -192,6 +198,7 @@ WrapperOverride _derive(
   required List<String> skipped,
   required List<String> skippedAtMostOne,
   required List<SealedGroupName> names,
+  required Map<String, ResolvedReference> references,
 }) {
   final prefix = shortResourcePascal(type);
   final order = orderedConstructorParams(def, o.paramOrder);
@@ -208,6 +215,17 @@ WrapperOverride _derive(
     if (attr != null) {
       if (attr.constraints.required) return null;
       final dartType = o.dartTypeOverrides?[m] ?? writeDartType(attr.type);
+      if (references[m] case final ref? when o.dartTypeOverrides?[m] == null) {
+        final encode = "encodeAs('${ref.attribute}')";
+        return (
+          tfName: m,
+          ident: ident,
+          fieldType: ref.dartType,
+          encodeExpr: '$ident.$encode.toTfJson()',
+          argMapExpr: '$ident.$encode',
+          deprecation: deprecation,
+        );
+      }
       if (isEnumListType(dartType)) {
         final encode = '[for (final e in $ident) e.toTfJson()]';
         return (

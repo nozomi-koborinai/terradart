@@ -180,9 +180,8 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 /// `sealedNames` axis; each block keeps the entries whose members it holds
 /// ([NestedBlockSpec.sealedNames]).
 ///
-/// [references] types a string input as a reference, unless it is an enum
-/// or a member of one of the block's groups (a sealed variant keeps the
-/// schema type).
+/// [references] types a string input as a reference, unless it is an enum;
+/// a sealed variant holding it takes the same reference.
 ///
 /// [typeOverrides] maps a leaf input's dotted path to the Dart type its
 /// field takes instead (a hand-written enum in the override's prelude) —
@@ -484,9 +483,6 @@ NestedBlockSpec _buildSpec(
   );
   final exactlyOne = exactlyOneGroups[path.join('.')] ?? const [];
   final atMostOne = atMostOneGroups[path.join('.')] ?? const [];
-  final grouped = {
-    for (final g in [...exactlyOne, ...atMostOne]) ...g,
-  };
 
   return NestedBlockSpec(
     tfName: tfName,
@@ -500,7 +496,7 @@ NestedBlockSpec _buildSpec(
       path: path,
       className: className,
       enumValues: enumValues,
-      references: (p) => grouped.contains(p.last) ? null : references(p),
+      references: references,
       typeOverrides: typeOverrides,
     ),
     children: scan.children,

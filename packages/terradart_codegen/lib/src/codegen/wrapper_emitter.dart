@@ -190,6 +190,16 @@ class WrapperEmitter {
     }
 
     final preludeSource = override?.prelude ?? '';
+    // A top-level input `deriveExactlyOne` moved into a sealed variant.
+    final sealedRefs = <String, ResolvedReference>{
+      for (final MapEntry(key: name, value: ref) in refs.entries)
+        if (!name.contains('.') &&
+            !topLevelRefs.containsKey(name) &&
+            preludeSource.contains(
+              'final ${ref.dartType} ${snakeToDartIdent(name)};',
+            ))
+          name: ref,
+    };
     unreachableHelpers.clear();
     for (final spec in nestedTypeSpecs) {
       collectNestedRefs(spec, [spec.tfName]);
@@ -201,7 +211,11 @@ class WrapperEmitter {
     typedReferences
       ..clear()
       ..addAll([
-        for (final path in [...topLevelRefs.keys, ...nestedRefs.keys])
+        for (final path in [
+          ...topLevelRefs.keys,
+          ...sealedRefs.keys,
+          ...nestedRefs.keys,
+        ])
           if (!unreachableHelpers.contains(path.split('.').first))
             '${def.terraformType}.$path',
       ]);
@@ -227,7 +241,11 @@ class WrapperEmitter {
     }
     buf.writeln("import 'package:terradart_core/terradart_core.dart';");
     final refImports = {
-      for (final ref in [...topLevelRefs.values, ...nestedRefs.values])
+      for (final ref in [
+        ...topLevelRefs.values,
+        ...sealedRefs.values,
+        ...nestedRefs.values,
+      ])
         if (ref.target != def.terraformType) ref.import,
     }.toList()..sort();
     if (refImports.isNotEmpty) {
