@@ -2,8 +2,10 @@ outputDir: healthcare
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 paramOrder:
   - name
   - dataset
   - labels
+  - notification_config

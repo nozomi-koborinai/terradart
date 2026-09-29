@@ -67,6 +67,7 @@ final class GoogleNetappBackup extends Resource {
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    NetappBackupOntapSource? ontapSource,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -83,6 +84,8 @@ final class GoogleNetappBackup extends Resource {
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           if (ontapSource != null)
+             'ontap_source': TfArg.literal(ontapSource.encode()),
          },
        );
 

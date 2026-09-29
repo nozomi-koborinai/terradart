@@ -9,10 +9,6 @@ deriveNestedTypes: true
 # google_dataplex_datascan.yaml. Neither block has an enum site, so
 # excluding both costs nothing and avoids emitting a redundant derived class
 # per block.
-nestedTypeExcludes:
-  - spark
-  - notebook
-
 curatedDoc: |-
   /// A Dataplex lake task (scheduled Spark or Notebook workload).
   ///
@@ -23,110 +19,18 @@ curatedDoc: |-
 extraImports:
   - "import 'package:meta/meta.dart';"
 
-prelude: |
-  /// Spark or Notebook workload block. Exactly one of the provider blocks.
-  sealed class DataplexTaskWorkload {
-    const DataplexTaskWorkload();
-
-    /// `spark` — Dataproc Serverless Spark, Python, or SQL workload.
-    const factory DataplexTaskWorkload.spark({
-      TfArg<String>? pythonScriptFile,
-      TfArg<String>? mainJarFileUri,
-      TfArg<String>? mainClass,
-      TfArg<String>? sqlScript,
-      TfArg<String>? sqlScriptFile,
-      TfArg<List<String>>? fileUris,
-      TfArg<List<String>>? archiveUris,
-      TfArg<Map<String, Object?>>? infrastructureSpec,
-    }) = DataplexTaskSparkWorkload;
-
-    /// `notebook` — Vertex AI Workbench or Colab notebook execution.
-    const factory DataplexTaskWorkload.notebook({
-      required TfArg<String> notebook,
-      TfArg<List<String>>? fileUris,
-      TfArg<List<String>>? archiveUris,
-      TfArg<Map<String, Object?>>? infrastructureSpec,
-    }) = DataplexTaskNotebookWorkload;
-
-    String get blockKey;
-
-    Map<String, Object?> encode();
-  }
-
-  /// `spark` — Dataproc Serverless Spark, Python, or SQL workload.
-  @immutable
-  final class DataplexTaskSparkWorkload extends DataplexTaskWorkload {
-    const DataplexTaskSparkWorkload({
-      this.pythonScriptFile,
-      this.mainJarFileUri,
-      this.mainClass,
-      this.sqlScript,
-      this.sqlScriptFile,
-      this.fileUris,
-      this.archiveUris,
-      this.infrastructureSpec,
-    });
-
-    final TfArg<String>? pythonScriptFile;
-    final TfArg<String>? mainJarFileUri;
-    final TfArg<String>? mainClass;
-    final TfArg<String>? sqlScript;
-    final TfArg<String>? sqlScriptFile;
-    final TfArg<List<String>>? fileUris;
-    final TfArg<List<String>>? archiveUris;
-    final TfArg<Map<String, Object?>>? infrastructureSpec;
-
-    @override
-    String get blockKey => 'spark';
-
-    @override
-    Map<String, Object?> encode() => {
-      if (pythonScriptFile != null)
-        'python_script_file': pythonScriptFile!.toTfJson(),
-      if (mainJarFileUri != null) 'main_jar_file_uri': mainJarFileUri!.toTfJson(),
-      if (mainClass != null) 'main_class': mainClass!.toTfJson(),
-      if (sqlScript != null) 'sql_script': sqlScript!.toTfJson(),
-      if (sqlScriptFile != null) 'sql_script_file': sqlScriptFile!.toTfJson(),
-      if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
-      if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
-      if (infrastructureSpec != null)
-        'infrastructure_spec': infrastructureSpec!.toTfJson(),
-    };
-  }
-
-  /// `notebook` — Vertex AI Workbench or Colab notebook execution.
-  @immutable
-  final class DataplexTaskNotebookWorkload extends DataplexTaskWorkload {
-    const DataplexTaskNotebookWorkload({
-      required this.notebook,
-      this.fileUris,
-      this.archiveUris,
-      this.infrastructureSpec,
-    });
-
-    final TfArg<String> notebook;
-    final TfArg<List<String>>? fileUris;
-    final TfArg<List<String>>? archiveUris;
-    final TfArg<Map<String, Object?>>? infrastructureSpec;
-
-    @override
-    String get blockKey => 'notebook';
-
-    @override
-    Map<String, Object?> encode() => {
-      'notebook': notebook.toTfJson(),
-      if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
-      if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
-      if (infrastructureSpec != null)
-        'infrastructure_spec': infrastructureSpec!.toTfJson(),
-    };
-  }
+sealedNames:
+  "notebook.infrastructure_spec.vpc_network.network, notebook.infrastructure_spec.vpc_network.sub_network": target
+  "spark.infrastructure_spec.vpc_network.network, spark.infrastructure_spec.vpc_network.sub_network": target
+  "spark.main_class, spark.main_jar_file_uri, spark.python_script_file, spark.sql_script, spark.sql_script_file": driver
+  "notebook, spark": workload
 
 paramOrder:
   - task_id
   - location
   - lake
-  - workload
+  - spark
+  - notebook
   - trigger_spec
   - execution_spec
   - display_name
@@ -146,12 +50,8 @@ argMapOrder:
   - execution_spec
   - deletion_policy
   - project
-  - workload
-
-customSlots:
-  workload:
-    paramDeclaration: 'required DataplexTaskWorkload workload'
-    argMapEntry: "workload.blockKey: TfArg.literal(workload.encode()),"
+  - spark
+  - notebook
 
 extraGetters: |2
     /// Reference to `task_id` for IAM bindings and cross-stack refs.

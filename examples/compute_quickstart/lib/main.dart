@@ -268,14 +268,14 @@ final class NetworkStack extends Stack {
         tier: .literal(.basicHdd),
         // Basic-tier Filestore is zonal — location must be a zone, not a region.
         location: .literal('asia-northeast1-a'),
-        fileShares: FilestoreInstanceFileShare(
+        fileShares: FilestoreInstanceFileShares(
           name: .literal('share1'),
           capacityGb: .literal(1024),
         ),
         networks: [
-          FilestoreInstanceNetwork(
-            network: .ref(mainVpc.id),
-            modes: const [FilestoreInstanceNetworkMode.modeIpv4],
+          FilestoreInstanceNetworks(
+            network: mainVpc.ref,
+            modes: [.literal(.modeIpv4)],
           ),
         ],
         dependsOn: apiDeps,

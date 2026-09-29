@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
@@ -8,6 +9,156 @@ import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_dataform_repository`.
 const Set<String> _googleDataformRepositorySensitive = <String>{};
+
+/// Typed helper for the `git_remote_settings` block of
+/// `google_dataform_repository` (derived from provider schema).
+@immutable
+final class DataformRepositoryGitRemoteSettings {
+  const DataformRepositoryGitRemoteSettings({
+    required this.authentication,
+    required this.defaultBranch,
+    required this.url,
+  });
+
+  final DataformRepositoryGitRemoteSettingsAuthentication authentication;
+
+  final TfArg<String> defaultBranch;
+
+  final TfArg<String> url;
+
+  Map<String, Object?> encode() => {
+    ...authentication.encode(),
+    'default_branch': defaultBranch.toTfJson(),
+    'url': url.toTfJson(),
+  };
+}
+
+/// Exactly one of `authentication_token_secret_version`, `ssh_authentication_config`, `git_repository_link` on the `git_remote_settings` block of `google_dataform_repository`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.authenticationTokenSecretVersion(...)`.
+sealed class DataformRepositoryGitRemoteSettingsAuthentication {
+  const DataformRepositoryGitRemoteSettingsAuthentication();
+
+  /// Sets `authentication_token_secret_version`.
+  const factory DataformRepositoryGitRemoteSettingsAuthentication.authenticationTokenSecretVersion(
+    TfArg<String> authenticationTokenSecretVersion,
+  ) = DataformRepositoryGitRemoteSettingsAuthenticationAuthenticationTokenSecretVersion;
+
+  /// Sets `ssh_authentication_config`.
+  const factory DataformRepositoryGitRemoteSettingsAuthentication.sshAuthenticationConfig(
+    DataformRepositoryGitRemoteSettingsSshAuthenticationConfig
+    sshAuthenticationConfig,
+  ) = DataformRepositoryGitRemoteSettingsAuthenticationSshAuthenticationConfig;
+
+  /// Sets `git_repository_link`.
+  const factory DataformRepositoryGitRemoteSettingsAuthentication.gitRepositoryLink(
+    TfArg<String> gitRepositoryLink,
+  ) = DataformRepositoryGitRemoteSettingsAuthenticationGitRepositoryLink;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [DataformRepositoryGitRemoteSettingsAuthentication.authenticationTokenSecretVersion] choice: sets `authentication_token_secret_version`.
+final class DataformRepositoryGitRemoteSettingsAuthenticationAuthenticationTokenSecretVersion
+    extends DataformRepositoryGitRemoteSettingsAuthentication {
+  const DataformRepositoryGitRemoteSettingsAuthenticationAuthenticationTokenSecretVersion(
+    this.authenticationTokenSecretVersion,
+  );
+
+  final TfArg<String> authenticationTokenSecretVersion;
+
+  @override
+  String get blockKey => 'authentication_token_secret_version';
+
+  @override
+  Map<String, Object?> encode() => {
+    'authentication_token_secret_version': authenticationTokenSecretVersion
+        .toTfJson(),
+  };
+}
+
+/// The [DataformRepositoryGitRemoteSettingsAuthentication.sshAuthenticationConfig] choice: sets `ssh_authentication_config`.
+final class DataformRepositoryGitRemoteSettingsAuthenticationSshAuthenticationConfig
+    extends DataformRepositoryGitRemoteSettingsAuthentication {
+  const DataformRepositoryGitRemoteSettingsAuthenticationSshAuthenticationConfig(
+    this.sshAuthenticationConfig,
+  );
+
+  final DataformRepositoryGitRemoteSettingsSshAuthenticationConfig
+  sshAuthenticationConfig;
+
+  @override
+  String get blockKey => 'ssh_authentication_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'ssh_authentication_config': sshAuthenticationConfig.encode(),
+  };
+}
+
+/// The [DataformRepositoryGitRemoteSettingsAuthentication.gitRepositoryLink] choice: sets `git_repository_link`.
+final class DataformRepositoryGitRemoteSettingsAuthenticationGitRepositoryLink
+    extends DataformRepositoryGitRemoteSettingsAuthentication {
+  const DataformRepositoryGitRemoteSettingsAuthenticationGitRepositoryLink(
+    this.gitRepositoryLink,
+  );
+
+  final TfArg<String> gitRepositoryLink;
+
+  @override
+  String get blockKey => 'git_repository_link';
+
+  @override
+  Map<String, Object?> encode() => {
+    'git_repository_link': gitRepositoryLink.toTfJson(),
+  };
+}
+
+/// Typed helper for the `git_remote_settings.ssh_authentication_config` block of
+/// `google_dataform_repository` (derived from provider schema).
+@immutable
+final class DataformRepositoryGitRemoteSettingsSshAuthenticationConfig {
+  const DataformRepositoryGitRemoteSettingsSshAuthenticationConfig({
+    required this.hostPublicKey,
+    required this.userPrivateKeySecretVersion,
+  });
+
+  final TfArg<String> hostPublicKey;
+
+  final TfArg<String> userPrivateKeySecretVersion;
+
+  Map<String, Object?> encode() => {
+    'host_public_key': hostPublicKey.toTfJson(),
+    'user_private_key_secret_version': userPrivateKeySecretVersion.toTfJson(),
+  };
+}
+
+/// Typed helper for the `workspace_compilation_overrides` block of
+/// `google_dataform_repository` (derived from provider schema).
+@immutable
+final class DataformRepositoryWorkspaceCompilationOverrides {
+  const DataformRepositoryWorkspaceCompilationOverrides({
+    this.defaultDatabase,
+    this.schemaSuffix,
+    this.tablePrefix,
+  });
+
+  final TfArg<String>? defaultDatabase;
+
+  final TfArg<String>? schemaSuffix;
+
+  final TfArg<String>? tablePrefix;
+
+  Map<String, Object?> encode() => {
+    'default_database': ?defaultDatabase?.toTfJson(),
+    'schema_suffix': ?schemaSuffix?.toTfJson(),
+    'table_prefix': ?tablePrefix?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_dataform_repository`.
 ///
@@ -55,10 +206,12 @@ final class GoogleDataformRepository extends Resource {
     RefTo<GoogleServiceAccount>? serviceAccount,
     RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     TfArg<String>? npmrcEnvironmentVariablesSecretVersion,
-    TfArg<Map<String, dynamic>>? workspaceCompilationOverrides,
+    DataformRepositoryWorkspaceCompilationOverrides?
+    workspaceCompilationOverrides,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    DataformRepositoryGitRemoteSettings? gitRemoteSettings,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -73,10 +226,15 @@ final class GoogleDataformRepository extends Resource {
            'kms_key_name': ?kmsKeyName?.encodeAs('id'),
            'npmrc_environment_variables_secret_version':
                ?npmrcEnvironmentVariablesSecretVersion,
-           'workspace_compilation_overrides': ?workspaceCompilationOverrides,
+           if (workspaceCompilationOverrides != null)
+             'workspace_compilation_overrides': TfArg.literal(
+               workspaceCompilationOverrides.encode(),
+             ),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           if (gitRemoteSettings != null)
+             'git_remote_settings': TfArg.literal(gitRemoteSettings.encode()),
          },
        );
 

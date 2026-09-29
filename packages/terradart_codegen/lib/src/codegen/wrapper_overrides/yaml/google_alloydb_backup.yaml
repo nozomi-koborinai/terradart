@@ -3,12 +3,19 @@ outputDir: alloydb
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 paramOrder:
   - backup_id
   - cluster_name
   - location
   - labels
+  - annotations
+  - description
+  - display_name
+  - project
+  - type
+  - encryption_config
 
 curatedDoc: |-
   /// AlloyDB backup — on-demand or scheduled backup of a cluster.

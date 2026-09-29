@@ -1,7 +1,10 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 
 /// Sensitive field paths for `google_storage_bucket`.
 const Set<String> _googleStorageBucketSensitive = <String>{};
@@ -34,62 +37,261 @@ enum LifecycleActionType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Object versioning policy.
-class StorageBucketVersioning {
-  const StorageBucketVersioning({required this.enabled});
+/// Typed helper for the `autoclass` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketAutoclass {
+  const StorageBucketAutoclass({
+    required this.enabled,
+    this.terminalStorageClass,
+  });
+
   final TfArg<bool> enabled;
-  Map<String, Object?> toArgMap() => {'enabled': enabled};
+
+  final TfArg<String>? terminalStorageClass;
+
+  Map<String, Object?> encode() => {
+    'enabled': enabled.toTfJson(),
+    'terminal_storage_class': ?terminalStorageClass?.toTfJson(),
+  };
 }
 
-/// One CORS configuration entry.
-class StorageBucketBucketCors {
-  const StorageBucketBucketCors({
+/// Typed helper for the `cors` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketCors {
+  const StorageBucketCors({
     this.maxAgeSeconds,
     this.method,
     this.origin,
     this.responseHeader,
   });
-  final TfArg<int>? maxAgeSeconds;
-  final List<String>? method;
-  final List<String>? origin;
-  final List<String>? responseHeader;
-  Map<String, Object?> toArgMap() => {
-    if (maxAgeSeconds != null) 'max_age_seconds': maxAgeSeconds!.toTfJson(),
-    if (method != null) 'method': method,
-    if (origin != null) 'origin': origin,
-    if (responseHeader != null) 'response_header': responseHeader,
+
+  final TfArg<num>? maxAgeSeconds;
+
+  final TfArg<List<Object?>>? method;
+
+  final TfArg<List<Object?>>? origin;
+
+  final TfArg<List<Object?>>? responseHeader;
+
+  Map<String, Object?> encode() => {
+    'max_age_seconds': ?maxAgeSeconds?.toTfJson(),
+    'method': ?method?.toTfJson(),
+    'origin': ?origin?.toTfJson(),
+    'response_header': ?responseHeader?.toTfJson(),
   };
 }
 
-/// One `lifecycle_rule` entry: action + condition.
-class StorageBucketLifecycleRule {
+/// Typed helper for the `custom_placement_config` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketCustomPlacementConfig {
+  const StorageBucketCustomPlacementConfig({required this.dataLocations});
+
+  final TfArg<List<Object?>> dataLocations;
+
+  Map<String, Object?> encode() => {'data_locations': dataLocations.toTfJson()};
+}
+
+/// Typed helper for the `encryption` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketEncryption {
+  const StorageBucketEncryption({
+    this.defaultKmsKeyName,
+    this.customerManagedEncryptionEnforcementConfig,
+    this.customerSuppliedEncryptionEnforcementConfig,
+    this.googleManagedEncryptionEnforcementConfig,
+  });
+
+  final TfArg<String>? defaultKmsKeyName;
+
+  final StorageBucketEncryptionCustomerManagedEncryptionEnforcementConfig?
+  customerManagedEncryptionEnforcementConfig;
+
+  final StorageBucketEncryptionCustomerSuppliedEncryptionEnforcementConfig?
+  customerSuppliedEncryptionEnforcementConfig;
+
+  final StorageBucketEncryptionGoogleManagedEncryptionEnforcementConfig?
+  googleManagedEncryptionEnforcementConfig;
+
+  Map<String, Object?> encode() => {
+    'default_kms_key_name': ?defaultKmsKeyName?.toTfJson(),
+    'customer_managed_encryption_enforcement_config':
+        ?customerManagedEncryptionEnforcementConfig?.encode(),
+    'customer_supplied_encryption_enforcement_config':
+        ?customerSuppliedEncryptionEnforcementConfig?.encode(),
+    'google_managed_encryption_enforcement_config':
+        ?googleManagedEncryptionEnforcementConfig?.encode(),
+  };
+}
+
+/// Typed helper for the `encryption.customer_managed_encryption_enforcement_config` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketEncryptionCustomerManagedEncryptionEnforcementConfig {
+  const StorageBucketEncryptionCustomerManagedEncryptionEnforcementConfig({
+    required this.restrictionMode,
+  });
+
+  final TfArg<String> restrictionMode;
+
+  Map<String, Object?> encode() => {
+    'restriction_mode': restrictionMode.toTfJson(),
+  };
+}
+
+/// Typed helper for the `encryption.customer_supplied_encryption_enforcement_config` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketEncryptionCustomerSuppliedEncryptionEnforcementConfig {
+  const StorageBucketEncryptionCustomerSuppliedEncryptionEnforcementConfig({
+    required this.restrictionMode,
+  });
+
+  final TfArg<String> restrictionMode;
+
+  Map<String, Object?> encode() => {
+    'restriction_mode': restrictionMode.toTfJson(),
+  };
+}
+
+/// Typed helper for the `encryption.google_managed_encryption_enforcement_config` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketEncryptionGoogleManagedEncryptionEnforcementConfig {
+  const StorageBucketEncryptionGoogleManagedEncryptionEnforcementConfig({
+    required this.restrictionMode,
+  });
+
+  final TfArg<String> restrictionMode;
+
+  Map<String, Object?> encode() => {
+    'restriction_mode': restrictionMode.toTfJson(),
+  };
+}
+
+/// Typed helper for the `hierarchical_namespace` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketHierarchicalNamespace {
+  const StorageBucketHierarchicalNamespace({required this.enabled});
+
+  final TfArg<bool> enabled;
+
+  Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
+}
+
+/// Typed helper for the `ip_filter` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketIpFilter {
+  const StorageBucketIpFilter({
+    this.allowAllServiceAgentAccess,
+    this.allowCrossOrgVpcs,
+    required this.mode,
+    this.publicNetworkSource,
+    this.vpcNetworkSources,
+  });
+
+  final TfArg<bool>? allowAllServiceAgentAccess;
+
+  final TfArg<bool>? allowCrossOrgVpcs;
+
+  final TfArg<String> mode;
+
+  final StorageBucketIpFilterPublicNetworkSource? publicNetworkSource;
+
+  final List<StorageBucketIpFilterVpcNetworkSources>? vpcNetworkSources;
+
+  Map<String, Object?> encode() => {
+    'allow_all_service_agent_access': ?allowAllServiceAgentAccess?.toTfJson(),
+    'allow_cross_org_vpcs': ?allowCrossOrgVpcs?.toTfJson(),
+    'mode': mode.toTfJson(),
+    'public_network_source': ?publicNetworkSource?.encode(),
+    if (vpcNetworkSources != null)
+      'vpc_network_sources': [for (final e in vpcNetworkSources!) e.encode()],
+  };
+}
+
+/// Typed helper for the `ip_filter.public_network_source` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketIpFilterPublicNetworkSource {
+  const StorageBucketIpFilterPublicNetworkSource({
+    required this.allowedIpCidrRanges,
+  });
+
+  final TfArg<List<Object?>> allowedIpCidrRanges;
+
+  Map<String, Object?> encode() => {
+    'allowed_ip_cidr_ranges': allowedIpCidrRanges.toTfJson(),
+  };
+}
+
+/// Typed helper for the `ip_filter.vpc_network_sources` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketIpFilterVpcNetworkSources {
+  const StorageBucketIpFilterVpcNetworkSources({
+    required this.allowedIpCidrRanges,
+    required this.network,
+  });
+
+  final TfArg<List<Object?>> allowedIpCidrRanges;
+
+  final RefTo<GoogleComputeNetwork> network;
+
+  Map<String, Object?> encode() => {
+    'allowed_ip_cidr_ranges': allowedIpCidrRanges.toTfJson(),
+    'network': network.encodeAs('id').toTfJson(),
+  };
+}
+
+/// Typed helper for the `lifecycle_rule` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketLifecycleRule {
   const StorageBucketLifecycleRule({
     required this.action,
     required this.condition,
   });
-  final StorageBucketLifecycleAction action;
-  final StorageBucketLifecycleCondition condition;
-  Map<String, Object?> toArgMap() => {
-    'action': [action.toArgMap()],
-    'condition': [condition.toArgMap()],
+
+  final StorageBucketLifecycleRuleAction action;
+
+  final StorageBucketLifecycleRuleCondition condition;
+
+  Map<String, Object?> encode() => {
+    'action': action.encode(),
+    'condition': condition.encode(),
   };
 }
 
-/// Action to take when a lifecycle_rule's condition matches.
-/// `storageClass` is required iff `type == LifecycleActionType.setStorageClass`.
-class StorageBucketLifecycleAction {
-  const StorageBucketLifecycleAction({required this.type, this.storageClass});
-  final LifecycleActionType type;
-  final BucketStorageClass? storageClass;
-  Map<String, Object?> toArgMap() => {
-    'type': type.terraformValue,
-    if (storageClass != null) 'storage_class': storageClass!.terraformValue,
+/// Typed helper for the `lifecycle_rule.action` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketLifecycleRuleAction {
+  const StorageBucketLifecycleRuleAction({
+    this.storageClass,
+    required this.type,
+  });
+
+  final TfArg<BucketStorageClass>? storageClass;
+
+  final TfArg<LifecycleActionType> type;
+
+  Map<String, Object?> encode() => {
+    'storage_class': ?storageClass?.toTfJson(),
+    'type': type.toTfJson(),
   };
 }
 
-/// Condition under which a lifecycle_rule's action fires.
-class StorageBucketLifecycleCondition {
-  const StorageBucketLifecycleCondition({
+/// Typed helper for the `lifecycle_rule.condition` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketLifecycleRuleCondition {
+  const StorageBucketLifecycleRuleCondition({
     this.age,
     this.createdBefore,
     this.customTimeBefore,
@@ -104,221 +306,140 @@ class StorageBucketLifecycleCondition {
     this.sendDaysSinceCustomTimeIfZero,
     this.sendDaysSinceNoncurrentTimeIfZero,
     this.sendNumNewerVersionsIfZero,
+    this.sizeAboveBytes,
+    this.sizeBelowBytes,
     this.withState,
   });
-  final TfArg<int>? age;
+
+  final TfArg<num>? age;
+
   final TfArg<String>? createdBefore;
+
   final TfArg<String>? customTimeBefore;
-  final TfArg<int>? daysSinceCustomTime;
-  final TfArg<int>? daysSinceNoncurrentTime;
-  final List<String>? matchesPrefix;
-  final List<String>? matchesStorageClass;
-  final List<String>? matchesSuffix;
+
+  final TfArg<num>? daysSinceCustomTime;
+
+  final TfArg<num>? daysSinceNoncurrentTime;
+
+  final TfArg<List<Object?>>? matchesPrefix;
+
+  final TfArg<List<Object?>>? matchesStorageClass;
+
+  final TfArg<List<Object?>>? matchesSuffix;
+
   final TfArg<String>? noncurrentTimeBefore;
-  final TfArg<int>? numNewerVersions;
+
+  final TfArg<num>? numNewerVersions;
+
   final TfArg<bool>? sendAgeIfZero;
+
   final TfArg<bool>? sendDaysSinceCustomTimeIfZero;
+
   final TfArg<bool>? sendDaysSinceNoncurrentTimeIfZero;
+
   final TfArg<bool>? sendNumNewerVersionsIfZero;
+
+  final TfArg<num>? sizeAboveBytes;
+
+  final TfArg<num>? sizeBelowBytes;
+
   final TfArg<String>? withState;
-  Map<String, Object?> toArgMap() => {
-    if (age != null) 'age': age!.toTfJson(),
-    if (createdBefore != null) 'created_before': createdBefore!.toTfJson(),
-    if (customTimeBefore != null)
-      'custom_time_before': customTimeBefore!.toTfJson(),
-    if (daysSinceCustomTime != null)
-      'days_since_custom_time': daysSinceCustomTime!.toTfJson(),
-    if (daysSinceNoncurrentTime != null)
-      'days_since_noncurrent_time': daysSinceNoncurrentTime!.toTfJson(),
-    if (matchesPrefix != null) 'matches_prefix': matchesPrefix,
-    if (matchesStorageClass != null)
-      'matches_storage_class': matchesStorageClass,
-    if (matchesSuffix != null) 'matches_suffix': matchesSuffix,
-    if (noncurrentTimeBefore != null)
-      'noncurrent_time_before': noncurrentTimeBefore!.toTfJson(),
-    if (numNewerVersions != null)
-      'num_newer_versions': numNewerVersions!.toTfJson(),
-    if (sendAgeIfZero != null) 'send_age_if_zero': sendAgeIfZero!.toTfJson(),
-    if (sendDaysSinceCustomTimeIfZero != null)
-      'send_days_since_custom_time_if_zero': sendDaysSinceCustomTimeIfZero!
-          .toTfJson(),
-    if (sendDaysSinceNoncurrentTimeIfZero != null)
-      'send_days_since_noncurrent_time_if_zero':
-          sendDaysSinceNoncurrentTimeIfZero!.toTfJson(),
-    if (sendNumNewerVersionsIfZero != null)
-      'send_num_newer_versions_if_zero': sendNumNewerVersionsIfZero!.toTfJson(),
-    if (withState != null) 'with_state': withState!.toTfJson(),
+
+  Map<String, Object?> encode() => {
+    'age': ?age?.toTfJson(),
+    'created_before': ?createdBefore?.toTfJson(),
+    'custom_time_before': ?customTimeBefore?.toTfJson(),
+    'days_since_custom_time': ?daysSinceCustomTime?.toTfJson(),
+    'days_since_noncurrent_time': ?daysSinceNoncurrentTime?.toTfJson(),
+    'matches_prefix': ?matchesPrefix?.toTfJson(),
+    'matches_storage_class': ?matchesStorageClass?.toTfJson(),
+    'matches_suffix': ?matchesSuffix?.toTfJson(),
+    'noncurrent_time_before': ?noncurrentTimeBefore?.toTfJson(),
+    'num_newer_versions': ?numNewerVersions?.toTfJson(),
+    'send_age_if_zero': ?sendAgeIfZero?.toTfJson(),
+    'send_days_since_custom_time_if_zero': ?sendDaysSinceCustomTimeIfZero
+        ?.toTfJson(),
+    'send_days_since_noncurrent_time_if_zero':
+        ?sendDaysSinceNoncurrentTimeIfZero?.toTfJson(),
+    'send_num_newer_versions_if_zero': ?sendNumNewerVersionsIfZero?.toTfJson(),
+    'size_above_bytes': ?sizeAboveBytes?.toTfJson(),
+    'size_below_bytes': ?sizeBelowBytes?.toTfJson(),
+    'with_state': ?withState?.toTfJson(),
   };
 }
 
-/// StorageBucketEncryption configuration: optional CMEK key + 3 enforcement sub-blocks.
-class StorageBucketEncryption {
-  const StorageBucketEncryption({
-    this.defaultKmsKeyName,
-    this.customerManagedEncryptionEnforcementConfig,
-    this.customerSuppliedEncryptionEnforcementConfig,
-    this.googleManagedEncryptionEnforcementConfig,
-  });
-  final TfArg<String>? defaultKmsKeyName;
-  final StorageBucketEncryptionEnforcementConfig?
-  customerManagedEncryptionEnforcementConfig;
-  final StorageBucketEncryptionEnforcementConfig?
-  customerSuppliedEncryptionEnforcementConfig;
-  final StorageBucketEncryptionEnforcementConfig?
-  googleManagedEncryptionEnforcementConfig;
-  Map<String, Object?> toArgMap() => {
-    if (defaultKmsKeyName != null)
-      'default_kms_key_name': defaultKmsKeyName!.toTfJson(),
-    if (customerManagedEncryptionEnforcementConfig != null)
-      'customer_managed_encryption_enforcement_config': [
-        customerManagedEncryptionEnforcementConfig!.toArgMap(),
-      ],
-    if (customerSuppliedEncryptionEnforcementConfig != null)
-      'customer_supplied_encryption_enforcement_config': [
-        customerSuppliedEncryptionEnforcementConfig!.toArgMap(),
-      ],
-    if (googleManagedEncryptionEnforcementConfig != null)
-      'google_managed_encryption_enforcement_config': [
-        googleManagedEncryptionEnforcementConfig!.toArgMap(),
-      ],
-  };
-}
+/// Typed helper for the `logging` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketLogging {
+  const StorageBucketLogging({required this.logBucket, this.logObjectPrefix});
 
-/// Shared shape for the 3 `encryption.*_enforcement_config` sub-blocks.
-class StorageBucketEncryptionEnforcementConfig {
-  const StorageBucketEncryptionEnforcementConfig({
-    required this.restrictionMode,
-  });
-  final TfArg<String> restrictionMode;
-  Map<String, Object?> toArgMap() => {'restriction_mode': restrictionMode};
-}
-
-/// Retention policy. `retentionPeriod` is in seconds.
-class StorageBucketRetentionPolicy {
-  const StorageBucketRetentionPolicy({
-    required this.retentionPeriod,
-    this.isLocked,
-  });
-  final TfArg<String> retentionPeriod;
-  final TfArg<bool>? isLocked;
-  Map<String, Object?> toArgMap() => {
-    'retention_period': retentionPeriod.toTfJson(),
-    if (isLocked != null) 'is_locked': isLocked!.toTfJson(),
-  };
-}
-
-/// Access-log delivery configuration.
-class StorageBucketBucketLogging {
-  const StorageBucketBucketLogging({
-    required this.logBucket,
-    this.logObjectPrefix,
-  });
   final TfArg<String> logBucket;
+
   final TfArg<String>? logObjectPrefix;
-  Map<String, Object?> toArgMap() => {
+
+  Map<String, Object?> encode() => {
     'log_bucket': logBucket.toTfJson(),
-    if (logObjectPrefix != null)
-      'log_object_prefix': logObjectPrefix!.toTfJson(),
+    'log_object_prefix': ?logObjectPrefix?.toTfJson(),
   };
 }
 
-/// Static-website hosting configuration.
-class StorageBucketBucketWebsite {
-  const StorageBucketBucketWebsite({this.mainPageSuffix, this.notFoundPage});
-  final TfArg<String>? mainPageSuffix;
-  final TfArg<String>? notFoundPage;
-  Map<String, Object?> toArgMap() => {
-    if (mainPageSuffix != null) 'main_page_suffix': mainPageSuffix!.toTfJson(),
-    if (notFoundPage != null) 'not_found_page': notFoundPage!.toTfJson(),
-  };
-}
-
-/// StorageBucketAutoclass tiering.
-class StorageBucketAutoclass {
-  const StorageBucketAutoclass({
-    required this.enabled,
-    this.terminalStorageClass,
+/// Typed helper for the `retention_policy` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketRetentionPolicy {
+  const StorageBucketRetentionPolicy({
+    this.isLocked,
+    required this.retentionPeriod,
   });
-  final TfArg<bool> enabled;
-  final TfArg<String>? terminalStorageClass;
-  Map<String, Object?> toArgMap() => {
-    'enabled': enabled.toTfJson(),
-    if (terminalStorageClass != null)
-      'terminal_storage_class': terminalStorageClass!.toTfJson(),
+
+  final TfArg<bool>? isLocked;
+
+  final TfArg<String> retentionPeriod;
+
+  Map<String, Object?> encode() => {
+    'is_locked': ?isLocked?.toTfJson(),
+    'retention_period': retentionPeriod.toTfJson(),
   };
 }
 
-/// Custom placement (dual-region) configuration.
-class StorageBucketCustomPlacementConfig {
-  const StorageBucketCustomPlacementConfig({required this.dataLocations});
-  final List<String> dataLocations;
-  Map<String, Object?> toArgMap() => {'data_locations': dataLocations};
-}
-
-/// Hierarchical namespace (folders).
-class StorageBucketHierarchicalNamespace {
-  const StorageBucketHierarchicalNamespace({required this.enabled});
-  final TfArg<bool> enabled;
-  Map<String, Object?> toArgMap() => {'enabled': enabled};
-}
-
-/// IP-based access control for `google_storage_bucket.ip_filter`.
-class StorageBucketIpFilter {
-  const StorageBucketIpFilter({
-    required this.mode,
-    this.allowAllServiceAgentAccess,
-    this.allowCrossOrgVpcs,
-    this.publicNetworkSource,
-    this.vpcNetworkSources,
-  });
-  final TfArg<String> mode;
-  final TfArg<bool>? allowAllServiceAgentAccess;
-  final TfArg<bool>? allowCrossOrgVpcs;
-  final StorageBucketPublicNetworkSource? publicNetworkSource;
-  final List<StorageBucketVpcNetworkSource>? vpcNetworkSources;
-  Map<String, Object?> toArgMap() => {
-    'mode': mode.toTfJson(),
-    if (allowAllServiceAgentAccess != null)
-      'allow_all_service_agent_access': allowAllServiceAgentAccess!.toTfJson(),
-    if (allowCrossOrgVpcs != null)
-      'allow_cross_org_vpcs': allowCrossOrgVpcs!.toTfJson(),
-    if (publicNetworkSource != null)
-      'public_network_source': [publicNetworkSource!.toArgMap()],
-    if (vpcNetworkSources != null)
-      'vpc_network_sources': vpcNetworkSources!
-          .map((v) => v.toArgMap())
-          .toList(),
-  };
-}
-
-class StorageBucketPublicNetworkSource {
-  const StorageBucketPublicNetworkSource({required this.allowedIpCidrRanges});
-  final List<String> allowedIpCidrRanges;
-  Map<String, Object?> toArgMap() => {
-    'allowed_ip_cidr_ranges': allowedIpCidrRanges,
-  };
-}
-
-class StorageBucketVpcNetworkSource {
-  const StorageBucketVpcNetworkSource({
-    required this.network,
-    required this.allowedIpCidrRanges,
-  });
-  final TfArg<String> network;
-  final List<String> allowedIpCidrRanges;
-  Map<String, Object?> toArgMap() => {
-    'network': network.toTfJson(),
-    'allowed_ip_cidr_ranges': allowedIpCidrRanges,
-  };
-}
-
-/// Soft-delete policy. `retentionDurationSeconds == 0` disables soft-delete.
-class StorageBucketSoftDeletePolicy {
+/// Typed helper for the `soft_delete_policy` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketSoftDeletePolicy {
   const StorageBucketSoftDeletePolicy({this.retentionDurationSeconds});
-  final TfArg<int>? retentionDurationSeconds;
-  Map<String, Object?> toArgMap() => {
-    if (retentionDurationSeconds != null)
-      'retention_duration_seconds': retentionDurationSeconds!.toTfJson(),
+
+  final TfArg<num>? retentionDurationSeconds;
+
+  Map<String, Object?> encode() => {
+    'retention_duration_seconds': ?retentionDurationSeconds?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `versioning` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketVersioning {
+  const StorageBucketVersioning({required this.enabled});
+
+  final TfArg<bool> enabled;
+
+  Map<String, Object?> encode() => {'enabled': enabled.toTfJson()};
+}
+
+/// Typed helper for the `website` block of
+/// `google_storage_bucket` (derived from provider schema).
+@immutable
+final class StorageBucketWebsite {
+  const StorageBucketWebsite({this.mainPageSuffix, this.notFoundPage});
+
+  final TfArg<String>? mainPageSuffix;
+
+  final TfArg<String>? notFoundPage;
+
+  Map<String, Object?> encode() => {
+    'main_page_suffix': ?mainPageSuffix?.toTfJson(),
+    'not_found_page': ?notFoundPage?.toTfJson(),
   };
 }
 
@@ -363,12 +484,12 @@ final class GoogleStorageBucket extends Resource {
     TfArg<String>? rpo,
     TfArg<Map<String, String>>? labels,
     StorageBucketVersioning? versioning,
-    List<StorageBucketBucketCors>? cors,
+    List<StorageBucketCors>? cors,
     List<StorageBucketLifecycleRule>? lifecycleRule,
     StorageBucketEncryption? encryption,
     StorageBucketRetentionPolicy? retentionPolicy,
-    StorageBucketBucketLogging? logging,
-    StorageBucketBucketWebsite? website,
+    StorageBucketLogging? logging,
+    StorageBucketWebsite? website,
     StorageBucketAutoclass? autoclass,
     StorageBucketCustomPlacementConfig? customPlacementConfig,
     StorageBucketHierarchicalNamespace? hierarchicalNamespace,
@@ -394,33 +515,32 @@ final class GoogleStorageBucket extends Resource {
            'rpo': ?rpo,
            'labels': ?labels,
            if (versioning != null)
-             'versioning': TfArg.literal([versioning.toArgMap()]),
+             'versioning': TfArg.literal(versioning.encode()),
            if (cors != null)
-             'cors': TfArg.literal(cors.map((c) => c.toArgMap()).toList()),
+             'cors': TfArg.literal([for (final e in cors) e.encode()]),
            if (lifecycleRule != null)
-             'lifecycle_rule': TfArg.literal(
-               lifecycleRule.map((r) => r.toArgMap()).toList(),
-             ),
+             'lifecycle_rule': TfArg.literal([
+               for (final e in lifecycleRule) e.encode(),
+             ]),
            if (encryption != null)
-             'encryption': TfArg.literal([encryption.toArgMap()]),
+             'encryption': TfArg.literal(encryption.encode()),
            if (retentionPolicy != null)
-             'retention_policy': TfArg.literal([retentionPolicy.toArgMap()]),
-           if (logging != null) 'logging': TfArg.literal([logging.toArgMap()]),
-           if (website != null) 'website': TfArg.literal([website.toArgMap()]),
+             'retention_policy': TfArg.literal(retentionPolicy.encode()),
+           if (logging != null) 'logging': TfArg.literal(logging.encode()),
+           if (website != null) 'website': TfArg.literal(website.encode()),
            if (autoclass != null)
-             'autoclass': TfArg.literal([autoclass.toArgMap()]),
+             'autoclass': TfArg.literal(autoclass.encode()),
            if (customPlacementConfig != null)
-             'custom_placement_config': TfArg.literal([
-               customPlacementConfig.toArgMap(),
-             ]),
+             'custom_placement_config': TfArg.literal(
+               customPlacementConfig.encode(),
+             ),
            if (hierarchicalNamespace != null)
-             'hierarchical_namespace': TfArg.literal([
-               hierarchicalNamespace.toArgMap(),
-             ]),
-           if (ipFilter != null)
-             'ip_filter': TfArg.literal([ipFilter.toArgMap()]),
+             'hierarchical_namespace': TfArg.literal(
+               hierarchicalNamespace.encode(),
+             ),
+           if (ipFilter != null) 'ip_filter': TfArg.literal(ipFilter.encode()),
            if (softDeletePolicy != null)
-             'soft_delete_policy': TfArg.literal([softDeletePolicy.toArgMap()]),
+             'soft_delete_policy': TfArg.literal(softDeletePolicy.encode()),
            'project': ?project,
          },
        );

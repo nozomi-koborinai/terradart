@@ -67,6 +67,8 @@ final class GoogleDatabaseMigrationServicePrivateConnection extends Resource {
     required TfArg<String> privateConnectionId,
     TfArg<String>? project,
     DatabaseMigrationServicePrivateConnectionVpcPeeringConfig? vpcPeeringConfig,
+    DatabaseMigrationServicePrivateConnectionPscInterfaceConfig?
+    pscInterfaceConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -83,6 +85,8 @@ final class GoogleDatabaseMigrationServicePrivateConnection extends Resource {
            'project': ?project,
            if (vpcPeeringConfig != null)
              'vpc_peering_config': TfArg.literal(vpcPeeringConfig.encode()),
+           if (pscInterfaceConfig != null)
+             'psc_interface_config': TfArg.literal(pscInterfaceConfig.encode()),
          },
        );
 

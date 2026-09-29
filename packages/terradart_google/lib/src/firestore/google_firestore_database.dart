@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_firestore_database`.
 const Set<String> _googleFirestoreDatabaseSensitive = <String>{};
 
@@ -123,19 +125,17 @@ enum RealtimeUpdatesMode implements TerraformEnum {
 // Nested-block helpers
 // ===========================================================================
 
-/// `cmek_config` block (single, max_items=1). Wraps the database in
-/// Customer-Managed Encryption. Setting this on an existing database
-/// forces replacement -- CMEK cannot be added or removed in place.
+/// Typed helper for the `cmek_config` block of
+/// `google_firestore_database` (derived from provider schema).
 @immutable
-class FirestoreDatabaseCmekConfig {
+final class FirestoreDatabaseCmekConfig {
   const FirestoreDatabaseCmekConfig({required this.kmsKeyName});
 
-  /// KMS key resource path:
-  /// `projects/{project}/locations/{location}/keyRings/{ring}/cryptoKeys/{key}`.
-  /// The KMS location MUST match the Firestore database location.
-  final TfArg<String> kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
-  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_firestore_database`.
@@ -214,7 +214,7 @@ final class GoogleFirestoreDatabase extends Resource {
            'location_id': locationId,
            'type': type,
            if (cmekConfig != null)
-             'cmek_config': TfArg.literal([cmekConfig.encode()]),
+             'cmek_config': TfArg.literal(cmekConfig.encode()),
            'database_edition': ?databaseEdition,
            'concurrency_mode': ?concurrencyMode,
            'app_engine_integration_mode': ?appEngineIntegrationMode,

@@ -31,17 +31,72 @@ enum BigqueryDatapolicyDataPolicyPredefinedExpression implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `data_masking_policy` block of
+/// `google_bigquery_datapolicy_data_policy` (derived from provider schema).
 @immutable
-class BigqueryDatapolicyDataPolicyDataMaskingPolicy {
-  const BigqueryDatapolicyDataPolicyDataMaskingPolicy({
-    required this.predefinedExpression,
-  });
+final class BigqueryDatapolicyDataPolicyDataMaskingPolicy {
+  const BigqueryDatapolicyDataPolicyDataMaskingPolicy({required this.mask});
 
-  final BigqueryDatapolicyDataPolicyPredefinedExpression predefinedExpression;
+  final BigqueryDatapolicyDataPolicyDataMaskingPolicyMask mask;
 
+  Map<String, Object?> encode() => {...mask.encode()};
+}
+
+/// Exactly one of `predefined_expression`, `routine` on the `data_masking_policy` block of `google_bigquery_datapolicy_data_policy`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.predefinedExpression(...)`.
+sealed class BigqueryDatapolicyDataPolicyDataMaskingPolicyMask {
+  const BigqueryDatapolicyDataPolicyDataMaskingPolicyMask();
+
+  /// Sets `predefined_expression`.
+  const factory BigqueryDatapolicyDataPolicyDataMaskingPolicyMask.predefinedExpression(
+    TfArg<BigqueryDatapolicyDataPolicyPredefinedExpression>
+    predefinedExpression,
+  ) = BigqueryDatapolicyDataPolicyDataMaskingPolicyMaskPredefinedExpression;
+
+  /// Sets `routine`.
+  const factory BigqueryDatapolicyDataPolicyDataMaskingPolicyMask.routine(
+    TfArg<String> routine,
+  ) = BigqueryDatapolicyDataPolicyDataMaskingPolicyMaskRoutine;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [BigqueryDatapolicyDataPolicyDataMaskingPolicyMask.predefinedExpression] choice: sets `predefined_expression`.
+final class BigqueryDatapolicyDataPolicyDataMaskingPolicyMaskPredefinedExpression
+    extends BigqueryDatapolicyDataPolicyDataMaskingPolicyMask {
+  const BigqueryDatapolicyDataPolicyDataMaskingPolicyMaskPredefinedExpression(
+    this.predefinedExpression,
+  );
+
+  final TfArg<BigqueryDatapolicyDataPolicyPredefinedExpression>
+  predefinedExpression;
+
+  @override
+  String get blockKey => 'predefined_expression';
+
+  @override
   Map<String, Object?> encode() => {
-    'predefined_expression': predefinedExpression.terraformValue,
+    'predefined_expression': predefinedExpression.toTfJson(),
   };
+}
+
+/// The [BigqueryDatapolicyDataPolicyDataMaskingPolicyMask.routine] choice: sets `routine`.
+final class BigqueryDatapolicyDataPolicyDataMaskingPolicyMaskRoutine
+    extends BigqueryDatapolicyDataPolicyDataMaskingPolicyMask {
+  const BigqueryDatapolicyDataPolicyDataMaskingPolicyMaskRoutine(this.routine);
+
+  final TfArg<String> routine;
+
+  @override
+  String get blockKey => 'routine';
+
+  @override
+  Map<String, Object?> encode() => {'routine': routine.toTfJson()};
 }
 
 /// Factory wrapper for `google_bigquery_datapolicy_data_policy`.
@@ -71,7 +126,7 @@ final class GoogleBigqueryDatapolicyDataPolicy extends Resource {
            'policy_tag': policyTag,
            'project': ?project,
            if (dataMaskingPolicy != null)
-             'data_masking_policy': TfArg.literal([dataMaskingPolicy.encode()]),
+             'data_masking_policy': TfArg.literal(dataMaskingPolicy.encode()),
          },
        );
 

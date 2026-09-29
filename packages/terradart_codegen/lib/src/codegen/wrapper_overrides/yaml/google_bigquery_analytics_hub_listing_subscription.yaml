@@ -2,6 +2,7 @@ outputDir: bigquery
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 paramOrder:
   - data_exchange_id
@@ -9,3 +10,4 @@ paramOrder:
   - location
   - project
   - destination_dataset
+  - destination_pubsub_subscription

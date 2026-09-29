@@ -602,6 +602,15 @@ final class GoogleNetappVolume extends Resource {
     NetappVolumeRestoreParameters? restoreParameters,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    TfArg<bool>? largeCapacity,
+    TfArg<bool>? multipleEndpoints,
+    TfArg<List<String>>? restrictedActions,
+    TfArg<num>? throughputMibps,
+    List<NetappVolumeBlockDevices>? blockDevices,
+    NetappVolumeCacheParameters? cacheParameters,
+    NetappVolumeHybridReplicationParameters? hybridReplicationParameters,
+    NetappVolumeLargeCapacityConfig? largeCapacityConfig,
+    NetappVolumeTieringPolicy? tieringPolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -632,6 +641,26 @@ final class GoogleNetappVolume extends Resource {
              'restore_parameters': TfArg.literal(restoreParameters.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           'large_capacity': ?largeCapacity,
+           'multiple_endpoints': ?multipleEndpoints,
+           'restricted_actions': ?restrictedActions,
+           'throughput_mibps': ?throughputMibps,
+           if (blockDevices != null)
+             'block_devices': TfArg.literal([
+               for (final e in blockDevices) e.encode(),
+             ]),
+           if (cacheParameters != null)
+             'cache_parameters': TfArg.literal(cacheParameters.encode()),
+           if (hybridReplicationParameters != null)
+             'hybrid_replication_parameters': TfArg.literal(
+               hybridReplicationParameters.encode(),
+             ),
+           if (largeCapacityConfig != null)
+             'large_capacity_config': TfArg.literal(
+               largeCapacityConfig.encode(),
+             ),
+           if (tieringPolicy != null)
+             'tiering_policy': TfArg.literal(tieringPolicy.encode()),
          },
        );
 

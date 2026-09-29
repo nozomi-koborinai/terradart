@@ -47,6 +47,10 @@ paramOrder:
   - name
   - deletion_policy
   - project
+  - event_stream
+  - logging_config
+  - notification_config
+  - replication_spec
 
 extraGetters: |2
     /// Reference to `name` attribute.

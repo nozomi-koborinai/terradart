@@ -3,6 +3,10 @@ outputDir: filestore
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+
+sealedNames:
+  "performance_config.fixed_iops, performance_config.iops_per_tb": iops
 
 paramOrder:
   - name
@@ -12,9 +16,24 @@ paramOrder:
   - networks
   - initial_replication
   - labels
+  - deletion_protection_enabled
+  - deletion_protection_reason
+  - description
+  - desired_replica_state
+  - kms_key_name
+  - project
+  - protocol
+  - tags
+  - zone
+  - directory_services
+  - performance_config
 
 dartTypeOverrides:
   tier: FilestoreInstanceTier
+  file_shares.nfs_export_options.access_mode: FilestoreInstanceNfsExportAccessMode
+  file_shares.nfs_export_options.squash_mode: FilestoreInstanceNfsSquashMode
+  initial_replication.role: FilestoreInstanceReplicationRole
+  networks.connect_mode: FilestoreInstanceConnectMode
 
 curatedDoc: |-
   /// Cloud Filestore instance — managed NFS file shares on a VPC.
@@ -24,7 +43,7 @@ curatedDoc: |-
   /// - [name]: instance ID.
   /// - [tier]: service tier ([FilestoreInstanceTier]).
   /// - [fileShares]: NFS export (name + capacity in GiB).
-  /// - [networks]: VPC attachment ([FilestoreInstanceNetwork]).
+  /// - [networks]: VPC attachment ([FilestoreInstanceNetworks]).
   ///
   /// Enable `file.googleapis.com` via [GoogleProjectService] before apply.
   ///
@@ -35,11 +54,11 @@ curatedDoc: |-
   ///   name: TfArg.literal('shared-nfs'),
   ///   tier: TfArg.literal(FilestoreInstanceTier.basicHdd),
   ///   location: TfArg.literal('asia-northeast1'),
-  ///   fileShares: FilestoreInstanceFileShare(
+  ///   fileShares: FilestoreInstanceFileShares(
   ///     name: TfArg.literal('share1'),
   ///     capacityGb: TfArg.literal(1024),
   ///   ),
-  ///   networks: FilestoreInstanceNetwork(
+  ///   networks: FilestoreInstanceNetworks(
   ///     network: TfArg.ref(vpc.id),
   ///     modes: const [FilestoreInstanceNetworkMode.modeIpv4],
   ///   ),
@@ -105,66 +124,6 @@ prelude: |
     final String terraformValue;
   }
 
-  /// `file_shares.nfs_export_options` nested block.
-  class FilestoreInstanceNfsExportOptions {
-    const FilestoreInstanceNfsExportOptions({
-      this.accessMode,
-      this.squashMode,
-    });
-
-    final FilestoreInstanceNfsExportAccessMode? accessMode;
-    final FilestoreInstanceNfsSquashMode? squashMode;
-
-    Map<String, Object?> toArgMap() => {
-          if (accessMode != null) 'access_mode': accessMode!.terraformValue,
-          if (squashMode != null) 'squash_mode': squashMode!.terraformValue,
-        };
-  }
-
-  /// `file_shares` nested block (required, max=1).
-  class FilestoreInstanceFileShare {
-    const FilestoreInstanceFileShare({
-      required this.name,
-      required this.capacityGb,
-      this.nfsExportOptions,
-    });
-
-    final TfArg<String> name;
-    final TfArg<num> capacityGb;
-    final List<FilestoreInstanceNfsExportOptions>? nfsExportOptions;
-
-    Map<String, Object?> toArgMap() => {
-          'name': name.toTfJson(),
-          'capacity_gb': capacityGb.toTfJson(),
-          if (nfsExportOptions != null)
-            'nfs_export_options':
-                nfsExportOptions!.map((o) => o.toArgMap()).toList(),
-        };
-  }
-
-  /// `networks` nested block (required).
-  class FilestoreInstanceNetwork {
-    const FilestoreInstanceNetwork({
-      required this.network,
-      required this.modes,
-      this.connectMode,
-      this.reservedIpRange,
-    });
-
-    final TfArg<String> network;
-    final List<FilestoreInstanceNetworkMode> modes;
-    final FilestoreInstanceConnectMode? connectMode;
-    final TfArg<String>? reservedIpRange;
-
-    Map<String, Object?> toArgMap() => {
-          'network': network.toTfJson(),
-          'modes': modes.map((m) => m.terraformValue).toList(),
-          if (connectMode != null) 'connect_mode': connectMode!.terraformValue,
-          if (reservedIpRange != null)
-            'reserved_ip_range': reservedIpRange!.toTfJson(),
-        };
-  }
-
   /// `initial_replication.role`.
   enum FilestoreInstanceReplicationRole implements TerraformEnum {
     roleUnspecified('ROLE_UNSPECIFIED'),
@@ -176,24 +135,3 @@ prelude: |
     final String terraformValue;
   }
 
-  /// `initial_replication` nested block (max=1).
-  class FilestoreInstanceInitialReplication {
-    const FilestoreInstanceInitialReplication({this.role});
-
-    final FilestoreInstanceReplicationRole? role;
-
-    Map<String, Object?> toArgMap() => {
-          if (role != null) 'role': role!.terraformValue,
-        };
-  }
-
-customSlots:
-  file_shares:
-    paramDeclaration: 'FilestoreInstanceFileShare? fileShares'
-    argMapEntry: "if (fileShares != null) 'file_shares': TfArg.literal([fileShares.toArgMap()]),"
-  networks:
-    paramDeclaration: 'List<FilestoreInstanceNetwork>? networks'
-    argMapEntry: "if (networks != null) 'networks': TfArg.literal(networks.map((n) => n.toArgMap()).toList()),"
-  initial_replication:
-    paramDeclaration: 'FilestoreInstanceInitialReplication? initialReplication'
-    argMapEntry: "if (initialReplication != null) 'initial_replication': TfArg.literal([initialReplication.toArgMap()]),"

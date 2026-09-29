@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_bigquery_data_transfer_config`.
 const Set<String> _googleBigqueryDataTransferConfigSensitive = <String>{
   'sensitive_params.secret_access_key',
@@ -13,106 +15,13 @@ const Set<String> _googleBigqueryDataTransferConfigSensitive = <String>{
 // schedule_options nested block (max=1)
 // ===========================================================================
 
-/// `schedule_options` block (max=1) — fine-grained overrides for the
-/// cron schedule defined on the parent
-/// [GoogleBigqueryDataTransferConfig.schedule] slot.
-///
-/// Set [disableAutoScheduling] to `TfArg.literal(true)` to suppress the
-/// cron entirely — runs must then be triggered manually via
-/// `transferConfigs.startManualRuns`. [startTime] and [endTime] are
-/// RFC3339 UTC timestamps that bound when the cron is allowed to fire
-/// (manual runs are not constrained by them).
-@immutable
-class BigqueryDataTransferConfigScheduleOptions {
-  const BigqueryDataTransferConfigScheduleOptions({
-    this.disableAutoScheduling,
-    this.startTime,
-    this.endTime,
-  });
-
-  /// If true, automatic scheduling is disabled for this transfer
-  /// config. The
-  /// [GoogleBigqueryDataTransferConfig.schedule] field is ignored when
-  /// this is set; only `transferConfigs.startManualRuns` will fire runs.
-  final TfArg<bool>? disableAutoScheduling;
-
-  /// RFC3339 UTC timestamp (e.g. `"2026-01-01T00:00:00Z"`). The first
-  /// scheduled run will occur at or after this moment. Optional —
-  /// defaults to "now" when omitted.
-  final TfArg<String>? startTime;
-
-  /// RFC3339 UTC timestamp. After this moment, the cron stops firing
-  /// (manual runs are still allowed). Optional.
-  final TfArg<String>? endTime;
-
-  Map<String, Object?> toArgMap() => {
-    if (disableAutoScheduling != null)
-      'disable_auto_scheduling': disableAutoScheduling!.toTfJson(),
-    if (startTime != null) 'start_time': startTime!.toTfJson(),
-    if (endTime != null) 'end_time': endTime!.toTfJson(),
-  };
-}
-
 // ===========================================================================
 // email_preferences nested block (max=1)
 // ===========================================================================
 
-/// `email_preferences` block (max=1) — controls failure-email delivery
-/// to the user who owns the transfer config. The owner is the identity
-/// that created the resource (or the service account in
-/// [GoogleBigqueryDataTransferConfig.serviceAccountName] when set).
-@immutable
-class BigqueryDataTransferConfigEmailPreferences {
-  const BigqueryDataTransferConfigEmailPreferences({
-    required this.enableFailureEmail,
-  });
-
-  /// If true, an email is delivered to the config owner on every
-  /// failed transfer run. Required by the schema (the block exists
-  /// solely to carry this flag).
-  final TfArg<bool> enableFailureEmail;
-
-  Map<String, Object?> toArgMap() => {
-    'enable_failure_email': enableFailureEmail.toTfJson(),
-  };
-}
-
 // ===========================================================================
 // sensitive_params nested block (max=1)
 // ===========================================================================
-
-/// `sensitive_params` block (max=1) — credential slot for the
-/// `amazon_s3` data source (and any future DTS connector that needs
-/// out-of-band secrets). The block is named "sensitive_params" because
-/// the keys it carries logically belong to the parent
-/// [GoogleBigqueryDataTransferConfig.params] map; placing them here
-/// instead lets the provider flag them sensitive (so they are masked
-/// in plan output) and prevents accidental disclosure via state
-/// inspection.
-///
-/// Credentials must NOT also be supplied in
-/// [GoogleBigqueryDataTransferConfig.params] — the provider rejects
-/// configurations that double-specify the same logical secret and
-/// errors at apply time.
-///
-/// The secret access key is exactly one of
-/// [BigqueryDataTransferConfigWriteOnlySecretAccessKey] and
-/// [BigqueryDataTransferConfigPlaintextSecretAccessKey] (provider 8.x
-/// ExactlyOneOf).
-@immutable
-class BigqueryDataTransferConfigSensitiveParams {
-  const BigqueryDataTransferConfigSensitiveParams({
-    required this.secretAccessKey,
-  });
-
-  /// AWS secret access key for the `amazon_s3` data source. The matching
-  /// access key id (non-secret) goes in the parent
-  /// [GoogleBigqueryDataTransferConfig.params] map under the key
-  /// `'access_key_id'`.
-  final BigqueryDataTransferConfigSecretAccessKey secretAccessKey;
-
-  Map<String, Object?> toArgMap() => {...secretAccessKey.encode()};
-}
 
 /// `sensitive_params.secret_access_key` / `secret_access_key_wo`. Sealed
 /// so the provider's ExactlyOneOf holds at compile time.
@@ -188,27 +97,80 @@ final class BigqueryDataTransferConfigPlaintextSecretAccessKey
 // encryption_configuration nested block (max=1)
 // ===========================================================================
 
-/// `encryption_configuration` block (max=1) — CMEK key used to encrypt
-/// data written by this transfer config to the destination dataset.
-/// When unset, the dataset's
-/// `default_encryption_configuration.kms_key_name` (if any) applies; if
-/// neither is set, Google-managed encryption is used.
-///
-/// The BigQuery DTS service identity
-/// (`service-{projectNumber}@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com`)
-/// must hold `roles/cloudkms.cryptoKeyEncrypterDecrypter` on the key
-/// before the transfer config can use it.
+/// Typed helper for the `email_preferences` block of
+/// `google_bigquery_data_transfer_config` (derived from provider schema).
 @immutable
-class BigqueryDataTransferConfigEncryptionConfiguration {
+final class BigqueryDataTransferConfigEmailPreferences {
+  const BigqueryDataTransferConfigEmailPreferences({
+    required this.enableFailureEmail,
+  });
+
+  final TfArg<bool> enableFailureEmail;
+
+  Map<String, Object?> encode() => {
+    'enable_failure_email': enableFailureEmail.toTfJson(),
+  };
+}
+
+/// Typed helper for the `encryption_configuration` block of
+/// `google_bigquery_data_transfer_config` (derived from provider schema).
+@immutable
+final class BigqueryDataTransferConfigEncryptionConfiguration {
   const BigqueryDataTransferConfigEncryptionConfiguration({
     required this.kmsKeyName,
   });
 
-  /// Fully-qualified KMS key resource name
-  /// (`projects/{p}/locations/{l}/keyRings/{r}/cryptoKeys/{k}`).
-  final TfArg<String> kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
-  Map<String, Object?> toArgMap() => {'kms_key_name': kmsKeyName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
+}
+
+/// Typed helper for the `schedule_options` block of
+/// `google_bigquery_data_transfer_config` (derived from provider schema).
+@immutable
+final class BigqueryDataTransferConfigScheduleOptions {
+  const BigqueryDataTransferConfigScheduleOptions({
+    this.disableAutoScheduling,
+    this.endTime,
+    this.startTime,
+  });
+
+  final TfArg<bool>? disableAutoScheduling;
+
+  final TfArg<String>? endTime;
+
+  final TfArg<String>? startTime;
+
+  Map<String, Object?> encode() => {
+    'disable_auto_scheduling': ?disableAutoScheduling?.toTfJson(),
+    'end_time': ?endTime?.toTfJson(),
+    'start_time': ?startTime?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `sensitive_params` block of
+/// `google_bigquery_data_transfer_config` (derived from provider schema).
+@immutable
+final class BigqueryDataTransferConfigSensitiveParams {
+  const BigqueryDataTransferConfigSensitiveParams({
+    this.secretAccessKey,
+    this.secretAccessKeyWo,
+    this.secretAccessKeyWoVersion,
+  });
+
+  final TfArg<String>? secretAccessKey;
+
+  final TfArg<String>? secretAccessKeyWo;
+
+  final TfArg<String>? secretAccessKeyWoVersion;
+
+  Map<String, Object?> encode() => {
+    'secret_access_key': ?secretAccessKey?.toTfJson(),
+    'secret_access_key_wo': ?secretAccessKeyWo?.toTfJson(),
+    'secret_access_key_wo_version': ?secretAccessKeyWoVersion?.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_bigquery_data_transfer_config`.
@@ -363,18 +325,18 @@ final class GoogleBigqueryDataTransferConfig extends Resource {
            'params': params,
            'schedule': ?schedule,
            if (scheduleOptions != null)
-             'schedule_options': TfArg.literal([scheduleOptions.toArgMap()]),
+             'schedule_options': TfArg.literal(scheduleOptions.encode()),
            'disabled': ?disabled,
            'service_account_name': ?serviceAccountName,
            'notification_pubsub_topic': ?notificationPubsubTopic,
            if (emailPreferences != null)
-             'email_preferences': TfArg.literal([emailPreferences.toArgMap()]),
+             'email_preferences': TfArg.literal(emailPreferences.encode()),
            if (sensitiveParams != null)
-             'sensitive_params': TfArg.literal([sensitiveParams.toArgMap()]),
+             'sensitive_params': TfArg.literal(sensitiveParams.encode()),
            if (encryptionConfiguration != null)
-             'encryption_configuration': TfArg.literal([
-               encryptionConfiguration.toArgMap(),
-             ]),
+             'encryption_configuration': TfArg.literal(
+               encryptionConfiguration.encode(),
+             ),
            'data_refresh_window_days': ?dataRefreshWindowDays,
            'project': ?project,
          },

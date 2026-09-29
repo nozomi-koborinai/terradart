@@ -54,14 +54,14 @@ final class FilestoreSnapshotStack extends Stack {
         name: .literal('snapshot-nfs'),
         tier: .literal(.highScaleSsd),
         location: .literal('us-central1-a'),
-        fileShares: FilestoreInstanceFileShare(
+        fileShares: FilestoreInstanceFileShares(
           name: .literal('snapshot_share'),
           capacityGb: .literal(10240),
         ),
         networks: [
-          FilestoreInstanceNetwork(
-            network: .ref(nfsVpc.id),
-            modes: const [FilestoreInstanceNetworkMode.modeIpv4],
+          FilestoreInstanceNetworks(
+            network: nfsVpc.ref,
+            modes: [.literal(.modeIpv4)],
           ),
         ],
         dependsOn: apiDeps,

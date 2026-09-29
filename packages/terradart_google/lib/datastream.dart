@@ -11,6 +11,14 @@ export 'src/datastream/google_datastream_connection_profile.dart'
         DatastreamConnectionProfileConnectivity,
         DatastreamConnectionProfileConnectivityForwardSshConnectivity,
         DatastreamConnectionProfileConnectivityPrivateConnectivity,
+        DatastreamConnectionProfileEndpoint,
+        DatastreamConnectionProfileEndpointBigqueryProfile,
+        DatastreamConnectionProfileEndpointGcsProfile,
+        DatastreamConnectionProfileEndpointMongodbProfile,
+        DatastreamConnectionProfileEndpointMysqlProfile,
+        DatastreamConnectionProfileEndpointOracleProfile,
+        DatastreamConnectionProfileEndpointPostgresqlProfile,
+        DatastreamConnectionProfileEndpointSqlServerProfile,
         DatastreamConnectionProfileForwardSshConnectivity,
         DatastreamConnectionProfileForwardSshConnectivityCredential,
         DatastreamConnectionProfileForwardSshConnectivityCredentialPassword,
@@ -33,11 +41,15 @@ export 'src/datastream/google_datastream_connection_profile.dart'
         GoogleDatastreamConnectionProfile;
 export 'src/datastream/google_datastream_private_connection.dart'
     show
+        DatastreamPrivateConnectionConnectivity,
+        DatastreamPrivateConnectionConnectivityPscInterfaceConfig,
+        DatastreamPrivateConnectionConnectivityVpcPeeringConfig,
         DatastreamPrivateConnectionPscInterfaceConfig,
         DatastreamPrivateConnectionVpcPeeringConfig,
         GoogleDatastreamPrivateConnection;
 export 'src/datastream/google_datastream_stream.dart'
     show
+        DatastreamStreamBackfill,
         DatastreamStreamBackfillAll,
         DatastreamStreamBackfillAllMongodbExcludedObjects,
         DatastreamStreamBackfillAllMongodbExcludedObjectsDatabases,
@@ -66,6 +78,8 @@ export 'src/datastream/google_datastream_stream.dart'
         DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemas,
         DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemasTables,
         DatastreamStreamBackfillAllSqlServerExcludedObjectsSchemasTablesColumns,
+        DatastreamStreamBackfillBackfillAll,
+        DatastreamStreamBackfillBackfillNone,
         DatastreamStreamBackfillNone,
         DatastreamStreamDesiredState,
         DatastreamStreamDestinationConfig,

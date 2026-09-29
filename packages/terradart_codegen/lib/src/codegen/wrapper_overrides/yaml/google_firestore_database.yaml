@@ -3,6 +3,7 @@ outputDir: firestore
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 curatedDoc: |-
   /// Required identity:
@@ -187,24 +188,3 @@ prelude: |
   // Nested-block helpers
   // ===========================================================================
 
-  /// `cmek_config` block (single, max_items=1). Wraps the database in
-  /// Customer-Managed Encryption. Setting this on an existing database
-  /// forces replacement -- CMEK cannot be added or removed in place.
-  @immutable
-  class FirestoreDatabaseCmekConfig {
-    const FirestoreDatabaseCmekConfig({required this.kmsKeyName});
-
-    /// KMS key resource path:
-    /// `projects/{project}/locations/{location}/keyRings/{ring}/cryptoKeys/{key}`.
-    /// The KMS location MUST match the Firestore database location.
-    final TfArg<String> kmsKeyName;
-
-    Map<String, Object?> encode() => {
-      'kms_key_name': kmsKeyName.toTfJson(),
-    };
-  }
-
-customSlots:
-  cmek_config:
-    paramDeclaration: "FirestoreDatabaseCmekConfig? cmekConfig"
-    argMapEntry: "if (cmekConfig != null) 'cmek_config': TfArg.literal([cmekConfig.encode()]),"

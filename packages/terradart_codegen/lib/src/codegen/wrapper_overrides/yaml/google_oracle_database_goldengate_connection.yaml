@@ -3,6 +3,7 @@ outputDir: oracle
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 curatedDoc: |-
   /// Oracle GoldenGate connection metadata for Oracle Database@Google Cloud.

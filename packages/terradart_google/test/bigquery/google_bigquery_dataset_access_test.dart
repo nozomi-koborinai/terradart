@@ -72,7 +72,7 @@ void main() {
       final access = BigqueryDatasetAccessView(
         view: BigqueryDatasetDatasetView(
           projectId: TfArg.literal('p'),
-          datasetId: TfArg.literal('analytics'),
+          datasetId: RefTo.literal('analytics'),
           tableId: TfArg.literal('daily_view'),
         ),
       );
@@ -95,7 +95,7 @@ void main() {
         dataset: BigqueryDatasetDatasetAccessChild(
           dataset: BigqueryDatasetDatasetReference(
             projectId: TfArg.literal('p'),
-            datasetId: TfArg.literal('shared'),
+            datasetId: RefTo.literal('shared'),
           ),
           targetTypes: [TfArg.literal('VIEWS')],
         ),
@@ -119,7 +119,7 @@ void main() {
       final access = BigqueryDatasetAccessRoutine(
         routine: BigqueryDatasetDatasetRoutineRef(
           projectId: TfArg.literal('p'),
-          datasetId: TfArg.literal('lib'),
+          datasetId: RefTo.literal('lib'),
           routineId: TfArg.literal('cleanse'),
         ),
       );

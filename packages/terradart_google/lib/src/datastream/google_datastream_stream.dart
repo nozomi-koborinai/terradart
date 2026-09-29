@@ -22,6 +22,71 @@ enum DatastreamStreamDesiredState implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `backfill_all`, `backfill_none` on `google_datastream_stream`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.backfillAll(...)`.
+sealed class DatastreamStreamBackfill {
+  const DatastreamStreamBackfill();
+
+  /// Sets `backfill_all`.
+  const factory DatastreamStreamBackfill.backfillAll(
+    DatastreamStreamBackfillAll backfillAll,
+  ) = DatastreamStreamBackfillBackfillAll;
+
+  /// Sets `backfill_none`.
+  const factory DatastreamStreamBackfill.backfillNone(
+    DatastreamStreamBackfillNone backfillNone,
+  ) = DatastreamStreamBackfillBackfillNone;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DatastreamStreamBackfill.backfillAll] choice: sets `backfill_all`.
+final class DatastreamStreamBackfillBackfillAll
+    extends DatastreamStreamBackfill {
+  const DatastreamStreamBackfillBackfillAll(this.backfillAll);
+
+  final DatastreamStreamBackfillAll backfillAll;
+
+  @override
+  String get blockKey => 'backfill_all';
+
+  @override
+  Map<String, Object?> encode() => {'backfill_all': backfillAll.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'backfill_all': TfArg.literal(backfillAll.encode()),
+  };
+}
+
+/// The [DatastreamStreamBackfill.backfillNone] choice: sets `backfill_none`.
+final class DatastreamStreamBackfillBackfillNone
+    extends DatastreamStreamBackfill {
+  const DatastreamStreamBackfillBackfillNone(this.backfillNone);
+
+  final DatastreamStreamBackfillNone backfillNone;
+
+  @override
+  String get blockKey => 'backfill_none';
+
+  @override
+  Map<String, Object?> encode() => {'backfill_none': backfillNone.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'backfill_none': TfArg.literal(backfillNone.encode()),
+  };
+}
+
 /// Typed helper for the `backfill_all` block of
 /// `google_datastream_stream` (derived from provider schema).
 @immutable
@@ -3196,7 +3261,7 @@ final class GoogleDatastreamStream extends Resource {
     required TfArg<String> location,
     TfArg<String>? project,
     required TfArg<String> streamId,
-    DatastreamStreamBackfillNone? backfillNone,
+    required DatastreamStreamBackfill backfill,
     required DatastreamStreamDestinationConfig destinationConfig,
     List<DatastreamStreamRuleSets>? ruleSets,
     required DatastreamStreamSourceConfig sourceConfig,
@@ -3216,8 +3281,7 @@ final class GoogleDatastreamStream extends Resource {
            'location': location,
            'project': ?project,
            'stream_id': streamId,
-           if (backfillNone != null)
-             'backfill_none': TfArg.literal(backfillNone.encode()),
+           ...backfill.argMap,
            'destination_config': TfArg.literal(destinationConfig.encode()),
            if (ruleSets != null)
              'rule_sets': TfArg.literal([for (final e in ruleSets) e.encode()]),

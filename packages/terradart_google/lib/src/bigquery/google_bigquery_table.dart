@@ -5,6 +5,7 @@ import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_bigquery_table`.
 const Set<String> _googleBigqueryTableSensitive = <String>{};
@@ -118,506 +119,697 @@ enum TableMetadataView implements TerraformEnum {
 // Partitioning blocks
 // ===========================================================================
 
-/// `time_partitioning` block (max=1). `type` is required; the other
-/// fields refine the partition spec. `requirePartitionFilter` is
-/// deprecated by BigQuery in favour of the top-level
-/// `requirePartitionFilter`, but retained here for parity with the
-/// provider schema.
-@immutable
-class BigqueryTableTimePartitioning {
-  const BigqueryTableTimePartitioning({
-    required this.type,
-    this.expirationMs,
-    this.field,
-    @Deprecated(
-      'BigQuery deprecated this in favour of the top-level '
-      'requirePartitionFilter. Set that instead.',
-    )
-    this.requirePartitionFilter,
-  });
-
-  final TimePartitioningType type;
-  final TfArg<int>? expirationMs;
-  final TfArg<String>? field;
-  final TfArg<bool>? requirePartitionFilter;
-
-  Map<String, Object?> toArgMap() => {
-    'type': type.terraformValue,
-    if (expirationMs != null) 'expiration_ms': expirationMs!.toTfJson(),
-    if (field != null) 'field': field!.toTfJson(),
-    // ignore: deprecated_member_use_from_same_package
-    if (requirePartitionFilter != null)
-      // ignore: deprecated_member_use_from_same_package
-      'require_partition_filter': requirePartitionFilter!.toTfJson(),
-  };
-}
-
-/// `range_partitioning` block (max=1). `field` is the int64 column
-/// being partitioned on; the inner [BigqueryTableRangePartitioningRange] defines the
-/// `[start, end)` window and bucket width.
-@immutable
-class BigqueryTableRangePartitioning {
-  const BigqueryTableRangePartitioning({
-    required this.field,
-    required this.range,
-  });
-
-  final TfArg<String> field;
-  final BigqueryTableRangePartitioningRange range;
-
-  Map<String, Object?> toArgMap() => {
-    'field': field.toTfJson(),
-    'range': [range.toArgMap()],
-  };
-}
-
-/// Inner `range` block of `range_partitioning`. Half-open: `start` is
-/// inclusive, `end` is exclusive. `interval` is the bucket width.
-@immutable
-class BigqueryTableRangePartitioningRange {
-  const BigqueryTableRangePartitioningRange({
-    required this.start,
-    required this.end,
-    required this.interval,
-  });
-
-  final TfArg<int> start;
-  final TfArg<int> end;
-  final TfArg<int> interval;
-
-  Map<String, Object?> toArgMap() => {
-    'start': start.toTfJson(),
-    'end': end.toTfJson(),
-    'interval': interval.toTfJson(),
-  };
-}
-
 // ===========================================================================
 // Materialized view / view
 // ===========================================================================
-
-/// `materialized_view` block (max=1). `query` is required and frozen
-/// at create time (changing it forces replacement). The other knobs
-/// control refresh behaviour.
-@immutable
-class BigqueryTableMaterializedView {
-  const BigqueryTableMaterializedView({
-    required this.query,
-    this.enableRefresh,
-    this.refreshIntervalMs,
-    this.allowNonIncrementalDefinition,
-  });
-
-  final TfArg<String> query;
-  final TfArg<bool>? enableRefresh;
-  final TfArg<int>? refreshIntervalMs;
-  final TfArg<bool>? allowNonIncrementalDefinition;
-
-  Map<String, Object?> toArgMap() => {
-    'query': query.toTfJson(),
-    if (enableRefresh != null) 'enable_refresh': enableRefresh!.toTfJson(),
-    if (refreshIntervalMs != null)
-      'refresh_interval_ms': refreshIntervalMs!.toTfJson(),
-    if (allowNonIncrementalDefinition != null)
-      'allow_non_incremental_definition': allowNonIncrementalDefinition!
-          .toTfJson(),
-  };
-}
-
-/// `view` block (max=1). When set, the table is a logical view backed
-/// by [query] instead of physical storage. `useLegacySql` defaults to
-/// false (standard SQL) at the provider; pass `true` only for legacy
-/// SQL views.
-@immutable
-class BigqueryTableTableView {
-  const BigqueryTableTableView({required this.query, this.useLegacySql});
-
-  final TfArg<String> query;
-  final TfArg<bool>? useLegacySql;
-
-  Map<String, Object?> toArgMap() => {
-    'query': query.toTfJson(),
-    if (useLegacySql != null) 'use_legacy_sql': useLegacySql!.toTfJson(),
-  };
-}
 
 // ===========================================================================
 // External data configuration
 // ===========================================================================
 
-/// `external_data_configuration` block (max=1). Configures a federated
-/// external table — BigQuery reads data in-place from the source store
-/// (GCS / Bigtable / Drive / S3 via connection) at query time rather
-/// than ingesting it.
-///
-/// `autodetect` and `sourceUris` are required by the schema. The
-/// format-specific sub-blocks ([csvOptions] / [googleSheetsOptions] /
-/// [hivePartitioningOptions] / [parquetOptions] / [avroOptions] /
-/// [jsonOptions]) are mutually exclusive with respect to
-/// [sourceFormat]; the wrapper does not enforce that — pass at most
-/// one sub-block matching the chosen format.
-///
-/// `bigtableOptions` is exposed as a `Map<String, Object?>?`
-/// placeholder because the underlying schema (nested column_families
-/// with nested column lists) is heavy enough to warrant its own pass;
-/// callers using Bigtable today can pass the snake-case map directly.
+// ===========================================================================
+// Encryption / constraints / replication / biglake
+// ===========================================================================
+
+/// Typed helper for the `biglake_configuration` block of
+/// `google_bigquery_table` (derived from provider schema).
 @immutable
-class BigqueryTableExternalDataConfiguration {
-  const BigqueryTableExternalDataConfiguration({
-    required this.autodetect,
-    required this.sourceUris,
-    this.sourceFormat,
-    this.compression,
-    this.fileSetSpecType,
-    this.ignoreUnknownValues,
-    this.maxBadRecords,
-    this.referenceFileSchemaUri,
-    this.schema,
-    this.connectionId,
-    this.metadataCacheMode,
-    this.objectMetadata,
-    this.jsonExtension,
-    this.decimalTargetTypes,
-    this.csvOptions,
-    this.googleSheetsOptions,
-    this.hivePartitioningOptions,
-    this.parquetOptions,
-    this.avroOptions,
-    this.jsonOptions,
-    this.bigtableOptions,
+final class BigqueryTableBiglakeConfiguration {
+  const BigqueryTableBiglakeConfiguration({
+    required this.connectionId,
+    required this.fileFormat,
+    required this.storageUri,
+    required this.tableFormat,
   });
 
-  final TfArg<bool> autodetect;
-  final List<String> sourceUris;
-  final ExternalDataSourceFormat? sourceFormat;
-  final ExternalDataCompression? compression;
-  final FileSetSpecType? fileSetSpecType;
-  final TfArg<bool>? ignoreUnknownValues;
-  final TfArg<int>? maxBadRecords;
-  final TfArg<String>? referenceFileSchemaUri;
-  final TfArg<String>? schema;
-  final TfArg<String>? connectionId;
-  final MetadataCacheMode? metadataCacheMode;
-  final ObjectMetadata? objectMetadata;
-  final TfArg<String>? jsonExtension;
-  final List<String>? decimalTargetTypes;
-  final BigqueryTableCsvOptions? csvOptions;
-  final BigqueryTableGoogleSheetsOptions? googleSheetsOptions;
-  final BigqueryTableHivePartitioningOptions? hivePartitioningOptions;
-  final BigqueryTableParquetOptions? parquetOptions;
-  final BigqueryTableAvroOptions? avroOptions;
-  final BigqueryTableJsonOptions? jsonOptions;
-  final Map<String, Object?>? bigtableOptions;
+  final TfArg<String> connectionId;
 
-  Map<String, Object?> toArgMap() => {
-    'autodetect': autodetect.toTfJson(),
-    'source_uris': sourceUris,
-    if (sourceFormat != null) 'source_format': sourceFormat!.terraformValue,
-    if (compression != null) 'compression': compression!.terraformValue,
-    if (fileSetSpecType != null)
-      'file_set_spec_type': fileSetSpecType!.terraformValue,
-    if (ignoreUnknownValues != null)
-      'ignore_unknown_values': ignoreUnknownValues!.toTfJson(),
-    if (maxBadRecords != null) 'max_bad_records': maxBadRecords!.toTfJson(),
-    if (referenceFileSchemaUri != null)
-      'reference_file_schema_uri': referenceFileSchemaUri!.toTfJson(),
-    if (schema != null) 'schema': schema!.toTfJson(),
-    if (connectionId != null) 'connection_id': connectionId!.toTfJson(),
-    if (metadataCacheMode != null)
-      'metadata_cache_mode': metadataCacheMode!.terraformValue,
-    if (objectMetadata != null)
-      'object_metadata': objectMetadata!.terraformValue,
-    if (jsonExtension != null) 'json_extension': jsonExtension!.toTfJson(),
-    if (decimalTargetTypes != null) 'decimal_target_types': decimalTargetTypes,
-    if (csvOptions != null) 'csv_options': [csvOptions!.toArgMap()],
-    if (googleSheetsOptions != null)
-      'google_sheets_options': [googleSheetsOptions!.toArgMap()],
-    if (hivePartitioningOptions != null)
-      'hive_partitioning_options': [hivePartitioningOptions!.toArgMap()],
-    if (parquetOptions != null) 'parquet_options': [parquetOptions!.toArgMap()],
-    if (avroOptions != null) 'avro_options': [avroOptions!.toArgMap()],
-    if (jsonOptions != null) 'json_options': [jsonOptions!.toArgMap()],
-    if (bigtableOptions != null) 'bigtable_options': [bigtableOptions],
+  final TfArg<String> fileFormat;
+
+  final TfArg<String> storageUri;
+
+  final TfArg<String> tableFormat;
+
+  Map<String, Object?> encode() => {
+    'connection_id': connectionId.toTfJson(),
+    'file_format': fileFormat.toTfJson(),
+    'storage_uri': storageUri.toTfJson(),
+    'table_format': tableFormat.toTfJson(),
   };
 }
 
-/// `external_data_configuration.csv_options` sub-block. `quote` is
-/// required by the provider (Terraform escapes the API default `"`
-/// as `\"`; pass an empty string when the data has no quoted sections).
+/// Typed helper for the `encryption_configuration` block of
+/// `google_bigquery_table` (derived from provider schema).
 @immutable
-class BigqueryTableCsvOptions {
-  const BigqueryTableCsvOptions({
-    required this.quote,
+final class BigqueryTableEncryptionConfiguration {
+  const BigqueryTableEncryptionConfiguration({required this.kmsKeyName});
+
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
+
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
+}
+
+/// Typed helper for the `external_catalog_table_options` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableExternalCatalogTableOptions {
+  const BigqueryTableExternalCatalogTableOptions({
+    this.connectionId,
+    this.parameters,
+    this.storageDescriptor,
+  });
+
+  final TfArg<String>? connectionId;
+
+  final TfArg<Map<String, String>>? parameters;
+
+  final BigqueryTableExternalCatalogTableOptionsStorageDescriptor?
+  storageDescriptor;
+
+  Map<String, Object?> encode() => {
+    'connection_id': ?connectionId?.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'storage_descriptor': ?storageDescriptor?.encode(),
+  };
+}
+
+/// Typed helper for the `external_catalog_table_options.storage_descriptor` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableExternalCatalogTableOptionsStorageDescriptor {
+  const BigqueryTableExternalCatalogTableOptionsStorageDescriptor({
+    this.inputFormat,
+    this.locationUri,
+    this.outputFormat,
+    this.serdeInfo,
+  });
+
+  final TfArg<String>? inputFormat;
+
+  final TfArg<String>? locationUri;
+
+  final TfArg<String>? outputFormat;
+
+  final BigqueryTableExternalCatalogTableOptionsStorageDescriptorSerdeInfo?
+  serdeInfo;
+
+  Map<String, Object?> encode() => {
+    'input_format': ?inputFormat?.toTfJson(),
+    'location_uri': ?locationUri?.toTfJson(),
+    'output_format': ?outputFormat?.toTfJson(),
+    'serde_info': ?serdeInfo?.encode(),
+  };
+}
+
+/// Typed helper for the `external_catalog_table_options.storage_descriptor.serde_info` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableExternalCatalogTableOptionsStorageDescriptorSerdeInfo {
+  const BigqueryTableExternalCatalogTableOptionsStorageDescriptorSerdeInfo({
+    this.name,
+    this.parameters,
+    required this.serializationLibrary,
+  });
+
+  final TfArg<String>? name;
+
+  final TfArg<Map<String, String>>? parameters;
+
+  final TfArg<String> serializationLibrary;
+
+  Map<String, Object?> encode() => {
+    'name': ?name?.toTfJson(),
+    'parameters': ?parameters?.toTfJson(),
+    'serialization_library': serializationLibrary.toTfJson(),
+  };
+}
+
+/// Typed helper for the `external_data_configuration` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableExternalDataConfiguration {
+  const BigqueryTableExternalDataConfiguration({
+    required this.autodetect,
+    this.compression,
+    this.connectionId,
+    this.decimalTargetTypes,
+    this.fileSetSpecType,
+    this.ignoreUnknownValues,
+    this.jsonExtension,
+    this.maxBadRecords,
+    this.metadataCacheMode,
+    this.objectMetadata,
+    this.referenceFileSchemaUri,
+    this.schema,
+    this.sourceFormat,
+    required this.sourceUris,
+    this.avroOptions,
+    this.bigtableOptions,
+    this.csvOptions,
+    this.googleSheetsOptions,
+    this.hivePartitioningOptions,
+    this.jsonOptions,
+    this.parquetOptions,
+  });
+
+  final TfArg<bool> autodetect;
+
+  final TfArg<ExternalDataCompression>? compression;
+
+  final TfArg<String>? connectionId;
+
+  final TfArg<List<Object?>>? decimalTargetTypes;
+
+  final TfArg<FileSetSpecType>? fileSetSpecType;
+
+  final TfArg<bool>? ignoreUnknownValues;
+
+  final TfArg<String>? jsonExtension;
+
+  final TfArg<num>? maxBadRecords;
+
+  final TfArg<MetadataCacheMode>? metadataCacheMode;
+
+  final TfArg<ObjectMetadata>? objectMetadata;
+
+  final TfArg<String>? referenceFileSchemaUri;
+
+  final TfArg<String>? schema;
+
+  final TfArg<ExternalDataSourceFormat>? sourceFormat;
+
+  final TfArg<List<Object?>> sourceUris;
+
+  final BigqueryTableExternalDataConfigurationAvroOptions? avroOptions;
+
+  final BigqueryTableExternalDataConfigurationBigtableOptions? bigtableOptions;
+
+  final BigqueryTableExternalDataConfigurationCsvOptions? csvOptions;
+
+  final BigqueryTableExternalDataConfigurationGoogleSheetsOptions?
+  googleSheetsOptions;
+
+  final BigqueryTableExternalDataConfigurationHivePartitioningOptions?
+  hivePartitioningOptions;
+
+  final BigqueryTableExternalDataConfigurationJsonOptions? jsonOptions;
+
+  final BigqueryTableExternalDataConfigurationParquetOptions? parquetOptions;
+
+  Map<String, Object?> encode() => {
+    'autodetect': autodetect.toTfJson(),
+    'compression': ?compression?.toTfJson(),
+    'connection_id': ?connectionId?.toTfJson(),
+    'decimal_target_types': ?decimalTargetTypes?.toTfJson(),
+    'file_set_spec_type': ?fileSetSpecType?.toTfJson(),
+    'ignore_unknown_values': ?ignoreUnknownValues?.toTfJson(),
+    'json_extension': ?jsonExtension?.toTfJson(),
+    'max_bad_records': ?maxBadRecords?.toTfJson(),
+    'metadata_cache_mode': ?metadataCacheMode?.toTfJson(),
+    'object_metadata': ?objectMetadata?.toTfJson(),
+    'reference_file_schema_uri': ?referenceFileSchemaUri?.toTfJson(),
+    'schema': ?schema?.toTfJson(),
+    'source_format': ?sourceFormat?.toTfJson(),
+    'source_uris': sourceUris.toTfJson(),
+    'avro_options': ?avroOptions?.encode(),
+    'bigtable_options': ?bigtableOptions?.encode(),
+    'csv_options': ?csvOptions?.encode(),
+    'google_sheets_options': ?googleSheetsOptions?.encode(),
+    'hive_partitioning_options': ?hivePartitioningOptions?.encode(),
+    'json_options': ?jsonOptions?.encode(),
+    'parquet_options': ?parquetOptions?.encode(),
+  };
+}
+
+/// Typed helper for the `external_data_configuration.avro_options` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableExternalDataConfigurationAvroOptions {
+  const BigqueryTableExternalDataConfigurationAvroOptions({
+    required this.useAvroLogicalTypes,
+  });
+
+  final TfArg<bool> useAvroLogicalTypes;
+
+  Map<String, Object?> encode() => {
+    'use_avro_logical_types': useAvroLogicalTypes.toTfJson(),
+  };
+}
+
+/// Typed helper for the `external_data_configuration.bigtable_options` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableExternalDataConfigurationBigtableOptions {
+  const BigqueryTableExternalDataConfigurationBigtableOptions({
+    this.ignoreUnspecifiedColumnFamilies,
+    this.outputColumnFamiliesAsJson,
+    this.readRowkeyAsString,
+    this.columnFamily,
+  });
+
+  final TfArg<bool>? ignoreUnspecifiedColumnFamilies;
+
+  final TfArg<bool>? outputColumnFamiliesAsJson;
+
+  final TfArg<bool>? readRowkeyAsString;
+
+  final List<BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamily>?
+  columnFamily;
+
+  Map<String, Object?> encode() => {
+    'ignore_unspecified_column_families': ?ignoreUnspecifiedColumnFamilies
+        ?.toTfJson(),
+    'output_column_families_as_json': ?outputColumnFamiliesAsJson?.toTfJson(),
+    'read_rowkey_as_string': ?readRowkeyAsString?.toTfJson(),
+    if (columnFamily != null)
+      'column_family': [for (final e in columnFamily!) e.encode()],
+  };
+}
+
+/// Typed helper for the `external_data_configuration.bigtable_options.column_family` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamily {
+  const BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamily({
+    this.encoding,
+    this.familyId,
+    this.onlyReadLatest,
+    this.type,
+    this.column,
+  });
+
+  final TfArg<String>? encoding;
+
+  final TfArg<String>? familyId;
+
+  final TfArg<bool>? onlyReadLatest;
+
+  final TfArg<String>? type;
+
+  final List<
+    BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamilyColumn
+  >?
+  column;
+
+  Map<String, Object?> encode() => {
+    'encoding': ?encoding?.toTfJson(),
+    'family_id': ?familyId?.toTfJson(),
+    'only_read_latest': ?onlyReadLatest?.toTfJson(),
+    'type': ?type?.toTfJson(),
+    if (column != null) 'column': [for (final e in column!) e.encode()],
+  };
+}
+
+/// Typed helper for the `external_data_configuration.bigtable_options.column_family.column` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamilyColumn {
+  const BigqueryTableExternalDataConfigurationBigtableOptionsColumnFamilyColumn({
+    this.encoding,
+    this.fieldName,
+    this.onlyReadLatest,
+    this.qualifierEncoded,
+    this.qualifierString,
+    this.type,
+  });
+
+  final TfArg<String>? encoding;
+
+  final TfArg<String>? fieldName;
+
+  final TfArg<bool>? onlyReadLatest;
+
+  final TfArg<String>? qualifierEncoded;
+
+  final TfArg<String>? qualifierString;
+
+  final TfArg<String>? type;
+
+  Map<String, Object?> encode() => {
+    'encoding': ?encoding?.toTfJson(),
+    'field_name': ?fieldName?.toTfJson(),
+    'only_read_latest': ?onlyReadLatest?.toTfJson(),
+    'qualifier_encoded': ?qualifierEncoded?.toTfJson(),
+    'qualifier_string': ?qualifierString?.toTfJson(),
+    'type': ?type?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `external_data_configuration.csv_options` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableExternalDataConfigurationCsvOptions {
+  const BigqueryTableExternalDataConfigurationCsvOptions({
     this.allowJaggedRows,
     this.allowQuotedNewlines,
     this.encoding,
     this.fieldDelimiter,
+    required this.quote,
     this.skipLeadingRows,
     this.sourceColumnMatch,
   });
 
-  final TfArg<String> quote;
   final TfArg<bool>? allowJaggedRows;
+
   final TfArg<bool>? allowQuotedNewlines;
+
   final TfArg<String>? encoding;
+
   final TfArg<String>? fieldDelimiter;
-  final TfArg<int>? skipLeadingRows;
+
+  final TfArg<String> quote;
+
+  final TfArg<num>? skipLeadingRows;
+
   final TfArg<String>? sourceColumnMatch;
 
-  Map<String, Object?> toArgMap() => {
+  Map<String, Object?> encode() => {
+    'allow_jagged_rows': ?allowJaggedRows?.toTfJson(),
+    'allow_quoted_newlines': ?allowQuotedNewlines?.toTfJson(),
+    'encoding': ?encoding?.toTfJson(),
+    'field_delimiter': ?fieldDelimiter?.toTfJson(),
     'quote': quote.toTfJson(),
-    if (allowJaggedRows != null)
-      'allow_jagged_rows': allowJaggedRows!.toTfJson(),
-    if (allowQuotedNewlines != null)
-      'allow_quoted_newlines': allowQuotedNewlines!.toTfJson(),
-    if (encoding != null) 'encoding': encoding!.toTfJson(),
-    if (fieldDelimiter != null) 'field_delimiter': fieldDelimiter!.toTfJson(),
-    if (skipLeadingRows != null)
-      'skip_leading_rows': skipLeadingRows!.toTfJson(),
-    if (sourceColumnMatch != null)
-      'source_column_match': sourceColumnMatch!.toTfJson(),
+    'skip_leading_rows': ?skipLeadingRows?.toTfJson(),
+    'source_column_match': ?sourceColumnMatch?.toTfJson(),
   };
 }
 
-/// `external_data_configuration.google_sheets_options` sub-block. At
-/// least one of [range] / [skipLeadingRows] must be set per the
-/// provider schema; the wrapper does not enforce that.
+/// Typed helper for the `external_data_configuration.google_sheets_options` block of
+/// `google_bigquery_table` (derived from provider schema).
 @immutable
-class BigqueryTableGoogleSheetsOptions {
-  const BigqueryTableGoogleSheetsOptions({this.range, this.skipLeadingRows});
+final class BigqueryTableExternalDataConfigurationGoogleSheetsOptions {
+  const BigqueryTableExternalDataConfigurationGoogleSheetsOptions({
+    this.range,
+    this.skipLeadingRows,
+  });
 
   final TfArg<String>? range;
-  final TfArg<int>? skipLeadingRows;
 
-  Map<String, Object?> toArgMap() => {
-    if (range != null) 'range': range!.toTfJson(),
-    if (skipLeadingRows != null)
-      'skip_leading_rows': skipLeadingRows!.toTfJson(),
+  final TfArg<num>? skipLeadingRows;
+
+  Map<String, Object?> encode() => {
+    'range': ?range?.toTfJson(),
+    'skip_leading_rows': ?skipLeadingRows?.toTfJson(),
   };
 }
 
-/// `external_data_configuration.hive_partitioning_options` sub-block.
-/// Enables Hive-style partition keys (e.g. `dt=2024-01-01/`) to be
-/// surfaced as table columns.
+/// Typed helper for the `external_data_configuration.hive_partitioning_options` block of
+/// `google_bigquery_table` (derived from provider schema).
 @immutable
-class BigqueryTableHivePartitioningOptions {
-  const BigqueryTableHivePartitioningOptions({
+final class BigqueryTableExternalDataConfigurationHivePartitioningOptions {
+  const BigqueryTableExternalDataConfigurationHivePartitioningOptions({
     this.mode,
     this.requirePartitionFilter,
     this.sourceUriPrefix,
   });
 
   final TfArg<String>? mode;
+
   final TfArg<bool>? requirePartitionFilter;
+
   final TfArg<String>? sourceUriPrefix;
 
-  Map<String, Object?> toArgMap() => {
-    if (mode != null) 'mode': mode!.toTfJson(),
-    if (requirePartitionFilter != null)
-      'require_partition_filter': requirePartitionFilter!.toTfJson(),
-    if (sourceUriPrefix != null)
-      'source_uri_prefix': sourceUriPrefix!.toTfJson(),
+  Map<String, Object?> encode() => {
+    'mode': ?mode?.toTfJson(),
+    'require_partition_filter': ?requirePartitionFilter?.toTfJson(),
+    'source_uri_prefix': ?sourceUriPrefix?.toTfJson(),
   };
 }
 
-/// `external_data_configuration.parquet_options` sub-block.
+/// Typed helper for the `external_data_configuration.json_options` block of
+/// `google_bigquery_table` (derived from provider schema).
 @immutable
-class BigqueryTableParquetOptions {
-  const BigqueryTableParquetOptions({
+final class BigqueryTableExternalDataConfigurationJsonOptions {
+  const BigqueryTableExternalDataConfigurationJsonOptions({this.encoding});
+
+  final TfArg<String>? encoding;
+
+  Map<String, Object?> encode() => {'encoding': ?encoding?.toTfJson()};
+}
+
+/// Typed helper for the `external_data_configuration.parquet_options` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableExternalDataConfigurationParquetOptions {
+  const BigqueryTableExternalDataConfigurationParquetOptions({
     this.enableListInference,
     this.enumAsString,
   });
 
   final TfArg<bool>? enableListInference;
+
   final TfArg<bool>? enumAsString;
 
-  Map<String, Object?> toArgMap() => {
-    if (enableListInference != null)
-      'enable_list_inference': enableListInference!.toTfJson(),
-    if (enumAsString != null) 'enum_as_string': enumAsString!.toTfJson(),
+  Map<String, Object?> encode() => {
+    'enable_list_inference': ?enableListInference?.toTfJson(),
+    'enum_as_string': ?enumAsString?.toTfJson(),
   };
 }
 
-/// `external_data_configuration.avro_options` sub-block.
-/// [useAvroLogicalTypes] is required by the provider schema.
+/// Typed helper for the `materialized_view` block of
+/// `google_bigquery_table` (derived from provider schema).
 @immutable
-class BigqueryTableAvroOptions {
-  const BigqueryTableAvroOptions({required this.useAvroLogicalTypes});
-
-  final TfArg<bool> useAvroLogicalTypes;
-
-  Map<String, Object?> toArgMap() => {
-    'use_avro_logical_types': useAvroLogicalTypes.toTfJson(),
-  };
-}
-
-/// `external_data_configuration.json_options` sub-block.
-@immutable
-class BigqueryTableJsonOptions {
-  const BigqueryTableJsonOptions({this.encoding});
-
-  final TfArg<String>? encoding;
-
-  Map<String, Object?> toArgMap() => {
-    if (encoding != null) 'encoding': encoding!.toTfJson(),
-  };
-}
-
-// ===========================================================================
-// Encryption / constraints / replication / biglake
-// ===========================================================================
-
-/// `encryption_configuration` block (max=1). Attaches a CMEK key to the
-/// table; the default BigQuery service account needs encrypt/decrypt
-/// rights on [kmsKeyName]. `kmsKeyVersion` is computed by GCP and
-/// surfaced via the wrapper's `kmsKeyVersionRef` getter (not here).
-@immutable
-class BigqueryTableEncryptionConfiguration {
-  const BigqueryTableEncryptionConfiguration({required this.kmsKeyName});
-
-  final TfArg<String> kmsKeyName;
-
-  Map<String, Object?> toArgMap() => {'kms_key_name': kmsKeyName.toTfJson()};
-}
-
-/// `table_constraints` block (max=1). BigQuery accepts these for
-/// metadata / query-planning hints; constraints are NOT enforced at
-/// write time.
-@immutable
-class BigqueryTableTableConstraints {
-  const BigqueryTableTableConstraints({this.primaryKey, this.foreignKeys});
-
-  final BigqueryTablePrimaryKey? primaryKey;
-  final List<BigqueryTableForeignKey>? foreignKeys;
-
-  Map<String, Object?> toArgMap() => {
-    if (primaryKey != null) 'primary_key': [primaryKey!.toArgMap()],
-    if (foreignKeys != null)
-      'foreign_keys': foreignKeys!.map((f) => f.toArgMap()).toList(),
-  };
-}
-
-/// `table_constraints.primary_key` sub-block (max=1).
-@immutable
-class BigqueryTablePrimaryKey {
-  const BigqueryTablePrimaryKey({required this.columns});
-
-  final List<String> columns;
-
-  Map<String, Object?> toArgMap() => {'columns': columns};
-}
-
-/// One entry of `table_constraints.foreign_keys`. Each entry binds one
-/// referencing column to one referenced column in [referencedTable];
-/// composite foreign keys are represented by multiple entries with the
-/// same [referencedTable].
-@immutable
-class BigqueryTableForeignKey {
-  const BigqueryTableForeignKey({
-    required this.referencedTable,
-    required this.columnReferences,
-    this.name,
+final class BigqueryTableMaterializedView {
+  const BigqueryTableMaterializedView({
+    this.allowNonIncrementalDefinition,
+    this.enableRefresh,
+    required this.query,
+    this.refreshIntervalMs,
   });
 
-  final BigqueryTableReferencedTable referencedTable;
-  final BigqueryTableColumnReferences columnReferences;
-  final TfArg<String>? name;
+  final TfArg<bool>? allowNonIncrementalDefinition;
 
-  Map<String, Object?> toArgMap() => {
-    'referenced_table': [referencedTable.toArgMap()],
-    'column_references': [columnReferences.toArgMap()],
-    if (name != null) 'name': name!.toTfJson(),
+  final TfArg<bool>? enableRefresh;
+
+  final TfArg<String> query;
+
+  final TfArg<num>? refreshIntervalMs;
+
+  Map<String, Object?> encode() => {
+    'allow_non_incremental_definition': ?allowNonIncrementalDefinition
+        ?.toTfJson(),
+    'enable_refresh': ?enableRefresh?.toTfJson(),
+    'query': query.toTfJson(),
+    'refresh_interval_ms': ?refreshIntervalMs?.toTfJson(),
   };
 }
 
-/// Inner `referenced_table` block of a foreign key constraint —
-/// fully-qualified BigQuery table reference.
+/// Typed helper for the `range_partitioning` block of
+/// `google_bigquery_table` (derived from provider schema).
 @immutable
-class BigqueryTableReferencedTable {
-  const BigqueryTableReferencedTable({
-    required this.projectId,
+final class BigqueryTableRangePartitioning {
+  const BigqueryTableRangePartitioning({
+    required this.field,
+    required this.range,
+  });
+
+  final TfArg<String> field;
+
+  final BigqueryTableRangePartitioningRange range;
+
+  Map<String, Object?> encode() => {
+    'field': field.toTfJson(),
+    'range': range.encode(),
+  };
+}
+
+/// Typed helper for the `range_partitioning.range` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableRangePartitioningRange {
+  const BigqueryTableRangePartitioningRange({
+    required this.end,
+    required this.interval,
+    required this.start,
+  });
+
+  final TfArg<num> end;
+
+  final TfArg<num> interval;
+
+  final TfArg<num> start;
+
+  Map<String, Object?> encode() => {
+    'end': end.toTfJson(),
+    'interval': interval.toTfJson(),
+    'start': start.toTfJson(),
+  };
+}
+
+/// Typed helper for the `schema_foreign_type_info` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableSchemaForeignTypeInfo {
+  const BigqueryTableSchemaForeignTypeInfo({required this.typeSystem});
+
+  final TfArg<String> typeSystem;
+
+  Map<String, Object?> encode() => {'type_system': typeSystem.toTfJson()};
+}
+
+/// Typed helper for the `table_constraints` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableTableConstraints {
+  const BigqueryTableTableConstraints({this.foreignKeys, this.primaryKey});
+
+  final List<BigqueryTableTableConstraintsForeignKeys>? foreignKeys;
+
+  final BigqueryTableTableConstraintsPrimaryKey? primaryKey;
+
+  Map<String, Object?> encode() => {
+    if (foreignKeys != null)
+      'foreign_keys': [for (final e in foreignKeys!) e.encode()],
+    'primary_key': ?primaryKey?.encode(),
+  };
+}
+
+/// Typed helper for the `table_constraints.foreign_keys` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableTableConstraintsForeignKeys {
+  const BigqueryTableTableConstraintsForeignKeys({
+    this.name,
+    required this.columnReferences,
+    required this.referencedTable,
+  });
+
+  final TfArg<String>? name;
+
+  final BigqueryTableTableConstraintsForeignKeysColumnReferences
+  columnReferences;
+
+  final BigqueryTableTableConstraintsForeignKeysReferencedTable referencedTable;
+
+  Map<String, Object?> encode() => {
+    'name': ?name?.toTfJson(),
+    'column_references': columnReferences.encode(),
+    'referenced_table': referencedTable.encode(),
+  };
+}
+
+/// Typed helper for the `table_constraints.foreign_keys.column_references` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableTableConstraintsForeignKeysColumnReferences {
+  const BigqueryTableTableConstraintsForeignKeysColumnReferences({
+    required this.referencedColumn,
+    required this.referencingColumn,
+  });
+
+  final TfArg<String> referencedColumn;
+
+  final TfArg<String> referencingColumn;
+
+  Map<String, Object?> encode() => {
+    'referenced_column': referencedColumn.toTfJson(),
+    'referencing_column': referencingColumn.toTfJson(),
+  };
+}
+
+/// Typed helper for the `table_constraints.foreign_keys.referenced_table` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableTableConstraintsForeignKeysReferencedTable {
+  const BigqueryTableTableConstraintsForeignKeysReferencedTable({
     required this.datasetId,
+    required this.projectId,
     required this.tableId,
   });
 
+  final RefTo<GoogleBigqueryDataset> datasetId;
+
   final TfArg<String> projectId;
-  final TfArg<String> datasetId;
+
   final TfArg<String> tableId;
 
-  Map<String, Object?> toArgMap() => {
+  Map<String, Object?> encode() => {
+    'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': projectId.toTfJson(),
-    'dataset_id': datasetId.toTfJson(),
     'table_id': tableId.toTfJson(),
   };
 }
 
-/// Inner `column_references` block of a foreign key constraint —
-/// pairs one referencing column with the referenced primary-key column.
+/// Typed helper for the `table_constraints.primary_key` block of
+/// `google_bigquery_table` (derived from provider schema).
 @immutable
-class BigqueryTableColumnReferences {
-  const BigqueryTableColumnReferences({
-    required this.referencingColumn,
-    required this.referencedColumn,
-  });
+final class BigqueryTableTableConstraintsPrimaryKey {
+  const BigqueryTableTableConstraintsPrimaryKey({required this.columns});
 
-  final TfArg<String> referencingColumn;
-  final TfArg<String> referencedColumn;
+  final TfArg<List<Object?>> columns;
 
-  Map<String, Object?> toArgMap() => {
-    'referencing_column': referencingColumn.toTfJson(),
-    'referenced_column': referencedColumn.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'columns': columns.toTfJson()};
 }
 
-/// `table_replication_info` block (max=1). Marks the table as a
-/// replica of a source materialized view in another dataset
-/// (`CREATE MATERIALIZED VIEW ... AS REPLICA OF ...`).
+/// Typed helper for the `table_replication_info` block of
+/// `google_bigquery_table` (derived from provider schema).
 @immutable
-class BigqueryTableTableReplicationInfo {
+final class BigqueryTableTableReplicationInfo {
   const BigqueryTableTableReplicationInfo({
-    required this.sourceProjectId,
-    required this.sourceDatasetId,
-    required this.sourceTableId,
     this.replicationIntervalMs,
+    required this.sourceDatasetId,
+    required this.sourceProjectId,
+    required this.sourceTableId,
   });
+
+  final TfArg<num>? replicationIntervalMs;
+
+  final TfArg<String> sourceDatasetId;
 
   final TfArg<String> sourceProjectId;
-  final TfArg<String> sourceDatasetId;
-  final TfArg<String> sourceTableId;
-  final TfArg<int>? replicationIntervalMs;
 
-  Map<String, Object?> toArgMap() => {
-    'source_project_id': sourceProjectId.toTfJson(),
+  final TfArg<String> sourceTableId;
+
+  Map<String, Object?> encode() => {
+    'replication_interval_ms': ?replicationIntervalMs?.toTfJson(),
     'source_dataset_id': sourceDatasetId.toTfJson(),
+    'source_project_id': sourceProjectId.toTfJson(),
     'source_table_id': sourceTableId.toTfJson(),
-    if (replicationIntervalMs != null)
-      'replication_interval_ms': replicationIntervalMs!.toTfJson(),
   };
 }
 
-/// `biglake_configuration` block (max=1). Promotes the table to a
-/// BigLake managed table — BigQuery stores metadata-only snapshots
-/// while the actual data lives at [storageUri] in [fileFormat] +
-/// [tableFormat] (typically Parquet + Iceberg).
+/// Typed helper for the `time_partitioning` block of
+/// `google_bigquery_table` (derived from provider schema).
 @immutable
-class BigqueryTableBiglakeConfiguration {
-  const BigqueryTableBiglakeConfiguration({
-    required this.connectionId,
-    required this.storageUri,
-    required this.fileFormat,
-    required this.tableFormat,
+final class BigqueryTableTimePartitioning {
+  const BigqueryTableTimePartitioning({
+    this.expirationMs,
+    this.field,
+    this.requirePartitionFilter,
+    required this.type,
   });
 
-  final TfArg<String> connectionId;
-  final TfArg<String> storageUri;
-  final TfArg<String> fileFormat;
-  final TfArg<String> tableFormat;
+  final TfArg<num>? expirationMs;
 
-  Map<String, Object?> toArgMap() => {
-    'connection_id': connectionId.toTfJson(),
-    'storage_uri': storageUri.toTfJson(),
-    'file_format': fileFormat.toTfJson(),
-    'table_format': tableFormat.toTfJson(),
+  final TfArg<String>? field;
+
+  final TfArg<bool>? requirePartitionFilter;
+
+  final TfArg<TimePartitioningType> type;
+
+  Map<String, Object?> encode() => {
+    'expiration_ms': ?expirationMs?.toTfJson(),
+    'field': ?field?.toTfJson(),
+    'require_partition_filter': ?requirePartitionFilter?.toTfJson(),
+    'type': type.toTfJson(),
+  };
+}
+
+/// Typed helper for the `view` block of
+/// `google_bigquery_table` (derived from provider schema).
+@immutable
+final class BigqueryTableView {
+  const BigqueryTableView({required this.query, this.useLegacySql});
+
+  final TfArg<String> query;
+
+  final TfArg<bool>? useLegacySql;
+
+  Map<String, Object?> encode() => {
+    'query': query.toTfJson(),
+    'use_legacy_sql': ?useLegacySql?.toTfJson(),
   };
 }
 
@@ -683,13 +875,15 @@ final class GoogleBigqueryTable extends Resource {
     BigqueryTableTimePartitioning? timePartitioning,
     BigqueryTableRangePartitioning? rangePartitioning,
     BigqueryTableMaterializedView? materializedView,
-    BigqueryTableTableView? view,
+    BigqueryTableView? view,
     BigqueryTableExternalDataConfiguration? externalDataConfiguration,
     BigqueryTableEncryptionConfiguration? encryptionConfiguration,
     BigqueryTableTableConstraints? tableConstraints,
     BigqueryTableTableReplicationInfo? tableReplicationInfo,
     BigqueryTableBiglakeConfiguration? biglakeConfiguration,
     TfArg<String>? project,
+    BigqueryTableExternalCatalogTableOptions? externalCatalogTableOptions,
+    BigqueryTableSchemaForeignTypeInfo? schemaForeignTypeInfo,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -713,33 +907,39 @@ final class GoogleBigqueryTable extends Resource {
            'ignore_schema_changes': ?ignoreSchemaChanges,
            'table_metadata_view': ?tableMetadataView,
            if (timePartitioning != null)
-             'time_partitioning': TfArg.literal([timePartitioning.toArgMap()]),
+             'time_partitioning': TfArg.literal(timePartitioning.encode()),
            if (rangePartitioning != null)
-             'range_partitioning': TfArg.literal([
-               rangePartitioning.toArgMap(),
-             ]),
+             'range_partitioning': TfArg.literal(rangePartitioning.encode()),
            if (materializedView != null)
-             'materialized_view': TfArg.literal([materializedView.toArgMap()]),
-           if (view != null) 'view': TfArg.literal([view.toArgMap()]),
+             'materialized_view': TfArg.literal(materializedView.encode()),
+           if (view != null) 'view': TfArg.literal(view.encode()),
            if (externalDataConfiguration != null)
-             'external_data_configuration': TfArg.literal([
-               externalDataConfiguration.toArgMap(),
-             ]),
+             'external_data_configuration': TfArg.literal(
+               externalDataConfiguration.encode(),
+             ),
            if (encryptionConfiguration != null)
-             'encryption_configuration': TfArg.literal([
-               encryptionConfiguration.toArgMap(),
-             ]),
+             'encryption_configuration': TfArg.literal(
+               encryptionConfiguration.encode(),
+             ),
            if (tableConstraints != null)
-             'table_constraints': TfArg.literal([tableConstraints.toArgMap()]),
+             'table_constraints': TfArg.literal(tableConstraints.encode()),
            if (tableReplicationInfo != null)
-             'table_replication_info': TfArg.literal([
-               tableReplicationInfo.toArgMap(),
-             ]),
+             'table_replication_info': TfArg.literal(
+               tableReplicationInfo.encode(),
+             ),
            if (biglakeConfiguration != null)
-             'biglake_configuration': TfArg.literal([
-               biglakeConfiguration.toArgMap(),
-             ]),
+             'biglake_configuration': TfArg.literal(
+               biglakeConfiguration.encode(),
+             ),
            'project': ?project,
+           if (externalCatalogTableOptions != null)
+             'external_catalog_table_options': TfArg.literal(
+               externalCatalogTableOptions.encode(),
+             ),
+           if (schemaForeignTypeInfo != null)
+             'schema_foreign_type_info': TfArg.literal(
+               schemaForeignTypeInfo.encode(),
+             ),
          },
        );
 

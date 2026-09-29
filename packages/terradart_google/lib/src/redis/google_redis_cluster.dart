@@ -76,6 +76,71 @@ enum RedisClusterTransitEncryptionMode implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `gcs_source`, `managed_backup_source` on `google_redis_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.gcsSource(...)`.
+sealed class RedisClusterSource {
+  const RedisClusterSource();
+
+  /// Sets `gcs_source`.
+  const factory RedisClusterSource.gcsSource(RedisClusterGcsSource gcsSource) =
+      RedisClusterSourceGcsSource;
+
+  /// Sets `managed_backup_source`.
+  const factory RedisClusterSource.managedBackupSource(
+    RedisClusterManagedBackupSource managedBackupSource,
+  ) = RedisClusterSourceManagedBackupSource;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [RedisClusterSource.gcsSource] choice: sets `gcs_source`.
+final class RedisClusterSourceGcsSource extends RedisClusterSource {
+  const RedisClusterSourceGcsSource(this.gcsSource);
+
+  final RedisClusterGcsSource gcsSource;
+
+  @override
+  String get blockKey => 'gcs_source';
+
+  @override
+  Map<String, Object?> encode() => {'gcs_source': gcsSource.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'gcs_source': TfArg.literal(gcsSource.encode()),
+  };
+}
+
+/// The [RedisClusterSource.managedBackupSource] choice: sets `managed_backup_source`.
+final class RedisClusterSourceManagedBackupSource extends RedisClusterSource {
+  const RedisClusterSourceManagedBackupSource(this.managedBackupSource);
+
+  final RedisClusterManagedBackupSource managedBackupSource;
+
+  @override
+  String get blockKey => 'managed_backup_source';
+
+  @override
+  Map<String, Object?> encode() => {
+    'managed_backup_source': managedBackupSource.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'managed_backup_source': TfArg.literal(managedBackupSource.encode()),
+  };
+}
+
 /// Typed helper for the `automated_backup_config` block of
 /// `google_redis_cluster` (derived from provider schema).
 @immutable
@@ -481,6 +546,12 @@ final class GoogleRedisCluster extends Resource {
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    TfArg<String>? aclPolicy,
+    TfArg<String>? maintenanceVersion,
+    TfArg<RedisClusterServerCaMode>? serverCaMode,
+    TfArg<String>? serverCaPool,
+    RedisClusterCrossClusterReplicationConfig? crossClusterReplicationConfig,
+    RedisClusterSource? source,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -517,6 +588,15 @@ final class GoogleRedisCluster extends Resource {
            'deletion_protection_enabled': ?deletionProtectionEnabled,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           'acl_policy': ?aclPolicy,
+           'maintenance_version': ?maintenanceVersion,
+           'server_ca_mode': ?serverCaMode,
+           'server_ca_pool': ?serverCaPool,
+           if (crossClusterReplicationConfig != null)
+             'cross_cluster_replication_config': TfArg.literal(
+               crossClusterReplicationConfig.encode(),
+             ),
+           ...?source?.argMap,
          },
        );
 

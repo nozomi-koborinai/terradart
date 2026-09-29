@@ -27,6 +27,145 @@ const Set<String> _googleDatabaseMigrationServiceConnectionProfileSensitive =
       'postgresql.ssl.client_key',
     };
 
+/// Exactly one of `mysql`, `postgresql`, `oracle`, `cloudsql`, `alloydb` on `google_database_migration_service_connection_profile`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.mysql(...)`.
+sealed class DatabaseMigrationServiceConnectionProfileEngine {
+  const DatabaseMigrationServiceConnectionProfileEngine();
+
+  /// Sets `mysql`.
+  const factory DatabaseMigrationServiceConnectionProfileEngine.mysql(
+    DatabaseMigrationServiceConnectionProfileMysql mysql,
+  ) = DatabaseMigrationServiceConnectionProfileEngineMysql;
+
+  /// Sets `postgresql`.
+  const factory DatabaseMigrationServiceConnectionProfileEngine.postgresql(
+    DatabaseMigrationServiceConnectionProfilePostgresql postgresql,
+  ) = DatabaseMigrationServiceConnectionProfileEnginePostgresql;
+
+  /// Sets `oracle`.
+  const factory DatabaseMigrationServiceConnectionProfileEngine.oracle(
+    DatabaseMigrationServiceConnectionProfileOracle oracle,
+  ) = DatabaseMigrationServiceConnectionProfileEngineOracle;
+
+  /// Sets `cloudsql`.
+  const factory DatabaseMigrationServiceConnectionProfileEngine.cloudsql(
+    DatabaseMigrationServiceConnectionProfileCloudsql cloudsql,
+  ) = DatabaseMigrationServiceConnectionProfileEngineCloudsql;
+
+  /// Sets `alloydb`.
+  const factory DatabaseMigrationServiceConnectionProfileEngine.alloydb(
+    DatabaseMigrationServiceConnectionProfileAlloydb alloydb,
+  ) = DatabaseMigrationServiceConnectionProfileEngineAlloydb;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [DatabaseMigrationServiceConnectionProfileEngine.mysql] choice: sets `mysql`.
+final class DatabaseMigrationServiceConnectionProfileEngineMysql
+    extends DatabaseMigrationServiceConnectionProfileEngine {
+  const DatabaseMigrationServiceConnectionProfileEngineMysql(this.mysql);
+
+  final DatabaseMigrationServiceConnectionProfileMysql mysql;
+
+  @override
+  String get blockKey => 'mysql';
+
+  @override
+  Map<String, Object?> encode() => {'mysql': mysql.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'mysql': TfArg.literal(mysql.encode()),
+  };
+}
+
+/// The [DatabaseMigrationServiceConnectionProfileEngine.postgresql] choice: sets `postgresql`.
+final class DatabaseMigrationServiceConnectionProfileEnginePostgresql
+    extends DatabaseMigrationServiceConnectionProfileEngine {
+  const DatabaseMigrationServiceConnectionProfileEnginePostgresql(
+    this.postgresql,
+  );
+
+  final DatabaseMigrationServiceConnectionProfilePostgresql postgresql;
+
+  @override
+  String get blockKey => 'postgresql';
+
+  @override
+  Map<String, Object?> encode() => {'postgresql': postgresql.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'postgresql': TfArg.literal(postgresql.encode()),
+  };
+}
+
+/// The [DatabaseMigrationServiceConnectionProfileEngine.oracle] choice: sets `oracle`.
+final class DatabaseMigrationServiceConnectionProfileEngineOracle
+    extends DatabaseMigrationServiceConnectionProfileEngine {
+  const DatabaseMigrationServiceConnectionProfileEngineOracle(this.oracle);
+
+  final DatabaseMigrationServiceConnectionProfileOracle oracle;
+
+  @override
+  String get blockKey => 'oracle';
+
+  @override
+  Map<String, Object?> encode() => {'oracle': oracle.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'oracle': TfArg.literal(oracle.encode()),
+  };
+}
+
+/// The [DatabaseMigrationServiceConnectionProfileEngine.cloudsql] choice: sets `cloudsql`.
+final class DatabaseMigrationServiceConnectionProfileEngineCloudsql
+    extends DatabaseMigrationServiceConnectionProfileEngine {
+  const DatabaseMigrationServiceConnectionProfileEngineCloudsql(this.cloudsql);
+
+  final DatabaseMigrationServiceConnectionProfileCloudsql cloudsql;
+
+  @override
+  String get blockKey => 'cloudsql';
+
+  @override
+  Map<String, Object?> encode() => {'cloudsql': cloudsql.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cloudsql': TfArg.literal(cloudsql.encode()),
+  };
+}
+
+/// The [DatabaseMigrationServiceConnectionProfileEngine.alloydb] choice: sets `alloydb`.
+final class DatabaseMigrationServiceConnectionProfileEngineAlloydb
+    extends DatabaseMigrationServiceConnectionProfileEngine {
+  const DatabaseMigrationServiceConnectionProfileEngineAlloydb(this.alloydb);
+
+  final DatabaseMigrationServiceConnectionProfileAlloydb alloydb;
+
+  @override
+  String get blockKey => 'alloydb';
+
+  @override
+  Map<String, Object?> encode() => {'alloydb': alloydb.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'alloydb': TfArg.literal(alloydb.encode()),
+  };
+}
+
 /// Typed helper for the `alloydb` block of
 /// `google_database_migration_service_connection_profile` (derived from provider schema).
 @immutable
@@ -845,7 +984,7 @@ final class GoogleDatabaseMigrationServiceConnectionProfile extends Resource {
     TfArg<String>? location,
     TfArg<String>? project,
     TfArg<String>? role,
-    DatabaseMigrationServiceConnectionProfilePostgresql? postgresql,
+    required DatabaseMigrationServiceConnectionProfileEngine engine,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -860,8 +999,7 @@ final class GoogleDatabaseMigrationServiceConnectionProfile extends Resource {
            'location': ?location,
            'project': ?project,
            'role': ?role,
-           if (postgresql != null)
-             'postgresql': TfArg.literal(postgresql.encode()),
+           ...engine.argMap,
          },
        );
 

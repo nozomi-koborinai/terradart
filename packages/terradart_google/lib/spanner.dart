@@ -18,7 +18,13 @@ export 'src/spanner/google_spanner_backup_schedule.dart'
         SpannerBackupScheduleSpec,
         SpannerBackupScheduleSpecCronSpec;
 export 'src/spanner/google_spanner_database.dart'
-    show GoogleSpannerDatabase, SpannerDatabaseDialect;
+    show
+        GoogleSpannerDatabase,
+        SpannerDatabaseDialect,
+        SpannerDatabaseEncryptionConfig,
+        SpannerDatabaseEncryptionConfigKmsKeyName,
+        SpannerDatabaseEncryptionConfigKmsKeyNameKmsKeyName,
+        SpannerDatabaseEncryptionConfigKmsKeyNameKmsKeyNames;
 export 'src/spanner/google_spanner_database_iam_binding.dart'
     show GoogleSpannerDatabaseIamBinding;
 export 'src/spanner/google_spanner_database_iam_member.dart'
@@ -28,6 +34,25 @@ export 'src/spanner/google_spanner_database_iam_policy.dart'
 export 'src/spanner/google_spanner_instance.dart'
     show
         GoogleSpannerInstance,
+        SpannerInstanceAutoscalingConfig,
+        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptions,
+        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverrides,
+        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimits,
+        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMax,
+        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxMaxNodes,
+        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxMaxProcessingUnits,
+        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMin,
+        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinMinNodes,
+        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinMinProcessingUnits,
+        SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsReplicaSelection,
+        SpannerInstanceAutoscalingConfigAutoscalingLimits,
+        SpannerInstanceAutoscalingConfigAutoscalingLimitsMax,
+        SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxMaxNodes,
+        SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxMaxProcessingUnits,
+        SpannerInstanceAutoscalingConfigAutoscalingLimitsMin,
+        SpannerInstanceAutoscalingConfigAutoscalingLimitsMinMinNodes,
+        SpannerInstanceAutoscalingConfigAutoscalingLimitsMinMinProcessingUnits,
+        SpannerInstanceAutoscalingConfigAutoscalingTargets,
         SpannerInstanceDefaultBackupScheduleType,
         SpannerInstanceEdition,
         SpannerInstanceInstanceType,

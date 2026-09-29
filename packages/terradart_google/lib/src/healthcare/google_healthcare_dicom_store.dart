@@ -1,10 +1,32 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
 
 /// Sensitive field paths for `google_healthcare_dicom_store`.
 const Set<String> _googleHealthcareDicomStoreSensitive = <String>{};
+
+/// Typed helper for the `notification_config` block of
+/// `google_healthcare_dicom_store` (derived from provider schema).
+@immutable
+final class HealthcareDicomStoreNotificationConfig {
+  const HealthcareDicomStoreNotificationConfig({
+    required this.pubsubTopic,
+    this.sendForBulkImport,
+  });
+
+  final RefTo<GooglePubsubTopic> pubsubTopic;
+
+  final TfArg<bool>? sendForBulkImport;
+
+  Map<String, Object?> encode() => {
+    'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
+    'send_for_bulk_import': ?sendForBulkImport?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_healthcare_dicom_store`.
 ///
@@ -19,13 +41,20 @@ final class GoogleHealthcareDicomStore extends Resource {
     required TfArg<String> name,
     required TfArg<String> dataset,
     TfArg<Map<String, String>>? labels,
+    HealthcareDicomStoreNotificationConfig? notificationConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'name': name, 'dataset': dataset, 'labels': ?labels},
+         argMap: {
+           'name': name,
+           'dataset': dataset,
+           'labels': ?labels,
+           if (notificationConfig != null)
+             'notification_config': TfArg.literal(notificationConfig.encode()),
+         },
        );
 
   @override

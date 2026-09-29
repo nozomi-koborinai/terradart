@@ -15,6 +15,9 @@ curatedDoc: |-
   /// external artifact that standalone terradart-validate
   /// cannot supply. Do not apply.
 
+sealedNames:
+  "psc_interface_config, vpc_peering_config": connectivity
+
 paramOrder:
   - create_without_validation
   - deletion_policy
@@ -24,3 +27,4 @@ paramOrder:
   - private_connection_id
   - project
   - vpc_peering_config
+  - psc_interface_config

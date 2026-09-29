@@ -1,7 +1,11 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_filestore_instance`.
 const Set<String> _googleFilestoreInstanceSensitive = <String>{};
@@ -64,62 +68,6 @@ enum FilestoreInstanceNfsSquashMode implements TerraformEnum {
   final String terraformValue;
 }
 
-/// `file_shares.nfs_export_options` nested block.
-class FilestoreInstanceNfsExportOptions {
-  const FilestoreInstanceNfsExportOptions({this.accessMode, this.squashMode});
-
-  final FilestoreInstanceNfsExportAccessMode? accessMode;
-  final FilestoreInstanceNfsSquashMode? squashMode;
-
-  Map<String, Object?> toArgMap() => {
-    if (accessMode != null) 'access_mode': accessMode!.terraformValue,
-    if (squashMode != null) 'squash_mode': squashMode!.terraformValue,
-  };
-}
-
-/// `file_shares` nested block (required, max=1).
-class FilestoreInstanceFileShare {
-  const FilestoreInstanceFileShare({
-    required this.name,
-    required this.capacityGb,
-    this.nfsExportOptions,
-  });
-
-  final TfArg<String> name;
-  final TfArg<num> capacityGb;
-  final List<FilestoreInstanceNfsExportOptions>? nfsExportOptions;
-
-  Map<String, Object?> toArgMap() => {
-    'name': name.toTfJson(),
-    'capacity_gb': capacityGb.toTfJson(),
-    if (nfsExportOptions != null)
-      'nfs_export_options': nfsExportOptions!.map((o) => o.toArgMap()).toList(),
-  };
-}
-
-/// `networks` nested block (required).
-class FilestoreInstanceNetwork {
-  const FilestoreInstanceNetwork({
-    required this.network,
-    required this.modes,
-    this.connectMode,
-    this.reservedIpRange,
-  });
-
-  final TfArg<String> network;
-  final List<FilestoreInstanceNetworkMode> modes;
-  final FilestoreInstanceConnectMode? connectMode;
-  final TfArg<String>? reservedIpRange;
-
-  Map<String, Object?> toArgMap() => {
-    'network': network.toTfJson(),
-    'modes': modes.map((m) => m.terraformValue).toList(),
-    if (connectMode != null) 'connect_mode': connectMode!.terraformValue,
-    if (reservedIpRange != null)
-      'reserved_ip_range': reservedIpRange!.toTfJson(),
-  };
-}
-
 /// `initial_replication.role`.
 enum FilestoreInstanceReplicationRole implements TerraformEnum {
   roleUnspecified('ROLE_UNSPECIFIED'),
@@ -131,14 +79,279 @@ enum FilestoreInstanceReplicationRole implements TerraformEnum {
   final String terraformValue;
 }
 
-/// `initial_replication` nested block (max=1).
-class FilestoreInstanceInitialReplication {
-  const FilestoreInstanceInitialReplication({this.role});
+/// Typed helper for the `directory_services` block of
+/// `google_filestore_instance` (derived from provider schema).
+@immutable
+final class FilestoreInstanceDirectoryServices {
+  const FilestoreInstanceDirectoryServices({this.ldap});
 
-  final FilestoreInstanceReplicationRole? role;
+  final FilestoreInstanceDirectoryServicesLdap? ldap;
 
-  Map<String, Object?> toArgMap() => {
-    if (role != null) 'role': role!.terraformValue,
+  Map<String, Object?> encode() => {'ldap': ?ldap?.encode()};
+}
+
+/// Typed helper for the `directory_services.ldap` block of
+/// `google_filestore_instance` (derived from provider schema).
+@immutable
+final class FilestoreInstanceDirectoryServicesLdap {
+  const FilestoreInstanceDirectoryServicesLdap({
+    required this.domain,
+    this.groupsOu,
+    required this.servers,
+    this.usersOu,
+  });
+
+  final TfArg<String> domain;
+
+  final TfArg<String>? groupsOu;
+
+  final TfArg<List<Object?>> servers;
+
+  final TfArg<String>? usersOu;
+
+  Map<String, Object?> encode() => {
+    'domain': domain.toTfJson(),
+    'groups_ou': ?groupsOu?.toTfJson(),
+    'servers': servers.toTfJson(),
+    'users_ou': ?usersOu?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `file_shares` block of
+/// `google_filestore_instance` (derived from provider schema).
+@immutable
+final class FilestoreInstanceFileShares {
+  const FilestoreInstanceFileShares({
+    required this.capacityGb,
+    required this.name,
+    this.sourceBackup,
+    this.sourceBackupdrBackup,
+    this.nfsExportOptions,
+  });
+
+  final TfArg<num> capacityGb;
+
+  final TfArg<String> name;
+
+  final TfArg<String>? sourceBackup;
+
+  final TfArg<String>? sourceBackupdrBackup;
+
+  final List<FilestoreInstanceFileSharesNfsExportOptions>? nfsExportOptions;
+
+  Map<String, Object?> encode() => {
+    'capacity_gb': capacityGb.toTfJson(),
+    'name': name.toTfJson(),
+    'source_backup': ?sourceBackup?.toTfJson(),
+    'source_backupdr_backup': ?sourceBackupdrBackup?.toTfJson(),
+    if (nfsExportOptions != null)
+      'nfs_export_options': [for (final e in nfsExportOptions!) e.encode()],
+  };
+}
+
+/// Typed helper for the `file_shares.nfs_export_options` block of
+/// `google_filestore_instance` (derived from provider schema).
+@immutable
+final class FilestoreInstanceFileSharesNfsExportOptions {
+  const FilestoreInstanceFileSharesNfsExportOptions({
+    this.accessMode,
+    this.anonGid,
+    this.anonUid,
+    this.ipRanges,
+    this.network,
+    this.squashMode,
+  });
+
+  final TfArg<FilestoreInstanceNfsExportAccessMode>? accessMode;
+
+  final TfArg<num>? anonGid;
+
+  final TfArg<num>? anonUid;
+
+  final TfArg<List<Object?>>? ipRanges;
+
+  final RefTo<GoogleComputeNetwork>? network;
+
+  final TfArg<FilestoreInstanceNfsSquashMode>? squashMode;
+
+  Map<String, Object?> encode() => {
+    'access_mode': ?accessMode?.toTfJson(),
+    'anon_gid': ?anonGid?.toTfJson(),
+    'anon_uid': ?anonUid?.toTfJson(),
+    'ip_ranges': ?ipRanges?.toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'squash_mode': ?squashMode?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `initial_replication` block of
+/// `google_filestore_instance` (derived from provider schema).
+@immutable
+final class FilestoreInstanceInitialReplication {
+  const FilestoreInstanceInitialReplication({this.role, this.replicas});
+
+  final TfArg<FilestoreInstanceReplicationRole>? role;
+
+  final List<FilestoreInstanceInitialReplicationReplicas>? replicas;
+
+  Map<String, Object?> encode() => {
+    'role': ?role?.toTfJson(),
+    if (replicas != null) 'replicas': [for (final e in replicas!) e.encode()],
+  };
+}
+
+/// Typed helper for the `initial_replication.replicas` block of
+/// `google_filestore_instance` (derived from provider schema).
+@immutable
+final class FilestoreInstanceInitialReplicationReplicas {
+  const FilestoreInstanceInitialReplicationReplicas({
+    required this.peerInstance,
+  });
+
+  final TfArg<String> peerInstance;
+
+  Map<String, Object?> encode() => {'peer_instance': peerInstance.toTfJson()};
+}
+
+/// Typed helper for the `networks` block of
+/// `google_filestore_instance` (derived from provider schema).
+@immutable
+final class FilestoreInstanceNetworks {
+  const FilestoreInstanceNetworks({
+    this.connectMode,
+    required this.modes,
+    required this.network,
+    this.reservedIpRange,
+    this.pscConfig,
+  });
+
+  final TfArg<FilestoreInstanceConnectMode>? connectMode;
+
+  final List<TfArg<FilestoreInstanceNetworksModes>> modes;
+
+  final RefTo<GoogleComputeNetwork> network;
+
+  final TfArg<String>? reservedIpRange;
+
+  final FilestoreInstanceNetworksPscConfig? pscConfig;
+
+  Map<String, Object?> encode() => {
+    'connect_mode': ?connectMode?.toTfJson(),
+    'modes': [for (final e in modes) e.toTfJson()],
+    'network': network.encodeAs('name').toTfJson(),
+    'reserved_ip_range': ?reservedIpRange?.toTfJson(),
+    'psc_config': ?pscConfig?.encode(),
+  };
+}
+
+/// `modes` — derived from the provider schema description.
+enum FilestoreInstanceNetworksModes implements TerraformEnum {
+  addressModeUnspecified('ADDRESS_MODE_UNSPECIFIED'),
+  modeIpv4('MODE_IPV4'),
+  modeIpv6('MODE_IPV6');
+
+  const FilestoreInstanceNetworksModes(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `networks.psc_config` block of
+/// `google_filestore_instance` (derived from provider schema).
+@immutable
+final class FilestoreInstanceNetworksPscConfig {
+  const FilestoreInstanceNetworksPscConfig({this.endpointProject});
+
+  final TfArg<String>? endpointProject;
+
+  Map<String, Object?> encode() => {
+    'endpoint_project': ?endpointProject?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `performance_config` block of
+/// `google_filestore_instance` (derived from provider schema).
+@immutable
+final class FilestoreInstancePerformanceConfig {
+  const FilestoreInstancePerformanceConfig({this.iops});
+
+  final FilestoreInstancePerformanceConfigIops? iops;
+
+  Map<String, Object?> encode() => {...?iops?.encode()};
+}
+
+/// At most one of `iops_per_tb`, `fixed_iops` on the `performance_config` block of `google_filestore_instance`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.iopsPerTb(...)`.
+sealed class FilestoreInstancePerformanceConfigIops {
+  const FilestoreInstancePerformanceConfigIops();
+
+  /// Sets `iops_per_tb`.
+  const factory FilestoreInstancePerformanceConfigIops.iopsPerTb(
+    FilestoreInstancePerformanceConfigIopsPerTb iopsPerTb,
+  ) = FilestoreInstancePerformanceConfigIopsIopsPerTb;
+
+  /// Sets `fixed_iops`.
+  const factory FilestoreInstancePerformanceConfigIops.fixedIops(
+    FilestoreInstancePerformanceConfigFixedIops fixedIops,
+  ) = FilestoreInstancePerformanceConfigIopsFixedIops;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [FilestoreInstancePerformanceConfigIops.iopsPerTb] choice: sets `iops_per_tb`.
+final class FilestoreInstancePerformanceConfigIopsIopsPerTb
+    extends FilestoreInstancePerformanceConfigIops {
+  const FilestoreInstancePerformanceConfigIopsIopsPerTb(this.iopsPerTb);
+
+  final FilestoreInstancePerformanceConfigIopsPerTb iopsPerTb;
+
+  @override
+  String get blockKey => 'iops_per_tb';
+
+  @override
+  Map<String, Object?> encode() => {'iops_per_tb': iopsPerTb.encode()};
+}
+
+/// The [FilestoreInstancePerformanceConfigIops.fixedIops] choice: sets `fixed_iops`.
+final class FilestoreInstancePerformanceConfigIopsFixedIops
+    extends FilestoreInstancePerformanceConfigIops {
+  const FilestoreInstancePerformanceConfigIopsFixedIops(this.fixedIops);
+
+  final FilestoreInstancePerformanceConfigFixedIops fixedIops;
+
+  @override
+  String get blockKey => 'fixed_iops';
+
+  @override
+  Map<String, Object?> encode() => {'fixed_iops': fixedIops.encode()};
+}
+
+/// Typed helper for the `performance_config.fixed_iops` block of
+/// `google_filestore_instance` (derived from provider schema).
+@immutable
+final class FilestoreInstancePerformanceConfigFixedIops {
+  const FilestoreInstancePerformanceConfigFixedIops({this.maxIops});
+
+  final TfArg<num>? maxIops;
+
+  Map<String, Object?> encode() => {'max_iops': ?maxIops?.toTfJson()};
+}
+
+/// Typed helper for the `performance_config.iops_per_tb` block of
+/// `google_filestore_instance` (derived from provider schema).
+@immutable
+final class FilestoreInstancePerformanceConfigIopsPerTb {
+  const FilestoreInstancePerformanceConfigIopsPerTb({this.maxIopsPerTb});
+
+  final TfArg<num>? maxIopsPerTb;
+
+  Map<String, Object?> encode() => {
+    'max_iops_per_tb': ?maxIopsPerTb?.toTfJson(),
   };
 }
 
@@ -153,7 +366,7 @@ class FilestoreInstanceInitialReplication {
 /// - [name]: instance ID.
 /// - [tier]: service tier ([FilestoreInstanceTier]).
 /// - [fileShares]: NFS export (name + capacity in GiB).
-/// - [networks]: VPC attachment ([FilestoreInstanceNetwork]).
+/// - [networks]: VPC attachment ([FilestoreInstanceNetworks]).
 ///
 /// Enable `file.googleapis.com` via [GoogleProjectService] before apply.
 ///
@@ -164,11 +377,11 @@ class FilestoreInstanceInitialReplication {
 ///   name: TfArg.literal('shared-nfs'),
 ///   tier: TfArg.literal(FilestoreInstanceTier.basicHdd),
 ///   location: TfArg.literal('asia-northeast1'),
-///   fileShares: FilestoreInstanceFileShare(
+///   fileShares: FilestoreInstanceFileShares(
 ///     name: TfArg.literal('share1'),
 ///     capacityGb: TfArg.literal(1024),
 ///   ),
-///   networks: FilestoreInstanceNetwork(
+///   networks: FilestoreInstanceNetworks(
 ///     network: TfArg.ref(vpc.id),
 ///     modes: const [FilestoreInstanceNetworkMode.modeIpv4],
 ///   ),
@@ -182,10 +395,21 @@ final class GoogleFilestoreInstance extends Resource {
     required TfArg<String> name,
     required TfArg<FilestoreInstanceTier> tier,
     TfArg<String>? location,
-    FilestoreInstanceFileShare? fileShares,
-    List<FilestoreInstanceNetwork>? networks,
+    required FilestoreInstanceFileShares fileShares,
+    required List<FilestoreInstanceNetworks> networks,
     FilestoreInstanceInitialReplication? initialReplication,
     TfArg<Map<String, String>>? labels,
+    TfArg<bool>? deletionProtectionEnabled,
+    TfArg<String>? deletionProtectionReason,
+    TfArg<String>? description,
+    TfArg<String>? desiredReplicaState,
+    RefTo<GoogleKmsCryptoKey>? kmsKeyName,
+    TfArg<String>? project,
+    TfArg<String>? protocol,
+    TfArg<Map<String, String>>? tags,
+    TfArg<String>? zone,
+    FilestoreInstanceDirectoryServices? directoryServices,
+    FilestoreInstancePerformanceConfig? performanceConfig,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -196,17 +420,24 @@ final class GoogleFilestoreInstance extends Resource {
            'name': name,
            'tier': tier,
            'location': ?location,
-           if (fileShares != null)
-             'file_shares': TfArg.literal([fileShares.toArgMap()]),
-           if (networks != null)
-             'networks': TfArg.literal(
-               networks.map((n) => n.toArgMap()).toList(),
-             ),
+           'file_shares': TfArg.literal(fileShares.encode()),
+           'networks': TfArg.literal([for (final e in networks) e.encode()]),
            if (initialReplication != null)
-             'initial_replication': TfArg.literal([
-               initialReplication.toArgMap(),
-             ]),
+             'initial_replication': TfArg.literal(initialReplication.encode()),
            'labels': ?labels,
+           'deletion_protection_enabled': ?deletionProtectionEnabled,
+           'deletion_protection_reason': ?deletionProtectionReason,
+           'description': ?description,
+           'desired_replica_state': ?desiredReplicaState,
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
+           'project': ?project,
+           'protocol': ?protocol,
+           'tags': ?tags,
+           'zone': ?zone,
+           if (directoryServices != null)
+             'directory_services': TfArg.literal(directoryServices.encode()),
+           if (performanceConfig != null)
+             'performance_config': TfArg.literal(performanceConfig.encode()),
          },
        );
 

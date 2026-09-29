@@ -81,14 +81,15 @@ final class OracleGoldengateStack extends Stack {
       localName: 'source',
       location: .literal(location),
       goldengateConnectionId: .literal(connectionId),
-      properties: .literal({
-        'connection_type': 'GENERIC',
-        'display_name': 'TerraDart generic connection',
-        'generic_connection_properties': {
-          'host': 'db.example.com',
-          'technology_type': 'GENERIC',
-        },
-      }),
+      properties: OracleDatabaseGoldengateConnectionProperties(
+        connectionType: .literal('GENERIC'),
+        displayName: .literal('TerraDart generic connection'),
+        genericConnectionProperties:
+            OracleDatabaseGoldengateConnectionPropertiesGenericConnectionProperties(
+              host: .literal('db.example.com'),
+              technologyType: .literal('GENERIC'),
+            ),
+      ),
       dependsOn: apiDeps,
     );
     add(connection);

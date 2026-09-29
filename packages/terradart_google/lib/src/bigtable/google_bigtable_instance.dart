@@ -1,7 +1,10 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_bigtable_instance`.
 const Set<String> _googleBigtableInstanceSensitive = <String>{};
@@ -36,28 +39,69 @@ enum BigtableClusterStorageType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// One cluster block on `google_bigtable_instance`.
-class BigtableInstanceCluster {
+/// Typed helper for the `cluster` block of
+/// `google_bigtable_instance` (derived from provider schema).
+@immutable
+final class BigtableInstanceCluster {
   const BigtableInstanceCluster({
     required this.clusterId,
-    this.zone,
+    this.kmsKeyName,
+    this.nodeScalingFactor,
     this.numNodes,
     this.storageType,
-    this.kmsKeyName,
+    this.zone,
+    this.autoscalingConfig,
   });
 
   final TfArg<String> clusterId;
-  final TfArg<String>? zone;
-  final TfArg<num>? numNodes;
-  final TfArg<BigtableClusterStorageType>? storageType;
-  final TfArg<String>? kmsKeyName;
 
-  Map<String, Object?> toArgMap() => {
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
+
+  final TfArg<String>? nodeScalingFactor;
+
+  final TfArg<num>? numNodes;
+
+  final TfArg<BigtableClusterStorageType>? storageType;
+
+  final TfArg<String>? zone;
+
+  final BigtableInstanceClusterAutoscalingConfig? autoscalingConfig;
+
+  Map<String, Object?> encode() => {
     'cluster_id': clusterId.toTfJson(),
-    if (zone != null) 'zone': zone!.toTfJson(),
-    if (numNodes != null) 'num_nodes': numNodes!.toTfJson(),
-    if (storageType != null) 'storage_type': storageType!.toTfJson(),
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+    'node_scaling_factor': ?nodeScalingFactor?.toTfJson(),
+    'num_nodes': ?numNodes?.toTfJson(),
+    'storage_type': ?storageType?.toTfJson(),
+    'zone': ?zone?.toTfJson(),
+    'autoscaling_config': ?autoscalingConfig?.encode(),
+  };
+}
+
+/// Typed helper for the `cluster.autoscaling_config` block of
+/// `google_bigtable_instance` (derived from provider schema).
+@immutable
+final class BigtableInstanceClusterAutoscalingConfig {
+  const BigtableInstanceClusterAutoscalingConfig({
+    required this.cpuTarget,
+    required this.maxNodes,
+    required this.minNodes,
+    this.storageTarget,
+  });
+
+  final TfArg<num> cpuTarget;
+
+  final TfArg<num> maxNodes;
+
+  final TfArg<num> minNodes;
+
+  final TfArg<num>? storageTarget;
+
+  Map<String, Object?> encode() => {
+    'cpu_target': cpuTarget.toTfJson(),
+    'max_nodes': maxNodes.toTfJson(),
+    'min_nodes': minNodes.toTfJson(),
+    'storage_target': ?storageTarget?.toTfJson(),
   };
 }
 
@@ -102,6 +146,7 @@ final class GoogleBigtableInstance extends Resource {
     TfArg<bool>? deletionProtection,
     TfArg<bool>? forceDestroy,
     TfArg<String>? project,
+    TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -111,9 +156,7 @@ final class GoogleBigtableInstance extends Resource {
          argMap: {
            'name': name,
            if (cluster != null)
-             'cluster': TfArg.literal(
-               cluster.map((c) => c.toArgMap()).toList(),
-             ),
+             'cluster': TfArg.literal([for (final e in cluster) e.encode()]),
            'display_name': ?displayName,
            'instance_type': ?instanceType,
            'edition': ?edition,
@@ -122,6 +165,7 @@ final class GoogleBigtableInstance extends Resource {
            'deletion_protection': ?deletionProtection,
            'force_destroy': ?forceDestroy,
            'project': ?project,
+           'tags': ?tags,
          },
        );
 

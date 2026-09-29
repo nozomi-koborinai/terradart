@@ -422,6 +422,15 @@ final class GoogleLookerInstance extends Resource {
     LookerInstancePeriodicExportConfig? periodicExportConfig,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    TfArg<bool>? controlledEgressEnabled,
+    TfArg<bool>? fipsEnabled,
+    TfArg<bool>? geminiEnabled,
+    TfArg<bool>? privateIpEnabled,
+    TfArg<bool>? pscEnabled,
+    TfArg<bool>? publicIpEnabled,
+    TfArg<String>? reservedRange,
+    LookerInstancePscConfig? pscConfig,
+    LookerInstanceUserMetadata? userMetadata,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -456,6 +465,17 @@ final class GoogleLookerInstance extends Resource {
              ),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           'controlled_egress_enabled': ?controlledEgressEnabled,
+           'fips_enabled': ?fipsEnabled,
+           'gemini_enabled': ?geminiEnabled,
+           'private_ip_enabled': ?privateIpEnabled,
+           'psc_enabled': ?pscEnabled,
+           'public_ip_enabled': ?publicIpEnabled,
+           'reserved_range': ?reservedRange,
+           if (pscConfig != null)
+             'psc_config': TfArg.literal(pscConfig.encode()),
+           if (userMetadata != null)
+             'user_metadata': TfArg.literal(userMetadata.encode()),
          },
        );
 

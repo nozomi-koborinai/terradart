@@ -57,6 +57,15 @@ paramOrder:
   - periodic_export_config
   - deletion_policy
   - project
+  - controlled_egress_enabled
+  - fips_enabled
+  - gemini_enabled
+  - private_ip_enabled
+  - psc_enabled
+  - public_ip_enabled
+  - reserved_range
+  - psc_config
+  - user_metadata
 
 extraGetters: |2
     /// Reference to `name` attribute.

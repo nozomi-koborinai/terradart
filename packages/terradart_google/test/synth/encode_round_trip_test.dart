@@ -115,7 +115,7 @@ final Map<String, Object Function()> _syntheticInstances = {
   'BigqueryDatasetAccessView': () => BigqueryDatasetAccessView(
     view: BigqueryDatasetDatasetView(
       projectId: TfArg.literal('p'),
-      datasetId: TfArg.literal('d'),
+      datasetId: RefTo.literal('d'),
       tableId: TfArg.literal('t'),
     ),
   ),
@@ -123,7 +123,7 @@ final Map<String, Object Function()> _syntheticInstances = {
     dataset: BigqueryDatasetDatasetAccessChild(
       dataset: BigqueryDatasetDatasetReference(
         projectId: TfArg.literal('p'),
-        datasetId: TfArg.literal('d'),
+        datasetId: RefTo.literal('d'),
       ),
       targetTypes: [TfArg.literal('VIEWS')],
     ),
@@ -131,7 +131,7 @@ final Map<String, Object Function()> _syntheticInstances = {
   'BigqueryDatasetAccessRoutine': () => BigqueryDatasetAccessRoutine(
     routine: BigqueryDatasetDatasetRoutineRef(
       projectId: TfArg.literal('p'),
-      datasetId: TfArg.literal('d'),
+      datasetId: RefTo.literal('d'),
       routineId: TfArg.literal('r'),
     ),
   ),
@@ -400,23 +400,6 @@ final Map<String, Object Function()> _syntheticInstances = {
     asset: BigqueryConnectionConfigurationAsset(database: TfArg.literal('db')),
   ),
 
-  // --- BigqueryJobConfiguration (4) — bigquery_job -------------------------
-  'BigqueryJobQuery': () => BigqueryJobQuery(query: TfArg.literal('SELECT 1')),
-  'BigqueryJobLoad': () => BigqueryJobLoad(
-    sourceUris: TfArg.literal(['gs://bucket/obj']),
-    destinationTable: BigqueryJobDestinationTable(tableId: TfArg.literal('t')),
-  ),
-  'BigqueryJobExtract': () => BigqueryJobExtract(
-    destinationUris: TfArg.literal(['gs://bucket/out-*.csv']),
-    sourceTable: BigqueryJobDestinationTable(tableId: TfArg.literal('t')),
-  ),
-  'BigqueryJobCopy': () => BigqueryJobCopy(
-    sourceTables: [BigqueryJobDestinationTable(tableId: TfArg.literal('src'))],
-    destinationTable: BigqueryJobDestinationTable(
-      tableId: TfArg.literal('dst'),
-    ),
-  ),
-
   // --- CloudbuildTriggerBuildSpec (3) — cloudbuild_trigger -----------------
   'CloudbuildTriggerFilenameSpec': () =>
       CloudbuildTriggerFilenameSpec(filename: TfArg.literal('cloudbuild.yaml')),
@@ -455,13 +438,6 @@ final Map<String, Object Function()> _syntheticInstances = {
       const DataplexDatascanDataDiscoverySpec(),
   'DataplexDatascanDataDocumentationSpec': () =>
       const DataplexDatascanDataDocumentationSpec(),
-
-  // --- DataplexTaskWorkload (2) — google_dataplex_task ---------------------
-  'DataplexTaskSparkWorkload': () =>
-      DataplexTaskSparkWorkload(sqlScript: TfArg.literal('SELECT 1')),
-  'DataplexTaskNotebookWorkload': () => DataplexTaskNotebookWorkload(
-    notebook: TfArg.literal('gs://mock-bucket/notebook.ipynb'),
-  ),
 
   // --- DataprocBatchWorkload (4) — google_dataproc_batch -------------------
   'DataprocBatchPysparkWorkload': () => DataprocBatchPysparkWorkload(
@@ -695,26 +671,6 @@ final Map<String, Object Function()> _syntheticInstances = {
   'StorageBucketObjectBucketObjectFromContent': () =>
       StorageBucketObjectBucketObjectFromContent(
         content: TfArg.literal('mock-inline-payload'),
-      ),
-
-  // --- StorageBatchOperationsJobOperation (4) — batch_operations_job -------
-  'StorageBatchOperationsJobPutMetadata': () =>
-      StorageBatchOperationsJobPutMetadata(
-        customMetadata: TfArg.literal({'managed-by': 'terradart'}),
-      ),
-  'StorageBatchOperationsJobPutObjectHold': () =>
-      StorageBatchOperationsJobPutObjectHold(
-        temporaryHold: TfArg.literal('TRUE'),
-      ),
-  'StorageBatchOperationsJobRewriteObject': () =>
-      StorageBatchOperationsJobRewriteObject(
-        kmsKey: TfArg.literal(
-          'projects/p/locations/global/keyRings/r/cryptoKeys/k',
-        ),
-      ),
-  'StorageBatchOperationsJobDeleteObject': () =>
-      StorageBatchOperationsJobDeleteObject(
-        permanentObjectDeletionEnabled: TfArg.literal(false),
       ),
 
   // --- DataCatalogEntryKind (2) — data_catalog_entry -----------------------

@@ -60,12 +60,13 @@ final class DataCatalogEntryCustomType extends DataCatalogEntryKind {
   TfArg<String> get value => userSpecifiedType;
 }
 
-/// `gcs_fileset_spec` — only valid when [entryKind] is [DataCatalogEntryFileset].
+/// Typed helper for the `gcs_fileset_spec` block of
+/// `google_data_catalog_entry` (derived from provider schema).
 @immutable
 final class DataCatalogEntryGcsFilesetSpec {
   const DataCatalogEntryGcsFilesetSpec({required this.filePatterns});
 
-  final TfArg<List<String>> filePatterns;
+  final TfArg<List<Object?>> filePatterns;
 
   Map<String, Object?> encode() => {'file_patterns': filePatterns.toTfJson()};
 }
@@ -132,7 +133,7 @@ final class GoogleDataCatalogEntry extends Resource {
            'linked_resource': ?linkedResource,
            'schema': ?schema,
            if (gcsFilesetSpec != null)
-             'gcs_fileset_spec': TfArg.literal([gcsFilesetSpec.encode()]),
+             'gcs_fileset_spec': TfArg.literal(gcsFilesetSpec.encode()),
            'deletion_policy': ?deletionPolicy,
          },
        );
