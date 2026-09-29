@@ -30,7 +30,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:meta/meta.dart';
 import 'package:path/path.dart' as p;
 
 import 'sync_mm_yaml.dart' show Manifest, ProviderPin, resolveUpstreamRef;
@@ -48,13 +47,11 @@ typedef MmSource = ({String? upstream, String? reason});
 
 /// The mmv1 path a generated Go resource file names in its header, or null
 /// for a hand-written one.
-@visibleForTesting
 String? mmPathFromGoHeader(String goSource) =>
     _configurationHeader.firstMatch(goSource)?.group(1);
 
 /// `resource_<name>.go` file name → its path under [servicesDir], from the
 /// repo tree listing [treePaths].
-@visibleForTesting
 Map<String, String> resourceGoFiles(
   Iterable<String> treePaths,
   String servicesDir,
@@ -69,12 +66,10 @@ Map<String, String> resourceGoFiles(
 }
 
 /// `resource_<name>.go` for a Terraform [type] (`google_<name>`).
-@visibleForTesting
 String resourceGoFileName(String type) =>
     'resource_${type.substring(type.indexOf('_') + 1)}.go';
 
 /// The generated `mm_sources.yaml` for [sources] (sorted by type).
-@visibleForTesting
 String renderMmSources({
   required String lane,
   required String providerVersion,
@@ -200,8 +195,9 @@ Future<void> main(List<String> args) async {
     await _treePaths(sync.providerRepo, tag),
     sync.servicesDir,
   );
-  final mmDir = Directory(p.join(lane.schemaDir, 'mm'))
-    ..createSync(recursive: true);
+  // Every fetch completes before anything is written, so a failed sync
+  // leaves the fixture as it was.
+  final fetched = <String, String>{};
   final sources = <String, MmSource>{};
   for (final type in types) {
     final goPath = goFiles[resourceGoFileName(type)];
@@ -218,11 +214,15 @@ Future<void> main(List<String> args) async {
       sources[type] = (upstream: null, reason: 'hand-written ($goPath)');
       continue;
     }
-    File(p.join(mmDir.path, '$type.yaml'))
-        .writeAsStringSync(await _raw(_mmRepo, ref, upstream));
+    fetched[type] = await _raw(_mmRepo, ref, upstream);
     sources[type] = (upstream: upstream, reason: null);
   }
 
+  final mmDir = Directory(p.join(lane.schemaDir, 'mm'))
+    ..createSync(recursive: true);
+  for (final MapEntry(key: type, value: body) in fetched.entries) {
+    File(p.join(mmDir.path, '$type.yaml')).writeAsStringSync(body);
+  }
   for (final f in mmDir.listSync().whereType<File>()) {
     final type = p.basenameWithoutExtension(f.path);
     if (f.path.endsWith('.yaml') && sources[type]?.upstream == null) {

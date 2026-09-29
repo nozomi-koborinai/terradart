@@ -224,8 +224,10 @@ providers:
         '$lane    mmSync:\n      providerRepo: acme/terraform-x\n'
         '      servicesDir: x/services\n',
       ).single;
-      expect(x.mmSync,
-          (providerRepo: 'acme/terraform-x', servicesDir: 'x/services'));
+      expect(
+        x.mmSync,
+        (providerRepo: 'acme/terraform-x', servicesDir: 'x/services'),
+      );
       expect(parseWrapLanes(lane).single.mmSync, isNull);
       expect(
         () => parseWrapLanes(
@@ -245,8 +247,10 @@ providers:
       final beta = parseWrapLanes(File(providersPath).readAsStringSync())
           .singleWhere((l) => l.name == 'google-beta');
       expect(beta.mmHints, isTrue);
-      expect(beta.mmSync?.providerRepo,
-          'hashicorp/terraform-provider-google-beta');
+      expect(
+        beta.mmSync?.providerRepo,
+        'hashicorp/terraform-provider-google-beta',
+      );
       expect(staleMmSync(beta.schemaDir), isEmpty);
     });
 

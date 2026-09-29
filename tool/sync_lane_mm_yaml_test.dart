@@ -21,7 +21,9 @@ void main() {
 
     test('is null for a hand-written resource', () {
       expect(
-          mmPathFromGoHeader('package compute\n\nfunc Resource() {}'), isNull);
+        mmPathFromGoHeader('package compute\n\nfunc Resource() {}'),
+        isNull,
+      );
     });
   });
 
