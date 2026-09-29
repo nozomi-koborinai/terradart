@@ -7,13 +7,13 @@ export 'src/filestore/google_filestore_backup.dart' show GoogleFilestoreBackup;
 export 'src/filestore/google_filestore_instance.dart'
     show
         FilestoreInstanceConnectMode,
+        FilestoreInstanceDesiredReplicaState,
         FilestoreInstanceDirectoryServices,
         FilestoreInstanceDirectoryServicesLdap,
         FilestoreInstanceFileShares,
         FilestoreInstanceFileSharesNfsExportOptions,
         FilestoreInstanceInitialReplication,
         FilestoreInstanceInitialReplicationReplicas,
-        FilestoreInstanceNetworkMode,
         FilestoreInstanceNetworks,
         FilestoreInstanceNetworksModes,
         FilestoreInstanceNetworksPscConfig,
@@ -24,6 +24,7 @@ export 'src/filestore/google_filestore_instance.dart'
         FilestoreInstancePerformanceConfigFixedIopsChoice,
         FilestoreInstancePerformanceConfigIopsPerTb,
         FilestoreInstancePerformanceConfigIopsPerTbChoice,
+        FilestoreInstanceProtocol,
         FilestoreInstanceReplicationRole,
         FilestoreInstanceTier,
         GoogleFilestoreInstance;

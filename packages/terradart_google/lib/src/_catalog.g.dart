@@ -24338,7 +24338,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'FilestoreInstanceTier',
-      'FilestoreInstanceNetworkMode',
+      'FilestoreInstanceDesiredReplicaState',
+      'FilestoreInstanceProtocol',
       'FilestoreInstanceConnectMode',
       'FilestoreInstanceNfsExportAccessMode',
       'FilestoreInstanceNfsSquashMode',
@@ -24360,7 +24361,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_filestore_instance`.\n\nA Google Cloud Filestore instance.\n\nCloud Filestore instance — managed NFS file shares on a VPC.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: instance ID.\n- [tier]: service tier ([FilestoreInstanceTier]).\n- [fileShares]: NFS export (name + capacity in GiB).\n- [networks]: VPC attachment ([FilestoreInstanceNetworks]).\n\nEnable `file.googleapis.com` via [GoogleProjectService] before apply.\n\nExample (basic HDD on an existing VPC):\n```dart\nGoogleFilestoreInstance(\n  localName: \'nfs\',\n  name: TfArg.literal(\'shared-nfs\'),\n  tier: TfArg.literal(FilestoreInstanceTier.basicHdd),\n  location: TfArg.literal(\'asia-northeast1\'),\n  fileShares: FilestoreInstanceFileShares(\n    name: TfArg.literal(\'share1\'),\n    capacityGb: TfArg.literal(1024),\n  ),\n  networks: FilestoreInstanceNetworks(\n    network: TfArg.ref(vpc.id),\n    modes: const [FilestoreInstanceNetworkMode.modeIpv4],\n  ),\n);\n```',
+        'Factory wrapper for `google_filestore_instance`.\n\nA Google Cloud Filestore instance.\n\nCloud Filestore instance — managed NFS file shares on a VPC.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: instance ID.\n- [tier]: service tier ([FilestoreInstanceTier]).\n- [fileShares]: NFS export (name + capacity in GiB).\n- [networks]: VPC attachment ([FilestoreInstanceNetworks]).\n\nEnable `file.googleapis.com` via [GoogleProjectService] before apply.\n\nExample (basic HDD on an existing VPC):\n```dart\nGoogleFilestoreInstance(\n  localName: \'nfs\',\n  name: .literal(\'shared-nfs\'),\n  tier: .literal(.basicHdd),\n  location: .literal(\'asia-northeast1\'),\n  fileShares: FilestoreInstanceFileShares(\n    name: .literal(\'share1\'),\n    capacityGb: .literal(1024),\n  ),\n  networks: [\n    FilestoreInstanceNetworks(\n      network: vpc.ref,\n      modes: [.literal(.modeIpv4)],\n    ),\n  ],\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_filestore_instance',
