@@ -31,7 +31,6 @@ import 'package:terradart_google/app.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/bigtable.dart';
 import 'package:terradart_google/certificate_manager.dart';
-import 'package:terradart_google/cloud_functions.dart';
 import 'package:terradart_google/config.dart';
 import 'package:terradart_google/dataplex.dart';
 import 'package:terradart_google/dataproc.dart';
