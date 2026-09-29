@@ -2,6 +2,8 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../mysql/appwrite_mysql_database.dart' show AppwriteMysqlDatabase;
+import '../project/appwrite_project.dart' show AppwriteProject;
 
 /// Sensitive field paths for `appwrite_mysql_database_status`.
 const Set<String> _appwriteMysqlDatabaseStatusSensitive = <String>{};
@@ -19,13 +21,16 @@ final class DataAppwriteMysqlDatabaseStatus extends Data {
 
   DataAppwriteMysqlDatabaseStatus({
     required super.localName,
-    required TfArg<String> databaseId,
-    TfArg<String>? projectId,
+    required RefTo<AppwriteMysqlDatabase> databaseId,
+    RefTo<AppwriteProject>? projectId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'database_id': databaseId, 'project_id': ?projectId},
+         argMap: {
+           'database_id': databaseId.encodeAs('id'),
+           'project_id': ?projectId?.encodeAs('id'),
+         },
        );
 
   @override

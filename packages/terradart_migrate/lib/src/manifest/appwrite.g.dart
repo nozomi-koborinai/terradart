@@ -22,9 +22,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'roles',
@@ -65,9 +66,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -143,9 +145,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'status',
@@ -186,9 +189,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -247,9 +251,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'resource_id',
@@ -374,9 +379,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'provider_branch',
@@ -478,9 +484,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -585,9 +592,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'function_id',
           dartName: 'functionId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteFunction',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'owner',
@@ -599,9 +607,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'reference',
@@ -695,9 +704,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'function_id',
           dartName: 'functionId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteFunction',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'key',
@@ -709,9 +719,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'secret',
@@ -891,9 +902,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'reply_to_email',
@@ -983,9 +995,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'target_id',
@@ -997,9 +1010,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'topic_id',
           dartName: 'topicId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteMessagingTopic',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -1032,9 +1046,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'subscribe',
@@ -1075,9 +1090,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -1109,9 +1125,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteMongoDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -1130,9 +1147,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'retention',
@@ -1214,9 +1232,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteMongoDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'endpoint',
@@ -1235,9 +1254,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -1274,16 +1294,18 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteMongoDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'queries',
@@ -1313,16 +1335,18 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteMongoDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'ttl',
@@ -1440,9 +1464,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'replicas',
@@ -1654,9 +1679,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -1862,16 +1888,18 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteMongoDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -1935,9 +1963,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'queries',
@@ -1960,9 +1989,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[],
@@ -1976,9 +2006,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteMysqlDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -1997,9 +2028,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'retention',
@@ -2081,9 +2113,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteMysqlDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'endpoint',
@@ -2102,9 +2135,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -2141,16 +2175,18 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteMysqlDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'queries',
@@ -2180,16 +2216,18 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteMysqlDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'ttl',
@@ -2307,9 +2345,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'replicas',
@@ -2521,9 +2560,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -2729,16 +2769,18 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteMysqlDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -2802,9 +2844,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'queries',
@@ -2827,9 +2870,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteMysqlDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'default_pool_size',
@@ -2883,9 +2927,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'read_write_splitting',
@@ -2910,9 +2955,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[],
@@ -2926,9 +2972,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwritePostgresqlDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -2947,9 +2994,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'retention',
@@ -3031,9 +3079,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwritePostgresqlDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'endpoint',
@@ -3052,9 +3101,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -3091,16 +3141,18 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwritePostgresqlDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'queries',
@@ -3130,16 +3182,18 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwritePostgresqlDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'ttl',
@@ -3257,9 +3311,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'replicas',
@@ -3471,9 +3526,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3679,16 +3735,18 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwritePostgresqlDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3752,9 +3810,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'queries',
@@ -3777,9 +3836,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwritePostgresqlDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -3791,9 +3851,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3810,16 +3871,18 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwritePostgresqlDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -3844,9 +3907,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwritePostgresqlDatabase',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'default_pool_size',
@@ -3893,9 +3957,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'read_write_splitting',
@@ -3925,9 +3990,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[],
@@ -4011,9 +4077,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'scopes',
@@ -4072,9 +4139,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'resource_id',
@@ -4212,9 +4280,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'provider_branch',
@@ -4302,9 +4371,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -4413,9 +4483,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'reference',
@@ -4441,9 +4512,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'site_id',
           dartName: 'siteId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteSite',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'source_type',
@@ -4523,9 +4595,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'secret',
@@ -4537,9 +4610,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'site_id',
           dartName: 'siteId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteSite',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'value',
@@ -4657,9 +4731,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -4717,9 +4792,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket_id',
           dartName: 'bucketId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteStorageBucket',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'file_path',
@@ -4745,9 +4821,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -4798,9 +4875,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -4834,9 +4912,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -4864,16 +4943,18 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteTablesdb',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'table_id',
           dartName: 'tableId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteTablesdbTable',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -4969,9 +5050,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'related_table_id',
           dartName: 'relatedTableId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteTablesdbTable',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'relationship_type',
@@ -4997,9 +5079,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -5031,9 +5114,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteTablesdb',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'key',
@@ -5052,16 +5136,18 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'table_id',
           dartName: 'tableId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteTablesdbTable',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'type',
@@ -5100,9 +5186,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteTablesdb',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'permissions',
@@ -5114,16 +5201,18 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'table_id',
           dartName: 'tableId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteTablesdbTable',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[
@@ -5149,9 +5238,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'database_id',
           dartName: 'databaseId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AppwriteTablesdb',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'enabled',
@@ -5177,9 +5267,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'row_security',
@@ -5248,9 +5339,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'tls',
@@ -5299,9 +5391,10 @@ const MigrateManifest appwriteMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'project_id',
           dartName: 'projectId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AppwriteProject',
+          attribute: 'id',
         ),
       ],
       getters: <MigrateGetter>[

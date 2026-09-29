@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_proxy_rule`.
 const Set<String> _appwriteProxyRuleSensitive = <String>{};
 
@@ -26,7 +28,7 @@ final class AppwriteProxyRule extends Resource {
     required super.localName,
     TfArg<String>? branch,
     required TfArg<String> domain,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     required TfArg<String> resourceId,
     required TfArg<ProxyRuleType> type,
     super.lifecycle,
@@ -38,7 +40,7 @@ final class AppwriteProxyRule extends Resource {
          argMap: {
            'branch': ?branch,
            'domain': domain,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'resource_id': resourceId,
            'type': type,
          },

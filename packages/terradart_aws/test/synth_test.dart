@@ -59,11 +59,11 @@ final class _TestStack extends Stack {
       localName: 'trust',
       statement: [
         DataIamPolicyDocumentStatement(
-          actions: TfArg.literal(['sts:AssumeRole']),
+          actions: .literal(['sts:AssumeRole']),
           principals: [
             DataIamPolicyDocumentStatementPrincipals(
-              type: TfArg.literal('Service'),
-              identifiers: TfArg.literal(['lambda.amazonaws.com']),
+              type: .literal('Service'),
+              identifiers: .literal(['lambda.amazonaws.com']),
             ),
           ],
         ),
@@ -73,17 +73,17 @@ final class _TestStack extends Stack {
     final role = AwsIamRole(
       localName: 'fn',
       assumeRolePolicy: TfArg.ref(trust.json),
-      name: .name(TfArg.literal('hello-dart')),
+      name: .name(.literal('hello-dart')),
     );
     add(role);
     add(
       AwsLambdaFunction(
         localName: 'hello',
-        functionName: TfArg.literal('hello-dart'),
+        functionName: .literal('hello-dart'),
         role: role.ref,
-        runtime: TfArg.literal(LambdaFunctionRuntime.providedAl2023),
-        handler: TfArg.literal('bootstrap'),
-        code: .filename(TfArg.literal('build/bootstrap.zip')),
+        runtime: .literal(.providedAl2023),
+        handler: .literal('bootstrap'),
+        code: .filename(.literal('build/bootstrap.zip')),
       ),
     );
   }

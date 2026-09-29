@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../mysql/appwrite_mysql_database.dart' show AppwriteMysqlDatabase;
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_mysql_backup_policy`.
 const Set<String> _appwriteMysqlBackupPolicySensitive = <String>{};
 
@@ -26,10 +29,10 @@ final class AppwriteMysqlBackupPolicy extends Resource {
 
   AppwriteMysqlBackupPolicy({
     required super.localName,
-    required TfArg<String> databaseId,
+    required RefTo<AppwriteMysqlDatabase> databaseId,
     TfArg<bool>? enabled,
     required TfArg<String> name,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     required TfArg<num> retention,
     required TfArg<String> schedule,
     TfArg<MysqlBackupPolicyType>? type,
@@ -40,10 +43,10 @@ final class AppwriteMysqlBackupPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'database_id': databaseId,
+           'database_id': databaseId.encodeAs('id'),
            'enabled': ?enabled,
            'name': name,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'retention': retention,
            'schedule': schedule,
            'type': ?type,
