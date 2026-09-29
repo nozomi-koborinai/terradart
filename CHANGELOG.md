@@ -4,6 +4,22 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
+## [Unreleased]
+
+### Changed
+
+- **`terradart_google_beta` reaches the GA package's type safety**
+  (breaking) — the beta lane now reads Magic Modules YAML: every beta
+  resource is resolved to its `mmv1` file through the generated Go source of
+  `hashicorp/google-beta` at the pinned tag (`tool/sync_lane_mm_yaml.dart`,
+  no hand-kept list), and `terradart wrap --mm-hints` turns its
+  `enum_values` into enums and its `exactly_one_of` groups into sealed
+  arguments. Nested blocks take typed helper classes instead of
+  `TfArg<Map<String, dynamic>>` (114 inputs), 67 inputs are enums, and two
+  exactly-one groups are sealed. The weekly schema bump re-syncs the MM YAML
+  with the google-beta ride-along. Synth output is unchanged; see
+  [MIGRATING.md](MIGRATING.md).
+
 ## [0.30.0] - 2026-09-28
 
 Lockstep release across the workspace. `terradart_hcl` and `terradart_migrate` ship on pub.dev for the first time; `terradart-migrate` installs with `dart pub global activate terradart_migrate`. **Breaking** — `terradart_google` / `terradart_google_beta` move to `hashicorp/google` 8.x (22 removed factories, 16 beta → GA promotions, sealed write-only secrets; existing root modules need `terraform init -upgrade`, and removed types must leave state first), Cloudflare follows 5.26.0, and Cloudflare, Appwrite and AWS inputs with a fixed value set become enums; AWS exactly-one groups are sealed. `terradart-coverage` is retired and four `terradart-migrate` flags are gone. Read the upgrade steps in [MIGRATING.md](MIGRATING.md) before bumping. The `terradart_google` catalog is **1359 curated resource factories + 468 data sources** (1827 entries).

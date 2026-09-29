@@ -1,5 +1,36 @@
 # Migrating terradart
 
+## Unreleased — next minor (`0.30.x` → `0.31.x`)
+
+### `terradart_google_beta` inputs are typed like `terradart_google`
+
+**Breaking (`terradart_google_beta`)** — beta factories now derive their
+types from Magic Modules YAML, like the GA package. Synth output is
+unchanged, so no Terraform step is needed; fix the compile errors:
+
+- **Nested blocks take helper classes.** An input that took
+  `TfArg<Map<String, dynamic>>` takes its generated helper; one that took
+  `TfArg<List<Map<String, dynamic>>>` takes a `List` of them. Helper fields
+  are `TfArg`s named in camelCase; nested blocks inside them are helpers too.
+- **Inputs with a fixed value set are enums**, at the top level and inside
+  helpers. Wrap the enum member in `TfArg.literal` as before.
+- **`exactly_one_of` groups are one required sealed argument**, named after
+  its members joined by `Or`; each member is a `<Prefix><Member>Option`
+  variant.
+
+| Before | After |
+|--------|-------|
+| `GoogleComputeFutureReservation(timeWindow: TfArg.literal({'start_time': t0, 'end_time': t1}), ...)` | `GoogleComputeFutureReservation(timeWindow: ComputeFutureReservationTimeWindow(startTime: TfArg.literal(t0), endTime: TfArg.literal(t1)), ...)` |
+| `GoogleOsConfigGuestPolicies(assignment: TfArg.literal({'zones': ['us-central1-a']}), ...)` | `GoogleOsConfigGuestPolicies(assignment: OsConfigGuestPoliciesAssignment(zones: TfArg.literal(['us-central1-a'])), ...)` |
+| `GoogleComputeNetworkFirewallPolicyPacketMirroringRule(direction: TfArg.literal('INGRESS'), ...)` | `...(direction: TfArg.literal(ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.ingress), ...)` |
+| `GoogleGkeHubMembershipRbacRoleBinding(role: TfArg.literal({'predefined_role': 'ADMIN'}), ...)` | `...(role: GkeHubMembershipRbacRoleBindingRole(predefinedRole: TfArg.literal(GkeHubMembershipRbacRoleBindingRolePredefinedRole.admin)), ...)` |
+| `GoogleApiGatewayApiConfig(openapiDocuments: TfArg.literal([{'document': {'contents': c, 'path': 'openapi.yaml'}}]), ...)` | `GoogleApiGatewayApiConfig(openapiDocumentsOrGrpcServices: ApiGatewayApiConfigOpenapiDocumentsOption(openapiDocuments: [ApiGatewayApiConfigOpenapiDocuments(document: ApiGatewayApiConfigOpenapiDocumentsDocument(contents: TfArg.literal(c), path: TfArg.literal('openapi.yaml')))]), ...)` |
+| `GooglePrivilegedAccessManagerSettings(emailNotificationSettings: TfArg.literal({'disable_all_notifications': {}}), ...)` | `...(emailNotificationSettings: PrivilegedAccessManagerSettingsEmailNotificationSettings(disableAllNotificationsOrCustomNotificationBehavior: PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOption(disableAllNotifications: PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications())), ...)` |
+
+`examples/beta_leftover_quickstart` shows the typed form of every beta
+factory. `terradart-migrate` emits the typed form for `google-beta`
+resources.
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it
