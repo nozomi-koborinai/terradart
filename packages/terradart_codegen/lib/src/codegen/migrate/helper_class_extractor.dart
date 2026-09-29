@@ -82,7 +82,7 @@ final class ExtractedField {
   final bool keyedEncoding;
 
   /// The attribute a reference field's entry encodes
-  /// (`network!.encodeAs('id')` → `id`).
+  /// (`?network?.encodeAs('id')` → `id`).
   final String? encodedAttribute;
 }
 
