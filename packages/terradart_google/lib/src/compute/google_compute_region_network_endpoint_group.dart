@@ -21,10 +21,7 @@ const Set<String> _googleComputeRegionNetworkEndpointGroupSensitive =
 ///
 /// - [serverless]: the primary Wave 6 hookup — fronts a Cloud Run service,
 ///   Cloud Functions Gen 2 function, or App Engine flex service. Pair
-///   with exactly one of
-///   [GoogleComputeRegionNetworkEndpointGroup.cloudRun],
-///   [GoogleComputeRegionNetworkEndpointGroup.cloudFunction], or
-///   [GoogleComputeRegionNetworkEndpointGroup.appEngine].
+///   with [GoogleComputeRegionNetworkEndpointGroup.serverless].
 /// - [privateServiceConnect]: PSC consumer NEG fronting a Google API
 ///   bundle or a producer-published Service Attachment. Pair with
 ///   [GoogleComputeRegionNetworkEndpointGroup.pscTargetService] and (for
@@ -166,6 +163,110 @@ class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine {
   };
 }
 
+/// At most one of `cloud_run`, `cloud_function`, `app_engine` on `google_compute_region_network_endpoint_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.cloudRun(...)`.
+sealed class ComputeRegionNetworkEndpointGroupServerless {
+  const ComputeRegionNetworkEndpointGroupServerless();
+
+  /// Sets `cloud_run`.
+  const factory ComputeRegionNetworkEndpointGroupServerless.cloudRun(
+    ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun
+    cloudRun,
+  ) = ComputeRegionNetworkEndpointGroupServerlessCloudRun;
+
+  /// Sets `cloud_function`.
+  const factory ComputeRegionNetworkEndpointGroupServerless.cloudFunction(
+    ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction
+    cloudFunction,
+  ) = ComputeRegionNetworkEndpointGroupServerlessCloudFunction;
+
+  /// Sets `app_engine`.
+  const factory ComputeRegionNetworkEndpointGroupServerless.appEngine(
+    ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine
+    appEngine,
+  ) = ComputeRegionNetworkEndpointGroupServerlessAppEngine;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [ComputeRegionNetworkEndpointGroupServerless.cloudRun] choice: sets `cloud_run`.
+final class ComputeRegionNetworkEndpointGroupServerlessCloudRun
+    extends ComputeRegionNetworkEndpointGroupServerless {
+  const ComputeRegionNetworkEndpointGroupServerlessCloudRun(this.cloudRun);
+
+  final ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun
+  cloudRun;
+
+  @override
+  String get blockKey => 'cloud_run';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cloud_run': [cloudRun.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cloud_run': TfArg.literal([cloudRun.toArgMap()]),
+  };
+}
+
+/// The [ComputeRegionNetworkEndpointGroupServerless.cloudFunction] choice: sets `cloud_function`.
+final class ComputeRegionNetworkEndpointGroupServerlessCloudFunction
+    extends ComputeRegionNetworkEndpointGroupServerless {
+  const ComputeRegionNetworkEndpointGroupServerlessCloudFunction(
+    this.cloudFunction,
+  );
+
+  final ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction
+  cloudFunction;
+
+  @override
+  String get blockKey => 'cloud_function';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cloud_function': [cloudFunction.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cloud_function': TfArg.literal([cloudFunction.toArgMap()]),
+  };
+}
+
+/// The [ComputeRegionNetworkEndpointGroupServerless.appEngine] choice: sets `app_engine`.
+final class ComputeRegionNetworkEndpointGroupServerlessAppEngine
+    extends ComputeRegionNetworkEndpointGroupServerless {
+  const ComputeRegionNetworkEndpointGroupServerlessAppEngine(this.appEngine);
+
+  final ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine
+  appEngine;
+
+  @override
+  String get blockKey => 'app_engine';
+
+  @override
+  Map<String, Object?> encode() => {
+    'app_engine': [appEngine.toArgMap()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'app_engine': TfArg.literal([appEngine.toArgMap()]),
+  };
+}
+
 /// Factory wrapper for `google_compute_region_network_endpoint_group`.
 ///
 /// A regional NEG that can support Serverless Products, proxying traffic to
@@ -203,9 +304,8 @@ class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine {
 /// `null` to inherit that default, or pass an explicit value for PSC /
 /// INTERNET / portmap NEGs.
 ///
-/// Serverless target — exactly one of `cloudRun` / `cloudFunction` /
-/// `appEngine` via the inline nested classes; setting more than one is
-/// rejected at apply time.
+/// Serverless target — `serverless` takes at most one of `.cloudRun(...)` /
+/// `.cloudFunction(...)` / `.appEngine(...)`.
 ///
 /// PSC consumer NEG: set
 /// `networkEndpointType: RegionNetworkEndpointGroupType.privateServiceConnect`,
@@ -224,8 +324,10 @@ class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine {
 ///   localName: 'cr_neg',
 ///   name: TfArg.literal('cloudrun-neg'),
 ///   region: TfArg.literal('asia-northeast1'),
-///   cloudRun: ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(
-///     service: TfArg.ref(cloudRunService.nameRef),
+///   serverless: .cloudRun(
+///     ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(
+///       service: TfArg.ref(cloudRunService.nameRef),
+///     ),
 ///   ),
 /// );
 /// ```
@@ -237,12 +339,7 @@ final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
     required TfArg<String> name,
     required TfArg<String> region,
     TfArg<RegionNetworkEndpointGroupType>? networkEndpointType,
-    ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun?
-    cloudRun,
-    ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction?
-    cloudFunction,
-    ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine?
-    appEngine,
+    ComputeRegionNetworkEndpointGroupServerless? serverless,
     TfArg<String>? pscTargetService,
     RefTo<GoogleComputeNetwork>? network,
     RefTo<GoogleComputeSubnetwork>? subnetwork,
@@ -258,12 +355,7 @@ final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
            'name': name,
            'region': region,
            'network_endpoint_type': ?networkEndpointType,
-           if (cloudRun != null)
-             'cloud_run': TfArg.literal([cloudRun.toArgMap()]),
-           if (cloudFunction != null)
-             'cloud_function': TfArg.literal([cloudFunction.toArgMap()]),
-           if (appEngine != null)
-             'app_engine': TfArg.literal([appEngine.toArgMap()]),
+           ...?serverless?.argMap,
            'psc_target_service': ?pscTargetService,
            'network': ?network?.encodeAs('id'),
            'subnetwork': ?subnetwork?.encodeAs('id'),

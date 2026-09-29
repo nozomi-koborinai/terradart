@@ -182,6 +182,10 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 ///
 /// [references] types a string input as a reference, unless it is an enum;
 /// a sealed variant holding it takes the reference too.
+///
+/// [typeOverrides] maps a leaf input's dotted path to the Dart type its
+/// field takes instead (a hand-written enum in the override's prelude) —
+/// the override's `dartTypeOverrides` entries whose key has a dot.
 List<NestedBlockSpec> collectNestedTypes({
   required Map<String, dynamic> resourceBlock,
   required String resourcePrefix,
@@ -193,6 +197,7 @@ List<NestedBlockSpec> collectNestedTypes({
   Map<String, List<List<String>>> atMostOneGroups = const {},
   Map<String, String>? sealedNames,
   ReferenceResolver references = _noReferences,
+  Map<String, String> typeOverrides = const {},
 }) {
   final rootKeys = {
     ..._optionalMap(resourceBlock['attributes'], context: 'attributes').keys,
@@ -209,6 +214,7 @@ List<NestedBlockSpec> collectNestedTypes({
     atMostOneGroups: atMostOneGroups,
     sealedNames: _sealedNamesByBlock(sealedNames),
     references: references,
+    typeOverrides: typeOverrides,
   );
   return shareIdenticalShapes
       ? _shareIdenticalShapes(scan.children)
@@ -315,6 +321,7 @@ _ChildScan _scanChildren(
   required Map<String, List<List<String>>> atMostOneGroups,
   required Map<String, Map<String, String>> sealedNames,
   required ReferenceResolver references,
+  required Map<String, String> typeOverrides,
 }) {
   final children = <NestedBlockSpec>[];
   final excludedChildren = <ExcludedNestedBlock>[];
@@ -352,6 +359,7 @@ _ChildScan _scanChildren(
         atMostOneGroups: atMostOneGroups,
         sealedNames: sealedNames,
         references: references,
+        typeOverrides: typeOverrides,
       ),
     );
   }
@@ -451,6 +459,7 @@ NestedBlockSpec _buildSpec(
   required Map<String, List<List<String>>> atMostOneGroups,
   required Map<String, Map<String, String>> sealedNames,
   required ReferenceResolver references,
+  required Map<String, String> typeOverrides,
 }) {
   final cardinality = _blockCardinality(nestedBlockBody, tfName: tfName);
   final className = resourcePrefix + path.map(snakeToPascal).join();
@@ -470,6 +479,7 @@ NestedBlockSpec _buildSpec(
     atMostOneGroups: atMostOneGroups,
     sealedNames: sealedNames,
     references: references,
+    typeOverrides: typeOverrides,
   );
   final exactlyOne = exactlyOneGroups[path.join('.')] ?? const [];
   final atMostOne = atMostOneGroups[path.join('.')] ?? const [];
@@ -487,6 +497,7 @@ NestedBlockSpec _buildSpec(
       className: className,
       enumValues: enumValues,
       references: references,
+      typeOverrides: typeOverrides,
     ),
     children: scan.children,
     excludedChildren: scan.excludedChildren,
@@ -524,6 +535,7 @@ List<NestedAttrSpec> _collectAttrs(
   required String className,
   required EnumValuesResolver enumValues,
   required ReferenceResolver references,
+  required Map<String, String> typeOverrides,
 }) {
   final attributes = _optionalMap(block['attributes'], context: 'attributes');
   final out = <NestedAttrSpec>[];
@@ -539,12 +551,24 @@ List<NestedAttrSpec> _collectAttrs(
     final computedOnly = isComputed && !isOptional && !isRequired;
     if (computedOnly) continue;
 
-    final typeInfo = _attrTypeInfo(
-      rawType: body['type'],
-      enumValues: enumValues([...path, tfName], body['description'] as String?),
-      className: className,
-      tfName: tfName,
-    );
+    final override = typeOverrides[[...path, tfName].join('.')];
+    final typeInfo = override != null
+        ? (
+            dartType: override,
+            repeated:
+                body['type'] is List &&
+                const {'list', 'set'}.contains((body['type'] as List).first),
+            enumValues: null,
+          )
+        : _attrTypeInfo(
+            rawType: body['type'],
+            enumValues: enumValues([
+              ...path,
+              tfName,
+            ], body['description'] as String?),
+            className: className,
+            tfName: tfName,
+          );
 
     out.add(
       NestedAttrSpec(
@@ -554,7 +578,7 @@ List<NestedAttrSpec> _collectAttrs(
         required: isRequired,
         enumValues: typeInfo.enumValues,
         repeated: typeInfo.repeated,
-        reference: typeInfo.enumValues == null
+        reference: typeInfo.enumValues == null && override == null
             ? references([...path, tfName])
             : null,
       ),

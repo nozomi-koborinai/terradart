@@ -26,9 +26,8 @@ curatedDoc: |-
   /// `null` to inherit that default, or pass an explicit value for PSC /
   /// INTERNET / portmap NEGs.
   ///
-  /// Serverless target — exactly one of `cloudRun` / `cloudFunction` /
-  /// `appEngine` via the inline nested classes; setting more than one is
-  /// rejected at apply time.
+  /// Serverless target — `serverless` takes at most one of `.cloudRun(...)` /
+  /// `.cloudFunction(...)` / `.appEngine(...)`.
   ///
   /// PSC consumer NEG: set
   /// `networkEndpointType: RegionNetworkEndpointGroupType.privateServiceConnect`,
@@ -47,13 +46,18 @@ curatedDoc: |-
   ///   localName: 'cr_neg',
   ///   name: TfArg.literal('cloudrun-neg'),
   ///   region: TfArg.literal('asia-northeast1'),
-  ///   cloudRun: ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(
-  ///     service: TfArg.ref(cloudRunService.nameRef),
+  ///   serverless: .cloudRun(
+  ///     ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(
+  ///       service: TfArg.ref(cloudRunService.nameRef),
+  ///     ),
   ///   ),
   /// );
   /// ```
 
 deriveOutputGetters: true
+
+sealedNames:
+  "app_engine, cloud_function, cloud_run": serverless
 
 paramOrder:
   - name
@@ -85,10 +89,7 @@ prelude: |
   ///
   /// - [serverless]: the primary Wave 6 hookup — fronts a Cloud Run service,
   ///   Cloud Functions Gen 2 function, or App Engine flex service. Pair
-  ///   with exactly one of
-  ///   [GoogleComputeRegionNetworkEndpointGroup.cloudRun],
-  ///   [GoogleComputeRegionNetworkEndpointGroup.cloudFunction], or
-  ///   [GoogleComputeRegionNetworkEndpointGroup.appEngine].
+  ///   with [GoogleComputeRegionNetworkEndpointGroup.serverless].
   /// - [privateServiceConnect]: PSC consumer NEG fronting a Google API
   ///   bundle or a producer-published Service Attachment. Pair with
   ///   [GoogleComputeRegionNetworkEndpointGroup.pscTargetService] and (for

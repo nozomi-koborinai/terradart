@@ -85,6 +85,78 @@ final class ProviderEnums {
     );
   }
 
+  ProviderEnums._copy(
+    ProviderEnums from, {
+    required this.exactlyOneGroups,
+    required this.atMostOneGroups,
+  }) : enabled = from.enabled,
+       hints = from.hints,
+       caseInsensitive = from.caseInsensitive,
+       availableValuesDialect = from.availableValuesDialect;
+
+  /// These groups without the members [defs] has no input for, and without
+  /// every group that leaves fewer than two members. Magic Modules YAML is
+  /// shared by the GA and beta providers, so a GA lane reads `conflicts` /
+  /// `exactly_one_of` naming `min_version: beta` fields, and some upstream
+  /// paths name a field at the wrong depth; neither is a constraint a
+  /// constructor can express. [dropped] hears each group no input is left
+  /// of but one or none, as `type [members]`.
+  ProviderEnums withinSchema(
+    Map<String, ResourceDef> defs, {
+    void Function(String group)? dropped,
+  }) {
+    Map<String, List<List<String>>> keep(Map<String, List<List<String>>> all) {
+      final out = <String, List<List<String>>>{};
+      for (final MapEntry(key: type, value: groups) in all.entries) {
+        final def = defs[type];
+        if (def == null) {
+          out[type] = groups;
+          continue;
+        }
+        final kept = <List<String>>[];
+        for (final g in groups) {
+          final inputs = [
+            for (final m in g)
+              if (_hasInput(def.root, m.split('.'))) m,
+          ];
+          if (inputs.length >= 2) {
+            kept.add(inputs);
+          } else {
+            dropped?.call('$type [${g.join(', ')}]');
+          }
+        }
+        if (kept.isNotEmpty) out[type] = kept;
+      }
+      return out;
+    }
+
+    return ProviderEnums._copy(
+      this,
+      exactlyOneGroups: keep(exactlyOneGroups),
+      atMostOneGroups: keep(atMostOneGroups),
+    );
+  }
+
+  /// Whether [path] names an input: a computed-only attribute or block is
+  /// an output, which no group can constrain.
+  static bool _hasInput(BlockDef block, List<String> path) {
+    final [head, ...rest] = path;
+    if (rest.isEmpty) {
+      return block.attributes.any(
+            (a) => a.name == head && !a.constraints.computedOnly,
+          ) ||
+          block.nestedBlocks.any(
+            (b) => b.name == head && !b.constraints.computedOnly,
+          );
+    }
+    for (final b in block.nestedBlocks) {
+      if (b.name == head && !b.constraints.computedOnly) {
+        return _hasInput(b.block, rest);
+      }
+    }
+    return false;
+  }
+
   /// Whether any exclusive-group source is loaded. Without one, no group
   /// exists to match, so a `sealedNames` key cannot be judged stale.
   bool get hasGroupSource =>

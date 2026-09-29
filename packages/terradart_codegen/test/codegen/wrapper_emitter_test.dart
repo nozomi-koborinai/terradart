@@ -875,6 +875,38 @@ void main() {
         expect(out, isNot(contains('sslSettings!')));
       });
 
+      test('a dotted dartTypeOverrides key types the nested input and must '
+          'name one', () {
+        const terraformType = 'google_app_engine_domain_mapping';
+        final def = _loadFromWrapFixture(terraformType);
+        WrapperEmitter emitterWith(Map<String, String> types) => WrapperEmitter(
+          overrides: {
+            ...overrides,
+            terraformType: overrides[terraformType]!.withDartTypeOverrides(
+              types,
+            ),
+          },
+          rawResourceSchemas: rawResourceSchemas,
+        );
+
+        final out = emitterWith(const {
+          'ssl_settings.ssl_management_type': 'SslManagement',
+        }).emit(def, providerSource: 'hashicorp/google');
+        expect(out, contains('final TfArg<SslManagement> sslManagementType;'));
+        expect(
+          () => emitterWith(const {
+            'ssl_settings.no_such_input': 'SslManagement',
+          }).emit(def, providerSource: 'hashicorp/google'),
+          throwsA(
+            isA<StateError>().having(
+              (e) => e.message,
+              'message',
+              contains('ssl_settings.no_such_input'),
+            ),
+          ),
+        );
+      });
+
       test('an optional, repeated top-level slot has no `!` on the iterable '
           '(google_dataplex_entry_link.aspects)', () {
         const terraformType = 'google_dataplex_entry_link';

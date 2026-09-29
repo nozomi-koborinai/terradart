@@ -102,7 +102,19 @@ final class WrapperOverride {
   /// `TfArg<int>?` for optional slots).
   ///
   /// `null` means "use writeDartType(attr.type) for every slot".
+  ///
+  /// A dotted key (`network_interface.nic_type`) types that input of a
+  /// derived nested helper instead ([nestedDartTypeOverrides]), so an
+  /// override under `deriveNestedTypes` keeps a hand-written enum for a
+  /// value set the schema does not state.
   final Map<String, String>? dartTypeOverrides;
+
+  /// The [dartTypeOverrides] entries for nested inputs (dotted keys).
+  Map<String, String> get nestedDartTypeOverrides => {
+    for (final MapEntry(:key, :value)
+        in (dartTypeOverrides ?? const <String, String>{}).entries)
+      if (key.contains('.')) key: value,
+  };
 
   /// Snake-case parameter names → `@Deprecated(...)` message.
   ///
