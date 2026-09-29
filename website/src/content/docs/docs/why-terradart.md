@@ -56,12 +56,12 @@ Some Terraform blocks accept exactly one variant from a set — for instance, a 
 
 ```dart
 access: [
-  Access.userByEmail(email: .literal("ops@example.com")),
-  Access.iamMember(member: .ref(runSa.member)),
+  .userByEmail(userByEmail: .ref(reader.email), role: .literal('OWNER')),
+  .iamMember(iamMember: .ref(runSa.iamMember), role: .literal('READER')),
 ]
 ```
 
-The compiler enforces that exactly one variant is constructed per entry.
+The compiler enforces that exactly one variant is constructed per entry. Each variant is a factory constructor on the sealed type (`BigqueryDatasetAccess.userByEmail`), so a Dart 3.10 dot shorthand picks it and IDE completion lists the choices. A sealed argument is named for what its members are alternatives of, like a protobuf `oneof`: `AwsLambdaFunction(code: .filename(...))`, `CloudflareDnsRecord(content: .content(...))`.
 
 ### Final classes for Stack subclasses
 
