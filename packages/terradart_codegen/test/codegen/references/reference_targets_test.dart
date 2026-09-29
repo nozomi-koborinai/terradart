@@ -347,7 +347,9 @@ void main() {
             inherited: true,
           ),
         ],
-        resourceSchemas: {'google_x_vm': _blocks('resource_schemas')['google_x_vm']!},
+        resourceSchemas: {
+          'google_x_vm': _blocks('resource_schemas')['google_x_vm']!,
+        },
         curated: const ['google_x_vm'],
         targetDirs: const {'google_x_vm': 'compute'},
         external: external,
@@ -358,7 +360,10 @@ void main() {
       final network = r.byResource['google_x_vm']!['network']!;
       expect(network.package, 'terradart_x');
       expect(network.attribute, 'name');
-      expect(r.byResource['google_x_vm']!['nic.network']!.attribute, 'self_link');
+      expect(
+        r.byResource['google_x_vm']!['nic.network']!.attribute,
+        'self_link',
+      );
       expect(referenceImports([network, network]), [
         "import 'package:terradart_x/terradart_x.dart' show GoogleXNetwork;",
       ]);
