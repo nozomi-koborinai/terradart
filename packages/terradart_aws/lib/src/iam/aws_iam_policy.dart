@@ -11,16 +11,15 @@ const Set<String> _awsIamPolicySensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class IamPolicyNameOrNamePrefix {
-  const IamPolicyNameOrNamePrefix();
+sealed class IamPolicyName {
+  const IamPolicyName();
 
   /// Sets `name`.
-  const factory IamPolicyNameOrNamePrefix.name(TfArg<String> name) =
-      IamPolicyNameOrNamePrefixName;
+  const factory IamPolicyName.name(TfArg<String> name) = IamPolicyNameName;
 
   /// Sets `name_prefix`.
-  const factory IamPolicyNameOrNamePrefix.namePrefix(TfArg<String> namePrefix) =
-      IamPolicyNameOrNamePrefixNamePrefix;
+  const factory IamPolicyName.namePrefix(TfArg<String> namePrefix) =
+      IamPolicyNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,9 +31,9 @@ sealed class IamPolicyNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [IamPolicyNameOrNamePrefix.name] choice: sets `name`.
-final class IamPolicyNameOrNamePrefixName extends IamPolicyNameOrNamePrefix {
-  const IamPolicyNameOrNamePrefixName(this.name);
+/// The [IamPolicyName.name] choice: sets `name`.
+final class IamPolicyNameName extends IamPolicyName {
+  const IamPolicyNameName(this.name);
 
   final TfArg<String> name;
 
@@ -48,10 +47,9 @@ final class IamPolicyNameOrNamePrefixName extends IamPolicyNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [IamPolicyNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class IamPolicyNameOrNamePrefixNamePrefix
-    extends IamPolicyNameOrNamePrefix {
-  const IamPolicyNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [IamPolicyName.namePrefix] choice: sets `name_prefix`.
+final class IamPolicyNameNamePrefix extends IamPolicyName {
+  const IamPolicyNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -73,7 +71,7 @@ final class AwsIamPolicy extends Resource {
     required super.localName,
     TfArg<num>? delayAfterPolicyCreationInMs,
     TfArg<String>? description,
-    IamPolicyNameOrNamePrefix? nameOrNamePrefix,
+    IamPolicyName? name,
     TfArg<String>? path,
     required TfArg<String> policy,
     TfArg<Map<String, String>>? tags,
@@ -87,7 +85,7 @@ final class AwsIamPolicy extends Resource {
            if (delayAfterPolicyCreationInMs != null)
              'delay_after_policy_creation_in_ms': delayAfterPolicyCreationInMs,
            if (description != null) 'description': description,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (path != null) 'path': path,
            'policy': policy,
            if (tags != null) 'tags': tags,

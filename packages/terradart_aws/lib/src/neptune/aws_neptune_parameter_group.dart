@@ -12,17 +12,16 @@ const Set<String> _awsNeptuneParameterGroupSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class NeptuneParameterGroupNameOrNamePrefix {
-  const NeptuneParameterGroupNameOrNamePrefix();
+sealed class NeptuneParameterGroupName {
+  const NeptuneParameterGroupName();
 
   /// Sets `name`.
-  const factory NeptuneParameterGroupNameOrNamePrefix.name(TfArg<String> name) =
-      NeptuneParameterGroupNameOrNamePrefixName;
+  const factory NeptuneParameterGroupName.name(TfArg<String> name) =
+      NeptuneParameterGroupNameName;
 
   /// Sets `name_prefix`.
-  const factory NeptuneParameterGroupNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = NeptuneParameterGroupNameOrNamePrefixNamePrefix;
+  const factory NeptuneParameterGroupName.namePrefix(TfArg<String> namePrefix) =
+      NeptuneParameterGroupNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +33,9 @@ sealed class NeptuneParameterGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NeptuneParameterGroupNameOrNamePrefix.name] choice: sets `name`.
-final class NeptuneParameterGroupNameOrNamePrefixName
-    extends NeptuneParameterGroupNameOrNamePrefix {
-  const NeptuneParameterGroupNameOrNamePrefixName(this.name);
+/// The [NeptuneParameterGroupName.name] choice: sets `name`.
+final class NeptuneParameterGroupNameName extends NeptuneParameterGroupName {
+  const NeptuneParameterGroupNameName(this.name);
 
   final TfArg<String> name;
 
@@ -51,10 +49,10 @@ final class NeptuneParameterGroupNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [NeptuneParameterGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class NeptuneParameterGroupNameOrNamePrefixNamePrefix
-    extends NeptuneParameterGroupNameOrNamePrefix {
-  const NeptuneParameterGroupNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [NeptuneParameterGroupName.namePrefix] choice: sets `name_prefix`.
+final class NeptuneParameterGroupNameNamePrefix
+    extends NeptuneParameterGroupName {
+  const NeptuneParameterGroupNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -109,7 +107,7 @@ final class AwsNeptuneParameterGroup extends Resource {
     required super.localName,
     TfArg<String>? description,
     required TfArg<String> family,
-    NeptuneParameterGroupNameOrNamePrefix? nameOrNamePrefix,
+    NeptuneParameterGroupName? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<NeptuneParameterGroupParameter>? parameter,
@@ -122,7 +120,7 @@ final class AwsNeptuneParameterGroup extends Resource {
          argMap: {
            if (description != null) 'description': description,
            'family': family,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            if (parameter != null)

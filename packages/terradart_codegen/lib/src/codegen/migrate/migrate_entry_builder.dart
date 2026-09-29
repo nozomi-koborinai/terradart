@@ -187,6 +187,7 @@ MigrateEntryBuild buildMigrateEntry({
       enumValues: enumValues,
       exactlyOneGroups: exactlyOneGroups,
       atMostOneGroups: atMostOneGroups,
+      sealedNames: override.sealedNames,
     );
     for (final s in collected) {
       specs[s.tfName] = s;

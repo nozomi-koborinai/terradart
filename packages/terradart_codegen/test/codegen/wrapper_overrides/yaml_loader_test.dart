@@ -267,6 +267,42 @@ void main() {
         );
       });
 
+      group('sealedNames', () {
+        late Directory tmp;
+        setUp(() => tmp = Directory.systemTemp.createTempSync('sealed_names_'));
+        tearDown(() => tmp.deleteSync(recursive: true));
+
+        YamlOverrideLoader loaderFor(String names) {
+          File(p.join(tmp.path, 'aws_thing.yaml')).writeAsStringSync('''
+outputDir: thing
+deriveExactlyOne: true
+sealedNames:
+$names''');
+          return YamlOverrideLoader(rootDir: tmp.path);
+        }
+
+        test('reads group keys and concept names', () {
+          final o = loaderFor(
+            '  "b, settings.a": code\n',
+          ).load().resources['aws_thing']!;
+          expect(o.sealedNames, {'b, settings.a': 'code'});
+        });
+
+        test('a key with one member -> FormatException', () {
+          expect(
+            loaderFor('  filename: code\n').load,
+            throwsFormatExceptionWith('must list the group\'s members'),
+          );
+        });
+
+        test('a name that is not snake_case -> FormatException', () {
+          expect(
+            loaderFor('  "a, b": imageUri\n').load,
+            throwsFormatExceptionWith('use a snake_case concept name'),
+          );
+        });
+      });
+
       test('classDocComment -> retired-axis FormatException with hint', () {
         // The axis was retired with the 2026-07 doc wave; the loader fails
         // loudly with the migration path so it cannot quietly come back.

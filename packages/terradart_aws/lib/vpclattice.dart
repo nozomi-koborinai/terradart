@@ -23,10 +23,10 @@ export 'src/vpclattice/aws_vpclattice_listener_rule.dart'
     show
         AwsVpclatticeListenerRule,
         VpclatticeListenerRuleAction,
+        VpclatticeListenerRuleActionAction,
+        VpclatticeListenerRuleActionActionFixedResponse,
+        VpclatticeListenerRuleActionActionForward,
         VpclatticeListenerRuleActionFixedResponse,
-        VpclatticeListenerRuleActionFixedResponseOrForward,
-        VpclatticeListenerRuleActionFixedResponseOrForwardFixedResponse,
-        VpclatticeListenerRuleActionFixedResponseOrForwardForward,
         VpclatticeListenerRuleActionForward,
         VpclatticeListenerRuleActionForwardTargetGroups,
         VpclatticeListenerRuleMatch,
@@ -39,18 +39,18 @@ export 'src/vpclattice/aws_vpclattice_resource_configuration.dart'
     show
         AwsVpclatticeResourceConfiguration,
         VpclatticeResourceConfigurationProtocol,
+        VpclatticeResourceConfigurationResource,
         VpclatticeResourceConfigurationResourceConfigurationDefinition,
         VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResource,
-        VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResourceOrDnsResourceOrIpResource,
-        VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResourceOrDnsResourceOrIpResourceArnResource,
-        VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResourceOrDnsResourceOrIpResourceDnsResource,
-        VpclatticeResourceConfigurationResourceConfigurationDefinitionArnResourceOrDnsResourceOrIpResourceIpResource,
         VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResource,
         VpclatticeResourceConfigurationResourceConfigurationDefinitionDnsResourceIpAddressType,
         VpclatticeResourceConfigurationResourceConfigurationDefinitionIpResource,
-        VpclatticeResourceConfigurationResourceConfigurationGroupIdOrResourceGatewayIdentifier,
-        VpclatticeResourceConfigurationResourceConfigurationGroupIdOrResourceGatewayIdentifierResourceConfigurationGroupId,
-        VpclatticeResourceConfigurationResourceConfigurationGroupIdOrResourceGatewayIdentifierResourceGatewayIdentifier;
+        VpclatticeResourceConfigurationResourceConfigurationDefinitionResource,
+        VpclatticeResourceConfigurationResourceConfigurationDefinitionResourceArnResource,
+        VpclatticeResourceConfigurationResourceConfigurationDefinitionResourceDnsResource,
+        VpclatticeResourceConfigurationResourceConfigurationDefinitionResourceIpResource,
+        VpclatticeResourceConfigurationResourceResourceConfigurationGroupId,
+        VpclatticeResourceConfigurationResourceResourceGatewayIdentifier;
 export 'src/vpclattice/aws_vpclattice_resource_gateway.dart'
     show
         AwsVpclatticeResourceGateway,

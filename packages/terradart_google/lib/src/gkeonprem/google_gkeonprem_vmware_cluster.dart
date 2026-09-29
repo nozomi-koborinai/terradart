@@ -368,7 +368,7 @@ final class GkeonpremVmwareClusterNetworkConfig {
     required this.serviceAddressCidrBlocks,
     this.vcenterNetwork,
     this.controlPlaneV2Config,
-    required this.staticIpConfigOrDhcpIpConfig,
+    required this.ipConfig,
     this.hostConfig,
   });
 
@@ -381,8 +381,7 @@ final class GkeonpremVmwareClusterNetworkConfig {
   final GkeonpremVmwareClusterNetworkConfigControlPlaneV2Config?
   controlPlaneV2Config;
 
-  final GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig
-  staticIpConfigOrDhcpIpConfig;
+  final GkeonpremVmwareClusterNetworkConfigIpConfig ipConfig;
 
   final GkeonpremVmwareClusterNetworkConfigHostConfig? hostConfig;
 
@@ -392,7 +391,7 @@ final class GkeonpremVmwareClusterNetworkConfig {
     if (vcenterNetwork != null) 'vcenter_network': vcenterNetwork!.toTfJson(),
     if (controlPlaneV2Config != null)
       'control_plane_v2_config': controlPlaneV2Config!.encode(),
-    ...staticIpConfigOrDhcpIpConfig.encode(),
+    ...ipConfig.encode(),
     if (hostConfig != null) 'host_config': hostConfig!.encode(),
   };
 }
@@ -401,18 +400,18 @@ final class GkeonpremVmwareClusterNetworkConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.staticIpConfig(...)`.
-sealed class GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig {
-  const GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig();
+sealed class GkeonpremVmwareClusterNetworkConfigIpConfig {
+  const GkeonpremVmwareClusterNetworkConfigIpConfig();
 
   /// Sets `static_ip_config`.
-  const factory GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig.staticIpConfig(
+  const factory GkeonpremVmwareClusterNetworkConfigIpConfig.staticIpConfig(
     GkeonpremVmwareClusterNetworkConfigStaticIpConfig staticIpConfig,
-  ) = GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfigStaticIpConfig;
+  ) = GkeonpremVmwareClusterNetworkConfigIpConfigStaticIpConfig;
 
   /// Sets `dhcp_ip_config`.
-  const factory GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig.dhcpIpConfig(
+  const factory GkeonpremVmwareClusterNetworkConfigIpConfig.dhcpIpConfig(
     GkeonpremVmwareClusterNetworkConfigDhcpIpConfig dhcpIpConfig,
-  ) = GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfigDhcpIpConfig;
+  ) = GkeonpremVmwareClusterNetworkConfigIpConfigDhcpIpConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -420,10 +419,10 @@ sealed class GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig {
   Map<String, Object?> encode();
 }
 
-/// The [GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig.staticIpConfig] choice: sets `static_ip_config`.
-final class GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfigStaticIpConfig
-    extends GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig {
-  const GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfigStaticIpConfig(
+/// The [GkeonpremVmwareClusterNetworkConfigIpConfig.staticIpConfig] choice: sets `static_ip_config`.
+final class GkeonpremVmwareClusterNetworkConfigIpConfigStaticIpConfig
+    extends GkeonpremVmwareClusterNetworkConfigIpConfig {
+  const GkeonpremVmwareClusterNetworkConfigIpConfigStaticIpConfig(
     this.staticIpConfig,
   );
 
@@ -438,10 +437,10 @@ final class GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfigStati
   };
 }
 
-/// The [GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig.dhcpIpConfig] choice: sets `dhcp_ip_config`.
-final class GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfigDhcpIpConfig
-    extends GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig {
-  const GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfigDhcpIpConfig(
+/// The [GkeonpremVmwareClusterNetworkConfigIpConfig.dhcpIpConfig] choice: sets `dhcp_ip_config`.
+final class GkeonpremVmwareClusterNetworkConfigIpConfigDhcpIpConfig
+    extends GkeonpremVmwareClusterNetworkConfigIpConfig {
+  const GkeonpremVmwareClusterNetworkConfigIpConfigDhcpIpConfig(
     this.dhcpIpConfig,
   );
 

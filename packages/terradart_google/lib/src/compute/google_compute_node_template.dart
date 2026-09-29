@@ -22,18 +22,17 @@ enum ComputeNodeTemplateCpuOvercommitType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.nodeType(...)`.
-sealed class ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility {
-  const ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility();
+sealed class ComputeNodeTemplateNodeType {
+  const ComputeNodeTemplateNodeType();
 
   /// Sets `node_type`.
-  const factory ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility.nodeType(
-    TfArg<String> nodeType,
-  ) = ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeType;
+  const factory ComputeNodeTemplateNodeType.nodeType(TfArg<String> nodeType) =
+      ComputeNodeTemplateNodeTypeNodeType;
 
   /// Sets `node_type_flexibility`.
-  const factory ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility.nodeTypeFlexibility(
+  const factory ComputeNodeTemplateNodeType.nodeTypeFlexibility(
     ComputeNodeTemplateNodeTypeFlexibility nodeTypeFlexibility,
-  ) = ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeTypeFlexibility;
+  ) = ComputeNodeTemplateNodeTypeNodeTypeFlexibility;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,10 +44,10 @@ sealed class ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility.nodeType] choice: sets `node_type`.
-final class ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeType
-    extends ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility {
-  const ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeType(this.nodeType);
+/// The [ComputeNodeTemplateNodeType.nodeType] choice: sets `node_type`.
+final class ComputeNodeTemplateNodeTypeNodeType
+    extends ComputeNodeTemplateNodeType {
+  const ComputeNodeTemplateNodeTypeNodeType(this.nodeType);
 
   final TfArg<String> nodeType;
 
@@ -62,10 +61,10 @@ final class ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeType
   Map<String, TfArg<Object?>> get argMap => {'node_type': nodeType};
 }
 
-/// The [ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility.nodeTypeFlexibility] choice: sets `node_type_flexibility`.
-final class ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeTypeFlexibility
-    extends ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility {
-  const ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeTypeFlexibility(
+/// The [ComputeNodeTemplateNodeType.nodeTypeFlexibility] choice: sets `node_type_flexibility`.
+final class ComputeNodeTemplateNodeTypeNodeTypeFlexibility
+    extends ComputeNodeTemplateNodeType {
+  const ComputeNodeTemplateNodeTypeNodeTypeFlexibility(
     this.nodeTypeFlexibility,
   );
 
@@ -191,8 +190,7 @@ final class GoogleComputeNodeTemplate extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? region,
-    ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility?
-    nodeTypeOrNodeTypeFlexibility,
+    ComputeNodeTemplateNodeType? nodeType,
     TfArg<ComputeNodeTemplateCpuOvercommitType>? cpuOvercommitType,
     TfArg<Map<String, String>>? nodeAffinityLabels,
     List<ComputeNodeTemplateAccelerators>? accelerators,
@@ -209,7 +207,7 @@ final class GoogleComputeNodeTemplate extends Resource {
          argMap: {
            'name': name,
            if (region != null) 'region': region,
-           ...?nodeTypeOrNodeTypeFlexibility?.argMap,
+           ...?nodeType?.argMap,
            if (cpuOvercommitType != null)
              'cpu_overcommit_type': cpuOvercommitType,
            if (nodeAffinityLabels != null)

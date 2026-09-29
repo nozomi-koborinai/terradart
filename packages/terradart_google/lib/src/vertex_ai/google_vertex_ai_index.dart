@@ -86,31 +86,31 @@ final class VertexAiIndexMetadataConfig {
 @immutable
 final class VertexAiIndexMetadataConfigAlgorithmConfig {
   const VertexAiIndexMetadataConfigAlgorithmConfig({
-    required this.treeAhConfigOrBruteForceConfig,
+    required this.algorithmConfig,
   });
 
-  final VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig
-  treeAhConfigOrBruteForceConfig;
+  final VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig
+  algorithmConfig;
 
-  Map<String, Object?> encode() => {...treeAhConfigOrBruteForceConfig.encode()};
+  Map<String, Object?> encode() => {...algorithmConfig.encode()};
 }
 
 /// Exactly one of `tree_ah_config`, `brute_force_config` on the `metadata.config.algorithm_config` block of `google_vertex_ai_index`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.treeAhConfig(...)`.
-sealed class VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig {
-  const VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig();
+sealed class VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig {
+  const VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig();
 
   /// Sets `tree_ah_config`.
-  const factory VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig.treeAhConfig(
+  const factory VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig.treeAhConfig(
     VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfig treeAhConfig,
-  ) = VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfigTreeAhConfig;
+  ) = VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigTreeAhConfig;
 
   /// Sets `brute_force_config`.
-  const factory VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig.bruteForceConfig(
+  const factory VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig.bruteForceConfig(
     VertexAiIndexMetadataConfigAlgorithmConfigBruteForceConfig bruteForceConfig,
-  ) = VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfigBruteForceConfig;
+  ) = VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigBruteForceConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -118,11 +118,10 @@ sealed class VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceC
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig.treeAhConfig] choice: sets `tree_ah_config`.
-final class VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfigTreeAhConfig
-    extends
-        VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig {
-  const VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfigTreeAhConfig(
+/// The [VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig.treeAhConfig] choice: sets `tree_ah_config`.
+final class VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigTreeAhConfig
+    extends VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig {
+  const VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigTreeAhConfig(
     this.treeAhConfig,
   );
 
@@ -135,11 +134,10 @@ final class VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceCo
   Map<String, Object?> encode() => {'tree_ah_config': treeAhConfig.encode()};
 }
 
-/// The [VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig.bruteForceConfig] choice: sets `brute_force_config`.
-final class VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfigBruteForceConfig
-    extends
-        VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig {
-  const VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfigBruteForceConfig(
+/// The [VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig.bruteForceConfig] choice: sets `brute_force_config`.
+final class VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigBruteForceConfig
+    extends VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig {
+  const VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigBruteForceConfig(
     this.bruteForceConfig,
   );
 

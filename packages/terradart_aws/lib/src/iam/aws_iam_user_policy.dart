@@ -11,17 +11,16 @@ const Set<String> _awsIamUserPolicySensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class IamUserPolicyNameOrNamePrefix {
-  const IamUserPolicyNameOrNamePrefix();
+sealed class IamUserPolicyName {
+  const IamUserPolicyName();
 
   /// Sets `name`.
-  const factory IamUserPolicyNameOrNamePrefix.name(TfArg<String> name) =
-      IamUserPolicyNameOrNamePrefixName;
+  const factory IamUserPolicyName.name(TfArg<String> name) =
+      IamUserPolicyNameName;
 
   /// Sets `name_prefix`.
-  const factory IamUserPolicyNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = IamUserPolicyNameOrNamePrefixNamePrefix;
+  const factory IamUserPolicyName.namePrefix(TfArg<String> namePrefix) =
+      IamUserPolicyNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class IamUserPolicyNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [IamUserPolicyNameOrNamePrefix.name] choice: sets `name`.
-final class IamUserPolicyNameOrNamePrefixName
-    extends IamUserPolicyNameOrNamePrefix {
-  const IamUserPolicyNameOrNamePrefixName(this.name);
+/// The [IamUserPolicyName.name] choice: sets `name`.
+final class IamUserPolicyNameName extends IamUserPolicyName {
+  const IamUserPolicyNameName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +48,9 @@ final class IamUserPolicyNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [IamUserPolicyNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class IamUserPolicyNameOrNamePrefixNamePrefix
-    extends IamUserPolicyNameOrNamePrefix {
-  const IamUserPolicyNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [IamUserPolicyName.namePrefix] choice: sets `name_prefix`.
+final class IamUserPolicyNameNamePrefix extends IamUserPolicyName {
+  const IamUserPolicyNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -73,7 +70,7 @@ final class AwsIamUserPolicy extends Resource {
 
   AwsIamUserPolicy({
     required super.localName,
-    IamUserPolicyNameOrNamePrefix? nameOrNamePrefix,
+    IamUserPolicyName? name,
     required TfArg<String> policy,
     required TfArg<String> user,
     super.lifecycle,
@@ -82,7 +79,7 @@ final class AwsIamUserPolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {...?nameOrNamePrefix?.argMap, 'policy': policy, 'user': user},
+         argMap: {...?name?.argMap, 'policy': policy, 'user': user},
        );
 
   @override

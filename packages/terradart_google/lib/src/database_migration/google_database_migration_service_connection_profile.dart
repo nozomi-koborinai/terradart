@@ -473,7 +473,7 @@ final class DatabaseMigrationServiceConnectionProfileOracle {
     required this.password,
     required this.port,
     required this.username,
-    required this.staticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity,
+    required this.connectivity,
     this.ssl,
   });
 
@@ -487,8 +487,8 @@ final class DatabaseMigrationServiceConnectionProfileOracle {
 
   final TfArg<String> username;
 
-  final DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity
-  staticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity;
+  final DatabaseMigrationServiceConnectionProfileOracleConnectivity
+  connectivity;
 
   final DatabaseMigrationServiceConnectionProfileOracleSsl? ssl;
 
@@ -498,8 +498,7 @@ final class DatabaseMigrationServiceConnectionProfileOracle {
     'password': password.toTfJson(),
     'port': port.toTfJson(),
     'username': username.toTfJson(),
-    ...staticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity
-        .encode(),
+    ...connectivity.encode(),
     if (ssl != null) 'ssl': ssl!.encode(),
   };
 }
@@ -508,26 +507,26 @@ final class DatabaseMigrationServiceConnectionProfileOracle {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.staticServiceIpConnectivity(...)`.
-sealed class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity {
-  const DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity();
+sealed class DatabaseMigrationServiceConnectionProfileOracleConnectivity {
+  const DatabaseMigrationServiceConnectionProfileOracleConnectivity();
 
   /// Sets `static_service_ip_connectivity`.
-  const factory DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity.staticServiceIpConnectivity(
+  const factory DatabaseMigrationServiceConnectionProfileOracleConnectivity.staticServiceIpConnectivity(
     DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivity
     staticServiceIpConnectivity,
-  ) = DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityStaticServiceIpConnectivity;
+  ) = DatabaseMigrationServiceConnectionProfileOracleConnectivityStaticServiceIpConnectivity;
 
   /// Sets `forward_ssh_connectivity`.
-  const factory DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity.forwardSshConnectivity(
+  const factory DatabaseMigrationServiceConnectionProfileOracleConnectivity.forwardSshConnectivity(
     DatabaseMigrationServiceConnectionProfileOracleForwardSshConnectivity
     forwardSshConnectivity,
-  ) = DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity;
+  ) = DatabaseMigrationServiceConnectionProfileOracleConnectivityForwardSshConnectivity;
 
   /// Sets `private_connectivity`.
-  const factory DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity.privateConnectivity(
+  const factory DatabaseMigrationServiceConnectionProfileOracleConnectivity.privateConnectivity(
     DatabaseMigrationServiceConnectionProfileOraclePrivateConnectivity
     privateConnectivity,
-  ) = DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity;
+  ) = DatabaseMigrationServiceConnectionProfileOracleConnectivityPrivateConnectivity;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -535,11 +534,10 @@ sealed class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConne
   Map<String, Object?> encode();
 }
 
-/// The [DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity.staticServiceIpConnectivity] choice: sets `static_service_ip_connectivity`.
-final class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityStaticServiceIpConnectivity
-    extends
-        DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity {
-  const DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityStaticServiceIpConnectivity(
+/// The [DatabaseMigrationServiceConnectionProfileOracleConnectivity.staticServiceIpConnectivity] choice: sets `static_service_ip_connectivity`.
+final class DatabaseMigrationServiceConnectionProfileOracleConnectivityStaticServiceIpConnectivity
+    extends DatabaseMigrationServiceConnectionProfileOracleConnectivity {
+  const DatabaseMigrationServiceConnectionProfileOracleConnectivityStaticServiceIpConnectivity(
     this.staticServiceIpConnectivity,
   );
 
@@ -555,11 +553,10 @@ final class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnec
   };
 }
 
-/// The [DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity.forwardSshConnectivity] choice: sets `forward_ssh_connectivity`.
-final class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity
-    extends
-        DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity {
-  const DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity(
+/// The [DatabaseMigrationServiceConnectionProfileOracleConnectivity.forwardSshConnectivity] choice: sets `forward_ssh_connectivity`.
+final class DatabaseMigrationServiceConnectionProfileOracleConnectivityForwardSshConnectivity
+    extends DatabaseMigrationServiceConnectionProfileOracleConnectivity {
+  const DatabaseMigrationServiceConnectionProfileOracleConnectivityForwardSshConnectivity(
     this.forwardSshConnectivity,
   );
 
@@ -575,11 +572,10 @@ final class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnec
   };
 }
 
-/// The [DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity.privateConnectivity] choice: sets `private_connectivity`.
-final class DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity
-    extends
-        DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivity {
-  const DatabaseMigrationServiceConnectionProfileOracleStaticServiceIpConnectivityOrForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity(
+/// The [DatabaseMigrationServiceConnectionProfileOracleConnectivity.privateConnectivity] choice: sets `private_connectivity`.
+final class DatabaseMigrationServiceConnectionProfileOracleConnectivityPrivateConnectivity
+    extends DatabaseMigrationServiceConnectionProfileOracleConnectivity {
+  const DatabaseMigrationServiceConnectionProfileOracleConnectivityPrivateConnectivity(
     this.privateConnectivity,
   );
 

@@ -13,18 +13,18 @@ const Set<String> _awsDmsCertificateSensitive = <String>{
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.certificatePem(...)`.
-sealed class DmsCertificateCertificatePemOrCertificateWallet {
-  const DmsCertificateCertificatePemOrCertificateWallet();
+sealed class DmsCertificateCertificate {
+  const DmsCertificateCertificate();
 
   /// Sets `certificate_pem`.
-  const factory DmsCertificateCertificatePemOrCertificateWallet.certificatePem(
+  const factory DmsCertificateCertificate.certificatePem(
     TfArg<String> certificatePem,
-  ) = DmsCertificateCertificatePemOrCertificateWalletCertificatePem;
+  ) = DmsCertificateCertificateCertificatePem;
 
   /// Sets `certificate_wallet`.
-  const factory DmsCertificateCertificatePemOrCertificateWallet.certificateWallet(
+  const factory DmsCertificateCertificate.certificateWallet(
     TfArg<String> certificateWallet,
-  ) = DmsCertificateCertificatePemOrCertificateWalletCertificateWallet;
+  ) = DmsCertificateCertificateCertificateWallet;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,12 +36,10 @@ sealed class DmsCertificateCertificatePemOrCertificateWallet {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DmsCertificateCertificatePemOrCertificateWallet.certificatePem] choice: sets `certificate_pem`.
-final class DmsCertificateCertificatePemOrCertificateWalletCertificatePem
-    extends DmsCertificateCertificatePemOrCertificateWallet {
-  const DmsCertificateCertificatePemOrCertificateWalletCertificatePem(
-    this.certificatePem,
-  );
+/// The [DmsCertificateCertificate.certificatePem] choice: sets `certificate_pem`.
+final class DmsCertificateCertificateCertificatePem
+    extends DmsCertificateCertificate {
+  const DmsCertificateCertificateCertificatePem(this.certificatePem);
 
   final TfArg<String> certificatePem;
 
@@ -57,12 +55,10 @@ final class DmsCertificateCertificatePemOrCertificateWalletCertificatePem
   Map<String, TfArg<Object?>> get argMap => {'certificate_pem': certificatePem};
 }
 
-/// The [DmsCertificateCertificatePemOrCertificateWallet.certificateWallet] choice: sets `certificate_wallet`.
-final class DmsCertificateCertificatePemOrCertificateWalletCertificateWallet
-    extends DmsCertificateCertificatePemOrCertificateWallet {
-  const DmsCertificateCertificatePemOrCertificateWalletCertificateWallet(
-    this.certificateWallet,
-  );
+/// The [DmsCertificateCertificate.certificateWallet] choice: sets `certificate_wallet`.
+final class DmsCertificateCertificateCertificateWallet
+    extends DmsCertificateCertificate {
+  const DmsCertificateCertificateCertificateWallet(this.certificateWallet);
 
   final TfArg<String> certificateWallet;
 
@@ -87,8 +83,7 @@ final class AwsDmsCertificate extends Resource {
   AwsDmsCertificate({
     required super.localName,
     required TfArg<String> certificateId,
-    required DmsCertificateCertificatePemOrCertificateWallet
-    certificatePemOrCertificateWallet,
+    required DmsCertificateCertificate certificate,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -99,7 +94,7 @@ final class AwsDmsCertificate extends Resource {
          terraformType: tfType,
          argMap: {
            'certificate_id': certificateId,
-           ...certificatePemOrCertificateWallet.argMap,
+           ...certificate.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
          },

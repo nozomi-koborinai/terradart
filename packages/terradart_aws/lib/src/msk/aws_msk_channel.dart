@@ -11,18 +11,18 @@ const Set<String> _awsMskChannelSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.icebergDestination(...)`.
-sealed class MskChannelIcebergDestinationOrS3Destination {
-  const MskChannelIcebergDestinationOrS3Destination();
+sealed class MskChannelDestination {
+  const MskChannelDestination();
 
   /// Sets `iceberg_destination`.
-  const factory MskChannelIcebergDestinationOrS3Destination.icebergDestination(
+  const factory MskChannelDestination.icebergDestination(
     List<MskChannelIcebergDestination> icebergDestination,
-  ) = MskChannelIcebergDestinationOrS3DestinationIcebergDestination;
+  ) = MskChannelDestinationIcebergDestination;
 
   /// Sets `s3_destination`.
-  const factory MskChannelIcebergDestinationOrS3Destination.s3Destination(
+  const factory MskChannelDestination.s3Destination(
     List<MskChannelS3Destination> s3Destination,
-  ) = MskChannelIcebergDestinationOrS3DestinationS3Destination;
+  ) = MskChannelDestinationS3Destination;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,12 +34,10 @@ sealed class MskChannelIcebergDestinationOrS3Destination {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [MskChannelIcebergDestinationOrS3Destination.icebergDestination] choice: sets `iceberg_destination`.
-final class MskChannelIcebergDestinationOrS3DestinationIcebergDestination
-    extends MskChannelIcebergDestinationOrS3Destination {
-  const MskChannelIcebergDestinationOrS3DestinationIcebergDestination(
-    this.icebergDestination,
-  );
+/// The [MskChannelDestination.icebergDestination] choice: sets `iceberg_destination`.
+final class MskChannelDestinationIcebergDestination
+    extends MskChannelDestination {
+  const MskChannelDestinationIcebergDestination(this.icebergDestination);
 
   final List<MskChannelIcebergDestination> icebergDestination;
 
@@ -59,12 +57,9 @@ final class MskChannelIcebergDestinationOrS3DestinationIcebergDestination
   };
 }
 
-/// The [MskChannelIcebergDestinationOrS3Destination.s3Destination] choice: sets `s3_destination`.
-final class MskChannelIcebergDestinationOrS3DestinationS3Destination
-    extends MskChannelIcebergDestinationOrS3Destination {
-  const MskChannelIcebergDestinationOrS3DestinationS3Destination(
-    this.s3Destination,
-  );
+/// The [MskChannelDestination.s3Destination] choice: sets `s3_destination`.
+final class MskChannelDestinationS3Destination extends MskChannelDestination {
+  const MskChannelDestinationS3Destination(this.s3Destination);
 
   final List<MskChannelS3Destination> s3Destination;
 
@@ -582,8 +577,7 @@ final class AwsMskChannel extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<MskChannelEncryptionConfiguration>? encryptionConfiguration,
-    required MskChannelIcebergDestinationOrS3Destination
-    icebergDestinationOrS3Destination,
+    required MskChannelDestination destination,
     List<MskChannelLoggingInfo>? loggingInfo,
     List<MskChannelTopicConfiguration>? topicConfiguration,
     super.lifecycle,
@@ -601,7 +595,7 @@ final class AwsMskChannel extends Resource {
              'encryption_configuration': TfArg.literal([
                for (final e in encryptionConfiguration) e.encode(),
              ]),
-           ...icebergDestinationOrS3Destination.argMap,
+           ...destination.argMap,
            if (loggingInfo != null)
              'logging_info': TfArg.literal([
                for (final e in loggingInfo) e.encode(),

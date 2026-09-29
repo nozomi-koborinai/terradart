@@ -11,18 +11,18 @@ const Set<String> _awsNetworkmanagerCoreNetworkSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.basePolicyDocument(...)`.
-sealed class NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions {
-  const NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions();
+sealed class NetworkmanagerCoreNetworkBasePolicy {
+  const NetworkmanagerCoreNetworkBasePolicy();
 
   /// Sets `base_policy_document`.
-  const factory NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions.basePolicyDocument(
+  const factory NetworkmanagerCoreNetworkBasePolicy.basePolicyDocument(
     TfArg<String> basePolicyDocument,
-  ) = NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePolicyDocument;
+  ) = NetworkmanagerCoreNetworkBasePolicyBasePolicyDocument;
 
   /// Sets `base_policy_regions`.
-  const factory NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions.basePolicyRegions(
+  const factory NetworkmanagerCoreNetworkBasePolicy.basePolicyRegions(
     TfArg<List<String>> basePolicyRegions,
-  ) = NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePolicyRegions;
+  ) = NetworkmanagerCoreNetworkBasePolicyBasePolicyRegions;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +34,10 @@ sealed class NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions.basePolicyDocument] choice: sets `base_policy_document`.
-final class NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePolicyDocument
-    extends NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions {
-  const NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePolicyDocument(
+/// The [NetworkmanagerCoreNetworkBasePolicy.basePolicyDocument] choice: sets `base_policy_document`.
+final class NetworkmanagerCoreNetworkBasePolicyBasePolicyDocument
+    extends NetworkmanagerCoreNetworkBasePolicy {
+  const NetworkmanagerCoreNetworkBasePolicyBasePolicyDocument(
     this.basePolicyDocument,
   );
 
@@ -57,10 +57,10 @@ final class NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePo
   };
 }
 
-/// The [NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions.basePolicyRegions] choice: sets `base_policy_regions`.
-final class NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePolicyRegions
-    extends NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions {
-  const NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePolicyRegions(
+/// The [NetworkmanagerCoreNetworkBasePolicy.basePolicyRegions] choice: sets `base_policy_regions`.
+final class NetworkmanagerCoreNetworkBasePolicyBasePolicyRegions
+    extends NetworkmanagerCoreNetworkBasePolicy {
+  const NetworkmanagerCoreNetworkBasePolicyBasePolicyRegions(
     this.basePolicyRegions,
   );
 
@@ -86,8 +86,7 @@ final class AwsNetworkmanagerCoreNetwork extends Resource {
 
   AwsNetworkmanagerCoreNetwork({
     required super.localName,
-    NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions?
-    basePolicyDocumentOrBasePolicyRegions,
+    NetworkmanagerCoreNetworkBasePolicy? basePolicy,
     TfArg<bool>? createBasePolicy,
     TfArg<String>? description,
     required TfArg<String> globalNetworkId,
@@ -99,7 +98,7 @@ final class AwsNetworkmanagerCoreNetwork extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?basePolicyDocumentOrBasePolicyRegions?.argMap,
+           ...?basePolicy?.argMap,
            if (createBasePolicy != null) 'create_base_policy': createBasePolicy,
            if (description != null) 'description': description,
            'global_network_id': globalNetworkId,

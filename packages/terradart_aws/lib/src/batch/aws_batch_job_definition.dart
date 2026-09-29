@@ -33,28 +33,28 @@ enum BatchJobDefinitionType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.containerProperties(...)`.
-sealed class BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties {
-  const BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties();
+sealed class BatchJobDefinitionProperties {
+  const BatchJobDefinitionProperties();
 
   /// Sets `container_properties`.
-  const factory BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties.containerProperties(
+  const factory BatchJobDefinitionProperties.containerProperties(
     TfArg<String> containerProperties,
-  ) = BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodePropertiesContainerProperties;
+  ) = BatchJobDefinitionPropertiesContainerProperties;
 
   /// Sets `ecs_properties`.
-  const factory BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties.ecsProperties(
+  const factory BatchJobDefinitionProperties.ecsProperties(
     TfArg<String> ecsProperties,
-  ) = BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodePropertiesEcsProperties;
+  ) = BatchJobDefinitionPropertiesEcsProperties;
 
   /// Sets `eks_properties`.
-  const factory BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties.eksProperties(
+  const factory BatchJobDefinitionProperties.eksProperties(
     BatchJobDefinitionEksProperties eksProperties,
-  ) = BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodePropertiesEksProperties;
+  ) = BatchJobDefinitionPropertiesEksProperties;
 
   /// Sets `node_properties`.
-  const factory BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties.nodeProperties(
+  const factory BatchJobDefinitionProperties.nodeProperties(
     TfArg<String> nodeProperties,
-  ) = BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodePropertiesNodeProperties;
+  ) = BatchJobDefinitionPropertiesNodeProperties;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -66,11 +66,10 @@ sealed class BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksProperties
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties.containerProperties] choice: sets `container_properties`.
-final class BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodePropertiesContainerProperties
-    extends
-        BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties {
-  const BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodePropertiesContainerProperties(
+/// The [BatchJobDefinitionProperties.containerProperties] choice: sets `container_properties`.
+final class BatchJobDefinitionPropertiesContainerProperties
+    extends BatchJobDefinitionProperties {
+  const BatchJobDefinitionPropertiesContainerProperties(
     this.containerProperties,
   );
 
@@ -90,13 +89,10 @@ final class BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesO
   };
 }
 
-/// The [BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties.ecsProperties] choice: sets `ecs_properties`.
-final class BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodePropertiesEcsProperties
-    extends
-        BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties {
-  const BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodePropertiesEcsProperties(
-    this.ecsProperties,
-  );
+/// The [BatchJobDefinitionProperties.ecsProperties] choice: sets `ecs_properties`.
+final class BatchJobDefinitionPropertiesEcsProperties
+    extends BatchJobDefinitionProperties {
+  const BatchJobDefinitionPropertiesEcsProperties(this.ecsProperties);
 
   final TfArg<String> ecsProperties;
 
@@ -110,13 +106,10 @@ final class BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesO
   Map<String, TfArg<Object?>> get argMap => {'ecs_properties': ecsProperties};
 }
 
-/// The [BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties.eksProperties] choice: sets `eks_properties`.
-final class BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodePropertiesEksProperties
-    extends
-        BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties {
-  const BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodePropertiesEksProperties(
-    this.eksProperties,
-  );
+/// The [BatchJobDefinitionProperties.eksProperties] choice: sets `eks_properties`.
+final class BatchJobDefinitionPropertiesEksProperties
+    extends BatchJobDefinitionProperties {
+  const BatchJobDefinitionPropertiesEksProperties(this.eksProperties);
 
   final BatchJobDefinitionEksProperties eksProperties;
 
@@ -132,13 +125,10 @@ final class BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesO
   };
 }
 
-/// The [BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties.nodeProperties] choice: sets `node_properties`.
-final class BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodePropertiesNodeProperties
-    extends
-        BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties {
-  const BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodePropertiesNodeProperties(
-    this.nodeProperties,
-  );
+/// The [BatchJobDefinitionProperties.nodeProperties] choice: sets `node_properties`.
+final class BatchJobDefinitionPropertiesNodeProperties
+    extends BatchJobDefinitionProperties {
+  const BatchJobDefinitionPropertiesNodeProperties(this.nodeProperties);
 
   final TfArg<String> nodeProperties;
 
@@ -768,8 +758,7 @@ final class AwsBatchJobDefinition extends Resource {
 
   AwsBatchJobDefinition({
     required super.localName,
-    BatchJobDefinitionContainerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties?
-    containerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties,
+    BatchJobDefinitionProperties? properties,
     TfArg<bool>? deregisterOnNewRevision,
     required TfArg<String> name,
     TfArg<Map<String, String>>? parameters,
@@ -788,8 +777,7 @@ final class AwsBatchJobDefinition extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?containerPropertiesOrEcsPropertiesOrEksPropertiesOrNodeProperties
-               ?.argMap,
+           ...?properties?.argMap,
            if (deregisterOnNewRevision != null)
              'deregister_on_new_revision': deregisterOnNewRevision,
            'name': name,

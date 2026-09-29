@@ -17,8 +17,8 @@ export 'src/sfn/aws_sfn_state_machine.dart'
         SfnStateMachineEncryptionConfigurationType,
         SfnStateMachineLoggingConfiguration,
         SfnStateMachineLoggingConfigurationLevel,
-        SfnStateMachineNameOrNamePrefix,
-        SfnStateMachineNameOrNamePrefixName,
-        SfnStateMachineNameOrNamePrefixNamePrefix,
+        SfnStateMachineName,
+        SfnStateMachineNameName,
+        SfnStateMachineNameNamePrefix,
         SfnStateMachineTracingConfiguration,
         SfnStateMachineType;

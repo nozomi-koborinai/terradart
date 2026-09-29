@@ -39,12 +39,12 @@ final class SecurityhubConfigurationPolicyConfigurationPolicy {
 @immutable
 final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfiguration {
   const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfiguration({
-    this.disabledControlIdentifiersOrEnabledControlIdentifiers,
+    this.controlIdentifiers,
     this.securityControlCustomParameter,
   });
 
-  final SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers?
-  disabledControlIdentifiersOrEnabledControlIdentifiers;
+  final SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers?
+  controlIdentifiers;
 
   final List<
     SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationSecurityControlCustomParameter
@@ -52,7 +52,7 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
   securityControlCustomParameter;
 
   Map<String, Object?> encode() => {
-    ...?disabledControlIdentifiersOrEnabledControlIdentifiers?.encode(),
+    ...?controlIdentifiers?.encode(),
     if (securityControlCustomParameter != null)
       'security_control_custom_parameter': [
         for (final e in securityControlCustomParameter!) e.encode(),
@@ -65,18 +65,18 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.disabledControlIdentifiers(...)`.
-sealed class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers();
+sealed class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers {
+  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers();
 
   /// Sets `disabled_control_identifiers`.
-  const factory SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers.disabledControlIdentifiers(
+  const factory SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers.disabledControlIdentifiers(
     TfArg<List<Object?>> disabledControlIdentifiers,
-  ) = SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiersDisabledControlIdentifiers;
+  ) = SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiersDisabledControlIdentifiers;
 
   /// Sets `enabled_control_identifiers`.
-  const factory SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers.enabledControlIdentifiers(
+  const factory SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers.enabledControlIdentifiers(
     TfArg<List<Object?>> enabledControlIdentifiers,
-  ) = SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiersEnabledControlIdentifiers;
+  ) = SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiersEnabledControlIdentifiers;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -84,11 +84,11 @@ sealed class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCo
   Map<String, Object?> encode();
 }
 
-/// The [SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers.disabledControlIdentifiers] choice: sets `disabled_control_identifiers`.
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiersDisabledControlIdentifiers
+/// The [SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers.disabledControlIdentifiers] choice: sets `disabled_control_identifiers`.
+final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiersDisabledControlIdentifiers
     extends
-        SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiersDisabledControlIdentifiers(
+        SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers {
+  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiersDisabledControlIdentifiers(
     this.disabledControlIdentifiers,
   );
 
@@ -103,11 +103,11 @@ final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsCon
   };
 }
 
-/// The [SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers.enabledControlIdentifiers] choice: sets `enabled_control_identifiers`.
-final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiersEnabledControlIdentifiers
+/// The [SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers.enabledControlIdentifiers] choice: sets `enabled_control_identifiers`.
+final class SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiersEnabledControlIdentifiers
     extends
-        SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiers {
-  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationDisabledControlIdentifiersOrEnabledControlIdentifiersEnabledControlIdentifiers(
+        SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiers {
+  const SecurityhubConfigurationPolicyConfigurationPolicySecurityControlsConfigurationControlIdentifiersEnabledControlIdentifiers(
     this.enabledControlIdentifiers,
   );
 

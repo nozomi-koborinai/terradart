@@ -186,13 +186,13 @@ final class PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccessRoleBi
 @immutable
 final class PrivilegedAccessManagerEntitlementRequesterJustificationConfig {
   const PrivilegedAccessManagerEntitlementRequesterJustificationConfig({
-    this.notMandatoryOrUnstructured,
+    this.requesterJustificationConfig,
   });
 
-  final PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructured?
-  notMandatoryOrUnstructured;
+  final PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfig?
+  requesterJustificationConfig;
 
-  Map<String, Object?> encode() => {...?notMandatoryOrUnstructured?.encode()};
+  Map<String, Object?> encode() => {...?requesterJustificationConfig?.encode()};
 }
 
 /// At most one of `not_mandatory`, `unstructured` on the `requester_justification_config` block of `google_privileged_access_manager_entitlement`: the provider rejects
@@ -200,20 +200,20 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.notMandatory(...)`.
-sealed class PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructured {
-  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructured();
+sealed class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfig {
+  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfig();
 
   /// Sets `not_mandatory`.
-  const factory PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructured.notMandatory(
+  const factory PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfig.notMandatory(
     PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatory
     notMandatory,
-  ) = PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructuredNotMandatory;
+  ) = PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfigNotMandatory;
 
   /// Sets `unstructured`.
-  const factory PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructured.unstructured(
+  const factory PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfig.unstructured(
     PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured
     unstructured,
-  ) = PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructuredUnstructured;
+  ) = PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfigUnstructured;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -221,11 +221,11 @@ sealed class PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMa
   Map<String, Object?> encode();
 }
 
-/// The [PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructured.notMandatory] choice: sets `not_mandatory`.
-final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructuredNotMandatory
+/// The [PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfig.notMandatory] choice: sets `not_mandatory`.
+final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfigNotMandatory
     extends
-        PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructured {
-  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructuredNotMandatory(
+        PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfig {
+  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfigNotMandatory(
     this.notMandatory,
   );
 
@@ -239,11 +239,11 @@ final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMan
   Map<String, Object?> encode() => {'not_mandatory': notMandatory.encode()};
 }
 
-/// The [PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructured.unstructured] choice: sets `unstructured`.
-final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructuredUnstructured
+/// The [PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfig.unstructured] choice: sets `unstructured`.
+final class PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfigUnstructured
     extends
-        PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructured {
-  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigNotMandatoryOrUnstructuredUnstructured(
+        PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfig {
+  const PrivilegedAccessManagerEntitlementRequesterJustificationConfigRequesterJustificationConfigUnstructured(
     this.unstructured,
   );
 

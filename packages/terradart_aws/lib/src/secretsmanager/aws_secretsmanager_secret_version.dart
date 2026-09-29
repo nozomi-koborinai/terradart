@@ -15,23 +15,23 @@ const Set<String> _awsSecretsmanagerSecretVersionSensitive = <String>{
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.secretBinary(...)`.
-sealed class SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWo {
-  const SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWo();
+sealed class SecretsmanagerSecretVersionSecret {
+  const SecretsmanagerSecretVersionSecret();
 
   /// Sets `secret_binary`.
-  const factory SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWo.secretBinary(
+  const factory SecretsmanagerSecretVersionSecret.secretBinary(
     TfArg<String> secretBinary,
-  ) = SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWoSecretBinary;
+  ) = SecretsmanagerSecretVersionSecretSecretBinary;
 
   /// Sets `secret_string`.
-  const factory SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWo.secretString(
+  const factory SecretsmanagerSecretVersionSecret.secretString(
     TfArg<String> secretString,
-  ) = SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWoSecretString;
+  ) = SecretsmanagerSecretVersionSecretSecretString;
 
   /// Sets `secret_string_wo`.
-  const factory SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWo.secretStringWo(
+  const factory SecretsmanagerSecretVersionSecret.secretStringWo(
     TfArg<String> secretStringWo,
-  ) = SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWoSecretStringWo;
+  ) = SecretsmanagerSecretVersionSecretSecretStringWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,13 +43,10 @@ sealed class SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretString
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWo.secretBinary] choice: sets `secret_binary`.
-final class SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWoSecretBinary
-    extends
-        SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWo {
-  const SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWoSecretBinary(
-    this.secretBinary,
-  );
+/// The [SecretsmanagerSecretVersionSecret.secretBinary] choice: sets `secret_binary`.
+final class SecretsmanagerSecretVersionSecretSecretBinary
+    extends SecretsmanagerSecretVersionSecret {
+  const SecretsmanagerSecretVersionSecretSecretBinary(this.secretBinary);
 
   final TfArg<String> secretBinary;
 
@@ -63,13 +60,10 @@ final class SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringW
   Map<String, TfArg<Object?>> get argMap => {'secret_binary': secretBinary};
 }
 
-/// The [SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWo.secretString] choice: sets `secret_string`.
-final class SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWoSecretString
-    extends
-        SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWo {
-  const SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWoSecretString(
-    this.secretString,
-  );
+/// The [SecretsmanagerSecretVersionSecret.secretString] choice: sets `secret_string`.
+final class SecretsmanagerSecretVersionSecretSecretString
+    extends SecretsmanagerSecretVersionSecret {
+  const SecretsmanagerSecretVersionSecretSecretString(this.secretString);
 
   final TfArg<String> secretString;
 
@@ -83,13 +77,10 @@ final class SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringW
   Map<String, TfArg<Object?>> get argMap => {'secret_string': secretString};
 }
 
-/// The [SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWo.secretStringWo] choice: sets `secret_string_wo`.
-final class SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWoSecretStringWo
-    extends
-        SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWo {
-  const SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWoSecretStringWo(
-    this.secretStringWo,
-  );
+/// The [SecretsmanagerSecretVersionSecret.secretStringWo] choice: sets `secret_string_wo`.
+final class SecretsmanagerSecretVersionSecretSecretStringWo
+    extends SecretsmanagerSecretVersionSecret {
+  const SecretsmanagerSecretVersionSecretSecretStringWo(this.secretStringWo);
 
   final TfArg<String> secretStringWo;
 
@@ -114,8 +105,7 @@ final class AwsSecretsmanagerSecretVersion extends Resource {
   AwsSecretsmanagerSecretVersion({
     required super.localName,
     TfArg<String>? region,
-    SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWo?
-    secretBinaryOrSecretStringOrSecretStringWo,
+    SecretsmanagerSecretVersionSecret? secret,
     required TfArg<String> secretId,
     TfArg<num>? secretStringWoVersion,
     TfArg<List<String>>? versionStages,
@@ -127,7 +117,7 @@ final class AwsSecretsmanagerSecretVersion extends Resource {
          terraformType: tfType,
          argMap: {
            if (region != null) 'region': region,
-           ...?secretBinaryOrSecretStringOrSecretStringWo?.argMap,
+           ...?secret?.argMap,
            'secret_id': secretId,
            if (secretStringWoVersion != null)
              'secret_string_wo_version': secretStringWoVersion,

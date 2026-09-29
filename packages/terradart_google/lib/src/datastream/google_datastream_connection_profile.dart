@@ -31,18 +31,18 @@ const Set<String> _googleDatastreamConnectionProfileSensitive = <String>{
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.forwardSshConnectivity(...)`.
-sealed class DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity {
-  const DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity();
+sealed class DatastreamConnectionProfileConnectivity {
+  const DatastreamConnectionProfileConnectivity();
 
   /// Sets `forward_ssh_connectivity`.
-  const factory DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity.forwardSshConnectivity(
+  const factory DatastreamConnectionProfileConnectivity.forwardSshConnectivity(
     DatastreamConnectionProfileForwardSshConnectivity forwardSshConnectivity,
-  ) = DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity;
+  ) = DatastreamConnectionProfileConnectivityForwardSshConnectivity;
 
   /// Sets `private_connectivity`.
-  const factory DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity.privateConnectivity(
+  const factory DatastreamConnectionProfileConnectivity.privateConnectivity(
     DatastreamConnectionProfilePrivateConnectivity privateConnectivity,
-  ) = DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity;
+  ) = DatastreamConnectionProfileConnectivityPrivateConnectivity;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -54,11 +54,10 @@ sealed class DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectiv
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity.forwardSshConnectivity] choice: sets `forward_ssh_connectivity`.
-final class DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity
-    extends
-        DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity {
-  const DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity(
+/// The [DatastreamConnectionProfileConnectivity.forwardSshConnectivity] choice: sets `forward_ssh_connectivity`.
+final class DatastreamConnectionProfileConnectivityForwardSshConnectivity
+    extends DatastreamConnectionProfileConnectivity {
+  const DatastreamConnectionProfileConnectivityForwardSshConnectivity(
     this.forwardSshConnectivity,
   );
 
@@ -79,11 +78,10 @@ final class DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivi
   };
 }
 
-/// The [DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity.privateConnectivity] choice: sets `private_connectivity`.
-final class DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity
-    extends
-        DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity {
-  const DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity(
+/// The [DatastreamConnectionProfileConnectivity.privateConnectivity] choice: sets `private_connectivity`.
+final class DatastreamConnectionProfileConnectivityPrivateConnectivity
+    extends DatastreamConnectionProfileConnectivity {
+  const DatastreamConnectionProfileConnectivityPrivateConnectivity(
     this.privateConnectivity,
   );
 
@@ -619,8 +617,7 @@ final class GoogleDatastreamConnectionProfile extends Resource {
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
     TfArg<String>? project,
-    DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity?
-    forwardSshConnectivityOrPrivateConnectivity,
+    DatastreamConnectionProfileConnectivity? connectivity,
     DatastreamConnectionProfileGcsProfile? gcsProfile,
     super.lifecycle,
     super.dependsOn,
@@ -637,7 +634,7 @@ final class GoogleDatastreamConnectionProfile extends Resource {
            if (labels != null) 'labels': labels,
            'location': location,
            if (project != null) 'project': project,
-           ...?forwardSshConnectivityOrPrivateConnectivity?.argMap,
+           ...?connectivity?.argMap,
            if (gcsProfile != null)
              'gcs_profile': TfArg.literal(gcsProfile.encode()),
          },

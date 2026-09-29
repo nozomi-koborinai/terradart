@@ -22,17 +22,15 @@ enum Wafv2WebAclScope implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class Wafv2WebAclNameOrNamePrefix {
-  const Wafv2WebAclNameOrNamePrefix();
+sealed class Wafv2WebAclName {
+  const Wafv2WebAclName();
 
   /// Sets `name`.
-  const factory Wafv2WebAclNameOrNamePrefix.name(TfArg<String> name) =
-      Wafv2WebAclNameOrNamePrefixName;
+  const factory Wafv2WebAclName.name(TfArg<String> name) = Wafv2WebAclNameName;
 
   /// Sets `name_prefix`.
-  const factory Wafv2WebAclNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = Wafv2WebAclNameOrNamePrefixNamePrefix;
+  const factory Wafv2WebAclName.namePrefix(TfArg<String> namePrefix) =
+      Wafv2WebAclNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,10 +42,9 @@ sealed class Wafv2WebAclNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Wafv2WebAclNameOrNamePrefix.name] choice: sets `name`.
-final class Wafv2WebAclNameOrNamePrefixName
-    extends Wafv2WebAclNameOrNamePrefix {
-  const Wafv2WebAclNameOrNamePrefixName(this.name);
+/// The [Wafv2WebAclName.name] choice: sets `name`.
+final class Wafv2WebAclNameName extends Wafv2WebAclName {
+  const Wafv2WebAclNameName(this.name);
 
   final TfArg<String> name;
 
@@ -61,10 +58,9 @@ final class Wafv2WebAclNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [Wafv2WebAclNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class Wafv2WebAclNameOrNamePrefixNamePrefix
-    extends Wafv2WebAclNameOrNamePrefix {
-  const Wafv2WebAclNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [Wafv2WebAclName.namePrefix] choice: sets `name_prefix`.
+final class Wafv2WebAclNameNamePrefix extends Wafv2WebAclName {
+  const Wafv2WebAclNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -422,7 +418,7 @@ final class AwsWafv2WebAcl extends Resource {
   AwsWafv2WebAcl({
     required super.localName,
     TfArg<String>? description,
-    Wafv2WebAclNameOrNamePrefix? nameOrNamePrefix,
+    Wafv2WebAclName? name,
     TfArg<String>? region,
     TfArg<String>? ruleJson,
     required TfArg<Wafv2WebAclScope> scope,
@@ -444,7 +440,7 @@ final class AwsWafv2WebAcl extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (ruleJson != null) 'rule_json': ruleJson,
            'scope': scope,

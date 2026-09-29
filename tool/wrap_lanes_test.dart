@@ -33,6 +33,7 @@ void main() {
         '--barrels-manifest lib/src/codegen/barrels/barrels.yaml '
         '--mm-groups '
         '--migrate-manifest ../terradart_migrate/lib/src/manifest/google.g.dart '
+        '--sealed-name-debt ../../tool/sealed_name_debt.yaml '
         '--check',
       );
     });
@@ -49,6 +50,7 @@ void main() {
         '--mm-hints '
         '--migrate-manifest '
         '../terradart_migrate/lib/src/manifest/google_beta.g.dart '
+        '--sealed-name-debt ../../tool/sealed_name_debt.yaml '
         '--check',
       );
     });
@@ -73,6 +75,7 @@ void main() {
         '--provider-enums '
         '--migrate-manifest '
         '../terradart_migrate/lib/src/manifest/cloudflare.g.dart '
+        '--sealed-name-debt ../../tool/sealed_name_debt.yaml '
         '--check',
       );
     });
@@ -87,6 +90,7 @@ void main() {
         '--barrels-manifest lib/src/codegen/barrels/barrels_aws.yaml '
         '--provider-enums '
         '--migrate-manifest ../terradart_migrate/lib/src/manifest/aws.g.dart '
+        '--sealed-name-debt ../../tool/sealed_name_debt.yaml '
         '--check',
       );
     });

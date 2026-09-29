@@ -10,10 +10,10 @@ export 'src/agent/google_agent_identity_auth_provider.dart'
     show
         AgentIdentityAuthProviderAuthProviderTypeParams,
         AgentIdentityAuthProviderAuthProviderTypeParamsApiKey,
-        AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth,
-        AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauthApiKey,
-        AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauthThreeLeggedOauth,
-        AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauthTwoLeggedOauth,
+        AgentIdentityAuthProviderAuthProviderTypeParamsAuthProviderTypeParams,
+        AgentIdentityAuthProviderAuthProviderTypeParamsAuthProviderTypeParamsApiKey,
+        AgentIdentityAuthProviderAuthProviderTypeParamsAuthProviderTypeParamsThreeLeggedOauth,
+        AgentIdentityAuthProviderAuthProviderTypeParamsAuthProviderTypeParamsTwoLeggedOauth,
         AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth,
         AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth,
         GoogleAgentIdentityAuthProvider;

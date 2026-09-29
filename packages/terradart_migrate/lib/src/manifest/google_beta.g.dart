@@ -2823,16 +2823,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'targetServiceAccountsOrTargetSecureTags',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'target_service_accounts':
-                'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetServiceAccounts',
+                'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetServiceAccounts',
             'target_secure_tags':
-                'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetSecureTags',
+                'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetSecureTags',
           },
         ),
         MigrateSlot(
@@ -6382,16 +6382,14 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'acceleratorTypeOrAcceleratorConfig',
+          dartName: 'accelerator',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'accelerator_type':
-                'TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorType',
-            'accelerator_config':
-                'TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorConfig',
+            'accelerator_type': 'TpuV2VmAcceleratorAcceleratorType',
+            'accelerator_config': 'TpuV2VmAcceleratorAcceleratorConfig',
           },
         ),
         MigrateSlot(
@@ -10921,10 +10919,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetSecureTags':
+    'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetSecureTags':
         MigrateHelper(
           className:
-              'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetSecureTags',
+              'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetSecureTags',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'target_secure_tags',
@@ -10940,10 +10938,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           ],
           shorthand: 'targetSecureTags',
         ),
-    'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetServiceAccounts':
+    'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetServiceAccounts':
         MigrateHelper(
           className:
-              'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetServiceAccounts',
+              'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetServiceAccounts',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'target_service_accounts',
@@ -12497,16 +12495,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'disableAllNotificationsOrCustomNotificationBehavior',
+          dartName: 'emailNotificationSettings',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'disable_all_notifications':
-                'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorDisableAllNotifications',
+                'PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsDisableAllNotifications',
             'custom_notification_behavior':
-                'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorCustomNotificationBehavior',
+                'PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsCustomNotificationBehavior',
           },
         ),
       ],
@@ -12673,10 +12671,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
               'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications',
           slots: <MigrateSlot>[],
         ),
-    'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorCustomNotificationBehavior':
+    'PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsCustomNotificationBehavior':
         MigrateHelper(
           className:
-              'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorCustomNotificationBehavior',
+              'PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsCustomNotificationBehavior',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'custom_notification_behavior',
@@ -12691,10 +12689,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           ],
           shorthand: 'customNotificationBehavior',
         ),
-    'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorDisableAllNotifications':
+    'PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsDisableAllNotifications':
         MigrateHelper(
           className:
-              'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorDisableAllNotifications',
+              'PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsDisableAllNotifications',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'disable_all_notifications',
@@ -13331,6 +13329,35 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'TpuV2VmAcceleratorAcceleratorConfig': MigrateHelper(
+      className: 'TpuV2VmAcceleratorAcceleratorConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'accelerator_config',
+          dartName: 'acceleratorConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'TpuV2VmAcceleratorConfig',
+        ),
+      ],
+      shorthand: 'acceleratorConfig',
+    ),
+    'TpuV2VmAcceleratorAcceleratorType': MigrateHelper(
+      className: 'TpuV2VmAcceleratorAcceleratorType',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'accelerator_type',
+          dartName: 'acceleratorType',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'acceleratorType',
+    ),
     'TpuV2VmAcceleratorConfig': MigrateHelper(
       className: 'TpuV2VmAcceleratorConfig',
       slots: <MigrateSlot>[
@@ -13349,35 +13376,6 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-    ),
-    'TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorConfig': MigrateHelper(
-      className: 'TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorConfig',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'accelerator_config',
-          dartName: 'acceleratorConfig',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'TpuV2VmAcceleratorConfig',
-        ),
-      ],
-      shorthand: 'acceleratorConfig',
-    ),
-    'TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorType': MigrateHelper(
-      className: 'TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorType',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'accelerator_type',
-          dartName: 'acceleratorType',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'acceleratorType',
     ),
     'TpuV2VmDataDisks': MigrateHelper(
       className: 'TpuV2VmDataDisks',

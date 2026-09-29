@@ -23,18 +23,18 @@ enum CloudwatchMetricStreamOutputFormat implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.excludeFilter(...)`.
-sealed class CloudwatchMetricStreamExcludeFilterOrIncludeFilter {
-  const CloudwatchMetricStreamExcludeFilterOrIncludeFilter();
+sealed class CloudwatchMetricStreamFilter {
+  const CloudwatchMetricStreamFilter();
 
   /// Sets `exclude_filter`.
-  const factory CloudwatchMetricStreamExcludeFilterOrIncludeFilter.excludeFilter(
+  const factory CloudwatchMetricStreamFilter.excludeFilter(
     List<CloudwatchMetricStreamExcludeFilter> excludeFilter,
-  ) = CloudwatchMetricStreamExcludeFilterOrIncludeFilterExcludeFilter;
+  ) = CloudwatchMetricStreamFilterExcludeFilter;
 
   /// Sets `include_filter`.
-  const factory CloudwatchMetricStreamExcludeFilterOrIncludeFilter.includeFilter(
+  const factory CloudwatchMetricStreamFilter.includeFilter(
     List<CloudwatchMetricStreamIncludeFilter> includeFilter,
-  ) = CloudwatchMetricStreamExcludeFilterOrIncludeFilterIncludeFilter;
+  ) = CloudwatchMetricStreamFilterIncludeFilter;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -46,12 +46,10 @@ sealed class CloudwatchMetricStreamExcludeFilterOrIncludeFilter {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudwatchMetricStreamExcludeFilterOrIncludeFilter.excludeFilter] choice: sets `exclude_filter`.
-final class CloudwatchMetricStreamExcludeFilterOrIncludeFilterExcludeFilter
-    extends CloudwatchMetricStreamExcludeFilterOrIncludeFilter {
-  const CloudwatchMetricStreamExcludeFilterOrIncludeFilterExcludeFilter(
-    this.excludeFilter,
-  );
+/// The [CloudwatchMetricStreamFilter.excludeFilter] choice: sets `exclude_filter`.
+final class CloudwatchMetricStreamFilterExcludeFilter
+    extends CloudwatchMetricStreamFilter {
+  const CloudwatchMetricStreamFilterExcludeFilter(this.excludeFilter);
 
   final List<CloudwatchMetricStreamExcludeFilter> excludeFilter;
 
@@ -71,12 +69,10 @@ final class CloudwatchMetricStreamExcludeFilterOrIncludeFilterExcludeFilter
   };
 }
 
-/// The [CloudwatchMetricStreamExcludeFilterOrIncludeFilter.includeFilter] choice: sets `include_filter`.
-final class CloudwatchMetricStreamExcludeFilterOrIncludeFilterIncludeFilter
-    extends CloudwatchMetricStreamExcludeFilterOrIncludeFilter {
-  const CloudwatchMetricStreamExcludeFilterOrIncludeFilterIncludeFilter(
-    this.includeFilter,
-  );
+/// The [CloudwatchMetricStreamFilter.includeFilter] choice: sets `include_filter`.
+final class CloudwatchMetricStreamFilterIncludeFilter
+    extends CloudwatchMetricStreamFilter {
+  const CloudwatchMetricStreamFilterIncludeFilter(this.includeFilter);
 
   final List<CloudwatchMetricStreamIncludeFilter> includeFilter;
 
@@ -101,18 +97,17 @@ final class CloudwatchMetricStreamExcludeFilterOrIncludeFilterIncludeFilter
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class CloudwatchMetricStreamNameOrNamePrefix {
-  const CloudwatchMetricStreamNameOrNamePrefix();
+sealed class CloudwatchMetricStreamName {
+  const CloudwatchMetricStreamName();
 
   /// Sets `name`.
-  const factory CloudwatchMetricStreamNameOrNamePrefix.name(
-    TfArg<String> name,
-  ) = CloudwatchMetricStreamNameOrNamePrefixName;
+  const factory CloudwatchMetricStreamName.name(TfArg<String> name) =
+      CloudwatchMetricStreamNameName;
 
   /// Sets `name_prefix`.
-  const factory CloudwatchMetricStreamNameOrNamePrefix.namePrefix(
+  const factory CloudwatchMetricStreamName.namePrefix(
     TfArg<String> namePrefix,
-  ) = CloudwatchMetricStreamNameOrNamePrefixNamePrefix;
+  ) = CloudwatchMetricStreamNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -124,10 +119,9 @@ sealed class CloudwatchMetricStreamNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudwatchMetricStreamNameOrNamePrefix.name] choice: sets `name`.
-final class CloudwatchMetricStreamNameOrNamePrefixName
-    extends CloudwatchMetricStreamNameOrNamePrefix {
-  const CloudwatchMetricStreamNameOrNamePrefixName(this.name);
+/// The [CloudwatchMetricStreamName.name] choice: sets `name`.
+final class CloudwatchMetricStreamNameName extends CloudwatchMetricStreamName {
+  const CloudwatchMetricStreamNameName(this.name);
 
   final TfArg<String> name;
 
@@ -141,10 +135,10 @@ final class CloudwatchMetricStreamNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [CloudwatchMetricStreamNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class CloudwatchMetricStreamNameOrNamePrefixNamePrefix
-    extends CloudwatchMetricStreamNameOrNamePrefix {
-  const CloudwatchMetricStreamNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [CloudwatchMetricStreamName.namePrefix] choice: sets `name_prefix`.
+final class CloudwatchMetricStreamNameNamePrefix
+    extends CloudwatchMetricStreamName {
+  const CloudwatchMetricStreamNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -243,13 +237,12 @@ final class AwsCloudwatchMetricStream extends Resource {
     required super.localName,
     required TfArg<String> firehoseArn,
     TfArg<bool>? includeLinkedAccountsMetrics,
-    CloudwatchMetricStreamNameOrNamePrefix? nameOrNamePrefix,
+    CloudwatchMetricStreamName? name,
     required TfArg<CloudwatchMetricStreamOutputFormat> outputFormat,
     TfArg<String>? region,
     required TfArg<String> roleArn,
     TfArg<Map<String, String>>? tags,
-    CloudwatchMetricStreamExcludeFilterOrIncludeFilter?
-    excludeFilterOrIncludeFilter,
+    CloudwatchMetricStreamFilter? filter,
     List<CloudwatchMetricStreamStatisticsConfiguration>?
     statisticsConfiguration,
     super.lifecycle,
@@ -262,12 +255,12 @@ final class AwsCloudwatchMetricStream extends Resource {
            'firehose_arn': firehoseArn,
            if (includeLinkedAccountsMetrics != null)
              'include_linked_accounts_metrics': includeLinkedAccountsMetrics,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            'output_format': outputFormat,
            if (region != null) 'region': region,
            'role_arn': roleArn,
            if (tags != null) 'tags': tags,
-           ...?excludeFilterOrIncludeFilter?.argMap,
+           ...?filter?.argMap,
            if (statisticsConfiguration != null)
              'statistics_configuration': TfArg.literal([
                for (final e in statisticsConfiguration) e.encode(),

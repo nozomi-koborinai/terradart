@@ -23,16 +23,15 @@ enum ElbDesyncMitigationMode implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class ElbNameOrNamePrefix {
-  const ElbNameOrNamePrefix();
+sealed class ElbName {
+  const ElbName();
 
   /// Sets `name`.
-  const factory ElbNameOrNamePrefix.name(TfArg<String> name) =
-      ElbNameOrNamePrefixName;
+  const factory ElbName.name(TfArg<String> name) = ElbNameName;
 
   /// Sets `name_prefix`.
-  const factory ElbNameOrNamePrefix.namePrefix(TfArg<String> namePrefix) =
-      ElbNameOrNamePrefixNamePrefix;
+  const factory ElbName.namePrefix(TfArg<String> namePrefix) =
+      ElbNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,9 +43,9 @@ sealed class ElbNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ElbNameOrNamePrefix.name] choice: sets `name`.
-final class ElbNameOrNamePrefixName extends ElbNameOrNamePrefix {
-  const ElbNameOrNamePrefixName(this.name);
+/// The [ElbName.name] choice: sets `name`.
+final class ElbNameName extends ElbName {
+  const ElbNameName(this.name);
 
   final TfArg<String> name;
 
@@ -60,9 +59,9 @@ final class ElbNameOrNamePrefixName extends ElbNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [ElbNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class ElbNameOrNamePrefixNamePrefix extends ElbNameOrNamePrefix {
-  const ElbNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [ElbName.namePrefix] choice: sets `name_prefix`.
+final class ElbNameNamePrefix extends ElbName {
+  const ElbNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -180,7 +179,7 @@ final class AwsElb extends Resource {
     TfArg<num>? idleTimeout,
     TfArg<List<String>>? instances,
     TfArg<bool>? internal,
-    ElbNameOrNamePrefix? nameOrNamePrefix,
+    ElbName? name,
     TfArg<String>? region,
     TfArg<List<String>>? securityGroups,
     TfArg<String>? sourceSecurityGroup,
@@ -209,7 +208,7 @@ final class AwsElb extends Resource {
            if (idleTimeout != null) 'idle_timeout': idleTimeout,
            if (instances != null) 'instances': instances,
            if (internal != null) 'internal': internal,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (securityGroups != null) 'security_groups': securityGroups,
            if (sourceSecurityGroup != null)

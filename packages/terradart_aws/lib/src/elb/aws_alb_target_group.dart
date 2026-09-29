@@ -94,17 +94,16 @@ enum AlbTargetGroupTargetType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class AlbTargetGroupNameOrNamePrefix {
-  const AlbTargetGroupNameOrNamePrefix();
+sealed class AlbTargetGroupName {
+  const AlbTargetGroupName();
 
   /// Sets `name`.
-  const factory AlbTargetGroupNameOrNamePrefix.name(TfArg<String> name) =
-      AlbTargetGroupNameOrNamePrefixName;
+  const factory AlbTargetGroupName.name(TfArg<String> name) =
+      AlbTargetGroupNameName;
 
   /// Sets `name_prefix`.
-  const factory AlbTargetGroupNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = AlbTargetGroupNameOrNamePrefixNamePrefix;
+  const factory AlbTargetGroupName.namePrefix(TfArg<String> namePrefix) =
+      AlbTargetGroupNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -116,10 +115,9 @@ sealed class AlbTargetGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AlbTargetGroupNameOrNamePrefix.name] choice: sets `name`.
-final class AlbTargetGroupNameOrNamePrefixName
-    extends AlbTargetGroupNameOrNamePrefix {
-  const AlbTargetGroupNameOrNamePrefixName(this.name);
+/// The [AlbTargetGroupName.name] choice: sets `name`.
+final class AlbTargetGroupNameName extends AlbTargetGroupName {
+  const AlbTargetGroupNameName(this.name);
 
   final TfArg<String> name;
 
@@ -133,10 +131,9 @@ final class AlbTargetGroupNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [AlbTargetGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class AlbTargetGroupNameOrNamePrefixNamePrefix
-    extends AlbTargetGroupNameOrNamePrefix {
-  const AlbTargetGroupNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [AlbTargetGroupName.namePrefix] choice: sets `name_prefix`.
+final class AlbTargetGroupNameNamePrefix extends AlbTargetGroupName {
+  const AlbTargetGroupNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -379,7 +376,7 @@ final class AwsAlbTargetGroup extends Resource {
     loadBalancingAnomalyMitigation,
     TfArg<AlbTargetGroupLoadBalancingCrossZoneEnabled>?
     loadBalancingCrossZoneEnabled,
-    AlbTargetGroupNameOrNamePrefix? nameOrNamePrefix,
+    AlbTargetGroupName? name,
     TfArg<num>? port,
     TfArg<String>? preserveClientIp,
     TfArg<AlbTargetGroupProtocol>? protocol,
@@ -418,7 +415,7 @@ final class AwsAlbTargetGroup extends Resource {
                  loadBalancingAnomalyMitigation,
            if (loadBalancingCrossZoneEnabled != null)
              'load_balancing_cross_zone_enabled': loadBalancingCrossZoneEnabled,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (port != null) 'port': port,
            if (preserveClientIp != null) 'preserve_client_ip': preserveClientIp,
            if (protocol != null) 'protocol': protocol,

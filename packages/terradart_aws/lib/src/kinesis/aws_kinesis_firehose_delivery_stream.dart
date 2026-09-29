@@ -687,15 +687,13 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 @immutable
 final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializer {
   const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializer({
-    this.hiveJsonSerDeOrOpenXJsonSerDe,
+    this.jsonSerDe,
   });
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe?
-  hiveJsonSerDeOrOpenXJsonSerDe;
+  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe?
+  jsonSerDe;
 
-  Map<String, Object?> encode() => {
-    ...?hiveJsonSerDeOrOpenXJsonSerDe?.encode(),
-  };
+  Map<String, Object?> encode() => {...?jsonSerDe?.encode()};
 }
 
 /// At most one of `hive_json_ser_de`, `open_x_json_ser_de` on the `extended_s3_configuration.data_format_conversion_configuration.input_format_configuration.deserializer` block of `aws_kinesis_firehose_delivery_stream`: the provider rejects
@@ -703,20 +701,20 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.hiveJsonSerDe(...)`.
-sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe();
+sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe {
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe();
 
   /// Sets `hive_json_ser_de`.
-  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe.hiveJsonSerDe(
+  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe.hiveJsonSerDe(
     KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDe
     hiveJsonSerDe,
-  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDeHiveJsonSerDe;
+  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDeHiveJsonSerDe;
 
   /// Sets `open_x_json_ser_de`.
-  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe.openXJsonSerDe(
+  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe.openXJsonSerDe(
     KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerOpenXJsonSerDe
     openXJsonSerDe,
-  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDeOpenXJsonSerDe;
+  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDeOpenXJsonSerDe;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -724,11 +722,11 @@ sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConve
   Map<String, Object?> encode();
 }
 
-/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe.hiveJsonSerDe] choice: sets `hive_json_ser_de`.
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDeHiveJsonSerDe
+/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe.hiveJsonSerDe] choice: sets `hive_json_ser_de`.
+final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDeHiveJsonSerDe
     extends
-        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDeHiveJsonSerDe(
+        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe {
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDeHiveJsonSerDe(
     this.hiveJsonSerDe,
   );
 
@@ -742,11 +740,11 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
   Map<String, Object?> encode() => {'hive_json_ser_de': hiveJsonSerDe.encode()};
 }
 
-/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe.openXJsonSerDe] choice: sets `open_x_json_ser_de`.
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDeOpenXJsonSerDe
+/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe.openXJsonSerDe] choice: sets `open_x_json_ser_de`.
+final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDeOpenXJsonSerDe
     extends
-        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerHiveJsonSerDeOrOpenXJsonSerDeOpenXJsonSerDe(
+        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDe {
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationInputFormatConfigurationDeserializerJsonSerDeOpenXJsonSerDe(
     this.openXJsonSerDe,
   );
 
@@ -824,13 +822,13 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 @immutable
 final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializer {
   const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializer({
-    this.orcSerDeOrParquetSerDe,
+    this.serDe,
   });
 
-  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe?
-  orcSerDeOrParquetSerDe;
+  final KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe?
+  serDe;
 
-  Map<String, Object?> encode() => {...?orcSerDeOrParquetSerDe?.encode()};
+  Map<String, Object?> encode() => {...?serDe?.encode()};
 }
 
 /// At most one of `orc_ser_de`, `parquet_ser_de` on the `extended_s3_configuration.data_format_conversion_configuration.output_format_configuration.serializer` block of `aws_kinesis_firehose_delivery_stream`: the provider rejects
@@ -838,20 +836,20 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.orcSerDe(...)`.
-sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe();
+sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe {
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe();
 
   /// Sets `orc_ser_de`.
-  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe.orcSerDe(
+  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe.orcSerDe(
     KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDe
     orcSerDe,
-  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDeOrcSerDe;
+  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDeOrcSerDe;
 
   /// Sets `parquet_ser_de`.
-  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe.parquetSerDe(
+  const factory KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe.parquetSerDe(
     KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerParquetSerDe
     parquetSerDe,
-  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDeParquetSerDe;
+  ) = KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDeParquetSerDe;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -859,11 +857,11 @@ sealed class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConve
   Map<String, Object?> encode();
 }
 
-/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe.orcSerDe] choice: sets `orc_ser_de`.
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDeOrcSerDe
+/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe.orcSerDe] choice: sets `orc_ser_de`.
+final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDeOrcSerDe
     extends
-        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDeOrcSerDe(
+        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe {
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDeOrcSerDe(
     this.orcSerDe,
   );
 
@@ -877,11 +875,11 @@ final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConver
   Map<String, Object?> encode() => {'orc_ser_de': orcSerDe.encode()};
 }
 
-/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe.parquetSerDe] choice: sets `parquet_ser_de`.
-final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDeParquetSerDe
+/// The [KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe.parquetSerDe] choice: sets `parquet_ser_de`.
+final class KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDeParquetSerDe
     extends
-        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDe {
-  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerOrcSerDeOrParquetSerDeParquetSerDe(
+        KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDe {
+  const KinesisFirehoseDeliveryStreamExtendedS3ConfigurationDataFormatConversionConfigurationOutputFormatConfigurationSerializerSerDeParquetSerDe(
     this.parquetSerDe,
   );
 

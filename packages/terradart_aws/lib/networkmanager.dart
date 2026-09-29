@@ -21,9 +21,9 @@ export 'src/networkmanager/aws_networkmanager_connection.dart'
 export 'src/networkmanager/aws_networkmanager_core_network.dart'
     show
         AwsNetworkmanagerCoreNetwork,
-        NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions,
-        NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePolicyDocument,
-        NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegionsBasePolicyRegions;
+        NetworkmanagerCoreNetworkBasePolicy,
+        NetworkmanagerCoreNetworkBasePolicyBasePolicyDocument,
+        NetworkmanagerCoreNetworkBasePolicyBasePolicyRegions;
 export 'src/networkmanager/aws_networkmanager_core_network_policy_attachment.dart'
     show AwsNetworkmanagerCoreNetworkPolicyAttachment;
 export 'src/networkmanager/aws_networkmanager_customer_gateway_association.dart'
@@ -32,9 +32,9 @@ export 'src/networkmanager/aws_networkmanager_device.dart'
     show
         AwsNetworkmanagerDevice,
         NetworkmanagerDeviceAwsLocation,
-        NetworkmanagerDeviceAwsLocationSubnetArnOrZone,
-        NetworkmanagerDeviceAwsLocationSubnetArnOrZoneSubnetArn,
-        NetworkmanagerDeviceAwsLocationSubnetArnOrZoneZone,
+        NetworkmanagerDeviceAwsLocationAwsLocation,
+        NetworkmanagerDeviceAwsLocationAwsLocationSubnetArn,
+        NetworkmanagerDeviceAwsLocationAwsLocationZone,
         NetworkmanagerDeviceLocation;
 export 'src/networkmanager/aws_networkmanager_dx_gateway_attachment.dart'
     show AwsNetworkmanagerDxGatewayAttachment;

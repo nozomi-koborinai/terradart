@@ -16,13 +16,13 @@ export 'src/elb/aws_alb.dart'
         AlbIpamPools,
         AlbLoadBalancerType,
         AlbMinimumLoadBalancerCapacity,
-        AlbNameOrNamePrefix,
-        AlbNameOrNamePrefixName,
-        AlbNameOrNamePrefixNamePrefix,
+        AlbName,
+        AlbNameName,
+        AlbNameNamePrefix,
+        AlbSubnet,
         AlbSubnetMapping,
-        AlbSubnetMappingOrSubnets,
-        AlbSubnetMappingOrSubnetsSubnetMapping,
-        AlbSubnetMappingOrSubnetsSubnets,
+        AlbSubnetSubnetMapping,
+        AlbSubnetSubnets,
         AlbXffHeaderProcessingMode,
         AwsAlb;
 export 'src/elb/aws_alb_listener.dart'
@@ -93,9 +93,9 @@ export 'src/elb/aws_alb_target_group.dart'
         AlbTargetGroupLoadBalancingAlgorithmType,
         AlbTargetGroupLoadBalancingAnomalyMitigation,
         AlbTargetGroupLoadBalancingCrossZoneEnabled,
-        AlbTargetGroupNameOrNamePrefix,
-        AlbTargetGroupNameOrNamePrefixName,
-        AlbTargetGroupNameOrNamePrefixNamePrefix,
+        AlbTargetGroupName,
+        AlbTargetGroupNameName,
+        AlbTargetGroupNameNamePrefix,
         AlbTargetGroupProtocol,
         AlbTargetGroupProtocolVersion,
         AlbTargetGroupStickiness,
@@ -120,9 +120,9 @@ export 'src/elb/aws_elb.dart'
         ElbDesyncMitigationMode,
         ElbHealthCheck,
         ElbListener,
-        ElbNameOrNamePrefix,
-        ElbNameOrNamePrefixName,
-        ElbNameOrNamePrefixNamePrefix;
+        ElbName,
+        ElbNameName,
+        ElbNameNamePrefix;
 export 'src/elb/aws_elb_attachment.dart' show AwsElbAttachment;
 export 'src/elb/aws_lb.dart'
     show
@@ -138,13 +138,13 @@ export 'src/elb/aws_lb.dart'
         LbIpamPools,
         LbLoadBalancerType,
         LbMinimumLoadBalancerCapacity,
-        LbNameOrNamePrefix,
-        LbNameOrNamePrefixName,
-        LbNameOrNamePrefixNamePrefix,
+        LbName,
+        LbNameName,
+        LbNameNamePrefix,
+        LbSubnet,
         LbSubnetMapping,
-        LbSubnetMappingOrSubnets,
-        LbSubnetMappingOrSubnetsSubnetMapping,
-        LbSubnetMappingOrSubnetsSubnets,
+        LbSubnetSubnetMapping,
+        LbSubnetSubnets,
         LbXffHeaderProcessingMode;
 export 'src/elb/aws_lb_cookie_stickiness_policy.dart'
     show AwsLbCookieStickinessPolicy;
@@ -218,9 +218,9 @@ export 'src/elb/aws_lb_target_group.dart'
         LbTargetGroupLoadBalancingAlgorithmType,
         LbTargetGroupLoadBalancingAnomalyMitigation,
         LbTargetGroupLoadBalancingCrossZoneEnabled,
-        LbTargetGroupNameOrNamePrefix,
-        LbTargetGroupNameOrNamePrefixName,
-        LbTargetGroupNameOrNamePrefixNamePrefix,
+        LbTargetGroupName,
+        LbTargetGroupNameName,
+        LbTargetGroupNameNamePrefix,
         LbTargetGroupProtocol,
         LbTargetGroupProtocolVersion,
         LbTargetGroupStickiness,
@@ -238,9 +238,9 @@ export 'src/elb/aws_lb_target_group_attachment.dart'
 export 'src/elb/aws_lb_trust_store.dart'
     show
         AwsLbTrustStore,
-        LbTrustStoreNameOrNamePrefix,
-        LbTrustStoreNameOrNamePrefixName,
-        LbTrustStoreNameOrNamePrefixNamePrefix;
+        LbTrustStoreName,
+        LbTrustStoreNameName,
+        LbTrustStoreNameNamePrefix;
 export 'src/elb/aws_lb_trust_store_revocation.dart'
     show AwsLbTrustStoreRevocation;
 export 'src/elb/aws_load_balancer_backend_server_policy.dart'

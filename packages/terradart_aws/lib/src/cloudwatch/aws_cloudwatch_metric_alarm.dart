@@ -269,18 +269,17 @@ final class CloudwatchMetricAlarmExtendedStatisticOrStatisticStatistic
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.threshold(...)`.
-sealed class CloudwatchMetricAlarmThresholdOrThresholdMetricId {
-  const CloudwatchMetricAlarmThresholdOrThresholdMetricId();
+sealed class CloudwatchMetricAlarmThreshold {
+  const CloudwatchMetricAlarmThreshold();
 
   /// Sets `threshold`.
-  const factory CloudwatchMetricAlarmThresholdOrThresholdMetricId.threshold(
-    TfArg<num> threshold,
-  ) = CloudwatchMetricAlarmThresholdOrThresholdMetricIdThreshold;
+  const factory CloudwatchMetricAlarmThreshold.threshold(TfArg<num> threshold) =
+      CloudwatchMetricAlarmThresholdThreshold;
 
   /// Sets `threshold_metric_id`.
-  const factory CloudwatchMetricAlarmThresholdOrThresholdMetricId.thresholdMetricId(
+  const factory CloudwatchMetricAlarmThreshold.thresholdMetricId(
     TfArg<String> thresholdMetricId,
-  ) = CloudwatchMetricAlarmThresholdOrThresholdMetricIdThresholdMetricId;
+  ) = CloudwatchMetricAlarmThresholdThresholdMetricId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -292,12 +291,10 @@ sealed class CloudwatchMetricAlarmThresholdOrThresholdMetricId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudwatchMetricAlarmThresholdOrThresholdMetricId.threshold] choice: sets `threshold`.
-final class CloudwatchMetricAlarmThresholdOrThresholdMetricIdThreshold
-    extends CloudwatchMetricAlarmThresholdOrThresholdMetricId {
-  const CloudwatchMetricAlarmThresholdOrThresholdMetricIdThreshold(
-    this.threshold,
-  );
+/// The [CloudwatchMetricAlarmThreshold.threshold] choice: sets `threshold`.
+final class CloudwatchMetricAlarmThresholdThreshold
+    extends CloudwatchMetricAlarmThreshold {
+  const CloudwatchMetricAlarmThresholdThreshold(this.threshold);
 
   final TfArg<num> threshold;
 
@@ -311,12 +308,10 @@ final class CloudwatchMetricAlarmThresholdOrThresholdMetricIdThreshold
   Map<String, TfArg<Object?>> get argMap => {'threshold': threshold};
 }
 
-/// The [CloudwatchMetricAlarmThresholdOrThresholdMetricId.thresholdMetricId] choice: sets `threshold_metric_id`.
-final class CloudwatchMetricAlarmThresholdOrThresholdMetricIdThresholdMetricId
-    extends CloudwatchMetricAlarmThresholdOrThresholdMetricId {
-  const CloudwatchMetricAlarmThresholdOrThresholdMetricIdThresholdMetricId(
-    this.thresholdMetricId,
-  );
+/// The [CloudwatchMetricAlarmThreshold.thresholdMetricId] choice: sets `threshold_metric_id`.
+final class CloudwatchMetricAlarmThresholdThresholdMetricId
+    extends CloudwatchMetricAlarmThreshold {
+  const CloudwatchMetricAlarmThresholdThresholdMetricId(this.thresholdMetricId);
 
   final TfArg<String> thresholdMetricId;
 
@@ -539,8 +534,7 @@ final class AwsCloudwatchMetricAlarm extends Resource {
     TfArg<num>? period,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    CloudwatchMetricAlarmThresholdOrThresholdMetricId?
-    thresholdOrThresholdMetricId,
+    CloudwatchMetricAlarmThreshold? threshold,
     TfArg<CloudwatchMetricAlarmTreatMissingData>? treatMissingData,
     TfArg<CloudwatchMetricAlarmUnit>? unit,
     CloudwatchMetricAlarmWarmUpConfiguration? warmUpConfiguration,
@@ -576,7 +570,7 @@ final class AwsCloudwatchMetricAlarm extends Resource {
            if (period != null) 'period': period,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           ...?thresholdOrThresholdMetricId?.argMap,
+           ...?threshold?.argMap,
            if (treatMissingData != null) 'treat_missing_data': treatMissingData,
            if (unit != null) 'unit': unit,
            if (warmUpConfiguration != null)

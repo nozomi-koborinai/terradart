@@ -1032,13 +1032,13 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyHost {
 @immutable
 final class RulesetRulesActionParametersCacheKeyCustomKeyQueryString {
   const RulesetRulesActionParametersCacheKeyCustomKeyQueryString({
-    this.includeOrExclude,
+    this.queryString,
   });
 
-  final RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExclude?
-  includeOrExclude;
+  final RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryString?
+  queryString;
 
-  Map<String, Object?> encode() => {...?includeOrExclude?.encode()};
+  Map<String, Object?> encode() => {...?queryString?.encode()};
 }
 
 /// At most one of `include`, `exclude` on the `rules.action_parameters.cache_key.custom_key.query_string` block of `cloudflare_ruleset`: the provider rejects
@@ -1046,18 +1046,18 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryString {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.include(...)`.
-sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExclude {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExclude();
+sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryString {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryString();
 
   /// Sets `include`.
-  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExclude.include(
+  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryString.include(
     RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude include,
-  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExcludeInclude;
+  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryStringInclude;
 
   /// Sets `exclude`.
-  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExclude.exclude(
+  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryString.exclude(
     RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude exclude,
-  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExcludeExclude;
+  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryStringExclude;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1065,11 +1065,11 @@ sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrEx
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExclude.include] choice: sets `include`.
-final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExcludeInclude
+/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryString.include] choice: sets `include`.
+final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryStringInclude
     extends
-        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExclude {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExcludeInclude(
+        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryString {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryStringInclude(
     this.include,
   );
 
@@ -1082,11 +1082,11 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExc
   Map<String, Object?> encode() => {'include': include.encode()};
 }
 
-/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExclude.exclude] choice: sets `exclude`.
-final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExcludeExclude
+/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryString.exclude] choice: sets `exclude`.
+final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryStringExclude
     extends
-        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExclude {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExcludeExclude(
+        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryString {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringQueryStringExclude(
     this.exclude,
   );
 
@@ -1104,31 +1104,31 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeOrExc
 @immutable
 final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude {
   const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude({
-    required this.listOrAll,
+    required this.exclude,
   });
 
-  final RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll
-  listOrAll;
+  final RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExclude
+  exclude;
 
-  Map<String, Object?> encode() => {...listOrAll.encode()};
+  Map<String, Object?> encode() => {...exclude.encode()};
 }
 
 /// Exactly one of `list`, `all` on the `rules.action_parameters.cache_key.custom_key.query_string.exclude` block of `cloudflare_ruleset`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.list(...)`.
-sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll();
+sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExclude {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExclude();
 
   /// Sets `list`.
-  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll.list(
+  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExclude.list(
     TfArg<List<Object?>> list,
-  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAllList;
+  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExcludeList;
 
   /// Sets `all`.
-  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll.all(
+  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExclude.all(
     TfArg<bool> all,
-  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAllAll;
+  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExcludeAll;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1136,11 +1136,11 @@ sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeList
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll.list] choice: sets `list`.
-final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAllList
+/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExclude.list] choice: sets `list`.
+final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExcludeList
     extends
-        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAllList(
+        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExclude {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExcludeList(
     this.list,
   );
 
@@ -1153,11 +1153,11 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListO
   Map<String, Object?> encode() => {'list': list.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll.all] choice: sets `all`.
-final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAllAll
+/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExclude.all] choice: sets `all`.
+final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExcludeAll
     extends
-        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAllAll(
+        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExclude {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeExcludeAll(
     this.all,
   );
 
@@ -1175,31 +1175,31 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListO
 @immutable
 final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude {
   const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude({
-    required this.listOrAll,
+    required this.include,
   });
 
-  final RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll
-  listOrAll;
+  final RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeInclude
+  include;
 
-  Map<String, Object?> encode() => {...listOrAll.encode()};
+  Map<String, Object?> encode() => {...include.encode()};
 }
 
 /// Exactly one of `list`, `all` on the `rules.action_parameters.cache_key.custom_key.query_string.include` block of `cloudflare_ruleset`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.list(...)`.
-sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll();
+sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeInclude {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeInclude();
 
   /// Sets `list`.
-  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll.list(
+  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeInclude.list(
     TfArg<List<Object?>> list,
-  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAllList;
+  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeIncludeList;
 
   /// Sets `all`.
-  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll.all(
+  const factory RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeInclude.all(
     TfArg<bool> all,
-  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAllAll;
+  ) = RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeIncludeAll;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1207,11 +1207,11 @@ sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeList
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll.list] choice: sets `list`.
-final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAllList
+/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeInclude.list] choice: sets `list`.
+final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeIncludeList
     extends
-        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAllList(
+        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeInclude {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeIncludeList(
     this.list,
   );
 
@@ -1224,11 +1224,11 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListO
   Map<String, Object?> encode() => {'list': list.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll.all] choice: sets `all`.
-final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAllAll
+/// The [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeInclude.all] choice: sets `all`.
+final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeIncludeAll
     extends
-        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll {
-  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAllAll(
+        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeInclude {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeIncludeAll(
     this.all,
   );
 
@@ -1335,17 +1335,16 @@ enum RulesetRulesActionParametersEdgeTtlMode implements TerraformEnum {
 @immutable
 final class RulesetRulesActionParametersEdgeTtlStatusCodeTtl {
   const RulesetRulesActionParametersEdgeTtlStatusCodeTtl({
-    required this.statusCodeRangeOrStatusCode,
+    required this.statusCode,
     required this.value,
   });
 
-  final RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode
-  statusCodeRangeOrStatusCode;
+  final RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCode statusCode;
 
   final TfArg<num> value;
 
   Map<String, Object?> encode() => {
-    ...statusCodeRangeOrStatusCode.encode(),
+    ...statusCode.encode(),
     'value': value.toTfJson(),
   };
 }
@@ -1354,19 +1353,19 @@ final class RulesetRulesActionParametersEdgeTtlStatusCodeTtl {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.statusCodeRange(...)`.
-sealed class RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode {
-  const RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode();
+sealed class RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCode {
+  const RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCode();
 
   /// Sets `status_code_range`.
-  const factory RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode.statusCodeRange(
+  const factory RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCode.statusCodeRange(
     RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRange
     statusCodeRange,
-  ) = RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCodeStatusCodeRange;
+  ) = RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeStatusCodeRange;
 
   /// Sets `status_code`.
-  const factory RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode.statusCode(
+  const factory RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCode.statusCode(
     TfArg<num> statusCode,
-  ) = RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCodeStatusCode;
+  ) = RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeStatusCode;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1374,11 +1373,10 @@ sealed class RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrSt
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode.statusCodeRange] choice: sets `status_code_range`.
-final class RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCodeStatusCodeRange
-    extends
-        RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode {
-  const RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCodeStatusCodeRange(
+/// The [RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCode.statusCodeRange] choice: sets `status_code_range`.
+final class RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeStatusCodeRange
+    extends RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCode {
+  const RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeStatusCodeRange(
     this.statusCodeRange,
   );
 
@@ -1394,11 +1392,10 @@ final class RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrSta
   };
 }
 
-/// The [RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode.statusCode] choice: sets `status_code`.
-final class RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCodeStatusCode
-    extends
-        RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode {
-  const RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCodeStatusCode(
+/// The [RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCode.statusCode] choice: sets `status_code`.
+final class RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeStatusCode
+    extends RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCode {
+  const RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeStatusCode(
     this.statusCode,
   );
 
@@ -1478,31 +1475,30 @@ final class RulesetRulesActionParametersFromValue {
 @immutable
 final class RulesetRulesActionParametersFromValueTargetUrl {
   const RulesetRulesActionParametersFromValueTargetUrl({
-    required this.valueOrExpression,
+    required this.targetUrl,
   });
 
-  final RulesetRulesActionParametersFromValueTargetUrlValueOrExpression
-  valueOrExpression;
+  final RulesetRulesActionParametersFromValueTargetUrlTargetUrl targetUrl;
 
-  Map<String, Object?> encode() => {...valueOrExpression.encode()};
+  Map<String, Object?> encode() => {...targetUrl.encode()};
 }
 
 /// Exactly one of `value`, `expression` on the `rules.action_parameters.from_value.target_url` block of `cloudflare_ruleset`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.value(...)`.
-sealed class RulesetRulesActionParametersFromValueTargetUrlValueOrExpression {
-  const RulesetRulesActionParametersFromValueTargetUrlValueOrExpression();
+sealed class RulesetRulesActionParametersFromValueTargetUrlTargetUrl {
+  const RulesetRulesActionParametersFromValueTargetUrlTargetUrl();
 
   /// Sets `value`.
-  const factory RulesetRulesActionParametersFromValueTargetUrlValueOrExpression.value(
+  const factory RulesetRulesActionParametersFromValueTargetUrlTargetUrl.value(
     TfArg<String> value,
-  ) = RulesetRulesActionParametersFromValueTargetUrlValueOrExpressionValue;
+  ) = RulesetRulesActionParametersFromValueTargetUrlTargetUrlValue;
 
   /// Sets `expression`.
-  const factory RulesetRulesActionParametersFromValueTargetUrlValueOrExpression.expression(
+  const factory RulesetRulesActionParametersFromValueTargetUrlTargetUrl.expression(
     TfArg<String> expression,
-  ) = RulesetRulesActionParametersFromValueTargetUrlValueOrExpressionExpression;
+  ) = RulesetRulesActionParametersFromValueTargetUrlTargetUrlExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1510,10 +1506,10 @@ sealed class RulesetRulesActionParametersFromValueTargetUrlValueOrExpression {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersFromValueTargetUrlValueOrExpression.value] choice: sets `value`.
-final class RulesetRulesActionParametersFromValueTargetUrlValueOrExpressionValue
-    extends RulesetRulesActionParametersFromValueTargetUrlValueOrExpression {
-  const RulesetRulesActionParametersFromValueTargetUrlValueOrExpressionValue(
+/// The [RulesetRulesActionParametersFromValueTargetUrlTargetUrl.value] choice: sets `value`.
+final class RulesetRulesActionParametersFromValueTargetUrlTargetUrlValue
+    extends RulesetRulesActionParametersFromValueTargetUrlTargetUrl {
+  const RulesetRulesActionParametersFromValueTargetUrlTargetUrlValue(
     this.value,
   );
 
@@ -1526,10 +1522,10 @@ final class RulesetRulesActionParametersFromValueTargetUrlValueOrExpressionValue
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersFromValueTargetUrlValueOrExpression.expression] choice: sets `expression`.
-final class RulesetRulesActionParametersFromValueTargetUrlValueOrExpressionExpression
-    extends RulesetRulesActionParametersFromValueTargetUrlValueOrExpression {
-  const RulesetRulesActionParametersFromValueTargetUrlValueOrExpressionExpression(
+/// The [RulesetRulesActionParametersFromValueTargetUrlTargetUrl.expression] choice: sets `expression`.
+final class RulesetRulesActionParametersFromValueTargetUrlTargetUrlExpression
+    extends RulesetRulesActionParametersFromValueTargetUrlTargetUrl {
+  const RulesetRulesActionParametersFromValueTargetUrlTargetUrlExpression(
     this.expression,
   );
 
@@ -2368,29 +2364,29 @@ final class RulesetRulesActionParametersUri {
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
 final class RulesetRulesActionParametersUriPath {
-  const RulesetRulesActionParametersUriPath({required this.valueOrExpression});
+  const RulesetRulesActionParametersUriPath({required this.path});
 
-  final RulesetRulesActionParametersUriPathValueOrExpression valueOrExpression;
+  final RulesetRulesActionParametersUriPathPath path;
 
-  Map<String, Object?> encode() => {...valueOrExpression.encode()};
+  Map<String, Object?> encode() => {...path.encode()};
 }
 
 /// Exactly one of `value`, `expression` on the `rules.action_parameters.uri.path` block of `cloudflare_ruleset`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.value(...)`.
-sealed class RulesetRulesActionParametersUriPathValueOrExpression {
-  const RulesetRulesActionParametersUriPathValueOrExpression();
+sealed class RulesetRulesActionParametersUriPathPath {
+  const RulesetRulesActionParametersUriPathPath();
 
   /// Sets `value`.
-  const factory RulesetRulesActionParametersUriPathValueOrExpression.value(
+  const factory RulesetRulesActionParametersUriPathPath.value(
     TfArg<String> value,
-  ) = RulesetRulesActionParametersUriPathValueOrExpressionValue;
+  ) = RulesetRulesActionParametersUriPathPathValue;
 
   /// Sets `expression`.
-  const factory RulesetRulesActionParametersUriPathValueOrExpression.expression(
+  const factory RulesetRulesActionParametersUriPathPath.expression(
     TfArg<String> expression,
-  ) = RulesetRulesActionParametersUriPathValueOrExpressionExpression;
+  ) = RulesetRulesActionParametersUriPathPathExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -2398,10 +2394,10 @@ sealed class RulesetRulesActionParametersUriPathValueOrExpression {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersUriPathValueOrExpression.value] choice: sets `value`.
-final class RulesetRulesActionParametersUriPathValueOrExpressionValue
-    extends RulesetRulesActionParametersUriPathValueOrExpression {
-  const RulesetRulesActionParametersUriPathValueOrExpressionValue(this.value);
+/// The [RulesetRulesActionParametersUriPathPath.value] choice: sets `value`.
+final class RulesetRulesActionParametersUriPathPathValue
+    extends RulesetRulesActionParametersUriPathPath {
+  const RulesetRulesActionParametersUriPathPathValue(this.value);
 
   final TfArg<String> value;
 
@@ -2412,12 +2408,10 @@ final class RulesetRulesActionParametersUriPathValueOrExpressionValue
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersUriPathValueOrExpression.expression] choice: sets `expression`.
-final class RulesetRulesActionParametersUriPathValueOrExpressionExpression
-    extends RulesetRulesActionParametersUriPathValueOrExpression {
-  const RulesetRulesActionParametersUriPathValueOrExpressionExpression(
-    this.expression,
-  );
+/// The [RulesetRulesActionParametersUriPathPath.expression] choice: sets `expression`.
+final class RulesetRulesActionParametersUriPathPathExpression
+    extends RulesetRulesActionParametersUriPathPath {
+  const RulesetRulesActionParametersUriPathPathExpression(this.expression);
 
   final TfArg<String> expression;
 
@@ -2432,29 +2426,29 @@ final class RulesetRulesActionParametersUriPathValueOrExpressionExpression
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
 final class RulesetRulesActionParametersUriQuery {
-  const RulesetRulesActionParametersUriQuery({required this.valueOrExpression});
+  const RulesetRulesActionParametersUriQuery({required this.query});
 
-  final RulesetRulesActionParametersUriQueryValueOrExpression valueOrExpression;
+  final RulesetRulesActionParametersUriQueryQuery query;
 
-  Map<String, Object?> encode() => {...valueOrExpression.encode()};
+  Map<String, Object?> encode() => {...query.encode()};
 }
 
 /// Exactly one of `value`, `expression` on the `rules.action_parameters.uri.query` block of `cloudflare_ruleset`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.value(...)`.
-sealed class RulesetRulesActionParametersUriQueryValueOrExpression {
-  const RulesetRulesActionParametersUriQueryValueOrExpression();
+sealed class RulesetRulesActionParametersUriQueryQuery {
+  const RulesetRulesActionParametersUriQueryQuery();
 
   /// Sets `value`.
-  const factory RulesetRulesActionParametersUriQueryValueOrExpression.value(
+  const factory RulesetRulesActionParametersUriQueryQuery.value(
     TfArg<String> value,
-  ) = RulesetRulesActionParametersUriQueryValueOrExpressionValue;
+  ) = RulesetRulesActionParametersUriQueryQueryValue;
 
   /// Sets `expression`.
-  const factory RulesetRulesActionParametersUriQueryValueOrExpression.expression(
+  const factory RulesetRulesActionParametersUriQueryQuery.expression(
     TfArg<String> expression,
-  ) = RulesetRulesActionParametersUriQueryValueOrExpressionExpression;
+  ) = RulesetRulesActionParametersUriQueryQueryExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -2462,10 +2456,10 @@ sealed class RulesetRulesActionParametersUriQueryValueOrExpression {
   Map<String, Object?> encode();
 }
 
-/// The [RulesetRulesActionParametersUriQueryValueOrExpression.value] choice: sets `value`.
-final class RulesetRulesActionParametersUriQueryValueOrExpressionValue
-    extends RulesetRulesActionParametersUriQueryValueOrExpression {
-  const RulesetRulesActionParametersUriQueryValueOrExpressionValue(this.value);
+/// The [RulesetRulesActionParametersUriQueryQuery.value] choice: sets `value`.
+final class RulesetRulesActionParametersUriQueryQueryValue
+    extends RulesetRulesActionParametersUriQueryQuery {
+  const RulesetRulesActionParametersUriQueryQueryValue(this.value);
 
   final TfArg<String> value;
 
@@ -2476,12 +2470,10 @@ final class RulesetRulesActionParametersUriQueryValueOrExpressionValue
   Map<String, Object?> encode() => {'value': value.toTfJson()};
 }
 
-/// The [RulesetRulesActionParametersUriQueryValueOrExpression.expression] choice: sets `expression`.
-final class RulesetRulesActionParametersUriQueryValueOrExpressionExpression
-    extends RulesetRulesActionParametersUriQueryValueOrExpression {
-  const RulesetRulesActionParametersUriQueryValueOrExpressionExpression(
-    this.expression,
-  );
+/// The [RulesetRulesActionParametersUriQueryQuery.expression] choice: sets `expression`.
+final class RulesetRulesActionParametersUriQueryQueryExpression
+    extends RulesetRulesActionParametersUriQueryQuery {
+  const RulesetRulesActionParametersUriQueryQueryExpression(this.expression);
 
   final TfArg<String> expression;
 

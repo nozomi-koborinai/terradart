@@ -20,18 +20,17 @@ enum CustomerGatewayType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.bgpAsn(...)`.
-sealed class CustomerGatewayBgpAsnOrBgpAsnExtended {
-  const CustomerGatewayBgpAsnOrBgpAsnExtended();
+sealed class CustomerGatewayBgpAsn {
+  const CustomerGatewayBgpAsn();
 
   /// Sets `bgp_asn`.
-  const factory CustomerGatewayBgpAsnOrBgpAsnExtended.bgpAsn(
-    TfArg<String> bgpAsn,
-  ) = CustomerGatewayBgpAsnOrBgpAsnExtendedBgpAsn;
+  const factory CustomerGatewayBgpAsn.bgpAsn(TfArg<String> bgpAsn) =
+      CustomerGatewayBgpAsnBgpAsn;
 
   /// Sets `bgp_asn_extended`.
-  const factory CustomerGatewayBgpAsnOrBgpAsnExtended.bgpAsnExtended(
+  const factory CustomerGatewayBgpAsn.bgpAsnExtended(
     TfArg<String> bgpAsnExtended,
-  ) = CustomerGatewayBgpAsnOrBgpAsnExtendedBgpAsnExtended;
+  ) = CustomerGatewayBgpAsnBgpAsnExtended;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,10 +42,9 @@ sealed class CustomerGatewayBgpAsnOrBgpAsnExtended {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CustomerGatewayBgpAsnOrBgpAsnExtended.bgpAsn] choice: sets `bgp_asn`.
-final class CustomerGatewayBgpAsnOrBgpAsnExtendedBgpAsn
-    extends CustomerGatewayBgpAsnOrBgpAsnExtended {
-  const CustomerGatewayBgpAsnOrBgpAsnExtendedBgpAsn(this.bgpAsn);
+/// The [CustomerGatewayBgpAsn.bgpAsn] choice: sets `bgp_asn`.
+final class CustomerGatewayBgpAsnBgpAsn extends CustomerGatewayBgpAsn {
+  const CustomerGatewayBgpAsnBgpAsn(this.bgpAsn);
 
   final TfArg<String> bgpAsn;
 
@@ -60,12 +58,9 @@ final class CustomerGatewayBgpAsnOrBgpAsnExtendedBgpAsn
   Map<String, TfArg<Object?>> get argMap => {'bgp_asn': bgpAsn};
 }
 
-/// The [CustomerGatewayBgpAsnOrBgpAsnExtended.bgpAsnExtended] choice: sets `bgp_asn_extended`.
-final class CustomerGatewayBgpAsnOrBgpAsnExtendedBgpAsnExtended
-    extends CustomerGatewayBgpAsnOrBgpAsnExtended {
-  const CustomerGatewayBgpAsnOrBgpAsnExtendedBgpAsnExtended(
-    this.bgpAsnExtended,
-  );
+/// The [CustomerGatewayBgpAsn.bgpAsnExtended] choice: sets `bgp_asn_extended`.
+final class CustomerGatewayBgpAsnBgpAsnExtended extends CustomerGatewayBgpAsn {
+  const CustomerGatewayBgpAsnBgpAsnExtended(this.bgpAsnExtended);
 
   final TfArg<String> bgpAsnExtended;
 
@@ -89,7 +84,7 @@ final class AwsCustomerGateway extends Resource {
 
   AwsCustomerGateway({
     required super.localName,
-    CustomerGatewayBgpAsnOrBgpAsnExtended? bgpAsnOrBgpAsnExtended,
+    CustomerGatewayBgpAsn? bgpAsn,
     TfArg<String>? certificateArn,
     TfArg<String>? deviceName,
     TfArg<String>? ipAddress,
@@ -103,7 +98,7 @@ final class AwsCustomerGateway extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?bgpAsnOrBgpAsnExtended?.argMap,
+           ...?bgpAsn?.argMap,
            if (certificateArn != null) 'certificate_arn': certificateArn,
            if (deviceName != null) 'device_name': deviceName,
            if (ipAddress != null) 'ip_address': ipAddress,

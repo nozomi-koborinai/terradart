@@ -239,7 +239,7 @@ final class CesToolDataStoreTool {
     this.maxResults,
     required this.name,
     this.boostSpecs,
-    this.dataStoreSourceOrEngineSource,
+    this.source,
     this.modalityConfigs,
   });
 
@@ -254,8 +254,7 @@ final class CesToolDataStoreTool {
 
   final List<CesToolDataStoreToolBoostSpecs>? boostSpecs;
 
-  final CesToolDataStoreToolDataStoreSourceOrEngineSource?
-  dataStoreSourceOrEngineSource;
+  final CesToolDataStoreToolSource? source;
 
   final List<CesToolDataStoreToolModalityConfigs>? modalityConfigs;
 
@@ -267,7 +266,7 @@ final class CesToolDataStoreTool {
     'name': name.toTfJson(),
     if (boostSpecs != null)
       'boost_specs': [for (final e in boostSpecs!) e.encode()],
-    ...?dataStoreSourceOrEngineSource?.encode(),
+    ...?source?.encode(),
     if (modalityConfigs != null)
       'modality_configs': [for (final e in modalityConfigs!) e.encode()],
   };
@@ -278,18 +277,18 @@ final class CesToolDataStoreTool {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.dataStoreSource(...)`.
-sealed class CesToolDataStoreToolDataStoreSourceOrEngineSource {
-  const CesToolDataStoreToolDataStoreSourceOrEngineSource();
+sealed class CesToolDataStoreToolSource {
+  const CesToolDataStoreToolSource();
 
   /// Sets `data_store_source`.
-  const factory CesToolDataStoreToolDataStoreSourceOrEngineSource.dataStoreSource(
+  const factory CesToolDataStoreToolSource.dataStoreSource(
     CesToolDataStoreToolDataStoreSource dataStoreSource,
-  ) = CesToolDataStoreToolDataStoreSourceOrEngineSourceDataStoreSource;
+  ) = CesToolDataStoreToolSourceDataStoreSource;
 
   /// Sets `engine_source`.
-  const factory CesToolDataStoreToolDataStoreSourceOrEngineSource.engineSource(
+  const factory CesToolDataStoreToolSource.engineSource(
     CesToolDataStoreToolEngineSource engineSource,
-  ) = CesToolDataStoreToolDataStoreSourceOrEngineSourceEngineSource;
+  ) = CesToolDataStoreToolSourceEngineSource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -297,12 +296,10 @@ sealed class CesToolDataStoreToolDataStoreSourceOrEngineSource {
   Map<String, Object?> encode();
 }
 
-/// The [CesToolDataStoreToolDataStoreSourceOrEngineSource.dataStoreSource] choice: sets `data_store_source`.
-final class CesToolDataStoreToolDataStoreSourceOrEngineSourceDataStoreSource
-    extends CesToolDataStoreToolDataStoreSourceOrEngineSource {
-  const CesToolDataStoreToolDataStoreSourceOrEngineSourceDataStoreSource(
-    this.dataStoreSource,
-  );
+/// The [CesToolDataStoreToolSource.dataStoreSource] choice: sets `data_store_source`.
+final class CesToolDataStoreToolSourceDataStoreSource
+    extends CesToolDataStoreToolSource {
+  const CesToolDataStoreToolSourceDataStoreSource(this.dataStoreSource);
 
   final CesToolDataStoreToolDataStoreSource dataStoreSource;
 
@@ -315,12 +312,10 @@ final class CesToolDataStoreToolDataStoreSourceOrEngineSourceDataStoreSource
   };
 }
 
-/// The [CesToolDataStoreToolDataStoreSourceOrEngineSource.engineSource] choice: sets `engine_source`.
-final class CesToolDataStoreToolDataStoreSourceOrEngineSourceEngineSource
-    extends CesToolDataStoreToolDataStoreSourceOrEngineSource {
-  const CesToolDataStoreToolDataStoreSourceOrEngineSourceEngineSource(
-    this.engineSource,
-  );
+/// The [CesToolDataStoreToolSource.engineSource] choice: sets `engine_source`.
+final class CesToolDataStoreToolSourceEngineSource
+    extends CesToolDataStoreToolSource {
+  const CesToolDataStoreToolSourceEngineSource(this.engineSource);
 
   final CesToolDataStoreToolEngineSource engineSource;
 

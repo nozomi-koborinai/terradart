@@ -11,17 +11,16 @@ const Set<String> _awsCloudfrontPublicKeySensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class CloudfrontPublicKeyNameOrNamePrefix {
-  const CloudfrontPublicKeyNameOrNamePrefix();
+sealed class CloudfrontPublicKeyName {
+  const CloudfrontPublicKeyName();
 
   /// Sets `name`.
-  const factory CloudfrontPublicKeyNameOrNamePrefix.name(TfArg<String> name) =
-      CloudfrontPublicKeyNameOrNamePrefixName;
+  const factory CloudfrontPublicKeyName.name(TfArg<String> name) =
+      CloudfrontPublicKeyNameName;
 
   /// Sets `name_prefix`.
-  const factory CloudfrontPublicKeyNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = CloudfrontPublicKeyNameOrNamePrefixNamePrefix;
+  const factory CloudfrontPublicKeyName.namePrefix(TfArg<String> namePrefix) =
+      CloudfrontPublicKeyNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class CloudfrontPublicKeyNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudfrontPublicKeyNameOrNamePrefix.name] choice: sets `name`.
-final class CloudfrontPublicKeyNameOrNamePrefixName
-    extends CloudfrontPublicKeyNameOrNamePrefix {
-  const CloudfrontPublicKeyNameOrNamePrefixName(this.name);
+/// The [CloudfrontPublicKeyName.name] choice: sets `name`.
+final class CloudfrontPublicKeyNameName extends CloudfrontPublicKeyName {
+  const CloudfrontPublicKeyNameName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +48,9 @@ final class CloudfrontPublicKeyNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [CloudfrontPublicKeyNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class CloudfrontPublicKeyNameOrNamePrefixNamePrefix
-    extends CloudfrontPublicKeyNameOrNamePrefix {
-  const CloudfrontPublicKeyNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [CloudfrontPublicKeyName.namePrefix] choice: sets `name_prefix`.
+final class CloudfrontPublicKeyNameNamePrefix extends CloudfrontPublicKeyName {
+  const CloudfrontPublicKeyNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -75,7 +72,7 @@ final class AwsCloudfrontPublicKey extends Resource {
     required super.localName,
     TfArg<String>? comment,
     required TfArg<String> encodedKey,
-    CloudfrontPublicKeyNameOrNamePrefix? nameOrNamePrefix,
+    CloudfrontPublicKeyName? name,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -85,7 +82,7 @@ final class AwsCloudfrontPublicKey extends Resource {
          argMap: {
            if (comment != null) 'comment': comment,
            'encoded_key': encodedKey,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
          },
        );
 

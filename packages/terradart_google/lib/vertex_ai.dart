@@ -87,9 +87,9 @@ export 'src/vertex_ai/google_vertex_ai_featurestore.dart'
         GoogleVertexAiFeaturestore,
         VertexAiFeaturestoreEncryptionSpec,
         VertexAiFeaturestoreOnlineServingConfig,
-        VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling,
-        VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScalingFixedNodeCount,
-        VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScalingScaling,
+        VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig,
+        VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigFixedNodeCount,
+        VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigScaling,
         VertexAiFeaturestoreOnlineServingConfigScaling;
 export 'src/vertex_ai/google_vertex_ai_featurestore_entitytype.dart'
     show
@@ -108,11 +108,11 @@ export 'src/vertex_ai/google_vertex_ai_index.dart'
         VertexAiIndexMetadata,
         VertexAiIndexMetadataConfig,
         VertexAiIndexMetadataConfigAlgorithmConfig,
+        VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfig,
+        VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigBruteForceConfig,
+        VertexAiIndexMetadataConfigAlgorithmConfigAlgorithmConfigTreeAhConfig,
         VertexAiIndexMetadataConfigAlgorithmConfigBruteForceConfig,
-        VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfig,
-        VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfig,
-        VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfigBruteForceConfig,
-        VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfigOrBruteForceConfigTreeAhConfig;
+        VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfig;
 export 'src/vertex_ai/google_vertex_ai_index_endpoint.dart'
     show
         GoogleVertexAiIndexEndpoint,
@@ -149,9 +149,9 @@ export 'src/vertex_ai/google_vertex_ai_rag_corpus.dart'
         VertexAiRagCorpusVectorDbConfig,
         VertexAiRagCorpusVectorDbConfigApiAuth,
         VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfig,
-        VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyString,
-        VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyStringApiKeySecretVersion,
-        VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeySecretVersionOrApiKeyStringApiKeyString,
+        VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKey,
+        VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeyApiKeySecretVersion,
+        VertexAiRagCorpusVectorDbConfigApiAuthApiKeyConfigApiKeyApiKeyString,
         VertexAiRagCorpusVectorDbConfigOrVertexAiSearchConfig,
         VertexAiRagCorpusVectorDbConfigOrVertexAiSearchConfigVectorDbConfig,
         VertexAiRagCorpusVectorDbConfigOrVertexAiSearchConfigVertexAiSearchConfig,
@@ -161,13 +161,13 @@ export 'src/vertex_ai/google_vertex_ai_rag_corpus.dart'
         VertexAiRagCorpusVectorDbConfigRagManagedDb,
         VertexAiRagCorpusVectorDbConfigRagManagedDbAnn,
         VertexAiRagCorpusVectorDbConfigRagManagedDbKnn,
-        VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnn,
-        VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnnAnn,
-        VertexAiRagCorpusVectorDbConfigRagManagedDbKnnOrAnnKnn,
         VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearch,
         VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchPinecone,
         VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchRagManagedDb,
         VertexAiRagCorpusVectorDbConfigRagManagedDbOrPineconeOrVertexVectorSearchVertexVectorSearch,
+        VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDb,
+        VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDbAnn,
+        VertexAiRagCorpusVectorDbConfigRagManagedDbRagManagedDbKnn,
         VertexAiRagCorpusVectorDbConfigVertexVectorSearch,
         VertexAiRagCorpusVertexAiSearchConfig;
 export 'src/vertex_ai/google_vertex_ai_rag_engine_config.dart'
@@ -206,9 +206,9 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
         VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics,
         VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopic,
         VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopic,
-        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic,
-        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicCustomMemoryTopic,
-        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicManagedMemoryTopic,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicCustomMemoryTopic,
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicManagedMemoryTopic,
         VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfig,
         VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfig,
         VertexAiReasoningEngineContextSpecMemoryBankConfigGenerationConfigGenerationTriggerConfigGenerationRule,

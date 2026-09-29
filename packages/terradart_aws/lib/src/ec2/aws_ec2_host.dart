@@ -30,18 +30,16 @@ enum Ec2HostHostRecovery implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.instanceFamily(...)`.
-sealed class Ec2HostInstanceFamilyOrInstanceType {
-  const Ec2HostInstanceFamilyOrInstanceType();
+sealed class Ec2HostInstance {
+  const Ec2HostInstance();
 
   /// Sets `instance_family`.
-  const factory Ec2HostInstanceFamilyOrInstanceType.instanceFamily(
-    TfArg<String> instanceFamily,
-  ) = Ec2HostInstanceFamilyOrInstanceTypeInstanceFamily;
+  const factory Ec2HostInstance.instanceFamily(TfArg<String> instanceFamily) =
+      Ec2HostInstanceInstanceFamily;
 
   /// Sets `instance_type`.
-  const factory Ec2HostInstanceFamilyOrInstanceType.instanceType(
-    TfArg<String> instanceType,
-  ) = Ec2HostInstanceFamilyOrInstanceTypeInstanceType;
+  const factory Ec2HostInstance.instanceType(TfArg<String> instanceType) =
+      Ec2HostInstanceInstanceType;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -53,10 +51,9 @@ sealed class Ec2HostInstanceFamilyOrInstanceType {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Ec2HostInstanceFamilyOrInstanceType.instanceFamily] choice: sets `instance_family`.
-final class Ec2HostInstanceFamilyOrInstanceTypeInstanceFamily
-    extends Ec2HostInstanceFamilyOrInstanceType {
-  const Ec2HostInstanceFamilyOrInstanceTypeInstanceFamily(this.instanceFamily);
+/// The [Ec2HostInstance.instanceFamily] choice: sets `instance_family`.
+final class Ec2HostInstanceInstanceFamily extends Ec2HostInstance {
+  const Ec2HostInstanceInstanceFamily(this.instanceFamily);
 
   final TfArg<String> instanceFamily;
 
@@ -72,10 +69,9 @@ final class Ec2HostInstanceFamilyOrInstanceTypeInstanceFamily
   Map<String, TfArg<Object?>> get argMap => {'instance_family': instanceFamily};
 }
 
-/// The [Ec2HostInstanceFamilyOrInstanceType.instanceType] choice: sets `instance_type`.
-final class Ec2HostInstanceFamilyOrInstanceTypeInstanceType
-    extends Ec2HostInstanceFamilyOrInstanceType {
-  const Ec2HostInstanceFamilyOrInstanceTypeInstanceType(this.instanceType);
+/// The [Ec2HostInstance.instanceType] choice: sets `instance_type`.
+final class Ec2HostInstanceInstanceType extends Ec2HostInstance {
+  const Ec2HostInstanceInstanceType(this.instanceType);
 
   final TfArg<String> instanceType;
 
@@ -99,7 +95,7 @@ final class AwsEc2Host extends Resource {
     TfArg<Ec2HostAutoPlacement>? autoPlacement,
     required TfArg<String> availabilityZone,
     TfArg<Ec2HostHostRecovery>? hostRecovery,
-    required Ec2HostInstanceFamilyOrInstanceType instanceFamilyOrInstanceType,
+    required Ec2HostInstance instance,
     TfArg<String>? outpostArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -114,7 +110,7 @@ final class AwsEc2Host extends Resource {
            if (autoPlacement != null) 'auto_placement': autoPlacement,
            'availability_zone': availabilityZone,
            if (hostRecovery != null) 'host_recovery': hostRecovery,
-           ...instanceFamilyOrInstanceType.argMap,
+           ...instance.argMap,
            if (outpostArn != null) 'outpost_arn': outpostArn,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

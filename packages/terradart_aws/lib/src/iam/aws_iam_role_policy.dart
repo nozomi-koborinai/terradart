@@ -11,17 +11,16 @@ const Set<String> _awsIamRolePolicySensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class IamRolePolicyNameOrNamePrefix {
-  const IamRolePolicyNameOrNamePrefix();
+sealed class IamRolePolicyName {
+  const IamRolePolicyName();
 
   /// Sets `name`.
-  const factory IamRolePolicyNameOrNamePrefix.name(TfArg<String> name) =
-      IamRolePolicyNameOrNamePrefixName;
+  const factory IamRolePolicyName.name(TfArg<String> name) =
+      IamRolePolicyNameName;
 
   /// Sets `name_prefix`.
-  const factory IamRolePolicyNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = IamRolePolicyNameOrNamePrefixNamePrefix;
+  const factory IamRolePolicyName.namePrefix(TfArg<String> namePrefix) =
+      IamRolePolicyNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class IamRolePolicyNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [IamRolePolicyNameOrNamePrefix.name] choice: sets `name`.
-final class IamRolePolicyNameOrNamePrefixName
-    extends IamRolePolicyNameOrNamePrefix {
-  const IamRolePolicyNameOrNamePrefixName(this.name);
+/// The [IamRolePolicyName.name] choice: sets `name`.
+final class IamRolePolicyNameName extends IamRolePolicyName {
+  const IamRolePolicyNameName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +48,9 @@ final class IamRolePolicyNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [IamRolePolicyNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class IamRolePolicyNameOrNamePrefixNamePrefix
-    extends IamRolePolicyNameOrNamePrefix {
-  const IamRolePolicyNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [IamRolePolicyName.namePrefix] choice: sets `name_prefix`.
+final class IamRolePolicyNameNamePrefix extends IamRolePolicyName {
+  const IamRolePolicyNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -73,7 +70,7 @@ final class AwsIamRolePolicy extends Resource {
 
   AwsIamRolePolicy({
     required super.localName,
-    IamRolePolicyNameOrNamePrefix? nameOrNamePrefix,
+    IamRolePolicyName? name,
     required TfArg<String> policy,
     required TfArg<String> role,
     super.lifecycle,
@@ -82,7 +79,7 @@ final class AwsIamRolePolicy extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {...?nameOrNamePrefix?.argMap, 'policy': policy, 'role': role},
+         argMap: {...?name?.argMap, 'policy': policy, 'role': role},
        );
 
   @override

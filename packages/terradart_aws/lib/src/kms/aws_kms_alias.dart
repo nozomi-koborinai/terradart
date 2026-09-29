@@ -11,16 +11,15 @@ const Set<String> _awsKmsAliasSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class KmsAliasNameOrNamePrefix {
-  const KmsAliasNameOrNamePrefix();
+sealed class KmsAliasName {
+  const KmsAliasName();
 
   /// Sets `name`.
-  const factory KmsAliasNameOrNamePrefix.name(TfArg<String> name) =
-      KmsAliasNameOrNamePrefixName;
+  const factory KmsAliasName.name(TfArg<String> name) = KmsAliasNameName;
 
   /// Sets `name_prefix`.
-  const factory KmsAliasNameOrNamePrefix.namePrefix(TfArg<String> namePrefix) =
-      KmsAliasNameOrNamePrefixNamePrefix;
+  const factory KmsAliasName.namePrefix(TfArg<String> namePrefix) =
+      KmsAliasNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,9 +31,9 @@ sealed class KmsAliasNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [KmsAliasNameOrNamePrefix.name] choice: sets `name`.
-final class KmsAliasNameOrNamePrefixName extends KmsAliasNameOrNamePrefix {
-  const KmsAliasNameOrNamePrefixName(this.name);
+/// The [KmsAliasName.name] choice: sets `name`.
+final class KmsAliasNameName extends KmsAliasName {
+  const KmsAliasNameName(this.name);
 
   final TfArg<String> name;
 
@@ -48,10 +47,9 @@ final class KmsAliasNameOrNamePrefixName extends KmsAliasNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [KmsAliasNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class KmsAliasNameOrNamePrefixNamePrefix
-    extends KmsAliasNameOrNamePrefix {
-  const KmsAliasNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [KmsAliasName.namePrefix] choice: sets `name_prefix`.
+final class KmsAliasNameNamePrefix extends KmsAliasName {
+  const KmsAliasNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -71,7 +69,7 @@ final class AwsKmsAlias extends Resource {
 
   AwsKmsAlias({
     required super.localName,
-    KmsAliasNameOrNamePrefix? nameOrNamePrefix,
+    KmsAliasName? name,
     TfArg<String>? region,
     required TfArg<String> targetKeyId,
     super.lifecycle,
@@ -81,7 +79,7 @@ final class AwsKmsAlias extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            'target_key_id': targetKeyId,
          },

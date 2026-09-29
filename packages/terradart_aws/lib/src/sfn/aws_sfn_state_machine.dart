@@ -22,17 +22,16 @@ enum SfnStateMachineType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class SfnStateMachineNameOrNamePrefix {
-  const SfnStateMachineNameOrNamePrefix();
+sealed class SfnStateMachineName {
+  const SfnStateMachineName();
 
   /// Sets `name`.
-  const factory SfnStateMachineNameOrNamePrefix.name(TfArg<String> name) =
-      SfnStateMachineNameOrNamePrefixName;
+  const factory SfnStateMachineName.name(TfArg<String> name) =
+      SfnStateMachineNameName;
 
   /// Sets `name_prefix`.
-  const factory SfnStateMachineNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = SfnStateMachineNameOrNamePrefixNamePrefix;
+  const factory SfnStateMachineName.namePrefix(TfArg<String> namePrefix) =
+      SfnStateMachineNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,10 +43,9 @@ sealed class SfnStateMachineNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SfnStateMachineNameOrNamePrefix.name] choice: sets `name`.
-final class SfnStateMachineNameOrNamePrefixName
-    extends SfnStateMachineNameOrNamePrefix {
-  const SfnStateMachineNameOrNamePrefixName(this.name);
+/// The [SfnStateMachineName.name] choice: sets `name`.
+final class SfnStateMachineNameName extends SfnStateMachineName {
+  const SfnStateMachineNameName(this.name);
 
   final TfArg<String> name;
 
@@ -61,10 +59,9 @@ final class SfnStateMachineNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [SfnStateMachineNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class SfnStateMachineNameOrNamePrefixNamePrefix
-    extends SfnStateMachineNameOrNamePrefix {
-  const SfnStateMachineNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [SfnStateMachineName.namePrefix] choice: sets `name_prefix`.
+final class SfnStateMachineNameNamePrefix extends SfnStateMachineName {
+  const SfnStateMachineNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -169,7 +166,7 @@ final class AwsSfnStateMachine extends Resource {
   AwsSfnStateMachine({
     required super.localName,
     required TfArg<String> definition,
-    SfnStateMachineNameOrNamePrefix? nameOrNamePrefix,
+    SfnStateMachineName? name,
     TfArg<bool>? publish,
     TfArg<String>? region,
     required TfArg<String> roleArn,
@@ -186,7 +183,7 @@ final class AwsSfnStateMachine extends Resource {
          terraformType: tfType,
          argMap: {
            'definition': definition,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (publish != null) 'publish': publish,
            if (region != null) 'region': region,
            'role_arn': roleArn,

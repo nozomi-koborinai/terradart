@@ -27,9 +27,9 @@ export 'src/transfer/aws_transfer_connector.dart'
 export 'src/transfer/aws_transfer_host_key.dart'
     show
         AwsTransferHostKey,
-        TransferHostKeyHostKeyBodyOrHostKeyBodyWo,
-        TransferHostKeyHostKeyBodyOrHostKeyBodyWoHostKeyBody,
-        TransferHostKeyHostKeyBodyOrHostKeyBodyWoHostKeyBodyWo;
+        TransferHostKeyHostKeyBody,
+        TransferHostKeyHostKeyBodyHostKeyBody,
+        TransferHostKeyHostKeyBodyHostKeyBodyWo;
 export 'src/transfer/aws_transfer_profile.dart'
     show AwsTransferProfile, TransferProfileProfileType;
 export 'src/transfer/aws_transfer_server.dart'
