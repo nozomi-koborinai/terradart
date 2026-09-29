@@ -31,6 +31,7 @@ void main() {
         '--output ../terradart_google/lib/src '
         '--overrides-root lib/src/codegen/wrapper_overrides/yaml '
         '--barrels-manifest lib/src/codegen/barrels/barrels.yaml '
+        '--mm-groups '
         '--migrate-manifest ../terradart_migrate/lib/src/manifest/google.g.dart '
         '--check',
       );
@@ -214,10 +215,31 @@ providers:
           isA<FormatException>().having(
             (e) => e.message,
             'message',
-            'lane x: mmHints and providerEnums are exclusive hint sources',
+            'lane x: mmHints, mmGroups and providerEnums are exclusive hint '
+                'sources',
           ),
         ),
       );
+    });
+
+    test('mmGroups: true adds --mm-groups to wrap and regen', () {
+      final x = parseWrapLanes('$lane    mmGroups: true\n').single;
+      expect(WrapGate.wrap.args(x), contains('--mm-groups'));
+      expect(WrapGate.regen.args(x), contains('--mm-groups'));
+      expect(WrapGate.lint.args(x), isNot(contains('--mm-groups')));
+      expect(parseWrapLanes(lane).single.mmGroups, isFalse);
+      expect(
+        () => parseWrapLanes('$lane    mmGroups: true\n    mmHints: true\n'),
+        throwsA(isA<FormatException>()),
+      );
+    });
+
+    test('the committed google lane seals Magic Modules groups only', () {
+      final google = parseWrapLanes(
+        File(providersPath).readAsStringSync(),
+      ).singleWhere((l) => l.name == 'google');
+      expect(google.mmGroups, isTrue);
+      expect(google.mmHints, isFalse);
     });
 
     test('mmSync needs both coordinates', () {
@@ -335,14 +357,11 @@ providers:
   test('every resource override of a providerEnums lane derives its hints', () {
     for (final lane in parseWrapLanes(File(providersPath).readAsStringSync())) {
       if (!lane.providerEnums) continue;
-      final files = Directory(lane.overridesRoot)
-          .listSync()
-          .whereType<File>()
-          .where((f) {
-            final name = p.basename(f.path);
-            return name.endsWith('.yaml') && !name.startsWith('data_');
-          })
-          .toList();
+      final files =
+          Directory(lane.overridesRoot).listSync().whereType<File>().where((f) {
+        final name = p.basename(f.path);
+        return name.endsWith('.yaml') && !name.startsWith('data_');
+      }).toList();
       expect(files, isNotEmpty, reason: 'lane ${lane.name}');
       for (final f in files) {
         final lines = f.readAsLinesSync();
@@ -397,8 +416,7 @@ providers:
 
   group('ledgerOwnershipFailures', () {
     late Directory root;
-    const overrides =
-        'packages/terradart_codegen/lib/src/codegen/'
+    const overrides = 'packages/terradart_codegen/lib/src/codegen/'
         'wrapper_overrides';
 
     setUp(() {

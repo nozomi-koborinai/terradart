@@ -361,17 +361,23 @@ final class WrapperOverride {
   ) => _copy(dartTypeOverrides: dartTypeOverrides);
 
   /// This override with the slots `deriveExactlyOne` synthesizes: the
-  /// constructor order without the group members, the sealed slots, and
-  /// their declarations appended to [prelude].
+  /// constructor and argMap orders without the group members, the sealed
+  /// slots, and their declarations appended to [prelude].
   WrapperOverride withExactlyOneSlots({
     required List<String> paramOrder,
+    required List<String>? argMapOrder,
     required Map<String, CustomSlot> customSlots,
     required String prelude,
-  }) =>
-      _copy(paramOrder: paramOrder, customSlots: customSlots, prelude: prelude);
+  }) => _copy(
+    paramOrder: paramOrder,
+    argMapOrder: argMapOrder,
+    customSlots: customSlots,
+    prelude: prelude,
+  );
 
   WrapperOverride _copy({
     List<String>? paramOrder,
+    List<String>? argMapOrder,
     Map<String, String>? dartTypeOverrides,
     Map<String, CustomSlot>? customSlots,
     String? prelude,
@@ -381,7 +387,7 @@ final class WrapperOverride {
     schemaStubBodyMode: schemaStubBodyMode,
     fileLeadingComment: fileLeadingComment,
     paramOrder: paramOrder ?? this.paramOrder,
-    argMapOrder: argMapOrder,
+    argMapOrder: argMapOrder ?? this.argMapOrder,
     extraGetters: extraGetters,
     requiredParams: requiredParams,
     dartTypeOverrides: dartTypeOverrides ?? this.dartTypeOverrides,

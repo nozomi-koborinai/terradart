@@ -73,6 +73,26 @@ final class ProviderEnums {
         availableValuesDialect: false,
       );
 
+  /// `wrap --mm-groups`: only the `exactly_one_of` / `conflicts` groups of
+  /// [ProviderEnums.fromMm], for a lane whose enum typing comes from the
+  /// merged IR instead (google GA). The gate stays closed, so the
+  /// resolver, [enrich] and [typeDerivedEnums] behave as [off] does.
+  factory ProviderEnums.mmGroups(Map<String, MmResourceOverrides> mm) {
+    final all = ProviderEnums.fromMm(mm);
+    return ProviderEnums._groups(
+      exactlyOneGroups: all.exactlyOneGroups,
+      atMostOneGroups: all.atMostOneGroups,
+    );
+  }
+
+  const ProviderEnums._groups({
+    required this.exactlyOneGroups,
+    required this.atMostOneGroups,
+  }) : enabled = false,
+       hints = const {},
+       caseInsensitive = false,
+       availableValuesDialect = false;
+
   /// Reads `<sourceDir>/hints/*.yaml` (a missing directory means no hints).
   ///
   /// Throws [FormatException] when a file is malformed or its

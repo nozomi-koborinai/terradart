@@ -1592,6 +1592,12 @@ deriveExactlyOne: true
       expect(code, CliExitCodes.dataError);
       expect(err, contains('exclusive'));
     });
+
+    test('--mm-groups is exclusive with --mm-hints', () async {
+      final (code, err) = await wrap(const ['--mm-groups', '--mm-hints']);
+      expect(code, CliExitCodes.dataError);
+      expect(err, contains('--mm-hints and --mm-groups are exclusive'));
+    });
   });
 }
 

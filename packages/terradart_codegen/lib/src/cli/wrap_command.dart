@@ -139,6 +139,14 @@ class WrapCommand extends Command<int> {
             '<source>/mm as the hint source: its enum_values type the '
             '`deriveEnums` inputs and its exactly_one_of groups feed '
             '`deriveExactlyOne`. Exclusive with --provider-enums.',
+      )
+      ..addFlag(
+        'mm-groups',
+        negatable: false,
+        help:
+            'Only the exactly_one_of / conflicts / at_least_one_of groups of '
+            '--mm-hints feed `deriveExactlyOne`; enum typing stays the '
+            'merged IR\'s. Exclusive with --mm-hints and --provider-enums.',
       );
   }
 
@@ -251,15 +259,24 @@ class WrapCommand extends Command<int> {
         : const IrMerger().merge(base: baseIr, overrides: mmOverrides);
 
     // 1c. `--provider-enums`: hints + the `Available values:` dialect;
-    //     `--mm-hints`: the MM YAML loaded above as the hints.
+    //     `--mm-hints`: the MM YAML loaded above as the hints;
+    //     `--mm-groups`: only its sealable groups.
     final ProviderEnums providerEnums;
-    if (results['mm-hints'] as bool) {
-      if (results['provider-enums'] as bool) {
-        stderr.writeln(
-          'terradart wrap: --mm-hints and --provider-enums are exclusive.',
-        );
-        return CliExitCodes.dataError;
-      }
+    final hintFlags = [
+      'mm-hints',
+      'mm-groups',
+      'provider-enums',
+    ].where((f) => results[f] as bool).toList();
+    if (hintFlags.length > 1) {
+      stderr.writeln(
+        'terradart wrap: ${hintFlags.map((f) => '--$f').join(' and ')} '
+        'are exclusive.',
+      );
+      return CliExitCodes.dataError;
+    }
+    if (results['mm-groups'] as bool) {
+      providerEnums = ProviderEnums.mmGroups(mmOverrides);
+    } else if (results['mm-hints'] as bool) {
       providerEnums = ProviderEnums.fromMm(mmOverrides);
     } else if (results['provider-enums'] as bool) {
       try {
