@@ -51,6 +51,9 @@
 # on macOS + GNU sed on Linux).
 #
 # Idempotent: re-running with the same target version is a no-op.
+#
+# Runs `dart tool/release_ledger_check.dart` first and stops, touching
+# nothing, while tool/sealed_name_debt.yaml has an entry.
 
 set -euo pipefail
 
@@ -71,6 +74,14 @@ fi
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
+
+# Release readiness of the ledgers the weekly schema bump fills (RELEASE.md
+# "Pay down the schema-bump ledgers"). Fails before touching any file when
+# tool/sealed_name_debt.yaml still holds a temporary `Or` name; otherwise
+# prints the awaiting-example / backlog report for the release PR body.
+echo "==> Release ledger check"
+dart tool/release_ledger_check.dart
+echo
 
 # Detect current version from terradart_core (the workspace's "leader" package).
 OLD="$(sed -n 's/^version: \(.*\)$/\1/p' packages/terradart_core/pubspec.yaml | head -1)"
@@ -359,4 +370,4 @@ echo "  1. Update CHANGELOG.md (root + package changelogs) by hand — release n
 echo "  2. If breaking, add a MIGRATING.md section."
 echo "  3. dart pub get && dart analyze packages/terradart_core packages/terradart_codegen packages/terradart_google"
 echo "  4. git diff --stat   # review the bump"
-echo "  5. Commit + push, open release PR."
+echo "  5. Commit + push, open release PR with the release ledger report (printed above) in its body."
