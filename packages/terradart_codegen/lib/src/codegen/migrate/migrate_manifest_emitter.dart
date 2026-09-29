@@ -182,6 +182,7 @@ class MigrateManifestEmitter {
       if (s.helper != null) 'helper: ${_str(s.helper!)}',
       if (s.variants != null)
         'variants: <String, String>{${s.variants!.entries.map((v) => '${_str(v.key)}: ${_str(v.value)}').join(', ')}}',
+      if (s.attribute != null) 'attribute: ${_str(s.attribute!)}',
       if (s.reason != null) 'reason: ${_str(s.reason!)}',
     ];
     return 'MigrateSlot(${args.join(', ')})';

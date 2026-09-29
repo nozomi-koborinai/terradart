@@ -41,6 +41,28 @@ class PushConfig {
       expect(h.fields[1].typeSource, 'TfArg<Map<String, String>>?');
     });
 
+    test('reads a reference field and the attribute it encodes', () {
+      const src = '''
+@immutable
+final class Target {
+  const Target({required this.arn, required this.roleArn});
+
+  final TfArg<String> arn;
+  final RefTo<AwsIamRole> roleArn;
+
+  Map<String, Object?> encode() => {
+    'arn': arn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
+  };
+}
+''';
+      final h = _one(src, 'Target');
+      expect(h.isIrregular, isFalse, reason: h.irregularReason);
+      expect(h.fields[1].tfKey, 'role_arn');
+      expect(h.fields[1].encodedAttribute, 'arn');
+      expect(h.fields[0].encodedAttribute, isNull);
+    });
+
     test('records the factory constructor that builds a sealed variant', () {
       const src = '''
 sealed class Code {

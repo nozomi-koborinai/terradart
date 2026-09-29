@@ -14,6 +14,7 @@ final class SlotShape {
     this.repeated = false,
     this.keyed = false,
     this.wrapped = true,
+    this.attribute,
     this.reason,
   });
 
@@ -27,6 +28,7 @@ final class SlotShape {
   final bool repeated;
   final bool keyed;
   final bool wrapped;
+  final String? attribute;
   final String? reason;
 
   bool get isManual => kind == MigrateSlotKind.manual;
@@ -69,6 +71,8 @@ bool _isPlainValueType(DartTypeShape type) {
 /// Classifies [typeSource] (a constructor-parameter or field type) into the
 /// slot shape the manifest records.
 ///
+/// - `RefTo<C>` / `TfArg<List<RefTo<C>>>` → a reference to `C`, `repeated`
+///   for the list; [withAttribute] adds the attribute from the encoding.
 /// - `TfArg<T>` → scalar / enum / passthrough on `T`.
 /// - `List<TfArg<T>>` → the same, `repeated`.
 /// - `Helper` / `List<Helper>` / `Map<String, Helper>` → helper (the class
@@ -93,8 +97,26 @@ SlotShape _classify(
   ShapeContext ctx, {
   required bool repeated,
 }) {
+  if (_referenceTarget(type) case final target?) {
+    return repeated
+        ? SlotShape.manual('bare list of references `${type.render()}`')
+        : SlotShape(kind: MigrateSlotKind.reference, dartType: target);
+  }
   if (type.name == 'TfArg' && type.args.length == 1) {
-    return _payload(type.args.single.nonNullable, repeated: repeated);
+    final payload = type.args.single.nonNullable;
+    if (payload.name == 'List' && payload.args.length == 1) {
+      final target = _referenceTarget(payload.args.single);
+      if (target != null) {
+        return repeated
+            ? SlotShape.manual('list of reference lists `${type.render()}`')
+            : SlotShape(
+                kind: MigrateSlotKind.reference,
+                dartType: target,
+                repeated: true,
+              );
+      }
+    }
+    return _payload(payload, repeated: repeated);
   }
   if (type.name == 'List' && type.args.length == 1) {
     if (repeated) {
@@ -162,6 +184,38 @@ SlotShape _classify(
   return SlotShape.manual('unknown type `${type.render()}`');
 }
 
+/// `C` of a non-nullable `RefTo<C>`.
+String? _referenceTarget(DartTypeShape type) =>
+    type.name == 'RefTo' &&
+        !type.nullable &&
+        type.args.length == 1 &&
+        type.args.single.args.isEmpty
+    ? type.args.single.name
+    : null;
+
+/// The attribute `x.encodeAs('<attribute>')` names in an argMap or
+/// `encode()` entry.
+String? encodedAttribute(String entry) =>
+    RegExp(r"\.encodeAs\('([a-z0-9_]+)'\)").firstMatch(entry)?.group(1);
+
+/// A [MigrateSlotKind.reference] [shape] with the attribute its [entry]
+/// encodes; manual when the entry names none.
+SlotShape withAttribute(SlotShape shape, String entry) {
+  if (shape.kind != MigrateSlotKind.reference) return shape;
+  final attribute = encodedAttribute(entry);
+  if (attribute == null) {
+    return const SlotShape.manual(
+      'reference slot does not encode through encodeAs',
+    );
+  }
+  return SlotShape(
+    kind: MigrateSlotKind.reference,
+    dartType: shape.dartType,
+    repeated: shape.repeated,
+    attribute: attribute,
+  );
+}
+
 SlotShape _payload(DartTypeShape payload, {required bool repeated}) {
   final rendered = payload.render();
   if (_passthroughTypes.contains(rendered)) {
@@ -217,6 +271,8 @@ SlotShape mergedShape(SlotShape shape) {
       return SlotShape.manual('spread-merged scalar `${shape.dartType}`');
     case MigrateSlotKind.enumValue:
       return SlotShape.manual('spread-merged enum `${shape.dartType}`');
+    case MigrateSlotKind.reference:
+      return SlotShape.manual('spread-merged reference `${shape.dartType}`');
     case MigrateSlotKind.manual:
       return shape;
   }
@@ -240,6 +296,7 @@ final class CustomSlotShape {
     this.spread = false,
     this.tfKey,
     this.keyedEncoding = false,
+    this.argMapEntry = '',
   });
 
   final String dartName;
@@ -267,6 +324,9 @@ final class CustomSlotShape {
   /// Whether the argMap entry encodes a keyed helper map
   /// ([isKeyedHelperEncoding]).
   final bool keyedEncoding;
+
+  /// The argMap entry verbatim.
+  final String argMapEntry;
 }
 
 /// Parses a custom slot's constructor declaration and argMap entry.
@@ -295,6 +355,7 @@ CustomSlotShape parseCustomSlot(CustomSlot slot) {
     spread: spread,
     tfKey: tfKey,
     keyedEncoding: isKeyedHelperEncoding(entry),
+    argMapEntry: entry,
   );
 }
 
@@ -337,5 +398,5 @@ SlotShape deriveCustomSlotShape(CustomSlotShape parsed, ShapeContext ctx) {
   if (shape.keyed && !parsed.keyedEncoding) {
     return unkeyedMapShape(parsed.typeSource);
   }
-  return shape;
+  return withAttribute(shape, parsed.argMapEntry);
 }
