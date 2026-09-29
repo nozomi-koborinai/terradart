@@ -52,3 +52,6 @@ extraGetters: |2
 
     /// Reference to `name` attribute.
     TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+sealedNames:
+  "all_ports, ports": ports

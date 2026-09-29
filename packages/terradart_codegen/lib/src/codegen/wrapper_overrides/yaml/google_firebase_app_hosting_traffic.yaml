@@ -157,3 +157,6 @@ customSlots:
   rollout_policy:
     paramDeclaration: 'FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy? rolloutPolicy'
     argMapEntry: "if (rolloutPolicy != null) 'rollout_policy': TfArg.literal([rolloutPolicy.toArgMap()]),"
+
+sealedNames:
+  "rollout_policy, target": routing

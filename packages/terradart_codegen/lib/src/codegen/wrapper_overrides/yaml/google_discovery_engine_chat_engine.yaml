@@ -46,3 +46,6 @@ extraGetters: |2
 
     /// Reference to `name` attribute.
     TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+sealedNames:
+  "chat_engine_config.agent_creation_config, chat_engine_config.dialogflow_agent_to_link": agent

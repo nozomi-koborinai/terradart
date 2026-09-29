@@ -235,3 +235,6 @@ customSlots:
   retry_policy:
     paramDeclaration: "PubsubSubscriptionRetryPolicy? retryPolicy"
     argMapEntry: "if (retryPolicy != null) 'retry_policy': TfArg.literal(retryPolicy.encode()),"
+
+sealedNames:
+  "bigquery_config, cloud_storage_config, push_config": delivery
