@@ -57,19 +57,19 @@ export 'src/healthcare/google_healthcare_pipeline_job.dart'
     show
         GoogleHealthcarePipelineJob,
         HealthcarePipelineJobBackfillPipelineJob,
-        HealthcarePipelineJobBackfillPipelineJobOption,
         HealthcarePipelineJobMappingPipelineJob,
-        HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOption,
         HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestination,
+        HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestinationFhirStoreDestination,
+        HealthcarePipelineJobMappingPipelineJobFhirStoreDestinationOrReconciliationDestinationReconciliationDestination,
         HealthcarePipelineJobMappingPipelineJobFhirStreamingSource,
         HealthcarePipelineJobMappingPipelineJobMappingConfig,
         HealthcarePipelineJobMappingPipelineJobMappingConfigWhistleConfigSource,
-        HealthcarePipelineJobMappingPipelineJobOption,
         HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJob,
-        HealthcarePipelineJobMappingPipelineJobReconciliationDestinationOption,
+        HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJobBackfillPipelineJob,
+        HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJobMappingPipelineJob,
+        HealthcarePipelineJobMappingPipelineJobOrReconciliationPipelineJobOrBackfillPipelineJobReconciliationPipelineJob,
         HealthcarePipelineJobReconciliationPipelineJob,
         HealthcarePipelineJobReconciliationPipelineJobMergeConfig,
-        HealthcarePipelineJobReconciliationPipelineJobMergeConfigWhistleConfigSource,
-        HealthcarePipelineJobReconciliationPipelineJobOption;
+        HealthcarePipelineJobReconciliationPipelineJobMergeConfigWhistleConfigSource;
 export 'src/healthcare/google_healthcare_workspace.dart'
     show GoogleHealthcareWorkspace, HealthcareWorkspaceSettings;

@@ -21,8 +21,20 @@ enum RbinRuleResourceType implements TerraformEnum {
 /// At most one of `exclude_resource_tags`, `resource_tags` on `aws_rbin_rule`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.excludeResourceTags(...)`.
 sealed class RbinRuleExcludeResourceTagsOrResourceTags {
   const RbinRuleExcludeResourceTagsOrResourceTags();
+
+  /// Sets `exclude_resource_tags`.
+  const factory RbinRuleExcludeResourceTagsOrResourceTags.excludeResourceTags(
+    List<RbinRuleExcludeResourceTags> excludeResourceTags,
+  ) = RbinRuleExcludeResourceTagsOrResourceTagsExcludeResourceTags;
+
+  /// Sets `resource_tags`.
+  const factory RbinRuleExcludeResourceTagsOrResourceTags.resourceTags(
+    List<RbinRuleResourceTags> resourceTags,
+  ) = RbinRuleExcludeResourceTagsOrResourceTagsResourceTags;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +46,12 @@ sealed class RbinRuleExcludeResourceTagsOrResourceTags {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `exclude_resource_tags` (one of the [RbinRuleExcludeResourceTagsOrResourceTags] choices).
-final class RbinRuleExcludeResourceTagsOption
+/// The [RbinRuleExcludeResourceTagsOrResourceTags.excludeResourceTags] choice: sets `exclude_resource_tags`.
+final class RbinRuleExcludeResourceTagsOrResourceTagsExcludeResourceTags
     extends RbinRuleExcludeResourceTagsOrResourceTags {
-  const RbinRuleExcludeResourceTagsOption({required this.excludeResourceTags});
+  const RbinRuleExcludeResourceTagsOrResourceTagsExcludeResourceTags(
+    this.excludeResourceTags,
+  );
 
   final List<RbinRuleExcludeResourceTags> excludeResourceTags;
 
@@ -57,10 +71,12 @@ final class RbinRuleExcludeResourceTagsOption
   };
 }
 
-/// Sets `resource_tags` (one of the [RbinRuleExcludeResourceTagsOrResourceTags] choices).
-final class RbinRuleResourceTagsOption
+/// The [RbinRuleExcludeResourceTagsOrResourceTags.resourceTags] choice: sets `resource_tags`.
+final class RbinRuleExcludeResourceTagsOrResourceTagsResourceTags
     extends RbinRuleExcludeResourceTagsOrResourceTags {
-  const RbinRuleResourceTagsOption({required this.resourceTags});
+  const RbinRuleExcludeResourceTagsOrResourceTagsResourceTags(
+    this.resourceTags,
+  );
 
   final List<RbinRuleResourceTags> resourceTags;
 

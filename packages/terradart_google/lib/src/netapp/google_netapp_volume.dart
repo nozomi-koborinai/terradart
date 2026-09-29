@@ -359,8 +359,20 @@ final class NetappVolumeRestoreParameters {
 
 /// Exactly one of `source_backup`, `source_snapshot` on the `restore_parameters` block of `google_netapp_volume`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.sourceBackup(...)`.
 sealed class NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot {
   const NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot();
+
+  /// Sets `source_backup`.
+  const factory NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot.sourceBackup(
+    TfArg<String> sourceBackup,
+  ) = NetappVolumeRestoreParametersSourceBackupOrSourceSnapshotSourceBackup;
+
+  /// Sets `source_snapshot`.
+  const factory NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot.sourceSnapshot(
+    TfArg<String> sourceSnapshot,
+  ) = NetappVolumeRestoreParametersSourceBackupOrSourceSnapshotSourceSnapshot;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -368,12 +380,12 @@ sealed class NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot {
   Map<String, Object?> encode();
 }
 
-/// Sets `source_backup` (one of the [NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot] choices).
-final class NetappVolumeRestoreParametersSourceBackupOption
+/// The [NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot.sourceBackup] choice: sets `source_backup`.
+final class NetappVolumeRestoreParametersSourceBackupOrSourceSnapshotSourceBackup
     extends NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot {
-  const NetappVolumeRestoreParametersSourceBackupOption({
-    required this.sourceBackup,
-  });
+  const NetappVolumeRestoreParametersSourceBackupOrSourceSnapshotSourceBackup(
+    this.sourceBackup,
+  );
 
   final TfArg<String> sourceBackup;
 
@@ -384,12 +396,12 @@ final class NetappVolumeRestoreParametersSourceBackupOption
   Map<String, Object?> encode() => {'source_backup': sourceBackup.toTfJson()};
 }
 
-/// Sets `source_snapshot` (one of the [NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot] choices).
-final class NetappVolumeRestoreParametersSourceSnapshotOption
+/// The [NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot.sourceSnapshot] choice: sets `source_snapshot`.
+final class NetappVolumeRestoreParametersSourceBackupOrSourceSnapshotSourceSnapshot
     extends NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot {
-  const NetappVolumeRestoreParametersSourceSnapshotOption({
-    required this.sourceSnapshot,
-  });
+  const NetappVolumeRestoreParametersSourceBackupOrSourceSnapshotSourceSnapshot(
+    this.sourceSnapshot,
+  );
 
   final TfArg<String> sourceSnapshot;
 

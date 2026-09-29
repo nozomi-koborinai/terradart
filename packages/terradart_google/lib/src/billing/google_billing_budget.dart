@@ -70,8 +70,20 @@ final class BillingBudgetAmount {
 
 /// Exactly one of `specified_amount`, `last_period_amount` on the `amount` block of `google_billing_budget`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.specifiedAmount(...)`.
 sealed class BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount {
   const BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount();
+
+  /// Sets `specified_amount`.
+  const factory BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount.specifiedAmount(
+    BillingBudgetAmountSpecifiedAmount specifiedAmount,
+  ) = BillingBudgetAmountSpecifiedAmountOrLastPeriodAmountSpecifiedAmount;
+
+  /// Sets `last_period_amount`.
+  const factory BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount.lastPeriodAmount(
+    TfArg<bool> lastPeriodAmount,
+  ) = BillingBudgetAmountSpecifiedAmountOrLastPeriodAmountLastPeriodAmount;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -79,12 +91,12 @@ sealed class BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount {
   Map<String, Object?> encode();
 }
 
-/// Sets `specified_amount` (one of the [BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount] choices).
-final class BillingBudgetAmountSpecifiedAmountOption
+/// The [BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount.specifiedAmount] choice: sets `specified_amount`.
+final class BillingBudgetAmountSpecifiedAmountOrLastPeriodAmountSpecifiedAmount
     extends BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount {
-  const BillingBudgetAmountSpecifiedAmountOption({
-    required this.specifiedAmount,
-  });
+  const BillingBudgetAmountSpecifiedAmountOrLastPeriodAmountSpecifiedAmount(
+    this.specifiedAmount,
+  );
 
   final BillingBudgetAmountSpecifiedAmount specifiedAmount;
 
@@ -97,12 +109,12 @@ final class BillingBudgetAmountSpecifiedAmountOption
   };
 }
 
-/// Sets `last_period_amount` (one of the [BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount] choices).
-final class BillingBudgetAmountLastPeriodAmountOption
+/// The [BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount.lastPeriodAmount] choice: sets `last_period_amount`.
+final class BillingBudgetAmountSpecifiedAmountOrLastPeriodAmountLastPeriodAmount
     extends BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount {
-  const BillingBudgetAmountLastPeriodAmountOption({
-    required this.lastPeriodAmount,
-  });
+  const BillingBudgetAmountSpecifiedAmountOrLastPeriodAmountLastPeriodAmount(
+    this.lastPeriodAmount,
+  );
 
   final TfArg<bool> lastPeriodAmount;
 

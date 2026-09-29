@@ -9,8 +9,25 @@ const Set<String> _awsLakeformationResourceLfTagsSensitive = <String>{};
 
 /// Exactly one of `database`, `table`, `table_with_columns` on `aws_lakeformation_resource_lf_tags`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.database(...)`.
 sealed class LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns {
   const LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns();
+
+  /// Sets `database`.
+  const factory LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns.database(
+    LakeformationResourceLfTagsDatabase database,
+  ) = LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsDatabase;
+
+  /// Sets `table`.
+  const factory LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns.table(
+    LakeformationResourceLfTagsTable table,
+  ) = LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsTable;
+
+  /// Sets `table_with_columns`.
+  const factory LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns.tableWithColumns(
+    LakeformationResourceLfTagsTableWithColumns tableWithColumns,
+  ) = LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsTableWithColumns;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +39,12 @@ sealed class LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `database` (one of the [LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns] choices).
-final class LakeformationResourceLfTagsDatabaseOption
+/// The [LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns.database] choice: sets `database`.
+final class LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsDatabase
     extends LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns {
-  const LakeformationResourceLfTagsDatabaseOption({required this.database});
+  const LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsDatabase(
+    this.database,
+  );
 
   final LakeformationResourceLfTagsDatabase database;
 
@@ -41,10 +60,12 @@ final class LakeformationResourceLfTagsDatabaseOption
   };
 }
 
-/// Sets `table` (one of the [LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns] choices).
-final class LakeformationResourceLfTagsTableOption
+/// The [LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns.table] choice: sets `table`.
+final class LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsTable
     extends LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns {
-  const LakeformationResourceLfTagsTableOption({required this.table});
+  const LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsTable(
+    this.table,
+  );
 
   final LakeformationResourceLfTagsTable table;
 
@@ -60,12 +81,12 @@ final class LakeformationResourceLfTagsTableOption
   };
 }
 
-/// Sets `table_with_columns` (one of the [LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns] choices).
-final class LakeformationResourceLfTagsTableWithColumnsOption
+/// The [LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns.tableWithColumns] choice: sets `table_with_columns`.
+final class LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsTableWithColumns
     extends LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumns {
-  const LakeformationResourceLfTagsTableWithColumnsOption({
-    required this.tableWithColumns,
-  });
+  const LakeformationResourceLfTagsDatabaseOrTableOrTableWithColumnsTableWithColumns(
+    this.tableWithColumns,
+  );
 
   final LakeformationResourceLfTagsTableWithColumns tableWithColumns;
 

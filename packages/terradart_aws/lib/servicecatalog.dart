@@ -29,9 +29,9 @@ export 'src/servicecatalog/aws_servicecatalog_product.dart'
         AwsServicecatalogProduct,
         ServicecatalogProductAcceptLanguage,
         ServicecatalogProductProvisioningArtifactParameters,
-        ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOption,
         ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOrTemplateUrl,
-        ServicecatalogProductProvisioningArtifactParametersTemplateUrlOption,
+        ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOrTemplateUrlTemplatePhysicalId,
+        ServicecatalogProductProvisioningArtifactParametersTemplatePhysicalIdOrTemplateUrlTemplateUrl,
         ServicecatalogProductProvisioningArtifactParametersType,
         ServicecatalogProductType;
 export 'src/servicecatalog/aws_servicecatalog_product_portfolio_association.dart'
@@ -42,31 +42,31 @@ export 'src/servicecatalog/aws_servicecatalog_provisioned_product.dart'
     show
         AwsServicecatalogProvisionedProduct,
         ServicecatalogProvisionedProductAcceptLanguage,
-        ServicecatalogProvisionedProductPathIdOption,
         ServicecatalogProvisionedProductPathIdOrPathName,
-        ServicecatalogProvisionedProductPathNameOption,
-        ServicecatalogProvisionedProductProductIdOption,
+        ServicecatalogProvisionedProductPathIdOrPathNamePathId,
+        ServicecatalogProvisionedProductPathIdOrPathNamePathName,
         ServicecatalogProvisionedProductProductIdOrProductName,
-        ServicecatalogProvisionedProductProductNameOption,
-        ServicecatalogProvisionedProductProvisioningArtifactIdOption,
+        ServicecatalogProvisionedProductProductIdOrProductNameProductId,
+        ServicecatalogProvisionedProductProductIdOrProductNameProductName,
         ServicecatalogProvisionedProductProvisioningArtifactIdOrProvisioningArtifactName,
-        ServicecatalogProvisionedProductProvisioningArtifactNameOption,
+        ServicecatalogProvisionedProductProvisioningArtifactIdOrProvisioningArtifactNameProvisioningArtifactId,
+        ServicecatalogProvisionedProductProvisioningArtifactIdOrProvisioningArtifactNameProvisioningArtifactName,
         ServicecatalogProvisionedProductProvisioningParameters,
         ServicecatalogProvisionedProductStackSetProvisioningPreferences,
-        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOption,
         ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOrFailureTolerancePercentage,
-        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureTolerancePercentageOption,
-        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOption,
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOrFailureTolerancePercentageFailureToleranceCount,
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesFailureToleranceCountOrFailureTolerancePercentageFailureTolerancePercentage,
         ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOrMaxConcurrencyPercentage,
-        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyPercentageOption;
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOrMaxConcurrencyPercentageMaxConcurrencyCount,
+        ServicecatalogProvisionedProductStackSetProvisioningPreferencesMaxConcurrencyCountOrMaxConcurrencyPercentageMaxConcurrencyPercentage;
 export 'src/servicecatalog/aws_servicecatalog_provisioning_artifact.dart'
     show
         AwsServicecatalogProvisioningArtifact,
         ServicecatalogProvisioningArtifactAcceptLanguage,
         ServicecatalogProvisioningArtifactGuidance,
-        ServicecatalogProvisioningArtifactTemplatePhysicalIdOption,
         ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl,
-        ServicecatalogProvisioningArtifactTemplateUrlOption,
+        ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTemplatePhysicalId,
+        ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTemplateUrl,
         ServicecatalogProvisioningArtifactType;
 export 'src/servicecatalog/aws_servicecatalog_service_action.dart'
     show

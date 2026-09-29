@@ -283,6 +283,17 @@ Map<String, String> _parseFields(String body) {
   String body,
   Map<String, String> fields,
 ) {
+  // A sealed variant takes its one member positionally.
+  final positional = RegExp(
+    'const ${RegExp.escape(className)}\\(\\s*this\\.(\\w+),?\\s*\\);',
+  ).firstMatch(body);
+  if (positional != null) {
+    final name = positional.group(1)!;
+    return (
+      required: [_Param(name, fields[name] ?? 'TfArg<String>')],
+      optional: const [],
+    );
+  }
   final needle = '$className({';
   final start = body.indexOf(needle);
   if (start < 0) return (required: const [], optional: const []);
@@ -359,7 +370,7 @@ String _sealedChoice(
     sensitive: sensitive,
     owner: variant,
   );
-  return '$variant(${member.name}: $value,)';
+  return '.${member.name}($value)';
 }
 
 const _preferZoneId = {'DataCloudflareRuleset', 'DataCloudflareRulesets'};

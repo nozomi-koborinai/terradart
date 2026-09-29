@@ -133,8 +133,18 @@ enum S3ObjectCopyTaggingDirective implements TerraformEnum {
 /// At most one of `acl`, `grant` on `aws_s3_object_copy`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.acl(...)`.
 sealed class S3ObjectCopyAclOrGrant {
   const S3ObjectCopyAclOrGrant();
+
+  /// Sets `acl`.
+  const factory S3ObjectCopyAclOrGrant.acl(TfArg<S3ObjectCopyAcl> acl) =
+      S3ObjectCopyAclOrGrantAcl;
+
+  /// Sets `grant`.
+  const factory S3ObjectCopyAclOrGrant.grant(List<S3ObjectCopyGrant> grant) =
+      S3ObjectCopyAclOrGrantGrant;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -146,9 +156,9 @@ sealed class S3ObjectCopyAclOrGrant {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `acl` (one of the [S3ObjectCopyAclOrGrant] choices).
-final class S3ObjectCopyAclOption extends S3ObjectCopyAclOrGrant {
-  const S3ObjectCopyAclOption({required this.acl});
+/// The [S3ObjectCopyAclOrGrant.acl] choice: sets `acl`.
+final class S3ObjectCopyAclOrGrantAcl extends S3ObjectCopyAclOrGrant {
+  const S3ObjectCopyAclOrGrantAcl(this.acl);
 
   final TfArg<S3ObjectCopyAcl> acl;
 
@@ -162,9 +172,9 @@ final class S3ObjectCopyAclOption extends S3ObjectCopyAclOrGrant {
   Map<String, TfArg<Object?>> get argMap => {'acl': acl};
 }
 
-/// Sets `grant` (one of the [S3ObjectCopyAclOrGrant] choices).
-final class S3ObjectCopyGrantOption extends S3ObjectCopyAclOrGrant {
-  const S3ObjectCopyGrantOption({required this.grant});
+/// The [S3ObjectCopyAclOrGrant.grant] choice: sets `grant`.
+final class S3ObjectCopyAclOrGrantGrant extends S3ObjectCopyAclOrGrant {
+  const S3ObjectCopyAclOrGrantGrant(this.grant);
 
   final List<S3ObjectCopyGrant> grant;
 

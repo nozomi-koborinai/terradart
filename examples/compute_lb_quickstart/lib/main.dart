@@ -283,9 +283,7 @@ final class ComputeLbStack extends Stack {
         location: TfArg.literal(region),
         certificateAuthority: TfArg.literal('app-root-ca'),
         lifetime: TfArg.literal('86400s'),
-        pemCsrOrConfig: PrivatecaCertificatePemCsrOption(
-          pemCsr: TfArg.variable('cm_cas_cert_csr_pem'),
-        ),
+        pemCsrOrConfig: .pemCsr(TfArg.variable('cm_cas_cert_csr_pem')),
         certificateTemplate: TfArg.ref(cmCertTemplate.id),
         dependsOn: [
           ResourceDependency(cmRootCa),
@@ -523,10 +521,9 @@ final class ComputeLbStack extends Stack {
         // Reference `lbCert` by self_link rather than inlining the Terraform
         // interpolation string so that the cert resource is the source of
         // truth for the name.
-        certificateManagerCertificatesOrSslCertificates:
-            ComputeTargetHttpsProxySslCertificatesOption(
-              sslCertificates: TfArg.literal([lbCert.selfLink.interpolation]),
-            ),
+        certificateManagerCertificatesOrSslCertificates: .sslCertificates(
+          TfArg.literal([lbCert.selfLink.interpolation]),
+        ),
         sslPolicy: TfArg.ref(lbSslPolicy.selfLink),
       ),
     );
@@ -894,12 +891,9 @@ final class ComputeLbStack extends Stack {
         name: TfArg.literal('app-regional-https-proxy'),
         region: TfArg.literal(region),
         urlMap: TfArg.ref(regionUrlMap.selfLink),
-        certificateManagerCertificatesOrSslCertificates:
-            ComputeRegionTargetHttpsProxySslCertificatesOption(
-              sslCertificates: TfArg.literal([
-                regionalSslCert.selfLink.interpolation,
-              ]),
-            ),
+        certificateManagerCertificatesOrSslCertificates: .sslCertificates(
+          TfArg.literal([regionalSslCert.selfLink.interpolation]),
+        ),
         sslPolicy: TfArg.ref(regionalSslPolicy.selfLink),
         dependsOn: [
           ResourceDependency(regionalSslCert),

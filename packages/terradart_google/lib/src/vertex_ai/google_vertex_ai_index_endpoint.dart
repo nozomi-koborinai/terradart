@@ -10,8 +10,21 @@ const Set<String> _googleVertexAiIndexEndpointSensitive = <String>{};
 /// At most one of `network`, `private_service_connect_config` on `google_vertex_ai_index_endpoint`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.network(...)`.
 sealed class VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig {
   const VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig();
+
+  /// Sets `network`.
+  const factory VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig.network(
+    TfArg<String> network,
+  ) = VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigNetwork;
+
+  /// Sets `private_service_connect_config`.
+  const factory VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig.privateServiceConnectConfig(
+    VertexAiIndexEndpointPrivateServiceConnectConfig
+    privateServiceConnectConfig,
+  ) = VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigPrivateServiceConnectConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +36,12 @@ sealed class VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `network` (one of the [VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig] choices).
-final class VertexAiIndexEndpointNetworkOption
+/// The [VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig.network] choice: sets `network`.
+final class VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigNetwork
     extends VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig {
-  const VertexAiIndexEndpointNetworkOption({required this.network});
+  const VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigNetwork(
+    this.network,
+  );
 
   final TfArg<String> network;
 
@@ -40,12 +55,12 @@ final class VertexAiIndexEndpointNetworkOption
   Map<String, TfArg<Object?>> get argMap => {'network': network};
 }
 
-/// Sets `private_service_connect_config` (one of the [VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig] choices).
-final class VertexAiIndexEndpointPrivateServiceConnectConfigOption
+/// The [VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig.privateServiceConnectConfig] choice: sets `private_service_connect_config`.
+final class VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigPrivateServiceConnectConfig
     extends VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfig {
-  const VertexAiIndexEndpointPrivateServiceConnectConfigOption({
-    required this.privateServiceConnectConfig,
-  });
+  const VertexAiIndexEndpointNetworkOrPrivateServiceConnectConfigPrivateServiceConnectConfig(
+    this.privateServiceConnectConfig,
+  );
 
   final VertexAiIndexEndpointPrivateServiceConnectConfig
   privateServiceConnectConfig;

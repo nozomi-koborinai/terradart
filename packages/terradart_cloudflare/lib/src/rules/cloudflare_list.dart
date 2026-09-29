@@ -38,8 +38,28 @@ final class ListItems {
 /// At most one of `asn`, `ip`, `hostname`, `redirect` on the `items` block of `cloudflare_list`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.asn(...)`.
 sealed class ListItemsAsnOrIpOrHostnameOrRedirect {
   const ListItemsAsnOrIpOrHostnameOrRedirect();
+
+  /// Sets `asn`.
+  const factory ListItemsAsnOrIpOrHostnameOrRedirect.asn(TfArg<num> asn) =
+      ListItemsAsnOrIpOrHostnameOrRedirectAsn;
+
+  /// Sets `ip`.
+  const factory ListItemsAsnOrIpOrHostnameOrRedirect.ip(TfArg<String> ip) =
+      ListItemsAsnOrIpOrHostnameOrRedirectIp;
+
+  /// Sets `hostname`.
+  const factory ListItemsAsnOrIpOrHostnameOrRedirect.hostname(
+    ListItemsHostname hostname,
+  ) = ListItemsAsnOrIpOrHostnameOrRedirectHostname;
+
+  /// Sets `redirect`.
+  const factory ListItemsAsnOrIpOrHostnameOrRedirect.redirect(
+    ListItemsRedirect redirect,
+  ) = ListItemsAsnOrIpOrHostnameOrRedirectRedirect;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -47,9 +67,10 @@ sealed class ListItemsAsnOrIpOrHostnameOrRedirect {
   Map<String, Object?> encode();
 }
 
-/// Sets `asn` (one of the [ListItemsAsnOrIpOrHostnameOrRedirect] choices).
-final class ListItemsAsnOption extends ListItemsAsnOrIpOrHostnameOrRedirect {
-  const ListItemsAsnOption({required this.asn});
+/// The [ListItemsAsnOrIpOrHostnameOrRedirect.asn] choice: sets `asn`.
+final class ListItemsAsnOrIpOrHostnameOrRedirectAsn
+    extends ListItemsAsnOrIpOrHostnameOrRedirect {
+  const ListItemsAsnOrIpOrHostnameOrRedirectAsn(this.asn);
 
   final TfArg<num> asn;
 
@@ -60,9 +81,10 @@ final class ListItemsAsnOption extends ListItemsAsnOrIpOrHostnameOrRedirect {
   Map<String, Object?> encode() => {'asn': asn.toTfJson()};
 }
 
-/// Sets `ip` (one of the [ListItemsAsnOrIpOrHostnameOrRedirect] choices).
-final class ListItemsIpOption extends ListItemsAsnOrIpOrHostnameOrRedirect {
-  const ListItemsIpOption({required this.ip});
+/// The [ListItemsAsnOrIpOrHostnameOrRedirect.ip] choice: sets `ip`.
+final class ListItemsAsnOrIpOrHostnameOrRedirectIp
+    extends ListItemsAsnOrIpOrHostnameOrRedirect {
+  const ListItemsAsnOrIpOrHostnameOrRedirectIp(this.ip);
 
   final TfArg<String> ip;
 
@@ -73,10 +95,10 @@ final class ListItemsIpOption extends ListItemsAsnOrIpOrHostnameOrRedirect {
   Map<String, Object?> encode() => {'ip': ip.toTfJson()};
 }
 
-/// Sets `hostname` (one of the [ListItemsAsnOrIpOrHostnameOrRedirect] choices).
-final class ListItemsHostnameOption
+/// The [ListItemsAsnOrIpOrHostnameOrRedirect.hostname] choice: sets `hostname`.
+final class ListItemsAsnOrIpOrHostnameOrRedirectHostname
     extends ListItemsAsnOrIpOrHostnameOrRedirect {
-  const ListItemsHostnameOption({required this.hostname});
+  const ListItemsAsnOrIpOrHostnameOrRedirectHostname(this.hostname);
 
   final ListItemsHostname hostname;
 
@@ -87,10 +109,10 @@ final class ListItemsHostnameOption
   Map<String, Object?> encode() => {'hostname': hostname.encode()};
 }
 
-/// Sets `redirect` (one of the [ListItemsAsnOrIpOrHostnameOrRedirect] choices).
-final class ListItemsRedirectOption
+/// The [ListItemsAsnOrIpOrHostnameOrRedirect.redirect] choice: sets `redirect`.
+final class ListItemsAsnOrIpOrHostnameOrRedirectRedirect
     extends ListItemsAsnOrIpOrHostnameOrRedirect {
-  const ListItemsRedirectOption({required this.redirect});
+  const ListItemsAsnOrIpOrHostnameOrRedirectRedirect(this.redirect);
 
   final ListItemsRedirect redirect;
 

@@ -21,8 +21,20 @@ final class NetworkmanagerDeviceAwsLocation {
 /// At most one of `subnet_arn`, `zone` on the `aws_location` block of `aws_networkmanager_device`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.subnetArn(...)`.
 sealed class NetworkmanagerDeviceAwsLocationSubnetArnOrZone {
   const NetworkmanagerDeviceAwsLocationSubnetArnOrZone();
+
+  /// Sets `subnet_arn`.
+  const factory NetworkmanagerDeviceAwsLocationSubnetArnOrZone.subnetArn(
+    TfArg<String> subnetArn,
+  ) = NetworkmanagerDeviceAwsLocationSubnetArnOrZoneSubnetArn;
+
+  /// Sets `zone`.
+  const factory NetworkmanagerDeviceAwsLocationSubnetArnOrZone.zone(
+    TfArg<String> zone,
+  ) = NetworkmanagerDeviceAwsLocationSubnetArnOrZoneZone;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -30,12 +42,10 @@ sealed class NetworkmanagerDeviceAwsLocationSubnetArnOrZone {
   Map<String, Object?> encode();
 }
 
-/// Sets `subnet_arn` (one of the [NetworkmanagerDeviceAwsLocationSubnetArnOrZone] choices).
-final class NetworkmanagerDeviceAwsLocationSubnetArnOption
+/// The [NetworkmanagerDeviceAwsLocationSubnetArnOrZone.subnetArn] choice: sets `subnet_arn`.
+final class NetworkmanagerDeviceAwsLocationSubnetArnOrZoneSubnetArn
     extends NetworkmanagerDeviceAwsLocationSubnetArnOrZone {
-  const NetworkmanagerDeviceAwsLocationSubnetArnOption({
-    required this.subnetArn,
-  });
+  const NetworkmanagerDeviceAwsLocationSubnetArnOrZoneSubnetArn(this.subnetArn);
 
   final TfArg<String> subnetArn;
 
@@ -46,10 +56,10 @@ final class NetworkmanagerDeviceAwsLocationSubnetArnOption
   Map<String, Object?> encode() => {'subnet_arn': subnetArn.toTfJson()};
 }
 
-/// Sets `zone` (one of the [NetworkmanagerDeviceAwsLocationSubnetArnOrZone] choices).
-final class NetworkmanagerDeviceAwsLocationZoneOption
+/// The [NetworkmanagerDeviceAwsLocationSubnetArnOrZone.zone] choice: sets `zone`.
+final class NetworkmanagerDeviceAwsLocationSubnetArnOrZoneZone
     extends NetworkmanagerDeviceAwsLocationSubnetArnOrZone {
-  const NetworkmanagerDeviceAwsLocationZoneOption({required this.zone});
+  const NetworkmanagerDeviceAwsLocationSubnetArnOrZoneZone(this.zone);
 
   final TfArg<String> zone;
 

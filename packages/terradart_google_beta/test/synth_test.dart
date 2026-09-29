@@ -39,17 +39,14 @@ final class _TypedStack extends Stack {
       GoogleApiGatewayApiConfig(
         localName: 'config',
         api: TfArg.literal('api'),
-        openapiDocumentsOrGrpcServices: ApiGatewayApiConfigGrpcServicesOption(
-          grpcServices: [
-            ApiGatewayApiConfigGrpcServices(
-              fileDescriptorSet:
-                  ApiGatewayApiConfigGrpcServicesFileDescriptorSet(
-                    contents: TfArg.literal('ZGVzYw=='),
-                    path: TfArg.literal('api.pb'),
-                  ),
+        openapiDocumentsOrGrpcServices: .grpcServices([
+          ApiGatewayApiConfigGrpcServices(
+            fileDescriptorSet: ApiGatewayApiConfigGrpcServicesFileDescriptorSet(
+              contents: TfArg.literal('ZGVzYw=='),
+              path: TfArg.literal('api.pb'),
             ),
-          ],
-        ),
+          ),
+        ]),
       ),
     );
     add(

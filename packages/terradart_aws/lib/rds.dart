@@ -7,27 +7,27 @@ export 'src/rds/aws_rds_certificate.dart' show AwsRdsCertificate;
 export 'src/rds/aws_rds_cluster.dart'
     show
         AwsRdsCluster,
-        RdsClusterClusterIdentifierOption,
         RdsClusterClusterIdentifierOrClusterIdentifierPrefix,
-        RdsClusterClusterIdentifierPrefixOption,
+        RdsClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier,
+        RdsClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix,
         RdsClusterClusterScalabilityType,
         RdsClusterDatabaseInsightsMode,
         RdsClusterEnabledCloudwatchLogsExports,
         RdsClusterEngineLifecycleSupport,
         RdsClusterEngineMode,
-        RdsClusterManageMasterUserPasswordOption,
         RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo,
-        RdsClusterMasterPasswordOption,
-        RdsClusterMasterPasswordWoOption,
+        RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword,
+        RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword,
+        RdsClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo,
         RdsClusterNetworkType,
         RdsClusterRestoreToPointInTime,
-        RdsClusterRestoreToPointInTimeRestoreToTimeOption,
         RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime,
+        RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeRestoreToTime,
+        RdsClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeUseLatestRestorableTime,
         RdsClusterRestoreToPointInTimeRestoreType,
-        RdsClusterRestoreToPointInTimeSourceClusterIdentifierOption,
         RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceId,
-        RdsClusterRestoreToPointInTimeSourceClusterResourceIdOption,
-        RdsClusterRestoreToPointInTimeUseLatestRestorableTimeOption,
+        RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceIdSourceClusterIdentifier,
+        RdsClusterRestoreToPointInTimeSourceClusterIdentifierOrSourceClusterResourceIdSourceClusterResourceId,
         RdsClusterS3Import,
         RdsClusterScalingConfiguration,
         RdsClusterScalingConfigurationTimeoutAction,
@@ -38,21 +38,21 @@ export 'src/rds/aws_rds_cluster_endpoint.dart'
     show
         AwsRdsClusterEndpoint,
         RdsClusterEndpointCustomEndpointType,
-        RdsClusterEndpointExcludedMembersOption,
         RdsClusterEndpointExcludedMembersOrStaticMembers,
-        RdsClusterEndpointStaticMembersOption;
+        RdsClusterEndpointExcludedMembersOrStaticMembersExcludedMembers,
+        RdsClusterEndpointExcludedMembersOrStaticMembersStaticMembers;
 export 'src/rds/aws_rds_cluster_instance.dart'
     show
         AwsRdsClusterInstance,
-        RdsClusterInstanceIdentifierOption,
         RdsClusterInstanceIdentifierOrIdentifierPrefix,
-        RdsClusterInstanceIdentifierPrefixOption;
+        RdsClusterInstanceIdentifierOrIdentifierPrefixIdentifier,
+        RdsClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix;
 export 'src/rds/aws_rds_cluster_parameter_group.dart'
     show
         AwsRdsClusterParameterGroup,
-        RdsClusterParameterGroupNameOption,
         RdsClusterParameterGroupNameOrNamePrefix,
-        RdsClusterParameterGroupNamePrefixOption,
+        RdsClusterParameterGroupNameOrNamePrefixName,
+        RdsClusterParameterGroupNameOrNamePrefixNamePrefix,
         RdsClusterParameterGroupParameter,
         RdsClusterParameterGroupParameterApplyMethod;
 export 'src/rds/aws_rds_cluster_role_association.dart'
@@ -62,9 +62,9 @@ export 'src/rds/aws_rds_cluster_snapshot_copy.dart'
 export 'src/rds/aws_rds_custom_db_engine_version.dart'
     show
         AwsRdsCustomDbEngineVersion,
-        RdsCustomDbEngineVersionFilenameOption,
         RdsCustomDbEngineVersionFilenameOrManifest,
-        RdsCustomDbEngineVersionManifestOption,
+        RdsCustomDbEngineVersionFilenameOrManifestFilename,
+        RdsCustomDbEngineVersionFilenameOrManifestManifest,
         RdsCustomDbEngineVersionStatus;
 export 'src/rds/aws_rds_export_task.dart' show AwsRdsExportTask;
 export 'src/rds/aws_rds_global_cluster.dart'

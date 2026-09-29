@@ -119,8 +119,20 @@ final class MonitoringSloWindowsBasedSli extends MonitoringSloSli {
 
 /// Exactly one of `rolling_period_days`, `calendar_period` on `google_monitoring_slo`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.rollingPeriodDays(...)`.
 sealed class MonitoringSloRollingPeriodDaysOrCalendarPeriod {
   const MonitoringSloRollingPeriodDaysOrCalendarPeriod();
+
+  /// Sets `rolling_period_days`.
+  const factory MonitoringSloRollingPeriodDaysOrCalendarPeriod.rollingPeriodDays(
+    TfArg<num> rollingPeriodDays,
+  ) = MonitoringSloRollingPeriodDaysOrCalendarPeriodRollingPeriodDays;
+
+  /// Sets `calendar_period`.
+  const factory MonitoringSloRollingPeriodDaysOrCalendarPeriod.calendarPeriod(
+    TfArg<MonitoringSloCalendarPeriod> calendarPeriod,
+  ) = MonitoringSloRollingPeriodDaysOrCalendarPeriodCalendarPeriod;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -132,10 +144,12 @@ sealed class MonitoringSloRollingPeriodDaysOrCalendarPeriod {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `rolling_period_days` (one of the [MonitoringSloRollingPeriodDaysOrCalendarPeriod] choices).
-final class MonitoringSloRollingPeriodDaysOption
+/// The [MonitoringSloRollingPeriodDaysOrCalendarPeriod.rollingPeriodDays] choice: sets `rolling_period_days`.
+final class MonitoringSloRollingPeriodDaysOrCalendarPeriodRollingPeriodDays
     extends MonitoringSloRollingPeriodDaysOrCalendarPeriod {
-  const MonitoringSloRollingPeriodDaysOption({required this.rollingPeriodDays});
+  const MonitoringSloRollingPeriodDaysOrCalendarPeriodRollingPeriodDays(
+    this.rollingPeriodDays,
+  );
 
   final TfArg<num> rollingPeriodDays;
 
@@ -153,10 +167,12 @@ final class MonitoringSloRollingPeriodDaysOption
   };
 }
 
-/// Sets `calendar_period` (one of the [MonitoringSloRollingPeriodDaysOrCalendarPeriod] choices).
-final class MonitoringSloCalendarPeriodOption
+/// The [MonitoringSloRollingPeriodDaysOrCalendarPeriod.calendarPeriod] choice: sets `calendar_period`.
+final class MonitoringSloRollingPeriodDaysOrCalendarPeriodCalendarPeriod
     extends MonitoringSloRollingPeriodDaysOrCalendarPeriod {
-  const MonitoringSloCalendarPeriodOption({required this.calendarPeriod});
+  const MonitoringSloRollingPeriodDaysOrCalendarPeriodCalendarPeriod(
+    this.calendarPeriod,
+  );
 
   final TfArg<MonitoringSloCalendarPeriod> calendarPeriod;
 

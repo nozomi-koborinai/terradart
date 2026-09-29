@@ -20,8 +20,20 @@ enum AppsyncResolverKind implements TerraformEnum {
 /// At most one of `data_source`, `pipeline_config` on `aws_appsync_resolver`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.dataSource(...)`.
 sealed class AppsyncResolverDataSourceOrPipelineConfig {
   const AppsyncResolverDataSourceOrPipelineConfig();
+
+  /// Sets `data_source`.
+  const factory AppsyncResolverDataSourceOrPipelineConfig.dataSource(
+    TfArg<String> dataSource,
+  ) = AppsyncResolverDataSourceOrPipelineConfigDataSource;
+
+  /// Sets `pipeline_config`.
+  const factory AppsyncResolverDataSourceOrPipelineConfig.pipelineConfig(
+    AppsyncResolverPipelineConfig pipelineConfig,
+  ) = AppsyncResolverDataSourceOrPipelineConfigPipelineConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +45,10 @@ sealed class AppsyncResolverDataSourceOrPipelineConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `data_source` (one of the [AppsyncResolverDataSourceOrPipelineConfig] choices).
-final class AppsyncResolverDataSourceOption
+/// The [AppsyncResolverDataSourceOrPipelineConfig.dataSource] choice: sets `data_source`.
+final class AppsyncResolverDataSourceOrPipelineConfigDataSource
     extends AppsyncResolverDataSourceOrPipelineConfig {
-  const AppsyncResolverDataSourceOption({required this.dataSource});
+  const AppsyncResolverDataSourceOrPipelineConfigDataSource(this.dataSource);
 
   final TfArg<String> dataSource;
 
@@ -50,10 +62,12 @@ final class AppsyncResolverDataSourceOption
   Map<String, TfArg<Object?>> get argMap => {'data_source': dataSource};
 }
 
-/// Sets `pipeline_config` (one of the [AppsyncResolverDataSourceOrPipelineConfig] choices).
-final class AppsyncResolverPipelineConfigOption
+/// The [AppsyncResolverDataSourceOrPipelineConfig.pipelineConfig] choice: sets `pipeline_config`.
+final class AppsyncResolverDataSourceOrPipelineConfigPipelineConfig
     extends AppsyncResolverDataSourceOrPipelineConfig {
-  const AppsyncResolverPipelineConfigOption({required this.pipelineConfig});
+  const AppsyncResolverDataSourceOrPipelineConfigPipelineConfig(
+    this.pipelineConfig,
+  );
 
   final AppsyncResolverPipelineConfig pipelineConfig;
 

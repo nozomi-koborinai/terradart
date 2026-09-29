@@ -10,13 +10,13 @@ export 'src/api_gateway/google_api_gateway_api_config.dart'
         ApiGatewayApiConfigGatewayConfigBackendConfig,
         ApiGatewayApiConfigGrpcServices,
         ApiGatewayApiConfigGrpcServicesFileDescriptorSet,
-        ApiGatewayApiConfigGrpcServicesOption,
         ApiGatewayApiConfigGrpcServicesSource,
         ApiGatewayApiConfigManagedServiceConfigs,
         ApiGatewayApiConfigOpenapiDocuments,
         ApiGatewayApiConfigOpenapiDocumentsDocument,
-        ApiGatewayApiConfigOpenapiDocumentsOption,
         ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices,
+        ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesGrpcServices,
+        ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesOpenapiDocuments,
         GoogleApiGatewayApiConfig;
 export 'src/api_gateway/google_api_gateway_api_config_iam_binding.dart'
     show

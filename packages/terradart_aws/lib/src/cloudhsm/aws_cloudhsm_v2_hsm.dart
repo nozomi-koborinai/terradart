@@ -8,8 +8,20 @@ const Set<String> _awsCloudhsmV2HsmSensitive = <String>{};
 
 /// Exactly one of `availability_zone`, `subnet_id` on `aws_cloudhsm_v2_hsm`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.availabilityZone(...)`.
 sealed class CloudhsmV2HsmAvailabilityZoneOrSubnetId {
   const CloudhsmV2HsmAvailabilityZoneOrSubnetId();
+
+  /// Sets `availability_zone`.
+  const factory CloudhsmV2HsmAvailabilityZoneOrSubnetId.availabilityZone(
+    TfArg<String> availabilityZone,
+  ) = CloudhsmV2HsmAvailabilityZoneOrSubnetIdAvailabilityZone;
+
+  /// Sets `subnet_id`.
+  const factory CloudhsmV2HsmAvailabilityZoneOrSubnetId.subnetId(
+    TfArg<String> subnetId,
+  ) = CloudhsmV2HsmAvailabilityZoneOrSubnetIdSubnetId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,10 +33,12 @@ sealed class CloudhsmV2HsmAvailabilityZoneOrSubnetId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `availability_zone` (one of the [CloudhsmV2HsmAvailabilityZoneOrSubnetId] choices).
-final class CloudhsmV2HsmAvailabilityZoneOption
+/// The [CloudhsmV2HsmAvailabilityZoneOrSubnetId.availabilityZone] choice: sets `availability_zone`.
+final class CloudhsmV2HsmAvailabilityZoneOrSubnetIdAvailabilityZone
     extends CloudhsmV2HsmAvailabilityZoneOrSubnetId {
-  const CloudhsmV2HsmAvailabilityZoneOption({required this.availabilityZone});
+  const CloudhsmV2HsmAvailabilityZoneOrSubnetIdAvailabilityZone(
+    this.availabilityZone,
+  );
 
   final TfArg<String> availabilityZone;
 
@@ -42,10 +56,10 @@ final class CloudhsmV2HsmAvailabilityZoneOption
   };
 }
 
-/// Sets `subnet_id` (one of the [CloudhsmV2HsmAvailabilityZoneOrSubnetId] choices).
-final class CloudhsmV2HsmSubnetIdOption
+/// The [CloudhsmV2HsmAvailabilityZoneOrSubnetId.subnetId] choice: sets `subnet_id`.
+final class CloudhsmV2HsmAvailabilityZoneOrSubnetIdSubnetId
     extends CloudhsmV2HsmAvailabilityZoneOrSubnetId {
-  const CloudhsmV2HsmSubnetIdOption({required this.subnetId});
+  const CloudhsmV2HsmAvailabilityZoneOrSubnetIdSubnetId(this.subnetId);
 
   final TfArg<String> subnetId;
 

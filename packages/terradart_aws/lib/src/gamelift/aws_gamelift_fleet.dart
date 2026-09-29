@@ -563,8 +563,19 @@ enum GameliftFleetNewGameSessionProtectionPolicy implements TerraformEnum {
 
 /// Exactly one of `build_id`, `script_id` on `aws_gamelift_fleet`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.buildId(...)`.
 sealed class GameliftFleetBuildIdOrScriptId {
   const GameliftFleetBuildIdOrScriptId();
+
+  /// Sets `build_id`.
+  const factory GameliftFleetBuildIdOrScriptId.buildId(TfArg<String> buildId) =
+      GameliftFleetBuildIdOrScriptIdBuildId;
+
+  /// Sets `script_id`.
+  const factory GameliftFleetBuildIdOrScriptId.scriptId(
+    TfArg<String> scriptId,
+  ) = GameliftFleetBuildIdOrScriptIdScriptId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -576,9 +587,10 @@ sealed class GameliftFleetBuildIdOrScriptId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `build_id` (one of the [GameliftFleetBuildIdOrScriptId] choices).
-final class GameliftFleetBuildIdOption extends GameliftFleetBuildIdOrScriptId {
-  const GameliftFleetBuildIdOption({required this.buildId});
+/// The [GameliftFleetBuildIdOrScriptId.buildId] choice: sets `build_id`.
+final class GameliftFleetBuildIdOrScriptIdBuildId
+    extends GameliftFleetBuildIdOrScriptId {
+  const GameliftFleetBuildIdOrScriptIdBuildId(this.buildId);
 
   final TfArg<String> buildId;
 
@@ -592,9 +604,10 @@ final class GameliftFleetBuildIdOption extends GameliftFleetBuildIdOrScriptId {
   Map<String, TfArg<Object?>> get argMap => {'build_id': buildId};
 }
 
-/// Sets `script_id` (one of the [GameliftFleetBuildIdOrScriptId] choices).
-final class GameliftFleetScriptIdOption extends GameliftFleetBuildIdOrScriptId {
-  const GameliftFleetScriptIdOption({required this.scriptId});
+/// The [GameliftFleetBuildIdOrScriptId.scriptId] choice: sets `script_id`.
+final class GameliftFleetBuildIdOrScriptIdScriptId
+    extends GameliftFleetBuildIdOrScriptId {
+  const GameliftFleetBuildIdOrScriptIdScriptId(this.scriptId);
 
   final TfArg<String> scriptId;
 

@@ -80,8 +80,25 @@ enum S3BucketObjectStorageClass implements TerraformEnum {
 /// At most one of `content`, `content_base64`, `source` on `aws_s3_bucket_object`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.content(...)`.
 sealed class S3BucketObjectContentOrContentBase64OrSource {
   const S3BucketObjectContentOrContentBase64OrSource();
+
+  /// Sets `content`.
+  const factory S3BucketObjectContentOrContentBase64OrSource.content(
+    TfArg<String> content,
+  ) = S3BucketObjectContentOrContentBase64OrSourceContent;
+
+  /// Sets `content_base64`.
+  const factory S3BucketObjectContentOrContentBase64OrSource.contentBase64(
+    TfArg<String> contentBase64,
+  ) = S3BucketObjectContentOrContentBase64OrSourceContentBase64;
+
+  /// Sets `source`.
+  const factory S3BucketObjectContentOrContentBase64OrSource.source(
+    TfArg<String> source,
+  ) = S3BucketObjectContentOrContentBase64OrSourceSource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -93,10 +110,10 @@ sealed class S3BucketObjectContentOrContentBase64OrSource {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `content` (one of the [S3BucketObjectContentOrContentBase64OrSource] choices).
-final class S3BucketObjectContentOption
+/// The [S3BucketObjectContentOrContentBase64OrSource.content] choice: sets `content`.
+final class S3BucketObjectContentOrContentBase64OrSourceContent
     extends S3BucketObjectContentOrContentBase64OrSource {
-  const S3BucketObjectContentOption({required this.content});
+  const S3BucketObjectContentOrContentBase64OrSourceContent(this.content);
 
   final TfArg<String> content;
 
@@ -110,10 +127,12 @@ final class S3BucketObjectContentOption
   Map<String, TfArg<Object?>> get argMap => {'content': content};
 }
 
-/// Sets `content_base64` (one of the [S3BucketObjectContentOrContentBase64OrSource] choices).
-final class S3BucketObjectContentBase64Option
+/// The [S3BucketObjectContentOrContentBase64OrSource.contentBase64] choice: sets `content_base64`.
+final class S3BucketObjectContentOrContentBase64OrSourceContentBase64
     extends S3BucketObjectContentOrContentBase64OrSource {
-  const S3BucketObjectContentBase64Option({required this.contentBase64});
+  const S3BucketObjectContentOrContentBase64OrSourceContentBase64(
+    this.contentBase64,
+  );
 
   final TfArg<String> contentBase64;
 
@@ -127,10 +146,10 @@ final class S3BucketObjectContentBase64Option
   Map<String, TfArg<Object?>> get argMap => {'content_base64': contentBase64};
 }
 
-/// Sets `source` (one of the [S3BucketObjectContentOrContentBase64OrSource] choices).
-final class S3BucketObjectSourceOption
+/// The [S3BucketObjectContentOrContentBase64OrSource.source] choice: sets `source`.
+final class S3BucketObjectContentOrContentBase64OrSourceSource
     extends S3BucketObjectContentOrContentBase64OrSource {
-  const S3BucketObjectSourceOption({required this.source});
+  const S3BucketObjectContentOrContentBase64OrSourceSource(this.source);
 
   final TfArg<String> source;
 
@@ -147,8 +166,18 @@ final class S3BucketObjectSourceOption
 /// At most one of `etag`, `kms_key_id` on `aws_s3_bucket_object`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.etag(...)`.
 sealed class S3BucketObjectEtagOrKmsKeyId {
   const S3BucketObjectEtagOrKmsKeyId();
+
+  /// Sets `etag`.
+  const factory S3BucketObjectEtagOrKmsKeyId.etag(TfArg<String> etag) =
+      S3BucketObjectEtagOrKmsKeyIdEtag;
+
+  /// Sets `kms_key_id`.
+  const factory S3BucketObjectEtagOrKmsKeyId.kmsKeyId(TfArg<String> kmsKeyId) =
+      S3BucketObjectEtagOrKmsKeyIdKmsKeyId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -160,9 +189,10 @@ sealed class S3BucketObjectEtagOrKmsKeyId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `etag` (one of the [S3BucketObjectEtagOrKmsKeyId] choices).
-final class S3BucketObjectEtagOption extends S3BucketObjectEtagOrKmsKeyId {
-  const S3BucketObjectEtagOption({required this.etag});
+/// The [S3BucketObjectEtagOrKmsKeyId.etag] choice: sets `etag`.
+final class S3BucketObjectEtagOrKmsKeyIdEtag
+    extends S3BucketObjectEtagOrKmsKeyId {
+  const S3BucketObjectEtagOrKmsKeyIdEtag(this.etag);
 
   final TfArg<String> etag;
 
@@ -176,9 +206,10 @@ final class S3BucketObjectEtagOption extends S3BucketObjectEtagOrKmsKeyId {
   Map<String, TfArg<Object?>> get argMap => {'etag': etag};
 }
 
-/// Sets `kms_key_id` (one of the [S3BucketObjectEtagOrKmsKeyId] choices).
-final class S3BucketObjectKmsKeyIdOption extends S3BucketObjectEtagOrKmsKeyId {
-  const S3BucketObjectKmsKeyIdOption({required this.kmsKeyId});
+/// The [S3BucketObjectEtagOrKmsKeyId.kmsKeyId] choice: sets `kms_key_id`.
+final class S3BucketObjectEtagOrKmsKeyIdKmsKeyId
+    extends S3BucketObjectEtagOrKmsKeyId {
+  const S3BucketObjectEtagOrKmsKeyIdKmsKeyId(this.kmsKeyId);
 
   final TfArg<String> kmsKeyId;
 

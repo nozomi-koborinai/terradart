@@ -90,8 +90,20 @@ class FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy {
 
 /// Exactly one of `rollout_policy`, `target` on `google_firebase_app_hosting_traffic`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.rolloutPolicy(...)`.
 sealed class FirebaseAppHostingTrafficRolloutPolicyOrTarget {
   const FirebaseAppHostingTrafficRolloutPolicyOrTarget();
+
+  /// Sets `rollout_policy`.
+  const factory FirebaseAppHostingTrafficRolloutPolicyOrTarget.rolloutPolicy(
+    FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy rolloutPolicy,
+  ) = FirebaseAppHostingTrafficRolloutPolicyOrTargetRolloutPolicy;
+
+  /// Sets `target`.
+  const factory FirebaseAppHostingTrafficRolloutPolicyOrTarget.target(
+    FirebaseAppHostingTrafficAppHostingTrafficTarget target,
+  ) = FirebaseAppHostingTrafficRolloutPolicyOrTargetTarget;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -103,12 +115,12 @@ sealed class FirebaseAppHostingTrafficRolloutPolicyOrTarget {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `rollout_policy` (one of the [FirebaseAppHostingTrafficRolloutPolicyOrTarget] choices).
-final class FirebaseAppHostingTrafficRolloutPolicyOption
+/// The [FirebaseAppHostingTrafficRolloutPolicyOrTarget.rolloutPolicy] choice: sets `rollout_policy`.
+final class FirebaseAppHostingTrafficRolloutPolicyOrTargetRolloutPolicy
     extends FirebaseAppHostingTrafficRolloutPolicyOrTarget {
-  const FirebaseAppHostingTrafficRolloutPolicyOption({
-    required this.rolloutPolicy,
-  });
+  const FirebaseAppHostingTrafficRolloutPolicyOrTargetRolloutPolicy(
+    this.rolloutPolicy,
+  );
 
   final FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy rolloutPolicy;
 
@@ -126,10 +138,10 @@ final class FirebaseAppHostingTrafficRolloutPolicyOption
   };
 }
 
-/// Sets `target` (one of the [FirebaseAppHostingTrafficRolloutPolicyOrTarget] choices).
-final class FirebaseAppHostingTrafficTargetOption
+/// The [FirebaseAppHostingTrafficRolloutPolicyOrTarget.target] choice: sets `target`.
+final class FirebaseAppHostingTrafficRolloutPolicyOrTargetTarget
     extends FirebaseAppHostingTrafficRolloutPolicyOrTarget {
-  const FirebaseAppHostingTrafficTargetOption({required this.target});
+  const FirebaseAppHostingTrafficRolloutPolicyOrTargetTarget(this.target);
 
   final FirebaseAppHostingTrafficAppHostingTrafficTarget target;
 

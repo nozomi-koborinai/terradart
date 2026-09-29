@@ -18,8 +18,20 @@ enum NetworkAclRuleRuleAction implements TerraformEnum {
 
 /// Exactly one of `cidr_block`, `ipv6_cidr_block` on `aws_network_acl_rule`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.cidrBlock(...)`.
 sealed class NetworkAclRuleCidrBlockOrIpv6CidrBlock {
   const NetworkAclRuleCidrBlockOrIpv6CidrBlock();
+
+  /// Sets `cidr_block`.
+  const factory NetworkAclRuleCidrBlockOrIpv6CidrBlock.cidrBlock(
+    TfArg<String> cidrBlock,
+  ) = NetworkAclRuleCidrBlockOrIpv6CidrBlockCidrBlock;
+
+  /// Sets `ipv6_cidr_block`.
+  const factory NetworkAclRuleCidrBlockOrIpv6CidrBlock.ipv6CidrBlock(
+    TfArg<String> ipv6CidrBlock,
+  ) = NetworkAclRuleCidrBlockOrIpv6CidrBlockIpv6CidrBlock;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -31,10 +43,10 @@ sealed class NetworkAclRuleCidrBlockOrIpv6CidrBlock {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `cidr_block` (one of the [NetworkAclRuleCidrBlockOrIpv6CidrBlock] choices).
-final class NetworkAclRuleCidrBlockOption
+/// The [NetworkAclRuleCidrBlockOrIpv6CidrBlock.cidrBlock] choice: sets `cidr_block`.
+final class NetworkAclRuleCidrBlockOrIpv6CidrBlockCidrBlock
     extends NetworkAclRuleCidrBlockOrIpv6CidrBlock {
-  const NetworkAclRuleCidrBlockOption({required this.cidrBlock});
+  const NetworkAclRuleCidrBlockOrIpv6CidrBlockCidrBlock(this.cidrBlock);
 
   final TfArg<String> cidrBlock;
 
@@ -48,10 +60,10 @@ final class NetworkAclRuleCidrBlockOption
   Map<String, TfArg<Object?>> get argMap => {'cidr_block': cidrBlock};
 }
 
-/// Sets `ipv6_cidr_block` (one of the [NetworkAclRuleCidrBlockOrIpv6CidrBlock] choices).
-final class NetworkAclRuleIpv6CidrBlockOption
+/// The [NetworkAclRuleCidrBlockOrIpv6CidrBlock.ipv6CidrBlock] choice: sets `ipv6_cidr_block`.
+final class NetworkAclRuleCidrBlockOrIpv6CidrBlockIpv6CidrBlock
     extends NetworkAclRuleCidrBlockOrIpv6CidrBlock {
-  const NetworkAclRuleIpv6CidrBlockOption({required this.ipv6CidrBlock});
+  const NetworkAclRuleCidrBlockOrIpv6CidrBlockIpv6CidrBlock(this.ipv6CidrBlock);
 
   final TfArg<String> ipv6CidrBlock;
 

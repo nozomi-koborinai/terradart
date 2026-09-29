@@ -1402,8 +1402,20 @@ final class AppmeshVirtualNodeSpecServiceDiscovery {
 /// At most one of `aws_cloud_map`, `dns` on the `spec.service_discovery` block of `aws_appmesh_virtual_node`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.awsCloudMap(...)`.
 sealed class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns {
   const AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns();
+
+  /// Sets `aws_cloud_map`.
+  const factory AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns.awsCloudMap(
+    AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMap awsCloudMap,
+  ) = AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDnsAwsCloudMap;
+
+  /// Sets `dns`.
+  const factory AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns.dns(
+    AppmeshVirtualNodeSpecServiceDiscoveryDns dns,
+  ) = AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDnsDns;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1411,12 +1423,12 @@ sealed class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns {
   Map<String, Object?> encode();
 }
 
-/// Sets `aws_cloud_map` (one of the [AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns] choices).
-final class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOption
+/// The [AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns.awsCloudMap] choice: sets `aws_cloud_map`.
+final class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDnsAwsCloudMap
     extends AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns {
-  const AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOption({
-    required this.awsCloudMap,
-  });
+  const AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDnsAwsCloudMap(
+    this.awsCloudMap,
+  );
 
   final AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMap awsCloudMap;
 
@@ -1427,10 +1439,10 @@ final class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOption
   Map<String, Object?> encode() => {'aws_cloud_map': awsCloudMap.encode()};
 }
 
-/// Sets `dns` (one of the [AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns] choices).
-final class AppmeshVirtualNodeSpecServiceDiscoveryDnsOption
+/// The [AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns.dns] choice: sets `dns`.
+final class AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDnsDns
     extends AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns {
-  const AppmeshVirtualNodeSpecServiceDiscoveryDnsOption({required this.dns});
+  const AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDnsDns(this.dns);
 
   final AppmeshVirtualNodeSpecServiceDiscoveryDns dns;
 

@@ -75,8 +75,20 @@ enum SpotFleetRequestTargetCapacityUnitType implements TerraformEnum {
 
 /// Exactly one of `launch_specification`, `launch_template_config` on `aws_spot_fleet_request`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.launchSpecification(...)`.
 sealed class SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig {
   const SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig();
+
+  /// Sets `launch_specification`.
+  const factory SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig.launchSpecification(
+    List<SpotFleetRequestLaunchSpecification> launchSpecification,
+  ) = SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfigLaunchSpecification;
+
+  /// Sets `launch_template_config`.
+  const factory SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig.launchTemplateConfig(
+    List<SpotFleetRequestLaunchTemplateConfig> launchTemplateConfig,
+  ) = SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfigLaunchTemplateConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -88,12 +100,12 @@ sealed class SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `launch_specification` (one of the [SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig] choices).
-final class SpotFleetRequestLaunchSpecificationOption
+/// The [SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig.launchSpecification] choice: sets `launch_specification`.
+final class SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfigLaunchSpecification
     extends SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig {
-  const SpotFleetRequestLaunchSpecificationOption({
-    required this.launchSpecification,
-  });
+  const SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfigLaunchSpecification(
+    this.launchSpecification,
+  );
 
   final List<SpotFleetRequestLaunchSpecification> launchSpecification;
 
@@ -113,12 +125,12 @@ final class SpotFleetRequestLaunchSpecificationOption
   };
 }
 
-/// Sets `launch_template_config` (one of the [SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig] choices).
-final class SpotFleetRequestLaunchTemplateConfigOption
+/// The [SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig.launchTemplateConfig] choice: sets `launch_template_config`.
+final class SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfigLaunchTemplateConfig
     extends SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfig {
-  const SpotFleetRequestLaunchTemplateConfigOption({
-    required this.launchTemplateConfig,
-  });
+  const SpotFleetRequestLaunchSpecificationOrLaunchTemplateConfigLaunchTemplateConfig(
+    this.launchTemplateConfig,
+  );
 
   final List<SpotFleetRequestLaunchTemplateConfig> launchTemplateConfig;
 

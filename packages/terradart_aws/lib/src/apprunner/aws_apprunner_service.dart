@@ -229,8 +229,20 @@ final class ApprunnerServiceSourceConfiguration {
 
 /// Exactly one of `code_repository`, `image_repository` on the `source_configuration` block of `aws_apprunner_service`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.codeRepository(...)`.
 sealed class ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepository {
   const ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepository();
+
+  /// Sets `code_repository`.
+  const factory ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepository.codeRepository(
+    ApprunnerServiceSourceConfigurationCodeRepository codeRepository,
+  ) = ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepositoryCodeRepository;
+
+  /// Sets `image_repository`.
+  const factory ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepository.imageRepository(
+    ApprunnerServiceSourceConfigurationImageRepository imageRepository,
+  ) = ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepositoryImageRepository;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -238,12 +250,12 @@ sealed class ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepository 
   Map<String, Object?> encode();
 }
 
-/// Sets `code_repository` (one of the [ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepository] choices).
-final class ApprunnerServiceSourceConfigurationCodeRepositoryOption
+/// The [ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepository.codeRepository] choice: sets `code_repository`.
+final class ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepositoryCodeRepository
     extends ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepository {
-  const ApprunnerServiceSourceConfigurationCodeRepositoryOption({
-    required this.codeRepository,
-  });
+  const ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepositoryCodeRepository(
+    this.codeRepository,
+  );
 
   final ApprunnerServiceSourceConfigurationCodeRepository codeRepository;
 
@@ -254,12 +266,12 @@ final class ApprunnerServiceSourceConfigurationCodeRepositoryOption
   Map<String, Object?> encode() => {'code_repository': codeRepository.encode()};
 }
 
-/// Sets `image_repository` (one of the [ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepository] choices).
-final class ApprunnerServiceSourceConfigurationImageRepositoryOption
+/// The [ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepository.imageRepository] choice: sets `image_repository`.
+final class ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepositoryImageRepository
     extends ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepository {
-  const ApprunnerServiceSourceConfigurationImageRepositoryOption({
-    required this.imageRepository,
-  });
+  const ApprunnerServiceSourceConfigurationCodeRepositoryOrImageRepositoryImageRepository(
+    this.imageRepository,
+  );
 
   final ApprunnerServiceSourceConfigurationImageRepository imageRepository;
 

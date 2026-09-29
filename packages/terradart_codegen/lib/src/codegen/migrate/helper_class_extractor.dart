@@ -96,6 +96,7 @@ final class ExtractedHelper {
     required this.fields,
     this.parent,
     this.blockKey,
+    this.shorthand,
     this.irregularReason,
   });
 
@@ -112,6 +113,11 @@ final class ExtractedHelper {
   /// `encode()` (see the library doc).
   final String? blockKey;
 
+  /// The factory constructor of [parent] that redirects to this class
+  /// (`const factory Parent.imageUri(...) = ThisClass;`), so a caller can
+  /// build the variant with the dot shorthand `.imageUri(...)`.
+  final String? shorthand;
+
   /// Non-null when the encoding could not be mapped back to Terraform keys.
   final String? irregularReason;
 
@@ -122,6 +128,7 @@ final class ExtractedHelper {
     fields: fields,
     parent: parent,
     blockKey: key,
+    shorthand: shorthand,
     irregularReason: irregularReason,
   );
 }
@@ -251,13 +258,22 @@ class HelperClassExtractor {
 
     final helpers = <String, ExtractedHelper>{};
     final sealed = <String>{};
+    final shorthands = <String, String>{};
     for (final name in order) {
       final decl = decls[name]!;
       if (decl.modifier == 'sealed') {
         sealed.add(name);
-        continue;
+        shorthands.addAll(_redirectingFactories(name, decl.declPart));
       }
-      helpers[name] = _extractHelper(decl, decls);
+    }
+    for (final name in order) {
+      final decl = decls[name]!;
+      if (decl.modifier == 'sealed') continue;
+      helpers[name] = _extractHelper(
+        decl,
+        decls,
+        shorthand: decl.parent == null ? null : shorthands[name],
+      );
     }
 
     return HelperExtraction(
@@ -266,10 +282,30 @@ class HelperClassExtractor {
     );
   }
 
+  /// Target class → constructor name for every `factory Sealed.name(...)
+  /// = Target;` redirecting constructor [sealedName] declares.
+  static Map<String, String> _redirectingFactories(
+    String sealedName,
+    String declPart,
+  ) {
+    final out = <String, String>{};
+    final head = RegExp(
+      r'\bfactory\s+' + RegExp.escape(sealedName) + r'\.(\w+)\s*\(',
+    );
+    for (final m in head.allMatches(declPart)) {
+      final params = _balancedBody(declPart, m.end, open: '(', close: ')');
+      final rest = declPart.substring(m.end + params.length + 1);
+      final target = RegExp(r'^\s*=\s*(\w+)\s*;').firstMatch(rest);
+      if (target != null) out[target.group(1)!] = m.group(1)!;
+    }
+    return out;
+  }
+
   ExtractedHelper _extractHelper(
     _ClassDecl decl,
-    Map<String, _ClassDecl> decls,
-  ) {
+    Map<String, _ClassDecl> decls, {
+    String? shorthand,
+  }) {
     final getters = <String, String>{
       for (final g in _stringGetter.allMatches(decl.body))
         g.group(1)!: g.group(2)!,
@@ -359,6 +395,7 @@ class HelperClassExtractor {
       fields: List.unmodifiable(fields),
       parent: decl.parent,
       blockKey: blockKey ?? singleKey,
+      shorthand: shorthand,
       irregularReason: reasons.isEmpty ? null : reasons.join('; '),
     );
   }

@@ -102,7 +102,7 @@ String _renderBlockTree(
       ..writeln()
       ..write(
         renderExactlyOneTypes(
-          prefix: spec.className,
+          sealed: exactlyOneSealedName(spec.className, group.members),
           members: group.members,
           where:
               'the `${spec.path.join('.')}` block of `$resourceTerraformType`',

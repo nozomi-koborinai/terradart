@@ -9,8 +9,19 @@ const Set<String> _awsMemorydbSubnetGroupSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_memorydb_subnet_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class MemorydbSubnetGroupNameOrNamePrefix {
   const MemorydbSubnetGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory MemorydbSubnetGroupNameOrNamePrefix.name(TfArg<String> name) =
+      MemorydbSubnetGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory MemorydbSubnetGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = MemorydbSubnetGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +33,10 @@ sealed class MemorydbSubnetGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [MemorydbSubnetGroupNameOrNamePrefix] choices).
-final class MemorydbSubnetGroupNameOption
+/// The [MemorydbSubnetGroupNameOrNamePrefix.name] choice: sets `name`.
+final class MemorydbSubnetGroupNameOrNamePrefixName
     extends MemorydbSubnetGroupNameOrNamePrefix {
-  const MemorydbSubnetGroupNameOption({required this.name});
+  const MemorydbSubnetGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -39,10 +50,10 @@ final class MemorydbSubnetGroupNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [MemorydbSubnetGroupNameOrNamePrefix] choices).
-final class MemorydbSubnetGroupNamePrefixOption
+/// The [MemorydbSubnetGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class MemorydbSubnetGroupNameOrNamePrefixNamePrefix
     extends MemorydbSubnetGroupNameOrNamePrefix {
-  const MemorydbSubnetGroupNamePrefixOption({required this.namePrefix});
+  const MemorydbSubnetGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

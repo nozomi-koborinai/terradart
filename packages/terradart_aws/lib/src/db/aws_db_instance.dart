@@ -84,8 +84,20 @@ enum DbInstanceReplicaMode implements TerraformEnum {
 /// At most one of `identifier`, `identifier_prefix` on `aws_db_instance`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.identifier(...)`.
 sealed class DbInstanceIdentifierOrIdentifierPrefix {
   const DbInstanceIdentifierOrIdentifierPrefix();
+
+  /// Sets `identifier`.
+  const factory DbInstanceIdentifierOrIdentifierPrefix.identifier(
+    TfArg<String> identifier,
+  ) = DbInstanceIdentifierOrIdentifierPrefixIdentifier;
+
+  /// Sets `identifier_prefix`.
+  const factory DbInstanceIdentifierOrIdentifierPrefix.identifierPrefix(
+    TfArg<String> identifierPrefix,
+  ) = DbInstanceIdentifierOrIdentifierPrefixIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -97,10 +109,10 @@ sealed class DbInstanceIdentifierOrIdentifierPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `identifier` (one of the [DbInstanceIdentifierOrIdentifierPrefix] choices).
-final class DbInstanceIdentifierOption
+/// The [DbInstanceIdentifierOrIdentifierPrefix.identifier] choice: sets `identifier`.
+final class DbInstanceIdentifierOrIdentifierPrefixIdentifier
     extends DbInstanceIdentifierOrIdentifierPrefix {
-  const DbInstanceIdentifierOption({required this.identifier});
+  const DbInstanceIdentifierOrIdentifierPrefixIdentifier(this.identifier);
 
   final TfArg<String> identifier;
 
@@ -114,10 +126,12 @@ final class DbInstanceIdentifierOption
   Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
 }
 
-/// Sets `identifier_prefix` (one of the [DbInstanceIdentifierOrIdentifierPrefix] choices).
-final class DbInstanceIdentifierPrefixOption
+/// The [DbInstanceIdentifierOrIdentifierPrefix.identifierPrefix] choice: sets `identifier_prefix`.
+final class DbInstanceIdentifierOrIdentifierPrefixIdentifierPrefix
     extends DbInstanceIdentifierOrIdentifierPrefix {
-  const DbInstanceIdentifierPrefixOption({required this.identifierPrefix});
+  const DbInstanceIdentifierOrIdentifierPrefixIdentifierPrefix(
+    this.identifierPrefix,
+  );
 
   final TfArg<String> identifierPrefix;
 
@@ -138,8 +152,25 @@ final class DbInstanceIdentifierPrefixOption
 /// At most one of `manage_master_user_password`, `password`, `password_wo` on `aws_db_instance`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.manageMasterUserPassword(...)`.
 sealed class DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo {
   const DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo();
+
+  /// Sets `manage_master_user_password`.
+  const factory DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo.manageMasterUserPassword(
+    TfArg<bool> manageMasterUserPassword,
+  ) = DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoManageMasterUserPassword;
+
+  /// Sets `password`.
+  const factory DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo.password(
+    TfArg<String> password,
+  ) = DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPassword;
+
+  /// Sets `password_wo`.
+  const factory DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo.passwordWo(
+    TfArg<String> passwordWo,
+  ) = DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPasswordWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -151,12 +182,12 @@ sealed class DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `manage_master_user_password` (one of the [DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo] choices).
-final class DbInstanceManageMasterUserPasswordOption
+/// The [DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo.manageMasterUserPassword] choice: sets `manage_master_user_password`.
+final class DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoManageMasterUserPassword
     extends DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo {
-  const DbInstanceManageMasterUserPasswordOption({
-    required this.manageMasterUserPassword,
-  });
+  const DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoManageMasterUserPassword(
+    this.manageMasterUserPassword,
+  );
 
   final TfArg<bool> manageMasterUserPassword;
 
@@ -174,10 +205,12 @@ final class DbInstanceManageMasterUserPasswordOption
   };
 }
 
-/// Sets `password` (one of the [DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo] choices).
-final class DbInstancePasswordOption
+/// The [DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo.password] choice: sets `password`.
+final class DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPassword
     extends DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo {
-  const DbInstancePasswordOption({required this.password});
+  const DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPassword(
+    this.password,
+  );
 
   final TfArg<String> password;
 
@@ -191,10 +224,12 @@ final class DbInstancePasswordOption
   Map<String, TfArg<Object?>> get argMap => {'password': password};
 }
 
-/// Sets `password_wo` (one of the [DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo] choices).
-final class DbInstancePasswordWoOption
+/// The [DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo.passwordWo] choice: sets `password_wo`.
+final class DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPasswordWo
     extends DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWo {
-  const DbInstancePasswordWoOption({required this.passwordWo});
+  const DbInstanceManageMasterUserPasswordOrPasswordOrPasswordWoPasswordWo(
+    this.passwordWo,
+  );
 
   final TfArg<String> passwordWo;
 
@@ -256,8 +291,20 @@ final class DbInstanceRestoreToPointInTime {
 /// At most one of `restore_time`, `use_latest_restorable_time` on the `restore_to_point_in_time` block of `aws_db_instance`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.restoreTime(...)`.
 sealed class DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime {
   const DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime();
+
+  /// Sets `restore_time`.
+  const factory DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime.restoreTime(
+    TfArg<String> restoreTime,
+  ) = DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeRestoreTime;
+
+  /// Sets `use_latest_restorable_time`.
+  const factory DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime.useLatestRestorableTime(
+    TfArg<bool> useLatestRestorableTime,
+  ) = DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeUseLatestRestorableTime;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -265,12 +312,12 @@ sealed class DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime 
   Map<String, Object?> encode();
 }
 
-/// Sets `restore_time` (one of the [DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime] choices).
-final class DbInstanceRestoreToPointInTimeRestoreTimeOption
+/// The [DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime.restoreTime] choice: sets `restore_time`.
+final class DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeRestoreTime
     extends DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime {
-  const DbInstanceRestoreToPointInTimeRestoreTimeOption({
-    required this.restoreTime,
-  });
+  const DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeRestoreTime(
+    this.restoreTime,
+  );
 
   final TfArg<String> restoreTime;
 
@@ -281,12 +328,12 @@ final class DbInstanceRestoreToPointInTimeRestoreTimeOption
   Map<String, Object?> encode() => {'restore_time': restoreTime.toTfJson()};
 }
 
-/// Sets `use_latest_restorable_time` (one of the [DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime] choices).
-final class DbInstanceRestoreToPointInTimeUseLatestRestorableTimeOption
+/// The [DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime.useLatestRestorableTime] choice: sets `use_latest_restorable_time`.
+final class DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeUseLatestRestorableTime
     extends DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime {
-  const DbInstanceRestoreToPointInTimeUseLatestRestorableTimeOption({
-    required this.useLatestRestorableTime,
-  });
+  const DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeUseLatestRestorableTime(
+    this.useLatestRestorableTime,
+  );
 
   final TfArg<bool> useLatestRestorableTime;
 

@@ -347,6 +347,7 @@ MigrateHelperData _helper(ExtractedHelper h, ShapeContext ctx) {
   return MigrateHelperData(
     className: h.name,
     slots: slots,
+    shorthand: h.shorthand,
     reason: h.irregularReason,
   );
 }

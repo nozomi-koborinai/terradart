@@ -10,8 +10,20 @@ const Set<String> _awsRdsClusterParameterGroupSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_rds_cluster_parameter_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class RdsClusterParameterGroupNameOrNamePrefix {
   const RdsClusterParameterGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory RdsClusterParameterGroupNameOrNamePrefix.name(
+    TfArg<String> name,
+  ) = RdsClusterParameterGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory RdsClusterParameterGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = RdsClusterParameterGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +35,10 @@ sealed class RdsClusterParameterGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [RdsClusterParameterGroupNameOrNamePrefix] choices).
-final class RdsClusterParameterGroupNameOption
+/// The [RdsClusterParameterGroupNameOrNamePrefix.name] choice: sets `name`.
+final class RdsClusterParameterGroupNameOrNamePrefixName
     extends RdsClusterParameterGroupNameOrNamePrefix {
-  const RdsClusterParameterGroupNameOption({required this.name});
+  const RdsClusterParameterGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -40,10 +52,10 @@ final class RdsClusterParameterGroupNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [RdsClusterParameterGroupNameOrNamePrefix] choices).
-final class RdsClusterParameterGroupNamePrefixOption
+/// The [RdsClusterParameterGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class RdsClusterParameterGroupNameOrNamePrefixNamePrefix
     extends RdsClusterParameterGroupNameOrNamePrefix {
-  const RdsClusterParameterGroupNamePrefixOption({required this.namePrefix});
+  const RdsClusterParameterGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

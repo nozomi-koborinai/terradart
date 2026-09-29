@@ -721,8 +721,20 @@ class ComputeUrlMapUrlMapTestHeader {
 /// At most one of `default_url_redirect`, `default_route_action` on `google_compute_url_map`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.defaultUrlRedirect(...)`.
 sealed class ComputeUrlMapDefaultUrlRedirectOrDefaultRouteAction {
   const ComputeUrlMapDefaultUrlRedirectOrDefaultRouteAction();
+
+  /// Sets `default_url_redirect`.
+  const factory ComputeUrlMapDefaultUrlRedirectOrDefaultRouteAction.defaultUrlRedirect(
+    ComputeUrlMapUrlMapUrlRedirect defaultUrlRedirect,
+  ) = ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect;
+
+  /// Sets `default_route_action`.
+  const factory ComputeUrlMapDefaultUrlRedirectOrDefaultRouteAction.defaultRouteAction(
+    ComputeUrlMapUrlMapRouteAction defaultRouteAction,
+  ) = ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -734,12 +746,12 @@ sealed class ComputeUrlMapDefaultUrlRedirectOrDefaultRouteAction {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `default_url_redirect` (one of the [ComputeUrlMapDefaultUrlRedirectOrDefaultRouteAction] choices).
-final class ComputeUrlMapDefaultUrlRedirectOption
+/// The [ComputeUrlMapDefaultUrlRedirectOrDefaultRouteAction.defaultUrlRedirect] choice: sets `default_url_redirect`.
+final class ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect
     extends ComputeUrlMapDefaultUrlRedirectOrDefaultRouteAction {
-  const ComputeUrlMapDefaultUrlRedirectOption({
-    required this.defaultUrlRedirect,
-  });
+  const ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect(
+    this.defaultUrlRedirect,
+  );
 
   final ComputeUrlMapUrlMapUrlRedirect defaultUrlRedirect;
 
@@ -757,12 +769,12 @@ final class ComputeUrlMapDefaultUrlRedirectOption
   };
 }
 
-/// Sets `default_route_action` (one of the [ComputeUrlMapDefaultUrlRedirectOrDefaultRouteAction] choices).
-final class ComputeUrlMapDefaultRouteActionOption
+/// The [ComputeUrlMapDefaultUrlRedirectOrDefaultRouteAction.defaultRouteAction] choice: sets `default_route_action`.
+final class ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction
     extends ComputeUrlMapDefaultUrlRedirectOrDefaultRouteAction {
-  const ComputeUrlMapDefaultRouteActionOption({
-    required this.defaultRouteAction,
-  });
+  const ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction(
+    this.defaultRouteAction,
+  );
 
   final ComputeUrlMapUrlMapRouteAction defaultRouteAction;
 

@@ -55,8 +55,28 @@ enum DatabaseMigrationServiceMigrationJobType implements TerraformEnum {
 /// At most one of `static_ip_connectivity`, `reverse_ssh_connectivity`, `vpc_peering_connectivity` on `google_database_migration_service_migration_job`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.staticIpConnectivity(...)`.
 sealed class DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity {
   const DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity();
+
+  /// Sets `static_ip_connectivity`.
+  const factory DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity.staticIpConnectivity(
+    DatabaseMigrationServiceMigrationJobStaticIpConnectivity
+    staticIpConnectivity,
+  ) = DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivityStaticIpConnectivity;
+
+  /// Sets `reverse_ssh_connectivity`.
+  const factory DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity.reverseSshConnectivity(
+    DatabaseMigrationServiceMigrationJobReverseSshConnectivity
+    reverseSshConnectivity,
+  ) = DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivityReverseSshConnectivity;
+
+  /// Sets `vpc_peering_connectivity`.
+  const factory DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity.vpcPeeringConnectivity(
+    DatabaseMigrationServiceMigrationJobVpcPeeringConnectivity
+    vpcPeeringConnectivity,
+  ) = DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivityVpcPeeringConnectivity;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -68,13 +88,13 @@ sealed class DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSs
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `static_ip_connectivity` (one of the [DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity] choices).
-final class DatabaseMigrationServiceMigrationJobStaticIpConnectivityOption
+/// The [DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity.staticIpConnectivity] choice: sets `static_ip_connectivity`.
+final class DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivityStaticIpConnectivity
     extends
         DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity {
-  const DatabaseMigrationServiceMigrationJobStaticIpConnectivityOption({
-    required this.staticIpConnectivity,
-  });
+  const DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivityStaticIpConnectivity(
+    this.staticIpConnectivity,
+  );
 
   final DatabaseMigrationServiceMigrationJobStaticIpConnectivity
   staticIpConnectivity;
@@ -93,13 +113,13 @@ final class DatabaseMigrationServiceMigrationJobStaticIpConnectivityOption
   };
 }
 
-/// Sets `reverse_ssh_connectivity` (one of the [DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity] choices).
-final class DatabaseMigrationServiceMigrationJobReverseSshConnectivityOption
+/// The [DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity.reverseSshConnectivity] choice: sets `reverse_ssh_connectivity`.
+final class DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivityReverseSshConnectivity
     extends
         DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity {
-  const DatabaseMigrationServiceMigrationJobReverseSshConnectivityOption({
-    required this.reverseSshConnectivity,
-  });
+  const DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivityReverseSshConnectivity(
+    this.reverseSshConnectivity,
+  );
 
   final DatabaseMigrationServiceMigrationJobReverseSshConnectivity
   reverseSshConnectivity;
@@ -118,13 +138,13 @@ final class DatabaseMigrationServiceMigrationJobReverseSshConnectivityOption
   };
 }
 
-/// Sets `vpc_peering_connectivity` (one of the [DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity] choices).
-final class DatabaseMigrationServiceMigrationJobVpcPeeringConnectivityOption
+/// The [DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity.vpcPeeringConnectivity] choice: sets `vpc_peering_connectivity`.
+final class DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivityVpcPeeringConnectivity
     extends
         DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivity {
-  const DatabaseMigrationServiceMigrationJobVpcPeeringConnectivityOption({
-    required this.vpcPeeringConnectivity,
-  });
+  const DatabaseMigrationServiceMigrationJobStaticIpConnectivityOrReverseSshConnectivityOrVpcPeeringConnectivityVpcPeeringConnectivity(
+    this.vpcPeeringConnectivity,
+  );
 
   final DatabaseMigrationServiceMigrationJobVpcPeeringConnectivity
   vpcPeeringConnectivity;

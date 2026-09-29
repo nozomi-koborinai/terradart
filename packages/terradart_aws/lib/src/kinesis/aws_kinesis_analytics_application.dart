@@ -234,8 +234,21 @@ final class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters
 
 /// Exactly one of `csv`, `json` on the `inputs.schema.record_format.mapping_parameters` block of `aws_kinesis_analytics_application`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.csv(...)`.
 sealed class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJson {
   const KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJson();
+
+  /// Sets `csv`.
+  const factory KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJson.csv(
+    KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsv csv,
+  ) = KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJsonCsv;
+
+  /// Sets `json`.
+  const factory KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJson.json(
+    KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersJson
+    json,
+  ) = KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJsonJson;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -243,13 +256,13 @@ sealed class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameter
   Map<String, Object?> encode();
 }
 
-/// Sets `csv` (one of the [KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJson] choices).
-final class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOption
+/// The [KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJson.csv] choice: sets `csv`.
+final class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJsonCsv
     extends
         KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJson {
-  const KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOption({
-    required this.csv,
-  });
+  const KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJsonCsv(
+    this.csv,
+  );
 
   final KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsv
   csv;
@@ -261,13 +274,13 @@ final class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParameters
   Map<String, Object?> encode() => {'csv': csv.encode()};
 }
 
-/// Sets `json` (one of the [KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJson] choices).
-final class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersJsonOption
+/// The [KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJson.json] choice: sets `json`.
+final class KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJsonJson
     extends
         KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJson {
-  const KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersJsonOption({
-    required this.json,
-  });
+  const KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersCsvOrJsonJson(
+    this.json,
+  );
 
   final KinesisAnalyticsApplicationInputsSchemaRecordFormatMappingParametersJson
   json;
@@ -590,8 +603,22 @@ final class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMap
 
 /// Exactly one of `csv`, `json` on the `reference_data_sources.schema.record_format.mapping_parameters` block of `aws_kinesis_analytics_application`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.csv(...)`.
 sealed class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJson {
   const KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJson();
+
+  /// Sets `csv`.
+  const factory KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJson.csv(
+    KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsv
+    csv,
+  ) = KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJsonCsv;
+
+  /// Sets `json`.
+  const factory KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJson.json(
+    KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJson
+    json,
+  ) = KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJsonJson;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -599,13 +626,13 @@ sealed class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMa
   Map<String, Object?> encode();
 }
 
-/// Sets `csv` (one of the [KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJson] choices).
-final class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOption
+/// The [KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJson.csv] choice: sets `csv`.
+final class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJsonCsv
     extends
         KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJson {
-  const KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOption({
-    required this.csv,
-  });
+  const KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJsonCsv(
+    this.csv,
+  );
 
   final KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsv
   csv;
@@ -617,13 +644,13 @@ final class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMap
   Map<String, Object?> encode() => {'csv': csv.encode()};
 }
 
-/// Sets `json` (one of the [KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJson] choices).
-final class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJsonOption
+/// The [KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJson.json] choice: sets `json`.
+final class KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJsonJson
     extends
         KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJson {
-  const KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJsonOption({
-    required this.json,
-  });
+  const KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersCsvOrJsonJson(
+    this.json,
+  );
 
   final KinesisAnalyticsApplicationReferenceDataSourcesSchemaRecordFormatMappingParametersJson
   json;

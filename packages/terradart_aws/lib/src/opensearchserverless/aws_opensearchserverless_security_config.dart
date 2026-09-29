@@ -20,8 +20,27 @@ enum OpensearchserverlessSecurityConfigType implements TerraformEnum {
 
 /// Exactly one of `iam_federation_options`, `iam_identity_center_options`, `saml_options` on `aws_opensearchserverless_security_config`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.iamFederationOptions(...)`.
 sealed class OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions {
   const OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions();
+
+  /// Sets `iam_federation_options`.
+  const factory OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions.iamFederationOptions(
+    List<OpensearchserverlessSecurityConfigIamFederationOptions>
+    iamFederationOptions,
+  ) = OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptionsIamFederationOptions;
+
+  /// Sets `iam_identity_center_options`.
+  const factory OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions.iamIdentityCenterOptions(
+    List<OpensearchserverlessSecurityConfigIamIdentityCenterOptions>
+    iamIdentityCenterOptions,
+  ) = OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptionsIamIdentityCenterOptions;
+
+  /// Sets `saml_options`.
+  const factory OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions.samlOptions(
+    List<OpensearchserverlessSecurityConfigSamlOptions> samlOptions,
+  ) = OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptionsSamlOptions;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,13 +52,13 @@ sealed class OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentity
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `iam_federation_options` (one of the [OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions] choices).
-final class OpensearchserverlessSecurityConfigIamFederationOptionsOption
+/// The [OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions.iamFederationOptions] choice: sets `iam_federation_options`.
+final class OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptionsIamFederationOptions
     extends
         OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions {
-  const OpensearchserverlessSecurityConfigIamFederationOptionsOption({
-    required this.iamFederationOptions,
-  });
+  const OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptionsIamFederationOptions(
+    this.iamFederationOptions,
+  );
 
   final List<OpensearchserverlessSecurityConfigIamFederationOptions>
   iamFederationOptions;
@@ -62,13 +81,13 @@ final class OpensearchserverlessSecurityConfigIamFederationOptionsOption
   };
 }
 
-/// Sets `iam_identity_center_options` (one of the [OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions] choices).
-final class OpensearchserverlessSecurityConfigIamIdentityCenterOptionsOption
+/// The [OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions.iamIdentityCenterOptions] choice: sets `iam_identity_center_options`.
+final class OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptionsIamIdentityCenterOptions
     extends
         OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions {
-  const OpensearchserverlessSecurityConfigIamIdentityCenterOptionsOption({
-    required this.iamIdentityCenterOptions,
-  });
+  const OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptionsIamIdentityCenterOptions(
+    this.iamIdentityCenterOptions,
+  );
 
   final List<OpensearchserverlessSecurityConfigIamIdentityCenterOptions>
   iamIdentityCenterOptions;
@@ -91,13 +110,13 @@ final class OpensearchserverlessSecurityConfigIamIdentityCenterOptionsOption
   };
 }
 
-/// Sets `saml_options` (one of the [OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions] choices).
-final class OpensearchserverlessSecurityConfigSamlOptionsOption
+/// The [OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions.samlOptions] choice: sets `saml_options`.
+final class OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptionsSamlOptions
     extends
         OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptions {
-  const OpensearchserverlessSecurityConfigSamlOptionsOption({
-    required this.samlOptions,
-  });
+  const OpensearchserverlessSecurityConfigIamFederationOptionsOrIamIdentityCenterOptionsOrSamlOptionsSamlOptions(
+    this.samlOptions,
+  );
 
   final List<OpensearchserverlessSecurityConfigSamlOptions> samlOptions;
 

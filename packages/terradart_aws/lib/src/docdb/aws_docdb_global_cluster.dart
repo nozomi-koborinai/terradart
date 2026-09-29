@@ -17,8 +17,20 @@ enum DocdbGlobalClusterEngine implements TerraformEnum {
 
 /// Exactly one of `engine`, `source_db_cluster_identifier` on `aws_docdb_global_cluster`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.engine(...)`.
 sealed class DocdbGlobalClusterEngineOrSourceDbClusterIdentifier {
   const DocdbGlobalClusterEngineOrSourceDbClusterIdentifier();
+
+  /// Sets `engine`.
+  const factory DocdbGlobalClusterEngineOrSourceDbClusterIdentifier.engine(
+    TfArg<DocdbGlobalClusterEngine> engine,
+  ) = DocdbGlobalClusterEngineOrSourceDbClusterIdentifierEngine;
+
+  /// Sets `source_db_cluster_identifier`.
+  const factory DocdbGlobalClusterEngineOrSourceDbClusterIdentifier.sourceDbClusterIdentifier(
+    TfArg<String> sourceDbClusterIdentifier,
+  ) = DocdbGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -30,10 +42,10 @@ sealed class DocdbGlobalClusterEngineOrSourceDbClusterIdentifier {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `engine` (one of the [DocdbGlobalClusterEngineOrSourceDbClusterIdentifier] choices).
-final class DocdbGlobalClusterEngineOption
+/// The [DocdbGlobalClusterEngineOrSourceDbClusterIdentifier.engine] choice: sets `engine`.
+final class DocdbGlobalClusterEngineOrSourceDbClusterIdentifierEngine
     extends DocdbGlobalClusterEngineOrSourceDbClusterIdentifier {
-  const DocdbGlobalClusterEngineOption({required this.engine});
+  const DocdbGlobalClusterEngineOrSourceDbClusterIdentifierEngine(this.engine);
 
   final TfArg<DocdbGlobalClusterEngine> engine;
 
@@ -47,12 +59,12 @@ final class DocdbGlobalClusterEngineOption
   Map<String, TfArg<Object?>> get argMap => {'engine': engine};
 }
 
-/// Sets `source_db_cluster_identifier` (one of the [DocdbGlobalClusterEngineOrSourceDbClusterIdentifier] choices).
-final class DocdbGlobalClusterSourceDbClusterIdentifierOption
+/// The [DocdbGlobalClusterEngineOrSourceDbClusterIdentifier.sourceDbClusterIdentifier] choice: sets `source_db_cluster_identifier`.
+final class DocdbGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier
     extends DocdbGlobalClusterEngineOrSourceDbClusterIdentifier {
-  const DocdbGlobalClusterSourceDbClusterIdentifierOption({
-    required this.sourceDbClusterIdentifier,
-  });
+  const DocdbGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier(
+    this.sourceDbClusterIdentifier,
+  );
 
   final TfArg<String> sourceDbClusterIdentifier;
 

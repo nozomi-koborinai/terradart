@@ -9,8 +9,19 @@ const Set<String> _awsDbSubnetGroupSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_db_subnet_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class DbSubnetGroupNameOrNamePrefix {
   const DbSubnetGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory DbSubnetGroupNameOrNamePrefix.name(TfArg<String> name) =
+      DbSubnetGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory DbSubnetGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = DbSubnetGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,9 +33,10 @@ sealed class DbSubnetGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [DbSubnetGroupNameOrNamePrefix] choices).
-final class DbSubnetGroupNameOption extends DbSubnetGroupNameOrNamePrefix {
-  const DbSubnetGroupNameOption({required this.name});
+/// The [DbSubnetGroupNameOrNamePrefix.name] choice: sets `name`.
+final class DbSubnetGroupNameOrNamePrefixName
+    extends DbSubnetGroupNameOrNamePrefix {
+  const DbSubnetGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -38,10 +50,10 @@ final class DbSubnetGroupNameOption extends DbSubnetGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [DbSubnetGroupNameOrNamePrefix] choices).
-final class DbSubnetGroupNamePrefixOption
+/// The [DbSubnetGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class DbSubnetGroupNameOrNamePrefixNamePrefix
     extends DbSubnetGroupNameOrNamePrefix {
-  const DbSubnetGroupNamePrefixOption({required this.namePrefix});
+  const DbSubnetGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

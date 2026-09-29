@@ -19,8 +19,20 @@ enum VpcInstanceTenancy implements TerraformEnum {
 /// At most one of `cidr_block`, `ipv4_netmask_length` on `aws_vpc`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.cidrBlock(...)`.
 sealed class VpcCidrBlockOrIpv4NetmaskLength {
   const VpcCidrBlockOrIpv4NetmaskLength();
+
+  /// Sets `cidr_block`.
+  const factory VpcCidrBlockOrIpv4NetmaskLength.cidrBlock(
+    TfArg<String> cidrBlock,
+  ) = VpcCidrBlockOrIpv4NetmaskLengthCidrBlock;
+
+  /// Sets `ipv4_netmask_length`.
+  const factory VpcCidrBlockOrIpv4NetmaskLength.ipv4NetmaskLength(
+    TfArg<num> ipv4NetmaskLength,
+  ) = VpcCidrBlockOrIpv4NetmaskLengthIpv4NetmaskLength;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,9 +44,10 @@ sealed class VpcCidrBlockOrIpv4NetmaskLength {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `cidr_block` (one of the [VpcCidrBlockOrIpv4NetmaskLength] choices).
-final class VpcCidrBlockOption extends VpcCidrBlockOrIpv4NetmaskLength {
-  const VpcCidrBlockOption({required this.cidrBlock});
+/// The [VpcCidrBlockOrIpv4NetmaskLength.cidrBlock] choice: sets `cidr_block`.
+final class VpcCidrBlockOrIpv4NetmaskLengthCidrBlock
+    extends VpcCidrBlockOrIpv4NetmaskLength {
+  const VpcCidrBlockOrIpv4NetmaskLengthCidrBlock(this.cidrBlock);
 
   final TfArg<String> cidrBlock;
 
@@ -48,9 +61,12 @@ final class VpcCidrBlockOption extends VpcCidrBlockOrIpv4NetmaskLength {
   Map<String, TfArg<Object?>> get argMap => {'cidr_block': cidrBlock};
 }
 
-/// Sets `ipv4_netmask_length` (one of the [VpcCidrBlockOrIpv4NetmaskLength] choices).
-final class VpcIpv4NetmaskLengthOption extends VpcCidrBlockOrIpv4NetmaskLength {
-  const VpcIpv4NetmaskLengthOption({required this.ipv4NetmaskLength});
+/// The [VpcCidrBlockOrIpv4NetmaskLength.ipv4NetmaskLength] choice: sets `ipv4_netmask_length`.
+final class VpcCidrBlockOrIpv4NetmaskLengthIpv4NetmaskLength
+    extends VpcCidrBlockOrIpv4NetmaskLength {
+  const VpcCidrBlockOrIpv4NetmaskLengthIpv4NetmaskLength(
+    this.ipv4NetmaskLength,
+  );
 
   final TfArg<num> ipv4NetmaskLength;
 

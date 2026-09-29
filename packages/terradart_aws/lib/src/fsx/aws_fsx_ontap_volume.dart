@@ -50,8 +50,20 @@ enum FsxOntapVolumeVolumeType implements TerraformEnum {
 
 /// Exactly one of `size_in_bytes`, `size_in_megabytes` on `aws_fsx_ontap_volume`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.sizeInBytes(...)`.
 sealed class FsxOntapVolumeSizeInBytesOrSizeInMegabytes {
   const FsxOntapVolumeSizeInBytesOrSizeInMegabytes();
+
+  /// Sets `size_in_bytes`.
+  const factory FsxOntapVolumeSizeInBytesOrSizeInMegabytes.sizeInBytes(
+    TfArg<String> sizeInBytes,
+  ) = FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInBytes;
+
+  /// Sets `size_in_megabytes`.
+  const factory FsxOntapVolumeSizeInBytesOrSizeInMegabytes.sizeInMegabytes(
+    TfArg<num> sizeInMegabytes,
+  ) = FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInMegabytes;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -63,10 +75,10 @@ sealed class FsxOntapVolumeSizeInBytesOrSizeInMegabytes {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `size_in_bytes` (one of the [FsxOntapVolumeSizeInBytesOrSizeInMegabytes] choices).
-final class FsxOntapVolumeSizeInBytesOption
+/// The [FsxOntapVolumeSizeInBytesOrSizeInMegabytes.sizeInBytes] choice: sets `size_in_bytes`.
+final class FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInBytes
     extends FsxOntapVolumeSizeInBytesOrSizeInMegabytes {
-  const FsxOntapVolumeSizeInBytesOption({required this.sizeInBytes});
+  const FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInBytes(this.sizeInBytes);
 
   final TfArg<String> sizeInBytes;
 
@@ -80,10 +92,12 @@ final class FsxOntapVolumeSizeInBytesOption
   Map<String, TfArg<Object?>> get argMap => {'size_in_bytes': sizeInBytes};
 }
 
-/// Sets `size_in_megabytes` (one of the [FsxOntapVolumeSizeInBytesOrSizeInMegabytes] choices).
-final class FsxOntapVolumeSizeInMegabytesOption
+/// The [FsxOntapVolumeSizeInBytesOrSizeInMegabytes.sizeInMegabytes] choice: sets `size_in_megabytes`.
+final class FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInMegabytes
     extends FsxOntapVolumeSizeInBytesOrSizeInMegabytes {
-  const FsxOntapVolumeSizeInMegabytesOption({required this.sizeInMegabytes});
+  const FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInMegabytes(
+    this.sizeInMegabytes,
+  );
 
   final TfArg<num> sizeInMegabytes;
 

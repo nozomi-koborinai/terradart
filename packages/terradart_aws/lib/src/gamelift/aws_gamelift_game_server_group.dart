@@ -202,8 +202,20 @@ final class GameliftGameServerGroupLaunchTemplate {
 /// At most one of `id`, `name` on the `launch_template` block of `aws_gamelift_game_server_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.id(...)`.
 sealed class GameliftGameServerGroupLaunchTemplateIdOrName {
   const GameliftGameServerGroupLaunchTemplateIdOrName();
+
+  /// Sets `id`.
+  const factory GameliftGameServerGroupLaunchTemplateIdOrName.id(
+    TfArg<String> id,
+  ) = GameliftGameServerGroupLaunchTemplateIdOrNameId;
+
+  /// Sets `name`.
+  const factory GameliftGameServerGroupLaunchTemplateIdOrName.name(
+    TfArg<String> name,
+  ) = GameliftGameServerGroupLaunchTemplateIdOrNameName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -211,10 +223,10 @@ sealed class GameliftGameServerGroupLaunchTemplateIdOrName {
   Map<String, Object?> encode();
 }
 
-/// Sets `id` (one of the [GameliftGameServerGroupLaunchTemplateIdOrName] choices).
-final class GameliftGameServerGroupLaunchTemplateIdOption
+/// The [GameliftGameServerGroupLaunchTemplateIdOrName.id] choice: sets `id`.
+final class GameliftGameServerGroupLaunchTemplateIdOrNameId
     extends GameliftGameServerGroupLaunchTemplateIdOrName {
-  const GameliftGameServerGroupLaunchTemplateIdOption({required this.id});
+  const GameliftGameServerGroupLaunchTemplateIdOrNameId(this.id);
 
   final TfArg<String> id;
 
@@ -225,10 +237,10 @@ final class GameliftGameServerGroupLaunchTemplateIdOption
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
-/// Sets `name` (one of the [GameliftGameServerGroupLaunchTemplateIdOrName] choices).
-final class GameliftGameServerGroupLaunchTemplateNameOption
+/// The [GameliftGameServerGroupLaunchTemplateIdOrName.name] choice: sets `name`.
+final class GameliftGameServerGroupLaunchTemplateIdOrNameName
     extends GameliftGameServerGroupLaunchTemplateIdOrName {
-  const GameliftGameServerGroupLaunchTemplateNameOption({required this.name});
+  const GameliftGameServerGroupLaunchTemplateIdOrNameName(this.name);
 
   final TfArg<String> name;
 

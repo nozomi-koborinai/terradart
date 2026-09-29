@@ -30,8 +30,19 @@ enum SchedulerScheduleState implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_scheduler_schedule`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class SchedulerScheduleNameOrNamePrefix {
   const SchedulerScheduleNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory SchedulerScheduleNameOrNamePrefix.name(TfArg<String> name) =
+      SchedulerScheduleNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory SchedulerScheduleNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = SchedulerScheduleNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,10 +54,10 @@ sealed class SchedulerScheduleNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [SchedulerScheduleNameOrNamePrefix] choices).
-final class SchedulerScheduleNameOption
+/// The [SchedulerScheduleNameOrNamePrefix.name] choice: sets `name`.
+final class SchedulerScheduleNameOrNamePrefixName
     extends SchedulerScheduleNameOrNamePrefix {
-  const SchedulerScheduleNameOption({required this.name});
+  const SchedulerScheduleNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -60,10 +71,10 @@ final class SchedulerScheduleNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [SchedulerScheduleNameOrNamePrefix] choices).
-final class SchedulerScheduleNamePrefixOption
+/// The [SchedulerScheduleNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class SchedulerScheduleNameOrNamePrefixNamePrefix
     extends SchedulerScheduleNameOrNamePrefix {
-  const SchedulerScheduleNamePrefixOption({required this.namePrefix});
+  const SchedulerScheduleNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

@@ -163,8 +163,25 @@ final class GkeonpremVmwareClusterLoadBalancer {
 
 /// Exactly one of `f5_config`, `manual_lb_config`, `metal_lb_config` on the `load_balancer` block of `google_gkeonprem_vmware_cluster`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.f5Config(...)`.
 sealed class GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig {
   const GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig();
+
+  /// Sets `f5_config`.
+  const factory GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig.f5Config(
+    GkeonpremVmwareClusterLoadBalancerF5Config f5Config,
+  ) = GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigF5Config;
+
+  /// Sets `manual_lb_config`.
+  const factory GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig.manualLbConfig(
+    GkeonpremVmwareClusterLoadBalancerManualLbConfig manualLbConfig,
+  ) = GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigManualLbConfig;
+
+  /// Sets `metal_lb_config`.
+  const factory GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig.metalLbConfig(
+    GkeonpremVmwareClusterLoadBalancerMetalLbConfig metalLbConfig,
+  ) = GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigMetalLbConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -172,13 +189,13 @@ sealed class GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLb
   Map<String, Object?> encode();
 }
 
-/// Sets `f5_config` (one of the [GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig] choices).
-final class GkeonpremVmwareClusterLoadBalancerF5ConfigOption
+/// The [GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig.f5Config] choice: sets `f5_config`.
+final class GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigF5Config
     extends
         GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig {
-  const GkeonpremVmwareClusterLoadBalancerF5ConfigOption({
-    required this.f5Config,
-  });
+  const GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigF5Config(
+    this.f5Config,
+  );
 
   final GkeonpremVmwareClusterLoadBalancerF5Config f5Config;
 
@@ -189,13 +206,13 @@ final class GkeonpremVmwareClusterLoadBalancerF5ConfigOption
   Map<String, Object?> encode() => {'f5_config': f5Config.encode()};
 }
 
-/// Sets `manual_lb_config` (one of the [GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig] choices).
-final class GkeonpremVmwareClusterLoadBalancerManualLbConfigOption
+/// The [GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig.manualLbConfig] choice: sets `manual_lb_config`.
+final class GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigManualLbConfig
     extends
         GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig {
-  const GkeonpremVmwareClusterLoadBalancerManualLbConfigOption({
-    required this.manualLbConfig,
-  });
+  const GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigManualLbConfig(
+    this.manualLbConfig,
+  );
 
   final GkeonpremVmwareClusterLoadBalancerManualLbConfig manualLbConfig;
 
@@ -208,13 +225,13 @@ final class GkeonpremVmwareClusterLoadBalancerManualLbConfigOption
   };
 }
 
-/// Sets `metal_lb_config` (one of the [GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig] choices).
-final class GkeonpremVmwareClusterLoadBalancerMetalLbConfigOption
+/// The [GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig.metalLbConfig] choice: sets `metal_lb_config`.
+final class GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigMetalLbConfig
     extends
         GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfig {
-  const GkeonpremVmwareClusterLoadBalancerMetalLbConfigOption({
-    required this.metalLbConfig,
-  });
+  const GkeonpremVmwareClusterLoadBalancerF5ConfigOrManualLbConfigOrMetalLbConfigMetalLbConfig(
+    this.metalLbConfig,
+  );
 
   final GkeonpremVmwareClusterLoadBalancerMetalLbConfig metalLbConfig;
 
@@ -382,8 +399,20 @@ final class GkeonpremVmwareClusterNetworkConfig {
 
 /// Exactly one of `static_ip_config`, `dhcp_ip_config` on the `network_config` block of `google_gkeonprem_vmware_cluster`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.staticIpConfig(...)`.
 sealed class GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig {
   const GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig();
+
+  /// Sets `static_ip_config`.
+  const factory GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig.staticIpConfig(
+    GkeonpremVmwareClusterNetworkConfigStaticIpConfig staticIpConfig,
+  ) = GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfigStaticIpConfig;
+
+  /// Sets `dhcp_ip_config`.
+  const factory GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig.dhcpIpConfig(
+    GkeonpremVmwareClusterNetworkConfigDhcpIpConfig dhcpIpConfig,
+  ) = GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfigDhcpIpConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -391,12 +420,12 @@ sealed class GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig {
   Map<String, Object?> encode();
 }
 
-/// Sets `static_ip_config` (one of the [GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig] choices).
-final class GkeonpremVmwareClusterNetworkConfigStaticIpConfigOption
+/// The [GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig.staticIpConfig] choice: sets `static_ip_config`.
+final class GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfigStaticIpConfig
     extends GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig {
-  const GkeonpremVmwareClusterNetworkConfigStaticIpConfigOption({
-    required this.staticIpConfig,
-  });
+  const GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfigStaticIpConfig(
+    this.staticIpConfig,
+  );
 
   final GkeonpremVmwareClusterNetworkConfigStaticIpConfig staticIpConfig;
 
@@ -409,12 +438,12 @@ final class GkeonpremVmwareClusterNetworkConfigStaticIpConfigOption
   };
 }
 
-/// Sets `dhcp_ip_config` (one of the [GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig] choices).
-final class GkeonpremVmwareClusterNetworkConfigDhcpIpConfigOption
+/// The [GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig.dhcpIpConfig] choice: sets `dhcp_ip_config`.
+final class GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfigDhcpIpConfig
     extends GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfig {
-  const GkeonpremVmwareClusterNetworkConfigDhcpIpConfigOption({
-    required this.dhcpIpConfig,
-  });
+  const GkeonpremVmwareClusterNetworkConfigStaticIpConfigOrDhcpIpConfigDhcpIpConfig(
+    this.dhcpIpConfig,
+  );
 
   final GkeonpremVmwareClusterNetworkConfigDhcpIpConfig dhcpIpConfig;
 

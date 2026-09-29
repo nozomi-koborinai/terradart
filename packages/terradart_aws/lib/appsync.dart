@@ -99,11 +99,11 @@ export 'src/appsync/aws_appsync_graphql_api.dart'
 export 'src/appsync/aws_appsync_resolver.dart'
     show
         AppsyncResolverCachingConfig,
-        AppsyncResolverDataSourceOption,
         AppsyncResolverDataSourceOrPipelineConfig,
+        AppsyncResolverDataSourceOrPipelineConfigDataSource,
+        AppsyncResolverDataSourceOrPipelineConfigPipelineConfig,
         AppsyncResolverKind,
         AppsyncResolverPipelineConfig,
-        AppsyncResolverPipelineConfigOption,
         AppsyncResolverRuntime,
         AppsyncResolverRuntimeName,
         AppsyncResolverSyncConfig,
@@ -113,12 +113,12 @@ export 'src/appsync/aws_appsync_resolver.dart'
         AwsAppsyncResolver;
 export 'src/appsync/aws_appsync_source_api_association.dart'
     show
-        AppsyncSourceApiAssociationMergedApiArnOption,
         AppsyncSourceApiAssociationMergedApiArnOrMergedApiId,
-        AppsyncSourceApiAssociationMergedApiIdOption,
-        AppsyncSourceApiAssociationSourceApiArnOption,
+        AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiArn,
+        AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiId,
         AppsyncSourceApiAssociationSourceApiArnOrSourceApiId,
-        AppsyncSourceApiAssociationSourceApiIdOption,
+        AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiArn,
+        AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiId,
         AwsAppsyncSourceApiAssociation;
 export 'src/appsync/aws_appsync_type.dart'
     show AppsyncTypeFormat, AwsAppsyncType;

@@ -203,8 +203,20 @@ final class ColabNotebookExecutionWorkbenchRuntimeVmImage {
 
 /// Exactly one of `family`, `name` on the `workbench_runtime.vm_image` block of `google_colab_notebook_execution`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.family(...)`.
 sealed class ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName {
   const ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName();
+
+  /// Sets `family`.
+  const factory ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName.family(
+    TfArg<String> family,
+  ) = ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameFamily;
+
+  /// Sets `name`.
+  const factory ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName.name(
+    TfArg<String> name,
+  ) = ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -212,12 +224,12 @@ sealed class ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName {
   Map<String, Object?> encode();
 }
 
-/// Sets `family` (one of the [ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName] choices).
-final class ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOption
+/// The [ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName.family] choice: sets `family`.
+final class ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameFamily
     extends ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName {
-  const ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOption({
-    required this.family,
-  });
+  const ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameFamily(
+    this.family,
+  );
 
   final TfArg<String> family;
 
@@ -228,12 +240,12 @@ final class ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOption
   Map<String, Object?> encode() => {'family': family.toTfJson()};
 }
 
-/// Sets `name` (one of the [ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName] choices).
-final class ColabNotebookExecutionWorkbenchRuntimeVmImageNameOption
+/// The [ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName.name] choice: sets `name`.
+final class ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameName
     extends ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrName {
-  const ColabNotebookExecutionWorkbenchRuntimeVmImageNameOption({
-    required this.name,
-  });
+  const ColabNotebookExecutionWorkbenchRuntimeVmImageFamilyOrNameName(
+    this.name,
+  );
 
   final TfArg<String> name;
 

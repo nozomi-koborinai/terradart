@@ -471,8 +471,20 @@ final class GlueCatalogTableStorageDescriptorSchemaReference {
 
 /// Exactly one of `schema_id`, `schema_version_id` on the `storage_descriptor.schema_reference` block of `aws_glue_catalog_table`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.schemaId(...)`.
 sealed class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId {
   const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId();
+
+  /// Sets `schema_id`.
+  const factory GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId.schemaId(
+    GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId schemaId,
+  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionIdSchemaId;
+
+  /// Sets `schema_version_id`.
+  const factory GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId.schemaVersionId(
+    TfArg<String> schemaVersionId,
+  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionIdSchemaVersionId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -480,13 +492,13 @@ sealed class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVer
   Map<String, Object?> encode();
 }
 
-/// Sets `schema_id` (one of the [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId] choices).
-final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOption
+/// The [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId.schemaId] choice: sets `schema_id`.
+final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionIdSchemaId
     extends
         GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOption({
-    required this.schemaId,
-  });
+  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionIdSchemaId(
+    this.schemaId,
+  );
 
   final GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId schemaId;
 
@@ -497,13 +509,13 @@ final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOption
   Map<String, Object?> encode() => {'schema_id': schemaId.encode()};
 }
 
-/// Sets `schema_version_id` (one of the [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId] choices).
-final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaVersionIdOption
+/// The [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId.schemaVersionId] choice: sets `schema_version_id`.
+final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionIdSchemaVersionId
     extends
         GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionId {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaVersionIdOption({
-    required this.schemaVersionId,
-  });
+  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdOrSchemaVersionIdSchemaVersionId(
+    this.schemaVersionId,
+  );
 
   final TfArg<String> schemaVersionId;
 
@@ -538,8 +550,20 @@ final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId {
 
 /// Exactly one of `schema_arn`, `schema_name` on the `storage_descriptor.schema_reference.schema_id` block of `aws_glue_catalog_table`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.schemaArn(...)`.
 sealed class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName {
   const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName();
+
+  /// Sets `schema_arn`.
+  const factory GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName.schemaArn(
+    TfArg<String> schemaArn,
+  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaNameSchemaArn;
+
+  /// Sets `schema_name`.
+  const factory GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName.schemaName(
+    TfArg<String> schemaName,
+  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaNameSchemaName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -547,13 +571,13 @@ sealed class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOr
   Map<String, Object?> encode();
 }
 
-/// Sets `schema_arn` (one of the [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName] choices).
-final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOption
+/// The [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName.schemaArn] choice: sets `schema_arn`.
+final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaNameSchemaArn
     extends
         GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOption({
-    required this.schemaArn,
-  });
+  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaNameSchemaArn(
+    this.schemaArn,
+  );
 
   final TfArg<String> schemaArn;
 
@@ -564,13 +588,13 @@ final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOpt
   Map<String, Object?> encode() => {'schema_arn': schemaArn.toTfJson()};
 }
 
-/// Sets `schema_name` (one of the [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName] choices).
-final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaNameOption
+/// The [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName.schemaName] choice: sets `schema_name`.
+final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaNameSchemaName
     extends
         GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaName {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaNameOption({
-    required this.schemaName,
-  });
+  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArnOrSchemaNameSchemaName(
+    this.schemaName,
+  );
 
   final TfArg<String> schemaName;
 

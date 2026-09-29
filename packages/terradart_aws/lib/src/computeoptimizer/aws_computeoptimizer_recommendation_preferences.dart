@@ -131,8 +131,20 @@ final class ComputeoptimizerRecommendationPreferencesPreferredResource {
 /// At most one of `exclude_list`, `include_list` on the `preferred_resource` block of `aws_computeoptimizer_recommendation_preferences`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.excludeList(...)`.
 sealed class ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList {
   const ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList();
+
+  /// Sets `exclude_list`.
+  const factory ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList.excludeList(
+    TfArg<List<Object?>> excludeList,
+  ) = ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListExcludeList;
+
+  /// Sets `include_list`.
+  const factory ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList.includeList(
+    TfArg<List<Object?>> includeList,
+  ) = ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListIncludeList;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -140,13 +152,13 @@ sealed class ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeLi
   Map<String, Object?> encode();
 }
 
-/// Sets `exclude_list` (one of the [ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList] choices).
-final class ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOption
+/// The [ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList.excludeList] choice: sets `exclude_list`.
+final class ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListExcludeList
     extends
         ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList {
-  const ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOption({
-    required this.excludeList,
-  });
+  const ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListExcludeList(
+    this.excludeList,
+  );
 
   final TfArg<List<Object?>> excludeList;
 
@@ -157,13 +169,13 @@ final class ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeLis
   Map<String, Object?> encode() => {'exclude_list': excludeList.toTfJson()};
 }
 
-/// Sets `include_list` (one of the [ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList] choices).
-final class ComputeoptimizerRecommendationPreferencesPreferredResourceIncludeListOption
+/// The [ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList.includeList] choice: sets `include_list`.
+final class ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListIncludeList
     extends
         ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeList {
-  const ComputeoptimizerRecommendationPreferencesPreferredResourceIncludeListOption({
-    required this.includeList,
-  });
+  const ComputeoptimizerRecommendationPreferencesPreferredResourceExcludeListOrIncludeListIncludeList(
+    this.includeList,
+  );
 
   final TfArg<List<Object?>> includeList;
 

@@ -135,12 +135,11 @@ final class OrdersStack extends Stack {
         // full `projects/.../topics/orders-prod` path), NOT topic.nameRef.
         topic: TfArg.ref(topic.id),
         ackDeadlineSeconds: TfArg.literal(60),
-        bigqueryConfigOrPushConfigOrCloudStorageConfig:
-            PubsubSubscriptionPushConfigOption(
-              pushConfig: PubsubSubscriptionPushConfig(
-                pushEndpoint: TfArg.literal('https://app.example.com/push'),
-              ),
-            ),
+        bigqueryConfigOrPushConfigOrCloudStorageConfig: .pushConfig(
+          PubsubSubscriptionPushConfig(
+            pushEndpoint: TfArg.literal('https://app.example.com/push'),
+          ),
+        ),
       ),
     );
 

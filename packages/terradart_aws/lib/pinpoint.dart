@@ -18,9 +18,9 @@ export 'src/pinpoint/aws_pinpoint_app.dart'
         PinpointAppCampaignHook,
         PinpointAppCampaignHookMode,
         PinpointAppLimits,
-        PinpointAppNameOption,
         PinpointAppNameOrNamePrefix,
-        PinpointAppNamePrefixOption,
+        PinpointAppNameOrNamePrefixName,
+        PinpointAppNameOrNamePrefixNamePrefix,
         PinpointAppQuietTime;
 export 'src/pinpoint/aws_pinpoint_baidu_channel.dart'
     show AwsPinpointBaiduChannel;
@@ -36,8 +36,8 @@ export 'src/pinpoint/aws_pinpoint_event_stream.dart'
 export 'src/pinpoint/aws_pinpoint_gcm_channel.dart'
     show
         AwsPinpointGcmChannel,
-        PinpointGcmChannelApiKeyOption,
         PinpointGcmChannelApiKeyOrServiceJson,
-        PinpointGcmChannelDefaultAuthenticationMethod,
-        PinpointGcmChannelServiceJsonOption;
+        PinpointGcmChannelApiKeyOrServiceJsonApiKey,
+        PinpointGcmChannelApiKeyOrServiceJsonServiceJson,
+        PinpointGcmChannelDefaultAuthenticationMethod;
 export 'src/pinpoint/aws_pinpoint_sms_channel.dart' show AwsPinpointSmsChannel;

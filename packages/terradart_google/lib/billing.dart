@@ -14,10 +14,10 @@ export 'src/billing/google_billing_budget.dart'
     show
         BillingBudgetAllUpdatesRule,
         BillingBudgetAmount,
-        BillingBudgetAmountLastPeriodAmountOption,
         BillingBudgetAmountSpecifiedAmount,
-        BillingBudgetAmountSpecifiedAmountOption,
         BillingBudgetAmountSpecifiedAmountOrLastPeriodAmount,
+        BillingBudgetAmountSpecifiedAmountOrLastPeriodAmountLastPeriodAmount,
+        BillingBudgetAmountSpecifiedAmountOrLastPeriodAmountSpecifiedAmount,
         BillingBudgetBudgetFilter,
         BillingBudgetBudgetFilterCalendarPeriod,
         BillingBudgetBudgetFilterCreditTypesTreatment,

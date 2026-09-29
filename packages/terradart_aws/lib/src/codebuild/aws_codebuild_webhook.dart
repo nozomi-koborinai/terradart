@@ -21,8 +21,20 @@ enum CodebuildWebhookBuildType implements TerraformEnum {
 /// At most one of `branch_filter`, `filter_group` on `aws_codebuild_webhook`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.branchFilter(...)`.
 sealed class CodebuildWebhookBranchFilterOrFilterGroup {
   const CodebuildWebhookBranchFilterOrFilterGroup();
+
+  /// Sets `branch_filter`.
+  const factory CodebuildWebhookBranchFilterOrFilterGroup.branchFilter(
+    TfArg<String> branchFilter,
+  ) = CodebuildWebhookBranchFilterOrFilterGroupBranchFilter;
+
+  /// Sets `filter_group`.
+  const factory CodebuildWebhookBranchFilterOrFilterGroup.filterGroup(
+    List<CodebuildWebhookFilterGroup> filterGroup,
+  ) = CodebuildWebhookBranchFilterOrFilterGroupFilterGroup;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +46,12 @@ sealed class CodebuildWebhookBranchFilterOrFilterGroup {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `branch_filter` (one of the [CodebuildWebhookBranchFilterOrFilterGroup] choices).
-final class CodebuildWebhookBranchFilterOption
+/// The [CodebuildWebhookBranchFilterOrFilterGroup.branchFilter] choice: sets `branch_filter`.
+final class CodebuildWebhookBranchFilterOrFilterGroupBranchFilter
     extends CodebuildWebhookBranchFilterOrFilterGroup {
-  const CodebuildWebhookBranchFilterOption({required this.branchFilter});
+  const CodebuildWebhookBranchFilterOrFilterGroupBranchFilter(
+    this.branchFilter,
+  );
 
   final TfArg<String> branchFilter;
 
@@ -51,10 +65,10 @@ final class CodebuildWebhookBranchFilterOption
   Map<String, TfArg<Object?>> get argMap => {'branch_filter': branchFilter};
 }
 
-/// Sets `filter_group` (one of the [CodebuildWebhookBranchFilterOrFilterGroup] choices).
-final class CodebuildWebhookFilterGroupOption
+/// The [CodebuildWebhookBranchFilterOrFilterGroup.filterGroup] choice: sets `filter_group`.
+final class CodebuildWebhookBranchFilterOrFilterGroupFilterGroup
     extends CodebuildWebhookBranchFilterOrFilterGroup {
-  const CodebuildWebhookFilterGroupOption({required this.filterGroup});
+  const CodebuildWebhookBranchFilterOrFilterGroupFilterGroup(this.filterGroup);
 
   final List<CodebuildWebhookFilterGroup> filterGroup;
 

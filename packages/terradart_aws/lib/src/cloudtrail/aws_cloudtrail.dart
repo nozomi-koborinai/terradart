@@ -10,8 +10,20 @@ const Set<String> _awsCloudtrailSensitive = <String>{};
 /// At most one of `advanced_event_selector`, `event_selector` on `aws_cloudtrail`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.advancedEventSelector(...)`.
 sealed class CloudtrailAdvancedEventSelectorOrEventSelector {
   const CloudtrailAdvancedEventSelectorOrEventSelector();
+
+  /// Sets `advanced_event_selector`.
+  const factory CloudtrailAdvancedEventSelectorOrEventSelector.advancedEventSelector(
+    List<CloudtrailAdvancedEventSelector> advancedEventSelector,
+  ) = CloudtrailAdvancedEventSelectorOrEventSelectorAdvancedEventSelector;
+
+  /// Sets `event_selector`.
+  const factory CloudtrailAdvancedEventSelectorOrEventSelector.eventSelector(
+    List<CloudtrailEventSelector> eventSelector,
+  ) = CloudtrailAdvancedEventSelectorOrEventSelectorEventSelector;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,12 +35,12 @@ sealed class CloudtrailAdvancedEventSelectorOrEventSelector {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `advanced_event_selector` (one of the [CloudtrailAdvancedEventSelectorOrEventSelector] choices).
-final class CloudtrailAdvancedEventSelectorOption
+/// The [CloudtrailAdvancedEventSelectorOrEventSelector.advancedEventSelector] choice: sets `advanced_event_selector`.
+final class CloudtrailAdvancedEventSelectorOrEventSelectorAdvancedEventSelector
     extends CloudtrailAdvancedEventSelectorOrEventSelector {
-  const CloudtrailAdvancedEventSelectorOption({
-    required this.advancedEventSelector,
-  });
+  const CloudtrailAdvancedEventSelectorOrEventSelectorAdvancedEventSelector(
+    this.advancedEventSelector,
+  );
 
   final List<CloudtrailAdvancedEventSelector> advancedEventSelector;
 
@@ -50,10 +62,12 @@ final class CloudtrailAdvancedEventSelectorOption
   };
 }
 
-/// Sets `event_selector` (one of the [CloudtrailAdvancedEventSelectorOrEventSelector] choices).
-final class CloudtrailEventSelectorOption
+/// The [CloudtrailAdvancedEventSelectorOrEventSelector.eventSelector] choice: sets `event_selector`.
+final class CloudtrailAdvancedEventSelectorOrEventSelectorEventSelector
     extends CloudtrailAdvancedEventSelectorOrEventSelector {
-  const CloudtrailEventSelectorOption({required this.eventSelector});
+  const CloudtrailAdvancedEventSelectorOrEventSelectorEventSelector(
+    this.eventSelector,
+  );
 
   final List<CloudtrailEventSelector> eventSelector;
 

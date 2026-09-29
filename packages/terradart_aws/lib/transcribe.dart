@@ -16,12 +16,12 @@ export 'src/transcribe/aws_transcribe_medical_vocabulary.dart'
 export 'src/transcribe/aws_transcribe_vocabulary.dart'
     show
         AwsTranscribeVocabulary,
-        TranscribeVocabularyPhrasesOption,
         TranscribeVocabularyPhrasesOrVocabularyFileUri,
-        TranscribeVocabularyVocabularyFileUriOption;
+        TranscribeVocabularyPhrasesOrVocabularyFileUriPhrases,
+        TranscribeVocabularyPhrasesOrVocabularyFileUriVocabularyFileUri;
 export 'src/transcribe/aws_transcribe_vocabulary_filter.dart'
     show
         AwsTranscribeVocabularyFilter,
-        TranscribeVocabularyFilterVocabularyFilterFileUriOption,
         TranscribeVocabularyFilterVocabularyFilterFileUriOrWords,
-        TranscribeVocabularyFilterWordsOption;
+        TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsVocabularyFilterFileUri,
+        TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsWords;

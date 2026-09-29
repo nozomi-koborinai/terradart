@@ -19,8 +19,19 @@ enum AccountMemberStatus implements TerraformEnum {
 
 /// Exactly one of `roles`, `policies` on `cloudflare_account_member`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.roles(...)`.
 sealed class AccountMemberRolesOrPolicies {
   const AccountMemberRolesOrPolicies();
+
+  /// Sets `roles`.
+  const factory AccountMemberRolesOrPolicies.roles(TfArg<List<String>> roles) =
+      AccountMemberRolesOrPoliciesRoles;
+
+  /// Sets `policies`.
+  const factory AccountMemberRolesOrPolicies.policies(
+    List<AccountMemberPolicies> policies,
+  ) = AccountMemberRolesOrPoliciesPolicies;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,9 +43,10 @@ sealed class AccountMemberRolesOrPolicies {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `roles` (one of the [AccountMemberRolesOrPolicies] choices).
-final class AccountMemberRolesOption extends AccountMemberRolesOrPolicies {
-  const AccountMemberRolesOption({required this.roles});
+/// The [AccountMemberRolesOrPolicies.roles] choice: sets `roles`.
+final class AccountMemberRolesOrPoliciesRoles
+    extends AccountMemberRolesOrPolicies {
+  const AccountMemberRolesOrPoliciesRoles(this.roles);
 
   final TfArg<List<String>> roles;
 
@@ -48,9 +60,10 @@ final class AccountMemberRolesOption extends AccountMemberRolesOrPolicies {
   Map<String, TfArg<Object?>> get argMap => {'roles': roles};
 }
 
-/// Sets `policies` (one of the [AccountMemberRolesOrPolicies] choices).
-final class AccountMemberPoliciesOption extends AccountMemberRolesOrPolicies {
-  const AccountMemberPoliciesOption({required this.policies});
+/// The [AccountMemberRolesOrPolicies.policies] choice: sets `policies`.
+final class AccountMemberRolesOrPoliciesPolicies
+    extends AccountMemberRolesOrPolicies {
+  const AccountMemberRolesOrPoliciesPolicies(this.policies);
 
   final List<AccountMemberPolicies> policies;
 

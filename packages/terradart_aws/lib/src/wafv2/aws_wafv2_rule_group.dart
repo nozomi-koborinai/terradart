@@ -20,8 +20,19 @@ enum Wafv2RuleGroupScope implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_wafv2_rule_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class Wafv2RuleGroupNameOrNamePrefix {
   const Wafv2RuleGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory Wafv2RuleGroupNameOrNamePrefix.name(TfArg<String> name) =
+      Wafv2RuleGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory Wafv2RuleGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = Wafv2RuleGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,9 +44,10 @@ sealed class Wafv2RuleGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [Wafv2RuleGroupNameOrNamePrefix] choices).
-final class Wafv2RuleGroupNameOption extends Wafv2RuleGroupNameOrNamePrefix {
-  const Wafv2RuleGroupNameOption({required this.name});
+/// The [Wafv2RuleGroupNameOrNamePrefix.name] choice: sets `name`.
+final class Wafv2RuleGroupNameOrNamePrefixName
+    extends Wafv2RuleGroupNameOrNamePrefix {
+  const Wafv2RuleGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -49,10 +61,10 @@ final class Wafv2RuleGroupNameOption extends Wafv2RuleGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [Wafv2RuleGroupNameOrNamePrefix] choices).
-final class Wafv2RuleGroupNamePrefixOption
+/// The [Wafv2RuleGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class Wafv2RuleGroupNameOrNamePrefixNamePrefix
     extends Wafv2RuleGroupNameOrNamePrefix {
-  const Wafv2RuleGroupNamePrefixOption({required this.namePrefix});
+  const Wafv2RuleGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -69,8 +81,20 @@ final class Wafv2RuleGroupNamePrefixOption
 /// At most one of `rule`, `rules_json` on `aws_wafv2_rule_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.rule(...)`.
 sealed class Wafv2RuleGroupRuleOrRulesJson {
   const Wafv2RuleGroupRuleOrRulesJson();
+
+  /// Sets `rule`.
+  const factory Wafv2RuleGroupRuleOrRulesJson.rule(
+    List<Wafv2RuleGroupRule> rule,
+  ) = Wafv2RuleGroupRuleOrRulesJsonRule;
+
+  /// Sets `rules_json`.
+  const factory Wafv2RuleGroupRuleOrRulesJson.rulesJson(
+    TfArg<String> rulesJson,
+  ) = Wafv2RuleGroupRuleOrRulesJsonRulesJson;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -82,9 +106,10 @@ sealed class Wafv2RuleGroupRuleOrRulesJson {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `rule` (one of the [Wafv2RuleGroupRuleOrRulesJson] choices).
-final class Wafv2RuleGroupRuleOption extends Wafv2RuleGroupRuleOrRulesJson {
-  const Wafv2RuleGroupRuleOption({required this.rule});
+/// The [Wafv2RuleGroupRuleOrRulesJson.rule] choice: sets `rule`.
+final class Wafv2RuleGroupRuleOrRulesJsonRule
+    extends Wafv2RuleGroupRuleOrRulesJson {
+  const Wafv2RuleGroupRuleOrRulesJsonRule(this.rule);
 
   final List<Wafv2RuleGroupRule> rule;
 
@@ -102,10 +127,10 @@ final class Wafv2RuleGroupRuleOption extends Wafv2RuleGroupRuleOrRulesJson {
   };
 }
 
-/// Sets `rules_json` (one of the [Wafv2RuleGroupRuleOrRulesJson] choices).
-final class Wafv2RuleGroupRulesJsonOption
+/// The [Wafv2RuleGroupRuleOrRulesJson.rulesJson] choice: sets `rules_json`.
+final class Wafv2RuleGroupRuleOrRulesJsonRulesJson
     extends Wafv2RuleGroupRuleOrRulesJson {
-  const Wafv2RuleGroupRulesJsonOption({required this.rulesJson});
+  const Wafv2RuleGroupRuleOrRulesJsonRulesJson(this.rulesJson);
 
   final TfArg<String> rulesJson;
 

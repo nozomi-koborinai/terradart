@@ -303,14 +303,14 @@ export 'src/chronicle/google_chronicle_parser.dart'
         GoogleChronicleParser;
 export 'src/chronicle/google_chronicle_parser_extension.dart'
     show
-        ChronicleParserExtensionCbnSnippetOption,
         ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsing,
+        ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingCbnSnippet,
+        ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingDynamicParsing,
+        ChronicleParserExtensionCbnSnippetOrFieldExtractorsOrDynamicParsingFieldExtractors,
         ChronicleParserExtensionDynamicParsing,
         ChronicleParserExtensionDynamicParsingOptedFields,
-        ChronicleParserExtensionDynamicParsingOption,
         ChronicleParserExtensionFieldExtractors,
         ChronicleParserExtensionFieldExtractorsExtractors,
-        ChronicleParserExtensionFieldExtractorsOption,
         ChronicleParserExtensionFieldExtractorsPreprocessConfig,
         GoogleChronicleParserExtension;
 export 'src/chronicle/google_chronicle_reference_list.dart'

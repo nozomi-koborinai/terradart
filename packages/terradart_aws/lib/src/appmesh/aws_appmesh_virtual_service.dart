@@ -35,8 +35,20 @@ final class AppmeshVirtualServiceSpecProvider {
 /// At most one of `virtual_node`, `virtual_router` on the `spec.provider` block of `aws_appmesh_virtual_service`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.virtualNode(...)`.
 sealed class AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter {
   const AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter();
+
+  /// Sets `virtual_node`.
+  const factory AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter.virtualNode(
+    AppmeshVirtualServiceSpecProviderVirtualNode virtualNode,
+  ) = AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouterVirtualNode;
+
+  /// Sets `virtual_router`.
+  const factory AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter.virtualRouter(
+    AppmeshVirtualServiceSpecProviderVirtualRouter virtualRouter,
+  ) = AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouterVirtualRouter;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,12 +56,12 @@ sealed class AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter {
   Map<String, Object?> encode();
 }
 
-/// Sets `virtual_node` (one of the [AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter] choices).
-final class AppmeshVirtualServiceSpecProviderVirtualNodeOption
+/// The [AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter.virtualNode] choice: sets `virtual_node`.
+final class AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouterVirtualNode
     extends AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter {
-  const AppmeshVirtualServiceSpecProviderVirtualNodeOption({
-    required this.virtualNode,
-  });
+  const AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouterVirtualNode(
+    this.virtualNode,
+  );
 
   final AppmeshVirtualServiceSpecProviderVirtualNode virtualNode;
 
@@ -60,12 +72,12 @@ final class AppmeshVirtualServiceSpecProviderVirtualNodeOption
   Map<String, Object?> encode() => {'virtual_node': virtualNode.encode()};
 }
 
-/// Sets `virtual_router` (one of the [AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter] choices).
-final class AppmeshVirtualServiceSpecProviderVirtualRouterOption
+/// The [AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter.virtualRouter] choice: sets `virtual_router`.
+final class AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouterVirtualRouter
     extends AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter {
-  const AppmeshVirtualServiceSpecProviderVirtualRouterOption({
-    required this.virtualRouter,
-  });
+  const AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouterVirtualRouter(
+    this.virtualRouter,
+  );
 
   final AppmeshVirtualServiceSpecProviderVirtualRouter virtualRouter;
 

@@ -79,8 +79,21 @@ final class NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice
 /// At most one of `virtual_machine`, `interconnect_attachment` on `google_network_connectivity_policy_based_route`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.virtualMachine(...)`.
 sealed class NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment {
   const NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment();
+
+  /// Sets `virtual_machine`.
+  const factory NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment.virtualMachine(
+    NetworkConnectivityPolicyBasedRouteVirtualMachine virtualMachine,
+  ) = NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentVirtualMachine;
+
+  /// Sets `interconnect_attachment`.
+  const factory NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment.interconnectAttachment(
+    NetworkConnectivityPolicyBasedRouteInterconnectAttachment
+    interconnectAttachment,
+  ) = NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentInterconnectAttachment;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -92,13 +105,13 @@ sealed class NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAtta
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `virtual_machine` (one of the [NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment] choices).
-final class NetworkConnectivityPolicyBasedRouteVirtualMachineOption
+/// The [NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment.virtualMachine] choice: sets `virtual_machine`.
+final class NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentVirtualMachine
     extends
         NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment {
-  const NetworkConnectivityPolicyBasedRouteVirtualMachineOption({
-    required this.virtualMachine,
-  });
+  const NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentVirtualMachine(
+    this.virtualMachine,
+  );
 
   final NetworkConnectivityPolicyBasedRouteVirtualMachine virtualMachine;
 
@@ -114,13 +127,13 @@ final class NetworkConnectivityPolicyBasedRouteVirtualMachineOption
   };
 }
 
-/// Sets `interconnect_attachment` (one of the [NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment] choices).
-final class NetworkConnectivityPolicyBasedRouteInterconnectAttachmentOption
+/// The [NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment.interconnectAttachment] choice: sets `interconnect_attachment`.
+final class NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentInterconnectAttachment
     extends
         NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment {
-  const NetworkConnectivityPolicyBasedRouteInterconnectAttachmentOption({
-    required this.interconnectAttachment,
-  });
+  const NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentInterconnectAttachment(
+    this.interconnectAttachment,
+  );
 
   final NetworkConnectivityPolicyBasedRouteInterconnectAttachment
   interconnectAttachment;

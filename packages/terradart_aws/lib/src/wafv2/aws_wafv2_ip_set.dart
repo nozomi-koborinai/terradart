@@ -29,8 +29,19 @@ enum Wafv2IpSetScope implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_wafv2_ip_set`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class Wafv2IpSetNameOrNamePrefix {
   const Wafv2IpSetNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory Wafv2IpSetNameOrNamePrefix.name(TfArg<String> name) =
+      Wafv2IpSetNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory Wafv2IpSetNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = Wafv2IpSetNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -42,9 +53,9 @@ sealed class Wafv2IpSetNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [Wafv2IpSetNameOrNamePrefix] choices).
-final class Wafv2IpSetNameOption extends Wafv2IpSetNameOrNamePrefix {
-  const Wafv2IpSetNameOption({required this.name});
+/// The [Wafv2IpSetNameOrNamePrefix.name] choice: sets `name`.
+final class Wafv2IpSetNameOrNamePrefixName extends Wafv2IpSetNameOrNamePrefix {
+  const Wafv2IpSetNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -58,9 +69,10 @@ final class Wafv2IpSetNameOption extends Wafv2IpSetNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [Wafv2IpSetNameOrNamePrefix] choices).
-final class Wafv2IpSetNamePrefixOption extends Wafv2IpSetNameOrNamePrefix {
-  const Wafv2IpSetNamePrefixOption({required this.namePrefix});
+/// The [Wafv2IpSetNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class Wafv2IpSetNameOrNamePrefixNamePrefix
+    extends Wafv2IpSetNameOrNamePrefix {
+  const Wafv2IpSetNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

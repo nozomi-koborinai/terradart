@@ -28,8 +28,19 @@ enum DbEventSubscriptionSourceType implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_db_event_subscription`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class DbEventSubscriptionNameOrNamePrefix {
   const DbEventSubscriptionNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory DbEventSubscriptionNameOrNamePrefix.name(TfArg<String> name) =
+      DbEventSubscriptionNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory DbEventSubscriptionNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = DbEventSubscriptionNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -41,10 +52,10 @@ sealed class DbEventSubscriptionNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [DbEventSubscriptionNameOrNamePrefix] choices).
-final class DbEventSubscriptionNameOption
+/// The [DbEventSubscriptionNameOrNamePrefix.name] choice: sets `name`.
+final class DbEventSubscriptionNameOrNamePrefixName
     extends DbEventSubscriptionNameOrNamePrefix {
-  const DbEventSubscriptionNameOption({required this.name});
+  const DbEventSubscriptionNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -58,10 +69,10 @@ final class DbEventSubscriptionNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [DbEventSubscriptionNameOrNamePrefix] choices).
-final class DbEventSubscriptionNamePrefixOption
+/// The [DbEventSubscriptionNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class DbEventSubscriptionNameOrNamePrefixNamePrefix
     extends DbEventSubscriptionNameOrNamePrefix {
-  const DbEventSubscriptionNamePrefixOption({required this.namePrefix});
+  const DbEventSubscriptionNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

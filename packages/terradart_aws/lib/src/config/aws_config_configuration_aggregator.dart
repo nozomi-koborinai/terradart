@@ -10,8 +10,22 @@ const Set<String> _awsConfigConfigurationAggregatorSensitive = <String>{};
 /// At most one of `account_aggregation_source`, `organization_aggregation_source` on `aws_config_configuration_aggregator`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.accountAggregationSource(...)`.
 sealed class ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource {
   const ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource();
+
+  /// Sets `account_aggregation_source`.
+  const factory ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource.accountAggregationSource(
+    ConfigConfigurationAggregatorAccountAggregationSource
+    accountAggregationSource,
+  ) = ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSourceAccountAggregationSource;
+
+  /// Sets `organization_aggregation_source`.
+  const factory ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource.organizationAggregationSource(
+    ConfigConfigurationAggregatorOrganizationAggregationSource
+    organizationAggregationSource,
+  ) = ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSourceOrganizationAggregationSource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,13 +37,13 @@ sealed class ConfigConfigurationAggregatorAccountAggregationSourceOrOrganization
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `account_aggregation_source` (one of the [ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource] choices).
-final class ConfigConfigurationAggregatorAccountAggregationSourceOption
+/// The [ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource.accountAggregationSource] choice: sets `account_aggregation_source`.
+final class ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSourceAccountAggregationSource
     extends
         ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource {
-  const ConfigConfigurationAggregatorAccountAggregationSourceOption({
-    required this.accountAggregationSource,
-  });
+  const ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSourceAccountAggregationSource(
+    this.accountAggregationSource,
+  );
 
   final ConfigConfigurationAggregatorAccountAggregationSource
   accountAggregationSource;
@@ -50,13 +64,13 @@ final class ConfigConfigurationAggregatorAccountAggregationSourceOption
   };
 }
 
-/// Sets `organization_aggregation_source` (one of the [ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource] choices).
-final class ConfigConfigurationAggregatorOrganizationAggregationSourceOption
+/// The [ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource.organizationAggregationSource] choice: sets `organization_aggregation_source`.
+final class ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSourceOrganizationAggregationSource
     extends
         ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource {
-  const ConfigConfigurationAggregatorOrganizationAggregationSourceOption({
-    required this.organizationAggregationSource,
-  });
+  const ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSourceOrganizationAggregationSource(
+    this.organizationAggregationSource,
+  );
 
   final ConfigConfigurationAggregatorOrganizationAggregationSource
   organizationAggregationSource;

@@ -36,8 +36,21 @@ enum BedrockagentAgentActionGroupParentActionGroupSignature
 /// At most one of `description`, `parent_action_group_signature` on `aws_bedrockagent_agent_action_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.description(...)`.
 sealed class BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature {
   const BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature();
+
+  /// Sets `description`.
+  const factory BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature.description(
+    TfArg<String> description,
+  ) = BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureDescription;
+
+  /// Sets `parent_action_group_signature`.
+  const factory BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature.parentActionGroupSignature(
+    TfArg<BedrockagentAgentActionGroupParentActionGroupSignature>
+    parentActionGroupSignature,
+  ) = BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureParentActionGroupSignature;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -49,13 +62,13 @@ sealed class BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `description` (one of the [BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature] choices).
-final class BedrockagentAgentActionGroupDescriptionOption
+/// The [BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature.description] choice: sets `description`.
+final class BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureDescription
     extends
         BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature {
-  const BedrockagentAgentActionGroupDescriptionOption({
-    required this.description,
-  });
+  const BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureDescription(
+    this.description,
+  );
 
   final TfArg<String> description;
 
@@ -69,13 +82,13 @@ final class BedrockagentAgentActionGroupDescriptionOption
   Map<String, TfArg<Object?>> get argMap => {'description': description};
 }
 
-/// Sets `parent_action_group_signature` (one of the [BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature] choices).
-final class BedrockagentAgentActionGroupParentActionGroupSignatureOption
+/// The [BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature.parentActionGroupSignature] choice: sets `parent_action_group_signature`.
+final class BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureParentActionGroupSignature
     extends
         BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature {
-  const BedrockagentAgentActionGroupParentActionGroupSignatureOption({
-    required this.parentActionGroupSignature,
-  });
+  const BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignatureParentActionGroupSignature(
+    this.parentActionGroupSignature,
+  );
 
   final TfArg<BedrockagentAgentActionGroupParentActionGroupSignature>
   parentActionGroupSignature;
@@ -140,8 +153,20 @@ final class BedrockagentAgentActionGroupApiSchema {
 /// At most one of `payload`, `s3` on the `api_schema` block of `aws_bedrockagent_agent_action_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.payload(...)`.
 sealed class BedrockagentAgentActionGroupApiSchemaPayloadOrS3 {
   const BedrockagentAgentActionGroupApiSchemaPayloadOrS3();
+
+  /// Sets `payload`.
+  const factory BedrockagentAgentActionGroupApiSchemaPayloadOrS3.payload(
+    TfArg<String> payload,
+  ) = BedrockagentAgentActionGroupApiSchemaPayloadOrS3Payload;
+
+  /// Sets `s3`.
+  const factory BedrockagentAgentActionGroupApiSchemaPayloadOrS3.s3(
+    List<BedrockagentAgentActionGroupApiSchemaS3> s3,
+  ) = BedrockagentAgentActionGroupApiSchemaPayloadOrS3S3;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -149,12 +174,10 @@ sealed class BedrockagentAgentActionGroupApiSchemaPayloadOrS3 {
   Map<String, Object?> encode();
 }
 
-/// Sets `payload` (one of the [BedrockagentAgentActionGroupApiSchemaPayloadOrS3] choices).
-final class BedrockagentAgentActionGroupApiSchemaPayloadOption
+/// The [BedrockagentAgentActionGroupApiSchemaPayloadOrS3.payload] choice: sets `payload`.
+final class BedrockagentAgentActionGroupApiSchemaPayloadOrS3Payload
     extends BedrockagentAgentActionGroupApiSchemaPayloadOrS3 {
-  const BedrockagentAgentActionGroupApiSchemaPayloadOption({
-    required this.payload,
-  });
+  const BedrockagentAgentActionGroupApiSchemaPayloadOrS3Payload(this.payload);
 
   final TfArg<String> payload;
 
@@ -165,10 +188,10 @@ final class BedrockagentAgentActionGroupApiSchemaPayloadOption
   Map<String, Object?> encode() => {'payload': payload.toTfJson()};
 }
 
-/// Sets `s3` (one of the [BedrockagentAgentActionGroupApiSchemaPayloadOrS3] choices).
-final class BedrockagentAgentActionGroupApiSchemaS3Option
+/// The [BedrockagentAgentActionGroupApiSchemaPayloadOrS3.s3] choice: sets `s3`.
+final class BedrockagentAgentActionGroupApiSchemaPayloadOrS3S3
     extends BedrockagentAgentActionGroupApiSchemaPayloadOrS3 {
-  const BedrockagentAgentActionGroupApiSchemaS3Option({required this.s3});
+  const BedrockagentAgentActionGroupApiSchemaPayloadOrS3S3(this.s3);
 
   final List<BedrockagentAgentActionGroupApiSchemaS3> s3;
 

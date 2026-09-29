@@ -103,8 +103,8 @@ final class CloudBuildStack extends Stack {
         location: TfArg.literal(region),
         name: TfArg.literal('github-app-conn'),
         githubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig:
-            Cloudbuildv2ConnectionGithubConfigOption(
-              githubConfig: Cloudbuildv2ConnectionGithubConfig(
+            .githubConfig(
+              Cloudbuildv2ConnectionGithubConfig(
                 appInstallationId: TfArg.literal(12345),
                 authorizerCredential:
                     Cloudbuildv2ConnectionGithubAuthorizerCredential(

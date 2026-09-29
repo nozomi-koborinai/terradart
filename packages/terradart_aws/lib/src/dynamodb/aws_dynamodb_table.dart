@@ -43,8 +43,30 @@ enum DynamodbTableTableClass implements TerraformEnum {
 /// At most one of `import_table`, `restore_backup_arn`, `restore_source_name`, `restore_source_table_arn` on `aws_dynamodb_table`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.importTable(...)`.
 sealed class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
   const DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn();
+
+  /// Sets `import_table`.
+  const factory DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.importTable(
+    DynamodbTableImportTable importTable,
+  ) = DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnImportTable;
+
+  /// Sets `restore_backup_arn`.
+  const factory DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.restoreBackupArn(
+    TfArg<String> restoreBackupArn,
+  ) = DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreBackupArn;
+
+  /// Sets `restore_source_name`.
+  const factory DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.restoreSourceName(
+    TfArg<String> restoreSourceName,
+  ) = DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceName;
+
+  /// Sets `restore_source_table_arn`.
+  const factory DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.restoreSourceTableArn(
+    TfArg<String> restoreSourceTableArn,
+  ) = DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceTableArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -56,11 +78,13 @@ sealed class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRest
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `import_table` (one of the [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn] choices).
-final class DynamodbTableImportTableOption
+/// The [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.importTable] choice: sets `import_table`.
+final class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnImportTable
     extends
         DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
-  const DynamodbTableImportTableOption({required this.importTable});
+  const DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnImportTable(
+    this.importTable,
+  );
 
   final DynamodbTableImportTable importTable;
 
@@ -76,11 +100,13 @@ final class DynamodbTableImportTableOption
   };
 }
 
-/// Sets `restore_backup_arn` (one of the [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn] choices).
-final class DynamodbTableRestoreBackupArnOption
+/// The [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.restoreBackupArn] choice: sets `restore_backup_arn`.
+final class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreBackupArn
     extends
         DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
-  const DynamodbTableRestoreBackupArnOption({required this.restoreBackupArn});
+  const DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreBackupArn(
+    this.restoreBackupArn,
+  );
 
   final TfArg<String> restoreBackupArn;
 
@@ -98,11 +124,13 @@ final class DynamodbTableRestoreBackupArnOption
   };
 }
 
-/// Sets `restore_source_name` (one of the [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn] choices).
-final class DynamodbTableRestoreSourceNameOption
+/// The [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.restoreSourceName] choice: sets `restore_source_name`.
+final class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceName
     extends
         DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
-  const DynamodbTableRestoreSourceNameOption({required this.restoreSourceName});
+  const DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceName(
+    this.restoreSourceName,
+  );
 
   final TfArg<String> restoreSourceName;
 
@@ -120,13 +148,13 @@ final class DynamodbTableRestoreSourceNameOption
   };
 }
 
-/// Sets `restore_source_table_arn` (one of the [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn] choices).
-final class DynamodbTableRestoreSourceTableArnOption
+/// The [DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn.restoreSourceTableArn] choice: sets `restore_source_table_arn`.
+final class DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceTableArn
     extends
         DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArn {
-  const DynamodbTableRestoreSourceTableArnOption({
-    required this.restoreSourceTableArn,
-  });
+  const DynamodbTableImportTableOrRestoreBackupArnOrRestoreSourceNameOrRestoreSourceTableArnRestoreSourceTableArn(
+    this.restoreSourceTableArn,
+  );
 
   final TfArg<String> restoreSourceTableArn;
 

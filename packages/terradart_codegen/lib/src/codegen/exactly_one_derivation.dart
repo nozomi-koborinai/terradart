@@ -258,7 +258,7 @@ WrapperOverride _derive(
       ..writeln()
       ..write(
         renderExactlyOneTypes(
-          prefix: prefix,
+          sealed: sealed,
           members: group,
           where: '`$type`',
           variants: variants,

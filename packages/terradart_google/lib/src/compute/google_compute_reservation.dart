@@ -133,8 +133,20 @@ final class ComputeReservationSpecificReservation {
 
 /// Exactly one of `instance_properties`, `source_instance_template` on the `specific_reservation` block of `google_compute_reservation`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.instanceProperties(...)`.
 sealed class ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate {
   const ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate();
+
+  /// Sets `instance_properties`.
+  const factory ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate.instanceProperties(
+    ComputeReservationSpecificReservationInstanceProperties instanceProperties,
+  ) = ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateInstanceProperties;
+
+  /// Sets `source_instance_template`.
+  const factory ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate.sourceInstanceTemplate(
+    TfArg<String> sourceInstanceTemplate,
+  ) = ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateSourceInstanceTemplate;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -142,13 +154,13 @@ sealed class ComputeReservationSpecificReservationInstancePropertiesOrSourceInst
   Map<String, Object?> encode();
 }
 
-/// Sets `instance_properties` (one of the [ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate] choices).
-final class ComputeReservationSpecificReservationInstancePropertiesOption
+/// The [ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate.instanceProperties] choice: sets `instance_properties`.
+final class ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateInstanceProperties
     extends
         ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate {
-  const ComputeReservationSpecificReservationInstancePropertiesOption({
-    required this.instanceProperties,
-  });
+  const ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateInstanceProperties(
+    this.instanceProperties,
+  );
 
   final ComputeReservationSpecificReservationInstanceProperties
   instanceProperties;
@@ -162,13 +174,13 @@ final class ComputeReservationSpecificReservationInstancePropertiesOption
   };
 }
 
-/// Sets `source_instance_template` (one of the [ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate] choices).
-final class ComputeReservationSpecificReservationSourceInstanceTemplateOption
+/// The [ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate.sourceInstanceTemplate] choice: sets `source_instance_template`.
+final class ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateSourceInstanceTemplate
     extends
         ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate {
-  const ComputeReservationSpecificReservationSourceInstanceTemplateOption({
-    required this.sourceInstanceTemplate,
-  });
+  const ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateSourceInstanceTemplate(
+    this.sourceInstanceTemplate,
+  );
 
   final TfArg<String> sourceInstanceTemplate;
 

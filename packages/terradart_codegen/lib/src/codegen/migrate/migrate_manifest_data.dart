@@ -47,11 +47,13 @@ final class MigrateHelperData {
   const MigrateHelperData({
     required this.className,
     required this.slots,
+    this.shorthand,
     this.reason,
   });
 
   final String className;
   final List<MigrateSlotData> slots;
+  final String? shorthand;
   final String? reason;
 }
 

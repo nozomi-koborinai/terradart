@@ -9,8 +9,20 @@ const Set<String> _googleApiGatewayApiConfigSensitive = <String>{};
 
 /// Exactly one of `openapi_documents`, `grpc_services` on `google_api_gateway_api_config`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.openapiDocuments(...)`.
 sealed class ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices {
   const ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices();
+
+  /// Sets `openapi_documents`.
+  const factory ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices.openapiDocuments(
+    List<ApiGatewayApiConfigOpenapiDocuments> openapiDocuments,
+  ) = ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesOpenapiDocuments;
+
+  /// Sets `grpc_services`.
+  const factory ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices.grpcServices(
+    List<ApiGatewayApiConfigGrpcServices> grpcServices,
+  ) = ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesGrpcServices;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,12 +34,12 @@ sealed class ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `openapi_documents` (one of the [ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices] choices).
-final class ApiGatewayApiConfigOpenapiDocumentsOption
+/// The [ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices.openapiDocuments] choice: sets `openapi_documents`.
+final class ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesOpenapiDocuments
     extends ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices {
-  const ApiGatewayApiConfigOpenapiDocumentsOption({
-    required this.openapiDocuments,
-  });
+  const ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesOpenapiDocuments(
+    this.openapiDocuments,
+  );
 
   final List<ApiGatewayApiConfigOpenapiDocuments> openapiDocuments;
 
@@ -47,10 +59,12 @@ final class ApiGatewayApiConfigOpenapiDocumentsOption
   };
 }
 
-/// Sets `grpc_services` (one of the [ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices] choices).
-final class ApiGatewayApiConfigGrpcServicesOption
+/// The [ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices.grpcServices] choice: sets `grpc_services`.
+final class ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesGrpcServices
     extends ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices {
-  const ApiGatewayApiConfigGrpcServicesOption({required this.grpcServices});
+  const ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesGrpcServices(
+    this.grpcServices,
+  );
 
   final List<ApiGatewayApiConfigGrpcServices> grpcServices;
 

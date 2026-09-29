@@ -21,8 +21,18 @@ enum ElbDesyncMitigationMode implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_elb`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class ElbNameOrNamePrefix {
   const ElbNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory ElbNameOrNamePrefix.name(TfArg<String> name) =
+      ElbNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory ElbNameOrNamePrefix.namePrefix(TfArg<String> namePrefix) =
+      ElbNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,9 +44,9 @@ sealed class ElbNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [ElbNameOrNamePrefix] choices).
-final class ElbNameOption extends ElbNameOrNamePrefix {
-  const ElbNameOption({required this.name});
+/// The [ElbNameOrNamePrefix.name] choice: sets `name`.
+final class ElbNameOrNamePrefixName extends ElbNameOrNamePrefix {
+  const ElbNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -50,9 +60,9 @@ final class ElbNameOption extends ElbNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [ElbNameOrNamePrefix] choices).
-final class ElbNamePrefixOption extends ElbNameOrNamePrefix {
-  const ElbNamePrefixOption({required this.namePrefix});
+/// The [ElbNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class ElbNameOrNamePrefixNamePrefix extends ElbNameOrNamePrefix {
+  const ElbNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

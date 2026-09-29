@@ -69,8 +69,20 @@ final class SpannerBackupScheduleEncryptionConfig {
 /// At most one of `kms_key_name`, `kms_key_names` on the `encryption_config` block of `google_spanner_backup_schedule`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.kmsKeyName(...)`.
 sealed class SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames {
   const SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames();
+
+  /// Sets `kms_key_name`.
+  const factory SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames.kmsKeyName(
+    TfArg<String> kmsKeyName,
+  ) = SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNamesKmsKeyName;
+
+  /// Sets `kms_key_names`.
+  const factory SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames.kmsKeyNames(
+    TfArg<List<Object?>> kmsKeyNames,
+  ) = SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNamesKmsKeyNames;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -78,12 +90,12 @@ sealed class SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames {
   Map<String, Object?> encode();
 }
 
-/// Sets `kms_key_name` (one of the [SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames] choices).
-final class SpannerBackupScheduleEncryptionConfigKmsKeyNameOption
+/// The [SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames.kmsKeyName] choice: sets `kms_key_name`.
+final class SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNamesKmsKeyName
     extends SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames {
-  const SpannerBackupScheduleEncryptionConfigKmsKeyNameOption({
-    required this.kmsKeyName,
-  });
+  const SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNamesKmsKeyName(
+    this.kmsKeyName,
+  );
 
   final TfArg<String> kmsKeyName;
 
@@ -94,12 +106,12 @@ final class SpannerBackupScheduleEncryptionConfigKmsKeyNameOption
   Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
 }
 
-/// Sets `kms_key_names` (one of the [SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames] choices).
-final class SpannerBackupScheduleEncryptionConfigKmsKeyNamesOption
+/// The [SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames.kmsKeyNames] choice: sets `kms_key_names`.
+final class SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNamesKmsKeyNames
     extends SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNames {
-  const SpannerBackupScheduleEncryptionConfigKmsKeyNamesOption({
-    required this.kmsKeyNames,
-  });
+  const SpannerBackupScheduleEncryptionConfigKmsKeyNameOrKmsKeyNamesKmsKeyNames(
+    this.kmsKeyNames,
+  );
 
   final TfArg<List<Object?>> kmsKeyNames;
 

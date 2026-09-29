@@ -8,16 +8,16 @@ export 'src/elasticache/aws_elasticache_cluster.dart'
         AwsElasticacheCluster,
         ElasticacheClusterAzMode,
         ElasticacheClusterEngine,
-        ElasticacheClusterEngineOption,
         ElasticacheClusterEngineOrReplicationGroupId,
+        ElasticacheClusterEngineOrReplicationGroupIdEngine,
+        ElasticacheClusterEngineOrReplicationGroupIdReplicationGroupId,
         ElasticacheClusterIpDiscovery,
         ElasticacheClusterLogDeliveryConfiguration,
         ElasticacheClusterLogDeliveryConfigurationDestinationType,
         ElasticacheClusterLogDeliveryConfigurationLogFormat,
         ElasticacheClusterLogDeliveryConfigurationLogType,
         ElasticacheClusterNetworkType,
-        ElasticacheClusterOutpostMode,
-        ElasticacheClusterReplicationGroupIdOption;
+        ElasticacheClusterOutpostMode;
 export 'src/elasticache/aws_elasticache_global_replication_group.dart'
     show
         AwsElasticacheGlobalReplicationGroup,
@@ -27,10 +27,11 @@ export 'src/elasticache/aws_elasticache_parameter_group.dart'
 export 'src/elasticache/aws_elasticache_replication_group.dart'
     show
         AwsElasticacheReplicationGroup,
-        ElasticacheReplicationGroupAuthTokenOption,
         ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds,
+        ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthToken,
+        ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsAuthTokenWo,
+        ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIdsUserGroupIds,
         ElasticacheReplicationGroupAuthTokenUpdateStrategy,
-        ElasticacheReplicationGroupAuthTokenWoOption,
         ElasticacheReplicationGroupClusterMode,
         ElasticacheReplicationGroupDurability,
         ElasticacheReplicationGroupEngine,
@@ -41,11 +42,10 @@ export 'src/elasticache/aws_elasticache_replication_group.dart'
         ElasticacheReplicationGroupLogDeliveryConfigurationLogType,
         ElasticacheReplicationGroupNetworkType,
         ElasticacheReplicationGroupNodeGroupConfiguration,
-        ElasticacheReplicationGroupNodeGroupConfigurationOption,
         ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs,
-        ElasticacheReplicationGroupPreferredCacheClusterAzsOption,
-        ElasticacheReplicationGroupTransitEncryptionMode,
-        ElasticacheReplicationGroupUserGroupIdsOption;
+        ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsNodeGroupConfiguration,
+        ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzsPreferredCacheClusterAzs,
+        ElasticacheReplicationGroupTransitEncryptionMode;
 export 'src/elasticache/aws_elasticache_reserved_cache_node.dart'
     show AwsElasticacheReservedCacheNode;
 export 'src/elasticache/aws_elasticache_serverless_cache.dart'

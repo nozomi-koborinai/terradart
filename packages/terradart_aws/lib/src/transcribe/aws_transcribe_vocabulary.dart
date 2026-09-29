@@ -8,8 +8,20 @@ const Set<String> _awsTranscribeVocabularySensitive = <String>{};
 
 /// Exactly one of `phrases`, `vocabulary_file_uri` on `aws_transcribe_vocabulary`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.phrases(...)`.
 sealed class TranscribeVocabularyPhrasesOrVocabularyFileUri {
   const TranscribeVocabularyPhrasesOrVocabularyFileUri();
+
+  /// Sets `phrases`.
+  const factory TranscribeVocabularyPhrasesOrVocabularyFileUri.phrases(
+    TfArg<List<String>> phrases,
+  ) = TranscribeVocabularyPhrasesOrVocabularyFileUriPhrases;
+
+  /// Sets `vocabulary_file_uri`.
+  const factory TranscribeVocabularyPhrasesOrVocabularyFileUri.vocabularyFileUri(
+    TfArg<String> vocabularyFileUri,
+  ) = TranscribeVocabularyPhrasesOrVocabularyFileUriVocabularyFileUri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,10 +33,10 @@ sealed class TranscribeVocabularyPhrasesOrVocabularyFileUri {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `phrases` (one of the [TranscribeVocabularyPhrasesOrVocabularyFileUri] choices).
-final class TranscribeVocabularyPhrasesOption
+/// The [TranscribeVocabularyPhrasesOrVocabularyFileUri.phrases] choice: sets `phrases`.
+final class TranscribeVocabularyPhrasesOrVocabularyFileUriPhrases
     extends TranscribeVocabularyPhrasesOrVocabularyFileUri {
-  const TranscribeVocabularyPhrasesOption({required this.phrases});
+  const TranscribeVocabularyPhrasesOrVocabularyFileUriPhrases(this.phrases);
 
   final TfArg<List<String>> phrases;
 
@@ -38,12 +50,12 @@ final class TranscribeVocabularyPhrasesOption
   Map<String, TfArg<Object?>> get argMap => {'phrases': phrases};
 }
 
-/// Sets `vocabulary_file_uri` (one of the [TranscribeVocabularyPhrasesOrVocabularyFileUri] choices).
-final class TranscribeVocabularyVocabularyFileUriOption
+/// The [TranscribeVocabularyPhrasesOrVocabularyFileUri.vocabularyFileUri] choice: sets `vocabulary_file_uri`.
+final class TranscribeVocabularyPhrasesOrVocabularyFileUriVocabularyFileUri
     extends TranscribeVocabularyPhrasesOrVocabularyFileUri {
-  const TranscribeVocabularyVocabularyFileUriOption({
-    required this.vocabularyFileUri,
-  });
+  const TranscribeVocabularyPhrasesOrVocabularyFileUriVocabularyFileUri(
+    this.vocabularyFileUri,
+  );
 
   final TfArg<String> vocabularyFileUri;
 

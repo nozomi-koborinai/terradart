@@ -59,8 +59,20 @@ final class EbsSnapshotImportDiskContainer {
 
 /// Exactly one of `url`, `user_bucket` on the `disk_container` block of `aws_ebs_snapshot_import`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.url(...)`.
 sealed class EbsSnapshotImportDiskContainerUrlOrUserBucket {
   const EbsSnapshotImportDiskContainerUrlOrUserBucket();
+
+  /// Sets `url`.
+  const factory EbsSnapshotImportDiskContainerUrlOrUserBucket.url(
+    TfArg<String> url,
+  ) = EbsSnapshotImportDiskContainerUrlOrUserBucketUrl;
+
+  /// Sets `user_bucket`.
+  const factory EbsSnapshotImportDiskContainerUrlOrUserBucket.userBucket(
+    EbsSnapshotImportDiskContainerUserBucket userBucket,
+  ) = EbsSnapshotImportDiskContainerUrlOrUserBucketUserBucket;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -68,10 +80,10 @@ sealed class EbsSnapshotImportDiskContainerUrlOrUserBucket {
   Map<String, Object?> encode();
 }
 
-/// Sets `url` (one of the [EbsSnapshotImportDiskContainerUrlOrUserBucket] choices).
-final class EbsSnapshotImportDiskContainerUrlOption
+/// The [EbsSnapshotImportDiskContainerUrlOrUserBucket.url] choice: sets `url`.
+final class EbsSnapshotImportDiskContainerUrlOrUserBucketUrl
     extends EbsSnapshotImportDiskContainerUrlOrUserBucket {
-  const EbsSnapshotImportDiskContainerUrlOption({required this.url});
+  const EbsSnapshotImportDiskContainerUrlOrUserBucketUrl(this.url);
 
   final TfArg<String> url;
 
@@ -82,12 +94,12 @@ final class EbsSnapshotImportDiskContainerUrlOption
   Map<String, Object?> encode() => {'url': url.toTfJson()};
 }
 
-/// Sets `user_bucket` (one of the [EbsSnapshotImportDiskContainerUrlOrUserBucket] choices).
-final class EbsSnapshotImportDiskContainerUserBucketOption
+/// The [EbsSnapshotImportDiskContainerUrlOrUserBucket.userBucket] choice: sets `user_bucket`.
+final class EbsSnapshotImportDiskContainerUrlOrUserBucketUserBucket
     extends EbsSnapshotImportDiskContainerUrlOrUserBucket {
-  const EbsSnapshotImportDiskContainerUserBucketOption({
-    required this.userBucket,
-  });
+  const EbsSnapshotImportDiskContainerUrlOrUserBucketUserBucket(
+    this.userBucket,
+  );
 
   final EbsSnapshotImportDiskContainerUserBucket userBucket;
 

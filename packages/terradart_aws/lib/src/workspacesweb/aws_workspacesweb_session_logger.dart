@@ -20,8 +20,20 @@ final class WorkspaceswebSessionLoggerEventFilter {
 
 /// Exactly one of `all`, `include` on the `event_filter` block of `aws_workspacesweb_session_logger`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.all(...)`.
 sealed class WorkspaceswebSessionLoggerEventFilterAllOrInclude {
   const WorkspaceswebSessionLoggerEventFilterAllOrInclude();
+
+  /// Sets `all`.
+  const factory WorkspaceswebSessionLoggerEventFilterAllOrInclude.all(
+    List<WorkspaceswebSessionLoggerEventFilterAll> all,
+  ) = WorkspaceswebSessionLoggerEventFilterAllOrIncludeAll;
+
+  /// Sets `include`.
+  const factory WorkspaceswebSessionLoggerEventFilterAllOrInclude.include(
+    List<TfArg<WorkspaceswebSessionLoggerEventFilterInclude>> include,
+  ) = WorkspaceswebSessionLoggerEventFilterAllOrIncludeInclude;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -29,10 +41,10 @@ sealed class WorkspaceswebSessionLoggerEventFilterAllOrInclude {
   Map<String, Object?> encode();
 }
 
-/// Sets `all` (one of the [WorkspaceswebSessionLoggerEventFilterAllOrInclude] choices).
-final class WorkspaceswebSessionLoggerEventFilterAllOption
+/// The [WorkspaceswebSessionLoggerEventFilterAllOrInclude.all] choice: sets `all`.
+final class WorkspaceswebSessionLoggerEventFilterAllOrIncludeAll
     extends WorkspaceswebSessionLoggerEventFilterAllOrInclude {
-  const WorkspaceswebSessionLoggerEventFilterAllOption({required this.all});
+  const WorkspaceswebSessionLoggerEventFilterAllOrIncludeAll(this.all);
 
   final List<WorkspaceswebSessionLoggerEventFilterAll> all;
 
@@ -45,12 +57,10 @@ final class WorkspaceswebSessionLoggerEventFilterAllOption
   };
 }
 
-/// Sets `include` (one of the [WorkspaceswebSessionLoggerEventFilterAllOrInclude] choices).
-final class WorkspaceswebSessionLoggerEventFilterIncludeOption
+/// The [WorkspaceswebSessionLoggerEventFilterAllOrInclude.include] choice: sets `include`.
+final class WorkspaceswebSessionLoggerEventFilterAllOrIncludeInclude
     extends WorkspaceswebSessionLoggerEventFilterAllOrInclude {
-  const WorkspaceswebSessionLoggerEventFilterIncludeOption({
-    required this.include,
-  });
+  const WorkspaceswebSessionLoggerEventFilterAllOrIncludeInclude(this.include);
 
   final List<TfArg<WorkspaceswebSessionLoggerEventFilterInclude>> include;
 

@@ -58,8 +58,50 @@ enum LakeformationPermissionsPermissionsWithGrantOption
 
 /// Exactly one of `catalog_resource`, `data_cells_filter`, `data_location`, `database`, `lf_tag`, `lf_tag_policy`, `table`, `table_with_columns` on `aws_lakeformation_permissions`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.catalogResource(...)`.
 sealed class LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
   const LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns();
+
+  /// Sets `catalog_resource`.
+  const factory LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.catalogResource(
+    TfArg<bool> catalogResource,
+  ) = LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsCatalogResource;
+
+  /// Sets `data_cells_filter`.
+  const factory LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.dataCellsFilter(
+    LakeformationPermissionsDataCellsFilter dataCellsFilter,
+  ) = LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDataCellsFilter;
+
+  /// Sets `data_location`.
+  const factory LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.dataLocation(
+    LakeformationPermissionsDataLocation dataLocation,
+  ) = LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDataLocation;
+
+  /// Sets `database`.
+  const factory LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.database(
+    LakeformationPermissionsDatabase database,
+  ) = LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDatabase;
+
+  /// Sets `lf_tag`.
+  const factory LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.lfTag(
+    LakeformationPermissionsLfTag lfTag,
+  ) = LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsLfTag;
+
+  /// Sets `lf_tag_policy`.
+  const factory LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.lfTagPolicy(
+    LakeformationPermissionsLfTagPolicy lfTagPolicy,
+  ) = LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsLfTagPolicy;
+
+  /// Sets `table`.
+  const factory LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.table(
+    LakeformationPermissionsTable table,
+  ) = LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsTable;
+
+  /// Sets `table_with_columns`.
+  const factory LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.tableWithColumns(
+    LakeformationPermissionsTableWithColumns tableWithColumns,
+  ) = LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsTableWithColumns;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -71,13 +113,13 @@ sealed class LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocat
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `catalog_resource` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
-final class LakeformationPermissionsCatalogResourceOption
+/// The [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.catalogResource] choice: sets `catalog_resource`.
+final class LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsCatalogResource
     extends
         LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationPermissionsCatalogResourceOption({
-    required this.catalogResource,
-  });
+  const LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsCatalogResource(
+    this.catalogResource,
+  );
 
   final TfArg<bool> catalogResource;
 
@@ -95,13 +137,13 @@ final class LakeformationPermissionsCatalogResourceOption
   };
 }
 
-/// Sets `data_cells_filter` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
-final class LakeformationPermissionsDataCellsFilterOption
+/// The [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.dataCellsFilter] choice: sets `data_cells_filter`.
+final class LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDataCellsFilter
     extends
         LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationPermissionsDataCellsFilterOption({
-    required this.dataCellsFilter,
-  });
+  const LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDataCellsFilter(
+    this.dataCellsFilter,
+  );
 
   final LakeformationPermissionsDataCellsFilter dataCellsFilter;
 
@@ -119,13 +161,13 @@ final class LakeformationPermissionsDataCellsFilterOption
   };
 }
 
-/// Sets `data_location` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
-final class LakeformationPermissionsDataLocationOption
+/// The [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.dataLocation] choice: sets `data_location`.
+final class LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDataLocation
     extends
         LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationPermissionsDataLocationOption({
-    required this.dataLocation,
-  });
+  const LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDataLocation(
+    this.dataLocation,
+  );
 
   final LakeformationPermissionsDataLocation dataLocation;
 
@@ -141,11 +183,13 @@ final class LakeformationPermissionsDataLocationOption
   };
 }
 
-/// Sets `database` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
-final class LakeformationPermissionsDatabaseOption
+/// The [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.database] choice: sets `database`.
+final class LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDatabase
     extends
         LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationPermissionsDatabaseOption({required this.database});
+  const LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsDatabase(
+    this.database,
+  );
 
   final LakeformationPermissionsDatabase database;
 
@@ -161,11 +205,13 @@ final class LakeformationPermissionsDatabaseOption
   };
 }
 
-/// Sets `lf_tag` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
-final class LakeformationPermissionsLfTagOption
+/// The [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.lfTag] choice: sets `lf_tag`.
+final class LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsLfTag
     extends
         LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationPermissionsLfTagOption({required this.lfTag});
+  const LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsLfTag(
+    this.lfTag,
+  );
 
   final LakeformationPermissionsLfTag lfTag;
 
@@ -181,11 +227,13 @@ final class LakeformationPermissionsLfTagOption
   };
 }
 
-/// Sets `lf_tag_policy` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
-final class LakeformationPermissionsLfTagPolicyOption
+/// The [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.lfTagPolicy] choice: sets `lf_tag_policy`.
+final class LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsLfTagPolicy
     extends
         LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationPermissionsLfTagPolicyOption({required this.lfTagPolicy});
+  const LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsLfTagPolicy(
+    this.lfTagPolicy,
+  );
 
   final LakeformationPermissionsLfTagPolicy lfTagPolicy;
 
@@ -201,11 +249,13 @@ final class LakeformationPermissionsLfTagPolicyOption
   };
 }
 
-/// Sets `table` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
-final class LakeformationPermissionsTableOption
+/// The [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.table] choice: sets `table`.
+final class LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsTable
     extends
         LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationPermissionsTableOption({required this.table});
+  const LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsTable(
+    this.table,
+  );
 
   final LakeformationPermissionsTable table;
 
@@ -221,13 +271,13 @@ final class LakeformationPermissionsTableOption
   };
 }
 
-/// Sets `table_with_columns` (one of the [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns] choices).
-final class LakeformationPermissionsTableWithColumnsOption
+/// The [LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns.tableWithColumns] choice: sets `table_with_columns`.
+final class LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsTableWithColumns
     extends
         LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationPermissionsTableWithColumnsOption({
-    required this.tableWithColumns,
-  });
+  const LakeformationPermissionsCatalogResourceOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagPolicyOrTableOrTableWithColumnsTableWithColumns(
+    this.tableWithColumns,
+  );
 
   final LakeformationPermissionsTableWithColumns tableWithColumns;
 

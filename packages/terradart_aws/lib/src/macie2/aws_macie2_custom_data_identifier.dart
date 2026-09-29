@@ -9,8 +9,20 @@ const Set<String> _awsMacie2CustomDataIdentifierSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_macie2_custom_data_identifier`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class Macie2CustomDataIdentifierNameOrNamePrefix {
   const Macie2CustomDataIdentifierNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory Macie2CustomDataIdentifierNameOrNamePrefix.name(
+    TfArg<String> name,
+  ) = Macie2CustomDataIdentifierNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory Macie2CustomDataIdentifierNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = Macie2CustomDataIdentifierNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +34,10 @@ sealed class Macie2CustomDataIdentifierNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [Macie2CustomDataIdentifierNameOrNamePrefix] choices).
-final class Macie2CustomDataIdentifierNameOption
+/// The [Macie2CustomDataIdentifierNameOrNamePrefix.name] choice: sets `name`.
+final class Macie2CustomDataIdentifierNameOrNamePrefixName
     extends Macie2CustomDataIdentifierNameOrNamePrefix {
-  const Macie2CustomDataIdentifierNameOption({required this.name});
+  const Macie2CustomDataIdentifierNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -39,10 +51,10 @@ final class Macie2CustomDataIdentifierNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [Macie2CustomDataIdentifierNameOrNamePrefix] choices).
-final class Macie2CustomDataIdentifierNamePrefixOption
+/// The [Macie2CustomDataIdentifierNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class Macie2CustomDataIdentifierNameOrNamePrefixNamePrefix
     extends Macie2CustomDataIdentifierNameOrNamePrefix {
-  const Macie2CustomDataIdentifierNamePrefixOption({required this.namePrefix});
+  const Macie2CustomDataIdentifierNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

@@ -9,8 +9,20 @@ const Set<String> _awsNeptuneEventSubscriptionSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_neptune_event_subscription`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class NeptuneEventSubscriptionNameOrNamePrefix {
   const NeptuneEventSubscriptionNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory NeptuneEventSubscriptionNameOrNamePrefix.name(
+    TfArg<String> name,
+  ) = NeptuneEventSubscriptionNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory NeptuneEventSubscriptionNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = NeptuneEventSubscriptionNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +34,10 @@ sealed class NeptuneEventSubscriptionNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [NeptuneEventSubscriptionNameOrNamePrefix] choices).
-final class NeptuneEventSubscriptionNameOption
+/// The [NeptuneEventSubscriptionNameOrNamePrefix.name] choice: sets `name`.
+final class NeptuneEventSubscriptionNameOrNamePrefixName
     extends NeptuneEventSubscriptionNameOrNamePrefix {
-  const NeptuneEventSubscriptionNameOption({required this.name});
+  const NeptuneEventSubscriptionNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -39,10 +51,10 @@ final class NeptuneEventSubscriptionNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [NeptuneEventSubscriptionNameOrNamePrefix] choices).
-final class NeptuneEventSubscriptionNamePrefixOption
+/// The [NeptuneEventSubscriptionNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class NeptuneEventSubscriptionNameOrNamePrefixNamePrefix
     extends NeptuneEventSubscriptionNameOrNamePrefix {
-  const NeptuneEventSubscriptionNamePrefixOption({required this.namePrefix});
+  const NeptuneEventSubscriptionNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

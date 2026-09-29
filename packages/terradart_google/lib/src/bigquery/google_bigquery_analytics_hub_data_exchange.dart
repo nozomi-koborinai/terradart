@@ -34,8 +34,22 @@ final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfig {
 
 /// Exactly one of `default_exchange_config`, `dcr_exchange_config` on the `sharing_environment_config` block of `google_bigquery_analytics_hub_data_exchange`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.defaultExchangeConfig(...)`.
 sealed class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfig {
   const BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfig();
+
+  /// Sets `default_exchange_config`.
+  const factory BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfig.defaultExchangeConfig(
+    BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfig
+    defaultExchangeConfig,
+  ) = BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfigDefaultExchangeConfig;
+
+  /// Sets `dcr_exchange_config`.
+  const factory BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfig.dcrExchangeConfig(
+    BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfig
+    dcrExchangeConfig,
+  ) = BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfigDcrExchangeConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,13 +57,13 @@ sealed class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExch
   Map<String, Object?> encode();
 }
 
-/// Sets `default_exchange_config` (one of the [BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfig] choices).
-final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOption
+/// The [BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfig.defaultExchangeConfig] choice: sets `default_exchange_config`.
+final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfigDefaultExchangeConfig
     extends
         BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfig {
-  const BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOption({
-    required this.defaultExchangeConfig,
-  });
+  const BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfigDefaultExchangeConfig(
+    this.defaultExchangeConfig,
+  );
 
   final BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfig
   defaultExchangeConfig;
@@ -63,13 +77,13 @@ final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExcha
   };
 }
 
-/// Sets `dcr_exchange_config` (one of the [BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfig] choices).
-final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfigOption
+/// The [BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfig.dcrExchangeConfig] choice: sets `dcr_exchange_config`.
+final class BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfigDcrExchangeConfig
     extends
         BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfig {
-  const BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfigOption({
-    required this.dcrExchangeConfig,
-  });
+  const BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigOrDcrExchangeConfigDcrExchangeConfig(
+    this.dcrExchangeConfig,
+  );
 
   final BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDcrExchangeConfig
   dcrExchangeConfig;

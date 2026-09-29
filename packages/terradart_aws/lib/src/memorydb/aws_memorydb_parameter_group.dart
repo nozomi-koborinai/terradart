@@ -10,8 +10,20 @@ const Set<String> _awsMemorydbParameterGroupSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_memorydb_parameter_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class MemorydbParameterGroupNameOrNamePrefix {
   const MemorydbParameterGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory MemorydbParameterGroupNameOrNamePrefix.name(
+    TfArg<String> name,
+  ) = MemorydbParameterGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory MemorydbParameterGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = MemorydbParameterGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +35,10 @@ sealed class MemorydbParameterGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [MemorydbParameterGroupNameOrNamePrefix] choices).
-final class MemorydbParameterGroupNameOption
+/// The [MemorydbParameterGroupNameOrNamePrefix.name] choice: sets `name`.
+final class MemorydbParameterGroupNameOrNamePrefixName
     extends MemorydbParameterGroupNameOrNamePrefix {
-  const MemorydbParameterGroupNameOption({required this.name});
+  const MemorydbParameterGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -40,10 +52,10 @@ final class MemorydbParameterGroupNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [MemorydbParameterGroupNameOrNamePrefix] choices).
-final class MemorydbParameterGroupNamePrefixOption
+/// The [MemorydbParameterGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class MemorydbParameterGroupNameOrNamePrefixNamePrefix
     extends MemorydbParameterGroupNameOrNamePrefix {
-  const MemorydbParameterGroupNamePrefixOption({required this.namePrefix});
+  const MemorydbParameterGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

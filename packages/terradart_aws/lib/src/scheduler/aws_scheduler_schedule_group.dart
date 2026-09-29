@@ -9,8 +9,20 @@ const Set<String> _awsSchedulerScheduleGroupSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_scheduler_schedule_group`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class SchedulerScheduleGroupNameOrNamePrefix {
   const SchedulerScheduleGroupNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory SchedulerScheduleGroupNameOrNamePrefix.name(
+    TfArg<String> name,
+  ) = SchedulerScheduleGroupNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory SchedulerScheduleGroupNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = SchedulerScheduleGroupNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +34,10 @@ sealed class SchedulerScheduleGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [SchedulerScheduleGroupNameOrNamePrefix] choices).
-final class SchedulerScheduleGroupNameOption
+/// The [SchedulerScheduleGroupNameOrNamePrefix.name] choice: sets `name`.
+final class SchedulerScheduleGroupNameOrNamePrefixName
     extends SchedulerScheduleGroupNameOrNamePrefix {
-  const SchedulerScheduleGroupNameOption({required this.name});
+  const SchedulerScheduleGroupNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -39,10 +51,10 @@ final class SchedulerScheduleGroupNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [SchedulerScheduleGroupNameOrNamePrefix] choices).
-final class SchedulerScheduleGroupNamePrefixOption
+/// The [SchedulerScheduleGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class SchedulerScheduleGroupNameOrNamePrefixNamePrefix
     extends SchedulerScheduleGroupNameOrNamePrefix {
-  const SchedulerScheduleGroupNamePrefixOption({required this.namePrefix});
+  const SchedulerScheduleGroupNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

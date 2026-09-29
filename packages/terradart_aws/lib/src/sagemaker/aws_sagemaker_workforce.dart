@@ -11,8 +11,20 @@ const Set<String> _awsSagemakerWorkforceSensitive = <String>{
 
 /// Exactly one of `cognito_config`, `oidc_config` on `aws_sagemaker_workforce`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.cognitoConfig(...)`.
 sealed class SagemakerWorkforceCognitoConfigOrOidcConfig {
   const SagemakerWorkforceCognitoConfigOrOidcConfig();
+
+  /// Sets `cognito_config`.
+  const factory SagemakerWorkforceCognitoConfigOrOidcConfig.cognitoConfig(
+    SagemakerWorkforceCognitoConfig cognitoConfig,
+  ) = SagemakerWorkforceCognitoConfigOrOidcConfigCognitoConfig;
+
+  /// Sets `oidc_config`.
+  const factory SagemakerWorkforceCognitoConfigOrOidcConfig.oidcConfig(
+    SagemakerWorkforceOidcConfig oidcConfig,
+  ) = SagemakerWorkforceCognitoConfigOrOidcConfigOidcConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -24,10 +36,12 @@ sealed class SagemakerWorkforceCognitoConfigOrOidcConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `cognito_config` (one of the [SagemakerWorkforceCognitoConfigOrOidcConfig] choices).
-final class SagemakerWorkforceCognitoConfigOption
+/// The [SagemakerWorkforceCognitoConfigOrOidcConfig.cognitoConfig] choice: sets `cognito_config`.
+final class SagemakerWorkforceCognitoConfigOrOidcConfigCognitoConfig
     extends SagemakerWorkforceCognitoConfigOrOidcConfig {
-  const SagemakerWorkforceCognitoConfigOption({required this.cognitoConfig});
+  const SagemakerWorkforceCognitoConfigOrOidcConfigCognitoConfig(
+    this.cognitoConfig,
+  );
 
   final SagemakerWorkforceCognitoConfig cognitoConfig;
 
@@ -43,10 +57,10 @@ final class SagemakerWorkforceCognitoConfigOption
   };
 }
 
-/// Sets `oidc_config` (one of the [SagemakerWorkforceCognitoConfigOrOidcConfig] choices).
-final class SagemakerWorkforceOidcConfigOption
+/// The [SagemakerWorkforceCognitoConfigOrOidcConfig.oidcConfig] choice: sets `oidc_config`.
+final class SagemakerWorkforceCognitoConfigOrOidcConfigOidcConfig
     extends SagemakerWorkforceCognitoConfigOrOidcConfig {
-  const SagemakerWorkforceOidcConfigOption({required this.oidcConfig});
+  const SagemakerWorkforceCognitoConfigOrOidcConfigOidcConfig(this.oidcConfig);
 
   final SagemakerWorkforceOidcConfig oidcConfig;
 

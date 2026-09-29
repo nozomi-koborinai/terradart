@@ -11,8 +11,20 @@ const Set<String> _awsTransferHostKeySensitive = <String>{
 
 /// Exactly one of `host_key_body`, `host_key_body_wo` on `aws_transfer_host_key`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.hostKeyBody(...)`.
 sealed class TransferHostKeyHostKeyBodyOrHostKeyBodyWo {
   const TransferHostKeyHostKeyBodyOrHostKeyBodyWo();
+
+  /// Sets `host_key_body`.
+  const factory TransferHostKeyHostKeyBodyOrHostKeyBodyWo.hostKeyBody(
+    TfArg<String> hostKeyBody,
+  ) = TransferHostKeyHostKeyBodyOrHostKeyBodyWoHostKeyBody;
+
+  /// Sets `host_key_body_wo`.
+  const factory TransferHostKeyHostKeyBodyOrHostKeyBodyWo.hostKeyBodyWo(
+    TfArg<String> hostKeyBodyWo,
+  ) = TransferHostKeyHostKeyBodyOrHostKeyBodyWoHostKeyBodyWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -24,10 +36,10 @@ sealed class TransferHostKeyHostKeyBodyOrHostKeyBodyWo {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `host_key_body` (one of the [TransferHostKeyHostKeyBodyOrHostKeyBodyWo] choices).
-final class TransferHostKeyHostKeyBodyOption
+/// The [TransferHostKeyHostKeyBodyOrHostKeyBodyWo.hostKeyBody] choice: sets `host_key_body`.
+final class TransferHostKeyHostKeyBodyOrHostKeyBodyWoHostKeyBody
     extends TransferHostKeyHostKeyBodyOrHostKeyBodyWo {
-  const TransferHostKeyHostKeyBodyOption({required this.hostKeyBody});
+  const TransferHostKeyHostKeyBodyOrHostKeyBodyWoHostKeyBody(this.hostKeyBody);
 
   final TfArg<String> hostKeyBody;
 
@@ -41,10 +53,12 @@ final class TransferHostKeyHostKeyBodyOption
   Map<String, TfArg<Object?>> get argMap => {'host_key_body': hostKeyBody};
 }
 
-/// Sets `host_key_body_wo` (one of the [TransferHostKeyHostKeyBodyOrHostKeyBodyWo] choices).
-final class TransferHostKeyHostKeyBodyWoOption
+/// The [TransferHostKeyHostKeyBodyOrHostKeyBodyWo.hostKeyBodyWo] choice: sets `host_key_body_wo`.
+final class TransferHostKeyHostKeyBodyOrHostKeyBodyWoHostKeyBodyWo
     extends TransferHostKeyHostKeyBodyOrHostKeyBodyWo {
-  const TransferHostKeyHostKeyBodyWoOption({required this.hostKeyBodyWo});
+  const TransferHostKeyHostKeyBodyOrHostKeyBodyWoHostKeyBodyWo(
+    this.hostKeyBodyWo,
+  );
 
   final TfArg<String> hostKeyBodyWo;
 

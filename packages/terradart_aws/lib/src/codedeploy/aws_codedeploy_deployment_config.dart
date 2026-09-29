@@ -68,8 +68,22 @@ final class CodedeployDeploymentConfigTrafficRoutingConfig {
 /// At most one of `time_based_canary`, `time_based_linear` on the `traffic_routing_config` block of `aws_codedeploy_deployment_config`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.timeBasedCanary(...)`.
 sealed class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear {
   const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear();
+
+  /// Sets `time_based_canary`.
+  const factory CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear.timeBasedCanary(
+    CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanary
+    timeBasedCanary,
+  ) = CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinearTimeBasedCanary;
+
+  /// Sets `time_based_linear`.
+  const factory CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear.timeBasedLinear(
+    CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinear
+    timeBasedLinear,
+  ) = CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinearTimeBasedLinear;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -77,13 +91,13 @@ sealed class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTime
   Map<String, Object?> encode();
 }
 
-/// Sets `time_based_canary` (one of the [CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear] choices).
-final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOption
+/// The [CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear.timeBasedCanary] choice: sets `time_based_canary`.
+final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinearTimeBasedCanary
     extends
         CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear {
-  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOption({
-    required this.timeBasedCanary,
-  });
+  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinearTimeBasedCanary(
+    this.timeBasedCanary,
+  );
 
   final CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanary
   timeBasedCanary;
@@ -97,13 +111,13 @@ final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOption
   };
 }
 
-/// Sets `time_based_linear` (one of the [CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear] choices).
-final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinearOption
+/// The [CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear.timeBasedLinear] choice: sets `time_based_linear`.
+final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinearTimeBasedLinear
     extends
         CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear {
-  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinearOption({
-    required this.timeBasedLinear,
-  });
+  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinearTimeBasedLinear(
+    this.timeBasedLinear,
+  );
 
   final CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinear
   timeBasedLinear;

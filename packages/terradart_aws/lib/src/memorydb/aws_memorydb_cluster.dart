@@ -40,8 +40,19 @@ enum MemorydbClusterNetworkType implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_memorydb_cluster`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class MemorydbClusterNameOrNamePrefix {
   const MemorydbClusterNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory MemorydbClusterNameOrNamePrefix.name(TfArg<String> name) =
+      MemorydbClusterNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory MemorydbClusterNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = MemorydbClusterNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -53,9 +64,10 @@ sealed class MemorydbClusterNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [MemorydbClusterNameOrNamePrefix] choices).
-final class MemorydbClusterNameOption extends MemorydbClusterNameOrNamePrefix {
-  const MemorydbClusterNameOption({required this.name});
+/// The [MemorydbClusterNameOrNamePrefix.name] choice: sets `name`.
+final class MemorydbClusterNameOrNamePrefixName
+    extends MemorydbClusterNameOrNamePrefix {
+  const MemorydbClusterNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -69,10 +81,10 @@ final class MemorydbClusterNameOption extends MemorydbClusterNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [MemorydbClusterNameOrNamePrefix] choices).
-final class MemorydbClusterNamePrefixOption
+/// The [MemorydbClusterNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class MemorydbClusterNameOrNamePrefixNamePrefix
     extends MemorydbClusterNameOrNamePrefix {
-  const MemorydbClusterNamePrefixOption({required this.namePrefix});
+  const MemorydbClusterNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -89,8 +101,20 @@ final class MemorydbClusterNamePrefixOption
 /// At most one of `snapshot_arns`, `snapshot_name` on `aws_memorydb_cluster`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.snapshotArns(...)`.
 sealed class MemorydbClusterSnapshotArnsOrSnapshotName {
   const MemorydbClusterSnapshotArnsOrSnapshotName();
+
+  /// Sets `snapshot_arns`.
+  const factory MemorydbClusterSnapshotArnsOrSnapshotName.snapshotArns(
+    TfArg<List<String>> snapshotArns,
+  ) = MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotArns;
+
+  /// Sets `snapshot_name`.
+  const factory MemorydbClusterSnapshotArnsOrSnapshotName.snapshotName(
+    TfArg<String> snapshotName,
+  ) = MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -102,10 +126,12 @@ sealed class MemorydbClusterSnapshotArnsOrSnapshotName {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `snapshot_arns` (one of the [MemorydbClusterSnapshotArnsOrSnapshotName] choices).
-final class MemorydbClusterSnapshotArnsOption
+/// The [MemorydbClusterSnapshotArnsOrSnapshotName.snapshotArns] choice: sets `snapshot_arns`.
+final class MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotArns
     extends MemorydbClusterSnapshotArnsOrSnapshotName {
-  const MemorydbClusterSnapshotArnsOption({required this.snapshotArns});
+  const MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotArns(
+    this.snapshotArns,
+  );
 
   final TfArg<List<String>> snapshotArns;
 
@@ -119,10 +145,12 @@ final class MemorydbClusterSnapshotArnsOption
   Map<String, TfArg<Object?>> get argMap => {'snapshot_arns': snapshotArns};
 }
 
-/// Sets `snapshot_name` (one of the [MemorydbClusterSnapshotArnsOrSnapshotName] choices).
-final class MemorydbClusterSnapshotNameOption
+/// The [MemorydbClusterSnapshotArnsOrSnapshotName.snapshotName] choice: sets `snapshot_name`.
+final class MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotName
     extends MemorydbClusterSnapshotArnsOrSnapshotName {
-  const MemorydbClusterSnapshotNameOption({required this.snapshotName});
+  const MemorydbClusterSnapshotArnsOrSnapshotNameSnapshotName(
+    this.snapshotName,
+  );
 
   final TfArg<String> snapshotName;
 

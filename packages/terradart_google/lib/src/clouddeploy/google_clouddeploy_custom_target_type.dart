@@ -10,8 +10,20 @@ const Set<String> _googleClouddeployCustomTargetTypeSensitive = <String>{};
 /// At most one of `custom_actions`, `tasks` on `google_clouddeploy_custom_target_type`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.customActions(...)`.
 sealed class ClouddeployCustomTargetTypeCustomActionsOrTasks {
   const ClouddeployCustomTargetTypeCustomActionsOrTasks();
+
+  /// Sets `custom_actions`.
+  const factory ClouddeployCustomTargetTypeCustomActionsOrTasks.customActions(
+    ClouddeployCustomTargetTypeCustomActions customActions,
+  ) = ClouddeployCustomTargetTypeCustomActionsOrTasksCustomActions;
+
+  /// Sets `tasks`.
+  const factory ClouddeployCustomTargetTypeCustomActionsOrTasks.tasks(
+    ClouddeployCustomTargetTypeTasks tasks,
+  ) = ClouddeployCustomTargetTypeCustomActionsOrTasksTasks;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,12 +35,12 @@ sealed class ClouddeployCustomTargetTypeCustomActionsOrTasks {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `custom_actions` (one of the [ClouddeployCustomTargetTypeCustomActionsOrTasks] choices).
-final class ClouddeployCustomTargetTypeCustomActionsOption
+/// The [ClouddeployCustomTargetTypeCustomActionsOrTasks.customActions] choice: sets `custom_actions`.
+final class ClouddeployCustomTargetTypeCustomActionsOrTasksCustomActions
     extends ClouddeployCustomTargetTypeCustomActionsOrTasks {
-  const ClouddeployCustomTargetTypeCustomActionsOption({
-    required this.customActions,
-  });
+  const ClouddeployCustomTargetTypeCustomActionsOrTasksCustomActions(
+    this.customActions,
+  );
 
   final ClouddeployCustomTargetTypeCustomActions customActions;
 
@@ -44,10 +56,10 @@ final class ClouddeployCustomTargetTypeCustomActionsOption
   };
 }
 
-/// Sets `tasks` (one of the [ClouddeployCustomTargetTypeCustomActionsOrTasks] choices).
-final class ClouddeployCustomTargetTypeTasksOption
+/// The [ClouddeployCustomTargetTypeCustomActionsOrTasks.tasks] choice: sets `tasks`.
+final class ClouddeployCustomTargetTypeCustomActionsOrTasksTasks
     extends ClouddeployCustomTargetTypeCustomActionsOrTasks {
-  const ClouddeployCustomTargetTypeTasksOption({required this.tasks});
+  const ClouddeployCustomTargetTypeCustomActionsOrTasksTasks(this.tasks);
 
   final ClouddeployCustomTargetTypeTasks tasks;
 
@@ -112,8 +124,27 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModules {
 
 /// Exactly one of `git`, `google_cloud_storage`, `google_cloud_build_repo` on the `custom_actions.include_skaffold_modules` block of `google_clouddeploy_custom_target_type`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.git(...)`.
 sealed class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo {
   const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo();
+
+  /// Sets `git`.
+  const factory ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo.git(
+    ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGit git,
+  ) = ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGit;
+
+  /// Sets `google_cloud_storage`.
+  const factory ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo.googleCloudStorage(
+    ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudStorage
+    googleCloudStorage,
+  ) = ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudStorage;
+
+  /// Sets `google_cloud_build_repo`.
+  const factory ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo.googleCloudBuildRepo(
+    ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudBuildRepo
+    googleCloudBuildRepo,
+  ) = ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudBuildRepo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -121,13 +152,13 @@ sealed class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOr
   Map<String, Object?> encode();
 }
 
-/// Sets `git` (one of the [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo] choices).
-final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOption
+/// The [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo.git] choice: sets `git`.
+final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGit
     extends
         ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOption({
-    required this.git,
-  });
+  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGit(
+    this.git,
+  );
 
   final ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGit git;
 
@@ -138,13 +169,13 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOpt
   Map<String, Object?> encode() => {'git': git.encode()};
 }
 
-/// Sets `google_cloud_storage` (one of the [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo] choices).
-final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudStorageOption
+/// The [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo.googleCloudStorage] choice: sets `google_cloud_storage`.
+final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudStorage
     extends
         ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudStorageOption({
-    required this.googleCloudStorage,
-  });
+  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudStorage(
+    this.googleCloudStorage,
+  );
 
   final ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudStorage
   googleCloudStorage;
@@ -158,13 +189,13 @@ final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogle
   };
 }
 
-/// Sets `google_cloud_build_repo` (one of the [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo] choices).
-final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudBuildRepoOption
+/// The [ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo.googleCloudBuildRepo] choice: sets `google_cloud_build_repo`.
+final class ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudBuildRepo
     extends
         ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepo {
-  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudBuildRepoOption({
-    required this.googleCloudBuildRepo,
-  });
+  const ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGitOrGoogleCloudStorageOrGoogleCloudBuildRepoGoogleCloudBuildRepo(
+    this.googleCloudBuildRepo,
+  );
 
   final ClouddeployCustomTargetTypeCustomActionsIncludeSkaffoldModulesGoogleCloudBuildRepo
   googleCloudBuildRepo;

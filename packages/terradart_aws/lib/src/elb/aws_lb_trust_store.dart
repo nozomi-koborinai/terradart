@@ -9,8 +9,19 @@ const Set<String> _awsLbTrustStoreSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_lb_trust_store`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class LbTrustStoreNameOrNamePrefix {
   const LbTrustStoreNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory LbTrustStoreNameOrNamePrefix.name(TfArg<String> name) =
+      LbTrustStoreNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory LbTrustStoreNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = LbTrustStoreNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,9 +33,10 @@ sealed class LbTrustStoreNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [LbTrustStoreNameOrNamePrefix] choices).
-final class LbTrustStoreNameOption extends LbTrustStoreNameOrNamePrefix {
-  const LbTrustStoreNameOption({required this.name});
+/// The [LbTrustStoreNameOrNamePrefix.name] choice: sets `name`.
+final class LbTrustStoreNameOrNamePrefixName
+    extends LbTrustStoreNameOrNamePrefix {
+  const LbTrustStoreNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -38,9 +50,10 @@ final class LbTrustStoreNameOption extends LbTrustStoreNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [LbTrustStoreNameOrNamePrefix] choices).
-final class LbTrustStoreNamePrefixOption extends LbTrustStoreNameOrNamePrefix {
-  const LbTrustStoreNamePrefixOption({required this.namePrefix});
+/// The [LbTrustStoreNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class LbTrustStoreNameOrNamePrefixNamePrefix
+    extends LbTrustStoreNameOrNamePrefix {
+  const LbTrustStoreNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

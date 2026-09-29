@@ -19,8 +19,18 @@ enum ImagebuilderWorkflowType implements TerraformEnum {
 
 /// Exactly one of `data`, `uri` on `aws_imagebuilder_workflow`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.data(...)`.
 sealed class ImagebuilderWorkflowDataOrUri {
   const ImagebuilderWorkflowDataOrUri();
+
+  /// Sets `data`.
+  const factory ImagebuilderWorkflowDataOrUri.data(TfArg<String> data) =
+      ImagebuilderWorkflowDataOrUriData;
+
+  /// Sets `uri`.
+  const factory ImagebuilderWorkflowDataOrUri.uri(TfArg<String> uri) =
+      ImagebuilderWorkflowDataOrUriUri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,10 +42,10 @@ sealed class ImagebuilderWorkflowDataOrUri {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `data` (one of the [ImagebuilderWorkflowDataOrUri] choices).
-final class ImagebuilderWorkflowDataOption
+/// The [ImagebuilderWorkflowDataOrUri.data] choice: sets `data`.
+final class ImagebuilderWorkflowDataOrUriData
     extends ImagebuilderWorkflowDataOrUri {
-  const ImagebuilderWorkflowDataOption({required this.data});
+  const ImagebuilderWorkflowDataOrUriData(this.data);
 
   final TfArg<String> data;
 
@@ -49,10 +59,10 @@ final class ImagebuilderWorkflowDataOption
   Map<String, TfArg<Object?>> get argMap => {'data': data};
 }
 
-/// Sets `uri` (one of the [ImagebuilderWorkflowDataOrUri] choices).
-final class ImagebuilderWorkflowUriOption
+/// The [ImagebuilderWorkflowDataOrUri.uri] choice: sets `uri`.
+final class ImagebuilderWorkflowDataOrUriUri
     extends ImagebuilderWorkflowDataOrUri {
-  const ImagebuilderWorkflowUriOption({required this.uri});
+  const ImagebuilderWorkflowDataOrUriUri(this.uri);
 
   final TfArg<String> uri;
 

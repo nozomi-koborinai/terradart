@@ -77,8 +77,20 @@ final class CognitoUserPoolClientAnalyticsConfiguration {
 
 /// Exactly one of `application_arn`, `application_id` on the `analytics_configuration` block of `aws_cognito_user_pool_client`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.applicationArn(...)`.
 sealed class CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
   const CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId();
+
+  /// Sets `application_arn`.
+  const factory CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationArn(
+    TfArg<String> applicationArn,
+  ) = CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationArn;
+
+  /// Sets `application_id`.
+  const factory CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationId(
+    TfArg<String> applicationId,
+  ) = CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -86,13 +98,13 @@ sealed class CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicat
   Map<String, Object?> encode();
 }
 
-/// Sets `application_arn` (one of the [CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId] choices).
-final class CognitoUserPoolClientAnalyticsConfigurationApplicationArnOption
+/// The [CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationArn] choice: sets `application_arn`.
+final class CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationArn
     extends
         CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
-  const CognitoUserPoolClientAnalyticsConfigurationApplicationArnOption({
-    required this.applicationArn,
-  });
+  const CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationArn(
+    this.applicationArn,
+  );
 
   final TfArg<String> applicationArn;
 
@@ -105,13 +117,13 @@ final class CognitoUserPoolClientAnalyticsConfigurationApplicationArnOption
   };
 }
 
-/// Sets `application_id` (one of the [CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId] choices).
-final class CognitoUserPoolClientAnalyticsConfigurationApplicationIdOption
+/// The [CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationId] choice: sets `application_id`.
+final class CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationId
     extends
         CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
-  const CognitoUserPoolClientAnalyticsConfigurationApplicationIdOption({
-    required this.applicationId,
-  });
+  const CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationId(
+    this.applicationId,
+  );
 
   final TfArg<String> applicationId;
 

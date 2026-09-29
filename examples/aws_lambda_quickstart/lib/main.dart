@@ -64,7 +64,7 @@ final class AwsLambdaStack extends Stack {
 
     final role = AwsIamRole(
       localName: 'hello',
-      nameOrNamePrefix: IamRoleNameOption(name: TfArg.literal(_functionName)),
+      nameOrNamePrefix: .name(TfArg.literal(_functionName)),
       assumeRolePolicy: TfArg.ref(trust.json),
     );
     add(role);
@@ -80,9 +80,7 @@ final class AwsLambdaStack extends Stack {
 
     final logs = AwsCloudwatchLogGroup(
       localName: 'hello',
-      nameOrNamePrefix: CloudwatchLogGroupNameOption(
-        name: TfArg.literal('/aws/lambda/$_functionName'),
-      ),
+      nameOrNamePrefix: .name(TfArg.literal('/aws/lambda/$_functionName')),
       retentionInDays: TfArg.literal(14),
     );
     add(logs);
@@ -94,8 +92,8 @@ final class AwsLambdaStack extends Stack {
       runtime: TfArg.literal(LambdaFunctionRuntime.providedAl2023),
       handler: TfArg.literal('bootstrap'),
       architectures: [TfArg.literal(LambdaFunctionArchitectures.x8664)],
-      filenameOrImageUriOrS3Bucket: LambdaFunctionFilenameOption(
-        filename: TfArg.literal('../build/bootstrap.zip'),
+      filenameOrImageUriOrS3Bucket: .filename(
+        TfArg.literal('../build/bootstrap.zip'),
       ),
       memorySize: TfArg.literal(128),
       timeout: TfArg.literal(10),

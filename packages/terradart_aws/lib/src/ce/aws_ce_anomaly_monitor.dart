@@ -31,8 +31,20 @@ enum CeAnomalyMonitorMonitorType implements TerraformEnum {
 /// At most one of `monitor_dimension`, `monitor_specification` on `aws_ce_anomaly_monitor`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.monitorDimension(...)`.
 sealed class CeAnomalyMonitorMonitorDimensionOrMonitorSpecification {
   const CeAnomalyMonitorMonitorDimensionOrMonitorSpecification();
+
+  /// Sets `monitor_dimension`.
+  const factory CeAnomalyMonitorMonitorDimensionOrMonitorSpecification.monitorDimension(
+    TfArg<CeAnomalyMonitorMonitorDimension> monitorDimension,
+  ) = CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorDimension;
+
+  /// Sets `monitor_specification`.
+  const factory CeAnomalyMonitorMonitorDimensionOrMonitorSpecification.monitorSpecification(
+    TfArg<String> monitorSpecification,
+  ) = CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorSpecification;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,12 +56,12 @@ sealed class CeAnomalyMonitorMonitorDimensionOrMonitorSpecification {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `monitor_dimension` (one of the [CeAnomalyMonitorMonitorDimensionOrMonitorSpecification] choices).
-final class CeAnomalyMonitorMonitorDimensionOption
+/// The [CeAnomalyMonitorMonitorDimensionOrMonitorSpecification.monitorDimension] choice: sets `monitor_dimension`.
+final class CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorDimension
     extends CeAnomalyMonitorMonitorDimensionOrMonitorSpecification {
-  const CeAnomalyMonitorMonitorDimensionOption({
-    required this.monitorDimension,
-  });
+  const CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorDimension(
+    this.monitorDimension,
+  );
 
   final TfArg<CeAnomalyMonitorMonitorDimension> monitorDimension;
 
@@ -67,12 +79,12 @@ final class CeAnomalyMonitorMonitorDimensionOption
   };
 }
 
-/// Sets `monitor_specification` (one of the [CeAnomalyMonitorMonitorDimensionOrMonitorSpecification] choices).
-final class CeAnomalyMonitorMonitorSpecificationOption
+/// The [CeAnomalyMonitorMonitorDimensionOrMonitorSpecification.monitorSpecification] choice: sets `monitor_specification`.
+final class CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorSpecification
     extends CeAnomalyMonitorMonitorDimensionOrMonitorSpecification {
-  const CeAnomalyMonitorMonitorSpecificationOption({
-    required this.monitorSpecification,
-  });
+  const CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorSpecification(
+    this.monitorSpecification,
+  );
 
   final TfArg<String> monitorSpecification;
 

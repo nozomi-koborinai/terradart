@@ -19,6 +19,27 @@ output are the same. Raising your package's language version also switches
 `dart format` to the tall style, so expect a one-time reformat of your own
 code.
 
+### Sealed arguments are built with dot shorthands
+
+**Breaking (`terradart_aws`, every package with a derived sealed type)** —
+a derived sealed type (an exactly-one or at-most-one input group) declares
+one `const factory` constructor per member, named after the member and
+taking its value positionally. With Dart 3.10 dot shorthands you write
+the constructor without the type name, and IDE completion lists the
+choices. The `<Prefix><Member>Option` variant classes are gone: each
+variant is a class named `<SealedType><Member>` that you only need for
+pattern matching.
+
+| Before | After |
+|--------|-------|
+| `AwsLambdaFunction(filenameOrImageUriOrS3Bucket: LambdaFunctionFilenameOption(filename: TfArg.literal('bootstrap.zip')), ...)` | `AwsLambdaFunction(filenameOrImageUriOrS3Bucket: .filename(TfArg.literal('bootstrap.zip')), ...)` |
+| `case LambdaFunctionFilenameOption(:final filename)` | `case LambdaFunctionFilenameOrImageUriOrS3BucketFilename(:final filename)` |
+
+Replace every `<Prefix><Member>Option(member: value)` with
+`.member(value)`. Where no type is known from context (a local `final`
+without a type), write the sealed type: `LambdaFunctionFilenameOrImageUriOrS3Bucket.filename(...)`.
+`terradart-migrate` emits the dot-shorthand form.
+
 ### `terradart_google` Magic Modules input groups are sealed types
 
 **Breaking (`terradart_google`)** — input groups the Magic Modules YAML
@@ -27,8 +48,9 @@ instead of several optional ones: an `exactly_one_of` group (or an
 `at_least_one_of` set whose members all `conflicts`) becomes a **required**
 argument, and a `conflicts` set no such group covers becomes a **nullable**
 one (leave it out to set none). The argument is named after its members
-joined by `Or`, and each member is a variant class named
-`<Prefix><Member>Option`, as on `terradart_google_beta` / `terradart_aws`.
+joined by `Or`, and each member is a factory constructor on the sealed type
+you pick with a dot shorthand (`.member(...)`), as on `terradart_google_beta`
+/ `terradart_aws`.
 Synth output is unchanged. Groups a hand-written sealed argument already
 covers (`BigtableAppProfileRouting`, `ComputeHealthCheckProtocol`, ...) keep
 it. Setting two members, or none of an exactly-one group, used to fail at
@@ -39,11 +61,11 @@ Compute and networking (16 groups on 13 resources):
 
 | Before | After |
 |--------|-------|
-| `GoogleComputeTargetHttpsProxy(sslCertificates: TfArg.literal([...]), ...)` | `GoogleComputeTargetHttpsProxy(certificateManagerCertificatesOrSslCertificates: ComputeTargetHttpsProxySslCertificatesOption(sslCertificates: TfArg.literal([...])), ...)` |
-| `GoogleVpcAccessConnector(minInstances: TfArg.literal(2), maxInstances: TfArg.literal(3), ...)` | `GoogleVpcAccessConnector(minThroughputOrMinInstances: VpcAccessConnectorMinInstancesOption(minInstances: TfArg.literal(2)), maxInstancesOrMaxThroughput: VpcAccessConnectorMaxInstancesOption(maxInstances: TfArg.literal(3)), ...)` |
-| `GoogleNetworkConnectivityPolicyBasedRoute(virtualMachine: ..., ...)` | `GoogleNetworkConnectivityPolicyBasedRoute(virtualMachineOrInterconnectAttachment: NetworkConnectivityPolicyBasedRouteVirtualMachineOption(virtualMachine: ...), ...)` |
-| `NetworkServicesHttpRouteRulesMatches(fullPathMatch: TfArg.literal('/x'))` | `NetworkServicesHttpRouteRulesMatches(fullPathMatchOrPrefixMatchOrRegexMatch: NetworkServicesHttpRouteRulesMatchesFullPathMatchOption(fullPathMatch: TfArg.literal('/x')))` |
-| `ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput(name: ...)` | `ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput(nameOrPredefinedRolloutPlan: ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOption(name: ...))` |
+| `GoogleComputeTargetHttpsProxy(sslCertificates: TfArg.literal([...]), ...)` | `GoogleComputeTargetHttpsProxy(certificateManagerCertificatesOrSslCertificates: .sslCertificates(TfArg.literal([...])), ...)` |
+| `GoogleVpcAccessConnector(minInstances: TfArg.literal(2), maxInstances: TfArg.literal(3), ...)` | `GoogleVpcAccessConnector(minThroughputOrMinInstances: .minInstances(TfArg.literal(2)), maxInstancesOrMaxThroughput: .maxInstances(TfArg.literal(3)), ...)` |
+| `GoogleNetworkConnectivityPolicyBasedRoute(virtualMachine: ..., ...)` | `GoogleNetworkConnectivityPolicyBasedRoute(virtualMachineOrInterconnectAttachment: .virtualMachine(...), ...)` |
+| `NetworkServicesHttpRouteRulesMatches(fullPathMatch: TfArg.literal('/x'))` | `NetworkServicesHttpRouteRulesMatches(fullPathMatchOrPrefixMatchOrRegexMatch: .fullPathMatch(TfArg.literal('/x')))` |
+| `ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput(name: ...)` | `ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput(nameOrPredefinedRolloutPlan: .name(...))` |
 
 The other groups: `GoogleComputeRegionTargetHttpsProxy` (as the global
 proxy), `GoogleComputeUrlMap` / `GoogleComputeRegionUrlMap`
@@ -60,13 +82,13 @@ Data, storage, databases and observability (35 groups on 20 resources):
 
 | Before | After |
 |--------|-------|
-| `GooglePubsubSubscription(pushConfig: PubsubSubscriptionPushConfig(...), ...)` | `GooglePubsubSubscription(bigqueryConfigOrPushConfigOrCloudStorageConfig: PubsubSubscriptionPushConfigOption(pushConfig: PubsubSubscriptionPushConfig(...)), ...)` |
-| `GoogleBigqueryDatasetAccess(specialGroup: TfArg.literal(...), ...)` | `GoogleBigqueryDatasetAccess(userByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine: BigqueryDatasetAccessSpecialGroupOption(specialGroup: TfArg.literal(...)), ...)` |
-| `GoogleBigqueryAnalyticsHubListing(bigqueryDataset: TfArg.literal({'dataset': ...}), ...)` | `GoogleBigqueryAnalyticsHubListing(pubsubTopicOrBigqueryDataset: BigqueryAnalyticsHubListingBigqueryDatasetOption(bigqueryDataset: BigqueryAnalyticsHubListingBigqueryDataset(dataset: TfArg.literal(...))), ...)` |
-| `GoogleMonitoringSlo(rollingPeriodDays: TfArg.literal(30), ...)` | `GoogleMonitoringSlo(rollingPeriodDaysOrCalendarPeriod: MonitoringSloRollingPeriodDaysOption(rollingPeriodDays: TfArg.literal(30)), ...)` |
-| `GoogleLoggingSavedQuery(loggingQuery: LoggingSavedQueryLoggingQuery(...), ...)` | `GoogleLoggingSavedQuery(loggingQueryOrOpsAnalyticsQuery: LoggingSavedQueryLoggingQueryOption(loggingQuery: LoggingSavedQueryLoggingQuery(...)), ...)` |
-| `DataplexDatascanData(resource: TfArg.literal(...))` | `DataplexDatascanData(entityOrResource: DataplexDatascanDataResourceOption(resource: TfArg.literal(...)))` |
-| `DatastreamStreamSourceConfig(mysqlSourceConfig: ..., ...)` | `DatastreamStreamSourceConfig(mysqlSourceConfigOrOracleSourceConfigOr...: DatastreamStreamSourceConfigMysqlSourceConfigOption(mysqlSourceConfig: ...), ...)` |
+| `GooglePubsubSubscription(pushConfig: PubsubSubscriptionPushConfig(...), ...)` | `GooglePubsubSubscription(bigqueryConfigOrPushConfigOrCloudStorageConfig: .pushConfig(PubsubSubscriptionPushConfig(...)), ...)` |
+| `GoogleBigqueryDatasetAccess(specialGroup: TfArg.literal(...), ...)` | `GoogleBigqueryDatasetAccess(userByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine: .specialGroup(TfArg.literal(...)), ...)` |
+| `GoogleBigqueryAnalyticsHubListing(bigqueryDataset: TfArg.literal({'dataset': ...}), ...)` | `GoogleBigqueryAnalyticsHubListing(pubsubTopicOrBigqueryDataset: .bigqueryDataset(BigqueryAnalyticsHubListingBigqueryDataset(dataset: TfArg.literal(...))), ...)` |
+| `GoogleMonitoringSlo(rollingPeriodDays: TfArg.literal(30), ...)` | `GoogleMonitoringSlo(rollingPeriodDaysOrCalendarPeriod: .rollingPeriodDays(TfArg.literal(30)), ...)` |
+| `GoogleLoggingSavedQuery(loggingQuery: LoggingSavedQueryLoggingQuery(...), ...)` | `GoogleLoggingSavedQuery(loggingQueryOrOpsAnalyticsQuery: .loggingQuery(LoggingSavedQueryLoggingQuery(...)), ...)` |
+| `DataplexDatascanData(resource: TfArg.literal(...))` | `DataplexDatascanData(entityOrResource: .resource(TfArg.literal(...)))` |
+| `DatastreamStreamSourceConfig(mysqlSourceConfig: ..., ...)` | `DatastreamStreamSourceConfig(mysqlSourceConfigOrOracleSourceConfigOr...: .mysqlSourceConfig(...), ...)` |
 
 `GoogleBigqueryDatasetAccess`'s `view`, `dataset` and `routine` keep their
 helper classes (`BigqueryDatasetAccessView`, ...) inside the variants. The
@@ -94,12 +116,12 @@ AI / ML, serverless, containers and CI/CD (35 groups on 25 resources):
 
 | Before | After |
 |--------|-------|
-| `GoogleCloudbuildv2Connection(githubConfig: Cloudbuildv2ConnectionGithubConfig(...), ...)` | `GoogleCloudbuildv2Connection(githubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig: Cloudbuildv2ConnectionGithubConfigOption(githubConfig: Cloudbuildv2ConnectionGithubConfig(...)), ...)` |
-| `GoogleFirebaseAppHostingTraffic(target: FirebaseAppHostingTrafficAppHostingTrafficTarget(...), ...)` | `GoogleFirebaseAppHostingTraffic(rolloutPolicyOrTarget: FirebaseAppHostingTrafficTargetOption(target: FirebaseAppHostingTrafficAppHostingTrafficTarget(...)), ...)` |
-| `GkeHubScopeRbacRoleBindingRole(predefinedRole: TfArg.literal(...))` | `GkeHubScopeRbacRoleBindingRole(predefinedRoleOrCustomRole: GkeHubScopeRbacRoleBindingRolePredefinedRoleOption(predefinedRole: TfArg.literal(...)))` |
-| `GoogleGkeBackupBackupPlan(backupConfig: TfArg.literal({'all_namespaces': ..., ...}), retentionPolicy: TfArg.literal({...}), ...)` | `GoogleGkeBackupBackupPlan(backupConfig: GkeBackupBackupPlanBackupConfig(allNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels: GkeBackupBackupPlanBackupConfigAllNamespacesOption(allNamespaces: TfArg.literal(true)), ...), retentionPolicy: GkeBackupBackupPlanRetentionPolicy(...), ...)` |
-| `GoogleClouddeployCustomTargetType(customActions: TfArg.literal({...}), ...)` | `GoogleClouddeployCustomTargetType(customActionsOrTasks: ClouddeployCustomTargetTypeCustomActionsOption(customActions: ClouddeployCustomTargetTypeCustomActions(...)), ...)` |
-| `IntegrationsAuthConfigDecryptedCredential(usernameAndPassword: ..., ...)` | `IntegrationsAuthConfigDecryptedCredential(usernameAndPasswordOrOauth2AuthorizationCodeOr...: IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOption(usernameAndPassword: ...), ...)` |
+| `GoogleCloudbuildv2Connection(githubConfig: Cloudbuildv2ConnectionGithubConfig(...), ...)` | `GoogleCloudbuildv2Connection(githubConfigOrGithubEnterpriseConfigOrGitlabConfigOrBitbucketCloudConfigOrBitbucketDataCenterConfig: .githubConfig(Cloudbuildv2ConnectionGithubConfig(...)), ...)` |
+| `GoogleFirebaseAppHostingTraffic(target: FirebaseAppHostingTrafficAppHostingTrafficTarget(...), ...)` | `GoogleFirebaseAppHostingTraffic(rolloutPolicyOrTarget: .target(FirebaseAppHostingTrafficAppHostingTrafficTarget(...)), ...)` |
+| `GkeHubScopeRbacRoleBindingRole(predefinedRole: TfArg.literal(...))` | `GkeHubScopeRbacRoleBindingRole(predefinedRoleOrCustomRole: .predefinedRole(TfArg.literal(...)))` |
+| `GoogleGkeBackupBackupPlan(backupConfig: TfArg.literal({'all_namespaces': ..., ...}), retentionPolicy: TfArg.literal({...}), ...)` | `GoogleGkeBackupBackupPlan(backupConfig: GkeBackupBackupPlanBackupConfig(allNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels: .allNamespaces(TfArg.literal(true)), ...), retentionPolicy: GkeBackupBackupPlanRetentionPolicy(...), ...)` |
+| `GoogleClouddeployCustomTargetType(customActions: TfArg.literal({...}), ...)` | `GoogleClouddeployCustomTargetType(customActionsOrTasks: .customActions(ClouddeployCustomTargetTypeCustomActions(...)), ...)` |
+| `IntegrationsAuthConfigDecryptedCredential(usernameAndPassword: ..., ...)` | `IntegrationsAuthConfigDecryptedCredential(usernameAndPasswordOrOauth2AuthorizationCodeOr...: .usernameAndPassword(...), ...)` |
 
 Four resources whose sealed groups sit in blocks that used to be untyped
 maps take typed nested helpers now: `GoogleGkeBackupBackupPlan`,
@@ -123,13 +145,13 @@ Security, identity, billing and operations (13 groups on 8 resources):
 
 | Before | After |
 |--------|-------|
-| `GoogleAccessContextManagerAccessLevel(basic: AccessContextManagerAccessLevelBasic(...), ...)` | `GoogleAccessContextManagerAccessLevel(basicOrCustom: AccessContextManagerAccessLevelBasicOption(basic: AccessContextManagerAccessLevelBasic(...)), ...)` |
-| `GooglePrivatecaCertificate(pemCsr: TfArg.literal(...), ...)` | `GooglePrivatecaCertificate(pemCsrOrConfig: PrivatecaCertificatePemCsrOption(pemCsr: TfArg.literal(...)), ...)` |
-| `BillingBudgetAmount(lastPeriodAmount: TfArg.literal(true))` | `BillingBudgetAmount(specifiedAmountOrLastPeriodAmount: BillingBudgetAmountLastPeriodAmountOption(lastPeriodAmount: TfArg.literal(true)))` |
-| `PrivilegedAccessManagerEntitlementRequesterJustificationConfig(unstructured: ...)` | `PrivilegedAccessManagerEntitlementRequesterJustificationConfig(notMandatoryOrUnstructured: PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructuredOption(unstructured: ...))` |
+| `GoogleAccessContextManagerAccessLevel(basic: AccessContextManagerAccessLevelBasic(...), ...)` | `GoogleAccessContextManagerAccessLevel(basicOrCustom: .basic(AccessContextManagerAccessLevelBasic(...)), ...)` |
+| `GooglePrivatecaCertificate(pemCsr: TfArg.literal(...), ...)` | `GooglePrivatecaCertificate(pemCsrOrConfig: .pemCsr(TfArg.literal(...)), ...)` |
+| `BillingBudgetAmount(lastPeriodAmount: TfArg.literal(true))` | `BillingBudgetAmount(specifiedAmountOrLastPeriodAmount: .lastPeriodAmount(TfArg.literal(true)))` |
+| `PrivilegedAccessManagerEntitlementRequesterJustificationConfig(unstructured: ...)` | `PrivilegedAccessManagerEntitlementRequesterJustificationConfig(notMandatoryOrUnstructured: .unstructured(...))` |
 
-`GooglePrivatecaCertificate`'s `config` keeps its helper class inside
-`PrivatecaCertificateConfigOption`. The other groups:
+`GooglePrivatecaCertificate`'s `config` keeps its helper class inside the
+`.config(...)` variant. The other groups:
 `GoogleChronicleParserExtension` (`cbn_snippet` / `field_extractors` /
 `dynamic_parsing`), `GoogleCloudSecurityComplianceFrameworkDeployment`
 (existing target resource / creation config, folder / project creation),
@@ -151,15 +173,15 @@ argument (or helper field) instead of several optional ones. These are the
 provider's `ExactlyOneOf` sets at the pinned `5.26.0`, plus the
 `AtLeastOneOf` sets whose members all conflict with each other; 2 are on
 resource arguments and 11 inside nested blocks. The argument is named after
-its members joined by `Or`, and each member is a variant class named
-`<Prefix><Member>Option`. Synth output is unchanged.
+its members joined by `Or`, and each member is a factory constructor on the
+sealed type (`.member(...)`). Synth output is unchanged.
 
 | Before | After |
 |--------|-------|
-| `CloudflareRuleset(zoneId: TfArg.literal(zoneId), ...)` | `CloudflareRuleset(accountIdOrZoneId: RulesetZoneIdOption(zoneId: TfArg.literal(zoneId)), ...)` |
-| `CloudflareAccountMember(roles: TfArg.literal([roleId]), ...)` | `CloudflareAccountMember(rolesOrPolicies: AccountMemberRolesOption(roles: TfArg.literal([roleId])), ...)` |
-| `WorkerVersionModules(contentFile: TfArg.literal('dist/index.js'), ...)` | `WorkerVersionModules(contentBase64OrContentFile: WorkerVersionModulesContentFileOption(contentFile: TfArg.literal('dist/index.js')), ...)` |
-| `RulesetRulesActionParametersUriPath(value: TfArg.literal('/new'))` | `RulesetRulesActionParametersUriPath(valueOrExpression: RulesetRulesActionParametersUriPathValueOption(value: TfArg.literal('/new')))` |
+| `CloudflareRuleset(zoneId: TfArg.literal(zoneId), ...)` | `CloudflareRuleset(accountIdOrZoneId: .zoneId(TfArg.literal(zoneId)), ...)` |
+| `CloudflareAccountMember(roles: TfArg.literal([roleId]), ...)` | `CloudflareAccountMember(rolesOrPolicies: .roles(TfArg.literal([roleId])), ...)` |
+| `WorkerVersionModules(contentFile: TfArg.literal('dist/index.js'), ...)` | `WorkerVersionModules(contentBase64OrContentFile: .contentFile(TfArg.literal('dist/index.js')), ...)` |
+| `RulesetRulesActionParametersUriPath(value: TfArg.literal('/new'))` | `RulesetRulesActionParametersUriPath(valueOrExpression: .value(TfArg.literal('/new')))` |
 
 The other groups: `WorkersScriptFiles` (`content_base64` / `content_file`),
 the ruleset's `from_value.target_url` (`value` / `expression`), `uri.query`
@@ -183,15 +205,15 @@ optional ones. These are the provider's `ConflictsWith` / `Conflicting` sets
 at the pinned `5.26.0` that no exactly-one group covers; 5 are on resource
 arguments and 9 inside nested blocks. Naming follows the exactly-one
 groups: the argument joins its members with `Or`, and each member is a
-`<Prefix><Member>Option` variant. Leave the argument out to set none of
+`.member(...)` factory constructor. Leave the argument out to set none of
 them. Synth output is unchanged.
 
 | Before | After |
 |--------|-------|
-| `CloudflareDnsRecord(content: TfArg.literal('ghs.googlehosted.com'), ...)` | `CloudflareDnsRecord(contentOrData: DnsRecordContentOption(content: TfArg.literal('ghs.googlehosted.com')), ...)` |
-| `CloudflareWorkersScript(contentFile: TfArg.literal('dist/index.js'), ...)` | `CloudflareWorkersScript(contentOrContentFile: WorkersScriptContentFileOption(contentFile: TfArg.literal('dist/index.js')), ...)` |
-| `CloudflareZeroTrustDeviceCustomProfile(include: [...], ...)` | `CloudflareZeroTrustDeviceCustomProfile(excludeOrInclude: ZeroTrustDeviceCustomProfileIncludeOption(include: [...]), ...)` |
-| `ListItems(ip: TfArg.literal('192.0.2.1'))` | `ListItems(asnOrIpOrHostnameOrRedirect: ListItemsIpOption(ip: TfArg.literal('192.0.2.1')))` |
+| `CloudflareDnsRecord(content: TfArg.literal('ghs.googlehosted.com'), ...)` | `CloudflareDnsRecord(contentOrData: .content(TfArg.literal('ghs.googlehosted.com')), ...)` |
+| `CloudflareWorkersScript(contentFile: TfArg.literal('dist/index.js'), ...)` | `CloudflareWorkersScript(contentOrContentFile: .contentFile(TfArg.literal('dist/index.js')), ...)` |
+| `CloudflareZeroTrustDeviceCustomProfile(include: [...], ...)` | `CloudflareZeroTrustDeviceCustomProfile(excludeOrInclude: .include([...]), ...)` |
+| `ListItems(ip: TfArg.literal('192.0.2.1'))` | `ListItems(asnOrIpOrHostnameOrRedirect: .ip(TfArg.literal('192.0.2.1')))` |
 
 The other groups: `CloudflareZeroTrustDeviceDefaultProfile` (`exclude` /
 `include`), `CloudflareZeroTrustAccessApplication` (`self_hosted_domains` /
@@ -215,21 +237,21 @@ optional ones: the provider's SDKv2 `ConflictsWith` lists and framework
 exactly-one group covers. 169 are on resource arguments and 60 inside nested
 blocks; 59 are `name` / `name_prefix`. Naming follows the exactly-one groups:
 the argument joins its members with `Or`, and each member is a
-`<Prefix><Member>Option` variant. Leave the argument out to set none of them
+`.member(...)` factory constructor. Leave the argument out to set none of them
 (for `name` / `name_prefix`, the provider then generates a name). Synth
 output is unchanged.
 
 | Before | After |
 |--------|-------|
-| `AwsIamRole(name: TfArg.literal('hello'), ...)` | `AwsIamRole(nameOrNamePrefix: IamRoleNameOption(name: TfArg.literal('hello')), ...)` |
-| `AwsCloudwatchLogGroup(name: TfArg.literal('/aws/lambda/hello'), ...)` | `AwsCloudwatchLogGroup(nameOrNamePrefix: CloudwatchLogGroupNameOption(name: TfArg.literal('/aws/lambda/hello')), ...)` |
-| `AwsS3Bucket(bucketPrefix: TfArg.literal('site-'), ...)` | `AwsS3Bucket(bucketOrBucketPrefix: S3BucketBucketPrefixOption(bucketPrefix: TfArg.literal('site-')), ...)` |
-| `AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration(predefinedMetricSpecification: spec, ...)` | `...(customizedMetricSpecificationOrPredefinedMetricSpecification: AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecificationOption(predefinedMetricSpecification: spec), ...)` |
+| `AwsIamRole(name: TfArg.literal('hello'), ...)` | `AwsIamRole(nameOrNamePrefix: .name(TfArg.literal('hello')), ...)` |
+| `AwsCloudwatchLogGroup(name: TfArg.literal('/aws/lambda/hello'), ...)` | `AwsCloudwatchLogGroup(nameOrNamePrefix: .name(TfArg.literal('/aws/lambda/hello')), ...)` |
+| `AwsS3Bucket(bucketPrefix: TfArg.literal('site-'), ...)` | `AwsS3Bucket(bucketOrBucketPrefix: .bucketPrefix(TfArg.literal('site-')), ...)` |
+| `AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration(predefinedMetricSpecification: spec, ...)` | `...(customizedMetricSpecificationOrPredefinedMetricSpecification: .predefinedMetricSpecification(spec), ...)` |
 
 Three exactly-one groups are new too. `AwsDocdbGlobalCluster` gains a
 required sealed argument: the provider requires at least one of `engine` /
 `source_db_cluster_identifier`, and they conflict, so exactly one is set:
-`AwsDocdbGlobalCluster(engineOrSourceDbClusterIdentifier: DocdbGlobalClusterEngineOption(engine: TfArg.literal(DocdbGlobalClusterEngine.docdb)), ...)`.
+`AwsDocdbGlobalCluster(engineOrSourceDbClusterIdentifier: .engine(TfArg.literal(DocdbGlobalClusterEngine.docdb)), ...)`.
 `AwsPrometheusAnomalyDetector`'s `ignore_near_expected_from_above` and
 `ignore_near_expected_from_below` blocks take a required `amountOrRatio`
 (a `float64validator.ExactlyOneOf` the extractor used to skip).
@@ -254,8 +276,8 @@ unchanged, so no Terraform step is needed; fix the compile errors:
 - **Inputs with a fixed value set are enums**, at the top level and inside
   helpers. Wrap the enum member in `TfArg.literal` as before.
 - **`exactly_one_of` groups are one required sealed argument**, named after
-  its members joined by `Or`; each member is a `<Prefix><Member>Option`
-  variant.
+  its members joined by `Or`; each member is a `.member(...)` factory
+  constructor.
 - **`conflicts` sets are one optional sealed argument**, named the same way:
   4 groups on 3 resources (`GoogleTpuV2Vm` `accelerator_type` /
   `accelerator_config` and `network_config` / `network_configs`,
@@ -270,9 +292,9 @@ unchanged, so no Terraform step is needed; fix the compile errors:
 | `GoogleOsConfigGuestPolicies(assignment: TfArg.literal({'zones': ['us-central1-a']}), ...)` | `GoogleOsConfigGuestPolicies(assignment: OsConfigGuestPoliciesAssignment(zones: TfArg.literal(['us-central1-a'])), ...)` |
 | `GoogleComputeNetworkFirewallPolicyPacketMirroringRule(direction: TfArg.literal('INGRESS'), ...)` | `...(direction: TfArg.literal(ComputeNetworkFirewallPolicyPacketMirroringRuleDirection.ingress), ...)` |
 | `GoogleGkeHubMembershipRbacRoleBinding(role: TfArg.literal({'predefined_role': 'ADMIN'}), ...)` | `...(role: GkeHubMembershipRbacRoleBindingRole(predefinedRole: TfArg.literal(GkeHubMembershipRbacRoleBindingRolePredefinedRole.admin)), ...)` |
-| `GoogleApiGatewayApiConfig(openapiDocuments: TfArg.literal([{'document': {'contents': c, 'path': 'openapi.yaml'}}]), ...)` | `GoogleApiGatewayApiConfig(openapiDocumentsOrGrpcServices: ApiGatewayApiConfigOpenapiDocumentsOption(openapiDocuments: [ApiGatewayApiConfigOpenapiDocuments(document: ApiGatewayApiConfigOpenapiDocumentsDocument(contents: TfArg.literal(c), path: TfArg.literal('openapi.yaml')))]), ...)` |
-| `GoogleFirebaseHostingChannel(ttl: TfArg.literal('86400s'), ...)` | `GoogleFirebaseHostingChannel(expireTimeOrTtl: FirebaseHostingChannelTtlOption(ttl: TfArg.literal('86400s')), ...)` |
-| `GooglePrivilegedAccessManagerSettings(emailNotificationSettings: TfArg.literal({'disable_all_notifications': {}}), ...)` | `...(emailNotificationSettings: PrivilegedAccessManagerSettingsEmailNotificationSettings(disableAllNotificationsOrCustomNotificationBehavior: PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOption(disableAllNotifications: PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications())), ...)` |
+| `GoogleApiGatewayApiConfig(openapiDocuments: TfArg.literal([{'document': {'contents': c, 'path': 'openapi.yaml'}}]), ...)` | `GoogleApiGatewayApiConfig(openapiDocumentsOrGrpcServices: .openapiDocuments([ApiGatewayApiConfigOpenapiDocuments(document: ApiGatewayApiConfigOpenapiDocumentsDocument(contents: TfArg.literal(c), path: TfArg.literal('openapi.yaml')))]), ...)` |
+| `GoogleFirebaseHostingChannel(ttl: TfArg.literal('86400s'), ...)` | `GoogleFirebaseHostingChannel(expireTimeOrTtl: .ttl(TfArg.literal('86400s')), ...)` |
+| `GooglePrivilegedAccessManagerSettings(emailNotificationSettings: TfArg.literal({'disable_all_notifications': {}}), ...)` | `...(emailNotificationSettings: PrivilegedAccessManagerSettingsEmailNotificationSettings(disableAllNotificationsOrCustomNotificationBehavior: .disableAllNotifications(PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications())), ...)` |
 
 `examples/beta_leftover_quickstart` shows the typed form of every beta
 factory. `terradart-migrate` emits the typed form for `google-beta`

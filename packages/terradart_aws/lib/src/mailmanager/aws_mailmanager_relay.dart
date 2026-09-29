@@ -23,8 +23,20 @@ final class MailmanagerRelayAuthentication {
 
 /// Exactly one of `no_authentication`, `secret_arn` on the `authentication` block of `aws_mailmanager_relay`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.noAuthentication(...)`.
 sealed class MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn {
   const MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn();
+
+  /// Sets `no_authentication`.
+  const factory MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn.noAuthentication(
+    List<MailmanagerRelayAuthenticationNoAuthentication> noAuthentication,
+  ) = MailmanagerRelayAuthenticationNoAuthenticationOrSecretArnNoAuthentication;
+
+  /// Sets `secret_arn`.
+  const factory MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn.secretArn(
+    TfArg<String> secretArn,
+  ) = MailmanagerRelayAuthenticationNoAuthenticationOrSecretArnSecretArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,12 +44,12 @@ sealed class MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn {
   Map<String, Object?> encode();
 }
 
-/// Sets `no_authentication` (one of the [MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn] choices).
-final class MailmanagerRelayAuthenticationNoAuthenticationOption
+/// The [MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn.noAuthentication] choice: sets `no_authentication`.
+final class MailmanagerRelayAuthenticationNoAuthenticationOrSecretArnNoAuthentication
     extends MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn {
-  const MailmanagerRelayAuthenticationNoAuthenticationOption({
-    required this.noAuthentication,
-  });
+  const MailmanagerRelayAuthenticationNoAuthenticationOrSecretArnNoAuthentication(
+    this.noAuthentication,
+  );
 
   final List<MailmanagerRelayAuthenticationNoAuthentication> noAuthentication;
 
@@ -50,12 +62,12 @@ final class MailmanagerRelayAuthenticationNoAuthenticationOption
   };
 }
 
-/// Sets `secret_arn` (one of the [MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn] choices).
-final class MailmanagerRelayAuthenticationSecretArnOption
+/// The [MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn.secretArn] choice: sets `secret_arn`.
+final class MailmanagerRelayAuthenticationNoAuthenticationOrSecretArnSecretArn
     extends MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn {
-  const MailmanagerRelayAuthenticationSecretArnOption({
-    required this.secretArn,
-  });
+  const MailmanagerRelayAuthenticationNoAuthenticationOrSecretArnSecretArn(
+    this.secretArn,
+  );
 
   final TfArg<String> secretArn;
 

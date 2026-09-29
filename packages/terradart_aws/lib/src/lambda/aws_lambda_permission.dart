@@ -19,8 +19,20 @@ enum LambdaPermissionFunctionUrlAuthType implements TerraformEnum {
 /// At most one of `statement_id`, `statement_id_prefix` on `aws_lambda_permission`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.statementId(...)`.
 sealed class LambdaPermissionStatementIdOrStatementIdPrefix {
   const LambdaPermissionStatementIdOrStatementIdPrefix();
+
+  /// Sets `statement_id`.
+  const factory LambdaPermissionStatementIdOrStatementIdPrefix.statementId(
+    TfArg<String> statementId,
+  ) = LambdaPermissionStatementIdOrStatementIdPrefixStatementId;
+
+  /// Sets `statement_id_prefix`.
+  const factory LambdaPermissionStatementIdOrStatementIdPrefix.statementIdPrefix(
+    TfArg<String> statementIdPrefix,
+  ) = LambdaPermissionStatementIdOrStatementIdPrefixStatementIdPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,10 +44,12 @@ sealed class LambdaPermissionStatementIdOrStatementIdPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `statement_id` (one of the [LambdaPermissionStatementIdOrStatementIdPrefix] choices).
-final class LambdaPermissionStatementIdOption
+/// The [LambdaPermissionStatementIdOrStatementIdPrefix.statementId] choice: sets `statement_id`.
+final class LambdaPermissionStatementIdOrStatementIdPrefixStatementId
     extends LambdaPermissionStatementIdOrStatementIdPrefix {
-  const LambdaPermissionStatementIdOption({required this.statementId});
+  const LambdaPermissionStatementIdOrStatementIdPrefixStatementId(
+    this.statementId,
+  );
 
   final TfArg<String> statementId;
 
@@ -49,12 +63,12 @@ final class LambdaPermissionStatementIdOption
   Map<String, TfArg<Object?>> get argMap => {'statement_id': statementId};
 }
 
-/// Sets `statement_id_prefix` (one of the [LambdaPermissionStatementIdOrStatementIdPrefix] choices).
-final class LambdaPermissionStatementIdPrefixOption
+/// The [LambdaPermissionStatementIdOrStatementIdPrefix.statementIdPrefix] choice: sets `statement_id_prefix`.
+final class LambdaPermissionStatementIdOrStatementIdPrefixStatementIdPrefix
     extends LambdaPermissionStatementIdOrStatementIdPrefix {
-  const LambdaPermissionStatementIdPrefixOption({
-    required this.statementIdPrefix,
-  });
+  const LambdaPermissionStatementIdOrStatementIdPrefixStatementIdPrefix(
+    this.statementIdPrefix,
+  );
 
   final TfArg<String> statementIdPrefix;
 

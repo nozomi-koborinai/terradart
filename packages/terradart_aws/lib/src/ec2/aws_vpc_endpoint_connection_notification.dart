@@ -8,8 +8,20 @@ const Set<String> _awsVpcEndpointConnectionNotificationSensitive = <String>{};
 
 /// Exactly one of `vpc_endpoint_id`, `vpc_endpoint_service_id` on `aws_vpc_endpoint_connection_notification`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.vpcEndpointId(...)`.
 sealed class VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId {
   const VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId();
+
+  /// Sets `vpc_endpoint_id`.
+  const factory VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId.vpcEndpointId(
+    TfArg<String> vpcEndpointId,
+  ) = VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceIdVpcEndpointId;
+
+  /// Sets `vpc_endpoint_service_id`.
+  const factory VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId.vpcEndpointServiceId(
+    TfArg<String> vpcEndpointServiceId,
+  ) = VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceIdVpcEndpointServiceId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,13 +33,13 @@ sealed class VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceI
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `vpc_endpoint_id` (one of the [VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId] choices).
-final class VpcEndpointConnectionNotificationVpcEndpointIdOption
+/// The [VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId.vpcEndpointId] choice: sets `vpc_endpoint_id`.
+final class VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceIdVpcEndpointId
     extends
         VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId {
-  const VpcEndpointConnectionNotificationVpcEndpointIdOption({
-    required this.vpcEndpointId,
-  });
+  const VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceIdVpcEndpointId(
+    this.vpcEndpointId,
+  );
 
   final TfArg<String> vpcEndpointId;
 
@@ -43,13 +55,13 @@ final class VpcEndpointConnectionNotificationVpcEndpointIdOption
   Map<String, TfArg<Object?>> get argMap => {'vpc_endpoint_id': vpcEndpointId};
 }
 
-/// Sets `vpc_endpoint_service_id` (one of the [VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId] choices).
-final class VpcEndpointConnectionNotificationVpcEndpointServiceIdOption
+/// The [VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId.vpcEndpointServiceId] choice: sets `vpc_endpoint_service_id`.
+final class VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceIdVpcEndpointServiceId
     extends
         VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId {
-  const VpcEndpointConnectionNotificationVpcEndpointServiceIdOption({
-    required this.vpcEndpointServiceId,
-  });
+  const VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceIdVpcEndpointServiceId(
+    this.vpcEndpointServiceId,
+  );
 
   final TfArg<String> vpcEndpointServiceId;
 

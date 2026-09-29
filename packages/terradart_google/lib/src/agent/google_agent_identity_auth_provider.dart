@@ -29,8 +29,27 @@ final class AgentIdentityAuthProviderAuthProviderTypeParams {
 
 /// Exactly one of `api_key`, `three_legged_oauth`, `two_legged_oauth` on the `auth_provider_type_params` block of `google_agent_identity_auth_provider`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.apiKey(...)`.
 sealed class AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth {
   const AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth();
+
+  /// Sets `api_key`.
+  const factory AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth.apiKey(
+    AgentIdentityAuthProviderAuthProviderTypeParamsApiKey apiKey,
+  ) = AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauthApiKey;
+
+  /// Sets `three_legged_oauth`.
+  const factory AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth.threeLeggedOauth(
+    AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth
+    threeLeggedOauth,
+  ) = AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauthThreeLeggedOauth;
+
+  /// Sets `two_legged_oauth`.
+  const factory AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth.twoLeggedOauth(
+    AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth
+    twoLeggedOauth,
+  ) = AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauthTwoLeggedOauth;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -38,13 +57,13 @@ sealed class AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedO
   Map<String, Object?> encode();
 }
 
-/// Sets `api_key` (one of the [AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth] choices).
-final class AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOption
+/// The [AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth.apiKey] choice: sets `api_key`.
+final class AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauthApiKey
     extends
         AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOption({
-    required this.apiKey,
-  });
+  const AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauthApiKey(
+    this.apiKey,
+  );
 
   final AgentIdentityAuthProviderAuthProviderTypeParamsApiKey apiKey;
 
@@ -55,13 +74,13 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOption
   Map<String, Object?> encode() => {'api_key': apiKey.encode()};
 }
 
-/// Sets `three_legged_oauth` (one of the [AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth] choices).
-final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthOption
+/// The [AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth.threeLeggedOauth] choice: sets `three_legged_oauth`.
+final class AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauthThreeLeggedOauth
     extends
         AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthOption({
-    required this.threeLeggedOauth,
-  });
+  const AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauthThreeLeggedOauth(
+    this.threeLeggedOauth,
+  );
 
   final AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth
   threeLeggedOauth;
@@ -75,13 +94,13 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthOptio
   };
 }
 
-/// Sets `two_legged_oauth` (one of the [AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth] choices).
-final class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthOption
+/// The [AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth.twoLeggedOauth] choice: sets `two_legged_oauth`.
+final class AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauthTwoLeggedOauth
     extends
         AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauth {
-  const AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthOption({
-    required this.twoLeggedOauth,
-  });
+  const AgentIdentityAuthProviderAuthProviderTypeParamsApiKeyOrThreeLeggedOauthOrTwoLeggedOauthTwoLeggedOauth(
+    this.twoLeggedOauth,
+  );
 
   final AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth
   twoLeggedOauth;

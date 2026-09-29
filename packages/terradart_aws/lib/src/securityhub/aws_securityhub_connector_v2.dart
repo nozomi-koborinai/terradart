@@ -23,8 +23,20 @@ final class SecurityhubConnectorV2ConnectorProvider {
 
 /// Exactly one of `jira_cloud`, `service_now` on the `connector_provider` block of `aws_securityhub_connector_v2`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.jiraCloud(...)`.
 sealed class SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow {
   const SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow();
+
+  /// Sets `jira_cloud`.
+  const factory SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow.jiraCloud(
+    List<SecurityhubConnectorV2ConnectorProviderJiraCloud> jiraCloud,
+  ) = SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNowJiraCloud;
+
+  /// Sets `service_now`.
+  const factory SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow.serviceNow(
+    List<SecurityhubConnectorV2ConnectorProviderServiceNow> serviceNow,
+  ) = SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNowServiceNow;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,12 +44,12 @@ sealed class SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow {
   Map<String, Object?> encode();
 }
 
-/// Sets `jira_cloud` (one of the [SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow] choices).
-final class SecurityhubConnectorV2ConnectorProviderJiraCloudOption
+/// The [SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow.jiraCloud] choice: sets `jira_cloud`.
+final class SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNowJiraCloud
     extends SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow {
-  const SecurityhubConnectorV2ConnectorProviderJiraCloudOption({
-    required this.jiraCloud,
-  });
+  const SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNowJiraCloud(
+    this.jiraCloud,
+  );
 
   final List<SecurityhubConnectorV2ConnectorProviderJiraCloud> jiraCloud;
 
@@ -50,12 +62,12 @@ final class SecurityhubConnectorV2ConnectorProviderJiraCloudOption
   };
 }
 
-/// Sets `service_now` (one of the [SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow] choices).
-final class SecurityhubConnectorV2ConnectorProviderServiceNowOption
+/// The [SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow.serviceNow] choice: sets `service_now`.
+final class SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNowServiceNow
     extends SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNow {
-  const SecurityhubConnectorV2ConnectorProviderServiceNowOption({
-    required this.serviceNow,
-  });
+  const SecurityhubConnectorV2ConnectorProviderJiraCloudOrServiceNowServiceNow(
+    this.serviceNow,
+  );
 
   final List<SecurityhubConnectorV2ConnectorProviderServiceNow> serviceNow;
 

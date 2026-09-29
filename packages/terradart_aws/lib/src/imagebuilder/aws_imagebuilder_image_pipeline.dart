@@ -19,8 +19,20 @@ enum ImagebuilderImagePipelineStatus implements TerraformEnum {
 
 /// Exactly one of `container_recipe_arn`, `image_recipe_arn` on `aws_imagebuilder_image_pipeline`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.containerRecipeArn(...)`.
 sealed class ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn {
   const ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn();
+
+  /// Sets `container_recipe_arn`.
+  const factory ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn.containerRecipeArn(
+    TfArg<String> containerRecipeArn,
+  ) = ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnContainerRecipeArn;
+
+  /// Sets `image_recipe_arn`.
+  const factory ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn.imageRecipeArn(
+    TfArg<String> imageRecipeArn,
+  ) = ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnImageRecipeArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,12 +44,12 @@ sealed class ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `container_recipe_arn` (one of the [ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn] choices).
-final class ImagebuilderImagePipelineContainerRecipeArnOption
+/// The [ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn.containerRecipeArn] choice: sets `container_recipe_arn`.
+final class ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnContainerRecipeArn
     extends ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn {
-  const ImagebuilderImagePipelineContainerRecipeArnOption({
-    required this.containerRecipeArn,
-  });
+  const ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnContainerRecipeArn(
+    this.containerRecipeArn,
+  );
 
   final TfArg<String> containerRecipeArn;
 
@@ -55,12 +67,12 @@ final class ImagebuilderImagePipelineContainerRecipeArnOption
   };
 }
 
-/// Sets `image_recipe_arn` (one of the [ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn] choices).
-final class ImagebuilderImagePipelineImageRecipeArnOption
+/// The [ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn.imageRecipeArn] choice: sets `image_recipe_arn`.
+final class ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnImageRecipeArn
     extends ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn {
-  const ImagebuilderImagePipelineImageRecipeArnOption({
-    required this.imageRecipeArn,
-  });
+  const ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnImageRecipeArn(
+    this.imageRecipeArn,
+  );
 
   final TfArg<String> imageRecipeArn;
 

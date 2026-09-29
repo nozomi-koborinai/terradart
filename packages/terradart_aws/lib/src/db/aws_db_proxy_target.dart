@@ -8,8 +8,20 @@ const Set<String> _awsDbProxyTargetSensitive = <String>{};
 
 /// Exactly one of `db_cluster_identifier`, `db_instance_identifier` on `aws_db_proxy_target`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.dbClusterIdentifier(...)`.
 sealed class DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier {
   const DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier();
+
+  /// Sets `db_cluster_identifier`.
+  const factory DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier.dbClusterIdentifier(
+    TfArg<String> dbClusterIdentifier,
+  ) = DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifierDbClusterIdentifier;
+
+  /// Sets `db_instance_identifier`.
+  const factory DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier.dbInstanceIdentifier(
+    TfArg<String> dbInstanceIdentifier,
+  ) = DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifierDbInstanceIdentifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,12 +33,12 @@ sealed class DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `db_cluster_identifier` (one of the [DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier] choices).
-final class DbProxyTargetDbClusterIdentifierOption
+/// The [DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier.dbClusterIdentifier] choice: sets `db_cluster_identifier`.
+final class DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifierDbClusterIdentifier
     extends DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier {
-  const DbProxyTargetDbClusterIdentifierOption({
-    required this.dbClusterIdentifier,
-  });
+  const DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifierDbClusterIdentifier(
+    this.dbClusterIdentifier,
+  );
 
   final TfArg<String> dbClusterIdentifier;
 
@@ -44,12 +56,12 @@ final class DbProxyTargetDbClusterIdentifierOption
   };
 }
 
-/// Sets `db_instance_identifier` (one of the [DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier] choices).
-final class DbProxyTargetDbInstanceIdentifierOption
+/// The [DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier.dbInstanceIdentifier] choice: sets `db_instance_identifier`.
+final class DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifierDbInstanceIdentifier
     extends DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifier {
-  const DbProxyTargetDbInstanceIdentifierOption({
-    required this.dbInstanceIdentifier,
-  });
+  const DbProxyTargetDbClusterIdentifierOrDbInstanceIdentifierDbInstanceIdentifier(
+    this.dbInstanceIdentifier,
+  );
 
   final TfArg<String> dbInstanceIdentifier;
 

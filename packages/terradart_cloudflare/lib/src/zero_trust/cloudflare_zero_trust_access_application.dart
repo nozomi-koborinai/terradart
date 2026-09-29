@@ -37,8 +37,20 @@ enum ZeroTrustAccessApplicationType implements TerraformEnum {
 /// At most one of `self_hosted_domains`, `destinations` on `cloudflare_zero_trust_access_application`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.selfHostedDomains(...)`.
 sealed class ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations {
   const ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations();
+
+  /// Sets `self_hosted_domains`.
+  const factory ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations.selfHostedDomains(
+    TfArg<List<String>> selfHostedDomains,
+  ) = ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsSelfHostedDomains;
+
+  /// Sets `destinations`.
+  const factory ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations.destinations(
+    List<ZeroTrustAccessApplicationDestinations> destinations,
+  ) = ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsDestinations;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -50,12 +62,12 @@ sealed class ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `self_hosted_domains` (one of the [ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations] choices).
-final class ZeroTrustAccessApplicationSelfHostedDomainsOption
+/// The [ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations.selfHostedDomains] choice: sets `self_hosted_domains`.
+final class ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsSelfHostedDomains
     extends ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations {
-  const ZeroTrustAccessApplicationSelfHostedDomainsOption({
-    required this.selfHostedDomains,
-  });
+  const ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsSelfHostedDomains(
+    this.selfHostedDomains,
+  );
 
   final TfArg<List<String>> selfHostedDomains;
 
@@ -73,12 +85,12 @@ final class ZeroTrustAccessApplicationSelfHostedDomainsOption
   };
 }
 
-/// Sets `destinations` (one of the [ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations] choices).
-final class ZeroTrustAccessApplicationDestinationsOption
+/// The [ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations.destinations] choice: sets `destinations`.
+final class ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsDestinations
     extends ZeroTrustAccessApplicationSelfHostedDomainsOrDestinations {
-  const ZeroTrustAccessApplicationDestinationsOption({
-    required this.destinations,
-  });
+  const ZeroTrustAccessApplicationSelfHostedDomainsOrDestinationsDestinations(
+    this.destinations,
+  );
 
   final List<ZeroTrustAccessApplicationDestinations> destinations;
 
@@ -133,8 +145,21 @@ final class ZeroTrustAccessApplicationCorsHeaders {
 
 /// Exactly one of `allow_all_methods`, `allowed_methods` on the `cors_headers` block of `cloudflare_zero_trust_access_application`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.allowAllMethods(...)`.
 sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods {
   const ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods();
+
+  /// Sets `allow_all_methods`.
+  const factory ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods.allowAllMethods(
+    TfArg<bool> allowAllMethods,
+  ) = ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethodsAllowAllMethods;
+
+  /// Sets `allowed_methods`.
+  const factory ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods.allowedMethods(
+    List<TfArg<ZeroTrustAccessApplicationCorsHeadersAllowedMethods>>
+    allowedMethods,
+  ) = ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethodsAllowedMethods;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -142,13 +167,13 @@ sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethod
   Map<String, Object?> encode();
 }
 
-/// Sets `allow_all_methods` (one of the [ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods] choices).
-final class ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOption
+/// The [ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods.allowAllMethods] choice: sets `allow_all_methods`.
+final class ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethodsAllowAllMethods
     extends
         ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods {
-  const ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOption({
-    required this.allowAllMethods,
-  });
+  const ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethodsAllowAllMethods(
+    this.allowAllMethods,
+  );
 
   final TfArg<bool> allowAllMethods;
 
@@ -161,13 +186,13 @@ final class ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOption
   };
 }
 
-/// Sets `allowed_methods` (one of the [ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods] choices).
-final class ZeroTrustAccessApplicationCorsHeadersAllowedMethodsOption
+/// The [ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods.allowedMethods] choice: sets `allowed_methods`.
+final class ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethodsAllowedMethods
     extends
         ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethods {
-  const ZeroTrustAccessApplicationCorsHeadersAllowedMethodsOption({
-    required this.allowedMethods,
-  });
+  const ZeroTrustAccessApplicationCorsHeadersAllowAllMethodsOrAllowedMethodsAllowedMethods(
+    this.allowedMethods,
+  );
 
   final List<TfArg<ZeroTrustAccessApplicationCorsHeadersAllowedMethods>>
   allowedMethods;
@@ -183,8 +208,20 @@ final class ZeroTrustAccessApplicationCorsHeadersAllowedMethodsOption
 
 /// Exactly one of `allow_all_origins`, `allowed_origins` on the `cors_headers` block of `cloudflare_zero_trust_access_application`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.allowAllOrigins(...)`.
 sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins {
   const ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins();
+
+  /// Sets `allow_all_origins`.
+  const factory ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins.allowAllOrigins(
+    TfArg<bool> allowAllOrigins,
+  ) = ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOriginsAllowAllOrigins;
+
+  /// Sets `allowed_origins`.
+  const factory ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins.allowedOrigins(
+    TfArg<List<Object?>> allowedOrigins,
+  ) = ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOriginsAllowedOrigins;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -192,13 +229,13 @@ sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigin
   Map<String, Object?> encode();
 }
 
-/// Sets `allow_all_origins` (one of the [ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins] choices).
-final class ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOption
+/// The [ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins.allowAllOrigins] choice: sets `allow_all_origins`.
+final class ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOriginsAllowAllOrigins
     extends
         ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins {
-  const ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOption({
-    required this.allowAllOrigins,
-  });
+  const ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOriginsAllowAllOrigins(
+    this.allowAllOrigins,
+  );
 
   final TfArg<bool> allowAllOrigins;
 
@@ -211,13 +248,13 @@ final class ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOption
   };
 }
 
-/// Sets `allowed_origins` (one of the [ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins] choices).
-final class ZeroTrustAccessApplicationCorsHeadersAllowedOriginsOption
+/// The [ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins.allowedOrigins] choice: sets `allowed_origins`.
+final class ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOriginsAllowedOrigins
     extends
         ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOrigins {
-  const ZeroTrustAccessApplicationCorsHeadersAllowedOriginsOption({
-    required this.allowedOrigins,
-  });
+  const ZeroTrustAccessApplicationCorsHeadersAllowAllOriginsOrAllowedOriginsAllowedOrigins(
+    this.allowedOrigins,
+  );
 
   final TfArg<List<Object?>> allowedOrigins;
 
@@ -233,8 +270,20 @@ final class ZeroTrustAccessApplicationCorsHeadersAllowedOriginsOption
 /// At most one of `allow_all_headers`, `allowed_headers` on the `cors_headers` block of `cloudflare_zero_trust_access_application`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.allowAllHeaders(...)`.
 sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders {
   const ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders();
+
+  /// Sets `allow_all_headers`.
+  const factory ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders.allowAllHeaders(
+    TfArg<bool> allowAllHeaders,
+  ) = ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeadersAllowAllHeaders;
+
+  /// Sets `allowed_headers`.
+  const factory ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders.allowedHeaders(
+    TfArg<List<Object?>> allowedHeaders,
+  ) = ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeadersAllowedHeaders;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -242,13 +291,13 @@ sealed class ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeader
   Map<String, Object?> encode();
 }
 
-/// Sets `allow_all_headers` (one of the [ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders] choices).
-final class ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOption
+/// The [ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders.allowAllHeaders] choice: sets `allow_all_headers`.
+final class ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeadersAllowAllHeaders
     extends
         ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders {
-  const ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOption({
-    required this.allowAllHeaders,
-  });
+  const ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeadersAllowAllHeaders(
+    this.allowAllHeaders,
+  );
 
   final TfArg<bool> allowAllHeaders;
 
@@ -261,13 +310,13 @@ final class ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOption
   };
 }
 
-/// Sets `allowed_headers` (one of the [ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders] choices).
-final class ZeroTrustAccessApplicationCorsHeadersAllowedHeadersOption
+/// The [ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders.allowedHeaders] choice: sets `allowed_headers`.
+final class ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeadersAllowedHeaders
     extends
         ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeaders {
-  const ZeroTrustAccessApplicationCorsHeadersAllowedHeadersOption({
-    required this.allowedHeaders,
-  });
+  const ZeroTrustAccessApplicationCorsHeadersAllowAllHeadersOrAllowedHeadersAllowedHeaders(
+    this.allowedHeaders,
+  );
 
   final TfArg<List<Object?>> allowedHeaders;
 
@@ -585,8 +634,20 @@ final class ZeroTrustAccessApplicationPolicies {
 
 /// Exactly one of `id`, `include` on the `policies` block of `cloudflare_zero_trust_access_application`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.id(...)`.
 sealed class ZeroTrustAccessApplicationPoliciesIdOrInclude {
   const ZeroTrustAccessApplicationPoliciesIdOrInclude();
+
+  /// Sets `id`.
+  const factory ZeroTrustAccessApplicationPoliciesIdOrInclude.id(
+    TfArg<String> id,
+  ) = ZeroTrustAccessApplicationPoliciesIdOrIncludeId;
+
+  /// Sets `include`.
+  const factory ZeroTrustAccessApplicationPoliciesIdOrInclude.include(
+    List<ZeroTrustAccessApplicationPoliciesInclude> include,
+  ) = ZeroTrustAccessApplicationPoliciesIdOrIncludeInclude;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -594,10 +655,10 @@ sealed class ZeroTrustAccessApplicationPoliciesIdOrInclude {
   Map<String, Object?> encode();
 }
 
-/// Sets `id` (one of the [ZeroTrustAccessApplicationPoliciesIdOrInclude] choices).
-final class ZeroTrustAccessApplicationPoliciesIdOption
+/// The [ZeroTrustAccessApplicationPoliciesIdOrInclude.id] choice: sets `id`.
+final class ZeroTrustAccessApplicationPoliciesIdOrIncludeId
     extends ZeroTrustAccessApplicationPoliciesIdOrInclude {
-  const ZeroTrustAccessApplicationPoliciesIdOption({required this.id});
+  const ZeroTrustAccessApplicationPoliciesIdOrIncludeId(this.id);
 
   final TfArg<String> id;
 
@@ -608,12 +669,10 @@ final class ZeroTrustAccessApplicationPoliciesIdOption
   Map<String, Object?> encode() => {'id': id.toTfJson()};
 }
 
-/// Sets `include` (one of the [ZeroTrustAccessApplicationPoliciesIdOrInclude] choices).
-final class ZeroTrustAccessApplicationPoliciesIncludeOption
+/// The [ZeroTrustAccessApplicationPoliciesIdOrInclude.include] choice: sets `include`.
+final class ZeroTrustAccessApplicationPoliciesIdOrIncludeInclude
     extends ZeroTrustAccessApplicationPoliciesIdOrInclude {
-  const ZeroTrustAccessApplicationPoliciesIncludeOption({
-    required this.include,
-  });
+  const ZeroTrustAccessApplicationPoliciesIdOrIncludeInclude(this.include);
 
   final List<ZeroTrustAccessApplicationPoliciesInclude> include;
 

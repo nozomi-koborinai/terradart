@@ -17,8 +17,30 @@ enum AmiLaunchPermissionGroup implements TerraformEnum {
 
 /// Exactly one of `account_id`, `group`, `organization_arn`, `organizational_unit_arn` on `aws_ami_launch_permission`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.accountId(...)`.
 sealed class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn {
   const AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn();
+
+  /// Sets `account_id`.
+  const factory AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.accountId(
+    TfArg<String> accountId,
+  ) = AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnAccountId;
+
+  /// Sets `group`.
+  const factory AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.group(
+    TfArg<AmiLaunchPermissionGroup> group,
+  ) = AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnGroup;
+
+  /// Sets `organization_arn`.
+  const factory AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.organizationArn(
+    TfArg<String> organizationArn,
+  ) = AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationArn;
+
+  /// Sets `organizational_unit_arn`.
+  const factory AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.organizationalUnitArn(
+    TfArg<String> organizationalUnitArn,
+  ) = AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationalUnitArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -30,11 +52,13 @@ sealed class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationa
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `account_id` (one of the [AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn] choices).
-final class AmiLaunchPermissionAccountIdOption
+/// The [AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.accountId] choice: sets `account_id`.
+final class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnAccountId
     extends
         AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn {
-  const AmiLaunchPermissionAccountIdOption({required this.accountId});
+  const AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnAccountId(
+    this.accountId,
+  );
 
   final TfArg<String> accountId;
 
@@ -48,11 +72,13 @@ final class AmiLaunchPermissionAccountIdOption
   Map<String, TfArg<Object?>> get argMap => {'account_id': accountId};
 }
 
-/// Sets `group` (one of the [AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn] choices).
-final class AmiLaunchPermissionGroupOption
+/// The [AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.group] choice: sets `group`.
+final class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnGroup
     extends
         AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn {
-  const AmiLaunchPermissionGroupOption({required this.group});
+  const AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnGroup(
+    this.group,
+  );
 
   final TfArg<AmiLaunchPermissionGroup> group;
 
@@ -66,13 +92,13 @@ final class AmiLaunchPermissionGroupOption
   Map<String, TfArg<Object?>> get argMap => {'group': group};
 }
 
-/// Sets `organization_arn` (one of the [AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn] choices).
-final class AmiLaunchPermissionOrganizationArnOption
+/// The [AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.organizationArn] choice: sets `organization_arn`.
+final class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationArn
     extends
         AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn {
-  const AmiLaunchPermissionOrganizationArnOption({
-    required this.organizationArn,
-  });
+  const AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationArn(
+    this.organizationArn,
+  );
 
   final TfArg<String> organizationArn;
 
@@ -90,13 +116,13 @@ final class AmiLaunchPermissionOrganizationArnOption
   };
 }
 
-/// Sets `organizational_unit_arn` (one of the [AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn] choices).
-final class AmiLaunchPermissionOrganizationalUnitArnOption
+/// The [AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn.organizationalUnitArn] choice: sets `organizational_unit_arn`.
+final class AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationalUnitArn
     extends
         AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArn {
-  const AmiLaunchPermissionOrganizationalUnitArnOption({
-    required this.organizationalUnitArn,
-  });
+  const AmiLaunchPermissionAccountIdOrGroupOrOrganizationArnOrOrganizationalUnitArnOrganizationalUnitArn(
+    this.organizationalUnitArn,
+  );
 
   final TfArg<String> organizationalUnitArn;
 

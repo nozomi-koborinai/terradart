@@ -19,8 +19,18 @@ enum ImagebuilderComponentPlatform implements TerraformEnum {
 
 /// Exactly one of `data`, `uri` on `aws_imagebuilder_component`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.data(...)`.
 sealed class ImagebuilderComponentDataOrUri {
   const ImagebuilderComponentDataOrUri();
+
+  /// Sets `data`.
+  const factory ImagebuilderComponentDataOrUri.data(TfArg<String> data) =
+      ImagebuilderComponentDataOrUriData;
+
+  /// Sets `uri`.
+  const factory ImagebuilderComponentDataOrUri.uri(TfArg<String> uri) =
+      ImagebuilderComponentDataOrUriUri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,10 +42,10 @@ sealed class ImagebuilderComponentDataOrUri {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `data` (one of the [ImagebuilderComponentDataOrUri] choices).
-final class ImagebuilderComponentDataOption
+/// The [ImagebuilderComponentDataOrUri.data] choice: sets `data`.
+final class ImagebuilderComponentDataOrUriData
     extends ImagebuilderComponentDataOrUri {
-  const ImagebuilderComponentDataOption({required this.data});
+  const ImagebuilderComponentDataOrUriData(this.data);
 
   final TfArg<String> data;
 
@@ -49,10 +59,10 @@ final class ImagebuilderComponentDataOption
   Map<String, TfArg<Object?>> get argMap => {'data': data};
 }
 
-/// Sets `uri` (one of the [ImagebuilderComponentDataOrUri] choices).
-final class ImagebuilderComponentUriOption
+/// The [ImagebuilderComponentDataOrUri.uri] choice: sets `uri`.
+final class ImagebuilderComponentDataOrUriUri
     extends ImagebuilderComponentDataOrUri {
-  const ImagebuilderComponentUriOption({required this.uri});
+  const ImagebuilderComponentDataOrUriUri(this.uri);
 
   final TfArg<String> uri;
 

@@ -9,8 +9,19 @@ const Set<String> _awsIamServerCertificateSensitive = <String>{'private_key'};
 /// At most one of `name`, `name_prefix` on `aws_iam_server_certificate`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class IamServerCertificateNameOrNamePrefix {
   const IamServerCertificateNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory IamServerCertificateNameOrNamePrefix.name(TfArg<String> name) =
+      IamServerCertificateNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory IamServerCertificateNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = IamServerCertificateNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +33,10 @@ sealed class IamServerCertificateNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [IamServerCertificateNameOrNamePrefix] choices).
-final class IamServerCertificateNameOption
+/// The [IamServerCertificateNameOrNamePrefix.name] choice: sets `name`.
+final class IamServerCertificateNameOrNamePrefixName
     extends IamServerCertificateNameOrNamePrefix {
-  const IamServerCertificateNameOption({required this.name});
+  const IamServerCertificateNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -39,10 +50,10 @@ final class IamServerCertificateNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [IamServerCertificateNameOrNamePrefix] choices).
-final class IamServerCertificateNamePrefixOption
+/// The [IamServerCertificateNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class IamServerCertificateNameOrNamePrefixNamePrefix
     extends IamServerCertificateNameOrNamePrefix {
-  const IamServerCertificateNamePrefixOption({required this.namePrefix});
+  const IamServerCertificateNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

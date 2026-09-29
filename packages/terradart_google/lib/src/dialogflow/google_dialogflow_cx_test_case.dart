@@ -226,8 +226,20 @@ final class DialogflowCxTestCaseTestConfig {
 /// At most one of `flow`, `page` on the `test_config` block of `google_dialogflow_cx_test_case`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.flow(...)`.
 sealed class DialogflowCxTestCaseTestConfigFlowOrPage {
   const DialogflowCxTestCaseTestConfigFlowOrPage();
+
+  /// Sets `flow`.
+  const factory DialogflowCxTestCaseTestConfigFlowOrPage.flow(
+    TfArg<String> flow,
+  ) = DialogflowCxTestCaseTestConfigFlowOrPageFlow;
+
+  /// Sets `page`.
+  const factory DialogflowCxTestCaseTestConfigFlowOrPage.page(
+    TfArg<String> page,
+  ) = DialogflowCxTestCaseTestConfigFlowOrPagePage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -235,10 +247,10 @@ sealed class DialogflowCxTestCaseTestConfigFlowOrPage {
   Map<String, Object?> encode();
 }
 
-/// Sets `flow` (one of the [DialogflowCxTestCaseTestConfigFlowOrPage] choices).
-final class DialogflowCxTestCaseTestConfigFlowOption
+/// The [DialogflowCxTestCaseTestConfigFlowOrPage.flow] choice: sets `flow`.
+final class DialogflowCxTestCaseTestConfigFlowOrPageFlow
     extends DialogflowCxTestCaseTestConfigFlowOrPage {
-  const DialogflowCxTestCaseTestConfigFlowOption({required this.flow});
+  const DialogflowCxTestCaseTestConfigFlowOrPageFlow(this.flow);
 
   final TfArg<String> flow;
 
@@ -249,10 +261,10 @@ final class DialogflowCxTestCaseTestConfigFlowOption
   Map<String, Object?> encode() => {'flow': flow.toTfJson()};
 }
 
-/// Sets `page` (one of the [DialogflowCxTestCaseTestConfigFlowOrPage] choices).
-final class DialogflowCxTestCaseTestConfigPageOption
+/// The [DialogflowCxTestCaseTestConfigFlowOrPage.page] choice: sets `page`.
+final class DialogflowCxTestCaseTestConfigFlowOrPagePage
     extends DialogflowCxTestCaseTestConfigFlowOrPage {
-  const DialogflowCxTestCaseTestConfigPageOption({required this.page});
+  const DialogflowCxTestCaseTestConfigFlowOrPagePage(this.page);
 
   final TfArg<String> page;
 

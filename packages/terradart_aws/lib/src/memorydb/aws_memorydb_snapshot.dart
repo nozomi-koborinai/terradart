@@ -9,8 +9,19 @@ const Set<String> _awsMemorydbSnapshotSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_memorydb_snapshot`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class MemorydbSnapshotNameOrNamePrefix {
   const MemorydbSnapshotNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory MemorydbSnapshotNameOrNamePrefix.name(TfArg<String> name) =
+      MemorydbSnapshotNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory MemorydbSnapshotNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = MemorydbSnapshotNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,10 +33,10 @@ sealed class MemorydbSnapshotNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [MemorydbSnapshotNameOrNamePrefix] choices).
-final class MemorydbSnapshotNameOption
+/// The [MemorydbSnapshotNameOrNamePrefix.name] choice: sets `name`.
+final class MemorydbSnapshotNameOrNamePrefixName
     extends MemorydbSnapshotNameOrNamePrefix {
-  const MemorydbSnapshotNameOption({required this.name});
+  const MemorydbSnapshotNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -39,10 +50,10 @@ final class MemorydbSnapshotNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [MemorydbSnapshotNameOrNamePrefix] choices).
-final class MemorydbSnapshotNamePrefixOption
+/// The [MemorydbSnapshotNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class MemorydbSnapshotNameOrNamePrefixNamePrefix
     extends MemorydbSnapshotNameOrNamePrefix {
-  const MemorydbSnapshotNamePrefixOption({required this.namePrefix});
+  const MemorydbSnapshotNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

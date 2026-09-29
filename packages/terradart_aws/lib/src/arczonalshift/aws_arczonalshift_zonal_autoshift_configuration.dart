@@ -24,8 +24,20 @@ enum ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus
 /// At most one of `allowed_windows`, `blocked_windows` on `aws_arczonalshift_zonal_autoshift_configuration`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.allowedWindows(...)`.
 sealed class ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows {
   const ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows();
+
+  /// Sets `allowed_windows`.
+  const factory ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows.allowedWindows(
+    TfArg<List<String>> allowedWindows,
+  ) = ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindowsAllowedWindows;
+
+  /// Sets `blocked_windows`.
+  const factory ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows.blockedWindows(
+    TfArg<List<String>> blockedWindows,
+  ) = ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindowsBlockedWindows;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -37,13 +49,13 @@ sealed class ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWind
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `allowed_windows` (one of the [ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows] choices).
-final class ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOption
+/// The [ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows.allowedWindows] choice: sets `allowed_windows`.
+final class ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindowsAllowedWindows
     extends
         ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows {
-  const ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOption({
-    required this.allowedWindows,
-  });
+  const ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindowsAllowedWindows(
+    this.allowedWindows,
+  );
 
   final TfArg<List<String>> allowedWindows;
 
@@ -59,13 +71,13 @@ final class ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOption
   Map<String, TfArg<Object?>> get argMap => {'allowed_windows': allowedWindows};
 }
 
-/// Sets `blocked_windows` (one of the [ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows] choices).
-final class ArczonalshiftZonalAutoshiftConfigurationBlockedWindowsOption
+/// The [ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows.blockedWindows] choice: sets `blocked_windows`.
+final class ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindowsBlockedWindows
     extends
         ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows {
-  const ArczonalshiftZonalAutoshiftConfigurationBlockedWindowsOption({
-    required this.blockedWindows,
-  });
+  const ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindowsBlockedWindows(
+    this.blockedWindows,
+  );
 
   final TfArg<List<String>> blockedWindows;
 

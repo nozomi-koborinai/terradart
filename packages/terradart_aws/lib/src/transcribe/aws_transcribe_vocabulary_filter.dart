@@ -8,8 +8,20 @@ const Set<String> _awsTranscribeVocabularyFilterSensitive = <String>{};
 
 /// Exactly one of `vocabulary_filter_file_uri`, `words` on `aws_transcribe_vocabulary_filter`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.vocabularyFilterFileUri(...)`.
 sealed class TranscribeVocabularyFilterVocabularyFilterFileUriOrWords {
   const TranscribeVocabularyFilterVocabularyFilterFileUriOrWords();
+
+  /// Sets `vocabulary_filter_file_uri`.
+  const factory TranscribeVocabularyFilterVocabularyFilterFileUriOrWords.vocabularyFilterFileUri(
+    TfArg<String> vocabularyFilterFileUri,
+  ) = TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsVocabularyFilterFileUri;
+
+  /// Sets `words`.
+  const factory TranscribeVocabularyFilterVocabularyFilterFileUriOrWords.words(
+    TfArg<List<String>> words,
+  ) = TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsWords;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -21,12 +33,12 @@ sealed class TranscribeVocabularyFilterVocabularyFilterFileUriOrWords {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `vocabulary_filter_file_uri` (one of the [TranscribeVocabularyFilterVocabularyFilterFileUriOrWords] choices).
-final class TranscribeVocabularyFilterVocabularyFilterFileUriOption
+/// The [TranscribeVocabularyFilterVocabularyFilterFileUriOrWords.vocabularyFilterFileUri] choice: sets `vocabulary_filter_file_uri`.
+final class TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsVocabularyFilterFileUri
     extends TranscribeVocabularyFilterVocabularyFilterFileUriOrWords {
-  const TranscribeVocabularyFilterVocabularyFilterFileUriOption({
-    required this.vocabularyFilterFileUri,
-  });
+  const TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsVocabularyFilterFileUri(
+    this.vocabularyFilterFileUri,
+  );
 
   final TfArg<String> vocabularyFilterFileUri;
 
@@ -44,10 +56,12 @@ final class TranscribeVocabularyFilterVocabularyFilterFileUriOption
   };
 }
 
-/// Sets `words` (one of the [TranscribeVocabularyFilterVocabularyFilterFileUriOrWords] choices).
-final class TranscribeVocabularyFilterWordsOption
+/// The [TranscribeVocabularyFilterVocabularyFilterFileUriOrWords.words] choice: sets `words`.
+final class TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsWords
     extends TranscribeVocabularyFilterVocabularyFilterFileUriOrWords {
-  const TranscribeVocabularyFilterWordsOption({required this.words});
+  const TranscribeVocabularyFilterVocabularyFilterFileUriOrWordsWords(
+    this.words,
+  );
 
   final TfArg<List<String>> words;
 

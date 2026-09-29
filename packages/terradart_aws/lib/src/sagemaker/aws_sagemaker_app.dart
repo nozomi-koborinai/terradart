@@ -26,8 +26,20 @@ enum SagemakerAppAppType implements TerraformEnum {
 
 /// Exactly one of `space_name`, `user_profile_name` on `aws_sagemaker_app`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.spaceName(...)`.
 sealed class SagemakerAppSpaceNameOrUserProfileName {
   const SagemakerAppSpaceNameOrUserProfileName();
+
+  /// Sets `space_name`.
+  const factory SagemakerAppSpaceNameOrUserProfileName.spaceName(
+    TfArg<String> spaceName,
+  ) = SagemakerAppSpaceNameOrUserProfileNameSpaceName;
+
+  /// Sets `user_profile_name`.
+  const factory SagemakerAppSpaceNameOrUserProfileName.userProfileName(
+    TfArg<String> userProfileName,
+  ) = SagemakerAppSpaceNameOrUserProfileNameUserProfileName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -39,10 +51,10 @@ sealed class SagemakerAppSpaceNameOrUserProfileName {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `space_name` (one of the [SagemakerAppSpaceNameOrUserProfileName] choices).
-final class SagemakerAppSpaceNameOption
+/// The [SagemakerAppSpaceNameOrUserProfileName.spaceName] choice: sets `space_name`.
+final class SagemakerAppSpaceNameOrUserProfileNameSpaceName
     extends SagemakerAppSpaceNameOrUserProfileName {
-  const SagemakerAppSpaceNameOption({required this.spaceName});
+  const SagemakerAppSpaceNameOrUserProfileNameSpaceName(this.spaceName);
 
   final TfArg<String> spaceName;
 
@@ -56,10 +68,12 @@ final class SagemakerAppSpaceNameOption
   Map<String, TfArg<Object?>> get argMap => {'space_name': spaceName};
 }
 
-/// Sets `user_profile_name` (one of the [SagemakerAppSpaceNameOrUserProfileName] choices).
-final class SagemakerAppUserProfileNameOption
+/// The [SagemakerAppSpaceNameOrUserProfileName.userProfileName] choice: sets `user_profile_name`.
+final class SagemakerAppSpaceNameOrUserProfileNameUserProfileName
     extends SagemakerAppSpaceNameOrUserProfileName {
-  const SagemakerAppUserProfileNameOption({required this.userProfileName});
+  const SagemakerAppSpaceNameOrUserProfileNameUserProfileName(
+    this.userProfileName,
+  );
 
   final TfArg<String> userProfileName;
 

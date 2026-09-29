@@ -10,8 +10,20 @@ const Set<String> _awsLexIntentSensitive = <String>{};
 /// At most one of `conclusion_statement`, `follow_up_prompt` on `aws_lex_intent`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.conclusionStatement(...)`.
 sealed class LexIntentConclusionStatementOrFollowUpPrompt {
   const LexIntentConclusionStatementOrFollowUpPrompt();
+
+  /// Sets `conclusion_statement`.
+  const factory LexIntentConclusionStatementOrFollowUpPrompt.conclusionStatement(
+    LexIntentConclusionStatement conclusionStatement,
+  ) = LexIntentConclusionStatementOrFollowUpPromptConclusionStatement;
+
+  /// Sets `follow_up_prompt`.
+  const factory LexIntentConclusionStatementOrFollowUpPrompt.followUpPrompt(
+    LexIntentFollowUpPrompt followUpPrompt,
+  ) = LexIntentConclusionStatementOrFollowUpPromptFollowUpPrompt;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,10 +35,12 @@ sealed class LexIntentConclusionStatementOrFollowUpPrompt {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `conclusion_statement` (one of the [LexIntentConclusionStatementOrFollowUpPrompt] choices).
-final class LexIntentConclusionStatementOption
+/// The [LexIntentConclusionStatementOrFollowUpPrompt.conclusionStatement] choice: sets `conclusion_statement`.
+final class LexIntentConclusionStatementOrFollowUpPromptConclusionStatement
     extends LexIntentConclusionStatementOrFollowUpPrompt {
-  const LexIntentConclusionStatementOption({required this.conclusionStatement});
+  const LexIntentConclusionStatementOrFollowUpPromptConclusionStatement(
+    this.conclusionStatement,
+  );
 
   final LexIntentConclusionStatement conclusionStatement;
 
@@ -44,10 +58,12 @@ final class LexIntentConclusionStatementOption
   };
 }
 
-/// Sets `follow_up_prompt` (one of the [LexIntentConclusionStatementOrFollowUpPrompt] choices).
-final class LexIntentFollowUpPromptOption
+/// The [LexIntentConclusionStatementOrFollowUpPrompt.followUpPrompt] choice: sets `follow_up_prompt`.
+final class LexIntentConclusionStatementOrFollowUpPromptFollowUpPrompt
     extends LexIntentConclusionStatementOrFollowUpPrompt {
-  const LexIntentFollowUpPromptOption({required this.followUpPrompt});
+  const LexIntentConclusionStatementOrFollowUpPromptFollowUpPrompt(
+    this.followUpPrompt,
+  );
 
   final LexIntentFollowUpPrompt followUpPrompt;
 

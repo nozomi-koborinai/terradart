@@ -363,8 +363,20 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbe {
 
 /// Exactly one of `http_get`, `grpc` on the `template.spec.containers.liveness_probe` block of `google_cloud_run_service`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.httpGet(...)`.
 sealed class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc {
   const CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc();
+
+  /// Sets `http_get`.
+  const factory CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc.httpGet(
+    CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet httpGet,
+  ) = CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcHttpGet;
+
+  /// Sets `grpc`.
+  const factory CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc.grpc(
+    CloudRunServiceTemplateSpecContainersLivenessProbeGrpc grpc,
+  ) = CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcGrpc;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -372,12 +384,12 @@ sealed class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc {
   Map<String, Object?> encode();
 }
 
-/// Sets `http_get` (one of the [CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc] choices).
-final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOption
+/// The [CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc.httpGet] choice: sets `http_get`.
+final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcHttpGet
     extends CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOption({
-    required this.httpGet,
-  });
+  const CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcHttpGet(
+    this.httpGet,
+  );
 
   final CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet httpGet;
 
@@ -388,12 +400,12 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOption
   Map<String, Object?> encode() => {'http_get': httpGet.encode()};
 }
 
-/// Sets `grpc` (one of the [CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc] choices).
-final class CloudRunServiceTemplateSpecContainersLivenessProbeGrpcOption
+/// The [CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc.grpc] choice: sets `grpc`.
+final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcGrpc
     extends CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersLivenessProbeGrpcOption({
-    required this.grpc,
-  });
+  const CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcGrpc(
+    this.grpc,
+  );
 
   final CloudRunServiceTemplateSpecContainersLivenessProbeGrpc grpc;
 
@@ -528,8 +540,20 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbe {
 
 /// Exactly one of `http_get`, `grpc` on the `template.spec.containers.readiness_probe` block of `google_cloud_run_service`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.httpGet(...)`.
 sealed class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc {
   const CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc();
+
+  /// Sets `http_get`.
+  const factory CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc.httpGet(
+    CloudRunServiceTemplateSpecContainersReadinessProbeHttpGet httpGet,
+  ) = CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcHttpGet;
+
+  /// Sets `grpc`.
+  const factory CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc.grpc(
+    CloudRunServiceTemplateSpecContainersReadinessProbeGrpc grpc,
+  ) = CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcGrpc;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -537,12 +561,12 @@ sealed class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc {
   Map<String, Object?> encode();
 }
 
-/// Sets `http_get` (one of the [CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc] choices).
-final class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOption
+/// The [CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc.httpGet] choice: sets `http_get`.
+final class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcHttpGet
     extends CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOption({
-    required this.httpGet,
-  });
+  const CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcHttpGet(
+    this.httpGet,
+  );
 
   final CloudRunServiceTemplateSpecContainersReadinessProbeHttpGet httpGet;
 
@@ -553,12 +577,12 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOption
   Map<String, Object?> encode() => {'http_get': httpGet.encode()};
 }
 
-/// Sets `grpc` (one of the [CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc] choices).
-final class CloudRunServiceTemplateSpecContainersReadinessProbeGrpcOption
+/// The [CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc.grpc] choice: sets `grpc`.
+final class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcGrpc
     extends CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersReadinessProbeGrpcOption({
-    required this.grpc,
-  });
+  const CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcGrpc(
+    this.grpc,
+  );
 
   final CloudRunServiceTemplateSpecContainersReadinessProbeGrpc grpc;
 
@@ -662,8 +686,25 @@ final class CloudRunServiceTemplateSpecContainersStartupProbe {
 
 /// Exactly one of `tcp_socket`, `http_get`, `grpc` on the `template.spec.containers.startup_probe` block of `google_cloud_run_service`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.tcpSocket(...)`.
 sealed class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc {
   const CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc();
+
+  /// Sets `tcp_socket`.
+  const factory CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc.tcpSocket(
+    CloudRunServiceTemplateSpecContainersStartupProbeTcpSocket tcpSocket,
+  ) = CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcTcpSocket;
+
+  /// Sets `http_get`.
+  const factory CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc.httpGet(
+    CloudRunServiceTemplateSpecContainersStartupProbeHttpGet httpGet,
+  ) = CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcHttpGet;
+
+  /// Sets `grpc`.
+  const factory CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc.grpc(
+    CloudRunServiceTemplateSpecContainersStartupProbeGrpc grpc,
+  ) = CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcGrpc;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -671,13 +712,13 @@ sealed class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGet
   Map<String, Object?> encode();
 }
 
-/// Sets `tcp_socket` (one of the [CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc] choices).
-final class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOption
+/// The [CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc.tcpSocket] choice: sets `tcp_socket`.
+final class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcTcpSocket
     extends
         CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOption({
-    required this.tcpSocket,
-  });
+  const CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcTcpSocket(
+    this.tcpSocket,
+  );
 
   final CloudRunServiceTemplateSpecContainersStartupProbeTcpSocket tcpSocket;
 
@@ -688,13 +729,13 @@ final class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOption
   Map<String, Object?> encode() => {'tcp_socket': tcpSocket.encode()};
 }
 
-/// Sets `http_get` (one of the [CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc] choices).
-final class CloudRunServiceTemplateSpecContainersStartupProbeHttpGetOption
+/// The [CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc.httpGet] choice: sets `http_get`.
+final class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcHttpGet
     extends
         CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersStartupProbeHttpGetOption({
-    required this.httpGet,
-  });
+  const CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcHttpGet(
+    this.httpGet,
+  );
 
   final CloudRunServiceTemplateSpecContainersStartupProbeHttpGet httpGet;
 
@@ -705,13 +746,13 @@ final class CloudRunServiceTemplateSpecContainersStartupProbeHttpGetOption
   Map<String, Object?> encode() => {'http_get': httpGet.encode()};
 }
 
-/// Sets `grpc` (one of the [CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc] choices).
-final class CloudRunServiceTemplateSpecContainersStartupProbeGrpcOption
+/// The [CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc.grpc] choice: sets `grpc`.
+final class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcGrpc
     extends
         CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersStartupProbeGrpcOption({
-    required this.grpc,
-  });
+  const CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcGrpc(
+    this.grpc,
+  );
 
   final CloudRunServiceTemplateSpecContainersStartupProbeGrpc grpc;
 

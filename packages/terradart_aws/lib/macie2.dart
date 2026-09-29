@@ -17,9 +17,9 @@ export 'src/macie2/aws_macie2_classification_job.dart'
         AwsMacie2ClassificationJob,
         Macie2ClassificationJobJobStatus,
         Macie2ClassificationJobJobType,
-        Macie2ClassificationJobNameOption,
         Macie2ClassificationJobNameOrNamePrefix,
-        Macie2ClassificationJobNamePrefixOption,
+        Macie2ClassificationJobNameOrNamePrefixName,
+        Macie2ClassificationJobNameOrNamePrefixNamePrefix,
         Macie2ClassificationJobS3JobDefinition,
         Macie2ClassificationJobS3JobDefinitionBucketCriteria,
         Macie2ClassificationJobS3JobDefinitionBucketCriteriaExcludes,
@@ -36,10 +36,10 @@ export 'src/macie2/aws_macie2_classification_job.dart'
         Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterion,
         Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterionComparator,
         Macie2ClassificationJobS3JobDefinitionBucketCriteriaIncludesAndTagCriterionTagValues,
-        Macie2ClassificationJobS3JobDefinitionBucketCriteriaOption,
         Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions,
+        Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitionsBucketCriteria,
+        Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitionsBucketDefinitions,
         Macie2ClassificationJobS3JobDefinitionBucketDefinitions,
-        Macie2ClassificationJobS3JobDefinitionBucketDefinitionsOption,
         Macie2ClassificationJobS3JobDefinitionScoping,
         Macie2ClassificationJobS3JobDefinitionScopingExcludes,
         Macie2ClassificationJobS3JobDefinitionScopingExcludesAnd,
@@ -59,25 +59,25 @@ export 'src/macie2/aws_macie2_classification_job.dart'
         Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermTagValues,
         Macie2ClassificationJobS3JobDefinitionScopingIncludesAndTagScopeTermTarget,
         Macie2ClassificationJobScheduleFrequency,
-        Macie2ClassificationJobScheduleFrequencyDailyScheduleOption,
         Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule,
-        Macie2ClassificationJobScheduleFrequencyMonthlyScheduleOption,
-        Macie2ClassificationJobScheduleFrequencyWeeklyScheduleOption;
+        Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklyScheduleDailySchedule,
+        Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklyScheduleMonthlySchedule,
+        Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklyScheduleWeeklySchedule;
 export 'src/macie2/aws_macie2_custom_data_identifier.dart'
     show
         AwsMacie2CustomDataIdentifier,
-        Macie2CustomDataIdentifierNameOption,
         Macie2CustomDataIdentifierNameOrNamePrefix,
-        Macie2CustomDataIdentifierNamePrefixOption;
+        Macie2CustomDataIdentifierNameOrNamePrefixName,
+        Macie2CustomDataIdentifierNameOrNamePrefixNamePrefix;
 export 'src/macie2/aws_macie2_findings_filter.dart'
     show
         AwsMacie2FindingsFilter,
         Macie2FindingsFilterAction,
         Macie2FindingsFilterFindingCriteria,
         Macie2FindingsFilterFindingCriteriaCriterion,
-        Macie2FindingsFilterNameOption,
         Macie2FindingsFilterNameOrNamePrefix,
-        Macie2FindingsFilterNamePrefixOption;
+        Macie2FindingsFilterNameOrNamePrefixName,
+        Macie2FindingsFilterNameOrNamePrefixNamePrefix;
 export 'src/macie2/aws_macie2_invitation_accepter.dart'
     show AwsMacie2InvitationAccepter;
 export 'src/macie2/aws_macie2_member.dart'

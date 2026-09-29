@@ -151,12 +151,11 @@ final class NccHubStack extends Stack {
                 .defaultRouting,
           ),
         ),
-        virtualMachineOrInterconnectAttachment:
-            NetworkConnectivityPolicyBasedRouteVirtualMachineOption(
-              virtualMachine: NetworkConnectivityPolicyBasedRouteVirtualMachine(
-                tags: TfArg.literal(['terradart-pbr']),
-              ),
-            ),
+        virtualMachineOrInterconnectAttachment: .virtualMachine(
+          NetworkConnectivityPolicyBasedRouteVirtualMachine(
+            tags: TfArg.literal(['terradart-pbr']),
+          ),
+        ),
         description: TfArg.literal('TerraDart PBR smoke (DEFAULT_ROUTING)'),
         dependsOn: [...apiDeps, ResourceDependency(vpc)],
       ),

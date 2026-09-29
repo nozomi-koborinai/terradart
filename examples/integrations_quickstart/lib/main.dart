@@ -87,12 +87,11 @@ final class IntegrationsStack extends Stack {
         decryptedCredential: IntegrationsAuthConfigDecryptedCredential(
           credentialType: TfArg.literal('USERNAME_AND_PASSWORD'),
           usernameAndPasswordOrOauth2AuthorizationCodeOrOauth2ClientCredentialsOrJwtOrAuthTokenOrServiceAccountCredentialsOrOidcToken:
-              IntegrationsAuthConfigDecryptedCredentialUsernameAndPasswordOption(
-                usernameAndPassword:
-                    IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword(
-                      username: TfArg.literal('terradart-dummy'),
-                      password: TfArg.literal('terradart-dummy-password'),
-                    ),
+              .usernameAndPassword(
+                IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword(
+                  username: TfArg.literal('terradart-dummy'),
+                  password: TfArg.literal('terradart-dummy-password'),
+                ),
               ),
         ),
         deletionPolicy: TfArg.literal('DELETE'),

@@ -9,8 +9,18 @@ const Set<String> _awsSwfDomainSensitive = <String>{};
 /// At most one of `name`, `name_prefix` on `aws_swf_domain`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class SwfDomainNameOrNamePrefix {
   const SwfDomainNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory SwfDomainNameOrNamePrefix.name(TfArg<String> name) =
+      SwfDomainNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory SwfDomainNameOrNamePrefix.namePrefix(TfArg<String> namePrefix) =
+      SwfDomainNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -22,9 +32,9 @@ sealed class SwfDomainNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [SwfDomainNameOrNamePrefix] choices).
-final class SwfDomainNameOption extends SwfDomainNameOrNamePrefix {
-  const SwfDomainNameOption({required this.name});
+/// The [SwfDomainNameOrNamePrefix.name] choice: sets `name`.
+final class SwfDomainNameOrNamePrefixName extends SwfDomainNameOrNamePrefix {
+  const SwfDomainNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -38,9 +48,10 @@ final class SwfDomainNameOption extends SwfDomainNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [SwfDomainNameOrNamePrefix] choices).
-final class SwfDomainNamePrefixOption extends SwfDomainNameOrNamePrefix {
-  const SwfDomainNamePrefixOption({required this.namePrefix});
+/// The [SwfDomainNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class SwfDomainNameOrNamePrefixNamePrefix
+    extends SwfDomainNameOrNamePrefix {
+  const SwfDomainNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

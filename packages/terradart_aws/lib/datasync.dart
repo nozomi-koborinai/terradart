@@ -25,12 +25,12 @@ export 'src/datasync/aws_datasync_location_fsx_ontap_file_system.dart'
         DatasyncLocationFsxOntapFileSystemProtocolNfs,
         DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptions,
         DatasyncLocationFsxOntapFileSystemProtocolNfsMountOptionsVersion,
-        DatasyncLocationFsxOntapFileSystemProtocolNfsOption,
         DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmb,
+        DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmbNfs,
+        DatasyncLocationFsxOntapFileSystemProtocolNfsOrSmbSmb,
         DatasyncLocationFsxOntapFileSystemProtocolSmb,
         DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptions,
-        DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptionsVersion,
-        DatasyncLocationFsxOntapFileSystemProtocolSmbOption;
+        DatasyncLocationFsxOntapFileSystemProtocolSmbMountOptionsVersion;
 export 'src/datasync/aws_datasync_location_fsx_openzfs_file_system.dart'
     show
         AwsDatasyncLocationFsxOpenzfsFileSystem,
@@ -44,12 +44,12 @@ export 'src/datasync/aws_datasync_location_hdfs.dart'
     show
         AwsDatasyncLocationHdfs,
         DatasyncLocationHdfsAuthenticationType,
-        DatasyncLocationHdfsKerberosKeytabBase64Option,
-        DatasyncLocationHdfsKerberosKeytabOption,
         DatasyncLocationHdfsKerberosKeytabOrKerberosKeytabBase64,
-        DatasyncLocationHdfsKerberosKrb5ConfBase64Option,
-        DatasyncLocationHdfsKerberosKrb5ConfOption,
+        DatasyncLocationHdfsKerberosKeytabOrKerberosKeytabBase64KerberosKeytab,
+        DatasyncLocationHdfsKerberosKeytabOrKerberosKeytabBase64KerberosKeytabBase64,
         DatasyncLocationHdfsKerberosKrb5ConfOrKerberosKrb5ConfBase64,
+        DatasyncLocationHdfsKerberosKrb5ConfOrKerberosKrb5ConfBase64KerberosKrb5Conf,
+        DatasyncLocationHdfsKerberosKrb5ConfOrKerberosKrb5ConfBase64KerberosKrb5ConfBase64,
         DatasyncLocationHdfsNameNode,
         DatasyncLocationHdfsQopConfiguration,
         DatasyncLocationHdfsQopConfigurationDataTransferProtection,

@@ -31,8 +31,20 @@ enum Macie2ClassificationJobJobType implements TerraformEnum {
 /// At most one of `name`, `name_prefix` on `aws_macie2_classification_job`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.name(...)`.
 sealed class Macie2ClassificationJobNameOrNamePrefix {
   const Macie2ClassificationJobNameOrNamePrefix();
+
+  /// Sets `name`.
+  const factory Macie2ClassificationJobNameOrNamePrefix.name(
+    TfArg<String> name,
+  ) = Macie2ClassificationJobNameOrNamePrefixName;
+
+  /// Sets `name_prefix`.
+  const factory Macie2ClassificationJobNameOrNamePrefix.namePrefix(
+    TfArg<String> namePrefix,
+  ) = Macie2ClassificationJobNameOrNamePrefixNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,10 +56,10 @@ sealed class Macie2ClassificationJobNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `name` (one of the [Macie2ClassificationJobNameOrNamePrefix] choices).
-final class Macie2ClassificationJobNameOption
+/// The [Macie2ClassificationJobNameOrNamePrefix.name] choice: sets `name`.
+final class Macie2ClassificationJobNameOrNamePrefixName
     extends Macie2ClassificationJobNameOrNamePrefix {
-  const Macie2ClassificationJobNameOption({required this.name});
+  const Macie2ClassificationJobNameOrNamePrefixName(this.name);
 
   final TfArg<String> name;
 
@@ -61,10 +73,10 @@ final class Macie2ClassificationJobNameOption
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// Sets `name_prefix` (one of the [Macie2ClassificationJobNameOrNamePrefix] choices).
-final class Macie2ClassificationJobNamePrefixOption
+/// The [Macie2ClassificationJobNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
+final class Macie2ClassificationJobNameOrNamePrefixNamePrefix
     extends Macie2ClassificationJobNameOrNamePrefix {
-  const Macie2ClassificationJobNamePrefixOption({required this.namePrefix});
+  const Macie2ClassificationJobNameOrNamePrefixNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -101,8 +113,21 @@ final class Macie2ClassificationJobS3JobDefinition {
 /// At most one of `bucket_criteria`, `bucket_definitions` on the `s3_job_definition` block of `aws_macie2_classification_job`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.bucketCriteria(...)`.
 sealed class Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions {
   const Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions();
+
+  /// Sets `bucket_criteria`.
+  const factory Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions.bucketCriteria(
+    Macie2ClassificationJobS3JobDefinitionBucketCriteria bucketCriteria,
+  ) = Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitionsBucketCriteria;
+
+  /// Sets `bucket_definitions`.
+  const factory Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions.bucketDefinitions(
+    List<Macie2ClassificationJobS3JobDefinitionBucketDefinitions>
+    bucketDefinitions,
+  ) = Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitionsBucketDefinitions;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -110,13 +135,13 @@ sealed class Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinit
   Map<String, Object?> encode();
 }
 
-/// Sets `bucket_criteria` (one of the [Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions] choices).
-final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaOption
+/// The [Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions.bucketCriteria] choice: sets `bucket_criteria`.
+final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitionsBucketCriteria
     extends
         Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions {
-  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaOption({
-    required this.bucketCriteria,
-  });
+  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitionsBucketCriteria(
+    this.bucketCriteria,
+  );
 
   final Macie2ClassificationJobS3JobDefinitionBucketCriteria bucketCriteria;
 
@@ -127,13 +152,13 @@ final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaOption
   Map<String, Object?> encode() => {'bucket_criteria': bucketCriteria.encode()};
 }
 
-/// Sets `bucket_definitions` (one of the [Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions] choices).
-final class Macie2ClassificationJobS3JobDefinitionBucketDefinitionsOption
+/// The [Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions.bucketDefinitions] choice: sets `bucket_definitions`.
+final class Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitionsBucketDefinitions
     extends
         Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitions {
-  const Macie2ClassificationJobS3JobDefinitionBucketDefinitionsOption({
-    required this.bucketDefinitions,
-  });
+  const Macie2ClassificationJobS3JobDefinitionBucketCriteriaOrBucketDefinitionsBucketDefinitions(
+    this.bucketDefinitions,
+  );
 
   final List<Macie2ClassificationJobS3JobDefinitionBucketDefinitions>
   bucketDefinitions;
@@ -851,8 +876,25 @@ final class Macie2ClassificationJobScheduleFrequency {
 /// At most one of `daily_schedule`, `monthly_schedule`, `weekly_schedule` on the `schedule_frequency` block of `aws_macie2_classification_job`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.dailySchedule(...)`.
 sealed class Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule {
   const Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule();
+
+  /// Sets `daily_schedule`.
+  const factory Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule.dailySchedule(
+    TfArg<bool> dailySchedule,
+  ) = Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklyScheduleDailySchedule;
+
+  /// Sets `monthly_schedule`.
+  const factory Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule.monthlySchedule(
+    TfArg<num> monthlySchedule,
+  ) = Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklyScheduleMonthlySchedule;
+
+  /// Sets `weekly_schedule`.
+  const factory Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule.weeklySchedule(
+    TfArg<String> weeklySchedule,
+  ) = Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklyScheduleWeeklySchedule;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -860,13 +902,13 @@ sealed class Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlySched
   Map<String, Object?> encode();
 }
 
-/// Sets `daily_schedule` (one of the [Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule] choices).
-final class Macie2ClassificationJobScheduleFrequencyDailyScheduleOption
+/// The [Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule.dailySchedule] choice: sets `daily_schedule`.
+final class Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklyScheduleDailySchedule
     extends
         Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule {
-  const Macie2ClassificationJobScheduleFrequencyDailyScheduleOption({
-    required this.dailySchedule,
-  });
+  const Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklyScheduleDailySchedule(
+    this.dailySchedule,
+  );
 
   final TfArg<bool> dailySchedule;
 
@@ -877,13 +919,13 @@ final class Macie2ClassificationJobScheduleFrequencyDailyScheduleOption
   Map<String, Object?> encode() => {'daily_schedule': dailySchedule.toTfJson()};
 }
 
-/// Sets `monthly_schedule` (one of the [Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule] choices).
-final class Macie2ClassificationJobScheduleFrequencyMonthlyScheduleOption
+/// The [Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule.monthlySchedule] choice: sets `monthly_schedule`.
+final class Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklyScheduleMonthlySchedule
     extends
         Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule {
-  const Macie2ClassificationJobScheduleFrequencyMonthlyScheduleOption({
-    required this.monthlySchedule,
-  });
+  const Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklyScheduleMonthlySchedule(
+    this.monthlySchedule,
+  );
 
   final TfArg<num> monthlySchedule;
 
@@ -896,13 +938,13 @@ final class Macie2ClassificationJobScheduleFrequencyMonthlyScheduleOption
   };
 }
 
-/// Sets `weekly_schedule` (one of the [Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule] choices).
-final class Macie2ClassificationJobScheduleFrequencyWeeklyScheduleOption
+/// The [Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule.weeklySchedule] choice: sets `weekly_schedule`.
+final class Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklyScheduleWeeklySchedule
     extends
         Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklySchedule {
-  const Macie2ClassificationJobScheduleFrequencyWeeklyScheduleOption({
-    required this.weeklySchedule,
-  });
+  const Macie2ClassificationJobScheduleFrequencyDailyScheduleOrMonthlyScheduleOrWeeklyScheduleWeeklySchedule(
+    this.weeklySchedule,
+  );
 
   final TfArg<String> weeklySchedule;
 

@@ -29,8 +29,25 @@ final class AppmeshGatewayRouteSpec {
 
 /// Exactly one of `grpc_route`, `http2_route`, `http_route` on the `spec` block of `aws_appmesh_gateway_route`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.grpcRoute(...)`.
 sealed class AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute {
   const AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute();
+
+  /// Sets `grpc_route`.
+  const factory AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute.grpcRoute(
+    AppmeshGatewayRouteSpecGrpcRoute grpcRoute,
+  ) = AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRouteGrpcRoute;
+
+  /// Sets `http2_route`.
+  const factory AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute.http2Route(
+    AppmeshGatewayRouteSpecHttp2Route http2Route,
+  ) = AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRouteHttp2Route;
+
+  /// Sets `http_route`.
+  const factory AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute.httpRoute(
+    AppmeshGatewayRouteSpecHttpRoute httpRoute,
+  ) = AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRouteHttpRoute;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -38,10 +55,12 @@ sealed class AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute {
   Map<String, Object?> encode();
 }
 
-/// Sets `grpc_route` (one of the [AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute] choices).
-final class AppmeshGatewayRouteSpecGrpcRouteOption
+/// The [AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute.grpcRoute] choice: sets `grpc_route`.
+final class AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRouteGrpcRoute
     extends AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute {
-  const AppmeshGatewayRouteSpecGrpcRouteOption({required this.grpcRoute});
+  const AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRouteGrpcRoute(
+    this.grpcRoute,
+  );
 
   final AppmeshGatewayRouteSpecGrpcRoute grpcRoute;
 
@@ -52,10 +71,12 @@ final class AppmeshGatewayRouteSpecGrpcRouteOption
   Map<String, Object?> encode() => {'grpc_route': grpcRoute.encode()};
 }
 
-/// Sets `http2_route` (one of the [AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute] choices).
-final class AppmeshGatewayRouteSpecHttp2RouteOption
+/// The [AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute.http2Route] choice: sets `http2_route`.
+final class AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRouteHttp2Route
     extends AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute {
-  const AppmeshGatewayRouteSpecHttp2RouteOption({required this.http2Route});
+  const AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRouteHttp2Route(
+    this.http2Route,
+  );
 
   final AppmeshGatewayRouteSpecHttp2Route http2Route;
 
@@ -66,10 +87,12 @@ final class AppmeshGatewayRouteSpecHttp2RouteOption
   Map<String, Object?> encode() => {'http2_route': http2Route.encode()};
 }
 
-/// Sets `http_route` (one of the [AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute] choices).
-final class AppmeshGatewayRouteSpecHttpRouteOption
+/// The [AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute.httpRoute] choice: sets `http_route`.
+final class AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRouteHttpRoute
     extends AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRoute {
-  const AppmeshGatewayRouteSpecHttpRouteOption({required this.httpRoute});
+  const AppmeshGatewayRouteSpecGrpcRouteOrHttp2RouteOrHttpRouteHttpRoute(
+    this.httpRoute,
+  );
 
   final AppmeshGatewayRouteSpecHttpRoute httpRoute;
 

@@ -10,8 +10,20 @@ const Set<String> _awsRoute53recoverycontrolconfigSafetyRuleSensitive =
 
 /// Exactly one of `asserted_controls`, `gating_controls` on `aws_route53recoverycontrolconfig_safety_rule`: the provider rejects
 /// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.assertedControls(...)`.
 sealed class Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls {
   const Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls();
+
+  /// Sets `asserted_controls`.
+  const factory Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls.assertedControls(
+    TfArg<List<String>> assertedControls,
+  ) = Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControlsAssertedControls;
+
+  /// Sets `gating_controls`.
+  const factory Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls.gatingControls(
+    TfArg<List<String>> gatingControls,
+  ) = Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControlsGatingControls;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -23,13 +35,13 @@ sealed class Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingContr
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// Sets `asserted_controls` (one of the [Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls] choices).
-final class Route53recoverycontrolconfigSafetyRuleAssertedControlsOption
+/// The [Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls.assertedControls] choice: sets `asserted_controls`.
+final class Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControlsAssertedControls
     extends
         Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls {
-  const Route53recoverycontrolconfigSafetyRuleAssertedControlsOption({
-    required this.assertedControls,
-  });
+  const Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControlsAssertedControls(
+    this.assertedControls,
+  );
 
   final TfArg<List<String>> assertedControls;
 
@@ -47,13 +59,13 @@ final class Route53recoverycontrolconfigSafetyRuleAssertedControlsOption
   };
 }
 
-/// Sets `gating_controls` (one of the [Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls] choices).
-final class Route53recoverycontrolconfigSafetyRuleGatingControlsOption
+/// The [Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls.gatingControls] choice: sets `gating_controls`.
+final class Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControlsGatingControls
     extends
         Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControls {
-  const Route53recoverycontrolconfigSafetyRuleGatingControlsOption({
-    required this.gatingControls,
-  });
+  const Route53recoverycontrolconfigSafetyRuleAssertedControlsOrGatingControlsGatingControls(
+    this.gatingControls,
+  );
 
   final TfArg<List<String>> gatingControls;
 
