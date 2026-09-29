@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+import '../tablesdb/appwrite_tablesdb.dart' show AppwriteTablesdb;
+import '../tablesdb/appwrite_tablesdb_table.dart' show AppwriteTablesdbTable;
+
 /// Sensitive field paths for `appwrite_tablesdb_row`.
 const Set<String> _appwriteTablesdbRowSensitive = <String>{};
 
@@ -15,10 +19,10 @@ final class AppwriteTablesdbRow extends Resource {
   AppwriteTablesdbRow({
     required super.localName,
     required TfArg<String> data,
-    required TfArg<String> databaseId,
+    required RefTo<AppwriteTablesdb> databaseId,
     TfArg<List<String>>? permissions,
-    TfArg<String>? projectId,
-    required TfArg<String> tableId,
+    RefTo<AppwriteProject>? projectId,
+    required RefTo<AppwriteTablesdbTable> tableId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -27,10 +31,10 @@ final class AppwriteTablesdbRow extends Resource {
          terraformType: tfType,
          argMap: {
            'data': data,
-           'database_id': databaseId,
+           'database_id': databaseId.encodeAs('id'),
            'permissions': ?permissions,
-           'project_id': ?projectId,
-           'table_id': tableId,
+           'project_id': ?projectId?.encodeAs('id'),
+           'table_id': tableId.encodeAs('id'),
          },
        );
 

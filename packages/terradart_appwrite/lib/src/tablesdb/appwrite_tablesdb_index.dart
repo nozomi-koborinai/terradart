@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+import '../tablesdb/appwrite_tablesdb.dart' show AppwriteTablesdb;
+import '../tablesdb/appwrite_tablesdb_table.dart' show AppwriteTablesdbTable;
+
 /// Sensitive field paths for `appwrite_tablesdb_index`.
 const Set<String> _appwriteTablesdbIndexSensitive = <String>{};
 
@@ -15,11 +19,11 @@ final class AppwriteTablesdbIndex extends Resource {
   AppwriteTablesdbIndex({
     required super.localName,
     required TfArg<List<String>> columns,
-    required TfArg<String> databaseId,
+    required RefTo<AppwriteTablesdb> databaseId,
     TfArg<String>? key,
     TfArg<List<String>>? orders,
-    TfArg<String>? projectId,
-    required TfArg<String> tableId,
+    RefTo<AppwriteProject>? projectId,
+    required RefTo<AppwriteTablesdbTable> tableId,
     required TfArg<String> type,
     super.lifecycle,
     super.dependsOn,
@@ -29,11 +33,11 @@ final class AppwriteTablesdbIndex extends Resource {
          terraformType: tfType,
          argMap: {
            'columns': columns,
-           'database_id': databaseId,
+           'database_id': databaseId.encodeAs('id'),
            'key': ?key,
            'orders': ?orders,
-           'project_id': ?projectId,
-           'table_id': tableId,
+           'project_id': ?projectId?.encodeAs('id'),
+           'table_id': tableId.encodeAs('id'),
            'type': type,
          },
        );

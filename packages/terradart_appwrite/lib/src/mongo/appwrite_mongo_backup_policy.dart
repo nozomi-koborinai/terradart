@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../mongo/appwrite_mongo_database.dart' show AppwriteMongoDatabase;
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_mongo_backup_policy`.
 const Set<String> _appwriteMongoBackupPolicySensitive = <String>{};
 
@@ -26,10 +29,10 @@ final class AppwriteMongoBackupPolicy extends Resource {
 
   AppwriteMongoBackupPolicy({
     required super.localName,
-    required TfArg<String> databaseId,
+    required RefTo<AppwriteMongoDatabase> databaseId,
     TfArg<bool>? enabled,
     required TfArg<String> name,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     required TfArg<num> retention,
     required TfArg<String> schedule,
     TfArg<MongoBackupPolicyType>? type,
@@ -40,10 +43,10 @@ final class AppwriteMongoBackupPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'database_id': databaseId,
+           'database_id': databaseId.encodeAs('id'),
            'enabled': ?enabled,
            'name': name,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'retention': retention,
            'schedule': schedule,
            'type': ?type,

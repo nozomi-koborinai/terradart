@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../mysql/appwrite_mysql_database.dart' show AppwriteMysqlDatabase;
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_mysql_branch`.
 const Set<String> _appwriteMysqlBranchSensitive = <String>{
   'connection_string',
@@ -24,8 +27,8 @@ final class AppwriteMysqlBranch extends Resource {
   AppwriteMysqlBranch({
     required super.localName,
     TfArg<String>? branchId,
-    required TfArg<String> databaseId,
-    TfArg<String>? projectId,
+    required RefTo<AppwriteMysqlDatabase> databaseId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<num>? ttl,
     super.lifecycle,
     super.dependsOn,
@@ -35,8 +38,8 @@ final class AppwriteMysqlBranch extends Resource {
          terraformType: tfType,
          argMap: {
            'branch_id': ?branchId,
-           'database_id': databaseId,
-           'project_id': ?projectId,
+           'database_id': databaseId.encodeAs('id'),
+           'project_id': ?projectId?.encodeAs('id'),
            'ttl': ?ttl,
          },
        );

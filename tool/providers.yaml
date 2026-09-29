@@ -146,6 +146,7 @@ providers:
     resourceProvider: null # appwrite_ prefix collides with nothing
     migrateManifest: packages/terradart_migrate/lib/src/manifest/appwrite.g.dart
     providerEnums: true
+    references: typed
   cloudflare:
     source: cloudflare/cloudflare
     schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_cloudflare

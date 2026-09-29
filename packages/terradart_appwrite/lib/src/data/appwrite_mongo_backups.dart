@@ -2,6 +2,8 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../mongo/appwrite_mongo_database.dart' show AppwriteMongoDatabase;
+import '../project/appwrite_project.dart' show AppwriteProject;
 
 /// Sensitive field paths for `appwrite_mongo_backups`.
 const Set<String> _appwriteMongoBackupsSensitive = <String>{};
@@ -16,16 +18,16 @@ final class DataAppwriteMongoBackups extends Data {
 
   DataAppwriteMongoBackups({
     required super.localName,
-    required TfArg<String> databaseId,
-    TfArg<String>? projectId,
+    required RefTo<AppwriteMongoDatabase> databaseId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<List<String>>? queries,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'database_id': databaseId,
-           'project_id': ?projectId,
+           'database_id': databaseId.encodeAs('id'),
+           'project_id': ?projectId?.encodeAs('id'),
            'queries': ?queries,
          },
        );

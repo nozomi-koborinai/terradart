@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_backup_policy`.
 const Set<String> _appwriteBackupPolicySensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class AppwriteBackupPolicy extends Resource {
     required super.localName,
     TfArg<bool>? enabled,
     TfArg<String>? name,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<String>? resourceId,
     required TfArg<num> retention,
     required TfArg<String> schedule,
@@ -30,7 +32,7 @@ final class AppwriteBackupPolicy extends Resource {
          argMap: {
            'enabled': ?enabled,
            'name': ?name,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'resource_id': ?resourceId,
            'retention': retention,
            'schedule': schedule,
