@@ -82,9 +82,9 @@ final class DevStack extends Stack {
         name: .literal(r'app-db-migrate'),
         location: .variable(r'region'),
         template: CloudRunV2JobTemplate(
-          template: CloudRunV2JobTaskTemplate(
+          template: CloudRunV2JobTemplateTemplate(
             containers: [
-              CloudRunV2JobContainer(
+              CloudRunV2JobTemplateTemplateContainers(
                 image: .literal(r'gcr.io/example-project/db-migrate:latest'),
               ),
             ],

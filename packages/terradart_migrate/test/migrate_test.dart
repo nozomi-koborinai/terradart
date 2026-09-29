@@ -1470,7 +1470,7 @@ output "count" {
       expect(
         src,
         contains(
-          r"messageStoragePolicy: .literal({r'allowed_persistence_regions': r'${[google_pubsub_topic.t_0, google_pubsub_topic.t_1][*].name}'})",
+          r"messageStoragePolicy: PubsubTopicMessageStoragePolicy(allowedPersistenceRegions: .expression(r'${[google_pubsub_topic.t_0, google_pubsub_topic.t_1][*].name}'))",
         ),
       );
       // Outputs that are not one attribute stay in outputs.tf, rewritten.
@@ -1778,7 +1778,8 @@ resource "google_pubsub_subscription" "s" {
       expect(
         src,
         contains(
-          "oidcToken: PubsubSubscriptionOidcToken(serviceAccountEmail: .literal(r'sa@x'))",
+          "delivery: .pushConfig(PubsubSubscriptionPushConfig(pushEndpoint: .literal(r'https://x'), "
+          "oidcToken: PubsubSubscriptionPushConfigOidcToken(serviceAccountEmail: .literal(r'sa@x'))))",
         ),
       );
       expect(src, contains('dependsOn: [ResourceDependency(t)]'));

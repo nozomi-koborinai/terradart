@@ -8,7 +8,6 @@ deriveEnums: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
-
 dartTypeOverrides:
   state: ApigeeSecurityActionState
 
@@ -32,6 +31,9 @@ paramOrder:
   - ttl
   - condition_config
   - deny
+  - allow
+  - flag
 
 sealedNames:
+  "allow, deny, flag": effect
   "expire_time, ttl": expiration

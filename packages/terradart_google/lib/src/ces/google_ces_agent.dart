@@ -393,6 +393,7 @@ final class GoogleCesAgent extends Resource {
     List<CesAgentAfterToolCallbacks>? afterToolCallbacks,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    List<CesAgentTransferRules>? transferRules,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -444,6 +445,10 @@ final class GoogleCesAgent extends Resource {
              ]),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           if (transferRules != null)
+             'transfer_rules': TfArg.literal([
+               for (final e in transferRules) e.encode(),
+             ]),
          },
        );
 

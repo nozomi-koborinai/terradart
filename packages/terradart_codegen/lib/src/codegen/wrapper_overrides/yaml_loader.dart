@@ -150,6 +150,8 @@ class YamlOverrideLoader {
     'dedupeNestedTypes',
     'deriveExactlyOne',
     'sealedNames',
+    'exactlyOneOf',
+    'atMostOneOf',
     // 4 Phase 4.1 axes (kind dispatch + emitter routing).
     'kind',
     'outputDir',
@@ -455,7 +457,25 @@ class YamlOverrideLoader {
       dedupeNestedTypes: dedupeNestedTypes,
       deriveExactlyOne: _readBool(yaml, 'deriveExactlyOne', filePath) ?? false,
       sealedNames: _readSealedNames(yaml, filePath),
+      exactlyOneOf: _readGroups(yaml, 'exactlyOneOf', filePath),
+      atMostOneOf: _readGroups(yaml, 'atMostOneOf', filePath),
     );
+  }
+
+  /// The `exactlyOneOf` / `atMostOneOf` axes: a string list whose entries
+  /// are comma-separated member paths, two or more each.
+  List<String>? _readGroups(YamlMap yaml, String key, String filePath) {
+    final groups = _readStringList(yaml, key, filePath);
+    if (groups == null) return null;
+    for (final g in groups) {
+      if (sealedGroupKey(g).length < 2) {
+        throw FormatException(
+          '$filePath: $key entry "$g" must list two or more members, '
+          'comma-separated.',
+        );
+      }
+    }
+    return groups;
   }
 
   static final RegExp _sealedConcept = RegExp(r'^[a-z][a-z0-9]*(_[a-z0-9]+)*$');

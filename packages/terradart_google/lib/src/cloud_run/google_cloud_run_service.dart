@@ -1063,6 +1063,7 @@ final class GoogleCloudRunService extends Resource {
     TfArg<bool>? autogenerateRevisionName,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    CloudRunServiceMetadata? metadata,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -1078,6 +1079,7 @@ final class GoogleCloudRunService extends Resource {
            'autogenerate_revision_name': ?autogenerateRevisionName,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           if (metadata != null) 'metadata': TfArg.literal(metadata.encode()),
          },
        );
 

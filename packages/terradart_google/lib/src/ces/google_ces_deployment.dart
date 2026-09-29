@@ -261,6 +261,8 @@ final class GoogleCesDeployment extends Resource {
     required CesDeploymentChannelProfile channelProfile,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    CesDeploymentInstagramCredentials? instagramCredentials,
+    CesDeploymentWhatsappCredentials? whatsappCredentials,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -275,6 +277,14 @@ final class GoogleCesDeployment extends Resource {
            'channel_profile': TfArg.literal(channelProfile.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           if (instagramCredentials != null)
+             'instagram_credentials': TfArg.literal(
+               instagramCredentials.encode(),
+             ),
+           if (whatsappCredentials != null)
+             'whatsapp_credentials': TfArg.literal(
+               whatsappCredentials.encode(),
+             ),
          },
        );
 

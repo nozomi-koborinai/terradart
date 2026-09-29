@@ -13,164 +13,147 @@ const Set<String> _googlePubsubSubscriptionSensitive = <String>{};
 // `argMap` invariant `Map<String, TfArg<dynamic>?>` holds. Synth then calls
 // `arg.toTfJson()` and recursively encodes any nested `TfArg` instances.
 
-/// `push_config` block. Pair with [pushEndpoint]; optionally attach an
-/// [oidcToken] (recommended for authenticated webhooks) or [noWrapper].
+// ===========================================================================
+// Factory
+// ===========================================================================
+
+/// Typed helper for the `bigquery_config` block of
+/// `google_pubsub_subscription` (derived from provider schema).
 @immutable
-class PubsubSubscriptionPushConfig {
-  const PubsubSubscriptionPushConfig({
-    required this.pushEndpoint,
-    this.attributes,
-    this.oidcToken,
-    this.noWrapper,
-  });
-
-  final TfArg<String> pushEndpoint;
-  final TfArg<Map<String, String>>? attributes;
-  final PubsubSubscriptionOidcToken? oidcToken;
-  final PubsubSubscriptionNoWrapper? noWrapper;
-
-  Map<String, Object?> encode() => {
-    'push_endpoint': pushEndpoint.toTfJson(),
-    if (attributes != null) 'attributes': attributes!.toTfJson(),
-    if (oidcToken != null) 'oidc_token': oidcToken!.encode(),
-    if (noWrapper != null) 'no_wrapper': noWrapper!.encode(),
-  };
-}
-
-/// OIDC token configuration for authenticated push subscriptions.
-@immutable
-class PubsubSubscriptionOidcToken {
-  const PubsubSubscriptionOidcToken({
-    required this.serviceAccountEmail,
-    this.audience,
-  });
-
-  final TfArg<String> serviceAccountEmail;
-  final TfArg<String>? audience;
-
-  Map<String, Object?> encode() => {
-    'service_account_email': serviceAccountEmail.toTfJson(),
-    if (audience != null) 'audience': audience!.toTfJson(),
-  };
-}
-
-/// `no_wrapper` payload-shape override for push subscriptions.
-@immutable
-class PubsubSubscriptionNoWrapper {
-  const PubsubSubscriptionNoWrapper({required this.writeMetadata});
-
-  final TfArg<bool> writeMetadata;
-
-  Map<String, Object?> encode() => {'write_metadata': writeMetadata.toTfJson()};
-}
-
-/// `bigquery_config` block.
-@immutable
-class PubsubSubscriptionBigQueryConfig {
-  const PubsubSubscriptionBigQueryConfig({
-    required this.table,
-    this.useTopicSchema,
-    this.useTableSchema,
-    this.writeMetadata,
+final class PubsubSubscriptionBigqueryConfig {
+  const PubsubSubscriptionBigqueryConfig({
     this.dropUnknownFields,
     this.serviceAccountEmail,
+    required this.table,
+    this.useTableSchema,
+    this.useTopicSchema,
+    this.writeMetadata,
   });
 
-  final TfArg<String> table;
-  final TfArg<bool>? useTopicSchema;
-  final TfArg<bool>? useTableSchema;
-  final TfArg<bool>? writeMetadata;
   final TfArg<bool>? dropUnknownFields;
+
   final TfArg<String>? serviceAccountEmail;
 
+  final TfArg<String> table;
+
+  final TfArg<bool>? useTableSchema;
+
+  final TfArg<bool>? useTopicSchema;
+
+  final TfArg<bool>? writeMetadata;
+
   Map<String, Object?> encode() => {
+    'drop_unknown_fields': ?dropUnknownFields?.toTfJson(),
+    'service_account_email': ?serviceAccountEmail?.toTfJson(),
     'table': table.toTfJson(),
-    if (useTopicSchema != null) 'use_topic_schema': useTopicSchema!.toTfJson(),
-    if (useTableSchema != null) 'use_table_schema': useTableSchema!.toTfJson(),
-    if (writeMetadata != null) 'write_metadata': writeMetadata!.toTfJson(),
-    if (dropUnknownFields != null)
-      'drop_unknown_fields': dropUnknownFields!.toTfJson(),
-    if (serviceAccountEmail != null)
-      'service_account_email': serviceAccountEmail!.toTfJson(),
+    'use_table_schema': ?useTableSchema?.toTfJson(),
+    'use_topic_schema': ?useTopicSchema?.toTfJson(),
+    'write_metadata': ?writeMetadata?.toTfJson(),
   };
 }
 
-/// `cloud_storage_config` block.
+/// Typed helper for the `cloud_storage_config` block of
+/// `google_pubsub_subscription` (derived from provider schema).
 @immutable
-class PubsubSubscriptionCloudStorageConfig {
+final class PubsubSubscriptionCloudStorageConfig {
   const PubsubSubscriptionCloudStorageConfig({
     required this.bucket,
+    this.filenameDatetimeFormat,
     this.filenamePrefix,
     this.filenameSuffix,
-    this.filenameDatetimeFormat,
-    this.maxDuration,
     this.maxBytes,
+    this.maxDuration,
     this.maxMessages,
     this.serviceAccountEmail,
+    this.avroConfig,
+    this.textConfig,
   });
 
   final TfArg<String> bucket;
-  final TfArg<String>? filenamePrefix;
-  final TfArg<String>? filenameSuffix;
+
   final TfArg<String>? filenameDatetimeFormat;
+
+  final TfArg<String>? filenamePrefix;
+
+  final TfArg<String>? filenameSuffix;
+
+  final TfArg<num>? maxBytes;
+
   final TfArg<String>? maxDuration;
-  final TfArg<int>? maxBytes;
-  final TfArg<int>? maxMessages;
+
+  final TfArg<num>? maxMessages;
+
   final TfArg<String>? serviceAccountEmail;
+
+  final PubsubSubscriptionCloudStorageConfigAvroConfig? avroConfig;
+
+  final PubsubSubscriptionCloudStorageConfigTextConfig? textConfig;
 
   Map<String, Object?> encode() => {
     'bucket': bucket.toTfJson(),
-    if (filenamePrefix != null) 'filename_prefix': filenamePrefix!.toTfJson(),
-    if (filenameSuffix != null) 'filename_suffix': filenameSuffix!.toTfJson(),
-    if (filenameDatetimeFormat != null)
-      'filename_datetime_format': filenameDatetimeFormat!.toTfJson(),
-    if (maxDuration != null) 'max_duration': maxDuration!.toTfJson(),
-    if (maxBytes != null) 'max_bytes': maxBytes!.toTfJson(),
-    if (maxMessages != null) 'max_messages': maxMessages!.toTfJson(),
-    if (serviceAccountEmail != null)
-      'service_account_email': serviceAccountEmail!.toTfJson(),
+    'filename_datetime_format': ?filenameDatetimeFormat?.toTfJson(),
+    'filename_prefix': ?filenamePrefix?.toTfJson(),
+    'filename_suffix': ?filenameSuffix?.toTfJson(),
+    'max_bytes': ?maxBytes?.toTfJson(),
+    'max_duration': ?maxDuration?.toTfJson(),
+    'max_messages': ?maxMessages?.toTfJson(),
+    'service_account_email': ?serviceAccountEmail?.toTfJson(),
+    'avro_config': ?avroConfig?.encode(),
+    'text_config': ?textConfig?.encode(),
   };
 }
 
-/// `dead_letter_policy` block.
+/// Typed helper for the `cloud_storage_config.avro_config` block of
+/// `google_pubsub_subscription` (derived from provider schema).
 @immutable
-class PubsubSubscriptionDeadLetterPolicy {
+final class PubsubSubscriptionCloudStorageConfigAvroConfig {
+  const PubsubSubscriptionCloudStorageConfigAvroConfig({
+    this.useTopicSchema,
+    this.writeMetadata,
+  });
+
+  final TfArg<bool>? useTopicSchema;
+
+  final TfArg<bool>? writeMetadata;
+
+  Map<String, Object?> encode() => {
+    'use_topic_schema': ?useTopicSchema?.toTfJson(),
+    'write_metadata': ?writeMetadata?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `cloud_storage_config.text_config` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionCloudStorageConfigTextConfig {
+  const PubsubSubscriptionCloudStorageConfigTextConfig();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `dead_letter_policy` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionDeadLetterPolicy {
   const PubsubSubscriptionDeadLetterPolicy({
     this.deadLetterTopic,
     this.maxDeliveryAttempts,
   });
 
   final TfArg<String>? deadLetterTopic;
-  final TfArg<int>? maxDeliveryAttempts;
+
+  final TfArg<num>? maxDeliveryAttempts;
 
   Map<String, Object?> encode() => {
-    if (deadLetterTopic != null)
-      'dead_letter_topic': deadLetterTopic!.toTfJson(),
-    if (maxDeliveryAttempts != null)
-      'max_delivery_attempts': maxDeliveryAttempts!.toTfJson(),
+    'dead_letter_topic': ?deadLetterTopic?.toTfJson(),
+    'max_delivery_attempts': ?maxDeliveryAttempts?.toTfJson(),
   };
 }
 
-/// `retry_policy` block.
+/// Typed helper for the `expiration_policy` block of
+/// `google_pubsub_subscription` (derived from provider schema).
 @immutable
-class PubsubSubscriptionRetryPolicy {
-  const PubsubSubscriptionRetryPolicy({
-    this.minimumBackoff,
-    this.maximumBackoff,
-  });
-
-  final TfArg<String>? minimumBackoff;
-  final TfArg<String>? maximumBackoff;
-
-  Map<String, Object?> encode() => {
-    if (minimumBackoff != null) 'minimum_backoff': minimumBackoff!.toTfJson(),
-    if (maximumBackoff != null) 'maximum_backoff': maximumBackoff!.toTfJson(),
-  };
-}
-
-/// `expiration_policy` block.
-@immutable
-class PubsubSubscriptionExpirationPolicy {
+final class PubsubSubscriptionExpirationPolicy {
   const PubsubSubscriptionExpirationPolicy({required this.ttl});
 
   final TfArg<String> ttl;
@@ -178,9 +161,160 @@ class PubsubSubscriptionExpirationPolicy {
   Map<String, Object?> encode() => {'ttl': ttl.toTfJson()};
 }
 
-// ===========================================================================
-// Factory
-// ===========================================================================
+/// Typed helper for the `message_transforms` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionMessageTransforms {
+  const PubsubSubscriptionMessageTransforms({
+    this.disabled,
+    this.aiInference,
+    this.javascriptUdf,
+  });
+
+  final TfArg<bool>? disabled;
+
+  final PubsubSubscriptionMessageTransformsAiInference? aiInference;
+
+  final PubsubSubscriptionMessageTransformsJavascriptUdf? javascriptUdf;
+
+  Map<String, Object?> encode() => {
+    'disabled': ?disabled?.toTfJson(),
+    'ai_inference': ?aiInference?.encode(),
+    'javascript_udf': ?javascriptUdf?.encode(),
+  };
+}
+
+/// Typed helper for the `message_transforms.ai_inference` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionMessageTransformsAiInference {
+  const PubsubSubscriptionMessageTransformsAiInference({
+    required this.endpoint,
+    this.serviceAccountEmail,
+    this.unstructuredInference,
+  });
+
+  final TfArg<String> endpoint;
+
+  final TfArg<String>? serviceAccountEmail;
+
+  final PubsubSubscriptionMessageTransformsAiInferenceUnstructuredInference?
+  unstructuredInference;
+
+  Map<String, Object?> encode() => {
+    'endpoint': endpoint.toTfJson(),
+    'service_account_email': ?serviceAccountEmail?.toTfJson(),
+    'unstructured_inference': ?unstructuredInference?.encode(),
+  };
+}
+
+/// Typed helper for the `message_transforms.ai_inference.unstructured_inference` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionMessageTransformsAiInferenceUnstructuredInference {
+  const PubsubSubscriptionMessageTransformsAiInferenceUnstructuredInference({
+    this.parameters,
+  });
+
+  final TfArg<Map<String, String>>? parameters;
+
+  Map<String, Object?> encode() => {'parameters': ?parameters?.toTfJson()};
+}
+
+/// Typed helper for the `message_transforms.javascript_udf` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionMessageTransformsJavascriptUdf {
+  const PubsubSubscriptionMessageTransformsJavascriptUdf({
+    required this.code,
+    required this.functionName,
+  });
+
+  final TfArg<String> code;
+
+  final TfArg<String> functionName;
+
+  Map<String, Object?> encode() => {
+    'code': code.toTfJson(),
+    'function_name': functionName.toTfJson(),
+  };
+}
+
+/// Typed helper for the `push_config` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionPushConfig {
+  const PubsubSubscriptionPushConfig({
+    this.attributes,
+    required this.pushEndpoint,
+    this.noWrapper,
+    this.oidcToken,
+  });
+
+  final TfArg<Map<String, String>>? attributes;
+
+  final TfArg<String> pushEndpoint;
+
+  final PubsubSubscriptionPushConfigNoWrapper? noWrapper;
+
+  final PubsubSubscriptionPushConfigOidcToken? oidcToken;
+
+  Map<String, Object?> encode() => {
+    'attributes': ?attributes?.toTfJson(),
+    'push_endpoint': pushEndpoint.toTfJson(),
+    'no_wrapper': ?noWrapper?.encode(),
+    'oidc_token': ?oidcToken?.encode(),
+  };
+}
+
+/// Typed helper for the `push_config.no_wrapper` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionPushConfigNoWrapper {
+  const PubsubSubscriptionPushConfigNoWrapper({required this.writeMetadata});
+
+  final TfArg<bool> writeMetadata;
+
+  Map<String, Object?> encode() => {'write_metadata': writeMetadata.toTfJson()};
+}
+
+/// Typed helper for the `push_config.oidc_token` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionPushConfigOidcToken {
+  const PubsubSubscriptionPushConfigOidcToken({
+    this.audience,
+    required this.serviceAccountEmail,
+  });
+
+  final TfArg<String>? audience;
+
+  final TfArg<String> serviceAccountEmail;
+
+  Map<String, Object?> encode() => {
+    'audience': ?audience?.toTfJson(),
+    'service_account_email': serviceAccountEmail.toTfJson(),
+  };
+}
+
+/// Typed helper for the `retry_policy` block of
+/// `google_pubsub_subscription` (derived from provider schema).
+@immutable
+final class PubsubSubscriptionRetryPolicy {
+  const PubsubSubscriptionRetryPolicy({
+    this.maximumBackoff,
+    this.minimumBackoff,
+  });
+
+  final TfArg<String>? maximumBackoff;
+
+  final TfArg<String>? minimumBackoff;
+
+  Map<String, Object?> encode() => {
+    'maximum_backoff': ?maximumBackoff?.toTfJson(),
+    'minimum_backoff': ?minimumBackoff?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_pubsub_subscription`.
 ///
@@ -192,10 +326,12 @@ class PubsubSubscriptionExpirationPolicy {
 /// ```dart
 /// final push = GooglePubsubSubscription(
 ///   localName: 'orders_push',
-///   name: TfArg.literal('orders-push'),
-///   topic: TfArg.ref(orders.id),
-///   pushConfig: const PubsubSubscriptionPushConfig(
-///     pushEndpoint: TfArgLiteral('https://app.example.com/push'),
+///   name: .literal('orders-push'),
+///   topic: .of(orders),
+///   delivery: .pushConfig(
+///     PubsubSubscriptionPushConfig(
+///       pushEndpoint: .literal('https://app.example.com/push'),
+///     ),
 ///   ),
 /// );
 /// ```
@@ -207,7 +343,7 @@ final class GooglePubsubSubscription extends Resource {
     required TfArg<String> name,
     required TfArg<String> topic,
     TfArg<Map<String, String>>? labels,
-    PubsubSubscriptionBigQueryConfig? bigqueryConfig,
+    PubsubSubscriptionBigqueryConfig? bigqueryConfig,
     PubsubSubscriptionCloudStorageConfig? cloudStorageConfig,
     PubsubSubscriptionPushConfig? pushConfig,
     TfArg<int>? ackDeadlineSeconds,
@@ -219,7 +355,7 @@ final class GooglePubsubSubscription extends Resource {
     PubsubSubscriptionRetryPolicy? retryPolicy,
     TfArg<bool>? enableMessageOrdering,
     TfArg<bool>? enableExactlyOnceDelivery,
-    TfArg<List<Map<String, dynamic>>>? messageTransforms,
+    List<PubsubSubscriptionMessageTransforms>? messageTransforms,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? project,
     super.lifecycle,
@@ -250,7 +386,10 @@ final class GooglePubsubSubscription extends Resource {
              'retry_policy': TfArg.literal(retryPolicy.encode()),
            'enable_message_ordering': ?enableMessageOrdering,
            'enable_exactly_once_delivery': ?enableExactlyOnceDelivery,
-           'message_transforms': ?messageTransforms,
+           if (messageTransforms != null)
+             'message_transforms': TfArg.literal([
+               for (final e in messageTransforms) e.encode(),
+             ]),
            'tags': ?tags,
            'project': ?project,
          },

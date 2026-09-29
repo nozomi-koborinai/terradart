@@ -9,15 +9,23 @@ library;
 export 'src/colab/google_colab_notebook_execution.dart'
     show
         ColabNotebookExecutionCompute,
-        ColabNotebookExecutionCustomCompute,
-        ColabNotebookExecutionDataformSource,
-        ColabNotebookExecutionDirectSource,
-        ColabNotebookExecutionGcsSource,
+        ColabNotebookExecutionComputeCustomEnvironmentSpec,
+        ColabNotebookExecutionComputeNotebookRuntimeTemplateResourceName,
+        ColabNotebookExecutionCustomEnvironmentSpec,
+        ColabNotebookExecutionCustomEnvironmentSpecMachineSpec,
+        ColabNotebookExecutionCustomEnvironmentSpecNetworkSpec,
+        ColabNotebookExecutionCustomEnvironmentSpecPersistentDiskSpec,
+        ColabNotebookExecutionCustomEnvironmentSpecShieldedInstanceConfig,
+        ColabNotebookExecutionDataformRepositorySource,
+        ColabNotebookExecutionDirectNotebookSource,
+        ColabNotebookExecutionGcsNotebookSource,
         ColabNotebookExecutionIdentity,
         ColabNotebookExecutionIdentityExecutionUser,
         ColabNotebookExecutionIdentityServiceAccount,
         ColabNotebookExecutionSource,
-        ColabNotebookExecutionTemplateCompute,
+        ColabNotebookExecutionSourceDataformRepositorySource,
+        ColabNotebookExecutionSourceDirectNotebookSource,
+        ColabNotebookExecutionSourceGcsNotebookSource,
         ColabNotebookExecutionWorkbenchRuntime,
         ColabNotebookExecutionWorkbenchRuntimeVmImage,
         ColabNotebookExecutionWorkbenchRuntimeVmImageSelector,
@@ -30,7 +38,20 @@ export 'src/colab/google_colab_runtime.dart'
         ColabRuntimeNotebookRuntimeTemplateRef,
         GoogleColabRuntime;
 export 'src/colab/google_colab_runtime_template.dart'
-    show GoogleColabRuntimeTemplate;
+    show
+        ColabRuntimeTemplateDataPersistentDiskSpec,
+        ColabRuntimeTemplateEncryptionSpec,
+        ColabRuntimeTemplateEucConfig,
+        ColabRuntimeTemplateIdleShutdownConfig,
+        ColabRuntimeTemplateMachineSpec,
+        ColabRuntimeTemplateNetworkSpec,
+        ColabRuntimeTemplateShieldedVmConfig,
+        ColabRuntimeTemplateSoftwareConfig,
+        ColabRuntimeTemplateSoftwareConfigColabImage,
+        ColabRuntimeTemplateSoftwareConfigEnv,
+        ColabRuntimeTemplateSoftwareConfigPostStartupScriptConfig,
+        ColabRuntimeTemplateSoftwareConfigPostStartupScriptConfigPostStartupScriptBehavior,
+        GoogleColabRuntimeTemplate;
 export 'src/colab/google_colab_runtime_template_iam_binding.dart'
     show GoogleColabRuntimeTemplateIamBinding;
 export 'src/colab/google_colab_runtime_template_iam_member.dart'
@@ -39,6 +60,26 @@ export 'src/colab/google_colab_runtime_template_iam_policy.dart'
     show GoogleColabRuntimeTemplateIamPolicy;
 export 'src/colab/google_colab_schedule.dart'
     show
+        ColabScheduleCreateNotebookExecutionJobRequest,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJob,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCompute,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobComputeCustomEnvironmentSpec,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobComputeNotebookRuntimeTemplateResourceName,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpec,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecMachineSpec,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecMachineSpecReservationAffinity,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecNetworkSpec,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobCustomEnvironmentSpecPersistentDiskSpec,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobDataformRepositorySource,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobEncryptionSpec,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobGcsNotebookSource,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentity,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentityExecutionUser,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobIdentityServiceAccount,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSource,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSourceDataformRepositorySource,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobSourceGcsNotebookSource,
+        ColabScheduleCreateNotebookExecutionJobRequestNotebookExecutionJobWorkbenchRuntime,
         ColabScheduleCreatePipelineJobRequest,
         ColabScheduleCreatePipelineJobRequestPipelineJob,
         ColabScheduleCreatePipelineJobRequestPipelineJobEncryptionSpec,
@@ -46,4 +87,7 @@ export 'src/colab/google_colab_schedule.dart'
         ColabScheduleCreatePipelineJobRequestPipelineJobPscInterfaceConfigDnsPeeringConfigs,
         ColabScheduleCreatePipelineJobRequestPipelineJobRuntimeConfig,
         ColabScheduleDesiredState,
+        ColabScheduleRequest,
+        ColabScheduleRequestCreateNotebookExecutionJobRequest,
+        ColabScheduleRequestCreatePipelineJobRequest,
         GoogleColabSchedule;

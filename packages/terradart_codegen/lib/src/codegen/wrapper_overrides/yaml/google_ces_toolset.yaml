@@ -51,6 +51,8 @@ paramOrder:
   - tool_fake_config
   - deletion_policy
   - project
+  - timeout
+  - connector_toolset
 
 extraGetters: |2
     /// Reference to `toolset_id` (set this on create so agents can bind it).

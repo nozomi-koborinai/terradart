@@ -7,7 +7,25 @@
 library;
 
 export 'src/clouddeploy/google_clouddeploy_automation.dart'
-    show GoogleClouddeployAutomation;
+    show
+        ClouddeployAutomationRules,
+        ClouddeployAutomationRulesAdvanceRolloutRule,
+        ClouddeployAutomationRulesAdvanceRolloutRuleChoice,
+        ClouddeployAutomationRulesPromoteReleaseRule,
+        ClouddeployAutomationRulesPromoteReleaseRuleChoice,
+        ClouddeployAutomationRulesRepairRolloutRule,
+        ClouddeployAutomationRulesRepairRolloutRuleChoice,
+        ClouddeployAutomationRulesRepairRolloutRuleRepairPhases,
+        ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesRetry,
+        ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesRetryBackoffMode,
+        ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesRetryChoice,
+        ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesRollback,
+        ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesRollbackChoice,
+        ClouddeployAutomationRulesTimedPromoteReleaseRule,
+        ClouddeployAutomationRulesTimedPromoteReleaseRuleChoice,
+        ClouddeployAutomationSelector,
+        ClouddeployAutomationSelectorTargets,
+        GoogleClouddeployAutomation;
 export 'src/clouddeploy/google_clouddeploy_custom_target_type.dart'
     show
         ClouddeployCustomTargetTypeActions,
@@ -45,7 +63,19 @@ export 'src/clouddeploy/google_clouddeploy_delivery_pipeline_iam_policy.dart'
 export 'src/clouddeploy/google_clouddeploy_deploy_policy.dart'
     show GoogleClouddeployDeployPolicy;
 export 'src/clouddeploy/google_clouddeploy_target.dart'
-    show GoogleClouddeployTarget;
+    show
+        ClouddeployTargetAnthosCluster,
+        ClouddeployTargetAssociatedEntities,
+        ClouddeployTargetAssociatedEntitiesAnthosClusters,
+        ClouddeployTargetAssociatedEntitiesGkeClusters,
+        ClouddeployTargetCustomTarget,
+        ClouddeployTargetExecutionConfigs,
+        ClouddeployTargetExecutionConfigsDefaultPool,
+        ClouddeployTargetExecutionConfigsPrivatePool,
+        ClouddeployTargetGke,
+        ClouddeployTargetMultiTarget,
+        ClouddeployTargetRun,
+        GoogleClouddeployTarget;
 export 'src/clouddeploy/google_clouddeploy_target_iam_binding.dart'
     show GoogleClouddeployTargetIamBinding;
 export 'src/clouddeploy/google_clouddeploy_target_iam_member.dart'

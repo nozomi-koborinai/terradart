@@ -17,7 +17,28 @@ export 'src/eventarc/google_eventarc_message_bus.dart'
         EventarcMessageBusLogSeverity,
         EventarcMessageBusLoggingConfig,
         GoogleEventarcMessageBus;
-export 'src/eventarc/google_eventarc_pipeline.dart' show GoogleEventarcPipeline;
+export 'src/eventarc/google_eventarc_pipeline.dart'
+    show
+        EventarcPipelineDestinations,
+        EventarcPipelineDestinationsAuthenticationConfig,
+        EventarcPipelineDestinationsAuthenticationConfigGoogleOidc,
+        EventarcPipelineDestinationsAuthenticationConfigOauthToken,
+        EventarcPipelineDestinationsHttpEndpoint,
+        EventarcPipelineDestinationsNetworkConfig,
+        EventarcPipelineDestinationsOutputPayloadFormat,
+        EventarcPipelineDestinationsOutputPayloadFormatAvro,
+        EventarcPipelineDestinationsOutputPayloadFormatJson,
+        EventarcPipelineDestinationsOutputPayloadFormatProtobuf,
+        EventarcPipelineInputPayloadFormat,
+        EventarcPipelineInputPayloadFormatAvro,
+        EventarcPipelineInputPayloadFormatJson,
+        EventarcPipelineInputPayloadFormatProtobuf,
+        EventarcPipelineLoggingConfig,
+        EventarcPipelineLoggingConfigLogSeverity,
+        EventarcPipelineMediations,
+        EventarcPipelineMediationsTransformation,
+        EventarcPipelineRetryPolicy,
+        GoogleEventarcPipeline;
 export 'src/eventarc/google_eventarc_pipeline_iam_binding.dart'
     show GoogleEventarcPipelineIamBinding;
 export 'src/eventarc/google_eventarc_pipeline_iam_member.dart'
@@ -26,13 +47,13 @@ export 'src/eventarc/google_eventarc_pipeline_iam_policy.dart'
     show GoogleEventarcPipelineIamPolicy;
 export 'src/eventarc/google_eventarc_trigger.dart'
     show
-        EventarcTriggerCloudRunService,
         EventarcTriggerDestination,
-        EventarcTriggerGkeService,
-        EventarcTriggerHttpEndpoint,
+        EventarcTriggerDestinationCloudRunService,
+        EventarcTriggerDestinationGke,
+        EventarcTriggerDestinationHttpEndpoint,
+        EventarcTriggerDestinationNetworkConfig,
         EventarcTriggerMatchingCriteria,
-        EventarcTriggerNetworkConfig,
-        EventarcTriggerPubsubTransport,
         EventarcTriggerRetryPolicy,
         EventarcTriggerTransport,
+        EventarcTriggerTransportPubsub,
         GoogleEventarcTrigger;

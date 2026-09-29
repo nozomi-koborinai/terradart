@@ -42,6 +42,7 @@ paramOrder:
   - spec
   - project
   - deletion_policy
+  - context_spec
 
 extraGetters: |2
     /// Reference to `id` attribute.

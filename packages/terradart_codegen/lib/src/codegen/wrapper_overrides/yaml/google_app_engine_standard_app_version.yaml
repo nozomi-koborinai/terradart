@@ -7,6 +7,9 @@ deriveNestedTypes: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+sealedNames:
+  "app_engine_apis, app_engine_bundled_services": legacy_services
+
 paramOrder:
   - service
   - version_id
@@ -28,3 +31,6 @@ paramOrder:
   - threadsafe
   - inbound_services
   - project
+  - app_engine_bundled_services
+  - basic_scaling
+  - libraries

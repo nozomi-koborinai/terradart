@@ -158,16 +158,25 @@ ResourceDef _loadFromWrapFixture(String terraformType) {
 /// `wrap_command.dart`'s private `_rawResourceBlocks` — the shape
 /// `WrapperEmitter.rawResourceSchemas` needs once an override sets
 /// `deriveNestedTypes: true`.
-Map<String, Map<String, dynamic>> _rawResourceBlocksFromWrapFixture() {
+Map<String, Map<String, dynamic>> _rawResourceBlocksFromWrapFixture() =>
+    _rawResourceBlocks('test/fixtures/wrap/source/schema.json');
+
+/// The raw blocks of the per-resource `schema/*_v7.schema.json` fixtures the
+/// Level A goldens are emitted from.
+final Map<String, Map<String, dynamic>> _perResourceRawBlocks = {
+  for (final file in Directory('test/fixtures/schema').listSync())
+    if (file is File && RegExp(r'_v[78]\.schema\.json$').hasMatch(file.path))
+      ..._rawResourceBlocks(file.path),
+};
+
+Map<String, Map<String, dynamic>> _rawResourceBlocks(String path) {
   final root =
-      jsonDecode(
-            File('test/fixtures/wrap/source/schema.json').readAsStringSync(),
-          )
-          as Map<String, dynamic>;
+      jsonDecode(File(path).readAsStringSync()) as Map<String, dynamic>;
   final schemas = (root['provider_schemas'] as Map).cast<String, dynamic>();
   final providerBody = (schemas.values.single as Map).cast<String, dynamic>();
-  final resourceSchemas = (providerBody['resource_schemas'] as Map)
-      .cast<String, dynamic>();
+  final resourceSchemas =
+      ((providerBody['resource_schemas'] as Map?) ?? const {})
+          .cast<String, dynamic>();
   return {
     for (final entry in resourceSchemas.entries)
       entry.key: ((entry.value as Map)['block'] as Map).cast<String, dynamic>(),
@@ -195,7 +204,10 @@ void main() {
     });
 
     test('emit returns non-empty string for minimal ResourceDef', () {
-      final emitter = WrapperEmitter(overrides: overrides);
+      final emitter = WrapperEmitter(
+        overrides: overrides,
+        rawResourceSchemas: _perResourceRawBlocks,
+      );
       const def = ResourceDef(
         terraformType: 'google_dummy',
         root: BlockDef(attributes: [], nestedBlocks: []),
@@ -209,7 +221,10 @@ void main() {
       // `.schema.dart` show clause and `terradart_annotations` import are
       // both gone (schemantic chain retired; @TerraformResource/@ForceNew/
       // @Sensitive annotations no longer emitted onto the wrapper).
-      final emitter = WrapperEmitter(overrides: overrides);
+      final emitter = WrapperEmitter(
+        overrides: overrides,
+        rawResourceSchemas: _perResourceRawBlocks,
+      );
       final def = _loadGooglePubsubTopicV7();
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
       expect(
@@ -221,7 +236,10 @@ void main() {
     });
 
     test('emit produces final class header with tfType constant', () {
-      final emitter = WrapperEmitter(overrides: overrides);
+      final emitter = WrapperEmitter(
+        overrides: overrides,
+        rawResourceSchemas: _perResourceRawBlocks,
+      );
       final def = _loadGooglePubsubTopicV7();
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
@@ -246,7 +264,10 @@ void main() {
     test('emit derives wrapper class name from terraformType', () {
       // Sanity check that the wrapper class name follows snakeToPascal so the
       // emitter scales across all google_* resources without hand-curation.
-      final emitter = WrapperEmitter(overrides: overrides);
+      final emitter = WrapperEmitter(
+        overrides: overrides,
+        rawResourceSchemas: _perResourceRawBlocks,
+      );
       const def = ResourceDef(
         terraformType: 'google_emitter_test_resource',
         root: BlockDef(attributes: [], nestedBlocks: []),
@@ -270,7 +291,10 @@ void main() {
         // Use the v7 fixture (real provider schema) so the emitter is exercised
         // against the same shape the hand-written wrapper targets.
         final def = _loadGooglePubsubTopicV7();
-        final emitter = WrapperEmitter(overrides: overrides);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: _perResourceRawBlocks,
+        );
         final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
         // Constructor opens with the wrapper class name and named-param brace.
@@ -291,8 +315,7 @@ void main() {
         expect(out, contains('    TfArg<String>? project,'));
         expect(out, contains('    TfArg<Map<String, String>>? tags,'));
 
-        // Nested blocks: customSlot overrides surface typed helpers; uncurated
-        // blocks remain TfArg<Map<...>>.
+        // Nested blocks take helpers derived from the provider schema.
         expect(
           out,
           contains(
@@ -301,11 +324,15 @@ void main() {
         );
         expect(
           out,
-          contains('    TfArg<Map<String, dynamic>>? messageStoragePolicy,'),
+          contains(
+            '    PubsubTopicMessageStoragePolicy? messageStoragePolicy,',
+          ),
         );
         expect(
           out,
-          contains('    TfArg<List<Map<String, dynamic>>>? messageTransforms,'),
+          contains(
+            '    List<PubsubTopicMessageTransforms>? messageTransforms,',
+          ),
         );
         expect(out, contains('    PubsubTopicSchemaSettings? schemaSettings,'));
 
@@ -317,14 +344,17 @@ void main() {
 
     test('emit super initializer feeds Resource with argMap entries', () {
       final def = _loadGooglePubsubTopicV7();
-      final emitter = WrapperEmitter(overrides: overrides);
+      final emitter = WrapperEmitter(
+        overrides: overrides,
+        rawResourceSchemas: _perResourceRawBlocks,
+      );
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
       // Super initializer prefix + meta entries. Post Plan 5.X: no `schema:`
       // arg (the schemantic schema field is gone from Resource).
       expect(out, contains('}) : super('));
       expect(out, contains('terraformType: tfType,'));
-      expect(out, isNot(contains('schema:')));
+      expect(out, isNot(matches(RegExp(r'^\s*schema:', multiLine: true))));
       expect(out, contains('argMap: {'));
 
       // Required attribute: unconditional entry, snake_case key, camelCase
@@ -342,19 +372,33 @@ void main() {
       expect(out, contains("'project': ?project,"));
       expect(out, contains("'tags': ?tags,"));
 
-      // Optional nested blocks: customSlot helpers wrap with TfArg.literal.
+      // Optional nested blocks: derived helpers wrap with TfArg.literal.
       expect(
         out,
         contains(
-          "if (ingestionDataSourceSettings != null) 'ingestion_data_source_settings': TfArg.literal([",
+          "if (ingestionDataSourceSettings != null) 'ingestion_data_source_settings': "
+          'TfArg.literal(ingestionDataSourceSettings.encode()),',
         ),
       );
-      expect(out, contains("'message_storage_policy': ?messageStoragePolicy,"));
-      expect(out, contains("'message_transforms': ?messageTransforms,"));
       expect(
         out,
         contains(
-          "if (schemaSettings != null) 'schema_settings': TfArg.literal([",
+          "if (messageStoragePolicy != null) 'message_storage_policy': "
+          'TfArg.literal(messageStoragePolicy.encode()),',
+        ),
+      );
+      expect(
+        out,
+        contains(
+          "if (messageTransforms != null) 'message_transforms': "
+          'TfArg.literal([for (final e in messageTransforms) e.encode()]),',
+        ),
+      );
+      expect(
+        out,
+        contains(
+          "if (schemaSettings != null) 'schema_settings': "
+          'TfArg.literal(schemaSettings.encode()),',
         ),
       );
 
@@ -379,7 +423,10 @@ void main() {
       // (ADR-0016) retired the `$`-prefix sigil and its
       // `non_constant_identifier_names` ignore directive.
       final def = _loadGooglePubsubTopicV7();
-      final emitter = WrapperEmitter(overrides: overrides);
+      final emitter = WrapperEmitter(
+        overrides: overrides,
+        rawResourceSchemas: _perResourceRawBlocks,
+      );
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
       const expected =
@@ -397,7 +444,10 @@ void main() {
       // Sanity check that the getter expression uses the same identifier
       // sensitive_set_emitter generates (file-private `_<r>Sensitive`),
       // so the wrapper compiles against any google_* schema.
-      final emitter = WrapperEmitter(overrides: overrides);
+      final emitter = WrapperEmitter(
+        overrides: overrides,
+        rawResourceSchemas: _perResourceRawBlocks,
+      );
       const def = ResourceDef(
         terraformType: 'google_emitter_test_resource',
         root: BlockDef(attributes: [], nestedBlocks: []),
@@ -416,7 +466,10 @@ void main() {
       // google_pubsub_topic carries `nameRef` and `id`. The general
       // mechanism (semantic_hints.yaml) lands in Phase 3.
       final def = _loadGooglePubsubTopicV7();
-      final emitter = WrapperEmitter(overrides: overrides);
+      final emitter = WrapperEmitter(
+        overrides: overrides,
+        rawResourceSchemas: _perResourceRawBlocks,
+      );
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
       expect(
@@ -437,13 +490,19 @@ void main() {
       // The class block opened at Task 5 must be closed at the very end of
       // the file so the produced source is parseable as Dart.
       final def = _loadGooglePubsubTopicV7();
-      final emitter = WrapperEmitter(overrides: overrides);
+      final emitter = WrapperEmitter(
+        overrides: overrides,
+        rawResourceSchemas: _perResourceRawBlocks,
+      );
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
       expect(out.trimRight(), endsWith('}'));
     });
 
     test('every resource carries a typed ref getter', () {
-      final emitter = WrapperEmitter(overrides: overrides);
+      final emitter = WrapperEmitter(
+        overrides: overrides,
+        rawResourceSchemas: _perResourceRawBlocks,
+      );
       const def = ResourceDef(
         terraformType: 'google_emitter_test_resource',
         root: BlockDef(attributes: [], nestedBlocks: []),
@@ -459,7 +518,10 @@ void main() {
       // Phase 2.1 limits TfRef hard-coding to google_pubsub_topic. Other
       // resources fall through silently until Phase 3 introduces the
       // semantic_hints.yaml mechanism.
-      final emitter = WrapperEmitter(overrides: overrides);
+      final emitter = WrapperEmitter(
+        overrides: overrides,
+        rawResourceSchemas: _perResourceRawBlocks,
+      );
       const def = ResourceDef(
         terraformType: 'google_emitter_test_resource',
         root: BlockDef(attributes: [], nestedBlocks: []),
@@ -480,7 +542,10 @@ void main() {
       // hard-curation work in Task 12 (param ordering, doc comments,
       // provider-version literal, etc).
       final def = _loadGooglePubsubTopicV7();
-      final emitter = WrapperEmitter(overrides: overrides);
+      final emitter = WrapperEmitter(
+        overrides: overrides,
+        rawResourceSchemas: _perResourceRawBlocks,
+      );
       final raw = emitter.emit(def, providerSource: 'hashicorp/google');
 
       final formatter = DartFormatter(
@@ -507,7 +572,10 @@ void main() {
       'Level A: google_project_service formatted emit matches hand-written golden',
       () {
         final def = _loadGoogleProjectServiceV7();
-        final emitter = WrapperEmitter(overrides: overrides);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: _perResourceRawBlocks,
+        );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
         final formatter = DartFormatter(
           languageVersion: DartFormatter.latestLanguageVersion,
@@ -529,7 +597,10 @@ void main() {
       'Level A: google_pubsub_topic_iam_member formatted emit matches hand-written golden',
       () {
         final def = _loadGooglePubsubTopicIamMemberV7();
-        final emitter = WrapperEmitter(overrides: overrides);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: _perResourceRawBlocks,
+        );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
         final formatter = DartFormatter(
           languageVersion: DartFormatter.latestLanguageVersion,
@@ -551,7 +622,10 @@ void main() {
       'Level A: google_pubsub_subscription_iam_member formatted emit matches hand-written golden',
       () {
         final def = _loadGooglePubsubSubscriptionIamMemberV7();
-        final emitter = WrapperEmitter(overrides: overrides);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: _perResourceRawBlocks,
+        );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
         final formatter = DartFormatter(
           languageVersion: DartFormatter.latestLanguageVersion,
@@ -573,7 +647,10 @@ void main() {
       'Level A: google_secret_manager_secret_iam_member formatted emit matches hand-written golden',
       () {
         final def = _loadGoogleSecretManagerSecretIamMemberV7();
-        final emitter = WrapperEmitter(overrides: overrides);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: _perResourceRawBlocks,
+        );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
         final formatter = DartFormatter(
           languageVersion: DartFormatter.latestLanguageVersion,
@@ -595,7 +672,10 @@ void main() {
       'Level A: google_cloud_tasks_queue_iam_member formatted emit matches hand-written golden',
       () {
         final def = _loadGoogleCloudTasksQueueIamMemberV7();
-        final emitter = WrapperEmitter(overrides: overrides);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: _perResourceRawBlocks,
+        );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
         final formatter = DartFormatter(
           languageVersion: DartFormatter.latestLanguageVersion,
@@ -617,7 +697,10 @@ void main() {
       'Level A: google_service_account formatted emit matches hand-written golden',
       () {
         final def = _loadGoogleServiceAccountV7();
-        final emitter = WrapperEmitter(overrides: overrides);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: _perResourceRawBlocks,
+        );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
         final formatter = DartFormatter(
           languageVersion: DartFormatter.latestLanguageVersion,
@@ -639,7 +722,10 @@ void main() {
       'Level A: google_secret_manager_secret_version formatted emit matches hand-written golden',
       () {
         final def = _loadGoogleSecretManagerSecretVersionV8();
-        final emitter = WrapperEmitter(overrides: overrides);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: _perResourceRawBlocks,
+        );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
         final formatter = DartFormatter(
           languageVersion: DartFormatter.latestLanguageVersion,
@@ -661,7 +747,10 @@ void main() {
       'Level A: google_cloud_scheduler_job formatted emit matches hand-written golden',
       () {
         final def = _loadGoogleCloudSchedulerJobV7();
-        final emitter = WrapperEmitter(overrides: overrides);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: _perResourceRawBlocks,
+        );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
         final formatter = DartFormatter(
           languageVersion: DartFormatter.latestLanguageVersion,
@@ -683,7 +772,10 @@ void main() {
       'Level A: google_secret_manager_secret formatted emit matches hand-written golden',
       () {
         final def = _loadGoogleSecretManagerSecretV7();
-        final emitter = WrapperEmitter(overrides: overrides);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: _perResourceRawBlocks,
+        );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
         final formatter = DartFormatter(
           languageVersion: DartFormatter.latestLanguageVersion,
@@ -705,7 +797,10 @@ void main() {
       'Level A: google_pubsub_subscription formatted emit matches hand-written golden',
       () {
         final def = _loadGooglePubsubSubscriptionV7();
-        final emitter = WrapperEmitter(overrides: overrides);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: _perResourceRawBlocks,
+        );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
         final formatter = DartFormatter(
           languageVersion: DartFormatter.latestLanguageVersion,
@@ -727,7 +822,10 @@ void main() {
       'Level A: google_cloud_tasks_queue formatted emit matches hand-written golden',
       () {
         final def = _loadGoogleCloudTasksQueueV7();
-        final emitter = WrapperEmitter(overrides: overrides);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: _perResourceRawBlocks,
+        );
         final raw = emitter.emit(def, providerSource: 'hashicorp/google');
         final formatter = DartFormatter(
           languageVersion: DartFormatter.latestLanguageVersion,
@@ -752,7 +850,10 @@ void main() {
         // attribute must emit the `@override bool get supportsDeletionProtection
         // => true;` getter so the runtime devMode injection can opt-in.
         // v0.11.0 (ADR-0016): the `$`-prefix sigil is retired.
-        final emitter = WrapperEmitter(overrides: overrides);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: _perResourceRawBlocks,
+        );
         const def = ResourceDef(
           terraformType: 'google_capable_resource',
           root: BlockDef(
@@ -781,7 +882,10 @@ void main() {
       () {
         // Resources without `deletion_protection` must NOT emit the override —
         // they inherit the base-class default of false.
-        final emitter = WrapperEmitter(overrides: overrides);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: _perResourceRawBlocks,
+        );
         const def = ResourceDef(
           terraformType: 'google_incapable_resource',
           root: BlockDef(
@@ -807,7 +911,10 @@ void main() {
       // `timeouts` block is filtered out at the emitter level because it
       // is not a user-facing input.
       final def = _loadGooglePubsubTopicV7();
-      final emitter = WrapperEmitter(overrides: overrides);
+      final emitter = WrapperEmitter(
+        overrides: overrides,
+        rawResourceSchemas: _perResourceRawBlocks,
+      );
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
       // Sanity: assert the constructor actually got emitted before checking

@@ -18,28 +18,33 @@ GoogleCloudRunV2Service buildCloudRunService({
   ingress: .literal(.all),
   deletionProtection: .literal(false),
   template: CloudRunV2ServiceTemplate(
-    serviceAccount: .ref(runSa.email),
+    serviceAccount: .of(runSa),
     containers: [
-      CloudRunV2ServiceServiceContainer(
+      CloudRunV2ServiceTemplateContainers(
         image: .literal('us-docker.pkg.dev/cloudrun/container/hello'),
         env: [
-          CloudRunV2ServiceEnvVar(
+          CloudRunV2ServiceTemplateContainersEnv(
             name: .literal('DB_INSTANCE'),
             source: .value(.ref(sqlInstance.connectionName)),
           ),
-          CloudRunV2ServiceEnvVar(
+          CloudRunV2ServiceTemplateContainersEnv(
             name: .literal('DB_NAME'),
             source: .value(.ref(sqlDatabase.nameRef)),
           ),
-          CloudRunV2ServiceEnvVar(
+          CloudRunV2ServiceTemplateContainersEnv(
             name: .literal('DB_USER'),
             source: .value(.literal('coffee_app')),
           ),
-          CloudRunV2ServiceEnvVar(
+          CloudRunV2ServiceTemplateContainersEnv(
             name: .literal('DB_PASSWORD'),
-            source: .secret(
-              secret: .ref(dbPasswordSecret.id),
-              version: .literal('latest'),
+            source: .valueSource(
+              CloudRunV2ServiceTemplateContainersEnvValueSource(
+                secretKeyRef:
+                    CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef(
+                      secret: .ref(dbPasswordSecret.id),
+                      version: .literal('latest'),
+                    ),
+              ),
             ),
           ),
         ],

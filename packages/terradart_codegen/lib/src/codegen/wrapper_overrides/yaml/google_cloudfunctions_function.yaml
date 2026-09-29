@@ -49,3 +49,4 @@ paramOrder:
   - on_deploy_update_policy
   - secret_environment_variables
   - secret_volumes
+  - source_repository

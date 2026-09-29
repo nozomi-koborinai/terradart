@@ -224,9 +224,11 @@ void main() {
         name: TfArg.literal('nightly'),
         region: TfArg.literal('us-central1'),
         schedule: TfArg.literal('0 0 * * *'),
-        target: CloudSchedulerJobPubsubTarget(
-          topicName: TfArg.ref(orders.id),
-          data: TfArg.literal('dHJpZ2dlcg=='),
+        target: .pubsubTarget(
+          CloudSchedulerJobPubsubTarget(
+            topicName: .of(orders),
+            data: .literal('dHJpZ2dlcg=='),
+          ),
         ),
       ),
     );
@@ -245,9 +247,11 @@ void main() {
           name: TfArg.literal('health'),
           region: TfArg.literal('us-central1'),
           schedule: TfArg.literal('*/5 * * * *'),
-          target: const CloudSchedulerJobHttpTarget(
-            uri: TfArgLiteral<String>('https://app.example.com/health'),
-            httpMethod: TfArgLiteral<String>('GET'),
+          target: .httpTarget(
+            CloudSchedulerJobHttpTarget(
+              uri: .literal('https://app.example.com/health'),
+              httpMethod: .literal('GET'),
+            ),
           ),
         ),
       );

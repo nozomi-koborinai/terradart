@@ -40,6 +40,14 @@ paramOrder:
   - serving_status
   - inbound_services
   - project
+  - api_config
+  - deployment
+  - endpoints_api_service
+  - entrypoint
+  - flexible_runtime_settings
+  - handlers
+  - network
+  - resources
 
 dartTypeOverrides:
   serving_status: AppEngineFlexibleAppVersionServingStatus

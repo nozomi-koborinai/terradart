@@ -88,6 +88,7 @@ final class GoogleVertexAiSemanticGovernancePolicyEngine extends Resource {
     TfArg<String>? region,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    List<VertexAiSemanticGovernancePolicyEngineGatewayConfigs>? gatewayConfigs,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -98,6 +99,10 @@ final class GoogleVertexAiSemanticGovernancePolicyEngine extends Resource {
            'region': ?region,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           if (gatewayConfigs != null)
+             'gateway_configs': TfArg.literal([
+               for (final e in gatewayConfigs) e.encode(),
+             ]),
          },
        );
 

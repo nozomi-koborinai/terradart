@@ -1214,6 +1214,106 @@ attribute the reference ledger names — `GoogleAlloydbCluster`
 and `GoogleFilestoreInstance` `networks.network` emits the network `name`,
 which is what the Filestore API reads.
 
+### Serverless and application-platform nested blocks use derived helper types
+
+**Breaking (`terradart_google`)** — the Cloud Run v2, Cloud Functions,
+Cloud Build, Cloud Scheduler, Cloud Tasks, Pub/Sub, Eventarc, Artifact
+Registry, Cloud Deploy, App Engine, Colab, Discovery Engine, Apigee and
+Vertex AI factories below drop their hand-written helper classes and
+`TfArg<Map>` blocks for helpers derived from the provider schema, as the
+data and storage factories did. Every Magic Modules exactly-one /
+at-most-one group inside them becomes a sealed type, and every input that
+names another resource takes `RefTo<R>`.
+
+- Helper classes are named `<Resource><BlockPath>`. The renames most
+  callers meet:
+
+  | Before | After |
+  |--------|-------|
+  | `CloudRunV2ServiceServiceContainer` | `CloudRunV2ServiceTemplateContainers` |
+  | `CloudRunV2ServiceContainerPort` / `ContainerResources` | `CloudRunV2ServiceTemplateContainersPorts` / `ContainersResources` |
+  | `CloudRunV2ServiceEnvVar` | `CloudRunV2ServiceTemplateContainersEnv` |
+  | `CloudRunV2ServiceServiceVolume` | `CloudRunV2ServiceTemplateVolumes` |
+  | `CloudRunV2ServiceVpcAccess` / `VpcNetworkInterface` | `CloudRunV2ServiceTemplateVpcAccess` / `TemplateVpcAccessNetworkInterfaces` |
+  | `CloudRunV2ServiceServiceScaling` | `CloudRunV2ServiceScaling` |
+  | `CloudRunV2JobTaskTemplate` / `JobContainer` | `CloudRunV2JobTemplateTemplate` / `JobTemplateTemplateContainers` |
+  | `CloudRunV2WorkerPoolInstanceSplit` | `CloudRunV2WorkerPoolInstanceSplits` |
+  | `CloudSchedulerJobSchedulerRetryConfig` | `CloudSchedulerJobRetryConfig` |
+  | `CloudSchedulerJobHttpOidcToken` / `HttpOauthToken` | `CloudSchedulerJobHttpTargetOidcToken` / `HttpTargetOauthToken` |
+  | `CloudTasksQueueQueueHttpTarget` | `CloudTasksQueueHttpTarget` |
+  | `PubsubSubscriptionOidcToken` / `NoWrapper` | `PubsubSubscriptionPushConfigOidcToken` / `PushConfigNoWrapper` |
+  | `PubsubSubscriptionBigQueryConfig` | `PubsubSubscriptionBigqueryConfig` |
+  | `ArtifactRegistryRepositoryArtifactRegistry*` | `ArtifactRegistryRepository*` (`CleanupPolicies`, `DockerConfig`, `MavenConfig`, ...) |
+  | `EventarcTriggerCloudRunService` / `HttpEndpoint` | `EventarcTriggerDestinationCloudRunService` / `DestinationHttpEndpoint` |
+  | `EventarcMessageBusLoggingConfig` (on `GoogleEventarcPipeline`) | `EventarcPipelineLoggingConfig` |
+  | `Cloudfunctions2FunctionEventFilter` | `Cloudfunctions2FunctionEventTriggerEventFilters` |
+  | `StorageSource` / `RepoSource` (Cloud Functions build source) | `Cloudfunctions2FunctionBuildConfigSourceStorageSource` / `SourceRepoSource`, passed as `.storageSource(...)` / `.repoSource(...)` |
+  | `AutomaticUpdatePolicy` / `OnDeployUpdatePolicy` | `Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy` / `OnDeployUpdatePolicy`, passed as `.automaticUpdatePolicy(...)` / `.onDeployUpdatePolicy(...)` |
+
+  Each helper's doc names the block it models.
+- Helper fields are `TfArg<T>`, so they take dot shorthands
+  (`containerPort: .literal(8080)`).
+- `GoogleClouddeployTarget`, `GoogleClouddeployAutomation`,
+  `GoogleColabRuntimeTemplate`, `GoogleEventarcPipeline`, the Pub/Sub
+  `messageTransforms` / `messageStoragePolicy` inputs and the Vertex AI
+  `encryptionSpec` inputs take typed helpers instead of `TfArg<Map>` /
+  `TfArg<List<Map>>` blocks.
+- Sealed arguments (the variant is the member name):
+
+  | Factory or helper | Argument | Members |
+  |-------------------|----------|---------|
+  | `CloudRunV2*TemplateContainersEnv` | `source` (was `source`) | `value`, `valueSource` |
+  | `CloudRunV2*TemplateVolumes` | `source` (was `source`) | `cloudSqlInstance`, `emptyDir`, `gcs`, `nfs`, `secret` |
+  | `CloudRunV2ServiceTemplateVpcAccess` | `connection` | `connector`, `networkInterfaces` |
+  | `CloudRunV2ServiceBinaryAuthorization`, `CloudRunV2JobBinaryAuthorization` | `policy` | `useDefault`, `policy` |
+  | `GoogleCloudRunV2Job` | `executionToken` | `startExecutionToken`, `runExecutionToken` |
+  | `GoogleCloudSchedulerJob` | `target` | `pubsubTarget`, `httpTarget`, `appEngineHttpTarget` |
+  | `CloudTasksQueueHttpTarget` | `token` | `oauthToken`, `oidcToken` |
+  | `GoogleCloudbuildTrigger` | `buildSpec` | `filename`, `build`, `gitFileSource` |
+  | `CloudbuildTriggerGithub`, `RepositoryEventConfig`, `BitbucketServerTriggerConfig` | `event`; a push's `revision` | `pullRequest`, `push`; `branch`, `tag` |
+  | `CloudbuildTriggerTriggerTemplate`, build `repoSource` | `revision` | `branchName`, `tagName`, `commitSha` |
+  | `Cloudfunctions2FunctionBuildConfig` | `updatePolicy` (required, as Magic Modules declares); `source` (the block is the sealed type) | `automaticUpdatePolicy`, `onDeployUpdatePolicy`; `storageSource`, `repoSource` |
+  | `Cloudfunctions2FunctionServiceConfig` | `connection` | `vpcConnector`, `directVpcNetworkInterface` |
+  | `PubsubSubscriptionBigqueryConfig` | `schema` | `useTopicSchema`, `useTableSchema` |
+  | `PubsubTopicIngestionDataSourceSettings` | `source`; Cloud Storage `format` | `awsKinesis`, `cloudStorage`, `azureEventHubs`, `awsMsk`, `confluentCloud`; `textFormat`, `avroFormat`, `pubsubAvroFormat` |
+  | `ArtifactRegistryRepositoryRemoteRepositoryConfig` | `format`; each `*Repository` block is itself sealed | the `*Repository` blocks; `publicRepository`, `customRepository` |
+  | `GoogleClouddeployAutomation` | each `rules` element and each repair phase is itself sealed | the four `*Rule` blocks; `retry`, `rollback` |
+  | `GoogleAppEngineStandardAppVersion` | `scaling`, `legacyServices` (were `automaticScaling` / `manualScaling`, `appEngineApis`) | `automaticScaling`, `basicScaling`, `manualScaling`; `appEngineApis`, `appEngineBundledServices` |
+  | `GoogleApigeeSecurityAction` | `effect` (was `deny` etc.) | `allow`, `deny`, `flag` |
+  | `GoogleColabSchedule` | `request` (was `createNotebookExecutionJobRequest`) | `createNotebookExecutionJobRequest`, `createPipelineJobRequest` |
+  | `GoogleColabNotebookExecution` | `source`, `compute`, `identity` (unchanged names) | as before |
+  | `GoogleDiscoveryEngineControl` | `action`; boost action `boost` | the five `*Action` blocks; `fixedBoost`, `interpolationBoostSpec` |
+  | `GoogleDiscoveryEngineDataConnector` | `params` (was `jsonParams`) | `params`, `jsonParams` |
+  | `GoogleVertexAiFeatureOnlineStoreFeatureview` | `source`; `syncConfig` (the block is the sealed type) | `bigQuerySource`, `featureRegistrySource`; `cron`, `continuous` |
+
+- A hand-sealed variant used to take the member's fields inline; a derived
+  variant takes the member's helper: `.pubsubTarget(topicName: ...)` is
+  `.pubsubTarget(CloudSchedulerJobPubsubTarget(topicName: ...))`.
+- Newly exposed inputs, among them: `GoogleCloudRunV2Service` /
+  `GoogleCloudRunV2Job` `binaryAuthorization` and volume sources on every
+  container; `GoogleColabNotebookExecution` `workbenchRuntime`;
+  `GoogleDiscoveryEngineControl` `conditions`; the Cloud Deploy target and
+  automation blocks; the App Engine scaling blocks.
+- `GoogleVertexAiFeatureOnlineStore` keeps its hand-written `storage`
+  sealed type, and `GoogleAppEngineFlexibleAppVersion` its `scaling`.
+
+| Before | After |
+|--------|-------|
+| `CloudRunV2ServiceServiceContainer(env: [CloudRunV2ServiceEnvVar(name: .literal('DB'), source: .secret(secret: .literal('db'), version: .literal('latest')))])` | `CloudRunV2ServiceTemplateContainers(env: [CloudRunV2ServiceTemplateContainersEnv(name: .literal('DB'), source: .valueSource(CloudRunV2ServiceTemplateContainersEnvValueSource(secretKeyRef: CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef(secret: .literal('db'), version: .literal('latest')))))])` |
+| `CloudRunV2ServiceVpcAccess(connector: .ref(connector.selfLink))` | `CloudRunV2ServiceTemplateVpcAccess(connection: .connector(.ref(connector.selfLink)))` |
+| `GoogleCloudSchedulerJob(target: .pubsubTarget(topicName: .ref(topic.id)))` | `GoogleCloudSchedulerJob(target: .pubsubTarget(CloudSchedulerJobPubsubTarget(topicName: .of(topic))))` |
+| `GoogleCloudbuildTrigger(repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(push: CloudbuildTriggerPushFilter(branch: ...)), buildSpec: .filename(filename: ...))` | `GoogleCloudbuildTrigger(repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(event: .push(CloudbuildTriggerRepositoryEventConfigPush(revision: .branch(...)))), buildSpec: .filename(...))` |
+| `Cloudfunctions2FunctionBuildConfig(source: .storageSource(bucket: ..., object: ...))` | `Cloudfunctions2FunctionBuildConfig(source: .storageSource(Cloudfunctions2FunctionBuildConfigSourceStorageSource(bucket: bucket.ref, object: ...)), updatePolicy: .automaticUpdatePolicy(Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy()))` |
+| `GoogleClouddeployTarget(run: .literal({'location': ...}))` | `GoogleClouddeployTarget(run: ClouddeployTargetRun(location: .literal(...)))` |
+| `GoogleColabSchedule(createNotebookExecutionJobRequest: .literal({...}))` | `GoogleColabSchedule(request: .createNotebookExecutionJobRequest(ColabScheduleCreateNotebookExecutionJobRequest(...)))` |
+
+Synth output changes in two ways, both accepted by the provider: a
+`max_items = 1` block the hand helpers emitted as a one-element list
+(`template`, `scaling`, `build_config`, `service_config`, `destination`,
+`repository_event_config.push`, `logging_config`, ...) is an object, and a
+Cloud Functions build config the example left without an update policy
+emits `automatic_update_policy {}`, the provider's default.
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it

@@ -222,9 +222,13 @@ final class CloudBuildStack extends Stack {
         location: .literal(region),
         repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
           repository: TfArg.ref<String>(lbRepo.id),
-          push: CloudbuildTriggerPushFilter(branch: .literal('^main\$')),
+          event: .push(
+            CloudbuildTriggerRepositoryEventConfigPush(
+              revision: .branch(.literal('^main\$')),
+            ),
+          ),
         ),
-        buildSpec: .filename(filename: .literal('cloudbuild.yaml')),
+        buildSpec: .filename(.literal('cloudbuild.yaml')),
         // `service_account` wants the full SA resource path
         // `projects/{project}/serviceAccounts/{email}`, which `buildSa.ref`
         // emits, so reference it instead of hand-building the string.

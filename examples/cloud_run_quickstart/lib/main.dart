@@ -240,38 +240,43 @@ final class ApiServiceStack extends Stack {
       template: CloudRunV2ServiceTemplate(
         // Runtime identity for the revision — must be able to read the
         // secret-backed env var below (see the IAM member above).
-        serviceAccount: .ref(runtimeSa.email),
-        vpcAccess: CloudRunV2ServiceVpcAccess(
-          connector: .ref(runConnector.selfLink),
+        serviceAccount: .of(runtimeSa),
+        vpcAccess: CloudRunV2ServiceTemplateVpcAccess(
+          connection: .connector(.ref(runConnector.selfLink)),
           egress: .literal(.privateRangesOnly),
         ),
         containers: [
-          CloudRunV2ServiceServiceContainer(
+          CloudRunV2ServiceTemplateContainers(
             image: .literal('gcr.io/cloudrun/hello'),
             env: [
-              CloudRunV2ServiceEnvVar(
+              CloudRunV2ServiceTemplateContainersEnv(
                 name: .literal('LOG_LEVEL'),
                 source: .value(.literal('info')),
               ),
-              CloudRunV2ServiceEnvVar(
+              CloudRunV2ServiceTemplateContainersEnv(
                 name: .literal('DB_PASSWORD'),
-                source: .secret(
-                  secret: .literal('api-db-password'),
-                  version: .literal('latest'),
+                source: .valueSource(
+                  CloudRunV2ServiceTemplateContainersEnvValueSource(
+                    secretKeyRef:
+                        CloudRunV2ServiceTemplateContainersEnvValueSourceSecretKeyRef(
+                          secret: .literal('api-db-password'),
+                          version: .literal('latest'),
+                        ),
+                  ),
                 ),
               ),
               // Reaches the cache through the VPC connector below; the
               // interpolation also gives Terraform the redis -> service
               // ordering without an explicit dependsOn entry.
-              CloudRunV2ServiceEnvVar(
+              CloudRunV2ServiceTemplateContainersEnv(
                 name: .literal('REDIS_HOST'),
                 source: .value(.ref(cache.host)),
               ),
             ],
-            ports: CloudRunV2ServiceContainerPort(
+            ports: CloudRunV2ServiceTemplateContainersPorts(
               containerPort: .literal(8080),
             ),
-            resources: CloudRunV2ServiceContainerResources(
+            resources: CloudRunV2ServiceTemplateContainersResources(
               limits: .literal({'cpu': '1', 'memory': '512Mi'}),
               cpuIdle: .literal(true),
               startupCpuBoost: .literal(true),
@@ -279,7 +284,7 @@ final class ApiServiceStack extends Stack {
           ),
         ],
       ),
-      scaling: CloudRunV2ServiceServiceScaling(
+      scaling: CloudRunV2ServiceScaling(
         minInstanceCount: .literal(0),
         maxInstanceCount: .literal(4),
         scalingMode: .literal(.automatic),
@@ -305,8 +310,10 @@ final class ApiServiceStack extends Stack {
         // `terraform destroy` can remove the worker pool.
         deletionProtection: .literal(false),
         template: CloudRunV2WorkerPoolTemplate(
-          containers: const [
-            {'image': 'gcr.io/cloudrun/hello'},
+          containers: [
+            CloudRunV2WorkerPoolTemplateContainers(
+              image: .literal('gcr.io/cloudrun/hello'),
+            ),
           ],
         ),
         dependsOn: apiDeps,
@@ -328,18 +335,18 @@ final class ApiServiceStack extends Stack {
       // deletion_protection=false"). Disable it for the sweep.
       deletionProtection: .literal(false),
       template: CloudRunV2JobTemplate(
-        template: CloudRunV2JobTaskTemplate(
+        template: CloudRunV2JobTemplateTemplate(
           maxRetries: .literal(2),
           timeout: .literal('600s'),
           containers: [
-            CloudRunV2JobContainer(
+            CloudRunV2JobTemplateTemplateContainers(
               image: .literal('gcr.io/cloudrun/hello'),
               args: .literal([
                 '/bin/sh',
                 '-c',
                 'echo "nightly cleanup running"',
               ]),
-              resources: CloudRunV2JobContainerResources(
+              resources: CloudRunV2JobTemplateTemplateContainersResources(
                 limits: .literal({'cpu': '1', 'memory': '512Mi'}),
               ),
             ),

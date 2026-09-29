@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_vertex_ai_feature_online_store`.
 const Set<String> _googleVertexAiFeatureOnlineStoreSensitive = <String>{};
 
@@ -100,6 +102,54 @@ final class VertexAiFeatureOnlineStoreOptimized
   List<Map<String, Object?>> encode() => const [<String, Object?>{}];
 }
 
+/// Typed helper for the `dedicated_serving_endpoint` block of
+/// `google_vertex_ai_feature_online_store` (derived from provider schema).
+@immutable
+final class VertexAiFeatureOnlineStoreDedicatedServingEndpoint {
+  const VertexAiFeatureOnlineStoreDedicatedServingEndpoint({
+    this.privateServiceConnectConfig,
+  });
+
+  final VertexAiFeatureOnlineStoreDedicatedServingEndpointPrivateServiceConnectConfig?
+  privateServiceConnectConfig;
+
+  Map<String, Object?> encode() => {
+    'private_service_connect_config': ?privateServiceConnectConfig?.encode(),
+  };
+}
+
+/// Typed helper for the `dedicated_serving_endpoint.private_service_connect_config` block of
+/// `google_vertex_ai_feature_online_store` (derived from provider schema).
+@immutable
+final class VertexAiFeatureOnlineStoreDedicatedServingEndpointPrivateServiceConnectConfig {
+  const VertexAiFeatureOnlineStoreDedicatedServingEndpointPrivateServiceConnectConfig({
+    required this.enablePrivateServiceConnect,
+    this.projectAllowlist,
+  });
+
+  final TfArg<bool> enablePrivateServiceConnect;
+
+  final TfArg<List<Object?>>? projectAllowlist;
+
+  Map<String, Object?> encode() => {
+    'enable_private_service_connect': enablePrivateServiceConnect.toTfJson(),
+    'project_allowlist': ?projectAllowlist?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `encryption_spec` block of
+/// `google_vertex_ai_feature_online_store` (derived from provider schema).
+@immutable
+final class VertexAiFeatureOnlineStoreEncryptionSpec {
+  const VertexAiFeatureOnlineStoreEncryptionSpec({required this.kmsKeyName});
+
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
+
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_vertex_ai_feature_online_store`.
 ///
 /// Vertex AI Feature Online Store provides a centralized repository for serving
@@ -160,6 +210,9 @@ final class GoogleVertexAiFeatureOnlineStore extends Resource {
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
+    VertexAiFeatureOnlineStoreDedicatedServingEndpoint?
+    dedicatedServingEndpoint,
+    VertexAiFeatureOnlineStoreEncryptionSpec? encryptionSpec,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -174,6 +227,12 @@ final class GoogleVertexAiFeatureOnlineStore extends Resource {
            'project': ?project,
            'deletion_policy': ?deletionPolicy,
            storage.blockKey: TfArg.literal(storage.encode()),
+           if (dedicatedServingEndpoint != null)
+             'dedicated_serving_endpoint': TfArg.literal(
+               dedicatedServingEndpoint.encode(),
+             ),
+           if (encryptionSpec != null)
+             'encryption_spec': TfArg.literal(encryptionSpec.encode()),
          },
        );
 

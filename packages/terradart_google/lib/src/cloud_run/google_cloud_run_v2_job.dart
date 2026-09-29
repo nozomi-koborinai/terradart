@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_cloud_run_v2_job`.
 const Set<String> _googleCloudRunV2JobSensitive = <String>{};
 
@@ -32,7 +37,7 @@ enum CloudRunV2JobLaunchStage implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Container sandbox environment for [CloudRunV2JobTaskTemplate.executionEnvironment].
+/// Container sandbox environment for [CloudRunV2JobTemplateTemplate.executionEnvironment].
 /// `gen2` enables larger CPU tiers + GCSFuse volumes; `gen1` keeps the
 /// legacy gVisor sandbox.
 enum CloudRunV2JobExecutionEnvironment implements TerraformEnum {
@@ -44,7 +49,7 @@ enum CloudRunV2JobExecutionEnvironment implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Egress policy for [CloudRunV2JobVpcAccess.egress] (`template.template.vpc_access.egress`).
+/// Egress policy for [CloudRunV2JobTemplateTemplateVpcAccess.egress] (`template.template.vpc_access.egress`).
 enum CloudRunV2JobVpcAccessEgress implements TerraformEnum {
   allTraffic('ALL_TRAFFIC'),
   privateRangesOnly('PRIVATE_RANGES_ONLY');
@@ -70,699 +75,898 @@ enum CloudRunV2JobEmptyDirMedium implements TerraformEnum {
 // Top-level nested helpers
 // ===========================================================================
 
-/// `binary_authorization` block. Enforces Binary Authorization on the
-/// Job. Set [useDefault] OR [policy] (the two conflict at the provider
-/// level). [breakglassJustification] only takes effect when a policy
-/// denies admission and the deployer wants to override it.
-@immutable
-class CloudRunV2JobBinaryAuthorization {
-  const CloudRunV2JobBinaryAuthorization({
-    this.useDefault,
-    this.policy,
-    this.breakglassJustification,
-  });
-
-  /// `true` uses the project's default BinAuthz policy. Conflicts with
-  /// [policy].
-  final TfArg<bool>? useDefault;
-
-  /// Path to a custom BinAuthz policy. Format:
-  /// `projects/{project}/platforms/cloudRun/{policy-name}`. Conflicts
-  /// with [useDefault].
-  final TfArg<String>? policy;
-
-  /// Justification string passed when breakglassing past a denied
-  /// admission.
-  final TfArg<String>? breakglassJustification;
-
-  Map<String, Object?> toArgMap() => {
-    if (useDefault != null) 'use_default': useDefault!.toTfJson(),
-    if (policy != null) 'policy': policy!.toTfJson(),
-    if (breakglassJustification != null)
-      'breakglass_justification': breakglassJustification!.toTfJson(),
-  };
-}
-
 // ===========================================================================
-// CloudRunV2JobTemplate (outer) + CloudRunV2JobTaskTemplate (inner) — `template.0.template.0`
+// CloudRunV2JobTemplate (outer) + CloudRunV2JobTemplateTemplate (inner) — `template.0.template.0`
 // ===========================================================================
-
-/// Outer `template` block. Holds Job-level scheduling knobs
-/// ([parallelism], [taskCount]) and wraps the inner per-Task template
-/// ([template], a [CloudRunV2JobTaskTemplate]).
-@immutable
-class CloudRunV2JobTemplate {
-  const CloudRunV2JobTemplate({
-    required this.template,
-    this.parallelism,
-    this.taskCount,
-    this.labels,
-    this.annotations,
-  });
-
-  /// Per-Task template. Required.
-  final CloudRunV2JobTaskTemplate template;
-
-  /// How many Tasks may run concurrently. Defaults to the value of
-  /// [taskCount] (i.e. fully parallel).
-  final TfArg<int>? parallelism;
-
-  /// Number of Tasks per execution. Defaults to 1.
-  final TfArg<int>? taskCount;
-
-  /// Job-level labels. Same namespace restrictions as the Service variant.
-  final TfArg<Map<String, String>>? labels;
-
-  /// Job-level annotations.
-  final TfArg<Map<String, String>>? annotations;
-
-  Map<String, Object?> toArgMap() => {
-    'template': [template.toArgMap()],
-    if (parallelism != null) 'parallelism': parallelism!.toTfJson(),
-    if (taskCount != null) 'task_count': taskCount!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (annotations != null) 'annotations': annotations!.toTfJson(),
-  };
-}
-
-/// Inner `template.template` block — the per-Task template. Holds at
-/// least one [CloudRunV2JobContainer] plus optional VPC access, volumes, retries,
-/// timeout.
-@immutable
-class CloudRunV2JobTaskTemplate {
-  const CloudRunV2JobTaskTemplate({
-    required this.containers,
-    this.serviceAccount,
-    this.timeout,
-    this.maxRetries,
-    this.executionEnvironment,
-    this.encryptionKey,
-    this.gpuZonalRedundancyDisabled,
-    this.vpcAccess,
-    this.volumes,
-    this.nodeSelector,
-  });
-
-  /// One or more containers (≥1).
-  final List<CloudRunV2JobContainer> containers;
-
-  /// Service account email the Task runs as. Defaults to the project
-  /// default compute SA.
-  final TfArg<String>? serviceAccount;
-
-  /// Per-Task timeout duration ("3.5s" form). Defaults to a 10-minute
-  /// ceiling (API default).
-  final TfArg<String>? timeout;
-
-  /// Maximum retry attempts per Task. Defaults to 3.
-  final TfArg<int>? maxRetries;
-
-  /// `gen1` (legacy gVisor) or `gen2` (default; larger CPU tiers +
-  /// GCSFuse).
-  final TfArg<CloudRunV2JobExecutionEnvironment>? executionEnvironment;
-
-  /// CMEK key name to encrypt the Task's container image.
-  final TfArg<String>? encryptionKey;
-
-  /// Disables GPU zonal redundancy for this Task.
-  final TfArg<bool>? gpuZonalRedundancyDisabled;
-
-  /// VPC connector or direct VPC egress configuration.
-  final CloudRunV2JobVpcAccess? vpcAccess;
-
-  /// Volumes available to all containers in the Task.
-  final List<CloudRunV2JobVolume>? volumes;
-
-  /// GPU accelerator pin.
-  final CloudRunV2JobNodeSelector? nodeSelector;
-
-  Map<String, Object?> toArgMap() => {
-    'containers': containers.map((c) => c.toArgMap()).toList(),
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
-    if (timeout != null) 'timeout': timeout!.toTfJson(),
-    if (maxRetries != null) 'max_retries': maxRetries!.toTfJson(),
-    if (executionEnvironment != null)
-      'execution_environment': executionEnvironment!.toTfJson(),
-    if (encryptionKey != null) 'encryption_key': encryptionKey!.toTfJson(),
-    if (gpuZonalRedundancyDisabled != null)
-      'gpu_zonal_redundancy_disabled': gpuZonalRedundancyDisabled!.toTfJson(),
-    if (vpcAccess != null) 'vpc_access': [vpcAccess!.toArgMap()],
-    if (volumes != null) 'volumes': volumes!.map((v) => v.toArgMap()).toList(),
-    if (nodeSelector != null) 'node_selector': [nodeSelector!.toArgMap()],
-  };
-}
-
-/// `template.template.vpc_access` block. Either pin a Serverless VPC
-/// Access connector ([connector]) OR use direct VPC egress
-/// ([networkInterfaces]) — the two conflict at the provider level.
-@immutable
-class CloudRunV2JobVpcAccess {
-  const CloudRunV2JobVpcAccess({
-    this.connector,
-    this.egress,
-    this.networkInterfaces,
-  });
-
-  /// Serverless VPC Access connector path. Conflicts with
-  /// [networkInterfaces].
-  final TfArg<String>? connector;
-
-  /// Egress policy.
-  final TfArg<CloudRunV2JobVpcAccessEgress>? egress;
-
-  /// Direct VPC egress interfaces.
-  final List<CloudRunV2JobVpcNetworkInterface>? networkInterfaces;
-
-  Map<String, Object?> toArgMap() => {
-    if (connector != null) 'connector': connector!.toTfJson(),
-    if (egress != null) 'egress': egress!.toTfJson(),
-    if (networkInterfaces != null)
-      'network_interfaces': networkInterfaces!
-          .map((n) => n.toArgMap())
-          .toList(),
-  };
-}
-
-/// One direct-VPC-egress interface under [CloudRunV2JobVpcAccess.networkInterfaces].
-@immutable
-class CloudRunV2JobVpcNetworkInterface {
-  const CloudRunV2JobVpcNetworkInterface({
-    this.network,
-    this.subnetwork,
-    this.tags,
-  });
-
-  /// VPC network self-link or short name.
-  final TfArg<String>? network;
-
-  /// VPC subnetwork self-link or short name.
-  final TfArg<String>? subnetwork;
-
-  /// Network tags applied to this Cloud Run Job.
-  final TfArg<List<String>>? tags;
-
-  Map<String, Object?> toArgMap() => {
-    if (network != null) 'network': network!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-  };
-}
-
-/// GPU accelerator selector (`template.template.node_selector`).
-@immutable
-class CloudRunV2JobNodeSelector {
-  const CloudRunV2JobNodeSelector({required this.accelerator});
-
-  /// Accelerator type, e.g. `'nvidia-l4'`.
-  final TfArg<String> accelerator;
-
-  Map<String, Object?> toArgMap() => {'accelerator': accelerator.toTfJson()};
-}
 
 // ===========================================================================
 // Containers
 // ===========================================================================
-
-/// One entry in `template.template.containers`. At minimum supply
-/// [image].
-@immutable
-class CloudRunV2JobContainer {
-  const CloudRunV2JobContainer({
-    required this.image,
-    this.name,
-    this.command,
-    this.args,
-    this.env,
-    this.resources,
-    this.ports,
-    this.volumeMounts,
-    this.workingDir,
-    this.dependsOn,
-    this.startupProbe,
-  });
-
-  /// Container image URL.
-  final TfArg<String> image;
-
-  /// DNS_LABEL container name. Required when running sidecars.
-  final TfArg<String>? name;
-
-  /// Entrypoint override.
-  final TfArg<List<String>>? command;
-
-  /// Argument override.
-  final TfArg<List<String>>? args;
-
-  /// Environment variables.
-  final List<CloudRunV2JobEnvVar>? env;
-
-  /// CPU / memory limits.
-  final CloudRunV2JobContainerResources? resources;
-
-  /// Container port (Cloud Run v2 supports exactly one per container).
-  final CloudRunV2JobContainerPort? ports;
-
-  /// Volume mounts — reference [CloudRunV2JobVolume.name].
-  final List<CloudRunV2JobVolumeMount>? volumeMounts;
-
-  /// Container working directory.
-  final TfArg<String>? workingDir;
-
-  /// Names of containers that must reach Ready before this one starts.
-  final TfArg<List<String>>? dependsOn;
-
-  /// Periodic probe that gates traffic until the container reports
-  /// ready. Jobs surface `startup_probe` but not `liveness_probe` — once
-  /// a Task is running the controller only waits for completion.
-  final CloudRunV2JobStartupProbe? startupProbe;
-
-  Map<String, Object?> toArgMap() => {
-    'image': image.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-    if (command != null) 'command': command!.toTfJson(),
-    if (args != null) 'args': args!.toTfJson(),
-    if (env != null) 'env': env!.map((e) => e.toArgMap()).toList(),
-    if (resources != null) 'resources': [resources!.toArgMap()],
-    if (ports != null) 'ports': [ports!.toArgMap()],
-    if (volumeMounts != null)
-      'volume_mounts': volumeMounts!.map((v) => v.toArgMap()).toList(),
-    if (workingDir != null) 'working_dir': workingDir!.toTfJson(),
-    if (dependsOn != null) 'depends_on': dependsOn!.toTfJson(),
-    if (startupProbe != null) 'startup_probe': [startupProbe!.toArgMap()],
-  };
-}
-
-/// One env var. Set [source] to inject a value (literal or secret-ref).
-@immutable
-class CloudRunV2JobEnvVar {
-  const CloudRunV2JobEnvVar({required this.name, this.source});
-
-  /// C_IDENTIFIER name.
-  final TfArg<String> name;
-
-  /// Value source. Pick exactly one of [CloudRunV2JobEnvVarFromLiteral] or
-  /// [CloudRunV2JobEnvVarFromSecret].
-  final CloudRunV2JobEnvVarSource? source;
-
-  Map<String, Object?> toArgMap() => {
-    'name': name.toTfJson(),
-    if (source != null) ...source!.encode(),
-  };
-}
-
-/// Sealed dispatch for one [CloudRunV2JobEnvVar.source]. Models the
-/// `value` / `value_source.secret_key_ref` exactly_one_of constraint at
-/// the type level.
-sealed class CloudRunV2JobEnvVarSource {
-  const CloudRunV2JobEnvVarSource();
-
-  /// Literal env var value (`env.value`).
-  const factory CloudRunV2JobEnvVarSource.value(TfArg<String> value) =
-      CloudRunV2JobEnvVarFromLiteral;
-
-  /// Secret-Manager backed env var (`env.value_source.secret_key_ref`).
-  const factory CloudRunV2JobEnvVarSource.secret({
-    required TfArg<String> secret,
-    required TfArg<String> version,
-  }) = CloudRunV2JobEnvVarFromSecret;
-
-  /// Returns the JSON fragment to merge into [CloudRunV2JobEnvVar.toArgMap].
-  Map<String, Object?> encode();
-}
-
-/// Literal env var value (`env.value`).
-@immutable
-final class CloudRunV2JobEnvVarFromLiteral extends CloudRunV2JobEnvVarSource {
-  const CloudRunV2JobEnvVarFromLiteral(this.value);
-
-  final TfArg<String> value;
-
-  @override
-  Map<String, Object?> encode() => {'value': value.toTfJson()};
-}
-
-/// Secret-Manager backed env var (`env.value_source.secret_key_ref`).
-/// Both [secret] and [version] are required by the Cloud Run v2 Job
-/// schema.
-@immutable
-final class CloudRunV2JobEnvVarFromSecret extends CloudRunV2JobEnvVarSource {
-  const CloudRunV2JobEnvVarFromSecret({
-    required this.secret,
-    required this.version,
-  });
-
-  final TfArg<String> secret;
-  final TfArg<String> version;
-
-  @override
-  Map<String, Object?> encode() => {
-    'value_source': [
-      {
-        'secret_key_ref': [
-          {'secret': secret.toTfJson(), 'version': version.toTfJson()},
-        ],
-      },
-    ],
-  };
-}
-
-/// Container resource block (`resources`). Same shape as the
-/// Service-side `ContainerResources` but excludes Service-only
-/// cold-start knobs (`cpu_idle`, `startup_cpu_boost`) — Jobs run to
-/// completion so neither applies.
-@immutable
-class CloudRunV2JobContainerResources {
-  const CloudRunV2JobContainerResources({this.limits});
-
-  /// Resource limits map. Recognized keys: `cpu`, `memory`,
-  /// `nvidia.com/gpu`.
-  final TfArg<Map<String, String>>? limits;
-
-  Map<String, Object?> toArgMap() => {
-    if (limits != null) 'limits': limits!.toTfJson(),
-  };
-}
-
-/// Container port (`ports`). Cloud Run v2 supports exactly one port per
-/// container.
-@immutable
-class CloudRunV2JobContainerPort {
-  const CloudRunV2JobContainerPort({this.containerPort, this.name});
-
-  /// TCP port number.
-  final TfArg<int>? containerPort;
-
-  /// Protocol selector. `'http1'` or `'h2c'`.
-  final TfArg<String>? name;
-
-  Map<String, Object?> toArgMap() => {
-    if (containerPort != null) 'container_port': containerPort!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-  };
-}
-
-/// Volume mount entry.
-@immutable
-class CloudRunV2JobVolumeMount {
-  const CloudRunV2JobVolumeMount({
-    required this.name,
-    required this.mountPath,
-    this.subPath,
-  });
-
-  /// Volume name. Must match a [CloudRunV2JobVolume.name].
-  final TfArg<String> name;
-
-  /// Mount path inside the container.
-  final TfArg<String> mountPath;
-
-  /// Sub-path within the volume to expose.
-  final TfArg<String>? subPath;
-
-  Map<String, Object?> toArgMap() => {
-    'name': name.toTfJson(),
-    'mount_path': mountPath.toTfJson(),
-    if (subPath != null) 'sub_path': subPath!.toTfJson(),
-  };
-}
 
 // ===========================================================================
 // Probes (Jobs ship startup_probe only). HTTP / TCP sub-blocks are typed;
 // gRPC is intentionally an opaque map.
 // ===========================================================================
 
-/// `startup_probe` block. Gates the Task Ready signal during cold start.
-/// Pick exactly one of [httpGet] / [tcpSocket] / [grpc].
-@immutable
-class CloudRunV2JobStartupProbe {
-  const CloudRunV2JobStartupProbe({
-    this.initialDelaySeconds,
-    this.timeoutSeconds,
-    this.periodSeconds,
-    this.failureThreshold,
-    this.httpGet,
-    this.tcpSocket,
-    this.grpc,
-  });
-
-  final TfArg<int>? initialDelaySeconds;
-  final TfArg<int>? timeoutSeconds;
-  final TfArg<int>? periodSeconds;
-  final TfArg<int>? failureThreshold;
-  final CloudRunV2JobHttpGetAction? httpGet;
-  final CloudRunV2JobTcpSocketAction? tcpSocket;
-
-  /// gRPC action — passed through as an opaque map for bounded coverage.
-  /// Schema fields: `port` (int), `service` (string).
-  final Map<String, Object?>? grpc;
-
-  Map<String, Object?> toArgMap() => {
-    if (initialDelaySeconds != null)
-      'initial_delay_seconds': initialDelaySeconds!.toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
-    if (periodSeconds != null) 'period_seconds': periodSeconds!.toTfJson(),
-    if (failureThreshold != null)
-      'failure_threshold': failureThreshold!.toTfJson(),
-    if (httpGet != null) 'http_get': [httpGet!.toArgMap()],
-    if (tcpSocket != null) 'tcp_socket': [tcpSocket!.toArgMap()],
-    if (grpc != null) 'grpc': [grpc],
-  };
-}
-
-/// `http_get` probe action.
-@immutable
-class CloudRunV2JobHttpGetAction {
-  const CloudRunV2JobHttpGetAction({this.path, this.port, this.httpHeaders});
-
-  final TfArg<String>? path;
-  final TfArg<int>? port;
-  final List<CloudRunV2JobHttpHeader>? httpHeaders;
-
-  Map<String, Object?> toArgMap() => {
-    if (path != null) 'path': path!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (httpHeaders != null)
-      'http_headers': httpHeaders!.map((h) => h.toArgMap()).toList(),
-  };
-}
-
-/// `tcp_socket` probe action.
-@immutable
-class CloudRunV2JobTcpSocketAction {
-  const CloudRunV2JobTcpSocketAction({this.port});
-
-  final TfArg<int>? port;
-
-  Map<String, Object?> toArgMap() => {
-    if (port != null) 'port': port!.toTfJson(),
-  };
-}
-
-/// One `http_headers` entry.
-@immutable
-class CloudRunV2JobHttpHeader {
-  const CloudRunV2JobHttpHeader({required this.name, this.value});
-
-  final TfArg<String> name;
-  final TfArg<String>? value;
-
-  Map<String, Object?> toArgMap() => {
-    'name': name.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
-  };
-}
-
 // ===========================================================================
 // Volumes (sealed source — secret / cloud_sql / empty_dir / gcs / nfs are
 // mutually exclusive per the provider's commented exactly_one_of).
 // ===========================================================================
 
-/// One entry in `template.template.volumes`. Pick exactly one
-/// [source] (sealed [CloudRunV2JobVolumeSource]).
-@immutable
-class CloudRunV2JobVolume {
-  const CloudRunV2JobVolume({required this.name, required this.source});
+/// At most one of `start_execution_token`, `run_execution_token` on `google_cloud_run_v2_job`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.startExecutionToken(...)`.
+sealed class CloudRunV2JobExecutionToken {
+  const CloudRunV2JobExecutionToken();
 
-  /// Volume name. Must be unique within the Task and match downstream
-  /// [CloudRunV2JobVolumeMount.name].
+  /// Sets `start_execution_token`.
+  const factory CloudRunV2JobExecutionToken.startExecutionToken(
+    TfArg<String> startExecutionToken,
+  ) = CloudRunV2JobExecutionTokenStartExecutionToken;
+
+  /// Sets `run_execution_token`.
+  const factory CloudRunV2JobExecutionToken.runExecutionToken(
+    TfArg<String> runExecutionToken,
+  ) = CloudRunV2JobExecutionTokenRunExecutionToken;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [CloudRunV2JobExecutionToken.startExecutionToken] choice: sets `start_execution_token`.
+final class CloudRunV2JobExecutionTokenStartExecutionToken
+    extends CloudRunV2JobExecutionToken {
+  const CloudRunV2JobExecutionTokenStartExecutionToken(
+    this.startExecutionToken,
+  );
+
+  final TfArg<String> startExecutionToken;
+
+  @override
+  String get blockKey => 'start_execution_token';
+
+  @override
+  Map<String, Object?> encode() => {
+    'start_execution_token': startExecutionToken.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'start_execution_token': startExecutionToken,
+  };
+}
+
+/// The [CloudRunV2JobExecutionToken.runExecutionToken] choice: sets `run_execution_token`.
+final class CloudRunV2JobExecutionTokenRunExecutionToken
+    extends CloudRunV2JobExecutionToken {
+  const CloudRunV2JobExecutionTokenRunExecutionToken(this.runExecutionToken);
+
+  final TfArg<String> runExecutionToken;
+
+  @override
+  String get blockKey => 'run_execution_token';
+
+  @override
+  Map<String, Object?> encode() => {
+    'run_execution_token': runExecutionToken.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'run_execution_token': runExecutionToken,
+  };
+}
+
+/// Typed helper for the `binary_authorization` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobBinaryAuthorization {
+  const CloudRunV2JobBinaryAuthorization({
+    this.breakglassJustification,
+    this.policy,
+  });
+
+  final TfArg<String>? breakglassJustification;
+
+  final CloudRunV2JobBinaryAuthorizationPolicy? policy;
+
+  Map<String, Object?> encode() => {
+    'breakglass_justification': ?breakglassJustification?.toTfJson(),
+    ...?policy?.encode(),
+  };
+}
+
+/// At most one of `use_default`, `policy` on the `binary_authorization` block of `google_cloud_run_v2_job`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.useDefault(...)`.
+sealed class CloudRunV2JobBinaryAuthorizationPolicy {
+  const CloudRunV2JobBinaryAuthorizationPolicy();
+
+  /// Sets `use_default`.
+  const factory CloudRunV2JobBinaryAuthorizationPolicy.useDefault(
+    TfArg<bool> useDefault,
+  ) = CloudRunV2JobBinaryAuthorizationPolicyUseDefault;
+
+  /// Sets `policy`.
+  const factory CloudRunV2JobBinaryAuthorizationPolicy.policy(
+    TfArg<String> policy,
+  ) = CloudRunV2JobBinaryAuthorizationPolicyChoice;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [CloudRunV2JobBinaryAuthorizationPolicy.useDefault] choice: sets `use_default`.
+final class CloudRunV2JobBinaryAuthorizationPolicyUseDefault
+    extends CloudRunV2JobBinaryAuthorizationPolicy {
+  const CloudRunV2JobBinaryAuthorizationPolicyUseDefault(this.useDefault);
+
+  final TfArg<bool> useDefault;
+
+  @override
+  String get blockKey => 'use_default';
+
+  @override
+  Map<String, Object?> encode() => {'use_default': useDefault.toTfJson()};
+}
+
+/// The [CloudRunV2JobBinaryAuthorizationPolicy.policy] choice: sets `policy`.
+final class CloudRunV2JobBinaryAuthorizationPolicyChoice
+    extends CloudRunV2JobBinaryAuthorizationPolicy {
+  const CloudRunV2JobBinaryAuthorizationPolicyChoice(this.policy);
+
+  final TfArg<String> policy;
+
+  @override
+  String get blockKey => 'policy';
+
+  @override
+  Map<String, Object?> encode() => {'policy': policy.toTfJson()};
+}
+
+/// Typed helper for the `template` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplate {
+  const CloudRunV2JobTemplate({
+    this.annotations,
+    this.delayExecution,
+    this.labels,
+    this.parallelism,
+    this.taskCount,
+    required this.template,
+  });
+
+  final TfArg<Map<String, String>>? annotations;
+
+  final TfArg<bool>? delayExecution;
+
+  final TfArg<Map<String, String>>? labels;
+
+  final TfArg<num>? parallelism;
+
+  final TfArg<num>? taskCount;
+
+  final CloudRunV2JobTemplateTemplate template;
+
+  Map<String, Object?> encode() => {
+    'annotations': ?annotations?.toTfJson(),
+    'delay_execution': ?delayExecution?.toTfJson(),
+    'labels': ?labels?.toTfJson(),
+    'parallelism': ?parallelism?.toTfJson(),
+    'task_count': ?taskCount?.toTfJson(),
+    'template': template.encode(),
+  };
+}
+
+/// Typed helper for the `template.template` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplate {
+  const CloudRunV2JobTemplateTemplate({
+    this.encryptionKey,
+    this.executionEnvironment,
+    this.gpuZonalRedundancyDisabled,
+    this.maxRetries,
+    this.serviceAccount,
+    this.timeout,
+    this.containers,
+    this.nodeSelector,
+    this.volumes,
+    this.vpcAccess,
+  });
+
+  final TfArg<String>? encryptionKey;
+
+  final TfArg<CloudRunV2JobExecutionEnvironment>? executionEnvironment;
+
+  final TfArg<bool>? gpuZonalRedundancyDisabled;
+
+  final TfArg<num>? maxRetries;
+
+  final RefTo<GoogleServiceAccount>? serviceAccount;
+
+  final TfArg<String>? timeout;
+
+  final List<CloudRunV2JobTemplateTemplateContainers>? containers;
+
+  final CloudRunV2JobTemplateTemplateNodeSelector? nodeSelector;
+
+  final List<CloudRunV2JobTemplateTemplateVolumes>? volumes;
+
+  final CloudRunV2JobTemplateTemplateVpcAccess? vpcAccess;
+
+  Map<String, Object?> encode() => {
+    'encryption_key': ?encryptionKey?.toTfJson(),
+    'execution_environment': ?executionEnvironment?.toTfJson(),
+    'gpu_zonal_redundancy_disabled': ?gpuZonalRedundancyDisabled?.toTfJson(),
+    'max_retries': ?maxRetries?.toTfJson(),
+    'service_account': ?serviceAccount?.encodeAs('email').toTfJson(),
+    'timeout': ?timeout?.toTfJson(),
+    if (containers != null)
+      'containers': [for (final e in containers!) e.encode()],
+    'node_selector': ?nodeSelector?.encode(),
+    if (volumes != null) 'volumes': [for (final e in volumes!) e.encode()],
+    'vpc_access': ?vpcAccess?.encode(),
+  };
+}
+
+/// Typed helper for the `template.template.containers` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateContainers {
+  const CloudRunV2JobTemplateTemplateContainers({
+    this.args,
+    this.command,
+    this.dependsOn,
+    required this.image,
+    this.name,
+    this.sandboxLauncher,
+    this.workingDir,
+    this.env,
+    this.ports,
+    this.resources,
+    this.startupProbe,
+    this.volumeMounts,
+  });
+
+  final TfArg<List<Object?>>? args;
+
+  final TfArg<List<Object?>>? command;
+
+  final TfArg<List<Object?>>? dependsOn;
+
+  final TfArg<String> image;
+
+  final TfArg<String>? name;
+
+  final TfArg<bool>? sandboxLauncher;
+
+  final TfArg<String>? workingDir;
+
+  final List<CloudRunV2JobTemplateTemplateContainersEnv>? env;
+
+  final List<CloudRunV2JobTemplateTemplateContainersPorts>? ports;
+
+  final CloudRunV2JobTemplateTemplateContainersResources? resources;
+
+  final CloudRunV2JobTemplateTemplateContainersStartupProbe? startupProbe;
+
+  final List<CloudRunV2JobTemplateTemplateContainersVolumeMounts>? volumeMounts;
+
+  Map<String, Object?> encode() => {
+    'args': ?args?.toTfJson(),
+    'command': ?command?.toTfJson(),
+    'depends_on': ?dependsOn?.toTfJson(),
+    'image': image.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'sandbox_launcher': ?sandboxLauncher?.toTfJson(),
+    'working_dir': ?workingDir?.toTfJson(),
+    if (env != null) 'env': [for (final e in env!) e.encode()],
+    if (ports != null) 'ports': [for (final e in ports!) e.encode()],
+    'resources': ?resources?.encode(),
+    'startup_probe': ?startupProbe?.encode(),
+    if (volumeMounts != null)
+      'volume_mounts': [for (final e in volumeMounts!) e.encode()],
+  };
+}
+
+/// Typed helper for the `template.template.containers.env` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateContainersEnv {
+  const CloudRunV2JobTemplateTemplateContainersEnv({
+    required this.name,
+    required this.source,
+  });
+
   final TfArg<String> name;
 
-  /// Backing storage.
-  final CloudRunV2JobVolumeSource source;
+  final CloudRunV2JobTemplateTemplateContainersEnvSource source;
 
-  Map<String, Object?> toArgMap() => {
+  Map<String, Object?> encode() => {
     'name': name.toTfJson(),
     ...source.encode(),
   };
 }
 
-/// Sealed dispatch for [CloudRunV2JobVolume.source].
-sealed class CloudRunV2JobVolumeSource {
-  const CloudRunV2JobVolumeSource();
+/// Exactly one of `value`, `value_source` on the `template.template.containers.env` block of `google_cloud_run_v2_job`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.value(...)`.
+sealed class CloudRunV2JobTemplateTemplateContainersEnvSource {
+  const CloudRunV2JobTemplateTemplateContainersEnvSource();
 
-  /// Secret Manager-backed volume.
-  const factory CloudRunV2JobVolumeSource.secret({
-    required TfArg<String> secret,
-    TfArg<int>? defaultMode,
-    List<CloudRunV2JobSecretVolumeItem>? items,
-  }) = CloudRunV2JobVolumeSecret;
+  /// Sets `value`.
+  const factory CloudRunV2JobTemplateTemplateContainersEnvSource.value(
+    TfArg<String> value,
+  ) = CloudRunV2JobTemplateTemplateContainersEnvSourceValue;
 
-  /// Cloud SQL-backed volume.
-  const factory CloudRunV2JobVolumeSource.cloudSqlInstance({
-    TfArg<List<String>>? instances,
-  }) = CloudRunV2JobCloudSqlVolume;
+  /// Sets `value_source`.
+  const factory CloudRunV2JobTemplateTemplateContainersEnvSource.valueSource(
+    CloudRunV2JobTemplateTemplateContainersEnvValueSource valueSource,
+  ) = CloudRunV2JobTemplateTemplateContainersEnvSourceValueSource;
 
-  /// Ephemeral shared volume (`empty_dir`).
-  const factory CloudRunV2JobVolumeSource.emptyDir({
-    TfArg<CloudRunV2JobEmptyDirMedium>? medium,
-    TfArg<String>? sizeLimit,
-  }) = CloudRunV2JobEmptyDirVolume;
-
-  /// GCSFuse-backed volume.
-  const factory CloudRunV2JobVolumeSource.gcs({
-    required TfArg<String> bucket,
-    TfArg<bool>? readOnly,
-    TfArg<List<String>>? mountOptions,
-  }) = CloudRunV2JobGcsVolume;
-
-  /// NFS-mounted volume.
-  const factory CloudRunV2JobVolumeSource.nfs({
-    required TfArg<String> server,
-    TfArg<String>? path,
-    TfArg<bool>? readOnly,
-  }) = CloudRunV2JobNfsVolume;
+  /// The Terraform argument this choice sets.
+  String get blockKey;
 
   Map<String, Object?> encode();
 }
 
-/// Secret Manager-backed volume.
+/// The [CloudRunV2JobTemplateTemplateContainersEnvSource.value] choice: sets `value`.
+final class CloudRunV2JobTemplateTemplateContainersEnvSourceValue
+    extends CloudRunV2JobTemplateTemplateContainersEnvSource {
+  const CloudRunV2JobTemplateTemplateContainersEnvSourceValue(this.value);
+
+  final TfArg<String> value;
+
+  @override
+  String get blockKey => 'value';
+
+  @override
+  Map<String, Object?> encode() => {'value': value.toTfJson()};
+}
+
+/// The [CloudRunV2JobTemplateTemplateContainersEnvSource.valueSource] choice: sets `value_source`.
+final class CloudRunV2JobTemplateTemplateContainersEnvSourceValueSource
+    extends CloudRunV2JobTemplateTemplateContainersEnvSource {
+  const CloudRunV2JobTemplateTemplateContainersEnvSourceValueSource(
+    this.valueSource,
+  );
+
+  final CloudRunV2JobTemplateTemplateContainersEnvValueSource valueSource;
+
+  @override
+  String get blockKey => 'value_source';
+
+  @override
+  Map<String, Object?> encode() => {'value_source': valueSource.encode()};
+}
+
+/// Typed helper for the `template.template.containers.env.value_source` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobVolumeSecret extends CloudRunV2JobVolumeSource {
-  const CloudRunV2JobVolumeSecret({
+final class CloudRunV2JobTemplateTemplateContainersEnvValueSource {
+  const CloudRunV2JobTemplateTemplateContainersEnvValueSource({
+    this.secretKeyRef,
+  });
+
+  final CloudRunV2JobTemplateTemplateContainersEnvValueSourceSecretKeyRef?
+  secretKeyRef;
+
+  Map<String, Object?> encode() => {'secret_key_ref': ?secretKeyRef?.encode()};
+}
+
+/// Typed helper for the `template.template.containers.env.value_source.secret_key_ref` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateContainersEnvValueSourceSecretKeyRef {
+  const CloudRunV2JobTemplateTemplateContainersEnvValueSourceSecretKeyRef({
     required this.secret,
-    this.defaultMode,
-    this.items,
+    required this.version,
   });
 
   final TfArg<String> secret;
-  final TfArg<int>? defaultMode;
-  final List<CloudRunV2JobSecretVolumeItem>? items;
 
-  @override
+  final TfArg<String> version;
+
   Map<String, Object?> encode() => {
-    'secret': [
-      {
-        'secret': secret.toTfJson(),
-        if (defaultMode != null) 'default_mode': defaultMode!.toTfJson(),
-        if (items != null) 'items': items!.map((i) => i.toArgMap()).toList(),
-      },
-    ],
+    'secret': secret.toTfJson(),
+    'version': version.toTfJson(),
   };
 }
 
-/// One entry under [CloudRunV2JobVolumeSecret.items]. Both [path] and [version]
-/// are required by the Cloud Run v2 Job schema.
+/// Typed helper for the `template.template.containers.ports` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-class CloudRunV2JobSecretVolumeItem {
-  const CloudRunV2JobSecretVolumeItem({
-    required this.path,
-    required this.version,
-    this.mode,
+final class CloudRunV2JobTemplateTemplateContainersPorts {
+  const CloudRunV2JobTemplateTemplateContainersPorts({
+    this.containerPort,
+    this.name,
   });
 
-  final TfArg<String> path;
-  final TfArg<String> version;
-  final TfArg<int>? mode;
+  final TfArg<num>? containerPort;
 
-  Map<String, Object?> toArgMap() => {
-    'path': path.toTfJson(),
-    'version': version.toTfJson(),
-    if (mode != null) 'mode': mode!.toTfJson(),
+  final TfArg<String>? name;
+
+  Map<String, Object?> encode() => {
+    'container_port': ?containerPort?.toTfJson(),
+    'name': ?name?.toTfJson(),
   };
 }
 
-/// Cloud SQL-backed volume.
+/// Typed helper for the `template.template.containers.resources` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobCloudSqlVolume extends CloudRunV2JobVolumeSource {
-  const CloudRunV2JobCloudSqlVolume({this.instances});
+final class CloudRunV2JobTemplateTemplateContainersResources {
+  const CloudRunV2JobTemplateTemplateContainersResources({this.limits});
 
-  /// Cloud SQL connection names: `{project}:{region}:{instance}`.
-  final TfArg<List<String>>? instances;
+  final TfArg<Map<String, String>>? limits;
+
+  Map<String, Object?> encode() => {'limits': ?limits?.toTfJson()};
+}
+
+/// Typed helper for the `template.template.containers.startup_probe` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateContainersStartupProbe {
+  const CloudRunV2JobTemplateTemplateContainersStartupProbe({
+    this.failureThreshold,
+    this.initialDelaySeconds,
+    this.periodSeconds,
+    this.timeoutSeconds,
+    this.grpc,
+    this.httpGet,
+    this.tcpSocket,
+  });
+
+  final TfArg<num>? failureThreshold;
+
+  final TfArg<num>? initialDelaySeconds;
+
+  final TfArg<num>? periodSeconds;
+
+  final TfArg<num>? timeoutSeconds;
+
+  final CloudRunV2JobTemplateTemplateContainersStartupProbeGrpc? grpc;
+
+  final CloudRunV2JobTemplateTemplateContainersStartupProbeHttpGet? httpGet;
+
+  final CloudRunV2JobTemplateTemplateContainersStartupProbeTcpSocket? tcpSocket;
+
+  Map<String, Object?> encode() => {
+    'failure_threshold': ?failureThreshold?.toTfJson(),
+    'initial_delay_seconds': ?initialDelaySeconds?.toTfJson(),
+    'period_seconds': ?periodSeconds?.toTfJson(),
+    'timeout_seconds': ?timeoutSeconds?.toTfJson(),
+    'grpc': ?grpc?.encode(),
+    'http_get': ?httpGet?.encode(),
+    'tcp_socket': ?tcpSocket?.encode(),
+  };
+}
+
+/// Typed helper for the `template.template.containers.startup_probe.grpc` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateContainersStartupProbeGrpc {
+  const CloudRunV2JobTemplateTemplateContainersStartupProbeGrpc({
+    this.port,
+    this.service,
+  });
+
+  final TfArg<num>? port;
+
+  final TfArg<String>? service;
+
+  Map<String, Object?> encode() => {
+    'port': ?port?.toTfJson(),
+    'service': ?service?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.template.containers.startup_probe.http_get` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateContainersStartupProbeHttpGet {
+  const CloudRunV2JobTemplateTemplateContainersStartupProbeHttpGet({
+    this.path,
+    this.port,
+    this.httpHeaders,
+  });
+
+  final TfArg<String>? path;
+
+  final TfArg<num>? port;
+
+  final List<
+    CloudRunV2JobTemplateTemplateContainersStartupProbeHttpGetHttpHeaders
+  >?
+  httpHeaders;
+
+  Map<String, Object?> encode() => {
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    if (httpHeaders != null)
+      'http_headers': [for (final e in httpHeaders!) e.encode()],
+  };
+}
+
+/// Typed helper for the `template.template.containers.startup_probe.http_get.http_headers` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateContainersStartupProbeHttpGetHttpHeaders {
+  const CloudRunV2JobTemplateTemplateContainersStartupProbeHttpGetHttpHeaders({
+    required this.name,
+    this.value,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<String>? value;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    'value': ?value?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.template.containers.startup_probe.tcp_socket` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateContainersStartupProbeTcpSocket {
+  const CloudRunV2JobTemplateTemplateContainersStartupProbeTcpSocket({
+    this.port,
+  });
+
+  final TfArg<num>? port;
+
+  Map<String, Object?> encode() => {'port': ?port?.toTfJson()};
+}
+
+/// Typed helper for the `template.template.containers.volume_mounts` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateContainersVolumeMounts {
+  const CloudRunV2JobTemplateTemplateContainersVolumeMounts({
+    required this.mountPath,
+    required this.name,
+    this.subPath,
+  });
+
+  final TfArg<String> mountPath;
+
+  final TfArg<String> name;
+
+  final TfArg<String>? subPath;
+
+  Map<String, Object?> encode() => {
+    'mount_path': mountPath.toTfJson(),
+    'name': name.toTfJson(),
+    'sub_path': ?subPath?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.template.node_selector` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateNodeSelector {
+  const CloudRunV2JobTemplateTemplateNodeSelector({required this.accelerator});
+
+  final TfArg<String> accelerator;
+
+  Map<String, Object?> encode() => {'accelerator': accelerator.toTfJson()};
+}
+
+/// Typed helper for the `template.template.volumes` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateVolumes {
+  const CloudRunV2JobTemplateTemplateVolumes({
+    required this.name,
+    required this.source,
+  });
+
+  final TfArg<String> name;
+
+  final CloudRunV2JobTemplateTemplateVolumesSource source;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    ...source.encode(),
+  };
+}
+
+/// Exactly one of `cloud_sql_instance`, `empty_dir`, `gcs`, `nfs`, `secret` on the `template.template.volumes` block of `google_cloud_run_v2_job`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.cloudSqlInstance(...)`.
+sealed class CloudRunV2JobTemplateTemplateVolumesSource {
+  const CloudRunV2JobTemplateTemplateVolumesSource();
+
+  /// Sets `cloud_sql_instance`.
+  const factory CloudRunV2JobTemplateTemplateVolumesSource.cloudSqlInstance(
+    CloudRunV2JobTemplateTemplateVolumesCloudSqlInstance cloudSqlInstance,
+  ) = CloudRunV2JobTemplateTemplateVolumesSourceCloudSqlInstance;
+
+  /// Sets `empty_dir`.
+  const factory CloudRunV2JobTemplateTemplateVolumesSource.emptyDir(
+    CloudRunV2JobTemplateTemplateVolumesEmptyDir emptyDir,
+  ) = CloudRunV2JobTemplateTemplateVolumesSourceEmptyDir;
+
+  /// Sets `gcs`.
+  const factory CloudRunV2JobTemplateTemplateVolumesSource.gcs(
+    CloudRunV2JobTemplateTemplateVolumesGcs gcs,
+  ) = CloudRunV2JobTemplateTemplateVolumesSourceGcs;
+
+  /// Sets `nfs`.
+  const factory CloudRunV2JobTemplateTemplateVolumesSource.nfs(
+    CloudRunV2JobTemplateTemplateVolumesNfs nfs,
+  ) = CloudRunV2JobTemplateTemplateVolumesSourceNfs;
+
+  /// Sets `secret`.
+  const factory CloudRunV2JobTemplateTemplateVolumesSource.secret(
+    CloudRunV2JobTemplateTemplateVolumesSecret secret,
+  ) = CloudRunV2JobTemplateTemplateVolumesSourceSecret;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [CloudRunV2JobTemplateTemplateVolumesSource.cloudSqlInstance] choice: sets `cloud_sql_instance`.
+final class CloudRunV2JobTemplateTemplateVolumesSourceCloudSqlInstance
+    extends CloudRunV2JobTemplateTemplateVolumesSource {
+  const CloudRunV2JobTemplateTemplateVolumesSourceCloudSqlInstance(
+    this.cloudSqlInstance,
+  );
+
+  final CloudRunV2JobTemplateTemplateVolumesCloudSqlInstance cloudSqlInstance;
+
+  @override
+  String get blockKey => 'cloud_sql_instance';
 
   @override
   Map<String, Object?> encode() => {
-    'cloud_sql_instance': [
-      {if (instances != null) 'instances': instances!.toTfJson()},
-    ],
+    'cloud_sql_instance': cloudSqlInstance.encode(),
   };
 }
 
-/// Ephemeral shared volume (`empty_dir`).
+/// The [CloudRunV2JobTemplateTemplateVolumesSource.emptyDir] choice: sets `empty_dir`.
+final class CloudRunV2JobTemplateTemplateVolumesSourceEmptyDir
+    extends CloudRunV2JobTemplateTemplateVolumesSource {
+  const CloudRunV2JobTemplateTemplateVolumesSourceEmptyDir(this.emptyDir);
+
+  final CloudRunV2JobTemplateTemplateVolumesEmptyDir emptyDir;
+
+  @override
+  String get blockKey => 'empty_dir';
+
+  @override
+  Map<String, Object?> encode() => {'empty_dir': emptyDir.encode()};
+}
+
+/// The [CloudRunV2JobTemplateTemplateVolumesSource.gcs] choice: sets `gcs`.
+final class CloudRunV2JobTemplateTemplateVolumesSourceGcs
+    extends CloudRunV2JobTemplateTemplateVolumesSource {
+  const CloudRunV2JobTemplateTemplateVolumesSourceGcs(this.gcs);
+
+  final CloudRunV2JobTemplateTemplateVolumesGcs gcs;
+
+  @override
+  String get blockKey => 'gcs';
+
+  @override
+  Map<String, Object?> encode() => {'gcs': gcs.encode()};
+}
+
+/// The [CloudRunV2JobTemplateTemplateVolumesSource.nfs] choice: sets `nfs`.
+final class CloudRunV2JobTemplateTemplateVolumesSourceNfs
+    extends CloudRunV2JobTemplateTemplateVolumesSource {
+  const CloudRunV2JobTemplateTemplateVolumesSourceNfs(this.nfs);
+
+  final CloudRunV2JobTemplateTemplateVolumesNfs nfs;
+
+  @override
+  String get blockKey => 'nfs';
+
+  @override
+  Map<String, Object?> encode() => {'nfs': nfs.encode()};
+}
+
+/// The [CloudRunV2JobTemplateTemplateVolumesSource.secret] choice: sets `secret`.
+final class CloudRunV2JobTemplateTemplateVolumesSourceSecret
+    extends CloudRunV2JobTemplateTemplateVolumesSource {
+  const CloudRunV2JobTemplateTemplateVolumesSourceSecret(this.secret);
+
+  final CloudRunV2JobTemplateTemplateVolumesSecret secret;
+
+  @override
+  String get blockKey => 'secret';
+
+  @override
+  Map<String, Object?> encode() => {'secret': secret.encode()};
+}
+
+/// Typed helper for the `template.template.volumes.cloud_sql_instance` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobEmptyDirVolume extends CloudRunV2JobVolumeSource {
-  const CloudRunV2JobEmptyDirVolume({this.medium, this.sizeLimit});
+final class CloudRunV2JobTemplateTemplateVolumesCloudSqlInstance {
+  const CloudRunV2JobTemplateTemplateVolumesCloudSqlInstance({this.instances});
+
+  final TfArg<List<Object?>>? instances;
+
+  Map<String, Object?> encode() => {'instances': ?instances?.toTfJson()};
+}
+
+/// Typed helper for the `template.template.volumes.empty_dir` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateVolumesEmptyDir {
+  const CloudRunV2JobTemplateTemplateVolumesEmptyDir({
+    this.medium,
+    this.sizeLimit,
+  });
 
   final TfArg<CloudRunV2JobEmptyDirMedium>? medium;
+
   final TfArg<String>? sizeLimit;
 
-  @override
   Map<String, Object?> encode() => {
-    'empty_dir': [
-      {
-        if (medium != null) 'medium': medium!.toTfJson(),
-        if (sizeLimit != null) 'size_limit': sizeLimit!.toTfJson(),
-      },
-    ],
+    'medium': ?medium?.toTfJson(),
+    'size_limit': ?sizeLimit?.toTfJson(),
   };
 }
 
-/// GCSFuse-backed volume.
+/// Typed helper for the `template.template.volumes.gcs` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobGcsVolume extends CloudRunV2JobVolumeSource {
-  const CloudRunV2JobGcsVolume({
+final class CloudRunV2JobTemplateTemplateVolumesGcs {
+  const CloudRunV2JobTemplateTemplateVolumesGcs({
     required this.bucket,
-    this.readOnly,
     this.mountOptions,
+    this.readOnly,
   });
 
-  final TfArg<String> bucket;
-  final TfArg<bool>? readOnly;
-  final TfArg<List<String>>? mountOptions;
+  final RefTo<GoogleStorageBucket> bucket;
 
-  @override
+  final TfArg<List<Object?>>? mountOptions;
+
+  final TfArg<bool>? readOnly;
+
   Map<String, Object?> encode() => {
-    'gcs': [
-      {
-        'bucket': bucket.toTfJson(),
-        if (readOnly != null) 'read_only': readOnly!.toTfJson(),
-        if (mountOptions != null) 'mount_options': mountOptions!.toTfJson(),
-      },
-    ],
+    'bucket': bucket.encodeAs('name').toTfJson(),
+    'mount_options': ?mountOptions?.toTfJson(),
+    'read_only': ?readOnly?.toTfJson(),
   };
 }
 
-/// NFS-mounted volume.
+/// Typed helper for the `template.template.volumes.nfs` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
 @immutable
-final class CloudRunV2JobNfsVolume extends CloudRunV2JobVolumeSource {
-  const CloudRunV2JobNfsVolume({
-    required this.server,
+final class CloudRunV2JobTemplateTemplateVolumesNfs {
+  const CloudRunV2JobTemplateTemplateVolumesNfs({
     this.path,
     this.readOnly,
+    required this.server,
   });
 
-  final TfArg<String> server;
   final TfArg<String>? path;
+
   final TfArg<bool>? readOnly;
 
-  @override
+  final TfArg<String> server;
+
   Map<String, Object?> encode() => {
-    'nfs': [
-      {
-        'server': server.toTfJson(),
-        if (path != null) 'path': path!.toTfJson(),
-        if (readOnly != null) 'read_only': readOnly!.toTfJson(),
-      },
-    ],
+    'path': ?path?.toTfJson(),
+    'read_only': ?readOnly?.toTfJson(),
+    'server': server.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.template.volumes.secret` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateVolumesSecret {
+  const CloudRunV2JobTemplateTemplateVolumesSecret({
+    this.defaultMode,
+    required this.secret,
+    this.items,
+  });
+
+  final TfArg<num>? defaultMode;
+
+  final TfArg<String> secret;
+
+  final List<CloudRunV2JobTemplateTemplateVolumesSecretItems>? items;
+
+  Map<String, Object?> encode() => {
+    'default_mode': ?defaultMode?.toTfJson(),
+    'secret': secret.toTfJson(),
+    if (items != null) 'items': [for (final e in items!) e.encode()],
+  };
+}
+
+/// Typed helper for the `template.template.volumes.secret.items` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateVolumesSecretItems {
+  const CloudRunV2JobTemplateTemplateVolumesSecretItems({
+    this.mode,
+    required this.path,
+    required this.version,
+  });
+
+  final TfArg<num>? mode;
+
+  final TfArg<String> path;
+
+  final TfArg<String> version;
+
+  Map<String, Object?> encode() => {
+    'mode': ?mode?.toTfJson(),
+    'path': path.toTfJson(),
+    'version': version.toTfJson(),
+  };
+}
+
+/// Typed helper for the `template.template.vpc_access` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateVpcAccess {
+  const CloudRunV2JobTemplateTemplateVpcAccess({
+    this.connector,
+    this.egress,
+    this.networkInterfaces,
+  });
+
+  final TfArg<String>? connector;
+
+  final TfArg<CloudRunV2JobVpcAccessEgress>? egress;
+
+  final List<CloudRunV2JobTemplateTemplateVpcAccessNetworkInterfaces>?
+  networkInterfaces;
+
+  Map<String, Object?> encode() => {
+    'connector': ?connector?.toTfJson(),
+    'egress': ?egress?.toTfJson(),
+    if (networkInterfaces != null)
+      'network_interfaces': [for (final e in networkInterfaces!) e.encode()],
+  };
+}
+
+/// Typed helper for the `template.template.vpc_access.network_interfaces` block of
+/// `google_cloud_run_v2_job` (derived from provider schema).
+@immutable
+final class CloudRunV2JobTemplateTemplateVpcAccessNetworkInterfaces {
+  const CloudRunV2JobTemplateTemplateVpcAccessNetworkInterfaces({
+    this.network,
+    this.subnetwork,
+    this.tags,
+  });
+
+  final RefTo<GoogleComputeNetwork>? network;
+
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
+
+  final TfArg<List<Object?>>? tags;
+
+  Map<String, Object?> encode() => {
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
+    'tags': ?tags?.toTfJson(),
   };
 }
 
@@ -775,25 +979,19 @@ final class CloudRunV2JobNfsVolume extends CloudRunV2JobVolumeSource {
 /// ```dart
 /// final etl = GoogleCloudRunV2Job(
 ///   localName: 'etl',
-///   name: TfArg.literal('nightly-etl'),
-///   location: TfArg.literal('asia-northeast1'),
+///   name: .literal('nightly-etl'),
+///   location: .literal('asia-northeast1'),
 ///   template: CloudRunV2JobTemplate(
-///     template: CloudRunV2JobTaskTemplate(
+///     template: CloudRunV2JobTemplateTemplate(
 ///       containers: [
-///         CloudRunV2JobContainer(
-///           image: TfArg.literal('gcr.io/p/etl:v1'),
+///         CloudRunV2JobTemplateTemplateContainers(
+///           image: .literal('gcr.io/p/etl:v1'),
 ///         ),
 ///       ],
 ///     ),
 ///   ),
 /// );
 /// ```
-///
-/// Naming convention: helpers reuse the Cloud Run v2 Service shape but
-/// carry a `Job` / `Task` prefix
-/// (`CloudRunV2JobTemplate`, `CloudRunV2JobTaskTemplate`, `CloudRunV2JobContainer`,
-/// `CloudRunV2JobBinaryAuthorization`, `CloudRunV2JobVolume`, `CloudRunV2JobVolumeSource`, ...) to
-/// stay barrel-exportable alongside the Service helpers.
 final class GoogleCloudRunV2Job extends Resource {
   static const String tfType = 'google_cloud_run_v2_job';
 
@@ -810,6 +1008,8 @@ final class GoogleCloudRunV2Job extends Resource {
     TfArg<String>? clientVersion,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
+    CloudRunV2JobExecutionToken? executionToken,
+    TfArg<Map<String, String>>? tags,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -819,11 +1019,11 @@ final class GoogleCloudRunV2Job extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           'template': TfArg.literal([template.toArgMap()]),
+           'template': TfArg.literal(template.encode()),
            if (binaryAuthorization != null)
-             'binary_authorization': TfArg.literal([
-               binaryAuthorization.toArgMap(),
-             ]),
+             'binary_authorization': TfArg.literal(
+               binaryAuthorization.encode(),
+             ),
            'launch_stage': ?launchStage,
            'labels': ?labels,
            'annotations': ?annotations,
@@ -831,6 +1031,8 @@ final class GoogleCloudRunV2Job extends Resource {
            'client_version': ?clientVersion,
            'deletion_protection': ?deletionProtection,
            'project': ?project,
+           ...?executionToken?.argMap,
+           'tags': ?tags,
          },
        );
 

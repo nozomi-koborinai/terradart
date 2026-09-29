@@ -8,8 +8,8 @@
 /// - a HTTP-triggered Python 3.11 function with 256 MiB memory, a 60-second
 ///   timeout, and ingress restricted to internal callers + load balancers.
 ///
-/// Demonstrates the sealed `SourceConfig` dispatch (`StorageSource` variant)
-/// and the typed enum coverage from `google_cloudfunctions2_function`.
+/// Demonstrates the sealed build `source` (`.storageSource` variant) and
+/// the typed enum coverage from `google_cloudfunctions2_function`.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -59,8 +59,13 @@ final class HttpFunctionStack extends Stack {
           runtime: .literal('python311'),
           entryPoint: .literal('hello'),
           source: .storageSource(
-            bucket: .ref(sourceBucket.nameRef),
-            object: .ref(sourceObject.nameRef),
+            Cloudfunctions2FunctionBuildConfigSourceStorageSource(
+              bucket: .of(sourceBucket),
+              object: .ref(sourceObject.nameRef),
+            ),
+          ),
+          updatePolicy: .automaticUpdatePolicy(
+            Cloudfunctions2FunctionBuildConfigAutomaticUpdatePolicy(),
           ),
         ),
         serviceConfig: Cloudfunctions2FunctionServiceConfig(
@@ -69,7 +74,7 @@ final class HttpFunctionStack extends Stack {
           minInstanceCount: .literal(0),
           maxInstanceCount: .literal(4),
           ingressSettings: .literal(.allowInternalAndGclb),
-          serviceAccountEmail: .ref(runtimeSa.email),
+          serviceAccountEmail: .of(runtimeSa),
           environmentVariables: .literal({'LOG_LEVEL': 'info'}),
         ),
       ),

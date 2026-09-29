@@ -3,6 +3,11 @@ outputDir: vertex_ai
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+# `bigtable` / `optimized` keep the hand-written `storage` sealed type.
+nestedTypeExcludes:
+  - bigtable
+  - optimized
 
 curatedDoc: |-
   /// Vertex AI Feature Registry **Feature Online Store** — online serving
@@ -58,6 +63,8 @@ paramOrder:
   - labels
   - project
   - deletion_policy
+  - dedicated_serving_endpoint
+  - encryption_spec
 
 argMapOrder:
   - name
@@ -67,6 +74,8 @@ argMapOrder:
   - project
   - deletion_policy
   - storage
+  - dedicated_serving_endpoint
+  - encryption_spec
 
 extraImports:
   - "import 'package:meta/meta.dart';"

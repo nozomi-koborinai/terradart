@@ -130,14 +130,14 @@ final class FirebaseAppBackendStack extends Stack {
         deletionProtection: .literal(false),
         template: CloudRunV2ServiceTemplate(
           containers: [
-            CloudRunV2ServiceServiceContainer(
+            CloudRunV2ServiceTemplateContainers(
               name: .literal('server'),
               image: .literal('us-docker.pkg.dev/cloudrun/container/hello'),
-              ports: CloudRunV2ServiceContainerPort(
+              ports: CloudRunV2ServiceTemplateContainersPorts(
                 containerPort: .literal(8080),
               ),
               env: [
-                CloudRunV2ServiceEnvVar(
+                CloudRunV2ServiceTemplateContainersEnv(
                   name: .literal('UPLOAD_BUCKET_NAME'),
                   source: .value(.ref(uploadsBucket.nameRef)),
                 ),

@@ -5,13 +5,6 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 
-# Keep `selector` / `rules` as structured maps like the other Cloud Deploy
-# factories. Nested `exactly_one_of` on each rules item (promote / advance /
-# repair / timed) is not a top-level sealed slot.
-nestedTypeExcludes:
-  - selector
-  - rules
-
 curatedDoc: |-
   /// Cloud Deploy **automation** — promotes / advances / repairs rollouts
   /// on a [GoogleClouddeployDeliveryPipeline]. Nested `rules` and
@@ -29,21 +22,25 @@ curatedDoc: |-
   /// ```dart
   /// GoogleClouddeployAutomation(
   ///   localName: 'promote',
-  ///   name: TfArg.literal('terradart-automation'),
-  ///   location: TfArg.literal('us-central1'),
-  ///   deliveryPipeline: TfArg.ref(pipeline.nameRef),
-  ///   serviceAccount: TfArg.ref(deployer.email),
-  ///   suspended: TfArg.literal(true),
-  ///   selector: TfArg.literal(<String, Object?>{
-  ///     'targets': [
-  ///       {'id': 'terradart-run-target'},
+  ///   name: .literal('terradart-automation'),
+  ///   location: .literal('us-central1'),
+  ///   deliveryPipeline: .ref(pipeline.nameRef),
+  ///   serviceAccount: .of(deployer),
+  ///   suspended: .literal(true),
+  ///   selector: ClouddeployAutomationSelector(
+  ///     targets: [
+  ///       ClouddeployAutomationSelectorTargets(
+  ///         id: .literal('terradart-run-target'),
+  ///       ),
   ///     ],
-  ///   }),
-  ///   rules: TfArg.literal([
-  ///     {
-  ///       'promote_release_rule': {'id': 'promote-release'},
-  ///     },
-  ///   ]),
+  ///   ),
+  ///   rules: [
+  ///     .promoteReleaseRule(
+  ///       ClouddeployAutomationRulesPromoteReleaseRule(
+  ///         id: .literal('promote-release'),
+  ///       ),
+  ///     ),
+  ///   ],
   /// );
   /// ```
 

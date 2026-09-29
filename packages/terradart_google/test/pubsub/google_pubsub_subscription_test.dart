@@ -125,38 +125,34 @@ void main() {
       );
     });
 
+    test('PubsubSubscriptionPushConfigOidcToken nested under push_config', () {
+      final cfg = PubsubSubscriptionPushConfig(
+        pushEndpoint: .literal('https://example.com/push'),
+        oidcToken: PubsubSubscriptionPushConfigOidcToken(
+          serviceAccountEmail: .literal('sa@example.iam.gserviceaccount.com'),
+        ),
+      );
+      expect(
+        cfg.encode()['oidc_token'],
+        equals({'service_account_email': 'sa@example.iam.gserviceaccount.com'}),
+      );
+    });
+
     test(
-      'PubsubSubscriptionOidcToken nested under PubsubSubscriptionPushConfig',
+      'PubsubSubscriptionPushConfigNoWrapper round-trips write_metadata',
       () {
-        const cfg = PubsubSubscriptionPushConfig(
-          pushEndpoint: TfArgLiteral<String>('https://example.com/push'),
-          oidcToken: PubsubSubscriptionOidcToken(
-            serviceAccountEmail: TfArgLiteral<String>(
-              'sa@example.iam.gserviceaccount.com',
-            ),
-          ),
+        final w = PubsubSubscriptionPushConfigNoWrapper(
+          writeMetadata: .literal(true),
         );
-        expect(
-          cfg.encode()['oidc_token'],
-          equals({
-            'service_account_email': 'sa@example.iam.gserviceaccount.com',
-          }),
-        );
+        expect(w.encode(), equals({'write_metadata': true}));
       },
     );
 
-    test('PubsubSubscriptionNoWrapper round-trips write_metadata', () {
-      const w = PubsubSubscriptionNoWrapper(
-        writeMetadata: TfArgLiteral<bool>(true),
-      );
-      expect(w.encode(), equals({'write_metadata': true}));
-    });
-
-    test('PubsubSubscriptionBigQueryConfig snake_case keys', () {
-      const cfg = PubsubSubscriptionBigQueryConfig(
-        table: TfArgLiteral<String>('p:d.t'),
-        useTopicSchema: TfArgLiteral<bool>(true),
-        dropUnknownFields: TfArgLiteral<bool>(false),
+    test('PubsubSubscriptionBigqueryConfig snake_case keys', () {
+      final cfg = PubsubSubscriptionBigqueryConfig(
+        table: .literal('p:d.t'),
+        schema: .useTopicSchema(.literal(true)),
+        dropUnknownFields: .literal(false),
       );
       expect(
         cfg.encode(),
@@ -169,10 +165,10 @@ void main() {
     });
 
     test('PubsubSubscriptionCloudStorageConfig snake_case keys', () {
-      const cfg = PubsubSubscriptionCloudStorageConfig(
-        bucket: TfArgLiteral<String>('my-bucket'),
-        filenamePrefix: TfArgLiteral<String>('subs/'),
-        maxBytes: TfArgLiteral<int>(1024),
+      final cfg = PubsubSubscriptionCloudStorageConfig(
+        bucket: .literal('my-bucket'),
+        filenamePrefix: .literal('subs/'),
+        maxBytes: .literal(1024),
       );
       expect(
         cfg.encode(),
