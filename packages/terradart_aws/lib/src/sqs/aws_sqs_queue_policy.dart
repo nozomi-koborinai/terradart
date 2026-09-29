@@ -31,6 +31,10 @@ final class AwsSqsQueuePolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSqsQueuePolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSqsQueuePolicy>`.
+  RefTo<AwsSqsQueuePolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

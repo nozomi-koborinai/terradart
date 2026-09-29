@@ -103,6 +103,10 @@ final class GoogleDnsResponsePolicyRule extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDnsResponsePolicyRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDnsResponsePolicyRule>`.
+  RefTo<GoogleDnsResponsePolicyRule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

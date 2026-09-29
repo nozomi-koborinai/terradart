@@ -271,6 +271,10 @@ final class AwsCloudwatchMetricStream extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudwatchMetricStreamSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudwatchMetricStream>`.
+  RefTo<AwsCloudwatchMetricStream> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

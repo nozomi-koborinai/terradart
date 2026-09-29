@@ -58,6 +58,10 @@ final class AwsCloudhsmV2Cluster extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudhsmV2ClusterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudhsmV2Cluster>`.
+  RefTo<AwsCloudhsmV2Cluster> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

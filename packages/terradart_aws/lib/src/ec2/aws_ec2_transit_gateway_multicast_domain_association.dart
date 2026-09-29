@@ -37,6 +37,11 @@ final class AwsEc2TransitGatewayMulticastDomainAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsEc2TransitGatewayMulticastDomainAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2TransitGatewayMulticastDomainAssociation>`.
+  RefTo<AwsEc2TransitGatewayMulticastDomainAssociation> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

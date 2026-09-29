@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_customer_gateway.dart';
 
 /// Sensitive field paths for `aws_customer_gateway`.
 const Set<String> _awsCustomerGatewaySensitive = <String>{};
@@ -46,6 +47,11 @@ final class DataAwsCustomerGateway extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsCustomerGatewaySensitive;
+
+  /// A reference to the `aws_customer_gateway` this data source reads, for
+  /// arguments typed `RefTo<AwsCustomerGateway>`.
+  RefTo<AwsCustomerGateway> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

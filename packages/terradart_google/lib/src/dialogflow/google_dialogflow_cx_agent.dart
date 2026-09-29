@@ -374,6 +374,10 @@ final class GoogleDialogflowCxAgent extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDialogflowCxAgentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDialogflowCxAgent>`.
+  RefTo<GoogleDialogflowCxAgent> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

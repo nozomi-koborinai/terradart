@@ -2332,6 +2332,10 @@ final class AwsAppflowFlow extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppflowFlowSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppflowFlow>`.
+  RefTo<AwsAppflowFlow> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

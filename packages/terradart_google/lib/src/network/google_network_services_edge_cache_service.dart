@@ -860,6 +860,10 @@ final class GoogleNetworkServicesEdgeCacheService extends Resource {
   Set<String> get sensitiveFields =>
       _googleNetworkServicesEdgeCacheServiceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkServicesEdgeCacheService>`.
+  RefTo<GoogleNetworkServicesEdgeCacheService> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

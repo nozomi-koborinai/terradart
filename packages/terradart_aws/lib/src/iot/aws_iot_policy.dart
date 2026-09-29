@@ -33,6 +33,10 @@ final class AwsIotPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsIotPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIotPolicy>`.
+  RefTo<AwsIotPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -35,6 +35,10 @@ final class CloudflareWorkersRoute extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareWorkersRouteSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareWorkersRoute>`.
+  RefTo<CloudflareWorkersRoute> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -31,6 +31,10 @@ final class AwsIamSamlProvider extends Resource {
   @override
   Set<String> get sensitiveFields => _awsIamSamlProviderSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIamSamlProvider>`.
+  RefTo<AwsIamSamlProvider> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

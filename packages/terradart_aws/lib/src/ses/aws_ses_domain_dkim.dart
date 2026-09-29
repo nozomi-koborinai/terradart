@@ -26,6 +26,10 @@ final class AwsSesDomainDkim extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSesDomainDkimSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSesDomainDkim>`.
+  RefTo<AwsSesDomainDkim> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

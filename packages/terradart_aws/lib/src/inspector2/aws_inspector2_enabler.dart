@@ -46,6 +46,10 @@ final class AwsInspector2Enabler extends Resource {
   @override
   Set<String> get sensitiveFields => _awsInspector2EnablerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsInspector2Enabler>`.
+  RefTo<AwsInspector2Enabler> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

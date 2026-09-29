@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../email/cloudflare_email_sending_subdomain.dart';
 
 /// Sensitive field paths for `cloudflare_email_sending_subdomain`.
 const Set<String> _cloudflareEmailSendingSubdomainSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataCloudflareEmailSendingSubdomain extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareEmailSendingSubdomainSensitive;
+
+  /// A reference to the `cloudflare_email_sending_subdomain` this data source reads, for
+  /// arguments typed `RefTo<CloudflareEmailSendingSubdomain>`.
+  RefTo<CloudflareEmailSendingSubdomain> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

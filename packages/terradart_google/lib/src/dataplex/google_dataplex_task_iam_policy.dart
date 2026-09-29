@@ -40,6 +40,10 @@ final class GoogleDataplexTaskIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataplexTaskIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexTaskIamPolicy>`.
+  RefTo<GoogleDataplexTaskIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

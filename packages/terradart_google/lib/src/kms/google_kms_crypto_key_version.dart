@@ -56,6 +56,10 @@ final class GoogleKmsCryptoKeyVersion extends Resource {
   @override
   Set<String> get sensitiveFields => _googleKmsCryptoKeyVersionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleKmsCryptoKeyVersion>`.
+  RefTo<GoogleKmsCryptoKeyVersion> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

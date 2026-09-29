@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../iam/google_service_account_key.dart';
 
 /// Sensitive field paths for `google_service_account_key`.
 const Set<String> _googleServiceAccountKeySensitive = <String>{};
@@ -29,6 +30,11 @@ final class DataGoogleServiceAccountKey extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleServiceAccountKeySensitive;
+
+  /// A reference to the `google_service_account_key` this data source reads, for
+  /// arguments typed `RefTo<GoogleServiceAccountKey>`.
+  RefTo<GoogleServiceAccountKey> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

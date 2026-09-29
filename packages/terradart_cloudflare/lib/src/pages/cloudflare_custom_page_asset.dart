@@ -35,6 +35,10 @@ final class CloudflareCustomPageAsset extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareCustomPageAssetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareCustomPageAsset>`.
+  RefTo<CloudflareCustomPageAsset> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

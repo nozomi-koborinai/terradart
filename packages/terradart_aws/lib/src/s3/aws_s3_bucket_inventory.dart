@@ -256,6 +256,10 @@ final class AwsS3BucketInventory extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3BucketInventorySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3BucketInventory>`.
+  RefTo<AwsS3BucketInventory> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

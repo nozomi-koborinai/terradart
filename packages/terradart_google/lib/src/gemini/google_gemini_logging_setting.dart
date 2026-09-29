@@ -40,6 +40,10 @@ final class GoogleGeminiLoggingSetting extends Resource {
   @override
   Set<String> get sensitiveFields => _googleGeminiLoggingSettingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGeminiLoggingSetting>`.
+  RefTo<GoogleGeminiLoggingSetting> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

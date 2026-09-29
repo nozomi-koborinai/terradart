@@ -870,6 +870,10 @@ final class AwsEmrCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEmrClusterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEmrCluster>`.
+  RefTo<AwsEmrCluster> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

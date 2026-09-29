@@ -33,6 +33,10 @@ final class AwsSecurityhubActionTarget extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSecurityhubActionTargetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSecurityhubActionTarget>`.
+  RefTo<AwsSecurityhubActionTarget> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

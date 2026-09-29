@@ -42,6 +42,10 @@ final class GoogleGkeHubFeatureIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleGkeHubFeatureIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGkeHubFeatureIamBinding>`.
+  RefTo<GoogleGkeHubFeatureIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

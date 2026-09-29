@@ -66,6 +66,10 @@ final class GoogleApiGatewayApiIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApiGatewayApiIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApiGatewayApiIamBinding>`.
+  RefTo<GoogleApiGatewayApiIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

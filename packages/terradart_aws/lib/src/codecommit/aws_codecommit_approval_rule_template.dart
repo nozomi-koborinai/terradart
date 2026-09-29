@@ -34,6 +34,10 @@ final class AwsCodecommitApprovalRuleTemplate extends Resource {
   Set<String> get sensitiveFields =>
       _awsCodecommitApprovalRuleTemplateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCodecommitApprovalRuleTemplate>`.
+  RefTo<AwsCodecommitApprovalRuleTemplate> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

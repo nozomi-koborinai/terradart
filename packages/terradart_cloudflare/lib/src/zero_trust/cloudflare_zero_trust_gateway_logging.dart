@@ -116,6 +116,10 @@ final class CloudflareZeroTrustGatewayLogging extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustGatewayLoggingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustGatewayLogging>`.
+  RefTo<CloudflareZeroTrustGatewayLogging> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

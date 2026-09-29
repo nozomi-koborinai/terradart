@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../composer/google_composer_environment.dart';
 
 /// Sensitive field paths for `google_composer_environment`.
 const Set<String> _googleComposerEnvironmentSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleComposerEnvironment extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleComposerEnvironmentSensitive;
+
+  /// A reference to the `google_composer_environment` this data source reads, for
+  /// arguments typed `RefTo<GoogleComposerEnvironment>`.
+  RefTo<GoogleComposerEnvironment> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

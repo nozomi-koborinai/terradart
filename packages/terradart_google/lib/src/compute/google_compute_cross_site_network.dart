@@ -47,6 +47,10 @@ final class GoogleComputeCrossSiteNetwork extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeCrossSiteNetworkSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeCrossSiteNetwork>`.
+  RefTo<GoogleComputeCrossSiteNetwork> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

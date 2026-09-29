@@ -78,6 +78,10 @@ final class GoogleBigtableAuthorizedView extends Resource {
   @override
   bool get supportsDeletionProtection => true;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigtableAuthorizedView>`.
+  RefTo<GoogleBigtableAuthorizedView> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

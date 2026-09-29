@@ -51,6 +51,10 @@ final class GoogleAppEngineFirewallRule extends Resource {
   @override
   Set<String> get sensitiveFields => _googleAppEngineFirewallRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleAppEngineFirewallRule>`.
+  RefTo<GoogleAppEngineFirewallRule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

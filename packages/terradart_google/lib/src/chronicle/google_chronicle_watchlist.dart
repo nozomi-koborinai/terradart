@@ -104,6 +104,10 @@ final class GoogleChronicleWatchlist extends Resource {
   @override
   Set<String> get sensitiveFields => _googleChronicleWatchlistSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleChronicleWatchlist>`.
+  RefTo<GoogleChronicleWatchlist> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

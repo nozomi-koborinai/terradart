@@ -47,6 +47,10 @@ final class AwsRdsClusterActivityStream extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRdsClusterActivityStreamSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRdsClusterActivityStream>`.
+  RefTo<AwsRdsClusterActivityStream> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -244,4 +244,8 @@ final class AwsS3BucketMetadataConfiguration extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsS3BucketMetadataConfigurationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3BucketMetadataConfiguration>`.
+  RefTo<AwsS3BucketMetadataConfiguration> get ref => RefTo.of(this);
 }

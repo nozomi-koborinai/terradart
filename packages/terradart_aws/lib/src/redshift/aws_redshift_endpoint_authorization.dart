@@ -35,6 +35,10 @@ final class AwsRedshiftEndpointAuthorization extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRedshiftEndpointAuthorizationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRedshiftEndpointAuthorization>`.
+  RefTo<AwsRedshiftEndpointAuthorization> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

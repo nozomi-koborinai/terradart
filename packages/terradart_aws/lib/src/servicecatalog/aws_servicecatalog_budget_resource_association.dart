@@ -33,6 +33,10 @@ final class AwsServicecatalogBudgetResourceAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsServicecatalogBudgetResourceAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsServicecatalogBudgetResourceAssociation>`.
+  RefTo<AwsServicecatalogBudgetResourceAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

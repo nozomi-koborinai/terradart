@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../identitystore/aws_identitystore_group.dart';
 
 /// Sensitive field paths for `aws_identitystore_group`.
 const Set<String> _awsIdentitystoreGroupSensitive = <String>{};
@@ -92,6 +93,11 @@ final class DataAwsIdentitystoreGroup extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsIdentitystoreGroupSensitive;
+
+  /// A reference to the `aws_identitystore_group` this data source reads, for
+  /// arguments typed `RefTo<AwsIdentitystoreGroup>`.
+  RefTo<AwsIdentitystoreGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

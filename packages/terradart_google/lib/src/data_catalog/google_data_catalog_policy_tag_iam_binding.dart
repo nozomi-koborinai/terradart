@@ -39,6 +39,10 @@ final class GoogleDataCatalogPolicyTagIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataCatalogPolicyTagIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataCatalogPolicyTagIamBinding>`.
+  RefTo<GoogleDataCatalogPolicyTagIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

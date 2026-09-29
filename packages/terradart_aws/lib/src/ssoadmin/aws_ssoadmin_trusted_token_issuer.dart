@@ -117,6 +117,10 @@ final class AwsSsoadminTrustedTokenIssuer extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSsoadminTrustedTokenIssuerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSsoadminTrustedTokenIssuer>`.
+  RefTo<AwsSsoadminTrustedTokenIssuer> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

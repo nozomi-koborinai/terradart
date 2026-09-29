@@ -45,6 +45,10 @@ final class GoogleApphubBoundary extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApphubBoundarySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApphubBoundary>`.
+  RefTo<GoogleApphubBoundary> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

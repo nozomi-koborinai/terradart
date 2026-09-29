@@ -34,6 +34,10 @@ final class AwsDevicefarmProject extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDevicefarmProjectSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDevicefarmProject>`.
+  RefTo<AwsDevicefarmProject> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

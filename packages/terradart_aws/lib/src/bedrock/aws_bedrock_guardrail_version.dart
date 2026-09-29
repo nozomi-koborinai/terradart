@@ -33,6 +33,10 @@ final class AwsBedrockGuardrailVersion extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBedrockGuardrailVersionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockGuardrailVersion>`.
+  RefTo<AwsBedrockGuardrailVersion> get ref => RefTo.of(this);
+
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
 }

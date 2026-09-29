@@ -87,6 +87,10 @@ final class AwsLambdaFunctionEventInvokeConfig extends Resource {
   Set<String> get sensitiveFields =>
       _awsLambdaFunctionEventInvokeConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLambdaFunctionEventInvokeConfig>`.
+  RefTo<AwsLambdaFunctionEventInvokeConfig> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -80,6 +80,10 @@ final class GoogleAppEngineDomainMapping extends Resource {
   @override
   Set<String> get sensitiveFields => _googleAppEngineDomainMappingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleAppEngineDomainMapping>`.
+  RefTo<GoogleAppEngineDomainMapping> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

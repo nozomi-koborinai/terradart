@@ -33,6 +33,10 @@ final class AwsS3controlBucket extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3controlBucketSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3controlBucket>`.
+  RefTo<AwsS3controlBucket> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

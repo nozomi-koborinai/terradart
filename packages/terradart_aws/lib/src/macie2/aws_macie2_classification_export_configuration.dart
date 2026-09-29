@@ -55,6 +55,10 @@ final class AwsMacie2ClassificationExportConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsMacie2ClassificationExportConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMacie2ClassificationExportConfiguration>`.
+  RefTo<AwsMacie2ClassificationExportConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

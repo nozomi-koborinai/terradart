@@ -100,6 +100,10 @@ final class AwsS3BucketIntelligentTieringConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsS3BucketIntelligentTieringConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3BucketIntelligentTieringConfiguration>`.
+  RefTo<AwsS3BucketIntelligentTieringConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../biglake/google_biglake_hive_database_iam_policy.dart';
 
 /// Sensitive field paths for `google_biglake_hive_database_iam_policy`.
 const Set<String> _googleBiglakeHiveDatabaseIamPolicySensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataGoogleBiglakeHiveDatabaseIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleBiglakeHiveDatabaseIamPolicySensitive;
+
+  /// A reference to the `google_biglake_hive_database_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleBiglakeHiveDatabaseIamPolicy>`.
+  RefTo<GoogleBiglakeHiveDatabaseIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

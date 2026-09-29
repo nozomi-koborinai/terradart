@@ -32,6 +32,10 @@ final class AwsNotificationscontactsEmailContact extends Resource {
   Set<String> get sensitiveFields =>
       _awsNotificationscontactsEmailContactSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNotificationscontactsEmailContact>`.
+  RefTo<AwsNotificationscontactsEmailContact> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

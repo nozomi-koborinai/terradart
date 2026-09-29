@@ -561,6 +561,10 @@ final class GoogleDeveloperConnectConnection extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDeveloperConnectConnectionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDeveloperConnectConnection>`.
+  RefTo<GoogleDeveloperConnectConnection> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

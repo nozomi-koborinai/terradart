@@ -34,6 +34,10 @@ final class AwsServiceDiscoveryPublicDnsNamespace extends Resource {
   Set<String> get sensitiveFields =>
       _awsServiceDiscoveryPublicDnsNamespaceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsServiceDiscoveryPublicDnsNamespace>`.
+  RefTo<AwsServiceDiscoveryPublicDnsNamespace> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

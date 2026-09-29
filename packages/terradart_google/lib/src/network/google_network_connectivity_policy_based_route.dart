@@ -299,6 +299,10 @@ final class GoogleNetworkConnectivityPolicyBasedRoute extends Resource {
   Set<String> get sensitiveFields =>
       _googleNetworkConnectivityPolicyBasedRouteSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkConnectivityPolicyBasedRoute>`.
+  RefTo<GoogleNetworkConnectivityPolicyBasedRoute> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

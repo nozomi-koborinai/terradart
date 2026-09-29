@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../codecommit/aws_codecommit_approval_rule_template.dart';
 
 /// Sensitive field paths for `aws_codecommit_approval_rule_template`.
 const Set<String> _awsCodecommitApprovalRuleTemplateSensitive = <String>{};
@@ -24,6 +25,11 @@ final class DataAwsCodecommitApprovalRuleTemplate extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsCodecommitApprovalRuleTemplateSensitive;
+
+  /// A reference to the `aws_codecommit_approval_rule_template` this data source reads, for
+  /// arguments typed `RefTo<AwsCodecommitApprovalRuleTemplate>`.
+  RefTo<AwsCodecommitApprovalRuleTemplate> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

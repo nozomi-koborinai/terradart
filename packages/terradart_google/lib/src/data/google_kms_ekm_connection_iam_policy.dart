@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../kms/google_kms_ekm_connection_iam_policy.dart';
 
 /// Sensitive field paths for `google_kms_ekm_connection_iam_policy`.
 const Set<String> _googleKmsEkmConnectionIamPolicySensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleKmsEkmConnectionIamPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleKmsEkmConnectionIamPolicySensitive;
+
+  /// A reference to the `google_kms_ekm_connection_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleKmsEkmConnectionIamPolicy>`.
+  RefTo<GoogleKmsEkmConnectionIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../notifications/cloudflare_notification_policy_webhooks.dart';
 
 /// Sensitive field paths for `cloudflare_notification_policy_webhooks`.
 const Set<String> _cloudflareNotificationPolicyWebhooksSensitive = <String>{
@@ -34,6 +35,11 @@ final class DataCloudflareNotificationPolicyWebhooks extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareNotificationPolicyWebhooksSensitive;
+
+  /// A reference to the `cloudflare_notification_policy_webhooks` this data source reads, for
+  /// arguments typed `RefTo<CloudflareNotificationPolicyWebhooks>`.
+  RefTo<CloudflareNotificationPolicyWebhooks> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

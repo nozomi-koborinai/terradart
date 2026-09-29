@@ -60,6 +60,10 @@ final class AwsSagemakerDeviceFleet extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSagemakerDeviceFleetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSagemakerDeviceFleet>`.
+  RefTo<AwsSagemakerDeviceFleet> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

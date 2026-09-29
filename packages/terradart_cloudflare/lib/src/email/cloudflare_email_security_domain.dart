@@ -65,6 +65,10 @@ final class CloudflareEmailSecurityDomain extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareEmailSecurityDomainSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareEmailSecurityDomain>`.
+  RefTo<CloudflareEmailSecurityDomain> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

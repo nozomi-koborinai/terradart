@@ -114,6 +114,10 @@ final class AwsVpcIpamPoolCidr extends Resource {
   @override
   Set<String> get sensitiveFields => _awsVpcIpamPoolCidrSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcIpamPoolCidr>`.
+  RefTo<AwsVpcIpamPoolCidr> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

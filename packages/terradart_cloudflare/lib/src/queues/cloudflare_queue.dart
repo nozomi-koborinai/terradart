@@ -74,6 +74,10 @@ final class CloudflareQueue extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareQueueSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareQueue>`.
+  RefTo<CloudflareQueue> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

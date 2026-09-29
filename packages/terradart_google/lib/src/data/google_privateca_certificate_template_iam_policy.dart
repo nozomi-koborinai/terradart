@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../privateca/google_privateca_certificate_template_iam_policy.dart';
 
 /// Sensitive field paths for `google_privateca_certificate_template_iam_policy`.
 const Set<String> _googlePrivatecaCertificateTemplateIamPolicySensitive =
@@ -34,6 +35,11 @@ final class DataGooglePrivatecaCertificateTemplateIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googlePrivatecaCertificateTemplateIamPolicySensitive;
+
+  /// A reference to the `google_privateca_certificate_template_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GooglePrivatecaCertificateTemplateIamPolicy>`.
+  RefTo<GooglePrivatecaCertificateTemplateIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

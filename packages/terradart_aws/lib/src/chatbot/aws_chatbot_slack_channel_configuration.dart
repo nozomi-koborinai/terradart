@@ -59,6 +59,10 @@ final class AwsChatbotSlackChannelConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsChatbotSlackChannelConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsChatbotSlackChannelConfiguration>`.
+  RefTo<AwsChatbotSlackChannelConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `chat_configuration_arn` attribute.
   TfRef<String> get chatConfigurationArn =>
       TfRef.attribute<String>(this, 'chat_configuration_arn');

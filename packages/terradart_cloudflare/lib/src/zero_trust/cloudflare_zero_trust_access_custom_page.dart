@@ -52,6 +52,10 @@ final class CloudflareZeroTrustAccessCustomPage extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustAccessCustomPageSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustAccessCustomPage>`.
+  RefTo<CloudflareZeroTrustAccessCustomPage> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

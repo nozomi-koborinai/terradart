@@ -42,6 +42,10 @@ final class AwsRoute53recoverycontrolconfigCluster extends Resource {
   Set<String> get sensitiveFields =>
       _awsRoute53recoverycontrolconfigClusterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53recoverycontrolconfigCluster>`.
+  RefTo<AwsRoute53recoverycontrolconfigCluster> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

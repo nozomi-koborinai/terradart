@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../odb/aws_odb_cloud_autonomous_vm_cluster.dart';
 
 /// Sensitive field paths for `aws_odb_cloud_autonomous_vm_cluster`.
 const Set<String> _awsOdbCloudAutonomousVmClusterSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsOdbCloudAutonomousVmCluster extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsOdbCloudAutonomousVmClusterSensitive;
+
+  /// A reference to the `aws_odb_cloud_autonomous_vm_cluster` this data source reads, for
+  /// arguments typed `RefTo<AwsOdbCloudAutonomousVmCluster>`.
+  RefTo<AwsOdbCloudAutonomousVmCluster> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -108,6 +108,10 @@ final class GoogleComputeRouterNamedSet extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeRouterNamedSetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRouterNamedSet>`.
+  RefTo<GoogleComputeRouterNamedSet> get ref => RefTo.of(this);
+
   /// Reference to `fingerprint` attribute.
   TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
 

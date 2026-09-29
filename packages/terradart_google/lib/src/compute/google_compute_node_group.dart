@@ -159,6 +159,10 @@ final class GoogleComputeNodeGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeNodeGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeNodeGroup>`.
+  RefTo<GoogleComputeNodeGroup> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

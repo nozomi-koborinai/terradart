@@ -101,6 +101,10 @@ final class GoogleLoggingProjectSink extends Resource {
   @override
   Set<String> get sensitiveFields => _googleLoggingProjectSinkSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleLoggingProjectSink>`.
+  RefTo<GoogleLoggingProjectSink> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

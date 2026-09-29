@@ -46,6 +46,10 @@ final class GoogleDataplexAssetIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataplexAssetIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexAssetIamBinding>`.
+  RefTo<GoogleDataplexAssetIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

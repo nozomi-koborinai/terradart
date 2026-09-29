@@ -40,6 +40,10 @@ final class AwsKinesisVideoStream extends Resource {
   @override
   Set<String> get sensitiveFields => _awsKinesisVideoStreamSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsKinesisVideoStream>`.
+  RefTo<AwsKinesisVideoStream> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

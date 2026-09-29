@@ -33,6 +33,10 @@ final class AwsWorkspaceswebUserAccessLoggingSettings extends Resource {
   Set<String> get sensitiveFields =>
       _awsWorkspaceswebUserAccessLoggingSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebUserAccessLoggingSettings>`.
+  RefTo<AwsWorkspaceswebUserAccessLoggingSettings> get ref => RefTo.of(this);
+
   /// Reference to `associated_portal_arns` attribute.
   TfRef<List<String>> get associatedPortalArns =>
       TfRef.attribute<List<String>>(this, 'associated_portal_arns');

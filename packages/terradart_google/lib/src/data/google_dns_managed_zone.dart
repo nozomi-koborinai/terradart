@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../dns/google_dns_managed_zone.dart';
 
 /// Sensitive field paths for `google_dns_managed_zone`.
 const Set<String> _googleDnsManagedZoneSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataGoogleDnsManagedZone extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleDnsManagedZoneSensitive;
+
+  /// A reference to the `google_dns_managed_zone` this data source reads, for
+  /// arguments typed `RefTo<GoogleDnsManagedZone>`.
+  RefTo<GoogleDnsManagedZone> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

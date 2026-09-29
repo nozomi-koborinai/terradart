@@ -49,4 +49,8 @@ final class AwsSecurityhubFeatureV2 extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsSecurityhubFeatureV2Sensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSecurityhubFeatureV2>`.
+  RefTo<AwsSecurityhubFeatureV2> get ref => RefTo.of(this);
 }

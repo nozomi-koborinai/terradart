@@ -136,6 +136,10 @@ final class GoogleDataLossPreventionStoredInfoType extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataLossPreventionStoredInfoTypeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataLossPreventionStoredInfoType>`.
+  RefTo<GoogleDataLossPreventionStoredInfoType> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

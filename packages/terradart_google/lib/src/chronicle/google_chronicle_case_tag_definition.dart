@@ -74,4 +74,8 @@ final class GoogleChronicleCaseTagDefinition extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleChronicleCaseTagDefinitionSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleChronicleCaseTagDefinition>`.
+  RefTo<GoogleChronicleCaseTagDefinition> get ref => RefTo.of(this);
 }

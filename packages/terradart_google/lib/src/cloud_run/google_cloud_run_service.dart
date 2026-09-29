@@ -1097,6 +1097,10 @@ final class GoogleCloudRunService extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudRunServiceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudRunService>`.
+  RefTo<GoogleCloudRunService> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

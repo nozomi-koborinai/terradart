@@ -52,6 +52,10 @@ final class CloudflareSchemaValidationSchemas extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareSchemaValidationSchemasSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareSchemaValidationSchemas>`.
+  RefTo<CloudflareSchemaValidationSchemas> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

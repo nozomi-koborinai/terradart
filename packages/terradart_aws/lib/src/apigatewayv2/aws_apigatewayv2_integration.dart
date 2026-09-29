@@ -164,6 +164,10 @@ final class AwsApigatewayv2Integration extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApigatewayv2IntegrationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApigatewayv2Integration>`.
+  RefTo<AwsApigatewayv2Integration> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

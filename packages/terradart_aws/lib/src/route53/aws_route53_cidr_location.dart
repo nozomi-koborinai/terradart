@@ -31,6 +31,10 @@ final class AwsRoute53CidrLocation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRoute53CidrLocationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53CidrLocation>`.
+  RefTo<AwsRoute53CidrLocation> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

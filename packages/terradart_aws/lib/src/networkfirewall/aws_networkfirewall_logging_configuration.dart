@@ -116,6 +116,10 @@ final class AwsNetworkfirewallLoggingConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsNetworkfirewallLoggingConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkfirewallLoggingConfiguration>`.
+  RefTo<AwsNetworkfirewallLoggingConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

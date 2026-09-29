@@ -41,6 +41,10 @@ final class CloudflareSsoConnector extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareSsoConnectorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareSsoConnector>`.
+  RefTo<CloudflareSsoConnector> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

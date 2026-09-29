@@ -77,6 +77,10 @@ final class AwsEksIdentityProviderConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEksIdentityProviderConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEksIdentityProviderConfig>`.
+  RefTo<AwsEksIdentityProviderConfig> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

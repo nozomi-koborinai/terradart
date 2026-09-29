@@ -43,6 +43,10 @@ final class GoogleDataplexEntryGroupIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataplexEntryGroupIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexEntryGroupIamBinding>`.
+  RefTo<GoogleDataplexEntryGroupIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

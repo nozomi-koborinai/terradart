@@ -961,6 +961,10 @@ final class AwsEc2Fleet extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEc2FleetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2Fleet>`.
+  RefTo<AwsEc2Fleet> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

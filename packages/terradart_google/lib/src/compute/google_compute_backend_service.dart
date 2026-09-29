@@ -1195,6 +1195,10 @@ final class GoogleComputeBackendService extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeBackendServiceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeBackendService>`.
+  RefTo<GoogleComputeBackendService> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -34,4 +34,8 @@ final class CloudflareRegistrarDomain extends Resource {
 
   @override
   Set<String> get sensitiveFields => _cloudflareRegistrarDomainSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareRegistrarDomain>`.
+  RefTo<CloudflareRegistrarDomain> get ref => RefTo.of(this);
 }

@@ -396,6 +396,10 @@ final class AwsBedrockagentcoreEvaluator extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBedrockagentcoreEvaluatorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentcoreEvaluator>`.
+  RefTo<AwsBedrockagentcoreEvaluator> get ref => RefTo.of(this);
+
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 

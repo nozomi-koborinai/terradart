@@ -87,6 +87,10 @@ final class GoogleClouddeployAutomation extends Resource {
   @override
   Set<String> get sensitiveFields => _googleClouddeployAutomationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleClouddeployAutomation>`.
+  RefTo<GoogleClouddeployAutomation> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../beyondcorp/google_beyondcorp_security_gateway_iam_policy.dart';
 
 /// Sensitive field paths for `google_beyondcorp_security_gateway_iam_policy`.
 const Set<String> _googleBeyondcorpSecurityGatewayIamPolicySensitive =
@@ -33,6 +34,11 @@ final class DataGoogleBeyondcorpSecurityGatewayIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleBeyondcorpSecurityGatewayIamPolicySensitive;
+
+  /// A reference to the `google_beyondcorp_security_gateway_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleBeyondcorpSecurityGatewayIamPolicy>`.
+  RefTo<GoogleBeyondcorpSecurityGatewayIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

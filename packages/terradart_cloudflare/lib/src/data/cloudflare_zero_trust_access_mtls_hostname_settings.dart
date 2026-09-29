@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_access_mtls_hostname_settings.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_access_mtls_hostname_settings`.
 const Set<String> _cloudflareZeroTrustAccessMtlsHostnameSettingsSensitive =
@@ -34,6 +35,11 @@ final class DataCloudflareZeroTrustAccessMtlsHostnameSettings extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustAccessMtlsHostnameSettingsSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_access_mtls_hostname_settings` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustAccessMtlsHostnameSettings>`.
+  RefTo<CloudflareZeroTrustAccessMtlsHostnameSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `china_network` attribute.
   TfRef<bool> get chinaNetwork => TfRef.attribute<bool>(this, 'china_network');

@@ -103,6 +103,11 @@ final class GoogleNetworkSecurityUllMirroringCollectorRule extends Resource {
   Set<String> get sensitiveFields =>
       _googleNetworkSecurityUllMirroringCollectorRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkSecurityUllMirroringCollectorRule>`.
+  RefTo<GoogleNetworkSecurityUllMirroringCollectorRule> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

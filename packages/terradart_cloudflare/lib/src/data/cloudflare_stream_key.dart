@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../stream/cloudflare_stream_key.dart';
 
 /// Sensitive field paths for `cloudflare_stream_key`.
 const Set<String> _cloudflareStreamKeySensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataCloudflareStreamKey extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareStreamKeySensitive;
+
+  /// A reference to the `cloudflare_stream_key` this data source reads, for
+  /// arguments typed `RefTo<CloudflareStreamKey>`.
+  RefTo<CloudflareStreamKey> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -43,6 +43,10 @@ final class CloudflareWorkersKv extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareWorkersKvSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareWorkersKv>`.
+  RefTo<CloudflareWorkersKv> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

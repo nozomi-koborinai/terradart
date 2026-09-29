@@ -33,6 +33,10 @@ final class GoogleBillingAccountIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBillingAccountIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBillingAccountIamMember>`.
+  RefTo<GoogleBillingAccountIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

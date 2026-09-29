@@ -63,6 +63,10 @@ final class GoogleSqlDatabase extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSqlDatabaseSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSqlDatabase>`.
+  RefTo<GoogleSqlDatabase> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

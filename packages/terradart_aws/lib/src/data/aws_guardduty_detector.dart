@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../guardduty/aws_guardduty_detector.dart';
 
 /// Sensitive field paths for `aws_guardduty_detector`.
 const Set<String> _awsGuarddutyDetectorSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataAwsGuarddutyDetector extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsGuarddutyDetectorSensitive;
+
+  /// A reference to the `aws_guardduty_detector` this data source reads, for
+  /// arguments typed `RefTo<AwsGuarddutyDetector>`.
+  RefTo<AwsGuarddutyDetector> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

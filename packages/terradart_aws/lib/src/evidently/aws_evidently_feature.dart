@@ -100,6 +100,10 @@ final class AwsEvidentlyFeature extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEvidentlyFeatureSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEvidentlyFeature>`.
+  RefTo<AwsEvidentlyFeature> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

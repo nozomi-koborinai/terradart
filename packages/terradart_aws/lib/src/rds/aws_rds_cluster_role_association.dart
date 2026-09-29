@@ -33,6 +33,10 @@ final class AwsRdsClusterRoleAssociation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRdsClusterRoleAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRdsClusterRoleAssociation>`.
+  RefTo<AwsRdsClusterRoleAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

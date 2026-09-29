@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone_tracing_rules.dart';
 
 /// Sensitive field paths for `cloudflare_zone_tracing_rules`.
 const Set<String> _cloudflareZoneTracingRulesSensitive = <String>{};
@@ -19,6 +20,11 @@ final class DataCloudflareZoneTracingRules extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareZoneTracingRulesSensitive;
+
+  /// A reference to the `cloudflare_zone_tracing_rules` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZoneTracingRules>`.
+  RefTo<CloudflareZoneTracingRules> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

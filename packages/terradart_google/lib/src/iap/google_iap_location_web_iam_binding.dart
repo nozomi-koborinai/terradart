@@ -41,6 +41,10 @@ final class GoogleIapLocationWebIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIapLocationWebIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapLocationWebIamBinding>`.
+  RefTo<GoogleIapLocationWebIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -48,6 +48,10 @@ final class AwsS3outpostsEndpoint extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3outpostsEndpointSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3outpostsEndpoint>`.
+  RefTo<AwsS3outpostsEndpoint> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -40,6 +40,10 @@ final class GoogleComputeSnapshotIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeSnapshotIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeSnapshotIamBinding>`.
+  RefTo<GoogleComputeSnapshotIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

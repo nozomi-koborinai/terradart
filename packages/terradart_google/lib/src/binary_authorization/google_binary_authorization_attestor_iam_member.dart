@@ -51,6 +51,10 @@ final class GoogleBinaryAuthorizationAttestorIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleBinaryAuthorizationAttestorIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBinaryAuthorizationAttestorIamMember>`.
+  RefTo<GoogleBinaryAuthorizationAttestorIamMember> get ref => RefTo.of(this);
+
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 

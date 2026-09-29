@@ -54,6 +54,10 @@ final class AwsWafregionalIpset extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWafregionalIpsetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWafregionalIpset>`.
+  RefTo<AwsWafregionalIpset> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

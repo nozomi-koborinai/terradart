@@ -42,6 +42,11 @@ final class GoogleAccessContextManagerAccessPolicyIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleAccessContextManagerAccessPolicyIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleAccessContextManagerAccessPolicyIamBinding>`.
+  RefTo<GoogleAccessContextManagerAccessPolicyIamBinding> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -48,6 +48,10 @@ final class GoogleComputeResourcePolicyAttachment extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeResourcePolicyAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeResourcePolicyAttachment>`.
+  RefTo<GoogleComputeResourcePolicyAttachment> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

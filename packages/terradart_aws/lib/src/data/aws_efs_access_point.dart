@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../efs/aws_efs_access_point.dart';
 
 /// Sensitive field paths for `aws_efs_access_point`.
 const Set<String> _awsEfsAccessPointSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsEfsAccessPoint extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsEfsAccessPointSensitive;
+
+  /// A reference to the `aws_efs_access_point` this data source reads, for
+  /// arguments typed `RefTo<AwsEfsAccessPoint>`.
+  RefTo<AwsEfsAccessPoint> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

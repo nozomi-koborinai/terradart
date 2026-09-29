@@ -79,6 +79,10 @@ final class GoogleDnsPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDnsPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDnsPolicy>`.
+  RefTo<GoogleDnsPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

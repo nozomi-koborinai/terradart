@@ -44,6 +44,10 @@ final class AwsSnsSmsPreferences extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSnsSmsPreferencesSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSnsSmsPreferences>`.
+  RefTo<AwsSnsSmsPreferences> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

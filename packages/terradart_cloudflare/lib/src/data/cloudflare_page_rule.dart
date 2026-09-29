@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../rules/cloudflare_page_rule.dart';
 
 /// Sensitive field paths for `cloudflare_page_rule`.
 const Set<String> _cloudflarePageRuleSensitive = <String>{};
@@ -41,6 +42,11 @@ final class DataCloudflarePageRule extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflarePageRuleSensitive;
+
+  /// A reference to the `cloudflare_page_rule` this data source reads, for
+  /// arguments typed `RefTo<CloudflarePageRule>`.
+  RefTo<CloudflarePageRule> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

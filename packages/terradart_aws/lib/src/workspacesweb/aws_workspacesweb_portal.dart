@@ -69,6 +69,10 @@ final class AwsWorkspaceswebPortal extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWorkspaceswebPortalSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebPortal>`.
+  RefTo<AwsWorkspaceswebPortal> get ref => RefTo.of(this);
+
   /// Reference to `browser_type` attribute.
   TfRef<String> get browserType =>
       TfRef.attribute<String>(this, 'browser_type');

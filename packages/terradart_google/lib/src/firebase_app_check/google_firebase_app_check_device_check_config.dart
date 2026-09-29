@@ -82,6 +82,10 @@ final class GoogleFirebaseAppCheckDeviceCheckConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleFirebaseAppCheckDeviceCheckConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseAppCheckDeviceCheckConfig>`.
+  RefTo<GoogleFirebaseAppCheckDeviceCheckConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute (the relative resource name of the
   /// DeviceCheck configuration object, in the shape
   /// `projects/{project}/apps/{app_id}/deviceCheckConfig`).

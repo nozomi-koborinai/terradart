@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../spanner/google_spanner_instance.dart';
 
 /// Sensitive field paths for `google_spanner_instance`.
 const Set<String> _googleSpannerInstanceSensitive = <String>{};
@@ -33,6 +34,11 @@ final class DataGoogleSpannerInstance extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleSpannerInstanceSensitive;
+
+  /// A reference to the `google_spanner_instance` this data source reads, for
+  /// arguments typed `RefTo<GoogleSpannerInstance>`.
+  RefTo<GoogleSpannerInstance> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

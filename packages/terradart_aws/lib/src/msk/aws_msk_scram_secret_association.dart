@@ -31,6 +31,10 @@ final class AwsMskScramSecretAssociation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMskScramSecretAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMskScramSecretAssociation>`.
+  RefTo<AwsMskScramSecretAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

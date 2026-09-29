@@ -41,6 +41,10 @@ final class AwsEc2AvailabilityZoneGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEc2AvailabilityZoneGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2AvailabilityZoneGroup>`.
+  RefTo<AwsEc2AvailabilityZoneGroup> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

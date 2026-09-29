@@ -35,6 +35,10 @@ final class AwsApprunnerCustomDomainAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsApprunnerCustomDomainAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApprunnerCustomDomainAssociation>`.
+  RefTo<AwsApprunnerCustomDomainAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

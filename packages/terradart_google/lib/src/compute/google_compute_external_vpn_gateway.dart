@@ -50,6 +50,10 @@ final class GoogleComputeExternalVpnGateway extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeExternalVpnGatewaySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeExternalVpnGateway>`.
+  RefTo<GoogleComputeExternalVpnGateway> get ref => RefTo.of(this);
+
   /// Reference to `effective_labels` attribute.
   TfRef<Map<String, String>> get effectiveLabels =>
       TfRef.attribute<Map<String, String>>(this, 'effective_labels');

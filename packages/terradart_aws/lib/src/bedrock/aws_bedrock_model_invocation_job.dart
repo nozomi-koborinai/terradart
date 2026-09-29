@@ -167,6 +167,10 @@ final class AwsBedrockModelInvocationJob extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBedrockModelInvocationJobSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockModelInvocationJob>`.
+  RefTo<AwsBedrockModelInvocationJob> get ref => RefTo.of(this);
+
   /// Reference to `end_time` attribute.
   TfRef<String> get endTime => TfRef.attribute<String>(this, 'end_time');
 

@@ -41,6 +41,10 @@ final class GoogleIapAgentRegistryEndpointIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleIapAgentRegistryEndpointIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapAgentRegistryEndpointIamPolicy>`.
+  RefTo<GoogleIapAgentRegistryEndpointIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -72,6 +72,10 @@ final class GoogleStorageAnywhereCache extends Resource {
   @override
   Set<String> get sensitiveFields => _googleStorageAnywhereCacheSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleStorageAnywhereCache>`.
+  RefTo<GoogleStorageAnywhereCache> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

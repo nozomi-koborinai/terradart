@@ -83,6 +83,10 @@ final class AwsCloudfrontMonitoringSubscription extends Resource {
   Set<String> get sensitiveFields =>
       _awsCloudfrontMonitoringSubscriptionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudfrontMonitoringSubscription>`.
+  RefTo<AwsCloudfrontMonitoringSubscription> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

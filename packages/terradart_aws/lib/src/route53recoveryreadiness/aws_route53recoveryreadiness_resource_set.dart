@@ -146,6 +146,10 @@ final class AwsRoute53recoveryreadinessResourceSet extends Resource {
   Set<String> get sensitiveFields =>
       _awsRoute53recoveryreadinessResourceSetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53recoveryreadinessResourceSet>`.
+  RefTo<AwsRoute53recoveryreadinessResourceSet> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

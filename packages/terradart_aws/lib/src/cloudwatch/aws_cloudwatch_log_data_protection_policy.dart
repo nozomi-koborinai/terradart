@@ -32,6 +32,10 @@ final class AwsCloudwatchLogDataProtectionPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _awsCloudwatchLogDataProtectionPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudwatchLogDataProtectionPolicy>`.
+  RefTo<AwsCloudwatchLogDataProtectionPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

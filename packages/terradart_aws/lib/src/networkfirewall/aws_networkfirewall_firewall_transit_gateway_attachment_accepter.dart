@@ -33,4 +33,9 @@ final class AwsNetworkfirewallFirewallTransitGatewayAttachmentAccepter
   @override
   Set<String> get sensitiveFields =>
       _awsNetworkfirewallFirewallTransitGatewayAttachmentAccepterSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkfirewallFirewallTransitGatewayAttachmentAccepter>`.
+  RefTo<AwsNetworkfirewallFirewallTransitGatewayAttachmentAccepter> get ref =>
+      RefTo.of(this);
 }

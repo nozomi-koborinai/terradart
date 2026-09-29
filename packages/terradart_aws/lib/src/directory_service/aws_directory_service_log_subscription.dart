@@ -32,6 +32,10 @@ final class AwsDirectoryServiceLogSubscription extends Resource {
   Set<String> get sensitiveFields =>
       _awsDirectoryServiceLogSubscriptionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDirectoryServiceLogSubscription>`.
+  RefTo<AwsDirectoryServiceLogSubscription> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -43,6 +43,10 @@ final class AwsSecurityhubStandardsControl extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSecurityhubStandardsControlSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSecurityhubStandardsControl>`.
+  RefTo<AwsSecurityhubStandardsControl> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

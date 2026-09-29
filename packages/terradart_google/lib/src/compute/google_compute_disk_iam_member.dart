@@ -37,6 +37,10 @@ final class GoogleComputeDiskIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeDiskIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeDiskIamMember>`.
+  RefTo<GoogleComputeDiskIamMember> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -752,6 +752,10 @@ final class GoogleBigqueryTable extends Resource {
   @override
   bool get supportsDeletionProtection => true;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryTable>`.
+  RefTo<GoogleBigqueryTable> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

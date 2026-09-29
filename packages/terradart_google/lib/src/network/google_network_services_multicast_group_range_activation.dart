@@ -78,6 +78,11 @@ final class GoogleNetworkServicesMulticastGroupRangeActivation
   Set<String> get sensitiveFields =>
       _googleNetworkServicesMulticastGroupRangeActivationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkServicesMulticastGroupRangeActivation>`.
+  RefTo<GoogleNetworkServicesMulticastGroupRangeActivation> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

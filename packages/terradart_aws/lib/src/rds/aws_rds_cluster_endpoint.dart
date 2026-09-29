@@ -113,6 +113,10 @@ final class AwsRdsClusterEndpoint extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRdsClusterEndpointSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRdsClusterEndpoint>`.
+  RefTo<AwsRdsClusterEndpoint> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

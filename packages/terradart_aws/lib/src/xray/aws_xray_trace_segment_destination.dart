@@ -39,6 +39,10 @@ final class AwsXrayTraceSegmentDestination extends Resource {
   @override
   Set<String> get sensitiveFields => _awsXrayTraceSegmentDestinationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsXrayTraceSegmentDestination>`.
+  RefTo<AwsXrayTraceSegmentDestination> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

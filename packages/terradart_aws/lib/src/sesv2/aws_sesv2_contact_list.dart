@@ -75,6 +75,10 @@ final class AwsSesv2ContactList extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSesv2ContactListSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSesv2ContactList>`.
+  RefTo<AwsSesv2ContactList> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

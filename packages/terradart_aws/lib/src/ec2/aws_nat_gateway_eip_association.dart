@@ -31,6 +31,10 @@ final class AwsNatGatewayEipAssociation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsNatGatewayEipAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNatGatewayEipAssociation>`.
+  RefTo<AwsNatGatewayEipAssociation> get ref => RefTo.of(this);
+
   /// Reference to `association_id` attribute.
   TfRef<String> get associationId =>
       TfRef.attribute<String>(this, 'association_id');

@@ -31,6 +31,10 @@ final class AwsWafv2WebAclAssociation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWafv2WebAclAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWafv2WebAclAssociation>`.
+  RefTo<AwsWafv2WebAclAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

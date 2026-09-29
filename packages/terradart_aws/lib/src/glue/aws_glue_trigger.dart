@@ -235,6 +235,10 @@ final class AwsGlueTrigger extends Resource {
   @override
   Set<String> get sensitiveFields => _awsGlueTriggerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGlueTrigger>`.
+  RefTo<AwsGlueTrigger> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -41,6 +41,11 @@ final class GoogleBigqueryAnalyticsHubDataExchangeIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleBigqueryAnalyticsHubDataExchangeIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryAnalyticsHubDataExchangeIamPolicy>`.
+  RefTo<GoogleBigqueryAnalyticsHubDataExchangeIamPolicy> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

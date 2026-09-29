@@ -234,6 +234,10 @@ final class AwsCloudfrontCachePolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudfrontCachePolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudfrontCachePolicy>`.
+  RefTo<AwsCloudfrontCachePolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

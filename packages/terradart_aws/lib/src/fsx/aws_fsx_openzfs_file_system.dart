@@ -327,6 +327,10 @@ final class AwsFsxOpenzfsFileSystem extends Resource {
   @override
   Set<String> get sensitiveFields => _awsFsxOpenzfsFileSystemSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsFsxOpenzfsFileSystem>`.
+  RefTo<AwsFsxOpenzfsFileSystem> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

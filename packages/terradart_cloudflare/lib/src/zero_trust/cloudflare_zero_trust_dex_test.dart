@@ -78,6 +78,10 @@ final class CloudflareZeroTrustDexTest extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareZeroTrustDexTestSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustDexTest>`.
+  RefTo<CloudflareZeroTrustDexTest> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

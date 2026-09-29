@@ -4175,6 +4175,10 @@ final class AwsSagemakerHyperParameterTuningJob extends Resource {
   Set<String> get sensitiveFields =>
       _awsSagemakerHyperParameterTuningJobSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSagemakerHyperParameterTuningJob>`.
+  RefTo<AwsSagemakerHyperParameterTuningJob> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

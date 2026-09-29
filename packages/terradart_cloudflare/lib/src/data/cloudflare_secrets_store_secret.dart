@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../secrets/cloudflare_secrets_store_secret.dart';
 
 /// Sensitive field paths for `cloudflare_secrets_store_secret`.
 const Set<String> _cloudflareSecretsStoreSecretSensitive = <String>{};
@@ -85,6 +86,11 @@ final class DataCloudflareSecretsStoreSecret extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareSecretsStoreSecretSensitive;
+
+  /// A reference to the `cloudflare_secrets_store_secret` this data source reads, for
+  /// arguments typed `RefTo<CloudflareSecretsStoreSecret>`.
+  RefTo<CloudflareSecretsStoreSecret> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

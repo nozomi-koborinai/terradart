@@ -350,6 +350,10 @@ final class GoogleSpannerInstancePartition extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSpannerInstancePartitionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSpannerInstancePartition>`.
+  RefTo<GoogleSpannerInstancePartition> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

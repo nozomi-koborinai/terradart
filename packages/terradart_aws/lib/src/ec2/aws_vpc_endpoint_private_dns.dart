@@ -30,4 +30,8 @@ final class AwsVpcEndpointPrivateDns extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsVpcEndpointPrivateDnsSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcEndpointPrivateDns>`.
+  RefTo<AwsVpcEndpointPrivateDns> get ref => RefTo.of(this);
 }

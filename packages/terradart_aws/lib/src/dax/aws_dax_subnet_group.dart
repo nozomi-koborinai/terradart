@@ -33,6 +33,10 @@ final class AwsDaxSubnetGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDaxSubnetGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDaxSubnetGroup>`.
+  RefTo<AwsDaxSubnetGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -68,6 +68,10 @@ final class AwsLocationPlaceIndex extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLocationPlaceIndexSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLocationPlaceIndex>`.
+  RefTo<AwsLocationPlaceIndex> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

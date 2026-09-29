@@ -61,6 +61,10 @@ final class GoogleIapTunnelDestGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIapTunnelDestGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapTunnelDestGroup>`.
+  RefTo<GoogleIapTunnelDestGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

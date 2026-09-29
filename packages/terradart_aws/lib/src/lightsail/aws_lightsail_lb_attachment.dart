@@ -31,6 +31,10 @@ final class AwsLightsailLbAttachment extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLightsailLbAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLightsailLbAttachment>`.
+  RefTo<AwsLightsailLbAttachment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

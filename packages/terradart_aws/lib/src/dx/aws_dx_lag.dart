@@ -41,6 +41,10 @@ final class AwsDxLag extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDxLagSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDxLag>`.
+  RefTo<AwsDxLag> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

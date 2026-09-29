@@ -129,6 +129,10 @@ final class GoogleNetworkServicesWasmPlugin extends Resource {
   @override
   Set<String> get sensitiveFields => _googleNetworkServicesWasmPluginSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkServicesWasmPlugin>`.
+  RefTo<GoogleNetworkServicesWasmPlugin> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

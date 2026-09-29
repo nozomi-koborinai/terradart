@@ -36,6 +36,10 @@ final class AwsS3vectorsVectorBucket extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3vectorsVectorBucketSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3vectorsVectorBucket>`.
+  RefTo<AwsS3vectorsVectorBucket> get ref => RefTo.of(this);
+
   /// Reference to `creation_time` attribute.
   TfRef<String> get creationTime =>
       TfRef.attribute<String>(this, 'creation_time');

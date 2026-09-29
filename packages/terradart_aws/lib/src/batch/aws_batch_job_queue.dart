@@ -95,6 +95,10 @@ final class AwsBatchJobQueue extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBatchJobQueueSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBatchJobQueue>`.
+  RefTo<AwsBatchJobQueue> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -31,4 +31,8 @@ final class AwsPinpointsmsvoicev2ResourcePolicy extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsPinpointsmsvoicev2ResourcePolicySensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPinpointsmsvoicev2ResourcePolicy>`.
+  RefTo<AwsPinpointsmsvoicev2ResourcePolicy> get ref => RefTo.of(this);
 }

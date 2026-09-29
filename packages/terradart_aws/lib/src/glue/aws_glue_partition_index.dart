@@ -52,6 +52,10 @@ final class AwsGluePartitionIndex extends Resource {
   @override
   Set<String> get sensitiveFields => _awsGluePartitionIndexSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGluePartitionIndex>`.
+  RefTo<AwsGluePartitionIndex> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

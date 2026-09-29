@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../connectivity/cloudflare_connectivity_directory_service.dart';
 
 /// Sensitive field paths for `cloudflare_connectivity_directory_service`.
 const Set<String> _cloudflareConnectivityDirectoryServiceSensitive = <String>{};
@@ -51,6 +52,11 @@ final class DataCloudflareConnectivityDirectoryService extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareConnectivityDirectoryServiceSensitive;
+
+  /// A reference to the `cloudflare_connectivity_directory_service` this data source reads, for
+  /// arguments typed `RefTo<CloudflareConnectivityDirectoryService>`.
+  RefTo<CloudflareConnectivityDirectoryService> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

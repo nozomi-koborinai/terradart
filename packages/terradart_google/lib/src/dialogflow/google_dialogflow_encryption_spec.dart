@@ -51,6 +51,10 @@ final class GoogleDialogflowEncryptionSpec extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDialogflowEncryptionSpecSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDialogflowEncryptionSpec>`.
+  RefTo<GoogleDialogflowEncryptionSpec> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

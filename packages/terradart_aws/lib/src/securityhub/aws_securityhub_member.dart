@@ -33,6 +33,10 @@ final class AwsSecurityhubMember extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSecurityhubMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSecurityhubMember>`.
+  RefTo<AwsSecurityhubMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

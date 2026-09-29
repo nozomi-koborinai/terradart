@@ -531,6 +531,10 @@ final class AwsAutoscalingplansScalingPlan extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAutoscalingplansScalingPlanSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAutoscalingplansScalingPlan>`.
+  RefTo<AwsAutoscalingplansScalingPlan> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

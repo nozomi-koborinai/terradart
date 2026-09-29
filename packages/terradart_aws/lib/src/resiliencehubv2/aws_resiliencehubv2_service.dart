@@ -122,6 +122,10 @@ final class AwsResiliencehubv2Service extends Resource {
   @override
   Set<String> get sensitiveFields => _awsResiliencehubv2ServiceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsResiliencehubv2Service>`.
+  RefTo<AwsResiliencehubv2Service> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

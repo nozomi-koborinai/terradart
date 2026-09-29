@@ -111,6 +111,10 @@ final class GoogleWorkstationsWorkstationCluster extends Resource {
   Set<String> get sensitiveFields =>
       _googleWorkstationsWorkstationClusterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleWorkstationsWorkstationCluster>`.
+  RefTo<GoogleWorkstationsWorkstationCluster> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

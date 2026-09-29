@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../autoscaling/aws_launch_configuration.dart';
 
 /// Sensitive field paths for `aws_launch_configuration`.
 const Set<String> _awsLaunchConfigurationSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsLaunchConfiguration extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsLaunchConfigurationSensitive;
+
+  /// A reference to the `aws_launch_configuration` this data source reads, for
+  /// arguments typed `RefTo<AwsLaunchConfiguration>`.
+  RefTo<AwsLaunchConfiguration> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

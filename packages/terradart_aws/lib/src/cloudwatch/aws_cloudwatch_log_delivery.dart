@@ -40,6 +40,10 @@ final class AwsCloudwatchLogDelivery extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudwatchLogDeliverySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudwatchLogDelivery>`.
+  RefTo<AwsCloudwatchLogDelivery> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

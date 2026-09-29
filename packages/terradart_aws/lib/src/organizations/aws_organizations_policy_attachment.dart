@@ -31,6 +31,10 @@ final class AwsOrganizationsPolicyAttachment extends Resource {
   @override
   Set<String> get sensitiveFields => _awsOrganizationsPolicyAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOrganizationsPolicyAttachment>`.
+  RefTo<AwsOrganizationsPolicyAttachment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

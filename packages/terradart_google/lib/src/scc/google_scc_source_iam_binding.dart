@@ -40,6 +40,10 @@ final class GoogleSccSourceIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSccSourceIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSccSourceIamBinding>`.
+  RefTo<GoogleSccSourceIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

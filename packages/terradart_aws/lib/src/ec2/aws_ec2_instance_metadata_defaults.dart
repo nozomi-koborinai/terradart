@@ -37,6 +37,10 @@ final class AwsEc2InstanceMetadataDefaults extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEc2InstanceMetadataDefaultsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2InstanceMetadataDefaults>`.
+  RefTo<AwsEc2InstanceMetadataDefaults> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

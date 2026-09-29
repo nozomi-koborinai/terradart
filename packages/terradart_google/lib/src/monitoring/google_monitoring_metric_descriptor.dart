@@ -212,6 +212,10 @@ final class GoogleMonitoringMetricDescriptor extends Resource {
   @override
   Set<String> get sensitiveFields => _googleMonitoringMetricDescriptorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleMonitoringMetricDescriptor>`.
+  RefTo<GoogleMonitoringMetricDescriptor> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -52,6 +52,10 @@ final class CloudflareShareResource extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareShareResourceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareShareResource>`.
+  RefTo<CloudflareShareResource> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

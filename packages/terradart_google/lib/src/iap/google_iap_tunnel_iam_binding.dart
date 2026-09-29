@@ -39,6 +39,10 @@ final class GoogleIapTunnelIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIapTunnelIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapTunnelIamBinding>`.
+  RefTo<GoogleIapTunnelIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

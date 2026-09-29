@@ -258,6 +258,10 @@ final class GoogleNetworkManagementConnectivityTest extends Resource {
   Set<String> get sensitiveFields =>
       _googleNetworkManagementConnectivityTestSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkManagementConnectivityTest>`.
+  RefTo<GoogleNetworkManagementConnectivityTest> get ref => RefTo.of(this);
+
   /// Reference to `effective_labels` attribute.
   TfRef<Map<String, String>> get effectiveLabels =>
       TfRef.attribute<Map<String, String>>(this, 'effective_labels');

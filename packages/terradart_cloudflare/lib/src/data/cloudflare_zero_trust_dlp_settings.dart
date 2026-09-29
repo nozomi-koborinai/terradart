@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_dlp_settings.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_dlp_settings`.
 const Set<String> _cloudflareZeroTrustDlpSettingsSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataCloudflareZeroTrustDlpSettings extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareZeroTrustDlpSettingsSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_dlp_settings` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustDlpSettings>`.
+  RefTo<CloudflareZeroTrustDlpSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

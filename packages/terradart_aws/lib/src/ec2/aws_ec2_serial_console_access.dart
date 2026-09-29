@@ -29,6 +29,10 @@ final class AwsEc2SerialConsoleAccess extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEc2SerialConsoleAccessSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2SerialConsoleAccess>`.
+  RefTo<AwsEc2SerialConsoleAccess> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -37,4 +37,8 @@ final class GoogleBiglakeHiveDatabaseIamMember extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleBiglakeHiveDatabaseIamMemberSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBiglakeHiveDatabaseIamMember>`.
+  RefTo<GoogleBiglakeHiveDatabaseIamMember> get ref => RefTo.of(this);
 }

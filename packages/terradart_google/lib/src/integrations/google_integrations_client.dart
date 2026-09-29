@@ -91,6 +91,10 @@ final class GoogleIntegrationsClient extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIntegrationsClientSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIntegrationsClient>`.
+  RefTo<GoogleIntegrationsClient> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

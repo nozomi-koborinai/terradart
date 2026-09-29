@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_route.dart';
 
 /// Sensitive field paths for `aws_route`.
 const Set<String> _awsRouteSensitive = <String>{};
@@ -60,6 +61,11 @@ final class DataAwsRoute extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsRouteSensitive;
+
+  /// A reference to the `aws_route` this data source reads, for
+  /// arguments typed `RefTo<AwsRoute>`.
+  RefTo<AwsRoute> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

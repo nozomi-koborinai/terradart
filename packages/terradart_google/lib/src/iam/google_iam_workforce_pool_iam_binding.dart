@@ -40,6 +40,10 @@ final class GoogleIamWorkforcePoolIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIamWorkforcePoolIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIamWorkforcePoolIamBinding>`.
+  RefTo<GoogleIamWorkforcePoolIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

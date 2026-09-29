@@ -30,6 +30,10 @@ final class AwsGuarddutyOrganizationAdminAccount extends Resource {
   Set<String> get sensitiveFields =>
       _awsGuarddutyOrganizationAdminAccountSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGuarddutyOrganizationAdminAccount>`.
+  RefTo<AwsGuarddutyOrganizationAdminAccount> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

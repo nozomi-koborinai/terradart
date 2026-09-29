@@ -29,6 +29,10 @@ final class AwsCostoptimizationhubEnrollmentStatus extends Resource {
   Set<String> get sensitiveFields =>
       _awsCostoptimizationhubEnrollmentStatusSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCostoptimizationhubEnrollmentStatus>`.
+  RefTo<AwsCostoptimizationhubEnrollmentStatus> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

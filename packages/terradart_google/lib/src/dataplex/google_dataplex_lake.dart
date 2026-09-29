@@ -41,6 +41,10 @@ final class GoogleDataplexLake extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataplexLakeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexLake>`.
+  RefTo<GoogleDataplexLake> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

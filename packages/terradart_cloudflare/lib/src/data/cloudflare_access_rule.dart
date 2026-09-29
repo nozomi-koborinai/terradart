@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../access/cloudflare_access_rule.dart';
 
 /// Sensitive field paths for `cloudflare_access_rule`.
 const Set<String> _cloudflareAccessRuleSensitive = <String>{};
@@ -143,6 +144,11 @@ final class DataCloudflareAccessRule extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareAccessRuleSensitive;
+
+  /// A reference to the `cloudflare_access_rule` this data source reads, for
+  /// arguments typed `RefTo<CloudflareAccessRule>`.
+  RefTo<CloudflareAccessRule> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

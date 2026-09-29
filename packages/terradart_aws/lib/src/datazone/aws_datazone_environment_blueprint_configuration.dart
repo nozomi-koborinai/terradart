@@ -46,4 +46,8 @@ final class AwsDatazoneEnvironmentBlueprintConfiguration extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsDatazoneEnvironmentBlueprintConfigurationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDatazoneEnvironmentBlueprintConfiguration>`.
+  RefTo<AwsDatazoneEnvironmentBlueprintConfiguration> get ref => RefTo.of(this);
 }

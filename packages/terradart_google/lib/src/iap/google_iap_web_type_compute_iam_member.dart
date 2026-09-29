@@ -33,6 +33,10 @@ final class GoogleIapWebTypeComputeIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIapWebTypeComputeIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapWebTypeComputeIamMember>`.
+  RefTo<GoogleIapWebTypeComputeIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

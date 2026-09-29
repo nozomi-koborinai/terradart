@@ -280,6 +280,10 @@ final class AwsBackupPlan extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBackupPlanSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBackupPlan>`.
+  RefTo<AwsBackupPlan> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

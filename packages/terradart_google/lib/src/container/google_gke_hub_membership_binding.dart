@@ -49,6 +49,10 @@ final class GoogleGkeHubMembershipBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleGkeHubMembershipBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGkeHubMembershipBinding>`.
+  RefTo<GoogleGkeHubMembershipBinding> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -41,6 +41,10 @@ final class AwsTransferAgreement extends Resource {
   @override
   Set<String> get sensitiveFields => _awsTransferAgreementSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsTransferAgreement>`.
+  RefTo<AwsTransferAgreement> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

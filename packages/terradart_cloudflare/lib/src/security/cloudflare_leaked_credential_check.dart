@@ -30,4 +30,8 @@ final class CloudflareLeakedCredentialCheck extends Resource {
 
   @override
   Set<String> get sensitiveFields => _cloudflareLeakedCredentialCheckSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareLeakedCredentialCheck>`.
+  RefTo<CloudflareLeakedCredentialCheck> get ref => RefTo.of(this);
 }

@@ -63,6 +63,10 @@ final class CloudflareZeroTrustDlpDataClass extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareZeroTrustDlpDataClassSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustDlpDataClass>`.
+  RefTo<CloudflareZeroTrustDlpDataClass> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

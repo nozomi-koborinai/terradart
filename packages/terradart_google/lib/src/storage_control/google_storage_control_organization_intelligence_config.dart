@@ -259,6 +259,11 @@ final class GoogleStorageControlOrganizationIntelligenceConfig
   Set<String> get sensitiveFields =>
       _googleStorageControlOrganizationIntelligenceConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleStorageControlOrganizationIntelligenceConfig>`.
+  RefTo<GoogleStorageControlOrganizationIntelligenceConfig> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

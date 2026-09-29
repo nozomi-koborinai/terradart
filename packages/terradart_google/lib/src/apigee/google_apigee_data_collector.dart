@@ -62,6 +62,10 @@ final class GoogleApigeeDataCollector extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApigeeDataCollectorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApigeeDataCollector>`.
+  RefTo<GoogleApigeeDataCollector> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

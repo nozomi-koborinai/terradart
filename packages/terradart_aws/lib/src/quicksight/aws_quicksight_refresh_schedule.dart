@@ -213,6 +213,10 @@ final class AwsQuicksightRefreshSchedule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsQuicksightRefreshScheduleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsQuicksightRefreshSchedule>`.
+  RefTo<AwsQuicksightRefreshSchedule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

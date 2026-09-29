@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../cur/aws_cur_report_definition.dart';
 
 /// Sensitive field paths for `aws_cur_report_definition`.
 const Set<String> _awsCurReportDefinitionSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsCurReportDefinition extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsCurReportDefinitionSensitive;
+
+  /// A reference to the `aws_cur_report_definition` this data source reads, for
+  /// arguments typed `RefTo<AwsCurReportDefinition>`.
+  RefTo<AwsCurReportDefinition> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

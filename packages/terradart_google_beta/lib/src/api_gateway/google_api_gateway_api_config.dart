@@ -258,6 +258,10 @@ final class GoogleApiGatewayApiConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApiGatewayApiConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApiGatewayApiConfig>`.
+  RefTo<GoogleApiGatewayApiConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

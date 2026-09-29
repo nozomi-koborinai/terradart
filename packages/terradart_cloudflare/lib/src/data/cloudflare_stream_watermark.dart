@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../stream/cloudflare_stream_watermark.dart';
 
 /// Sensitive field paths for `cloudflare_stream_watermark`.
 const Set<String> _cloudflareStreamWatermarkSensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataCloudflareStreamWatermark extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareStreamWatermarkSensitive;
+
+  /// A reference to the `cloudflare_stream_watermark` this data source reads, for
+  /// arguments typed `RefTo<CloudflareStreamWatermark>`.
+  RefTo<CloudflareStreamWatermark> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

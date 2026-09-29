@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../email/cloudflare_email_routing_dns.dart';
 
 /// Sensitive field paths for `cloudflare_email_routing_dns`.
 const Set<String> _cloudflareEmailRoutingDnsSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataCloudflareEmailRoutingDns extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareEmailRoutingDnsSensitive;
+
+  /// A reference to the `cloudflare_email_routing_dns` this data source reads, for
+  /// arguments typed `RefTo<CloudflareEmailRoutingDns>`.
+  RefTo<CloudflareEmailRoutingDns> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

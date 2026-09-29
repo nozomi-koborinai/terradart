@@ -39,6 +39,10 @@ final class AwsS3tablesTableBucket extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3tablesTableBucketSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3tablesTableBucket>`.
+  RefTo<AwsS3tablesTableBucket> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

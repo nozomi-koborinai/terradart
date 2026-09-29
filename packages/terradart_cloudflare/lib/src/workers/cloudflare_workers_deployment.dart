@@ -84,6 +84,10 @@ final class CloudflareWorkersDeployment extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareWorkersDeploymentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareWorkersDeployment>`.
+  RefTo<CloudflareWorkersDeployment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

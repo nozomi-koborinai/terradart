@@ -27,6 +27,10 @@ final class AwsIamGroupMembership extends Resource {
   @override
   Set<String> get sensitiveFields => _awsIamGroupMembershipSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIamGroupMembership>`.
+  RefTo<AwsIamGroupMembership> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

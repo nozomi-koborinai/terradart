@@ -33,6 +33,10 @@ final class AwsLightsailDiskAttachment extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLightsailDiskAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLightsailDiskAttachment>`.
+  RefTo<AwsLightsailDiskAttachment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

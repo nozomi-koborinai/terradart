@@ -57,6 +57,10 @@ final class AwsChimeVoiceConnectorTerminationCredentials extends Resource {
   Set<String> get sensitiveFields =>
       _awsChimeVoiceConnectorTerminationCredentialsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsChimeVoiceConnectorTerminationCredentials>`.
+  RefTo<AwsChimeVoiceConnectorTerminationCredentials> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

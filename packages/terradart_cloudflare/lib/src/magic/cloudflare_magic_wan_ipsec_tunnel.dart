@@ -177,6 +177,10 @@ final class CloudflareMagicWanIpsecTunnel extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareMagicWanIpsecTunnelSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareMagicWanIpsecTunnel>`.
+  RefTo<CloudflareMagicWanIpsecTunnel> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

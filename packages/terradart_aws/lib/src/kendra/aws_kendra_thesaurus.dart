@@ -56,6 +56,10 @@ final class AwsKendraThesaurus extends Resource {
   @override
   Set<String> get sensitiveFields => _awsKendraThesaurusSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsKendraThesaurus>`.
+  RefTo<AwsKendraThesaurus> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

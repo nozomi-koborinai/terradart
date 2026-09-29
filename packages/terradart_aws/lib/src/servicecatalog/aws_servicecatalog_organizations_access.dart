@@ -23,6 +23,10 @@ final class AwsServicecatalogOrganizationsAccess extends Resource {
   Set<String> get sensitiveFields =>
       _awsServicecatalogOrganizationsAccessSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsServicecatalogOrganizationsAccess>`.
+  RefTo<AwsServicecatalogOrganizationsAccess> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

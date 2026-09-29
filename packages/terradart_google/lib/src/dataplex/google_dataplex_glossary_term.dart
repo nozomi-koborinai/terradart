@@ -44,6 +44,10 @@ final class GoogleDataplexGlossaryTerm extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataplexGlossaryTermSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexGlossaryTerm>`.
+  RefTo<GoogleDataplexGlossaryTerm> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

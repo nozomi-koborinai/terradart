@@ -1629,4 +1629,8 @@ final class AwsWafv2WebAclRuleGroupAssociation extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsWafv2WebAclRuleGroupAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWafv2WebAclRuleGroupAssociation>`.
+  RefTo<AwsWafv2WebAclRuleGroupAssociation> get ref => RefTo.of(this);
 }

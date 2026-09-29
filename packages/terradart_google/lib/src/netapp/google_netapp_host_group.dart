@@ -74,6 +74,10 @@ final class GoogleNetappHostGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _googleNetappHostGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetappHostGroup>`.
+  RefTo<GoogleNetappHostGroup> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

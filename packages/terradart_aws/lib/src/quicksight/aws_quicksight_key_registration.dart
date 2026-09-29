@@ -53,4 +53,8 @@ final class AwsQuicksightKeyRegistration extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsQuicksightKeyRegistrationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsQuicksightKeyRegistration>`.
+  RefTo<AwsQuicksightKeyRegistration> get ref => RefTo.of(this);
 }

@@ -1305,6 +1305,10 @@ final class GoogleNetworkSecurityAuthzPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleNetworkSecurityAuthzPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkSecurityAuthzPolicy>`.
+  RefTo<GoogleNetworkSecurityAuthzPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../web_analytics/cloudflare_web_analytics_site.dart';
 
 /// Sensitive field paths for `cloudflare_web_analytics_site`.
 const Set<String> _cloudflareWebAnalyticsSiteSensitive = <String>{};
@@ -56,6 +57,11 @@ final class DataCloudflareWebAnalyticsSite extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareWebAnalyticsSiteSensitive;
+
+  /// A reference to the `cloudflare_web_analytics_site` this data source reads, for
+  /// arguments typed `RefTo<CloudflareWebAnalyticsSite>`.
+  RefTo<CloudflareWebAnalyticsSite> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

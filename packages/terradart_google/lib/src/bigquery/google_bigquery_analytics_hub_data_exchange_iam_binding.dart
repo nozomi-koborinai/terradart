@@ -46,6 +46,11 @@ final class GoogleBigqueryAnalyticsHubDataExchangeIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleBigqueryAnalyticsHubDataExchangeIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryAnalyticsHubDataExchangeIamBinding>`.
+  RefTo<GoogleBigqueryAnalyticsHubDataExchangeIamBinding> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

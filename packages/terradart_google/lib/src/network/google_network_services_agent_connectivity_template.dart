@@ -125,4 +125,9 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleNetworkServicesAgentConnectivityTemplateSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkServicesAgentConnectivityTemplate>`.
+  RefTo<GoogleNetworkServicesAgentConnectivityTemplate> get ref =>
+      RefTo.of(this);
 }

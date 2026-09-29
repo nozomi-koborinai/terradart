@@ -38,6 +38,10 @@ final class GoogleCloudfunctions2FunctionIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleCloudfunctions2FunctionIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudfunctions2FunctionIamMember>`.
+  RefTo<GoogleCloudfunctions2FunctionIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

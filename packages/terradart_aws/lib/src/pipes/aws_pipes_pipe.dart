@@ -2243,6 +2243,10 @@ final class AwsPipesPipe extends Resource {
   @override
   Set<String> get sensitiveFields => _awsPipesPipeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPipesPipe>`.
+  RefTo<AwsPipesPipe> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

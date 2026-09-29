@@ -2030,6 +2030,10 @@ final class AwsInspector2Filter extends Resource {
   @override
   Set<String> get sensitiveFields => _awsInspector2FilterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsInspector2Filter>`.
+  RefTo<AwsInspector2Filter> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

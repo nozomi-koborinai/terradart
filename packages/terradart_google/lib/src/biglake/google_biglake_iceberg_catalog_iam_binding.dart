@@ -43,6 +43,10 @@ final class GoogleBiglakeIcebergCatalogIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleBiglakeIcebergCatalogIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBiglakeIcebergCatalogIamBinding>`.
+  RefTo<GoogleBiglakeIcebergCatalogIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

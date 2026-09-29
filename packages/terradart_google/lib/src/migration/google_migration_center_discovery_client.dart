@@ -65,6 +65,10 @@ final class GoogleMigrationCenterDiscoveryClient extends Resource {
   Set<String> get sensitiveFields =>
       _googleMigrationCenterDiscoveryClientSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleMigrationCenterDiscoveryClient>`.
+  RefTo<GoogleMigrationCenterDiscoveryClient> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

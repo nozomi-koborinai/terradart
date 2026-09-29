@@ -30,6 +30,10 @@ final class AwsApiGatewayAccount extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApiGatewayAccountSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApiGatewayAccount>`.
+  RefTo<AwsApiGatewayAccount> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

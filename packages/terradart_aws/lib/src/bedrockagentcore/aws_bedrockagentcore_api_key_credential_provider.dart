@@ -168,6 +168,10 @@ final class AwsBedrockagentcoreApiKeyCredentialProvider extends Resource {
   Set<String> get sensitiveFields =>
       _awsBedrockagentcoreApiKeyCredentialProviderSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentcoreApiKeyCredentialProvider>`.
+  RefTo<AwsBedrockagentcoreApiKeyCredentialProvider> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

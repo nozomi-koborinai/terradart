@@ -53,6 +53,10 @@ final class AwsControltowerControl extends Resource {
   @override
   Set<String> get sensitiveFields => _awsControltowerControlSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsControltowerControl>`.
+  RefTo<AwsControltowerControl> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

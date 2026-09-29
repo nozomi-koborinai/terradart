@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../compute/google_compute_health_check.dart';
 
 /// Sensitive field paths for `google_compute_health_check`.
 const Set<String> _googleComputeHealthCheckSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataGoogleComputeHealthCheck extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleComputeHealthCheckSensitive;
+
+  /// A reference to the `google_compute_health_check` this data source reads, for
+  /// arguments typed `RefTo<GoogleComputeHealthCheck>`.
+  RefTo<GoogleComputeHealthCheck> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

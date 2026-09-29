@@ -46,4 +46,8 @@ final class GoogleGeminiGdaObservabilitySettingBinding extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleGeminiGdaObservabilitySettingBindingSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGeminiGdaObservabilitySettingBinding>`.
+  RefTo<GoogleGeminiGdaObservabilitySettingBinding> get ref => RefTo.of(this);
 }

@@ -105,6 +105,10 @@ final class AwsTranscribeVocabularyFilter extends Resource {
   @override
   Set<String> get sensitiveFields => _awsTranscribeVocabularyFilterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsTranscribeVocabularyFilter>`.
+  RefTo<AwsTranscribeVocabularyFilter> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

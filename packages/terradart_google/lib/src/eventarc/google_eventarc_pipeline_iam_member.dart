@@ -36,4 +36,8 @@ final class GoogleEventarcPipelineIamMember extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleEventarcPipelineIamMemberSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleEventarcPipelineIamMember>`.
+  RefTo<GoogleEventarcPipelineIamMember> get ref => RefTo.of(this);
 }

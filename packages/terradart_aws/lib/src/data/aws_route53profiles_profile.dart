@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../route53profiles/aws_route53profiles_profile.dart';
 
 /// Sensitive field paths for `aws_route53profiles_profile`.
 const Set<String> _awsRoute53profilesProfileSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataAwsRoute53profilesProfile extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsRoute53profilesProfileSensitive;
+
+  /// A reference to the `aws_route53profiles_profile` this data source reads, for
+  /// arguments typed `RefTo<AwsRoute53profilesProfile>`.
+  RefTo<AwsRoute53profilesProfile> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

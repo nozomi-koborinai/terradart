@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../mysql/appwrite_mysql_database.dart';
 
 /// Sensitive field paths for `appwrite_mysql_database`.
 const Set<String> _appwriteMysqlDatabaseSensitive = <String>{
@@ -28,6 +29,11 @@ final class DataAppwriteMysqlDatabase extends Data {
 
   @override
   Set<String> get sensitiveFields => _appwriteMysqlDatabaseSensitive;
+
+  /// A reference to the `appwrite_mysql_database` this data source reads, for
+  /// arguments typed `RefTo<AppwriteMysqlDatabase>`.
+  RefTo<AppwriteMysqlDatabase> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

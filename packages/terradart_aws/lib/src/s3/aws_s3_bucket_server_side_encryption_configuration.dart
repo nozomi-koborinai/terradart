@@ -122,6 +122,10 @@ final class AwsS3BucketServerSideEncryptionConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsS3BucketServerSideEncryptionConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3BucketServerSideEncryptionConfiguration>`.
+  RefTo<AwsS3BucketServerSideEncryptionConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

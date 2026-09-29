@@ -69,6 +69,10 @@ final class GoogleProjectIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleProjectIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleProjectIamMember>`.
+  RefTo<GoogleProjectIamMember> get ref => RefTo.of(this);
+
   /// Reference to `etag` attribute (concurrency token written by the API).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

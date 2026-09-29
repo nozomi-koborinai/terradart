@@ -36,6 +36,10 @@ final class AwsDatasyncLocationFsxLustreFileSystem extends Resource {
   Set<String> get sensitiveFields =>
       _awsDatasyncLocationFsxLustreFileSystemSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDatasyncLocationFsxLustreFileSystem>`.
+  RefTo<AwsDatasyncLocationFsxLustreFileSystem> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

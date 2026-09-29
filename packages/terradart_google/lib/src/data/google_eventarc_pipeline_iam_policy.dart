@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../eventarc/google_eventarc_pipeline_iam_policy.dart';
 
 /// Sensitive field paths for `google_eventarc_pipeline_iam_policy`.
 const Set<String> _googleEventarcPipelineIamPolicySensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleEventarcPipelineIamPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleEventarcPipelineIamPolicySensitive;
+
+  /// A reference to the `google_eventarc_pipeline_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleEventarcPipelineIamPolicy>`.
+  RefTo<GoogleEventarcPipelineIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

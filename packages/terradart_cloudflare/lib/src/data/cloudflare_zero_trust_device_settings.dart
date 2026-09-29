@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_device_settings.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_device_settings`.
 const Set<String> _cloudflareZeroTrustDeviceSettingsSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataCloudflareZeroTrustDeviceSettings extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDeviceSettingsSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_device_settings` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustDeviceSettings>`.
+  RefTo<CloudflareZeroTrustDeviceSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `disable_for_time` attribute.
   TfRef<num> get disableForTime =>

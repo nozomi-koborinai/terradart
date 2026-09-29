@@ -359,6 +359,10 @@ final class GoogleTpuV2Vm extends Resource {
   @override
   Set<String> get sensitiveFields => _googleTpuV2VmSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleTpuV2Vm>`.
+  RefTo<GoogleTpuV2Vm> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -147,6 +147,10 @@ final class AwsCleanroomsMembership extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCleanroomsMembershipSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCleanroomsMembership>`.
+  RefTo<AwsCleanroomsMembership> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

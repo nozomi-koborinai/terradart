@@ -88,6 +88,10 @@ final class GoogleComputeResizeRequest extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeResizeRequestSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeResizeRequest>`.
+  RefTo<GoogleComputeResizeRequest> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

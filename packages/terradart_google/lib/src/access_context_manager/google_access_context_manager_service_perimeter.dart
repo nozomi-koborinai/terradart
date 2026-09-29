@@ -1115,6 +1115,10 @@ final class GoogleAccessContextManagerServicePerimeter extends Resource {
   Set<String> get sensitiveFields =>
       _googleAccessContextManagerServicePerimeterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleAccessContextManagerServicePerimeter>`.
+  RefTo<GoogleAccessContextManagerServicePerimeter> get ref => RefTo.of(this);
+
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 

@@ -62,6 +62,11 @@ final class GoogleNetworkSecurityMirroringEndpointGroupAssociation
   Set<String> get sensitiveFields =>
       _googleNetworkSecurityMirroringEndpointGroupAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkSecurityMirroringEndpointGroupAssociation>`.
+  RefTo<GoogleNetworkSecurityMirroringEndpointGroupAssociation> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

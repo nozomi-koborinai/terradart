@@ -40,6 +40,10 @@ final class AwsDevicefarmInstanceProfile extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDevicefarmInstanceProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDevicefarmInstanceProfile>`.
+  RefTo<AwsDevicefarmInstanceProfile> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

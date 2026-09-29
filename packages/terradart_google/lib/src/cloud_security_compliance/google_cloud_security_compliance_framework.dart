@@ -208,6 +208,10 @@ final class GoogleCloudSecurityComplianceFramework extends Resource {
   Set<String> get sensitiveFields =>
       _googleCloudSecurityComplianceFrameworkSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudSecurityComplianceFramework>`.
+  RefTo<GoogleCloudSecurityComplianceFramework> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

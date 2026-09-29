@@ -235,6 +235,11 @@ final class GoogleSccManagementProjectSecurityHealthAnalyticsCustomModule
   Set<String> get sensitiveFields =>
       _googleSccManagementProjectSecurityHealthAnalyticsCustomModuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSccManagementProjectSecurityHealthAnalyticsCustomModule>`.
+  RefTo<GoogleSccManagementProjectSecurityHealthAnalyticsCustomModule>
+  get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../monitoring/google_monitoring_notification_channel.dart';
 
 /// Sensitive field paths for `google_monitoring_notification_channel`.
 const Set<String> _googleMonitoringNotificationChannelSensitive = <String>{};
@@ -36,6 +37,11 @@ final class DataGoogleMonitoringNotificationChannel extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleMonitoringNotificationChannelSensitive;
+
+  /// A reference to the `google_monitoring_notification_channel` this data source reads, for
+  /// arguments typed `RefTo<GoogleMonitoringNotificationChannel>`.
+  RefTo<GoogleMonitoringNotificationChannel> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

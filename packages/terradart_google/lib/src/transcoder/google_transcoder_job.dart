@@ -664,6 +664,10 @@ final class GoogleTranscoderJob extends Resource {
   @override
   Set<String> get sensitiveFields => _googleTranscoderJobSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleTranscoderJob>`.
+  RefTo<GoogleTranscoderJob> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

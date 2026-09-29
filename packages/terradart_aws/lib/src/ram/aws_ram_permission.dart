@@ -35,6 +35,10 @@ final class AwsRamPermission extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRamPermissionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRamPermission>`.
+  RefTo<AwsRamPermission> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

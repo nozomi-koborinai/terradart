@@ -32,6 +32,10 @@ final class AwsConnectLambdaFunctionAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsConnectLambdaFunctionAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsConnectLambdaFunctionAssociation>`.
+  RefTo<AwsConnectLambdaFunctionAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../mq/aws_mq_broker.dart';
 
 /// Sensitive field paths for `aws_mq_broker`.
 const Set<String> _awsMqBrokerSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsMqBroker extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsMqBrokerSensitive;
+
+  /// A reference to the `aws_mq_broker` this data source reads, for
+  /// arguments typed `RefTo<AwsMqBroker>`.
+  RefTo<AwsMqBroker> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

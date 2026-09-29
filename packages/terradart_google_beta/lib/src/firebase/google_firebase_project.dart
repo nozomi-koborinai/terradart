@@ -32,6 +32,10 @@ final class GoogleFirebaseProject extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirebaseProjectSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseProject>`.
+  RefTo<GoogleFirebaseProject> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

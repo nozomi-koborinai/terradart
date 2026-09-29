@@ -223,6 +223,10 @@ final class GoogleIamWorkforcePoolProvider extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIamWorkforcePoolProviderSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIamWorkforcePoolProvider>`.
+  RefTo<GoogleIamWorkforcePoolProvider> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

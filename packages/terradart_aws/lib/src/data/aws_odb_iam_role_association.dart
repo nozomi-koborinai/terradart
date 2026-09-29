@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../odb/aws_odb_iam_role_association.dart';
 
 /// Sensitive field paths for `aws_odb_iam_role_association`.
 const Set<String> _awsOdbIamRoleAssociationSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsOdbIamRoleAssociation extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsOdbIamRoleAssociationSensitive;
+
+  /// A reference to the `aws_odb_iam_role_association` this data source reads, for
+  /// arguments typed `RefTo<AwsOdbIamRoleAssociation>`.
+  RefTo<AwsOdbIamRoleAssociation> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `aws_integration` attribute.
   TfRef<String> get awsIntegration =>

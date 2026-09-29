@@ -706,6 +706,10 @@ final class GoogleAppEngineFlexibleAppVersion extends Resource {
   Set<String> get sensitiveFields =>
       _googleAppEngineFlexibleAppVersionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleAppEngineFlexibleAppVersion>`.
+  RefTo<GoogleAppEngineFlexibleAppVersion> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

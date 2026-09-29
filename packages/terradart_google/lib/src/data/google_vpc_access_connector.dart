@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../service_networking/google_vpc_access_connector.dart';
 
 /// Sensitive field paths for `google_vpc_access_connector`.
 const Set<String> _googleVpcAccessConnectorSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleVpcAccessConnector extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleVpcAccessConnectorSensitive;
+
+  /// A reference to the `google_vpc_access_connector` this data source reads, for
+  /// arguments typed `RefTo<GoogleVpcAccessConnector>`.
+  RefTo<GoogleVpcAccessConnector> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

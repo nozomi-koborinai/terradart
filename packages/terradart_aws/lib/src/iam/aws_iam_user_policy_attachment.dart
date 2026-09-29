@@ -26,6 +26,10 @@ final class AwsIamUserPolicyAttachment extends Resource {
   @override
   Set<String> get sensitiveFields => _awsIamUserPolicyAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIamUserPolicyAttachment>`.
+  RefTo<AwsIamUserPolicyAttachment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

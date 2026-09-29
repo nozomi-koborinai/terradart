@@ -153,4 +153,8 @@ final class AwsCognitoLogDeliveryConfiguration extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsCognitoLogDeliveryConfigurationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCognitoLogDeliveryConfiguration>`.
+  RefTo<AwsCognitoLogDeliveryConfiguration> get ref => RefTo.of(this);
 }

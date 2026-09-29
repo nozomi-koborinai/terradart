@@ -116,6 +116,10 @@ final class AwsMailmanagerRelay extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMailmanagerRelaySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMailmanagerRelay>`.
+  RefTo<AwsMailmanagerRelay> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -41,6 +41,10 @@ final class GoogleComputeAttachedDisk extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeAttachedDiskSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeAttachedDisk>`.
+  RefTo<GoogleComputeAttachedDisk> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

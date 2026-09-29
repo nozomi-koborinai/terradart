@@ -181,6 +181,10 @@ final class GoogleChronicleParser extends Resource {
   @override
   Set<String> get sensitiveFields => _googleChronicleParserSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleChronicleParser>`.
+  RefTo<GoogleChronicleParser> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -297,6 +297,10 @@ final class GoogleContainerAttachedCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _googleContainerAttachedClusterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleContainerAttachedCluster>`.
+  RefTo<GoogleContainerAttachedCluster> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

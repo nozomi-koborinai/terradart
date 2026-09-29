@@ -47,6 +47,11 @@ final class GoogleComputeRegionNetworkFirewallPolicyAssociation
   Set<String> get sensitiveFields =>
       _googleComputeRegionNetworkFirewallPolicyAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRegionNetworkFirewallPolicyAssociation>`.
+  RefTo<GoogleComputeRegionNetworkFirewallPolicyAssociation> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

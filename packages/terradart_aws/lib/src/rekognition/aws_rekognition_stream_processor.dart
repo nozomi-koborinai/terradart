@@ -451,6 +451,10 @@ final class AwsRekognitionStreamProcessor extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRekognitionStreamProcessorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRekognitionStreamProcessor>`.
+  RefTo<AwsRekognitionStreamProcessor> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

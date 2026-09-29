@@ -1601,6 +1601,10 @@ final class AwsBedrockagentKnowledgeBase extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBedrockagentKnowledgeBaseSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentKnowledgeBase>`.
+  RefTo<AwsBedrockagentKnowledgeBase> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

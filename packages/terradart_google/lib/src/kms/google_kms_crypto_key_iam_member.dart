@@ -33,6 +33,10 @@ final class GoogleKmsCryptoKeyIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleKmsCryptoKeyIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleKmsCryptoKeyIamMember>`.
+  RefTo<GoogleKmsCryptoKeyIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

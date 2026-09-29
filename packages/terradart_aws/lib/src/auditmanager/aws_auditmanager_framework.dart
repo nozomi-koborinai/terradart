@@ -68,6 +68,10 @@ final class AwsAuditmanagerFramework extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAuditmanagerFrameworkSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAuditmanagerFramework>`.
+  RefTo<AwsAuditmanagerFramework> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

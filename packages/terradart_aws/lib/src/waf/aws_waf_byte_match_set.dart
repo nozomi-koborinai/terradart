@@ -94,6 +94,10 @@ final class AwsWafByteMatchSet extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWafByteMatchSetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWafByteMatchSet>`.
+  RefTo<AwsWafByteMatchSet> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

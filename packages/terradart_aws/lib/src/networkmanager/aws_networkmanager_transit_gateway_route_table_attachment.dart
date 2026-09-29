@@ -38,6 +38,11 @@ final class AwsNetworkmanagerTransitGatewayRouteTableAttachment
   Set<String> get sensitiveFields =>
       _awsNetworkmanagerTransitGatewayRouteTableAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkmanagerTransitGatewayRouteTableAttachment>`.
+  RefTo<AwsNetworkmanagerTransitGatewayRouteTableAttachment> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -119,6 +119,10 @@ final class AwsDynamodbTableExport extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDynamodbTableExportSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDynamodbTableExport>`.
+  RefTo<AwsDynamodbTableExport> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

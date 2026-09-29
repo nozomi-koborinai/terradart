@@ -34,6 +34,10 @@ final class AwsChimeVoiceConnectorLogging extends Resource {
   @override
   Set<String> get sensitiveFields => _awsChimeVoiceConnectorLoggingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsChimeVoiceConnectorLogging>`.
+  RefTo<AwsChimeVoiceConnectorLogging> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

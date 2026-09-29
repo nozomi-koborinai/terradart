@@ -81,6 +81,10 @@ final class GoogleDiscoveryEngineSearchEngine extends Resource {
   Set<String> get sensitiveFields =>
       _googleDiscoveryEngineSearchEngineSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDiscoveryEngineSearchEngine>`.
+  RefTo<GoogleDiscoveryEngineSearchEngine> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

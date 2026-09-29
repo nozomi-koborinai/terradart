@@ -31,4 +31,8 @@ final class AwsSesv2TenantResourceAssociation extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsSesv2TenantResourceAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSesv2TenantResourceAssociation>`.
+  RefTo<AwsSesv2TenantResourceAssociation> get ref => RefTo.of(this);
 }

@@ -43,6 +43,10 @@ final class AwsEc2TrafficMirrorSession extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEc2TrafficMirrorSessionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2TrafficMirrorSession>`.
+  RefTo<AwsEc2TrafficMirrorSession> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

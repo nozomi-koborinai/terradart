@@ -44,6 +44,10 @@ final class AppwritePostgresqlBranch extends Resource {
   @override
   Set<String> get sensitiveFields => _appwritePostgresqlBranchSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwritePostgresqlBranch>`.
+  RefTo<AppwritePostgresqlBranch> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

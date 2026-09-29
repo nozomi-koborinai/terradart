@@ -35,6 +35,10 @@ final class AwsDbClusterSnapshot extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDbClusterSnapshotSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDbClusterSnapshot>`.
+  RefTo<AwsDbClusterSnapshot> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

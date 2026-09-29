@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../datazone/aws_datazone_domain.dart';
 
 /// Sensitive field paths for `aws_datazone_domain`.
 const Set<String> _awsDatazoneDomainSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataAwsDatazoneDomain extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsDatazoneDomainSensitive;
+
+  /// A reference to the `aws_datazone_domain` this data source reads, for
+  /// arguments typed `RefTo<AwsDatazoneDomain>`.
+  RefTo<AwsDatazoneDomain> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

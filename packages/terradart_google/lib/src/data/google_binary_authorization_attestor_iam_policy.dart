@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../binary_authorization/google_binary_authorization_attestor_iam_policy.dart';
 
 /// Sensitive field paths for `google_binary_authorization_attestor_iam_policy`.
 const Set<String> _googleBinaryAuthorizationAttestorIamPolicySensitive =
@@ -32,6 +33,11 @@ final class DataGoogleBinaryAuthorizationAttestorIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleBinaryAuthorizationAttestorIamPolicySensitive;
+
+  /// A reference to the `google_binary_authorization_attestor_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleBinaryAuthorizationAttestorIamPolicy>`.
+  RefTo<GoogleBinaryAuthorizationAttestorIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

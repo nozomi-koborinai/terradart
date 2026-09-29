@@ -881,6 +881,10 @@ final class CloudflareAiGateway extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareAiGatewaySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareAiGateway>`.
+  RefTo<CloudflareAiGateway> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

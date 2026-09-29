@@ -130,6 +130,10 @@ final class AwsApigatewayv2Api extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApigatewayv2ApiSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApigatewayv2Api>`.
+  RefTo<AwsApigatewayv2Api> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

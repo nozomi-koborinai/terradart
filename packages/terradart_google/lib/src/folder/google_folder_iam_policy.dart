@@ -31,6 +31,10 @@ final class GoogleFolderIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFolderIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFolderIamPolicy>`.
+  RefTo<GoogleFolderIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

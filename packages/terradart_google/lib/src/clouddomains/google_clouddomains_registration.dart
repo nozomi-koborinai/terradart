@@ -415,6 +415,10 @@ final class GoogleClouddomainsRegistration extends Resource {
   @override
   Set<String> get sensitiveFields => _googleClouddomainsRegistrationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleClouddomainsRegistration>`.
+  RefTo<GoogleClouddomainsRegistration> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

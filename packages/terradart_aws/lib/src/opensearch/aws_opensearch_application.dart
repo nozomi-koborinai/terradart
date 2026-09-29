@@ -127,6 +127,10 @@ final class AwsOpensearchApplication extends Resource {
   @override
   Set<String> get sensitiveFields => _awsOpensearchApplicationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOpensearchApplication>`.
+  RefTo<AwsOpensearchApplication> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

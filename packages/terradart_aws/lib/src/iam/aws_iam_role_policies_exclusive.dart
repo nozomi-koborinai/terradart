@@ -25,4 +25,8 @@ final class AwsIamRolePoliciesExclusive extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsIamRolePoliciesExclusiveSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIamRolePoliciesExclusive>`.
+  RefTo<AwsIamRolePoliciesExclusive> get ref => RefTo.of(this);
 }

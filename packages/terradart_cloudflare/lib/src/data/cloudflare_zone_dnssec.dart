@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone_dnssec.dart';
 
 /// Sensitive field paths for `cloudflare_zone_dnssec`.
 const Set<String> _cloudflareZoneDnssecSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataCloudflareZoneDnssec extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareZoneDnssecSensitive;
+
+  /// A reference to the `cloudflare_zone_dnssec` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZoneDnssec>`.
+  RefTo<CloudflareZoneDnssec> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

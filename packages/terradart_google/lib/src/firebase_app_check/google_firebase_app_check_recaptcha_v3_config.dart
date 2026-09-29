@@ -38,6 +38,10 @@ final class GoogleFirebaseAppCheckRecaptchaV3Config extends Resource {
   Set<String> get sensitiveFields =>
       _googleFirebaseAppCheckRecaptchaV3ConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseAppCheckRecaptchaV3Config>`.
+  RefTo<GoogleFirebaseAppCheckRecaptchaV3Config> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

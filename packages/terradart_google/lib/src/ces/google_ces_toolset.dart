@@ -689,6 +689,10 @@ final class GoogleCesToolset extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCesToolsetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCesToolset>`.
+  RefTo<GoogleCesToolset> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

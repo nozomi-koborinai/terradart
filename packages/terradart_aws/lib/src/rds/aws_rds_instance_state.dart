@@ -40,4 +40,8 @@ final class AwsRdsInstanceState extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsRdsInstanceStateSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRdsInstanceState>`.
+  RefTo<AwsRdsInstanceState> get ref => RefTo.of(this);
 }

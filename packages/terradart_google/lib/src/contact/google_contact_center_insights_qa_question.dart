@@ -99,6 +99,10 @@ final class GoogleContactCenterInsightsQaQuestion extends Resource {
   Set<String> get sensitiveFields =>
       _googleContactCenterInsightsQaQuestionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleContactCenterInsightsQaQuestion>`.
+  RefTo<GoogleContactCenterInsightsQaQuestion> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../connect/aws_connect_routing_profile.dart';
 
 /// Sensitive field paths for `aws_connect_routing_profile`.
 const Set<String> _awsConnectRoutingProfileSensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataAwsConnectRoutingProfile extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsConnectRoutingProfileSensitive;
+
+  /// A reference to the `aws_connect_routing_profile` this data source reads, for
+  /// arguments typed `RefTo<AwsConnectRoutingProfile>`.
+  RefTo<AwsConnectRoutingProfile> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

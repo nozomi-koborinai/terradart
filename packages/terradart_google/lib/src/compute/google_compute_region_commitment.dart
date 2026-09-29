@@ -171,6 +171,10 @@ final class GoogleComputeRegionCommitment extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeRegionCommitmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRegionCommitment>`.
+  RefTo<GoogleComputeRegionCommitment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

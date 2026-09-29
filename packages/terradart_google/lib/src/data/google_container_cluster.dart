@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../container/google_container_cluster.dart';
 
 /// Sensitive field paths for `google_container_cluster`.
 const Set<String> _googleContainerClusterSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleContainerCluster extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleContainerClusterSensitive;
+
+  /// A reference to the `google_container_cluster` this data source reads, for
+  /// arguments typed `RefTo<GoogleContainerCluster>`.
+  RefTo<GoogleContainerCluster> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

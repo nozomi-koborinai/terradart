@@ -85,6 +85,10 @@ final class AwsRoute53ZoneAssociation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRoute53ZoneAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53ZoneAssociation>`.
+  RefTo<AwsRoute53ZoneAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

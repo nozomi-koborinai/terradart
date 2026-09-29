@@ -111,4 +111,8 @@ final class GoogleStorageFtpUser extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleStorageFtpUserSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleStorageFtpUser>`.
+  RefTo<GoogleStorageFtpUser> get ref => RefTo.of(this);
 }

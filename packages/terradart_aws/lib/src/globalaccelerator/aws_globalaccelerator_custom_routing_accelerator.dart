@@ -82,6 +82,10 @@ final class AwsGlobalacceleratorCustomRoutingAccelerator extends Resource {
   Set<String> get sensitiveFields =>
       _awsGlobalacceleratorCustomRoutingAcceleratorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGlobalacceleratorCustomRoutingAccelerator>`.
+  RefTo<AwsGlobalacceleratorCustomRoutingAccelerator> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -71,6 +71,10 @@ final class AwsWorkspacesPool extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWorkspacesPoolSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspacesPool>`.
+  RefTo<AwsWorkspacesPool> get ref => RefTo.of(this);
+
   /// Reference to `capacity_status` attribute.
   TfRef<List<Map<String, Object?>>> get capacityStatus =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'capacity_status');

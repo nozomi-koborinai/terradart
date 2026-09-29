@@ -318,6 +318,10 @@ final class AwsAppsyncApi extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppsyncApiSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppsyncApi>`.
+  RefTo<AwsAppsyncApi> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

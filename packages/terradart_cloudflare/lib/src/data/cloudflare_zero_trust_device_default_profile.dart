@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_device_default_profile.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_device_default_profile`.
 const Set<String> _cloudflareZeroTrustDeviceDefaultProfileSensitive =
@@ -24,6 +25,11 @@ final class DataCloudflareZeroTrustDeviceDefaultProfile extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDeviceDefaultProfileSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_device_default_profile` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustDeviceDefaultProfile>`.
+  RefTo<CloudflareZeroTrustDeviceDefaultProfile> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

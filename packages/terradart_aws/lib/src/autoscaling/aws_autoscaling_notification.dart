@@ -33,6 +33,10 @@ final class AwsAutoscalingNotification extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAutoscalingNotificationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAutoscalingNotification>`.
+  RefTo<AwsAutoscalingNotification> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

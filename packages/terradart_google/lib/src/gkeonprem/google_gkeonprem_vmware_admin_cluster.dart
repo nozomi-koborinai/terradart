@@ -728,6 +728,10 @@ final class GoogleGkeonpremVmwareAdminCluster extends Resource {
   Set<String> get sensitiveFields =>
       _googleGkeonpremVmwareAdminClusterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGkeonpremVmwareAdminCluster>`.
+  RefTo<GoogleGkeonpremVmwareAdminCluster> get ref => RefTo.of(this);
+
   /// Reference to `local_name` attribute.
   TfRef<String> get localNameRef => TfRef.attribute<String>(this, 'local_name');
 

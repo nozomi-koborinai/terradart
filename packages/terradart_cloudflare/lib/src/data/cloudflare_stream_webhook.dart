@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../stream/cloudflare_stream_webhook.dart';
 
 /// Sensitive field paths for `cloudflare_stream_webhook`.
 const Set<String> _cloudflareStreamWebhookSensitive = <String>{'secret'};
@@ -26,6 +27,11 @@ final class DataCloudflareStreamWebhook extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareStreamWebhookSensitive;
+
+  /// A reference to the `cloudflare_stream_webhook` this data source reads, for
+  /// arguments typed `RefTo<CloudflareStreamWebhook>`.
+  RefTo<CloudflareStreamWebhook> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `modified` attribute.
   TfRef<String> get modified => TfRef.attribute<String>(this, 'modified');

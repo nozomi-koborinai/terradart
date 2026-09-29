@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../eks/aws_eks_access_entry.dart';
 
 /// Sensitive field paths for `aws_eks_access_entry`.
 const Set<String> _awsEksAccessEntrySensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsEksAccessEntry extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsEksAccessEntrySensitive;
+
+  /// A reference to the `aws_eks_access_entry` this data source reads, for
+  /// arguments typed `RefTo<AwsEksAccessEntry>`.
+  RefTo<AwsEksAccessEntry> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

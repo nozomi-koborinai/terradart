@@ -75,6 +75,10 @@ final class GoogleContainerNodePool extends Resource {
   @override
   Set<String> get sensitiveFields => _googleContainerNodePoolSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleContainerNodePool>`.
+  RefTo<GoogleContainerNodePool> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

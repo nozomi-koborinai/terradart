@@ -72,6 +72,10 @@ final class CloudflareWaitingRoomRules extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareWaitingRoomRulesSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareWaitingRoomRules>`.
+  RefTo<CloudflareWaitingRoomRules> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

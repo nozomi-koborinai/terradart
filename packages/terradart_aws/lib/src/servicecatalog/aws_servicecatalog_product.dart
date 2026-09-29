@@ -184,6 +184,10 @@ final class AwsServicecatalogProduct extends Resource {
   @override
   Set<String> get sensitiveFields => _awsServicecatalogProductSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsServicecatalogProduct>`.
+  RefTo<AwsServicecatalogProduct> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

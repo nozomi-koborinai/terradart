@@ -97,4 +97,8 @@ final class AwsEc2TransitGatewayPolicyTableEntry extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsEc2TransitGatewayPolicyTableEntrySensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2TransitGatewayPolicyTableEntry>`.
+  RefTo<AwsEc2TransitGatewayPolicyTableEntry> get ref => RefTo.of(this);
 }

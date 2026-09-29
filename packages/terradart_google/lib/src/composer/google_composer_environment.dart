@@ -794,6 +794,10 @@ final class GoogleComposerEnvironment extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComposerEnvironmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComposerEnvironment>`.
+  RefTo<GoogleComposerEnvironment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

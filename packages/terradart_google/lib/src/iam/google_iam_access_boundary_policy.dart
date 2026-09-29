@@ -117,6 +117,10 @@ final class GoogleIamAccessBoundaryPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIamAccessBoundaryPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIamAccessBoundaryPolicy>`.
+  RefTo<GoogleIamAccessBoundaryPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -43,6 +43,10 @@ final class CloudflareZeroTrustAccessMtlsCertificate extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustAccessMtlsCertificateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustAccessMtlsCertificate>`.
+  RefTo<CloudflareZeroTrustAccessMtlsCertificate> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

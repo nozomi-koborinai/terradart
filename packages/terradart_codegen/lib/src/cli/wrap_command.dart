@@ -459,6 +459,9 @@ class WrapCommand extends Command<int> {
       overrides: loaded.dataSources,
       rawDataSourceSchemas: rawDataSourceSchemas,
       providerEnums: providerEnums,
+      resourceDirs: {
+        for (final e in resourceOverrides.entries) e.key: e.value.outputDir,
+      },
     );
     // Layer 2 emit output is unformatted; match the WrapperEmitter /
     // DataSourceWrapperEmitter Level A test convention (dart_style 3.x with

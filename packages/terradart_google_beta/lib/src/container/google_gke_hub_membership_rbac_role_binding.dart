@@ -71,6 +71,10 @@ final class GoogleGkeHubMembershipRbacRoleBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleGkeHubMembershipRbacRoleBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGkeHubMembershipRbacRoleBinding>`.
+  RefTo<GoogleGkeHubMembershipRbacRoleBinding> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

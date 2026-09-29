@@ -60,6 +60,10 @@ final class AwsControltowerBaseline extends Resource {
   @override
   Set<String> get sensitiveFields => _awsControltowerBaselineSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsControltowerBaseline>`.
+  RefTo<AwsControltowerBaseline> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

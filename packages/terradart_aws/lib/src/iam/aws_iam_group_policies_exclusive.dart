@@ -25,4 +25,8 @@ final class AwsIamGroupPoliciesExclusive extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsIamGroupPoliciesExclusiveSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIamGroupPoliciesExclusive>`.
+  RefTo<AwsIamGroupPoliciesExclusive> get ref => RefTo.of(this);
 }

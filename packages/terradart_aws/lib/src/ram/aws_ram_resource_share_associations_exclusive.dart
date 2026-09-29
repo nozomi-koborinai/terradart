@@ -36,4 +36,8 @@ final class AwsRamResourceShareAssociationsExclusive extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsRamResourceShareAssociationsExclusiveSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRamResourceShareAssociationsExclusive>`.
+  RefTo<AwsRamResourceShareAssociationsExclusive> get ref => RefTo.of(this);
 }

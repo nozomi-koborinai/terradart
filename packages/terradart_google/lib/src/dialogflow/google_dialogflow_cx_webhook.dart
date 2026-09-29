@@ -451,6 +451,10 @@ final class GoogleDialogflowCxWebhook extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDialogflowCxWebhookSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDialogflowCxWebhook>`.
+  RefTo<GoogleDialogflowCxWebhook> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

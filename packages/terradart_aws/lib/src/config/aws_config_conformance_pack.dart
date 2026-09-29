@@ -63,6 +63,10 @@ final class AwsConfigConformancePack extends Resource {
   @override
   Set<String> get sensitiveFields => _awsConfigConformancePackSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsConfigConformancePack>`.
+  RefTo<AwsConfigConformancePack> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

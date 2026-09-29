@@ -35,6 +35,11 @@ final class AwsObservabilityadminTelemetryEvaluationForOrganization
   Set<String> get sensitiveFields =>
       _awsObservabilityadminTelemetryEvaluationForOrganizationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsObservabilityadminTelemetryEvaluationForOrganization>`.
+  RefTo<AwsObservabilityadminTelemetryEvaluationForOrganization> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

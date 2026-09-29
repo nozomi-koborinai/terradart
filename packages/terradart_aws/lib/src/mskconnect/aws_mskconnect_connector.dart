@@ -471,6 +471,10 @@ final class AwsMskconnectConnector extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMskconnectConnectorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMskconnectConnector>`.
+  RefTo<AwsMskconnectConnector> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

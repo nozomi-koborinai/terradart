@@ -80,6 +80,10 @@ final class GoogleDnsManagedZoneIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDnsManagedZoneIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDnsManagedZoneIamMember>`.
+  RefTo<GoogleDnsManagedZoneIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

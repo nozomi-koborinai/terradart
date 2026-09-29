@@ -336,6 +336,10 @@ final class AwsAppsyncDatasource extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppsyncDatasourceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppsyncDatasource>`.
+  RefTo<AwsAppsyncDatasource> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

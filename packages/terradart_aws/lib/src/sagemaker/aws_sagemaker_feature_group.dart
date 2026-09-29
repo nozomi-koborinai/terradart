@@ -358,6 +358,10 @@ final class AwsSagemakerFeatureGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSagemakerFeatureGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSagemakerFeatureGroup>`.
+  RefTo<AwsSagemakerFeatureGroup> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

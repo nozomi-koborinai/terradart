@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ssmincidents/aws_ssmincidents_replication_set.dart';
 
 /// Sensitive field paths for `aws_ssmincidents_replication_set`.
 const Set<String> _awsSsmincidentsReplicationSetSensitive = <String>{};
@@ -19,6 +20,11 @@ final class DataAwsSsmincidentsReplicationSet extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsSsmincidentsReplicationSetSensitive;
+
+  /// A reference to the `aws_ssmincidents_replication_set` this data source reads, for
+  /// arguments typed `RefTo<AwsSsmincidentsReplicationSet>`.
+  RefTo<AwsSsmincidentsReplicationSet> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

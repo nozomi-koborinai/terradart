@@ -109,6 +109,10 @@ final class AwsSsmResourceDataSync extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSsmResourceDataSyncSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSsmResourceDataSync>`.
+  RefTo<AwsSsmResourceDataSync> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

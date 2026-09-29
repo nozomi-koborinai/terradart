@@ -31,6 +31,10 @@ final class AwsBackupVaultPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBackupVaultPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBackupVaultPolicy>`.
+  RefTo<AwsBackupVaultPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

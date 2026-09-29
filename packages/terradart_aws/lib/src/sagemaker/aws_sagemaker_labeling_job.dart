@@ -416,6 +416,10 @@ final class AwsSagemakerLabelingJob extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSagemakerLabelingJobSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSagemakerLabelingJob>`.
+  RefTo<AwsSagemakerLabelingJob> get ref => RefTo.of(this);
+
   /// Reference to `failure_reason` attribute.
   TfRef<String> get failureReason =>
       TfRef.attribute<String>(this, 'failure_reason');

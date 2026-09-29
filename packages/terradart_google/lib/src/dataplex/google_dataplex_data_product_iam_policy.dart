@@ -39,6 +39,10 @@ final class GoogleDataplexDataProductIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataplexDataProductIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexDataProductIamPolicy>`.
+  RefTo<GoogleDataplexDataProductIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

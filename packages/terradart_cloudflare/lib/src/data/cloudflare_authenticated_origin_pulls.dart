@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ssl/cloudflare_authenticated_origin_pulls.dart';
 
 /// Sensitive field paths for `cloudflare_authenticated_origin_pulls`.
 const Set<String> _cloudflareAuthenticatedOriginPullsSensitive = <String>{};
@@ -24,6 +25,11 @@ final class DataCloudflareAuthenticatedOriginPulls extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareAuthenticatedOriginPullsSensitive;
+
+  /// A reference to the `cloudflare_authenticated_origin_pulls` this data source reads, for
+  /// arguments typed `RefTo<CloudflareAuthenticatedOriginPulls>`.
+  RefTo<CloudflareAuthenticatedOriginPulls> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `cert_id` attribute.
   TfRef<String> get certId => TfRef.attribute<String>(this, 'cert_id');

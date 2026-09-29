@@ -38,4 +38,8 @@ final class GoogleObservabilityBucket extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleObservabilityBucketSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleObservabilityBucket>`.
+  RefTo<GoogleObservabilityBucket> get ref => RefTo.of(this);
 }

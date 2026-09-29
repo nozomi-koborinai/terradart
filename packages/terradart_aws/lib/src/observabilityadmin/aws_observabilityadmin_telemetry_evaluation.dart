@@ -27,6 +27,10 @@ final class AwsObservabilityadminTelemetryEvaluation extends Resource {
   Set<String> get sensitiveFields =>
       _awsObservabilityadminTelemetryEvaluationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsObservabilityadminTelemetryEvaluation>`.
+  RefTo<AwsObservabilityadminTelemetryEvaluation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

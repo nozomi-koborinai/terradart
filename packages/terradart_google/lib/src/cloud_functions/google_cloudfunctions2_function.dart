@@ -679,6 +679,10 @@ final class GoogleCloudfunctions2Function extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudfunctions2FunctionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudfunctions2Function>`.
+  RefTo<GoogleCloudfunctions2Function> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

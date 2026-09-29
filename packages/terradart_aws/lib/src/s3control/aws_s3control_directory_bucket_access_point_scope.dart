@@ -78,6 +78,10 @@ final class AwsS3controlDirectoryBucketAccessPointScope extends Resource {
   Set<String> get sensitiveFields =>
       _awsS3controlDirectoryBucketAccessPointScopeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3controlDirectoryBucketAccessPointScope>`.
+  RefTo<AwsS3controlDirectoryBucketAccessPointScope> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

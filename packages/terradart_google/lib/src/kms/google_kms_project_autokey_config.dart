@@ -76,6 +76,10 @@ final class GoogleKmsProjectAutokeyConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _googleKmsProjectAutokeyConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleKmsProjectAutokeyConfig>`.
+  RefTo<GoogleKmsProjectAutokeyConfig> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

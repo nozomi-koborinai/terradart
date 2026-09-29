@@ -167,6 +167,10 @@ final class AwsCloudfrontContinuousDeploymentPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _awsCloudfrontContinuousDeploymentPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudfrontContinuousDeploymentPolicy>`.
+  RefTo<AwsCloudfrontContinuousDeploymentPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

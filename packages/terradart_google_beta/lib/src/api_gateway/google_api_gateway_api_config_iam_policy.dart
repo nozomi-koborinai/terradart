@@ -40,6 +40,10 @@ final class GoogleApiGatewayApiConfigIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleApiGatewayApiConfigIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApiGatewayApiConfigIamPolicy>`.
+  RefTo<GoogleApiGatewayApiConfigIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

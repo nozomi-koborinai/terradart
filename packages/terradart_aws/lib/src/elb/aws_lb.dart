@@ -418,6 +418,10 @@ final class AwsLb extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLbSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLb>`.
+  RefTo<AwsLb> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

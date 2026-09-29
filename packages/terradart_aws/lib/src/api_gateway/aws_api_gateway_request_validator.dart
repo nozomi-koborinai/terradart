@@ -37,6 +37,10 @@ final class AwsApiGatewayRequestValidator extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApiGatewayRequestValidatorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApiGatewayRequestValidator>`.
+  RefTo<AwsApiGatewayRequestValidator> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -41,6 +41,10 @@ final class GoogleIapAgentRegistryIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIapAgentRegistryIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapAgentRegistryIamBinding>`.
+  RefTo<GoogleIapAgentRegistryIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

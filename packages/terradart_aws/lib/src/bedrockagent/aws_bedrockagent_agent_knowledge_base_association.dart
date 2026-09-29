@@ -66,6 +66,10 @@ final class AwsBedrockagentAgentKnowledgeBaseAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsBedrockagentAgentKnowledgeBaseAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentAgentKnowledgeBaseAssociation>`.
+  RefTo<AwsBedrockagentAgentKnowledgeBaseAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

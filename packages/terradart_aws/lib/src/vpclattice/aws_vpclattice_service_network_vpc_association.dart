@@ -83,6 +83,10 @@ final class AwsVpclatticeServiceNetworkVpcAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsVpclatticeServiceNetworkVpcAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpclatticeServiceNetworkVpcAssociation>`.
+  RefTo<AwsVpclatticeServiceNetworkVpcAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -44,6 +44,10 @@ final class AwsVpcDhcpOptions extends Resource {
   @override
   Set<String> get sensitiveFields => _awsVpcDhcpOptionsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcDhcpOptions>`.
+  RefTo<AwsVpcDhcpOptions> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

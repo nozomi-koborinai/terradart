@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../r2/cloudflare_r2_custom_domain.dart';
 
 /// Sensitive field paths for `cloudflare_r2_custom_domain`.
 const Set<String> _cloudflareR2CustomDomainSensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataCloudflareR2CustomDomain extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareR2CustomDomainSensitive;
+
+  /// A reference to the `cloudflare_r2_custom_domain` this data source reads, for
+  /// arguments typed `RefTo<CloudflareR2CustomDomain>`.
+  RefTo<CloudflareR2CustomDomain> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `ciphers` attribute.
   TfRef<List<String>> get ciphers =>

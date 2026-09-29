@@ -157,6 +157,10 @@ final class AwsOsisPipeline extends Resource {
   @override
   Set<String> get sensitiveFields => _awsOsisPipelineSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOsisPipeline>`.
+  RefTo<AwsOsisPipeline> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

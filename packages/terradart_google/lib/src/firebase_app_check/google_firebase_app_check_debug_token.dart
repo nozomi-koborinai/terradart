@@ -72,6 +72,10 @@ final class GoogleFirebaseAppCheckDebugToken extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirebaseAppCheckDebugTokenSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseAppCheckDebugToken>`.
+  RefTo<GoogleFirebaseAppCheckDebugToken> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute. Equal to the full resource path
   /// `projects/{project}/apps/{app_id}/debugTokens/{debug_token_id}`.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

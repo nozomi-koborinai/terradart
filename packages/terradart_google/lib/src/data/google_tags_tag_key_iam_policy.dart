@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../tags/google_tags_tag_key_iam_policy.dart';
 
 /// Sensitive field paths for `google_tags_tag_key_iam_policy`.
 const Set<String> _googleTagsTagKeyIamPolicySensitive = <String>{};
@@ -22,6 +23,11 @@ final class DataGoogleTagsTagKeyIamPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleTagsTagKeyIamPolicySensitive;
+
+  /// A reference to the `google_tags_tag_key_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleTagsTagKeyIamPolicy>`.
+  RefTo<GoogleTagsTagKeyIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

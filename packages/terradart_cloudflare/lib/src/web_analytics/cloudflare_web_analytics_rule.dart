@@ -37,6 +37,10 @@ final class CloudflareWebAnalyticsRule extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareWebAnalyticsRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareWebAnalyticsRule>`.
+  RefTo<CloudflareWebAnalyticsRule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

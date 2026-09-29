@@ -67,6 +67,10 @@ final class AppwriteSiteDeployment extends Resource {
   @override
   Set<String> get sensitiveFields => _appwriteSiteDeploymentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwriteSiteDeployment>`.
+  RefTo<AppwriteSiteDeployment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

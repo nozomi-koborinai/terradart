@@ -56,6 +56,10 @@ final class AwsSnsTopicSubscription extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSnsTopicSubscriptionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSnsTopicSubscription>`.
+  RefTo<AwsSnsTopicSubscription> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

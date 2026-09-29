@@ -45,6 +45,10 @@ final class AwsApiGatewayIntegrationResponse extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApiGatewayIntegrationResponseSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApiGatewayIntegrationResponse>`.
+  RefTo<AwsApiGatewayIntegrationResponse> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

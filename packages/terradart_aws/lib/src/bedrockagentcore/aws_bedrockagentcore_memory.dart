@@ -184,6 +184,10 @@ final class AwsBedrockagentcoreMemory extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBedrockagentcoreMemorySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentcoreMemory>`.
+  RefTo<AwsBedrockagentcoreMemory> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

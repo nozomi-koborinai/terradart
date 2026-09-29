@@ -127,6 +127,10 @@ final class AwsGuarddutyOrganizationConfigurationFeature extends Resource {
   Set<String> get sensitiveFields =>
       _awsGuarddutyOrganizationConfigurationFeatureSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGuarddutyOrganizationConfigurationFeature>`.
+  RefTo<AwsGuarddutyOrganizationConfigurationFeature> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

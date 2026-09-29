@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../workers/cloudflare_workers_deployment.dart';
 
 /// Sensitive field paths for `cloudflare_workers_deployment`.
 const Set<String> _cloudflareWorkersDeploymentSensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataCloudflareWorkersDeployment extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareWorkersDeploymentSensitive;
+
+  /// A reference to the `cloudflare_workers_deployment` this data source reads, for
+  /// arguments typed `RefTo<CloudflareWorkersDeployment>`.
+  RefTo<CloudflareWorkersDeployment> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

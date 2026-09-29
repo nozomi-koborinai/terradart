@@ -32,6 +32,10 @@ final class GoogleServiceDirectoryServiceIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleServiceDirectoryServiceIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleServiceDirectoryServiceIamPolicy>`.
+  RefTo<GoogleServiceDirectoryServiceIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

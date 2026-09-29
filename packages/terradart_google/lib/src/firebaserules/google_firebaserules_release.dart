@@ -40,6 +40,10 @@ final class GoogleFirebaserulesRelease extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirebaserulesReleaseSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaserulesRelease>`.
+  RefTo<GoogleFirebaserulesRelease> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

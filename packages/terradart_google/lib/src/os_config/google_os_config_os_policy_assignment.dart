@@ -272,6 +272,10 @@ final class GoogleOsConfigOsPolicyAssignment extends Resource {
   @override
   Set<String> get sensitiveFields => _googleOsConfigOsPolicyAssignmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleOsConfigOsPolicyAssignment>`.
+  RefTo<GoogleOsConfigOsPolicyAssignment> get ref => RefTo.of(this);
+
   /// Reference to `baseline` attribute.
   TfRef<bool> get baseline => TfRef.attribute<bool>(this, 'baseline');
 

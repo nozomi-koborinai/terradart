@@ -35,6 +35,10 @@ final class GoogleBigqueryDatasetIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryDatasetIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryDatasetIamMember>`.
+  RefTo<GoogleBigqueryDatasetIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

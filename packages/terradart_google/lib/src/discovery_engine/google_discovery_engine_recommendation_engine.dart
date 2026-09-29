@@ -216,6 +216,10 @@ final class GoogleDiscoveryEngineRecommendationEngine extends Resource {
   Set<String> get sensitiveFields =>
       _googleDiscoveryEngineRecommendationEngineSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDiscoveryEngineRecommendationEngine>`.
+  RefTo<GoogleDiscoveryEngineRecommendationEngine> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

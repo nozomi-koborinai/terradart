@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../networkmanager/aws_networkmanager_link.dart';
 
 /// Sensitive field paths for `aws_networkmanager_link`.
 const Set<String> _awsNetworkmanagerLinkSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsNetworkmanagerLink extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsNetworkmanagerLinkSensitive;
+
+  /// A reference to the `aws_networkmanager_link` this data source reads, for
+  /// arguments typed `RefTo<AwsNetworkmanagerLink>`.
+  RefTo<AwsNetworkmanagerLink> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

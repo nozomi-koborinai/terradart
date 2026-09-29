@@ -118,6 +118,10 @@ final class AwsSignerSigningProfilePermission extends Resource {
   Set<String> get sensitiveFields =>
       _awsSignerSigningProfilePermissionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSignerSigningProfilePermission>`.
+  RefTo<AwsSignerSigningProfilePermission> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

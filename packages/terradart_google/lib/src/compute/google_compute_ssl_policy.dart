@@ -139,6 +139,10 @@ final class GoogleComputeSslPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeSslPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeSslPolicy>`.
+  RefTo<GoogleComputeSslPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -108,6 +108,10 @@ final class AwsEcrRegistryScanningConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsEcrRegistryScanningConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEcrRegistryScanningConfiguration>`.
+  RefTo<AwsEcrRegistryScanningConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

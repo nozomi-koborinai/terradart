@@ -105,6 +105,10 @@ final class GoogleContainerAnalysisOccurrence extends Resource {
   Set<String> get sensitiveFields =>
       _googleContainerAnalysisOccurrenceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleContainerAnalysisOccurrence>`.
+  RefTo<GoogleContainerAnalysisOccurrence> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

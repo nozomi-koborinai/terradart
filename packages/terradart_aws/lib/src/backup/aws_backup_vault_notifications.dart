@@ -74,6 +74,10 @@ final class AwsBackupVaultNotifications extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBackupVaultNotificationsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBackupVaultNotifications>`.
+  RefTo<AwsBackupVaultNotifications> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -61,6 +61,10 @@ final class GoogleDataplexDataProduct extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataplexDataProductSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexDataProduct>`.
+  RefTo<GoogleDataplexDataProduct> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

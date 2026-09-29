@@ -37,6 +37,10 @@ final class GoogleSccV2OrganizationSourceIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleSccV2OrganizationSourceIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSccV2OrganizationSourceIamPolicy>`.
+  RefTo<GoogleSccV2OrganizationSourceIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

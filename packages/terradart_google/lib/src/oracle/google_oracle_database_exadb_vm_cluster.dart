@@ -71,6 +71,10 @@ final class GoogleOracleDatabaseExadbVmCluster extends Resource {
   @override
   bool get supportsDeletionProtection => true;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleOracleDatabaseExadbVmCluster>`.
+  RefTo<GoogleOracleDatabaseExadbVmCluster> get ref => RefTo.of(this);
+
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 

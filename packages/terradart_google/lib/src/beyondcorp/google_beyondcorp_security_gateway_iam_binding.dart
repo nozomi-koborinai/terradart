@@ -44,6 +44,10 @@ final class GoogleBeyondcorpSecurityGatewayIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleBeyondcorpSecurityGatewayIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBeyondcorpSecurityGatewayIamBinding>`.
+  RefTo<GoogleBeyondcorpSecurityGatewayIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -33,4 +33,9 @@ final class AwsNetworkmanagerAttachmentRoutingPolicyLabel extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsNetworkmanagerAttachmentRoutingPolicyLabelSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkmanagerAttachmentRoutingPolicyLabel>`.
+  RefTo<AwsNetworkmanagerAttachmentRoutingPolicyLabel> get ref =>
+      RefTo.of(this);
 }

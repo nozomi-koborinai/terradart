@@ -70,6 +70,10 @@ final class GoogleNetappBackupPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleNetappBackupPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetappBackupPolicy>`.
+  RefTo<GoogleNetappBackupPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

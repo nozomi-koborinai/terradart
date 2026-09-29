@@ -43,6 +43,10 @@ final class AwsRoute53KeySigningKey extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRoute53KeySigningKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53KeySigningKey>`.
+  RefTo<AwsRoute53KeySigningKey> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

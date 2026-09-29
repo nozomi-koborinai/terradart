@@ -37,6 +37,10 @@ final class GoogleCloudTasksQueueIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudTasksQueueIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudTasksQueueIamMember>`.
+  RefTo<GoogleCloudTasksQueueIamMember> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

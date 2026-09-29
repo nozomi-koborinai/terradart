@@ -428,6 +428,10 @@ final class GoogleAppEngineStandardAppVersion extends Resource {
   Set<String> get sensitiveFields =>
       _googleAppEngineStandardAppVersionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleAppEngineStandardAppVersion>`.
+  RefTo<GoogleAppEngineStandardAppVersion> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

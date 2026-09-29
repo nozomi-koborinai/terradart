@@ -68,6 +68,11 @@ final class GoogleFirebaseAppCheckRecaptchaEnterpriseConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleFirebaseAppCheckRecaptchaEnterpriseConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseAppCheckRecaptchaEnterpriseConfig>`.
+  RefTo<GoogleFirebaseAppCheckRecaptchaEnterpriseConfig> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute (the relative resource name of the
   /// reCAPTCHA Enterprise configuration object, in the shape
   /// `projects/{project}/apps/{app_id}/recaptchaEnterpriseConfig`).

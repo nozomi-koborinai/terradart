@@ -52,6 +52,10 @@ final class AwsOrganizationsAccount extends Resource {
   @override
   Set<String> get sensitiveFields => _awsOrganizationsAccountSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOrganizationsAccount>`.
+  RefTo<AwsOrganizationsAccount> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

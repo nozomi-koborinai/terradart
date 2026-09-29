@@ -792,6 +792,10 @@ final class GoogleNetworkServicesHttpRoute extends Resource {
   @override
   Set<String> get sensitiveFields => _googleNetworkServicesHttpRouteSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkServicesHttpRoute>`.
+  RefTo<GoogleNetworkServicesHttpRoute> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

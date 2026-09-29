@@ -56,6 +56,10 @@ final class CloudflareAuthenticatedOriginPulls extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareAuthenticatedOriginPullsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareAuthenticatedOriginPulls>`.
+  RefTo<CloudflareAuthenticatedOriginPulls> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

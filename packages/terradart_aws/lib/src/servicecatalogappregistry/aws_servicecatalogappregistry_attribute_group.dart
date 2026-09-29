@@ -37,6 +37,10 @@ final class AwsServicecatalogappregistryAttributeGroup extends Resource {
   Set<String> get sensitiveFields =>
       _awsServicecatalogappregistryAttributeGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsServicecatalogappregistryAttributeGroup>`.
+  RefTo<AwsServicecatalogappregistryAttributeGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

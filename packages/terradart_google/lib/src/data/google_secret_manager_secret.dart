@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../secret_manager/google_secret_manager_secret.dart';
 
 /// Sensitive field paths for `google_secret_manager_secret`.
 const Set<String> _googleSecretManagerSecretSensitive = <String>{};
@@ -29,6 +30,11 @@ final class DataGoogleSecretManagerSecret extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleSecretManagerSecretSensitive;
+
+  /// A reference to the `google_secret_manager_secret` this data source reads, for
+  /// arguments typed `RefTo<GoogleSecretManagerSecret>`.
+  RefTo<GoogleSecretManagerSecret> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

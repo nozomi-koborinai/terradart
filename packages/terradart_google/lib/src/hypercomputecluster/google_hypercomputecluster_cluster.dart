@@ -827,6 +827,10 @@ final class GoogleHypercomputeclusterCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _googleHypercomputeclusterClusterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleHypercomputeclusterCluster>`.
+  RefTo<GoogleHypercomputeclusterCluster> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

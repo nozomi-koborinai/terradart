@@ -90,6 +90,10 @@ final class AwsAppconfigConfigurationProfile extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppconfigConfigurationProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppconfigConfigurationProfile>`.
+  RefTo<AwsAppconfigConfigurationProfile> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

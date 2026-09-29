@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ai/cloudflare_ai_search_namespace.dart';
 
 /// Sensitive field paths for `cloudflare_ai_search_namespace`.
 const Set<String> _cloudflareAiSearchNamespaceSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataCloudflareAiSearchNamespace extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareAiSearchNamespaceSensitive;
+
+  /// A reference to the `cloudflare_ai_search_namespace` this data source reads, for
+  /// arguments typed `RefTo<CloudflareAiSearchNamespace>`.
+  RefTo<CloudflareAiSearchNamespace> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

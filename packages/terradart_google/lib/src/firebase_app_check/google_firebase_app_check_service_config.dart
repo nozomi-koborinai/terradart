@@ -107,6 +107,10 @@ final class GoogleFirebaseAppCheckServiceConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleFirebaseAppCheckServiceConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseAppCheckServiceConfig>`.
+  RefTo<GoogleFirebaseAppCheckServiceConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute (the fully-qualified resource name of
   /// the service enforcement configuration, in the shape
   /// `projects/{project}/services/{service_id}`).

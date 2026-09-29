@@ -102,6 +102,10 @@ final class GoogleComputeRegionDisk extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeRegionDiskSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRegionDisk>`.
+  RefTo<GoogleComputeRegionDisk> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

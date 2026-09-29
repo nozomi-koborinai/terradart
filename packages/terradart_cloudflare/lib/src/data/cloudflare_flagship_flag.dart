@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../flagship/cloudflare_flagship_flag.dart';
 
 /// Sensitive field paths for `cloudflare_flagship_flag`.
 const Set<String> _cloudflareFlagshipFlagSensitive = <String>{};
@@ -48,6 +49,11 @@ final class DataCloudflareFlagshipFlag extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareFlagshipFlagSensitive;
+
+  /// A reference to the `cloudflare_flagship_flag` this data source reads, for
+  /// arguments typed `RefTo<CloudflareFlagshipFlag>`.
+  RefTo<CloudflareFlagshipFlag> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

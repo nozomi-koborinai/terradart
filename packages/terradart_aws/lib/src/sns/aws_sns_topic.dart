@@ -107,6 +107,10 @@ final class AwsSnsTopic extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSnsTopicSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSnsTopic>`.
+  RefTo<AwsSnsTopic> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

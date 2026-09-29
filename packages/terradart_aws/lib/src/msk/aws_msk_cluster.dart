@@ -608,6 +608,10 @@ final class AwsMskCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMskClusterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMskCluster>`.
+  RefTo<AwsMskCluster> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

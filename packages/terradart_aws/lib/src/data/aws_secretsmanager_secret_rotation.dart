@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../secretsmanager/aws_secretsmanager_secret_rotation.dart';
 
 /// Sensitive field paths for `aws_secretsmanager_secret_rotation`.
 const Set<String> _awsSecretsmanagerSecretRotationSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsSecretsmanagerSecretRotation extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsSecretsmanagerSecretRotationSensitive;
+
+  /// A reference to the `aws_secretsmanager_secret_rotation` this data source reads, for
+  /// arguments typed `RefTo<AwsSecretsmanagerSecretRotation>`.
+  RefTo<AwsSecretsmanagerSecretRotation> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

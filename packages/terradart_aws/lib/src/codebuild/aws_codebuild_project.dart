@@ -1125,6 +1125,10 @@ final class AwsCodebuildProject extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCodebuildProjectSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCodebuildProject>`.
+  RefTo<AwsCodebuildProject> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

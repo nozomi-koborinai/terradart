@@ -64,6 +64,10 @@ final class AwsS3tablesTableReplication extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3tablesTableReplicationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3tablesTableReplication>`.
+  RefTo<AwsS3tablesTableReplication> get ref => RefTo.of(this);
+
   /// Reference to `version_token` attribute.
   TfRef<String> get versionToken =>
       TfRef.attribute<String>(this, 'version_token');

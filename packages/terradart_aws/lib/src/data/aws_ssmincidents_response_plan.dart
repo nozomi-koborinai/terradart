@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ssmincidents/aws_ssmincidents_response_plan.dart';
 
 /// Sensitive field paths for `aws_ssmincidents_response_plan`.
 const Set<String> _awsSsmincidentsResponsePlanSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsSsmincidentsResponsePlan extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsSsmincidentsResponsePlanSensitive;
+
+  /// A reference to the `aws_ssmincidents_response_plan` this data source reads, for
+  /// arguments typed `RefTo<AwsSsmincidentsResponsePlan>`.
+  RefTo<AwsSsmincidentsResponsePlan> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

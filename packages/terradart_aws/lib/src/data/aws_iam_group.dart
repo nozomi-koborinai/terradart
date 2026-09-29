@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../iam/aws_iam_group.dart';
 
 /// Sensitive field paths for `aws_iam_group`.
 const Set<String> _awsIamGroupSensitive = <String>{};
@@ -19,6 +20,11 @@ final class DataAwsIamGroup extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsIamGroupSensitive;
+
+  /// A reference to the `aws_iam_group` this data source reads, for
+  /// arguments typed `RefTo<AwsIamGroup>`.
+  RefTo<AwsIamGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

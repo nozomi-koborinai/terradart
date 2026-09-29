@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_sso_connector.dart';
 
 /// Sensitive field paths for `cloudflare_sso_connector`.
 const Set<String> _cloudflareSsoConnectorSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataCloudflareSsoConnector extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareSsoConnectorSensitive;
+
+  /// A reference to the `cloudflare_sso_connector` this data source reads, for
+  /// arguments typed `RefTo<CloudflareSsoConnector>`.
+  RefTo<CloudflareSsoConnector> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

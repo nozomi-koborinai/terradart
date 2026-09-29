@@ -32,4 +32,8 @@ final class AwsDsqlClusterPeering extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsDsqlClusterPeeringSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDsqlClusterPeering>`.
+  RefTo<AwsDsqlClusterPeering> get ref => RefTo.of(this);
 }

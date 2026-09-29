@@ -53,6 +53,10 @@ final class GoogleApigeeKeystoresAliasesPkcs12 extends Resource {
   Set<String> get sensitiveFields =>
       _googleApigeeKeystoresAliasesPkcs12Sensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApigeeKeystoresAliasesPkcs12>`.
+  RefTo<GoogleApigeeKeystoresAliasesPkcs12> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

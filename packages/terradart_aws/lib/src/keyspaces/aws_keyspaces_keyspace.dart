@@ -71,6 +71,10 @@ final class AwsKeyspacesKeyspace extends Resource {
   @override
   Set<String> get sensitiveFields => _awsKeyspacesKeyspaceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsKeyspacesKeyspace>`.
+  RefTo<AwsKeyspacesKeyspace> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -36,6 +36,10 @@ final class AwsIotRoleAlias extends Resource {
   @override
   Set<String> get sensitiveFields => _awsIotRoleAliasSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIotRoleAlias>`.
+  RefTo<AwsIotRoleAlias> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -349,6 +349,7 @@ class WrapperEmitter {
       buf.writeln('  bool get supportsDeletionProtection => true;');
     }
 
+    final extraGetterNames = _extraGetterNames(override?.extraGetters);
     // Phase A3: derive output-attribute getters (nameRef, id, pure
     // computed-only) from the IR when the override opts in via
     // `deriveOutputGetters: true`. Hand-written `extraGetters` remain for
@@ -357,11 +358,19 @@ class WrapperEmitter {
     // emitted after this derived block. Any getter name already hand-written
     // in `extraGetters` is excluded from derivation so the hand-written one
     // wins (no `duplicate_definition`).
+    final derived = (override?.deriveOutputGetters ?? false)
+        ? emitDerivedOutputGetters(def, excludeNames: extraGetterNames)
+        : '';
+    // A resource with a `ref` output attribute keeps that getter; it has no
+    // `RefTo` getter and so cannot be a reference target.
+    if (!extraGetterNames.contains('ref') &&
+        !RegExp(r'\bget ref\b').hasMatch(derived)) {
+      buf
+        ..writeln()
+        ..write(emitResourceRefGetter(pascal));
+    }
+
     if (override?.deriveOutputGetters ?? false) {
-      final derived = emitDerivedOutputGetters(
-        def,
-        excludeNames: _extraGetterNames(override?.extraGetters),
-      );
       if (derived.isNotEmpty) {
         buf.writeln();
         buf.write(derived);

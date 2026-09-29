@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../networkmanager/aws_networkmanager_core_network.dart';
 
 /// Sensitive field paths for `aws_networkmanager_core_network`.
 const Set<String> _awsNetworkmanagerCoreNetworkSensitive = <String>{};
@@ -19,6 +20,11 @@ final class DataAwsNetworkmanagerCoreNetwork extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsNetworkmanagerCoreNetworkSensitive;
+
+  /// A reference to the `aws_networkmanager_core_network` this data source reads, for
+  /// arguments typed `RefTo<AwsNetworkmanagerCoreNetwork>`.
+  RefTo<AwsNetworkmanagerCoreNetwork> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');

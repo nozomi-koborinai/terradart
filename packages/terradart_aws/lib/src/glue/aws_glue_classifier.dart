@@ -292,6 +292,10 @@ final class AwsGlueClassifier extends Resource {
   @override
   Set<String> get sensitiveFields => _awsGlueClassifierSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGlueClassifier>`.
+  RefTo<AwsGlueClassifier> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

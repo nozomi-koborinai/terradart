@@ -36,6 +36,10 @@ final class AwsEc2TransitGatewayMulticastGroupMember extends Resource {
   Set<String> get sensitiveFields =>
       _awsEc2TransitGatewayMulticastGroupMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2TransitGatewayMulticastGroupMember>`.
+  RefTo<AwsEc2TransitGatewayMulticastGroupMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

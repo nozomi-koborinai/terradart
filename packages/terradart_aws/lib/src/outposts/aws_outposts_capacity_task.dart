@@ -89,6 +89,10 @@ final class AwsOutpostsCapacityTask extends Resource {
   @override
   Set<String> get sensitiveFields => _awsOutpostsCapacityTaskSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOutpostsCapacityTask>`.
+  RefTo<AwsOutpostsCapacityTask> get ref => RefTo.of(this);
+
   /// Reference to `capacity_task_id` attribute.
   TfRef<String> get capacityTaskId =>
       TfRef.attribute<String>(this, 'capacity_task_id');

@@ -44,6 +44,10 @@ final class GoogleFirebaseAiLogicPromptTemplate extends Resource {
   Set<String> get sensitiveFields =>
       _googleFirebaseAiLogicPromptTemplateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseAiLogicPromptTemplate>`.
+  RefTo<GoogleFirebaseAiLogicPromptTemplate> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

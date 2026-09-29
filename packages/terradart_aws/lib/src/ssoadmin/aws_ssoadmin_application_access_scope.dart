@@ -35,6 +35,10 @@ final class AwsSsoadminApplicationAccessScope extends Resource {
   Set<String> get sensitiveFields =>
       _awsSsoadminApplicationAccessScopeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSsoadminApplicationAccessScope>`.
+  RefTo<AwsSsoadminApplicationAccessScope> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

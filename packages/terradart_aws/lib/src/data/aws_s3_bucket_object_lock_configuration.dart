@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../s3/aws_s3_bucket_object_lock_configuration.dart';
 
 /// Sensitive field paths for `aws_s3_bucket_object_lock_configuration`.
 const Set<String> _awsS3BucketObjectLockConfigurationSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsS3BucketObjectLockConfiguration extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsS3BucketObjectLockConfigurationSensitive;
+
+  /// A reference to the `aws_s3_bucket_object_lock_configuration` this data source reads, for
+  /// arguments typed `RefTo<AwsS3BucketObjectLockConfiguration>`.
+  RefTo<AwsS3BucketObjectLockConfiguration> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `object_lock_enabled` attribute.
   TfRef<String> get objectLockEnabled =>

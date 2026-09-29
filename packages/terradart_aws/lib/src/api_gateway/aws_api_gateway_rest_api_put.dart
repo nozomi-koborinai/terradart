@@ -36,4 +36,8 @@ final class AwsApiGatewayRestApiPut extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsApiGatewayRestApiPutSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApiGatewayRestApiPut>`.
+  RefTo<AwsApiGatewayRestApiPut> get ref => RefTo.of(this);
 }

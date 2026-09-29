@@ -77,4 +77,8 @@ final class AwsPrometheusWorkspaceConfiguration extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsPrometheusWorkspaceConfigurationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPrometheusWorkspaceConfiguration>`.
+  RefTo<AwsPrometheusWorkspaceConfiguration> get ref => RefTo.of(this);
 }

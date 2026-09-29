@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../bigtable/google_bigtable_table_iam_policy.dart';
 
 /// Sensitive field paths for `google_bigtable_table_iam_policy`.
 const Set<String> _googleBigtableTableIamPolicySensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleBigtableTableIamPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleBigtableTableIamPolicySensitive;
+
+  /// A reference to the `google_bigtable_table_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleBigtableTableIamPolicy>`.
+  RefTo<GoogleBigtableTableIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

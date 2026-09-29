@@ -98,6 +98,10 @@ final class AwsKmsCustomKeyStore extends Resource {
   @override
   Set<String> get sensitiveFields => _awsKmsCustomKeyStoreSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsKmsCustomKeyStore>`.
+  RefTo<AwsKmsCustomKeyStore> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

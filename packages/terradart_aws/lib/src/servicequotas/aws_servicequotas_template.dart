@@ -94,6 +94,10 @@ final class AwsServicequotasTemplate extends Resource {
   @override
   Set<String> get sensitiveFields => _awsServicequotasTemplateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsServicequotasTemplate>`.
+  RefTo<AwsServicequotasTemplate> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

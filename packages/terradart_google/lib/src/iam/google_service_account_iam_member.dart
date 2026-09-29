@@ -65,6 +65,10 @@ final class GoogleServiceAccountIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleServiceAccountIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleServiceAccountIamMember>`.
+  RefTo<GoogleServiceAccountIamMember> get ref => RefTo.of(this);
+
   /// Reference to `etag` attribute (concurrency token written by the API).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

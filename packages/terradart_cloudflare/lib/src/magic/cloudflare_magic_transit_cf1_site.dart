@@ -102,6 +102,10 @@ final class CloudflareMagicTransitCf1Site extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareMagicTransitCf1SiteSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareMagicTransitCf1Site>`.
+  RefTo<CloudflareMagicTransitCf1Site> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

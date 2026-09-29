@@ -43,4 +43,8 @@ final class GoogleBiglakeHiveTableIamBinding extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleBiglakeHiveTableIamBindingSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBiglakeHiveTableIamBinding>`.
+  RefTo<GoogleBiglakeHiveTableIamBinding> get ref => RefTo.of(this);
 }

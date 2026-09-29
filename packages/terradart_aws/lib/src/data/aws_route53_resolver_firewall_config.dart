@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../route53/aws_route53_resolver_firewall_config.dart';
 
 /// Sensitive field paths for `aws_route53_resolver_firewall_config`.
 const Set<String> _awsRoute53ResolverFirewallConfigSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataAwsRoute53ResolverFirewallConfig extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsRoute53ResolverFirewallConfigSensitive;
+
+  /// A reference to the `aws_route53_resolver_firewall_config` this data source reads, for
+  /// arguments typed `RefTo<AwsRoute53ResolverFirewallConfig>`.
+  RefTo<AwsRoute53ResolverFirewallConfig> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

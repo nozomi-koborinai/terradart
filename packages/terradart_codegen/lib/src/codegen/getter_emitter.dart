@@ -86,3 +86,19 @@ String emitDerivedOutputGetters(
 
   return buf.toString();
 }
+
+/// The `ref` getter every resource wrapper [className] carries: the
+/// `RefTo<className>` its reference-typed arguments take.
+String emitResourceRefGetter(String className) =>
+    '  /// A reference to this resource, for arguments typed\n'
+    '  /// `RefTo<$className>`.\n'
+    '  RefTo<$className> get ref => RefTo.of(this);\n';
+
+/// The `ref` getter of a data source that reads a [resourceType] resource
+/// wrapped as [className]: arguments typed `RefTo<className>` take it like the
+/// resource's own.
+String emitDataSourceRefGetter(String resourceType, String className) =>
+    '  /// A reference to the `$resourceType` this data source reads, for\n'
+    '  /// arguments typed `RefTo<$className>`.\n'
+    '  RefTo<$className> get ref =>\n'
+    '      RefTo.read(this); // ignore: invalid_use_of_internal_member\n';

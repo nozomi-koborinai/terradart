@@ -227,6 +227,10 @@ final class GoogleBlockchainNodeEngineBlockchainNodes extends Resource {
   Set<String> get sensitiveFields =>
       _googleBlockchainNodeEngineBlockchainNodesSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBlockchainNodeEngineBlockchainNodes>`.
+  RefTo<GoogleBlockchainNodeEngineBlockchainNodes> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -40,4 +40,8 @@ final class AwsQuicksightIpRestriction extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsQuicksightIpRestrictionSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsQuicksightIpRestriction>`.
+  RefTo<AwsQuicksightIpRestriction> get ref => RefTo.of(this);
 }

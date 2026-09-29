@@ -43,6 +43,10 @@ final class GoogleBigqueryTableIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryTableIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryTableIamBinding>`.
+  RefTo<GoogleBigqueryTableIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

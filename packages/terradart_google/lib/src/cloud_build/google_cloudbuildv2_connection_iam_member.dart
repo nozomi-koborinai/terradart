@@ -38,6 +38,10 @@ final class GoogleCloudbuildv2ConnectionIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleCloudbuildv2ConnectionIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudbuildv2ConnectionIamMember>`.
+  RefTo<GoogleCloudbuildv2ConnectionIamMember> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

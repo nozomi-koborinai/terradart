@@ -68,6 +68,10 @@ final class CloudflareCustomPages extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareCustomPagesSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareCustomPages>`.
+  RefTo<CloudflareCustomPages> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -38,6 +38,10 @@ final class GoogleResourceManagerCapability extends Resource {
   @override
   Set<String> get sensitiveFields => _googleResourceManagerCapabilitySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleResourceManagerCapability>`.
+  RefTo<GoogleResourceManagerCapability> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

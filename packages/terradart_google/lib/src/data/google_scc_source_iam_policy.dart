@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../scc/google_scc_source_iam_policy.dart';
 
 /// Sensitive field paths for `google_scc_source_iam_policy`.
 const Set<String> _googleSccSourceIamPolicySensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataGoogleSccSourceIamPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleSccSourceIamPolicySensitive;
+
+  /// A reference to the `google_scc_source_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleSccSourceIamPolicy>`.
+  RefTo<GoogleSccSourceIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

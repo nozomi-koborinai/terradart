@@ -59,6 +59,10 @@ final class AwsDmsInstanceProfile extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDmsInstanceProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDmsInstanceProfile>`.
+  RefTo<AwsDmsInstanceProfile> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

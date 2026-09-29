@@ -46,6 +46,10 @@ final class GoogleGkeBackupRestorePlanIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleGkeBackupRestorePlanIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGkeBackupRestorePlanIamBinding>`.
+  RefTo<GoogleGkeBackupRestorePlanIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

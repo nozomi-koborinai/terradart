@@ -50,6 +50,10 @@ final class AwsVpcRouteServer extends Resource {
   @override
   Set<String> get sensitiveFields => _awsVpcRouteServerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcRouteServer>`.
+  RefTo<AwsVpcRouteServer> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

@@ -47,6 +47,10 @@ final class AppwriteProxyRule extends Resource {
   @override
   Set<String> get sensitiveFields => _appwriteProxyRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwriteProxyRule>`.
+  RefTo<AppwriteProxyRule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

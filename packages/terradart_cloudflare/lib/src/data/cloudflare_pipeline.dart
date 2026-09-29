@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../pipeline/cloudflare_pipeline.dart';
 
 /// Sensitive field paths for `cloudflare_pipeline`.
 const Set<String> _cloudflarePipelineSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataCloudflarePipeline extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflarePipelineSensitive;
+
+  /// A reference to the `cloudflare_pipeline` this data source reads, for
+  /// arguments typed `RefTo<CloudflarePipeline>`.
+  RefTo<CloudflarePipeline> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

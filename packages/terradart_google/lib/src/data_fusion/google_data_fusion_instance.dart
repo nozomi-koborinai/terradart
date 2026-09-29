@@ -112,6 +112,10 @@ final class GoogleDataFusionInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataFusionInstanceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataFusionInstance>`.
+  RefTo<GoogleDataFusionInstance> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

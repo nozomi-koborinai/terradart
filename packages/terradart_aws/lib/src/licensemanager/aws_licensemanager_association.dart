@@ -31,6 +31,10 @@ final class AwsLicensemanagerAssociation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLicensemanagerAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLicensemanagerAssociation>`.
+  RefTo<AwsLicensemanagerAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

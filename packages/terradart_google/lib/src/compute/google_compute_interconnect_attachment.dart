@@ -147,6 +147,10 @@ final class GoogleComputeInterconnectAttachment extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeInterconnectAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeInterconnectAttachment>`.
+  RefTo<GoogleComputeInterconnectAttachment> get ref => RefTo.of(this);
+
   /// Reference to `attachment_group` attribute.
   TfRef<String> get attachmentGroup =>
       TfRef.attribute<String>(this, 'attachment_group');

@@ -130,6 +130,10 @@ final class AwsTransferWebApp extends Resource {
   @override
   Set<String> get sensitiveFields => _awsTransferWebAppSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsTransferWebApp>`.
+  RefTo<AwsTransferWebApp> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

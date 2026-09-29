@@ -33,6 +33,10 @@ final class AwsAppconfigExtensionAssociation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppconfigExtensionAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppconfigExtensionAssociation>`.
+  RefTo<AwsAppconfigExtensionAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

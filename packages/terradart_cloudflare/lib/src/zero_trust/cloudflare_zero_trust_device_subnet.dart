@@ -39,6 +39,10 @@ final class CloudflareZeroTrustDeviceSubnet extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareZeroTrustDeviceSubnetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustDeviceSubnet>`.
+  RefTo<CloudflareZeroTrustDeviceSubnet> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

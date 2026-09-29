@@ -208,6 +208,10 @@ final class GoogleDataplexTask extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataplexTaskSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexTask>`.
+  RefTo<GoogleDataplexTask> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

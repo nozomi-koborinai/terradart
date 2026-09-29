@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../lambda/aws_lambda_invocation.dart';
 
 /// Sensitive field paths for `aws_lambda_invocation`.
 const Set<String> _awsLambdaInvocationSensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataAwsLambdaInvocation extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsLambdaInvocationSensitive;
+
+  /// A reference to the `aws_lambda_invocation` this data source reads, for
+  /// arguments typed `RefTo<AwsLambdaInvocation>`.
+  RefTo<AwsLambdaInvocation> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

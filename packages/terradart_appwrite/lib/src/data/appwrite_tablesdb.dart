@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../tablesdb/appwrite_tablesdb.dart';
 
 /// Sensitive field paths for `appwrite_tablesdb`.
 const Set<String> _appwriteTablesdbSensitive = <String>{};
@@ -25,6 +26,11 @@ final class DataAppwriteTablesdb extends Data {
 
   @override
   Set<String> get sensitiveFields => _appwriteTablesdbSensitive;
+
+  /// A reference to the `appwrite_tablesdb` this data source reads, for
+  /// arguments typed `RefTo<AppwriteTablesdb>`.
+  RefTo<AppwriteTablesdb> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

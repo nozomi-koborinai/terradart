@@ -294,4 +294,8 @@ final class GoogleBiglakeHiveTable extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleBiglakeHiveTableSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBiglakeHiveTable>`.
+  RefTo<GoogleBiglakeHiveTable> get ref => RefTo.of(this);
 }

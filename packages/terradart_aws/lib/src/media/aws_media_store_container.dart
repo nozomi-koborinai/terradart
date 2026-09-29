@@ -31,6 +31,10 @@ final class AwsMediaStoreContainer extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMediaStoreContainerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMediaStoreContainer>`.
+  RefTo<AwsMediaStoreContainer> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

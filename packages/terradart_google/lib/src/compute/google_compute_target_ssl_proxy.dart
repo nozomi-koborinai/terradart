@@ -53,6 +53,10 @@ final class GoogleComputeTargetSslProxy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeTargetSslProxySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeTargetSslProxy>`.
+  RefTo<GoogleComputeTargetSslProxy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

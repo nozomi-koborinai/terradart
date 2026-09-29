@@ -59,6 +59,10 @@ final class AwsCloudwatchLogAnomalyDetector extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudwatchLogAnomalyDetectorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudwatchLogAnomalyDetector>`.
+  RefTo<AwsCloudwatchLogAnomalyDetector> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

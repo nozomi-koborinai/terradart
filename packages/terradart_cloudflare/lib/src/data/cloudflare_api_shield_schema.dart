@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../api_shield/cloudflare_api_shield_schema.dart';
 
 /// Sensitive field paths for `cloudflare_api_shield_schema`.
 const Set<String> _cloudflareApiShieldSchemaSensitive = <String>{};
@@ -33,6 +34,11 @@ final class DataCloudflareApiShieldSchema extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareApiShieldSchemaSensitive;
+
+  /// A reference to the `cloudflare_api_shield_schema` this data source reads, for
+  /// arguments typed `RefTo<CloudflareApiShieldSchema>`.
+  RefTo<CloudflareApiShieldSchema> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

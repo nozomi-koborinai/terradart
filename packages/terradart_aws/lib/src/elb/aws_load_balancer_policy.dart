@@ -55,6 +55,10 @@ final class AwsLoadBalancerPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLoadBalancerPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLoadBalancerPolicy>`.
+  RefTo<AwsLoadBalancerPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

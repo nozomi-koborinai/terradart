@@ -464,6 +464,10 @@ final class CloudflareZeroTrustGatewaySettings extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustGatewaySettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustGatewaySettings>`.
+  RefTo<CloudflareZeroTrustGatewaySettings> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

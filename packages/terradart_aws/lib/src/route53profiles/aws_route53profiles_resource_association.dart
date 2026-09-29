@@ -37,6 +37,10 @@ final class AwsRoute53profilesResourceAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsRoute53profilesResourceAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53profilesResourceAssociation>`.
+  RefTo<AwsRoute53profilesResourceAssociation> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

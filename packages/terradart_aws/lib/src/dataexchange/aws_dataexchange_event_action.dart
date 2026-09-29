@@ -157,6 +157,10 @@ final class AwsDataexchangeEventAction extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDataexchangeEventActionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDataexchangeEventAction>`.
+  RefTo<AwsDataexchangeEventAction> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

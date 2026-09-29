@@ -66,4 +66,8 @@ final class AwsBedrockagentcoreTokenVaultCmk extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsBedrockagentcoreTokenVaultCmkSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentcoreTokenVaultCmk>`.
+  RefTo<AwsBedrockagentcoreTokenVaultCmk> get ref => RefTo.of(this);
 }

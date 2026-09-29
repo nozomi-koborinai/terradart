@@ -96,6 +96,10 @@ final class AwsKmsCiphertext extends Resource {
   @override
   Set<String> get sensitiveFields => _awsKmsCiphertextSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsKmsCiphertext>`.
+  RefTo<AwsKmsCiphertext> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

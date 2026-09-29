@@ -74,6 +74,10 @@ final class GoogleIamWorkforcePoolProviderKey extends Resource {
   Set<String> get sensitiveFields =>
       _googleIamWorkforcePoolProviderKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIamWorkforcePoolProviderKey>`.
+  RefTo<GoogleIamWorkforcePoolProviderKey> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

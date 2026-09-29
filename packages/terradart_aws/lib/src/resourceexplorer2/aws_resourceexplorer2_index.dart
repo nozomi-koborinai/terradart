@@ -41,6 +41,10 @@ final class AwsResourceexplorer2Index extends Resource {
   @override
   Set<String> get sensitiveFields => _awsResourceexplorer2IndexSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsResourceexplorer2Index>`.
+  RefTo<AwsResourceexplorer2Index> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

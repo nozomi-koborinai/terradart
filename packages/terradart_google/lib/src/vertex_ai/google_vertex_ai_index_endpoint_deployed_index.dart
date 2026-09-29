@@ -187,6 +187,10 @@ final class GoogleVertexAiIndexEndpointDeployedIndex extends Resource {
   Set<String> get sensitiveFields =>
       _googleVertexAiIndexEndpointDeployedIndexSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleVertexAiIndexEndpointDeployedIndex>`.
+  RefTo<GoogleVertexAiIndexEndpointDeployedIndex> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

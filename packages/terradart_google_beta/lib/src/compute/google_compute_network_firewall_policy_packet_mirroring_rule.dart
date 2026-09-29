@@ -136,6 +136,11 @@ final class GoogleComputeNetworkFirewallPolicyPacketMirroringRule
   Set<String> get sensitiveFields =>
       _googleComputeNetworkFirewallPolicyPacketMirroringRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeNetworkFirewallPolicyPacketMirroringRule>`.
+  RefTo<GoogleComputeNetworkFirewallPolicyPacketMirroringRule> get ref =>
+      RefTo.of(this);
+
   /// Reference to `kind` attribute.
   TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
 

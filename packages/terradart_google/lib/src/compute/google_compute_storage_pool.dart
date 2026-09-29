@@ -114,6 +114,10 @@ final class GoogleComputeStoragePool extends Resource {
   @override
   bool get supportsDeletionProtection => true;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeStoragePool>`.
+  RefTo<GoogleComputeStoragePool> get ref => RefTo.of(this);
+
   /// Reference to `kind` attribute.
   TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
 

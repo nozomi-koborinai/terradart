@@ -106,4 +106,8 @@ final class CloudflareR2BucketLock extends Resource {
 
   @override
   Set<String> get sensitiveFields => _cloudflareR2BucketLockSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareR2BucketLock>`.
+  RefTo<CloudflareR2BucketLock> get ref => RefTo.of(this);
 }

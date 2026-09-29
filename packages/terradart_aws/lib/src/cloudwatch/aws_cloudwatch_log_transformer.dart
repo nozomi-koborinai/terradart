@@ -797,4 +797,8 @@ final class AwsCloudwatchLogTransformer extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsCloudwatchLogTransformerSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudwatchLogTransformer>`.
+  RefTo<AwsCloudwatchLogTransformer> get ref => RefTo.of(this);
 }

@@ -111,6 +111,11 @@ final class GoogleNetworkConnectivityServiceConnectionPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleNetworkConnectivityServiceConnectionPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkConnectivityServiceConnectionPolicy>`.
+  RefTo<GoogleNetworkConnectivityServiceConnectionPolicy> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

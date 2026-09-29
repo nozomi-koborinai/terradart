@@ -39,6 +39,10 @@ final class GoogleComputeInstantSnapshotIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeInstantSnapshotIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeInstantSnapshotIamPolicy>`.
+  RefTo<GoogleComputeInstantSnapshotIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

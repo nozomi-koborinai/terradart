@@ -49,6 +49,10 @@ final class GooglePubsubLiteReservation extends Resource {
   @override
   Set<String> get sensitiveFields => _googlePubsubLiteReservationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GooglePubsubLiteReservation>`.
+  RefTo<GooglePubsubLiteReservation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -185,6 +185,10 @@ final class AwsCognitoManagedLoginBranding extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCognitoManagedLoginBrandingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCognitoManagedLoginBranding>`.
+  RefTo<AwsCognitoManagedLoginBranding> get ref => RefTo.of(this);
+
   /// Reference to `managed_login_branding_id` attribute.
   TfRef<String> get managedLoginBrandingId =>
       TfRef.attribute<String>(this, 'managed_login_branding_id');

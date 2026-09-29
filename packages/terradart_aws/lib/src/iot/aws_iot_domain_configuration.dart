@@ -136,6 +136,10 @@ final class AwsIotDomainConfiguration extends Resource {
   @override
   Set<String> get sensitiveFields => _awsIotDomainConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIotDomainConfiguration>`.
+  RefTo<AwsIotDomainConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

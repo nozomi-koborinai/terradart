@@ -2672,6 +2672,10 @@ final class CloudflareRuleset extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareRulesetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareRuleset>`.
+  RefTo<CloudflareRuleset> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

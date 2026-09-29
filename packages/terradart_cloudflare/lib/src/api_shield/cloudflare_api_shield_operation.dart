@@ -72,6 +72,10 @@ final class CloudflareApiShieldOperation extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareApiShieldOperationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareApiShieldOperation>`.
+  RefTo<CloudflareApiShieldOperation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

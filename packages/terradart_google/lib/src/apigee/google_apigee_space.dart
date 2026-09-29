@@ -43,6 +43,10 @@ final class GoogleApigeeSpace extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApigeeSpaceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApigeeSpace>`.
+  RefTo<GoogleApigeeSpace> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

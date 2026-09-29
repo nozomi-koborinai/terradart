@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ssl/cloudflare_origin_tls_compliance_modes.dart';
 
 /// Sensitive field paths for `cloudflare_origin_tls_compliance_modes`.
 const Set<String> _cloudflareOriginTlsComplianceModesSensitive = <String>{};
@@ -20,6 +21,11 @@ final class DataCloudflareOriginTlsComplianceModes extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareOriginTlsComplianceModesSensitive;
+
+  /// A reference to the `cloudflare_origin_tls_compliance_modes` this data source reads, for
+  /// arguments typed `RefTo<CloudflareOriginTlsComplianceModes>`.
+  RefTo<CloudflareOriginTlsComplianceModes> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

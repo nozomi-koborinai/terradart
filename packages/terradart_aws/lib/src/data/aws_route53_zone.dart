@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../route53/aws_route53_zone.dart';
 
 /// Sensitive field paths for `aws_route53_zone`.
 const Set<String> _awsRoute53ZoneSensitive = <String>{};
@@ -35,6 +36,11 @@ final class DataAwsRoute53Zone extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsRoute53ZoneSensitive;
+
+  /// A reference to the `aws_route53_zone` this data source reads, for
+  /// arguments typed `RefTo<AwsRoute53Zone>`.
+  RefTo<AwsRoute53Zone> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

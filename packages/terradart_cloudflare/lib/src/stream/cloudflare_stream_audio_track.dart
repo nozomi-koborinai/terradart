@@ -39,6 +39,10 @@ final class CloudflareStreamAudioTrack extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareStreamAudioTrackSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareStreamAudioTrack>`.
+  RefTo<CloudflareStreamAudioTrack> get ref => RefTo.of(this);
+
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 

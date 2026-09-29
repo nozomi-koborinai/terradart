@@ -31,6 +31,10 @@ final class CloudflareDnsZoneTransfersAcl extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareDnsZoneTransfersAclSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareDnsZoneTransfersAcl>`.
+  RefTo<CloudflareDnsZoneTransfersAcl> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -217,6 +217,11 @@ final class GoogleAccessContextManagerServicePerimeterIngressPolicy
   Set<String> get sensitiveFields =>
       _googleAccessContextManagerServicePerimeterIngressPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleAccessContextManagerServicePerimeterIngressPolicy>`.
+  RefTo<GoogleAccessContextManagerServicePerimeterIngressPolicy> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

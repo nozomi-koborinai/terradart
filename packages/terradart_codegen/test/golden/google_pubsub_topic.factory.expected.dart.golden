@@ -133,6 +133,10 @@ final class GooglePubsubTopic extends Resource {
   @override
   Set<String> get sensitiveFields => _googlePubsubTopicSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GooglePubsubTopic>`.
+  RefTo<GooglePubsubTopic> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

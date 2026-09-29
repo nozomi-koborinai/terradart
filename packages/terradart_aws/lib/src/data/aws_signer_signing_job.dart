@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../signer/aws_signer_signing_job.dart';
 
 /// Sensitive field paths for `aws_signer_signing_job`.
 const Set<String> _awsSignerSigningJobSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsSignerSigningJob extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsSignerSigningJobSensitive;
+
+  /// A reference to the `aws_signer_signing_job` this data source reads, for
+  /// arguments typed `RefTo<AwsSignerSigningJob>`.
+  RefTo<AwsSignerSigningJob> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

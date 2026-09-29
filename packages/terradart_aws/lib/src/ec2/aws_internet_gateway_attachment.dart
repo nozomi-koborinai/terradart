@@ -31,6 +31,10 @@ final class AwsInternetGatewayAttachment extends Resource {
   @override
   Set<String> get sensitiveFields => _awsInternetGatewayAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsInternetGatewayAttachment>`.
+  RefTo<AwsInternetGatewayAttachment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

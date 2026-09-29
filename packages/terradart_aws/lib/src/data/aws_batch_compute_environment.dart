@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../batch/aws_batch_compute_environment.dart';
 
 /// Sensitive field paths for `aws_batch_compute_environment`.
 const Set<String> _awsBatchComputeEnvironmentSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsBatchComputeEnvironment extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsBatchComputeEnvironmentSensitive;
+
+  /// A reference to the `aws_batch_compute_environment` this data source reads, for
+  /// arguments typed `RefTo<AwsBatchComputeEnvironment>`.
+  RefTo<AwsBatchComputeEnvironment> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

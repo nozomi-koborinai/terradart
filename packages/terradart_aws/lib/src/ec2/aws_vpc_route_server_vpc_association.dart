@@ -30,4 +30,8 @@ final class AwsVpcRouteServerVpcAssociation extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsVpcRouteServerVpcAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcRouteServerVpcAssociation>`.
+  RefTo<AwsVpcRouteServerVpcAssociation> get ref => RefTo.of(this);
 }

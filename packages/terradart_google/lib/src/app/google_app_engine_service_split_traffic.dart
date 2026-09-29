@@ -69,6 +69,10 @@ final class GoogleAppEngineServiceSplitTraffic extends Resource {
   Set<String> get sensitiveFields =>
       _googleAppEngineServiceSplitTrafficSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleAppEngineServiceSplitTraffic>`.
+  RefTo<GoogleAppEngineServiceSplitTraffic> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

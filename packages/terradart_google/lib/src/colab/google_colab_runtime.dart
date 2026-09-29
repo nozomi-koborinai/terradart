@@ -93,6 +93,10 @@ final class GoogleColabRuntime extends Resource {
   @override
   Set<String> get sensitiveFields => _googleColabRuntimeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleColabRuntime>`.
+  RefTo<GoogleColabRuntime> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

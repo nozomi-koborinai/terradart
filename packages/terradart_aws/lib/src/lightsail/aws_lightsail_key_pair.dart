@@ -93,6 +93,10 @@ final class AwsLightsailKeyPair extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLightsailKeyPairSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLightsailKeyPair>`.
+  RefTo<AwsLightsailKeyPair> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

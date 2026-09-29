@@ -116,6 +116,10 @@ final class GooglePrivatecaCertificateTemplate extends Resource {
   Set<String> get sensitiveFields =>
       _googlePrivatecaCertificateTemplateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GooglePrivatecaCertificateTemplate>`.
+  RefTo<GooglePrivatecaCertificateTemplate> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

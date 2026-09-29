@@ -51,6 +51,10 @@ final class GoogleComputeRouterInterface extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeRouterInterfaceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRouterInterface>`.
+  RefTo<GoogleComputeRouterInterface> get ref => RefTo.of(this);
+
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

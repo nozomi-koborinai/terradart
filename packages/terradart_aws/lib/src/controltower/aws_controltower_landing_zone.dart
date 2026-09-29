@@ -47,6 +47,10 @@ final class AwsControltowerLandingZone extends Resource {
   @override
   Set<String> get sensitiveFields => _awsControltowerLandingZoneSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsControltowerLandingZone>`.
+  RefTo<AwsControltowerLandingZone> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

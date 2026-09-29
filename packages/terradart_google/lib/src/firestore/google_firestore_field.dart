@@ -191,6 +191,10 @@ final class GoogleFirestoreField extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirestoreFieldSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirestoreField>`.
+  RefTo<GoogleFirestoreField> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

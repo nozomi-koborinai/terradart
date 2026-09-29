@@ -1377,6 +1377,10 @@ final class GoogleOsConfigV2PolicyOrchestratorForFolder extends Resource {
   Set<String> get sensitiveFields =>
       _googleOsConfigV2PolicyOrchestratorForFolderSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleOsConfigV2PolicyOrchestratorForFolder>`.
+  RefTo<GoogleOsConfigV2PolicyOrchestratorForFolder> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

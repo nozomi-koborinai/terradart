@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../healthcare/google_healthcare_dicom_store_iam_policy.dart';
 
 /// Sensitive field paths for `google_healthcare_dicom_store_iam_policy`.
 const Set<String> _googleHealthcareDicomStoreIamPolicySensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataGoogleHealthcareDicomStoreIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleHealthcareDicomStoreIamPolicySensitive;
+
+  /// A reference to the `google_healthcare_dicom_store_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleHealthcareDicomStoreIamPolicy>`.
+  RefTo<GoogleHealthcareDicomStoreIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

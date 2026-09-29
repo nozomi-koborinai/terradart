@@ -38,6 +38,10 @@ final class GoogleGkeBackupRestorePlanIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleGkeBackupRestorePlanIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGkeBackupRestorePlanIamMember>`.
+  RefTo<GoogleGkeBackupRestorePlanIamMember> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
