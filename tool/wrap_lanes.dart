@@ -78,6 +78,7 @@ class WrapLane {
     this.mmSync,
     this.hintsRepo,
     this.references,
+    this.referenceLane,
   });
 
   final String name;
@@ -111,6 +112,28 @@ class WrapLane {
 
   /// `references:`, or null when the lane has no reference targets.
   final ReferenceMode? references;
+
+  /// `referencesFrom:` resolved: the lane whose resources the ledger's
+  /// `inherit:` rules target (google for google-beta), or null.
+  final WrapLane? referenceLane;
+
+  WrapLane _withReferenceLane(WrapLane lane) => WrapLane(
+    name: name,
+    source: source,
+    schemaDir: schemaDir,
+    outputPackage: outputPackage,
+    overridesRoot: overridesRoot,
+    barrelsManifest: barrelsManifest,
+    resourceProvider: resourceProvider,
+    migrateManifest: migrateManifest,
+    providerEnums: providerEnums,
+    mmHints: mmHints,
+    mmGroups: mmGroups,
+    mmSync: mmSync,
+    hintsRepo: hintsRepo,
+    references: references,
+    referenceLane: lane,
+  );
 
   /// Paths that must exist before any gate can say something meaningful.
   /// The migration manifest is absent until the lane's first wrap, so it is
@@ -159,6 +182,11 @@ enum WrapGate {
           '--reference-targets',
           rel(referenceTargetsPath),
           if (mode == ReferenceMode.typed) '--typed-references',
+          if (lane.referenceLane case final other?) ...[
+            '--reference-lane',
+            '${rel(other.schemaDir)}='
+                '${rel(p.join(other.outputPackage, 'lib', 'src'))}',
+          ],
         ],
         '--migrate-manifest',
         rel(lane.migrateManifest),
@@ -186,9 +214,21 @@ List<WrapLane> parseWrapLanes(String yamlText) {
   if (providers is! YamlMap || providers.isEmpty) {
     throw const FormatException('$providersPath has no providers: entries');
   }
-  return [
+  final lanes = {
     for (final MapEntry(:key, :value) in providers.entries)
-      _parseLane('$key', value),
+      '$key': _parseLane('$key', value),
+  };
+  return [
+    for (final MapEntry(key: name, value: lane) in lanes.entries)
+      switch ((providers[name] as YamlMap)['referencesFrom']) {
+        null => lane,
+        final String from when lanes[from] != null && lane.references != null =>
+          lane._withReferenceLane(lanes[from]!),
+        final from => throw FormatException(
+          'lane $name: referencesFrom must name another lane and needs '
+          'references: ($from)',
+        ),
+      },
   ];
 }
 

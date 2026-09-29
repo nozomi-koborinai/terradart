@@ -203,14 +203,19 @@ class DataSourceWrapperEmitter {
         !RegExp(
           r'\bget ref\b',
         ).hasMatch('$derivedGetters${override.extraGetters ?? ''}');
-    final refImports = {
+    final refImports = referenceImports([
       for (final ref in [...topLevelRefs.values, ...nestedRefs.values])
-        if (!emitsRef || ref.target != def.terraformType) ref.import,
-    }.toList()..sort();
+        if (!emitsRef || ref.target != def.terraformType) ref,
+    ]);
+    refImports
+        .where((i) => i.startsWith("import 'package:"))
+        .forEach(buf.writeln);
     if (emitsRef) {
       buf.writeln("import '../$twinDir/${def.terraformType}.dart';");
     }
-    refImports.forEach(buf.writeln);
+    refImports
+        .where((i) => !i.startsWith("import 'package:"))
+        .forEach(buf.writeln);
     buf.writeln();
 
     // File-leading comment block: a verbatim narrative comment that lives

@@ -320,6 +320,58 @@ void main() {
       ]);
     });
 
+    test("inherited rules target another lane's package", () {
+      final external = (
+        resourceSchemas: _blocks('resource_schemas'),
+        dataSourceSchemas: _blocks('data_source_schemas'),
+        dirs: const {'google_x_network': 'x'},
+        package: 'terradart_x',
+      );
+      ReferenceResolution beta({
+        Map<String, String> attributes = const {},
+        Set<String> exclude = const {},
+      }) => resolveReferences(
+        rules: [
+          ReferenceRule(
+            target: 'google_x_network',
+            attribute: 'self_link',
+            slots: RegExp(r'(^|\.)network$'),
+            attributes: attributes,
+            exclude: exclude,
+            inherited: true,
+          ),
+          ReferenceRule(
+            target: 'google_x_network',
+            attribute: 'self_link',
+            slots: RegExp(r'^nothing$'),
+            inherited: true,
+          ),
+        ],
+        resourceSchemas: {'google_x_vm': _blocks('resource_schemas')['google_x_vm']!},
+        curated: const ['google_x_vm'],
+        targetDirs: const {'google_x_vm': 'compute'},
+        external: external,
+      );
+
+      final r = beta(attributes: {'google_x_vm.network': 'name'});
+      expect(r.errors, isEmpty);
+      final network = r.byResource['google_x_vm']!['network']!;
+      expect(network.package, 'terradart_x');
+      expect(network.attribute, 'name');
+      expect(r.byResource['google_x_vm']!['nic.network']!.attribute, 'self_link');
+      expect(referenceImports([network, network]), [
+        "import 'package:terradart_x/terradart_x.dart' show GoogleXNetwork;",
+      ]);
+      expect(beta(exclude: {'google_x_vm.gone'}).errors, [
+        'inherit: exclude entry "google_x_vm.gone" is not an input an '
+            'inherited rule matches',
+      ]);
+      expect(
+        beta(attributes: {'google_x_vm.network': 'id'}).errors.single,
+        contains('data source DataGoogleXNetwork does not export'),
+      );
+    });
+
     test('a partial run does not report entries it cannot see', () {
       expect(
         _resolve([
@@ -363,6 +415,33 @@ cloudflare/cloudflare:
       expect(rules.single.attributes, {'google_x_vm.network': 'self_link'});
       expect(rules.single.exclude, {'google_x_vm.nic.network'});
       expect(loadReferenceRules(path, 'hashicorp/aws'), isEmpty);
+    });
+
+    test('inherit takes another section with its own exceptions', () {
+      final path = write('''
+hashicorp/google:
+  - target: google_x_network
+    attribute: self_link
+    slots: '^network\$'
+    attributes:
+      google_x_vm.network: name
+hashicorp/google-beta:
+  - inherit: hashicorp/google
+    exclude:
+      - google_beta_vm.network
+''');
+      final rule = loadReferenceRules(path, 'hashicorp/google-beta').single;
+      expect(rule.target, 'google_x_network');
+      expect(rule.inherited, isTrue);
+      expect(rule.attributes, isEmpty);
+      expect(rule.exclude, {'google_beta_vm.network'});
+      expect(
+        () => loadReferenceRules(
+          write('hashicorp/google-beta:\n  - inherit: hashicorp/nope\n'),
+          'hashicorp/google-beta',
+        ),
+        throwsA(isA<FormatException>()),
+      );
     });
 
     test('rejects an unknown key', () {
