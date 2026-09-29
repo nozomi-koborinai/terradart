@@ -181,7 +181,7 @@ List<String>? descriptionEnumValues(List<String> path, String? description) =>
 /// ([NestedBlockSpec.sealedNames]).
 ///
 /// [references] types a string input as a reference, unless it is an enum;
-/// a sealed variant holding it takes the same reference.
+/// a sealed variant holding it takes the reference too.
 ///
 /// [typeOverrides] maps a leaf input's dotted path to the Dart type its
 /// field takes instead (a hand-written enum in the override's prelude) —
@@ -553,7 +553,13 @@ List<NestedAttrSpec> _collectAttrs(
 
     final override = typeOverrides[[...path, tfName].join('.')];
     final typeInfo = override != null
-        ? (dartType: override, repeated: false, enumValues: null)
+        ? (
+            dartType: override,
+            repeated:
+                body['type'] is List &&
+                const {'list', 'set'}.contains((body['type'] as List).first),
+            enumValues: null,
+          )
         : _attrTypeInfo(
             rawType: body['type'],
             enumValues: enumValues([

@@ -68,7 +68,7 @@ sealed class StoragegatewayGatewayActivation {
   /// Sets `activation_key`.
   const factory StoragegatewayGatewayActivation.activationKey(
     TfArg<String> activationKey,
-  ) = StoragegatewayGatewayActivationActivationKey;
+  ) = StoragegatewayGatewayActivationKey;
 
   /// Sets `gateway_ip_address`.
   const factory StoragegatewayGatewayActivation.gatewayIpAddress(
@@ -86,9 +86,9 @@ sealed class StoragegatewayGatewayActivation {
 }
 
 /// The [StoragegatewayGatewayActivation.activationKey] choice: sets `activation_key`.
-final class StoragegatewayGatewayActivationActivationKey
+final class StoragegatewayGatewayActivationKey
     extends StoragegatewayGatewayActivation {
-  const StoragegatewayGatewayActivationActivationKey(this.activationKey);
+  const StoragegatewayGatewayActivationKey(this.activationKey);
 
   final TfArg<String> activationKey;
 

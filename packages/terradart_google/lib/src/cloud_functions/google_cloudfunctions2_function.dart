@@ -362,33 +362,22 @@ final class Cloudfunctions2FunctionBuildConfigOnDeployUpdatePolicy {
   Map<String, Object?> encode() => {};
 }
 
-/// Typed helper for the `build_config.source` block of
-/// `google_cloudfunctions2_function` (derived from provider schema).
-@immutable
-final class Cloudfunctions2FunctionBuildConfigSource {
-  const Cloudfunctions2FunctionBuildConfigSource({required this.origin});
-
-  final Cloudfunctions2FunctionBuildConfigSourceOrigin origin;
-
-  Map<String, Object?> encode() => {...origin.encode()};
-}
-
 /// Exactly one of `storage_source`, `repo_source` on the `build_config.source` block of `google_cloudfunctions2_function`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.storageSource(...)`.
-sealed class Cloudfunctions2FunctionBuildConfigSourceOrigin {
-  const Cloudfunctions2FunctionBuildConfigSourceOrigin();
+sealed class Cloudfunctions2FunctionBuildConfigSource {
+  const Cloudfunctions2FunctionBuildConfigSource();
 
   /// Sets `storage_source`.
-  const factory Cloudfunctions2FunctionBuildConfigSourceOrigin.storageSource(
+  const factory Cloudfunctions2FunctionBuildConfigSource.storageSource(
     Cloudfunctions2FunctionBuildConfigSourceStorageSource storageSource,
-  ) = Cloudfunctions2FunctionBuildConfigSourceOriginStorageSource;
+  ) = Cloudfunctions2FunctionBuildConfigSourceStorageSourceChoice;
 
   /// Sets `repo_source`.
-  const factory Cloudfunctions2FunctionBuildConfigSourceOrigin.repoSource(
+  const factory Cloudfunctions2FunctionBuildConfigSource.repoSource(
     Cloudfunctions2FunctionBuildConfigSourceRepoSource repoSource,
-  ) = Cloudfunctions2FunctionBuildConfigSourceOriginRepoSource;
+  ) = Cloudfunctions2FunctionBuildConfigSourceRepoSourceChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -396,10 +385,10 @@ sealed class Cloudfunctions2FunctionBuildConfigSourceOrigin {
   Map<String, Object?> encode();
 }
 
-/// The [Cloudfunctions2FunctionBuildConfigSourceOrigin.storageSource] choice: sets `storage_source`.
-final class Cloudfunctions2FunctionBuildConfigSourceOriginStorageSource
-    extends Cloudfunctions2FunctionBuildConfigSourceOrigin {
-  const Cloudfunctions2FunctionBuildConfigSourceOriginStorageSource(
+/// The [Cloudfunctions2FunctionBuildConfigSource.storageSource] choice: sets `storage_source`.
+final class Cloudfunctions2FunctionBuildConfigSourceStorageSourceChoice
+    extends Cloudfunctions2FunctionBuildConfigSource {
+  const Cloudfunctions2FunctionBuildConfigSourceStorageSourceChoice(
     this.storageSource,
   );
 
@@ -412,10 +401,10 @@ final class Cloudfunctions2FunctionBuildConfigSourceOriginStorageSource
   Map<String, Object?> encode() => {'storage_source': storageSource.encode()};
 }
 
-/// The [Cloudfunctions2FunctionBuildConfigSourceOrigin.repoSource] choice: sets `repo_source`.
-final class Cloudfunctions2FunctionBuildConfigSourceOriginRepoSource
-    extends Cloudfunctions2FunctionBuildConfigSourceOrigin {
-  const Cloudfunctions2FunctionBuildConfigSourceOriginRepoSource(
+/// The [Cloudfunctions2FunctionBuildConfigSource.repoSource] choice: sets `repo_source`.
+final class Cloudfunctions2FunctionBuildConfigSourceRepoSourceChoice
+    extends Cloudfunctions2FunctionBuildConfigSource {
+  const Cloudfunctions2FunctionBuildConfigSourceRepoSourceChoice(
     this.repoSource,
   );
 
@@ -876,12 +865,10 @@ final class Cloudfunctions2FunctionServiceConfigSecretVolumesVersions {
 ///   buildConfig: Cloudfunctions2FunctionBuildConfig(
 ///     runtime: .literal('python311'),
 ///     entryPoint: .literal('hello'),
-///     source: Cloudfunctions2FunctionBuildConfigSource(
-///       origin: .storageSource(
-///         Cloudfunctions2FunctionBuildConfigSourceStorageSource(
-///           bucket: .of(bucket),
-///           object: .literal('hello-http.zip'),
-///         ),
+///     source: .storageSource(
+///       Cloudfunctions2FunctionBuildConfigSourceStorageSource(
+///         bucket: .of(bucket),
+///         object: .literal('hello-http.zip'),
 ///       ),
 ///     ),
 ///     updatePolicy: .automaticUpdatePolicy(
@@ -905,12 +892,10 @@ final class Cloudfunctions2FunctionServiceConfigSecretVolumesVersions {
 ///   buildConfig: Cloudfunctions2FunctionBuildConfig(
 ///     runtime: .literal('python311'),
 ///     entryPoint: .literal('handle'),
-///     source: Cloudfunctions2FunctionBuildConfigSource(
-///       origin: .storageSource(
-///         Cloudfunctions2FunctionBuildConfigSourceStorageSource(
-///           bucket: .of(bucket),
-///           object: .literal('order-handler.zip'),
-///         ),
+///     source: .storageSource(
+///       Cloudfunctions2FunctionBuildConfigSourceStorageSource(
+///         bucket: .of(bucket),
+///         object: .literal('order-handler.zip'),
 ///       ),
 ///     ),
 ///     updatePolicy: .automaticUpdatePolicy(

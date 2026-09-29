@@ -91,11 +91,11 @@ sealed class CloudwatchEventRuleName {
 
   /// Sets `name`.
   const factory CloudwatchEventRuleName.name(TfArg<String> name) =
-      CloudwatchEventRuleNameName;
+      CloudwatchEventRuleNameChoice;
 
   /// Sets `name_prefix`.
   const factory CloudwatchEventRuleName.namePrefix(TfArg<String> namePrefix) =
-      CloudwatchEventRuleNameNamePrefix;
+      CloudwatchEventRuleNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -108,8 +108,8 @@ sealed class CloudwatchEventRuleName {
 }
 
 /// The [CloudwatchEventRuleName.name] choice: sets `name`.
-final class CloudwatchEventRuleNameName extends CloudwatchEventRuleName {
-  const CloudwatchEventRuleNameName(this.name);
+final class CloudwatchEventRuleNameChoice extends CloudwatchEventRuleName {
+  const CloudwatchEventRuleNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -124,8 +124,8 @@ final class CloudwatchEventRuleNameName extends CloudwatchEventRuleName {
 }
 
 /// The [CloudwatchEventRuleName.namePrefix] choice: sets `name_prefix`.
-final class CloudwatchEventRuleNameNamePrefix extends CloudwatchEventRuleName {
-  const CloudwatchEventRuleNameNamePrefix(this.namePrefix);
+final class CloudwatchEventRuleNamePrefix extends CloudwatchEventRuleName {
+  const CloudwatchEventRuleNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

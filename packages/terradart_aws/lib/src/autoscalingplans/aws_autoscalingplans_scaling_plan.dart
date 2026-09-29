@@ -11,12 +11,11 @@ const Set<String> _awsAutoscalingplansScalingPlanSensitive = <String>{};
 /// `aws_autoscalingplans_scaling_plan` (derived from provider schema).
 @immutable
 final class AutoscalingplansScalingPlanApplicationSource {
-  const AutoscalingplansScalingPlanApplicationSource({this.applicationSource});
+  const AutoscalingplansScalingPlanApplicationSource({this.selector});
 
-  final AutoscalingplansScalingPlanApplicationSourceApplicationSource?
-  applicationSource;
+  final AutoscalingplansScalingPlanApplicationSourceSelector? selector;
 
-  Map<String, Object?> encode() => {...?applicationSource?.encode()};
+  Map<String, Object?> encode() => {...?selector?.encode()};
 }
 
 /// At most one of `cloudformation_stack_arn`, `tag_filter` on the `application_source` block of `aws_autoscalingplans_scaling_plan`: the provider rejects
@@ -24,18 +23,18 @@ final class AutoscalingplansScalingPlanApplicationSource {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.cloudformationStackArn(...)`.
-sealed class AutoscalingplansScalingPlanApplicationSourceApplicationSource {
-  const AutoscalingplansScalingPlanApplicationSourceApplicationSource();
+sealed class AutoscalingplansScalingPlanApplicationSourceSelector {
+  const AutoscalingplansScalingPlanApplicationSourceSelector();
 
   /// Sets `cloudformation_stack_arn`.
-  const factory AutoscalingplansScalingPlanApplicationSourceApplicationSource.cloudformationStackArn(
+  const factory AutoscalingplansScalingPlanApplicationSourceSelector.cloudformationStackArn(
     TfArg<String> cloudformationStackArn,
-  ) = AutoscalingplansScalingPlanApplicationSourceApplicationSourceCloudformationStackArn;
+  ) = AutoscalingplansScalingPlanApplicationSourceSelectorCloudformationStackArn;
 
   /// Sets `tag_filter`.
-  const factory AutoscalingplansScalingPlanApplicationSourceApplicationSource.tagFilter(
+  const factory AutoscalingplansScalingPlanApplicationSourceSelector.tagFilter(
     List<AutoscalingplansScalingPlanApplicationSourceTagFilter> tagFilter,
-  ) = AutoscalingplansScalingPlanApplicationSourceApplicationSourceTagFilter;
+  ) = AutoscalingplansScalingPlanApplicationSourceSelectorTagFilter;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,10 +42,10 @@ sealed class AutoscalingplansScalingPlanApplicationSourceApplicationSource {
   Map<String, Object?> encode();
 }
 
-/// The [AutoscalingplansScalingPlanApplicationSourceApplicationSource.cloudformationStackArn] choice: sets `cloudformation_stack_arn`.
-final class AutoscalingplansScalingPlanApplicationSourceApplicationSourceCloudformationStackArn
-    extends AutoscalingplansScalingPlanApplicationSourceApplicationSource {
-  const AutoscalingplansScalingPlanApplicationSourceApplicationSourceCloudformationStackArn(
+/// The [AutoscalingplansScalingPlanApplicationSourceSelector.cloudformationStackArn] choice: sets `cloudformation_stack_arn`.
+final class AutoscalingplansScalingPlanApplicationSourceSelectorCloudformationStackArn
+    extends AutoscalingplansScalingPlanApplicationSourceSelector {
+  const AutoscalingplansScalingPlanApplicationSourceSelectorCloudformationStackArn(
     this.cloudformationStackArn,
   );
 
@@ -61,10 +60,10 @@ final class AutoscalingplansScalingPlanApplicationSourceApplicationSourceCloudfo
   };
 }
 
-/// The [AutoscalingplansScalingPlanApplicationSourceApplicationSource.tagFilter] choice: sets `tag_filter`.
-final class AutoscalingplansScalingPlanApplicationSourceApplicationSourceTagFilter
-    extends AutoscalingplansScalingPlanApplicationSourceApplicationSource {
-  const AutoscalingplansScalingPlanApplicationSourceApplicationSourceTagFilter(
+/// The [AutoscalingplansScalingPlanApplicationSourceSelector.tagFilter] choice: sets `tag_filter`.
+final class AutoscalingplansScalingPlanApplicationSourceSelectorTagFilter
+    extends AutoscalingplansScalingPlanApplicationSourceSelector {
+  const AutoscalingplansScalingPlanApplicationSourceSelectorTagFilter(
     this.tagFilter,
   );
 

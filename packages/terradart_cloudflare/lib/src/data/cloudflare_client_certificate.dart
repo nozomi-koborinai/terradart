@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../ssl/cloudflare_client_certificate.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_client_certificate`.
 const Set<String> _cloudflareClientCertificateSensitive = <String>{};
@@ -51,7 +52,7 @@ final class DataCloudflareClientCertificate extends Data {
   DataCloudflareClientCertificate({
     required super.localName,
     TfArg<String>? clientCertificateId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataClientCertificateFilter? filter,
     super.provider,
     super.timeouts,
@@ -59,7 +60,7 @@ final class DataCloudflareClientCertificate extends Data {
          terraformType: tfType,
          argMap: {
            'client_certificate_id': ?clientCertificateId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

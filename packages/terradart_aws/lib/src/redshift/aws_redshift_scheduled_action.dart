@@ -7,38 +7,27 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_redshift_scheduled_action`.
 const Set<String> _awsRedshiftScheduledActionSensitive = <String>{};
 
-/// Typed helper for the `target_action` block of
-/// `aws_redshift_scheduled_action` (derived from provider schema).
-@immutable
-final class RedshiftScheduledActionTargetAction {
-  const RedshiftScheduledActionTargetAction({required this.action});
-
-  final RedshiftScheduledActionTargetActionAction action;
-
-  Map<String, Object?> encode() => {...action.encode()};
-}
-
 /// Exactly one of `pause_cluster`, `resize_cluster`, `resume_cluster` on the `target_action` block of `aws_redshift_scheduled_action`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.pauseCluster(...)`.
-sealed class RedshiftScheduledActionTargetActionAction {
-  const RedshiftScheduledActionTargetActionAction();
+sealed class RedshiftScheduledActionTargetAction {
+  const RedshiftScheduledActionTargetAction();
 
   /// Sets `pause_cluster`.
-  const factory RedshiftScheduledActionTargetActionAction.pauseCluster(
+  const factory RedshiftScheduledActionTargetAction.pauseCluster(
     RedshiftScheduledActionTargetActionPauseCluster pauseCluster,
-  ) = RedshiftScheduledActionTargetActionActionPauseCluster;
+  ) = RedshiftScheduledActionTargetActionPauseClusterChoice;
 
   /// Sets `resize_cluster`.
-  const factory RedshiftScheduledActionTargetActionAction.resizeCluster(
+  const factory RedshiftScheduledActionTargetAction.resizeCluster(
     RedshiftScheduledActionTargetActionResizeCluster resizeCluster,
-  ) = RedshiftScheduledActionTargetActionActionResizeCluster;
+  ) = RedshiftScheduledActionTargetActionResizeClusterChoice;
 
   /// Sets `resume_cluster`.
-  const factory RedshiftScheduledActionTargetActionAction.resumeCluster(
+  const factory RedshiftScheduledActionTargetAction.resumeCluster(
     RedshiftScheduledActionTargetActionResumeCluster resumeCluster,
-  ) = RedshiftScheduledActionTargetActionActionResumeCluster;
+  ) = RedshiftScheduledActionTargetActionResumeClusterChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -46,10 +35,10 @@ sealed class RedshiftScheduledActionTargetActionAction {
   Map<String, Object?> encode();
 }
 
-/// The [RedshiftScheduledActionTargetActionAction.pauseCluster] choice: sets `pause_cluster`.
-final class RedshiftScheduledActionTargetActionActionPauseCluster
-    extends RedshiftScheduledActionTargetActionAction {
-  const RedshiftScheduledActionTargetActionActionPauseCluster(
+/// The [RedshiftScheduledActionTargetAction.pauseCluster] choice: sets `pause_cluster`.
+final class RedshiftScheduledActionTargetActionPauseClusterChoice
+    extends RedshiftScheduledActionTargetAction {
+  const RedshiftScheduledActionTargetActionPauseClusterChoice(
     this.pauseCluster,
   );
 
@@ -62,10 +51,10 @@ final class RedshiftScheduledActionTargetActionActionPauseCluster
   Map<String, Object?> encode() => {'pause_cluster': pauseCluster.encode()};
 }
 
-/// The [RedshiftScheduledActionTargetActionAction.resizeCluster] choice: sets `resize_cluster`.
-final class RedshiftScheduledActionTargetActionActionResizeCluster
-    extends RedshiftScheduledActionTargetActionAction {
-  const RedshiftScheduledActionTargetActionActionResizeCluster(
+/// The [RedshiftScheduledActionTargetAction.resizeCluster] choice: sets `resize_cluster`.
+final class RedshiftScheduledActionTargetActionResizeClusterChoice
+    extends RedshiftScheduledActionTargetAction {
+  const RedshiftScheduledActionTargetActionResizeClusterChoice(
     this.resizeCluster,
   );
 
@@ -78,10 +67,10 @@ final class RedshiftScheduledActionTargetActionActionResizeCluster
   Map<String, Object?> encode() => {'resize_cluster': resizeCluster.encode()};
 }
 
-/// The [RedshiftScheduledActionTargetActionAction.resumeCluster] choice: sets `resume_cluster`.
-final class RedshiftScheduledActionTargetActionActionResumeCluster
-    extends RedshiftScheduledActionTargetActionAction {
-  const RedshiftScheduledActionTargetActionActionResumeCluster(
+/// The [RedshiftScheduledActionTargetAction.resumeCluster] choice: sets `resume_cluster`.
+final class RedshiftScheduledActionTargetActionResumeClusterChoice
+    extends RedshiftScheduledActionTargetAction {
+  const RedshiftScheduledActionTargetActionResumeClusterChoice(
     this.resumeCluster,
   );
 

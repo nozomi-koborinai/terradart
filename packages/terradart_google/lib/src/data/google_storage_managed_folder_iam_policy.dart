@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../storage/google_storage_managed_folder_iam_policy.dart';
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 
 /// Sensitive field paths for `google_storage_managed_folder_iam_policy`.
 const Set<String> _googleStorageManagedFolderIamPolicySensitive = <String>{};
@@ -16,13 +17,16 @@ final class DataGoogleStorageManagedFolderIamPolicy extends Data {
 
   DataGoogleStorageManagedFolderIamPolicy({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> managedFolder,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'bucket': bucket, 'managed_folder': managedFolder},
+         argMap: {
+           'bucket': bucket.encodeAs('name'),
+           'managed_folder': managedFolder,
+         },
        );
 
   @override

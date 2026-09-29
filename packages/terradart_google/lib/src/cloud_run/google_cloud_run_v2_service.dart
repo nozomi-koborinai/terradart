@@ -177,7 +177,7 @@ sealed class CloudRunV2ServiceBinaryAuthorizationPolicy {
   /// Sets `policy`.
   const factory CloudRunV2ServiceBinaryAuthorizationPolicy.policy(
     TfArg<String> policy,
-  ) = CloudRunV2ServiceBinaryAuthorizationPolicyPolicy;
+  ) = CloudRunV2ServiceBinaryAuthorizationPolicyChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -200,9 +200,9 @@ final class CloudRunV2ServiceBinaryAuthorizationPolicyUseDefault
 }
 
 /// The [CloudRunV2ServiceBinaryAuthorizationPolicy.policy] choice: sets `policy`.
-final class CloudRunV2ServiceBinaryAuthorizationPolicyPolicy
+final class CloudRunV2ServiceBinaryAuthorizationPolicyChoice
     extends CloudRunV2ServiceBinaryAuthorizationPolicy {
-  const CloudRunV2ServiceBinaryAuthorizationPolicyPolicy(this.policy);
+  const CloudRunV2ServiceBinaryAuthorizationPolicyChoice(this.policy);
 
   final TfArg<String> policy;
 

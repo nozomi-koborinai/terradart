@@ -279,12 +279,12 @@ sealed class BigqueryJobExtractSource {
   /// Sets `source_table`.
   const factory BigqueryJobExtractSource.sourceTable(
     BigqueryJobExtractSourceTable sourceTable,
-  ) = BigqueryJobExtractSourceSourceTable;
+  ) = BigqueryJobExtractSourceTableChoice;
 
   /// Sets `source_model`.
   const factory BigqueryJobExtractSource.sourceModel(
     BigqueryJobExtractSourceModel sourceModel,
-  ) = BigqueryJobExtractSourceSourceModel;
+  ) = BigqueryJobExtractSourceModelChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -293,9 +293,9 @@ sealed class BigqueryJobExtractSource {
 }
 
 /// The [BigqueryJobExtractSource.sourceTable] choice: sets `source_table`.
-final class BigqueryJobExtractSourceSourceTable
+final class BigqueryJobExtractSourceTableChoice
     extends BigqueryJobExtractSource {
-  const BigqueryJobExtractSourceSourceTable(this.sourceTable);
+  const BigqueryJobExtractSourceTableChoice(this.sourceTable);
 
   final BigqueryJobExtractSourceTable sourceTable;
 
@@ -307,9 +307,9 @@ final class BigqueryJobExtractSourceSourceTable
 }
 
 /// The [BigqueryJobExtractSource.sourceModel] choice: sets `source_model`.
-final class BigqueryJobExtractSourceSourceModel
+final class BigqueryJobExtractSourceModelChoice
     extends BigqueryJobExtractSource {
-  const BigqueryJobExtractSourceSourceModel(this.sourceModel);
+  const BigqueryJobExtractSourceModelChoice(this.sourceModel);
 
   final BigqueryJobExtractSourceModel sourceModel;
 

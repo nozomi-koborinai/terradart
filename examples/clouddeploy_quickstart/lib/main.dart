@@ -187,11 +187,9 @@ final class DeployStack extends Stack {
           ],
         ),
         rules: [
-          ClouddeployAutomationRules(
-            rule: .promoteReleaseRule(
-              ClouddeployAutomationRulesPromoteReleaseRule(
-                id: .literal('promote-release'),
-              ),
+          .promoteReleaseRule(
+            ClouddeployAutomationRulesPromoteReleaseRule(
+              id: .literal('promote-release'),
             ),
           ),
         ],

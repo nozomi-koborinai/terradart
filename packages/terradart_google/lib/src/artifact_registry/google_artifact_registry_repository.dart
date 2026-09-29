@@ -155,18 +155,18 @@ enum ArtifactRegistryNpmPublicRepository implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.virtualRepositoryConfig(...)`.
-sealed class ArtifactRegistryRepositoryRepositoryConfig {
-  const ArtifactRegistryRepositoryRepositoryConfig();
+sealed class ArtifactRegistryRepositoryConfig {
+  const ArtifactRegistryRepositoryConfig();
 
   /// Sets `virtual_repository_config`.
-  const factory ArtifactRegistryRepositoryRepositoryConfig.virtualRepositoryConfig(
+  const factory ArtifactRegistryRepositoryConfig.virtualRepositoryConfig(
     ArtifactRegistryRepositoryVirtualRepositoryConfig virtualRepositoryConfig,
-  ) = ArtifactRegistryRepositoryRepositoryConfigVirtualRepositoryConfig;
+  ) = ArtifactRegistryRepositoryConfigVirtualRepositoryConfig;
 
   /// Sets `remote_repository_config`.
-  const factory ArtifactRegistryRepositoryRepositoryConfig.remoteRepositoryConfig(
+  const factory ArtifactRegistryRepositoryConfig.remoteRepositoryConfig(
     ArtifactRegistryRepositoryRemoteRepositoryConfig remoteRepositoryConfig,
-  ) = ArtifactRegistryRepositoryRepositoryConfigRemoteRepositoryConfig;
+  ) = ArtifactRegistryRepositoryConfigRemoteRepositoryConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -178,10 +178,10 @@ sealed class ArtifactRegistryRepositoryRepositoryConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ArtifactRegistryRepositoryRepositoryConfig.virtualRepositoryConfig] choice: sets `virtual_repository_config`.
-final class ArtifactRegistryRepositoryRepositoryConfigVirtualRepositoryConfig
-    extends ArtifactRegistryRepositoryRepositoryConfig {
-  const ArtifactRegistryRepositoryRepositoryConfigVirtualRepositoryConfig(
+/// The [ArtifactRegistryRepositoryConfig.virtualRepositoryConfig] choice: sets `virtual_repository_config`.
+final class ArtifactRegistryRepositoryConfigVirtualRepositoryConfig
+    extends ArtifactRegistryRepositoryConfig {
+  const ArtifactRegistryRepositoryConfigVirtualRepositoryConfig(
     this.virtualRepositoryConfig,
   );
 
@@ -204,10 +204,10 @@ final class ArtifactRegistryRepositoryRepositoryConfigVirtualRepositoryConfig
   };
 }
 
-/// The [ArtifactRegistryRepositoryRepositoryConfig.remoteRepositoryConfig] choice: sets `remote_repository_config`.
-final class ArtifactRegistryRepositoryRepositoryConfigRemoteRepositoryConfig
-    extends ArtifactRegistryRepositoryRepositoryConfig {
-  const ArtifactRegistryRepositoryRepositoryConfigRemoteRepositoryConfig(
+/// The [ArtifactRegistryRepositoryConfig.remoteRepositoryConfig] choice: sets `remote_repository_config`.
+final class ArtifactRegistryRepositoryConfigRemoteRepositoryConfig
+    extends ArtifactRegistryRepositoryConfig {
+  const ArtifactRegistryRepositoryConfigRemoteRepositoryConfig(
     this.remoteRepositoryConfig,
   );
 
@@ -600,38 +600,24 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigCommonRepository {
   Map<String, Object?> encode() => {'uri': uri.toTfJson()};
 }
 
-/// Typed helper for the `remote_repository_config.docker_repository` block of
-/// `google_artifact_registry_repository` (derived from provider schema).
-@immutable
-final class ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository({
-    this.upstream,
-  });
-
-  final ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstream?
-  upstream;
-
-  Map<String, Object?> encode() => {...?upstream?.encode()};
-}
-
 /// At most one of `public_repository`, `custom_repository` on the `remote_repository_config.docker_repository` block of `google_artifact_registry_repository`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.publicRepository(...)`.
-sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstream {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstream();
+sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository();
 
   /// Sets `public_repository`.
-  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstream.publicRepository(
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository.publicRepository(
     TfArg<ArtifactRegistryDockerPublicRepository> publicRepository,
-  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstreamPublicRepository;
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryPublicRepository;
 
   /// Sets `custom_repository`.
-  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstream.customRepository(
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository.customRepository(
     ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryCustomRepository
     customRepository,
-  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstreamCustomRepository;
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryCustomRepositoryChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -639,11 +625,10 @@ sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUps
   Map<String, Object?> encode();
 }
 
-/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstream.publicRepository] choice: sets `public_repository`.
-final class ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstreamPublicRepository
-    extends
-        ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstream {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstreamPublicRepository(
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository.publicRepository] choice: sets `public_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryPublicRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryPublicRepository(
     this.publicRepository,
   );
 
@@ -658,11 +643,10 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpst
   };
 }
 
-/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstream.customRepository] choice: sets `custom_repository`.
-final class ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstreamCustomRepository
-    extends
-        ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstream {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryUpstreamCustomRepository(
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository.customRepository] choice: sets `custom_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryCustomRepositoryChoice
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryCustomRepositoryChoice(
     this.customRepository,
   );
 
@@ -691,38 +675,24 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigDockerRepositoryCust
   Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
 }
 
-/// Typed helper for the `remote_repository_config.maven_repository` block of
-/// `google_artifact_registry_repository` (derived from provider schema).
-@immutable
-final class ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository({
-    this.upstream,
-  });
-
-  final ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstream?
-  upstream;
-
-  Map<String, Object?> encode() => {...?upstream?.encode()};
-}
-
 /// At most one of `public_repository`, `custom_repository` on the `remote_repository_config.maven_repository` block of `google_artifact_registry_repository`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.publicRepository(...)`.
-sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstream {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstream();
+sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository();
 
   /// Sets `public_repository`.
-  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstream.publicRepository(
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository.publicRepository(
     TfArg<ArtifactRegistryMavenPublicRepository> publicRepository,
-  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstreamPublicRepository;
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryPublicRepository;
 
   /// Sets `custom_repository`.
-  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstream.customRepository(
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository.customRepository(
     ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryCustomRepository
     customRepository,
-  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstreamCustomRepository;
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryCustomRepositoryChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -730,11 +700,10 @@ sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpst
   Map<String, Object?> encode();
 }
 
-/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstream.publicRepository] choice: sets `public_repository`.
-final class ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstreamPublicRepository
-    extends
-        ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstream {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstreamPublicRepository(
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository.publicRepository] choice: sets `public_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryPublicRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryPublicRepository(
     this.publicRepository,
   );
 
@@ -749,11 +718,10 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstr
   };
 }
 
-/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstream.customRepository] choice: sets `custom_repository`.
-final class ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstreamCustomRepository
-    extends
-        ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstream {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryUpstreamCustomRepository(
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository.customRepository] choice: sets `custom_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryCustomRepositoryChoice
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigMavenRepositoryCustomRepositoryChoice(
     this.customRepository,
   );
 
@@ -791,38 +759,24 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigNoCache {
   Map<String, Object?> encode() => {};
 }
 
-/// Typed helper for the `remote_repository_config.npm_repository` block of
-/// `google_artifact_registry_repository` (derived from provider schema).
-@immutable
-final class ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository({
-    this.upstream,
-  });
-
-  final ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstream?
-  upstream;
-
-  Map<String, Object?> encode() => {...?upstream?.encode()};
-}
-
 /// At most one of `public_repository`, `custom_repository` on the `remote_repository_config.npm_repository` block of `google_artifact_registry_repository`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.publicRepository(...)`.
-sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstream {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstream();
+sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository();
 
   /// Sets `public_repository`.
-  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstream.publicRepository(
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository.publicRepository(
     TfArg<ArtifactRegistryNpmPublicRepository> publicRepository,
-  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstreamPublicRepository;
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryPublicRepository;
 
   /// Sets `custom_repository`.
-  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstream.customRepository(
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository.customRepository(
     ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryCustomRepository
     customRepository,
-  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstreamCustomRepository;
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryCustomRepositoryChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -830,11 +784,10 @@ sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstre
   Map<String, Object?> encode();
 }
 
-/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstream.publicRepository] choice: sets `public_repository`.
-final class ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstreamPublicRepository
-    extends
-        ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstream {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstreamPublicRepository(
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository.publicRepository] choice: sets `public_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryPublicRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryPublicRepository(
     this.publicRepository,
   );
 
@@ -849,11 +802,10 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstrea
   };
 }
 
-/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstream.customRepository] choice: sets `custom_repository`.
-final class ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstreamCustomRepository
-    extends
-        ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstream {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryUpstreamCustomRepository(
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository.customRepository] choice: sets `custom_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryCustomRepositoryChoice
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryCustomRepositoryChoice(
     this.customRepository,
   );
 
@@ -882,38 +834,24 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigNpmRepositoryCustomR
   Map<String, Object?> encode() => {'uri': ?uri?.toTfJson()};
 }
 
-/// Typed helper for the `remote_repository_config.python_repository` block of
-/// `google_artifact_registry_repository` (derived from provider schema).
-@immutable
-final class ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository({
-    this.upstream,
-  });
-
-  final ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstream?
-  upstream;
-
-  Map<String, Object?> encode() => {...?upstream?.encode()};
-}
-
 /// At most one of `public_repository`, `custom_repository` on the `remote_repository_config.python_repository` block of `google_artifact_registry_repository`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.publicRepository(...)`.
-sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstream {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstream();
+sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository();
 
   /// Sets `public_repository`.
-  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstream.publicRepository(
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository.publicRepository(
     TfArg<String> publicRepository,
-  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstreamPublicRepository;
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryPublicRepository;
 
   /// Sets `custom_repository`.
-  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstream.customRepository(
+  const factory ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository.customRepository(
     ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryCustomRepository
     customRepository,
-  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstreamCustomRepository;
+  ) = ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryCustomRepositoryChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -921,11 +859,10 @@ sealed class ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUps
   Map<String, Object?> encode();
 }
 
-/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstream.publicRepository] choice: sets `public_repository`.
-final class ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstreamPublicRepository
-    extends
-        ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstream {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstreamPublicRepository(
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository.publicRepository] choice: sets `public_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryPublicRepository
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryPublicRepository(
     this.publicRepository,
   );
 
@@ -940,11 +877,10 @@ final class ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpst
   };
 }
 
-/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstream.customRepository] choice: sets `custom_repository`.
-final class ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstreamCustomRepository
-    extends
-        ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstream {
-  const ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryUpstreamCustomRepository(
+/// The [ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository.customRepository] choice: sets `custom_repository`.
+final class ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryCustomRepositoryChoice
+    extends ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepository {
+  const ArtifactRegistryRepositoryRemoteRepositoryConfigPythonRepositoryCustomRepositoryChoice(
     this.customRepository,
   );
 
@@ -1115,7 +1051,7 @@ final class GoogleArtifactRegistryRepository extends Resource {
     TfArg<Map<String, String>>? labels,
     ArtifactRegistryRepositoryDockerConfig? dockerConfig,
     ArtifactRegistryRepositoryMavenConfig? mavenConfig,
-    ArtifactRegistryRepositoryRepositoryConfig? repositoryConfig,
+    ArtifactRegistryRepositoryConfig? repositoryConfig,
     List<ArtifactRegistryRepositoryCleanupPolicies>? cleanupPolicies,
     TfArg<bool>? cleanupPolicyDryRun,
     ArtifactRegistryRepositoryVulnerabilityScanningConfig?

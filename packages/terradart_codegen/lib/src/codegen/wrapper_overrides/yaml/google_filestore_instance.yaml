@@ -5,9 +5,6 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 
-sealedNames:
-  "performance_config.fixed_iops, performance_config.iops_per_tb": iops
-
 paramOrder:
   - name
   - tier

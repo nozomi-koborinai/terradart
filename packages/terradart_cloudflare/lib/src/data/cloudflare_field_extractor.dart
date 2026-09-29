@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../field/cloudflare_field_extractor.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_field_extractor`.
 const Set<String> _cloudflareFieldExtractorSensitive = <String>{};
@@ -13,13 +14,16 @@ final class DataCloudflareFieldExtractor extends Data {
 
   DataCloudflareFieldExtractor({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> extractor,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'extractor': extractor},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'extractor': extractor,
+         },
        );
 
   @override

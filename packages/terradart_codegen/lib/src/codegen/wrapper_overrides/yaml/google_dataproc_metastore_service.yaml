@@ -15,7 +15,6 @@ curatedDoc: |-
   /// Set [hiveMetastoreConfig] with a Hive schema [version] (e.g. `3.1.2`).
 
 sealedNames:
-  "scaling_config.autoscaling_config, scaling_config.instance_size, scaling_config.scaling_factor": size
   "scaling_config, tier": capacity
 
 paramOrder:

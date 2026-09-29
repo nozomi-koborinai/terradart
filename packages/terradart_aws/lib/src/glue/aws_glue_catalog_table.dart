@@ -473,12 +473,12 @@ sealed class GlueCatalogTableStorageDescriptorSchemaReferenceSchema {
   /// Sets `schema_id`.
   const factory GlueCatalogTableStorageDescriptorSchemaReferenceSchema.schemaId(
     GlueCatalogTableStorageDescriptorSchemaReferenceSchemaId schemaId,
-  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaSchemaId;
+  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdChoice;
 
   /// Sets `schema_version_id`.
   const factory GlueCatalogTableStorageDescriptorSchemaReferenceSchema.schemaVersionId(
     TfArg<String> schemaVersionId,
-  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaSchemaVersionId;
+  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaVersionId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -487,9 +487,9 @@ sealed class GlueCatalogTableStorageDescriptorSchemaReferenceSchema {
 }
 
 /// The [GlueCatalogTableStorageDescriptorSchemaReferenceSchema.schemaId] choice: sets `schema_id`.
-final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaSchemaId
+final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdChoice
     extends GlueCatalogTableStorageDescriptorSchemaReferenceSchema {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaSchemaId(
+  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdChoice(
     this.schemaId,
   );
 
@@ -503,9 +503,9 @@ final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaSchemaId
 }
 
 /// The [GlueCatalogTableStorageDescriptorSchemaReferenceSchema.schemaVersionId] choice: sets `schema_version_id`.
-final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaSchemaVersionId
+final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaVersionId
     extends GlueCatalogTableStorageDescriptorSchemaReferenceSchema {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaSchemaVersionId(
+  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaVersionId(
     this.schemaVersionId,
   );
 
@@ -549,12 +549,12 @@ sealed class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema {
   /// Sets `schema_arn`.
   const factory GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema.schemaArn(
     TfArg<String> schemaArn,
-  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaSchemaArn;
+  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArn;
 
   /// Sets `schema_name`.
   const factory GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema.schemaName(
     TfArg<String> schemaName,
-  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaSchemaName;
+  ) = GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -563,9 +563,9 @@ sealed class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema {
 }
 
 /// The [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema.schemaArn] choice: sets `schema_arn`.
-final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaSchemaArn
+final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArn
     extends GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaSchemaArn(
+  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaArn(
     this.schemaArn,
   );
 
@@ -579,9 +579,9 @@ final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaSchema
 }
 
 /// The [GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema.schemaName] choice: sets `schema_name`.
-final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaSchemaName
+final class GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaName
     extends GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchema {
-  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaSchemaName(
+  const GlueCatalogTableStorageDescriptorSchemaReferenceSchemaIdSchemaName(
     this.schemaName,
   );
 

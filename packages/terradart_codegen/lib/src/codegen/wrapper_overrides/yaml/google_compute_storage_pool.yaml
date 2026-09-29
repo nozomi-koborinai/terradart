@@ -38,6 +38,7 @@ paramOrder:
   - deletion_protection
   - deletion_policy
   - project
+  - params
 
 dartTypeOverrides:
   capacity_provisioning_type: ComputeStoragePoolCapacityProvisioningType

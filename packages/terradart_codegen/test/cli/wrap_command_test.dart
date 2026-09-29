@@ -1518,8 +1518,13 @@ barrels:
       expect(src, contains('XThingContent? content'));
       expect(src, contains('...?content?.argMap,'));
       expect(src, isNot(contains('TfArg<String>? content,')));
-      expect(src, contains('final XThingSettingsSettings? settings;'));
-      expect(src, contains('...?settings?.encode()'));
+      expect(src, contains('XThingSettings? settings,'));
+      expect(
+        src,
+        contains('/// At most one of `a`, `b` on the `settings` block'),
+      );
+      expect(src, contains('sealed class XThingSettings {'));
+      expect(src, contains("'settings': TfArg.literal(settings.encode())"));
       expect(src, contains('/// At most one of `content`, `data`'));
 
       final manifest = File(manifestPath).readAsStringSync();
@@ -1537,7 +1542,8 @@ barrels:
         matches(
           RegExp(
             r"dartName: 'settings',\s+kind: MigrateSlotKind\.sealed,\s+"
-            r'required: false,\s+wrapped: false,\s+merged: true,',
+            r"required: false,\s+wrapped: false,\s+variants: <String, String>\{\s+"
+            r"'a': 'XThingSettingsA',",
           ),
         ),
       );

@@ -36,6 +36,10 @@ paramOrder:
   - source_subnetwork_ip_ranges_to_nat64
   - deletion_policy
   - project
+  - log_config
+  - nat64_subnetwork
+  - rules
+  - subnetwork
 
 dartTypeOverrides:
   nat_ip_allocate_option: ComputeRouterNatNatIpAllocateOption

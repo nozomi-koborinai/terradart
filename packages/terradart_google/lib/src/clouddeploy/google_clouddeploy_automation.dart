@@ -9,43 +9,32 @@ import '../iam/google_service_account.dart' show GoogleServiceAccount;
 /// Sensitive field paths for `google_clouddeploy_automation`.
 const Set<String> _googleClouddeployAutomationSensitive = <String>{};
 
-/// Typed helper for the `rules` block of
-/// `google_clouddeploy_automation` (derived from provider schema).
-@immutable
-final class ClouddeployAutomationRules {
-  const ClouddeployAutomationRules({required this.rule});
-
-  final ClouddeployAutomationRulesRule rule;
-
-  Map<String, Object?> encode() => {...rule.encode()};
-}
-
 /// Exactly one of `promote_release_rule`, `advance_rollout_rule`, `repair_rollout_rule`, `timed_promote_release_rule` on the `rules` block of `google_clouddeploy_automation`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.promoteReleaseRule(...)`.
-sealed class ClouddeployAutomationRulesRule {
-  const ClouddeployAutomationRulesRule();
+sealed class ClouddeployAutomationRules {
+  const ClouddeployAutomationRules();
 
   /// Sets `promote_release_rule`.
-  const factory ClouddeployAutomationRulesRule.promoteReleaseRule(
+  const factory ClouddeployAutomationRules.promoteReleaseRule(
     ClouddeployAutomationRulesPromoteReleaseRule promoteReleaseRule,
-  ) = ClouddeployAutomationRulesRulePromoteReleaseRule;
+  ) = ClouddeployAutomationRulesPromoteReleaseRuleChoice;
 
   /// Sets `advance_rollout_rule`.
-  const factory ClouddeployAutomationRulesRule.advanceRolloutRule(
+  const factory ClouddeployAutomationRules.advanceRolloutRule(
     ClouddeployAutomationRulesAdvanceRolloutRule advanceRolloutRule,
-  ) = ClouddeployAutomationRulesRuleAdvanceRolloutRule;
+  ) = ClouddeployAutomationRulesAdvanceRolloutRuleChoice;
 
   /// Sets `repair_rollout_rule`.
-  const factory ClouddeployAutomationRulesRule.repairRolloutRule(
+  const factory ClouddeployAutomationRules.repairRolloutRule(
     ClouddeployAutomationRulesRepairRolloutRule repairRolloutRule,
-  ) = ClouddeployAutomationRulesRuleRepairRolloutRule;
+  ) = ClouddeployAutomationRulesRepairRolloutRuleChoice;
 
   /// Sets `timed_promote_release_rule`.
-  const factory ClouddeployAutomationRulesRule.timedPromoteReleaseRule(
+  const factory ClouddeployAutomationRules.timedPromoteReleaseRule(
     ClouddeployAutomationRulesTimedPromoteReleaseRule timedPromoteReleaseRule,
-  ) = ClouddeployAutomationRulesRuleTimedPromoteReleaseRule;
+  ) = ClouddeployAutomationRulesTimedPromoteReleaseRuleChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -53,10 +42,10 @@ sealed class ClouddeployAutomationRulesRule {
   Map<String, Object?> encode();
 }
 
-/// The [ClouddeployAutomationRulesRule.promoteReleaseRule] choice: sets `promote_release_rule`.
-final class ClouddeployAutomationRulesRulePromoteReleaseRule
-    extends ClouddeployAutomationRulesRule {
-  const ClouddeployAutomationRulesRulePromoteReleaseRule(
+/// The [ClouddeployAutomationRules.promoteReleaseRule] choice: sets `promote_release_rule`.
+final class ClouddeployAutomationRulesPromoteReleaseRuleChoice
+    extends ClouddeployAutomationRules {
+  const ClouddeployAutomationRulesPromoteReleaseRuleChoice(
     this.promoteReleaseRule,
   );
 
@@ -71,10 +60,10 @@ final class ClouddeployAutomationRulesRulePromoteReleaseRule
   };
 }
 
-/// The [ClouddeployAutomationRulesRule.advanceRolloutRule] choice: sets `advance_rollout_rule`.
-final class ClouddeployAutomationRulesRuleAdvanceRolloutRule
-    extends ClouddeployAutomationRulesRule {
-  const ClouddeployAutomationRulesRuleAdvanceRolloutRule(
+/// The [ClouddeployAutomationRules.advanceRolloutRule] choice: sets `advance_rollout_rule`.
+final class ClouddeployAutomationRulesAdvanceRolloutRuleChoice
+    extends ClouddeployAutomationRules {
+  const ClouddeployAutomationRulesAdvanceRolloutRuleChoice(
     this.advanceRolloutRule,
   );
 
@@ -89,10 +78,12 @@ final class ClouddeployAutomationRulesRuleAdvanceRolloutRule
   };
 }
 
-/// The [ClouddeployAutomationRulesRule.repairRolloutRule] choice: sets `repair_rollout_rule`.
-final class ClouddeployAutomationRulesRuleRepairRolloutRule
-    extends ClouddeployAutomationRulesRule {
-  const ClouddeployAutomationRulesRuleRepairRolloutRule(this.repairRolloutRule);
+/// The [ClouddeployAutomationRules.repairRolloutRule] choice: sets `repair_rollout_rule`.
+final class ClouddeployAutomationRulesRepairRolloutRuleChoice
+    extends ClouddeployAutomationRules {
+  const ClouddeployAutomationRulesRepairRolloutRuleChoice(
+    this.repairRolloutRule,
+  );
 
   final ClouddeployAutomationRulesRepairRolloutRule repairRolloutRule;
 
@@ -105,10 +96,10 @@ final class ClouddeployAutomationRulesRuleRepairRolloutRule
   };
 }
 
-/// The [ClouddeployAutomationRulesRule.timedPromoteReleaseRule] choice: sets `timed_promote_release_rule`.
-final class ClouddeployAutomationRulesRuleTimedPromoteReleaseRule
-    extends ClouddeployAutomationRulesRule {
-  const ClouddeployAutomationRulesRuleTimedPromoteReleaseRule(
+/// The [ClouddeployAutomationRules.timedPromoteReleaseRule] choice: sets `timed_promote_release_rule`.
+final class ClouddeployAutomationRulesTimedPromoteReleaseRuleChoice
+    extends ClouddeployAutomationRules {
+  const ClouddeployAutomationRulesTimedPromoteReleaseRuleChoice(
     this.timedPromoteReleaseRule,
   );
 
@@ -203,35 +194,22 @@ final class ClouddeployAutomationRulesRepairRolloutRule {
   };
 }
 
-/// Typed helper for the `rules.repair_rollout_rule.repair_phases` block of
-/// `google_clouddeploy_automation` (derived from provider schema).
-@immutable
-final class ClouddeployAutomationRulesRepairRolloutRuleRepairPhases {
-  const ClouddeployAutomationRulesRepairRolloutRuleRepairPhases({
-    required this.phase,
-  });
-
-  final ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhase phase;
-
-  Map<String, Object?> encode() => {...phase.encode()};
-}
-
 /// Exactly one of `retry`, `rollback` on the `rules.repair_rollout_rule.repair_phases` block of `google_clouddeploy_automation`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.retry(...)`.
-sealed class ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhase {
-  const ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhase();
+sealed class ClouddeployAutomationRulesRepairRolloutRuleRepairPhases {
+  const ClouddeployAutomationRulesRepairRolloutRuleRepairPhases();
 
   /// Sets `retry`.
-  const factory ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhase.retry(
+  const factory ClouddeployAutomationRulesRepairRolloutRuleRepairPhases.retry(
     ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesRetry retry,
-  ) = ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhaseRetry;
+  ) = ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesRetryChoice;
 
   /// Sets `rollback`.
-  const factory ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhase.rollback(
+  const factory ClouddeployAutomationRulesRepairRolloutRuleRepairPhases.rollback(
     ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesRollback rollback,
-  ) = ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhaseRollback;
+  ) = ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesRollbackChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -239,10 +217,10 @@ sealed class ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhase {
   Map<String, Object?> encode();
 }
 
-/// The [ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhase.retry] choice: sets `retry`.
-final class ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhaseRetry
-    extends ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhase {
-  const ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhaseRetry(
+/// The [ClouddeployAutomationRulesRepairRolloutRuleRepairPhases.retry] choice: sets `retry`.
+final class ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesRetryChoice
+    extends ClouddeployAutomationRulesRepairRolloutRuleRepairPhases {
+  const ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesRetryChoice(
     this.retry,
   );
 
@@ -255,10 +233,10 @@ final class ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhaseRetry
   Map<String, Object?> encode() => {'retry': retry.encode()};
 }
 
-/// The [ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhase.rollback] choice: sets `rollback`.
-final class ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhaseRollback
-    extends ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhase {
-  const ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesPhaseRollback(
+/// The [ClouddeployAutomationRulesRepairRolloutRuleRepairPhases.rollback] choice: sets `rollback`.
+final class ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesRollbackChoice
+    extends ClouddeployAutomationRulesRepairRolloutRuleRepairPhases {
+  const ClouddeployAutomationRulesRepairRolloutRuleRepairPhasesRollbackChoice(
     this.rollback,
   );
 
@@ -427,11 +405,9 @@ final class ClouddeployAutomationSelectorTargets {
 ///     ],
 ///   ),
 ///   rules: [
-///     ClouddeployAutomationRules(
-///       rule: .promoteReleaseRule(
-///         ClouddeployAutomationRulesPromoteReleaseRule(
-///           id: .literal('promote-release'),
-///         ),
+///     .promoteReleaseRule(
+///       ClouddeployAutomationRulesPromoteReleaseRule(
+///         id: .literal('promote-release'),
 ///       ),
 ///     ),
 ///   ],

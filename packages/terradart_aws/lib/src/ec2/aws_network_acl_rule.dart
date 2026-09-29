@@ -25,7 +25,7 @@ sealed class NetworkAclRuleCidr {
 
   /// Sets `cidr_block`.
   const factory NetworkAclRuleCidr.cidrBlock(TfArg<String> cidrBlock) =
-      NetworkAclRuleCidrCidrBlock;
+      NetworkAclRuleCidrBlock;
 
   /// Sets `ipv6_cidr_block`.
   const factory NetworkAclRuleCidr.ipv6CidrBlock(TfArg<String> ipv6CidrBlock) =
@@ -42,8 +42,8 @@ sealed class NetworkAclRuleCidr {
 }
 
 /// The [NetworkAclRuleCidr.cidrBlock] choice: sets `cidr_block`.
-final class NetworkAclRuleCidrCidrBlock extends NetworkAclRuleCidr {
-  const NetworkAclRuleCidrCidrBlock(this.cidrBlock);
+final class NetworkAclRuleCidrBlock extends NetworkAclRuleCidr {
+  const NetworkAclRuleCidrBlock(this.cidrBlock);
 
   final TfArg<String> cidrBlock;
 

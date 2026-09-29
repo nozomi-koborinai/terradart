@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../ec2/aws_vpc_peering_connection.dart';
+import '../ec2/aws_vpc.dart' show AwsVpc;
 
 /// Sensitive field paths for `aws_vpc_peering_connection`.
 const Set<String> _awsVpcPeeringConnectionSensitive = <String>{};
@@ -37,10 +38,10 @@ final class DataAwsVpcPeeringConnection extends Data {
     TfArg<String>? ownerId,
     TfArg<String>? peerCidrBlock,
     TfArg<String>? peerOwnerId,
-    TfArg<String>? peerVpcId,
+    RefTo<AwsVpc>? peerVpcId,
     TfArg<String>? status,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? vpcId,
+    RefTo<AwsVpc>? vpcId,
     List<DataVpcPeeringConnectionFilter>? filter,
     super.provider,
     super.timeouts,
@@ -51,10 +52,10 @@ final class DataAwsVpcPeeringConnection extends Data {
            'owner_id': ?ownerId,
            'peer_cidr_block': ?peerCidrBlock,
            'peer_owner_id': ?peerOwnerId,
-           'peer_vpc_id': ?peerVpcId,
+           'peer_vpc_id': ?peerVpcId?.encodeAs('id'),
            'status': ?status,
            'tags': ?tags,
-           'vpc_id': ?vpcId,
+           'vpc_id': ?vpcId?.encodeAs('id'),
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

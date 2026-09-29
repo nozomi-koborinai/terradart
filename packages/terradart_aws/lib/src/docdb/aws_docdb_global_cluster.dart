@@ -30,7 +30,7 @@ sealed class DocdbGlobalClusterSource {
   /// Sets `source_db_cluster_identifier`.
   const factory DocdbGlobalClusterSource.sourceDbClusterIdentifier(
     TfArg<String> sourceDbClusterIdentifier,
-  ) = DocdbGlobalClusterSourceSourceDbClusterIdentifier;
+  ) = DocdbGlobalClusterSourceDbClusterIdentifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -59,9 +59,9 @@ final class DocdbGlobalClusterSourceEngine extends DocdbGlobalClusterSource {
 }
 
 /// The [DocdbGlobalClusterSource.sourceDbClusterIdentifier] choice: sets `source_db_cluster_identifier`.
-final class DocdbGlobalClusterSourceSourceDbClusterIdentifier
+final class DocdbGlobalClusterSourceDbClusterIdentifier
     extends DocdbGlobalClusterSource {
-  const DocdbGlobalClusterSourceSourceDbClusterIdentifier(
+  const DocdbGlobalClusterSourceDbClusterIdentifier(
     this.sourceDbClusterIdentifier,
   );
 

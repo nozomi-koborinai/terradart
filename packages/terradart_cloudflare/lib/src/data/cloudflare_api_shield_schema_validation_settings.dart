@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../api_shield/cloudflare_api_shield_schema_validation_settings.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_api_shield_schema_validation_settings`.
 const Set<String> _cloudflareApiShieldSchemaValidationSettingsSensitive =
@@ -20,10 +21,13 @@ final class DataCloudflareApiShieldSchemaValidationSettings extends Data {
 
   DataCloudflareApiShieldSchemaValidationSettings({
     required super.localName,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'zone_id': ?zoneId});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'zone_id': ?zoneId?.encodeAs('id')},
+       );
 
   @override
   Set<String> get sensitiveFields =>

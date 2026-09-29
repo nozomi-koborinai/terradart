@@ -11,17 +11,14 @@ export 'src/prometheus/aws_prometheus_anomaly_detector.dart'
         PrometheusAnomalyDetectorConfiguration,
         PrometheusAnomalyDetectorConfigurationRandomCutForest,
         PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAbove,
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAbove,
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAboveAmount,
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveIgnoreNearExpectedFromAboveRatio,
+        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveAmount,
+        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromAboveRatio,
         PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelow,
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelow,
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelowAmount,
-        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowIgnoreNearExpectedFromBelowRatio,
+        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowAmount,
+        PrometheusAnomalyDetectorConfigurationRandomCutForestIgnoreNearExpectedFromBelowRatio,
         PrometheusAnomalyDetectorMissingDataAction,
-        PrometheusAnomalyDetectorMissingDataActionMissingDataAction,
-        PrometheusAnomalyDetectorMissingDataActionMissingDataActionMarkAsAnomaly,
-        PrometheusAnomalyDetectorMissingDataActionMissingDataActionSkip;
+        PrometheusAnomalyDetectorMissingDataActionMarkAsAnomaly,
+        PrometheusAnomalyDetectorMissingDataActionSkip;
 export 'src/prometheus/aws_prometheus_query_logging_configuration.dart'
     show
         AwsPrometheusQueryLoggingConfiguration,

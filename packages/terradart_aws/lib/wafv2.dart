@@ -9,15 +9,15 @@ export 'src/wafv2/aws_wafv2_ip_set.dart'
         AwsWafv2IpSet,
         Wafv2IpSetIpAddressVersion,
         Wafv2IpSetName,
-        Wafv2IpSetNameName,
-        Wafv2IpSetNameNamePrefix,
+        Wafv2IpSetNameChoice,
+        Wafv2IpSetNamePrefix,
         Wafv2IpSetScope;
 export 'src/wafv2/aws_wafv2_regex_pattern_set.dart'
     show
         AwsWafv2RegexPatternSet,
         Wafv2RegexPatternSetName,
-        Wafv2RegexPatternSetNameName,
-        Wafv2RegexPatternSetNameNamePrefix,
+        Wafv2RegexPatternSetNameChoice,
+        Wafv2RegexPatternSetNamePrefix,
         Wafv2RegexPatternSetRegularExpression,
         Wafv2RegexPatternSetScope;
 export 'src/wafv2/aws_wafv2_rule_group.dart'
@@ -25,8 +25,8 @@ export 'src/wafv2/aws_wafv2_rule_group.dart'
         AwsWafv2RuleGroup,
         Wafv2RuleGroupCustomResponseBody,
         Wafv2RuleGroupName,
-        Wafv2RuleGroupNameName,
-        Wafv2RuleGroupNameNamePrefix,
+        Wafv2RuleGroupNameChoice,
+        Wafv2RuleGroupNamePrefix,
         Wafv2RuleGroupRule,
         Wafv2RuleGroupRuleAction,
         Wafv2RuleGroupRuleActionAllow,
@@ -76,8 +76,8 @@ export 'src/wafv2/aws_wafv2_rule_group.dart'
         Wafv2RuleGroupRuleStatementSqliMatchStatement,
         Wafv2RuleGroupRuleStatementXssMatchStatement,
         Wafv2RuleGroupRules,
+        Wafv2RuleGroupRulesJson,
         Wafv2RuleGroupRulesRule,
-        Wafv2RuleGroupRulesRulesJson,
         Wafv2RuleGroupScope,
         Wafv2RuleGroupVisibilityConfig;
 export 'src/wafv2/aws_wafv2_web_acl.dart'
@@ -101,8 +101,8 @@ export 'src/wafv2/aws_wafv2_web_acl.dart'
         Wafv2WebAclDefaultActionBlock,
         Wafv2WebAclDefaultActionBlockCustomResponse,
         Wafv2WebAclName,
-        Wafv2WebAclNameName,
-        Wafv2WebAclNameNamePrefix,
+        Wafv2WebAclNameChoice,
+        Wafv2WebAclNamePrefix,
         Wafv2WebAclScope,
         Wafv2WebAclVisibilityConfig;
 export 'src/wafv2/aws_wafv2_web_acl_association.dart'
@@ -133,13 +133,13 @@ export 'src/wafv2/aws_wafv2_web_acl_rule.dart'
         Wafv2WebAclRuleActionAllowCustomRequestHandlingInsertHeader,
         Wafv2WebAclRuleActionBlock,
         Wafv2WebAclRuleActionBlockCustomResponse,
+        Wafv2WebAclRuleBehavior,
+        Wafv2WebAclRuleBehaviorAction,
+        Wafv2WebAclRuleBehaviorOverrideAction,
         Wafv2WebAclRuleCaptchaConfig,
         Wafv2WebAclRuleCaptchaConfigImmunityTimeProperty,
         Wafv2WebAclRuleOverrideAction,
         Wafv2WebAclRuleOverrideActionCount,
-        Wafv2WebAclRuleRuleAction,
-        Wafv2WebAclRuleRuleActionAction,
-        Wafv2WebAclRuleRuleActionOverrideAction,
         Wafv2WebAclRuleRuleLabel,
         Wafv2WebAclRuleStatement,
         Wafv2WebAclRuleStatementAndStatement,
@@ -248,8 +248,6 @@ export 'src/wafv2/aws_wafv2_web_acl_rule_group_association.dart'
         Wafv2WebAclRuleGroupAssociationManagedRuleGroupRuleActionOverrideActionToUseCountCustomRequestHandling,
         Wafv2WebAclRuleGroupAssociationManagedRuleGroupRuleActionOverrideActionToUseCountCustomRequestHandlingInsertHeader,
         Wafv2WebAclRuleGroupAssociationOverrideAction,
-        Wafv2WebAclRuleGroupAssociationRuleGroup,
-        Wafv2WebAclRuleGroupAssociationRuleGroupManagedRuleGroup,
         Wafv2WebAclRuleGroupAssociationRuleGroupReference,
         Wafv2WebAclRuleGroupAssociationRuleGroupReferenceRuleActionOverride,
         Wafv2WebAclRuleGroupAssociationRuleGroupReferenceRuleActionOverrideActionToUse,
@@ -268,5 +266,7 @@ export 'src/wafv2/aws_wafv2_web_acl_rule_group_association.dart'
         Wafv2WebAclRuleGroupAssociationRuleGroupReferenceRuleActionOverrideActionToUseCount,
         Wafv2WebAclRuleGroupAssociationRuleGroupReferenceRuleActionOverrideActionToUseCountCustomRequestHandling,
         Wafv2WebAclRuleGroupAssociationRuleGroupReferenceRuleActionOverrideActionToUseCountCustomRequestHandlingInsertHeader,
-        Wafv2WebAclRuleGroupAssociationRuleGroupRuleGroupReference,
+        Wafv2WebAclRuleGroupAssociationSource,
+        Wafv2WebAclRuleGroupAssociationSourceManagedRuleGroup,
+        Wafv2WebAclRuleGroupAssociationSourceRuleGroupReference,
         Wafv2WebAclRuleGroupAssociationVisibilityConfig;

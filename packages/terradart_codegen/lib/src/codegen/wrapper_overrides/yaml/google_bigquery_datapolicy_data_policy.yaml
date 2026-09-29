@@ -8,9 +8,6 @@ dartTypeOverrides:
   data_policy_type: BigqueryDatapolicyDataPolicyType
   data_masking_policy.predefined_expression: BigqueryDatapolicyDataPolicyPredefinedExpression
 
-extraImports:
-  - "import 'package:meta/meta.dart';"
-
 prelude: |
   /// Enrollment level for `google_bigquery_datapolicy_data_policy.data_policy_type`.
   enum BigqueryDatapolicyDataPolicyType implements TerraformEnum {
@@ -35,9 +32,6 @@ prelude: |
     @override
     final String terraformValue;
   }
-
-sealedNames:
-  "data_masking_policy.predefined_expression, data_masking_policy.routine": mask
 
 paramOrder:
   - data_policy_id

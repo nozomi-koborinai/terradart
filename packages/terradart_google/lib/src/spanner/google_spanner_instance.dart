@@ -160,12 +160,12 @@ sealed class SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverrid
   /// Sets `min_nodes`.
   const factory SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMin.minNodes(
     TfArg<num> minNodes,
-  ) = SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinMinNodes;
+  ) = SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinNodes;
 
   /// Sets `min_processing_units`.
   const factory SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMin.minProcessingUnits(
     TfArg<num> minProcessingUnits,
-  ) = SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinMinProcessingUnits;
+  ) = SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinProcessingUnits;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -174,10 +174,10 @@ sealed class SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverrid
 }
 
 /// The [SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMin.minNodes] choice: sets `min_nodes`.
-final class SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinMinNodes
+final class SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinNodes
     extends
         SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMin {
-  const SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinMinNodes(
+  const SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinNodes(
     this.minNodes,
   );
 
@@ -191,10 +191,10 @@ final class SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverride
 }
 
 /// The [SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMin.minProcessingUnits] choice: sets `min_processing_units`.
-final class SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinMinProcessingUnits
+final class SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinProcessingUnits
     extends
         SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMin {
-  const SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinMinProcessingUnits(
+  const SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMinProcessingUnits(
     this.minProcessingUnits,
   );
 
@@ -219,12 +219,12 @@ sealed class SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverrid
   /// Sets `max_nodes`.
   const factory SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMax.maxNodes(
     TfArg<num> maxNodes,
-  ) = SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxMaxNodes;
+  ) = SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxNodes;
 
   /// Sets `max_processing_units`.
   const factory SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMax.maxProcessingUnits(
     TfArg<num> maxProcessingUnits,
-  ) = SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxMaxProcessingUnits;
+  ) = SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxProcessingUnits;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -233,10 +233,10 @@ sealed class SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverrid
 }
 
 /// The [SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMax.maxNodes] choice: sets `max_nodes`.
-final class SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxMaxNodes
+final class SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxNodes
     extends
         SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMax {
-  const SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxMaxNodes(
+  const SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxNodes(
     this.maxNodes,
   );
 
@@ -250,10 +250,10 @@ final class SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverride
 }
 
 /// The [SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMax.maxProcessingUnits] choice: sets `max_processing_units`.
-final class SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxMaxProcessingUnits
+final class SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxProcessingUnits
     extends
         SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMax {
-  const SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxMaxProcessingUnits(
+  const SpannerInstanceAutoscalingConfigAsymmetricAutoscalingOptionsOverridesAutoscalingLimitsMaxProcessingUnits(
     this.maxProcessingUnits,
   );
 
@@ -307,12 +307,12 @@ sealed class SpannerInstanceAutoscalingConfigAutoscalingLimitsMin {
   /// Sets `min_processing_units`.
   const factory SpannerInstanceAutoscalingConfigAutoscalingLimitsMin.minProcessingUnits(
     TfArg<num> minProcessingUnits,
-  ) = SpannerInstanceAutoscalingConfigAutoscalingLimitsMinMinProcessingUnits;
+  ) = SpannerInstanceAutoscalingConfigAutoscalingLimitsMinProcessingUnits;
 
   /// Sets `min_nodes`.
   const factory SpannerInstanceAutoscalingConfigAutoscalingLimitsMin.minNodes(
     TfArg<num> minNodes,
-  ) = SpannerInstanceAutoscalingConfigAutoscalingLimitsMinMinNodes;
+  ) = SpannerInstanceAutoscalingConfigAutoscalingLimitsMinNodes;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -321,9 +321,9 @@ sealed class SpannerInstanceAutoscalingConfigAutoscalingLimitsMin {
 }
 
 /// The [SpannerInstanceAutoscalingConfigAutoscalingLimitsMin.minProcessingUnits] choice: sets `min_processing_units`.
-final class SpannerInstanceAutoscalingConfigAutoscalingLimitsMinMinProcessingUnits
+final class SpannerInstanceAutoscalingConfigAutoscalingLimitsMinProcessingUnits
     extends SpannerInstanceAutoscalingConfigAutoscalingLimitsMin {
-  const SpannerInstanceAutoscalingConfigAutoscalingLimitsMinMinProcessingUnits(
+  const SpannerInstanceAutoscalingConfigAutoscalingLimitsMinProcessingUnits(
     this.minProcessingUnits,
   );
 
@@ -339,9 +339,9 @@ final class SpannerInstanceAutoscalingConfigAutoscalingLimitsMinMinProcessingUni
 }
 
 /// The [SpannerInstanceAutoscalingConfigAutoscalingLimitsMin.minNodes] choice: sets `min_nodes`.
-final class SpannerInstanceAutoscalingConfigAutoscalingLimitsMinMinNodes
+final class SpannerInstanceAutoscalingConfigAutoscalingLimitsMinNodes
     extends SpannerInstanceAutoscalingConfigAutoscalingLimitsMin {
-  const SpannerInstanceAutoscalingConfigAutoscalingLimitsMinMinNodes(
+  const SpannerInstanceAutoscalingConfigAutoscalingLimitsMinNodes(
     this.minNodes,
   );
 
@@ -364,12 +364,12 @@ sealed class SpannerInstanceAutoscalingConfigAutoscalingLimitsMax {
   /// Sets `max_processing_units`.
   const factory SpannerInstanceAutoscalingConfigAutoscalingLimitsMax.maxProcessingUnits(
     TfArg<num> maxProcessingUnits,
-  ) = SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxMaxProcessingUnits;
+  ) = SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxProcessingUnits;
 
   /// Sets `max_nodes`.
   const factory SpannerInstanceAutoscalingConfigAutoscalingLimitsMax.maxNodes(
     TfArg<num> maxNodes,
-  ) = SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxMaxNodes;
+  ) = SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxNodes;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -378,9 +378,9 @@ sealed class SpannerInstanceAutoscalingConfigAutoscalingLimitsMax {
 }
 
 /// The [SpannerInstanceAutoscalingConfigAutoscalingLimitsMax.maxProcessingUnits] choice: sets `max_processing_units`.
-final class SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxMaxProcessingUnits
+final class SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxProcessingUnits
     extends SpannerInstanceAutoscalingConfigAutoscalingLimitsMax {
-  const SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxMaxProcessingUnits(
+  const SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxProcessingUnits(
     this.maxProcessingUnits,
   );
 
@@ -396,9 +396,9 @@ final class SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxMaxProcessingUni
 }
 
 /// The [SpannerInstanceAutoscalingConfigAutoscalingLimitsMax.maxNodes] choice: sets `max_nodes`.
-final class SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxMaxNodes
+final class SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxNodes
     extends SpannerInstanceAutoscalingConfigAutoscalingLimitsMax {
-  const SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxMaxNodes(
+  const SpannerInstanceAutoscalingConfigAutoscalingLimitsMaxNodes(
     this.maxNodes,
   );
 

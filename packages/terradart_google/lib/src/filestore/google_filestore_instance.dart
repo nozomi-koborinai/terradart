@@ -268,34 +268,23 @@ final class FilestoreInstanceNetworksPscConfig {
   };
 }
 
-/// Typed helper for the `performance_config` block of
-/// `google_filestore_instance` (derived from provider schema).
-@immutable
-final class FilestoreInstancePerformanceConfig {
-  const FilestoreInstancePerformanceConfig({this.iops});
-
-  final FilestoreInstancePerformanceConfigIops? iops;
-
-  Map<String, Object?> encode() => {...?iops?.encode()};
-}
-
 /// At most one of `iops_per_tb`, `fixed_iops` on the `performance_config` block of `google_filestore_instance`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.iopsPerTb(...)`.
-sealed class FilestoreInstancePerformanceConfigIops {
-  const FilestoreInstancePerformanceConfigIops();
+sealed class FilestoreInstancePerformanceConfig {
+  const FilestoreInstancePerformanceConfig();
 
   /// Sets `iops_per_tb`.
-  const factory FilestoreInstancePerformanceConfigIops.iopsPerTb(
+  const factory FilestoreInstancePerformanceConfig.iopsPerTb(
     FilestoreInstancePerformanceConfigIopsPerTb iopsPerTb,
-  ) = FilestoreInstancePerformanceConfigIopsIopsPerTb;
+  ) = FilestoreInstancePerformanceConfigIopsPerTbChoice;
 
   /// Sets `fixed_iops`.
-  const factory FilestoreInstancePerformanceConfigIops.fixedIops(
+  const factory FilestoreInstancePerformanceConfig.fixedIops(
     FilestoreInstancePerformanceConfigFixedIops fixedIops,
-  ) = FilestoreInstancePerformanceConfigIopsFixedIops;
+  ) = FilestoreInstancePerformanceConfigFixedIopsChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -303,10 +292,10 @@ sealed class FilestoreInstancePerformanceConfigIops {
   Map<String, Object?> encode();
 }
 
-/// The [FilestoreInstancePerformanceConfigIops.iopsPerTb] choice: sets `iops_per_tb`.
-final class FilestoreInstancePerformanceConfigIopsIopsPerTb
-    extends FilestoreInstancePerformanceConfigIops {
-  const FilestoreInstancePerformanceConfigIopsIopsPerTb(this.iopsPerTb);
+/// The [FilestoreInstancePerformanceConfig.iopsPerTb] choice: sets `iops_per_tb`.
+final class FilestoreInstancePerformanceConfigIopsPerTbChoice
+    extends FilestoreInstancePerformanceConfig {
+  const FilestoreInstancePerformanceConfigIopsPerTbChoice(this.iopsPerTb);
 
   final FilestoreInstancePerformanceConfigIopsPerTb iopsPerTb;
 
@@ -317,10 +306,10 @@ final class FilestoreInstancePerformanceConfigIopsIopsPerTb
   Map<String, Object?> encode() => {'iops_per_tb': iopsPerTb.encode()};
 }
 
-/// The [FilestoreInstancePerformanceConfigIops.fixedIops] choice: sets `fixed_iops`.
-final class FilestoreInstancePerformanceConfigIopsFixedIops
-    extends FilestoreInstancePerformanceConfigIops {
-  const FilestoreInstancePerformanceConfigIopsFixedIops(this.fixedIops);
+/// The [FilestoreInstancePerformanceConfig.fixedIops] choice: sets `fixed_iops`.
+final class FilestoreInstancePerformanceConfigFixedIopsChoice
+    extends FilestoreInstancePerformanceConfig {
+  const FilestoreInstancePerformanceConfigFixedIopsChoice(this.fixedIops);
 
   final FilestoreInstancePerformanceConfigFixedIops fixedIops;
 

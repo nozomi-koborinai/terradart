@@ -47,12 +47,12 @@ sealed class DialogflowCxSecuritySettingsRetention {
   /// Sets `retention_window_days`.
   const factory DialogflowCxSecuritySettingsRetention.retentionWindowDays(
     TfArg<num> retentionWindowDays,
-  ) = DialogflowCxSecuritySettingsRetentionRetentionWindowDays;
+  ) = DialogflowCxSecuritySettingsRetentionWindowDays;
 
   /// Sets `retention_strategy`.
   const factory DialogflowCxSecuritySettingsRetention.retentionStrategy(
     TfArg<DialogflowCxSecuritySettingsRetentionStrategy> retentionStrategy,
-  ) = DialogflowCxSecuritySettingsRetentionRetentionStrategy;
+  ) = DialogflowCxSecuritySettingsRetentionStrategyChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -65,9 +65,9 @@ sealed class DialogflowCxSecuritySettingsRetention {
 }
 
 /// The [DialogflowCxSecuritySettingsRetention.retentionWindowDays] choice: sets `retention_window_days`.
-final class DialogflowCxSecuritySettingsRetentionRetentionWindowDays
+final class DialogflowCxSecuritySettingsRetentionWindowDays
     extends DialogflowCxSecuritySettingsRetention {
-  const DialogflowCxSecuritySettingsRetentionRetentionWindowDays(
+  const DialogflowCxSecuritySettingsRetentionWindowDays(
     this.retentionWindowDays,
   );
 
@@ -88,9 +88,9 @@ final class DialogflowCxSecuritySettingsRetentionRetentionWindowDays
 }
 
 /// The [DialogflowCxSecuritySettingsRetention.retentionStrategy] choice: sets `retention_strategy`.
-final class DialogflowCxSecuritySettingsRetentionRetentionStrategy
+final class DialogflowCxSecuritySettingsRetentionStrategyChoice
     extends DialogflowCxSecuritySettingsRetention {
-  const DialogflowCxSecuritySettingsRetentionRetentionStrategy(
+  const DialogflowCxSecuritySettingsRetentionStrategyChoice(
     this.retentionStrategy,
   );
 

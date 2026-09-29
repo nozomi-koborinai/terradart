@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_api_shield_schemas`.
 const Set<String> _cloudflareApiShieldSchemasSensitive = <String>{};
@@ -20,7 +21,7 @@ final class DataCloudflareApiShieldSchemas extends Data {
     TfArg<num>? maxItems,
     TfArg<bool>? omitSource,
     TfArg<bool>? validationEnabled,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -29,7 +30,7 @@ final class DataCloudflareApiShieldSchemas extends Data {
            'max_items': ?maxItems,
            'omit_source': ?omitSource,
            'validation_enabled': ?validationEnabled,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

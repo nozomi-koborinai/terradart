@@ -50,3 +50,6 @@ extraGetters: |2
     /// Reference to `self_link` attribute.
     TfRef<String> get selfLinkRef =>
         TfRef.attribute<String>(this, 'self_link');
+
+sealedNames:
+  "custom_intercept_profile, custom_mirroring_profile, threat_prevention_profile, url_filtering_profile": settings

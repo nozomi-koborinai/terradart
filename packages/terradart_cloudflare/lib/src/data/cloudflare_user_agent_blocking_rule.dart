@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../security/cloudflare_user_agent_blocking_rule.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_user_agent_blocking_rule`.
 const Set<String> _cloudflareUserAgentBlockingRuleSensitive = <String>{};
@@ -42,7 +43,7 @@ final class DataCloudflareUserAgentBlockingRule extends Data {
   DataCloudflareUserAgentBlockingRule({
     required super.localName,
     TfArg<String>? uaRuleId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataUserAgentBlockingRuleFilter? filter,
     super.provider,
     super.timeouts,
@@ -50,7 +51,7 @@ final class DataCloudflareUserAgentBlockingRule extends Data {
          terraformType: tfType,
          argMap: {
            'ua_rule_id': ?uaRuleId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

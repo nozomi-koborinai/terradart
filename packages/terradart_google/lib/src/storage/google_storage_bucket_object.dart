@@ -14,7 +14,7 @@ const Set<String> _googleStorageBucketObjectSensitive = <String>{
 };
 
 // ===========================================================================
-// StorageBucketObjectBucketObjectContent — sealed (FromSource | FromContent)
+// StorageBucketObjectBody — sealed (Source | Content)
 // ===========================================================================
 
 /// Object payload for `google_storage_bucket_object`. Sealed to make the
@@ -22,22 +22,22 @@ const Set<String> _googleStorageBucketObjectSensitive = <String>{
 /// type level.
 ///
 /// Pick exactly one subclass:
-/// - [StorageBucketObjectBucketObjectFromSource] — upload from a filesystem path
+/// - [StorageBucketObjectBodySource] — upload from a filesystem path
 ///   (Terraform reads the file at apply time).
-/// - [StorageBucketObjectBucketObjectFromContent] — inline string payload (note: marked
+/// - [StorageBucketObjectBodyContent] — inline string payload (note: marked
 ///   `Sensitive` by the provider — the value lands in Terraform state).
-sealed class StorageBucketObjectBucketObjectContent {
-  const StorageBucketObjectBucketObjectContent();
+sealed class StorageBucketObjectBody {
+  const StorageBucketObjectBody();
 
   /// Upload from a local filesystem path.
-  const factory StorageBucketObjectBucketObjectContent.source({
+  const factory StorageBucketObjectBody.source({
     required TfArg<String> source,
-  }) = StorageBucketObjectBucketObjectFromSource;
+  }) = StorageBucketObjectBodySource;
 
   /// Inline string payload.
-  const factory StorageBucketObjectBucketObjectContent.content({
+  const factory StorageBucketObjectBody.content({
     required TfArg<String> content,
-  }) = StorageBucketObjectBucketObjectFromContent;
+  }) = StorageBucketObjectBodyContent;
 
   /// argMap key under which this payload is emitted (`'source'` or
   /// `'content'`).
@@ -62,9 +62,8 @@ sealed class StorageBucketObjectBucketObjectContent {
 ///
 /// `source` is `ForceNew`: changing the path replaces the object.
 @immutable
-final class StorageBucketObjectBucketObjectFromSource
-    extends StorageBucketObjectBucketObjectContent {
-  const StorageBucketObjectBucketObjectFromSource({required this.source});
+final class StorageBucketObjectBodySource extends StorageBucketObjectBody {
+  const StorageBucketObjectBodySource({required this.source});
 
   /// Filesystem path to the data. Usually `TfArg.literal('./path/to/file')`.
   final TfArg<String> source;
@@ -78,12 +77,11 @@ final class StorageBucketObjectBucketObjectFromSource
 
 /// Inline string payload. The provider marks `content` as `Sensitive`,
 /// so the value is redacted in `terraform plan` output but still ends
-/// up in Terraform state — prefer [StorageBucketObjectBucketObjectFromSource] for any
+/// up in Terraform state — prefer [StorageBucketObjectBodySource] for any
 /// non-trivial data.
 @immutable
-final class StorageBucketObjectBucketObjectFromContent
-    extends StorageBucketObjectBucketObjectContent {
-  const StorageBucketObjectBucketObjectFromContent({required this.content});
+final class StorageBucketObjectBodyContent extends StorageBucketObjectBody {
+  const StorageBucketObjectBodyContent({required this.content});
 
   /// The inline data to upload.
   final TfArg<String> content;
@@ -179,9 +177,9 @@ class StorageBucketObjectBucketObjectRetention {
 /// (`id` is `{bucket-name}` for buckets but the API wants just the name).
 ///
 /// `body`: object payload — choose exactly one of:
-/// - [StorageBucketObjectBucketObjectFromSource] — upload from a local file path.
-/// - [StorageBucketObjectBucketObjectFromContent] — inline string payload.
-/// The sealed [StorageBucketObjectBucketObjectContent] type makes the `source` / `content`
+/// - [StorageBucketObjectBodySource] — upload from a local file path.
+/// - [StorageBucketObjectBodyContent] — inline string payload.
+/// The sealed [StorageBucketObjectBody] type makes the `source` / `content`
 /// `exactly_one_of` constraint exhaustive at the type level.
 ///
 /// Example (inline content):
@@ -195,7 +193,7 @@ class StorageBucketObjectBucketObjectRetention {
 ///   localName: 'config',
 ///   bucket: TfArg.ref(assets.nameRef),
 ///   name: TfArg.literal('config/app.json'),
-///   body: StorageBucketObjectBucketObjectFromContent(
+///   body: StorageBucketObjectBodyContent(
 ///     content: TfArg.literal('{"feature_x": true}'),
 ///   ),
 ///   contentType: TfArg.literal('application/json'),
@@ -209,7 +207,7 @@ class StorageBucketObjectBucketObjectRetention {
 ///   localName: 'logo',
 ///   bucket: TfArg.ref(assets.nameRef),
 ///   name: TfArg.literal('static/logo.png'),
-///   body: StorageBucketObjectBucketObjectFromSource(source: TfArg.literal('./assets/logo.png')),
+///   body: StorageBucketObjectBodySource(source: TfArg.literal('./assets/logo.png')),
 ///   contentType: TfArg.literal('image/png'),
 /// );
 /// ```
@@ -220,7 +218,7 @@ final class GoogleStorageBucketObject extends Resource {
     required super.localName,
     required RefTo<GoogleStorageBucket> bucket,
     required TfArg<String> name,
-    required StorageBucketObjectBucketObjectContent body,
+    required StorageBucketObjectBody body,
     TfArg<String>? contentType,
     TfArg<String>? cacheControl,
     TfArg<String>? contentDisposition,

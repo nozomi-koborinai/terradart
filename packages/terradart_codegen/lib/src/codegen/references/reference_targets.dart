@@ -29,10 +29,13 @@ final class ReferenceRule {
   final RegExp slots;
 
   /// `<resource type>.<path>` → the attribute that input emits instead.
+  /// The same input of the type's data source follows the entry; a
+  /// `data.<type>.<path>` key sets a data source input alone.
   final Map<String, String> attributes;
 
   /// `<resource type>.<path>` inputs that match [slots] but name something
-  /// else (an Ethereum network, a bare contact email).
+  /// else (an Ethereum network, a bare contact email), for the resource and
+  /// its data source; `data.<type>.<path>` for a data source input alone.
   final Set<String> exclude;
 }
 
@@ -128,26 +131,36 @@ final class ResolvedReference {
   String get import => "import '../$outputDir/$target.dart' show $className;";
 }
 
-/// The ledger applied to one lane: every curated resource's reference
-/// inputs, keyed by resource type and then dotted input path.
+/// The ledger applied to one lane: every curated resource's and data
+/// source's reference inputs, keyed by Terraform type and then dotted input
+/// path.
 final class ReferenceResolution {
-  const ReferenceResolution({required this.byResource, required this.errors});
+  const ReferenceResolution({
+    required this.byResource,
+    required this.errors,
+    this.byDataSource = const {},
+  });
 
   final Map<String, Map<String, ResolvedReference>> byResource;
+
+  final Map<String, Map<String, ResolvedReference>> byDataSource;
 
   /// Ledger entries that no longer describe the schema; wrap fails on any.
   final List<String> errors;
 
-  int get slotCount =>
-      byResource.values.fold(0, (sum, slots) => sum + slots.length);
+  int get slotCount => [
+    ...byResource.values,
+    ...byDataSource.values,
+  ].fold(0, (sum, slots) => sum + slots.length);
 }
 
 /// Matches [rules] against the string inputs of every resource in
-/// [curated], read from the raw schema blocks. [targetDirs] maps each
-/// curated resource type to its wrapper `outputDir`. [dataSourceSchemas]
-/// holds the curated data sources' blocks: a data source that reads a
-/// target carries its `ref` getter, so it must expose every attribute the
-/// inputs emit.
+/// [curated] and every data source in [dataSourceSchemas], read from the
+/// raw schema blocks. [targetDirs] maps each curated resource type to its
+/// wrapper `outputDir`. [dataSourceSchemas] holds the curated data sources'
+/// blocks: a data source that reads a target carries its `ref` getter, so
+/// it must expose every attribute the inputs emit; the top-level inputs of
+/// that data source are the target's lookup key, not a reference.
 ///
 /// Unless [complete] (a `--only` run sees one resource), entries that match
 /// nothing are not reported: they may match a resource outside [curated].
@@ -161,9 +174,13 @@ ReferenceResolution resolveReferences({
 }) {
   final errors = <String>[];
   final byResource = <String, Map<String, ResolvedReference>>{};
-  final inputs = <String, Map<String, bool>>{
+  final byDataSource = <String, Map<String, ResolvedReference>>{};
+  final inputs = <({String type, bool data}), Map<String, bool>>{
     for (final type in curated)
-      if (resourceSchemas[type] case final block?) type: stringInputs(block),
+      if (resourceSchemas[type] case final block?)
+        (type: type, data: false): stringInputs(block),
+    for (final MapEntry(key: type, value: block) in dataSourceSchemas.entries)
+      (type: type, data: true): stringInputs(block),
   };
   final claimedBy = <String, String>{};
 
@@ -195,25 +212,30 @@ ReferenceResolution resolveReferences({
 
     checkAttribute(rule.attribute, 'the rule');
     final matched = <String>{};
-    for (final MapEntry(key: type, value: slots) in inputs.entries) {
+    for (final MapEntry(key: (:type, :data), value: slots) in inputs.entries) {
       for (final MapEntry(key: path, value: list) in slots.entries) {
         if (!rule.slots.hasMatch(path)) continue;
         // The target's own top-level input is its identity, not a reference.
         if (type == rule.target && !path.contains('.')) continue;
-        final key = '$type.$path';
+        final key = data ? 'data.$type.$path' : '$type.$path';
+        final twin = '$type.$path';
         matched.add(key);
-        if (rule.exclude.contains(key)) continue;
+        if (rule.exclude.contains(key) || rule.exclude.contains(twin)) {
+          continue;
+        }
         final other = claimedBy[key];
         if (other != null) {
           errors.add('$key: matched by both $other and ${rule.target}');
           continue;
         }
         claimedBy[key] = rule.target;
-        (byResource[type] ??= {})[path] = ResolvedReference(
+        ((data ? byDataSource : byResource)[type] ??=
+            {})[path] = ResolvedReference(
           target: rule.target,
           className: snakeToPascal(rule.target),
           outputDir: targetDir,
-          attribute: rule.attributes[key] ?? rule.attribute,
+          attribute:
+              rule.attributes[key] ?? rule.attributes[twin] ?? rule.attribute,
           list: list,
         );
       }
@@ -244,7 +266,11 @@ ReferenceResolution resolveReferences({
       }
     }
   }
-  return ReferenceResolution(byResource: byResource, errors: errors);
+  return ReferenceResolution(
+    byResource: byResource,
+    byDataSource: byDataSource,
+    errors: errors,
+  );
 }
 
 /// Dotted path → whether it is a list, for every string or list/set-of-string

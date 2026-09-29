@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../load_balancer/cloudflare_load_balancer_pool.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_load_balancer_pool`.
 const Set<String> _cloudflareLoadBalancerPoolSensitive = <String>{};
@@ -30,7 +31,7 @@ final class DataCloudflareLoadBalancerPool extends Data {
 
   DataCloudflareLoadBalancerPool({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? poolId,
     DataLoadBalancerPoolFilter? filter,
     super.provider,
@@ -38,7 +39,7 @@ final class DataCloudflareLoadBalancerPool extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'pool_id': ?poolId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

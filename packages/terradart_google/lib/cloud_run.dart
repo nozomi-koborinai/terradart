@@ -68,7 +68,7 @@ export 'src/cloud_run/google_cloud_run_v2_job.dart'
     show
         CloudRunV2JobBinaryAuthorization,
         CloudRunV2JobBinaryAuthorizationPolicy,
-        CloudRunV2JobBinaryAuthorizationPolicyPolicy,
+        CloudRunV2JobBinaryAuthorizationPolicyChoice,
         CloudRunV2JobBinaryAuthorizationPolicyUseDefault,
         CloudRunV2JobEmptyDirMedium,
         CloudRunV2JobExecutionEnvironment,
@@ -121,7 +121,7 @@ export 'src/cloud_run/google_cloud_run_v2_service.dart'
     show
         CloudRunV2ServiceBinaryAuthorization,
         CloudRunV2ServiceBinaryAuthorizationPolicy,
-        CloudRunV2ServiceBinaryAuthorizationPolicyPolicy,
+        CloudRunV2ServiceBinaryAuthorizationPolicyChoice,
         CloudRunV2ServiceBinaryAuthorizationPolicyUseDefault,
         CloudRunV2ServiceBuildConfig,
         CloudRunV2ServiceMultiRegionSettings,
@@ -195,7 +195,7 @@ export 'src/cloud_run/google_cloud_run_v2_worker_pool.dart'
     show
         CloudRunV2WorkerPoolBinaryAuthorization,
         CloudRunV2WorkerPoolBinaryAuthorizationPolicy,
-        CloudRunV2WorkerPoolBinaryAuthorizationPolicyPolicy,
+        CloudRunV2WorkerPoolBinaryAuthorizationPolicyChoice,
         CloudRunV2WorkerPoolBinaryAuthorizationPolicyUseDefault,
         CloudRunV2WorkerPoolEncryptionKeyRevocationAction,
         CloudRunV2WorkerPoolInstanceSplitType,

@@ -28,9 +28,9 @@ export 'src/colab/google_colab_notebook_execution.dart'
         ColabNotebookExecutionSourceGcsNotebookSource,
         ColabNotebookExecutionWorkbenchRuntime,
         ColabNotebookExecutionWorkbenchRuntimeVmImage,
-        ColabNotebookExecutionWorkbenchRuntimeVmImageImage,
-        ColabNotebookExecutionWorkbenchRuntimeVmImageImageFamily,
-        ColabNotebookExecutionWorkbenchRuntimeVmImageImageName,
+        ColabNotebookExecutionWorkbenchRuntimeVmImageSelector,
+        ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorFamily,
+        ColabNotebookExecutionWorkbenchRuntimeVmImageSelectorName,
         GoogleColabNotebookExecution;
 export 'src/colab/google_colab_runtime.dart'
     show

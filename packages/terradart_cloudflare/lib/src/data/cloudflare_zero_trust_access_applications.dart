@@ -2,6 +2,8 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_zero_trust_access_applications`.
 const Set<String> _cloudflareZeroTrustAccessApplicationsSensitive = <String>{
@@ -16,27 +18,27 @@ final class DataCloudflareZeroTrustAccessApplications extends Data {
 
   DataCloudflareZeroTrustAccessApplications({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? aud,
     TfArg<String>? domain,
     TfArg<bool>? exact,
     TfArg<num>? maxItems,
     TfArg<String>? name,
     TfArg<String>? search,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'aud': ?aud,
            'domain': ?domain,
            'exact': ?exact,
            'max_items': ?maxItems,
            'name': ?name,
            'search': ?search,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

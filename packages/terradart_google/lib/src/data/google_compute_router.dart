@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../compute/google_compute_router.dart';
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 
 /// Sensitive field paths for `google_compute_router`.
 const Set<String> _googleComputeRouterSensitive = <String>{};
@@ -17,7 +18,7 @@ final class DataGoogleComputeRouter extends Data {
   DataGoogleComputeRouter({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? project,
     TfArg<String>? region,
     super.provider,
@@ -26,7 +27,7 @@ final class DataGoogleComputeRouter extends Data {
          terraformType: tfType,
          argMap: {
            'name': name,
-           'network': network,
+           'network': network.encodeAs('id'),
            'project': ?project,
            'region': ?region,
          },

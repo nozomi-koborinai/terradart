@@ -143,9 +143,7 @@ final class AnalyticsStack extends Stack {
         location: .literal('asia-northeast1'),
         dataPolicyId: .literal('mask-email'),
         dataPolicyType: .literal(.dataMaskingPolicy),
-        dataMaskingPolicy: BigqueryDatapolicyDataPolicyDataMaskingPolicy(
-          mask: .predefinedExpression(.literal(.emailMask)),
-        ),
+        dataMaskingPolicy: .predefinedExpression(.literal(.emailMask)),
         policyTag: .literal(
           'projects/$projectId/locations/asia-northeast1/taxonomies/1/policyTags/1',
         ),

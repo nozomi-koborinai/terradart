@@ -6,4 +6,4 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
-  "capacity_provider_strategy, launch_type": capacity
+  "capacity_provider_strategy, launch_type": compute

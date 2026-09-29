@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../dns/cloudflare_dns_zone_transfers_tsig.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_dns_zone_transfers_tsig`.
 const Set<String> _cloudflareDnsZoneTransfersTsigSensitive = <String>{'secret'};
@@ -17,13 +18,13 @@ final class DataCloudflareDnsZoneTransfersTsig extends Data {
 
   DataCloudflareDnsZoneTransfersTsig({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> tsigId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'tsig_id': tsigId},
+         argMap: {'account_id': ?accountId?.encodeAs('id'), 'tsig_id': tsigId},
        );
 
   @override

@@ -22,13 +22,13 @@ sealed class BigqueryAnalyticsHubListingSubscriptionDestination {
   const factory BigqueryAnalyticsHubListingSubscriptionDestination.destinationDataset(
     BigqueryAnalyticsHubListingSubscriptionDestinationDataset
     destinationDataset,
-  ) = BigqueryAnalyticsHubListingSubscriptionDestinationDestinationDataset;
+  ) = BigqueryAnalyticsHubListingSubscriptionDestinationDatasetChoice;
 
   /// Sets `destination_pubsub_subscription`.
   const factory BigqueryAnalyticsHubListingSubscriptionDestination.destinationPubsubSubscription(
     BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscription
     destinationPubsubSubscription,
-  ) = BigqueryAnalyticsHubListingSubscriptionDestinationDestinationPubsubSubscription;
+  ) = BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionChoice;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -41,9 +41,9 @@ sealed class BigqueryAnalyticsHubListingSubscriptionDestination {
 }
 
 /// The [BigqueryAnalyticsHubListingSubscriptionDestination.destinationDataset] choice: sets `destination_dataset`.
-final class BigqueryAnalyticsHubListingSubscriptionDestinationDestinationDataset
+final class BigqueryAnalyticsHubListingSubscriptionDestinationDatasetChoice
     extends BigqueryAnalyticsHubListingSubscriptionDestination {
-  const BigqueryAnalyticsHubListingSubscriptionDestinationDestinationDataset(
+  const BigqueryAnalyticsHubListingSubscriptionDestinationDatasetChoice(
     this.destinationDataset,
   );
 
@@ -65,9 +65,9 @@ final class BigqueryAnalyticsHubListingSubscriptionDestinationDestinationDataset
 }
 
 /// The [BigqueryAnalyticsHubListingSubscriptionDestination.destinationPubsubSubscription] choice: sets `destination_pubsub_subscription`.
-final class BigqueryAnalyticsHubListingSubscriptionDestinationDestinationPubsubSubscription
+final class BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionChoice
     extends BigqueryAnalyticsHubListingSubscriptionDestination {
-  const BigqueryAnalyticsHubListingSubscriptionDestinationDestinationPubsubSubscription(
+  const BigqueryAnalyticsHubListingSubscriptionDestinationPubsubSubscriptionChoice(
     this.destinationPubsubSubscription,
   );
 

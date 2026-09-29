@@ -6,4 +6,4 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
-  "cidr, netmask_length": cidr
+  "cidr, netmask_length": range

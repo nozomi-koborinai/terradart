@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_logging_project_cmek_settings`.
 const Set<String> _googleLoggingProjectCmekSettingsSensitive = <String>{};
@@ -15,13 +16,16 @@ final class DataGoogleLoggingProjectCmekSettings extends Data {
 
   DataGoogleLoggingProjectCmekSettings({
     required super.localName,
-    TfArg<String>? kmsKeyName,
+    RefTo<GoogleKmsCryptoKey>? kmsKeyName,
     required TfArg<String> project,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'kms_key_name': ?kmsKeyName, 'project': project},
+         argMap: {
+           'kms_key_name': ?kmsKeyName?.encodeAs('id'),
+           'project': project,
+         },
        );
 
   @override

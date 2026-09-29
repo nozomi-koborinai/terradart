@@ -51,3 +51,4 @@ paramOrder:
   - enable_logging
   - target_service_accounts
   - project
+  - target_secure_tags

@@ -35,19 +35,14 @@ curatedDoc: |-
   ///     ],
   ///   ),
   ///   rules: [
-  ///     ClouddeployAutomationRules(
-  ///       rule: .promoteReleaseRule(
-  ///         ClouddeployAutomationRulesPromoteReleaseRule(
-  ///           id: .literal('promote-release'),
-  ///         ),
+  ///     .promoteReleaseRule(
+  ///       ClouddeployAutomationRulesPromoteReleaseRule(
+  ///         id: .literal('promote-release'),
   ///       ),
   ///     ),
   ///   ],
   /// );
   /// ```
-
-sealedNames:
-  "rules.repair_rollout_rule.repair_phases.retry, rules.repair_rollout_rule.repair_phases.rollback": phase
 
 paramOrder:
   - name

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../healthcheck/cloudflare_healthcheck.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_healthcheck`.
 const Set<String> _cloudflareHealthcheckSensitive = <String>{};
@@ -18,12 +19,15 @@ final class DataCloudflareHealthcheck extends Data {
   DataCloudflareHealthcheck({
     required super.localName,
     required TfArg<String> healthcheckId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'healthcheck_id': healthcheckId, 'zone_id': ?zoneId},
+         argMap: {
+           'healthcheck_id': healthcheckId,
+           'zone_id': ?zoneId?.encodeAs('id'),
+         },
        );
 
   @override

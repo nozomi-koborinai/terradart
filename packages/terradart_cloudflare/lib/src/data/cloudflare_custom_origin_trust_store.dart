@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../ssl/cloudflare_custom_origin_trust_store.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_custom_origin_trust_store`.
 const Set<String> _cloudflareCustomOriginTrustStoreSensitive = <String>{};
@@ -35,7 +36,7 @@ final class DataCloudflareCustomOriginTrustStore extends Data {
   DataCloudflareCustomOriginTrustStore({
     required super.localName,
     TfArg<String>? customOriginTrustStoreId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataCustomOriginTrustStoreFilter? filter,
     super.provider,
     super.timeouts,
@@ -43,7 +44,7 @@ final class DataCloudflareCustomOriginTrustStore extends Data {
          terraformType: tfType,
          argMap: {
            'custom_origin_trust_store_id': ?customOriginTrustStoreId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

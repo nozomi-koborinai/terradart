@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../dns/cloudflare_dns_zone_transfers_acl.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_dns_zone_transfers_acl`.
 const Set<String> _cloudflareDnsZoneTransfersAclSensitive = <String>{};
@@ -17,13 +18,13 @@ final class DataCloudflareDnsZoneTransfersAcl extends Data {
 
   DataCloudflareDnsZoneTransfersAcl({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> aclId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'acl_id': aclId},
+         argMap: {'account_id': ?accountId?.encodeAs('id'), 'acl_id': aclId},
        );
 
   @override

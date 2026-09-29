@@ -45,8 +45,6 @@ curatedDoc: |-
 # — they fan into the virtual `source` customSlot. Nested
 # `vector_search_config` exactly_one_of (treeAh / bruteForce) is not curated
 # in this Wave (optional Map not exposed).
-sealedNames:
-  "sync_config.continuous, sync_config.cron": schedule
 
 paramOrder:
   - feature_online_store

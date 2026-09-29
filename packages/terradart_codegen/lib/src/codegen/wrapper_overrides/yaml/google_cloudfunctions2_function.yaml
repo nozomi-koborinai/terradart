@@ -20,12 +20,10 @@ curatedDoc: |-
   ///   buildConfig: Cloudfunctions2FunctionBuildConfig(
   ///     runtime: .literal('python311'),
   ///     entryPoint: .literal('hello'),
-  ///     source: Cloudfunctions2FunctionBuildConfigSource(
-  ///       origin: .storageSource(
-  ///         Cloudfunctions2FunctionBuildConfigSourceStorageSource(
-  ///           bucket: .of(bucket),
-  ///           object: .literal('hello-http.zip'),
-  ///         ),
+  ///     source: .storageSource(
+  ///       Cloudfunctions2FunctionBuildConfigSourceStorageSource(
+  ///         bucket: .of(bucket),
+  ///         object: .literal('hello-http.zip'),
   ///       ),
   ///     ),
   ///     updatePolicy: .automaticUpdatePolicy(
@@ -49,12 +47,10 @@ curatedDoc: |-
   ///   buildConfig: Cloudfunctions2FunctionBuildConfig(
   ///     runtime: .literal('python311'),
   ///     entryPoint: .literal('handle'),
-  ///     source: Cloudfunctions2FunctionBuildConfigSource(
-  ///       origin: .storageSource(
-  ///         Cloudfunctions2FunctionBuildConfigSourceStorageSource(
-  ///           bucket: .of(bucket),
-  ///           object: .literal('order-handler.zip'),
-  ///         ),
+  ///     source: .storageSource(
+  ///       Cloudfunctions2FunctionBuildConfigSourceStorageSource(
+  ///         bucket: .of(bucket),
+  ///         object: .literal('order-handler.zip'),
   ///       ),
   ///     ),
   ///     updatePolicy: .automaticUpdatePolicy(
@@ -70,7 +66,6 @@ curatedDoc: |-
   /// ```
 
 sealedNames:
-  "build_config.source.repo_source, build_config.source.storage_source": origin
   "build_config.source.repo_source.branch_name, build_config.source.repo_source.commit_sha, build_config.source.repo_source.tag_name": revision
   "service_config.direct_vpc_network_interface, service_config.vpc_connector": connection
 

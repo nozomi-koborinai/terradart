@@ -15,5 +15,6 @@ nestedTypeExcludes:
   - server_side_encryption_configuration
 
 sealedNames:
+  "bucket, bucket_prefix": name
   "acl, grant": access
   "website.index_document, website.redirect_all_requests_to": mode

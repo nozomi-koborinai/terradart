@@ -261,9 +261,9 @@ export 'src/dialogflow/google_dialogflow_cx_security_settings.dart'
         DialogflowCxSecuritySettingsRedactionScope,
         DialogflowCxSecuritySettingsRedactionStrategy,
         DialogflowCxSecuritySettingsRetention,
-        DialogflowCxSecuritySettingsRetentionRetentionStrategy,
-        DialogflowCxSecuritySettingsRetentionRetentionWindowDays,
         DialogflowCxSecuritySettingsRetentionStrategy,
+        DialogflowCxSecuritySettingsRetentionStrategyChoice,
+        DialogflowCxSecuritySettingsRetentionWindowDays,
         GoogleDialogflowCxSecuritySettings;
 export 'src/dialogflow/google_dialogflow_cx_test_case.dart'
     show

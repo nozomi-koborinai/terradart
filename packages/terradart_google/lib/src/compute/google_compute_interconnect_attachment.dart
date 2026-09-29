@@ -1,7 +1,10 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 
 /// Sensitive field paths for `google_compute_interconnect_attachment`.
 const Set<String> _googleComputeInterconnectAttachmentSensitive = <String>{};
@@ -74,6 +77,115 @@ enum ComputeInterconnectAttachmentType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `l2_forwarding` block of
+/// `google_compute_interconnect_attachment` (derived from provider schema).
+@immutable
+final class ComputeInterconnectAttachmentL2Forwarding {
+  const ComputeInterconnectAttachmentL2Forwarding({
+    this.defaultApplianceIpAddress,
+    this.network,
+    this.tunnelEndpointIpAddress,
+    this.applianceMappings,
+    this.geneveHeader,
+  });
+
+  final TfArg<String>? defaultApplianceIpAddress;
+
+  final RefTo<GoogleComputeNetwork>? network;
+
+  final TfArg<String>? tunnelEndpointIpAddress;
+
+  final List<ComputeInterconnectAttachmentL2ForwardingApplianceMappings>?
+  applianceMappings;
+
+  final ComputeInterconnectAttachmentL2ForwardingGeneveHeader? geneveHeader;
+
+  Map<String, Object?> encode() => {
+    'default_appliance_ip_address': ?defaultApplianceIpAddress?.toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
+    'tunnel_endpoint_ip_address': ?tunnelEndpointIpAddress?.toTfJson(),
+    if (applianceMappings != null)
+      'appliance_mappings': [for (final e in applianceMappings!) e.encode()],
+    'geneve_header': ?geneveHeader?.encode(),
+  };
+}
+
+/// Typed helper for the `l2_forwarding.appliance_mappings` block of
+/// `google_compute_interconnect_attachment` (derived from provider schema).
+@immutable
+final class ComputeInterconnectAttachmentL2ForwardingApplianceMappings {
+  const ComputeInterconnectAttachmentL2ForwardingApplianceMappings({
+    this.applianceIpAddress,
+    this.name,
+    this.vlanId,
+    this.innerVlanToApplianceMappings,
+  });
+
+  final TfArg<String>? applianceIpAddress;
+
+  final TfArg<String>? name;
+
+  final TfArg<String>? vlanId;
+
+  final List<
+    ComputeInterconnectAttachmentL2ForwardingApplianceMappingsInnerVlanToApplianceMappings
+  >?
+  innerVlanToApplianceMappings;
+
+  Map<String, Object?> encode() => {
+    'appliance_ip_address': ?applianceIpAddress?.toTfJson(),
+    'name': ?name?.toTfJson(),
+    'vlan_id': ?vlanId?.toTfJson(),
+    if (innerVlanToApplianceMappings != null)
+      'inner_vlan_to_appliance_mappings': [
+        for (final e in innerVlanToApplianceMappings!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `l2_forwarding.appliance_mappings.inner_vlan_to_appliance_mappings` block of
+/// `google_compute_interconnect_attachment` (derived from provider schema).
+@immutable
+final class ComputeInterconnectAttachmentL2ForwardingApplianceMappingsInnerVlanToApplianceMappings {
+  const ComputeInterconnectAttachmentL2ForwardingApplianceMappingsInnerVlanToApplianceMappings({
+    this.innerApplianceIpAddress,
+    this.innerVlanTags,
+  });
+
+  final TfArg<String>? innerApplianceIpAddress;
+
+  final TfArg<List<Object?>>? innerVlanTags;
+
+  Map<String, Object?> encode() => {
+    'inner_appliance_ip_address': ?innerApplianceIpAddress?.toTfJson(),
+    'inner_vlan_tags': ?innerVlanTags?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `l2_forwarding.geneve_header` block of
+/// `google_compute_interconnect_attachment` (derived from provider schema).
+@immutable
+final class ComputeInterconnectAttachmentL2ForwardingGeneveHeader {
+  const ComputeInterconnectAttachmentL2ForwardingGeneveHeader({this.vni});
+
+  final TfArg<num>? vni;
+
+  Map<String, Object?> encode() => {'vni': ?vni?.toTfJson()};
+}
+
+/// Typed helper for the `params` block of
+/// `google_compute_interconnect_attachment` (derived from provider schema).
+@immutable
+final class ComputeInterconnectAttachmentParams {
+  const ComputeInterconnectAttachmentParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_interconnect_attachment`.
 ///
 /// Represents an InterconnectAttachment (VLAN attachment) resource. For more
@@ -104,6 +216,8 @@ final class GoogleComputeInterconnectAttachment extends Resource {
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    ComputeInterconnectAttachmentL2Forwarding? l2Forwarding,
+    ComputeInterconnectAttachmentParams? params,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -135,6 +249,9 @@ final class GoogleComputeInterconnectAttachment extends Resource {
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           if (l2Forwarding != null)
+             'l2_forwarding': TfArg.literal(l2Forwarding.encode()),
+           if (params != null) 'params': TfArg.literal(params.encode()),
          },
        );
 

@@ -136,6 +136,10 @@ final class GoogleComputeRouterPeer extends Resource {
     TfArg<String>? routerApplianceInstance,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    List<ComputeRouterPeerAdvertisedIpRanges>? advertisedIpRanges,
+    ComputeRouterPeerBfd? bfd,
+    List<ComputeRouterPeerCustomLearnedIpRanges>? customLearnedIpRanges,
+    ComputeRouterPeerMd5AuthenticationKey? md5AuthenticationKey,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -165,6 +169,19 @@ final class GoogleComputeRouterPeer extends Resource {
            'router_appliance_instance': ?routerApplianceInstance,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
+           if (advertisedIpRanges != null)
+             'advertised_ip_ranges': TfArg.literal([
+               for (final e in advertisedIpRanges) e.encode(),
+             ]),
+           if (bfd != null) 'bfd': TfArg.literal(bfd.encode()),
+           if (customLearnedIpRanges != null)
+             'custom_learned_ip_ranges': TfArg.literal([
+               for (final e in customLearnedIpRanges) e.encode(),
+             ]),
+           if (md5AuthenticationKey != null)
+             'md5_authentication_key': TfArg.literal(
+               md5AuthenticationKey.encode(),
+             ),
          },
        );
 

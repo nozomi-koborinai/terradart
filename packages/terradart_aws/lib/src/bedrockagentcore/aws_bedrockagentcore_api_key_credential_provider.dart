@@ -31,18 +31,18 @@ sealed class BedrockagentcoreApiKeyCredentialProviderApiKey {
   /// Sets `api_key`.
   const factory BedrockagentcoreApiKeyCredentialProviderApiKey.apiKey(
     TfArg<String> apiKey,
-  ) = BedrockagentcoreApiKeyCredentialProviderApiKeyApiKey;
+  ) = BedrockagentcoreApiKeyCredentialProviderApiKeyChoice;
 
   /// Sets `api_key_secret_config`.
   const factory BedrockagentcoreApiKeyCredentialProviderApiKey.apiKeySecretConfig(
     List<BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfig>
     apiKeySecretConfig,
-  ) = BedrockagentcoreApiKeyCredentialProviderApiKeyApiKeySecretConfig;
+  ) = BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfigChoice;
 
   /// Sets `api_key_wo`.
   const factory BedrockagentcoreApiKeyCredentialProviderApiKey.apiKeyWo(
     TfArg<String> apiKeyWo,
-  ) = BedrockagentcoreApiKeyCredentialProviderApiKeyApiKeyWo;
+  ) = BedrockagentcoreApiKeyCredentialProviderApiKeyWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -55,9 +55,9 @@ sealed class BedrockagentcoreApiKeyCredentialProviderApiKey {
 }
 
 /// The [BedrockagentcoreApiKeyCredentialProviderApiKey.apiKey] choice: sets `api_key`.
-final class BedrockagentcoreApiKeyCredentialProviderApiKeyApiKey
+final class BedrockagentcoreApiKeyCredentialProviderApiKeyChoice
     extends BedrockagentcoreApiKeyCredentialProviderApiKey {
-  const BedrockagentcoreApiKeyCredentialProviderApiKeyApiKey(this.apiKey);
+  const BedrockagentcoreApiKeyCredentialProviderApiKeyChoice(this.apiKey);
 
   final TfArg<String> apiKey;
 
@@ -72,9 +72,9 @@ final class BedrockagentcoreApiKeyCredentialProviderApiKeyApiKey
 }
 
 /// The [BedrockagentcoreApiKeyCredentialProviderApiKey.apiKeySecretConfig] choice: sets `api_key_secret_config`.
-final class BedrockagentcoreApiKeyCredentialProviderApiKeyApiKeySecretConfig
+final class BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfigChoice
     extends BedrockagentcoreApiKeyCredentialProviderApiKey {
-  const BedrockagentcoreApiKeyCredentialProviderApiKeyApiKeySecretConfig(
+  const BedrockagentcoreApiKeyCredentialProviderApiKeySecretConfigChoice(
     this.apiKeySecretConfig,
   );
 
@@ -98,9 +98,9 @@ final class BedrockagentcoreApiKeyCredentialProviderApiKeyApiKeySecretConfig
 }
 
 /// The [BedrockagentcoreApiKeyCredentialProviderApiKey.apiKeyWo] choice: sets `api_key_wo`.
-final class BedrockagentcoreApiKeyCredentialProviderApiKeyApiKeyWo
+final class BedrockagentcoreApiKeyCredentialProviderApiKeyWo
     extends BedrockagentcoreApiKeyCredentialProviderApiKey {
-  const BedrockagentcoreApiKeyCredentialProviderApiKeyApiKeyWo(this.apiKeyWo);
+  const BedrockagentcoreApiKeyCredentialProviderApiKeyWo(this.apiKeyWo);
 
   final TfArg<String> apiKeyWo;
 

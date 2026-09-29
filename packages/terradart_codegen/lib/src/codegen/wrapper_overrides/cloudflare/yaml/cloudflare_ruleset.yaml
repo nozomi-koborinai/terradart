@@ -6,6 +6,7 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
+  "rules.action_parameters.edge_ttl.status_code_ttl.status_code, rules.action_parameters.edge_ttl.status_code_ttl.status_code_range": match
   "account_id, zone_id": scope
   "rules.action_parameters.asset_name, rules.action_parameters.content": body
   "rules.action_parameters.expression, rules.action_parameters.values": value

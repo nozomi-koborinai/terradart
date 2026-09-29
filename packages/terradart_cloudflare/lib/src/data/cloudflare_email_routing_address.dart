@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../email/cloudflare_email_routing_address.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_email_routing_address`.
 const Set<String> _cloudflareEmailRoutingAddressSensitive = <String>{};
@@ -44,7 +45,7 @@ final class DataCloudflareEmailRoutingAddress extends Data {
 
   DataCloudflareEmailRoutingAddress({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? destinationAddressIdentifier,
     DataEmailRoutingAddressFilter? filter,
     super.provider,
@@ -52,7 +53,7 @@ final class DataCloudflareEmailRoutingAddress extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'destination_address_identifier': ?destinationAddressIdentifier,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

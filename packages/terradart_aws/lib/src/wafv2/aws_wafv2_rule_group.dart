@@ -27,11 +27,11 @@ sealed class Wafv2RuleGroupName {
 
   /// Sets `name`.
   const factory Wafv2RuleGroupName.name(TfArg<String> name) =
-      Wafv2RuleGroupNameName;
+      Wafv2RuleGroupNameChoice;
 
   /// Sets `name_prefix`.
   const factory Wafv2RuleGroupName.namePrefix(TfArg<String> namePrefix) =
-      Wafv2RuleGroupNameNamePrefix;
+      Wafv2RuleGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,8 +44,8 @@ sealed class Wafv2RuleGroupName {
 }
 
 /// The [Wafv2RuleGroupName.name] choice: sets `name`.
-final class Wafv2RuleGroupNameName extends Wafv2RuleGroupName {
-  const Wafv2RuleGroupNameName(this.name);
+final class Wafv2RuleGroupNameChoice extends Wafv2RuleGroupName {
+  const Wafv2RuleGroupNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -60,8 +60,8 @@ final class Wafv2RuleGroupNameName extends Wafv2RuleGroupName {
 }
 
 /// The [Wafv2RuleGroupName.namePrefix] choice: sets `name_prefix`.
-final class Wafv2RuleGroupNameNamePrefix extends Wafv2RuleGroupName {
-  const Wafv2RuleGroupNameNamePrefix(this.namePrefix);
+final class Wafv2RuleGroupNamePrefix extends Wafv2RuleGroupName {
+  const Wafv2RuleGroupNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -89,7 +89,7 @@ sealed class Wafv2RuleGroupRules {
 
   /// Sets `rules_json`.
   const factory Wafv2RuleGroupRules.rulesJson(TfArg<String> rulesJson) =
-      Wafv2RuleGroupRulesRulesJson;
+      Wafv2RuleGroupRulesJson;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -122,8 +122,8 @@ final class Wafv2RuleGroupRulesRule extends Wafv2RuleGroupRules {
 }
 
 /// The [Wafv2RuleGroupRules.rulesJson] choice: sets `rules_json`.
-final class Wafv2RuleGroupRulesRulesJson extends Wafv2RuleGroupRules {
-  const Wafv2RuleGroupRulesRulesJson(this.rulesJson);
+final class Wafv2RuleGroupRulesJson extends Wafv2RuleGroupRules {
+  const Wafv2RuleGroupRulesJson(this.rulesJson);
 
   final TfArg<String> rulesJson;
 

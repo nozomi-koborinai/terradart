@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../access/cloudflare_access_rule.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_access_rule`.
 const Set<String> _cloudflareAccessRuleSensitive = <String>{};
@@ -126,18 +128,18 @@ final class DataCloudflareAccessRule extends Data {
 
   DataCloudflareAccessRule({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? ruleId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataAccessRuleFilter? filter,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'rule_id': ?ruleId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

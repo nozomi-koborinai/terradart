@@ -6,4 +6,4 @@ deriveEnums: true
 deriveExactlyOne: true
 
 sealedNames:
-  "access_control_policy, acl": access
+  "access_control_policy, acl": policy

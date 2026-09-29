@@ -17,11 +17,11 @@ sealed class NeptuneParameterGroupName {
 
   /// Sets `name`.
   const factory NeptuneParameterGroupName.name(TfArg<String> name) =
-      NeptuneParameterGroupNameName;
+      NeptuneParameterGroupNameChoice;
 
   /// Sets `name_prefix`.
   const factory NeptuneParameterGroupName.namePrefix(TfArg<String> namePrefix) =
-      NeptuneParameterGroupNameNamePrefix;
+      NeptuneParameterGroupNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,8 +34,8 @@ sealed class NeptuneParameterGroupName {
 }
 
 /// The [NeptuneParameterGroupName.name] choice: sets `name`.
-final class NeptuneParameterGroupNameName extends NeptuneParameterGroupName {
-  const NeptuneParameterGroupNameName(this.name);
+final class NeptuneParameterGroupNameChoice extends NeptuneParameterGroupName {
+  const NeptuneParameterGroupNameChoice(this.name);
 
   final TfArg<String> name;
 
@@ -50,9 +50,8 @@ final class NeptuneParameterGroupNameName extends NeptuneParameterGroupName {
 }
 
 /// The [NeptuneParameterGroupName.namePrefix] choice: sets `name_prefix`.
-final class NeptuneParameterGroupNameNamePrefix
-    extends NeptuneParameterGroupName {
-  const NeptuneParameterGroupNameNamePrefix(this.namePrefix);
+final class NeptuneParameterGroupNamePrefix extends NeptuneParameterGroupName {
+  const NeptuneParameterGroupNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 

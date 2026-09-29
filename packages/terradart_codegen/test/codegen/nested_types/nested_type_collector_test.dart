@@ -115,6 +115,32 @@ void main() {
     expect(attr.reference, isNull);
   });
 
+  test('a typeOverrides entry on a list-of-string input stays repeated', () {
+    const terraformType = 'google_access_context_manager_access_level';
+    final specs = collectNestedTypes(
+      resourceBlock: _blockOf(terraformType),
+      resourcePrefix: _resourcePrefixOf(terraformType),
+      customSlotKeys: const {},
+      excludedPaths: const {},
+      typeOverrides: const {
+        'basic.conditions.device_policy.allowed_device_management_levels':
+            'ManagementLevel',
+      },
+    );
+    final devicePolicy = specs
+        .firstWhere((s) => s.tfName == 'basic')
+        .children
+        .firstWhere((c) => c.tfName == 'conditions')
+        .children
+        .firstWhere((c) => c.tfName == 'device_policy');
+    final attr = devicePolicy.attrs.firstWhere(
+      (a) => a.tfName == 'allowed_device_management_levels',
+    );
+    expect(attr.dartType, 'ManagementLevel');
+    expect(attr.repeated, isTrue);
+    expect(attr.enumValues, isNull);
+  });
+
   test('google_access_context_manager_access_level: excludedPaths records '
       'the child by name without descending, customSlot keys hide the '
       'whole subtree, and a max_items-less list block is repeated', () {

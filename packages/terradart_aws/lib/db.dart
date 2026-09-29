@@ -8,8 +8,8 @@ export 'src/db/aws_db_event_subscription.dart'
     show
         AwsDbEventSubscription,
         DbEventSubscriptionName,
-        DbEventSubscriptionNameName,
-        DbEventSubscriptionNameNamePrefix,
+        DbEventSubscriptionNameChoice,
+        DbEventSubscriptionNamePrefix,
         DbEventSubscriptionSourceType;
 export 'src/db/aws_db_instance.dart'
     show
@@ -20,18 +20,18 @@ export 'src/db/aws_db_instance.dart'
         DbInstanceEnabledCloudwatchLogsExports,
         DbInstanceEngineLifecycleSupport,
         DbInstanceIdentifier,
-        DbInstanceIdentifierIdentifier,
-        DbInstanceIdentifierIdentifierPrefix,
+        DbInstanceIdentifierChoice,
+        DbInstanceIdentifierPrefix,
         DbInstanceNetworkType,
         DbInstancePassword,
+        DbInstancePasswordChoice,
         DbInstancePasswordManageMasterUserPassword,
-        DbInstancePasswordPassword,
-        DbInstancePasswordPasswordWo,
+        DbInstancePasswordWo,
         DbInstanceReplicaMode,
         DbInstanceRestoreToPointInTime,
-        DbInstanceRestoreToPointInTimeTime,
-        DbInstanceRestoreToPointInTimeTimeRestoreTime,
-        DbInstanceRestoreToPointInTimeTimeUseLatestRestorableTime,
+        DbInstanceRestoreToPointInTimeTarget,
+        DbInstanceRestoreToPointInTimeTargetRestoreTime,
+        DbInstanceRestoreToPointInTimeTargetUseLatestRestorableTime,
         DbInstanceS3Import;
 export 'src/db/aws_db_instance_automated_backups_replication.dart'
     show AwsDbInstanceAutomatedBackupsReplication;
@@ -41,16 +41,16 @@ export 'src/db/aws_db_option_group.dart'
     show
         AwsDbOptionGroup,
         DbOptionGroupName,
-        DbOptionGroupNameName,
-        DbOptionGroupNameNamePrefix,
+        DbOptionGroupNameChoice,
+        DbOptionGroupNamePrefix,
         DbOptionGroupOption,
         DbOptionGroupOptionOptionSettings;
 export 'src/db/aws_db_parameter_group.dart'
     show
         AwsDbParameterGroup,
         DbParameterGroupName,
-        DbParameterGroupNameName,
-        DbParameterGroupNameNamePrefix,
+        DbParameterGroupNameChoice,
+        DbParameterGroupNamePrefix,
         DbParameterGroupParameter,
         DbParameterGroupParameterApplyMethod;
 export 'src/db/aws_db_proxy.dart'
@@ -74,14 +74,14 @@ export 'src/db/aws_db_proxy_endpoint.dart'
 export 'src/db/aws_db_proxy_target.dart'
     show
         AwsDbProxyTarget,
-        DbProxyTargetTarget,
-        DbProxyTargetTargetDbClusterIdentifier,
-        DbProxyTargetTargetDbInstanceIdentifier;
+        DbProxyTargetDatabase,
+        DbProxyTargetDatabaseDbClusterIdentifier,
+        DbProxyTargetDatabaseDbInstanceIdentifier;
 export 'src/db/aws_db_snapshot.dart' show AwsDbSnapshot;
 export 'src/db/aws_db_snapshot_copy.dart' show AwsDbSnapshotCopy;
 export 'src/db/aws_db_subnet_group.dart'
     show
         AwsDbSubnetGroup,
         DbSubnetGroupName,
-        DbSubnetGroupNameName,
-        DbSubnetGroupNameNamePrefix;
+        DbSubnetGroupNameChoice,
+        DbSubnetGroupNamePrefix;

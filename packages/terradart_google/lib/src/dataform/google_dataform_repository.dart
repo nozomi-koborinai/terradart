@@ -43,7 +43,7 @@ sealed class DataformRepositoryGitRemoteSettingsAuthentication {
   /// Sets `authentication_token_secret_version`.
   const factory DataformRepositoryGitRemoteSettingsAuthentication.authenticationTokenSecretVersion(
     TfArg<String> authenticationTokenSecretVersion,
-  ) = DataformRepositoryGitRemoteSettingsAuthenticationAuthenticationTokenSecretVersion;
+  ) = DataformRepositoryGitRemoteSettingsAuthenticationTokenSecretVersion;
 
   /// Sets `ssh_authentication_config`.
   const factory DataformRepositoryGitRemoteSettingsAuthentication.sshAuthenticationConfig(
@@ -63,9 +63,9 @@ sealed class DataformRepositoryGitRemoteSettingsAuthentication {
 }
 
 /// The [DataformRepositoryGitRemoteSettingsAuthentication.authenticationTokenSecretVersion] choice: sets `authentication_token_secret_version`.
-final class DataformRepositoryGitRemoteSettingsAuthenticationAuthenticationTokenSecretVersion
+final class DataformRepositoryGitRemoteSettingsAuthenticationTokenSecretVersion
     extends DataformRepositoryGitRemoteSettingsAuthentication {
-  const DataformRepositoryGitRemoteSettingsAuthenticationAuthenticationTokenSecretVersion(
+  const DataformRepositoryGitRemoteSettingsAuthenticationTokenSecretVersion(
     this.authenticationTokenSecretVersion,
   );
 

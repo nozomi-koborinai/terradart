@@ -143,34 +143,23 @@ final class VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySourceFeatureGro
   };
 }
 
-/// Typed helper for the `sync_config` block of
-/// `google_vertex_ai_feature_online_store_featureview` (derived from provider schema).
-@immutable
-final class VertexAiFeatureOnlineStoreFeatureviewSyncConfig {
-  const VertexAiFeatureOnlineStoreFeatureviewSyncConfig({this.schedule});
-
-  final VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule? schedule;
-
-  Map<String, Object?> encode() => {...?schedule?.encode()};
-}
-
 /// At most one of `cron`, `continuous` on the `sync_config` block of `google_vertex_ai_feature_online_store_featureview`: the provider rejects
 /// more than one, so each variant sets one of them and a
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.cron(...)`.
-sealed class VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule {
-  const VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule();
+sealed class VertexAiFeatureOnlineStoreFeatureviewSyncConfig {
+  const VertexAiFeatureOnlineStoreFeatureviewSyncConfig();
 
   /// Sets `cron`.
-  const factory VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule.cron(
+  const factory VertexAiFeatureOnlineStoreFeatureviewSyncConfig.cron(
     TfArg<String> cron,
-  ) = VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleCron;
+  ) = VertexAiFeatureOnlineStoreFeatureviewSyncConfigCron;
 
   /// Sets `continuous`.
-  const factory VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule.continuous(
+  const factory VertexAiFeatureOnlineStoreFeatureviewSyncConfig.continuous(
     TfArg<bool> continuous,
-  ) = VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleContinuous;
+  ) = VertexAiFeatureOnlineStoreFeatureviewSyncConfigContinuous;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -178,10 +167,10 @@ sealed class VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule {
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule.cron] choice: sets `cron`.
-final class VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleCron
-    extends VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule {
-  const VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleCron(this.cron);
+/// The [VertexAiFeatureOnlineStoreFeatureviewSyncConfig.cron] choice: sets `cron`.
+final class VertexAiFeatureOnlineStoreFeatureviewSyncConfigCron
+    extends VertexAiFeatureOnlineStoreFeatureviewSyncConfig {
+  const VertexAiFeatureOnlineStoreFeatureviewSyncConfigCron(this.cron);
 
   final TfArg<String> cron;
 
@@ -192,10 +181,10 @@ final class VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleCron
   Map<String, Object?> encode() => {'cron': cron.toTfJson()};
 }
 
-/// The [VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule.continuous] choice: sets `continuous`.
-final class VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleContinuous
-    extends VertexAiFeatureOnlineStoreFeatureviewSyncConfigSchedule {
-  const VertexAiFeatureOnlineStoreFeatureviewSyncConfigScheduleContinuous(
+/// The [VertexAiFeatureOnlineStoreFeatureviewSyncConfig.continuous] choice: sets `continuous`.
+final class VertexAiFeatureOnlineStoreFeatureviewSyncConfigContinuous
+    extends VertexAiFeatureOnlineStoreFeatureviewSyncConfig {
+  const VertexAiFeatureOnlineStoreFeatureviewSyncConfigContinuous(
     this.continuous,
   );
 

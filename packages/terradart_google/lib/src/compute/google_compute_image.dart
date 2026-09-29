@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_compute_image`.
 const Set<String> _googleComputeImageSensitive = <String>{
   'image_encryption_key.raw_key',
@@ -25,16 +27,16 @@ sealed class ComputeImageSource {
 
   /// Create the image from a Persistent Disk (name or self-link).
   const factory ComputeImageSource.disk({required TfArg<String> sourceDisk}) =
-      ComputeImageDiskSource;
+      ComputeImageSourceDisk;
 
   /// Create the image from another Image (name or self-link).
   const factory ComputeImageSource.image({required TfArg<String> sourceImage}) =
-      ComputeImageImageSource;
+      ComputeImageSourceImage;
 
   /// Create the image from a Persistent Disk Snapshot (name or self-link).
   const factory ComputeImageSource.snapshot({
     required TfArg<String> sourceSnapshot,
-  }) = ComputeImageSnapshotSource;
+  }) = ComputeImageSourceSnapshot;
 
   /// Terraform attribute name (`source_disk`, `source_image`, or
   /// `source_snapshot`).
@@ -48,8 +50,8 @@ sealed class ComputeImageSource {
 
 /// Create the image from a Persistent Disk (name or self-link).
 @immutable
-final class ComputeImageDiskSource extends ComputeImageSource {
-  const ComputeImageDiskSource({required this.sourceDisk});
+final class ComputeImageSourceDisk extends ComputeImageSource {
+  const ComputeImageSourceDisk({required this.sourceDisk});
 
   final TfArg<String> sourceDisk;
 
@@ -62,8 +64,8 @@ final class ComputeImageDiskSource extends ComputeImageSource {
 
 /// Create the image from another Image (name or self-link).
 @immutable
-final class ComputeImageImageSource extends ComputeImageSource {
-  const ComputeImageImageSource({required this.sourceImage});
+final class ComputeImageSourceImage extends ComputeImageSource {
+  const ComputeImageSourceImage({required this.sourceImage});
 
   final TfArg<String> sourceImage;
 
@@ -76,8 +78,8 @@ final class ComputeImageImageSource extends ComputeImageSource {
 
 /// Create the image from a Persistent Disk Snapshot (name or self-link).
 @immutable
-final class ComputeImageSnapshotSource extends ComputeImageSource {
-  const ComputeImageSnapshotSource({required this.sourceSnapshot});
+final class ComputeImageSourceSnapshot extends ComputeImageSource {
+  const ComputeImageSourceSnapshot({required this.sourceSnapshot});
 
   final TfArg<String> sourceSnapshot;
 
@@ -86,6 +88,114 @@ final class ComputeImageSnapshotSource extends ComputeImageSource {
 
   @override
   TfArg<String> get value => sourceSnapshot;
+}
+
+/// Typed helper for the `image_encryption_key` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageImageEncryptionKey {
+  const ComputeImageImageEncryptionKey({
+    this.kmsKeySelfLink,
+    this.kmsKeyServiceAccount,
+    this.rawKey,
+    this.rsaEncryptedKey,
+  });
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
+
+  final TfArg<String>? kmsKeyServiceAccount;
+
+  final TfArg<String>? rawKey;
+
+  final TfArg<String>? rsaEncryptedKey;
+
+  Map<String, Object?> encode() => {
+    'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `source_disk_encryption_key` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageSourceDiskEncryptionKey {
+  const ComputeImageSourceDiskEncryptionKey({
+    this.kmsKeySelfLink,
+    this.kmsKeyServiceAccount,
+    this.rawKey,
+    this.rsaEncryptedKey,
+  });
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
+
+  final TfArg<String>? kmsKeyServiceAccount;
+
+  final TfArg<String>? rawKey;
+
+  final TfArg<String>? rsaEncryptedKey;
+
+  Map<String, Object?> encode() => {
+    'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `source_image_encryption_key` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageSourceImageEncryptionKey {
+  const ComputeImageSourceImageEncryptionKey({
+    this.kmsKeySelfLink,
+    this.kmsKeyServiceAccount,
+    this.rawKey,
+    this.rsaEncryptedKey,
+  });
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
+
+  final TfArg<String>? kmsKeyServiceAccount;
+
+  final TfArg<String>? rawKey;
+
+  final TfArg<String>? rsaEncryptedKey;
+
+  Map<String, Object?> encode() => {
+    'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `source_snapshot_encryption_key` block of
+/// `google_compute_image` (derived from provider schema).
+@immutable
+final class ComputeImageSourceSnapshotEncryptionKey {
+  const ComputeImageSourceSnapshotEncryptionKey({
+    this.kmsKeySelfLink,
+    this.kmsKeyServiceAccount,
+    this.rawKey,
+    this.rsaEncryptedKey,
+  });
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
+
+  final TfArg<String>? kmsKeyServiceAccount;
+
+  final TfArg<String>? rawKey;
+
+  final TfArg<String>? rsaEncryptedKey;
+
+  Map<String, Object?> encode() => {
+    'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
+    'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
+    'raw_key': ?rawKey?.toTfJson(),
+    'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_image`.
@@ -108,14 +218,14 @@ final class ComputeImageSnapshotSource extends ComputeImageSource {
 /// instance.
 ///
 /// An Image must have exactly one [ComputeImageSource]:
-/// [ComputeImageDiskSource], [ComputeImageImageSource], or
-/// [ComputeImageSnapshotSource].
+/// [ComputeImageSourceDisk], [ComputeImageSourceImage], or
+/// [ComputeImageSourceSnapshot].
 ///
 /// GCS `raw_disk` import is not modeled yet — use the Terraform provider
 /// directly (or request curation) when importing a tarball from Cloud Storage.
 ///
-/// Prefer [ComputeImageSnapshotSource] when promoting a PD Snapshot into a
-/// reusable image; use [ComputeImageDiskSource] for a live disk.
+/// Prefer [ComputeImageSourceSnapshot] when promoting a PD Snapshot into a
+/// reusable image; use [ComputeImageSourceDisk] for a live disk.
 final class GoogleComputeImage extends Resource {
   static const String tfType = 'google_compute_image';
 
@@ -131,6 +241,10 @@ final class GoogleComputeImage extends Resource {
     TfArg<num>? diskSizeGb,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
+    ComputeImageImageEncryptionKey? imageEncryptionKey,
+    ComputeImageSourceDiskEncryptionKey? sourceDiskEncryptionKey,
+    ComputeImageSourceImageEncryptionKey? sourceImageEncryptionKey,
+    ComputeImageSourceSnapshotEncryptionKey? sourceSnapshotEncryptionKey,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -148,6 +262,20 @@ final class GoogleComputeImage extends Resource {
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
            source.blockKey: source.value,
+           if (imageEncryptionKey != null)
+             'image_encryption_key': TfArg.literal(imageEncryptionKey.encode()),
+           if (sourceDiskEncryptionKey != null)
+             'source_disk_encryption_key': TfArg.literal(
+               sourceDiskEncryptionKey.encode(),
+             ),
+           if (sourceImageEncryptionKey != null)
+             'source_image_encryption_key': TfArg.literal(
+               sourceImageEncryptionKey.encode(),
+             ),
+           if (sourceSnapshotEncryptionKey != null)
+             'source_snapshot_encryption_key': TfArg.literal(
+               sourceSnapshotEncryptionKey.encode(),
+             ),
          },
        );
 

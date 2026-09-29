@@ -10,9 +10,9 @@ export 'src/dataform/google_dataform_repository.dart'
     show
         DataformRepositoryGitRemoteSettings,
         DataformRepositoryGitRemoteSettingsAuthentication,
-        DataformRepositoryGitRemoteSettingsAuthenticationAuthenticationTokenSecretVersion,
         DataformRepositoryGitRemoteSettingsAuthenticationGitRepositoryLink,
         DataformRepositoryGitRemoteSettingsAuthenticationSshAuthenticationConfig,
+        DataformRepositoryGitRemoteSettingsAuthenticationTokenSecretVersion,
         DataformRepositoryGitRemoteSettingsSshAuthenticationConfig,
         DataformRepositoryWorkspaceCompilationOverrides,
         GoogleDataformRepository;

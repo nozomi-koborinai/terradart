@@ -39,9 +39,9 @@ export 'src/gamelift/aws_gamelift_game_server_group.dart'
         GameliftGameServerGroupInstanceDefinition,
         GameliftGameServerGroupInstanceDefinitionInstanceType,
         GameliftGameServerGroupLaunchTemplate,
-        GameliftGameServerGroupLaunchTemplateTemplate,
-        GameliftGameServerGroupLaunchTemplateTemplateId,
-        GameliftGameServerGroupLaunchTemplateTemplateName;
+        GameliftGameServerGroupLaunchTemplateIdentifier,
+        GameliftGameServerGroupLaunchTemplateIdentifierId,
+        GameliftGameServerGroupLaunchTemplateIdentifierName;
 export 'src/gamelift/aws_gamelift_game_session_queue.dart'
     show
         AwsGameliftGameSessionQueue,

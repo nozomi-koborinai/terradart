@@ -34,6 +34,10 @@ paramOrder:
   - router_appliance_instance
   - deletion_policy
   - project
+  - advertised_ip_ranges
+  - bfd
+  - custom_learned_ip_ranges
+  - md5_authentication_key
 
 prelude: |
   /// `advertise_mode` — BGP prefix advertisement mode of this peer.

@@ -24,8 +24,8 @@ export 'src/discovery_engine/google_discovery_engine_chat_engine.dart'
     show
         DiscoveryEngineChatEngineChatEngineConfig,
         DiscoveryEngineChatEngineChatEngineConfigAgent,
-        DiscoveryEngineChatEngineChatEngineConfigAgentAgentCreationConfig,
         DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig,
+        DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigChoice,
         DiscoveryEngineChatEngineChatEngineConfigAgentDialogflowAgentToLink,
         DiscoveryEngineChatEngineCommonConfig,
         DiscoveryEngineChatEngineIndustryVertical,
@@ -68,8 +68,8 @@ export 'src/discovery_engine/google_discovery_engine_data_connector.dart'
         DiscoveryEngineDataConnectorEntities,
         DiscoveryEngineDataConnectorMetadata,
         DiscoveryEngineDataConnectorParams,
+        DiscoveryEngineDataConnectorParamsChoice,
         DiscoveryEngineDataConnectorParamsJsonParams,
-        DiscoveryEngineDataConnectorParamsParams,
         GoogleDiscoveryEngineDataConnector;
 export 'src/discovery_engine/google_discovery_engine_data_store.dart'
     show

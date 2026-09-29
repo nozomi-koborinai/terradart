@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../workers/cloudflare_workers_kv_namespace.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_workers_kv_namespace`.
 const Set<String> _cloudflareWorkersKvNamespaceSensitive = <String>{};
@@ -54,7 +55,7 @@ final class DataCloudflareWorkersKvNamespace extends Data {
 
   DataCloudflareWorkersKvNamespace({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? namespaceId,
     DataWorkersKvNamespaceFilter? filter,
     super.provider,
@@ -62,7 +63,7 @@ final class DataCloudflareWorkersKvNamespace extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'namespace_id': ?namespaceId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

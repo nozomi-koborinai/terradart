@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../magic/cloudflare_magic_wan_gre_tunnel.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_magic_wan_gre_tunnel`.
 const Set<String> _cloudflareMagicWanGreTunnelSensitive = <String>{};
@@ -18,13 +19,16 @@ final class DataCloudflareMagicWanGreTunnel extends Data {
 
   DataCloudflareMagicWanGreTunnel({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> greTunnelId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'gre_tunnel_id': greTunnelId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'gre_tunnel_id': greTunnelId,
+         },
        );
 
   @override

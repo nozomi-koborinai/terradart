@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../api_shield/cloudflare_api_shield_schema.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_api_shield_schema`.
 const Set<String> _cloudflareApiShieldSchemaSensitive = <String>{};
@@ -20,7 +21,7 @@ final class DataCloudflareApiShieldSchema extends Data {
     required super.localName,
     TfArg<bool>? omitSource,
     required TfArg<String> schemaId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -28,7 +29,7 @@ final class DataCloudflareApiShieldSchema extends Data {
          argMap: {
            'omit_source': ?omitSource,
            'schema_id': schemaId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

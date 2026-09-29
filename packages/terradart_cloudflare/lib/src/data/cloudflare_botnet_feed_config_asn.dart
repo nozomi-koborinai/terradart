@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_botnet_feed_config_asn`.
 const Set<String> _cloudflareBotnetFeedConfigAsnSensitive = <String>{};
@@ -16,10 +17,13 @@ final class DataCloudflareBotnetFeedConfigAsn extends Data {
 
   DataCloudflareBotnetFeedConfigAsn({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'account_id': ?accountId});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'account_id': ?accountId?.encodeAs('id')},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareBotnetFeedConfigAsnSensitive;

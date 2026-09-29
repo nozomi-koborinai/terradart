@@ -12,10 +12,6 @@ deriveNestedTypes: true
 # are computed and surface as read getters.
 sealedNames:
   "remote_repository_config.apt_repository, remote_repository_config.common_repository, remote_repository_config.docker_repository, remote_repository_config.maven_repository, remote_repository_config.npm_repository, remote_repository_config.python_repository, remote_repository_config.yum_repository": format
-  "remote_repository_config.docker_repository.custom_repository, remote_repository_config.docker_repository.public_repository": upstream
-  "remote_repository_config.maven_repository.custom_repository, remote_repository_config.maven_repository.public_repository": upstream
-  "remote_repository_config.npm_repository.custom_repository, remote_repository_config.npm_repository.public_repository": upstream
-  "remote_repository_config.python_repository.custom_repository, remote_repository_config.python_repository.public_repository": upstream
 
 paramOrder:
   - repository_id

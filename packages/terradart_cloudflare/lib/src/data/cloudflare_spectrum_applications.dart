@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_spectrum_applications`.
 const Set<String> _cloudflareSpectrumApplicationsSensitive = <String>{};
@@ -19,7 +20,7 @@ final class DataCloudflareSpectrumApplications extends Data {
     TfArg<String>? direction,
     TfArg<num>? maxItems,
     TfArg<String>? order,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -28,7 +29,7 @@ final class DataCloudflareSpectrumApplications extends Data {
            'direction': ?direction,
            'max_items': ?maxItems,
            'order': ?order,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

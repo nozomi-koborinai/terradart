@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_tunnel_cloudflared_token`.
 const Set<String> _cloudflareZeroTrustTunnelCloudflaredTokenSensitive =
@@ -18,13 +19,16 @@ final class DataCloudflareZeroTrustTunnelCloudflaredToken extends Data {
 
   DataCloudflareZeroTrustTunnelCloudflaredToken({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> tunnelId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'tunnel_id': tunnelId},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'tunnel_id': tunnelId,
+         },
        );
 
   @override

@@ -19,7 +19,7 @@ sealed class DiscoveryEngineDataConnectorParams {
   /// Sets `params`.
   const factory DiscoveryEngineDataConnectorParams.params(
     TfArg<Map<String, String>> params,
-  ) = DiscoveryEngineDataConnectorParamsParams;
+  ) = DiscoveryEngineDataConnectorParamsChoice;
 
   /// Sets `json_params`.
   const factory DiscoveryEngineDataConnectorParams.jsonParams(
@@ -37,9 +37,9 @@ sealed class DiscoveryEngineDataConnectorParams {
 }
 
 /// The [DiscoveryEngineDataConnectorParams.params] choice: sets `params`.
-final class DiscoveryEngineDataConnectorParamsParams
+final class DiscoveryEngineDataConnectorParamsChoice
     extends DiscoveryEngineDataConnectorParams {
-  const DiscoveryEngineDataConnectorParamsParams(this.params);
+  const DiscoveryEngineDataConnectorParamsChoice(this.params);
 
   final TfArg<Map<String, String>> params;
 

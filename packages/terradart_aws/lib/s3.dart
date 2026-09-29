@@ -17,9 +17,6 @@ export 'src/s3/aws_s3_bucket.dart'
         S3BucketAccess,
         S3BucketAccessAcl,
         S3BucketAccessGrant,
-        S3BucketBucket,
-        S3BucketBucketBucket,
-        S3BucketBucketBucketPrefix,
         S3BucketBucketNamespace,
         S3BucketCorsRule,
         S3BucketGrant,
@@ -33,6 +30,9 @@ export 'src/s3/aws_s3_bucket.dart'
         S3BucketLifecycleRuleTransition,
         S3BucketLifecycleRuleTransitionStorageClass,
         S3BucketLogging,
+        S3BucketName,
+        S3BucketNameBucket,
+        S3BucketNameBucketPrefix,
         S3BucketReplicationConfiguration,
         S3BucketReplicationConfigurationRules,
         S3BucketReplicationConfigurationRulesDeleteMarkerReplicationStatus,
@@ -63,15 +63,15 @@ export 'src/s3/aws_s3_bucket_accelerate_configuration.dart'
 export 'src/s3/aws_s3_bucket_acl.dart'
     show
         AwsS3BucketAcl,
-        S3BucketAclAccess,
-        S3BucketAclAccessAccessControlPolicy,
-        S3BucketAclAccessAcl,
         S3BucketAclAccessControlPolicy,
         S3BucketAclAccessControlPolicyGrant,
         S3BucketAclAccessControlPolicyGrantGrantee,
         S3BucketAclAccessControlPolicyGrantGranteeType,
         S3BucketAclAccessControlPolicyGrantPermission,
-        S3BucketAclAccessControlPolicyOwner;
+        S3BucketAclAccessControlPolicyOwner,
+        S3BucketAclPolicy,
+        S3BucketAclPolicyAccessControlPolicy,
+        S3BucketAclPolicyAcl;
 export 'src/s3/aws_s3_bucket_analytics_configuration.dart'
     show
         AwsS3BucketAnalyticsConfiguration,
@@ -97,11 +97,10 @@ export 'src/s3/aws_s3_bucket_inventory.dart'
         S3BucketInventoryDestination,
         S3BucketInventoryDestinationBucket,
         S3BucketInventoryDestinationBucketEncryption,
-        S3BucketInventoryDestinationBucketEncryptionSse,
         S3BucketInventoryDestinationBucketEncryptionSseKms,
+        S3BucketInventoryDestinationBucketEncryptionSseKmsChoice,
         S3BucketInventoryDestinationBucketEncryptionSseS3,
-        S3BucketInventoryDestinationBucketEncryptionSseSseKms,
-        S3BucketInventoryDestinationBucketEncryptionSseSseS3,
+        S3BucketInventoryDestinationBucketEncryptionSseS3Choice,
         S3BucketInventoryDestinationBucketFormat,
         S3BucketInventoryFilter,
         S3BucketInventoryIncludedObjectVersions,
@@ -133,11 +132,10 @@ export 'src/s3/aws_s3_bucket_logging.dart'
         S3BucketLoggingTargetGrantPermission,
         S3BucketLoggingTargetObjectKeyFormat,
         S3BucketLoggingTargetObjectKeyFormatPartitionedPrefix,
+        S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixChoice,
         S3BucketLoggingTargetObjectKeyFormatPartitionedPrefixPartitionDateSource,
-        S3BucketLoggingTargetObjectKeyFormatPrefix,
-        S3BucketLoggingTargetObjectKeyFormatPrefixPartitionedPrefix,
-        S3BucketLoggingTargetObjectKeyFormatPrefixSimplePrefix,
-        S3BucketLoggingTargetObjectKeyFormatSimplePrefix;
+        S3BucketLoggingTargetObjectKeyFormatSimplePrefix,
+        S3BucketLoggingTargetObjectKeyFormatSimplePrefixChoice;
 export 'src/s3/aws_s3_bucket_metadata_configuration.dart'
     show
         AwsS3BucketMetadataConfiguration,
