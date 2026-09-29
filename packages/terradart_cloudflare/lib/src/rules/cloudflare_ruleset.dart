@@ -51,6 +51,53 @@ enum RulesetPhase implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `account_id`, `zone_id` on `cloudflare_ruleset`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class RulesetAccountIdOrZoneId {
+  const RulesetAccountIdOrZoneId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `account_id` (one of the [RulesetAccountIdOrZoneId] choices).
+final class RulesetAccountIdOption extends RulesetAccountIdOrZoneId {
+  const RulesetAccountIdOption({required this.accountId});
+
+  final TfArg<String> accountId;
+
+  @override
+  String get blockKey => 'account_id';
+
+  @override
+  Map<String, Object?> encode() => {'account_id': accountId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'account_id': accountId};
+}
+
+/// Sets `zone_id` (one of the [RulesetAccountIdOrZoneId] choices).
+final class RulesetZoneIdOption extends RulesetAccountIdOrZoneId {
+  const RulesetZoneIdOption({required this.zoneId});
+
+  final TfArg<String> zoneId;
+
+  @override
+  String get blockKey => 'zone_id';
+
+  @override
+  Map<String, Object?> encode() => {'zone_id': zoneId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'zone_id': zoneId};
+}
+
 /// Typed helper for the `rules` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
@@ -848,18 +895,58 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryString {
 @immutable
 final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude {
   const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude({
-    this.all,
-    this.list,
+    required this.listOrAll,
   });
 
-  final TfArg<bool>? all;
+  final RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll
+  listOrAll;
 
-  final TfArg<List<Object?>>? list;
+  Map<String, Object?> encode() => {...listOrAll.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (all != null) 'all': all!.toTfJson(),
-    if (list != null) 'list': list!.toTfJson(),
-  };
+/// Exactly one of `list`, `all` on the `rules.action_parameters.cache_key.custom_key.query_string.exclude` block of `cloudflare_ruleset`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `list` (one of the [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll] choices).
+final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOption
+    extends
+        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOption({
+    required this.list,
+  });
+
+  final TfArg<List<Object?>> list;
+
+  @override
+  String get blockKey => 'list';
+
+  @override
+  Map<String, Object?> encode() => {'list': list.toTfJson()};
+}
+
+/// Sets `all` (one of the [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll] choices).
+final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeAllOption
+    extends
+        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeListOrAll {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExcludeAllOption({
+    required this.all,
+  });
+
+  final TfArg<bool> all;
+
+  @override
+  String get blockKey => 'all';
+
+  @override
+  Map<String, Object?> encode() => {'all': all.toTfJson()};
 }
 
 /// Typed helper for the `rules.action_parameters.cache_key.custom_key.query_string.include` block of
@@ -867,18 +954,58 @@ final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringExclude {
 @immutable
 final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude {
   const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringInclude({
-    this.all,
-    this.list,
+    required this.listOrAll,
   });
 
-  final TfArg<bool>? all;
+  final RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll
+  listOrAll;
 
-  final TfArg<List<Object?>>? list;
+  Map<String, Object?> encode() => {...listOrAll.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (all != null) 'all': all!.toTfJson(),
-    if (list != null) 'list': list!.toTfJson(),
-  };
+/// Exactly one of `list`, `all` on the `rules.action_parameters.cache_key.custom_key.query_string.include` block of `cloudflare_ruleset`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `list` (one of the [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll] choices).
+final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOption
+    extends
+        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOption({
+    required this.list,
+  });
+
+  final TfArg<List<Object?>> list;
+
+  @override
+  String get blockKey => 'list';
+
+  @override
+  Map<String, Object?> encode() => {'list': list.toTfJson()};
+}
+
+/// Sets `all` (one of the [RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll] choices).
+final class RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeAllOption
+    extends
+        RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeListOrAll {
+  const RulesetRulesActionParametersCacheKeyCustomKeyQueryStringIncludeAllOption({
+    required this.all,
+  });
+
+  final TfArg<bool> all;
+
+  @override
+  String get blockKey => 'all';
+
+  @override
+  Map<String, Object?> encode() => {'all': all.toTfJson()};
 }
 
 /// Typed helper for the `rules.action_parameters.cache_key.custom_key.user` block of
@@ -975,23 +1102,67 @@ enum RulesetRulesActionParametersEdgeTtlMode implements TerraformEnum {
 @immutable
 final class RulesetRulesActionParametersEdgeTtlStatusCodeTtl {
   const RulesetRulesActionParametersEdgeTtlStatusCodeTtl({
-    this.statusCode,
+    required this.statusCodeRangeOrStatusCode,
     required this.value,
-    this.statusCodeRange,
   });
 
-  final TfArg<num>? statusCode;
+  final RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode
+  statusCodeRangeOrStatusCode;
 
   final TfArg<num> value;
 
-  final RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRange?
+  Map<String, Object?> encode() => {
+    ...statusCodeRangeOrStatusCode.encode(),
+    'value': value.toTfJson(),
+  };
+}
+
+/// Exactly one of `status_code_range`, `status_code` on the `rules.action_parameters.edge_ttl.status_code_ttl` block of `cloudflare_ruleset`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode {
+  const RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `status_code_range` (one of the [RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode] choices).
+final class RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOption
+    extends
+        RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode {
+  const RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOption({
+    required this.statusCodeRange,
+  });
+
+  final RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRange
   statusCodeRange;
 
+  @override
+  String get blockKey => 'status_code_range';
+
+  @override
   Map<String, Object?> encode() => {
-    if (statusCode != null) 'status_code': statusCode!.toTfJson(),
-    'value': value.toTfJson(),
-    if (statusCodeRange != null) 'status_code_range': statusCodeRange!.encode(),
+    'status_code_range': statusCodeRange.encode(),
   };
+}
+
+/// Sets `status_code` (one of the [RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode] choices).
+final class RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeOption
+    extends
+        RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeRangeOrStatusCode {
+  const RulesetRulesActionParametersEdgeTtlStatusCodeTtlStatusCodeOption({
+    required this.statusCode,
+  });
+
+  final TfArg<num> statusCode;
+
+  @override
+  String get blockKey => 'status_code';
+
+  @override
+  Map<String, Object?> encode() => {'status_code': statusCode.toTfJson()};
 }
 
 /// Typed helper for the `rules.action_parameters.edge_ttl.status_code_ttl.status_code_range` block of
@@ -1061,18 +1232,56 @@ final class RulesetRulesActionParametersFromValue {
 @immutable
 final class RulesetRulesActionParametersFromValueTargetUrl {
   const RulesetRulesActionParametersFromValueTargetUrl({
-    this.expression,
-    this.value,
+    required this.valueOrExpression,
   });
 
-  final TfArg<String>? expression;
+  final RulesetRulesActionParametersFromValueTargetUrlValueOrExpression
+  valueOrExpression;
 
-  final TfArg<String>? value;
+  Map<String, Object?> encode() => {...valueOrExpression.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
-  };
+/// Exactly one of `value`, `expression` on the `rules.action_parameters.from_value.target_url` block of `cloudflare_ruleset`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class RulesetRulesActionParametersFromValueTargetUrlValueOrExpression {
+  const RulesetRulesActionParametersFromValueTargetUrlValueOrExpression();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `value` (one of the [RulesetRulesActionParametersFromValueTargetUrlValueOrExpression] choices).
+final class RulesetRulesActionParametersFromValueTargetUrlValueOption
+    extends RulesetRulesActionParametersFromValueTargetUrlValueOrExpression {
+  const RulesetRulesActionParametersFromValueTargetUrlValueOption({
+    required this.value,
+  });
+
+  final TfArg<String> value;
+
+  @override
+  String get blockKey => 'value';
+
+  @override
+  Map<String, Object?> encode() => {'value': value.toTfJson()};
+}
+
+/// Sets `expression` (one of the [RulesetRulesActionParametersFromValueTargetUrlValueOrExpression] choices).
+final class RulesetRulesActionParametersFromValueTargetUrlExpressionOption
+    extends RulesetRulesActionParametersFromValueTargetUrlValueOrExpression {
+  const RulesetRulesActionParametersFromValueTargetUrlExpressionOption({
+    required this.expression,
+  });
+
+  final TfArg<String> expression;
+
+  @override
+  String get blockKey => 'expression';
+
+  @override
+  Map<String, Object?> encode() => {'expression': expression.toTfJson()};
 }
 
 /// Typed helper for the `rules.action_parameters.headers` block of
@@ -1851,32 +2060,104 @@ final class RulesetRulesActionParametersUri {
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
 final class RulesetRulesActionParametersUriPath {
-  const RulesetRulesActionParametersUriPath({this.expression, this.value});
+  const RulesetRulesActionParametersUriPath({required this.valueOrExpression});
 
-  final TfArg<String>? expression;
+  final RulesetRulesActionParametersUriPathValueOrExpression valueOrExpression;
 
-  final TfArg<String>? value;
+  Map<String, Object?> encode() => {...valueOrExpression.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
-  };
+/// Exactly one of `value`, `expression` on the `rules.action_parameters.uri.path` block of `cloudflare_ruleset`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class RulesetRulesActionParametersUriPathValueOrExpression {
+  const RulesetRulesActionParametersUriPathValueOrExpression();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `value` (one of the [RulesetRulesActionParametersUriPathValueOrExpression] choices).
+final class RulesetRulesActionParametersUriPathValueOption
+    extends RulesetRulesActionParametersUriPathValueOrExpression {
+  const RulesetRulesActionParametersUriPathValueOption({required this.value});
+
+  final TfArg<String> value;
+
+  @override
+  String get blockKey => 'value';
+
+  @override
+  Map<String, Object?> encode() => {'value': value.toTfJson()};
+}
+
+/// Sets `expression` (one of the [RulesetRulesActionParametersUriPathValueOrExpression] choices).
+final class RulesetRulesActionParametersUriPathExpressionOption
+    extends RulesetRulesActionParametersUriPathValueOrExpression {
+  const RulesetRulesActionParametersUriPathExpressionOption({
+    required this.expression,
+  });
+
+  final TfArg<String> expression;
+
+  @override
+  String get blockKey => 'expression';
+
+  @override
+  Map<String, Object?> encode() => {'expression': expression.toTfJson()};
 }
 
 /// Typed helper for the `rules.action_parameters.uri.query` block of
 /// `cloudflare_ruleset` (derived from provider schema).
 @immutable
 final class RulesetRulesActionParametersUriQuery {
-  const RulesetRulesActionParametersUriQuery({this.expression, this.value});
+  const RulesetRulesActionParametersUriQuery({required this.valueOrExpression});
 
-  final TfArg<String>? expression;
+  final RulesetRulesActionParametersUriQueryValueOrExpression valueOrExpression;
 
-  final TfArg<String>? value;
+  Map<String, Object?> encode() => {...valueOrExpression.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (expression != null) 'expression': expression!.toTfJson(),
-    if (value != null) 'value': value!.toTfJson(),
-  };
+/// Exactly one of `value`, `expression` on the `rules.action_parameters.uri.query` block of `cloudflare_ruleset`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class RulesetRulesActionParametersUriQueryValueOrExpression {
+  const RulesetRulesActionParametersUriQueryValueOrExpression();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `value` (one of the [RulesetRulesActionParametersUriQueryValueOrExpression] choices).
+final class RulesetRulesActionParametersUriQueryValueOption
+    extends RulesetRulesActionParametersUriQueryValueOrExpression {
+  const RulesetRulesActionParametersUriQueryValueOption({required this.value});
+
+  final TfArg<String> value;
+
+  @override
+  String get blockKey => 'value';
+
+  @override
+  Map<String, Object?> encode() => {'value': value.toTfJson()};
+}
+
+/// Sets `expression` (one of the [RulesetRulesActionParametersUriQueryValueOrExpression] choices).
+final class RulesetRulesActionParametersUriQueryExpressionOption
+    extends RulesetRulesActionParametersUriQueryValueOrExpression {
+  const RulesetRulesActionParametersUriQueryExpressionOption({
+    required this.expression,
+  });
+
+  final TfArg<String> expression;
+
+  @override
+  String get blockKey => 'expression';
+
+  @override
+  Map<String, Object?> encode() => {'expression': expression.toTfJson()};
 }
 
 /// Typed helper for the `rules.action_parameters.vary` block of
@@ -2041,12 +2322,11 @@ final class CloudflareRuleset extends Resource {
 
   CloudflareRuleset({
     required super.localName,
-    TfArg<String>? accountId,
+    required RulesetAccountIdOrZoneId accountIdOrZoneId,
     TfArg<String>? description,
     required TfArg<RulesetKind> kind,
     required TfArg<String> name,
     required TfArg<RulesetPhase> phase,
-    TfArg<String>? zoneId,
     List<RulesetRules>? rules,
     super.lifecycle,
     super.dependsOn,
@@ -2055,12 +2335,11 @@ final class CloudflareRuleset extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           ...accountIdOrZoneId.argMap,
            if (description != null) 'description': description,
            'kind': kind,
            'name': name,
            'phase': phase,
-           if (zoneId != null) 'zone_id': zoneId,
            if (rules != null)
              'rules': TfArg.literal([for (final e in rules) e.encode()]),
          },

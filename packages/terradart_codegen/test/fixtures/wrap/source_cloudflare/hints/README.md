@@ -8,6 +8,15 @@ schemas under `internal/services/`), as a Magic Modules YAML subset
 and the nested helper types. `provider_version` must match
 `../provider_version.txt`; `wrap` fails otherwise.
 
+`exactly_one_of_groups` lists the input sets the provider requires
+exactly one of (`<kind>validator.ExactlyOneOf` on an attribute or
+`resourcevalidator.ExactlyOneOf` in `ConfigValidators`, or an
+`AtLeastOneOf` set whose members all pairwise `ConflictsWith` /
+`Conflicting`), as dotted paths that share one parent block; `wrap`
+turns each into a sealed type. A `ConflictsWith` set no rule requires
+one of is at most one, which a sealed type cannot express: the tool
+lists it on stdout instead.
+
 Never hand-edit. Re-extract at the fixture's pin with:
 
 ```bash

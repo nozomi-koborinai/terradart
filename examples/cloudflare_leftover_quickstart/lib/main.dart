@@ -63,7 +63,9 @@ final class CloudflareLeftoverStack extends Stack {
         localName: 'account_member',
         accountId: TfArg.literal(accountId),
         email: TfArg.literal('leftover@example.com'),
-        roles: TfArg.literal([leftover]),
+        rolesOrPolicies: AccountMemberRolesOption(
+          roles: TfArg.literal([leftover]),
+        ),
       ),
     );
 
@@ -1482,6 +1484,9 @@ final class CloudflareLeftoverStack extends Stack {
     add(
       CloudflareRuleset(
         localName: 'ruleset',
+        accountIdOrZoneId: RulesetZoneIdOption(
+          zoneId: TfArg.literal(zoneId),
+        ),
         kind: TfArg.literal(
           RulesetKind.zone,
         ),
@@ -1489,7 +1494,6 @@ final class CloudflareLeftoverStack extends Stack {
         phase: TfArg.literal(
           RulesetPhase.httpRequestFirewallCustom,
         ),
-        zoneId: TfArg.literal(zoneId),
       ),
     );
 

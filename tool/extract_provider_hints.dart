@@ -23,7 +23,13 @@
 // elements (`listvalidator.ValueStringsAre(...)`) whose description does
 // not spell the values out. The Terraform type name comes from
 // `resp.TypeName = ... + "_<name>"`, or a `fmt.Sprintf` pattern matched
-// against schema.json when one Go type serves several variants.
+// against schema.json when one Go type serves several variants. The same
+// files' relation validators become `exactly_one_of_groups`: every
+// `ExactlyOneOf` set (`<kind>validator.ExactlyOneOf` counts the attribute
+// it sits on, `resourcevalidator.ExactlyOneOf` in `ConfigValidators` does
+// not), and every `AtLeastOneOf` set whose members all pairwise
+// `ConflictsWith` / `Conflicting`. A mutually exclusive set nothing
+// requires one of is only listed on stdout — the provider accepts none.
 //
 // hashicorp/aws (SDKv2 and framework, hand-written) is scanned by
 // tool/provider_hints_aws.dart instead: resources are the functions its
@@ -175,10 +181,62 @@ final goSchemaNode = RegExp(r'(Attribute|Block)$');
 /// Scans one `schema.go` for enum validators under attribute keys. A
 /// frame opens at `"key": pkg.SomethingAttribute{` (or `...Block{`); the
 /// keys of the open frames are the hint's path.
-List<GoEnumHint> scanSchemaGo(String src) {
+List<GoEnumHint> scanSchemaGo(String src) => scanFrameworkSchema(src).hints;
+
+/// The framework validators that relate an attribute to other inputs
+/// (`<kind>validator.X(paths...)`, which counts the attribute itself as a
+/// member) or relate inputs to each other (`resourcevalidator.X(paths...)`
+/// in `ConfigValidators`).
+const _relationValidators = {
+  'ExactlyOneOf',
+  'AtLeastOneOf',
+  'ConflictsWith',
+  'Conflicting',
+};
+const _attributeValidatorKinds = {
+  'boolvalidator',
+  'dynamicvalidator',
+  'float64validator',
+  'int64validator',
+  'listvalidator',
+  'mapvalidator',
+  'numbervalidator',
+  'objectvalidator',
+  'setvalidator',
+  'stringvalidator',
+};
+
+/// What [scanFrameworkSchema] found in one plugin-framework source file.
+typedef FrameworkSchemaScan = ({
+  /// Enum value sets under attribute keys.
+  List<GoEnumHint> hints,
+
+  /// The input sets the provider requires exactly one of, as member paths
+  /// from the resource root: an `ExactlyOneOf` set, or an `AtLeastOneOf`
+  /// set whose members all pairwise `ConflictsWith` / `Conflicting`.
+  List<List<List<String>>> groups,
+
+  /// Mutually exclusive sets no rule requires one of (at most one): the
+  /// provider accepts none, so a required sealed slot would reject a valid
+  /// configuration. Reported, never written to the hints.
+  List<List<List<String>>> atMostOne,
+
+  /// Relation validators whose paths are not literal path expressions.
+  int unresolved,
+});
+
+/// Scans one plugin-framework source file (`schema.go`, or a hand-written
+/// `resource.go`) for enum validators and exactly-one groups. A frame opens
+/// at `"key": pkg.SomethingAttribute{` (or `...Block{`); the keys of the
+/// open frames are the path of the attribute a validator sits on.
+FrameworkSchemaScan scanFrameworkSchema(String src) {
   final toks = tokenizeGo(src);
   final frames = <({String? key, String closer})>[];
   final byPath = <String, GoEnumHint>{};
+  final exact = <List<List<String>>>[];
+  final atLeast = <List<List<String>>>[];
+  final conflictSets = <List<List<String>>>[];
+  var unresolved = 0;
   bool punct(int i, String t) =>
       i < toks.length && toks[i].kind == GoTok.punct && toks[i].text == t;
   bool ident(int i, [String? t]) =>
@@ -189,6 +247,36 @@ List<GoEnumHint> scanSchemaGo(String src) {
   var i = 0;
   while (i < toks.length) {
     final t = toks[i];
+    if (t.kind == GoTok.ident &&
+        (t.text == 'resourcevalidator' ||
+            _attributeValidatorKinds.contains(t.text)) &&
+        punct(i + 1, '.') &&
+        ident(i + 2) &&
+        _relationValidators.contains(toks[i + 2].text) &&
+        punct(i + 3, '(')) {
+      final close = _matchingTok(toks, i + 3);
+      final here = [
+        for (final f in frames)
+          if (f.key != null) f.key!,
+      ];
+      final self = t.text != 'resourcevalidator';
+      final paths = parseFrameworkPaths(toks, i + 4, close, here);
+      if (paths == null || (self && here.isEmpty)) {
+        unresolved++;
+      } else {
+        final members = [if (self) here, ...paths];
+        switch (toks[i + 2].text) {
+          case 'ExactlyOneOf':
+            exact.add(members);
+          case 'AtLeastOneOf':
+            atLeast.add(members);
+          default:
+            conflictSets.add(members);
+        }
+      }
+      i = close + 1;
+      continue;
+    }
     if (t.kind == GoTok.string &&
         punct(i + 1, ':') &&
         ident(i + 2) &&
@@ -247,7 +335,167 @@ List<GoEnumHint> scanSchemaGo(String src) {
   if (frames.isNotEmpty) {
     throw const FormatException('unclosed bracket in schema.go');
   }
-  return byPath.values.toList();
+  final (:groups, :atMostOne) = exactlyOneFromRelations(
+    exact: exact,
+    atLeast: atLeast,
+    conflictSets: conflictSets,
+  );
+  return (
+    hints: byPath.values.toList(),
+    groups: groups,
+    atMostOne: atMostOne,
+    unresolved: unresolved,
+  );
+}
+
+/// Combines framework relation validators into exactly-one groups: every
+/// [exact] set, and every [atLeast] set whose members all pairwise
+/// conflict (a [conflictSets] entry holds each pair of its members). Sets
+/// are compared as sets, so `ExactlyOneOf` on both members yields one
+/// group, in the order first seen. [conflictSets] no group covers come back
+/// as [atMostOne].
+({List<List<List<String>>> groups, List<List<List<String>>> atMostOne})
+    exactlyOneFromRelations({
+  required List<List<List<String>>> exact,
+  required List<List<List<String>>> atLeast,
+  required List<List<List<String>>> conflictSets,
+}) {
+  String dotted(List<String> m) => m.join('.');
+  Set<String> keys(List<List<String>> s) => {for (final m in s) dotted(m)};
+  final pairs = <String>{};
+  for (final s in conflictSets) {
+    final k = keys(s).toList()..sort();
+    for (var a = 0; a < k.length; a++) {
+      for (var b = a + 1; b < k.length; b++) {
+        pairs.add('${k[a]}\u0000${k[b]}');
+      }
+    }
+  }
+  bool allConflict(Set<String> s) {
+    final k = s.toList()..sort();
+    for (var a = 0; a < k.length; a++) {
+      for (var b = a + 1; b < k.length; b++) {
+        if (!pairs.contains('${k[a]}\u0000${k[b]}')) return false;
+      }
+    }
+    return true;
+  }
+
+  final seen = <String>{};
+  final groups = <List<List<String>>>[];
+  void add(List<List<String>> g) {
+    final k = keys(g);
+    if (k.length < 2 || !seen.add((k.toList()..sort()).join(','))) return;
+    final unique = <String>{};
+    groups.add([
+      for (final m in g)
+        if (unique.add(dotted(m))) m,
+    ]);
+  }
+
+  for (final g in exact) {
+    add(g);
+  }
+  for (final g in atLeast) {
+    if (allConflict(keys(g))) add(g);
+  }
+  final covered = [for (final g in groups) keys(g)];
+  final atMostOneSeen = <String>{};
+  final atMostOne = <List<List<String>>>[];
+  for (final s in conflictSets) {
+    final k = keys(s);
+    if (k.length < 2 || covered.any((g) => g.containsAll(k))) continue;
+    if (atMostOneSeen.add((k.toList()..sort()).join(','))) atMostOne.add(s);
+  }
+  return (groups: groups, atMostOne: atMostOne);
+}
+
+/// Index of the bracket closing the one at [open].
+int _matchingTok(List<GoToken> t, int open) {
+  var depth = 0;
+  for (var k = open; k < t.length; k++) {
+    final u = t[k];
+    if (u.kind != GoTok.punct) continue;
+    if (goClosers.containsKey(u.text)) depth++;
+    if (goClosers.containsValue(u.text) && --depth == 0) return k;
+  }
+  throw const FormatException('unclosed validator call');
+}
+
+/// The comma-separated framework path expressions from [i] up to [close],
+/// optionally wrapped in `path.Expressions{...}` (and spread with `...`):
+/// `path.MatchRoot("k")` (from the resource root) or `path.MatchRelative()`
+/// (from [here], the attribute the validator sits on), each followed by
+/// `.AtParent()` / `.AtName("k")` / list-index steps. Null when any part is
+/// something else (a Go constant, a helper call).
+List<List<String>>? parseFrameworkPaths(
+  List<GoToken> t,
+  int i,
+  int close,
+  List<String> here,
+) {
+  bool punct(int k, String s) =>
+      k < t.length && t[k].kind == GoTok.punct && t[k].text == s;
+  bool ident(int k, [String? s]) =>
+      k < t.length && t[k].kind == GoTok.ident && (s == null || t[k].text == s);
+  if (ident(i, 'path') &&
+      punct(i + 1, '.') &&
+      ident(i + 2, 'Expressions') &&
+      punct(i + 3, '{')) {
+    final inner = _matchingTok(t, i + 3);
+    var k = inner + 1;
+    if (punct(k, '.') && punct(k + 1, '.') && punct(k + 2, '.')) k += 3;
+    if (punct(k, ',')) k++;
+    if (k != close) return null;
+    return parseFrameworkPaths(t, i + 4, inner, here);
+  }
+  final out = <List<String>>[];
+  while (i < close) {
+    if (!ident(i, 'path') || !punct(i + 1, '.')) return null;
+    final List<String> path;
+    if (ident(i + 2, 'MatchRoot') &&
+        punct(i + 3, '(') &&
+        i + 4 < t.length &&
+        t[i + 4].kind == GoTok.string &&
+        punct(i + 5, ')')) {
+      path = [t[i + 4].text];
+      i += 6;
+    } else if (ident(i + 2, 'MatchRelative') &&
+        punct(i + 3, '(') &&
+        punct(i + 4, ')')) {
+      path = [...here];
+      i += 5;
+    } else {
+      return null;
+    }
+    while (punct(i, '.') && ident(i + 1) && punct(i + 2, '(')) {
+      final step = t[i + 1].text;
+      final end = _matchingTok(t, i + 2);
+      if (step == 'AtParent' && end == i + 3) {
+        if (path.isEmpty) return null;
+        path.removeLast();
+      } else if (step == 'AtName' &&
+          end == i + 4 &&
+          t[i + 3].kind == GoTok.string) {
+        path.add(t[i + 3].text);
+      } else if (step != 'AtListIndex' &&
+          step != 'AtAnyListIndex' &&
+          step != 'AtAnySetValue' &&
+          step != 'AtAnyMapKey' &&
+          step != 'AtMapKey') {
+        return null;
+      }
+      i = end + 1;
+    }
+    if (path.isEmpty) return null;
+    out.add(path);
+    if (punct(i, ',')) {
+      i++;
+    } else if (i != close) {
+      return null;
+    }
+  }
+  return out;
 }
 
 final _typeNameRe = RegExp(
@@ -452,7 +700,7 @@ enforces (${aws ? _awsSources : _frameworkSources}), as a Magic Modules YAML sub
 (`properties[].api_name` / `enum_values`). `terradart wrap
 --provider-enums` merges them into the schema IR (top-level attributes)
 and the nested helper types. `provider_version` must match
-`../provider_version.txt`; `wrap` fails otherwise.${aws ? _awsGroups : ''}
+`../provider_version.txt`; `wrap` fails otherwise.${aws ? _awsGroups : _frameworkGroups}
 
 Never hand-edit. Re-extract at the fixture's pin with:
 
@@ -467,6 +715,15 @@ dart tool/extract_provider_hints.dart \\
 const _frameworkSources =
     '`stringvalidator.OneOf` / `OneOfCaseInsensitive` in the resource\n'
     'schemas under `internal/services/`';
+const _frameworkGroups =
+    '\n\n`exactly_one_of_groups` lists the input sets the provider requires\n'
+    'exactly one of (`<kind>validator.ExactlyOneOf` on an attribute or\n'
+    '`resourcevalidator.ExactlyOneOf` in `ConfigValidators`, or an\n'
+    '`AtLeastOneOf` set whose members all pairwise `ConflictsWith` /\n'
+    '`Conflicting`), as dotted paths that share one parent block; `wrap`\n'
+    'turns each into a sealed type. A `ConflictsWith` set no rule requires\n'
+    'one of is at most one, which a sealed type cannot express: the tool\n'
+    'lists it on stdout instead.';
 const _awsGroups =
     '\n\n`exactly_one_of_groups` lists the input sets the provider requires\n'
     'exactly one of (`ExactlyOneOf` in SDKv2 schemas, `*validator.ExactlyOneOf`\n'
@@ -548,6 +805,9 @@ Future<void> main(List<String> args) async {
       sourceDir != null ? Directory(sourceDir) : await _download(repo, version);
   final aws = isAwsProviderSource(root);
   final found = <String, AwsTypeHints>{};
+  final atMostOne = <String>[];
+  var groupValidators = 0;
+  var unresolvedGroups = 0;
   if (aws) {
     var sdk = sdkDir;
     if (sdk == null) {
@@ -581,18 +841,31 @@ Future<void> main(List<String> args) async {
         );
         if (types.isEmpty) continue;
         final sourcePath = p.relative(source.schema.path, from: root.path);
-        final List<GoEnumHint> hints;
+        final FrameworkSchemaScan scan;
         try {
-          hints = scanSchemaGo(source.schema.readAsStringSync());
+          scan = scanFrameworkSchema(source.schema.readAsStringSync());
         } on FormatException catch (e) {
           _fail(_exitData, '$sourcePath: ${e.message}');
         }
+        groupValidators += scan.groups.length;
+        unresolvedGroups += scan.unresolved;
         for (final type in types) {
-          found[type] =
-              (sourcePath: sourcePath, hints: hints, groups: const []);
+          found[type] = (
+            sourcePath: sourcePath,
+            hints: scan.hints,
+            groups: scan.groups,
+          );
+          for (final s in scan.atMostOne) {
+            atMostOne.add(
+              '$type [${s.map((m) => m.join('.')).join(', ')}]',
+            );
+          }
         }
       }
     }
+    print('extract_provider_hints: $groupValidators exactly-one group(s) in '
+        'resource schemas, $unresolvedGroups relation validator(s) not '
+        'evaluable (dropped)');
   }
 
   final out = Directory(p.join(schemaDir, 'hints'));
@@ -658,10 +931,13 @@ Future<void> main(List<String> args) async {
   for (final s in skipped) {
     print('skipped: $s');
   }
+  for (final s in atMostOne) {
+    print('at most one (not sealed, the provider accepts none): $s');
+  }
   File(p.join(out.path, 'README.md')).writeAsStringSync(
     _readme(repo: repo, schemaDir: schemaDir, aws: aws),
   );
-  print('extract_provider_hints: wrote $hintCount enum hint(s)'
-      '${aws ? ' and $groupCount exactly-one group(s)' : ''} for $files '
-      'resource(s) to ${out.path}');
+  print('extract_provider_hints: wrote $hintCount enum hint(s) and '
+      '$groupCount exactly-one group(s) for $files resource(s) to '
+      '${out.path}');
 }

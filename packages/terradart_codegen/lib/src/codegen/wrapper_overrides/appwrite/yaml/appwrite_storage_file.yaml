@@ -2,6 +2,7 @@ outputDir: storage
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Appwrite **storage file** — uploads a local file into a bucket.
