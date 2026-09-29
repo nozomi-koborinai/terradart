@@ -183,6 +183,30 @@ properties:
         ['source', 'image'],
       ]);
     });
+
+    test('lifts the fields of a flatten_object property into its parent', () {
+      final result = const MmYamlParser().parseString('''
+properties:
+  - name: serviceLevelIndicator
+    flatten_object: true
+    properties:
+      - name: basicSli
+        exactly_one_of:
+          - service_level_indicator.0.basic_sli
+          - service_level_indicator.0.request_based_sli
+        properties:
+          - name: latency
+            exactly_one_of:
+              - service_level_indicator.0.basic_sli.0.latency
+              - service_level_indicator.0.basic_sli.0.availability
+          - name: availability
+      - name: requestBasedSli
+''');
+      expect(result.exactlyOneOfPaths, [
+        ['basic_sli', 'request_based_sli'],
+        ['basic_sli.latency', 'basic_sli.availability'],
+      ]);
+    });
   });
 
   group('atMostOneOfPaths', () {

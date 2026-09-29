@@ -289,7 +289,7 @@ class WrapCommand extends Command<int> {
     // 1c. `--provider-enums`: hints + the `Available values:` dialect;
     //     `--mm-hints`: the MM YAML loaded above as the hints;
     //     `--mm-groups`: only its sealable groups.
-    final ProviderEnums providerEnums;
+    ProviderEnums providerEnums;
     final hintFlags = [
       'mm-hints',
       'mm-groups',
@@ -319,6 +319,12 @@ class WrapCommand extends Command<int> {
     } else {
       providerEnums = ProviderEnums.off;
     }
+    providerEnums = providerEnums.withinSchema(
+      mergedIr.resources,
+      dropped: (g) => stderr.writeln(
+        'terradart wrap: exclusive group names no schema input: $g',
+      ),
+    );
     final ir = providerEnums.enrich(mergedIr);
 
     // 2. Resolve the YAML override root: the --overrides-root flag when

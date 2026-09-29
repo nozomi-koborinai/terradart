@@ -131,7 +131,7 @@ class MmYamlParser {
             ];
             return segments.length == 1 && parent.isNotEmpty
                 ? '$parent.${segments.single}'
-                : segments.join('.');
+                : sink.terraformPath(segments);
           }(),
       ];
     }
@@ -167,6 +167,9 @@ class MmYamlParser {
     final apiName =
         (prop['api_name'] as String?) ?? _toSnakeCase(prop['name'] as String);
     final fullKey = prefix.isEmpty ? apiName : '$prefix.$apiName';
+    // Terraform lifts a `flatten_object` property's fields into its parent.
+    final childPrefix = prop['flatten_object'] == true ? prefix : fullKey;
+    if (prop['flatten_object'] == true) pathSink.flattened.add(fullKey);
 
     final c = Constraints(
       forceNew: prop['immutable'] as bool? ?? false,
@@ -187,7 +190,7 @@ class MmYamlParser {
       pathSink.outputs.add(fullKey);
     } else {
       // Per-property exactly_one_of (siblings of this property's nested kids).
-      final propGroup = _readExactlyOneOf(prop, prefix: fullKey);
+      final propGroup = _readExactlyOneOf(prop, prefix: childPrefix);
       if (propGroup != null) groupSink?.add(propGroup);
       _addRelations(prop, prefix, fullKey, pathSink);
     }
@@ -197,7 +200,7 @@ class MmYamlParser {
       for (final n in nested) {
         _walkProperty(
           n as YamlMap,
-          fullKey,
+          childPrefix,
           sink,
           groupSink,
           pathSink,
@@ -209,7 +212,14 @@ class MmYamlParser {
     final itemProps = item is YamlMap ? item['properties'] : null;
     if (itemProps is YamlList) {
       for (final n in itemProps) {
-        _walkProperty(n as YamlMap, fullKey, null, null, pathSink, enumSink);
+        _walkProperty(
+          n as YamlMap,
+          childPrefix,
+          null,
+          null,
+          pathSink,
+          enumSink,
+        );
       }
     }
   }
@@ -261,4 +271,18 @@ final class _Relations {
 
   /// Paths of `output: true` properties.
   final outputs = <String>{};
+
+  /// Paths of `flatten_object` properties, which Terraform does not have:
+  /// upstream rules still name them (`service_level_indicator.0.basic_sli`
+  /// for a `basic_sli` argument).
+  final flattened = <String>{};
+
+  /// [segments] as a Terraform path, without the [flattened] segments.
+  String terraformPath(List<String> segments) {
+    final out = <String>[];
+    for (final s in segments) {
+      if (!flattened.contains([...out, s].join('.'))) out.add(s);
+    }
+    return out.join('.');
+  }
 }

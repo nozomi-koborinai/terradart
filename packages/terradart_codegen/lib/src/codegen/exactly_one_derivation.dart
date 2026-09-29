@@ -76,6 +76,7 @@ deriveExactlyOneSlots(
             exactlyOneGroups: nested,
             atMostOneGroups: nestedOptional,
             sealedNames: o.sealedNames,
+            typeOverrides: o.nestedDartTypeOverrides,
           )
         : const <NestedBlockSpec>[];
     final typeNames = <SealedGroupName>[];

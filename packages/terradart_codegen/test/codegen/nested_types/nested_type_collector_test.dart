@@ -95,6 +95,26 @@ void main() {
     );
   });
 
+  test('typeOverrides give a nested input a hand-written type and keep it '
+      'out of the enum and reference derivations', () {
+    const terraformType = 'google_app_engine_domain_mapping';
+    final specs = collectNestedTypes(
+      resourceBlock: _blockOf(terraformType),
+      resourcePrefix: _resourcePrefixOf(terraformType),
+      customSlotKeys: const {},
+      excludedPaths: const {},
+      typeOverrides: const {
+        'ssl_settings.ssl_management_type': 'SslManagement',
+      },
+    );
+    final attr = specs.single.attrs.firstWhere(
+      (a) => a.tfName == 'ssl_management_type',
+    );
+    expect(attr.dartType, 'SslManagement');
+    expect(attr.enumValues, isNull);
+    expect(attr.reference, isNull);
+  });
+
   test('google_access_context_manager_access_level: excludedPaths records '
       'the child by name without descending, customSlot keys hide the '
       'whole subtree, and a max_items-less list block is repeated', () {

@@ -143,8 +143,30 @@ class WrapperEmitter {
             ),
             sealedNames: override?.sealedNames,
             references: (path) => refs[path.join('.')],
+            typeOverrides: override?.nestedDartTypeOverrides ?? const {},
           )
         : const <NestedBlockSpec>[];
+    final nestedTypeKeys = {...?override?.nestedDartTypeOverrides.keys};
+    if (nestedTypeKeys.isNotEmpty) {
+      void typed(NestedBlockSpec spec, List<String> at) {
+        for (final attr in spec.attrs) {
+          nestedTypeKeys.remove([...at, attr.tfName].join('.'));
+        }
+        for (final child in spec.children) {
+          typed(child, [...at, child.tfName]);
+        }
+      }
+
+      for (final spec in nestedTypeSpecs) {
+        typed(spec, [spec.tfName]);
+      }
+      if (nestedTypeKeys.isNotEmpty) {
+        throw StateError(
+          '${def.terraformType}: dartTypeOverrides ${nestedTypeKeys.join(', ')} '
+          'names no input of a derived nested helper',
+        );
+      }
+    }
 
     final paramOrder = orderedConstructorParams(def, override?.paramOrder);
     final dartTypeOverrides =
