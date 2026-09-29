@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../share/cloudflare_share_recipient.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_share_recipient`.
 const Set<String> _cloudflareShareRecipientSensitive = <String>{};
@@ -13,7 +14,7 @@ final class DataCloudflareShareRecipient extends Data {
 
   DataCloudflareShareRecipient({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? includeResources,
     required TfArg<String> recipientId,
     required TfArg<String> shareId,
@@ -22,7 +23,7 @@ final class DataCloudflareShareRecipient extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'include_resources': ?includeResources,
            'recipient_id': recipientId,
            'share_id': shareId,

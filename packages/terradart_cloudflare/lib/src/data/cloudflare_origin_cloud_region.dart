@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../origin/cloudflare_origin_cloud_region.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_origin_cloud_region`.
 const Set<String> _cloudflareOriginCloudRegionSensitive = <String>{};
@@ -14,12 +15,12 @@ final class DataCloudflareOriginCloudRegion extends Data {
   DataCloudflareOriginCloudRegion({
     required super.localName,
     required TfArg<String> originIp,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'origin_ip': originIp, 'zone_id': zoneId},
+         argMap: {'origin_ip': originIp, 'zone_id': zoneId.encodeAs('id')},
        );
 
   @override

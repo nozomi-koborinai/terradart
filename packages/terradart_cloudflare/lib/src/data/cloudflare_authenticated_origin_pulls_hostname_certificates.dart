@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_authenticated_origin_pulls_hostname_certificates`.
 const Set<String>
@@ -16,12 +17,12 @@ final class DataCloudflareAuthenticatedOriginPullsHostnameCertificates
   DataCloudflareAuthenticatedOriginPullsHostnameCertificates({
     required super.localName,
     TfArg<num>? maxItems,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'max_items': ?maxItems, 'zone_id': zoneId},
+         argMap: {'max_items': ?maxItems, 'zone_id': zoneId.encodeAs('id')},
        );
 
   @override

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../s3/aws_s3_object.dart';
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 
 /// Sensitive field paths for `aws_s3_object`.
 const Set<String> _awsS3ObjectSensitive = <String>{};
@@ -13,7 +14,7 @@ final class DataAwsS3Object extends Data {
 
   DataAwsS3Object({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? checksumMode,
     TfArg<String>? downloadBody,
     required TfArg<String> key,
@@ -26,7 +27,7 @@ final class DataAwsS3Object extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            'checksum_mode': ?checksumMode,
            'download_body': ?downloadBody,
            'key': key,

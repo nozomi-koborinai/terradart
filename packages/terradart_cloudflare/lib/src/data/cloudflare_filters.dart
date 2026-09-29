@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_filters`.
 const Set<String> _cloudflareFiltersSensitive = <String>{};
@@ -21,7 +22,7 @@ final class DataCloudflareFilters extends Data {
     TfArg<num>? maxItems,
     TfArg<bool>? paused,
     TfArg<String>? ref,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -32,7 +33,7 @@ final class DataCloudflareFilters extends Data {
            'max_items': ?maxItems,
            'paused': ?paused,
            'ref': ?ref,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

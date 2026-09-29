@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_device_default_profile_local_domain_fallback.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_device_default_profile_local_domain_fallback`.
 const Set<String>
@@ -17,10 +18,13 @@ final class DataCloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback
 
   DataCloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'account_id': ?accountId});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'account_id': ?accountId?.encodeAs('id')},
+       );
 
   @override
   Set<String> get sensitiveFields =>

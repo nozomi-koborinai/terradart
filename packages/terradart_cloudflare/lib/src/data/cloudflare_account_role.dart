@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_account_role`.
 const Set<String> _cloudflareAccountRoleSensitive = <String>{};
@@ -16,13 +17,13 @@ final class DataCloudflareAccountRole extends Data {
 
   DataCloudflareAccountRole({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> roleId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'role_id': roleId},
+         argMap: {'account_id': accountId.encodeAs('id'), 'role_id': roleId},
        );
 
   @override

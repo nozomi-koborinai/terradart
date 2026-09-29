@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../lambda/aws_lambda_function_url.dart';
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
 
 /// Sensitive field paths for `aws_lambda_function_url`.
 const Set<String> _awsLambdaFunctionUrlSensitive = <String>{};
@@ -13,7 +14,7 @@ final class DataAwsLambdaFunctionUrl extends Data {
 
   DataAwsLambdaFunctionUrl({
     required super.localName,
-    required TfArg<String> functionName,
+    required RefTo<AwsLambdaFunction> functionName,
     TfArg<String>? qualifier,
     TfArg<String>? region,
     super.provider,
@@ -21,7 +22,7 @@ final class DataAwsLambdaFunctionUrl extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'function_name': functionName,
+           'function_name': functionName.encodeAs('function_name'),
            'qualifier': ?qualifier,
            'region': ?region,
          },

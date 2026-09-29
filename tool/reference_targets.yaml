@@ -1,9 +1,9 @@
 # tool/reference_targets.yaml — which string inputs name another resource.
 #
 # `terradart wrap --reference-targets` reads the section of the lane's
-# provider source. Each rule types every curated resource input whose dotted
-# path (from the resource root, `network_interface.subnetwork`) matches
-# `slots` as `RefTo<Target>` — `TfArg<List<RefTo<Target>>>` for a list — and
+# provider source. Each rule types every curated resource and data source
+# input whose dotted path (from the root, `network_interface.subnetwork`)
+# matches `slots` as `RefTo<Target>` — `TfArg<List<RefTo<Target>>>` for a list — and
 # encodes it as `attribute` of the referenced block. The rules are name
 # patterns on purpose: a resource a later provider pin adds gets typed
 # references by the weekly schema bump with no edit here.
@@ -16,6 +16,9 @@
 #               takes another attribute of the target (a bare `name`)
 #   exclude:    (optional) `<resource>.<path>` inputs the pattern matches but
 #               that name something else; they stay strings
+#
+# A resource's entry also covers the same input of its data source; key a
+# data-source-only input `data.<type>.<path>`.
 #
 # wrap fails on an entry the schema no longer supports: a rule that matches
 # no input, an `attributes` or `exclude` entry the rule does not match, an

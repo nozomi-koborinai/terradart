@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_access_group.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_zero_trust_access_group`.
 const Set<String> _cloudflareZeroTrustAccessGroupSensitive = <String>{};
@@ -35,18 +37,18 @@ final class DataCloudflareZeroTrustAccessGroup extends Data {
 
   DataCloudflareZeroTrustAccessGroup({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? groupId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataZeroTrustAccessGroupFilter? filter,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'group_id': ?groupId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

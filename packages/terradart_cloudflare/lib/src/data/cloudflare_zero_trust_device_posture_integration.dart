@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_device_posture_integration.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_device_posture_integration`.
 const Set<String> _cloudflareZeroTrustDevicePostureIntegrationSensitive =
@@ -15,13 +16,16 @@ final class DataCloudflareZeroTrustDevicePostureIntegration extends Data {
 
   DataCloudflareZeroTrustDevicePostureIntegration({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> integrationId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'integration_id': integrationId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'integration_id': integrationId,
+         },
        );
 
   @override

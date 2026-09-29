@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../compute/google_compute_network_peering.dart';
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 
 /// Sensitive field paths for `google_compute_network_peering`.
 const Set<String> _googleComputeNetworkPeeringSensitive = <String>{};
@@ -17,10 +18,13 @@ final class DataGoogleComputeNetworkPeering extends Data {
   DataGoogleComputeNetworkPeering({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'name': name, 'network': network});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'name': name, 'network': network.encodeAs('id')},
+       );
 
   @override
   Set<String> get sensitiveFields => _googleComputeNetworkPeeringSensitive;

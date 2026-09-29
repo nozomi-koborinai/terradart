@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../email/cloudflare_email_routing_settings.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_email_routing_settings`.
 const Set<String> _cloudflareEmailRoutingSettingsSensitive = <String>{};
@@ -17,10 +18,13 @@ final class DataCloudflareEmailRoutingSettings extends Data {
 
   DataCloudflareEmailRoutingSettings({
     required super.localName,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'zone_id': ?zoneId});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'zone_id': ?zoneId?.encodeAs('id')},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareEmailRoutingSettingsSensitive;

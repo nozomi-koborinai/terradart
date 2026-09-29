@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_device_custom_profile.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_device_custom_profile`.
 const Set<String> _cloudflareZeroTrustDeviceCustomProfileSensitive = <String>{};
@@ -36,7 +37,7 @@ final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
 
   DataCloudflareZeroTrustDeviceCustomProfile({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? policyId,
     DataZeroTrustDeviceCustomProfileFilter? filter,
     super.provider,
@@ -44,7 +45,7 @@ final class DataCloudflareZeroTrustDeviceCustomProfile extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'policy_id': ?policyId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../transforms/cloudflare_managed_transforms.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_managed_transforms`.
 const Set<String> _cloudflareManagedTransformsSensitive = <String>{};
@@ -30,10 +31,13 @@ final class DataCloudflareManagedTransforms extends Data {
 
   DataCloudflareManagedTransforms({
     required super.localName,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'zone_id': ?zoneId});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'zone_id': ?zoneId?.encodeAs('id')},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareManagedTransformsSensitive;

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_pipeline_streams`.
 const Set<String> _cloudflarePipelineStreamsSensitive = <String>{};
@@ -16,7 +17,7 @@ final class DataCloudflarePipelineStreams extends Data {
 
   DataCloudflarePipelineStreams({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<num>? maxItems,
     TfArg<String>? name,
     TfArg<String>? pipelineId,
@@ -25,7 +26,7 @@ final class DataCloudflarePipelineStreams extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'max_items': ?maxItems,
            'name': ?name,
            'pipeline_id': ?pipelineId,

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../iam/google_service_account_iam_policy.dart';
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
 
 /// Sensitive field paths for `google_service_account_iam_policy`.
 const Set<String> _googleServiceAccountIamPolicySensitive = <String>{};
@@ -16,12 +17,12 @@ final class DataGoogleServiceAccountIamPolicy extends Data {
 
   DataGoogleServiceAccountIamPolicy({
     required super.localName,
-    required TfArg<String> serviceAccountId,
+    required RefTo<GoogleServiceAccount> serviceAccountId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'service_account_id': serviceAccountId},
+         argMap: {'service_account_id': serviceAccountId.encodeAs('name')},
        );
 
   @override

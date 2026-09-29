@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
 
 /// Sensitive field paths for `aws_cloudwatch_log_data_protection_policy_document`.
 const Set<String> _awsCloudwatchLogDataProtectionPolicyDocumentSensitive =
@@ -143,9 +145,11 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAudit
     required this.logGroup,
   });
 
-  final TfArg<String> logGroup;
+  final RefTo<AwsCloudwatchLogGroup> logGroup;
 
-  Map<String, Object?> encode() => {'log_group': logGroup.toTfJson()};
+  Map<String, Object?> encode() => {
+    'log_group': logGroup.encodeAs('name').toTfJson(),
+  };
 }
 
 /// Typed helper for the `statement.operation.audit.findings_destination.firehose` block of
@@ -171,9 +175,9 @@ final class DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAudit
     required this.bucket,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
-  Map<String, Object?> encode() => {'bucket': bucket.toTfJson()};
+  Map<String, Object?> encode() => {'bucket': bucket.encodeAs('id').toTfJson()};
 }
 
 /// Typed helper for the `statement.operation.deidentify` block of

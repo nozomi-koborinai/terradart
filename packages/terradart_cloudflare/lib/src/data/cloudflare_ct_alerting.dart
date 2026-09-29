@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../ct/cloudflare_ct_alerting.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_ct_alerting`.
 const Set<String> _cloudflareCtAlertingSensitive = <String>{};
@@ -17,10 +18,10 @@ final class DataCloudflareCtAlerting extends Data {
 
   DataCloudflareCtAlerting({
     required super.localName,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'zone_id': zoneId});
+  }) : super(terraformType: tfType, argMap: {'zone_id': zoneId.encodeAs('id')});
 
   @override
   Set<String> get sensitiveFields => _cloudflareCtAlertingSensitive;

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../magic/cloudflare_magic_wan_ipsec_tunnel.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_magic_wan_ipsec_tunnel`.
 const Set<String> _cloudflareMagicWanIpsecTunnelSensitive = <String>{};
@@ -18,13 +19,16 @@ final class DataCloudflareMagicWanIpsecTunnel extends Data {
 
   DataCloudflareMagicWanIpsecTunnel({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> ipsecTunnelId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'ipsec_tunnel_id': ipsecTunnelId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'ipsec_tunnel_id': ipsecTunnelId,
+         },
        );
 
   @override

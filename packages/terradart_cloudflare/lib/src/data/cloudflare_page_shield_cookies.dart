@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_page_shield_cookies`.
 const Set<String> _cloudflarePageShieldCookiesSensitive = <String>{};
@@ -18,12 +19,12 @@ final class DataCloudflarePageShieldCookies extends Data {
   DataCloudflarePageShieldCookies({
     required super.localName,
     required TfArg<String> cookieId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'cookie_id': cookieId, 'zone_id': ?zoneId},
+         argMap: {'cookie_id': cookieId, 'zone_id': ?zoneId?.encodeAs('id')},
        );
 
   @override

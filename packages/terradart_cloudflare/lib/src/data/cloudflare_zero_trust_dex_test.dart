@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_dex_test.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_dex_test`.
 const Set<String> _cloudflareZeroTrustDexTestSensitive = <String>{};
@@ -54,7 +55,7 @@ final class DataCloudflareZeroTrustDexTest extends Data {
 
   DataCloudflareZeroTrustDexTest({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? dexTestId,
     DataZeroTrustDexTestFilter? filter,
     List<DataZeroTrustDexTestTargetPolicies>? targetPolicies,
@@ -63,7 +64,7 @@ final class DataCloudflareZeroTrustDexTest extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'dex_test_id': ?dexTestId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
            if (targetPolicies != null)

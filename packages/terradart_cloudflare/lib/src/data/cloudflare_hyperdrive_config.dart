@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../hyperdrive/cloudflare_hyperdrive_config.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_hyperdrive_config`.
 const Set<String> _cloudflareHyperdriveConfigSensitive = <String>{
@@ -20,13 +21,16 @@ final class DataCloudflareHyperdriveConfig extends Data {
 
   DataCloudflareHyperdriveConfig({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> hyperdriveId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'hyperdrive_id': hyperdriveId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'hyperdrive_id': hyperdriveId,
+         },
        );
 
   @override

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_share_resources`.
 const Set<String> _cloudflareShareResourcesSensitive = <String>{};
@@ -12,7 +13,7 @@ final class DataCloudflareShareResources extends Data {
 
   DataCloudflareShareResources({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<num>? maxItems,
     TfArg<String>? resourceType,
     required TfArg<String> shareId,
@@ -22,7 +23,7 @@ final class DataCloudflareShareResources extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'max_items': ?maxItems,
            'resource_type': ?resourceType,
            'share_id': shareId,

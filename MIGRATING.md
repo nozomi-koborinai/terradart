@@ -97,6 +97,12 @@ The other sealed members typed this way: `aws_cloudhsm_v2_hsm`
 `aws_networkfirewall_firewall`, `google_dataproc_batch`,
 `google_spanner_backup_schedule` and `google_vertex_ai_index_endpoint`.
 
+Data-source arguments that name a resource take `RefTo<Target>` the same
+way: `DataAwsNatGateway(vpcId: vpc.ref)`,
+`DataCloudflareZoneLockdowns(zoneId: zone.ref)`,
+`DataGoogleKmsCryptoKeyVersion(cryptoKey: key.ref)`. A string that is not a
+block of the Stack takes `.literal(...)`; synth output does not change.
+
 ### Sealed arguments are built with dot shorthands
 
 **Breaking (`terradart_aws`, every package with a derived sealed type)** —

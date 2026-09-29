@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_page_shield_connections`.
 const Set<String> _cloudflarePageShieldConnectionsSensitive = <String>{};
@@ -18,12 +19,15 @@ final class DataCloudflarePageShieldConnections extends Data {
   DataCloudflarePageShieldConnections({
     required super.localName,
     required TfArg<String> connectionId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'connection_id': connectionId, 'zone_id': ?zoneId},
+         argMap: {
+           'connection_id': connectionId,
+           'zone_id': ?zoneId?.encodeAs('id'),
+         },
        );
 
   @override

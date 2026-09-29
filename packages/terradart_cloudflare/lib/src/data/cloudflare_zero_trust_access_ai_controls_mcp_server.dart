@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_access_ai_controls_mcp_server.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_access_ai_controls_mcp_server`.
 const Set<String> _cloudflareZeroTrustAccessAiControlsMcpServerSensitive =
@@ -31,14 +32,14 @@ final class DataCloudflareZeroTrustAccessAiControlsMcpServer extends Data {
 
   DataCloudflareZeroTrustAccessAiControlsMcpServer({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     DataZeroTrustAccessAiControlsMcpServerFilter? filter,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

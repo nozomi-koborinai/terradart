@@ -10,14 +10,18 @@ import 'catalog_class_names.dart';
 const _dataDir = 'packages/terradart_google/lib/src/data';
 const _outPath = 'examples/data_source_leftover_quickstart/lib/main.dart';
 
-List<({String dartType, String name})> _requiredCtorParams(String ctor) {
-  final out = <({String dartType, String name})>[];
+/// The constructor's required `TfArg<T>` and `RefTo<T>` parameters, in
+/// order; [ref] marks a `RefTo`.
+List<({String dartType, String name, bool ref})> _requiredCtorParams(
+  String ctor,
+) {
+  final out = <({String dartType, String name, bool ref})>[];
+  final start = RegExp(r'required (TfArg|RefTo)<');
   var i = 0;
-  const needle = 'required TfArg<';
   while (true) {
-    final start = ctor.indexOf(needle, i);
-    if (start < 0) break;
-    final typeStart = start + needle.length;
+    final m = start.firstMatch(ctor.substring(i));
+    if (m == null) break;
+    final typeStart = i + m.end;
     var depth = 1;
     var j = typeStart;
     while (j < ctor.length && depth > 0) {
@@ -28,9 +32,15 @@ List<({String dartType, String name})> _requiredCtorParams(String ctor) {
     final dartType = ctor.substring(typeStart, j - 1);
     final nameMatch = RegExp(r'^\s*(\w+)').firstMatch(ctor.substring(j));
     if (nameMatch == null) {
-      throw StateError('required TfArg<$dartType> missing name in: $ctor');
+      throw StateError(
+        'required ${m.group(1)}<$dartType> missing name in: $ctor',
+      );
     }
-    out.add((dartType: dartType, name: nameMatch.group(1)!));
+    out.add((
+      dartType: m.group(1) == 'RefTo' ? 'String' : dartType,
+      name: nameMatch.group(1)!,
+      ref: m.group(1) == 'RefTo',
+    ));
     i = j;
   }
   return out;
@@ -73,8 +83,10 @@ void main() {
     final ctor = src.substring(ctorStart, ctorEnd);
     final args = <String>[];
     for (final param in _requiredCtorParams(ctor)) {
+      final value = _literal(className, param.name, param.dartType);
       args.add(
-        '      ${param.name}: ${_literal(className, param.name, param.dartType)},',
+        '      ${param.name}: '
+        '${param.ref ? value.replaceFirst('TfArg.', 'RefTo.') : value},',
       );
     }
     final extras = _extraOptionals[className] ?? const {};

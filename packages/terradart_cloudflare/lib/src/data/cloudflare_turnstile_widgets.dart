@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_turnstile_widgets`.
 const Set<String> _cloudflareTurnstileWidgetsSensitive = <String>{};
@@ -17,7 +18,7 @@ final class DataCloudflareTurnstileWidgets extends Data {
 
   DataCloudflareTurnstileWidgets({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<String>? filter,
     TfArg<num>? maxItems,
@@ -27,7 +28,7 @@ final class DataCloudflareTurnstileWidgets extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'direction': ?direction,
            'filter': ?filter,
            'max_items': ?maxItems,

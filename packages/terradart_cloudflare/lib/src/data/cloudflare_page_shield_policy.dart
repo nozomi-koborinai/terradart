@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../security/cloudflare_page_shield_policy.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_page_shield_policy`.
 const Set<String> _cloudflarePageShieldPolicySensitive = <String>{};
@@ -19,12 +20,12 @@ final class DataCloudflarePageShieldPolicy extends Data {
   DataCloudflarePageShieldPolicy({
     required super.localName,
     required TfArg<String> policyId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'policy_id': policyId, 'zone_id': ?zoneId},
+         argMap: {'policy_id': policyId, 'zone_id': ?zoneId?.encodeAs('id')},
        );
 
   @override

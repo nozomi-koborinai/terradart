@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../ec2/aws_subnet.dart';
+import '../ec2/aws_vpc.dart' show AwsVpc;
 
 /// Sensitive field paths for `aws_subnet`.
 const Set<String> _awsSubnetSensitive = <String>{};
@@ -38,7 +39,7 @@ final class DataAwsSubnet extends Data {
     TfArg<String>? region,
     TfArg<String>? state,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? vpcId,
+    RefTo<AwsVpc>? vpcId,
     List<DataSubnetFilter>? filter,
     super.provider,
     super.timeouts,
@@ -53,7 +54,7 @@ final class DataAwsSubnet extends Data {
            'region': ?region,
            'state': ?state,
            'tags': ?tags,
-           'vpc_id': ?vpcId,
+           'vpc_id': ?vpcId?.encodeAs('id'),
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },

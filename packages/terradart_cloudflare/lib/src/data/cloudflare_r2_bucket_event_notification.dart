@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../r2/cloudflare_r2_bucket_event_notification.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_r2_bucket_event_notification`.
 const Set<String> _cloudflareR2BucketEventNotificationSensitive = <String>{};
@@ -17,7 +18,7 @@ final class DataCloudflareR2BucketEventNotification extends Data {
 
   DataCloudflareR2BucketEventNotification({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     required TfArg<String> queueId,
     super.provider,
@@ -25,7 +26,7 @@ final class DataCloudflareR2BucketEventNotification extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
            'queue_id': queueId,
          },

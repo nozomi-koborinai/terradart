@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../ec2/aws_vpc_endpoint.dart';
+import '../ec2/aws_vpc.dart' show AwsVpc;
 
 /// Sensitive field paths for `aws_vpc_endpoint`.
 const Set<String> _awsVpcEndpointSensitive = <String>{};
@@ -36,7 +37,7 @@ final class DataAwsVpcEndpoint extends Data {
     TfArg<String>? state,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? vpcEndpointType,
-    TfArg<String>? vpcId,
+    RefTo<AwsVpc>? vpcId,
     List<DataVpcEndpointFilter>? filter,
     super.provider,
     super.timeouts,
@@ -49,7 +50,7 @@ final class DataAwsVpcEndpoint extends Data {
            'state': ?state,
            'tags': ?tags,
            'vpc_endpoint_type': ?vpcEndpointType,
-           'vpc_id': ?vpcId,
+           'vpc_id': ?vpcId?.encodeAs('id'),
            if (filter != null)
              'filter': TfArg.literal([for (final e in filter) e.encode()]),
          },
