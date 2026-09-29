@@ -195,6 +195,27 @@ void main() {
         'aws_thing [a, b]: the group source declares it; remove the entry',
       ]);
     });
+
+    test('override groups alone are no group source', () {
+      final enums = ProviderEnums.off.withOverrideGroups(
+        {
+          'aws_thing': const WrapperOverride(
+            outputDir: 'thing',
+            exactlyOneOf: ['c, a'],
+          ),
+        },
+        defs,
+        error: (e) => fail(e),
+      );
+      expect(enums.exactlyOneGroups['aws_thing'], [
+        ['a', 'c'],
+      ]);
+      expect(enums.hasGroupSource, isFalse);
+      expect(
+        _groups.withOverrideGroups({}, defs, error: fail).hasGroupSource,
+        isTrue,
+      );
+    });
   });
 
   test('sealedNames keys go unjudged when no group source is loaded', () {
