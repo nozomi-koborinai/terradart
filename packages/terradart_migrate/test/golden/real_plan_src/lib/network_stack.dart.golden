@@ -25,7 +25,7 @@ final class NetworkStack extends Stack {
         localName: r'subnet',
         name: .literal(r'example-subnet'),
         region: .literal(r'us-central1'),
-        network: .ref(vpc.id),
+        network: vpc.ref,
         ipCidrRange: .literal(r'10.0.0.0/24'),
       ),
     );
@@ -33,7 +33,7 @@ final class NetworkStack extends Stack {
       GoogleComputeRoute(
         localName: r'egress',
         name: .literal(r'example-egress'),
-        network: .ref(vpc.nameRef),
+        network: vpc.ref.pinned(r'name'),
         destRange: .literal(r'0.0.0.0/0'),
         nextHop: .gateway(
           nextHopGateway: .literal(r'default-internet-gateway'),
