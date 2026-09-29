@@ -202,9 +202,31 @@ void main() {
       expect(parsed.merged, isTrue);
       expect(parsed.tfKey, isNull);
     });
+
+    test('detects the null-aware spread of a nullable at-most-one slot', () {
+      const slot = CustomSlot(
+        paramDeclaration: 'Target? target',
+        argMapEntry: '...?target?.argMap,',
+      );
+      final parsed = parseCustomSlot(slot);
+      expect(parsed.required, isFalse);
+      expect(parsed.spread, isTrue);
+      expect(parsed.merged, isTrue);
+      expect(parsed.typeSource, 'Target?');
+    });
   });
 
   group('customSlotShape', () {
+    test('a nullable spread sealed slot derives to sealed', () {
+      const slot = CustomSlot(
+        paramDeclaration: 'Target? target',
+        argMapEntry: '...?target?.argMap,',
+      );
+      final shape = customSlotShape(slot, parseCustomSlot(slot), _ctx);
+      expect(shape.kind, MigrateSlotKind.sealed);
+      expect(shape.variants, {'pubsub_target': 'PubsubTarget'});
+    });
+
     test('a spread sealed slot derives to sealed', () {
       const slot = CustomSlot(
         paramDeclaration: 'required Target target',

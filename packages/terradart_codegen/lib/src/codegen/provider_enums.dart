@@ -30,6 +30,7 @@ import 'wrapper_overrides/wrapper_override.dart';
 final class ProviderEnums {
   const ProviderEnums._({required this.enabled, required this.hints})
       : exactlyOneGroups = const {},
+        atMostOneGroups = const {},
         caseInsensitive = false,
         availableValuesDialect = false;
 
@@ -37,10 +38,11 @@ final class ProviderEnums {
   static const ProviderEnums off = ProviderEnums._(enabled: false, hints: {});
 
   /// Opens the gate over [hints] (Terraform type → dotted attribute path →
-  /// values) and [exactlyOneGroups].
+  /// values), [exactlyOneGroups] and [atMostOneGroups].
   const ProviderEnums.on({
     this.hints = const <String, Map<String, List<String>>>{},
     this.exactlyOneGroups = const <String, List<List<String>>>{},
+    this.atMostOneGroups = const <String, List<List<String>>>{},
     this.caseInsensitive = true,
     this.availableValuesDialect = true,
   }) : enabled = true;
@@ -78,6 +80,7 @@ final class ProviderEnums {
     final dir = Directory(p.join(sourceDir, 'hints'));
     final hints = <String, Map<String, List<String>>>{};
     final groups = <String, List<List<String>>>{};
+    final atMostOne = <String, List<List<String>>>{};
     if (dir.existsSync()) {
       final files = dir
           .listSync()
@@ -102,20 +105,28 @@ final class ProviderEnums {
               in const MmYamlParser().parseString(src).fieldOverrides.entries)
             if (e.value.enumValues != null) e.key: e.value.enumValues!,
         };
-        final raw = (doc as YamlMap)['exactly_one_of_groups'];
-        if (raw != null) {
+        for (final (key, sink) in [
+          ('exactly_one_of_groups', groups),
+          ('at_most_one_of_groups', atMostOne),
+        ]) {
+          final raw = (doc as YamlMap)[key];
+          if (raw == null) continue;
           if (raw is! YamlList || raw.any((g) => g is! YamlList)) {
             throw FormatException(
-              '${file.path}: exactly_one_of_groups must be a list of lists',
+              '${file.path}: $key must be a list of lists',
             );
           }
-          groups[type] = [
+          sink[type] = [
             for (final g in raw) [for (final m in g as YamlList) m.toString()],
           ];
         }
       }
     }
-    return ProviderEnums.on(hints: hints, exactlyOneGroups: groups);
+    return ProviderEnums.on(
+      hints: hints,
+      exactlyOneGroups: groups,
+      atMostOneGroups: atMostOne,
+    );
   }
 
   final bool enabled;
@@ -140,9 +151,24 @@ final class ProviderEnums {
   /// names.
   Map<String, List<List<String>>> exactlyOneGroupsByBlock(
     String terraformType,
-  ) {
+  ) =>
+      _byBlock(exactlyOneGroups[terraformType]);
+
+  /// Terraform type → the mutually exclusive input sets the provider also
+  /// accepts none of (at most one), in the shape of [exactlyOneGroups]
+  /// (`hints/*.yaml` `at_most_one_of_groups`).
+  final Map<String, List<List<String>>> atMostOneGroups;
+
+  /// [atMostOneGroups] of [terraformType] keyed like
+  /// [exactlyOneGroupsByBlock].
+  Map<String, List<List<String>>> atMostOneGroupsByBlock(
+    String terraformType,
+  ) =>
+      _byBlock(atMostOneGroups[terraformType]);
+
+  static Map<String, List<List<String>>> _byBlock(List<List<String>>? groups) {
     final out = <String, List<List<String>>>{};
-    for (final g in exactlyOneGroups[terraformType] ?? const <List<String>>[]) {
+    for (final g in groups ?? const <List<String>>[]) {
       final parent = g.first.contains('.')
           ? g.first.substring(0, g.first.lastIndexOf('.'))
           : '';
@@ -160,6 +186,15 @@ final class ProviderEnums {
   ) {
     if (!(override?.deriveExactlyOne ?? false)) return const {};
     return exactlyOneGroupsByBlock(terraformType)..remove('');
+  }
+
+  /// [nestedExactlyOneGroups] for the at-most-one groups.
+  Map<String, List<List<String>>> nestedAtMostOneGroups(
+    String terraformType,
+    WrapperOverride? override,
+  ) {
+    if (!(override?.deriveExactlyOne ?? false)) return const {};
+    return atMostOneGroupsByBlock(terraformType)..remove('');
   }
 
   /// The nested-type collector's resolver for [terraformType] (null for a

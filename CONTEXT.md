@@ -29,7 +29,7 @@ The generator's internal resource model after Terraform provider schema has been
 _Avoid_: Wrapper override, schema.json
 
 **Provider enum hints**:
-Enum value sets a provider enforces in its own source rather than in Magic Modules metadata, extracted at the fixture's pin into a Magic Modules YAML subset beside the schema fixture. With the provider's `Available values:` descriptions, they enrich the merged IR only on a lane that opts into `wrap --provider-enums`. The same files carry the provider's exactly-one groups (`exactly_one_of_groups`), which an override with `deriveExactlyOne` seals.
+Enum value sets a provider enforces in its own source rather than in Magic Modules metadata, extracted at the fixture's pin into a Magic Modules YAML subset beside the schema fixture. With the provider's `Available values:` descriptions, they enrich the merged IR only on a lane that opts into `wrap --provider-enums`. The same files carry the provider's exactly-one groups (`exactly_one_of_groups`) and at-most-one groups (`at_most_one_of_groups`, mutually exclusive inputs it also accepts none of), which an override with `deriveExactlyOne` seals into a required and a nullable sealed argument respectively.
 _Avoid_: MM YAML, override enum
 
 **Agent guide**:

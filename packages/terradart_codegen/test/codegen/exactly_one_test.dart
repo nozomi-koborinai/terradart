@@ -89,6 +89,26 @@ void main() {
       });
     });
 
+    test('reads at_most_one_of_groups', () {
+      write('at_most_one_of_groups:\n'
+          '  - ["content", "data"]\n');
+      final enums = ProviderEnums.load(dir.path, providerVersion: '1.0.0');
+      expect(enums.exactlyOneGroups, isEmpty);
+      expect(enums.atMostOneGroups, {
+        'aws_thing': [
+          ['content', 'data'],
+        ],
+      });
+    });
+
+    test('rejects a malformed at-most-one group list', () {
+      write('at_most_one_of_groups: ["a", "b"]\n');
+      expect(
+        () => ProviderEnums.load(dir.path, providerVersion: '1.0.0'),
+        throwsFormatException,
+      );
+    });
+
     test('rejects a malformed group list', () {
       write('exactly_one_of_groups: ["a", "b"]\n');
       expect(
@@ -324,5 +344,93 @@ void main() {
     expect(derived.skipped, [
       'aws_thing settings [x, y]: the block has no typed helper',
     ]);
+  });
+
+  test('an at-most-one group becomes a nullable sealed slot', () {
+    final def = ResourceDef(
+      terraformType: 'aws_thing',
+      root: BlockDef(
+        attributes: [
+          _attr('a'),
+          _attr('b'),
+          _attr('c'),
+          _attr('d'),
+        ],
+      ),
+    );
+    final derived = deriveExactlyOneSlots(
+      {
+        'aws_thing': const WrapperOverride(
+          outputDir: 'thing',
+          deriveExactlyOne: true,
+        ),
+      },
+      {'aws_thing': def},
+      providerEnums: const ProviderEnums.on(
+        exactlyOneGroups: {
+          'aws_thing': [
+            ['a', 'b'],
+          ],
+        },
+        atMostOneGroups: {
+          'aws_thing': [
+            ['b', 'c'],
+            ['c', 'd'],
+          ],
+        },
+      ),
+      rawSchemas: const {},
+    );
+    expect(derived.skipped, isEmpty);
+    expect(derived.skippedAtMostOne, [
+      'aws_thing [b, c]: b is in an earlier group',
+    ]);
+    final o = derived.overrides['aws_thing']!;
+    expect(
+        o.customSlots!['a_or_b']!.paramDeclaration, 'required ThingAOrB aOrB');
+    expect(o.customSlots!['c_or_d']!.paramDeclaration, 'ThingCOrD? cOrD');
+    expect(o.customSlots!['c_or_d']!.argMapEntry, '...?cOrD?.argMap,');
+    expect(o.paramOrder, ['a_or_b', 'c_or_d']);
+    expect(o.prelude, contains('/// At most one of `c`, `d` on `aws_thing`'));
+    expect(o.prelude, contains('sealed class ThingCOrD {'));
+    expect(o.prelude, contains('final class ThingDOption extends ThingCOrD {'));
+  });
+
+  test('a nested at-most-one group becomes a nullable sealed field', () {
+    Map<String, dynamic> optional() => {'type': 'string', 'optional': true};
+    const atMostOne = {
+      'settings': [
+        ['x', 'y'],
+        ['y', 'z'],
+      ],
+    };
+    final specs = collectNestedTypes(
+      resourceBlock: {
+        'block_types': {
+          'settings': {
+            'nesting_mode': 'list',
+            'max_items': 1,
+            'block': {
+              'attributes': {'x': optional(), 'y': optional(), 'z': optional()},
+            },
+          },
+        },
+      },
+      resourcePrefix: 'Thing',
+      customSlotKeys: const {},
+      excludedPaths: const {},
+      atMostOneGroups: atMostOne,
+    );
+    final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
+    expect(src, contains('sealed class ThingSettingsXOrY {'));
+    expect(src, contains('this.xOrY,'));
+    expect(src, isNot(contains('required this.xOrY')));
+    expect(src, contains('final ThingSettingsXOrY? xOrY;'));
+    expect(src, contains('...?xOrY?.encode(),'));
+    expect(src, contains('this.z,'));
+    expect(unsealedNestedGroups(specs, atMostOne, optional: true), [
+      'settings [y, z]: y is in an earlier group',
+    ]);
+    expect(unsealedNestedGroups(specs, const {}), isEmpty);
   });
 }

@@ -119,6 +119,10 @@ class WrapperEmitter {
               def.terraformType,
               override,
             ),
+            atMostOneGroups: providerEnums.nestedAtMostOneGroups(
+              def.terraformType,
+              override,
+            ),
           )
         : const <NestedBlockSpec>[];
 

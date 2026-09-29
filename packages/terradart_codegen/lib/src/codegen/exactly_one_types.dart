@@ -34,7 +34,8 @@ String exactlyOneSealedName(String prefix, List<String> members) =>
 String exactlyOneVariantName(String prefix, String member) =>
     '$prefix${snakeToPascal(member)}Option';
 
-/// Renders the sealed type for one exactly-one group and one variant per
+/// Renders the sealed type for one exactly-one group — or, when [optional],
+/// one at-most-one group, held by a nullable slot — and one variant per
 /// member, in [variants] order. [where] names the block the members belong
 /// to in the doc comments. The declarations follow the shape
 /// `migrate/helper_class_extractor.dart` recognises: a `blockKey` getter and
@@ -44,13 +45,24 @@ String renderExactlyOneTypes({
   required List<String> members,
   required String where,
   required List<ExactlyOneVariant> variants,
+  bool optional = false,
 }) {
   final sealed = exactlyOneSealedName(prefix, members);
   final topLevel = variants.first.argMapExpr != null;
   final list = members.map((m) => '`$m`').join(', ');
-  final buf = StringBuffer()
-    ..writeln('/// Exactly one of $list on $where: the provider rejects')
-    ..writeln('/// none and more than one, so each variant sets one of them.')
+  final buf = StringBuffer();
+  if (optional) {
+    buf
+      ..writeln('/// At most one of $list on $where: the provider rejects')
+      ..writeln('/// more than one, so each variant sets one of them and a')
+      ..writeln('/// null choice sets none.');
+  } else {
+    buf
+      ..writeln('/// Exactly one of $list on $where: the provider rejects')
+      ..writeln(
+          '/// none and more than one, so each variant sets one of them.');
+  }
+  buf
     ..writeln('sealed class $sealed {')
     ..writeln('  const $sealed();')
     ..writeln()

@@ -338,6 +338,111 @@ resource "google_pubsub_topic_iam_member" "viewer" {
       );
     });
 
+    group('an at-most-one sealed slot', () {
+      // `deriveExactlyOne` seals mutually exclusive inputs the provider also
+      // accepts none of into a nullable `...?slot?.argMap` slot: an optional
+      // merged sealed slot in the manifest.
+      const manifest = MigrateManifest(
+        package: 'terradart_google',
+        entries: [
+          MigrateEntry(
+            tfType: 'google_x_thing',
+            className: 'GoogleXThing',
+            barrel: 'thing',
+            kind: CatalogKind.resource,
+            slots: [
+              MigrateSlot(
+                tfName: 'name',
+                dartName: 'name',
+                kind: MigrateSlotKind.scalar,
+                required: true,
+                dartType: 'String',
+              ),
+              MigrateSlot(
+                tfName: '',
+                dartName: 'contentOrData',
+                kind: MigrateSlotKind.sealed,
+                required: false,
+                wrapped: false,
+                merged: true,
+                variants: {
+                  'content': 'XThingContentOption',
+                  'data': 'XThingDataOption',
+                },
+              ),
+            ],
+            getters: [],
+          ),
+        ],
+        helpers: {
+          'XThingContentOption': MigrateHelper(
+            className: 'XThingContentOption',
+            slots: [
+              MigrateSlot(
+                tfName: 'content',
+                dartName: 'content',
+                kind: MigrateSlotKind.scalar,
+                required: true,
+                dartType: 'String',
+              ),
+            ],
+          ),
+          'XThingDataOption': MigrateHelper(
+            className: 'XThingDataOption',
+            slots: [
+              MigrateSlot(
+                tfName: 'data',
+                dartName: 'data',
+                kind: MigrateSlotKind.scalar,
+                required: true,
+                dartType: 'String',
+              ),
+            ],
+          ),
+        },
+        enums: {},
+      );
+      MigrationResult migrate(Map<String, Object?> body) => migrateModule(
+        TfModule.fromTfJson(
+          jsonEncode({
+            'terraform': _google,
+            'resource': {
+              'google_x_thing': {'t': body},
+            },
+          }),
+          fileName: 'main.tf.json',
+        ),
+        name: 'demo',
+        format: false,
+        manifests: const [manifest],
+      );
+
+      test('sets nothing when no member is set', () {
+        final r = migrate({'name': 't'});
+        expect(r.report.migratedAddresses, contains('google_x_thing.t'));
+        expect(r.files['lib/demo_stack.dart'], isNot(contains('OrData')));
+      });
+
+      test('names the variant of the member that is set', () {
+        final r = migrate({'name': 't', 'data': 'd'});
+        expect(r.report.migratedAddresses, contains('google_x_thing.t'));
+        expect(
+          r.files['lib/demo_stack.dart'],
+          contains(
+            "contentOrData: XThingDataOption(data: TfArg.literal(r'd'))",
+          ),
+        );
+      });
+
+      test('keeps a block that sets more than one in Terraform', () {
+        final r = migrate({'name': 't', 'content': 'c', 'data': 'd'});
+        expect(
+          reasonOf(r, 'google_x_thing.t'),
+          contains('more than one of "content", "data" is set'),
+        );
+      });
+    });
+
     group('an enum value that differs from a member only in case', () {
       const module = {
         'terraform': _google,
