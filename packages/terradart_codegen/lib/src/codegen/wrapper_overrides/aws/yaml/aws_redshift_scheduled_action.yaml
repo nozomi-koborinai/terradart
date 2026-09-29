@@ -4,3 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "target_action.pause_cluster, target_action.resize_cluster, target_action.resume_cluster": action

@@ -8,11 +8,13 @@ deriveExactlyOne: true
 curatedDoc: |-
   /// AWS **Lambda function**. A Dart backend runs on the `provided.al2023`
   /// custom runtime: compile it with `dart compile exe` to a binary named
-  /// `bootstrap`, zip it, and pass the zip as `filename` with
+  /// `bootstrap`, zip it, and pass the zip as `code: .filename(...)` with
   /// `handler: TfArg.literal('bootstrap')`.
   ///
   /// `role` takes the execution role's ARN (`TfArg.ref(role.arn)`).
-  /// Supply the code through exactly one of `filename`, `s3Bucket` +
-  /// `s3Key`, or `imageUri`; the Dart API does not enforce that choice,
-  /// `terraform validate` does. Pair `sourceCodeHash` with `filename` so a
-  /// rebuilt zip redeploys.
+  /// `code` is exactly one of `.filename(...)`, `.s3Bucket(...)` (with
+  /// `s3Key`) or `.imageUri(...)`. Pair `sourceCodeHash` with a `.filename`
+  /// zip so a rebuilt zip redeploys.
+
+sealedNames:
+  "filename, image_uri, s3_bucket": code

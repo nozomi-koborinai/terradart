@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "host_resource_group_arn, placement_group": placement
+  "launch_template.id, launch_template.name": template

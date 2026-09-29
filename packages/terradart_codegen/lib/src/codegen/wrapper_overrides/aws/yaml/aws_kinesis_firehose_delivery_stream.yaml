@@ -4,3 +4,8 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "elasticsearch_configuration.cluster_endpoint, elasticsearch_configuration.domain_arn": domain
+  "kinesis_source_configuration, msk_source_configuration, server_side_encryption": source
+  "opensearch_configuration.cluster_endpoint, opensearch_configuration.domain_arn": domain
