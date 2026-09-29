@@ -20,18 +20,18 @@ enum EmrStudioSessionMappingIdentityType implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.identityId(...)`.
-sealed class EmrStudioSessionMappingIdentityIdOrIdentityName {
-  const EmrStudioSessionMappingIdentityIdOrIdentityName();
+sealed class EmrStudioSessionMappingIdentity {
+  const EmrStudioSessionMappingIdentity();
 
   /// Sets `identity_id`.
-  const factory EmrStudioSessionMappingIdentityIdOrIdentityName.identityId(
+  const factory EmrStudioSessionMappingIdentity.identityId(
     TfArg<String> identityId,
-  ) = EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityId;
+  ) = EmrStudioSessionMappingIdentityIdentityId;
 
   /// Sets `identity_name`.
-  const factory EmrStudioSessionMappingIdentityIdOrIdentityName.identityName(
+  const factory EmrStudioSessionMappingIdentity.identityName(
     TfArg<String> identityName,
-  ) = EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityName;
+  ) = EmrStudioSessionMappingIdentityIdentityName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,12 +43,10 @@ sealed class EmrStudioSessionMappingIdentityIdOrIdentityName {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [EmrStudioSessionMappingIdentityIdOrIdentityName.identityId] choice: sets `identity_id`.
-final class EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityId
-    extends EmrStudioSessionMappingIdentityIdOrIdentityName {
-  const EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityId(
-    this.identityId,
-  );
+/// The [EmrStudioSessionMappingIdentity.identityId] choice: sets `identity_id`.
+final class EmrStudioSessionMappingIdentityIdentityId
+    extends EmrStudioSessionMappingIdentity {
+  const EmrStudioSessionMappingIdentityIdentityId(this.identityId);
 
   final TfArg<String> identityId;
 
@@ -62,12 +60,10 @@ final class EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityId
   Map<String, TfArg<Object?>> get argMap => {'identity_id': identityId};
 }
 
-/// The [EmrStudioSessionMappingIdentityIdOrIdentityName.identityName] choice: sets `identity_name`.
-final class EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityName
-    extends EmrStudioSessionMappingIdentityIdOrIdentityName {
-  const EmrStudioSessionMappingIdentityIdOrIdentityNameIdentityName(
-    this.identityName,
-  );
+/// The [EmrStudioSessionMappingIdentity.identityName] choice: sets `identity_name`.
+final class EmrStudioSessionMappingIdentityIdentityName
+    extends EmrStudioSessionMappingIdentity {
+  const EmrStudioSessionMappingIdentityIdentityName(this.identityName);
 
   final TfArg<String> identityName;
 
@@ -87,8 +83,7 @@ final class AwsEmrStudioSessionMapping extends Resource {
 
   AwsEmrStudioSessionMapping({
     required super.localName,
-    required EmrStudioSessionMappingIdentityIdOrIdentityName
-    identityIdOrIdentityName,
+    required EmrStudioSessionMappingIdentity identity,
     required TfArg<EmrStudioSessionMappingIdentityType> identityType,
     TfArg<String>? region,
     required TfArg<String> sessionPolicyArn,
@@ -100,7 +95,7 @@ final class AwsEmrStudioSessionMapping extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...identityIdOrIdentityName.argMap,
+           ...identity.argMap,
            'identity_type': identityType,
            if (region != null) 'region': region,
            'session_policy_arn': sessionPolicyArn,

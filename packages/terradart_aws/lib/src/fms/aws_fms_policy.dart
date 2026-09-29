@@ -22,18 +22,17 @@ enum FmsPolicyResourceTagLogicalOperator implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.resourceType(...)`.
-sealed class FmsPolicyResourceTypeOrResourceTypeList {
-  const FmsPolicyResourceTypeOrResourceTypeList();
+sealed class FmsPolicyResourceType {
+  const FmsPolicyResourceType();
 
   /// Sets `resource_type`.
-  const factory FmsPolicyResourceTypeOrResourceTypeList.resourceType(
-    TfArg<String> resourceType,
-  ) = FmsPolicyResourceTypeOrResourceTypeListResourceType;
+  const factory FmsPolicyResourceType.resourceType(TfArg<String> resourceType) =
+      FmsPolicyResourceTypeResourceType;
 
   /// Sets `resource_type_list`.
-  const factory FmsPolicyResourceTypeOrResourceTypeList.resourceTypeList(
+  const factory FmsPolicyResourceType.resourceTypeList(
     TfArg<List<String>> resourceTypeList,
-  ) = FmsPolicyResourceTypeOrResourceTypeListResourceTypeList;
+  ) = FmsPolicyResourceTypeResourceTypeList;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,10 +44,9 @@ sealed class FmsPolicyResourceTypeOrResourceTypeList {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [FmsPolicyResourceTypeOrResourceTypeList.resourceType] choice: sets `resource_type`.
-final class FmsPolicyResourceTypeOrResourceTypeListResourceType
-    extends FmsPolicyResourceTypeOrResourceTypeList {
-  const FmsPolicyResourceTypeOrResourceTypeListResourceType(this.resourceType);
+/// The [FmsPolicyResourceType.resourceType] choice: sets `resource_type`.
+final class FmsPolicyResourceTypeResourceType extends FmsPolicyResourceType {
+  const FmsPolicyResourceTypeResourceType(this.resourceType);
 
   final TfArg<String> resourceType;
 
@@ -62,12 +60,10 @@ final class FmsPolicyResourceTypeOrResourceTypeListResourceType
   Map<String, TfArg<Object?>> get argMap => {'resource_type': resourceType};
 }
 
-/// The [FmsPolicyResourceTypeOrResourceTypeList.resourceTypeList] choice: sets `resource_type_list`.
-final class FmsPolicyResourceTypeOrResourceTypeListResourceTypeList
-    extends FmsPolicyResourceTypeOrResourceTypeList {
-  const FmsPolicyResourceTypeOrResourceTypeListResourceTypeList(
-    this.resourceTypeList,
-  );
+/// The [FmsPolicyResourceType.resourceTypeList] choice: sets `resource_type_list`.
+final class FmsPolicyResourceTypeResourceTypeList
+    extends FmsPolicyResourceType {
+  const FmsPolicyResourceTypeResourceTypeList(this.resourceTypeList);
 
   final TfArg<List<String>> resourceTypeList;
 
@@ -473,7 +469,7 @@ final class AwsFmsPolicy extends Resource {
     TfArg<List<String>>? resourceSetIds,
     TfArg<FmsPolicyResourceTagLogicalOperator>? resourceTagLogicalOperator,
     TfArg<Map<String, String>>? resourceTags,
-    FmsPolicyResourceTypeOrResourceTypeList? resourceTypeOrResourceTypeList,
+    FmsPolicyResourceType? resourceType,
     TfArg<Map<String, String>>? tags,
     FmsPolicyExcludeMap? excludeMap,
     FmsPolicyIncludeMap? includeMap,
@@ -500,7 +496,7 @@ final class AwsFmsPolicy extends Resource {
            if (resourceTagLogicalOperator != null)
              'resource_tag_logical_operator': resourceTagLogicalOperator,
            if (resourceTags != null) 'resource_tags': resourceTags,
-           ...?resourceTypeOrResourceTypeList?.argMap,
+           ...?resourceType?.argMap,
            if (tags != null) 'tags': tags,
            if (excludeMap != null)
              'exclude_map': TfArg.literal(excludeMap.encode()),

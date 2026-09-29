@@ -41,18 +41,18 @@ enum EmrClusterScaleDownBehavior implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.configurations(...)`.
-sealed class EmrClusterConfigurationsOrConfigurationsJson {
-  const EmrClusterConfigurationsOrConfigurationsJson();
+sealed class EmrClusterConfigurations {
+  const EmrClusterConfigurations();
 
   /// Sets `configurations`.
-  const factory EmrClusterConfigurationsOrConfigurationsJson.configurations(
+  const factory EmrClusterConfigurations.configurations(
     TfArg<String> configurations,
-  ) = EmrClusterConfigurationsOrConfigurationsJsonConfigurations;
+  ) = EmrClusterConfigurationsConfigurations;
 
   /// Sets `configurations_json`.
-  const factory EmrClusterConfigurationsOrConfigurationsJson.configurationsJson(
+  const factory EmrClusterConfigurations.configurationsJson(
     TfArg<String> configurationsJson,
-  ) = EmrClusterConfigurationsOrConfigurationsJsonConfigurationsJson;
+  ) = EmrClusterConfigurationsConfigurationsJson;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -64,12 +64,10 @@ sealed class EmrClusterConfigurationsOrConfigurationsJson {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [EmrClusterConfigurationsOrConfigurationsJson.configurations] choice: sets `configurations`.
-final class EmrClusterConfigurationsOrConfigurationsJsonConfigurations
-    extends EmrClusterConfigurationsOrConfigurationsJson {
-  const EmrClusterConfigurationsOrConfigurationsJsonConfigurations(
-    this.configurations,
-  );
+/// The [EmrClusterConfigurations.configurations] choice: sets `configurations`.
+final class EmrClusterConfigurationsConfigurations
+    extends EmrClusterConfigurations {
+  const EmrClusterConfigurationsConfigurations(this.configurations);
 
   final TfArg<String> configurations;
 
@@ -85,12 +83,10 @@ final class EmrClusterConfigurationsOrConfigurationsJsonConfigurations
   Map<String, TfArg<Object?>> get argMap => {'configurations': configurations};
 }
 
-/// The [EmrClusterConfigurationsOrConfigurationsJson.configurationsJson] choice: sets `configurations_json`.
-final class EmrClusterConfigurationsOrConfigurationsJsonConfigurationsJson
-    extends EmrClusterConfigurationsOrConfigurationsJson {
-  const EmrClusterConfigurationsOrConfigurationsJsonConfigurationsJson(
-    this.configurationsJson,
-  );
+/// The [EmrClusterConfigurations.configurationsJson] choice: sets `configurations_json`.
+final class EmrClusterConfigurationsConfigurationsJson
+    extends EmrClusterConfigurations {
+  const EmrClusterConfigurationsConfigurationsJson(this.configurationsJson);
 
   final TfArg<String> configurationsJson;
 
@@ -191,7 +187,6 @@ final class EmrClusterCoreInstanceFleetInstanceTypeConfigs {
     this.bidPriceAsPercentageOfOnDemandPrice,
     required this.instanceType,
     this.weightedCapacity,
-    this.configurations,
     this.ebsConfig,
   });
 
@@ -202,9 +197,6 @@ final class EmrClusterCoreInstanceFleetInstanceTypeConfigs {
   final TfArg<String> instanceType;
 
   final TfArg<num>? weightedCapacity;
-
-  final List<EmrClusterCoreInstanceFleetInstanceTypeConfigsConfigurations>?
-  configurations;
 
   final List<EmrClusterCoreInstanceFleetInstanceTypeConfigsEbsConfig>?
   ebsConfig;
@@ -217,29 +209,8 @@ final class EmrClusterCoreInstanceFleetInstanceTypeConfigs {
     'instance_type': instanceType.toTfJson(),
     if (weightedCapacity != null)
       'weighted_capacity': weightedCapacity!.toTfJson(),
-    if (configurations != null)
-      'configurations': [for (final e in configurations!) e.encode()],
     if (ebsConfig != null)
       'ebs_config': [for (final e in ebsConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `core_instance_fleet.instance_type_configs.configurations` block of
-/// `aws_emr_cluster` (derived from provider schema).
-@immutable
-final class EmrClusterCoreInstanceFleetInstanceTypeConfigsConfigurations {
-  const EmrClusterCoreInstanceFleetInstanceTypeConfigsConfigurations({
-    this.classification,
-    this.properties,
-  });
-
-  final TfArg<String>? classification;
-
-  final TfArg<Map<String, String>>? properties;
-
-  Map<String, Object?> encode() => {
-    if (classification != null) 'classification': classification!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
   };
 }
 
@@ -422,7 +393,7 @@ final class EmrClusterEc2Attributes {
     required this.instanceProfile,
     this.keyName,
     this.serviceAccessSecurityGroup,
-    this.subnetIdOrSubnetIds,
+    this.subnetId,
   });
 
   final TfArg<String>? additionalMasterSecurityGroups;
@@ -439,7 +410,7 @@ final class EmrClusterEc2Attributes {
 
   final TfArg<String>? serviceAccessSecurityGroup;
 
-  final EmrClusterEc2AttributesSubnetIdOrSubnetIds? subnetIdOrSubnetIds;
+  final EmrClusterEc2AttributesSubnetId? subnetId;
 
   Map<String, Object?> encode() => {
     if (additionalMasterSecurityGroups != null)
@@ -458,7 +429,7 @@ final class EmrClusterEc2Attributes {
     if (keyName != null) 'key_name': keyName!.toTfJson(),
     if (serviceAccessSecurityGroup != null)
       'service_access_security_group': serviceAccessSecurityGroup!.toTfJson(),
-    ...?subnetIdOrSubnetIds?.encode(),
+    ...?subnetId?.encode(),
   };
 }
 
@@ -467,18 +438,18 @@ final class EmrClusterEc2Attributes {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.subnetId(...)`.
-sealed class EmrClusterEc2AttributesSubnetIdOrSubnetIds {
-  const EmrClusterEc2AttributesSubnetIdOrSubnetIds();
+sealed class EmrClusterEc2AttributesSubnetId {
+  const EmrClusterEc2AttributesSubnetId();
 
   /// Sets `subnet_id`.
-  const factory EmrClusterEc2AttributesSubnetIdOrSubnetIds.subnetId(
+  const factory EmrClusterEc2AttributesSubnetId.subnetId(
     TfArg<String> subnetId,
-  ) = EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetId;
+  ) = EmrClusterEc2AttributesSubnetIdSubnetId;
 
   /// Sets `subnet_ids`.
-  const factory EmrClusterEc2AttributesSubnetIdOrSubnetIds.subnetIds(
+  const factory EmrClusterEc2AttributesSubnetId.subnetIds(
     TfArg<List<Object?>> subnetIds,
-  ) = EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetIds;
+  ) = EmrClusterEc2AttributesSubnetIdSubnetIds;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -486,10 +457,10 @@ sealed class EmrClusterEc2AttributesSubnetIdOrSubnetIds {
   Map<String, Object?> encode();
 }
 
-/// The [EmrClusterEc2AttributesSubnetIdOrSubnetIds.subnetId] choice: sets `subnet_id`.
-final class EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetId
-    extends EmrClusterEc2AttributesSubnetIdOrSubnetIds {
-  const EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetId(this.subnetId);
+/// The [EmrClusterEc2AttributesSubnetId.subnetId] choice: sets `subnet_id`.
+final class EmrClusterEc2AttributesSubnetIdSubnetId
+    extends EmrClusterEc2AttributesSubnetId {
+  const EmrClusterEc2AttributesSubnetIdSubnetId(this.subnetId);
 
   final TfArg<String> subnetId;
 
@@ -500,10 +471,10 @@ final class EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetId
   Map<String, Object?> encode() => {'subnet_id': subnetId.toTfJson()};
 }
 
-/// The [EmrClusterEc2AttributesSubnetIdOrSubnetIds.subnetIds] choice: sets `subnet_ids`.
-final class EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetIds
-    extends EmrClusterEc2AttributesSubnetIdOrSubnetIds {
-  const EmrClusterEc2AttributesSubnetIdOrSubnetIdsSubnetIds(this.subnetIds);
+/// The [EmrClusterEc2AttributesSubnetId.subnetIds] choice: sets `subnet_ids`.
+final class EmrClusterEc2AttributesSubnetIdSubnetIds
+    extends EmrClusterEc2AttributesSubnetId {
+  const EmrClusterEc2AttributesSubnetIdSubnetIds(this.subnetIds);
 
   final TfArg<List<Object?>> subnetIds;
 
@@ -596,7 +567,6 @@ final class EmrClusterMasterInstanceFleetInstanceTypeConfigs {
     this.bidPriceAsPercentageOfOnDemandPrice,
     required this.instanceType,
     this.weightedCapacity,
-    this.configurations,
     this.ebsConfig,
   });
 
@@ -607,9 +577,6 @@ final class EmrClusterMasterInstanceFleetInstanceTypeConfigs {
   final TfArg<String> instanceType;
 
   final TfArg<num>? weightedCapacity;
-
-  final List<EmrClusterMasterInstanceFleetInstanceTypeConfigsConfigurations>?
-  configurations;
 
   final List<EmrClusterMasterInstanceFleetInstanceTypeConfigsEbsConfig>?
   ebsConfig;
@@ -622,29 +589,8 @@ final class EmrClusterMasterInstanceFleetInstanceTypeConfigs {
     'instance_type': instanceType.toTfJson(),
     if (weightedCapacity != null)
       'weighted_capacity': weightedCapacity!.toTfJson(),
-    if (configurations != null)
-      'configurations': [for (final e in configurations!) e.encode()],
     if (ebsConfig != null)
       'ebs_config': [for (final e in ebsConfig!) e.encode()],
-  };
-}
-
-/// Typed helper for the `master_instance_fleet.instance_type_configs.configurations` block of
-/// `aws_emr_cluster` (derived from provider schema).
-@immutable
-final class EmrClusterMasterInstanceFleetInstanceTypeConfigsConfigurations {
-  const EmrClusterMasterInstanceFleetInstanceTypeConfigsConfigurations({
-    this.classification,
-    this.properties,
-  });
-
-  final TfArg<String>? classification;
-
-  final TfArg<Map<String, String>>? properties;
-
-  Map<String, Object?> encode() => {
-    if (classification != null) 'classification': classification!.toTfJson(),
-    if (properties != null) 'properties': properties!.toTfJson(),
   };
 }
 
@@ -821,8 +767,7 @@ final class AwsEmrCluster extends Resource {
     TfArg<String>? additionalInfo,
     TfArg<List<String>>? applications,
     TfArg<String>? autoscalingRole,
-    EmrClusterConfigurationsOrConfigurationsJson?
-    configurationsOrConfigurationsJson,
+    EmrClusterConfigurations? configurations,
     TfArg<String>? customAmiId,
     TfArg<num>? ebsRootVolumeSize,
     TfArg<bool>? keepJobFlowAliveWhenNoSteps,
@@ -861,7 +806,7 @@ final class AwsEmrCluster extends Resource {
            if (additionalInfo != null) 'additional_info': additionalInfo,
            if (applications != null) 'applications': applications,
            if (autoscalingRole != null) 'autoscaling_role': autoscalingRole,
-           ...?configurationsOrConfigurationsJson?.argMap,
+           ...?configurations?.argMap,
            if (customAmiId != null) 'custom_ami_id': customAmiId,
            if (ebsRootVolumeSize != null)
              'ebs_root_volume_size': ebsRootVolumeSize,

@@ -22,17 +22,16 @@ enum Wafv2RuleGroupScope implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class Wafv2RuleGroupNameOrNamePrefix {
-  const Wafv2RuleGroupNameOrNamePrefix();
+sealed class Wafv2RuleGroupName {
+  const Wafv2RuleGroupName();
 
   /// Sets `name`.
-  const factory Wafv2RuleGroupNameOrNamePrefix.name(TfArg<String> name) =
-      Wafv2RuleGroupNameOrNamePrefixName;
+  const factory Wafv2RuleGroupName.name(TfArg<String> name) =
+      Wafv2RuleGroupNameName;
 
   /// Sets `name_prefix`.
-  const factory Wafv2RuleGroupNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = Wafv2RuleGroupNameOrNamePrefixNamePrefix;
+  const factory Wafv2RuleGroupName.namePrefix(TfArg<String> namePrefix) =
+      Wafv2RuleGroupNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,10 +43,9 @@ sealed class Wafv2RuleGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Wafv2RuleGroupNameOrNamePrefix.name] choice: sets `name`.
-final class Wafv2RuleGroupNameOrNamePrefixName
-    extends Wafv2RuleGroupNameOrNamePrefix {
-  const Wafv2RuleGroupNameOrNamePrefixName(this.name);
+/// The [Wafv2RuleGroupName.name] choice: sets `name`.
+final class Wafv2RuleGroupNameName extends Wafv2RuleGroupName {
+  const Wafv2RuleGroupNameName(this.name);
 
   final TfArg<String> name;
 
@@ -61,10 +59,9 @@ final class Wafv2RuleGroupNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [Wafv2RuleGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class Wafv2RuleGroupNameOrNamePrefixNamePrefix
-    extends Wafv2RuleGroupNameOrNamePrefix {
-  const Wafv2RuleGroupNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [Wafv2RuleGroupName.namePrefix] choice: sets `name_prefix`.
+final class Wafv2RuleGroupNameNamePrefix extends Wafv2RuleGroupName {
+  const Wafv2RuleGroupNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -1642,7 +1639,7 @@ final class AwsWafv2RuleGroup extends Resource {
     required super.localName,
     required TfArg<num> capacity,
     TfArg<String>? description,
-    Wafv2RuleGroupNameOrNamePrefix? nameOrNamePrefix,
+    Wafv2RuleGroupName? name,
     TfArg<String>? region,
     Wafv2RuleGroupRuleOrRulesJson? ruleOrRulesJson,
     required TfArg<Wafv2RuleGroupScope> scope,
@@ -1658,7 +1655,7 @@ final class AwsWafv2RuleGroup extends Resource {
          argMap: {
            'capacity': capacity,
            if (description != null) 'description': description,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            ...?ruleOrRulesJson?.argMap,
            'scope': scope,

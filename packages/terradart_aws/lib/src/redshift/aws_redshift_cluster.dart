@@ -128,18 +128,17 @@ final class RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordW
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.snapshotArn(...)`.
-sealed class RedshiftClusterSnapshotArnOrSnapshotIdentifier {
-  const RedshiftClusterSnapshotArnOrSnapshotIdentifier();
+sealed class RedshiftClusterSnapshot {
+  const RedshiftClusterSnapshot();
 
   /// Sets `snapshot_arn`.
-  const factory RedshiftClusterSnapshotArnOrSnapshotIdentifier.snapshotArn(
-    TfArg<String> snapshotArn,
-  ) = RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotArn;
+  const factory RedshiftClusterSnapshot.snapshotArn(TfArg<String> snapshotArn) =
+      RedshiftClusterSnapshotSnapshotArn;
 
   /// Sets `snapshot_identifier`.
-  const factory RedshiftClusterSnapshotArnOrSnapshotIdentifier.snapshotIdentifier(
+  const factory RedshiftClusterSnapshot.snapshotIdentifier(
     TfArg<String> snapshotIdentifier,
-  ) = RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotIdentifier;
+  ) = RedshiftClusterSnapshotSnapshotIdentifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -151,12 +150,9 @@ sealed class RedshiftClusterSnapshotArnOrSnapshotIdentifier {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [RedshiftClusterSnapshotArnOrSnapshotIdentifier.snapshotArn] choice: sets `snapshot_arn`.
-final class RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotArn
-    extends RedshiftClusterSnapshotArnOrSnapshotIdentifier {
-  const RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotArn(
-    this.snapshotArn,
-  );
+/// The [RedshiftClusterSnapshot.snapshotArn] choice: sets `snapshot_arn`.
+final class RedshiftClusterSnapshotSnapshotArn extends RedshiftClusterSnapshot {
+  const RedshiftClusterSnapshotSnapshotArn(this.snapshotArn);
 
   final TfArg<String> snapshotArn;
 
@@ -170,12 +166,10 @@ final class RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotArn
   Map<String, TfArg<Object?>> get argMap => {'snapshot_arn': snapshotArn};
 }
 
-/// The [RedshiftClusterSnapshotArnOrSnapshotIdentifier.snapshotIdentifier] choice: sets `snapshot_identifier`.
-final class RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotIdentifier
-    extends RedshiftClusterSnapshotArnOrSnapshotIdentifier {
-  const RedshiftClusterSnapshotArnOrSnapshotIdentifierSnapshotIdentifier(
-    this.snapshotIdentifier,
-  );
+/// The [RedshiftClusterSnapshot.snapshotIdentifier] choice: sets `snapshot_identifier`.
+final class RedshiftClusterSnapshotSnapshotIdentifier
+    extends RedshiftClusterSnapshot {
+  const RedshiftClusterSnapshotSnapshotIdentifier(this.snapshotIdentifier);
 
   final TfArg<String> snapshotIdentifier;
 
@@ -234,8 +228,7 @@ final class AwsRedshiftCluster extends Resource {
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,
     TfArg<bool>? skipFinalSnapshot,
-    RedshiftClusterSnapshotArnOrSnapshotIdentifier?
-    snapshotArnOrSnapshotIdentifier,
+    RedshiftClusterSnapshot? snapshot,
     TfArg<String>? snapshotClusterIdentifier,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? vpcSecurityGroupIds,
@@ -298,7 +291,7 @@ final class AwsRedshiftCluster extends Resource {
            if (region != null) 'region': region,
            if (skipFinalSnapshot != null)
              'skip_final_snapshot': skipFinalSnapshot,
-           ...?snapshotArnOrSnapshotIdentifier?.argMap,
+           ...?snapshot?.argMap,
            if (snapshotClusterIdentifier != null)
              'snapshot_cluster_identifier': snapshotClusterIdentifier,
            if (tags != null) 'tags': tags,

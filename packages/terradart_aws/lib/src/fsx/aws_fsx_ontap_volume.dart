@@ -52,18 +52,16 @@ enum FsxOntapVolumeVolumeType implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.sizeInBytes(...)`.
-sealed class FsxOntapVolumeSizeInBytesOrSizeInMegabytes {
-  const FsxOntapVolumeSizeInBytesOrSizeInMegabytes();
+sealed class FsxOntapVolumeSize {
+  const FsxOntapVolumeSize();
 
   /// Sets `size_in_bytes`.
-  const factory FsxOntapVolumeSizeInBytesOrSizeInMegabytes.sizeInBytes(
-    TfArg<String> sizeInBytes,
-  ) = FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInBytes;
+  const factory FsxOntapVolumeSize.sizeInBytes(TfArg<String> sizeInBytes) =
+      FsxOntapVolumeSizeSizeInBytes;
 
   /// Sets `size_in_megabytes`.
-  const factory FsxOntapVolumeSizeInBytesOrSizeInMegabytes.sizeInMegabytes(
-    TfArg<num> sizeInMegabytes,
-  ) = FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInMegabytes;
+  const factory FsxOntapVolumeSize.sizeInMegabytes(TfArg<num> sizeInMegabytes) =
+      FsxOntapVolumeSizeSizeInMegabytes;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -75,10 +73,9 @@ sealed class FsxOntapVolumeSizeInBytesOrSizeInMegabytes {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [FsxOntapVolumeSizeInBytesOrSizeInMegabytes.sizeInBytes] choice: sets `size_in_bytes`.
-final class FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInBytes
-    extends FsxOntapVolumeSizeInBytesOrSizeInMegabytes {
-  const FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInBytes(this.sizeInBytes);
+/// The [FsxOntapVolumeSize.sizeInBytes] choice: sets `size_in_bytes`.
+final class FsxOntapVolumeSizeSizeInBytes extends FsxOntapVolumeSize {
+  const FsxOntapVolumeSizeSizeInBytes(this.sizeInBytes);
 
   final TfArg<String> sizeInBytes;
 
@@ -92,12 +89,9 @@ final class FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInBytes
   Map<String, TfArg<Object?>> get argMap => {'size_in_bytes': sizeInBytes};
 }
 
-/// The [FsxOntapVolumeSizeInBytesOrSizeInMegabytes.sizeInMegabytes] choice: sets `size_in_megabytes`.
-final class FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInMegabytes
-    extends FsxOntapVolumeSizeInBytesOrSizeInMegabytes {
-  const FsxOntapVolumeSizeInBytesOrSizeInMegabytesSizeInMegabytes(
-    this.sizeInMegabytes,
-  );
+/// The [FsxOntapVolumeSize.sizeInMegabytes] choice: sets `size_in_megabytes`.
+final class FsxOntapVolumeSizeSizeInMegabytes extends FsxOntapVolumeSize {
+  const FsxOntapVolumeSizeSizeInMegabytes(this.sizeInMegabytes);
 
   final TfArg<num> sizeInMegabytes;
 
@@ -428,8 +422,7 @@ final class AwsFsxOntapVolume extends Resource {
     TfArg<FsxOntapVolumeOntapVolumeType>? ontapVolumeType,
     TfArg<String>? region,
     TfArg<FsxOntapVolumeSecurityStyle>? securityStyle,
-    required FsxOntapVolumeSizeInBytesOrSizeInMegabytes
-    sizeInBytesOrSizeInMegabytes,
+    required FsxOntapVolumeSize size,
     TfArg<bool>? skipFinalBackup,
     TfArg<String>? snapshotPolicy,
     TfArg<bool>? storageEfficiencyEnabled,
@@ -458,7 +451,7 @@ final class AwsFsxOntapVolume extends Resource {
            if (ontapVolumeType != null) 'ontap_volume_type': ontapVolumeType,
            if (region != null) 'region': region,
            if (securityStyle != null) 'security_style': securityStyle,
-           ...sizeInBytesOrSizeInMegabytes.argMap,
+           ...size.argMap,
            if (skipFinalBackup != null) 'skip_final_backup': skipFinalBackup,
            if (snapshotPolicy != null) 'snapshot_policy': snapshotPolicy,
            if (storageEfficiencyEnabled != null)

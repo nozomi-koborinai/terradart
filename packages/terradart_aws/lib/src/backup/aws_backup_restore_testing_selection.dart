@@ -11,19 +11,19 @@ const Set<String> _awsBackupRestoreTestingSelectionSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.protectedResourceArns(...)`.
-sealed class BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions {
-  const BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions();
+sealed class BackupRestoreTestingSelectionProtectedResource {
+  const BackupRestoreTestingSelectionProtectedResource();
 
   /// Sets `protected_resource_arns`.
-  const factory BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions.protectedResourceArns(
+  const factory BackupRestoreTestingSelectionProtectedResource.protectedResourceArns(
     TfArg<List<String>> protectedResourceArns,
-  ) = BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditionsProtectedResourceArns;
+  ) = BackupRestoreTestingSelectionProtectedResourceProtectedResourceArns;
 
   /// Sets `protected_resource_conditions`.
-  const factory BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions.protectedResourceConditions(
+  const factory BackupRestoreTestingSelectionProtectedResource.protectedResourceConditions(
     List<BackupRestoreTestingSelectionProtectedResourceConditions>
     protectedResourceConditions,
-  ) = BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditionsProtectedResourceConditions;
+  ) = BackupRestoreTestingSelectionProtectedResourceProtectedResourceConditions;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,11 +35,10 @@ sealed class BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResour
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions.protectedResourceArns] choice: sets `protected_resource_arns`.
-final class BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditionsProtectedResourceArns
-    extends
-        BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions {
-  const BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditionsProtectedResourceArns(
+/// The [BackupRestoreTestingSelectionProtectedResource.protectedResourceArns] choice: sets `protected_resource_arns`.
+final class BackupRestoreTestingSelectionProtectedResourceProtectedResourceArns
+    extends BackupRestoreTestingSelectionProtectedResource {
+  const BackupRestoreTestingSelectionProtectedResourceProtectedResourceArns(
     this.protectedResourceArns,
   );
 
@@ -59,11 +58,10 @@ final class BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourc
   };
 }
 
-/// The [BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions.protectedResourceConditions] choice: sets `protected_resource_conditions`.
-final class BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditionsProtectedResourceConditions
-    extends
-        BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions {
-  const BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditionsProtectedResourceConditions(
+/// The [BackupRestoreTestingSelectionProtectedResource.protectedResourceConditions] choice: sets `protected_resource_conditions`.
+final class BackupRestoreTestingSelectionProtectedResourceProtectedResourceConditions
+    extends BackupRestoreTestingSelectionProtectedResource {
+  const BackupRestoreTestingSelectionProtectedResourceProtectedResourceConditions(
     this.protectedResourceConditions,
   );
 
@@ -161,8 +159,7 @@ final class AwsBackupRestoreTestingSelection extends Resource {
     required super.localName,
     required TfArg<String> iamRoleArn,
     required TfArg<String> name,
-    required BackupRestoreTestingSelectionProtectedResourceArnsOrProtectedResourceConditions
-    protectedResourceArnsOrProtectedResourceConditions,
+    required BackupRestoreTestingSelectionProtectedResource protectedResource,
     required TfArg<String> protectedResourceType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? restoreMetadataOverrides,
@@ -177,7 +174,7 @@ final class AwsBackupRestoreTestingSelection extends Resource {
          argMap: {
            'iam_role_arn': iamRoleArn,
            'name': name,
-           ...protectedResourceArnsOrProtectedResourceConditions.argMap,
+           ...protectedResource.argMap,
            'protected_resource_type': protectedResourceType,
            if (region != null) 'region': region,
            if (restoreMetadataOverrides != null)

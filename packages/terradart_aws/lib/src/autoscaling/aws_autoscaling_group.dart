@@ -199,17 +199,16 @@ final class AutoscalingGroupAvailabilityZonesOrVpcZoneIdentifierVpcZoneIdentifie
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class AutoscalingGroupNameOrNamePrefix {
-  const AutoscalingGroupNameOrNamePrefix();
+sealed class AutoscalingGroupName {
+  const AutoscalingGroupName();
 
   /// Sets `name`.
-  const factory AutoscalingGroupNameOrNamePrefix.name(TfArg<String> name) =
-      AutoscalingGroupNameOrNamePrefixName;
+  const factory AutoscalingGroupName.name(TfArg<String> name) =
+      AutoscalingGroupNameName;
 
   /// Sets `name_prefix`.
-  const factory AutoscalingGroupNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = AutoscalingGroupNameOrNamePrefixNamePrefix;
+  const factory AutoscalingGroupName.namePrefix(TfArg<String> namePrefix) =
+      AutoscalingGroupNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -221,10 +220,9 @@ sealed class AutoscalingGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AutoscalingGroupNameOrNamePrefix.name] choice: sets `name`.
-final class AutoscalingGroupNameOrNamePrefixName
-    extends AutoscalingGroupNameOrNamePrefix {
-  const AutoscalingGroupNameOrNamePrefixName(this.name);
+/// The [AutoscalingGroupName.name] choice: sets `name`.
+final class AutoscalingGroupNameName extends AutoscalingGroupName {
+  const AutoscalingGroupNameName(this.name);
 
   final TfArg<String> name;
 
@@ -238,10 +236,9 @@ final class AutoscalingGroupNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [AutoscalingGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class AutoscalingGroupNameOrNamePrefixNamePrefix
-    extends AutoscalingGroupNameOrNamePrefix {
-  const AutoscalingGroupNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [AutoscalingGroupName.namePrefix] choice: sets `name_prefix`.
+final class AutoscalingGroupNameNamePrefix extends AutoscalingGroupName {
+  const AutoscalingGroupNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -335,15 +332,13 @@ enum AutoscalingGroupCapacityReservationSpecificationCapacityReservationPreferen
 @immutable
 final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget {
   const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTarget({
-    this.capacityReservationIdsOrCapacityReservationResourceGroupArns,
+    this.capacityReservation,
   });
 
-  final AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns?
-  capacityReservationIdsOrCapacityReservationResourceGroupArns;
+  final AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation?
+  capacityReservation;
 
-  Map<String, Object?> encode() => {
-    ...?capacityReservationIdsOrCapacityReservationResourceGroupArns?.encode(),
-  };
+  Map<String, Object?> encode() => {...?capacityReservation?.encode()};
 }
 
 /// At most one of `capacity_reservation_ids`, `capacity_reservation_resource_group_arns` on the `capacity_reservation_specification.capacity_reservation_target` block of `aws_autoscaling_group`: the provider rejects
@@ -351,18 +346,18 @@ final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationT
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.capacityReservationIds(...)`.
-sealed class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns {
-  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns();
+sealed class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation {
+  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation();
 
   /// Sets `capacity_reservation_ids`.
-  const factory AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns.capacityReservationIds(
+  const factory AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationIds(
     TfArg<List<Object?>> capacityReservationIds,
-  ) = AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArnsCapacityReservationIds;
+  ) = AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationIds;
 
   /// Sets `capacity_reservation_resource_group_arns`.
-  const factory AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns.capacityReservationResourceGroupArns(
+  const factory AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationResourceGroupArns(
     TfArg<List<Object?>> capacityReservationResourceGroupArns,
-  ) = AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArnsCapacityReservationResourceGroupArns;
+  ) = AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArns;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -370,11 +365,11 @@ sealed class AutoscalingGroupCapacityReservationSpecificationCapacityReservation
   Map<String, Object?> encode();
 }
 
-/// The [AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns.capacityReservationIds] choice: sets `capacity_reservation_ids`.
-final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArnsCapacityReservationIds
+/// The [AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationIds] choice: sets `capacity_reservation_ids`.
+final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationIds
     extends
-        AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns {
-  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArnsCapacityReservationIds(
+        AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation {
+  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationIds(
     this.capacityReservationIds,
   );
 
@@ -389,11 +384,11 @@ final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationT
   };
 }
 
-/// The [AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns.capacityReservationResourceGroupArns] choice: sets `capacity_reservation_resource_group_arns`.
-final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArnsCapacityReservationResourceGroupArns
+/// The [AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation.capacityReservationResourceGroupArns] choice: sets `capacity_reservation_resource_group_arns`.
+final class AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArns
     extends
-        AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArns {
-  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdsOrCapacityReservationResourceGroupArnsCapacityReservationResourceGroupArns(
+        AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservation {
+  const AutoscalingGroupCapacityReservationSpecificationCapacityReservationTargetCapacityReservationCapacityReservationResourceGroupArns(
     this.capacityReservationResourceGroupArns,
   );
 
@@ -1516,7 +1511,7 @@ final class AwsAutoscalingGroup extends Resource {
     TfArg<String>? metricsGranularity,
     TfArg<num>? minElbCapacity,
     required TfArg<num> minSize,
-    AutoscalingGroupNameOrNamePrefix? nameOrNamePrefix,
+    AutoscalingGroupName? name,
     TfArg<String>? placementGroup,
     TfArg<bool>? protectFromScaleIn,
     TfArg<String>? region,
@@ -1571,7 +1566,7 @@ final class AwsAutoscalingGroup extends Resource {
              'metrics_granularity': metricsGranularity,
            if (minElbCapacity != null) 'min_elb_capacity': minElbCapacity,
            'min_size': minSize,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (placementGroup != null) 'placement_group': placementGroup,
            if (protectFromScaleIn != null)
              'protect_from_scale_in': protectFromScaleIn,

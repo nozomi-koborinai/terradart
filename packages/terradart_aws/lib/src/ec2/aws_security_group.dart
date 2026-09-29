@@ -11,17 +11,16 @@ const Set<String> _awsSecurityGroupSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class SecurityGroupNameOrNamePrefix {
-  const SecurityGroupNameOrNamePrefix();
+sealed class SecurityGroupName {
+  const SecurityGroupName();
 
   /// Sets `name`.
-  const factory SecurityGroupNameOrNamePrefix.name(TfArg<String> name) =
-      SecurityGroupNameOrNamePrefixName;
+  const factory SecurityGroupName.name(TfArg<String> name) =
+      SecurityGroupNameName;
 
   /// Sets `name_prefix`.
-  const factory SecurityGroupNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = SecurityGroupNameOrNamePrefixNamePrefix;
+  const factory SecurityGroupName.namePrefix(TfArg<String> namePrefix) =
+      SecurityGroupNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class SecurityGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SecurityGroupNameOrNamePrefix.name] choice: sets `name`.
-final class SecurityGroupNameOrNamePrefixName
-    extends SecurityGroupNameOrNamePrefix {
-  const SecurityGroupNameOrNamePrefixName(this.name);
+/// The [SecurityGroupName.name] choice: sets `name`.
+final class SecurityGroupNameName extends SecurityGroupName {
+  const SecurityGroupNameName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +48,9 @@ final class SecurityGroupNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [SecurityGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class SecurityGroupNameOrNamePrefixNamePrefix
-    extends SecurityGroupNameOrNamePrefix {
-  const SecurityGroupNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [SecurityGroupName.namePrefix] choice: sets `name_prefix`.
+final class SecurityGroupNameNamePrefix extends SecurityGroupName {
+  const SecurityGroupNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -76,7 +73,7 @@ final class AwsSecurityGroup extends Resource {
     TfArg<String>? description,
     TfArg<List<Map<String, Object?>>>? egress,
     TfArg<List<Map<String, Object?>>>? ingress,
-    SecurityGroupNameOrNamePrefix? nameOrNamePrefix,
+    SecurityGroupName? name,
     TfArg<String>? region,
     TfArg<bool>? revokeRulesOnDelete,
     TfArg<Map<String, String>>? tags,
@@ -91,7 +88,7 @@ final class AwsSecurityGroup extends Resource {
            if (description != null) 'description': description,
            if (egress != null) 'egress': egress,
            if (ingress != null) 'ingress': ingress,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (revokeRulesOnDelete != null)
              'revoke_rules_on_delete': revokeRulesOnDelete,

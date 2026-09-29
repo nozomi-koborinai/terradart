@@ -22,18 +22,17 @@ enum DiscoveryEngineChatEngineIndustryVertical implements TerraformEnum {
 final class DiscoveryEngineChatEngineChatEngineConfig {
   const DiscoveryEngineChatEngineChatEngineConfig({
     this.allowCrossRegion,
-    required this.agentCreationConfigOrDialogflowAgentToLink,
+    required this.agent,
   });
 
   final TfArg<bool>? allowCrossRegion;
 
-  final DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink
-  agentCreationConfigOrDialogflowAgentToLink;
+  final DiscoveryEngineChatEngineChatEngineConfigAgent agent;
 
   Map<String, Object?> encode() => {
     if (allowCrossRegion != null)
       'allow_cross_region': allowCrossRegion!.toTfJson(),
-    ...agentCreationConfigOrDialogflowAgentToLink.encode(),
+    ...agent.encode(),
   };
 }
 
@@ -41,19 +40,19 @@ final class DiscoveryEngineChatEngineChatEngineConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.agentCreationConfig(...)`.
-sealed class DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink {
-  const DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink();
+sealed class DiscoveryEngineChatEngineChatEngineConfigAgent {
+  const DiscoveryEngineChatEngineChatEngineConfigAgent();
 
   /// Sets `agent_creation_config`.
-  const factory DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink.agentCreationConfig(
+  const factory DiscoveryEngineChatEngineChatEngineConfigAgent.agentCreationConfig(
     DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig
     agentCreationConfig,
-  ) = DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkAgentCreationConfig;
+  ) = DiscoveryEngineChatEngineChatEngineConfigAgentAgentCreationConfig;
 
   /// Sets `dialogflow_agent_to_link`.
-  const factory DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink.dialogflowAgentToLink(
+  const factory DiscoveryEngineChatEngineChatEngineConfigAgent.dialogflowAgentToLink(
     TfArg<String> dialogflowAgentToLink,
-  ) = DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkDialogflowAgentToLink;
+  ) = DiscoveryEngineChatEngineChatEngineConfigAgentDialogflowAgentToLink;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -61,11 +60,10 @@ sealed class DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialo
   Map<String, Object?> encode();
 }
 
-/// The [DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink.agentCreationConfig] choice: sets `agent_creation_config`.
-final class DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkAgentCreationConfig
-    extends
-        DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink {
-  const DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkAgentCreationConfig(
+/// The [DiscoveryEngineChatEngineChatEngineConfigAgent.agentCreationConfig] choice: sets `agent_creation_config`.
+final class DiscoveryEngineChatEngineChatEngineConfigAgentAgentCreationConfig
+    extends DiscoveryEngineChatEngineChatEngineConfigAgent {
+  const DiscoveryEngineChatEngineChatEngineConfigAgentAgentCreationConfig(
     this.agentCreationConfig,
   );
 
@@ -81,11 +79,10 @@ final class DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialog
   };
 }
 
-/// The [DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink.dialogflowAgentToLink] choice: sets `dialogflow_agent_to_link`.
-final class DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkDialogflowAgentToLink
-    extends
-        DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink {
-  const DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkDialogflowAgentToLink(
+/// The [DiscoveryEngineChatEngineChatEngineConfigAgent.dialogflowAgentToLink] choice: sets `dialogflow_agent_to_link`.
+final class DiscoveryEngineChatEngineChatEngineConfigAgentDialogflowAgentToLink
+    extends DiscoveryEngineChatEngineChatEngineConfigAgent {
+  const DiscoveryEngineChatEngineChatEngineConfigAgentDialogflowAgentToLink(
     this.dialogflowAgentToLink,
   );
 

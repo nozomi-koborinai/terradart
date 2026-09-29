@@ -30,17 +30,16 @@ enum DbEventSubscriptionSourceType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class DbEventSubscriptionNameOrNamePrefix {
-  const DbEventSubscriptionNameOrNamePrefix();
+sealed class DbEventSubscriptionName {
+  const DbEventSubscriptionName();
 
   /// Sets `name`.
-  const factory DbEventSubscriptionNameOrNamePrefix.name(TfArg<String> name) =
-      DbEventSubscriptionNameOrNamePrefixName;
+  const factory DbEventSubscriptionName.name(TfArg<String> name) =
+      DbEventSubscriptionNameName;
 
   /// Sets `name_prefix`.
-  const factory DbEventSubscriptionNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = DbEventSubscriptionNameOrNamePrefixNamePrefix;
+  const factory DbEventSubscriptionName.namePrefix(TfArg<String> namePrefix) =
+      DbEventSubscriptionNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -52,10 +51,9 @@ sealed class DbEventSubscriptionNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DbEventSubscriptionNameOrNamePrefix.name] choice: sets `name`.
-final class DbEventSubscriptionNameOrNamePrefixName
-    extends DbEventSubscriptionNameOrNamePrefix {
-  const DbEventSubscriptionNameOrNamePrefixName(this.name);
+/// The [DbEventSubscriptionName.name] choice: sets `name`.
+final class DbEventSubscriptionNameName extends DbEventSubscriptionName {
+  const DbEventSubscriptionNameName(this.name);
 
   final TfArg<String> name;
 
@@ -69,10 +67,9 @@ final class DbEventSubscriptionNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [DbEventSubscriptionNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class DbEventSubscriptionNameOrNamePrefixNamePrefix
-    extends DbEventSubscriptionNameOrNamePrefix {
-  const DbEventSubscriptionNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [DbEventSubscriptionName.namePrefix] choice: sets `name_prefix`.
+final class DbEventSubscriptionNameNamePrefix extends DbEventSubscriptionName {
+  const DbEventSubscriptionNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -94,7 +91,7 @@ final class AwsDbEventSubscription extends Resource {
     required super.localName,
     TfArg<bool>? enabled,
     TfArg<List<String>>? eventCategories,
-    DbEventSubscriptionNameOrNamePrefix? nameOrNamePrefix,
+    DbEventSubscriptionName? name,
     TfArg<String>? region,
     required TfArg<String> snsTopic,
     TfArg<List<String>>? sourceIds,
@@ -109,7 +106,7 @@ final class AwsDbEventSubscription extends Resource {
          argMap: {
            if (enabled != null) 'enabled': enabled,
            if (eventCategories != null) 'event_categories': eventCategories,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            'sns_topic': snsTopic,
            if (sourceIds != null) 'source_ids': sourceIds,

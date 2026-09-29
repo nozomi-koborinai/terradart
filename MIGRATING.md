@@ -40,6 +40,28 @@ Replace every `<Prefix><Member>Option(member: value)` with
 without a type), write the sealed type: `LambdaFunctionFilenameOrImageUriOrS3Bucket.filename(...)`.
 `terradart-migrate` emits the dot-shorthand form.
 
+### Sealed arguments take concept names
+
+**Breaking (every package with a derived sealed type)** — a derived sealed
+argument is named after the concept its members share, like a protobuf
+`oneof`, instead of its members joined by `Or`. The sealed type is
+`<ResourceStem><Concept>`, and each variant is `<SealedType><Member>`. The
+name comes from the members' shared prefix or suffix, or from the enclosing
+block when the group is the whole block. The variant constructors keep their
+member names, so only the argument name and the type name change:
+
+| Before | After |
+|--------|-------|
+| `AwsIamRole(nameOrNamePrefix: .namePrefix(TfArg.literal('app-')), ...)` | `AwsIamRole(name: .namePrefix(TfArg.literal('app-')), ...)` |
+| `GoogleComputeTargetHttpsProxy(certificateManagerCertificatesOrSslCertificates: .sslCertificates(...), ...)` | `GoogleComputeTargetHttpsProxy(certificates: .sslCertificates(...), ...)` |
+| `NetworkServicesHttpRouteRulesMatches(fullPathMatchOrPrefixMatchOrRegexMatch: .fullPathMatch(...))` | `NetworkServicesHttpRouteRulesMatches(match: .fullPathMatch(...))` |
+| `case IamRoleNameOrNamePrefixNamePrefix(:final namePrefix)` | `case IamRoleNameNamePrefix(:final namePrefix)` |
+
+Groups whose members share no name get a human-chosen concept name from the
+lane's wrapper override (`sealedNames:`); until then they keep the `Or` name.
+The complete old → new mapping for every lane is listed in this section once
+every group is named.
+
 ### `terradart_google` Magic Modules input groups are sealed types
 
 **Breaking (`terradart_google`)** — input groups the Magic Modules YAML

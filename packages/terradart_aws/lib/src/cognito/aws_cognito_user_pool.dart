@@ -75,18 +75,18 @@ enum CognitoUserPoolUsernameAttributes implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.aliasAttributes(...)`.
-sealed class CognitoUserPoolAliasAttributesOrUsernameAttributes {
-  const CognitoUserPoolAliasAttributesOrUsernameAttributes();
+sealed class CognitoUserPoolAttributes {
+  const CognitoUserPoolAttributes();
 
   /// Sets `alias_attributes`.
-  const factory CognitoUserPoolAliasAttributesOrUsernameAttributes.aliasAttributes(
+  const factory CognitoUserPoolAttributes.aliasAttributes(
     List<TfArg<CognitoUserPoolAliasAttributes>> aliasAttributes,
-  ) = CognitoUserPoolAliasAttributesOrUsernameAttributesAliasAttributes;
+  ) = CognitoUserPoolAttributesAliasAttributes;
 
   /// Sets `username_attributes`.
-  const factory CognitoUserPoolAliasAttributesOrUsernameAttributes.usernameAttributes(
+  const factory CognitoUserPoolAttributes.usernameAttributes(
     List<TfArg<CognitoUserPoolUsernameAttributes>> usernameAttributes,
-  ) = CognitoUserPoolAliasAttributesOrUsernameAttributesUsernameAttributes;
+  ) = CognitoUserPoolAttributesUsernameAttributes;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -98,12 +98,10 @@ sealed class CognitoUserPoolAliasAttributesOrUsernameAttributes {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CognitoUserPoolAliasAttributesOrUsernameAttributes.aliasAttributes] choice: sets `alias_attributes`.
-final class CognitoUserPoolAliasAttributesOrUsernameAttributesAliasAttributes
-    extends CognitoUserPoolAliasAttributesOrUsernameAttributes {
-  const CognitoUserPoolAliasAttributesOrUsernameAttributesAliasAttributes(
-    this.aliasAttributes,
-  );
+/// The [CognitoUserPoolAttributes.aliasAttributes] choice: sets `alias_attributes`.
+final class CognitoUserPoolAttributesAliasAttributes
+    extends CognitoUserPoolAttributes {
+  const CognitoUserPoolAttributesAliasAttributes(this.aliasAttributes);
 
   final List<TfArg<CognitoUserPoolAliasAttributes>> aliasAttributes;
 
@@ -123,12 +121,10 @@ final class CognitoUserPoolAliasAttributesOrUsernameAttributesAliasAttributes
   };
 }
 
-/// The [CognitoUserPoolAliasAttributesOrUsernameAttributes.usernameAttributes] choice: sets `username_attributes`.
-final class CognitoUserPoolAliasAttributesOrUsernameAttributesUsernameAttributes
-    extends CognitoUserPoolAliasAttributesOrUsernameAttributes {
-  const CognitoUserPoolAliasAttributesOrUsernameAttributesUsernameAttributes(
-    this.usernameAttributes,
-  );
+/// The [CognitoUserPoolAttributes.usernameAttributes] choice: sets `username_attributes`.
+final class CognitoUserPoolAttributesUsernameAttributes
+    extends CognitoUserPoolAttributes {
+  const CognitoUserPoolAttributesUsernameAttributes(this.usernameAttributes);
 
   final List<TfArg<CognitoUserPoolUsernameAttributes>> usernameAttributes;
 
@@ -913,8 +909,7 @@ final class AwsCognitoUserPool extends Resource {
 
   AwsCognitoUserPool({
     required super.localName,
-    CognitoUserPoolAliasAttributesOrUsernameAttributes?
-    aliasAttributesOrUsernameAttributes,
+    CognitoUserPoolAttributes? attributes,
     List<TfArg<CognitoUserPoolAutoVerifiedAttributes>>? autoVerifiedAttributes,
     TfArg<CognitoUserPoolDeletionProtection>? deletionProtection,
     TfArg<String>? emailVerificationMessage,
@@ -949,7 +944,7 @@ final class AwsCognitoUserPool extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?aliasAttributesOrUsernameAttributes?.argMap,
+           ...?attributes?.argMap,
            if (autoVerifiedAttributes != null)
              'auto_verified_attributes': TfArg.literal([
                for (final e in autoVerifiedAttributes) e.toTfJson(),

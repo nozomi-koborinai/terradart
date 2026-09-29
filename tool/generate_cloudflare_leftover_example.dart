@@ -40,6 +40,11 @@ void main() {
     parsedFiles[file.path] = _parseFile(file);
     _collectEnums(file.readAsStringSync());
   }
+  for (final sealed in _sealedMember.keys) {
+    if (!_sealedVariants.containsKey(sealed)) {
+      throw StateError('_sealedMember: no sealed type $sealed');
+    }
+  }
 
   final helpers = <String, _ClassInfo>{};
   final factories = <_Factory>[];
@@ -432,7 +437,12 @@ List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
   if (optional.containsKey('roles') && !requiredNames.contains('roles')) {
     add('roles');
   }
-  _optionalExtras[f.className]?.forEach(add);
+  for (final name in _optionalExtras[f.className] ?? const <String>[]) {
+    if (!optional.containsKey(name) && !requiredNames.contains(name)) {
+      throw StateError('_optionalExtras: ${f.className} has no slot $name');
+    }
+    add(name);
+  }
   return out;
 }
 
@@ -801,7 +811,7 @@ const _valueByKey = <String, String>{
 /// one of a group the generated constructor leaves optional.
 const _optionalExtras = <String, List<String>>{
   'CloudflareCustomSsl': ['customCsrId'],
-  'CloudflareWorkersScript': ['contentOrContentFile'],
+  'CloudflareWorkersScript': ['content'],
 };
 
 String _stringLiteral(String name, {String owner = ''}) {

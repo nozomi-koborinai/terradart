@@ -11,16 +11,15 @@ const Set<String> _awsSwfDomainSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class SwfDomainNameOrNamePrefix {
-  const SwfDomainNameOrNamePrefix();
+sealed class SwfDomainName {
+  const SwfDomainName();
 
   /// Sets `name`.
-  const factory SwfDomainNameOrNamePrefix.name(TfArg<String> name) =
-      SwfDomainNameOrNamePrefixName;
+  const factory SwfDomainName.name(TfArg<String> name) = SwfDomainNameName;
 
   /// Sets `name_prefix`.
-  const factory SwfDomainNameOrNamePrefix.namePrefix(TfArg<String> namePrefix) =
-      SwfDomainNameOrNamePrefixNamePrefix;
+  const factory SwfDomainName.namePrefix(TfArg<String> namePrefix) =
+      SwfDomainNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -32,9 +31,9 @@ sealed class SwfDomainNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SwfDomainNameOrNamePrefix.name] choice: sets `name`.
-final class SwfDomainNameOrNamePrefixName extends SwfDomainNameOrNamePrefix {
-  const SwfDomainNameOrNamePrefixName(this.name);
+/// The [SwfDomainName.name] choice: sets `name`.
+final class SwfDomainNameName extends SwfDomainName {
+  const SwfDomainNameName(this.name);
 
   final TfArg<String> name;
 
@@ -48,10 +47,9 @@ final class SwfDomainNameOrNamePrefixName extends SwfDomainNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [SwfDomainNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class SwfDomainNameOrNamePrefixNamePrefix
-    extends SwfDomainNameOrNamePrefix {
-  const SwfDomainNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [SwfDomainName.namePrefix] choice: sets `name_prefix`.
+final class SwfDomainNameNamePrefix extends SwfDomainName {
+  const SwfDomainNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -72,7 +70,7 @@ final class AwsSwfDomain extends Resource {
   AwsSwfDomain({
     required super.localName,
     TfArg<String>? description,
-    SwfDomainNameOrNamePrefix? nameOrNamePrefix,
+    SwfDomainName? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> workflowExecutionRetentionPeriodInDays,
@@ -84,7 +82,7 @@ final class AwsSwfDomain extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            'workflow_execution_retention_period_in_days':

@@ -28,23 +28,23 @@ enum SesEventDestinationMatchingTypes implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.cloudwatchDestination(...)`.
-sealed class SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination {
-  const SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination();
+sealed class SesEventDestinationDestination {
+  const SesEventDestinationDestination();
 
   /// Sets `cloudwatch_destination`.
-  const factory SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination.cloudwatchDestination(
+  const factory SesEventDestinationDestination.cloudwatchDestination(
     List<SesEventDestinationCloudwatchDestination> cloudwatchDestination,
-  ) = SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestinationCloudwatchDestination;
+  ) = SesEventDestinationDestinationCloudwatchDestination;
 
   /// Sets `kinesis_destination`.
-  const factory SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination.kinesisDestination(
+  const factory SesEventDestinationDestination.kinesisDestination(
     SesEventDestinationKinesisDestination kinesisDestination,
-  ) = SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestinationKinesisDestination;
+  ) = SesEventDestinationDestinationKinesisDestination;
 
   /// Sets `sns_destination`.
-  const factory SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination.snsDestination(
+  const factory SesEventDestinationDestination.snsDestination(
     SesEventDestinationSnsDestination snsDestination,
-  ) = SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestinationSnsDestination;
+  ) = SesEventDestinationDestinationSnsDestination;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -56,11 +56,10 @@ sealed class SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDe
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination.cloudwatchDestination] choice: sets `cloudwatch_destination`.
-final class SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestinationCloudwatchDestination
-    extends
-        SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination {
-  const SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestinationCloudwatchDestination(
+/// The [SesEventDestinationDestination.cloudwatchDestination] choice: sets `cloudwatch_destination`.
+final class SesEventDestinationDestinationCloudwatchDestination
+    extends SesEventDestinationDestination {
+  const SesEventDestinationDestinationCloudwatchDestination(
     this.cloudwatchDestination,
   );
 
@@ -84,11 +83,10 @@ final class SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDes
   };
 }
 
-/// The [SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination.kinesisDestination] choice: sets `kinesis_destination`.
-final class SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestinationKinesisDestination
-    extends
-        SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination {
-  const SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestinationKinesisDestination(
+/// The [SesEventDestinationDestination.kinesisDestination] choice: sets `kinesis_destination`.
+final class SesEventDestinationDestinationKinesisDestination
+    extends SesEventDestinationDestination {
+  const SesEventDestinationDestinationKinesisDestination(
     this.kinesisDestination,
   );
 
@@ -108,13 +106,10 @@ final class SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDes
   };
 }
 
-/// The [SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination.snsDestination] choice: sets `sns_destination`.
-final class SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestinationSnsDestination
-    extends
-        SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination {
-  const SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestinationSnsDestination(
-    this.snsDestination,
-  );
+/// The [SesEventDestinationDestination.snsDestination] choice: sets `sns_destination`.
+final class SesEventDestinationDestinationSnsDestination
+    extends SesEventDestinationDestination {
+  const SesEventDestinationDestinationSnsDestination(this.snsDestination);
 
   final SesEventDestinationSnsDestination snsDestination;
 
@@ -208,8 +203,7 @@ final class AwsSesEventDestination extends Resource {
     required List<TfArg<SesEventDestinationMatchingTypes>> matchingTypes,
     required TfArg<String> name,
     TfArg<String>? region,
-    SesEventDestinationCloudwatchDestinationOrKinesisDestinationOrSnsDestination?
-    cloudwatchDestinationOrKinesisDestinationOrSnsDestination,
+    SesEventDestinationDestination? destination,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -224,8 +218,7 @@ final class AwsSesEventDestination extends Resource {
            ]),
            'name': name,
            if (region != null) 'region': region,
-           ...?cloudwatchDestinationOrKinesisDestinationOrSnsDestination
-               ?.argMap,
+           ...?destination?.argMap,
          },
        );
 

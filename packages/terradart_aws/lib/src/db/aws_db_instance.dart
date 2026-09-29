@@ -86,18 +86,17 @@ enum DbInstanceReplicaMode implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.identifier(...)`.
-sealed class DbInstanceIdentifierOrIdentifierPrefix {
-  const DbInstanceIdentifierOrIdentifierPrefix();
+sealed class DbInstanceIdentifier {
+  const DbInstanceIdentifier();
 
   /// Sets `identifier`.
-  const factory DbInstanceIdentifierOrIdentifierPrefix.identifier(
-    TfArg<String> identifier,
-  ) = DbInstanceIdentifierOrIdentifierPrefixIdentifier;
+  const factory DbInstanceIdentifier.identifier(TfArg<String> identifier) =
+      DbInstanceIdentifierIdentifier;
 
   /// Sets `identifier_prefix`.
-  const factory DbInstanceIdentifierOrIdentifierPrefix.identifierPrefix(
+  const factory DbInstanceIdentifier.identifierPrefix(
     TfArg<String> identifierPrefix,
-  ) = DbInstanceIdentifierOrIdentifierPrefixIdentifierPrefix;
+  ) = DbInstanceIdentifierIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -109,10 +108,9 @@ sealed class DbInstanceIdentifierOrIdentifierPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DbInstanceIdentifierOrIdentifierPrefix.identifier] choice: sets `identifier`.
-final class DbInstanceIdentifierOrIdentifierPrefixIdentifier
-    extends DbInstanceIdentifierOrIdentifierPrefix {
-  const DbInstanceIdentifierOrIdentifierPrefixIdentifier(this.identifier);
+/// The [DbInstanceIdentifier.identifier] choice: sets `identifier`.
+final class DbInstanceIdentifierIdentifier extends DbInstanceIdentifier {
+  const DbInstanceIdentifierIdentifier(this.identifier);
 
   final TfArg<String> identifier;
 
@@ -126,12 +124,9 @@ final class DbInstanceIdentifierOrIdentifierPrefixIdentifier
   Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
 }
 
-/// The [DbInstanceIdentifierOrIdentifierPrefix.identifierPrefix] choice: sets `identifier_prefix`.
-final class DbInstanceIdentifierOrIdentifierPrefixIdentifierPrefix
-    extends DbInstanceIdentifierOrIdentifierPrefix {
-  const DbInstanceIdentifierOrIdentifierPrefixIdentifierPrefix(
-    this.identifierPrefix,
-  );
+/// The [DbInstanceIdentifier.identifierPrefix] choice: sets `identifier_prefix`.
+final class DbInstanceIdentifierIdentifierPrefix extends DbInstanceIdentifier {
+  const DbInstanceIdentifierIdentifierPrefix(this.identifierPrefix);
 
   final TfArg<String> identifierPrefix;
 
@@ -261,14 +256,13 @@ final class DbInstanceBlueGreenUpdate {
 @immutable
 final class DbInstanceRestoreToPointInTime {
   const DbInstanceRestoreToPointInTime({
-    this.restoreTimeOrUseLatestRestorableTime,
+    this.time,
     this.sourceDbInstanceAutomatedBackupsArn,
     this.sourceDbInstanceIdentifier,
     this.sourceDbiResourceId,
   });
 
-  final DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime?
-  restoreTimeOrUseLatestRestorableTime;
+  final DbInstanceRestoreToPointInTimeTime? time;
 
   final TfArg<String>? sourceDbInstanceAutomatedBackupsArn;
 
@@ -277,7 +271,7 @@ final class DbInstanceRestoreToPointInTime {
   final TfArg<String>? sourceDbiResourceId;
 
   Map<String, Object?> encode() => {
-    ...?restoreTimeOrUseLatestRestorableTime?.encode(),
+    ...?time?.encode(),
     if (sourceDbInstanceAutomatedBackupsArn != null)
       'source_db_instance_automated_backups_arn':
           sourceDbInstanceAutomatedBackupsArn!.toTfJson(),
@@ -293,18 +287,18 @@ final class DbInstanceRestoreToPointInTime {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.restoreTime(...)`.
-sealed class DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime {
-  const DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime();
+sealed class DbInstanceRestoreToPointInTimeTime {
+  const DbInstanceRestoreToPointInTimeTime();
 
   /// Sets `restore_time`.
-  const factory DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime.restoreTime(
+  const factory DbInstanceRestoreToPointInTimeTime.restoreTime(
     TfArg<String> restoreTime,
-  ) = DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeRestoreTime;
+  ) = DbInstanceRestoreToPointInTimeTimeRestoreTime;
 
   /// Sets `use_latest_restorable_time`.
-  const factory DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime.useLatestRestorableTime(
+  const factory DbInstanceRestoreToPointInTimeTime.useLatestRestorableTime(
     TfArg<bool> useLatestRestorableTime,
-  ) = DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeUseLatestRestorableTime;
+  ) = DbInstanceRestoreToPointInTimeTimeUseLatestRestorableTime;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -312,12 +306,10 @@ sealed class DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime 
   Map<String, Object?> encode();
 }
 
-/// The [DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime.restoreTime] choice: sets `restore_time`.
-final class DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeRestoreTime
-    extends DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime {
-  const DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeRestoreTime(
-    this.restoreTime,
-  );
+/// The [DbInstanceRestoreToPointInTimeTime.restoreTime] choice: sets `restore_time`.
+final class DbInstanceRestoreToPointInTimeTimeRestoreTime
+    extends DbInstanceRestoreToPointInTimeTime {
+  const DbInstanceRestoreToPointInTimeTimeRestoreTime(this.restoreTime);
 
   final TfArg<String> restoreTime;
 
@@ -328,10 +320,10 @@ final class DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeRe
   Map<String, Object?> encode() => {'restore_time': restoreTime.toTfJson()};
 }
 
-/// The [DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime.useLatestRestorableTime] choice: sets `use_latest_restorable_time`.
-final class DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeUseLatestRestorableTime
-    extends DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTime {
-  const DbInstanceRestoreToPointInTimeRestoreTimeOrUseLatestRestorableTimeUseLatestRestorableTime(
+/// The [DbInstanceRestoreToPointInTimeTime.useLatestRestorableTime] choice: sets `use_latest_restorable_time`.
+final class DbInstanceRestoreToPointInTimeTimeUseLatestRestorableTime
+    extends DbInstanceRestoreToPointInTimeTime {
+  const DbInstanceRestoreToPointInTimeTimeUseLatestRestorableTime(
     this.useLatestRestorableTime,
   );
 
@@ -415,7 +407,7 @@ final class AwsDbInstance extends Resource {
     TfArg<String>? engineVersion,
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<bool>? iamDatabaseAuthenticationEnabled,
-    DbInstanceIdentifierOrIdentifierPrefix? identifierOrIdentifierPrefix,
+    DbInstanceIdentifier? identifier,
     required TfArg<String> instanceClass,
     TfArg<num>? iops,
     TfArg<String>? kmsKeyId,
@@ -513,7 +505,7 @@ final class AwsDbInstance extends Resource {
            if (iamDatabaseAuthenticationEnabled != null)
              'iam_database_authentication_enabled':
                  iamDatabaseAuthenticationEnabled,
-           ...?identifierOrIdentifierPrefix?.argMap,
+           ...?identifier?.argMap,
            'instance_class': instanceClass,
            if (iops != null) 'iops': iops,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,

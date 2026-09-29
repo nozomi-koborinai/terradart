@@ -173,3 +173,6 @@ paramOrder:
 - instance_splits
 - scaling
 - template
+
+sealedNames:
+  "binary_authorization.policy, binary_authorization.use_default": policy

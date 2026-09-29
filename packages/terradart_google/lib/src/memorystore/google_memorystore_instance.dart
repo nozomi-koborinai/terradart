@@ -34,18 +34,18 @@ enum MemorystoreInstanceServerCaMode implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.gcsSource(...)`.
-sealed class MemorystoreInstanceGcsSourceOrManagedBackupSource {
-  const MemorystoreInstanceGcsSourceOrManagedBackupSource();
+sealed class MemorystoreInstanceSource {
+  const MemorystoreInstanceSource();
 
   /// Sets `gcs_source`.
-  const factory MemorystoreInstanceGcsSourceOrManagedBackupSource.gcsSource(
+  const factory MemorystoreInstanceSource.gcsSource(
     MemorystoreInstanceGcsSource gcsSource,
-  ) = MemorystoreInstanceGcsSourceOrManagedBackupSourceGcsSource;
+  ) = MemorystoreInstanceSourceGcsSource;
 
   /// Sets `managed_backup_source`.
-  const factory MemorystoreInstanceGcsSourceOrManagedBackupSource.managedBackupSource(
+  const factory MemorystoreInstanceSource.managedBackupSource(
     MemorystoreInstanceManagedBackupSource managedBackupSource,
-  ) = MemorystoreInstanceGcsSourceOrManagedBackupSourceManagedBackupSource;
+  ) = MemorystoreInstanceSourceManagedBackupSource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -57,12 +57,10 @@ sealed class MemorystoreInstanceGcsSourceOrManagedBackupSource {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [MemorystoreInstanceGcsSourceOrManagedBackupSource.gcsSource] choice: sets `gcs_source`.
-final class MemorystoreInstanceGcsSourceOrManagedBackupSourceGcsSource
-    extends MemorystoreInstanceGcsSourceOrManagedBackupSource {
-  const MemorystoreInstanceGcsSourceOrManagedBackupSourceGcsSource(
-    this.gcsSource,
-  );
+/// The [MemorystoreInstanceSource.gcsSource] choice: sets `gcs_source`.
+final class MemorystoreInstanceSourceGcsSource
+    extends MemorystoreInstanceSource {
+  const MemorystoreInstanceSourceGcsSource(this.gcsSource);
 
   final MemorystoreInstanceGcsSource gcsSource;
 
@@ -78,12 +76,10 @@ final class MemorystoreInstanceGcsSourceOrManagedBackupSourceGcsSource
   };
 }
 
-/// The [MemorystoreInstanceGcsSourceOrManagedBackupSource.managedBackupSource] choice: sets `managed_backup_source`.
-final class MemorystoreInstanceGcsSourceOrManagedBackupSourceManagedBackupSource
-    extends MemorystoreInstanceGcsSourceOrManagedBackupSource {
-  const MemorystoreInstanceGcsSourceOrManagedBackupSourceManagedBackupSource(
-    this.managedBackupSource,
-  );
+/// The [MemorystoreInstanceSource.managedBackupSource] choice: sets `managed_backup_source`.
+final class MemorystoreInstanceSourceManagedBackupSource
+    extends MemorystoreInstanceSource {
+  const MemorystoreInstanceSourceManagedBackupSource(this.managedBackupSource);
 
   final MemorystoreInstanceManagedBackupSource managedBackupSource;
 
@@ -522,8 +518,7 @@ final class GoogleMemorystoreInstance extends Resource {
     MemorystoreInstanceAutomatedBackupConfig? automatedBackupConfig,
     MemorystoreInstanceCrossInstanceReplicationConfig?
     crossInstanceReplicationConfig,
-    MemorystoreInstanceGcsSourceOrManagedBackupSource?
-    gcsSourceOrManagedBackupSource,
+    MemorystoreInstanceSource? source,
     TfArg<String>? kmsKey,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? deletionProtectionEnabled,
@@ -571,7 +566,7 @@ final class GoogleMemorystoreInstance extends Resource {
              'cross_instance_replication_config': TfArg.literal(
                crossInstanceReplicationConfig.encode(),
              ),
-           ...?gcsSourceOrManagedBackupSource?.argMap,
+           ...?source?.argMap,
            if (kmsKey != null) 'kms_key': kmsKey,
            if (labels != null) 'labels': labels,
            if (deletionProtectionEnabled != null)

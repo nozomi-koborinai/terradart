@@ -32,3 +32,6 @@ paramOrder:
   - ttl
   - condition_config
   - deny
+
+sealedNames:
+  "expire_time, ttl": expiration

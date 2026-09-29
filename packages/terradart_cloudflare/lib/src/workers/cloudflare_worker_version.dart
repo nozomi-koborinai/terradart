@@ -800,20 +800,19 @@ final class WorkerVersionMigrationsTransferredClasses {
 @immutable
 final class WorkerVersionModules {
   const WorkerVersionModules({
-    required this.contentBase64OrContentFile,
+    required this.content,
     required this.contentType,
     required this.name,
   });
 
-  final WorkerVersionModulesContentBase64OrContentFile
-  contentBase64OrContentFile;
+  final WorkerVersionModulesContent content;
 
   final TfArg<String> contentType;
 
   final TfArg<String> name;
 
   Map<String, Object?> encode() => {
-    ...contentBase64OrContentFile.encode(),
+    ...content.encode(),
     'content_type': contentType.toTfJson(),
     'name': name.toTfJson(),
   };
@@ -823,18 +822,18 @@ final class WorkerVersionModules {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.contentBase64(...)`.
-sealed class WorkerVersionModulesContentBase64OrContentFile {
-  const WorkerVersionModulesContentBase64OrContentFile();
+sealed class WorkerVersionModulesContent {
+  const WorkerVersionModulesContent();
 
   /// Sets `content_base64`.
-  const factory WorkerVersionModulesContentBase64OrContentFile.contentBase64(
+  const factory WorkerVersionModulesContent.contentBase64(
     TfArg<String> contentBase64,
-  ) = WorkerVersionModulesContentBase64OrContentFileContentBase64;
+  ) = WorkerVersionModulesContentContentBase64;
 
   /// Sets `content_file`.
-  const factory WorkerVersionModulesContentBase64OrContentFile.contentFile(
+  const factory WorkerVersionModulesContent.contentFile(
     TfArg<String> contentFile,
-  ) = WorkerVersionModulesContentBase64OrContentFileContentFile;
+  ) = WorkerVersionModulesContentContentFile;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -842,12 +841,10 @@ sealed class WorkerVersionModulesContentBase64OrContentFile {
   Map<String, Object?> encode();
 }
 
-/// The [WorkerVersionModulesContentBase64OrContentFile.contentBase64] choice: sets `content_base64`.
-final class WorkerVersionModulesContentBase64OrContentFileContentBase64
-    extends WorkerVersionModulesContentBase64OrContentFile {
-  const WorkerVersionModulesContentBase64OrContentFileContentBase64(
-    this.contentBase64,
-  );
+/// The [WorkerVersionModulesContent.contentBase64] choice: sets `content_base64`.
+final class WorkerVersionModulesContentContentBase64
+    extends WorkerVersionModulesContent {
+  const WorkerVersionModulesContentContentBase64(this.contentBase64);
 
   final TfArg<String> contentBase64;
 
@@ -858,12 +855,10 @@ final class WorkerVersionModulesContentBase64OrContentFileContentBase64
   Map<String, Object?> encode() => {'content_base64': contentBase64.toTfJson()};
 }
 
-/// The [WorkerVersionModulesContentBase64OrContentFile.contentFile] choice: sets `content_file`.
-final class WorkerVersionModulesContentBase64OrContentFileContentFile
-    extends WorkerVersionModulesContentBase64OrContentFile {
-  const WorkerVersionModulesContentBase64OrContentFileContentFile(
-    this.contentFile,
-  );
+/// The [WorkerVersionModulesContent.contentFile] choice: sets `content_file`.
+final class WorkerVersionModulesContentContentFile
+    extends WorkerVersionModulesContent {
+  const WorkerVersionModulesContentContentFile(this.contentFile);
 
   final TfArg<String> contentFile;
 

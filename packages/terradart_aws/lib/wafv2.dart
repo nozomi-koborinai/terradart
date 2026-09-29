@@ -8,25 +8,25 @@ export 'src/wafv2/aws_wafv2_ip_set.dart'
     show
         AwsWafv2IpSet,
         Wafv2IpSetIpAddressVersion,
-        Wafv2IpSetNameOrNamePrefix,
-        Wafv2IpSetNameOrNamePrefixName,
-        Wafv2IpSetNameOrNamePrefixNamePrefix,
+        Wafv2IpSetName,
+        Wafv2IpSetNameName,
+        Wafv2IpSetNameNamePrefix,
         Wafv2IpSetScope;
 export 'src/wafv2/aws_wafv2_regex_pattern_set.dart'
     show
         AwsWafv2RegexPatternSet,
-        Wafv2RegexPatternSetNameOrNamePrefix,
-        Wafv2RegexPatternSetNameOrNamePrefixName,
-        Wafv2RegexPatternSetNameOrNamePrefixNamePrefix,
+        Wafv2RegexPatternSetName,
+        Wafv2RegexPatternSetNameName,
+        Wafv2RegexPatternSetNameNamePrefix,
         Wafv2RegexPatternSetRegularExpression,
         Wafv2RegexPatternSetScope;
 export 'src/wafv2/aws_wafv2_rule_group.dart'
     show
         AwsWafv2RuleGroup,
         Wafv2RuleGroupCustomResponseBody,
-        Wafv2RuleGroupNameOrNamePrefix,
-        Wafv2RuleGroupNameOrNamePrefixName,
-        Wafv2RuleGroupNameOrNamePrefixNamePrefix,
+        Wafv2RuleGroupName,
+        Wafv2RuleGroupNameName,
+        Wafv2RuleGroupNameNamePrefix,
         Wafv2RuleGroupRule,
         Wafv2RuleGroupRuleAction,
         Wafv2RuleGroupRuleActionAllow,
@@ -100,9 +100,9 @@ export 'src/wafv2/aws_wafv2_web_acl.dart'
         Wafv2WebAclDefaultActionAllowCustomRequestHandlingInsertHeader,
         Wafv2WebAclDefaultActionBlock,
         Wafv2WebAclDefaultActionBlockCustomResponse,
-        Wafv2WebAclNameOrNamePrefix,
-        Wafv2WebAclNameOrNamePrefixName,
-        Wafv2WebAclNameOrNamePrefixNamePrefix,
+        Wafv2WebAclName,
+        Wafv2WebAclNameName,
+        Wafv2WebAclNameNamePrefix,
         Wafv2WebAclScope,
         Wafv2WebAclVisibilityConfig;
 export 'src/wafv2/aws_wafv2_web_acl_association.dart'

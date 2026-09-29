@@ -123,6 +123,7 @@ class WrapperEmitter {
               def.terraformType,
               override,
             ),
+            sealedNames: override?.sealedNames,
           )
         : const <NestedBlockSpec>[];
 

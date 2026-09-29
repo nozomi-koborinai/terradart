@@ -23,8 +23,8 @@ export 'src/evidently/aws_evidently_project.dart'
         AwsEvidentlyProject,
         EvidentlyProjectDataDelivery,
         EvidentlyProjectDataDeliveryCloudwatchLogs,
-        EvidentlyProjectDataDeliveryCloudwatchLogsOrS3Destination,
-        EvidentlyProjectDataDeliveryCloudwatchLogsOrS3DestinationCloudwatchLogs,
-        EvidentlyProjectDataDeliveryCloudwatchLogsOrS3DestinationS3Destination,
+        EvidentlyProjectDataDeliveryDataDelivery,
+        EvidentlyProjectDataDeliveryDataDeliveryCloudwatchLogs,
+        EvidentlyProjectDataDeliveryDataDeliveryS3Destination,
         EvidentlyProjectDataDeliveryS3Destination;
 export 'src/evidently/aws_evidently_segment.dart' show AwsEvidentlySegment;

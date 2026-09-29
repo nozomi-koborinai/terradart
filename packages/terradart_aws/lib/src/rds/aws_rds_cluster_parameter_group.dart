@@ -12,18 +12,17 @@ const Set<String> _awsRdsClusterParameterGroupSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class RdsClusterParameterGroupNameOrNamePrefix {
-  const RdsClusterParameterGroupNameOrNamePrefix();
+sealed class RdsClusterParameterGroupName {
+  const RdsClusterParameterGroupName();
 
   /// Sets `name`.
-  const factory RdsClusterParameterGroupNameOrNamePrefix.name(
-    TfArg<String> name,
-  ) = RdsClusterParameterGroupNameOrNamePrefixName;
+  const factory RdsClusterParameterGroupName.name(TfArg<String> name) =
+      RdsClusterParameterGroupNameName;
 
   /// Sets `name_prefix`.
-  const factory RdsClusterParameterGroupNameOrNamePrefix.namePrefix(
+  const factory RdsClusterParameterGroupName.namePrefix(
     TfArg<String> namePrefix,
-  ) = RdsClusterParameterGroupNameOrNamePrefixNamePrefix;
+  ) = RdsClusterParameterGroupNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,10 +34,10 @@ sealed class RdsClusterParameterGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [RdsClusterParameterGroupNameOrNamePrefix.name] choice: sets `name`.
-final class RdsClusterParameterGroupNameOrNamePrefixName
-    extends RdsClusterParameterGroupNameOrNamePrefix {
-  const RdsClusterParameterGroupNameOrNamePrefixName(this.name);
+/// The [RdsClusterParameterGroupName.name] choice: sets `name`.
+final class RdsClusterParameterGroupNameName
+    extends RdsClusterParameterGroupName {
+  const RdsClusterParameterGroupNameName(this.name);
 
   final TfArg<String> name;
 
@@ -52,10 +51,10 @@ final class RdsClusterParameterGroupNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [RdsClusterParameterGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class RdsClusterParameterGroupNameOrNamePrefixNamePrefix
-    extends RdsClusterParameterGroupNameOrNamePrefix {
-  const RdsClusterParameterGroupNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [RdsClusterParameterGroupName.namePrefix] choice: sets `name_prefix`.
+final class RdsClusterParameterGroupNameNamePrefix
+    extends RdsClusterParameterGroupName {
+  const RdsClusterParameterGroupNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -110,7 +109,7 @@ final class AwsRdsClusterParameterGroup extends Resource {
     required super.localName,
     TfArg<String>? description,
     required TfArg<String> family,
-    RdsClusterParameterGroupNameOrNamePrefix? nameOrNamePrefix,
+    RdsClusterParameterGroupName? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<RdsClusterParameterGroupParameter>? parameter,
@@ -123,7 +122,7 @@ final class AwsRdsClusterParameterGroup extends Resource {
          argMap: {
            if (description != null) 'description': description,
            'family': family,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            if (parameter != null)

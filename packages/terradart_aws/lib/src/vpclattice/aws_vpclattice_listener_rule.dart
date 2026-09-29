@@ -11,30 +11,29 @@ const Set<String> _awsVpclatticeListenerRuleSensitive = <String>{};
 /// `aws_vpclattice_listener_rule` (derived from provider schema).
 @immutable
 final class VpclatticeListenerRuleAction {
-  const VpclatticeListenerRuleAction({required this.fixedResponseOrForward});
+  const VpclatticeListenerRuleAction({required this.action});
 
-  final VpclatticeListenerRuleActionFixedResponseOrForward
-  fixedResponseOrForward;
+  final VpclatticeListenerRuleActionAction action;
 
-  Map<String, Object?> encode() => {...fixedResponseOrForward.encode()};
+  Map<String, Object?> encode() => {...action.encode()};
 }
 
 /// Exactly one of `fixed_response`, `forward` on the `action` block of `aws_vpclattice_listener_rule`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.fixedResponse(...)`.
-sealed class VpclatticeListenerRuleActionFixedResponseOrForward {
-  const VpclatticeListenerRuleActionFixedResponseOrForward();
+sealed class VpclatticeListenerRuleActionAction {
+  const VpclatticeListenerRuleActionAction();
 
   /// Sets `fixed_response`.
-  const factory VpclatticeListenerRuleActionFixedResponseOrForward.fixedResponse(
+  const factory VpclatticeListenerRuleActionAction.fixedResponse(
     VpclatticeListenerRuleActionFixedResponse fixedResponse,
-  ) = VpclatticeListenerRuleActionFixedResponseOrForwardFixedResponse;
+  ) = VpclatticeListenerRuleActionActionFixedResponse;
 
   /// Sets `forward`.
-  const factory VpclatticeListenerRuleActionFixedResponseOrForward.forward(
+  const factory VpclatticeListenerRuleActionAction.forward(
     VpclatticeListenerRuleActionForward forward,
-  ) = VpclatticeListenerRuleActionFixedResponseOrForwardForward;
+  ) = VpclatticeListenerRuleActionActionForward;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -42,12 +41,10 @@ sealed class VpclatticeListenerRuleActionFixedResponseOrForward {
   Map<String, Object?> encode();
 }
 
-/// The [VpclatticeListenerRuleActionFixedResponseOrForward.fixedResponse] choice: sets `fixed_response`.
-final class VpclatticeListenerRuleActionFixedResponseOrForwardFixedResponse
-    extends VpclatticeListenerRuleActionFixedResponseOrForward {
-  const VpclatticeListenerRuleActionFixedResponseOrForwardFixedResponse(
-    this.fixedResponse,
-  );
+/// The [VpclatticeListenerRuleActionAction.fixedResponse] choice: sets `fixed_response`.
+final class VpclatticeListenerRuleActionActionFixedResponse
+    extends VpclatticeListenerRuleActionAction {
+  const VpclatticeListenerRuleActionActionFixedResponse(this.fixedResponse);
 
   final VpclatticeListenerRuleActionFixedResponse fixedResponse;
 
@@ -58,10 +55,10 @@ final class VpclatticeListenerRuleActionFixedResponseOrForwardFixedResponse
   Map<String, Object?> encode() => {'fixed_response': fixedResponse.encode()};
 }
 
-/// The [VpclatticeListenerRuleActionFixedResponseOrForward.forward] choice: sets `forward`.
-final class VpclatticeListenerRuleActionFixedResponseOrForwardForward
-    extends VpclatticeListenerRuleActionFixedResponseOrForward {
-  const VpclatticeListenerRuleActionFixedResponseOrForwardForward(this.forward);
+/// The [VpclatticeListenerRuleActionAction.forward] choice: sets `forward`.
+final class VpclatticeListenerRuleActionActionForward
+    extends VpclatticeListenerRuleActionAction {
+  const VpclatticeListenerRuleActionActionForward(this.forward);
 
   final VpclatticeListenerRuleActionForward forward;
 

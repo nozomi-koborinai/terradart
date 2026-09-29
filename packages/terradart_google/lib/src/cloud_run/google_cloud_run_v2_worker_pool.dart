@@ -144,18 +144,17 @@ class CloudRunV2WorkerPoolTemplate {
 final class CloudRunV2WorkerPoolBinaryAuthorization {
   const CloudRunV2WorkerPoolBinaryAuthorization({
     this.breakglassJustification,
-    this.useDefaultOrPolicy,
+    this.policy,
   });
 
   final TfArg<String>? breakglassJustification;
 
-  final CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy?
-  useDefaultOrPolicy;
+  final CloudRunV2WorkerPoolBinaryAuthorizationPolicy? policy;
 
   Map<String, Object?> encode() => {
     if (breakglassJustification != null)
       'breakglass_justification': breakglassJustification!.toTfJson(),
-    ...?useDefaultOrPolicy?.encode(),
+    ...?policy?.encode(),
   };
 }
 
@@ -164,18 +163,18 @@ final class CloudRunV2WorkerPoolBinaryAuthorization {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.useDefault(...)`.
-sealed class CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy {
-  const CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy();
+sealed class CloudRunV2WorkerPoolBinaryAuthorizationPolicy {
+  const CloudRunV2WorkerPoolBinaryAuthorizationPolicy();
 
   /// Sets `use_default`.
-  const factory CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy.useDefault(
+  const factory CloudRunV2WorkerPoolBinaryAuthorizationPolicy.useDefault(
     TfArg<bool> useDefault,
-  ) = CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyUseDefault;
+  ) = CloudRunV2WorkerPoolBinaryAuthorizationPolicyUseDefault;
 
   /// Sets `policy`.
-  const factory CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy.policy(
+  const factory CloudRunV2WorkerPoolBinaryAuthorizationPolicy.policy(
     TfArg<String> policy,
-  ) = CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyPolicy;
+  ) = CloudRunV2WorkerPoolBinaryAuthorizationPolicyPolicy;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -183,10 +182,10 @@ sealed class CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy.useDefault] choice: sets `use_default`.
-final class CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyUseDefault
-    extends CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy {
-  const CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyUseDefault(
+/// The [CloudRunV2WorkerPoolBinaryAuthorizationPolicy.useDefault] choice: sets `use_default`.
+final class CloudRunV2WorkerPoolBinaryAuthorizationPolicyUseDefault
+    extends CloudRunV2WorkerPoolBinaryAuthorizationPolicy {
+  const CloudRunV2WorkerPoolBinaryAuthorizationPolicyUseDefault(
     this.useDefault,
   );
 
@@ -199,12 +198,10 @@ final class CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyUseDefault
   Map<String, Object?> encode() => {'use_default': useDefault.toTfJson()};
 }
 
-/// The [CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy.policy] choice: sets `policy`.
-final class CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyPolicy
-    extends CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicy {
-  const CloudRunV2WorkerPoolBinaryAuthorizationUseDefaultOrPolicyPolicy(
-    this.policy,
-  );
+/// The [CloudRunV2WorkerPoolBinaryAuthorizationPolicy.policy] choice: sets `policy`.
+final class CloudRunV2WorkerPoolBinaryAuthorizationPolicyPolicy
+    extends CloudRunV2WorkerPoolBinaryAuthorizationPolicy {
+  const CloudRunV2WorkerPoolBinaryAuthorizationPolicyPolicy(this.policy);
 
   final TfArg<String> policy;
 

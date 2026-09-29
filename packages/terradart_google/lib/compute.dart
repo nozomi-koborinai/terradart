@@ -185,9 +185,9 @@ export 'src/compute/google_compute_global_vm_extension_policy.dart'
         ComputeGlobalVmExtensionPolicyInstanceSelectorsLabelSelector,
         ComputeGlobalVmExtensionPolicyRolloutOperation,
         ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput,
-        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlan,
-        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanName,
-        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputNameOrPredefinedRolloutPlanPredefinedRolloutPlan,
+        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlan,
+        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanName,
+        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInputPlanPredefinedRolloutPlan,
         GoogleComputeGlobalVmExtensionPolicy;
 export 'src/compute/google_compute_ha_vpn_gateway.dart'
     show
@@ -442,10 +442,10 @@ export 'src/compute/google_compute_node_template.dart'
         ComputeNodeTemplateAccelerators,
         ComputeNodeTemplateCpuOvercommitType,
         ComputeNodeTemplateDisks,
+        ComputeNodeTemplateNodeType,
         ComputeNodeTemplateNodeTypeFlexibility,
-        ComputeNodeTemplateNodeTypeOrNodeTypeFlexibility,
-        ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeType,
-        ComputeNodeTemplateNodeTypeOrNodeTypeFlexibilityNodeTypeFlexibility,
+        ComputeNodeTemplateNodeTypeNodeType,
+        ComputeNodeTemplateNodeTypeNodeTypeFlexibility,
         ComputeNodeTemplateServerBinding,
         ComputeNodeTemplateServerBindingType,
         GoogleComputeNodeTemplate;
@@ -752,17 +752,17 @@ export 'src/compute/google_compute_region_target_http_proxy.dart'
     show GoogleComputeRegionTargetHttpProxy;
 export 'src/compute/google_compute_region_target_https_proxy.dart'
     show
-        ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates,
-        ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesCertificateManagerCertificates,
-        ComputeRegionTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesSslCertificates,
+        ComputeRegionTargetHttpsProxyCertificates,
+        ComputeRegionTargetHttpsProxyCertificatesCertificateManagerCertificates,
+        ComputeRegionTargetHttpsProxyCertificatesSslCertificates,
         GoogleComputeRegionTargetHttpsProxy;
 export 'src/compute/google_compute_region_target_tcp_proxy.dart'
     show GoogleComputeRegionTargetTcpProxy, RegionTargetTcpProxyProxyHeader;
 export 'src/compute/google_compute_region_url_map.dart'
     show
-        ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteAction,
-        ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction,
-        ComputeRegionUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect,
+        ComputeRegionUrlMapDefaultAction,
+        ComputeRegionUrlMapDefaultActionDefaultRouteAction,
+        ComputeRegionUrlMapDefaultActionDefaultUrlRedirect,
         ComputeRegionUrlMapRegionUrlMapCachePolicy,
         ComputeRegionUrlMapRegionUrlMapHeaderAction,
         ComputeRegionUrlMapRegionUrlMapHeaderMatch,
@@ -797,9 +797,9 @@ export 'src/compute/google_compute_reservation.dart'
         ComputeReservationSpecificReservationInstancePropertiesGuestAccelerators,
         ComputeReservationSpecificReservationInstancePropertiesLocalSsds,
         ComputeReservationSpecificReservationInstancePropertiesLocalSsdsInterface,
-        ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplate,
-        ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateInstanceProperties,
-        ComputeReservationSpecificReservationInstancePropertiesOrSourceInstanceTemplateSourceInstanceTemplate,
+        ComputeReservationSpecificReservationInstanceSpec,
+        ComputeReservationSpecificReservationInstanceSpecInstanceProperties,
+        ComputeReservationSpecificReservationInstanceSpecSourceInstanceTemplate,
         GoogleComputeReservation;
 export 'src/compute/google_compute_resize_request.dart'
     show ComputeResizeRequestRequestedRunDuration, GoogleComputeResizeRequest;
@@ -987,9 +987,9 @@ export 'src/compute/google_compute_target_http_proxy.dart'
     show GoogleComputeTargetHttpProxy;
 export 'src/compute/google_compute_target_https_proxy.dart'
     show
-        ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates,
-        ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesCertificateManagerCertificates,
-        ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesSslCertificates,
+        ComputeTargetHttpsProxyCertificates,
+        ComputeTargetHttpsProxyCertificatesCertificateManagerCertificates,
+        ComputeTargetHttpsProxyCertificatesSslCertificates,
         GoogleComputeTargetHttpsProxy,
         QuicOverride,
         TlsEarlyData;
@@ -1003,9 +1003,9 @@ export 'src/compute/google_compute_target_tcp_proxy.dart'
     show GoogleComputeTargetTcpProxy, TargetTcpProxyProxyHeader;
 export 'src/compute/google_compute_url_map.dart'
     show
-        ComputeUrlMapDefaultUrlRedirectOrDefaultRouteAction,
-        ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultRouteAction,
-        ComputeUrlMapDefaultUrlRedirectOrDefaultRouteActionDefaultUrlRedirect,
+        ComputeUrlMapDefaultAction,
+        ComputeUrlMapDefaultActionDefaultRouteAction,
+        ComputeUrlMapDefaultActionDefaultUrlRedirect,
         ComputeUrlMapUrlMapCachePolicy,
         ComputeUrlMapUrlMapHeaderAction,
         ComputeUrlMapUrlMapHeaderMatch,
@@ -1030,9 +1030,9 @@ export 'src/compute/google_compute_vpn_gateway.dart'
     show GoogleComputeVpnGateway;
 export 'src/compute/google_compute_vpn_tunnel.dart'
     show
-        ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGateway,
-        ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerExternalGateway,
-        ComputeVpnTunnelPeerExternalGatewayOrPeerGcpGatewayPeerGcpGateway,
+        ComputeVpnTunnelPeer,
+        ComputeVpnTunnelPeerPeerExternalGateway,
+        ComputeVpnTunnelPeerPeerGcpGateway,
         GoogleComputeVpnTunnel;
 export 'src/compute/google_compute_wire_group.dart'
     show

@@ -66,7 +66,7 @@ final class BetaLeftoverStack extends Stack {
       GoogleApiGatewayApiConfig(
         localName: 'api_gateway_api_config',
         api: TfArg.literal('terradart-leftover'),
-        openapiDocumentsOrGrpcServices: .openapiDocuments([
+        spec: .openapiDocuments([
           ApiGatewayApiConfigOpenapiDocuments(
             document: ApiGatewayApiConfigOpenapiDocumentsDocument(
               contents: TfArg.literal('b3BlbmFwaTogIjMuMC4wIg=='),

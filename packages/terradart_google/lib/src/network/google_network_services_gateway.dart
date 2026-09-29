@@ -51,18 +51,16 @@ enum NetworkServicesGatewayType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.allPorts(...)`.
-sealed class NetworkServicesGatewayAllPortsOrPorts {
-  const NetworkServicesGatewayAllPortsOrPorts();
+sealed class NetworkServicesGatewayPorts {
+  const NetworkServicesGatewayPorts();
 
   /// Sets `all_ports`.
-  const factory NetworkServicesGatewayAllPortsOrPorts.allPorts(
-    TfArg<bool> allPorts,
-  ) = NetworkServicesGatewayAllPortsOrPortsAllPorts;
+  const factory NetworkServicesGatewayPorts.allPorts(TfArg<bool> allPorts) =
+      NetworkServicesGatewayPortsAllPorts;
 
   /// Sets `ports`.
-  const factory NetworkServicesGatewayAllPortsOrPorts.ports(
-    TfArg<List<num>> ports,
-  ) = NetworkServicesGatewayAllPortsOrPortsPorts;
+  const factory NetworkServicesGatewayPorts.ports(TfArg<List<num>> ports) =
+      NetworkServicesGatewayPortsPorts;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -74,10 +72,10 @@ sealed class NetworkServicesGatewayAllPortsOrPorts {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NetworkServicesGatewayAllPortsOrPorts.allPorts] choice: sets `all_ports`.
-final class NetworkServicesGatewayAllPortsOrPortsAllPorts
-    extends NetworkServicesGatewayAllPortsOrPorts {
-  const NetworkServicesGatewayAllPortsOrPortsAllPorts(this.allPorts);
+/// The [NetworkServicesGatewayPorts.allPorts] choice: sets `all_ports`.
+final class NetworkServicesGatewayPortsAllPorts
+    extends NetworkServicesGatewayPorts {
+  const NetworkServicesGatewayPortsAllPorts(this.allPorts);
 
   final TfArg<bool> allPorts;
 
@@ -91,10 +89,10 @@ final class NetworkServicesGatewayAllPortsOrPortsAllPorts
   Map<String, TfArg<Object?>> get argMap => {'all_ports': allPorts};
 }
 
-/// The [NetworkServicesGatewayAllPortsOrPorts.ports] choice: sets `ports`.
-final class NetworkServicesGatewayAllPortsOrPortsPorts
-    extends NetworkServicesGatewayAllPortsOrPorts {
-  const NetworkServicesGatewayAllPortsOrPortsPorts(this.ports);
+/// The [NetworkServicesGatewayPorts.ports] choice: sets `ports`.
+final class NetworkServicesGatewayPortsPorts
+    extends NetworkServicesGatewayPorts {
+  const NetworkServicesGatewayPortsPorts(this.ports);
 
   final TfArg<List<num>> ports;
 
@@ -138,7 +136,7 @@ final class GoogleNetworkServicesGateway extends Resource {
     TfArg<String>? description,
     TfArg<String>? network,
     TfArg<String>? subnetwork,
-    NetworkServicesGatewayAllPortsOrPorts? allPortsOrPorts,
+    NetworkServicesGatewayPorts? ports,
     TfArg<List<String>>? certificateUrls,
     TfArg<String>? gatewaySecurityPolicy,
     TfArg<String>? serverTlsPolicy,
@@ -163,7 +161,7 @@ final class GoogleNetworkServicesGateway extends Resource {
            if (description != null) 'description': description,
            if (network != null) 'network': network,
            if (subnetwork != null) 'subnetwork': subnetwork,
-           ...?allPortsOrPorts?.argMap,
+           ...?ports?.argMap,
            if (certificateUrls != null) 'certificate_urls': certificateUrls,
            if (gatewaySecurityPolicy != null)
              'gateway_security_policy': gatewaySecurityPolicy,

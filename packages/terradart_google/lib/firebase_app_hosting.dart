@@ -27,7 +27,7 @@ export 'src/firebase_app_hosting/google_firebase_app_hosting_traffic.dart'
         FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy,
         FirebaseAppHostingTrafficAppHostingTrafficSplit,
         FirebaseAppHostingTrafficAppHostingTrafficTarget,
-        FirebaseAppHostingTrafficRolloutPolicyOrTarget,
-        FirebaseAppHostingTrafficRolloutPolicyOrTargetRolloutPolicy,
-        FirebaseAppHostingTrafficRolloutPolicyOrTargetTarget,
+        FirebaseAppHostingTrafficRouting,
+        FirebaseAppHostingTrafficRoutingRolloutPolicy,
+        FirebaseAppHostingTrafficRoutingTarget,
         GoogleFirebaseAppHostingTraffic;

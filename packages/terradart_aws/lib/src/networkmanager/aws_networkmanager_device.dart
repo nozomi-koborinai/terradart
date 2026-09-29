@@ -11,11 +11,11 @@ const Set<String> _awsNetworkmanagerDeviceSensitive = <String>{};
 /// `aws_networkmanager_device` (derived from provider schema).
 @immutable
 final class NetworkmanagerDeviceAwsLocation {
-  const NetworkmanagerDeviceAwsLocation({this.subnetArnOrZone});
+  const NetworkmanagerDeviceAwsLocation({this.awsLocation});
 
-  final NetworkmanagerDeviceAwsLocationSubnetArnOrZone? subnetArnOrZone;
+  final NetworkmanagerDeviceAwsLocationAwsLocation? awsLocation;
 
-  Map<String, Object?> encode() => {...?subnetArnOrZone?.encode()};
+  Map<String, Object?> encode() => {...?awsLocation?.encode()};
 }
 
 /// At most one of `subnet_arn`, `zone` on the `aws_location` block of `aws_networkmanager_device`: the provider rejects
@@ -23,18 +23,18 @@ final class NetworkmanagerDeviceAwsLocation {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.subnetArn(...)`.
-sealed class NetworkmanagerDeviceAwsLocationSubnetArnOrZone {
-  const NetworkmanagerDeviceAwsLocationSubnetArnOrZone();
+sealed class NetworkmanagerDeviceAwsLocationAwsLocation {
+  const NetworkmanagerDeviceAwsLocationAwsLocation();
 
   /// Sets `subnet_arn`.
-  const factory NetworkmanagerDeviceAwsLocationSubnetArnOrZone.subnetArn(
+  const factory NetworkmanagerDeviceAwsLocationAwsLocation.subnetArn(
     TfArg<String> subnetArn,
-  ) = NetworkmanagerDeviceAwsLocationSubnetArnOrZoneSubnetArn;
+  ) = NetworkmanagerDeviceAwsLocationAwsLocationSubnetArn;
 
   /// Sets `zone`.
-  const factory NetworkmanagerDeviceAwsLocationSubnetArnOrZone.zone(
+  const factory NetworkmanagerDeviceAwsLocationAwsLocation.zone(
     TfArg<String> zone,
-  ) = NetworkmanagerDeviceAwsLocationSubnetArnOrZoneZone;
+  ) = NetworkmanagerDeviceAwsLocationAwsLocationZone;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -42,10 +42,10 @@ sealed class NetworkmanagerDeviceAwsLocationSubnetArnOrZone {
   Map<String, Object?> encode();
 }
 
-/// The [NetworkmanagerDeviceAwsLocationSubnetArnOrZone.subnetArn] choice: sets `subnet_arn`.
-final class NetworkmanagerDeviceAwsLocationSubnetArnOrZoneSubnetArn
-    extends NetworkmanagerDeviceAwsLocationSubnetArnOrZone {
-  const NetworkmanagerDeviceAwsLocationSubnetArnOrZoneSubnetArn(this.subnetArn);
+/// The [NetworkmanagerDeviceAwsLocationAwsLocation.subnetArn] choice: sets `subnet_arn`.
+final class NetworkmanagerDeviceAwsLocationAwsLocationSubnetArn
+    extends NetworkmanagerDeviceAwsLocationAwsLocation {
+  const NetworkmanagerDeviceAwsLocationAwsLocationSubnetArn(this.subnetArn);
 
   final TfArg<String> subnetArn;
 
@@ -56,10 +56,10 @@ final class NetworkmanagerDeviceAwsLocationSubnetArnOrZoneSubnetArn
   Map<String, Object?> encode() => {'subnet_arn': subnetArn.toTfJson()};
 }
 
-/// The [NetworkmanagerDeviceAwsLocationSubnetArnOrZone.zone] choice: sets `zone`.
-final class NetworkmanagerDeviceAwsLocationSubnetArnOrZoneZone
-    extends NetworkmanagerDeviceAwsLocationSubnetArnOrZone {
-  const NetworkmanagerDeviceAwsLocationSubnetArnOrZoneZone(this.zone);
+/// The [NetworkmanagerDeviceAwsLocationAwsLocation.zone] choice: sets `zone`.
+final class NetworkmanagerDeviceAwsLocationAwsLocationZone
+    extends NetworkmanagerDeviceAwsLocationAwsLocation {
+  const NetworkmanagerDeviceAwsLocationAwsLocationZone(this.zone);
 
   final TfArg<String> zone;
 

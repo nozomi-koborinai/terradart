@@ -9,12 +9,12 @@ export 'src/arczonalshift/aws_arczonalshift_autoshift_observer_notification_stat
         AwsArczonalshiftAutoshiftObserverNotificationStatus;
 export 'src/arczonalshift/aws_arczonalshift_zonal_autoshift_configuration.dart'
     show
-        ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindows,
-        ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindowsAllowedWindows,
-        ArczonalshiftZonalAutoshiftConfigurationAllowedWindowsOrBlockedWindowsBlockedWindows,
         ArczonalshiftZonalAutoshiftConfigurationBlockingAlarms,
         ArczonalshiftZonalAutoshiftConfigurationBlockingAlarmsType,
         ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarms,
         ArczonalshiftZonalAutoshiftConfigurationOutcomeAlarmsType,
+        ArczonalshiftZonalAutoshiftConfigurationWindows,
+        ArczonalshiftZonalAutoshiftConfigurationWindowsAllowedWindows,
+        ArczonalshiftZonalAutoshiftConfigurationWindowsBlockedWindows,
         ArczonalshiftZonalAutoshiftConfigurationZonalAutoshiftStatus,
         AwsArczonalshiftZonalAutoshiftConfiguration;

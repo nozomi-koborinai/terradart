@@ -12,35 +12,33 @@ const Set<String> _googlePrivilegedAccessManagerSettingsSensitive = <String>{};
 @immutable
 final class PrivilegedAccessManagerSettingsEmailNotificationSettings {
   const PrivilegedAccessManagerSettingsEmailNotificationSettings({
-    required this.disableAllNotificationsOrCustomNotificationBehavior,
+    required this.emailNotificationSettings,
   });
 
-  final PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehavior
-  disableAllNotificationsOrCustomNotificationBehavior;
+  final PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettings
+  emailNotificationSettings;
 
-  Map<String, Object?> encode() => {
-    ...disableAllNotificationsOrCustomNotificationBehavior.encode(),
-  };
+  Map<String, Object?> encode() => {...emailNotificationSettings.encode()};
 }
 
 /// Exactly one of `disable_all_notifications`, `custom_notification_behavior` on the `email_notification_settings` block of `google_privileged_access_manager_settings`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.disableAllNotifications(...)`.
-sealed class PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehavior {
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehavior();
+sealed class PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettings {
+  const PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettings();
 
   /// Sets `disable_all_notifications`.
-  const factory PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehavior.disableAllNotifications(
+  const factory PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettings.disableAllNotifications(
     PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications
     disableAllNotifications,
-  ) = PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorDisableAllNotifications;
+  ) = PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsDisableAllNotifications;
 
   /// Sets `custom_notification_behavior`.
-  const factory PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehavior.customNotificationBehavior(
+  const factory PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettings.customNotificationBehavior(
     PrivilegedAccessManagerSettingsEmailNotificationSettingsCustomNotificationBehavior
     customNotificationBehavior,
-  ) = PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorCustomNotificationBehavior;
+  ) = PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsCustomNotificationBehavior;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -48,11 +46,11 @@ sealed class PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllN
   Map<String, Object?> encode();
 }
 
-/// The [PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehavior.disableAllNotifications] choice: sets `disable_all_notifications`.
-final class PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorDisableAllNotifications
+/// The [PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettings.disableAllNotifications] choice: sets `disable_all_notifications`.
+final class PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsDisableAllNotifications
     extends
-        PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehavior {
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorDisableAllNotifications(
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettings {
+  const PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsDisableAllNotifications(
     this.disableAllNotifications,
   );
 
@@ -68,11 +66,11 @@ final class PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNo
   };
 }
 
-/// The [PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehavior.customNotificationBehavior] choice: sets `custom_notification_behavior`.
-final class PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorCustomNotificationBehavior
+/// The [PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettings.customNotificationBehavior] choice: sets `custom_notification_behavior`.
+final class PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsCustomNotificationBehavior
     extends
-        PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehavior {
-  const PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorCustomNotificationBehavior(
+        PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettings {
+  const PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsCustomNotificationBehavior(
     this.customNotificationBehavior,
   );
 

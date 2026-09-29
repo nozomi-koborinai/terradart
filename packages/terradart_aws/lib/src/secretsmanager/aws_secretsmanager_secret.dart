@@ -12,17 +12,16 @@ const Set<String> _awsSecretsmanagerSecretSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class SecretsmanagerSecretNameOrNamePrefix {
-  const SecretsmanagerSecretNameOrNamePrefix();
+sealed class SecretsmanagerSecretName {
+  const SecretsmanagerSecretName();
 
   /// Sets `name`.
-  const factory SecretsmanagerSecretNameOrNamePrefix.name(TfArg<String> name) =
-      SecretsmanagerSecretNameOrNamePrefixName;
+  const factory SecretsmanagerSecretName.name(TfArg<String> name) =
+      SecretsmanagerSecretNameName;
 
   /// Sets `name_prefix`.
-  const factory SecretsmanagerSecretNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = SecretsmanagerSecretNameOrNamePrefixNamePrefix;
+  const factory SecretsmanagerSecretName.namePrefix(TfArg<String> namePrefix) =
+      SecretsmanagerSecretNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +33,9 @@ sealed class SecretsmanagerSecretNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SecretsmanagerSecretNameOrNamePrefix.name] choice: sets `name`.
-final class SecretsmanagerSecretNameOrNamePrefixName
-    extends SecretsmanagerSecretNameOrNamePrefix {
-  const SecretsmanagerSecretNameOrNamePrefixName(this.name);
+/// The [SecretsmanagerSecretName.name] choice: sets `name`.
+final class SecretsmanagerSecretNameName extends SecretsmanagerSecretName {
+  const SecretsmanagerSecretNameName(this.name);
 
   final TfArg<String> name;
 
@@ -51,10 +49,10 @@ final class SecretsmanagerSecretNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [SecretsmanagerSecretNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class SecretsmanagerSecretNameOrNamePrefixNamePrefix
-    extends SecretsmanagerSecretNameOrNamePrefix {
-  const SecretsmanagerSecretNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [SecretsmanagerSecretName.namePrefix] choice: sets `name_prefix`.
+final class SecretsmanagerSecretNameNamePrefix
+    extends SecretsmanagerSecretName {
+  const SecretsmanagerSecretNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -93,7 +91,7 @@ final class AwsSecretsmanagerSecret extends Resource {
     TfArg<String>? description,
     TfArg<bool>? forceOverwriteReplicaSecret,
     TfArg<String>? kmsKeyId,
-    SecretsmanagerSecretNameOrNamePrefix? nameOrNamePrefix,
+    SecretsmanagerSecretName? name,
     TfArg<String>? policy,
     TfArg<num>? recoveryWindowInDays,
     TfArg<String>? region,
@@ -111,7 +109,7 @@ final class AwsSecretsmanagerSecret extends Resource {
            if (forceOverwriteReplicaSecret != null)
              'force_overwrite_replica_secret': forceOverwriteReplicaSecret,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (policy != null) 'policy': policy,
            if (recoveryWindowInDays != null)
              'recovery_window_in_days': recoveryWindowInDays,

@@ -10,18 +10,18 @@ const Set<String> _awsAppsyncSourceApiAssociationSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.mergedApiArn(...)`.
-sealed class AppsyncSourceApiAssociationMergedApiArnOrMergedApiId {
-  const AppsyncSourceApiAssociationMergedApiArnOrMergedApiId();
+sealed class AppsyncSourceApiAssociationMergedApi {
+  const AppsyncSourceApiAssociationMergedApi();
 
   /// Sets `merged_api_arn`.
-  const factory AppsyncSourceApiAssociationMergedApiArnOrMergedApiId.mergedApiArn(
+  const factory AppsyncSourceApiAssociationMergedApi.mergedApiArn(
     TfArg<String> mergedApiArn,
-  ) = AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiArn;
+  ) = AppsyncSourceApiAssociationMergedApiMergedApiArn;
 
   /// Sets `merged_api_id`.
-  const factory AppsyncSourceApiAssociationMergedApiArnOrMergedApiId.mergedApiId(
+  const factory AppsyncSourceApiAssociationMergedApi.mergedApiId(
     TfArg<String> mergedApiId,
-  ) = AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiId;
+  ) = AppsyncSourceApiAssociationMergedApiMergedApiId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,12 +33,10 @@ sealed class AppsyncSourceApiAssociationMergedApiArnOrMergedApiId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AppsyncSourceApiAssociationMergedApiArnOrMergedApiId.mergedApiArn] choice: sets `merged_api_arn`.
-final class AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiArn
-    extends AppsyncSourceApiAssociationMergedApiArnOrMergedApiId {
-  const AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiArn(
-    this.mergedApiArn,
-  );
+/// The [AppsyncSourceApiAssociationMergedApi.mergedApiArn] choice: sets `merged_api_arn`.
+final class AppsyncSourceApiAssociationMergedApiMergedApiArn
+    extends AppsyncSourceApiAssociationMergedApi {
+  const AppsyncSourceApiAssociationMergedApiMergedApiArn(this.mergedApiArn);
 
   final TfArg<String> mergedApiArn;
 
@@ -52,12 +50,10 @@ final class AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiArn
   Map<String, TfArg<Object?>> get argMap => {'merged_api_arn': mergedApiArn};
 }
 
-/// The [AppsyncSourceApiAssociationMergedApiArnOrMergedApiId.mergedApiId] choice: sets `merged_api_id`.
-final class AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiId
-    extends AppsyncSourceApiAssociationMergedApiArnOrMergedApiId {
-  const AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiId(
-    this.mergedApiId,
-  );
+/// The [AppsyncSourceApiAssociationMergedApi.mergedApiId] choice: sets `merged_api_id`.
+final class AppsyncSourceApiAssociationMergedApiMergedApiId
+    extends AppsyncSourceApiAssociationMergedApi {
+  const AppsyncSourceApiAssociationMergedApiMergedApiId(this.mergedApiId);
 
   final TfArg<String> mergedApiId;
 
@@ -75,18 +71,18 @@ final class AppsyncSourceApiAssociationMergedApiArnOrMergedApiIdMergedApiId
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.sourceApiArn(...)`.
-sealed class AppsyncSourceApiAssociationSourceApiArnOrSourceApiId {
-  const AppsyncSourceApiAssociationSourceApiArnOrSourceApiId();
+sealed class AppsyncSourceApiAssociationSourceApi {
+  const AppsyncSourceApiAssociationSourceApi();
 
   /// Sets `source_api_arn`.
-  const factory AppsyncSourceApiAssociationSourceApiArnOrSourceApiId.sourceApiArn(
+  const factory AppsyncSourceApiAssociationSourceApi.sourceApiArn(
     TfArg<String> sourceApiArn,
-  ) = AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiArn;
+  ) = AppsyncSourceApiAssociationSourceApiSourceApiArn;
 
   /// Sets `source_api_id`.
-  const factory AppsyncSourceApiAssociationSourceApiArnOrSourceApiId.sourceApiId(
+  const factory AppsyncSourceApiAssociationSourceApi.sourceApiId(
     TfArg<String> sourceApiId,
-  ) = AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiId;
+  ) = AppsyncSourceApiAssociationSourceApiSourceApiId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -98,12 +94,10 @@ sealed class AppsyncSourceApiAssociationSourceApiArnOrSourceApiId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AppsyncSourceApiAssociationSourceApiArnOrSourceApiId.sourceApiArn] choice: sets `source_api_arn`.
-final class AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiArn
-    extends AppsyncSourceApiAssociationSourceApiArnOrSourceApiId {
-  const AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiArn(
-    this.sourceApiArn,
-  );
+/// The [AppsyncSourceApiAssociationSourceApi.sourceApiArn] choice: sets `source_api_arn`.
+final class AppsyncSourceApiAssociationSourceApiSourceApiArn
+    extends AppsyncSourceApiAssociationSourceApi {
+  const AppsyncSourceApiAssociationSourceApiSourceApiArn(this.sourceApiArn);
 
   final TfArg<String> sourceApiArn;
 
@@ -117,12 +111,10 @@ final class AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiArn
   Map<String, TfArg<Object?>> get argMap => {'source_api_arn': sourceApiArn};
 }
 
-/// The [AppsyncSourceApiAssociationSourceApiArnOrSourceApiId.sourceApiId] choice: sets `source_api_id`.
-final class AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiId
-    extends AppsyncSourceApiAssociationSourceApiArnOrSourceApiId {
-  const AppsyncSourceApiAssociationSourceApiArnOrSourceApiIdSourceApiId(
-    this.sourceApiId,
-  );
+/// The [AppsyncSourceApiAssociationSourceApi.sourceApiId] choice: sets `source_api_id`.
+final class AppsyncSourceApiAssociationSourceApiSourceApiId
+    extends AppsyncSourceApiAssociationSourceApi {
+  const AppsyncSourceApiAssociationSourceApiSourceApiId(this.sourceApiId);
 
   final TfArg<String> sourceApiId;
 
@@ -143,11 +135,9 @@ final class AwsAppsyncSourceApiAssociation extends Resource {
   AwsAppsyncSourceApiAssociation({
     required super.localName,
     TfArg<String>? description,
-    required AppsyncSourceApiAssociationMergedApiArnOrMergedApiId
-    mergedApiArnOrMergedApiId,
+    required AppsyncSourceApiAssociationMergedApi mergedApi,
     TfArg<String>? region,
-    required AppsyncSourceApiAssociationSourceApiArnOrSourceApiId
-    sourceApiArnOrSourceApiId,
+    required AppsyncSourceApiAssociationSourceApi sourceApi,
     TfArg<List<Map<String, Object?>>>? sourceApiAssociationConfig,
     super.lifecycle,
     super.dependsOn,
@@ -157,9 +147,9 @@ final class AwsAppsyncSourceApiAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           ...mergedApiArnOrMergedApiId.argMap,
+           ...mergedApi.argMap,
            if (region != null) 'region': region,
-           ...sourceApiArnOrSourceApiId.argMap,
+           ...sourceApi.argMap,
            if (sourceApiAssociationConfig != null)
              'source_api_association_config': sourceApiAssociationConfig,
          },

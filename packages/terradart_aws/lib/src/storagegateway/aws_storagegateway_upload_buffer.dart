@@ -10,18 +10,17 @@ const Set<String> _awsStoragegatewayUploadBufferSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.diskId(...)`.
-sealed class StoragegatewayUploadBufferDiskIdOrDiskPath {
-  const StoragegatewayUploadBufferDiskIdOrDiskPath();
+sealed class StoragegatewayUploadBufferDisk {
+  const StoragegatewayUploadBufferDisk();
 
   /// Sets `disk_id`.
-  const factory StoragegatewayUploadBufferDiskIdOrDiskPath.diskId(
-    TfArg<String> diskId,
-  ) = StoragegatewayUploadBufferDiskIdOrDiskPathDiskId;
+  const factory StoragegatewayUploadBufferDisk.diskId(TfArg<String> diskId) =
+      StoragegatewayUploadBufferDiskDiskId;
 
   /// Sets `disk_path`.
-  const factory StoragegatewayUploadBufferDiskIdOrDiskPath.diskPath(
+  const factory StoragegatewayUploadBufferDisk.diskPath(
     TfArg<String> diskPath,
-  ) = StoragegatewayUploadBufferDiskIdOrDiskPathDiskPath;
+  ) = StoragegatewayUploadBufferDiskDiskPath;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,10 @@ sealed class StoragegatewayUploadBufferDiskIdOrDiskPath {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [StoragegatewayUploadBufferDiskIdOrDiskPath.diskId] choice: sets `disk_id`.
-final class StoragegatewayUploadBufferDiskIdOrDiskPathDiskId
-    extends StoragegatewayUploadBufferDiskIdOrDiskPath {
-  const StoragegatewayUploadBufferDiskIdOrDiskPathDiskId(this.diskId);
+/// The [StoragegatewayUploadBufferDisk.diskId] choice: sets `disk_id`.
+final class StoragegatewayUploadBufferDiskDiskId
+    extends StoragegatewayUploadBufferDisk {
+  const StoragegatewayUploadBufferDiskDiskId(this.diskId);
 
   final TfArg<String> diskId;
 
@@ -50,10 +49,10 @@ final class StoragegatewayUploadBufferDiskIdOrDiskPathDiskId
   Map<String, TfArg<Object?>> get argMap => {'disk_id': diskId};
 }
 
-/// The [StoragegatewayUploadBufferDiskIdOrDiskPath.diskPath] choice: sets `disk_path`.
-final class StoragegatewayUploadBufferDiskIdOrDiskPathDiskPath
-    extends StoragegatewayUploadBufferDiskIdOrDiskPath {
-  const StoragegatewayUploadBufferDiskIdOrDiskPathDiskPath(this.diskPath);
+/// The [StoragegatewayUploadBufferDisk.diskPath] choice: sets `disk_path`.
+final class StoragegatewayUploadBufferDiskDiskPath
+    extends StoragegatewayUploadBufferDisk {
+  const StoragegatewayUploadBufferDiskDiskPath(this.diskPath);
 
   final TfArg<String> diskPath;
 
@@ -73,7 +72,7 @@ final class AwsStoragegatewayUploadBuffer extends Resource {
 
   AwsStoragegatewayUploadBuffer({
     required super.localName,
-    required StoragegatewayUploadBufferDiskIdOrDiskPath diskIdOrDiskPath,
+    required StoragegatewayUploadBufferDisk disk,
     required TfArg<String> gatewayArn,
     TfArg<String>? region,
     super.lifecycle,
@@ -83,7 +82,7 @@ final class AwsStoragegatewayUploadBuffer extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...diskIdOrDiskPath.argMap,
+           ...disk.argMap,
            'gateway_arn': gatewayArn,
            if (region != null) 'region': region,
          },

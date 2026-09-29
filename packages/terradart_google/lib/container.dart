@@ -83,7 +83,7 @@ export 'src/container/google_gke_hub_scope_rbac_role_binding.dart'
     show
         GkeHubScopeRbacRoleBindingRole,
         GkeHubScopeRbacRoleBindingRolePredefinedRole,
-        GkeHubScopeRbacRoleBindingRolePredefinedRoleOrCustomRole,
-        GkeHubScopeRbacRoleBindingRolePredefinedRoleOrCustomRoleCustomRole,
-        GkeHubScopeRbacRoleBindingRolePredefinedRoleOrCustomRolePredefinedRole,
+        GkeHubScopeRbacRoleBindingRoleRole,
+        GkeHubScopeRbacRoleBindingRoleRoleCustomRole,
+        GkeHubScopeRbacRoleBindingRoleRolePredefinedRole,
         GoogleGkeHubScopeRbacRoleBinding;

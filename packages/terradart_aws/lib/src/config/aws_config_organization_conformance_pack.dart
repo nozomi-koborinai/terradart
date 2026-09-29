@@ -12,18 +12,18 @@ const Set<String> _awsConfigOrganizationConformancePackSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.templateBody(...)`.
-sealed class ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri {
-  const ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri();
+sealed class ConfigOrganizationConformancePackTemplate {
+  const ConfigOrganizationConformancePackTemplate();
 
   /// Sets `template_body`.
-  const factory ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri.templateBody(
+  const factory ConfigOrganizationConformancePackTemplate.templateBody(
     TfArg<String> templateBody,
-  ) = ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplateBody;
+  ) = ConfigOrganizationConformancePackTemplateTemplateBody;
 
   /// Sets `template_s3_uri`.
-  const factory ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri.templateS3Uri(
+  const factory ConfigOrganizationConformancePackTemplate.templateS3Uri(
     TfArg<String> templateS3Uri,
-  ) = ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplateS3Uri;
+  ) = ConfigOrganizationConformancePackTemplateTemplateS3Uri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,10 +35,10 @@ sealed class ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri.templateBody] choice: sets `template_body`.
-final class ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplateBody
-    extends ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri {
-  const ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplateBody(
+/// The [ConfigOrganizationConformancePackTemplate.templateBody] choice: sets `template_body`.
+final class ConfigOrganizationConformancePackTemplateTemplateBody
+    extends ConfigOrganizationConformancePackTemplate {
+  const ConfigOrganizationConformancePackTemplateTemplateBody(
     this.templateBody,
   );
 
@@ -54,10 +54,10 @@ final class ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplate
   Map<String, TfArg<Object?>> get argMap => {'template_body': templateBody};
 }
 
-/// The [ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri.templateS3Uri] choice: sets `template_s3_uri`.
-final class ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplateS3Uri
-    extends ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri {
-  const ConfigOrganizationConformancePackTemplateBodyOrTemplateS3UriTemplateS3Uri(
+/// The [ConfigOrganizationConformancePackTemplate.templateS3Uri] choice: sets `template_s3_uri`.
+final class ConfigOrganizationConformancePackTemplateTemplateS3Uri
+    extends ConfigOrganizationConformancePackTemplate {
+  const ConfigOrganizationConformancePackTemplateTemplateS3Uri(
     this.templateS3Uri,
   );
 
@@ -105,8 +105,7 @@ final class AwsConfigOrganizationConformancePack extends Resource {
     TfArg<List<String>>? excludedAccounts,
     required TfArg<String> name,
     TfArg<String>? region,
-    ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri?
-    templateBodyOrTemplateS3Uri,
+    ConfigOrganizationConformancePackTemplate? template,
     List<ConfigOrganizationConformancePackInputParameter>? inputParameter,
     super.lifecycle,
     super.dependsOn,
@@ -121,7 +120,7 @@ final class AwsConfigOrganizationConformancePack extends Resource {
            if (excludedAccounts != null) 'excluded_accounts': excludedAccounts,
            'name': name,
            if (region != null) 'region': region,
-           ...?templateBodyOrTemplateS3Uri?.argMap,
+           ...?template?.argMap,
            if (inputParameter != null)
              'input_parameter': TfArg.literal([
                for (final e in inputParameter) e.encode(),

@@ -244,3 +244,9 @@ customSlots:
 
 extraGetters: |2
     TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+sealedNames:
+  "patch_config.post_step.linux_exec_step_config.gcs_object, patch_config.post_step.linux_exec_step_config.local_path": script
+  "patch_config.post_step.windows_exec_step_config.gcs_object, patch_config.post_step.windows_exec_step_config.local_path": script
+  "patch_config.pre_step.linux_exec_step_config.gcs_object, patch_config.pre_step.linux_exec_step_config.local_path": script
+  "patch_config.pre_step.windows_exec_step_config.gcs_object, patch_config.pre_step.windows_exec_step_config.local_path": script

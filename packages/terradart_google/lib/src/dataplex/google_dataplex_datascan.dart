@@ -156,29 +156,27 @@ final class DataplexDatascanDataDocumentationSpec extends DataplexDatascanSpec {
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
 final class DataplexDatascanData {
-  const DataplexDatascanData({required this.entityOrResource});
+  const DataplexDatascanData({required this.data});
 
-  final DataplexDatascanDataEntityOrResource entityOrResource;
+  final DataplexDatascanDataData data;
 
-  Map<String, Object?> encode() => {...entityOrResource.encode()};
+  Map<String, Object?> encode() => {...data.encode()};
 }
 
 /// Exactly one of `entity`, `resource` on the `data` block of `google_dataplex_datascan`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.entity(...)`.
-sealed class DataplexDatascanDataEntityOrResource {
-  const DataplexDatascanDataEntityOrResource();
+sealed class DataplexDatascanDataData {
+  const DataplexDatascanDataData();
 
   /// Sets `entity`.
-  const factory DataplexDatascanDataEntityOrResource.entity(
-    TfArg<String> entity,
-  ) = DataplexDatascanDataEntityOrResourceEntity;
+  const factory DataplexDatascanDataData.entity(TfArg<String> entity) =
+      DataplexDatascanDataDataEntity;
 
   /// Sets `resource`.
-  const factory DataplexDatascanDataEntityOrResource.resource(
-    TfArg<String> resource,
-  ) = DataplexDatascanDataEntityOrResourceResource;
+  const factory DataplexDatascanDataData.resource(TfArg<String> resource) =
+      DataplexDatascanDataDataResource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -186,10 +184,9 @@ sealed class DataplexDatascanDataEntityOrResource {
   Map<String, Object?> encode();
 }
 
-/// The [DataplexDatascanDataEntityOrResource.entity] choice: sets `entity`.
-final class DataplexDatascanDataEntityOrResourceEntity
-    extends DataplexDatascanDataEntityOrResource {
-  const DataplexDatascanDataEntityOrResourceEntity(this.entity);
+/// The [DataplexDatascanDataData.entity] choice: sets `entity`.
+final class DataplexDatascanDataDataEntity extends DataplexDatascanDataData {
+  const DataplexDatascanDataDataEntity(this.entity);
 
   final TfArg<String> entity;
 
@@ -200,10 +197,9 @@ final class DataplexDatascanDataEntityOrResourceEntity
   Map<String, Object?> encode() => {'entity': entity.toTfJson()};
 }
 
-/// The [DataplexDatascanDataEntityOrResource.resource] choice: sets `resource`.
-final class DataplexDatascanDataEntityOrResourceResource
-    extends DataplexDatascanDataEntityOrResource {
-  const DataplexDatascanDataEntityOrResourceResource(this.resource);
+/// The [DataplexDatascanDataData.resource] choice: sets `resource`.
+final class DataplexDatascanDataDataResource extends DataplexDatascanDataData {
+  const DataplexDatascanDataDataResource(this.resource);
 
   final TfArg<String> resource;
 
@@ -218,39 +214,34 @@ final class DataplexDatascanDataEntityOrResourceResource
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
 final class DataplexDatascanExecutionIdentity {
-  const DataplexDatascanExecutionIdentity({
-    required this.dataplexServiceAgentOrUserCredentialOrServiceAccount,
-  });
+  const DataplexDatascanExecutionIdentity({required this.executionIdentity});
 
-  final DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccount
-  dataplexServiceAgentOrUserCredentialOrServiceAccount;
+  final DataplexDatascanExecutionIdentityExecutionIdentity executionIdentity;
 
-  Map<String, Object?> encode() => {
-    ...dataplexServiceAgentOrUserCredentialOrServiceAccount.encode(),
-  };
+  Map<String, Object?> encode() => {...executionIdentity.encode()};
 }
 
 /// Exactly one of `dataplex_service_agent`, `user_credential`, `service_account` on the `execution_identity` block of `google_dataplex_datascan`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.dataplexServiceAgent(...)`.
-sealed class DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccount {
-  const DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccount();
+sealed class DataplexDatascanExecutionIdentityExecutionIdentity {
+  const DataplexDatascanExecutionIdentityExecutionIdentity();
 
   /// Sets `dataplex_service_agent`.
-  const factory DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccount.dataplexServiceAgent(
+  const factory DataplexDatascanExecutionIdentityExecutionIdentity.dataplexServiceAgent(
     DataplexDatascanExecutionIdentityDataplexServiceAgent dataplexServiceAgent,
-  ) = DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccountDataplexServiceAgent;
+  ) = DataplexDatascanExecutionIdentityExecutionIdentityDataplexServiceAgent;
 
   /// Sets `user_credential`.
-  const factory DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccount.userCredential(
+  const factory DataplexDatascanExecutionIdentityExecutionIdentity.userCredential(
     DataplexDatascanExecutionIdentityUserCredential userCredential,
-  ) = DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccountUserCredential;
+  ) = DataplexDatascanExecutionIdentityExecutionIdentityUserCredential;
 
   /// Sets `service_account`.
-  const factory DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccount.serviceAccount(
+  const factory DataplexDatascanExecutionIdentityExecutionIdentity.serviceAccount(
     DataplexDatascanExecutionIdentityServiceAccount serviceAccount,
-  ) = DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccountServiceAccount;
+  ) = DataplexDatascanExecutionIdentityExecutionIdentityServiceAccount;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -258,11 +249,10 @@ sealed class DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredenti
   Map<String, Object?> encode();
 }
 
-/// The [DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccount.dataplexServiceAgent] choice: sets `dataplex_service_agent`.
-final class DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccountDataplexServiceAgent
-    extends
-        DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccount {
-  const DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccountDataplexServiceAgent(
+/// The [DataplexDatascanExecutionIdentityExecutionIdentity.dataplexServiceAgent] choice: sets `dataplex_service_agent`.
+final class DataplexDatascanExecutionIdentityExecutionIdentityDataplexServiceAgent
+    extends DataplexDatascanExecutionIdentityExecutionIdentity {
+  const DataplexDatascanExecutionIdentityExecutionIdentityDataplexServiceAgent(
     this.dataplexServiceAgent,
   );
 
@@ -278,11 +268,10 @@ final class DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentia
   };
 }
 
-/// The [DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccount.userCredential] choice: sets `user_credential`.
-final class DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccountUserCredential
-    extends
-        DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccount {
-  const DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccountUserCredential(
+/// The [DataplexDatascanExecutionIdentityExecutionIdentity.userCredential] choice: sets `user_credential`.
+final class DataplexDatascanExecutionIdentityExecutionIdentityUserCredential
+    extends DataplexDatascanExecutionIdentityExecutionIdentity {
+  const DataplexDatascanExecutionIdentityExecutionIdentityUserCredential(
     this.userCredential,
   );
 
@@ -295,11 +284,10 @@ final class DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentia
   Map<String, Object?> encode() => {'user_credential': userCredential.encode()};
 }
 
-/// The [DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccount.serviceAccount] choice: sets `service_account`.
-final class DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccountServiceAccount
-    extends
-        DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccount {
-  const DataplexDatascanExecutionIdentityDataplexServiceAgentOrUserCredentialOrServiceAccountServiceAccount(
+/// The [DataplexDatascanExecutionIdentityExecutionIdentity.serviceAccount] choice: sets `service_account`.
+final class DataplexDatascanExecutionIdentityExecutionIdentityServiceAccount
+    extends DataplexDatascanExecutionIdentityExecutionIdentity {
+  const DataplexDatascanExecutionIdentityExecutionIdentityServiceAccount(
     this.serviceAccount,
   );
 
@@ -361,37 +349,34 @@ final class DataplexDatascanExecutionSpec {
 /// `google_dataplex_datascan` (derived from provider schema).
 @immutable
 final class DataplexDatascanExecutionSpecTrigger {
-  const DataplexDatascanExecutionSpecTrigger({
-    required this.onDemandOrScheduleOrOneTime,
-  });
+  const DataplexDatascanExecutionSpecTrigger({required this.trigger});
 
-  final DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTime
-  onDemandOrScheduleOrOneTime;
+  final DataplexDatascanExecutionSpecTriggerTrigger trigger;
 
-  Map<String, Object?> encode() => {...onDemandOrScheduleOrOneTime.encode()};
+  Map<String, Object?> encode() => {...trigger.encode()};
 }
 
 /// Exactly one of `on_demand`, `schedule`, `one_time` on the `execution_spec.trigger` block of `google_dataplex_datascan`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.onDemand(...)`.
-sealed class DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTime {
-  const DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTime();
+sealed class DataplexDatascanExecutionSpecTriggerTrigger {
+  const DataplexDatascanExecutionSpecTriggerTrigger();
 
   /// Sets `on_demand`.
-  const factory DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTime.onDemand(
+  const factory DataplexDatascanExecutionSpecTriggerTrigger.onDemand(
     DataplexDatascanExecutionSpecTriggerOnDemand onDemand,
-  ) = DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTimeOnDemand;
+  ) = DataplexDatascanExecutionSpecTriggerTriggerOnDemand;
 
   /// Sets `schedule`.
-  const factory DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTime.schedule(
+  const factory DataplexDatascanExecutionSpecTriggerTrigger.schedule(
     DataplexDatascanExecutionSpecTriggerSchedule schedule,
-  ) = DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTimeSchedule;
+  ) = DataplexDatascanExecutionSpecTriggerTriggerSchedule;
 
   /// Sets `one_time`.
-  const factory DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTime.oneTime(
+  const factory DataplexDatascanExecutionSpecTriggerTrigger.oneTime(
     DataplexDatascanExecutionSpecTriggerOneTime oneTime,
-  ) = DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTimeOneTime;
+  ) = DataplexDatascanExecutionSpecTriggerTriggerOneTime;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -399,12 +384,10 @@ sealed class DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTime {
   Map<String, Object?> encode();
 }
 
-/// The [DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTime.onDemand] choice: sets `on_demand`.
-final class DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTimeOnDemand
-    extends DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTime {
-  const DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTimeOnDemand(
-    this.onDemand,
-  );
+/// The [DataplexDatascanExecutionSpecTriggerTrigger.onDemand] choice: sets `on_demand`.
+final class DataplexDatascanExecutionSpecTriggerTriggerOnDemand
+    extends DataplexDatascanExecutionSpecTriggerTrigger {
+  const DataplexDatascanExecutionSpecTriggerTriggerOnDemand(this.onDemand);
 
   final DataplexDatascanExecutionSpecTriggerOnDemand onDemand;
 
@@ -415,12 +398,10 @@ final class DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTimeOnDem
   Map<String, Object?> encode() => {'on_demand': onDemand.encode()};
 }
 
-/// The [DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTime.schedule] choice: sets `schedule`.
-final class DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTimeSchedule
-    extends DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTime {
-  const DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTimeSchedule(
-    this.schedule,
-  );
+/// The [DataplexDatascanExecutionSpecTriggerTrigger.schedule] choice: sets `schedule`.
+final class DataplexDatascanExecutionSpecTriggerTriggerSchedule
+    extends DataplexDatascanExecutionSpecTriggerTrigger {
+  const DataplexDatascanExecutionSpecTriggerTriggerSchedule(this.schedule);
 
   final DataplexDatascanExecutionSpecTriggerSchedule schedule;
 
@@ -431,12 +412,10 @@ final class DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTimeSched
   Map<String, Object?> encode() => {'schedule': schedule.encode()};
 }
 
-/// The [DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTime.oneTime] choice: sets `one_time`.
-final class DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTimeOneTime
-    extends DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTime {
-  const DataplexDatascanExecutionSpecTriggerOnDemandOrScheduleOrOneTimeOneTime(
-    this.oneTime,
-  );
+/// The [DataplexDatascanExecutionSpecTriggerTrigger.oneTime] choice: sets `one_time`.
+final class DataplexDatascanExecutionSpecTriggerTriggerOneTime
+    extends DataplexDatascanExecutionSpecTriggerTrigger {
+  const DataplexDatascanExecutionSpecTriggerTriggerOneTime(this.oneTime);
 
   final DataplexDatascanExecutionSpecTriggerOneTime oneTime;
 

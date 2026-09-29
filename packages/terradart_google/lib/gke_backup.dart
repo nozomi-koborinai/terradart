@@ -11,12 +11,12 @@ export 'src/gke_backup/google_gke_backup_backup_channel.dart'
 export 'src/gke_backup/google_gke_backup_backup_plan.dart'
     show
         GkeBackupBackupPlanBackupConfig,
-        GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabels,
-        GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsAllNamespaces,
-        GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedApplications,
-        GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedNamespaceLabels,
-        GkeBackupBackupPlanBackupConfigAllNamespacesOrSelectedNamespacesOrSelectedApplicationsOrSelectedNamespaceLabelsSelectedNamespaces,
         GkeBackupBackupPlanBackupConfigEncryptionKey,
+        GkeBackupBackupPlanBackupConfigScope,
+        GkeBackupBackupPlanBackupConfigScopeAllNamespaces,
+        GkeBackupBackupPlanBackupConfigScopeSelectedApplications,
+        GkeBackupBackupPlanBackupConfigScopeSelectedNamespaceLabels,
+        GkeBackupBackupPlanBackupConfigScopeSelectedNamespaces,
         GkeBackupBackupPlanBackupConfigSelectedApplications,
         GkeBackupBackupPlanBackupConfigSelectedApplicationsNamespacedNames,
         GkeBackupBackupPlanBackupConfigSelectedNamespaceLabels,

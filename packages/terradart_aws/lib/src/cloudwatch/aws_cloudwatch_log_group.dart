@@ -22,17 +22,16 @@ enum CloudwatchLogGroupLogGroupClass implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class CloudwatchLogGroupNameOrNamePrefix {
-  const CloudwatchLogGroupNameOrNamePrefix();
+sealed class CloudwatchLogGroupName {
+  const CloudwatchLogGroupName();
 
   /// Sets `name`.
-  const factory CloudwatchLogGroupNameOrNamePrefix.name(TfArg<String> name) =
-      CloudwatchLogGroupNameOrNamePrefixName;
+  const factory CloudwatchLogGroupName.name(TfArg<String> name) =
+      CloudwatchLogGroupNameName;
 
   /// Sets `name_prefix`.
-  const factory CloudwatchLogGroupNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = CloudwatchLogGroupNameOrNamePrefixNamePrefix;
+  const factory CloudwatchLogGroupName.namePrefix(TfArg<String> namePrefix) =
+      CloudwatchLogGroupNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,10 +43,9 @@ sealed class CloudwatchLogGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudwatchLogGroupNameOrNamePrefix.name] choice: sets `name`.
-final class CloudwatchLogGroupNameOrNamePrefixName
-    extends CloudwatchLogGroupNameOrNamePrefix {
-  const CloudwatchLogGroupNameOrNamePrefixName(this.name);
+/// The [CloudwatchLogGroupName.name] choice: sets `name`.
+final class CloudwatchLogGroupNameName extends CloudwatchLogGroupName {
+  const CloudwatchLogGroupNameName(this.name);
 
   final TfArg<String> name;
 
@@ -61,10 +59,9 @@ final class CloudwatchLogGroupNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [CloudwatchLogGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class CloudwatchLogGroupNameOrNamePrefixNamePrefix
-    extends CloudwatchLogGroupNameOrNamePrefix {
-  const CloudwatchLogGroupNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [CloudwatchLogGroupName.namePrefix] choice: sets `name_prefix`.
+final class CloudwatchLogGroupNameNamePrefix extends CloudwatchLogGroupName {
+  const CloudwatchLogGroupNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -92,7 +89,7 @@ final class AwsCloudwatchLogGroup extends Resource {
     TfArg<bool>? deletionProtectionEnabled,
     TfArg<String>? kmsKeyId,
     TfArg<CloudwatchLogGroupLogGroupClass>? logGroupClass,
-    CloudwatchLogGroupNameOrNamePrefix? nameOrNamePrefix,
+    CloudwatchLogGroupName? name,
     TfArg<String>? region,
     TfArg<num>? retentionInDays,
     TfArg<bool>? skipDestroy,
@@ -108,7 +105,7 @@ final class AwsCloudwatchLogGroup extends Resource {
              'deletion_protection_enabled': deletionProtectionEnabled,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
            if (logGroupClass != null) 'log_group_class': logGroupClass,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (retentionInDays != null) 'retention_in_days': retentionInDays,
            if (skipDestroy != null) 'skip_destroy': skipDestroy,

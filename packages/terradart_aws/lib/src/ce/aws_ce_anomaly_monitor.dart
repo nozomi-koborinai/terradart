@@ -33,18 +33,18 @@ enum CeAnomalyMonitorMonitorType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.monitorDimension(...)`.
-sealed class CeAnomalyMonitorMonitorDimensionOrMonitorSpecification {
-  const CeAnomalyMonitorMonitorDimensionOrMonitorSpecification();
+sealed class CeAnomalyMonitorMonitor {
+  const CeAnomalyMonitorMonitor();
 
   /// Sets `monitor_dimension`.
-  const factory CeAnomalyMonitorMonitorDimensionOrMonitorSpecification.monitorDimension(
+  const factory CeAnomalyMonitorMonitor.monitorDimension(
     TfArg<CeAnomalyMonitorMonitorDimension> monitorDimension,
-  ) = CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorDimension;
+  ) = CeAnomalyMonitorMonitorMonitorDimension;
 
   /// Sets `monitor_specification`.
-  const factory CeAnomalyMonitorMonitorDimensionOrMonitorSpecification.monitorSpecification(
+  const factory CeAnomalyMonitorMonitor.monitorSpecification(
     TfArg<String> monitorSpecification,
-  ) = CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorSpecification;
+  ) = CeAnomalyMonitorMonitorMonitorSpecification;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -56,12 +56,10 @@ sealed class CeAnomalyMonitorMonitorDimensionOrMonitorSpecification {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CeAnomalyMonitorMonitorDimensionOrMonitorSpecification.monitorDimension] choice: sets `monitor_dimension`.
-final class CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorDimension
-    extends CeAnomalyMonitorMonitorDimensionOrMonitorSpecification {
-  const CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorDimension(
-    this.monitorDimension,
-  );
+/// The [CeAnomalyMonitorMonitor.monitorDimension] choice: sets `monitor_dimension`.
+final class CeAnomalyMonitorMonitorMonitorDimension
+    extends CeAnomalyMonitorMonitor {
+  const CeAnomalyMonitorMonitorMonitorDimension(this.monitorDimension);
 
   final TfArg<CeAnomalyMonitorMonitorDimension> monitorDimension;
 
@@ -79,12 +77,10 @@ final class CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorDimensi
   };
 }
 
-/// The [CeAnomalyMonitorMonitorDimensionOrMonitorSpecification.monitorSpecification] choice: sets `monitor_specification`.
-final class CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorSpecification
-    extends CeAnomalyMonitorMonitorDimensionOrMonitorSpecification {
-  const CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorSpecification(
-    this.monitorSpecification,
-  );
+/// The [CeAnomalyMonitorMonitor.monitorSpecification] choice: sets `monitor_specification`.
+final class CeAnomalyMonitorMonitorMonitorSpecification
+    extends CeAnomalyMonitorMonitor {
+  const CeAnomalyMonitorMonitorMonitorSpecification(this.monitorSpecification);
 
   final TfArg<String> monitorSpecification;
 
@@ -108,8 +104,7 @@ final class AwsCeAnomalyMonitor extends Resource {
 
   AwsCeAnomalyMonitor({
     required super.localName,
-    CeAnomalyMonitorMonitorDimensionOrMonitorSpecification?
-    monitorDimensionOrMonitorSpecification,
+    CeAnomalyMonitorMonitor? monitor,
     required TfArg<CeAnomalyMonitorMonitorType> monitorType,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,
@@ -120,7 +115,7 @@ final class AwsCeAnomalyMonitor extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?monitorDimensionOrMonitorSpecification?.argMap,
+           ...?monitor?.argMap,
            'monitor_type': monitorType,
            'name': name,
            if (tags != null) 'tags': tags,

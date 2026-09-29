@@ -42,6 +42,16 @@ Per-package changelogs live alongside each package and are the system of record 
   `terradart-migrate` emits the dot-shorthand form — also for a
   hand-written sealed type that declares such factories
   (`replication: .auto()`). See `MIGRATING.md`.
+- **Sealed arguments take concept names** (**breaking**;
+  `terradart_codegen`, every provider package) — a sealed slot is named
+  for what its members are alternatives of, like a protobuf `oneof`:
+  `name: .namePrefix('app-')` instead of `nameOrNamePrefix:`, `match:`,
+  `destinationConfig:`. The name comes from the new `sealedNames` override
+  axis, else from the members' shared prefix or suffix or their whole
+  block, else it falls back to the `Or` name and waits in
+  `tool/sealed_name_debt.yaml` (`awaiting-name:`), which `wrap --check`
+  keeps in sync. The 16-member cap is gone: every sealable group seals.
+  See `MIGRATING.md`.
 - **`terradart_google` compute and networking input groups are sealed
   types** (**breaking**) — the GA lane's first `deriveExactlyOne`
   adoption: 16 Magic Modules groups on 13 resources (11 `conflicts` sets

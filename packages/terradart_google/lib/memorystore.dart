@@ -16,9 +16,6 @@ export 'src/memorystore/google_memorystore_instance.dart'
         MemorystoreInstanceDesiredAutoCreatedEndpoints,
         MemorystoreInstanceDesiredPscAutoConnections,
         MemorystoreInstanceGcsSource,
-        MemorystoreInstanceGcsSourceOrManagedBackupSource,
-        MemorystoreInstanceGcsSourceOrManagedBackupSourceGcsSource,
-        MemorystoreInstanceGcsSourceOrManagedBackupSourceManagedBackupSource,
         MemorystoreInstanceMaintenancePolicy,
         MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindow,
         MemorystoreInstanceMaintenancePolicyWeeklyMaintenanceWindowDay,
@@ -30,6 +27,9 @@ export 'src/memorystore/google_memorystore_instance.dart'
         MemorystoreInstancePersistenceConfigMode,
         MemorystoreInstancePersistenceConfigRdbConfig,
         MemorystoreInstanceServerCaMode,
+        MemorystoreInstanceSource,
+        MemorystoreInstanceSourceGcsSource,
+        MemorystoreInstanceSourceManagedBackupSource,
         MemorystoreInstanceZoneDistributionConfig,
         MemorystoreInstanceZoneDistributionConfigMode;
 export 'src/memorystore/google_memorystore_instance_desired_user_created_endpoints.dart'

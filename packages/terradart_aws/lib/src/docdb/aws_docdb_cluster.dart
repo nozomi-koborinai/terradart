@@ -51,18 +51,18 @@ enum DocdbClusterStorageType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.clusterIdentifier(...)`.
-sealed class DocdbClusterClusterIdentifierOrClusterIdentifierPrefix {
-  const DocdbClusterClusterIdentifierOrClusterIdentifierPrefix();
+sealed class DocdbClusterClusterIdentifier {
+  const DocdbClusterClusterIdentifier();
 
   /// Sets `cluster_identifier`.
-  const factory DocdbClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifier(
+  const factory DocdbClusterClusterIdentifier.clusterIdentifier(
     TfArg<String> clusterIdentifier,
-  ) = DocdbClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier;
+  ) = DocdbClusterClusterIdentifierClusterIdentifier;
 
   /// Sets `cluster_identifier_prefix`.
-  const factory DocdbClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifierPrefix(
+  const factory DocdbClusterClusterIdentifier.clusterIdentifierPrefix(
     TfArg<String> clusterIdentifierPrefix,
-  ) = DocdbClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix;
+  ) = DocdbClusterClusterIdentifierClusterIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -74,12 +74,10 @@ sealed class DocdbClusterClusterIdentifierOrClusterIdentifierPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DocdbClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifier] choice: sets `cluster_identifier`.
-final class DocdbClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier
-    extends DocdbClusterClusterIdentifierOrClusterIdentifierPrefix {
-  const DocdbClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifier(
-    this.clusterIdentifier,
-  );
+/// The [DocdbClusterClusterIdentifier.clusterIdentifier] choice: sets `cluster_identifier`.
+final class DocdbClusterClusterIdentifierClusterIdentifier
+    extends DocdbClusterClusterIdentifier {
+  const DocdbClusterClusterIdentifierClusterIdentifier(this.clusterIdentifier);
 
   final TfArg<String> clusterIdentifier;
 
@@ -97,10 +95,10 @@ final class DocdbClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentif
   };
 }
 
-/// The [DocdbClusterClusterIdentifierOrClusterIdentifierPrefix.clusterIdentifierPrefix] choice: sets `cluster_identifier_prefix`.
-final class DocdbClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix
-    extends DocdbClusterClusterIdentifierOrClusterIdentifierPrefix {
-  const DocdbClusterClusterIdentifierOrClusterIdentifierPrefixClusterIdentifierPrefix(
+/// The [DocdbClusterClusterIdentifier.clusterIdentifierPrefix] choice: sets `cluster_identifier_prefix`.
+final class DocdbClusterClusterIdentifierClusterIdentifierPrefix
+    extends DocdbClusterClusterIdentifier {
+  const DocdbClusterClusterIdentifierClusterIdentifierPrefix(
     this.clusterIdentifierPrefix,
   );
 
@@ -302,20 +300,19 @@ final class DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierSnapshotIdentifi
 @immutable
 final class DocdbClusterRestoreToPointInTime {
   const DocdbClusterRestoreToPointInTime({
-    this.restoreToTimeOrUseLatestRestorableTime,
+    this.time,
     this.restoreType,
     required this.sourceClusterIdentifier,
   });
 
-  final DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime?
-  restoreToTimeOrUseLatestRestorableTime;
+  final DocdbClusterRestoreToPointInTimeTime? time;
 
   final TfArg<DocdbClusterRestoreToPointInTimeRestoreType>? restoreType;
 
   final TfArg<String> sourceClusterIdentifier;
 
   Map<String, Object?> encode() => {
-    ...?restoreToTimeOrUseLatestRestorableTime?.encode(),
+    ...?time?.encode(),
     if (restoreType != null) 'restore_type': restoreType!.toTfJson(),
     'source_cluster_identifier': sourceClusterIdentifier.toTfJson(),
   };
@@ -326,18 +323,18 @@ final class DocdbClusterRestoreToPointInTime {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.restoreToTime(...)`.
-sealed class DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime {
-  const DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime();
+sealed class DocdbClusterRestoreToPointInTimeTime {
+  const DocdbClusterRestoreToPointInTimeTime();
 
   /// Sets `restore_to_time`.
-  const factory DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime.restoreToTime(
+  const factory DocdbClusterRestoreToPointInTimeTime.restoreToTime(
     TfArg<String> restoreToTime,
-  ) = DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeRestoreToTime;
+  ) = DocdbClusterRestoreToPointInTimeTimeRestoreToTime;
 
   /// Sets `use_latest_restorable_time`.
-  const factory DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime.useLatestRestorableTime(
+  const factory DocdbClusterRestoreToPointInTimeTime.useLatestRestorableTime(
     TfArg<bool> useLatestRestorableTime,
-  ) = DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeUseLatestRestorableTime;
+  ) = DocdbClusterRestoreToPointInTimeTimeUseLatestRestorableTime;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -345,13 +342,10 @@ sealed class DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableT
   Map<String, Object?> encode();
 }
 
-/// The [DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime.restoreToTime] choice: sets `restore_to_time`.
-final class DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeRestoreToTime
-    extends
-        DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime {
-  const DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeRestoreToTime(
-    this.restoreToTime,
-  );
+/// The [DocdbClusterRestoreToPointInTimeTime.restoreToTime] choice: sets `restore_to_time`.
+final class DocdbClusterRestoreToPointInTimeTimeRestoreToTime
+    extends DocdbClusterRestoreToPointInTimeTime {
+  const DocdbClusterRestoreToPointInTimeTimeRestoreToTime(this.restoreToTime);
 
   final TfArg<String> restoreToTime;
 
@@ -364,11 +358,10 @@ final class DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTi
   };
 }
 
-/// The [DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime.useLatestRestorableTime] choice: sets `use_latest_restorable_time`.
-final class DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeUseLatestRestorableTime
-    extends
-        DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTime {
-  const DocdbClusterRestoreToPointInTimeRestoreToTimeOrUseLatestRestorableTimeUseLatestRestorableTime(
+/// The [DocdbClusterRestoreToPointInTimeTime.useLatestRestorableTime] choice: sets `use_latest_restorable_time`.
+final class DocdbClusterRestoreToPointInTimeTimeUseLatestRestorableTime
+    extends DocdbClusterRestoreToPointInTimeTime {
+  const DocdbClusterRestoreToPointInTimeTimeUseLatestRestorableTime(
     this.useLatestRestorableTime,
   );
 
@@ -422,8 +415,7 @@ final class AwsDocdbCluster extends Resource {
     TfArg<bool>? applyImmediately,
     TfArg<List<String>>? availabilityZones,
     TfArg<num>? backupRetentionPeriod,
-    DocdbClusterClusterIdentifierOrClusterIdentifierPrefix?
-    clusterIdentifierOrClusterIdentifierPrefix,
+    DocdbClusterClusterIdentifier? clusterIdentifier,
     TfArg<List<String>>? clusterMembers,
     TfArg<String>? dbClusterParameterGroupName,
     TfArg<String>? dbSubnetGroupName,
@@ -467,7 +459,7 @@ final class AwsDocdbCluster extends Resource {
              'availability_zones': availabilityZones,
            if (backupRetentionPeriod != null)
              'backup_retention_period': backupRetentionPeriod,
-           ...?clusterIdentifierOrClusterIdentifierPrefix?.argMap,
+           ...?clusterIdentifier?.argMap,
            if (clusterMembers != null) 'cluster_members': clusterMembers,
            if (dbClusterParameterGroupName != null)
              'db_cluster_parameter_group_name': dbClusterParameterGroupName,

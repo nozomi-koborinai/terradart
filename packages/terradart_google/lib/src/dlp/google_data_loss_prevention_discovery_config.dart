@@ -1607,15 +1607,13 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterColl
 @immutable
 final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters {
   const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFilters({
-    this.namespacedTagValueOrNamespacedTagKey,
+    this.namespacedTag,
   });
 
-  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey?
-  namespacedTagValueOrNamespacedTagKey;
+  final DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTag?
+  namespacedTag;
 
-  Map<String, Object?> encode() => {
-    ...?namespacedTagValueOrNamespacedTagKey?.encode(),
-  };
+  Map<String, Object?> encode() => {...?namespacedTag?.encode()};
 }
 
 /// At most one of `namespaced_tag_value`, `namespaced_tag_key` on the `targets.cloud_storage_target.filter.collection.include_tags.tag_filters` block of `google_data_loss_prevention_discovery_config`: the provider rejects
@@ -1623,18 +1621,18 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterColl
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.namespacedTagValue(...)`.
-sealed class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey();
+sealed class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTag {
+  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTag();
 
   /// Sets `namespaced_tag_value`.
-  const factory DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey.namespacedTagValue(
+  const factory DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTag.namespacedTagValue(
     TfArg<String> namespacedTagValue,
-  ) = DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKeyNamespacedTagValue;
+  ) = DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagNamespacedTagValue;
 
   /// Sets `namespaced_tag_key`.
-  const factory DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey.namespacedTagKey(
+  const factory DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTag.namespacedTagKey(
     TfArg<String> namespacedTagKey,
-  ) = DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKeyNamespacedTagKey;
+  ) = DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagNamespacedTagKey;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1642,11 +1640,11 @@ sealed class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCol
   Map<String, Object?> encode();
 }
 
-/// The [DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey.namespacedTagValue] choice: sets `namespaced_tag_value`.
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKeyNamespacedTagValue
+/// The [DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTag.namespacedTagValue] choice: sets `namespaced_tag_value`.
+final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagNamespacedTagValue
     extends
-        DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKeyNamespacedTagValue(
+        DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTag {
+  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagNamespacedTagValue(
     this.namespacedTagValue,
   );
 
@@ -1661,11 +1659,11 @@ final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterColl
   };
 }
 
-/// The [DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey.namespacedTagKey] choice: sets `namespaced_tag_key`.
-final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKeyNamespacedTagKey
+/// The [DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTag.namespacedTagKey] choice: sets `namespaced_tag_key`.
+final class DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagNamespacedTagKey
     extends
-        DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKey {
-  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagValueOrNamespacedTagKeyNamespacedTagKey(
+        DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTag {
+  const DataLossPreventionDiscoveryConfigTargetsCloudStorageTargetFilterCollectionIncludeTagsTagFiltersNamespacedTagNamespacedTagKey(
     this.namespacedTagKey,
   );
 

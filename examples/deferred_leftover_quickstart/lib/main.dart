@@ -105,9 +105,7 @@ final class DeferredLeftoverStack extends Stack {
         billingAccount: TfArg.literal('billingAccounts/000000-000000-000000'),
         deletionPolicy: TfArg.literal('DELETE'),
         amount: BillingBudgetAmount(
-          specifiedAmountOrLastPeriodAmount: .lastPeriodAmount(
-            TfArg.literal(true),
-          ),
+          amount: .lastPeriodAmount(TfArg.literal(true)),
         ),
       ),
     );
@@ -242,10 +240,9 @@ final class DeferredLeftoverStack extends Stack {
         ),
         targetResourceConfig:
             CloudSecurityComplianceFrameworkDeploymentTargetResourceConfig(
-              existingTargetResourceOrTargetResourceCreationConfig:
-                  .existingTargetResource(
-                    TfArg.literal('organizations/123456789'),
-                  ),
+              targetResourceConfig: .existingTargetResource(
+                TfArg.literal('organizations/123456789'),
+              ),
             ),
       ),
     );
@@ -420,21 +417,19 @@ final class DeferredLeftoverStack extends Stack {
         streamId: TfArg.literal('terradart-leftover'),
         destinationConfig: DatastreamStreamDestinationConfig(
           destinationConnectionProfile: TfArg.literal('terradart-leftover'),
-          gcsDestinationConfigOrBigqueryDestinationConfig:
-              const .gcsDestinationConfig(
-                DatastreamStreamDestinationConfigGcsDestinationConfig(
-                  avroFileFormatOrJsonFileFormat: .avroFileFormat(
-                    DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat(),
-                  ),
-                ),
+          destinationConfig: const .gcsDestinationConfig(
+            DatastreamStreamDestinationConfigGcsDestinationConfig(
+              fileFormat: .avroFileFormat(
+                DatastreamStreamDestinationConfigGcsDestinationConfigAvroFileFormat(),
               ),
+            ),
+          ),
         ),
         sourceConfig: DatastreamStreamSourceConfig(
           sourceConnectionProfile: TfArg.literal('terradart-leftover'),
-          mysqlSourceConfigOrOracleSourceConfigOrPostgresqlSourceConfigOrSqlServerSourceConfigOrSalesforceSourceConfigOrSpannerSourceConfigOrMongodbSourceConfig:
-              const .mysqlSourceConfig(
-                DatastreamStreamSourceConfigMysqlSourceConfig(),
-              ),
+          sourceConfig: const .mysqlSourceConfig(
+            DatastreamStreamSourceConfigMysqlSourceConfig(),
+          ),
         ),
         backfillNone: const DatastreamStreamBackfillNone(),
       ),

@@ -51,3 +51,6 @@ extraGetters: |2
 
     /// Reference to `name` attribute.
     TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+sealedNames:
+  "load_balancer.f5_config, load_balancer.manual_lb_config, load_balancer.metal_lb_config": lb_config

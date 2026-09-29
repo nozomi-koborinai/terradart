@@ -86,17 +86,16 @@ final class CloudwatchEventRuleIsEnabledOrStateState
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class CloudwatchEventRuleNameOrNamePrefix {
-  const CloudwatchEventRuleNameOrNamePrefix();
+sealed class CloudwatchEventRuleName {
+  const CloudwatchEventRuleName();
 
   /// Sets `name`.
-  const factory CloudwatchEventRuleNameOrNamePrefix.name(TfArg<String> name) =
-      CloudwatchEventRuleNameOrNamePrefixName;
+  const factory CloudwatchEventRuleName.name(TfArg<String> name) =
+      CloudwatchEventRuleNameName;
 
   /// Sets `name_prefix`.
-  const factory CloudwatchEventRuleNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = CloudwatchEventRuleNameOrNamePrefixNamePrefix;
+  const factory CloudwatchEventRuleName.namePrefix(TfArg<String> namePrefix) =
+      CloudwatchEventRuleNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -108,10 +107,9 @@ sealed class CloudwatchEventRuleNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudwatchEventRuleNameOrNamePrefix.name] choice: sets `name`.
-final class CloudwatchEventRuleNameOrNamePrefixName
-    extends CloudwatchEventRuleNameOrNamePrefix {
-  const CloudwatchEventRuleNameOrNamePrefixName(this.name);
+/// The [CloudwatchEventRuleName.name] choice: sets `name`.
+final class CloudwatchEventRuleNameName extends CloudwatchEventRuleName {
+  const CloudwatchEventRuleNameName(this.name);
 
   final TfArg<String> name;
 
@@ -125,10 +123,9 @@ final class CloudwatchEventRuleNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [CloudwatchEventRuleNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class CloudwatchEventRuleNameOrNamePrefixNamePrefix
-    extends CloudwatchEventRuleNameOrNamePrefix {
-  const CloudwatchEventRuleNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [CloudwatchEventRuleName.namePrefix] choice: sets `name_prefix`.
+final class CloudwatchEventRuleNameNamePrefix extends CloudwatchEventRuleName {
+  const CloudwatchEventRuleNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -153,7 +150,7 @@ final class AwsCloudwatchEventRule extends Resource {
     TfArg<String>? eventPattern,
     TfArg<bool>? forceDestroy,
     CloudwatchEventRuleIsEnabledOrState? isEnabledOrState,
-    CloudwatchEventRuleNameOrNamePrefix? nameOrNamePrefix,
+    CloudwatchEventRuleName? name,
     TfArg<String>? region,
     TfArg<String>? roleArn,
     TfArg<String>? scheduleExpression,
@@ -170,7 +167,7 @@ final class AwsCloudwatchEventRule extends Resource {
            if (eventPattern != null) 'event_pattern': eventPattern,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
            ...?isEnabledOrState?.argMap,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (roleArn != null) 'role_arn': roleArn,
            if (scheduleExpression != null)

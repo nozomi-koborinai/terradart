@@ -24,3 +24,7 @@ paramOrder:
 # extraGetters: |2
 #     TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 #     TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+sealedNames:
+  "vector_db_config, vertex_ai_search_config": backend
+  "vector_db_config.pinecone, vector_db_config.rag_managed_db, vector_db_config.vertex_vector_search": backend

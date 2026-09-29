@@ -51,17 +51,16 @@ enum CodedeployDeploymentConfigMinimumHealthyHostsType
 final class CodedeployDeploymentConfigTrafficRoutingConfig {
   const CodedeployDeploymentConfigTrafficRoutingConfig({
     this.type,
-    this.timeBasedCanaryOrTimeBasedLinear,
+    this.timeBased,
   });
 
   final TfArg<CodedeployDeploymentConfigTrafficRoutingConfigType>? type;
 
-  final CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear?
-  timeBasedCanaryOrTimeBasedLinear;
+  final CodedeployDeploymentConfigTrafficRoutingConfigTimeBased? timeBased;
 
   Map<String, Object?> encode() => {
     if (type != null) 'type': type!.toTfJson(),
-    ...?timeBasedCanaryOrTimeBasedLinear?.encode(),
+    ...?timeBased?.encode(),
   };
 }
 
@@ -70,20 +69,20 @@ final class CodedeployDeploymentConfigTrafficRoutingConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.timeBasedCanary(...)`.
-sealed class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear {
-  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear();
+sealed class CodedeployDeploymentConfigTrafficRoutingConfigTimeBased {
+  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBased();
 
   /// Sets `time_based_canary`.
-  const factory CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear.timeBasedCanary(
+  const factory CodedeployDeploymentConfigTrafficRoutingConfigTimeBased.timeBasedCanary(
     CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanary
     timeBasedCanary,
-  ) = CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinearTimeBasedCanary;
+  ) = CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedTimeBasedCanary;
 
   /// Sets `time_based_linear`.
-  const factory CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear.timeBasedLinear(
+  const factory CodedeployDeploymentConfigTrafficRoutingConfigTimeBased.timeBasedLinear(
     CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedLinear
     timeBasedLinear,
-  ) = CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinearTimeBasedLinear;
+  ) = CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedTimeBasedLinear;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -91,11 +90,10 @@ sealed class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTime
   Map<String, Object?> encode();
 }
 
-/// The [CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear.timeBasedCanary] choice: sets `time_based_canary`.
-final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinearTimeBasedCanary
-    extends
-        CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear {
-  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinearTimeBasedCanary(
+/// The [CodedeployDeploymentConfigTrafficRoutingConfigTimeBased.timeBasedCanary] choice: sets `time_based_canary`.
+final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedTimeBasedCanary
+    extends CodedeployDeploymentConfigTrafficRoutingConfigTimeBased {
+  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedTimeBasedCanary(
     this.timeBasedCanary,
   );
 
@@ -111,11 +109,10 @@ final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeB
   };
 }
 
-/// The [CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear.timeBasedLinear] choice: sets `time_based_linear`.
-final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinearTimeBasedLinear
-    extends
-        CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinear {
-  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedCanaryOrTimeBasedLinearTimeBasedLinear(
+/// The [CodedeployDeploymentConfigTrafficRoutingConfigTimeBased.timeBasedLinear] choice: sets `time_based_linear`.
+final class CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedTimeBasedLinear
+    extends CodedeployDeploymentConfigTrafficRoutingConfigTimeBased {
+  const CodedeployDeploymentConfigTrafficRoutingConfigTimeBasedTimeBasedLinear(
     this.timeBasedLinear,
   );
 

@@ -11,17 +11,15 @@ const Set<String> _awsMemorydbAclSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class MemorydbAclNameOrNamePrefix {
-  const MemorydbAclNameOrNamePrefix();
+sealed class MemorydbAclName {
+  const MemorydbAclName();
 
   /// Sets `name`.
-  const factory MemorydbAclNameOrNamePrefix.name(TfArg<String> name) =
-      MemorydbAclNameOrNamePrefixName;
+  const factory MemorydbAclName.name(TfArg<String> name) = MemorydbAclNameName;
 
   /// Sets `name_prefix`.
-  const factory MemorydbAclNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = MemorydbAclNameOrNamePrefixNamePrefix;
+  const factory MemorydbAclName.namePrefix(TfArg<String> namePrefix) =
+      MemorydbAclNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +31,9 @@ sealed class MemorydbAclNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [MemorydbAclNameOrNamePrefix.name] choice: sets `name`.
-final class MemorydbAclNameOrNamePrefixName
-    extends MemorydbAclNameOrNamePrefix {
-  const MemorydbAclNameOrNamePrefixName(this.name);
+/// The [MemorydbAclName.name] choice: sets `name`.
+final class MemorydbAclNameName extends MemorydbAclName {
+  const MemorydbAclNameName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +47,9 @@ final class MemorydbAclNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [MemorydbAclNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class MemorydbAclNameOrNamePrefixNamePrefix
-    extends MemorydbAclNameOrNamePrefix {
-  const MemorydbAclNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [MemorydbAclName.namePrefix] choice: sets `name_prefix`.
+final class MemorydbAclNameNamePrefix extends MemorydbAclName {
+  const MemorydbAclNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -73,7 +69,7 @@ final class AwsMemorydbAcl extends Resource {
 
   AwsMemorydbAcl({
     required super.localName,
-    MemorydbAclNameOrNamePrefix? nameOrNamePrefix,
+    MemorydbAclName? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? userNames,
@@ -84,7 +80,7 @@ final class AwsMemorydbAcl extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            if (userNames != null) 'user_names': userNames,

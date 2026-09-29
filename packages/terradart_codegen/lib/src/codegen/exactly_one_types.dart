@@ -22,25 +22,227 @@ typedef ExactlyOneVariant = ({
   String? deprecation,
 });
 
-/// The most members a sealed group joins into its names; a larger group
-/// (`google_chronicle_feed` `details`, 75 feed kinds) stays unsealed until a
-/// human names it.
-const maxExactlyOneMembers = 16;
+/// The member paths a `sealedNames` key lists (`"b, a"` → `{a, b}`).
+Set<String> sealedGroupKey(String key) => {
+  for (final part in key.split(','))
+    if (part.trim().isNotEmpty) part.trim(),
+};
 
-/// Why [members] is too large to seal, or null when it is not.
-String? exactlyOneTooLarge(List<String> members) =>
-    members.length > maxExactlyOneMembers
-    ? 'the group has ${members.length} members, more than '
-          '$maxExactlyOneMembers a sealed name joins'
-    : null;
+/// The canonical `sealedNames` key of a group whose members sit in the
+/// block at [blockPath] (empty for the resource itself): the members'
+/// dotted paths, sorted, joined with `, `.
+String sealedGroupKeyOf(List<String> blockPath, Iterable<String> members) => ([
+  for (final m in members) [...blockPath, m].join('.'),
+]..sort()).join(', ');
 
-/// Snake-case name of the slot or field that holds one of [members]
-/// (`filename_or_image_uri`).
-String exactlyOneSlotName(List<String> members) => members.join('_or_');
+/// Where a sealed slot's concept name came from.
+enum SealedNameSource {
+  /// The override's `sealedNames` entry.
+  human,
 
-/// The sealed type [prefix] declares for [members].
-String exactlyOneSealedName(String prefix, List<String> members) =>
-    prefix + snakeToPascal(exactlyOneSlotName(members));
+  /// [deriveSealedConcept].
+  derived,
+
+  /// The members joined with `_or_`, pending a human name
+  /// (`tool/sealed_name_debt.yaml`).
+  fallback,
+}
+
+/// One sealed group's name, as `wrap` chose it.
+typedef SealedGroupName = ({
+  /// The group's canonical [sealedGroupKeyOf] key.
+  String key,
+
+  /// Snake-case concept name of the slot or field.
+  String concept,
+  SealedNameSource source,
+
+  /// The name [deriveSealedConcept] gives the group, if any.
+  String? derived,
+
+  /// Why the group's `sealedNames` entry cannot be used, if it cannot.
+  String? error,
+});
+
+/// A [SealedGroupName] of the resource [type].
+typedef SealedName = ({String type, SealedGroupName name});
+
+/// Snake-case slot name of a group no rule names: its members joined with
+/// `_or_` (`filename_or_image_uri`).
+String sealedFallbackConcept(List<String> members) => members.join('_or_');
+
+/// Leading segments too generic to name a group on their own
+/// (`enable_x` / `enable_y` share `enable` but are not "an enable").
+const _genericPrefixes = {
+  'allow',
+  'auto',
+  'custom',
+  'default',
+  'disable',
+  'enable',
+  'enabled',
+  'exclude',
+  'from',
+  'has',
+  'include',
+  'is',
+  'max',
+  'min',
+  'no',
+  'use',
+};
+
+/// Trailing segments too generic to name a group on their own
+/// (`role_arn` / `user_arn` share `arn`, which says nothing about them).
+const _genericSuffixes = {
+  'arn',
+  'arns',
+  'config',
+  'configuration',
+  'configs',
+  'id',
+  'ids',
+  'key',
+  'list',
+  'name',
+  'names',
+  'settings',
+  'spec',
+  'type',
+  'uri',
+  'url',
+  'value',
+  'values',
+};
+
+/// The concept name the members of one group share, or null when nothing
+/// names them:
+///
+/// 1. their common leading segments (`content_base64`, `content_file` →
+///    `content`; `name`, `name_prefix` → `name`), unless that is one generic
+///    word (`enable`);
+/// 2. their common trailing segments (`mysql_source_config`,
+///    `oracle_source_config` → `source_config`), unless that is one generic
+///    word (`arn`);
+/// 3. the enclosing block's name when the group is all of the block's
+///    inputs ([wholeBlockName]).
+String? deriveSealedConcept(List<String> members, {String? wholeBlockName}) {
+  final split = [for (final m in members) m.split('_')];
+  final prefix = _commonRun(split);
+  while (prefix.isNotEmpty && _connectors.contains(prefix.last)) {
+    prefix.removeLast();
+  }
+  if (prefix.isNotEmpty &&
+      !(prefix.length == 1 && _genericPrefixes.contains(prefix.single))) {
+    return prefix.join('_');
+  }
+  final suffix = _commonRun([
+    for (final s in split) s.reversed.toList(),
+  ]).reversed.toList();
+  while (suffix.isNotEmpty && _connectors.contains(suffix.first)) {
+    suffix.removeAt(0);
+  }
+  if (suffix.isNotEmpty &&
+      !(suffix.length == 1 && _genericSuffixes.contains(suffix.single)) &&
+      split.every((s) => s.length > suffix.length)) {
+    return suffix.join('_');
+  }
+  return wholeBlockName;
+}
+
+/// Segments that join words and never end (or start) a name: `size_in`
+/// of `size_in_bytes` / `size_in_megabytes` is `size`.
+const _connectors = {
+  'and',
+  'as',
+  'by',
+  'for',
+  'from',
+  'in',
+  'of',
+  'on',
+  'or',
+  'per',
+  'to',
+  'with',
+};
+
+/// The segments every list shares from its start. A segment matches its
+/// plural (`key` / `keys`, `address` / `addresses`) and yields the
+/// singular: `public_key` / `public_keys` share `public_key`.
+List<String> _commonRun(List<List<String>> lists) {
+  final out = <String>[];
+  for (var i = 0; ; i++) {
+    if (lists.any((l) => i >= l.length)) return out;
+    final seg = lists.first[i];
+    if (lists.every((l) => l[i] == seg)) {
+      out.add(seg);
+      continue;
+    }
+    final singular = _singular(seg);
+    if (lists.every((l) => _singular(l[i]) == singular)) {
+      out.add(singular);
+    }
+    return out;
+  }
+}
+
+String _singular(String seg) {
+  if (RegExp(r'(s|x|ch|sh)es$').hasMatch(seg)) {
+    return seg.substring(0, seg.length - 2);
+  }
+  if (seg.endsWith('s') && !seg.endsWith('ss') && seg.length > 2) {
+    return seg.substring(0, seg.length - 1);
+  }
+  return seg;
+}
+
+/// The name one sealed group takes, and any error: a human [human] name
+/// wins; otherwise the [derived] one; otherwise [sealedFallbackConcept].
+/// [clashes] says why a candidate cannot be used (its slot or a class name
+/// is taken), or null. A derived name that clashes falls back; a human name
+/// that clashes, or repeats the derived one, is an error.
+({String concept, SealedNameSource source, String? error}) resolveSealedName({
+  required List<String> members,
+  required String? human,
+  required String? derived,
+  required String? Function(String concept) clashes,
+}) {
+  if (human != null) {
+    final clash = clashes(human);
+    if (clash != null) {
+      return (
+        concept: sealedFallbackConcept(members),
+        source: SealedNameSource.fallback,
+        error: 'sealedNames "$human" clashes: $clash',
+      );
+    }
+    return (
+      concept: human,
+      source: SealedNameSource.human,
+      error: human == derived
+          ? 'sealedNames "$human" repeats the derived name; remove it'
+          : null,
+    );
+  }
+  if (derived != null && clashes(derived) == null) {
+    return (concept: derived, source: SealedNameSource.derived, error: null);
+  }
+  return (
+    concept: sealedFallbackConcept(members),
+    source: SealedNameSource.fallback,
+    error: null,
+  );
+}
+
+/// Class names a Dart source declares (`class`, `enum`, `mixin`,
+/// `extension type`, `typedef`).
+Set<String> declaredTypeNames(String source) => {
+  for (final m in RegExp(
+    r'\b(?:class|enum|mixin|typedef|extension\s+type)\s+(\w+)',
+  ).allMatches(source))
+    m.group(1)!,
+};
 
 /// The concrete variant class of the sealed type [sealed] that sets
 /// [member] (`LambdaFunctionCode` + `image_uri` → `LambdaFunctionCodeImageUri`).

@@ -24,12 +24,11 @@ final class AppmeshVirtualServiceSpec {
 /// `aws_appmesh_virtual_service` (derived from provider schema).
 @immutable
 final class AppmeshVirtualServiceSpecProvider {
-  const AppmeshVirtualServiceSpecProvider({this.virtualNodeOrVirtualRouter});
+  const AppmeshVirtualServiceSpecProvider({this.virtual});
 
-  final AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter?
-  virtualNodeOrVirtualRouter;
+  final AppmeshVirtualServiceSpecProviderVirtual? virtual;
 
-  Map<String, Object?> encode() => {...?virtualNodeOrVirtualRouter?.encode()};
+  Map<String, Object?> encode() => {...?virtual?.encode()};
 }
 
 /// At most one of `virtual_node`, `virtual_router` on the `spec.provider` block of `aws_appmesh_virtual_service`: the provider rejects
@@ -37,18 +36,18 @@ final class AppmeshVirtualServiceSpecProvider {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.virtualNode(...)`.
-sealed class AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter {
-  const AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter();
+sealed class AppmeshVirtualServiceSpecProviderVirtual {
+  const AppmeshVirtualServiceSpecProviderVirtual();
 
   /// Sets `virtual_node`.
-  const factory AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter.virtualNode(
+  const factory AppmeshVirtualServiceSpecProviderVirtual.virtualNode(
     AppmeshVirtualServiceSpecProviderVirtualNode virtualNode,
-  ) = AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouterVirtualNode;
+  ) = AppmeshVirtualServiceSpecProviderVirtualVirtualNode;
 
   /// Sets `virtual_router`.
-  const factory AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter.virtualRouter(
+  const factory AppmeshVirtualServiceSpecProviderVirtual.virtualRouter(
     AppmeshVirtualServiceSpecProviderVirtualRouter virtualRouter,
-  ) = AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouterVirtualRouter;
+  ) = AppmeshVirtualServiceSpecProviderVirtualVirtualRouter;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -56,12 +55,10 @@ sealed class AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter {
   Map<String, Object?> encode();
 }
 
-/// The [AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter.virtualNode] choice: sets `virtual_node`.
-final class AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouterVirtualNode
-    extends AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter {
-  const AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouterVirtualNode(
-    this.virtualNode,
-  );
+/// The [AppmeshVirtualServiceSpecProviderVirtual.virtualNode] choice: sets `virtual_node`.
+final class AppmeshVirtualServiceSpecProviderVirtualVirtualNode
+    extends AppmeshVirtualServiceSpecProviderVirtual {
+  const AppmeshVirtualServiceSpecProviderVirtualVirtualNode(this.virtualNode);
 
   final AppmeshVirtualServiceSpecProviderVirtualNode virtualNode;
 
@@ -72,10 +69,10 @@ final class AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouterVirtualNo
   Map<String, Object?> encode() => {'virtual_node': virtualNode.encode()};
 }
 
-/// The [AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter.virtualRouter] choice: sets `virtual_router`.
-final class AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouterVirtualRouter
-    extends AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter {
-  const AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouterVirtualRouter(
+/// The [AppmeshVirtualServiceSpecProviderVirtual.virtualRouter] choice: sets `virtual_router`.
+final class AppmeshVirtualServiceSpecProviderVirtualVirtualRouter
+    extends AppmeshVirtualServiceSpecProviderVirtual {
+  const AppmeshVirtualServiceSpecProviderVirtualVirtualRouter(
     this.virtualRouter,
   );
 

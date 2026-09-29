@@ -708,20 +708,20 @@ class ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.virtualRepositoryConfig(...)`.
-sealed class ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig {
-  const ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig();
+sealed class ArtifactRegistryRepositoryRepositoryConfig {
+  const ArtifactRegistryRepositoryRepositoryConfig();
 
   /// Sets `virtual_repository_config`.
-  const factory ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig.virtualRepositoryConfig(
+  const factory ArtifactRegistryRepositoryRepositoryConfig.virtualRepositoryConfig(
     ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig
     virtualRepositoryConfig,
-  ) = ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfigVirtualRepositoryConfig;
+  ) = ArtifactRegistryRepositoryRepositoryConfigVirtualRepositoryConfig;
 
   /// Sets `remote_repository_config`.
-  const factory ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig.remoteRepositoryConfig(
+  const factory ArtifactRegistryRepositoryRepositoryConfig.remoteRepositoryConfig(
     ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig
     remoteRepositoryConfig,
-  ) = ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfigRemoteRepositoryConfig;
+  ) = ArtifactRegistryRepositoryRepositoryConfigRemoteRepositoryConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -733,11 +733,10 @@ sealed class ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepository
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig.virtualRepositoryConfig] choice: sets `virtual_repository_config`.
-final class ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfigVirtualRepositoryConfig
-    extends
-        ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig {
-  const ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfigVirtualRepositoryConfig(
+/// The [ArtifactRegistryRepositoryRepositoryConfig.virtualRepositoryConfig] choice: sets `virtual_repository_config`.
+final class ArtifactRegistryRepositoryRepositoryConfigVirtualRepositoryConfig
+    extends ArtifactRegistryRepositoryRepositoryConfig {
+  const ArtifactRegistryRepositoryRepositoryConfigVirtualRepositoryConfig(
     this.virtualRepositoryConfig,
   );
 
@@ -760,11 +759,10 @@ final class ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryC
   };
 }
 
-/// The [ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig.remoteRepositoryConfig] choice: sets `remote_repository_config`.
-final class ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfigRemoteRepositoryConfig
-    extends
-        ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig {
-  const ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfigRemoteRepositoryConfig(
+/// The [ArtifactRegistryRepositoryRepositoryConfig.remoteRepositoryConfig] choice: sets `remote_repository_config`.
+final class ArtifactRegistryRepositoryRepositoryConfigRemoteRepositoryConfig
+    extends ArtifactRegistryRepositoryRepositoryConfig {
+  const ArtifactRegistryRepositoryRepositoryConfigRemoteRepositoryConfig(
     this.remoteRepositoryConfig,
   );
 
@@ -804,8 +802,7 @@ final class GoogleArtifactRegistryRepository extends Resource {
     TfArg<Map<String, String>>? labels,
     ArtifactRegistryRepositoryArtifactRegistryDockerConfig? dockerConfig,
     ArtifactRegistryRepositoryArtifactRegistryMavenConfig? mavenConfig,
-    ArtifactRegistryRepositoryVirtualRepositoryConfigOrRemoteRepositoryConfig?
-    virtualRepositoryConfigOrRemoteRepositoryConfig,
+    ArtifactRegistryRepositoryRepositoryConfig? repositoryConfig,
     List<ArtifactRegistryRepositoryArtifactRegistryCleanupPolicy>?
     cleanupPolicies,
     TfArg<bool>? cleanupPolicyDryRun,
@@ -830,7 +827,7 @@ final class GoogleArtifactRegistryRepository extends Resource {
              'docker_config': TfArg.literal([dockerConfig.toArgMap()]),
            if (mavenConfig != null)
              'maven_config': TfArg.literal([mavenConfig.toArgMap()]),
-           ...?virtualRepositoryConfigOrRemoteRepositoryConfig?.argMap,
+           ...?repositoryConfig?.argMap,
            if (cleanupPolicies != null)
              'cleanup_policies': TfArg.literal(
                cleanupPolicies.map((p) => p.toArgMap()).toList(),

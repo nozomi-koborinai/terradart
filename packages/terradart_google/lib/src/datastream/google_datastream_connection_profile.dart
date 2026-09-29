@@ -31,18 +31,18 @@ const Set<String> _googleDatastreamConnectionProfileSensitive = <String>{
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.forwardSshConnectivity(...)`.
-sealed class DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity {
-  const DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity();
+sealed class DatastreamConnectionProfileConnectivity {
+  const DatastreamConnectionProfileConnectivity();
 
   /// Sets `forward_ssh_connectivity`.
-  const factory DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity.forwardSshConnectivity(
+  const factory DatastreamConnectionProfileConnectivity.forwardSshConnectivity(
     DatastreamConnectionProfileForwardSshConnectivity forwardSshConnectivity,
-  ) = DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity;
+  ) = DatastreamConnectionProfileConnectivityForwardSshConnectivity;
 
   /// Sets `private_connectivity`.
-  const factory DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity.privateConnectivity(
+  const factory DatastreamConnectionProfileConnectivity.privateConnectivity(
     DatastreamConnectionProfilePrivateConnectivity privateConnectivity,
-  ) = DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity;
+  ) = DatastreamConnectionProfileConnectivityPrivateConnectivity;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -54,11 +54,10 @@ sealed class DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectiv
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity.forwardSshConnectivity] choice: sets `forward_ssh_connectivity`.
-final class DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity
-    extends
-        DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity {
-  const DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityForwardSshConnectivity(
+/// The [DatastreamConnectionProfileConnectivity.forwardSshConnectivity] choice: sets `forward_ssh_connectivity`.
+final class DatastreamConnectionProfileConnectivityForwardSshConnectivity
+    extends DatastreamConnectionProfileConnectivity {
+  const DatastreamConnectionProfileConnectivityForwardSshConnectivity(
     this.forwardSshConnectivity,
   );
 
@@ -79,11 +78,10 @@ final class DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivi
   };
 }
 
-/// The [DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity.privateConnectivity] choice: sets `private_connectivity`.
-final class DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity
-    extends
-        DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity {
-  const DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivityPrivateConnectivity(
+/// The [DatastreamConnectionProfileConnectivity.privateConnectivity] choice: sets `private_connectivity`.
+final class DatastreamConnectionProfileConnectivityPrivateConnectivity
+    extends DatastreamConnectionProfileConnectivity {
+  const DatastreamConnectionProfileConnectivityPrivateConnectivity(
     this.privateConnectivity,
   );
 
@@ -118,15 +116,14 @@ final class DatastreamConnectionProfileBigqueryProfile {
 final class DatastreamConnectionProfileForwardSshConnectivity {
   const DatastreamConnectionProfileForwardSshConnectivity({
     required this.hostname,
-    this.passwordOrPrivateKey,
+    this.credential,
     this.port,
     required this.username,
   });
 
   final TfArg<String> hostname;
 
-  final DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey?
-  passwordOrPrivateKey;
+  final DatastreamConnectionProfileForwardSshConnectivityCredential? credential;
 
   final TfArg<num>? port;
 
@@ -134,7 +131,7 @@ final class DatastreamConnectionProfileForwardSshConnectivity {
 
   Map<String, Object?> encode() => {
     'hostname': hostname.toTfJson(),
-    ...?passwordOrPrivateKey?.encode(),
+    ...?credential?.encode(),
     if (port != null) 'port': port!.toTfJson(),
     'username': username.toTfJson(),
   };
@@ -145,18 +142,18 @@ final class DatastreamConnectionProfileForwardSshConnectivity {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.password(...)`.
-sealed class DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey {
-  const DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey();
+sealed class DatastreamConnectionProfileForwardSshConnectivityCredential {
+  const DatastreamConnectionProfileForwardSshConnectivityCredential();
 
   /// Sets `password`.
-  const factory DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey.password(
+  const factory DatastreamConnectionProfileForwardSshConnectivityCredential.password(
     TfArg<String> password,
-  ) = DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPassword;
+  ) = DatastreamConnectionProfileForwardSshConnectivityCredentialPassword;
 
   /// Sets `private_key`.
-  const factory DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey.privateKey(
+  const factory DatastreamConnectionProfileForwardSshConnectivityCredential.privateKey(
     TfArg<String> privateKey,
-  ) = DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPrivateKey;
+  ) = DatastreamConnectionProfileForwardSshConnectivityCredentialPrivateKey;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -164,11 +161,10 @@ sealed class DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateK
   Map<String, Object?> encode();
 }
 
-/// The [DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey.password] choice: sets `password`.
-final class DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPassword
-    extends
-        DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey {
-  const DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPassword(
+/// The [DatastreamConnectionProfileForwardSshConnectivityCredential.password] choice: sets `password`.
+final class DatastreamConnectionProfileForwardSshConnectivityCredentialPassword
+    extends DatastreamConnectionProfileForwardSshConnectivityCredential {
+  const DatastreamConnectionProfileForwardSshConnectivityCredentialPassword(
     this.password,
   );
 
@@ -181,11 +177,10 @@ final class DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKe
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
 
-/// The [DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey.privateKey] choice: sets `private_key`.
-final class DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPrivateKey
-    extends
-        DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKey {
-  const DatastreamConnectionProfileForwardSshConnectivityPasswordOrPrivateKeyPrivateKey(
+/// The [DatastreamConnectionProfileForwardSshConnectivityCredential.privateKey] choice: sets `private_key`.
+final class DatastreamConnectionProfileForwardSshConnectivityCredentialPrivateKey
+    extends DatastreamConnectionProfileForwardSshConnectivityCredential {
+  const DatastreamConnectionProfileForwardSshConnectivityCredentialPrivateKey(
     this.privateKey,
   );
 
@@ -619,8 +614,7 @@ final class GoogleDatastreamConnectionProfile extends Resource {
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
     TfArg<String>? project,
-    DatastreamConnectionProfileForwardSshConnectivityOrPrivateConnectivity?
-    forwardSshConnectivityOrPrivateConnectivity,
+    DatastreamConnectionProfileConnectivity? connectivity,
     DatastreamConnectionProfileGcsProfile? gcsProfile,
     super.lifecycle,
     super.dependsOn,
@@ -637,7 +631,7 @@ final class GoogleDatastreamConnectionProfile extends Resource {
            if (labels != null) 'labels': labels,
            'location': location,
            if (project != null) 'project': project,
-           ...?forwardSshConnectivityOrPrivateConnectivity?.argMap,
+           ...?connectivity?.argMap,
            if (gcsProfile != null)
              'gcs_profile': TfArg.literal(gcsProfile.encode()),
          },

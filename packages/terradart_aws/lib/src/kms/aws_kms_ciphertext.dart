@@ -13,18 +13,16 @@ const Set<String> _awsKmsCiphertextSensitive = <String>{
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.plaintext(...)`.
-sealed class KmsCiphertextPlaintextOrPlaintextWo {
-  const KmsCiphertextPlaintextOrPlaintextWo();
+sealed class KmsCiphertextPlaintext {
+  const KmsCiphertextPlaintext();
 
   /// Sets `plaintext`.
-  const factory KmsCiphertextPlaintextOrPlaintextWo.plaintext(
-    TfArg<String> plaintext,
-  ) = KmsCiphertextPlaintextOrPlaintextWoPlaintext;
+  const factory KmsCiphertextPlaintext.plaintext(TfArg<String> plaintext) =
+      KmsCiphertextPlaintextPlaintext;
 
   /// Sets `plaintext_wo`.
-  const factory KmsCiphertextPlaintextOrPlaintextWo.plaintextWo(
-    TfArg<String> plaintextWo,
-  ) = KmsCiphertextPlaintextOrPlaintextWoPlaintextWo;
+  const factory KmsCiphertextPlaintext.plaintextWo(TfArg<String> plaintextWo) =
+      KmsCiphertextPlaintextPlaintextWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -36,10 +34,9 @@ sealed class KmsCiphertextPlaintextOrPlaintextWo {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [KmsCiphertextPlaintextOrPlaintextWo.plaintext] choice: sets `plaintext`.
-final class KmsCiphertextPlaintextOrPlaintextWoPlaintext
-    extends KmsCiphertextPlaintextOrPlaintextWo {
-  const KmsCiphertextPlaintextOrPlaintextWoPlaintext(this.plaintext);
+/// The [KmsCiphertextPlaintext.plaintext] choice: sets `plaintext`.
+final class KmsCiphertextPlaintextPlaintext extends KmsCiphertextPlaintext {
+  const KmsCiphertextPlaintextPlaintext(this.plaintext);
 
   final TfArg<String> plaintext;
 
@@ -53,10 +50,9 @@ final class KmsCiphertextPlaintextOrPlaintextWoPlaintext
   Map<String, TfArg<Object?>> get argMap => {'plaintext': plaintext};
 }
 
-/// The [KmsCiphertextPlaintextOrPlaintextWo.plaintextWo] choice: sets `plaintext_wo`.
-final class KmsCiphertextPlaintextOrPlaintextWoPlaintextWo
-    extends KmsCiphertextPlaintextOrPlaintextWo {
-  const KmsCiphertextPlaintextOrPlaintextWoPlaintextWo(this.plaintextWo);
+/// The [KmsCiphertextPlaintext.plaintextWo] choice: sets `plaintext_wo`.
+final class KmsCiphertextPlaintextPlaintextWo extends KmsCiphertextPlaintext {
+  const KmsCiphertextPlaintextPlaintextWo(this.plaintextWo);
 
   final TfArg<String> plaintextWo;
 
@@ -78,7 +74,7 @@ final class AwsKmsCiphertext extends Resource {
     required super.localName,
     TfArg<Map<String, String>>? context,
     required TfArg<String> keyId,
-    required KmsCiphertextPlaintextOrPlaintextWo plaintextOrPlaintextWo,
+    required KmsCiphertextPlaintext plaintext,
     TfArg<String>? plaintextWoVersion,
     TfArg<String>? region,
     super.lifecycle,
@@ -90,7 +86,7 @@ final class AwsKmsCiphertext extends Resource {
          argMap: {
            if (context != null) 'context': context,
            'key_id': keyId,
-           ...plaintextOrPlaintextWo.argMap,
+           ...plaintext.argMap,
            if (plaintextWoVersion != null)
              'plaintext_wo_version': plaintextWoVersion,
            if (region != null) 'region': region,

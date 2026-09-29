@@ -9,6 +9,7 @@ import 'package:terradart_codegen/src/cli/exit_codes.dart';
 import 'package:terradart_codegen/src/codegen/barrels/barrel_emitter.dart';
 import 'package:terradart_codegen/src/codegen/barrels/barrel_manifest.dart';
 import 'package:terradart_codegen/src/codegen/catalog_entry_builder.dart';
+import 'package:terradart_codegen/src/codegen/sealed_name_debt.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 import 'package:terradart_codegen/src/parser/schema_parser.dart';
@@ -1392,6 +1393,8 @@ at_most_one_of_groups:
 outputDir: thing
 deriveNestedTypes: true
 deriveExactlyOne: true
+sealedNames:
+  "data, content": content
 ''');
     });
     tearDown(() => tmp.deleteSync(recursive: true));
@@ -1431,11 +1434,11 @@ barrels:
       final src = File(
         p.join(_libSrcOut(tmp), 'thing', 'x_thing.dart'),
       ).readAsStringSync();
-      expect(src, contains('XThingContentOrData? contentOrData'));
-      expect(src, contains('...?contentOrData?.argMap,'));
+      expect(src, contains('XThingContent? content'));
+      expect(src, contains('...?content?.argMap,'));
       expect(src, isNot(contains('TfArg<String>? content,')));
-      expect(src, contains('final XThingSettingsAOrB? aOrB;'));
-      expect(src, contains('...?aOrB?.encode()'));
+      expect(src, contains('final XThingSettingsSettings? settings;'));
+      expect(src, contains('...?settings?.encode()'));
       expect(src, contains('/// At most one of `content`, `data`'));
 
       final manifest = File(manifestPath).readAsStringSync();
@@ -1443,7 +1446,7 @@ barrels:
         manifest,
         matches(
           RegExp(
-            r"dartName: 'contentOrData',\s+kind: MigrateSlotKind\.sealed,\s+"
+            r"dartName: 'content',\s+kind: MigrateSlotKind\.sealed,\s+"
             r'required: false,\s+wrapped: false,\s+merged: true,',
           ),
         ),
@@ -1452,12 +1455,86 @@ barrels:
         manifest,
         matches(
           RegExp(
-            r"dartName: 'aOrB',\s+kind: MigrateSlotKind\.sealed,\s+"
+            r"dartName: 'settings',\s+kind: MigrateSlotKind\.sealed,\s+"
             r'required: false,\s+wrapped: false,\s+merged: true,',
           ),
         ),
       );
     });
+
+    Future<int?> wrap(List<String> extra) => buildCliRunner().run([
+      'wrap',
+      '--provider',
+      'example/x',
+      '--source',
+      source,
+      '--output',
+      _libSrcOut(tmp),
+      '--overrides-root',
+      overrides,
+      '--barrels-manifest',
+      (File(p.join(tmp.path, 'barrels.yaml'))..writeAsStringSync('''
+umbrellaFile: terradart_x
+umbrellaDoc: |-
+  /// x umbrella.
+umbrellaExtraExports: []
+barrels:
+  thing:
+    doc: |-
+      /// Things.
+'''))
+          .path,
+      '--provider-enums',
+      ...extra,
+    ]);
+
+    void setSealedNames(String yaml) =>
+        File(p.join(overrides, 'x_thing.yaml')).writeAsStringSync('''
+outputDir: thing
+deriveNestedTypes: true
+deriveExactlyOne: true
+$yaml''');
+
+    test('record an unnamed group in the sealed-name ledger', () async {
+      setSealedNames('');
+      final ledger = File(p.join(tmp.path, 'sealed_name_debt.yaml'));
+      final args = ['--sealed-name-debt', ledger.path];
+      expect(await wrap(args), CliExitCodes.success);
+      final src = File(
+        p.join(_libSrcOut(tmp), 'thing', 'x_thing.dart'),
+      ).readAsStringSync();
+      expect(src, contains('XThingContentOrData? contentOrData'));
+      expect(parseSealedNameDebt(ledger.readAsStringSync()), {
+        'x_thing': {'content, data': 'awaiting-name: example/x 1.0.0'},
+      });
+      expect(await wrap([...args, '--check']), CliExitCodes.success);
+
+      setSealedNames('sealedNames:\n  "content, data": content\n');
+      expect(await wrap([...args, '--check']), CliExitCodes.dataError);
+      expect(await wrap(args), CliExitCodes.success);
+      expect(parseSealedNameDebt(ledger.readAsStringSync()), isEmpty);
+      expect(await wrap([...args, '--check']), CliExitCodes.success);
+    });
+
+    test('--check fails on a missing ledger entry', () async {
+      setSealedNames('');
+      final ledger = File(p.join(tmp.path, 'sealed_name_debt.yaml'));
+      final args = ['--sealed-name-debt', ledger.path];
+      expect(await wrap(args), CliExitCodes.success);
+      ledger.writeAsStringSync('{}\n');
+      expect(await wrap([...args, '--check']), CliExitCodes.dataError);
+    });
+
+    for (final (label, yaml) in [
+      ('matches no sealed group', '"a, b": thing'),
+      ('repeats the derived name', '"settings.a, settings.b": settings'),
+      ('clashes with another input', '"content, data": name'),
+    ]) {
+      test('a sealedNames entry that $label fails', () async {
+        setSealedNames('sealedNames:\n  $yaml\n');
+        expect(await wrap(const []), CliExitCodes.dataError);
+      });
+    }
   });
 
   group('WrapCommand --mm-hints', () {

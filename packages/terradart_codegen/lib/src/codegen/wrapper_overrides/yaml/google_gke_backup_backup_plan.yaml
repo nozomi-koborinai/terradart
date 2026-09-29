@@ -108,3 +108,6 @@ paramOrder:
 extraGetters: |2
     TfRef<String> get id => TfRef.attribute<String>(this, 'id');
     TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+sealedNames:
+  "backup_config.all_namespaces, backup_config.selected_applications, backup_config.selected_namespace_labels, backup_config.selected_namespaces": scope

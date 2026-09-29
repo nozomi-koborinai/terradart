@@ -11,32 +11,29 @@ const Set<String> _awsMailmanagerRelaySensitive = <String>{};
 /// `aws_mailmanager_relay` (derived from provider schema).
 @immutable
 final class MailmanagerRelayAuthentication {
-  const MailmanagerRelayAuthentication({
-    required this.noAuthenticationOrSecretArn,
-  });
+  const MailmanagerRelayAuthentication({required this.authentication});
 
-  final MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn
-  noAuthenticationOrSecretArn;
+  final MailmanagerRelayAuthenticationAuthentication authentication;
 
-  Map<String, Object?> encode() => {...noAuthenticationOrSecretArn.encode()};
+  Map<String, Object?> encode() => {...authentication.encode()};
 }
 
 /// Exactly one of `no_authentication`, `secret_arn` on the `authentication` block of `aws_mailmanager_relay`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.noAuthentication(...)`.
-sealed class MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn {
-  const MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn();
+sealed class MailmanagerRelayAuthenticationAuthentication {
+  const MailmanagerRelayAuthenticationAuthentication();
 
   /// Sets `no_authentication`.
-  const factory MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn.noAuthentication(
+  const factory MailmanagerRelayAuthenticationAuthentication.noAuthentication(
     List<MailmanagerRelayAuthenticationNoAuthentication> noAuthentication,
-  ) = MailmanagerRelayAuthenticationNoAuthenticationOrSecretArnNoAuthentication;
+  ) = MailmanagerRelayAuthenticationAuthenticationNoAuthentication;
 
   /// Sets `secret_arn`.
-  const factory MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn.secretArn(
+  const factory MailmanagerRelayAuthenticationAuthentication.secretArn(
     TfArg<String> secretArn,
-  ) = MailmanagerRelayAuthenticationNoAuthenticationOrSecretArnSecretArn;
+  ) = MailmanagerRelayAuthenticationAuthenticationSecretArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,10 +41,10 @@ sealed class MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn {
   Map<String, Object?> encode();
 }
 
-/// The [MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn.noAuthentication] choice: sets `no_authentication`.
-final class MailmanagerRelayAuthenticationNoAuthenticationOrSecretArnNoAuthentication
-    extends MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn {
-  const MailmanagerRelayAuthenticationNoAuthenticationOrSecretArnNoAuthentication(
+/// The [MailmanagerRelayAuthenticationAuthentication.noAuthentication] choice: sets `no_authentication`.
+final class MailmanagerRelayAuthenticationAuthenticationNoAuthentication
+    extends MailmanagerRelayAuthenticationAuthentication {
+  const MailmanagerRelayAuthenticationAuthenticationNoAuthentication(
     this.noAuthentication,
   );
 
@@ -62,12 +59,10 @@ final class MailmanagerRelayAuthenticationNoAuthenticationOrSecretArnNoAuthentic
   };
 }
 
-/// The [MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn.secretArn] choice: sets `secret_arn`.
-final class MailmanagerRelayAuthenticationNoAuthenticationOrSecretArnSecretArn
-    extends MailmanagerRelayAuthenticationNoAuthenticationOrSecretArn {
-  const MailmanagerRelayAuthenticationNoAuthenticationOrSecretArnSecretArn(
-    this.secretArn,
-  );
+/// The [MailmanagerRelayAuthenticationAuthentication.secretArn] choice: sets `secret_arn`.
+final class MailmanagerRelayAuthenticationAuthenticationSecretArn
+    extends MailmanagerRelayAuthenticationAuthentication {
+  const MailmanagerRelayAuthenticationAuthenticationSecretArn(this.secretArn);
 
   final TfArg<String> secretArn;
 

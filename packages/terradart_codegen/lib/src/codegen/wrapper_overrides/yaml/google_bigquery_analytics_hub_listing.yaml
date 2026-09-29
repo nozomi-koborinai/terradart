@@ -38,3 +38,6 @@ paramOrder:
   - publisher
   - pubsub_topic
   - restricted_export_config
+
+sealedNames:
+  "bigquery_dataset, pubsub_topic": source

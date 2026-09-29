@@ -12,18 +12,17 @@ const Set<String> _awsSagemakerEndpointConfigurationSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class SagemakerEndpointConfigurationNameOrNamePrefix {
-  const SagemakerEndpointConfigurationNameOrNamePrefix();
+sealed class SagemakerEndpointConfigurationName {
+  const SagemakerEndpointConfigurationName();
 
   /// Sets `name`.
-  const factory SagemakerEndpointConfigurationNameOrNamePrefix.name(
-    TfArg<String> name,
-  ) = SagemakerEndpointConfigurationNameOrNamePrefixName;
+  const factory SagemakerEndpointConfigurationName.name(TfArg<String> name) =
+      SagemakerEndpointConfigurationNameName;
 
   /// Sets `name_prefix`.
-  const factory SagemakerEndpointConfigurationNameOrNamePrefix.namePrefix(
+  const factory SagemakerEndpointConfigurationName.namePrefix(
     TfArg<String> namePrefix,
-  ) = SagemakerEndpointConfigurationNameOrNamePrefixNamePrefix;
+  ) = SagemakerEndpointConfigurationNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,10 +34,10 @@ sealed class SagemakerEndpointConfigurationNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SagemakerEndpointConfigurationNameOrNamePrefix.name] choice: sets `name`.
-final class SagemakerEndpointConfigurationNameOrNamePrefixName
-    extends SagemakerEndpointConfigurationNameOrNamePrefix {
-  const SagemakerEndpointConfigurationNameOrNamePrefixName(this.name);
+/// The [SagemakerEndpointConfigurationName.name] choice: sets `name`.
+final class SagemakerEndpointConfigurationNameName
+    extends SagemakerEndpointConfigurationName {
+  const SagemakerEndpointConfigurationNameName(this.name);
 
   final TfArg<String> name;
 
@@ -52,12 +51,10 @@ final class SagemakerEndpointConfigurationNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [SagemakerEndpointConfigurationNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class SagemakerEndpointConfigurationNameOrNamePrefixNamePrefix
-    extends SagemakerEndpointConfigurationNameOrNamePrefix {
-  const SagemakerEndpointConfigurationNameOrNamePrefixNamePrefix(
-    this.namePrefix,
-  );
+/// The [SagemakerEndpointConfigurationName.namePrefix] choice: sets `name_prefix`.
+final class SagemakerEndpointConfigurationNameNamePrefix
+    extends SagemakerEndpointConfigurationName {
+  const SagemakerEndpointConfigurationNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -1429,7 +1426,7 @@ final class AwsSagemakerEndpointConfiguration extends Resource {
     required super.localName,
     TfArg<String>? executionRoleArn,
     TfArg<String>? kmsKeyArn,
-    SagemakerEndpointConfigurationNameOrNamePrefix? nameOrNamePrefix,
+    SagemakerEndpointConfigurationName? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     SagemakerEndpointConfigurationAsyncInferenceConfig? asyncInferenceConfig,
@@ -1447,7 +1444,7 @@ final class AwsSagemakerEndpointConfiguration extends Resource {
          argMap: {
            if (executionRoleArn != null) 'execution_role_arn': executionRoleArn,
            if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            if (asyncInferenceConfig != null)

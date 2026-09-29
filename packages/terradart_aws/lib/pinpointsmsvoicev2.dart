@@ -11,10 +11,10 @@ export 'src/pinpointsmsvoicev2/aws_pinpointsmsvoicev2_event_destination.dart'
     show
         AwsPinpointsmsvoicev2EventDestination,
         Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestination,
-        Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestination,
-        Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestinationCloudwatchLogsDestination,
-        Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestinationKinesisFirehoseDestination,
-        Pinpointsmsvoicev2EventDestinationCloudwatchLogsDestinationOrKinesisFirehoseDestinationOrSnsDestinationSnsDestination,
+        Pinpointsmsvoicev2EventDestinationDestination,
+        Pinpointsmsvoicev2EventDestinationDestinationCloudwatchLogsDestination,
+        Pinpointsmsvoicev2EventDestinationDestinationKinesisFirehoseDestination,
+        Pinpointsmsvoicev2EventDestinationDestinationSnsDestination,
         Pinpointsmsvoicev2EventDestinationKinesisFirehoseDestination,
         Pinpointsmsvoicev2EventDestinationMatchingEventTypes,
         Pinpointsmsvoicev2EventDestinationSnsDestination;

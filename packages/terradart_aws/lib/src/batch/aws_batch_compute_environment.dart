@@ -32,18 +32,17 @@ enum BatchComputeEnvironmentType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class BatchComputeEnvironmentNameOrNamePrefix {
-  const BatchComputeEnvironmentNameOrNamePrefix();
+sealed class BatchComputeEnvironmentName {
+  const BatchComputeEnvironmentName();
 
   /// Sets `name`.
-  const factory BatchComputeEnvironmentNameOrNamePrefix.name(
-    TfArg<String> name,
-  ) = BatchComputeEnvironmentNameOrNamePrefixName;
+  const factory BatchComputeEnvironmentName.name(TfArg<String> name) =
+      BatchComputeEnvironmentNameName;
 
   /// Sets `name_prefix`.
-  const factory BatchComputeEnvironmentNameOrNamePrefix.namePrefix(
+  const factory BatchComputeEnvironmentName.namePrefix(
     TfArg<String> namePrefix,
-  ) = BatchComputeEnvironmentNameOrNamePrefixNamePrefix;
+  ) = BatchComputeEnvironmentNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -55,10 +54,10 @@ sealed class BatchComputeEnvironmentNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [BatchComputeEnvironmentNameOrNamePrefix.name] choice: sets `name`.
-final class BatchComputeEnvironmentNameOrNamePrefixName
-    extends BatchComputeEnvironmentNameOrNamePrefix {
-  const BatchComputeEnvironmentNameOrNamePrefixName(this.name);
+/// The [BatchComputeEnvironmentName.name] choice: sets `name`.
+final class BatchComputeEnvironmentNameName
+    extends BatchComputeEnvironmentName {
+  const BatchComputeEnvironmentNameName(this.name);
 
   final TfArg<String> name;
 
@@ -72,10 +71,10 @@ final class BatchComputeEnvironmentNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [BatchComputeEnvironmentNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class BatchComputeEnvironmentNameOrNamePrefixNamePrefix
-    extends BatchComputeEnvironmentNameOrNamePrefix {
-  const BatchComputeEnvironmentNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [BatchComputeEnvironmentName.namePrefix] choice: sets `name_prefix`.
+final class BatchComputeEnvironmentNameNamePrefix
+    extends BatchComputeEnvironmentName {
+  const BatchComputeEnvironmentNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -234,17 +233,17 @@ final class BatchComputeEnvironmentComputeResourcesEc2Configuration {
 @immutable
 final class BatchComputeEnvironmentComputeResourcesLaunchTemplate {
   const BatchComputeEnvironmentComputeResourcesLaunchTemplate({
-    this.launchTemplateIdOrLaunchTemplateName,
+    this.launchTemplate,
     this.version,
   });
 
-  final BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateName?
-  launchTemplateIdOrLaunchTemplateName;
+  final BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplate?
+  launchTemplate;
 
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    ...?launchTemplateIdOrLaunchTemplateName?.encode(),
+    ...?launchTemplate?.encode(),
     if (version != null) 'version': version!.toTfJson(),
   };
 }
@@ -254,18 +253,18 @@ final class BatchComputeEnvironmentComputeResourcesLaunchTemplate {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.launchTemplateId(...)`.
-sealed class BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateName {
-  const BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateName();
+sealed class BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplate {
+  const BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplate();
 
   /// Sets `launch_template_id`.
-  const factory BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateName.launchTemplateId(
+  const factory BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplate.launchTemplateId(
     TfArg<String> launchTemplateId,
-  ) = BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateNameLaunchTemplateId;
+  ) = BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateLaunchTemplateId;
 
   /// Sets `launch_template_name`.
-  const factory BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateName.launchTemplateName(
+  const factory BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplate.launchTemplateName(
     TfArg<String> launchTemplateName,
-  ) = BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateNameLaunchTemplateName;
+  ) = BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateLaunchTemplateName;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -273,11 +272,11 @@ sealed class BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplate
   Map<String, Object?> encode();
 }
 
-/// The [BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateName.launchTemplateId] choice: sets `launch_template_id`.
-final class BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateNameLaunchTemplateId
+/// The [BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplate.launchTemplateId] choice: sets `launch_template_id`.
+final class BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateLaunchTemplateId
     extends
-        BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateName {
-  const BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateNameLaunchTemplateId(
+        BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplate {
+  const BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateLaunchTemplateId(
     this.launchTemplateId,
   );
 
@@ -292,11 +291,11 @@ final class BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateI
   };
 }
 
-/// The [BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateName.launchTemplateName] choice: sets `launch_template_name`.
-final class BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateNameLaunchTemplateName
+/// The [BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplate.launchTemplateName] choice: sets `launch_template_name`.
+final class BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateLaunchTemplateName
     extends
-        BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateName {
-  const BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateIdOrLaunchTemplateNameLaunchTemplateName(
+        BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplate {
+  const BatchComputeEnvironmentComputeResourcesLaunchTemplateLaunchTemplateLaunchTemplateName(
     this.launchTemplateName,
   );
 
@@ -357,7 +356,7 @@ final class AwsBatchComputeEnvironment extends Resource {
 
   AwsBatchComputeEnvironment({
     required super.localName,
-    BatchComputeEnvironmentNameOrNamePrefix? nameOrNamePrefix,
+    BatchComputeEnvironmentName? name,
     TfArg<String>? region,
     TfArg<String>? serviceRole,
     TfArg<BatchComputeEnvironmentState>? state,
@@ -373,7 +372,7 @@ final class AwsBatchComputeEnvironment extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (serviceRole != null) 'service_role': serviceRole,
            if (state != null) 'state': state,

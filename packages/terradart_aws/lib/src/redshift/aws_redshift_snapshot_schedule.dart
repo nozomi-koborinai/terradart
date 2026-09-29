@@ -11,18 +11,18 @@ const Set<String> _awsRedshiftSnapshotScheduleSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.identifier(...)`.
-sealed class RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix {
-  const RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix();
+sealed class RedshiftSnapshotScheduleIdentifier {
+  const RedshiftSnapshotScheduleIdentifier();
 
   /// Sets `identifier`.
-  const factory RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix.identifier(
+  const factory RedshiftSnapshotScheduleIdentifier.identifier(
     TfArg<String> identifier,
-  ) = RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifier;
+  ) = RedshiftSnapshotScheduleIdentifierIdentifier;
 
   /// Sets `identifier_prefix`.
-  const factory RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix.identifierPrefix(
+  const factory RedshiftSnapshotScheduleIdentifier.identifierPrefix(
     TfArg<String> identifierPrefix,
-  ) = RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifierPrefix;
+  ) = RedshiftSnapshotScheduleIdentifierIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,12 +34,10 @@ sealed class RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix.identifier] choice: sets `identifier`.
-final class RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifier
-    extends RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix {
-  const RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifier(
-    this.identifier,
-  );
+/// The [RedshiftSnapshotScheduleIdentifier.identifier] choice: sets `identifier`.
+final class RedshiftSnapshotScheduleIdentifierIdentifier
+    extends RedshiftSnapshotScheduleIdentifier {
+  const RedshiftSnapshotScheduleIdentifierIdentifier(this.identifier);
 
   final TfArg<String> identifier;
 
@@ -53,10 +51,10 @@ final class RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifier
   Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
 }
 
-/// The [RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix.identifierPrefix] choice: sets `identifier_prefix`.
-final class RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifierPrefix
-    extends RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix {
-  const RedshiftSnapshotScheduleIdentifierOrIdentifierPrefixIdentifierPrefix(
+/// The [RedshiftSnapshotScheduleIdentifier.identifierPrefix] choice: sets `identifier_prefix`.
+final class RedshiftSnapshotScheduleIdentifierIdentifierPrefix
+    extends RedshiftSnapshotScheduleIdentifier {
+  const RedshiftSnapshotScheduleIdentifierIdentifierPrefix(
     this.identifierPrefix,
   );
 
@@ -85,8 +83,7 @@ final class AwsRedshiftSnapshotSchedule extends Resource {
     required TfArg<List<String>> definitions,
     TfArg<String>? description,
     TfArg<bool>? forceDestroy,
-    RedshiftSnapshotScheduleIdentifierOrIdentifierPrefix?
-    identifierOrIdentifierPrefix,
+    RedshiftSnapshotScheduleIdentifier? identifier,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -99,7 +96,7 @@ final class AwsRedshiftSnapshotSchedule extends Resource {
            'definitions': definitions,
            if (description != null) 'description': description,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
-           ...?identifierOrIdentifierPrefix?.argMap,
+           ...?identifier?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
          },

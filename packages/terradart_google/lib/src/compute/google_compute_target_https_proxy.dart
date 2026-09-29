@@ -50,18 +50,18 @@ enum TlsEarlyData implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.certificateManagerCertificates(...)`.
-sealed class ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
-  const ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates();
+sealed class ComputeTargetHttpsProxyCertificates {
+  const ComputeTargetHttpsProxyCertificates();
 
   /// Sets `certificate_manager_certificates`.
-  const factory ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.certificateManagerCertificates(
+  const factory ComputeTargetHttpsProxyCertificates.certificateManagerCertificates(
     TfArg<List<String>> certificateManagerCertificates,
-  ) = ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesCertificateManagerCertificates;
+  ) = ComputeTargetHttpsProxyCertificatesCertificateManagerCertificates;
 
   /// Sets `ssl_certificates`.
-  const factory ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.sslCertificates(
+  const factory ComputeTargetHttpsProxyCertificates.sslCertificates(
     TfArg<List<String>> sslCertificates,
-  ) = ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesSslCertificates;
+  ) = ComputeTargetHttpsProxyCertificatesSslCertificates;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -73,11 +73,10 @@ sealed class ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertifica
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.certificateManagerCertificates] choice: sets `certificate_manager_certificates`.
-final class ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesCertificateManagerCertificates
-    extends
-        ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
-  const ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesCertificateManagerCertificates(
+/// The [ComputeTargetHttpsProxyCertificates.certificateManagerCertificates] choice: sets `certificate_manager_certificates`.
+final class ComputeTargetHttpsProxyCertificatesCertificateManagerCertificates
+    extends ComputeTargetHttpsProxyCertificates {
+  const ComputeTargetHttpsProxyCertificatesCertificateManagerCertificates(
     this.certificateManagerCertificates,
   );
 
@@ -98,11 +97,10 @@ final class ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificat
   };
 }
 
-/// The [ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates.sslCertificates] choice: sets `ssl_certificates`.
-final class ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesSslCertificates
-    extends
-        ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates {
-  const ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificatesSslCertificates(
+/// The [ComputeTargetHttpsProxyCertificates.sslCertificates] choice: sets `ssl_certificates`.
+final class ComputeTargetHttpsProxyCertificatesSslCertificates
+    extends ComputeTargetHttpsProxyCertificates {
+  const ComputeTargetHttpsProxyCertificatesSslCertificates(
     this.sslCertificates,
   );
 
@@ -160,7 +158,7 @@ final class ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificat
 ///   `//certificatemanager.googleapis.com/projects/{p}/locations/{l}/certificates/{r}`
 ///   form, or the bare `projects/.../certificates/{r}` self-link).
 ///   Only valid when the load-balancing scheme is INTERNAL_MANAGED.
-///   The other choice of [certificateManagerCertificatesOrSslCertificates].
+///   The other choice of [certificates].
 ///
 /// Example (classic SSL certificate, external HTTPS LB):
 /// ```dart
@@ -168,12 +166,9 @@ final class ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificat
 ///   localName: 'lb_https',
 ///   name: TfArg.literal('lb-https-proxy'),
 ///   urlMap: TfArg.ref(urlMap.selfLink),
-///   certificateManagerCertificatesOrSslCertificates:
-///       ComputeTargetHttpsProxySslCertificatesOption(
-///         sslCertificates: TfArg.literal(const [
-///           'projects/my-proj/global/sslCertificates/my-cert',
-///         ]),
-///       ),
+///   certificates: .sslCertificates(
+///     TfArg.literal(const ['projects/my-proj/global/sslCertificates/my-cert']),
+///   ),
 ///   sslPolicy: TfArg.ref(var.ssl_policy_id),
 ///   quicOverride: TfArg.literal(QuicOverride.enable),
 /// );
@@ -192,8 +187,7 @@ final class GoogleComputeTargetHttpsProxy extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> urlMap,
-    ComputeTargetHttpsProxyCertificateManagerCertificatesOrSslCertificates?
-    certificateManagerCertificatesOrSslCertificates,
+    ComputeTargetHttpsProxyCertificates? certificates,
     TfArg<String>? certificateMap,
     TfArg<String>? sslPolicy,
     TfArg<String>? serverTlsPolicy,
@@ -212,7 +206,7 @@ final class GoogleComputeTargetHttpsProxy extends Resource {
          argMap: {
            'name': name,
            'url_map': urlMap,
-           ...?certificateManagerCertificatesOrSslCertificates?.argMap,
+           ...?certificates?.argMap,
            if (certificateMap != null) 'certificate_map': certificateMap,
            if (sslPolicy != null) 'ssl_policy': sslPolicy,
            if (serverTlsPolicy != null) 'server_tls_policy': serverTlsPolicy,

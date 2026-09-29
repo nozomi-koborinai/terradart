@@ -6,6 +6,6 @@ library;
 export 'src/swf/aws_swf_domain.dart'
     show
         AwsSwfDomain,
-        SwfDomainNameOrNamePrefix,
-        SwfDomainNameOrNamePrefixName,
-        SwfDomainNameOrNamePrefixNamePrefix;
+        SwfDomainName,
+        SwfDomainNameName,
+        SwfDomainNameNamePrefix;

@@ -336,7 +336,7 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbe {
     this.initialDelaySeconds,
     this.periodSeconds,
     this.timeoutSeconds,
-    required this.httpGetOrGrpc,
+    required this.check,
   });
 
   final TfArg<num>? failureThreshold;
@@ -347,8 +347,7 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc
-  httpGetOrGrpc;
+  final CloudRunServiceTemplateSpecContainersLivenessProbeCheck check;
 
   Map<String, Object?> encode() => {
     if (failureThreshold != null)
@@ -357,7 +356,7 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbe {
       'initial_delay_seconds': initialDelaySeconds!.toTfJson(),
     if (periodSeconds != null) 'period_seconds': periodSeconds!.toTfJson(),
     if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
-    ...httpGetOrGrpc.encode(),
+    ...check.encode(),
   };
 }
 
@@ -365,18 +364,18 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbe {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.httpGet(...)`.
-sealed class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc();
+sealed class CloudRunServiceTemplateSpecContainersLivenessProbeCheck {
+  const CloudRunServiceTemplateSpecContainersLivenessProbeCheck();
 
   /// Sets `http_get`.
-  const factory CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc.httpGet(
+  const factory CloudRunServiceTemplateSpecContainersLivenessProbeCheck.httpGet(
     CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet httpGet,
-  ) = CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcHttpGet;
+  ) = CloudRunServiceTemplateSpecContainersLivenessProbeCheckHttpGet;
 
   /// Sets `grpc`.
-  const factory CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc.grpc(
+  const factory CloudRunServiceTemplateSpecContainersLivenessProbeCheck.grpc(
     CloudRunServiceTemplateSpecContainersLivenessProbeGrpc grpc,
-  ) = CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcGrpc;
+  ) = CloudRunServiceTemplateSpecContainersLivenessProbeCheckGrpc;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -384,10 +383,10 @@ sealed class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc.httpGet] choice: sets `http_get`.
-final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcHttpGet
-    extends CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcHttpGet(
+/// The [CloudRunServiceTemplateSpecContainersLivenessProbeCheck.httpGet] choice: sets `http_get`.
+final class CloudRunServiceTemplateSpecContainersLivenessProbeCheckHttpGet
+    extends CloudRunServiceTemplateSpecContainersLivenessProbeCheck {
+  const CloudRunServiceTemplateSpecContainersLivenessProbeCheckHttpGet(
     this.httpGet,
   );
 
@@ -400,12 +399,10 @@ final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcHttpG
   Map<String, Object?> encode() => {'http_get': httpGet.encode()};
 }
 
-/// The [CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc.grpc] choice: sets `grpc`.
-final class CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcGrpc
-    extends CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetOrGrpcGrpc(
-    this.grpc,
-  );
+/// The [CloudRunServiceTemplateSpecContainersLivenessProbeCheck.grpc] choice: sets `grpc`.
+final class CloudRunServiceTemplateSpecContainersLivenessProbeCheckGrpc
+    extends CloudRunServiceTemplateSpecContainersLivenessProbeCheck {
+  const CloudRunServiceTemplateSpecContainersLivenessProbeCheckGrpc(this.grpc);
 
   final CloudRunServiceTemplateSpecContainersLivenessProbeGrpc grpc;
 
@@ -513,7 +510,7 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbe {
     this.periodSeconds,
     this.successThreshold,
     this.timeoutSeconds,
-    required this.httpGetOrGrpc,
+    required this.check,
   });
 
   final TfArg<num>? failureThreshold;
@@ -524,8 +521,7 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc
-  httpGetOrGrpc;
+  final CloudRunServiceTemplateSpecContainersReadinessProbeCheck check;
 
   Map<String, Object?> encode() => {
     if (failureThreshold != null)
@@ -534,7 +530,7 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbe {
     if (successThreshold != null)
       'success_threshold': successThreshold!.toTfJson(),
     if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
-    ...httpGetOrGrpc.encode(),
+    ...check.encode(),
   };
 }
 
@@ -542,18 +538,18 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbe {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.httpGet(...)`.
-sealed class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc();
+sealed class CloudRunServiceTemplateSpecContainersReadinessProbeCheck {
+  const CloudRunServiceTemplateSpecContainersReadinessProbeCheck();
 
   /// Sets `http_get`.
-  const factory CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc.httpGet(
+  const factory CloudRunServiceTemplateSpecContainersReadinessProbeCheck.httpGet(
     CloudRunServiceTemplateSpecContainersReadinessProbeHttpGet httpGet,
-  ) = CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcHttpGet;
+  ) = CloudRunServiceTemplateSpecContainersReadinessProbeCheckHttpGet;
 
   /// Sets `grpc`.
-  const factory CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc.grpc(
+  const factory CloudRunServiceTemplateSpecContainersReadinessProbeCheck.grpc(
     CloudRunServiceTemplateSpecContainersReadinessProbeGrpc grpc,
-  ) = CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcGrpc;
+  ) = CloudRunServiceTemplateSpecContainersReadinessProbeCheckGrpc;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -561,10 +557,10 @@ sealed class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc {
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc.httpGet] choice: sets `http_get`.
-final class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcHttpGet
-    extends CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcHttpGet(
+/// The [CloudRunServiceTemplateSpecContainersReadinessProbeCheck.httpGet] choice: sets `http_get`.
+final class CloudRunServiceTemplateSpecContainersReadinessProbeCheckHttpGet
+    extends CloudRunServiceTemplateSpecContainersReadinessProbeCheck {
+  const CloudRunServiceTemplateSpecContainersReadinessProbeCheckHttpGet(
     this.httpGet,
   );
 
@@ -577,12 +573,10 @@ final class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcHttp
   Map<String, Object?> encode() => {'http_get': httpGet.encode()};
 }
 
-/// The [CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc.grpc] choice: sets `grpc`.
-final class CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcGrpc
-    extends CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersReadinessProbeHttpGetOrGrpcGrpc(
-    this.grpc,
-  );
+/// The [CloudRunServiceTemplateSpecContainersReadinessProbeCheck.grpc] choice: sets `grpc`.
+final class CloudRunServiceTemplateSpecContainersReadinessProbeCheckGrpc
+    extends CloudRunServiceTemplateSpecContainersReadinessProbeCheck {
+  const CloudRunServiceTemplateSpecContainersReadinessProbeCheckGrpc(this.grpc);
 
   final CloudRunServiceTemplateSpecContainersReadinessProbeGrpc grpc;
 
@@ -659,7 +653,7 @@ final class CloudRunServiceTemplateSpecContainersStartupProbe {
     this.initialDelaySeconds,
     this.periodSeconds,
     this.timeoutSeconds,
-    required this.tcpSocketOrHttpGetOrGrpc,
+    required this.check,
   });
 
   final TfArg<num>? failureThreshold;
@@ -670,8 +664,7 @@ final class CloudRunServiceTemplateSpecContainersStartupProbe {
 
   final TfArg<num>? timeoutSeconds;
 
-  final CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc
-  tcpSocketOrHttpGetOrGrpc;
+  final CloudRunServiceTemplateSpecContainersStartupProbeCheck check;
 
   Map<String, Object?> encode() => {
     if (failureThreshold != null)
@@ -680,7 +673,7 @@ final class CloudRunServiceTemplateSpecContainersStartupProbe {
       'initial_delay_seconds': initialDelaySeconds!.toTfJson(),
     if (periodSeconds != null) 'period_seconds': periodSeconds!.toTfJson(),
     if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
-    ...tcpSocketOrHttpGetOrGrpc.encode(),
+    ...check.encode(),
   };
 }
 
@@ -688,23 +681,23 @@ final class CloudRunServiceTemplateSpecContainersStartupProbe {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.tcpSocket(...)`.
-sealed class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc();
+sealed class CloudRunServiceTemplateSpecContainersStartupProbeCheck {
+  const CloudRunServiceTemplateSpecContainersStartupProbeCheck();
 
   /// Sets `tcp_socket`.
-  const factory CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc.tcpSocket(
+  const factory CloudRunServiceTemplateSpecContainersStartupProbeCheck.tcpSocket(
     CloudRunServiceTemplateSpecContainersStartupProbeTcpSocket tcpSocket,
-  ) = CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcTcpSocket;
+  ) = CloudRunServiceTemplateSpecContainersStartupProbeCheckTcpSocket;
 
   /// Sets `http_get`.
-  const factory CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc.httpGet(
+  const factory CloudRunServiceTemplateSpecContainersStartupProbeCheck.httpGet(
     CloudRunServiceTemplateSpecContainersStartupProbeHttpGet httpGet,
-  ) = CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcHttpGet;
+  ) = CloudRunServiceTemplateSpecContainersStartupProbeCheckHttpGet;
 
   /// Sets `grpc`.
-  const factory CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc.grpc(
+  const factory CloudRunServiceTemplateSpecContainersStartupProbeCheck.grpc(
     CloudRunServiceTemplateSpecContainersStartupProbeGrpc grpc,
-  ) = CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcGrpc;
+  ) = CloudRunServiceTemplateSpecContainersStartupProbeCheckGrpc;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -712,11 +705,10 @@ sealed class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGet
   Map<String, Object?> encode();
 }
 
-/// The [CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc.tcpSocket] choice: sets `tcp_socket`.
-final class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcTcpSocket
-    extends
-        CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcTcpSocket(
+/// The [CloudRunServiceTemplateSpecContainersStartupProbeCheck.tcpSocket] choice: sets `tcp_socket`.
+final class CloudRunServiceTemplateSpecContainersStartupProbeCheckTcpSocket
+    extends CloudRunServiceTemplateSpecContainersStartupProbeCheck {
+  const CloudRunServiceTemplateSpecContainersStartupProbeCheckTcpSocket(
     this.tcpSocket,
   );
 
@@ -729,11 +721,10 @@ final class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetO
   Map<String, Object?> encode() => {'tcp_socket': tcpSocket.encode()};
 }
 
-/// The [CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc.httpGet] choice: sets `http_get`.
-final class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcHttpGet
-    extends
-        CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcHttpGet(
+/// The [CloudRunServiceTemplateSpecContainersStartupProbeCheck.httpGet] choice: sets `http_get`.
+final class CloudRunServiceTemplateSpecContainersStartupProbeCheckHttpGet
+    extends CloudRunServiceTemplateSpecContainersStartupProbeCheck {
+  const CloudRunServiceTemplateSpecContainersStartupProbeCheckHttpGet(
     this.httpGet,
   );
 
@@ -746,13 +737,10 @@ final class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetO
   Map<String, Object?> encode() => {'http_get': httpGet.encode()};
 }
 
-/// The [CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc.grpc] choice: sets `grpc`.
-final class CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcGrpc
-    extends
-        CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpc {
-  const CloudRunServiceTemplateSpecContainersStartupProbeTcpSocketOrHttpGetOrGrpcGrpc(
-    this.grpc,
-  );
+/// The [CloudRunServiceTemplateSpecContainersStartupProbeCheck.grpc] choice: sets `grpc`.
+final class CloudRunServiceTemplateSpecContainersStartupProbeCheckGrpc
+    extends CloudRunServiceTemplateSpecContainersStartupProbeCheck {
+  const CloudRunServiceTemplateSpecContainersStartupProbeCheckGrpc(this.grpc);
 
   final CloudRunServiceTemplateSpecContainersStartupProbeGrpc grpc;
 

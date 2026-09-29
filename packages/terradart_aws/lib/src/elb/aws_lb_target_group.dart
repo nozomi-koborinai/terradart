@@ -94,17 +94,16 @@ enum LbTargetGroupTargetType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class LbTargetGroupNameOrNamePrefix {
-  const LbTargetGroupNameOrNamePrefix();
+sealed class LbTargetGroupName {
+  const LbTargetGroupName();
 
   /// Sets `name`.
-  const factory LbTargetGroupNameOrNamePrefix.name(TfArg<String> name) =
-      LbTargetGroupNameOrNamePrefixName;
+  const factory LbTargetGroupName.name(TfArg<String> name) =
+      LbTargetGroupNameName;
 
   /// Sets `name_prefix`.
-  const factory LbTargetGroupNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = LbTargetGroupNameOrNamePrefixNamePrefix;
+  const factory LbTargetGroupName.namePrefix(TfArg<String> namePrefix) =
+      LbTargetGroupNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -116,10 +115,9 @@ sealed class LbTargetGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LbTargetGroupNameOrNamePrefix.name] choice: sets `name`.
-final class LbTargetGroupNameOrNamePrefixName
-    extends LbTargetGroupNameOrNamePrefix {
-  const LbTargetGroupNameOrNamePrefixName(this.name);
+/// The [LbTargetGroupName.name] choice: sets `name`.
+final class LbTargetGroupNameName extends LbTargetGroupName {
+  const LbTargetGroupNameName(this.name);
 
   final TfArg<String> name;
 
@@ -133,10 +131,9 @@ final class LbTargetGroupNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [LbTargetGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class LbTargetGroupNameOrNamePrefixNamePrefix
-    extends LbTargetGroupNameOrNamePrefix {
-  const LbTargetGroupNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [LbTargetGroupName.namePrefix] choice: sets `name_prefix`.
+final class LbTargetGroupNameNamePrefix extends LbTargetGroupName {
+  const LbTargetGroupNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -379,7 +376,7 @@ final class AwsLbTargetGroup extends Resource {
     loadBalancingAnomalyMitigation,
     TfArg<LbTargetGroupLoadBalancingCrossZoneEnabled>?
     loadBalancingCrossZoneEnabled,
-    LbTargetGroupNameOrNamePrefix? nameOrNamePrefix,
+    LbTargetGroupName? name,
     TfArg<num>? port,
     TfArg<String>? preserveClientIp,
     TfArg<LbTargetGroupProtocol>? protocol,
@@ -418,7 +415,7 @@ final class AwsLbTargetGroup extends Resource {
                  loadBalancingAnomalyMitigation,
            if (loadBalancingCrossZoneEnabled != null)
              'load_balancing_cross_zone_enabled': loadBalancingCrossZoneEnabled,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (port != null) 'port': port,
            if (preserveClientIp != null) 'preserve_client_ip': preserveClientIp,
            if (protocol != null) 'protocol': protocol,

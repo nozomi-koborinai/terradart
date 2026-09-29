@@ -99,43 +99,43 @@ final class Route53RecordAliasOrRecordsRecords
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.cidrRoutingPolicy(...)`.
-sealed class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy();
+sealed class Route53RecordRoutingPolicy {
+  const Route53RecordRoutingPolicy();
 
   /// Sets `cidr_routing_policy`.
-  const factory Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.cidrRoutingPolicy(
+  const factory Route53RecordRoutingPolicy.cidrRoutingPolicy(
     Route53RecordCidrRoutingPolicy cidrRoutingPolicy,
-  ) = Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyCidrRoutingPolicy;
+  ) = Route53RecordRoutingPolicyCidrRoutingPolicy;
 
   /// Sets `failover_routing_policy`.
-  const factory Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.failoverRoutingPolicy(
+  const factory Route53RecordRoutingPolicy.failoverRoutingPolicy(
     Route53RecordFailoverRoutingPolicy failoverRoutingPolicy,
-  ) = Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyFailoverRoutingPolicy;
+  ) = Route53RecordRoutingPolicyFailoverRoutingPolicy;
 
   /// Sets `geolocation_routing_policy`.
-  const factory Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.geolocationRoutingPolicy(
+  const factory Route53RecordRoutingPolicy.geolocationRoutingPolicy(
     Route53RecordGeolocationRoutingPolicy geolocationRoutingPolicy,
-  ) = Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyGeolocationRoutingPolicy;
+  ) = Route53RecordRoutingPolicyGeolocationRoutingPolicy;
 
   /// Sets `geoproximity_routing_policy`.
-  const factory Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.geoproximityRoutingPolicy(
+  const factory Route53RecordRoutingPolicy.geoproximityRoutingPolicy(
     Route53RecordGeoproximityRoutingPolicy geoproximityRoutingPolicy,
-  ) = Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyGeoproximityRoutingPolicy;
+  ) = Route53RecordRoutingPolicyGeoproximityRoutingPolicy;
 
   /// Sets `latency_routing_policy`.
-  const factory Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.latencyRoutingPolicy(
+  const factory Route53RecordRoutingPolicy.latencyRoutingPolicy(
     Route53RecordLatencyRoutingPolicy latencyRoutingPolicy,
-  ) = Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyLatencyRoutingPolicy;
+  ) = Route53RecordRoutingPolicyLatencyRoutingPolicy;
 
   /// Sets `multivalue_answer_routing_policy`.
-  const factory Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.multivalueAnswerRoutingPolicy(
+  const factory Route53RecordRoutingPolicy.multivalueAnswerRoutingPolicy(
     TfArg<bool> multivalueAnswerRoutingPolicy,
-  ) = Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyMultivalueAnswerRoutingPolicy;
+  ) = Route53RecordRoutingPolicyMultivalueAnswerRoutingPolicy;
 
   /// Sets `weighted_routing_policy`.
-  const factory Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.weightedRoutingPolicy(
+  const factory Route53RecordRoutingPolicy.weightedRoutingPolicy(
     Route53RecordWeightedRoutingPolicy weightedRoutingPolicy,
-  ) = Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyWeightedRoutingPolicy;
+  ) = Route53RecordRoutingPolicyWeightedRoutingPolicy;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -147,13 +147,10 @@ sealed class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationR
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.cidrRoutingPolicy] choice: sets `cidr_routing_policy`.
-final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyCidrRoutingPolicy
-    extends
-        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyCidrRoutingPolicy(
-    this.cidrRoutingPolicy,
-  );
+/// The [Route53RecordRoutingPolicy.cidrRoutingPolicy] choice: sets `cidr_routing_policy`.
+final class Route53RecordRoutingPolicyCidrRoutingPolicy
+    extends Route53RecordRoutingPolicy {
+  const Route53RecordRoutingPolicyCidrRoutingPolicy(this.cidrRoutingPolicy);
 
   final Route53RecordCidrRoutingPolicy cidrRoutingPolicy;
 
@@ -171,11 +168,10 @@ final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRo
   };
 }
 
-/// The [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.failoverRoutingPolicy] choice: sets `failover_routing_policy`.
-final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyFailoverRoutingPolicy
-    extends
-        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyFailoverRoutingPolicy(
+/// The [Route53RecordRoutingPolicy.failoverRoutingPolicy] choice: sets `failover_routing_policy`.
+final class Route53RecordRoutingPolicyFailoverRoutingPolicy
+    extends Route53RecordRoutingPolicy {
+  const Route53RecordRoutingPolicyFailoverRoutingPolicy(
     this.failoverRoutingPolicy,
   );
 
@@ -195,11 +191,10 @@ final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRo
   };
 }
 
-/// The [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.geolocationRoutingPolicy] choice: sets `geolocation_routing_policy`.
-final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyGeolocationRoutingPolicy
-    extends
-        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyGeolocationRoutingPolicy(
+/// The [Route53RecordRoutingPolicy.geolocationRoutingPolicy] choice: sets `geolocation_routing_policy`.
+final class Route53RecordRoutingPolicyGeolocationRoutingPolicy
+    extends Route53RecordRoutingPolicy {
+  const Route53RecordRoutingPolicyGeolocationRoutingPolicy(
     this.geolocationRoutingPolicy,
   );
 
@@ -221,11 +216,10 @@ final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRo
   };
 }
 
-/// The [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.geoproximityRoutingPolicy] choice: sets `geoproximity_routing_policy`.
-final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyGeoproximityRoutingPolicy
-    extends
-        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyGeoproximityRoutingPolicy(
+/// The [Route53RecordRoutingPolicy.geoproximityRoutingPolicy] choice: sets `geoproximity_routing_policy`.
+final class Route53RecordRoutingPolicyGeoproximityRoutingPolicy
+    extends Route53RecordRoutingPolicy {
+  const Route53RecordRoutingPolicyGeoproximityRoutingPolicy(
     this.geoproximityRoutingPolicy,
   );
 
@@ -247,11 +241,10 @@ final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRo
   };
 }
 
-/// The [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.latencyRoutingPolicy] choice: sets `latency_routing_policy`.
-final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyLatencyRoutingPolicy
-    extends
-        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyLatencyRoutingPolicy(
+/// The [Route53RecordRoutingPolicy.latencyRoutingPolicy] choice: sets `latency_routing_policy`.
+final class Route53RecordRoutingPolicyLatencyRoutingPolicy
+    extends Route53RecordRoutingPolicy {
+  const Route53RecordRoutingPolicyLatencyRoutingPolicy(
     this.latencyRoutingPolicy,
   );
 
@@ -271,11 +264,10 @@ final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRo
   };
 }
 
-/// The [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.multivalueAnswerRoutingPolicy] choice: sets `multivalue_answer_routing_policy`.
-final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyMultivalueAnswerRoutingPolicy
-    extends
-        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyMultivalueAnswerRoutingPolicy(
+/// The [Route53RecordRoutingPolicy.multivalueAnswerRoutingPolicy] choice: sets `multivalue_answer_routing_policy`.
+final class Route53RecordRoutingPolicyMultivalueAnswerRoutingPolicy
+    extends Route53RecordRoutingPolicy {
+  const Route53RecordRoutingPolicyMultivalueAnswerRoutingPolicy(
     this.multivalueAnswerRoutingPolicy,
   );
 
@@ -296,11 +288,10 @@ final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRo
   };
 }
 
-/// The [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy.weightedRoutingPolicy] choice: sets `weighted_routing_policy`.
-final class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyWeightedRoutingPolicy
-    extends
-        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
-  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicyWeightedRoutingPolicy(
+/// The [Route53RecordRoutingPolicy.weightedRoutingPolicy] choice: sets `weighted_routing_policy`.
+final class Route53RecordRoutingPolicyWeightedRoutingPolicy
+    extends Route53RecordRoutingPolicy {
+  const Route53RecordRoutingPolicyWeightedRoutingPolicy(
     this.weightedRoutingPolicy,
   );
 
@@ -530,8 +521,7 @@ final class AwsRoute53Record extends Resource {
     required super.localName,
     TfArg<bool>? allowOverwrite,
     TfArg<String>? healthCheckId,
-    Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy?
-    cidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy,
+    Route53RecordRoutingPolicy? routingPolicy,
     required TfArg<String> name,
     required Route53RecordAliasOrRecords aliasOrRecords,
     TfArg<String>? setIdentifier,
@@ -547,8 +537,7 @@ final class AwsRoute53Record extends Resource {
          argMap: {
            if (allowOverwrite != null) 'allow_overwrite': allowOverwrite,
            if (healthCheckId != null) 'health_check_id': healthCheckId,
-           ...?cidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy
-               ?.argMap,
+           ...?routingPolicy?.argMap,
            'name': name,
            ...aliasOrRecords.argMap,
            if (setIdentifier != null) 'set_identifier': setIdentifier,

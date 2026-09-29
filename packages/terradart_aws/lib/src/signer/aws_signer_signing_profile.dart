@@ -25,17 +25,16 @@ enum SignerSigningProfilePlatformId implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class SignerSigningProfileNameOrNamePrefix {
-  const SignerSigningProfileNameOrNamePrefix();
+sealed class SignerSigningProfileName {
+  const SignerSigningProfileName();
 
   /// Sets `name`.
-  const factory SignerSigningProfileNameOrNamePrefix.name(TfArg<String> name) =
-      SignerSigningProfileNameOrNamePrefixName;
+  const factory SignerSigningProfileName.name(TfArg<String> name) =
+      SignerSigningProfileNameName;
 
   /// Sets `name_prefix`.
-  const factory SignerSigningProfileNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = SignerSigningProfileNameOrNamePrefixNamePrefix;
+  const factory SignerSigningProfileName.namePrefix(TfArg<String> namePrefix) =
+      SignerSigningProfileNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -47,10 +46,9 @@ sealed class SignerSigningProfileNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SignerSigningProfileNameOrNamePrefix.name] choice: sets `name`.
-final class SignerSigningProfileNameOrNamePrefixName
-    extends SignerSigningProfileNameOrNamePrefix {
-  const SignerSigningProfileNameOrNamePrefixName(this.name);
+/// The [SignerSigningProfileName.name] choice: sets `name`.
+final class SignerSigningProfileNameName extends SignerSigningProfileName {
+  const SignerSigningProfileNameName(this.name);
 
   final TfArg<String> name;
 
@@ -64,10 +62,10 @@ final class SignerSigningProfileNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [SignerSigningProfileNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class SignerSigningProfileNameOrNamePrefixNamePrefix
-    extends SignerSigningProfileNameOrNamePrefix {
-  const SignerSigningProfileNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [SignerSigningProfileName.namePrefix] choice: sets `name_prefix`.
+final class SignerSigningProfileNameNamePrefix
+    extends SignerSigningProfileName {
+  const SignerSigningProfileNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -130,7 +128,7 @@ final class AwsSignerSigningProfile extends Resource {
 
   AwsSignerSigningProfile({
     required super.localName,
-    SignerSigningProfileNameOrNamePrefix? nameOrNamePrefix,
+    SignerSigningProfileName? name,
     required TfArg<SignerSigningProfilePlatformId> platformId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? signingParameters,
@@ -144,7 +142,7 @@ final class AwsSignerSigningProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            'platform_id': platformId,
            if (region != null) 'region': region,
            if (signingParameters != null)

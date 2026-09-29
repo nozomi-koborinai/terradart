@@ -35,70 +35,64 @@ final class LakeformationOptInPrincipal {
 /// `aws_lakeformation_opt_in` (derived from provider schema).
 @immutable
 final class LakeformationOptInResourceData {
-  const LakeformationOptInResourceData({
-    required this.catalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns,
-  });
+  const LakeformationOptInResourceData({required this.resourceData});
 
-  final LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns
-  catalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns;
+  final LakeformationOptInResourceDataResourceData resourceData;
 
-  Map<String, Object?> encode() => {
-    ...catalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns
-        .encode(),
-  };
+  Map<String, Object?> encode() => {...resourceData.encode()};
 }
 
 /// Exactly one of `catalog`, `data_cells_filter`, `data_location`, `database`, `lf_tag`, `lf_tag_expression`, `lf_tag_policy`, `table`, `table_with_columns` on the `resource_data` block of `aws_lakeformation_opt_in`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.catalog(...)`.
-sealed class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns();
+sealed class LakeformationOptInResourceDataResourceData {
+  const LakeformationOptInResourceDataResourceData();
 
   /// Sets `catalog`.
-  const factory LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.catalog(
+  const factory LakeformationOptInResourceDataResourceData.catalog(
     List<LakeformationOptInResourceDataCatalog> catalog,
-  ) = LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsCatalog;
+  ) = LakeformationOptInResourceDataResourceDataCatalog;
 
   /// Sets `data_cells_filter`.
-  const factory LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.dataCellsFilter(
+  const factory LakeformationOptInResourceDataResourceData.dataCellsFilter(
     List<LakeformationOptInResourceDataDataCellsFilter> dataCellsFilter,
-  ) = LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsDataCellsFilter;
+  ) = LakeformationOptInResourceDataResourceDataDataCellsFilter;
 
   /// Sets `data_location`.
-  const factory LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.dataLocation(
+  const factory LakeformationOptInResourceDataResourceData.dataLocation(
     List<LakeformationOptInResourceDataDataLocation> dataLocation,
-  ) = LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsDataLocation;
+  ) = LakeformationOptInResourceDataResourceDataDataLocation;
 
   /// Sets `database`.
-  const factory LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.database(
+  const factory LakeformationOptInResourceDataResourceData.database(
     List<LakeformationOptInResourceDataDatabase> database,
-  ) = LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsDatabase;
+  ) = LakeformationOptInResourceDataResourceDataDatabase;
 
   /// Sets `lf_tag`.
-  const factory LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.lfTag(
+  const factory LakeformationOptInResourceDataResourceData.lfTag(
     List<LakeformationOptInResourceDataLfTag> lfTag,
-  ) = LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsLfTag;
+  ) = LakeformationOptInResourceDataResourceDataLfTag;
 
   /// Sets `lf_tag_expression`.
-  const factory LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.lfTagExpression(
+  const factory LakeformationOptInResourceDataResourceData.lfTagExpression(
     List<LakeformationOptInResourceDataLfTagExpression> lfTagExpression,
-  ) = LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsLfTagExpression;
+  ) = LakeformationOptInResourceDataResourceDataLfTagExpression;
 
   /// Sets `lf_tag_policy`.
-  const factory LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.lfTagPolicy(
+  const factory LakeformationOptInResourceDataResourceData.lfTagPolicy(
     List<LakeformationOptInResourceDataLfTagPolicy> lfTagPolicy,
-  ) = LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsLfTagPolicy;
+  ) = LakeformationOptInResourceDataResourceDataLfTagPolicy;
 
   /// Sets `table`.
-  const factory LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.table(
+  const factory LakeformationOptInResourceDataResourceData.table(
     List<LakeformationOptInResourceDataTable> table,
-  ) = LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsTable;
+  ) = LakeformationOptInResourceDataResourceDataTable;
 
   /// Sets `table_with_columns`.
-  const factory LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.tableWithColumns(
+  const factory LakeformationOptInResourceDataResourceData.tableWithColumns(
     List<LakeformationOptInResourceDataTableWithColumns> tableWithColumns,
-  ) = LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsTableWithColumns;
+  ) = LakeformationOptInResourceDataResourceDataTableWithColumns;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -106,13 +100,10 @@ sealed class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocatio
   Map<String, Object?> encode();
 }
 
-/// The [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.catalog] choice: sets `catalog`.
-final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsCatalog
-    extends
-        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsCatalog(
-    this.catalog,
-  );
+/// The [LakeformationOptInResourceDataResourceData.catalog] choice: sets `catalog`.
+final class LakeformationOptInResourceDataResourceDataCatalog
+    extends LakeformationOptInResourceDataResourceData {
+  const LakeformationOptInResourceDataResourceDataCatalog(this.catalog);
 
   final List<LakeformationOptInResourceDataCatalog> catalog;
 
@@ -125,11 +116,10 @@ final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocation
   };
 }
 
-/// The [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.dataCellsFilter] choice: sets `data_cells_filter`.
-final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsDataCellsFilter
-    extends
-        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsDataCellsFilter(
+/// The [LakeformationOptInResourceDataResourceData.dataCellsFilter] choice: sets `data_cells_filter`.
+final class LakeformationOptInResourceDataResourceDataDataCellsFilter
+    extends LakeformationOptInResourceDataResourceData {
+  const LakeformationOptInResourceDataResourceDataDataCellsFilter(
     this.dataCellsFilter,
   );
 
@@ -144,11 +134,10 @@ final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocation
   };
 }
 
-/// The [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.dataLocation] choice: sets `data_location`.
-final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsDataLocation
-    extends
-        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsDataLocation(
+/// The [LakeformationOptInResourceDataResourceData.dataLocation] choice: sets `data_location`.
+final class LakeformationOptInResourceDataResourceDataDataLocation
+    extends LakeformationOptInResourceDataResourceData {
+  const LakeformationOptInResourceDataResourceDataDataLocation(
     this.dataLocation,
   );
 
@@ -163,13 +152,10 @@ final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocation
   };
 }
 
-/// The [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.database] choice: sets `database`.
-final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsDatabase
-    extends
-        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsDatabase(
-    this.database,
-  );
+/// The [LakeformationOptInResourceDataResourceData.database] choice: sets `database`.
+final class LakeformationOptInResourceDataResourceDataDatabase
+    extends LakeformationOptInResourceDataResourceData {
+  const LakeformationOptInResourceDataResourceDataDatabase(this.database);
 
   final List<LakeformationOptInResourceDataDatabase> database;
 
@@ -182,13 +168,10 @@ final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocation
   };
 }
 
-/// The [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.lfTag] choice: sets `lf_tag`.
-final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsLfTag
-    extends
-        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsLfTag(
-    this.lfTag,
-  );
+/// The [LakeformationOptInResourceDataResourceData.lfTag] choice: sets `lf_tag`.
+final class LakeformationOptInResourceDataResourceDataLfTag
+    extends LakeformationOptInResourceDataResourceData {
+  const LakeformationOptInResourceDataResourceDataLfTag(this.lfTag);
 
   final List<LakeformationOptInResourceDataLfTag> lfTag;
 
@@ -201,11 +184,10 @@ final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocation
   };
 }
 
-/// The [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.lfTagExpression] choice: sets `lf_tag_expression`.
-final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsLfTagExpression
-    extends
-        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsLfTagExpression(
+/// The [LakeformationOptInResourceDataResourceData.lfTagExpression] choice: sets `lf_tag_expression`.
+final class LakeformationOptInResourceDataResourceDataLfTagExpression
+    extends LakeformationOptInResourceDataResourceData {
+  const LakeformationOptInResourceDataResourceDataLfTagExpression(
     this.lfTagExpression,
   );
 
@@ -220,13 +202,10 @@ final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocation
   };
 }
 
-/// The [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.lfTagPolicy] choice: sets `lf_tag_policy`.
-final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsLfTagPolicy
-    extends
-        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsLfTagPolicy(
-    this.lfTagPolicy,
-  );
+/// The [LakeformationOptInResourceDataResourceData.lfTagPolicy] choice: sets `lf_tag_policy`.
+final class LakeformationOptInResourceDataResourceDataLfTagPolicy
+    extends LakeformationOptInResourceDataResourceData {
+  const LakeformationOptInResourceDataResourceDataLfTagPolicy(this.lfTagPolicy);
 
   final List<LakeformationOptInResourceDataLfTagPolicy> lfTagPolicy;
 
@@ -239,13 +218,10 @@ final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocation
   };
 }
 
-/// The [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.table] choice: sets `table`.
-final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsTable
-    extends
-        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsTable(
-    this.table,
-  );
+/// The [LakeformationOptInResourceDataResourceData.table] choice: sets `table`.
+final class LakeformationOptInResourceDataResourceDataTable
+    extends LakeformationOptInResourceDataResourceData {
+  const LakeformationOptInResourceDataResourceDataTable(this.table);
 
   final List<LakeformationOptInResourceDataTable> table;
 
@@ -258,11 +234,10 @@ final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocation
   };
 }
 
-/// The [LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns.tableWithColumns] choice: sets `table_with_columns`.
-final class LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsTableWithColumns
-    extends
-        LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumns {
-  const LakeformationOptInResourceDataCatalogOrDataCellsFilterOrDataLocationOrDatabaseOrLfTagOrLfTagExpressionOrLfTagPolicyOrTableOrTableWithColumnsTableWithColumns(
+/// The [LakeformationOptInResourceDataResourceData.tableWithColumns] choice: sets `table_with_columns`.
+final class LakeformationOptInResourceDataResourceDataTableWithColumns
+    extends LakeformationOptInResourceDataResourceData {
+  const LakeformationOptInResourceDataResourceDataTableWithColumns(
     this.tableWithColumns,
   );
 

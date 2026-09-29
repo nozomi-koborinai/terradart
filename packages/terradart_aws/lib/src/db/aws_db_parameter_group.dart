@@ -12,17 +12,16 @@ const Set<String> _awsDbParameterGroupSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class DbParameterGroupNameOrNamePrefix {
-  const DbParameterGroupNameOrNamePrefix();
+sealed class DbParameterGroupName {
+  const DbParameterGroupName();
 
   /// Sets `name`.
-  const factory DbParameterGroupNameOrNamePrefix.name(TfArg<String> name) =
-      DbParameterGroupNameOrNamePrefixName;
+  const factory DbParameterGroupName.name(TfArg<String> name) =
+      DbParameterGroupNameName;
 
   /// Sets `name_prefix`.
-  const factory DbParameterGroupNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = DbParameterGroupNameOrNamePrefixNamePrefix;
+  const factory DbParameterGroupName.namePrefix(TfArg<String> namePrefix) =
+      DbParameterGroupNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +33,9 @@ sealed class DbParameterGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DbParameterGroupNameOrNamePrefix.name] choice: sets `name`.
-final class DbParameterGroupNameOrNamePrefixName
-    extends DbParameterGroupNameOrNamePrefix {
-  const DbParameterGroupNameOrNamePrefixName(this.name);
+/// The [DbParameterGroupName.name] choice: sets `name`.
+final class DbParameterGroupNameName extends DbParameterGroupName {
+  const DbParameterGroupNameName(this.name);
 
   final TfArg<String> name;
 
@@ -51,10 +49,9 @@ final class DbParameterGroupNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [DbParameterGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class DbParameterGroupNameOrNamePrefixNamePrefix
-    extends DbParameterGroupNameOrNamePrefix {
-  const DbParameterGroupNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [DbParameterGroupName.namePrefix] choice: sets `name_prefix`.
+final class DbParameterGroupNameNamePrefix extends DbParameterGroupName {
+  const DbParameterGroupNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -109,7 +106,7 @@ final class AwsDbParameterGroup extends Resource {
     required super.localName,
     TfArg<String>? description,
     required TfArg<String> family,
-    DbParameterGroupNameOrNamePrefix? nameOrNamePrefix,
+    DbParameterGroupName? name,
     TfArg<String>? region,
     TfArg<bool>? skipDestroy,
     TfArg<Map<String, String>>? tags,
@@ -123,7 +120,7 @@ final class AwsDbParameterGroup extends Resource {
          argMap: {
            if (description != null) 'description': description,
            'family': family,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (skipDestroy != null) 'skip_destroy': skipDestroy,
            if (tags != null) 'tags': tags,

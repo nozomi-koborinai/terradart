@@ -24,29 +24,29 @@ enum NetworkSecuritySecurityProfileType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.threatPreventionProfile(...)`.
-sealed class NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile {
-  const NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile();
+sealed class NetworkSecuritySecurityProfileProfile {
+  const NetworkSecuritySecurityProfileProfile();
 
   /// Sets `threat_prevention_profile`.
-  const factory NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile.threatPreventionProfile(
+  const factory NetworkSecuritySecurityProfileProfile.threatPreventionProfile(
     NetworkSecuritySecurityProfileThreatPreventionProfile
     threatPreventionProfile,
-  ) = NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileThreatPreventionProfile;
+  ) = NetworkSecuritySecurityProfileProfileThreatPreventionProfile;
 
   /// Sets `url_filtering_profile`.
-  const factory NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile.urlFilteringProfile(
+  const factory NetworkSecuritySecurityProfileProfile.urlFilteringProfile(
     NetworkSecuritySecurityProfileUrlFilteringProfile urlFilteringProfile,
-  ) = NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileUrlFilteringProfile;
+  ) = NetworkSecuritySecurityProfileProfileUrlFilteringProfile;
 
   /// Sets `custom_mirroring_profile`.
-  const factory NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile.customMirroringProfile(
+  const factory NetworkSecuritySecurityProfileProfile.customMirroringProfile(
     NetworkSecuritySecurityProfileCustomMirroringProfile customMirroringProfile,
-  ) = NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileCustomMirroringProfile;
+  ) = NetworkSecuritySecurityProfileProfileCustomMirroringProfile;
 
   /// Sets `custom_intercept_profile`.
-  const factory NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile.customInterceptProfile(
+  const factory NetworkSecuritySecurityProfileProfile.customInterceptProfile(
     NetworkSecuritySecurityProfileCustomInterceptProfile customInterceptProfile,
-  ) = NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileCustomInterceptProfile;
+  ) = NetworkSecuritySecurityProfileProfileCustomInterceptProfile;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -58,11 +58,10 @@ sealed class NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFiltering
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile.threatPreventionProfile] choice: sets `threat_prevention_profile`.
-final class NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileThreatPreventionProfile
-    extends
-        NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile {
-  const NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileThreatPreventionProfile(
+/// The [NetworkSecuritySecurityProfileProfile.threatPreventionProfile] choice: sets `threat_prevention_profile`.
+final class NetworkSecuritySecurityProfileProfileThreatPreventionProfile
+    extends NetworkSecuritySecurityProfileProfile {
+  const NetworkSecuritySecurityProfileProfileThreatPreventionProfile(
     this.threatPreventionProfile,
   );
 
@@ -85,11 +84,10 @@ final class NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringP
   };
 }
 
-/// The [NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile.urlFilteringProfile] choice: sets `url_filtering_profile`.
-final class NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileUrlFilteringProfile
-    extends
-        NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile {
-  const NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileUrlFilteringProfile(
+/// The [NetworkSecuritySecurityProfileProfile.urlFilteringProfile] choice: sets `url_filtering_profile`.
+final class NetworkSecuritySecurityProfileProfileUrlFilteringProfile
+    extends NetworkSecuritySecurityProfileProfile {
+  const NetworkSecuritySecurityProfileProfileUrlFilteringProfile(
     this.urlFilteringProfile,
   );
 
@@ -109,11 +107,10 @@ final class NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringP
   };
 }
 
-/// The [NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile.customMirroringProfile] choice: sets `custom_mirroring_profile`.
-final class NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileCustomMirroringProfile
-    extends
-        NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile {
-  const NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileCustomMirroringProfile(
+/// The [NetworkSecuritySecurityProfileProfile.customMirroringProfile] choice: sets `custom_mirroring_profile`.
+final class NetworkSecuritySecurityProfileProfileCustomMirroringProfile
+    extends NetworkSecuritySecurityProfileProfile {
+  const NetworkSecuritySecurityProfileProfileCustomMirroringProfile(
     this.customMirroringProfile,
   );
 
@@ -134,11 +131,10 @@ final class NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringP
   };
 }
 
-/// The [NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile.customInterceptProfile] choice: sets `custom_intercept_profile`.
-final class NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileCustomInterceptProfile
-    extends
-        NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile {
-  const NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfileCustomInterceptProfile(
+/// The [NetworkSecuritySecurityProfileProfile.customInterceptProfile] choice: sets `custom_intercept_profile`.
+final class NetworkSecuritySecurityProfileProfileCustomInterceptProfile
+    extends NetworkSecuritySecurityProfileProfile {
+  const NetworkSecuritySecurityProfileProfileCustomInterceptProfile(
     this.customInterceptProfile,
   );
 
@@ -462,8 +458,7 @@ final class GoogleNetworkSecuritySecurityProfile extends Resource {
     TfArg<String>? location,
     TfArg<String>? parent,
     TfArg<String>? description,
-    NetworkSecuritySecurityProfileThreatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile?
-    threatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile,
+    NetworkSecuritySecurityProfileProfile? profile,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -478,8 +473,7 @@ final class GoogleNetworkSecuritySecurityProfile extends Resource {
            if (location != null) 'location': location,
            if (parent != null) 'parent': parent,
            if (description != null) 'description': description,
-           ...?threatPreventionProfileOrUrlFilteringProfileOrCustomMirroringProfileOrCustomInterceptProfile
-               ?.argMap,
+           ...?profile?.argMap,
            if (labels != null) 'labels': labels,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
          },

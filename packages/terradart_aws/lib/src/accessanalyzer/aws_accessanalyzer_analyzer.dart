@@ -25,14 +25,11 @@ enum AccessanalyzerAnalyzerType implements TerraformEnum {
 /// `aws_accessanalyzer_analyzer` (derived from provider schema).
 @immutable
 final class AccessanalyzerAnalyzerConfiguration {
-  const AccessanalyzerAnalyzerConfiguration({
-    this.internalAccessOrUnusedAccess,
-  });
+  const AccessanalyzerAnalyzerConfiguration({this.access});
 
-  final AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess?
-  internalAccessOrUnusedAccess;
+  final AccessanalyzerAnalyzerConfigurationAccess? access;
 
-  Map<String, Object?> encode() => {...?internalAccessOrUnusedAccess?.encode()};
+  Map<String, Object?> encode() => {...?access?.encode()};
 }
 
 /// At most one of `internal_access`, `unused_access` on the `configuration` block of `aws_accessanalyzer_analyzer`: the provider rejects
@@ -40,18 +37,18 @@ final class AccessanalyzerAnalyzerConfiguration {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.internalAccess(...)`.
-sealed class AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess {
-  const AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess();
+sealed class AccessanalyzerAnalyzerConfigurationAccess {
+  const AccessanalyzerAnalyzerConfigurationAccess();
 
   /// Sets `internal_access`.
-  const factory AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess.internalAccess(
+  const factory AccessanalyzerAnalyzerConfigurationAccess.internalAccess(
     AccessanalyzerAnalyzerConfigurationInternalAccess internalAccess,
-  ) = AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccessInternalAccess;
+  ) = AccessanalyzerAnalyzerConfigurationAccessInternalAccess;
 
   /// Sets `unused_access`.
-  const factory AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess.unusedAccess(
+  const factory AccessanalyzerAnalyzerConfigurationAccess.unusedAccess(
     AccessanalyzerAnalyzerConfigurationUnusedAccess unusedAccess,
-  ) = AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccessUnusedAccess;
+  ) = AccessanalyzerAnalyzerConfigurationAccessUnusedAccess;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -59,10 +56,10 @@ sealed class AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess {
   Map<String, Object?> encode();
 }
 
-/// The [AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess.internalAccess] choice: sets `internal_access`.
-final class AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccessInternalAccess
-    extends AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess {
-  const AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccessInternalAccess(
+/// The [AccessanalyzerAnalyzerConfigurationAccess.internalAccess] choice: sets `internal_access`.
+final class AccessanalyzerAnalyzerConfigurationAccessInternalAccess
+    extends AccessanalyzerAnalyzerConfigurationAccess {
+  const AccessanalyzerAnalyzerConfigurationAccessInternalAccess(
     this.internalAccess,
   );
 
@@ -75,10 +72,10 @@ final class AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccessInter
   Map<String, Object?> encode() => {'internal_access': internalAccess.encode()};
 }
 
-/// The [AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess.unusedAccess] choice: sets `unused_access`.
-final class AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccessUnusedAccess
-    extends AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccess {
-  const AccessanalyzerAnalyzerConfigurationInternalAccessOrUnusedAccessUnusedAccess(
+/// The [AccessanalyzerAnalyzerConfigurationAccess.unusedAccess] choice: sets `unused_access`.
+final class AccessanalyzerAnalyzerConfigurationAccessUnusedAccess
+    extends AccessanalyzerAnalyzerConfigurationAccess {
+  const AccessanalyzerAnalyzerConfigurationAccessUnusedAccess(
     this.unusedAccess,
   );
 

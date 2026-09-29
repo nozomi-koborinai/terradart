@@ -184,7 +184,7 @@ final class AnalyticsStack extends Stack {
         dataExchangeId: TfArg.literal('shared-exchange'),
         listingId: TfArg.literal('events-listing'),
         displayName: TfArg.literal('Events dataset listing'),
-        pubsubTopicOrBigqueryDataset: .bigqueryDataset(
+        source: .bigqueryDataset(
           BigqueryAnalyticsHubListingBigqueryDataset(
             dataset: TfArg.literal(
               'projects/$projectId/datasets/analytics_prod',
@@ -397,7 +397,7 @@ final class AnalyticsStack extends Stack {
         localName: 'project_writers_reader',
         datasetId: TfArg.ref(dataset.datasetIdRef),
         role: TfArg.literal('READER'),
-        userByEmailOrGroupByEmailOrDomainOrSpecialGroupOrIamMemberOrViewOrDatasetOrRoutine:
+        grantee:
             .specialGroup(
               TfArg.literal(
                 BigqueryDatasetAccessPredefinedGroup.projectWriters,

@@ -20,18 +20,18 @@ enum BigqueryAnalyticsHubListingDiscoveryType implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.pubsubTopic(...)`.
-sealed class BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset {
-  const BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset();
+sealed class BigqueryAnalyticsHubListingSource {
+  const BigqueryAnalyticsHubListingSource();
 
   /// Sets `pubsub_topic`.
-  const factory BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset.pubsubTopic(
+  const factory BigqueryAnalyticsHubListingSource.pubsubTopic(
     BigqueryAnalyticsHubListingPubsubTopic pubsubTopic,
-  ) = BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetPubsubTopic;
+  ) = BigqueryAnalyticsHubListingSourcePubsubTopic;
 
   /// Sets `bigquery_dataset`.
-  const factory BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset.bigqueryDataset(
+  const factory BigqueryAnalyticsHubListingSource.bigqueryDataset(
     BigqueryAnalyticsHubListingBigqueryDataset bigqueryDataset,
-  ) = BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetBigqueryDataset;
+  ) = BigqueryAnalyticsHubListingSourceBigqueryDataset;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,12 +43,10 @@ sealed class BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset.pubsubTopic] choice: sets `pubsub_topic`.
-final class BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetPubsubTopic
-    extends BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset {
-  const BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetPubsubTopic(
-    this.pubsubTopic,
-  );
+/// The [BigqueryAnalyticsHubListingSource.pubsubTopic] choice: sets `pubsub_topic`.
+final class BigqueryAnalyticsHubListingSourcePubsubTopic
+    extends BigqueryAnalyticsHubListingSource {
+  const BigqueryAnalyticsHubListingSourcePubsubTopic(this.pubsubTopic);
 
   final BigqueryAnalyticsHubListingPubsubTopic pubsubTopic;
 
@@ -64,12 +62,10 @@ final class BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetPubsubTopic
   };
 }
 
-/// The [BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset.bigqueryDataset] choice: sets `bigquery_dataset`.
-final class BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetBigqueryDataset
-    extends BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset {
-  const BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDatasetBigqueryDataset(
-    this.bigqueryDataset,
-  );
+/// The [BigqueryAnalyticsHubListingSource.bigqueryDataset] choice: sets `bigquery_dataset`.
+final class BigqueryAnalyticsHubListingSourceBigqueryDataset
+    extends BigqueryAnalyticsHubListingSource {
+  const BigqueryAnalyticsHubListingSourceBigqueryDataset(this.bigqueryDataset);
 
   final BigqueryAnalyticsHubListingBigqueryDataset bigqueryDataset;
 
@@ -118,31 +114,31 @@ final class BigqueryAnalyticsHubListingBigqueryDataset {
 @immutable
 final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources {
   const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResources({
-    required this.tableOrRoutine,
+    required this.selectedResources,
   });
 
-  final BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine
-  tableOrRoutine;
+  final BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources
+  selectedResources;
 
-  Map<String, Object?> encode() => {...tableOrRoutine.encode()};
+  Map<String, Object?> encode() => {...selectedResources.encode()};
 }
 
 /// Exactly one of `table`, `routine` on the `bigquery_dataset.selected_resources` block of `google_bigquery_analytics_hub_listing`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.table(...)`.
-sealed class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine {
-  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine();
+sealed class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources {
+  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources();
 
   /// Sets `table`.
-  const factory BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine.table(
+  const factory BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources.table(
     TfArg<String> table,
-  ) = BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutineTable;
+  ) = BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesTable;
 
   /// Sets `routine`.
-  const factory BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine.routine(
+  const factory BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources.routine(
     TfArg<String> routine,
-  ) = BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutineRoutine;
+  ) = BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesRoutine;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -150,11 +146,11 @@ sealed class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrR
   Map<String, Object?> encode();
 }
 
-/// The [BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine.table] choice: sets `table`.
-final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutineTable
+/// The [BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources.table] choice: sets `table`.
+final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesTable
     extends
-        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine {
-  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutineTable(
+        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources {
+  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesTable(
     this.table,
   );
 
@@ -167,11 +163,11 @@ final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRo
   Map<String, Object?> encode() => {'table': table.toTfJson()};
 }
 
-/// The [BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine.routine] choice: sets `routine`.
-final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutineRoutine
+/// The [BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources.routine] choice: sets `routine`.
+final class BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesRoutine
     extends
-        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutine {
-  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesTableOrRoutineRoutine(
+        BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResources {
+  const BigqueryAnalyticsHubListingBigqueryDatasetSelectedResourcesSelectedResourcesRoutine(
     this.routine,
   );
 
@@ -285,8 +281,7 @@ final class GoogleBigqueryAnalyticsHubListing extends Resource {
     TfArg<String>? primaryContact,
     TfArg<String>? project,
     TfArg<String>? requestAccess,
-    required BigqueryAnalyticsHubListingPubsubTopicOrBigqueryDataset
-    pubsubTopicOrBigqueryDataset,
+    required BigqueryAnalyticsHubListingSource source,
     BigqueryAnalyticsHubListingDataProvider? dataProvider,
     BigqueryAnalyticsHubListingPublisher? publisher,
     BigqueryAnalyticsHubListingRestrictedExportConfig? restrictedExportConfig,
@@ -315,7 +310,7 @@ final class GoogleBigqueryAnalyticsHubListing extends Resource {
            if (primaryContact != null) 'primary_contact': primaryContact,
            if (project != null) 'project': project,
            if (requestAccess != null) 'request_access': requestAccess,
-           ...pubsubTopicOrBigqueryDataset.argMap,
+           ...source.argMap,
            if (dataProvider != null)
              'data_provider': TfArg.literal(dataProvider.encode()),
            if (publisher != null)

@@ -12,20 +12,20 @@ const Set<String> _awsConfigConfigurationAggregatorSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.accountAggregationSource(...)`.
-sealed class ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource {
-  const ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource();
+sealed class ConfigConfigurationAggregatorAggregationSource {
+  const ConfigConfigurationAggregatorAggregationSource();
 
   /// Sets `account_aggregation_source`.
-  const factory ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource.accountAggregationSource(
+  const factory ConfigConfigurationAggregatorAggregationSource.accountAggregationSource(
     ConfigConfigurationAggregatorAccountAggregationSource
     accountAggregationSource,
-  ) = ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSourceAccountAggregationSource;
+  ) = ConfigConfigurationAggregatorAggregationSourceAccountAggregationSource;
 
   /// Sets `organization_aggregation_source`.
-  const factory ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource.organizationAggregationSource(
+  const factory ConfigConfigurationAggregatorAggregationSource.organizationAggregationSource(
     ConfigConfigurationAggregatorOrganizationAggregationSource
     organizationAggregationSource,
-  ) = ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSourceOrganizationAggregationSource;
+  ) = ConfigConfigurationAggregatorAggregationSourceOrganizationAggregationSource;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -37,11 +37,10 @@ sealed class ConfigConfigurationAggregatorAccountAggregationSourceOrOrganization
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource.accountAggregationSource] choice: sets `account_aggregation_source`.
-final class ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSourceAccountAggregationSource
-    extends
-        ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource {
-  const ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSourceAccountAggregationSource(
+/// The [ConfigConfigurationAggregatorAggregationSource.accountAggregationSource] choice: sets `account_aggregation_source`.
+final class ConfigConfigurationAggregatorAggregationSourceAccountAggregationSource
+    extends ConfigConfigurationAggregatorAggregationSource {
+  const ConfigConfigurationAggregatorAggregationSourceAccountAggregationSource(
     this.accountAggregationSource,
   );
 
@@ -64,11 +63,10 @@ final class ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationA
   };
 }
 
-/// The [ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource.organizationAggregationSource] choice: sets `organization_aggregation_source`.
-final class ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSourceOrganizationAggregationSource
-    extends
-        ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource {
-  const ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSourceOrganizationAggregationSource(
+/// The [ConfigConfigurationAggregatorAggregationSource.organizationAggregationSource] choice: sets `organization_aggregation_source`.
+final class ConfigConfigurationAggregatorAggregationSourceOrganizationAggregationSource
+    extends ConfigConfigurationAggregatorAggregationSource {
+  const ConfigConfigurationAggregatorAggregationSourceOrganizationAggregationSource(
     this.organizationAggregationSource,
   );
 
@@ -146,8 +144,7 @@ final class AwsConfigConfigurationAggregator extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    ConfigConfigurationAggregatorAccountAggregationSourceOrOrganizationAggregationSource?
-    accountAggregationSourceOrOrganizationAggregationSource,
+    ConfigConfigurationAggregatorAggregationSource? aggregationSource,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -158,7 +155,7 @@ final class AwsConfigConfigurationAggregator extends Resource {
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           ...?accountAggregationSourceOrOrganizationAggregationSource?.argMap,
+           ...?aggregationSource?.argMap,
          },
        );
 

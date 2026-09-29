@@ -32,18 +32,18 @@ enum NatGatewayConnectivityType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.secondaryPrivateIpAddressCount(...)`.
-sealed class NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses {
-  const NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses();
+sealed class NatGatewaySecondaryPrivateIpAddress {
+  const NatGatewaySecondaryPrivateIpAddress();
 
   /// Sets `secondary_private_ip_address_count`.
-  const factory NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses.secondaryPrivateIpAddressCount(
+  const factory NatGatewaySecondaryPrivateIpAddress.secondaryPrivateIpAddressCount(
     TfArg<num> secondaryPrivateIpAddressCount,
-  ) = NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddressesSecondaryPrivateIpAddressCount;
+  ) = NatGatewaySecondaryPrivateIpAddressSecondaryPrivateIpAddressCount;
 
   /// Sets `secondary_private_ip_addresses`.
-  const factory NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses.secondaryPrivateIpAddresses(
+  const factory NatGatewaySecondaryPrivateIpAddress.secondaryPrivateIpAddresses(
     TfArg<List<String>> secondaryPrivateIpAddresses,
-  ) = NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddressesSecondaryPrivateIpAddresses;
+  ) = NatGatewaySecondaryPrivateIpAddressSecondaryPrivateIpAddresses;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -55,11 +55,10 @@ sealed class NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddress
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses.secondaryPrivateIpAddressCount] choice: sets `secondary_private_ip_address_count`.
-final class NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddressesSecondaryPrivateIpAddressCount
-    extends
-        NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses {
-  const NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddressesSecondaryPrivateIpAddressCount(
+/// The [NatGatewaySecondaryPrivateIpAddress.secondaryPrivateIpAddressCount] choice: sets `secondary_private_ip_address_count`.
+final class NatGatewaySecondaryPrivateIpAddressSecondaryPrivateIpAddressCount
+    extends NatGatewaySecondaryPrivateIpAddress {
+  const NatGatewaySecondaryPrivateIpAddressSecondaryPrivateIpAddressCount(
     this.secondaryPrivateIpAddressCount,
   );
 
@@ -80,11 +79,10 @@ final class NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresse
   };
 }
 
-/// The [NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses.secondaryPrivateIpAddresses] choice: sets `secondary_private_ip_addresses`.
-final class NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddressesSecondaryPrivateIpAddresses
-    extends
-        NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses {
-  const NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddressesSecondaryPrivateIpAddresses(
+/// The [NatGatewaySecondaryPrivateIpAddress.secondaryPrivateIpAddresses] choice: sets `secondary_private_ip_addresses`.
+final class NatGatewaySecondaryPrivateIpAddressSecondaryPrivateIpAddresses
+    extends NatGatewaySecondaryPrivateIpAddress {
+  const NatGatewaySecondaryPrivateIpAddressSecondaryPrivateIpAddresses(
     this.secondaryPrivateIpAddresses,
   );
 
@@ -141,8 +139,7 @@ final class AwsNatGateway extends Resource {
     TfArg<String>? privateIp,
     TfArg<String>? region,
     TfArg<List<String>>? secondaryAllocationIds,
-    NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses?
-    secondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses,
+    NatGatewaySecondaryPrivateIpAddress? secondaryPrivateIpAddress,
     TfArg<String>? subnetId,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? vpcId,
@@ -161,8 +158,7 @@ final class AwsNatGateway extends Resource {
            if (region != null) 'region': region,
            if (secondaryAllocationIds != null)
              'secondary_allocation_ids': secondaryAllocationIds,
-           ...?secondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses
-               ?.argMap,
+           ...?secondaryPrivateIpAddress?.argMap,
            if (subnetId != null) 'subnet_id': subnetId,
            if (tags != null) 'tags': tags,
            if (vpcId != null) 'vpc_id': vpcId,

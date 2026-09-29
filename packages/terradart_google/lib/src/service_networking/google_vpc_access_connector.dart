@@ -30,18 +30,18 @@ class VpcAccessConnectorSubnet {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.minThroughput(...)`.
-sealed class VpcAccessConnectorMinThroughputOrMinInstances {
-  const VpcAccessConnectorMinThroughputOrMinInstances();
+sealed class VpcAccessConnectorMinCapacity {
+  const VpcAccessConnectorMinCapacity();
 
   /// Sets `min_throughput`.
-  const factory VpcAccessConnectorMinThroughputOrMinInstances.minThroughput(
+  const factory VpcAccessConnectorMinCapacity.minThroughput(
     TfArg<num> minThroughput,
-  ) = VpcAccessConnectorMinThroughputOrMinInstancesMinThroughput;
+  ) = VpcAccessConnectorMinCapacityMinThroughput;
 
   /// Sets `min_instances`.
-  const factory VpcAccessConnectorMinThroughputOrMinInstances.minInstances(
+  const factory VpcAccessConnectorMinCapacity.minInstances(
     TfArg<num> minInstances,
-  ) = VpcAccessConnectorMinThroughputOrMinInstancesMinInstances;
+  ) = VpcAccessConnectorMinCapacityMinInstances;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -53,12 +53,10 @@ sealed class VpcAccessConnectorMinThroughputOrMinInstances {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [VpcAccessConnectorMinThroughputOrMinInstances.minThroughput] choice: sets `min_throughput`.
-final class VpcAccessConnectorMinThroughputOrMinInstancesMinThroughput
-    extends VpcAccessConnectorMinThroughputOrMinInstances {
-  const VpcAccessConnectorMinThroughputOrMinInstancesMinThroughput(
-    this.minThroughput,
-  );
+/// The [VpcAccessConnectorMinCapacity.minThroughput] choice: sets `min_throughput`.
+final class VpcAccessConnectorMinCapacityMinThroughput
+    extends VpcAccessConnectorMinCapacity {
+  const VpcAccessConnectorMinCapacityMinThroughput(this.minThroughput);
 
   final TfArg<num> minThroughput;
 
@@ -72,12 +70,10 @@ final class VpcAccessConnectorMinThroughputOrMinInstancesMinThroughput
   Map<String, TfArg<Object?>> get argMap => {'min_throughput': minThroughput};
 }
 
-/// The [VpcAccessConnectorMinThroughputOrMinInstances.minInstances] choice: sets `min_instances`.
-final class VpcAccessConnectorMinThroughputOrMinInstancesMinInstances
-    extends VpcAccessConnectorMinThroughputOrMinInstances {
-  const VpcAccessConnectorMinThroughputOrMinInstancesMinInstances(
-    this.minInstances,
-  );
+/// The [VpcAccessConnectorMinCapacity.minInstances] choice: sets `min_instances`.
+final class VpcAccessConnectorMinCapacityMinInstances
+    extends VpcAccessConnectorMinCapacity {
+  const VpcAccessConnectorMinCapacityMinInstances(this.minInstances);
 
   final TfArg<num> minInstances;
 
@@ -96,18 +92,18 @@ final class VpcAccessConnectorMinThroughputOrMinInstancesMinInstances
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.maxInstances(...)`.
-sealed class VpcAccessConnectorMaxInstancesOrMaxThroughput {
-  const VpcAccessConnectorMaxInstancesOrMaxThroughput();
+sealed class VpcAccessConnectorMaxCapacity {
+  const VpcAccessConnectorMaxCapacity();
 
   /// Sets `max_instances`.
-  const factory VpcAccessConnectorMaxInstancesOrMaxThroughput.maxInstances(
+  const factory VpcAccessConnectorMaxCapacity.maxInstances(
     TfArg<num> maxInstances,
-  ) = VpcAccessConnectorMaxInstancesOrMaxThroughputMaxInstances;
+  ) = VpcAccessConnectorMaxCapacityMaxInstances;
 
   /// Sets `max_throughput`.
-  const factory VpcAccessConnectorMaxInstancesOrMaxThroughput.maxThroughput(
+  const factory VpcAccessConnectorMaxCapacity.maxThroughput(
     TfArg<num> maxThroughput,
-  ) = VpcAccessConnectorMaxInstancesOrMaxThroughputMaxThroughput;
+  ) = VpcAccessConnectorMaxCapacityMaxThroughput;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -119,12 +115,10 @@ sealed class VpcAccessConnectorMaxInstancesOrMaxThroughput {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [VpcAccessConnectorMaxInstancesOrMaxThroughput.maxInstances] choice: sets `max_instances`.
-final class VpcAccessConnectorMaxInstancesOrMaxThroughputMaxInstances
-    extends VpcAccessConnectorMaxInstancesOrMaxThroughput {
-  const VpcAccessConnectorMaxInstancesOrMaxThroughputMaxInstances(
-    this.maxInstances,
-  );
+/// The [VpcAccessConnectorMaxCapacity.maxInstances] choice: sets `max_instances`.
+final class VpcAccessConnectorMaxCapacityMaxInstances
+    extends VpcAccessConnectorMaxCapacity {
+  const VpcAccessConnectorMaxCapacityMaxInstances(this.maxInstances);
 
   final TfArg<num> maxInstances;
 
@@ -138,12 +132,10 @@ final class VpcAccessConnectorMaxInstancesOrMaxThroughputMaxInstances
   Map<String, TfArg<Object?>> get argMap => {'max_instances': maxInstances};
 }
 
-/// The [VpcAccessConnectorMaxInstancesOrMaxThroughput.maxThroughput] choice: sets `max_throughput`.
-final class VpcAccessConnectorMaxInstancesOrMaxThroughputMaxThroughput
-    extends VpcAccessConnectorMaxInstancesOrMaxThroughput {
-  const VpcAccessConnectorMaxInstancesOrMaxThroughputMaxThroughput(
-    this.maxThroughput,
-  );
+/// The [VpcAccessConnectorMaxCapacity.maxThroughput] choice: sets `max_throughput`.
+final class VpcAccessConnectorMaxCapacityMaxThroughput
+    extends VpcAccessConnectorMaxCapacity {
+  const VpcAccessConnectorMaxCapacityMaxThroughput(this.maxThroughput);
 
   final TfArg<num> maxThroughput;
 
@@ -203,8 +195,8 @@ final class GoogleVpcAccessConnector extends Resource {
     TfArg<String>? network,
     VpcAccessConnectorSubnet? subnet,
     TfArg<String>? machineType,
-    VpcAccessConnectorMinThroughputOrMinInstances? minThroughputOrMinInstances,
-    VpcAccessConnectorMaxInstancesOrMaxThroughput? maxInstancesOrMaxThroughput,
+    VpcAccessConnectorMinCapacity? minCapacity,
+    VpcAccessConnectorMaxCapacity? maxCapacity,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -219,8 +211,8 @@ final class GoogleVpcAccessConnector extends Resource {
            if (network != null) 'network': network,
            if (subnet != null) 'subnet': TfArg.literal([subnet.encode()]),
            if (machineType != null) 'machine_type': machineType,
-           ...?minThroughputOrMinInstances?.argMap,
-           ...?maxInstancesOrMaxThroughput?.argMap,
+           ...?minCapacity?.argMap,
+           ...?maxCapacity?.argMap,
            if (project != null) 'project': project,
          },
        );

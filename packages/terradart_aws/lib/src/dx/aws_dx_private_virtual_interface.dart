@@ -20,18 +20,18 @@ enum DxPrivateVirtualInterfaceAddressFamily implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.dxGatewayId(...)`.
-sealed class DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId {
-  const DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId();
+sealed class DxPrivateVirtualInterfaceGatewayId {
+  const DxPrivateVirtualInterfaceGatewayId();
 
   /// Sets `dx_gateway_id`.
-  const factory DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId.dxGatewayId(
+  const factory DxPrivateVirtualInterfaceGatewayId.dxGatewayId(
     TfArg<String> dxGatewayId,
-  ) = DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayIdDxGatewayId;
+  ) = DxPrivateVirtualInterfaceGatewayIdDxGatewayId;
 
   /// Sets `vpn_gateway_id`.
-  const factory DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId.vpnGatewayId(
+  const factory DxPrivateVirtualInterfaceGatewayId.vpnGatewayId(
     TfArg<String> vpnGatewayId,
-  ) = DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayIdVpnGatewayId;
+  ) = DxPrivateVirtualInterfaceGatewayIdVpnGatewayId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,12 +43,10 @@ sealed class DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId.dxGatewayId] choice: sets `dx_gateway_id`.
-final class DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayIdDxGatewayId
-    extends DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId {
-  const DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayIdDxGatewayId(
-    this.dxGatewayId,
-  );
+/// The [DxPrivateVirtualInterfaceGatewayId.dxGatewayId] choice: sets `dx_gateway_id`.
+final class DxPrivateVirtualInterfaceGatewayIdDxGatewayId
+    extends DxPrivateVirtualInterfaceGatewayId {
+  const DxPrivateVirtualInterfaceGatewayIdDxGatewayId(this.dxGatewayId);
 
   final TfArg<String> dxGatewayId;
 
@@ -62,12 +60,10 @@ final class DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayIdDxGatewayId
   Map<String, TfArg<Object?>> get argMap => {'dx_gateway_id': dxGatewayId};
 }
 
-/// The [DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId.vpnGatewayId] choice: sets `vpn_gateway_id`.
-final class DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayIdVpnGatewayId
-    extends DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId {
-  const DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayIdVpnGatewayId(
-    this.vpnGatewayId,
-  );
+/// The [DxPrivateVirtualInterfaceGatewayId.vpnGatewayId] choice: sets `vpn_gateway_id`.
+final class DxPrivateVirtualInterfaceGatewayIdVpnGatewayId
+    extends DxPrivateVirtualInterfaceGatewayId {
+  const DxPrivateVirtualInterfaceGatewayIdVpnGatewayId(this.vpnGatewayId);
 
   final TfArg<String> vpnGatewayId;
 
@@ -94,8 +90,7 @@ final class AwsDxPrivateVirtualInterface extends Resource {
     TfArg<String>? bgpAuthKey,
     required TfArg<String> connectionId,
     TfArg<String>? customerAddress,
-    required DxPrivateVirtualInterfaceDxGatewayIdOrVpnGatewayId
-    dxGatewayIdOrVpnGatewayId,
+    required DxPrivateVirtualInterfaceGatewayId gatewayId,
     TfArg<num>? mtu,
     required TfArg<String> name,
     TfArg<num>? prefixPoolAllocatedCountIpv4,
@@ -119,7 +114,7 @@ final class AwsDxPrivateVirtualInterface extends Resource {
            if (bgpAuthKey != null) 'bgp_auth_key': bgpAuthKey,
            'connection_id': connectionId,
            if (customerAddress != null) 'customer_address': customerAddress,
-           ...dxGatewayIdOrVpnGatewayId.argMap,
+           ...gatewayId.argMap,
            if (mtu != null) 'mtu': mtu,
            'name': name,
            if (prefixPoolAllocatedCountIpv4 != null)

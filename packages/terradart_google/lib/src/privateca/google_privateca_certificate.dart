@@ -210,18 +210,17 @@ final class PrivatecaCertificateConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.pemCsr(...)`.
-sealed class PrivatecaCertificatePemCsrOrConfig {
-  const PrivatecaCertificatePemCsrOrConfig();
+sealed class PrivatecaCertificateRequest {
+  const PrivatecaCertificateRequest();
 
   /// Sets `pem_csr`.
-  const factory PrivatecaCertificatePemCsrOrConfig.pemCsr(
-    TfArg<String> pemCsr,
-  ) = PrivatecaCertificatePemCsrOrConfigPemCsr;
+  const factory PrivatecaCertificateRequest.pemCsr(TfArg<String> pemCsr) =
+      PrivatecaCertificateRequestPemCsr;
 
   /// Sets `config`.
-  const factory PrivatecaCertificatePemCsrOrConfig.config(
+  const factory PrivatecaCertificateRequest.config(
     PrivatecaCertificateConfig config,
-  ) = PrivatecaCertificatePemCsrOrConfigConfig;
+  ) = PrivatecaCertificateRequestConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -233,10 +232,10 @@ sealed class PrivatecaCertificatePemCsrOrConfig {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [PrivatecaCertificatePemCsrOrConfig.pemCsr] choice: sets `pem_csr`.
-final class PrivatecaCertificatePemCsrOrConfigPemCsr
-    extends PrivatecaCertificatePemCsrOrConfig {
-  const PrivatecaCertificatePemCsrOrConfigPemCsr(this.pemCsr);
+/// The [PrivatecaCertificateRequest.pemCsr] choice: sets `pem_csr`.
+final class PrivatecaCertificateRequestPemCsr
+    extends PrivatecaCertificateRequest {
+  const PrivatecaCertificateRequestPemCsr(this.pemCsr);
 
   final TfArg<String> pemCsr;
 
@@ -250,10 +249,10 @@ final class PrivatecaCertificatePemCsrOrConfigPemCsr
   Map<String, TfArg<Object?>> get argMap => {'pem_csr': pemCsr};
 }
 
-/// The [PrivatecaCertificatePemCsrOrConfig.config] choice: sets `config`.
-final class PrivatecaCertificatePemCsrOrConfigConfig
-    extends PrivatecaCertificatePemCsrOrConfig {
-  const PrivatecaCertificatePemCsrOrConfigConfig(this.config);
+/// The [PrivatecaCertificateRequest.config] choice: sets `config`.
+final class PrivatecaCertificateRequestConfig
+    extends PrivatecaCertificateRequest {
+  const PrivatecaCertificateRequestConfig(this.config);
 
   final PrivatecaCertificateConfig config;
 
@@ -315,7 +314,7 @@ final class GooglePrivatecaCertificate extends Resource {
     required TfArg<String> location,
     TfArg<String>? certificateAuthority,
     TfArg<String>? lifetime,
-    required PrivatecaCertificatePemCsrOrConfig pemCsrOrConfig,
+    required PrivatecaCertificateRequest request,
     TfArg<String>? certificateTemplate,
     TfArg<Map<String, String>>? labels,
     super.lifecycle,
@@ -331,7 +330,7 @@ final class GooglePrivatecaCertificate extends Resource {
            if (certificateAuthority != null)
              'certificate_authority': certificateAuthority,
            if (lifetime != null) 'lifetime': lifetime,
-           ...pemCsrOrConfig.argMap,
+           ...request.argMap,
            if (certificateTemplate != null)
              'certificate_template': certificateTemplate,
            if (labels != null) 'labels': labels,

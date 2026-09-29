@@ -21,7 +21,7 @@ final class WorkbenchInstanceGceSetup {
     this.acceleratorConfigs,
     this.bootDisk,
     this.confidentialInstanceConfig,
-    this.vmImageOrContainerImage,
+    this.image,
     this.dataDisks,
     this.networkInterfaces,
     this.reservationAffinity,
@@ -48,8 +48,7 @@ final class WorkbenchInstanceGceSetup {
   final WorkbenchInstanceGceSetupConfidentialInstanceConfig?
   confidentialInstanceConfig;
 
-  final WorkbenchInstanceGceSetupVmImageOrContainerImage?
-  vmImageOrContainerImage;
+  final WorkbenchInstanceGceSetupImage? image;
 
   final WorkbenchInstanceGceSetupDataDisks? dataDisks;
 
@@ -75,7 +74,7 @@ final class WorkbenchInstanceGceSetup {
     if (bootDisk != null) 'boot_disk': bootDisk!.encode(),
     if (confidentialInstanceConfig != null)
       'confidential_instance_config': confidentialInstanceConfig!.encode(),
-    ...?vmImageOrContainerImage?.encode(),
+    ...?image?.encode(),
     if (dataDisks != null) 'data_disks': dataDisks!.encode(),
     if (networkInterfaces != null)
       'network_interfaces': [for (final e in networkInterfaces!) e.encode()],
@@ -93,18 +92,18 @@ final class WorkbenchInstanceGceSetup {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.vmImage(...)`.
-sealed class WorkbenchInstanceGceSetupVmImageOrContainerImage {
-  const WorkbenchInstanceGceSetupVmImageOrContainerImage();
+sealed class WorkbenchInstanceGceSetupImage {
+  const WorkbenchInstanceGceSetupImage();
 
   /// Sets `vm_image`.
-  const factory WorkbenchInstanceGceSetupVmImageOrContainerImage.vmImage(
+  const factory WorkbenchInstanceGceSetupImage.vmImage(
     WorkbenchInstanceGceSetupVmImage vmImage,
-  ) = WorkbenchInstanceGceSetupVmImageOrContainerImageVmImage;
+  ) = WorkbenchInstanceGceSetupImageVmImage;
 
   /// Sets `container_image`.
-  const factory WorkbenchInstanceGceSetupVmImageOrContainerImage.containerImage(
+  const factory WorkbenchInstanceGceSetupImage.containerImage(
     WorkbenchInstanceGceSetupContainerImage containerImage,
-  ) = WorkbenchInstanceGceSetupVmImageOrContainerImageContainerImage;
+  ) = WorkbenchInstanceGceSetupImageContainerImage;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -112,10 +111,10 @@ sealed class WorkbenchInstanceGceSetupVmImageOrContainerImage {
   Map<String, Object?> encode();
 }
 
-/// The [WorkbenchInstanceGceSetupVmImageOrContainerImage.vmImage] choice: sets `vm_image`.
-final class WorkbenchInstanceGceSetupVmImageOrContainerImageVmImage
-    extends WorkbenchInstanceGceSetupVmImageOrContainerImage {
-  const WorkbenchInstanceGceSetupVmImageOrContainerImageVmImage(this.vmImage);
+/// The [WorkbenchInstanceGceSetupImage.vmImage] choice: sets `vm_image`.
+final class WorkbenchInstanceGceSetupImageVmImage
+    extends WorkbenchInstanceGceSetupImage {
+  const WorkbenchInstanceGceSetupImageVmImage(this.vmImage);
 
   final WorkbenchInstanceGceSetupVmImage vmImage;
 
@@ -126,12 +125,10 @@ final class WorkbenchInstanceGceSetupVmImageOrContainerImageVmImage
   Map<String, Object?> encode() => {'vm_image': vmImage.encode()};
 }
 
-/// The [WorkbenchInstanceGceSetupVmImageOrContainerImage.containerImage] choice: sets `container_image`.
-final class WorkbenchInstanceGceSetupVmImageOrContainerImageContainerImage
-    extends WorkbenchInstanceGceSetupVmImageOrContainerImage {
-  const WorkbenchInstanceGceSetupVmImageOrContainerImageContainerImage(
-    this.containerImage,
-  );
+/// The [WorkbenchInstanceGceSetupImage.containerImage] choice: sets `container_image`.
+final class WorkbenchInstanceGceSetupImageContainerImage
+    extends WorkbenchInstanceGceSetupImage {
+  const WorkbenchInstanceGceSetupImageContainerImage(this.containerImage);
 
   final WorkbenchInstanceGceSetupContainerImage containerImage;
 

@@ -81,19 +81,19 @@ final class NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.virtualMachine(...)`.
-sealed class NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment {
-  const NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment();
+sealed class NetworkConnectivityPolicyBasedRouteScope {
+  const NetworkConnectivityPolicyBasedRouteScope();
 
   /// Sets `virtual_machine`.
-  const factory NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment.virtualMachine(
+  const factory NetworkConnectivityPolicyBasedRouteScope.virtualMachine(
     NetworkConnectivityPolicyBasedRouteVirtualMachine virtualMachine,
-  ) = NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentVirtualMachine;
+  ) = NetworkConnectivityPolicyBasedRouteScopeVirtualMachine;
 
   /// Sets `interconnect_attachment`.
-  const factory NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment.interconnectAttachment(
+  const factory NetworkConnectivityPolicyBasedRouteScope.interconnectAttachment(
     NetworkConnectivityPolicyBasedRouteInterconnectAttachment
     interconnectAttachment,
-  ) = NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentInterconnectAttachment;
+  ) = NetworkConnectivityPolicyBasedRouteScopeInterconnectAttachment;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -105,11 +105,10 @@ sealed class NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAtta
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment.virtualMachine] choice: sets `virtual_machine`.
-final class NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentVirtualMachine
-    extends
-        NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment {
-  const NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentVirtualMachine(
+/// The [NetworkConnectivityPolicyBasedRouteScope.virtualMachine] choice: sets `virtual_machine`.
+final class NetworkConnectivityPolicyBasedRouteScopeVirtualMachine
+    extends NetworkConnectivityPolicyBasedRouteScope {
+  const NetworkConnectivityPolicyBasedRouteScopeVirtualMachine(
     this.virtualMachine,
   );
 
@@ -127,11 +126,10 @@ final class NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttac
   };
 }
 
-/// The [NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment.interconnectAttachment] choice: sets `interconnect_attachment`.
-final class NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentInterconnectAttachment
-    extends
-        NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment {
-  const NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachmentInterconnectAttachment(
+/// The [NetworkConnectivityPolicyBasedRouteScope.interconnectAttachment] choice: sets `interconnect_attachment`.
+final class NetworkConnectivityPolicyBasedRouteScopeInterconnectAttachment
+    extends NetworkConnectivityPolicyBasedRouteScope {
+  const NetworkConnectivityPolicyBasedRouteScopeInterconnectAttachment(
     this.interconnectAttachment,
   );
 
@@ -230,7 +228,7 @@ final class NetworkConnectivityPolicyBasedRouteVirtualMachine {
 ///
 /// Pass exactly one [nextHop] variant (`ilbIp` or `otherRoutes`). Scope
 /// installation with at most one of VM tags or an interconnect attachment
-/// ([virtualMachineOrInterconnectAttachment]).
+/// ([scope]).
 ///
 /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU for PBR
 /// (Network Connectivity Center `7BEB-7A51-4223` `list_skus` keywords
@@ -255,12 +253,11 @@ final class NetworkConnectivityPolicyBasedRouteVirtualMachine {
 ///       NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,
 ///     ),
 ///   ),
-///   virtualMachineOrInterconnectAttachment:
-///       NetworkConnectivityPolicyBasedRouteVirtualMachineOption(
-///         virtualMachine: NetworkConnectivityPolicyBasedRouteVirtualMachine(
-///           tags: TfArg.literal(['terradart-pbr']),
-///         ),
-///       ),
+///   scope: .virtualMachine(
+///     NetworkConnectivityPolicyBasedRouteVirtualMachine(
+///       tags: TfArg.literal(['terradart-pbr']),
+///     ),
+///   ),
 /// );
 /// ```
 final class GoogleNetworkConnectivityPolicyBasedRoute extends Resource {
@@ -272,8 +269,7 @@ final class GoogleNetworkConnectivityPolicyBasedRoute extends Resource {
     required TfArg<String> network,
     required NetworkConnectivityPolicyBasedRouteFilter filter,
     required NetworkConnectivityPolicyBasedRouteNextHop nextHop,
-    NetworkConnectivityPolicyBasedRouteVirtualMachineOrInterconnectAttachment?
-    virtualMachineOrInterconnectAttachment,
+    NetworkConnectivityPolicyBasedRouteScope? scope,
     TfArg<num>? priority,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
@@ -289,7 +285,7 @@ final class GoogleNetworkConnectivityPolicyBasedRoute extends Resource {
            'name': name,
            'network': network,
            'filter': TfArg.literal(filter.encode()),
-           ...?virtualMachineOrInterconnectAttachment?.argMap,
+           ...?scope?.argMap,
            if (priority != null) 'priority': priority,
            if (description != null) 'description': description,
            if (labels != null) 'labels': labels,

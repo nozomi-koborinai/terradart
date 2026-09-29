@@ -6,10 +6,10 @@ library;
 export 'src/ce/aws_ce_anomaly_monitor.dart'
     show
         AwsCeAnomalyMonitor,
+        CeAnomalyMonitorMonitor,
         CeAnomalyMonitorMonitorDimension,
-        CeAnomalyMonitorMonitorDimensionOrMonitorSpecification,
-        CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorDimension,
-        CeAnomalyMonitorMonitorDimensionOrMonitorSpecificationMonitorSpecification,
+        CeAnomalyMonitorMonitorMonitorDimension,
+        CeAnomalyMonitorMonitorMonitorSpecification,
         CeAnomalyMonitorMonitorType;
 export 'src/ce/aws_ce_anomaly_subscription.dart'
     show

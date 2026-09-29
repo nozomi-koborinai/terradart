@@ -176,7 +176,7 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
   const DataprocBatchEnvironmentConfigExecutionConfig({
     this.kmsKey,
     this.networkTags,
-    this.networkUriOrSubnetworkUri,
+    this.network,
     this.serviceAccount,
     this.stagingBucket,
     this.ttl,
@@ -187,8 +187,7 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
 
   final TfArg<List<Object?>>? networkTags;
 
-  final DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri?
-  networkUriOrSubnetworkUri;
+  final DataprocBatchEnvironmentConfigExecutionConfigNetwork? network;
 
   final TfArg<String>? serviceAccount;
 
@@ -202,7 +201,7 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
   Map<String, Object?> encode() => {
     if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
     if (networkTags != null) 'network_tags': networkTags!.toTfJson(),
-    ...?networkUriOrSubnetworkUri?.encode(),
+    ...?network?.encode(),
     if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
     if (stagingBucket != null) 'staging_bucket': stagingBucket!.toTfJson(),
     if (ttl != null) 'ttl': ttl!.toTfJson(),
@@ -216,18 +215,18 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.networkUri(...)`.
-sealed class DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri {
-  const DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri();
+sealed class DataprocBatchEnvironmentConfigExecutionConfigNetwork {
+  const DataprocBatchEnvironmentConfigExecutionConfigNetwork();
 
   /// Sets `network_uri`.
-  const factory DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri.networkUri(
+  const factory DataprocBatchEnvironmentConfigExecutionConfigNetwork.networkUri(
     TfArg<String> networkUri,
-  ) = DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriNetworkUri;
+  ) = DataprocBatchEnvironmentConfigExecutionConfigNetworkNetworkUri;
 
   /// Sets `subnetwork_uri`.
-  const factory DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri.subnetworkUri(
+  const factory DataprocBatchEnvironmentConfigExecutionConfigNetwork.subnetworkUri(
     TfArg<String> subnetworkUri,
-  ) = DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriSubnetworkUri;
+  ) = DataprocBatchEnvironmentConfigExecutionConfigNetworkSubnetworkUri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -235,11 +234,10 @@ sealed class DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetwork
   Map<String, Object?> encode();
 }
 
-/// The [DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri.networkUri] choice: sets `network_uri`.
-final class DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriNetworkUri
-    extends
-        DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri {
-  const DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriNetworkUri(
+/// The [DataprocBatchEnvironmentConfigExecutionConfigNetwork.networkUri] choice: sets `network_uri`.
+final class DataprocBatchEnvironmentConfigExecutionConfigNetworkNetworkUri
+    extends DataprocBatchEnvironmentConfigExecutionConfigNetwork {
+  const DataprocBatchEnvironmentConfigExecutionConfigNetworkNetworkUri(
     this.networkUri,
   );
 
@@ -252,11 +250,10 @@ final class DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkU
   Map<String, Object?> encode() => {'network_uri': networkUri.toTfJson()};
 }
 
-/// The [DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri.subnetworkUri] choice: sets `subnetwork_uri`.
-final class DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriSubnetworkUri
-    extends
-        DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUri {
-  const DataprocBatchEnvironmentConfigExecutionConfigNetworkUriOrSubnetworkUriSubnetworkUri(
+/// The [DataprocBatchEnvironmentConfigExecutionConfigNetwork.subnetworkUri] choice: sets `subnetwork_uri`.
+final class DataprocBatchEnvironmentConfigExecutionConfigNetworkSubnetworkUri
+    extends DataprocBatchEnvironmentConfigExecutionConfigNetwork {
+  const DataprocBatchEnvironmentConfigExecutionConfigNetworkSubnetworkUri(
     this.subnetworkUri,
   );
 

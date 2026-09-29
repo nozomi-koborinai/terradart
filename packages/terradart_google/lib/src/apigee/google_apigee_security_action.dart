@@ -22,17 +22,17 @@ enum ApigeeSecurityActionState implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.expireTime(...)`.
-sealed class ApigeeSecurityActionExpireTimeOrTtl {
-  const ApigeeSecurityActionExpireTimeOrTtl();
+sealed class ApigeeSecurityActionExpiration {
+  const ApigeeSecurityActionExpiration();
 
   /// Sets `expire_time`.
-  const factory ApigeeSecurityActionExpireTimeOrTtl.expireTime(
+  const factory ApigeeSecurityActionExpiration.expireTime(
     TfArg<String> expireTime,
-  ) = ApigeeSecurityActionExpireTimeOrTtlExpireTime;
+  ) = ApigeeSecurityActionExpirationExpireTime;
 
   /// Sets `ttl`.
-  const factory ApigeeSecurityActionExpireTimeOrTtl.ttl(TfArg<String> ttl) =
-      ApigeeSecurityActionExpireTimeOrTtlTtl;
+  const factory ApigeeSecurityActionExpiration.ttl(TfArg<String> ttl) =
+      ApigeeSecurityActionExpirationTtl;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,10 +44,10 @@ sealed class ApigeeSecurityActionExpireTimeOrTtl {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ApigeeSecurityActionExpireTimeOrTtl.expireTime] choice: sets `expire_time`.
-final class ApigeeSecurityActionExpireTimeOrTtlExpireTime
-    extends ApigeeSecurityActionExpireTimeOrTtl {
-  const ApigeeSecurityActionExpireTimeOrTtlExpireTime(this.expireTime);
+/// The [ApigeeSecurityActionExpiration.expireTime] choice: sets `expire_time`.
+final class ApigeeSecurityActionExpirationExpireTime
+    extends ApigeeSecurityActionExpiration {
+  const ApigeeSecurityActionExpirationExpireTime(this.expireTime);
 
   final TfArg<String> expireTime;
 
@@ -61,10 +61,10 @@ final class ApigeeSecurityActionExpireTimeOrTtlExpireTime
   Map<String, TfArg<Object?>> get argMap => {'expire_time': expireTime};
 }
 
-/// The [ApigeeSecurityActionExpireTimeOrTtl.ttl] choice: sets `ttl`.
-final class ApigeeSecurityActionExpireTimeOrTtlTtl
-    extends ApigeeSecurityActionExpireTimeOrTtl {
-  const ApigeeSecurityActionExpireTimeOrTtlTtl(this.ttl);
+/// The [ApigeeSecurityActionExpiration.ttl] choice: sets `ttl`.
+final class ApigeeSecurityActionExpirationTtl
+    extends ApigeeSecurityActionExpiration {
+  const ApigeeSecurityActionExpirationTtl(this.ttl);
 
   final TfArg<String> ttl;
 
@@ -207,7 +207,7 @@ final class GoogleApigeeSecurityAction extends Resource {
     TfArg<String>? deletionPolicy,
     TfArg<String>? description,
     required TfArg<String> envId,
-    ApigeeSecurityActionExpireTimeOrTtl? expireTimeOrTtl,
+    ApigeeSecurityActionExpiration? expiration,
     required TfArg<String> orgId,
     required TfArg<String> securityActionId,
     required TfArg<ApigeeSecurityActionState> state,
@@ -224,7 +224,7 @@ final class GoogleApigeeSecurityAction extends Resource {
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (description != null) 'description': description,
            'env_id': envId,
-           ...?expireTimeOrTtl?.argMap,
+           ...?expiration?.argMap,
            'org_id': orgId,
            'security_action_id': securityActionId,
            'state': state,

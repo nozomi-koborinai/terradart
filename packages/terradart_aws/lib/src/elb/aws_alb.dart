@@ -89,17 +89,16 @@ enum AlbXffHeaderProcessingMode implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.subnetMapping(...)`.
-sealed class AlbSubnetMappingOrSubnets {
-  const AlbSubnetMappingOrSubnets();
+sealed class AlbSubnet {
+  const AlbSubnet();
 
   /// Sets `subnet_mapping`.
-  const factory AlbSubnetMappingOrSubnets.subnetMapping(
-    List<AlbSubnetMapping> subnetMapping,
-  ) = AlbSubnetMappingOrSubnetsSubnetMapping;
+  const factory AlbSubnet.subnetMapping(List<AlbSubnetMapping> subnetMapping) =
+      AlbSubnetSubnetMapping;
 
   /// Sets `subnets`.
-  const factory AlbSubnetMappingOrSubnets.subnets(TfArg<List<String>> subnets) =
-      AlbSubnetMappingOrSubnetsSubnets;
+  const factory AlbSubnet.subnets(TfArg<List<String>> subnets) =
+      AlbSubnetSubnets;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -111,10 +110,9 @@ sealed class AlbSubnetMappingOrSubnets {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AlbSubnetMappingOrSubnets.subnetMapping] choice: sets `subnet_mapping`.
-final class AlbSubnetMappingOrSubnetsSubnetMapping
-    extends AlbSubnetMappingOrSubnets {
-  const AlbSubnetMappingOrSubnetsSubnetMapping(this.subnetMapping);
+/// The [AlbSubnet.subnetMapping] choice: sets `subnet_mapping`.
+final class AlbSubnetSubnetMapping extends AlbSubnet {
+  const AlbSubnetSubnetMapping(this.subnetMapping);
 
   final List<AlbSubnetMapping> subnetMapping;
 
@@ -134,9 +132,9 @@ final class AlbSubnetMappingOrSubnetsSubnetMapping
   };
 }
 
-/// The [AlbSubnetMappingOrSubnets.subnets] choice: sets `subnets`.
-final class AlbSubnetMappingOrSubnetsSubnets extends AlbSubnetMappingOrSubnets {
-  const AlbSubnetMappingOrSubnetsSubnets(this.subnets);
+/// The [AlbSubnet.subnets] choice: sets `subnets`.
+final class AlbSubnetSubnets extends AlbSubnet {
+  const AlbSubnetSubnets(this.subnets);
 
   final TfArg<List<String>> subnets;
 
@@ -155,16 +153,15 @@ final class AlbSubnetMappingOrSubnetsSubnets extends AlbSubnetMappingOrSubnets {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class AlbNameOrNamePrefix {
-  const AlbNameOrNamePrefix();
+sealed class AlbName {
+  const AlbName();
 
   /// Sets `name`.
-  const factory AlbNameOrNamePrefix.name(TfArg<String> name) =
-      AlbNameOrNamePrefixName;
+  const factory AlbName.name(TfArg<String> name) = AlbNameName;
 
   /// Sets `name_prefix`.
-  const factory AlbNameOrNamePrefix.namePrefix(TfArg<String> namePrefix) =
-      AlbNameOrNamePrefixNamePrefix;
+  const factory AlbName.namePrefix(TfArg<String> namePrefix) =
+      AlbNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -176,9 +173,9 @@ sealed class AlbNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AlbNameOrNamePrefix.name] choice: sets `name`.
-final class AlbNameOrNamePrefixName extends AlbNameOrNamePrefix {
-  const AlbNameOrNamePrefixName(this.name);
+/// The [AlbName.name] choice: sets `name`.
+final class AlbNameName extends AlbName {
+  const AlbNameName(this.name);
 
   final TfArg<String> name;
 
@@ -192,9 +189,9 @@ final class AlbNameOrNamePrefixName extends AlbNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [AlbNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class AlbNameOrNamePrefixNamePrefix extends AlbNameOrNamePrefix {
-  const AlbNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [AlbName.namePrefix] choice: sets `name_prefix`.
+final class AlbNameNamePrefix extends AlbName {
+  const AlbNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -342,12 +339,12 @@ final class AwsAlb extends Resource {
     TfArg<bool>? internal,
     TfArg<AlbIpAddressType>? ipAddressType,
     TfArg<AlbLoadBalancerType>? loadBalancerType,
-    AlbNameOrNamePrefix? nameOrNamePrefix,
+    AlbName? name,
     TfArg<bool>? preserveHostHeader,
     TfArg<String>? region,
     TfArg<num>? secondaryIpsAutoAssignedPerSubnet,
     TfArg<List<String>>? securityGroups,
-    required AlbSubnetMappingOrSubnets subnetMappingOrSubnets,
+    required AlbSubnet subnet,
     TfArg<Map<String, String>>? tags,
     TfArg<AlbXffHeaderProcessingMode>? xffHeaderProcessingMode,
     AlbAccessLogs? accessLogs,
@@ -393,7 +390,7 @@ final class AwsAlb extends Resource {
            if (internal != null) 'internal': internal,
            if (ipAddressType != null) 'ip_address_type': ipAddressType,
            if (loadBalancerType != null) 'load_balancer_type': loadBalancerType,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (preserveHostHeader != null)
              'preserve_host_header': preserveHostHeader,
            if (region != null) 'region': region,
@@ -401,7 +398,7 @@ final class AwsAlb extends Resource {
              'secondary_ips_auto_assigned_per_subnet':
                  secondaryIpsAutoAssignedPerSubnet,
            if (securityGroups != null) 'security_groups': securityGroups,
-           ...subnetMappingOrSubnets.argMap,
+           ...subnet.argMap,
            if (tags != null) 'tags': tags,
            if (xffHeaderProcessingMode != null)
              'xff_header_processing_mode': xffHeaderProcessingMode,

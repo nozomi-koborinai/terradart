@@ -12,18 +12,17 @@ const Set<String> _awsMemorydbParameterGroupSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class MemorydbParameterGroupNameOrNamePrefix {
-  const MemorydbParameterGroupNameOrNamePrefix();
+sealed class MemorydbParameterGroupName {
+  const MemorydbParameterGroupName();
 
   /// Sets `name`.
-  const factory MemorydbParameterGroupNameOrNamePrefix.name(
-    TfArg<String> name,
-  ) = MemorydbParameterGroupNameOrNamePrefixName;
+  const factory MemorydbParameterGroupName.name(TfArg<String> name) =
+      MemorydbParameterGroupNameName;
 
   /// Sets `name_prefix`.
-  const factory MemorydbParameterGroupNameOrNamePrefix.namePrefix(
+  const factory MemorydbParameterGroupName.namePrefix(
     TfArg<String> namePrefix,
-  ) = MemorydbParameterGroupNameOrNamePrefixNamePrefix;
+  ) = MemorydbParameterGroupNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,10 +34,9 @@ sealed class MemorydbParameterGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [MemorydbParameterGroupNameOrNamePrefix.name] choice: sets `name`.
-final class MemorydbParameterGroupNameOrNamePrefixName
-    extends MemorydbParameterGroupNameOrNamePrefix {
-  const MemorydbParameterGroupNameOrNamePrefixName(this.name);
+/// The [MemorydbParameterGroupName.name] choice: sets `name`.
+final class MemorydbParameterGroupNameName extends MemorydbParameterGroupName {
+  const MemorydbParameterGroupNameName(this.name);
 
   final TfArg<String> name;
 
@@ -52,10 +50,10 @@ final class MemorydbParameterGroupNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [MemorydbParameterGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class MemorydbParameterGroupNameOrNamePrefixNamePrefix
-    extends MemorydbParameterGroupNameOrNamePrefix {
-  const MemorydbParameterGroupNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [MemorydbParameterGroupName.namePrefix] choice: sets `name_prefix`.
+final class MemorydbParameterGroupNameNamePrefix
+    extends MemorydbParameterGroupName {
+  const MemorydbParameterGroupNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -96,7 +94,7 @@ final class AwsMemorydbParameterGroup extends Resource {
     required super.localName,
     TfArg<String>? description,
     required TfArg<String> family,
-    MemorydbParameterGroupNameOrNamePrefix? nameOrNamePrefix,
+    MemorydbParameterGroupName? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     List<MemorydbParameterGroupParameter>? parameter,
@@ -109,7 +107,7 @@ final class AwsMemorydbParameterGroup extends Resource {
          argMap: {
            if (description != null) 'description': description,
            'family': family,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
            if (parameter != null)

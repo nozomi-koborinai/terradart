@@ -14,9 +14,9 @@ export 'src/api_gateway/google_api_gateway_api_config.dart'
         ApiGatewayApiConfigManagedServiceConfigs,
         ApiGatewayApiConfigOpenapiDocuments,
         ApiGatewayApiConfigOpenapiDocumentsDocument,
-        ApiGatewayApiConfigOpenapiDocumentsOrGrpcServices,
-        ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesGrpcServices,
-        ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesOpenapiDocuments,
+        ApiGatewayApiConfigSpec,
+        ApiGatewayApiConfigSpecGrpcServices,
+        ApiGatewayApiConfigSpecOpenapiDocuments,
         GoogleApiGatewayApiConfig;
 export 'src/api_gateway/google_api_gateway_api_config_iam_binding.dart'
     show

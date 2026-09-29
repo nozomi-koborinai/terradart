@@ -45,18 +45,18 @@ enum ServicecatalogProvisioningArtifactType implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.templatePhysicalId(...)`.
-sealed class ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl {
-  const ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl();
+sealed class ServicecatalogProvisioningArtifactTemplate {
+  const ServicecatalogProvisioningArtifactTemplate();
 
   /// Sets `template_physical_id`.
-  const factory ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl.templatePhysicalId(
+  const factory ServicecatalogProvisioningArtifactTemplate.templatePhysicalId(
     TfArg<String> templatePhysicalId,
-  ) = ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTemplatePhysicalId;
+  ) = ServicecatalogProvisioningArtifactTemplateTemplatePhysicalId;
 
   /// Sets `template_url`.
-  const factory ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl.templateUrl(
+  const factory ServicecatalogProvisioningArtifactTemplate.templateUrl(
     TfArg<String> templateUrl,
-  ) = ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTemplateUrl;
+  ) = ServicecatalogProvisioningArtifactTemplateTemplateUrl;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -68,10 +68,10 @@ sealed class ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl.templatePhysicalId] choice: sets `template_physical_id`.
-final class ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTemplatePhysicalId
-    extends ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl {
-  const ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTemplatePhysicalId(
+/// The [ServicecatalogProvisioningArtifactTemplate.templatePhysicalId] choice: sets `template_physical_id`.
+final class ServicecatalogProvisioningArtifactTemplateTemplatePhysicalId
+    extends ServicecatalogProvisioningArtifactTemplate {
+  const ServicecatalogProvisioningArtifactTemplateTemplatePhysicalId(
     this.templatePhysicalId,
   );
 
@@ -91,12 +91,10 @@ final class ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTem
   };
 }
 
-/// The [ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl.templateUrl] choice: sets `template_url`.
-final class ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTemplateUrl
-    extends ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl {
-  const ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrlTemplateUrl(
-    this.templateUrl,
-  );
+/// The [ServicecatalogProvisioningArtifactTemplate.templateUrl] choice: sets `template_url`.
+final class ServicecatalogProvisioningArtifactTemplateTemplateUrl
+    extends ServicecatalogProvisioningArtifactTemplate {
+  const ServicecatalogProvisioningArtifactTemplateTemplateUrl(this.templateUrl);
 
   final TfArg<String> templateUrl;
 
@@ -124,8 +122,7 @@ final class AwsServicecatalogProvisioningArtifact extends Resource {
     TfArg<String>? name,
     required TfArg<String> productId,
     TfArg<String>? region,
-    required ServicecatalogProvisioningArtifactTemplatePhysicalIdOrTemplateUrl
-    templatePhysicalIdOrTemplateUrl,
+    required ServicecatalogProvisioningArtifactTemplate template,
     TfArg<ServicecatalogProvisioningArtifactType>? type,
     super.lifecycle,
     super.dependsOn,
@@ -143,7 +140,7 @@ final class AwsServicecatalogProvisioningArtifact extends Resource {
            if (name != null) 'name': name,
            'product_id': productId,
            if (region != null) 'region': region,
-           ...templatePhysicalIdOrTemplateUrl.argMap,
+           ...template.argMap,
            if (type != null) 'type': type,
          },
        );

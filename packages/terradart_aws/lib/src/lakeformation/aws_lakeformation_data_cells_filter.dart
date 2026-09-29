@@ -12,7 +12,7 @@ const Set<String> _awsLakeformationDataCellsFilterSensitive = <String>{};
 @immutable
 final class LakeformationDataCellsFilterTableData {
   const LakeformationDataCellsFilterTableData({
-    required this.columnNamesOrColumnWildcard,
+    required this.column,
     required this.databaseName,
     required this.name,
     required this.tableCatalogId,
@@ -21,8 +21,7 @@ final class LakeformationDataCellsFilterTableData {
     this.rowFilter,
   });
 
-  final LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard
-  columnNamesOrColumnWildcard;
+  final LakeformationDataCellsFilterTableDataColumn column;
 
   final TfArg<String> databaseName;
 
@@ -37,7 +36,7 @@ final class LakeformationDataCellsFilterTableData {
   final List<LakeformationDataCellsFilterTableDataRowFilter>? rowFilter;
 
   Map<String, Object?> encode() => {
-    ...columnNamesOrColumnWildcard.encode(),
+    ...column.encode(),
     'database_name': databaseName.toTfJson(),
     'name': name.toTfJson(),
     'table_catalog_id': tableCatalogId.toTfJson(),
@@ -52,18 +51,18 @@ final class LakeformationDataCellsFilterTableData {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.columnNames(...)`.
-sealed class LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard {
-  const LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard();
+sealed class LakeformationDataCellsFilterTableDataColumn {
+  const LakeformationDataCellsFilterTableDataColumn();
 
   /// Sets `column_names`.
-  const factory LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard.columnNames(
+  const factory LakeformationDataCellsFilterTableDataColumn.columnNames(
     TfArg<List<Object?>> columnNames,
-  ) = LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcardColumnNames;
+  ) = LakeformationDataCellsFilterTableDataColumnColumnNames;
 
   /// Sets `column_wildcard`.
-  const factory LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard.columnWildcard(
+  const factory LakeformationDataCellsFilterTableDataColumn.columnWildcard(
     List<LakeformationDataCellsFilterTableDataColumnWildcard> columnWildcard,
-  ) = LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcardColumnWildcard;
+  ) = LakeformationDataCellsFilterTableDataColumnColumnWildcard;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -71,10 +70,10 @@ sealed class LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard {
   Map<String, Object?> encode();
 }
 
-/// The [LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard.columnNames] choice: sets `column_names`.
-final class LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcardColumnNames
-    extends LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard {
-  const LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcardColumnNames(
+/// The [LakeformationDataCellsFilterTableDataColumn.columnNames] choice: sets `column_names`.
+final class LakeformationDataCellsFilterTableDataColumnColumnNames
+    extends LakeformationDataCellsFilterTableDataColumn {
+  const LakeformationDataCellsFilterTableDataColumnColumnNames(
     this.columnNames,
   );
 
@@ -87,10 +86,10 @@ final class LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcardColu
   Map<String, Object?> encode() => {'column_names': columnNames.toTfJson()};
 }
 
-/// The [LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard.columnWildcard] choice: sets `column_wildcard`.
-final class LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcardColumnWildcard
-    extends LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcard {
-  const LakeformationDataCellsFilterTableDataColumnNamesOrColumnWildcardColumnWildcard(
+/// The [LakeformationDataCellsFilterTableDataColumn.columnWildcard] choice: sets `column_wildcard`.
+final class LakeformationDataCellsFilterTableDataColumnColumnWildcard
+    extends LakeformationDataCellsFilterTableDataColumn {
+  const LakeformationDataCellsFilterTableDataColumnColumnWildcard(
     this.columnWildcard,
   );
 
@@ -127,34 +126,31 @@ final class LakeformationDataCellsFilterTableDataColumnWildcard {
 @immutable
 final class LakeformationDataCellsFilterTableDataRowFilter {
   const LakeformationDataCellsFilterTableDataRowFilter({
-    required this.allRowsWildcardOrFilterExpression,
+    required this.rowFilter,
   });
 
-  final LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression
-  allRowsWildcardOrFilterExpression;
+  final LakeformationDataCellsFilterTableDataRowFilterRowFilter rowFilter;
 
-  Map<String, Object?> encode() => {
-    ...allRowsWildcardOrFilterExpression.encode(),
-  };
+  Map<String, Object?> encode() => {...rowFilter.encode()};
 }
 
 /// Exactly one of `all_rows_wildcard`, `filter_expression` on the `table_data.row_filter` block of `aws_lakeformation_data_cells_filter`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.allRowsWildcard(...)`.
-sealed class LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression {
-  const LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression();
+sealed class LakeformationDataCellsFilterTableDataRowFilterRowFilter {
+  const LakeformationDataCellsFilterTableDataRowFilterRowFilter();
 
   /// Sets `all_rows_wildcard`.
-  const factory LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression.allRowsWildcard(
+  const factory LakeformationDataCellsFilterTableDataRowFilterRowFilter.allRowsWildcard(
     List<LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcard>
     allRowsWildcard,
-  ) = LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpressionAllRowsWildcard;
+  ) = LakeformationDataCellsFilterTableDataRowFilterRowFilterAllRowsWildcard;
 
   /// Sets `filter_expression`.
-  const factory LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression.filterExpression(
+  const factory LakeformationDataCellsFilterTableDataRowFilterRowFilter.filterExpression(
     TfArg<String> filterExpression,
-  ) = LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpressionFilterExpression;
+  ) = LakeformationDataCellsFilterTableDataRowFilterRowFilterFilterExpression;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -162,11 +158,10 @@ sealed class LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilt
   Map<String, Object?> encode();
 }
 
-/// The [LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression.allRowsWildcard] choice: sets `all_rows_wildcard`.
-final class LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpressionAllRowsWildcard
-    extends
-        LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression {
-  const LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpressionAllRowsWildcard(
+/// The [LakeformationDataCellsFilterTableDataRowFilterRowFilter.allRowsWildcard] choice: sets `all_rows_wildcard`.
+final class LakeformationDataCellsFilterTableDataRowFilterRowFilterAllRowsWildcard
+    extends LakeformationDataCellsFilterTableDataRowFilterRowFilter {
+  const LakeformationDataCellsFilterTableDataRowFilterRowFilterAllRowsWildcard(
     this.allRowsWildcard,
   );
 
@@ -182,11 +177,10 @@ final class LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilte
   };
 }
 
-/// The [LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression.filterExpression] choice: sets `filter_expression`.
-final class LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpressionFilterExpression
-    extends
-        LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpression {
-  const LakeformationDataCellsFilterTableDataRowFilterAllRowsWildcardOrFilterExpressionFilterExpression(
+/// The [LakeformationDataCellsFilterTableDataRowFilterRowFilter.filterExpression] choice: sets `filter_expression`.
+final class LakeformationDataCellsFilterTableDataRowFilterRowFilterFilterExpression
+    extends LakeformationDataCellsFilterTableDataRowFilterRowFilter {
+  const LakeformationDataCellsFilterTableDataRowFilterRowFilterFilterExpression(
     this.filterExpression,
   );
 

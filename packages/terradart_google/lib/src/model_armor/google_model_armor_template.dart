@@ -113,14 +113,11 @@ final class ModelArmorTemplateFilterConfigRaiSettingsRaiFilters {
 /// `google_model_armor_template` (derived from provider schema).
 @immutable
 final class ModelArmorTemplateFilterConfigSdpSettings {
-  const ModelArmorTemplateFilterConfigSdpSettings({
-    this.advancedConfigOrBasicConfig,
-  });
+  const ModelArmorTemplateFilterConfigSdpSettings({this.sdpSettings});
 
-  final ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig?
-  advancedConfigOrBasicConfig;
+  final ModelArmorTemplateFilterConfigSdpSettingsSdpSettings? sdpSettings;
 
-  Map<String, Object?> encode() => {...?advancedConfigOrBasicConfig?.encode()};
+  Map<String, Object?> encode() => {...?sdpSettings?.encode()};
 }
 
 /// At most one of `advanced_config`, `basic_config` on the `filter_config.sdp_settings` block of `google_model_armor_template`: the provider rejects
@@ -128,18 +125,18 @@ final class ModelArmorTemplateFilterConfigSdpSettings {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.advancedConfig(...)`.
-sealed class ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig {
-  const ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig();
+sealed class ModelArmorTemplateFilterConfigSdpSettingsSdpSettings {
+  const ModelArmorTemplateFilterConfigSdpSettingsSdpSettings();
 
   /// Sets `advanced_config`.
-  const factory ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig.advancedConfig(
+  const factory ModelArmorTemplateFilterConfigSdpSettingsSdpSettings.advancedConfig(
     ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfig advancedConfig,
-  ) = ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfigAdvancedConfig;
+  ) = ModelArmorTemplateFilterConfigSdpSettingsSdpSettingsAdvancedConfig;
 
   /// Sets `basic_config`.
-  const factory ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig.basicConfig(
+  const factory ModelArmorTemplateFilterConfigSdpSettingsSdpSettings.basicConfig(
     ModelArmorTemplateFilterConfigSdpSettingsBasicConfig basicConfig,
-  ) = ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfigBasicConfig;
+  ) = ModelArmorTemplateFilterConfigSdpSettingsSdpSettingsBasicConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -147,11 +144,10 @@ sealed class ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfi
   Map<String, Object?> encode();
 }
 
-/// The [ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig.advancedConfig] choice: sets `advanced_config`.
-final class ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfigAdvancedConfig
-    extends
-        ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig {
-  const ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfigAdvancedConfig(
+/// The [ModelArmorTemplateFilterConfigSdpSettingsSdpSettings.advancedConfig] choice: sets `advanced_config`.
+final class ModelArmorTemplateFilterConfigSdpSettingsSdpSettingsAdvancedConfig
+    extends ModelArmorTemplateFilterConfigSdpSettingsSdpSettings {
+  const ModelArmorTemplateFilterConfigSdpSettingsSdpSettingsAdvancedConfig(
     this.advancedConfig,
   );
 
@@ -164,11 +160,10 @@ final class ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig
   Map<String, Object?> encode() => {'advanced_config': advancedConfig.encode()};
 }
 
-/// The [ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig.basicConfig] choice: sets `basic_config`.
-final class ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfigBasicConfig
-    extends
-        ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfig {
-  const ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfigOrBasicConfigBasicConfig(
+/// The [ModelArmorTemplateFilterConfigSdpSettingsSdpSettings.basicConfig] choice: sets `basic_config`.
+final class ModelArmorTemplateFilterConfigSdpSettingsSdpSettingsBasicConfig
+    extends ModelArmorTemplateFilterConfigSdpSettingsSdpSettings {
+  const ModelArmorTemplateFilterConfigSdpSettingsSdpSettingsBasicConfig(
     this.basicConfig,
   );
 
@@ -291,13 +286,13 @@ final class ModelArmorTemplateTemplateMetadata {
 @immutable
 final class ModelArmorTemplateTemplateMetadataFilterVersionSelector {
   const ModelArmorTemplateTemplateMetadataFilterVersionSelector({
-    this.aliasOrVersion,
+    this.filterVersionSelector,
   });
 
-  final ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion?
-  aliasOrVersion;
+  final ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelector?
+  filterVersionSelector;
 
-  Map<String, Object?> encode() => {...?aliasOrVersion?.encode()};
+  Map<String, Object?> encode() => {...?filterVersionSelector?.encode()};
 }
 
 /// At most one of `alias`, `version` on the `template_metadata.filter_version_selector` block of `google_model_armor_template`: the provider rejects
@@ -305,18 +300,18 @@ final class ModelArmorTemplateTemplateMetadataFilterVersionSelector {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.alias(...)`.
-sealed class ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion {
-  const ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion();
+sealed class ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelector {
+  const ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelector();
 
   /// Sets `alias`.
-  const factory ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion.alias(
+  const factory ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelector.alias(
     TfArg<String> alias,
-  ) = ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersionAlias;
+  ) = ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelectorAlias;
 
   /// Sets `version`.
-  const factory ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion.version(
+  const factory ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelector.version(
     TfArg<String> version,
-  ) = ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersionVersion;
+  ) = ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelectorVersion;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -324,11 +319,11 @@ sealed class ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersi
   Map<String, Object?> encode();
 }
 
-/// The [ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion.alias] choice: sets `alias`.
-final class ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersionAlias
+/// The [ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelector.alias] choice: sets `alias`.
+final class ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelectorAlias
     extends
-        ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion {
-  const ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersionAlias(
+        ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelector {
+  const ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelectorAlias(
     this.alias,
   );
 
@@ -341,11 +336,11 @@ final class ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersio
   Map<String, Object?> encode() => {'alias': alias.toTfJson()};
 }
 
-/// The [ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion.version] choice: sets `version`.
-final class ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersionVersion
+/// The [ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelector.version] choice: sets `version`.
+final class ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelectorVersion
     extends
-        ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersion {
-  const ModelArmorTemplateTemplateMetadataFilterVersionSelectorAliasOrVersionVersion(
+        ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelector {
+  const ModelArmorTemplateTemplateMetadataFilterVersionSelectorFilterVersionSelectorVersion(
     this.version,
   );
 

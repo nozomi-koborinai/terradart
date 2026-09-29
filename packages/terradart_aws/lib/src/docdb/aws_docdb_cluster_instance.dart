@@ -20,18 +20,18 @@ enum DocdbClusterInstanceEngine implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.identifier(...)`.
-sealed class DocdbClusterInstanceIdentifierOrIdentifierPrefix {
-  const DocdbClusterInstanceIdentifierOrIdentifierPrefix();
+sealed class DocdbClusterInstanceIdentifier {
+  const DocdbClusterInstanceIdentifier();
 
   /// Sets `identifier`.
-  const factory DocdbClusterInstanceIdentifierOrIdentifierPrefix.identifier(
+  const factory DocdbClusterInstanceIdentifier.identifier(
     TfArg<String> identifier,
-  ) = DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifier;
+  ) = DocdbClusterInstanceIdentifierIdentifier;
 
   /// Sets `identifier_prefix`.
-  const factory DocdbClusterInstanceIdentifierOrIdentifierPrefix.identifierPrefix(
+  const factory DocdbClusterInstanceIdentifier.identifierPrefix(
     TfArg<String> identifierPrefix,
-  ) = DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix;
+  ) = DocdbClusterInstanceIdentifierIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -43,12 +43,10 @@ sealed class DocdbClusterInstanceIdentifierOrIdentifierPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DocdbClusterInstanceIdentifierOrIdentifierPrefix.identifier] choice: sets `identifier`.
-final class DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifier
-    extends DocdbClusterInstanceIdentifierOrIdentifierPrefix {
-  const DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifier(
-    this.identifier,
-  );
+/// The [DocdbClusterInstanceIdentifier.identifier] choice: sets `identifier`.
+final class DocdbClusterInstanceIdentifierIdentifier
+    extends DocdbClusterInstanceIdentifier {
+  const DocdbClusterInstanceIdentifierIdentifier(this.identifier);
 
   final TfArg<String> identifier;
 
@@ -62,12 +60,10 @@ final class DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifier
   Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
 }
 
-/// The [DocdbClusterInstanceIdentifierOrIdentifierPrefix.identifierPrefix] choice: sets `identifier_prefix`.
-final class DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix
-    extends DocdbClusterInstanceIdentifierOrIdentifierPrefix {
-  const DocdbClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix(
-    this.identifierPrefix,
-  );
+/// The [DocdbClusterInstanceIdentifier.identifierPrefix] choice: sets `identifier_prefix`.
+final class DocdbClusterInstanceIdentifierIdentifierPrefix
+    extends DocdbClusterInstanceIdentifier {
+  const DocdbClusterInstanceIdentifierIdentifierPrefix(this.identifierPrefix);
 
   final TfArg<String> identifierPrefix;
 
@@ -100,8 +96,7 @@ final class AwsDocdbClusterInstance extends Resource {
     TfArg<bool>? copyTagsToSnapshot,
     TfArg<bool>? enablePerformanceInsights,
     TfArg<DocdbClusterInstanceEngine>? engine,
-    DocdbClusterInstanceIdentifierOrIdentifierPrefix?
-    identifierOrIdentifierPrefix,
+    DocdbClusterInstanceIdentifier? identifier,
     required TfArg<String> instanceClass,
     TfArg<String>? performanceInsightsKmsKeyId,
     TfArg<String>? preferredMaintenanceWindow,
@@ -128,7 +123,7 @@ final class AwsDocdbClusterInstance extends Resource {
            if (enablePerformanceInsights != null)
              'enable_performance_insights': enablePerformanceInsights,
            if (engine != null) 'engine': engine,
-           ...?identifierOrIdentifierPrefix?.argMap,
+           ...?identifier?.argMap,
            'instance_class': instanceClass,
            if (performanceInsightsKmsKeyId != null)
              'performance_insights_kms_key_id': performanceInsightsKmsKeyId,

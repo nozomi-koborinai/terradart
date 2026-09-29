@@ -11,17 +11,16 @@ const Set<String> _awsIamInstanceProfileSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class IamInstanceProfileNameOrNamePrefix {
-  const IamInstanceProfileNameOrNamePrefix();
+sealed class IamInstanceProfileName {
+  const IamInstanceProfileName();
 
   /// Sets `name`.
-  const factory IamInstanceProfileNameOrNamePrefix.name(TfArg<String> name) =
-      IamInstanceProfileNameOrNamePrefixName;
+  const factory IamInstanceProfileName.name(TfArg<String> name) =
+      IamInstanceProfileNameName;
 
   /// Sets `name_prefix`.
-  const factory IamInstanceProfileNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = IamInstanceProfileNameOrNamePrefixNamePrefix;
+  const factory IamInstanceProfileName.namePrefix(TfArg<String> namePrefix) =
+      IamInstanceProfileNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +32,9 @@ sealed class IamInstanceProfileNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [IamInstanceProfileNameOrNamePrefix.name] choice: sets `name`.
-final class IamInstanceProfileNameOrNamePrefixName
-    extends IamInstanceProfileNameOrNamePrefix {
-  const IamInstanceProfileNameOrNamePrefixName(this.name);
+/// The [IamInstanceProfileName.name] choice: sets `name`.
+final class IamInstanceProfileNameName extends IamInstanceProfileName {
+  const IamInstanceProfileNameName(this.name);
 
   final TfArg<String> name;
 
@@ -50,10 +48,9 @@ final class IamInstanceProfileNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [IamInstanceProfileNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class IamInstanceProfileNameOrNamePrefixNamePrefix
-    extends IamInstanceProfileNameOrNamePrefix {
-  const IamInstanceProfileNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [IamInstanceProfileName.namePrefix] choice: sets `name_prefix`.
+final class IamInstanceProfileNameNamePrefix extends IamInstanceProfileName {
+  const IamInstanceProfileNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -73,7 +70,7 @@ final class AwsIamInstanceProfile extends Resource {
 
   AwsIamInstanceProfile({
     required super.localName,
-    IamInstanceProfileNameOrNamePrefix? nameOrNamePrefix,
+    IamInstanceProfileName? name,
     TfArg<String>? path,
     TfArg<String>? role,
     TfArg<Map<String, String>>? tags,
@@ -84,7 +81,7 @@ final class AwsIamInstanceProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (path != null) 'path': path,
            if (role != null) 'role': role,
            if (tags != null) 'tags': tags,

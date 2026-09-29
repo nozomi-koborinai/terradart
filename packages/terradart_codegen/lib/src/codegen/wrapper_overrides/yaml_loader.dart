@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:yaml/yaml.dart';
 
+import '../exactly_one_types.dart';
 import 'loader_errors.dart';
 import 'wrapper_override.dart';
 
@@ -148,6 +149,7 @@ class YamlOverrideLoader {
     'nestedTypeExcludes',
     'dedupeNestedTypes',
     'deriveExactlyOne',
+    'sealedNames',
     // 4 Phase 4.1 axes (kind dispatch + emitter routing).
     'kind',
     'outputDir',
@@ -452,7 +454,32 @@ class YamlOverrideLoader {
       nestedTypeExcludes: nestedTypeExcludes,
       dedupeNestedTypes: dedupeNestedTypes,
       deriveExactlyOne: _readBool(yaml, 'deriveExactlyOne', filePath) ?? false,
+      sealedNames: _readSealedNames(yaml, filePath),
     );
+  }
+
+  static final RegExp _sealedConcept = RegExp(r'^[a-z][a-z0-9]*(_[a-z0-9]+)*$');
+
+  /// The `sealedNames` axis: a string map whose keys are comma-separated
+  /// member paths and whose values are snake_case concept names.
+  Map<String, String>? _readSealedNames(YamlMap yaml, String filePath) {
+    final names = _readStringMap(yaml, 'sealedNames', filePath);
+    if (names == null) return null;
+    for (final MapEntry(:key, :value) in names.entries) {
+      if (sealedGroupKey(key).length < 2) {
+        throw FormatException(
+          '$filePath: sealedNames key "$key" must list the group\'s members, '
+          'comma-separated.',
+        );
+      }
+      if (!_sealedConcept.hasMatch(value)) {
+        throw FormatException(
+          '$filePath: sealedNames "$key" is "$value"; use a snake_case '
+          'concept name (code, name_or_id).',
+        );
+      }
+    }
+    return names;
   }
 
   /// Resolves the `kind` axis. Default: [WrapperOverrideKind.resource].

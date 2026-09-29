@@ -195,17 +195,16 @@ final class BudgetsBudgetCostTypesOrMetricsMetrics
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class BudgetsBudgetNameOrNamePrefix {
-  const BudgetsBudgetNameOrNamePrefix();
+sealed class BudgetsBudgetName {
+  const BudgetsBudgetName();
 
   /// Sets `name`.
-  const factory BudgetsBudgetNameOrNamePrefix.name(TfArg<String> name) =
-      BudgetsBudgetNameOrNamePrefixName;
+  const factory BudgetsBudgetName.name(TfArg<String> name) =
+      BudgetsBudgetNameName;
 
   /// Sets `name_prefix`.
-  const factory BudgetsBudgetNameOrNamePrefix.namePrefix(
-    TfArg<String> namePrefix,
-  ) = BudgetsBudgetNameOrNamePrefixNamePrefix;
+  const factory BudgetsBudgetName.namePrefix(TfArg<String> namePrefix) =
+      BudgetsBudgetNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -217,10 +216,9 @@ sealed class BudgetsBudgetNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [BudgetsBudgetNameOrNamePrefix.name] choice: sets `name`.
-final class BudgetsBudgetNameOrNamePrefixName
-    extends BudgetsBudgetNameOrNamePrefix {
-  const BudgetsBudgetNameOrNamePrefixName(this.name);
+/// The [BudgetsBudgetName.name] choice: sets `name`.
+final class BudgetsBudgetNameName extends BudgetsBudgetName {
+  const BudgetsBudgetNameName(this.name);
 
   final TfArg<String> name;
 
@@ -234,10 +232,9 @@ final class BudgetsBudgetNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [BudgetsBudgetNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class BudgetsBudgetNameOrNamePrefixNamePrefix
-    extends BudgetsBudgetNameOrNamePrefix {
-  const BudgetsBudgetNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [BudgetsBudgetName.namePrefix] choice: sets `name_prefix`.
+final class BudgetsBudgetNameNamePrefix extends BudgetsBudgetName {
+  const BudgetsBudgetNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -1819,7 +1816,7 @@ final class AwsBudgetsBudget extends Resource {
     TfArg<String>? limitAmount,
     TfArg<String>? limitUnit,
     BudgetsBudgetCostTypesOrMetrics? costTypesOrMetrics,
-    BudgetsBudgetNameOrNamePrefix? nameOrNamePrefix,
+    BudgetsBudgetName? name,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? timePeriodEnd,
     TfArg<String>? timePeriodStart,
@@ -1841,7 +1838,7 @@ final class AwsBudgetsBudget extends Resource {
            if (limitAmount != null) 'limit_amount': limitAmount,
            if (limitUnit != null) 'limit_unit': limitUnit,
            ...?costTypesOrMetrics?.argMap,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (tags != null) 'tags': tags,
            if (timePeriodEnd != null) 'time_period_end': timePeriodEnd,
            if (timePeriodStart != null) 'time_period_start': timePeriodStart,

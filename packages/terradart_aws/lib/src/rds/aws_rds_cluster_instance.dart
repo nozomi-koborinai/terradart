@@ -11,18 +11,18 @@ const Set<String> _awsRdsClusterInstanceSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.identifier(...)`.
-sealed class RdsClusterInstanceIdentifierOrIdentifierPrefix {
-  const RdsClusterInstanceIdentifierOrIdentifierPrefix();
+sealed class RdsClusterInstanceIdentifier {
+  const RdsClusterInstanceIdentifier();
 
   /// Sets `identifier`.
-  const factory RdsClusterInstanceIdentifierOrIdentifierPrefix.identifier(
+  const factory RdsClusterInstanceIdentifier.identifier(
     TfArg<String> identifier,
-  ) = RdsClusterInstanceIdentifierOrIdentifierPrefixIdentifier;
+  ) = RdsClusterInstanceIdentifierIdentifier;
 
   /// Sets `identifier_prefix`.
-  const factory RdsClusterInstanceIdentifierOrIdentifierPrefix.identifierPrefix(
+  const factory RdsClusterInstanceIdentifier.identifierPrefix(
     TfArg<String> identifierPrefix,
-  ) = RdsClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix;
+  ) = RdsClusterInstanceIdentifierIdentifierPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,12 +34,10 @@ sealed class RdsClusterInstanceIdentifierOrIdentifierPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [RdsClusterInstanceIdentifierOrIdentifierPrefix.identifier] choice: sets `identifier`.
-final class RdsClusterInstanceIdentifierOrIdentifierPrefixIdentifier
-    extends RdsClusterInstanceIdentifierOrIdentifierPrefix {
-  const RdsClusterInstanceIdentifierOrIdentifierPrefixIdentifier(
-    this.identifier,
-  );
+/// The [RdsClusterInstanceIdentifier.identifier] choice: sets `identifier`.
+final class RdsClusterInstanceIdentifierIdentifier
+    extends RdsClusterInstanceIdentifier {
+  const RdsClusterInstanceIdentifierIdentifier(this.identifier);
 
   final TfArg<String> identifier;
 
@@ -53,12 +51,10 @@ final class RdsClusterInstanceIdentifierOrIdentifierPrefixIdentifier
   Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
 }
 
-/// The [RdsClusterInstanceIdentifierOrIdentifierPrefix.identifierPrefix] choice: sets `identifier_prefix`.
-final class RdsClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix
-    extends RdsClusterInstanceIdentifierOrIdentifierPrefix {
-  const RdsClusterInstanceIdentifierOrIdentifierPrefixIdentifierPrefix(
-    this.identifierPrefix,
-  );
+/// The [RdsClusterInstanceIdentifier.identifierPrefix] choice: sets `identifier_prefix`.
+final class RdsClusterInstanceIdentifierIdentifierPrefix
+    extends RdsClusterInstanceIdentifier {
+  const RdsClusterInstanceIdentifierIdentifierPrefix(this.identifierPrefix);
 
   final TfArg<String> identifierPrefix;
 
@@ -94,8 +90,7 @@ final class AwsRdsClusterInstance extends Resource {
     required TfArg<String> engine,
     TfArg<String>? engineVersion,
     TfArg<bool>? forceDestroy,
-    RdsClusterInstanceIdentifierOrIdentifierPrefix?
-    identifierOrIdentifierPrefix,
+    RdsClusterInstanceIdentifier? identifier,
     required TfArg<String> instanceClass,
     TfArg<num>? monitoringInterval,
     TfArg<String>? monitoringRoleArn,
@@ -133,7 +128,7 @@ final class AwsRdsClusterInstance extends Resource {
            'engine': engine,
            if (engineVersion != null) 'engine_version': engineVersion,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
-           ...?identifierOrIdentifierPrefix?.argMap,
+           ...?identifier?.argMap,
            'instance_class': instanceClass,
            if (monitoringInterval != null)
              'monitoring_interval': monitoringInterval,

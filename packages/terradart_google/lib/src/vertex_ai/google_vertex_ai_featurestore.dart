@@ -23,31 +23,31 @@ final class VertexAiFeaturestoreEncryptionSpec {
 @immutable
 final class VertexAiFeaturestoreOnlineServingConfig {
   const VertexAiFeaturestoreOnlineServingConfig({
-    required this.fixedNodeCountOrScaling,
+    required this.onlineServingConfig,
   });
 
-  final VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling
-  fixedNodeCountOrScaling;
+  final VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig
+  onlineServingConfig;
 
-  Map<String, Object?> encode() => {...fixedNodeCountOrScaling.encode()};
+  Map<String, Object?> encode() => {...onlineServingConfig.encode()};
 }
 
 /// Exactly one of `fixed_node_count`, `scaling` on the `online_serving_config` block of `google_vertex_ai_featurestore`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.fixedNodeCount(...)`.
-sealed class VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling {
-  const VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling();
+sealed class VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig {
+  const VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig();
 
   /// Sets `fixed_node_count`.
-  const factory VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling.fixedNodeCount(
+  const factory VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig.fixedNodeCount(
     TfArg<num> fixedNodeCount,
-  ) = VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScalingFixedNodeCount;
+  ) = VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigFixedNodeCount;
 
   /// Sets `scaling`.
-  const factory VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling.scaling(
+  const factory VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig.scaling(
     VertexAiFeaturestoreOnlineServingConfigScaling scaling,
-  ) = VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScalingScaling;
+  ) = VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigScaling;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -55,10 +55,10 @@ sealed class VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling {
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling.fixedNodeCount] choice: sets `fixed_node_count`.
-final class VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScalingFixedNodeCount
-    extends VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling {
-  const VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScalingFixedNodeCount(
+/// The [VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig.fixedNodeCount] choice: sets `fixed_node_count`.
+final class VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigFixedNodeCount
+    extends VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig {
+  const VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigFixedNodeCount(
     this.fixedNodeCount,
   );
 
@@ -73,10 +73,10 @@ final class VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScalingFixedN
   };
 }
 
-/// The [VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling.scaling] choice: sets `scaling`.
-final class VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScalingScaling
-    extends VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScaling {
-  const VertexAiFeaturestoreOnlineServingConfigFixedNodeCountOrScalingScaling(
+/// The [VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig.scaling] choice: sets `scaling`.
+final class VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigScaling
+    extends VertexAiFeaturestoreOnlineServingConfigOnlineServingConfig {
+  const VertexAiFeaturestoreOnlineServingConfigOnlineServingConfigScaling(
     this.scaling,
   );
 

@@ -218,16 +218,14 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'openapiDocumentsOrGrpcServices',
+          dartName: 'spec',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'openapi_documents':
-                'ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesOpenapiDocuments',
-            'grpc_services':
-                'ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesGrpcServices',
+            'openapi_documents': 'ApiGatewayApiConfigSpecOpenapiDocuments',
+            'grpc_services': 'ApiGatewayApiConfigSpecGrpcServices',
           },
         ),
         MigrateSlot(
@@ -2823,16 +2821,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'targetServiceAccountsOrTargetSecureTags',
+          dartName: 'target',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'target_service_accounts':
-                'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetServiceAccounts',
+                'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetServiceAccounts',
             'target_secure_tags':
-                'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetSecureTags',
+                'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetSecureTags',
           },
         ),
         MigrateSlot(
@@ -3837,14 +3835,14 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'expireTimeOrTtl',
+          dartName: 'expiration',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'expire_time': 'FirebaseHostingChannelExpireTimeOrTtlExpireTime',
-            'ttl': 'FirebaseHostingChannelExpireTimeOrTtlTtl',
+            'expire_time': 'FirebaseHostingChannelExpirationExpireTime',
+            'ttl': 'FirebaseHostingChannelExpirationTtl',
           },
         ),
         MigrateSlot(
@@ -6382,16 +6380,14 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'acceleratorTypeOrAcceleratorConfig',
+          dartName: 'accelerator',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'accelerator_type':
-                'TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorType',
-            'accelerator_config':
-                'TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorConfig',
+            'accelerator_type': 'TpuV2VmAcceleratorAcceleratorType',
+            'accelerator_config': 'TpuV2VmAcceleratorAcceleratorConfig',
           },
         ),
         MigrateSlot(
@@ -6475,16 +6471,14 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
         MigrateSlot(
           tfName: '',
-          dartName: 'networkConfigOrNetworkConfigs',
+          dartName: 'network',
           kind: MigrateSlotKind.sealed,
           required: false,
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'network_config':
-                'TpuV2VmNetworkConfigOrNetworkConfigsNetworkConfig',
-            'network_configs':
-                'TpuV2VmNetworkConfigOrNetworkConfigsNetworkConfigs',
+            'network_config': 'TpuV2VmNetworkNetworkConfig',
+            'network_configs': 'TpuV2VmNetworkNetworkConfigs',
           },
         ),
         MigrateSlot(
@@ -7754,42 +7748,38 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesGrpcServices':
-        MigrateHelper(
-          className:
-              'ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesGrpcServices',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'grpc_services',
-              dartName: 'grpcServices',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ApiGatewayApiConfigGrpcServices',
-            ),
-          ],
-          shorthand: 'grpcServices',
+    'ApiGatewayApiConfigSpecGrpcServices': MigrateHelper(
+      className: 'ApiGatewayApiConfigSpecGrpcServices',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'grpc_services',
+          dartName: 'grpcServices',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ApiGatewayApiConfigGrpcServices',
         ),
-    'ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesOpenapiDocuments':
-        MigrateHelper(
-          className:
-              'ApiGatewayApiConfigOpenapiDocumentsOrGrpcServicesOpenapiDocuments',
-          slots: <MigrateSlot>[
-            MigrateSlot(
-              tfName: 'openapi_documents',
-              dartName: 'openapiDocuments',
-              kind: MigrateSlotKind.helper,
-              required: true,
-              repeated: true,
-              wrapped: false,
-              positional: true,
-              helper: 'ApiGatewayApiConfigOpenapiDocuments',
-            ),
-          ],
-          shorthand: 'openapiDocuments',
+      ],
+      shorthand: 'grpcServices',
+    ),
+    'ApiGatewayApiConfigSpecOpenapiDocuments': MigrateHelper(
+      className: 'ApiGatewayApiConfigSpecOpenapiDocuments',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'openapi_documents',
+          dartName: 'openapiDocuments',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'ApiGatewayApiConfigOpenapiDocuments',
         ),
+      ],
+      shorthand: 'openapiDocuments',
+    ),
     'ApiGatewayApiIamBindingCondition': MigrateHelper(
       className: 'ApiGatewayApiIamBindingCondition',
       slots: <MigrateSlot>[
@@ -10921,10 +10911,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetSecureTags':
+    'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetSecureTags':
         MigrateHelper(
           className:
-              'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetSecureTags',
+              'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetSecureTags',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'target_secure_tags',
@@ -10940,10 +10930,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           ],
           shorthand: 'targetSecureTags',
         ),
-    'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetServiceAccounts':
+    'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetServiceAccounts':
         MigrateHelper(
           className:
-              'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetServiceAccounts',
+              'ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetServiceAccounts',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'target_service_accounts',
@@ -11218,8 +11208,8 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'FirebaseHostingChannelExpireTimeOrTtlExpireTime': MigrateHelper(
-      className: 'FirebaseHostingChannelExpireTimeOrTtlExpireTime',
+    'FirebaseHostingChannelExpirationExpireTime': MigrateHelper(
+      className: 'FirebaseHostingChannelExpirationExpireTime',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'expire_time',
@@ -11232,8 +11222,8 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       ],
       shorthand: 'expireTime',
     ),
-    'FirebaseHostingChannelExpireTimeOrTtlTtl': MigrateHelper(
-      className: 'FirebaseHostingChannelExpireTimeOrTtlTtl',
+    'FirebaseHostingChannelExpirationTtl': MigrateHelper(
+      className: 'FirebaseHostingChannelExpirationTtl',
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'ttl',
@@ -12497,16 +12487,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       slots: <MigrateSlot>[
         MigrateSlot(
           tfName: '',
-          dartName: 'disableAllNotificationsOrCustomNotificationBehavior',
+          dartName: 'emailNotificationSettings',
           kind: MigrateSlotKind.sealed,
           required: true,
           wrapped: false,
           merged: true,
           variants: <String, String>{
             'disable_all_notifications':
-                'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorDisableAllNotifications',
+                'PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsDisableAllNotifications',
             'custom_notification_behavior':
-                'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorCustomNotificationBehavior',
+                'PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsCustomNotificationBehavior',
           },
         ),
       ],
@@ -12673,10 +12663,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
               'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotifications',
           slots: <MigrateSlot>[],
         ),
-    'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorCustomNotificationBehavior':
+    'PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsCustomNotificationBehavior':
         MigrateHelper(
           className:
-              'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorCustomNotificationBehavior',
+              'PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsCustomNotificationBehavior',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'custom_notification_behavior',
@@ -12691,10 +12681,10 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           ],
           shorthand: 'customNotificationBehavior',
         ),
-    'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorDisableAllNotifications':
+    'PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsDisableAllNotifications':
         MigrateHelper(
           className:
-              'PrivilegedAccessManagerSettingsEmailNotificationSettingsDisableAllNotificationsOrCustomNotificationBehaviorDisableAllNotifications',
+              'PrivilegedAccessManagerSettingsEmailNotificationSettingsEmailNotificationSettingsDisableAllNotifications',
           slots: <MigrateSlot>[
             MigrateSlot(
               tfName: 'disable_all_notifications',
@@ -13331,6 +13321,35 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'TpuV2VmAcceleratorAcceleratorConfig': MigrateHelper(
+      className: 'TpuV2VmAcceleratorAcceleratorConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'accelerator_config',
+          dartName: 'acceleratorConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'TpuV2VmAcceleratorConfig',
+        ),
+      ],
+      shorthand: 'acceleratorConfig',
+    ),
+    'TpuV2VmAcceleratorAcceleratorType': MigrateHelper(
+      className: 'TpuV2VmAcceleratorAcceleratorType',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'accelerator_type',
+          dartName: 'acceleratorType',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'acceleratorType',
+    ),
     'TpuV2VmAcceleratorConfig': MigrateHelper(
       className: 'TpuV2VmAcceleratorConfig',
       slots: <MigrateSlot>[
@@ -13349,35 +13368,6 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
-    ),
-    'TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorConfig': MigrateHelper(
-      className: 'TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorConfig',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'accelerator_config',
-          dartName: 'acceleratorConfig',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'TpuV2VmAcceleratorConfig',
-        ),
-      ],
-      shorthand: 'acceleratorConfig',
-    ),
-    'TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorType': MigrateHelper(
-      className: 'TpuV2VmAcceleratorTypeOrAcceleratorConfigAcceleratorType',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'accelerator_type',
-          dartName: 'acceleratorType',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          positional: true,
-          dartType: 'String',
-        ),
-      ],
-      shorthand: 'acceleratorType',
     ),
     'TpuV2VmDataDisks': MigrateHelper(
       className: 'TpuV2VmDataDisks',
@@ -13438,37 +13428,6 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         ),
       ],
     ),
-    'TpuV2VmNetworkConfigOrNetworkConfigsNetworkConfig': MigrateHelper(
-      className: 'TpuV2VmNetworkConfigOrNetworkConfigsNetworkConfig',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'network_config',
-          dartName: 'networkConfig',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          wrapped: false,
-          positional: true,
-          helper: 'TpuV2VmNetworkConfig',
-        ),
-      ],
-      shorthand: 'networkConfig',
-    ),
-    'TpuV2VmNetworkConfigOrNetworkConfigsNetworkConfigs': MigrateHelper(
-      className: 'TpuV2VmNetworkConfigOrNetworkConfigsNetworkConfigs',
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'network_configs',
-          dartName: 'networkConfigs',
-          kind: MigrateSlotKind.helper,
-          required: true,
-          repeated: true,
-          wrapped: false,
-          positional: true,
-          helper: 'TpuV2VmNetworkConfigs',
-        ),
-      ],
-      shorthand: 'networkConfigs',
-    ),
     'TpuV2VmNetworkConfigs': MigrateHelper(
       className: 'TpuV2VmNetworkConfigs',
       slots: <MigrateSlot>[
@@ -13508,6 +13467,37 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+    ),
+    'TpuV2VmNetworkNetworkConfig': MigrateHelper(
+      className: 'TpuV2VmNetworkNetworkConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'network_config',
+          dartName: 'networkConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          positional: true,
+          helper: 'TpuV2VmNetworkConfig',
+        ),
+      ],
+      shorthand: 'networkConfig',
+    ),
+    'TpuV2VmNetworkNetworkConfigs': MigrateHelper(
+      className: 'TpuV2VmNetworkNetworkConfigs',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'network_configs',
+          dartName: 'networkConfigs',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          positional: true,
+          helper: 'TpuV2VmNetworkConfigs',
+        ),
+      ],
+      shorthand: 'networkConfigs',
     ),
     'TpuV2VmSchedulingConfig': MigrateHelper(
       className: 'TpuV2VmSchedulingConfig',

@@ -11,18 +11,17 @@ const Set<String> _awsEmrSecurityConfigurationSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class EmrSecurityConfigurationNameOrNamePrefix {
-  const EmrSecurityConfigurationNameOrNamePrefix();
+sealed class EmrSecurityConfigurationName {
+  const EmrSecurityConfigurationName();
 
   /// Sets `name`.
-  const factory EmrSecurityConfigurationNameOrNamePrefix.name(
-    TfArg<String> name,
-  ) = EmrSecurityConfigurationNameOrNamePrefixName;
+  const factory EmrSecurityConfigurationName.name(TfArg<String> name) =
+      EmrSecurityConfigurationNameName;
 
   /// Sets `name_prefix`.
-  const factory EmrSecurityConfigurationNameOrNamePrefix.namePrefix(
+  const factory EmrSecurityConfigurationName.namePrefix(
     TfArg<String> namePrefix,
-  ) = EmrSecurityConfigurationNameOrNamePrefixNamePrefix;
+  ) = EmrSecurityConfigurationNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +33,10 @@ sealed class EmrSecurityConfigurationNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [EmrSecurityConfigurationNameOrNamePrefix.name] choice: sets `name`.
-final class EmrSecurityConfigurationNameOrNamePrefixName
-    extends EmrSecurityConfigurationNameOrNamePrefix {
-  const EmrSecurityConfigurationNameOrNamePrefixName(this.name);
+/// The [EmrSecurityConfigurationName.name] choice: sets `name`.
+final class EmrSecurityConfigurationNameName
+    extends EmrSecurityConfigurationName {
+  const EmrSecurityConfigurationNameName(this.name);
 
   final TfArg<String> name;
 
@@ -51,10 +50,10 @@ final class EmrSecurityConfigurationNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [EmrSecurityConfigurationNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class EmrSecurityConfigurationNameOrNamePrefixNamePrefix
-    extends EmrSecurityConfigurationNameOrNamePrefix {
-  const EmrSecurityConfigurationNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [EmrSecurityConfigurationName.namePrefix] choice: sets `name_prefix`.
+final class EmrSecurityConfigurationNameNamePrefix
+    extends EmrSecurityConfigurationName {
+  const EmrSecurityConfigurationNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -75,7 +74,7 @@ final class AwsEmrSecurityConfiguration extends Resource {
   AwsEmrSecurityConfiguration({
     required super.localName,
     required TfArg<String> configuration,
-    EmrSecurityConfigurationNameOrNamePrefix? nameOrNamePrefix,
+    EmrSecurityConfigurationName? name,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
@@ -85,7 +84,7 @@ final class AwsEmrSecurityConfiguration extends Resource {
          terraformType: tfType,
          argMap: {
            'configuration': configuration,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
          },
        );

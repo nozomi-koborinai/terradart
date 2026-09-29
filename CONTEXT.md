@@ -32,6 +32,10 @@ _Avoid_: Wrapper override, schema.json
 Enum value sets a provider enforces in its own source rather than in Magic Modules metadata, extracted at the fixture's pin into a Magic Modules YAML subset beside the schema fixture. With the provider's `Available values:` descriptions, they enrich the merged IR only on a lane that opts into `wrap --provider-enums`. The same files carry the provider's exactly-one groups (`exactly_one_of_groups`) and at-most-one groups (`at_most_one_of_groups`, mutually exclusive inputs it also accepts none of), which an override with `deriveExactlyOne` seals into a required and a nullable sealed argument respectively.
 _Avoid_: MM YAML, override enum
 
+**Sealed concept name**:
+The name of a sealed argument, like a protobuf `oneof`: what its members are alternatives *of* (`code` for `filename` / `image_uri` / `s3_bucket`), not the members joined together. The slot takes it (`code:`), the sealed type is `<ResourceStem><Concept>` (`LambdaFunctionCode`), and each member is a factory constructor on that type (`.filename(...)`). It comes from the override's `sealedNames`, else is derived from the members, else falls back to the members joined with `Or` and waits in the sealed-name ledger (`tool/sealed_name_debt.yaml`, reason `awaiting-name:`).
+_Avoid_: Or name, option type
+
 **Agent guide**:
 Committed operational guidance that cloud and local agents can rely on without access to private notes. In this repository, `AGENTS.md` is the agent guide.
 _Avoid_: Local notes, chat transcript dump

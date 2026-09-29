@@ -89,17 +89,15 @@ enum LbXffHeaderProcessingMode implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.subnetMapping(...)`.
-sealed class LbSubnetMappingOrSubnets {
-  const LbSubnetMappingOrSubnets();
+sealed class LbSubnet {
+  const LbSubnet();
 
   /// Sets `subnet_mapping`.
-  const factory LbSubnetMappingOrSubnets.subnetMapping(
-    List<LbSubnetMapping> subnetMapping,
-  ) = LbSubnetMappingOrSubnetsSubnetMapping;
+  const factory LbSubnet.subnetMapping(List<LbSubnetMapping> subnetMapping) =
+      LbSubnetSubnetMapping;
 
   /// Sets `subnets`.
-  const factory LbSubnetMappingOrSubnets.subnets(TfArg<List<String>> subnets) =
-      LbSubnetMappingOrSubnetsSubnets;
+  const factory LbSubnet.subnets(TfArg<List<String>> subnets) = LbSubnetSubnets;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -111,10 +109,9 @@ sealed class LbSubnetMappingOrSubnets {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LbSubnetMappingOrSubnets.subnetMapping] choice: sets `subnet_mapping`.
-final class LbSubnetMappingOrSubnetsSubnetMapping
-    extends LbSubnetMappingOrSubnets {
-  const LbSubnetMappingOrSubnetsSubnetMapping(this.subnetMapping);
+/// The [LbSubnet.subnetMapping] choice: sets `subnet_mapping`.
+final class LbSubnetSubnetMapping extends LbSubnet {
+  const LbSubnetSubnetMapping(this.subnetMapping);
 
   final List<LbSubnetMapping> subnetMapping;
 
@@ -134,9 +131,9 @@ final class LbSubnetMappingOrSubnetsSubnetMapping
   };
 }
 
-/// The [LbSubnetMappingOrSubnets.subnets] choice: sets `subnets`.
-final class LbSubnetMappingOrSubnetsSubnets extends LbSubnetMappingOrSubnets {
-  const LbSubnetMappingOrSubnetsSubnets(this.subnets);
+/// The [LbSubnet.subnets] choice: sets `subnets`.
+final class LbSubnetSubnets extends LbSubnet {
+  const LbSubnetSubnets(this.subnets);
 
   final TfArg<List<String>> subnets;
 
@@ -155,16 +152,14 @@ final class LbSubnetMappingOrSubnetsSubnets extends LbSubnetMappingOrSubnets {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class LbNameOrNamePrefix {
-  const LbNameOrNamePrefix();
+sealed class LbName {
+  const LbName();
 
   /// Sets `name`.
-  const factory LbNameOrNamePrefix.name(TfArg<String> name) =
-      LbNameOrNamePrefixName;
+  const factory LbName.name(TfArg<String> name) = LbNameName;
 
   /// Sets `name_prefix`.
-  const factory LbNameOrNamePrefix.namePrefix(TfArg<String> namePrefix) =
-      LbNameOrNamePrefixNamePrefix;
+  const factory LbName.namePrefix(TfArg<String> namePrefix) = LbNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -176,9 +171,9 @@ sealed class LbNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LbNameOrNamePrefix.name] choice: sets `name`.
-final class LbNameOrNamePrefixName extends LbNameOrNamePrefix {
-  const LbNameOrNamePrefixName(this.name);
+/// The [LbName.name] choice: sets `name`.
+final class LbNameName extends LbName {
+  const LbNameName(this.name);
 
   final TfArg<String> name;
 
@@ -192,9 +187,9 @@ final class LbNameOrNamePrefixName extends LbNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [LbNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class LbNameOrNamePrefixNamePrefix extends LbNameOrNamePrefix {
-  const LbNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [LbName.namePrefix] choice: sets `name_prefix`.
+final class LbNameNamePrefix extends LbName {
+  const LbNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -342,12 +337,12 @@ final class AwsLb extends Resource {
     TfArg<bool>? internal,
     TfArg<LbIpAddressType>? ipAddressType,
     TfArg<LbLoadBalancerType>? loadBalancerType,
-    LbNameOrNamePrefix? nameOrNamePrefix,
+    LbName? name,
     TfArg<bool>? preserveHostHeader,
     TfArg<String>? region,
     TfArg<num>? secondaryIpsAutoAssignedPerSubnet,
     TfArg<List<String>>? securityGroups,
-    required LbSubnetMappingOrSubnets subnetMappingOrSubnets,
+    required LbSubnet subnet,
     TfArg<Map<String, String>>? tags,
     TfArg<LbXffHeaderProcessingMode>? xffHeaderProcessingMode,
     LbAccessLogs? accessLogs,
@@ -393,7 +388,7 @@ final class AwsLb extends Resource {
            if (internal != null) 'internal': internal,
            if (ipAddressType != null) 'ip_address_type': ipAddressType,
            if (loadBalancerType != null) 'load_balancer_type': loadBalancerType,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (preserveHostHeader != null)
              'preserve_host_header': preserveHostHeader,
            if (region != null) 'region': region,
@@ -401,7 +396,7 @@ final class AwsLb extends Resource {
              'secondary_ips_auto_assigned_per_subnet':
                  secondaryIpsAutoAssignedPerSubnet,
            if (securityGroups != null) 'security_groups': securityGroups,
-           ...subnetMappingOrSubnets.argMap,
+           ...subnet.argMap,
            if (tags != null) 'tags': tags,
            if (xffHeaderProcessingMode != null)
              'xff_header_processing_mode': xffHeaderProcessingMode,

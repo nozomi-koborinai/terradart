@@ -46,3 +46,7 @@ paramOrder:
   - destination_config
   - rule_sets
   - source_config
+
+sealedNames:
+  "destination_config.bigquery_destination_config.append_only, destination_config.bigquery_destination_config.merge": write_mode
+  "source_config.mysql_source_config.binary_log_position, source_config.mysql_source_config.gtid": cdc_method

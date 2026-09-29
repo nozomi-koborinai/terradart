@@ -23,10 +23,10 @@ export 'src/discovery_engine/google_discovery_engine_assistant.dart'
 export 'src/discovery_engine/google_discovery_engine_chat_engine.dart'
     show
         DiscoveryEngineChatEngineChatEngineConfig,
+        DiscoveryEngineChatEngineChatEngineConfigAgent,
+        DiscoveryEngineChatEngineChatEngineConfigAgentAgentCreationConfig,
         DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig,
-        DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLink,
-        DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkAgentCreationConfig,
-        DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfigOrDialogflowAgentToLinkDialogflowAgentToLink,
+        DiscoveryEngineChatEngineChatEngineConfigAgentDialogflowAgentToLink,
         DiscoveryEngineChatEngineCommonConfig,
         DiscoveryEngineChatEngineIndustryVertical,
         GoogleDiscoveryEngineChatEngine;

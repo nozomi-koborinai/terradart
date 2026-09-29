@@ -93,81 +93,7 @@ final class ChronicleFeedDetails {
     this.feedSourceType,
     this.labels,
     required this.logType,
-    this.amazonKinesisFirehoseSettings,
-    this.amazonS3Settings,
-    this.amazonS3V2Settings,
-    this.amazonSqsSettings,
-    this.amazonSqsV2Settings,
-    this.anomaliSettings,
-    this.awsEc2HostsSettings,
-    this.awsEc2InstancesSettings,
-    this.awsEc2VpcsSettings,
-    this.awsIamSettings,
-    this.azureAdAuditSettings,
-    this.azureAdContextSettings,
-    this.azureAdSettings,
-    this.azureBlobStoreSettings,
-    this.azureBlobStoreV2Settings,
-    this.azureEventHubSettings,
-    this.azureMdmIntuneSettings,
-    this.cloudPassageSettings,
-    this.cortexXdrSettings,
-    this.crowdstrikeAlertsSettings,
-    this.crowdstrikeDetectsSettings,
-    this.dummyLogTypeSettings,
-    this.duoAuthSettings,
-    this.duoUserContextSettings,
-    this.foxItStixSettings,
-    this.gcsSettings,
-    this.gcsV2Settings,
-    this.googleCloudIdentityDeviceUsersSettings,
-    this.googleCloudIdentityDevicesSettings,
-    this.googleCloudStorageEventDrivenSettings,
-    this.httpSettings,
-    this.httpsPushAmazonKinesisFirehoseSettings,
-    this.httpsPushGoogleCloudPubsubSettings,
-    this.httpsPushWebhookSettings,
-    this.impervaWafSettings,
-    this.mandiantIocSettings,
-    this.microsoftGraphAlertSettings,
-    this.microsoftSecurityCenterAlertSettings,
-    this.mimecastMailSettings,
-    this.mimecastMailV2Settings,
-    this.netskopeAlertSettings,
-    this.netskopeAlertV2Settings,
-    this.office365Settings,
-    this.oktaSettings,
-    this.oktaUserContextSettings,
-    this.panIocSettings,
-    this.panPrismaCloudSettings,
-    this.proofpointMailSettings,
-    this.proofpointOnDemandSettings,
-    this.pubsubSettings,
-    this.qualysScanSettings,
-    this.qualysVmSettings,
-    this.rapid7InsightSettings,
-    this.recordedFutureIocSettings,
-    this.rhIsacIocSettings,
-    this.salesforceSettings,
-    this.sentineloneAlertSettings,
-    this.serviceNowCmdbSettings,
-    this.sftpSettings,
-    this.symantecEventExportSettings,
-    this.thinkstCanarySettings,
-    this.threatConnectIocSettings,
-    this.threatConnectIocV3Settings,
-    this.trellixHxAlertsSettings,
-    this.trellixHxBulkAcqsSettings,
-    this.trellixHxHostsSettings,
-    this.webhookSettings,
-    this.workdaySettings,
-    this.workspaceActivitySettings,
-    this.workspaceAlertsSettings,
-    this.workspaceChromeOsSettings,
-    this.workspaceGroupsSettings,
-    this.workspaceMobileSettings,
-    this.workspacePrivilegesSettings,
-    this.workspaceUsersSettings,
+    required this.source,
   });
 
   final TfArg<String>? assetNamespace;
@@ -178,323 +104,1710 @@ final class ChronicleFeedDetails {
 
   final TfArg<String> logType;
 
-  final ChronicleFeedDetailsAmazonKinesisFirehoseSettings?
-  amazonKinesisFirehoseSettings;
-
-  final ChronicleFeedDetailsAmazonS3Settings? amazonS3Settings;
-
-  final ChronicleFeedDetailsAmazonS3V2Settings? amazonS3V2Settings;
-
-  final ChronicleFeedDetailsAmazonSqsSettings? amazonSqsSettings;
-
-  final ChronicleFeedDetailsAmazonSqsV2Settings? amazonSqsV2Settings;
-
-  final ChronicleFeedDetailsAnomaliSettings? anomaliSettings;
-
-  final ChronicleFeedDetailsAwsEc2HostsSettings? awsEc2HostsSettings;
-
-  final ChronicleFeedDetailsAwsEc2InstancesSettings? awsEc2InstancesSettings;
-
-  final ChronicleFeedDetailsAwsEc2VpcsSettings? awsEc2VpcsSettings;
-
-  final ChronicleFeedDetailsAwsIamSettings? awsIamSettings;
-
-  final ChronicleFeedDetailsAzureAdAuditSettings? azureAdAuditSettings;
-
-  final ChronicleFeedDetailsAzureAdContextSettings? azureAdContextSettings;
-
-  final ChronicleFeedDetailsAzureAdSettings? azureAdSettings;
-
-  final ChronicleFeedDetailsAzureBlobStoreSettings? azureBlobStoreSettings;
-
-  final ChronicleFeedDetailsAzureBlobStoreV2Settings? azureBlobStoreV2Settings;
-
-  final ChronicleFeedDetailsAzureEventHubSettings? azureEventHubSettings;
-
-  final ChronicleFeedDetailsAzureMdmIntuneSettings? azureMdmIntuneSettings;
-
-  final ChronicleFeedDetailsCloudPassageSettings? cloudPassageSettings;
-
-  final ChronicleFeedDetailsCortexXdrSettings? cortexXdrSettings;
-
-  final ChronicleFeedDetailsCrowdstrikeAlertsSettings?
-  crowdstrikeAlertsSettings;
-
-  final ChronicleFeedDetailsCrowdstrikeDetectsSettings?
-  crowdstrikeDetectsSettings;
-
-  final ChronicleFeedDetailsDummyLogTypeSettings? dummyLogTypeSettings;
-
-  final ChronicleFeedDetailsDuoAuthSettings? duoAuthSettings;
-
-  final ChronicleFeedDetailsDuoUserContextSettings? duoUserContextSettings;
-
-  final ChronicleFeedDetailsFoxItStixSettings? foxItStixSettings;
-
-  final ChronicleFeedDetailsGcsSettings? gcsSettings;
-
-  final ChronicleFeedDetailsGcsV2Settings? gcsV2Settings;
-
-  final ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettings?
-  googleCloudIdentityDeviceUsersSettings;
-
-  final ChronicleFeedDetailsGoogleCloudIdentityDevicesSettings?
-  googleCloudIdentityDevicesSettings;
-
-  final ChronicleFeedDetailsGoogleCloudStorageEventDrivenSettings?
-  googleCloudStorageEventDrivenSettings;
-
-  final ChronicleFeedDetailsHttpSettings? httpSettings;
-
-  final ChronicleFeedDetailsHttpsPushAmazonKinesisFirehoseSettings?
-  httpsPushAmazonKinesisFirehoseSettings;
-
-  final ChronicleFeedDetailsHttpsPushGoogleCloudPubsubSettings?
-  httpsPushGoogleCloudPubsubSettings;
-
-  final ChronicleFeedDetailsHttpsPushWebhookSettings? httpsPushWebhookSettings;
-
-  final ChronicleFeedDetailsImpervaWafSettings? impervaWafSettings;
-
-  final ChronicleFeedDetailsMandiantIocSettings? mandiantIocSettings;
-
-  final ChronicleFeedDetailsMicrosoftGraphAlertSettings?
-  microsoftGraphAlertSettings;
-
-  final ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettings?
-  microsoftSecurityCenterAlertSettings;
-
-  final ChronicleFeedDetailsMimecastMailSettings? mimecastMailSettings;
-
-  final ChronicleFeedDetailsMimecastMailV2Settings? mimecastMailV2Settings;
-
-  final ChronicleFeedDetailsNetskopeAlertSettings? netskopeAlertSettings;
-
-  final ChronicleFeedDetailsNetskopeAlertV2Settings? netskopeAlertV2Settings;
-
-  final ChronicleFeedDetailsOffice365Settings? office365Settings;
-
-  final ChronicleFeedDetailsOktaSettings? oktaSettings;
-
-  final ChronicleFeedDetailsOktaUserContextSettings? oktaUserContextSettings;
-
-  final ChronicleFeedDetailsPanIocSettings? panIocSettings;
-
-  final ChronicleFeedDetailsPanPrismaCloudSettings? panPrismaCloudSettings;
-
-  final ChronicleFeedDetailsProofpointMailSettings? proofpointMailSettings;
-
-  final ChronicleFeedDetailsProofpointOnDemandSettings?
-  proofpointOnDemandSettings;
-
-  final ChronicleFeedDetailsPubsubSettings? pubsubSettings;
-
-  final ChronicleFeedDetailsQualysScanSettings? qualysScanSettings;
-
-  final ChronicleFeedDetailsQualysVmSettings? qualysVmSettings;
-
-  final ChronicleFeedDetailsRapid7InsightSettings? rapid7InsightSettings;
-
-  final ChronicleFeedDetailsRecordedFutureIocSettings?
-  recordedFutureIocSettings;
-
-  final ChronicleFeedDetailsRhIsacIocSettings? rhIsacIocSettings;
-
-  final ChronicleFeedDetailsSalesforceSettings? salesforceSettings;
-
-  final ChronicleFeedDetailsSentineloneAlertSettings? sentineloneAlertSettings;
-
-  final ChronicleFeedDetailsServiceNowCmdbSettings? serviceNowCmdbSettings;
-
-  final ChronicleFeedDetailsSftpSettings? sftpSettings;
-
-  final ChronicleFeedDetailsSymantecEventExportSettings?
-  symantecEventExportSettings;
-
-  final ChronicleFeedDetailsThinkstCanarySettings? thinkstCanarySettings;
-
-  final ChronicleFeedDetailsThreatConnectIocSettings? threatConnectIocSettings;
-
-  final ChronicleFeedDetailsThreatConnectIocV3Settings?
-  threatConnectIocV3Settings;
-
-  final ChronicleFeedDetailsTrellixHxAlertsSettings? trellixHxAlertsSettings;
-
-  final ChronicleFeedDetailsTrellixHxBulkAcqsSettings?
-  trellixHxBulkAcqsSettings;
-
-  final ChronicleFeedDetailsTrellixHxHostsSettings? trellixHxHostsSettings;
-
-  final ChronicleFeedDetailsWebhookSettings? webhookSettings;
-
-  final ChronicleFeedDetailsWorkdaySettings? workdaySettings;
-
-  final ChronicleFeedDetailsWorkspaceActivitySettings?
-  workspaceActivitySettings;
-
-  final ChronicleFeedDetailsWorkspaceAlertsSettings? workspaceAlertsSettings;
-
-  final ChronicleFeedDetailsWorkspaceChromeOsSettings?
-  workspaceChromeOsSettings;
-
-  final ChronicleFeedDetailsWorkspaceGroupsSettings? workspaceGroupsSettings;
-
-  final ChronicleFeedDetailsWorkspaceMobileSettings? workspaceMobileSettings;
-
-  final ChronicleFeedDetailsWorkspacePrivilegesSettings?
-  workspacePrivilegesSettings;
-
-  final ChronicleFeedDetailsWorkspaceUsersSettings? workspaceUsersSettings;
+  final ChronicleFeedDetailsSource source;
 
   Map<String, Object?> encode() => {
     if (assetNamespace != null) 'asset_namespace': assetNamespace!.toTfJson(),
     if (feedSourceType != null) 'feed_source_type': feedSourceType!.toTfJson(),
     if (labels != null) 'labels': labels!.toTfJson(),
     'log_type': logType.toTfJson(),
-    if (amazonKinesisFirehoseSettings != null)
-      'amazon_kinesis_firehose_settings': amazonKinesisFirehoseSettings!
-          .encode(),
-    if (amazonS3Settings != null)
-      'amazon_s3_settings': amazonS3Settings!.encode(),
-    if (amazonS3V2Settings != null)
-      'amazon_s3_v2_settings': amazonS3V2Settings!.encode(),
-    if (amazonSqsSettings != null)
-      'amazon_sqs_settings': amazonSqsSettings!.encode(),
-    if (amazonSqsV2Settings != null)
-      'amazon_sqs_v2_settings': amazonSqsV2Settings!.encode(),
-    if (anomaliSettings != null) 'anomali_settings': anomaliSettings!.encode(),
-    if (awsEc2HostsSettings != null)
-      'aws_ec2_hosts_settings': awsEc2HostsSettings!.encode(),
-    if (awsEc2InstancesSettings != null)
-      'aws_ec2_instances_settings': awsEc2InstancesSettings!.encode(),
-    if (awsEc2VpcsSettings != null)
-      'aws_ec2_vpcs_settings': awsEc2VpcsSettings!.encode(),
-    if (awsIamSettings != null) 'aws_iam_settings': awsIamSettings!.encode(),
-    if (azureAdAuditSettings != null)
-      'azure_ad_audit_settings': azureAdAuditSettings!.encode(),
-    if (azureAdContextSettings != null)
-      'azure_ad_context_settings': azureAdContextSettings!.encode(),
-    if (azureAdSettings != null) 'azure_ad_settings': azureAdSettings!.encode(),
-    if (azureBlobStoreSettings != null)
-      'azure_blob_store_settings': azureBlobStoreSettings!.encode(),
-    if (azureBlobStoreV2Settings != null)
-      'azure_blob_store_v2_settings': azureBlobStoreV2Settings!.encode(),
-    if (azureEventHubSettings != null)
-      'azure_event_hub_settings': azureEventHubSettings!.encode(),
-    if (azureMdmIntuneSettings != null)
-      'azure_mdm_intune_settings': azureMdmIntuneSettings!.encode(),
-    if (cloudPassageSettings != null)
-      'cloud_passage_settings': cloudPassageSettings!.encode(),
-    if (cortexXdrSettings != null)
-      'cortex_xdr_settings': cortexXdrSettings!.encode(),
-    if (crowdstrikeAlertsSettings != null)
-      'crowdstrike_alerts_settings': crowdstrikeAlertsSettings!.encode(),
-    if (crowdstrikeDetectsSettings != null)
-      'crowdstrike_detects_settings': crowdstrikeDetectsSettings!.encode(),
-    if (dummyLogTypeSettings != null)
-      'dummy_log_type_settings': dummyLogTypeSettings!.encode(),
-    if (duoAuthSettings != null) 'duo_auth_settings': duoAuthSettings!.encode(),
-    if (duoUserContextSettings != null)
-      'duo_user_context_settings': duoUserContextSettings!.encode(),
-    if (foxItStixSettings != null)
-      'fox_it_stix_settings': foxItStixSettings!.encode(),
-    if (gcsSettings != null) 'gcs_settings': gcsSettings!.encode(),
-    if (gcsV2Settings != null) 'gcs_v2_settings': gcsV2Settings!.encode(),
-    if (googleCloudIdentityDeviceUsersSettings != null)
-      'google_cloud_identity_device_users_settings':
-          googleCloudIdentityDeviceUsersSettings!.encode(),
-    if (googleCloudIdentityDevicesSettings != null)
-      'google_cloud_identity_devices_settings':
-          googleCloudIdentityDevicesSettings!.encode(),
-    if (googleCloudStorageEventDrivenSettings != null)
-      'google_cloud_storage_event_driven_settings':
-          googleCloudStorageEventDrivenSettings!.encode(),
-    if (httpSettings != null) 'http_settings': httpSettings!.encode(),
-    if (httpsPushAmazonKinesisFirehoseSettings != null)
-      'https_push_amazon_kinesis_firehose_settings':
-          httpsPushAmazonKinesisFirehoseSettings!.encode(),
-    if (httpsPushGoogleCloudPubsubSettings != null)
-      'https_push_google_cloud_pubsub_settings':
-          httpsPushGoogleCloudPubsubSettings!.encode(),
-    if (httpsPushWebhookSettings != null)
-      'https_push_webhook_settings': httpsPushWebhookSettings!.encode(),
-    if (impervaWafSettings != null)
-      'imperva_waf_settings': impervaWafSettings!.encode(),
-    if (mandiantIocSettings != null)
-      'mandiant_ioc_settings': mandiantIocSettings!.encode(),
-    if (microsoftGraphAlertSettings != null)
-      'microsoft_graph_alert_settings': microsoftGraphAlertSettings!.encode(),
-    if (microsoftSecurityCenterAlertSettings != null)
-      'microsoft_security_center_alert_settings':
-          microsoftSecurityCenterAlertSettings!.encode(),
-    if (mimecastMailSettings != null)
-      'mimecast_mail_settings': mimecastMailSettings!.encode(),
-    if (mimecastMailV2Settings != null)
-      'mimecast_mail_v2_settings': mimecastMailV2Settings!.encode(),
-    if (netskopeAlertSettings != null)
-      'netskope_alert_settings': netskopeAlertSettings!.encode(),
-    if (netskopeAlertV2Settings != null)
-      'netskope_alert_v2_settings': netskopeAlertV2Settings!.encode(),
-    if (office365Settings != null)
-      'office365_settings': office365Settings!.encode(),
-    if (oktaSettings != null) 'okta_settings': oktaSettings!.encode(),
-    if (oktaUserContextSettings != null)
-      'okta_user_context_settings': oktaUserContextSettings!.encode(),
-    if (panIocSettings != null) 'pan_ioc_settings': panIocSettings!.encode(),
-    if (panPrismaCloudSettings != null)
-      'pan_prisma_cloud_settings': panPrismaCloudSettings!.encode(),
-    if (proofpointMailSettings != null)
-      'proofpoint_mail_settings': proofpointMailSettings!.encode(),
-    if (proofpointOnDemandSettings != null)
-      'proofpoint_on_demand_settings': proofpointOnDemandSettings!.encode(),
-    if (pubsubSettings != null) 'pubsub_settings': pubsubSettings!.encode(),
-    if (qualysScanSettings != null)
-      'qualys_scan_settings': qualysScanSettings!.encode(),
-    if (qualysVmSettings != null)
-      'qualys_vm_settings': qualysVmSettings!.encode(),
-    if (rapid7InsightSettings != null)
-      'rapid7_insight_settings': rapid7InsightSettings!.encode(),
-    if (recordedFutureIocSettings != null)
-      'recorded_future_ioc_settings': recordedFutureIocSettings!.encode(),
-    if (rhIsacIocSettings != null)
-      'rh_isac_ioc_settings': rhIsacIocSettings!.encode(),
-    if (salesforceSettings != null)
-      'salesforce_settings': salesforceSettings!.encode(),
-    if (sentineloneAlertSettings != null)
-      'sentinelone_alert_settings': sentineloneAlertSettings!.encode(),
-    if (serviceNowCmdbSettings != null)
-      'service_now_cmdb_settings': serviceNowCmdbSettings!.encode(),
-    if (sftpSettings != null) 'sftp_settings': sftpSettings!.encode(),
-    if (symantecEventExportSettings != null)
-      'symantec_event_export_settings': symantecEventExportSettings!.encode(),
-    if (thinkstCanarySettings != null)
-      'thinkst_canary_settings': thinkstCanarySettings!.encode(),
-    if (threatConnectIocSettings != null)
-      'threat_connect_ioc_settings': threatConnectIocSettings!.encode(),
-    if (threatConnectIocV3Settings != null)
-      'threat_connect_ioc_v3_settings': threatConnectIocV3Settings!.encode(),
-    if (trellixHxAlertsSettings != null)
-      'trellix_hx_alerts_settings': trellixHxAlertsSettings!.encode(),
-    if (trellixHxBulkAcqsSettings != null)
-      'trellix_hx_bulk_acqs_settings': trellixHxBulkAcqsSettings!.encode(),
-    if (trellixHxHostsSettings != null)
-      'trellix_hx_hosts_settings': trellixHxHostsSettings!.encode(),
-    if (webhookSettings != null) 'webhook_settings': webhookSettings!.encode(),
-    if (workdaySettings != null) 'workday_settings': workdaySettings!.encode(),
-    if (workspaceActivitySettings != null)
-      'workspace_activity_settings': workspaceActivitySettings!.encode(),
-    if (workspaceAlertsSettings != null)
-      'workspace_alerts_settings': workspaceAlertsSettings!.encode(),
-    if (workspaceChromeOsSettings != null)
-      'workspace_chrome_os_settings': workspaceChromeOsSettings!.encode(),
-    if (workspaceGroupsSettings != null)
-      'workspace_groups_settings': workspaceGroupsSettings!.encode(),
-    if (workspaceMobileSettings != null)
-      'workspace_mobile_settings': workspaceMobileSettings!.encode(),
-    if (workspacePrivilegesSettings != null)
-      'workspace_privileges_settings': workspacePrivilegesSettings!.encode(),
-    if (workspaceUsersSettings != null)
-      'workspace_users_settings': workspaceUsersSettings!.encode(),
+    ...source.encode(),
+  };
+}
+
+/// Exactly one of `anomali_settings`, `azure_ad_context_settings`, `cloud_passage_settings`, `cortex_xdr_settings`, `duo_auth_settings`, `duo_user_context_settings`, `microsoft_graph_alert_settings`, `microsoft_security_center_alert_settings`, `mimecast_mail_settings`, `office365_settings`, `proofpoint_mail_settings`, `recorded_future_ioc_settings`, `workday_settings`, `pan_ioc_settings`, `okta_settings`, `okta_user_context_settings`, `fox_it_stix_settings`, `threat_connect_ioc_settings`, `service_now_cmdb_settings`, `imperva_waf_settings`, `thinkst_canary_settings`, `rh_isac_ioc_settings`, `rapid7_insight_settings`, `salesforce_settings`, `netskope_alert_settings`, `azure_mdm_intune_settings`, `azure_ad_settings`, `proofpoint_on_demand_settings`, `workspace_users_settings`, `workspace_activity_settings`, `workspace_alerts_settings`, `workspace_privileges_settings`, `workspace_mobile_settings`, `workspace_chrome_os_settings`, `workspace_groups_settings`, `azure_ad_audit_settings`, `symantec_event_export_settings`, `qualys_vm_settings`, `pan_prisma_cloud_settings`, `gcs_settings`, `http_settings`, `sftp_settings`, `amazon_s3_settings`, `azure_blob_store_settings`, `amazon_sqs_settings`, `google_cloud_identity_devices_settings`, `google_cloud_identity_device_users_settings`, `crowdstrike_detects_settings`, `mandiant_ioc_settings`, `sentinelone_alert_settings`, `qualys_scan_settings`, `pubsub_settings`, `amazon_kinesis_firehose_settings`, `webhook_settings`, `dummy_log_type_settings`, `https_push_google_cloud_pubsub_settings`, `https_push_amazon_kinesis_firehose_settings`, `https_push_webhook_settings`, `aws_ec2_hosts_settings`, `aws_ec2_instances_settings`, `aws_ec2_vpcs_settings`, `aws_iam_settings`, `netskope_alert_v2_settings`, `gcs_v2_settings`, `amazon_s3_v2_settings`, `amazon_sqs_v2_settings`, `azure_event_hub_settings`, `trellix_hx_hosts_settings`, `azure_blob_store_v2_settings`, `trellix_hx_alerts_settings`, `google_cloud_storage_event_driven_settings`, `crowdstrike_alerts_settings`, `trellix_hx_bulk_acqs_settings`, `mimecast_mail_v2_settings`, `threat_connect_ioc_v3_settings` on the `details` block of `google_chronicle_feed`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.anomaliSettings(...)`.
+sealed class ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSource();
+
+  /// Sets `anomali_settings`.
+  const factory ChronicleFeedDetailsSource.anomaliSettings(
+    ChronicleFeedDetailsAnomaliSettings anomaliSettings,
+  ) = ChronicleFeedDetailsSourceAnomaliSettings;
+
+  /// Sets `azure_ad_context_settings`.
+  const factory ChronicleFeedDetailsSource.azureAdContextSettings(
+    ChronicleFeedDetailsAzureAdContextSettings azureAdContextSettings,
+  ) = ChronicleFeedDetailsSourceAzureAdContextSettings;
+
+  /// Sets `cloud_passage_settings`.
+  const factory ChronicleFeedDetailsSource.cloudPassageSettings(
+    ChronicleFeedDetailsCloudPassageSettings cloudPassageSettings,
+  ) = ChronicleFeedDetailsSourceCloudPassageSettings;
+
+  /// Sets `cortex_xdr_settings`.
+  const factory ChronicleFeedDetailsSource.cortexXdrSettings(
+    ChronicleFeedDetailsCortexXdrSettings cortexXdrSettings,
+  ) = ChronicleFeedDetailsSourceCortexXdrSettings;
+
+  /// Sets `duo_auth_settings`.
+  const factory ChronicleFeedDetailsSource.duoAuthSettings(
+    ChronicleFeedDetailsDuoAuthSettings duoAuthSettings,
+  ) = ChronicleFeedDetailsSourceDuoAuthSettings;
+
+  /// Sets `duo_user_context_settings`.
+  const factory ChronicleFeedDetailsSource.duoUserContextSettings(
+    ChronicleFeedDetailsDuoUserContextSettings duoUserContextSettings,
+  ) = ChronicleFeedDetailsSourceDuoUserContextSettings;
+
+  /// Sets `microsoft_graph_alert_settings`.
+  const factory ChronicleFeedDetailsSource.microsoftGraphAlertSettings(
+    ChronicleFeedDetailsMicrosoftGraphAlertSettings microsoftGraphAlertSettings,
+  ) = ChronicleFeedDetailsSourceMicrosoftGraphAlertSettings;
+
+  /// Sets `microsoft_security_center_alert_settings`.
+  const factory ChronicleFeedDetailsSource.microsoftSecurityCenterAlertSettings(
+    ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettings
+    microsoftSecurityCenterAlertSettings,
+  ) = ChronicleFeedDetailsSourceMicrosoftSecurityCenterAlertSettings;
+
+  /// Sets `mimecast_mail_settings`.
+  const factory ChronicleFeedDetailsSource.mimecastMailSettings(
+    ChronicleFeedDetailsMimecastMailSettings mimecastMailSettings,
+  ) = ChronicleFeedDetailsSourceMimecastMailSettings;
+
+  /// Sets `office365_settings`.
+  const factory ChronicleFeedDetailsSource.office365Settings(
+    ChronicleFeedDetailsOffice365Settings office365Settings,
+  ) = ChronicleFeedDetailsSourceOffice365Settings;
+
+  /// Sets `proofpoint_mail_settings`.
+  const factory ChronicleFeedDetailsSource.proofpointMailSettings(
+    ChronicleFeedDetailsProofpointMailSettings proofpointMailSettings,
+  ) = ChronicleFeedDetailsSourceProofpointMailSettings;
+
+  /// Sets `recorded_future_ioc_settings`.
+  const factory ChronicleFeedDetailsSource.recordedFutureIocSettings(
+    ChronicleFeedDetailsRecordedFutureIocSettings recordedFutureIocSettings,
+  ) = ChronicleFeedDetailsSourceRecordedFutureIocSettings;
+
+  /// Sets `workday_settings`.
+  const factory ChronicleFeedDetailsSource.workdaySettings(
+    ChronicleFeedDetailsWorkdaySettings workdaySettings,
+  ) = ChronicleFeedDetailsSourceWorkdaySettings;
+
+  /// Sets `pan_ioc_settings`.
+  const factory ChronicleFeedDetailsSource.panIocSettings(
+    ChronicleFeedDetailsPanIocSettings panIocSettings,
+  ) = ChronicleFeedDetailsSourcePanIocSettings;
+
+  /// Sets `okta_settings`.
+  const factory ChronicleFeedDetailsSource.oktaSettings(
+    ChronicleFeedDetailsOktaSettings oktaSettings,
+  ) = ChronicleFeedDetailsSourceOktaSettings;
+
+  /// Sets `okta_user_context_settings`.
+  const factory ChronicleFeedDetailsSource.oktaUserContextSettings(
+    ChronicleFeedDetailsOktaUserContextSettings oktaUserContextSettings,
+  ) = ChronicleFeedDetailsSourceOktaUserContextSettings;
+
+  /// Sets `fox_it_stix_settings`.
+  const factory ChronicleFeedDetailsSource.foxItStixSettings(
+    ChronicleFeedDetailsFoxItStixSettings foxItStixSettings,
+  ) = ChronicleFeedDetailsSourceFoxItStixSettings;
+
+  /// Sets `threat_connect_ioc_settings`.
+  const factory ChronicleFeedDetailsSource.threatConnectIocSettings(
+    ChronicleFeedDetailsThreatConnectIocSettings threatConnectIocSettings,
+  ) = ChronicleFeedDetailsSourceThreatConnectIocSettings;
+
+  /// Sets `service_now_cmdb_settings`.
+  const factory ChronicleFeedDetailsSource.serviceNowCmdbSettings(
+    ChronicleFeedDetailsServiceNowCmdbSettings serviceNowCmdbSettings,
+  ) = ChronicleFeedDetailsSourceServiceNowCmdbSettings;
+
+  /// Sets `imperva_waf_settings`.
+  const factory ChronicleFeedDetailsSource.impervaWafSettings(
+    ChronicleFeedDetailsImpervaWafSettings impervaWafSettings,
+  ) = ChronicleFeedDetailsSourceImpervaWafSettings;
+
+  /// Sets `thinkst_canary_settings`.
+  const factory ChronicleFeedDetailsSource.thinkstCanarySettings(
+    ChronicleFeedDetailsThinkstCanarySettings thinkstCanarySettings,
+  ) = ChronicleFeedDetailsSourceThinkstCanarySettings;
+
+  /// Sets `rh_isac_ioc_settings`.
+  const factory ChronicleFeedDetailsSource.rhIsacIocSettings(
+    ChronicleFeedDetailsRhIsacIocSettings rhIsacIocSettings,
+  ) = ChronicleFeedDetailsSourceRhIsacIocSettings;
+
+  /// Sets `rapid7_insight_settings`.
+  const factory ChronicleFeedDetailsSource.rapid7InsightSettings(
+    ChronicleFeedDetailsRapid7InsightSettings rapid7InsightSettings,
+  ) = ChronicleFeedDetailsSourceRapid7InsightSettings;
+
+  /// Sets `salesforce_settings`.
+  const factory ChronicleFeedDetailsSource.salesforceSettings(
+    ChronicleFeedDetailsSalesforceSettings salesforceSettings,
+  ) = ChronicleFeedDetailsSourceSalesforceSettings;
+
+  /// Sets `netskope_alert_settings`.
+  const factory ChronicleFeedDetailsSource.netskopeAlertSettings(
+    ChronicleFeedDetailsNetskopeAlertSettings netskopeAlertSettings,
+  ) = ChronicleFeedDetailsSourceNetskopeAlertSettings;
+
+  /// Sets `azure_mdm_intune_settings`.
+  const factory ChronicleFeedDetailsSource.azureMdmIntuneSettings(
+    ChronicleFeedDetailsAzureMdmIntuneSettings azureMdmIntuneSettings,
+  ) = ChronicleFeedDetailsSourceAzureMdmIntuneSettings;
+
+  /// Sets `azure_ad_settings`.
+  const factory ChronicleFeedDetailsSource.azureAdSettings(
+    ChronicleFeedDetailsAzureAdSettings azureAdSettings,
+  ) = ChronicleFeedDetailsSourceAzureAdSettings;
+
+  /// Sets `proofpoint_on_demand_settings`.
+  const factory ChronicleFeedDetailsSource.proofpointOnDemandSettings(
+    ChronicleFeedDetailsProofpointOnDemandSettings proofpointOnDemandSettings,
+  ) = ChronicleFeedDetailsSourceProofpointOnDemandSettings;
+
+  /// Sets `workspace_users_settings`.
+  const factory ChronicleFeedDetailsSource.workspaceUsersSettings(
+    ChronicleFeedDetailsWorkspaceUsersSettings workspaceUsersSettings,
+  ) = ChronicleFeedDetailsSourceWorkspaceUsersSettings;
+
+  /// Sets `workspace_activity_settings`.
+  const factory ChronicleFeedDetailsSource.workspaceActivitySettings(
+    ChronicleFeedDetailsWorkspaceActivitySettings workspaceActivitySettings,
+  ) = ChronicleFeedDetailsSourceWorkspaceActivitySettings;
+
+  /// Sets `workspace_alerts_settings`.
+  const factory ChronicleFeedDetailsSource.workspaceAlertsSettings(
+    ChronicleFeedDetailsWorkspaceAlertsSettings workspaceAlertsSettings,
+  ) = ChronicleFeedDetailsSourceWorkspaceAlertsSettings;
+
+  /// Sets `workspace_privileges_settings`.
+  const factory ChronicleFeedDetailsSource.workspacePrivilegesSettings(
+    ChronicleFeedDetailsWorkspacePrivilegesSettings workspacePrivilegesSettings,
+  ) = ChronicleFeedDetailsSourceWorkspacePrivilegesSettings;
+
+  /// Sets `workspace_mobile_settings`.
+  const factory ChronicleFeedDetailsSource.workspaceMobileSettings(
+    ChronicleFeedDetailsWorkspaceMobileSettings workspaceMobileSettings,
+  ) = ChronicleFeedDetailsSourceWorkspaceMobileSettings;
+
+  /// Sets `workspace_chrome_os_settings`.
+  const factory ChronicleFeedDetailsSource.workspaceChromeOsSettings(
+    ChronicleFeedDetailsWorkspaceChromeOsSettings workspaceChromeOsSettings,
+  ) = ChronicleFeedDetailsSourceWorkspaceChromeOsSettings;
+
+  /// Sets `workspace_groups_settings`.
+  const factory ChronicleFeedDetailsSource.workspaceGroupsSettings(
+    ChronicleFeedDetailsWorkspaceGroupsSettings workspaceGroupsSettings,
+  ) = ChronicleFeedDetailsSourceWorkspaceGroupsSettings;
+
+  /// Sets `azure_ad_audit_settings`.
+  const factory ChronicleFeedDetailsSource.azureAdAuditSettings(
+    ChronicleFeedDetailsAzureAdAuditSettings azureAdAuditSettings,
+  ) = ChronicleFeedDetailsSourceAzureAdAuditSettings;
+
+  /// Sets `symantec_event_export_settings`.
+  const factory ChronicleFeedDetailsSource.symantecEventExportSettings(
+    ChronicleFeedDetailsSymantecEventExportSettings symantecEventExportSettings,
+  ) = ChronicleFeedDetailsSourceSymantecEventExportSettings;
+
+  /// Sets `qualys_vm_settings`.
+  const factory ChronicleFeedDetailsSource.qualysVmSettings(
+    ChronicleFeedDetailsQualysVmSettings qualysVmSettings,
+  ) = ChronicleFeedDetailsSourceQualysVmSettings;
+
+  /// Sets `pan_prisma_cloud_settings`.
+  const factory ChronicleFeedDetailsSource.panPrismaCloudSettings(
+    ChronicleFeedDetailsPanPrismaCloudSettings panPrismaCloudSettings,
+  ) = ChronicleFeedDetailsSourcePanPrismaCloudSettings;
+
+  /// Sets `gcs_settings`.
+  const factory ChronicleFeedDetailsSource.gcsSettings(
+    ChronicleFeedDetailsGcsSettings gcsSettings,
+  ) = ChronicleFeedDetailsSourceGcsSettings;
+
+  /// Sets `http_settings`.
+  const factory ChronicleFeedDetailsSource.httpSettings(
+    ChronicleFeedDetailsHttpSettings httpSettings,
+  ) = ChronicleFeedDetailsSourceHttpSettings;
+
+  /// Sets `sftp_settings`.
+  const factory ChronicleFeedDetailsSource.sftpSettings(
+    ChronicleFeedDetailsSftpSettings sftpSettings,
+  ) = ChronicleFeedDetailsSourceSftpSettings;
+
+  /// Sets `amazon_s3_settings`.
+  const factory ChronicleFeedDetailsSource.amazonS3Settings(
+    ChronicleFeedDetailsAmazonS3Settings amazonS3Settings,
+  ) = ChronicleFeedDetailsSourceAmazonS3Settings;
+
+  /// Sets `azure_blob_store_settings`.
+  const factory ChronicleFeedDetailsSource.azureBlobStoreSettings(
+    ChronicleFeedDetailsAzureBlobStoreSettings azureBlobStoreSettings,
+  ) = ChronicleFeedDetailsSourceAzureBlobStoreSettings;
+
+  /// Sets `amazon_sqs_settings`.
+  const factory ChronicleFeedDetailsSource.amazonSqsSettings(
+    ChronicleFeedDetailsAmazonSqsSettings amazonSqsSettings,
+  ) = ChronicleFeedDetailsSourceAmazonSqsSettings;
+
+  /// Sets `google_cloud_identity_devices_settings`.
+  const factory ChronicleFeedDetailsSource.googleCloudIdentityDevicesSettings(
+    ChronicleFeedDetailsGoogleCloudIdentityDevicesSettings
+    googleCloudIdentityDevicesSettings,
+  ) = ChronicleFeedDetailsSourceGoogleCloudIdentityDevicesSettings;
+
+  /// Sets `google_cloud_identity_device_users_settings`.
+  const factory ChronicleFeedDetailsSource.googleCloudIdentityDeviceUsersSettings(
+    ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettings
+    googleCloudIdentityDeviceUsersSettings,
+  ) = ChronicleFeedDetailsSourceGoogleCloudIdentityDeviceUsersSettings;
+
+  /// Sets `crowdstrike_detects_settings`.
+  const factory ChronicleFeedDetailsSource.crowdstrikeDetectsSettings(
+    ChronicleFeedDetailsCrowdstrikeDetectsSettings crowdstrikeDetectsSettings,
+  ) = ChronicleFeedDetailsSourceCrowdstrikeDetectsSettings;
+
+  /// Sets `mandiant_ioc_settings`.
+  const factory ChronicleFeedDetailsSource.mandiantIocSettings(
+    ChronicleFeedDetailsMandiantIocSettings mandiantIocSettings,
+  ) = ChronicleFeedDetailsSourceMandiantIocSettings;
+
+  /// Sets `sentinelone_alert_settings`.
+  const factory ChronicleFeedDetailsSource.sentineloneAlertSettings(
+    ChronicleFeedDetailsSentineloneAlertSettings sentineloneAlertSettings,
+  ) = ChronicleFeedDetailsSourceSentineloneAlertSettings;
+
+  /// Sets `qualys_scan_settings`.
+  const factory ChronicleFeedDetailsSource.qualysScanSettings(
+    ChronicleFeedDetailsQualysScanSettings qualysScanSettings,
+  ) = ChronicleFeedDetailsSourceQualysScanSettings;
+
+  /// Sets `pubsub_settings`.
+  const factory ChronicleFeedDetailsSource.pubsubSettings(
+    ChronicleFeedDetailsPubsubSettings pubsubSettings,
+  ) = ChronicleFeedDetailsSourcePubsubSettings;
+
+  /// Sets `amazon_kinesis_firehose_settings`.
+  const factory ChronicleFeedDetailsSource.amazonKinesisFirehoseSettings(
+    ChronicleFeedDetailsAmazonKinesisFirehoseSettings
+    amazonKinesisFirehoseSettings,
+  ) = ChronicleFeedDetailsSourceAmazonKinesisFirehoseSettings;
+
+  /// Sets `webhook_settings`.
+  const factory ChronicleFeedDetailsSource.webhookSettings(
+    ChronicleFeedDetailsWebhookSettings webhookSettings,
+  ) = ChronicleFeedDetailsSourceWebhookSettings;
+
+  /// Sets `dummy_log_type_settings`.
+  const factory ChronicleFeedDetailsSource.dummyLogTypeSettings(
+    ChronicleFeedDetailsDummyLogTypeSettings dummyLogTypeSettings,
+  ) = ChronicleFeedDetailsSourceDummyLogTypeSettings;
+
+  /// Sets `https_push_google_cloud_pubsub_settings`.
+  const factory ChronicleFeedDetailsSource.httpsPushGoogleCloudPubsubSettings(
+    ChronicleFeedDetailsHttpsPushGoogleCloudPubsubSettings
+    httpsPushGoogleCloudPubsubSettings,
+  ) = ChronicleFeedDetailsSourceHttpsPushGoogleCloudPubsubSettings;
+
+  /// Sets `https_push_amazon_kinesis_firehose_settings`.
+  const factory ChronicleFeedDetailsSource.httpsPushAmazonKinesisFirehoseSettings(
+    ChronicleFeedDetailsHttpsPushAmazonKinesisFirehoseSettings
+    httpsPushAmazonKinesisFirehoseSettings,
+  ) = ChronicleFeedDetailsSourceHttpsPushAmazonKinesisFirehoseSettings;
+
+  /// Sets `https_push_webhook_settings`.
+  const factory ChronicleFeedDetailsSource.httpsPushWebhookSettings(
+    ChronicleFeedDetailsHttpsPushWebhookSettings httpsPushWebhookSettings,
+  ) = ChronicleFeedDetailsSourceHttpsPushWebhookSettings;
+
+  /// Sets `aws_ec2_hosts_settings`.
+  const factory ChronicleFeedDetailsSource.awsEc2HostsSettings(
+    ChronicleFeedDetailsAwsEc2HostsSettings awsEc2HostsSettings,
+  ) = ChronicleFeedDetailsSourceAwsEc2HostsSettings;
+
+  /// Sets `aws_ec2_instances_settings`.
+  const factory ChronicleFeedDetailsSource.awsEc2InstancesSettings(
+    ChronicleFeedDetailsAwsEc2InstancesSettings awsEc2InstancesSettings,
+  ) = ChronicleFeedDetailsSourceAwsEc2InstancesSettings;
+
+  /// Sets `aws_ec2_vpcs_settings`.
+  const factory ChronicleFeedDetailsSource.awsEc2VpcsSettings(
+    ChronicleFeedDetailsAwsEc2VpcsSettings awsEc2VpcsSettings,
+  ) = ChronicleFeedDetailsSourceAwsEc2VpcsSettings;
+
+  /// Sets `aws_iam_settings`.
+  const factory ChronicleFeedDetailsSource.awsIamSettings(
+    ChronicleFeedDetailsAwsIamSettings awsIamSettings,
+  ) = ChronicleFeedDetailsSourceAwsIamSettings;
+
+  /// Sets `netskope_alert_v2_settings`.
+  const factory ChronicleFeedDetailsSource.netskopeAlertV2Settings(
+    ChronicleFeedDetailsNetskopeAlertV2Settings netskopeAlertV2Settings,
+  ) = ChronicleFeedDetailsSourceNetskopeAlertV2Settings;
+
+  /// Sets `gcs_v2_settings`.
+  const factory ChronicleFeedDetailsSource.gcsV2Settings(
+    ChronicleFeedDetailsGcsV2Settings gcsV2Settings,
+  ) = ChronicleFeedDetailsSourceGcsV2Settings;
+
+  /// Sets `amazon_s3_v2_settings`.
+  const factory ChronicleFeedDetailsSource.amazonS3V2Settings(
+    ChronicleFeedDetailsAmazonS3V2Settings amazonS3V2Settings,
+  ) = ChronicleFeedDetailsSourceAmazonS3V2Settings;
+
+  /// Sets `amazon_sqs_v2_settings`.
+  const factory ChronicleFeedDetailsSource.amazonSqsV2Settings(
+    ChronicleFeedDetailsAmazonSqsV2Settings amazonSqsV2Settings,
+  ) = ChronicleFeedDetailsSourceAmazonSqsV2Settings;
+
+  /// Sets `azure_event_hub_settings`.
+  const factory ChronicleFeedDetailsSource.azureEventHubSettings(
+    ChronicleFeedDetailsAzureEventHubSettings azureEventHubSettings,
+  ) = ChronicleFeedDetailsSourceAzureEventHubSettings;
+
+  /// Sets `trellix_hx_hosts_settings`.
+  const factory ChronicleFeedDetailsSource.trellixHxHostsSettings(
+    ChronicleFeedDetailsTrellixHxHostsSettings trellixHxHostsSettings,
+  ) = ChronicleFeedDetailsSourceTrellixHxHostsSettings;
+
+  /// Sets `azure_blob_store_v2_settings`.
+  const factory ChronicleFeedDetailsSource.azureBlobStoreV2Settings(
+    ChronicleFeedDetailsAzureBlobStoreV2Settings azureBlobStoreV2Settings,
+  ) = ChronicleFeedDetailsSourceAzureBlobStoreV2Settings;
+
+  /// Sets `trellix_hx_alerts_settings`.
+  const factory ChronicleFeedDetailsSource.trellixHxAlertsSettings(
+    ChronicleFeedDetailsTrellixHxAlertsSettings trellixHxAlertsSettings,
+  ) = ChronicleFeedDetailsSourceTrellixHxAlertsSettings;
+
+  /// Sets `google_cloud_storage_event_driven_settings`.
+  const factory ChronicleFeedDetailsSource.googleCloudStorageEventDrivenSettings(
+    ChronicleFeedDetailsGoogleCloudStorageEventDrivenSettings
+    googleCloudStorageEventDrivenSettings,
+  ) = ChronicleFeedDetailsSourceGoogleCloudStorageEventDrivenSettings;
+
+  /// Sets `crowdstrike_alerts_settings`.
+  const factory ChronicleFeedDetailsSource.crowdstrikeAlertsSettings(
+    ChronicleFeedDetailsCrowdstrikeAlertsSettings crowdstrikeAlertsSettings,
+  ) = ChronicleFeedDetailsSourceCrowdstrikeAlertsSettings;
+
+  /// Sets `trellix_hx_bulk_acqs_settings`.
+  const factory ChronicleFeedDetailsSource.trellixHxBulkAcqsSettings(
+    ChronicleFeedDetailsTrellixHxBulkAcqsSettings trellixHxBulkAcqsSettings,
+  ) = ChronicleFeedDetailsSourceTrellixHxBulkAcqsSettings;
+
+  /// Sets `mimecast_mail_v2_settings`.
+  const factory ChronicleFeedDetailsSource.mimecastMailV2Settings(
+    ChronicleFeedDetailsMimecastMailV2Settings mimecastMailV2Settings,
+  ) = ChronicleFeedDetailsSourceMimecastMailV2Settings;
+
+  /// Sets `threat_connect_ioc_v3_settings`.
+  const factory ChronicleFeedDetailsSource.threatConnectIocV3Settings(
+    ChronicleFeedDetailsThreatConnectIocV3Settings threatConnectIocV3Settings,
+  ) = ChronicleFeedDetailsSourceThreatConnectIocV3Settings;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [ChronicleFeedDetailsSource.anomaliSettings] choice: sets `anomali_settings`.
+final class ChronicleFeedDetailsSourceAnomaliSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAnomaliSettings(this.anomaliSettings);
+
+  final ChronicleFeedDetailsAnomaliSettings anomaliSettings;
+
+  @override
+  String get blockKey => 'anomali_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'anomali_settings': anomaliSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.azureAdContextSettings] choice: sets `azure_ad_context_settings`.
+final class ChronicleFeedDetailsSourceAzureAdContextSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAzureAdContextSettings(
+    this.azureAdContextSettings,
+  );
+
+  final ChronicleFeedDetailsAzureAdContextSettings azureAdContextSettings;
+
+  @override
+  String get blockKey => 'azure_ad_context_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'azure_ad_context_settings': azureAdContextSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.cloudPassageSettings] choice: sets `cloud_passage_settings`.
+final class ChronicleFeedDetailsSourceCloudPassageSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceCloudPassageSettings(
+    this.cloudPassageSettings,
+  );
+
+  final ChronicleFeedDetailsCloudPassageSettings cloudPassageSettings;
+
+  @override
+  String get blockKey => 'cloud_passage_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cloud_passage_settings': cloudPassageSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.cortexXdrSettings] choice: sets `cortex_xdr_settings`.
+final class ChronicleFeedDetailsSourceCortexXdrSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceCortexXdrSettings(this.cortexXdrSettings);
+
+  final ChronicleFeedDetailsCortexXdrSettings cortexXdrSettings;
+
+  @override
+  String get blockKey => 'cortex_xdr_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cortex_xdr_settings': cortexXdrSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.duoAuthSettings] choice: sets `duo_auth_settings`.
+final class ChronicleFeedDetailsSourceDuoAuthSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceDuoAuthSettings(this.duoAuthSettings);
+
+  final ChronicleFeedDetailsDuoAuthSettings duoAuthSettings;
+
+  @override
+  String get blockKey => 'duo_auth_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'duo_auth_settings': duoAuthSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.duoUserContextSettings] choice: sets `duo_user_context_settings`.
+final class ChronicleFeedDetailsSourceDuoUserContextSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceDuoUserContextSettings(
+    this.duoUserContextSettings,
+  );
+
+  final ChronicleFeedDetailsDuoUserContextSettings duoUserContextSettings;
+
+  @override
+  String get blockKey => 'duo_user_context_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'duo_user_context_settings': duoUserContextSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.microsoftGraphAlertSettings] choice: sets `microsoft_graph_alert_settings`.
+final class ChronicleFeedDetailsSourceMicrosoftGraphAlertSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceMicrosoftGraphAlertSettings(
+    this.microsoftGraphAlertSettings,
+  );
+
+  final ChronicleFeedDetailsMicrosoftGraphAlertSettings
+  microsoftGraphAlertSettings;
+
+  @override
+  String get blockKey => 'microsoft_graph_alert_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'microsoft_graph_alert_settings': microsoftGraphAlertSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.microsoftSecurityCenterAlertSettings] choice: sets `microsoft_security_center_alert_settings`.
+final class ChronicleFeedDetailsSourceMicrosoftSecurityCenterAlertSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceMicrosoftSecurityCenterAlertSettings(
+    this.microsoftSecurityCenterAlertSettings,
+  );
+
+  final ChronicleFeedDetailsMicrosoftSecurityCenterAlertSettings
+  microsoftSecurityCenterAlertSettings;
+
+  @override
+  String get blockKey => 'microsoft_security_center_alert_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'microsoft_security_center_alert_settings':
+        microsoftSecurityCenterAlertSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.mimecastMailSettings] choice: sets `mimecast_mail_settings`.
+final class ChronicleFeedDetailsSourceMimecastMailSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceMimecastMailSettings(
+    this.mimecastMailSettings,
+  );
+
+  final ChronicleFeedDetailsMimecastMailSettings mimecastMailSettings;
+
+  @override
+  String get blockKey => 'mimecast_mail_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'mimecast_mail_settings': mimecastMailSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.office365Settings] choice: sets `office365_settings`.
+final class ChronicleFeedDetailsSourceOffice365Settings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceOffice365Settings(this.office365Settings);
+
+  final ChronicleFeedDetailsOffice365Settings office365Settings;
+
+  @override
+  String get blockKey => 'office365_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'office365_settings': office365Settings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.proofpointMailSettings] choice: sets `proofpoint_mail_settings`.
+final class ChronicleFeedDetailsSourceProofpointMailSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceProofpointMailSettings(
+    this.proofpointMailSettings,
+  );
+
+  final ChronicleFeedDetailsProofpointMailSettings proofpointMailSettings;
+
+  @override
+  String get blockKey => 'proofpoint_mail_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'proofpoint_mail_settings': proofpointMailSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.recordedFutureIocSettings] choice: sets `recorded_future_ioc_settings`.
+final class ChronicleFeedDetailsSourceRecordedFutureIocSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceRecordedFutureIocSettings(
+    this.recordedFutureIocSettings,
+  );
+
+  final ChronicleFeedDetailsRecordedFutureIocSettings recordedFutureIocSettings;
+
+  @override
+  String get blockKey => 'recorded_future_ioc_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'recorded_future_ioc_settings': recordedFutureIocSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.workdaySettings] choice: sets `workday_settings`.
+final class ChronicleFeedDetailsSourceWorkdaySettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceWorkdaySettings(this.workdaySettings);
+
+  final ChronicleFeedDetailsWorkdaySettings workdaySettings;
+
+  @override
+  String get blockKey => 'workday_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'workday_settings': workdaySettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.panIocSettings] choice: sets `pan_ioc_settings`.
+final class ChronicleFeedDetailsSourcePanIocSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourcePanIocSettings(this.panIocSettings);
+
+  final ChronicleFeedDetailsPanIocSettings panIocSettings;
+
+  @override
+  String get blockKey => 'pan_ioc_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'pan_ioc_settings': panIocSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.oktaSettings] choice: sets `okta_settings`.
+final class ChronicleFeedDetailsSourceOktaSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceOktaSettings(this.oktaSettings);
+
+  final ChronicleFeedDetailsOktaSettings oktaSettings;
+
+  @override
+  String get blockKey => 'okta_settings';
+
+  @override
+  Map<String, Object?> encode() => {'okta_settings': oktaSettings.encode()};
+}
+
+/// The [ChronicleFeedDetailsSource.oktaUserContextSettings] choice: sets `okta_user_context_settings`.
+final class ChronicleFeedDetailsSourceOktaUserContextSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceOktaUserContextSettings(
+    this.oktaUserContextSettings,
+  );
+
+  final ChronicleFeedDetailsOktaUserContextSettings oktaUserContextSettings;
+
+  @override
+  String get blockKey => 'okta_user_context_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'okta_user_context_settings': oktaUserContextSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.foxItStixSettings] choice: sets `fox_it_stix_settings`.
+final class ChronicleFeedDetailsSourceFoxItStixSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceFoxItStixSettings(this.foxItStixSettings);
+
+  final ChronicleFeedDetailsFoxItStixSettings foxItStixSettings;
+
+  @override
+  String get blockKey => 'fox_it_stix_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'fox_it_stix_settings': foxItStixSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.threatConnectIocSettings] choice: sets `threat_connect_ioc_settings`.
+final class ChronicleFeedDetailsSourceThreatConnectIocSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceThreatConnectIocSettings(
+    this.threatConnectIocSettings,
+  );
+
+  final ChronicleFeedDetailsThreatConnectIocSettings threatConnectIocSettings;
+
+  @override
+  String get blockKey => 'threat_connect_ioc_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'threat_connect_ioc_settings': threatConnectIocSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.serviceNowCmdbSettings] choice: sets `service_now_cmdb_settings`.
+final class ChronicleFeedDetailsSourceServiceNowCmdbSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceServiceNowCmdbSettings(
+    this.serviceNowCmdbSettings,
+  );
+
+  final ChronicleFeedDetailsServiceNowCmdbSettings serviceNowCmdbSettings;
+
+  @override
+  String get blockKey => 'service_now_cmdb_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'service_now_cmdb_settings': serviceNowCmdbSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.impervaWafSettings] choice: sets `imperva_waf_settings`.
+final class ChronicleFeedDetailsSourceImpervaWafSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceImpervaWafSettings(this.impervaWafSettings);
+
+  final ChronicleFeedDetailsImpervaWafSettings impervaWafSettings;
+
+  @override
+  String get blockKey => 'imperva_waf_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'imperva_waf_settings': impervaWafSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.thinkstCanarySettings] choice: sets `thinkst_canary_settings`.
+final class ChronicleFeedDetailsSourceThinkstCanarySettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceThinkstCanarySettings(
+    this.thinkstCanarySettings,
+  );
+
+  final ChronicleFeedDetailsThinkstCanarySettings thinkstCanarySettings;
+
+  @override
+  String get blockKey => 'thinkst_canary_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'thinkst_canary_settings': thinkstCanarySettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.rhIsacIocSettings] choice: sets `rh_isac_ioc_settings`.
+final class ChronicleFeedDetailsSourceRhIsacIocSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceRhIsacIocSettings(this.rhIsacIocSettings);
+
+  final ChronicleFeedDetailsRhIsacIocSettings rhIsacIocSettings;
+
+  @override
+  String get blockKey => 'rh_isac_ioc_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'rh_isac_ioc_settings': rhIsacIocSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.rapid7InsightSettings] choice: sets `rapid7_insight_settings`.
+final class ChronicleFeedDetailsSourceRapid7InsightSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceRapid7InsightSettings(
+    this.rapid7InsightSettings,
+  );
+
+  final ChronicleFeedDetailsRapid7InsightSettings rapid7InsightSettings;
+
+  @override
+  String get blockKey => 'rapid7_insight_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'rapid7_insight_settings': rapid7InsightSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.salesforceSettings] choice: sets `salesforce_settings`.
+final class ChronicleFeedDetailsSourceSalesforceSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceSalesforceSettings(this.salesforceSettings);
+
+  final ChronicleFeedDetailsSalesforceSettings salesforceSettings;
+
+  @override
+  String get blockKey => 'salesforce_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'salesforce_settings': salesforceSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.netskopeAlertSettings] choice: sets `netskope_alert_settings`.
+final class ChronicleFeedDetailsSourceNetskopeAlertSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceNetskopeAlertSettings(
+    this.netskopeAlertSettings,
+  );
+
+  final ChronicleFeedDetailsNetskopeAlertSettings netskopeAlertSettings;
+
+  @override
+  String get blockKey => 'netskope_alert_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'netskope_alert_settings': netskopeAlertSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.azureMdmIntuneSettings] choice: sets `azure_mdm_intune_settings`.
+final class ChronicleFeedDetailsSourceAzureMdmIntuneSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAzureMdmIntuneSettings(
+    this.azureMdmIntuneSettings,
+  );
+
+  final ChronicleFeedDetailsAzureMdmIntuneSettings azureMdmIntuneSettings;
+
+  @override
+  String get blockKey => 'azure_mdm_intune_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'azure_mdm_intune_settings': azureMdmIntuneSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.azureAdSettings] choice: sets `azure_ad_settings`.
+final class ChronicleFeedDetailsSourceAzureAdSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAzureAdSettings(this.azureAdSettings);
+
+  final ChronicleFeedDetailsAzureAdSettings azureAdSettings;
+
+  @override
+  String get blockKey => 'azure_ad_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'azure_ad_settings': azureAdSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.proofpointOnDemandSettings] choice: sets `proofpoint_on_demand_settings`.
+final class ChronicleFeedDetailsSourceProofpointOnDemandSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceProofpointOnDemandSettings(
+    this.proofpointOnDemandSettings,
+  );
+
+  final ChronicleFeedDetailsProofpointOnDemandSettings
+  proofpointOnDemandSettings;
+
+  @override
+  String get blockKey => 'proofpoint_on_demand_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'proofpoint_on_demand_settings': proofpointOnDemandSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.workspaceUsersSettings] choice: sets `workspace_users_settings`.
+final class ChronicleFeedDetailsSourceWorkspaceUsersSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceWorkspaceUsersSettings(
+    this.workspaceUsersSettings,
+  );
+
+  final ChronicleFeedDetailsWorkspaceUsersSettings workspaceUsersSettings;
+
+  @override
+  String get blockKey => 'workspace_users_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'workspace_users_settings': workspaceUsersSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.workspaceActivitySettings] choice: sets `workspace_activity_settings`.
+final class ChronicleFeedDetailsSourceWorkspaceActivitySettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceWorkspaceActivitySettings(
+    this.workspaceActivitySettings,
+  );
+
+  final ChronicleFeedDetailsWorkspaceActivitySettings workspaceActivitySettings;
+
+  @override
+  String get blockKey => 'workspace_activity_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'workspace_activity_settings': workspaceActivitySettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.workspaceAlertsSettings] choice: sets `workspace_alerts_settings`.
+final class ChronicleFeedDetailsSourceWorkspaceAlertsSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceWorkspaceAlertsSettings(
+    this.workspaceAlertsSettings,
+  );
+
+  final ChronicleFeedDetailsWorkspaceAlertsSettings workspaceAlertsSettings;
+
+  @override
+  String get blockKey => 'workspace_alerts_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'workspace_alerts_settings': workspaceAlertsSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.workspacePrivilegesSettings] choice: sets `workspace_privileges_settings`.
+final class ChronicleFeedDetailsSourceWorkspacePrivilegesSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceWorkspacePrivilegesSettings(
+    this.workspacePrivilegesSettings,
+  );
+
+  final ChronicleFeedDetailsWorkspacePrivilegesSettings
+  workspacePrivilegesSettings;
+
+  @override
+  String get blockKey => 'workspace_privileges_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'workspace_privileges_settings': workspacePrivilegesSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.workspaceMobileSettings] choice: sets `workspace_mobile_settings`.
+final class ChronicleFeedDetailsSourceWorkspaceMobileSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceWorkspaceMobileSettings(
+    this.workspaceMobileSettings,
+  );
+
+  final ChronicleFeedDetailsWorkspaceMobileSettings workspaceMobileSettings;
+
+  @override
+  String get blockKey => 'workspace_mobile_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'workspace_mobile_settings': workspaceMobileSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.workspaceChromeOsSettings] choice: sets `workspace_chrome_os_settings`.
+final class ChronicleFeedDetailsSourceWorkspaceChromeOsSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceWorkspaceChromeOsSettings(
+    this.workspaceChromeOsSettings,
+  );
+
+  final ChronicleFeedDetailsWorkspaceChromeOsSettings workspaceChromeOsSettings;
+
+  @override
+  String get blockKey => 'workspace_chrome_os_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'workspace_chrome_os_settings': workspaceChromeOsSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.workspaceGroupsSettings] choice: sets `workspace_groups_settings`.
+final class ChronicleFeedDetailsSourceWorkspaceGroupsSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceWorkspaceGroupsSettings(
+    this.workspaceGroupsSettings,
+  );
+
+  final ChronicleFeedDetailsWorkspaceGroupsSettings workspaceGroupsSettings;
+
+  @override
+  String get blockKey => 'workspace_groups_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'workspace_groups_settings': workspaceGroupsSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.azureAdAuditSettings] choice: sets `azure_ad_audit_settings`.
+final class ChronicleFeedDetailsSourceAzureAdAuditSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAzureAdAuditSettings(
+    this.azureAdAuditSettings,
+  );
+
+  final ChronicleFeedDetailsAzureAdAuditSettings azureAdAuditSettings;
+
+  @override
+  String get blockKey => 'azure_ad_audit_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'azure_ad_audit_settings': azureAdAuditSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.symantecEventExportSettings] choice: sets `symantec_event_export_settings`.
+final class ChronicleFeedDetailsSourceSymantecEventExportSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceSymantecEventExportSettings(
+    this.symantecEventExportSettings,
+  );
+
+  final ChronicleFeedDetailsSymantecEventExportSettings
+  symantecEventExportSettings;
+
+  @override
+  String get blockKey => 'symantec_event_export_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'symantec_event_export_settings': symantecEventExportSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.qualysVmSettings] choice: sets `qualys_vm_settings`.
+final class ChronicleFeedDetailsSourceQualysVmSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceQualysVmSettings(this.qualysVmSettings);
+
+  final ChronicleFeedDetailsQualysVmSettings qualysVmSettings;
+
+  @override
+  String get blockKey => 'qualys_vm_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'qualys_vm_settings': qualysVmSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.panPrismaCloudSettings] choice: sets `pan_prisma_cloud_settings`.
+final class ChronicleFeedDetailsSourcePanPrismaCloudSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourcePanPrismaCloudSettings(
+    this.panPrismaCloudSettings,
+  );
+
+  final ChronicleFeedDetailsPanPrismaCloudSettings panPrismaCloudSettings;
+
+  @override
+  String get blockKey => 'pan_prisma_cloud_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'pan_prisma_cloud_settings': panPrismaCloudSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.gcsSettings] choice: sets `gcs_settings`.
+final class ChronicleFeedDetailsSourceGcsSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceGcsSettings(this.gcsSettings);
+
+  final ChronicleFeedDetailsGcsSettings gcsSettings;
+
+  @override
+  String get blockKey => 'gcs_settings';
+
+  @override
+  Map<String, Object?> encode() => {'gcs_settings': gcsSettings.encode()};
+}
+
+/// The [ChronicleFeedDetailsSource.httpSettings] choice: sets `http_settings`.
+final class ChronicleFeedDetailsSourceHttpSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceHttpSettings(this.httpSettings);
+
+  final ChronicleFeedDetailsHttpSettings httpSettings;
+
+  @override
+  String get blockKey => 'http_settings';
+
+  @override
+  Map<String, Object?> encode() => {'http_settings': httpSettings.encode()};
+}
+
+/// The [ChronicleFeedDetailsSource.sftpSettings] choice: sets `sftp_settings`.
+final class ChronicleFeedDetailsSourceSftpSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceSftpSettings(this.sftpSettings);
+
+  final ChronicleFeedDetailsSftpSettings sftpSettings;
+
+  @override
+  String get blockKey => 'sftp_settings';
+
+  @override
+  Map<String, Object?> encode() => {'sftp_settings': sftpSettings.encode()};
+}
+
+/// The [ChronicleFeedDetailsSource.amazonS3Settings] choice: sets `amazon_s3_settings`.
+final class ChronicleFeedDetailsSourceAmazonS3Settings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAmazonS3Settings(this.amazonS3Settings);
+
+  final ChronicleFeedDetailsAmazonS3Settings amazonS3Settings;
+
+  @override
+  String get blockKey => 'amazon_s3_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'amazon_s3_settings': amazonS3Settings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.azureBlobStoreSettings] choice: sets `azure_blob_store_settings`.
+final class ChronicleFeedDetailsSourceAzureBlobStoreSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAzureBlobStoreSettings(
+    this.azureBlobStoreSettings,
+  );
+
+  final ChronicleFeedDetailsAzureBlobStoreSettings azureBlobStoreSettings;
+
+  @override
+  String get blockKey => 'azure_blob_store_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'azure_blob_store_settings': azureBlobStoreSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.amazonSqsSettings] choice: sets `amazon_sqs_settings`.
+final class ChronicleFeedDetailsSourceAmazonSqsSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAmazonSqsSettings(this.amazonSqsSettings);
+
+  final ChronicleFeedDetailsAmazonSqsSettings amazonSqsSettings;
+
+  @override
+  String get blockKey => 'amazon_sqs_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'amazon_sqs_settings': amazonSqsSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.googleCloudIdentityDevicesSettings] choice: sets `google_cloud_identity_devices_settings`.
+final class ChronicleFeedDetailsSourceGoogleCloudIdentityDevicesSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceGoogleCloudIdentityDevicesSettings(
+    this.googleCloudIdentityDevicesSettings,
+  );
+
+  final ChronicleFeedDetailsGoogleCloudIdentityDevicesSettings
+  googleCloudIdentityDevicesSettings;
+
+  @override
+  String get blockKey => 'google_cloud_identity_devices_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'google_cloud_identity_devices_settings': googleCloudIdentityDevicesSettings
+        .encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.googleCloudIdentityDeviceUsersSettings] choice: sets `google_cloud_identity_device_users_settings`.
+final class ChronicleFeedDetailsSourceGoogleCloudIdentityDeviceUsersSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceGoogleCloudIdentityDeviceUsersSettings(
+    this.googleCloudIdentityDeviceUsersSettings,
+  );
+
+  final ChronicleFeedDetailsGoogleCloudIdentityDeviceUsersSettings
+  googleCloudIdentityDeviceUsersSettings;
+
+  @override
+  String get blockKey => 'google_cloud_identity_device_users_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'google_cloud_identity_device_users_settings':
+        googleCloudIdentityDeviceUsersSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.crowdstrikeDetectsSettings] choice: sets `crowdstrike_detects_settings`.
+final class ChronicleFeedDetailsSourceCrowdstrikeDetectsSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceCrowdstrikeDetectsSettings(
+    this.crowdstrikeDetectsSettings,
+  );
+
+  final ChronicleFeedDetailsCrowdstrikeDetectsSettings
+  crowdstrikeDetectsSettings;
+
+  @override
+  String get blockKey => 'crowdstrike_detects_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'crowdstrike_detects_settings': crowdstrikeDetectsSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.mandiantIocSettings] choice: sets `mandiant_ioc_settings`.
+final class ChronicleFeedDetailsSourceMandiantIocSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceMandiantIocSettings(this.mandiantIocSettings);
+
+  final ChronicleFeedDetailsMandiantIocSettings mandiantIocSettings;
+
+  @override
+  String get blockKey => 'mandiant_ioc_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'mandiant_ioc_settings': mandiantIocSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.sentineloneAlertSettings] choice: sets `sentinelone_alert_settings`.
+final class ChronicleFeedDetailsSourceSentineloneAlertSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceSentineloneAlertSettings(
+    this.sentineloneAlertSettings,
+  );
+
+  final ChronicleFeedDetailsSentineloneAlertSettings sentineloneAlertSettings;
+
+  @override
+  String get blockKey => 'sentinelone_alert_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'sentinelone_alert_settings': sentineloneAlertSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.qualysScanSettings] choice: sets `qualys_scan_settings`.
+final class ChronicleFeedDetailsSourceQualysScanSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceQualysScanSettings(this.qualysScanSettings);
+
+  final ChronicleFeedDetailsQualysScanSettings qualysScanSettings;
+
+  @override
+  String get blockKey => 'qualys_scan_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'qualys_scan_settings': qualysScanSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.pubsubSettings] choice: sets `pubsub_settings`.
+final class ChronicleFeedDetailsSourcePubsubSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourcePubsubSettings(this.pubsubSettings);
+
+  final ChronicleFeedDetailsPubsubSettings pubsubSettings;
+
+  @override
+  String get blockKey => 'pubsub_settings';
+
+  @override
+  Map<String, Object?> encode() => {'pubsub_settings': pubsubSettings.encode()};
+}
+
+/// The [ChronicleFeedDetailsSource.amazonKinesisFirehoseSettings] choice: sets `amazon_kinesis_firehose_settings`.
+final class ChronicleFeedDetailsSourceAmazonKinesisFirehoseSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAmazonKinesisFirehoseSettings(
+    this.amazonKinesisFirehoseSettings,
+  );
+
+  final ChronicleFeedDetailsAmazonKinesisFirehoseSettings
+  amazonKinesisFirehoseSettings;
+
+  @override
+  String get blockKey => 'amazon_kinesis_firehose_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'amazon_kinesis_firehose_settings': amazonKinesisFirehoseSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.webhookSettings] choice: sets `webhook_settings`.
+final class ChronicleFeedDetailsSourceWebhookSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceWebhookSettings(this.webhookSettings);
+
+  final ChronicleFeedDetailsWebhookSettings webhookSettings;
+
+  @override
+  String get blockKey => 'webhook_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'webhook_settings': webhookSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.dummyLogTypeSettings] choice: sets `dummy_log_type_settings`.
+final class ChronicleFeedDetailsSourceDummyLogTypeSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceDummyLogTypeSettings(
+    this.dummyLogTypeSettings,
+  );
+
+  final ChronicleFeedDetailsDummyLogTypeSettings dummyLogTypeSettings;
+
+  @override
+  String get blockKey => 'dummy_log_type_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'dummy_log_type_settings': dummyLogTypeSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.httpsPushGoogleCloudPubsubSettings] choice: sets `https_push_google_cloud_pubsub_settings`.
+final class ChronicleFeedDetailsSourceHttpsPushGoogleCloudPubsubSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceHttpsPushGoogleCloudPubsubSettings(
+    this.httpsPushGoogleCloudPubsubSettings,
+  );
+
+  final ChronicleFeedDetailsHttpsPushGoogleCloudPubsubSettings
+  httpsPushGoogleCloudPubsubSettings;
+
+  @override
+  String get blockKey => 'https_push_google_cloud_pubsub_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'https_push_google_cloud_pubsub_settings':
+        httpsPushGoogleCloudPubsubSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.httpsPushAmazonKinesisFirehoseSettings] choice: sets `https_push_amazon_kinesis_firehose_settings`.
+final class ChronicleFeedDetailsSourceHttpsPushAmazonKinesisFirehoseSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceHttpsPushAmazonKinesisFirehoseSettings(
+    this.httpsPushAmazonKinesisFirehoseSettings,
+  );
+
+  final ChronicleFeedDetailsHttpsPushAmazonKinesisFirehoseSettings
+  httpsPushAmazonKinesisFirehoseSettings;
+
+  @override
+  String get blockKey => 'https_push_amazon_kinesis_firehose_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'https_push_amazon_kinesis_firehose_settings':
+        httpsPushAmazonKinesisFirehoseSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.httpsPushWebhookSettings] choice: sets `https_push_webhook_settings`.
+final class ChronicleFeedDetailsSourceHttpsPushWebhookSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceHttpsPushWebhookSettings(
+    this.httpsPushWebhookSettings,
+  );
+
+  final ChronicleFeedDetailsHttpsPushWebhookSettings httpsPushWebhookSettings;
+
+  @override
+  String get blockKey => 'https_push_webhook_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'https_push_webhook_settings': httpsPushWebhookSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.awsEc2HostsSettings] choice: sets `aws_ec2_hosts_settings`.
+final class ChronicleFeedDetailsSourceAwsEc2HostsSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAwsEc2HostsSettings(this.awsEc2HostsSettings);
+
+  final ChronicleFeedDetailsAwsEc2HostsSettings awsEc2HostsSettings;
+
+  @override
+  String get blockKey => 'aws_ec2_hosts_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'aws_ec2_hosts_settings': awsEc2HostsSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.awsEc2InstancesSettings] choice: sets `aws_ec2_instances_settings`.
+final class ChronicleFeedDetailsSourceAwsEc2InstancesSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAwsEc2InstancesSettings(
+    this.awsEc2InstancesSettings,
+  );
+
+  final ChronicleFeedDetailsAwsEc2InstancesSettings awsEc2InstancesSettings;
+
+  @override
+  String get blockKey => 'aws_ec2_instances_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'aws_ec2_instances_settings': awsEc2InstancesSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.awsEc2VpcsSettings] choice: sets `aws_ec2_vpcs_settings`.
+final class ChronicleFeedDetailsSourceAwsEc2VpcsSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAwsEc2VpcsSettings(this.awsEc2VpcsSettings);
+
+  final ChronicleFeedDetailsAwsEc2VpcsSettings awsEc2VpcsSettings;
+
+  @override
+  String get blockKey => 'aws_ec2_vpcs_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'aws_ec2_vpcs_settings': awsEc2VpcsSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.awsIamSettings] choice: sets `aws_iam_settings`.
+final class ChronicleFeedDetailsSourceAwsIamSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAwsIamSettings(this.awsIamSettings);
+
+  final ChronicleFeedDetailsAwsIamSettings awsIamSettings;
+
+  @override
+  String get blockKey => 'aws_iam_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'aws_iam_settings': awsIamSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.netskopeAlertV2Settings] choice: sets `netskope_alert_v2_settings`.
+final class ChronicleFeedDetailsSourceNetskopeAlertV2Settings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceNetskopeAlertV2Settings(
+    this.netskopeAlertV2Settings,
+  );
+
+  final ChronicleFeedDetailsNetskopeAlertV2Settings netskopeAlertV2Settings;
+
+  @override
+  String get blockKey => 'netskope_alert_v2_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'netskope_alert_v2_settings': netskopeAlertV2Settings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.gcsV2Settings] choice: sets `gcs_v2_settings`.
+final class ChronicleFeedDetailsSourceGcsV2Settings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceGcsV2Settings(this.gcsV2Settings);
+
+  final ChronicleFeedDetailsGcsV2Settings gcsV2Settings;
+
+  @override
+  String get blockKey => 'gcs_v2_settings';
+
+  @override
+  Map<String, Object?> encode() => {'gcs_v2_settings': gcsV2Settings.encode()};
+}
+
+/// The [ChronicleFeedDetailsSource.amazonS3V2Settings] choice: sets `amazon_s3_v2_settings`.
+final class ChronicleFeedDetailsSourceAmazonS3V2Settings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAmazonS3V2Settings(this.amazonS3V2Settings);
+
+  final ChronicleFeedDetailsAmazonS3V2Settings amazonS3V2Settings;
+
+  @override
+  String get blockKey => 'amazon_s3_v2_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'amazon_s3_v2_settings': amazonS3V2Settings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.amazonSqsV2Settings] choice: sets `amazon_sqs_v2_settings`.
+final class ChronicleFeedDetailsSourceAmazonSqsV2Settings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAmazonSqsV2Settings(this.amazonSqsV2Settings);
+
+  final ChronicleFeedDetailsAmazonSqsV2Settings amazonSqsV2Settings;
+
+  @override
+  String get blockKey => 'amazon_sqs_v2_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'amazon_sqs_v2_settings': amazonSqsV2Settings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.azureEventHubSettings] choice: sets `azure_event_hub_settings`.
+final class ChronicleFeedDetailsSourceAzureEventHubSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAzureEventHubSettings(
+    this.azureEventHubSettings,
+  );
+
+  final ChronicleFeedDetailsAzureEventHubSettings azureEventHubSettings;
+
+  @override
+  String get blockKey => 'azure_event_hub_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'azure_event_hub_settings': azureEventHubSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.trellixHxHostsSettings] choice: sets `trellix_hx_hosts_settings`.
+final class ChronicleFeedDetailsSourceTrellixHxHostsSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceTrellixHxHostsSettings(
+    this.trellixHxHostsSettings,
+  );
+
+  final ChronicleFeedDetailsTrellixHxHostsSettings trellixHxHostsSettings;
+
+  @override
+  String get blockKey => 'trellix_hx_hosts_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'trellix_hx_hosts_settings': trellixHxHostsSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.azureBlobStoreV2Settings] choice: sets `azure_blob_store_v2_settings`.
+final class ChronicleFeedDetailsSourceAzureBlobStoreV2Settings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceAzureBlobStoreV2Settings(
+    this.azureBlobStoreV2Settings,
+  );
+
+  final ChronicleFeedDetailsAzureBlobStoreV2Settings azureBlobStoreV2Settings;
+
+  @override
+  String get blockKey => 'azure_blob_store_v2_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'azure_blob_store_v2_settings': azureBlobStoreV2Settings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.trellixHxAlertsSettings] choice: sets `trellix_hx_alerts_settings`.
+final class ChronicleFeedDetailsSourceTrellixHxAlertsSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceTrellixHxAlertsSettings(
+    this.trellixHxAlertsSettings,
+  );
+
+  final ChronicleFeedDetailsTrellixHxAlertsSettings trellixHxAlertsSettings;
+
+  @override
+  String get blockKey => 'trellix_hx_alerts_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'trellix_hx_alerts_settings': trellixHxAlertsSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.googleCloudStorageEventDrivenSettings] choice: sets `google_cloud_storage_event_driven_settings`.
+final class ChronicleFeedDetailsSourceGoogleCloudStorageEventDrivenSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceGoogleCloudStorageEventDrivenSettings(
+    this.googleCloudStorageEventDrivenSettings,
+  );
+
+  final ChronicleFeedDetailsGoogleCloudStorageEventDrivenSettings
+  googleCloudStorageEventDrivenSettings;
+
+  @override
+  String get blockKey => 'google_cloud_storage_event_driven_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'google_cloud_storage_event_driven_settings':
+        googleCloudStorageEventDrivenSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.crowdstrikeAlertsSettings] choice: sets `crowdstrike_alerts_settings`.
+final class ChronicleFeedDetailsSourceCrowdstrikeAlertsSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceCrowdstrikeAlertsSettings(
+    this.crowdstrikeAlertsSettings,
+  );
+
+  final ChronicleFeedDetailsCrowdstrikeAlertsSettings crowdstrikeAlertsSettings;
+
+  @override
+  String get blockKey => 'crowdstrike_alerts_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'crowdstrike_alerts_settings': crowdstrikeAlertsSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.trellixHxBulkAcqsSettings] choice: sets `trellix_hx_bulk_acqs_settings`.
+final class ChronicleFeedDetailsSourceTrellixHxBulkAcqsSettings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceTrellixHxBulkAcqsSettings(
+    this.trellixHxBulkAcqsSettings,
+  );
+
+  final ChronicleFeedDetailsTrellixHxBulkAcqsSettings trellixHxBulkAcqsSettings;
+
+  @override
+  String get blockKey => 'trellix_hx_bulk_acqs_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'trellix_hx_bulk_acqs_settings': trellixHxBulkAcqsSettings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.mimecastMailV2Settings] choice: sets `mimecast_mail_v2_settings`.
+final class ChronicleFeedDetailsSourceMimecastMailV2Settings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceMimecastMailV2Settings(
+    this.mimecastMailV2Settings,
+  );
+
+  final ChronicleFeedDetailsMimecastMailV2Settings mimecastMailV2Settings;
+
+  @override
+  String get blockKey => 'mimecast_mail_v2_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'mimecast_mail_v2_settings': mimecastMailV2Settings.encode(),
+  };
+}
+
+/// The [ChronicleFeedDetailsSource.threatConnectIocV3Settings] choice: sets `threat_connect_ioc_v3_settings`.
+final class ChronicleFeedDetailsSourceThreatConnectIocV3Settings
+    extends ChronicleFeedDetailsSource {
+  const ChronicleFeedDetailsSourceThreatConnectIocV3Settings(
+    this.threatConnectIocV3Settings,
+  );
+
+  final ChronicleFeedDetailsThreatConnectIocV3Settings
+  threatConnectIocV3Settings;
+
+  @override
+  String get blockKey => 'threat_connect_ioc_v3_settings';
+
+  @override
+  Map<String, Object?> encode() => {
+    'threat_connect_ioc_v3_settings': threatConnectIocV3Settings.encode(),
   };
 }
 

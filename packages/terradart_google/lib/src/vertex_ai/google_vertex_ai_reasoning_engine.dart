@@ -579,35 +579,33 @@ enum VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsGener
 @immutable
 final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics {
   const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopics({
-    required this.managedMemoryTopicOrCustomMemoryTopic,
+    required this.memoryTopic,
   });
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic
-  managedMemoryTopicOrCustomMemoryTopic;
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic
+  memoryTopic;
 
-  Map<String, Object?> encode() => {
-    ...managedMemoryTopicOrCustomMemoryTopic.encode(),
-  };
+  Map<String, Object?> encode() => {...memoryTopic.encode()};
 }
 
 /// Exactly one of `managed_memory_topic`, `custom_memory_topic` on the `context_spec.memory_bank_config.customization_configs.memory_topics` block of `google_vertex_ai_reasoning_engine`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.managedMemoryTopic(...)`.
-sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic();
+sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic();
 
   /// Sets `managed_memory_topic`.
-  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic.managedMemoryTopic(
+  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic.managedMemoryTopic(
     VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopic
     managedMemoryTopic,
-  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicManagedMemoryTopic;
+  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicManagedMemoryTopic;
 
   /// Sets `custom_memory_topic`.
-  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic.customMemoryTopic(
+  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic.customMemoryTopic(
     VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsCustomMemoryTopic
     customMemoryTopic,
-  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicCustomMemoryTopic;
+  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicCustomMemoryTopic;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -615,11 +613,11 @@ sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConf
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic.managedMemoryTopic] choice: sets `managed_memory_topic`.
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicManagedMemoryTopic
+/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic.managedMemoryTopic] choice: sets `managed_memory_topic`.
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicManagedMemoryTopic
     extends
-        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicManagedMemoryTopic(
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicManagedMemoryTopic(
     this.managedMemoryTopic,
   );
 
@@ -635,11 +633,11 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfi
   };
 }
 
-/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic.customMemoryTopic] choice: sets `custom_memory_topic`.
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicCustomMemoryTopic
+/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic.customMemoryTopic] choice: sets `custom_memory_topic`.
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicCustomMemoryTopic
     extends
-        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopic {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsManagedMemoryTopicOrCustomMemoryTopicCustomMemoryTopic(
+        VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopic {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigCustomizationConfigsMemoryTopicsMemoryTopicCustomMemoryTopic(
     this.customMemoryTopic,
   );
 
@@ -817,17 +815,16 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigStructuredMemoryCo
 @immutable
 final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig {
   const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig({
-    required this.defaultTtlOrGranularTtlConfig,
+    required this.ttl,
     this.memoryRevisionDefaultTtl,
   });
 
-  final VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfig
-  defaultTtlOrGranularTtlConfig;
+  final VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl ttl;
 
   final TfArg<String>? memoryRevisionDefaultTtl;
 
   Map<String, Object?> encode() => {
-    ...defaultTtlOrGranularTtlConfig.encode(),
+    ...ttl.encode(),
     if (memoryRevisionDefaultTtl != null)
       'memory_revision_default_ttl': memoryRevisionDefaultTtl!.toTfJson(),
   };
@@ -837,19 +834,19 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfig {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.defaultTtl(...)`.
-sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfig {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfig();
+sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl();
 
   /// Sets `default_ttl`.
-  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfig.defaultTtl(
+  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl.defaultTtl(
     TfArg<String> defaultTtl,
-  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfigDefaultTtl;
+  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlDefaultTtl;
 
   /// Sets `granular_ttl_config`.
-  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfig.granularTtlConfig(
+  const factory VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl.granularTtlConfig(
     VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigGranularTtlConfig
     granularTtlConfig,
-  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfigGranularTtlConfig;
+  ) = VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlGranularTtlConfig;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -857,11 +854,10 @@ sealed class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultT
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfig.defaultTtl] choice: sets `default_ttl`.
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfigDefaultTtl
-    extends
-        VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfig {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfigDefaultTtl(
+/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl.defaultTtl] choice: sets `default_ttl`.
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlDefaultTtl
+    extends VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlDefaultTtl(
     this.defaultTtl,
   );
 
@@ -874,11 +870,10 @@ final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTt
   Map<String, Object?> encode() => {'default_ttl': defaultTtl.toTfJson()};
 }
 
-/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfig.granularTtlConfig] choice: sets `granular_ttl_config`.
-final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfigGranularTtlConfig
-    extends
-        VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfig {
-  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigDefaultTtlOrGranularTtlConfigGranularTtlConfig(
+/// The [VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl.granularTtlConfig] choice: sets `granular_ttl_config`.
+final class VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlGranularTtlConfig
+    extends VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtl {
+  const VertexAiReasoningEngineContextSpecMemoryBankConfigTtlConfigTtlGranularTtlConfig(
     this.granularTtlConfig,
   );
 
@@ -940,7 +935,7 @@ final class VertexAiReasoningEngineSpec {
     this.identityType,
     this.serviceAccount,
     this.buildSpec,
-    this.containerSpecOrSourceCodeSpec,
+    this.deployment,
     this.deploymentSpec,
     this.packageSpec,
   });
@@ -955,8 +950,7 @@ final class VertexAiReasoningEngineSpec {
 
   final VertexAiReasoningEngineSpecBuildSpec? buildSpec;
 
-  final VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpec?
-  containerSpecOrSourceCodeSpec;
+  final VertexAiReasoningEngineSpecDeployment? deployment;
 
   final VertexAiReasoningEngineSpecDeploymentSpec? deploymentSpec;
 
@@ -968,7 +962,7 @@ final class VertexAiReasoningEngineSpec {
     if (identityType != null) 'identity_type': identityType!.toTfJson(),
     if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
     if (buildSpec != null) 'build_spec': buildSpec!.encode(),
-    ...?containerSpecOrSourceCodeSpec?.encode(),
+    ...?deployment?.encode(),
     if (deploymentSpec != null) 'deployment_spec': deploymentSpec!.encode(),
     if (packageSpec != null) 'package_spec': packageSpec!.encode(),
   };
@@ -979,18 +973,18 @@ final class VertexAiReasoningEngineSpec {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.containerSpec(...)`.
-sealed class VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpec {
-  const VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpec();
+sealed class VertexAiReasoningEngineSpecDeployment {
+  const VertexAiReasoningEngineSpecDeployment();
 
   /// Sets `container_spec`.
-  const factory VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpec.containerSpec(
+  const factory VertexAiReasoningEngineSpecDeployment.containerSpec(
     VertexAiReasoningEngineSpecContainerSpec containerSpec,
-  ) = VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecContainerSpec;
+  ) = VertexAiReasoningEngineSpecDeploymentContainerSpec;
 
   /// Sets `source_code_spec`.
-  const factory VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpec.sourceCodeSpec(
+  const factory VertexAiReasoningEngineSpecDeployment.sourceCodeSpec(
     VertexAiReasoningEngineSpecSourceCodeSpec sourceCodeSpec,
-  ) = VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecSourceCodeSpec;
+  ) = VertexAiReasoningEngineSpecDeploymentSourceCodeSpec;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -998,12 +992,10 @@ sealed class VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpec {
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpec.containerSpec] choice: sets `container_spec`.
-final class VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecContainerSpec
-    extends VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpec {
-  const VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecContainerSpec(
-    this.containerSpec,
-  );
+/// The [VertexAiReasoningEngineSpecDeployment.containerSpec] choice: sets `container_spec`.
+final class VertexAiReasoningEngineSpecDeploymentContainerSpec
+    extends VertexAiReasoningEngineSpecDeployment {
+  const VertexAiReasoningEngineSpecDeploymentContainerSpec(this.containerSpec);
 
   final VertexAiReasoningEngineSpecContainerSpec containerSpec;
 
@@ -1014,10 +1006,10 @@ final class VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecContainerSpe
   Map<String, Object?> encode() => {'container_spec': containerSpec.encode()};
 }
 
-/// The [VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpec.sourceCodeSpec] choice: sets `source_code_spec`.
-final class VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecSourceCodeSpec
-    extends VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpec {
-  const VertexAiReasoningEngineSpecContainerSpecOrSourceCodeSpecSourceCodeSpec(
+/// The [VertexAiReasoningEngineSpecDeployment.sourceCodeSpec] choice: sets `source_code_spec`.
+final class VertexAiReasoningEngineSpecDeploymentSourceCodeSpec
+    extends VertexAiReasoningEngineSpecDeployment {
+  const VertexAiReasoningEngineSpecDeploymentSourceCodeSpec(
     this.sourceCodeSpec,
   );
 
@@ -1319,7 +1311,7 @@ final class VertexAiReasoningEngineSpecSourceCodeSpec {
   const VertexAiReasoningEngineSpecSourceCodeSpec({
     this.agentConfigSource,
     this.developerConnectSource,
-    this.imageSpecOrPythonSpec,
+    this.runtime,
     this.inlineSource,
   });
 
@@ -1329,8 +1321,7 @@ final class VertexAiReasoningEngineSpecSourceCodeSpec {
   final VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSource?
   developerConnectSource;
 
-  final VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpec?
-  imageSpecOrPythonSpec;
+  final VertexAiReasoningEngineSpecSourceCodeSpecRuntime? runtime;
 
   final VertexAiReasoningEngineSpecSourceCodeSpecInlineSource? inlineSource;
 
@@ -1339,7 +1330,7 @@ final class VertexAiReasoningEngineSpecSourceCodeSpec {
       'agent_config_source': agentConfigSource!.encode(),
     if (developerConnectSource != null)
       'developer_connect_source': developerConnectSource!.encode(),
-    ...?imageSpecOrPythonSpec?.encode(),
+    ...?runtime?.encode(),
     if (inlineSource != null) 'inline_source': inlineSource!.encode(),
   };
 }
@@ -1349,18 +1340,18 @@ final class VertexAiReasoningEngineSpecSourceCodeSpec {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.imageSpec(...)`.
-sealed class VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpec {
-  const VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpec();
+sealed class VertexAiReasoningEngineSpecSourceCodeSpecRuntime {
+  const VertexAiReasoningEngineSpecSourceCodeSpecRuntime();
 
   /// Sets `image_spec`.
-  const factory VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpec.imageSpec(
+  const factory VertexAiReasoningEngineSpecSourceCodeSpecRuntime.imageSpec(
     VertexAiReasoningEngineSpecSourceCodeSpecImageSpec imageSpec,
-  ) = VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecImageSpec;
+  ) = VertexAiReasoningEngineSpecSourceCodeSpecRuntimeImageSpec;
 
   /// Sets `python_spec`.
-  const factory VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpec.pythonSpec(
+  const factory VertexAiReasoningEngineSpecSourceCodeSpecRuntime.pythonSpec(
     VertexAiReasoningEngineSpecSourceCodeSpecPythonSpec pythonSpec,
-  ) = VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecPythonSpec;
+  ) = VertexAiReasoningEngineSpecSourceCodeSpecRuntimePythonSpec;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -1368,10 +1359,10 @@ sealed class VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpec {
   Map<String, Object?> encode();
 }
 
-/// The [VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpec.imageSpec] choice: sets `image_spec`.
-final class VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecImageSpec
-    extends VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpec {
-  const VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecImageSpec(
+/// The [VertexAiReasoningEngineSpecSourceCodeSpecRuntime.imageSpec] choice: sets `image_spec`.
+final class VertexAiReasoningEngineSpecSourceCodeSpecRuntimeImageSpec
+    extends VertexAiReasoningEngineSpecSourceCodeSpecRuntime {
+  const VertexAiReasoningEngineSpecSourceCodeSpecRuntimeImageSpec(
     this.imageSpec,
   );
 
@@ -1384,10 +1375,10 @@ final class VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecImageS
   Map<String, Object?> encode() => {'image_spec': imageSpec.encode()};
 }
 
-/// The [VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpec.pythonSpec] choice: sets `python_spec`.
-final class VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecPythonSpec
-    extends VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpec {
-  const VertexAiReasoningEngineSpecSourceCodeSpecImageSpecOrPythonSpecPythonSpec(
+/// The [VertexAiReasoningEngineSpecSourceCodeSpecRuntime.pythonSpec] choice: sets `python_spec`.
+final class VertexAiReasoningEngineSpecSourceCodeSpecRuntimePythonSpec
+    extends VertexAiReasoningEngineSpecSourceCodeSpecRuntime {
+  const VertexAiReasoningEngineSpecSourceCodeSpecRuntimePythonSpec(
     this.pythonSpec,
   );
 

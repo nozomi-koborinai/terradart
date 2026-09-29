@@ -11,18 +11,18 @@ const Set<String> _awsSagemakerPipelineSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.pipelineDefinition(...)`.
-sealed class SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location {
-  const SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location();
+sealed class SagemakerPipelinePipelineDefinition {
+  const SagemakerPipelinePipelineDefinition();
 
   /// Sets `pipeline_definition`.
-  const factory SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location.pipelineDefinition(
+  const factory SagemakerPipelinePipelineDefinition.pipelineDefinition(
     TfArg<String> pipelineDefinition,
-  ) = SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinition;
+  ) = SagemakerPipelinePipelineDefinitionPipelineDefinition;
 
   /// Sets `pipeline_definition_s3_location`.
-  const factory SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location.pipelineDefinitionS3Location(
+  const factory SagemakerPipelinePipelineDefinition.pipelineDefinitionS3Location(
     SagemakerPipelinePipelineDefinitionS3Location pipelineDefinitionS3Location,
-  ) = SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinitionS3Location;
+  ) = SagemakerPipelinePipelineDefinitionPipelineDefinitionS3Location;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +34,10 @@ sealed class SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location.pipelineDefinition] choice: sets `pipeline_definition`.
-final class SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinition
-    extends SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location {
-  const SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinition(
+/// The [SagemakerPipelinePipelineDefinition.pipelineDefinition] choice: sets `pipeline_definition`.
+final class SagemakerPipelinePipelineDefinitionPipelineDefinition
+    extends SagemakerPipelinePipelineDefinition {
+  const SagemakerPipelinePipelineDefinitionPipelineDefinition(
     this.pipelineDefinition,
   );
 
@@ -57,10 +57,10 @@ final class SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPip
   };
 }
 
-/// The [SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location.pipelineDefinitionS3Location] choice: sets `pipeline_definition_s3_location`.
-final class SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinitionS3Location
-    extends SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location {
-  const SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3LocationPipelineDefinitionS3Location(
+/// The [SagemakerPipelinePipelineDefinition.pipelineDefinitionS3Location] choice: sets `pipeline_definition_s3_location`.
+final class SagemakerPipelinePipelineDefinitionPipelineDefinitionS3Location
+    extends SagemakerPipelinePipelineDefinition {
+  const SagemakerPipelinePipelineDefinitionPipelineDefinitionS3Location(
     this.pipelineDefinitionS3Location,
   );
 
@@ -127,8 +127,7 @@ final class AwsSagemakerPipeline extends Resource {
 
   AwsSagemakerPipeline({
     required super.localName,
-    required SagemakerPipelinePipelineDefinitionOrPipelineDefinitionS3Location
-    pipelineDefinitionOrPipelineDefinitionS3Location,
+    required SagemakerPipelinePipelineDefinition pipelineDefinition,
     TfArg<String>? pipelineDescription,
     required TfArg<String> pipelineDisplayName,
     required TfArg<String> pipelineName,
@@ -143,7 +142,7 @@ final class AwsSagemakerPipeline extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...pipelineDefinitionOrPipelineDefinitionS3Location.argMap,
+           ...pipelineDefinition.argMap,
            if (pipelineDescription != null)
              'pipeline_description': pipelineDescription,
            'pipeline_display_name': pipelineDisplayName,

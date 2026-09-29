@@ -39,10 +39,10 @@ export 'src/appautoscaling/aws_appautoscaling_policy.dart'
         AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetricsMetricStat,
         AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetricsMetricStatMetric,
         AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationMetricsMetricStatMetricDimensions,
-        AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification,
-        AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationCustomizedMetricSpecification,
-        AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecificationPredefinedMetricSpecification,
         AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationStatistic,
+        AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecification,
+        AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecificationCustomizedMetricSpecification,
+        AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationMetricSpecificationPredefinedMetricSpecification,
         AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification,
         AwsAppautoscalingPolicy;
 export 'src/appautoscaling/aws_appautoscaling_scheduled_action.dart'

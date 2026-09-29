@@ -11,18 +11,17 @@ const Set<String> _awsDocdbEventSubscriptionSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class DocdbEventSubscriptionNameOrNamePrefix {
-  const DocdbEventSubscriptionNameOrNamePrefix();
+sealed class DocdbEventSubscriptionName {
+  const DocdbEventSubscriptionName();
 
   /// Sets `name`.
-  const factory DocdbEventSubscriptionNameOrNamePrefix.name(
-    TfArg<String> name,
-  ) = DocdbEventSubscriptionNameOrNamePrefixName;
+  const factory DocdbEventSubscriptionName.name(TfArg<String> name) =
+      DocdbEventSubscriptionNameName;
 
   /// Sets `name_prefix`.
-  const factory DocdbEventSubscriptionNameOrNamePrefix.namePrefix(
+  const factory DocdbEventSubscriptionName.namePrefix(
     TfArg<String> namePrefix,
-  ) = DocdbEventSubscriptionNameOrNamePrefixNamePrefix;
+  ) = DocdbEventSubscriptionNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +33,9 @@ sealed class DocdbEventSubscriptionNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DocdbEventSubscriptionNameOrNamePrefix.name] choice: sets `name`.
-final class DocdbEventSubscriptionNameOrNamePrefixName
-    extends DocdbEventSubscriptionNameOrNamePrefix {
-  const DocdbEventSubscriptionNameOrNamePrefixName(this.name);
+/// The [DocdbEventSubscriptionName.name] choice: sets `name`.
+final class DocdbEventSubscriptionNameName extends DocdbEventSubscriptionName {
+  const DocdbEventSubscriptionNameName(this.name);
 
   final TfArg<String> name;
 
@@ -51,10 +49,10 @@ final class DocdbEventSubscriptionNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [DocdbEventSubscriptionNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class DocdbEventSubscriptionNameOrNamePrefixNamePrefix
-    extends DocdbEventSubscriptionNameOrNamePrefix {
-  const DocdbEventSubscriptionNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [DocdbEventSubscriptionName.namePrefix] choice: sets `name_prefix`.
+final class DocdbEventSubscriptionNameNamePrefix
+    extends DocdbEventSubscriptionName {
+  const DocdbEventSubscriptionNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -76,7 +74,7 @@ final class AwsDocdbEventSubscription extends Resource {
     required super.localName,
     TfArg<bool>? enabled,
     TfArg<List<String>>? eventCategories,
-    DocdbEventSubscriptionNameOrNamePrefix? nameOrNamePrefix,
+    DocdbEventSubscriptionName? name,
     TfArg<String>? region,
     required TfArg<String> snsTopicArn,
     TfArg<List<String>>? sourceIds,
@@ -91,7 +89,7 @@ final class AwsDocdbEventSubscription extends Resource {
          argMap: {
            if (enabled != null) 'enabled': enabled,
            if (eventCategories != null) 'event_categories': eventCategories,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            'sns_topic_arn': snsTopicArn,
            if (sourceIds != null) 'source_ids': sourceIds,

@@ -16,7 +16,7 @@ curatedDoc: |-
   ///
   /// Pass exactly one [nextHop] variant (`ilbIp` or `otherRoutes`). Scope
   /// installation with at most one of VM tags or an interconnect attachment
-  /// ([virtualMachineOrInterconnectAttachment]).
+  /// ([scope]).
   ///
   /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU for PBR
   /// (Network Connectivity Center `7BEB-7A51-4223` `list_skus` keywords
@@ -41,12 +41,11 @@ curatedDoc: |-
   ///       NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,
   ///     ),
   ///   ),
-  ///   virtualMachineOrInterconnectAttachment:
-  ///       NetworkConnectivityPolicyBasedRouteVirtualMachineOption(
-  ///         virtualMachine: NetworkConnectivityPolicyBasedRouteVirtualMachine(
-  ///           tags: TfArg.literal(['terradart-pbr']),
-  ///         ),
-  ///       ),
+  ///   scope: .virtualMachine(
+  ///     NetworkConnectivityPolicyBasedRouteVirtualMachine(
+  ///       tags: TfArg.literal(['terradart-pbr']),
+  ///     ),
+  ///   ),
   /// );
   /// ```
 
@@ -137,3 +136,6 @@ argMapOrder:
   - deletion_policy
   - project
   - next_hop
+
+sealedNames:
+  "interconnect_attachment, virtual_machine": scope

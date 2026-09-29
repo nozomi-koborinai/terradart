@@ -10,18 +10,18 @@ const Set<String> _awsVpcEndpointConnectionNotificationSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.vpcEndpointId(...)`.
-sealed class VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId {
-  const VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId();
+sealed class VpcEndpointConnectionNotificationVpcEndpoint {
+  const VpcEndpointConnectionNotificationVpcEndpoint();
 
   /// Sets `vpc_endpoint_id`.
-  const factory VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId.vpcEndpointId(
+  const factory VpcEndpointConnectionNotificationVpcEndpoint.vpcEndpointId(
     TfArg<String> vpcEndpointId,
-  ) = VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceIdVpcEndpointId;
+  ) = VpcEndpointConnectionNotificationVpcEndpointVpcEndpointId;
 
   /// Sets `vpc_endpoint_service_id`.
-  const factory VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId.vpcEndpointServiceId(
+  const factory VpcEndpointConnectionNotificationVpcEndpoint.vpcEndpointServiceId(
     TfArg<String> vpcEndpointServiceId,
-  ) = VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceIdVpcEndpointServiceId;
+  ) = VpcEndpointConnectionNotificationVpcEndpointVpcEndpointServiceId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,11 +33,10 @@ sealed class VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceI
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId.vpcEndpointId] choice: sets `vpc_endpoint_id`.
-final class VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceIdVpcEndpointId
-    extends
-        VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId {
-  const VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceIdVpcEndpointId(
+/// The [VpcEndpointConnectionNotificationVpcEndpoint.vpcEndpointId] choice: sets `vpc_endpoint_id`.
+final class VpcEndpointConnectionNotificationVpcEndpointVpcEndpointId
+    extends VpcEndpointConnectionNotificationVpcEndpoint {
+  const VpcEndpointConnectionNotificationVpcEndpointVpcEndpointId(
     this.vpcEndpointId,
   );
 
@@ -55,11 +54,10 @@ final class VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId
   Map<String, TfArg<Object?>> get argMap => {'vpc_endpoint_id': vpcEndpointId};
 }
 
-/// The [VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId.vpcEndpointServiceId] choice: sets `vpc_endpoint_service_id`.
-final class VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceIdVpcEndpointServiceId
-    extends
-        VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId {
-  const VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceIdVpcEndpointServiceId(
+/// The [VpcEndpointConnectionNotificationVpcEndpoint.vpcEndpointServiceId] choice: sets `vpc_endpoint_service_id`.
+final class VpcEndpointConnectionNotificationVpcEndpointVpcEndpointServiceId
+    extends VpcEndpointConnectionNotificationVpcEndpoint {
+  const VpcEndpointConnectionNotificationVpcEndpointVpcEndpointServiceId(
     this.vpcEndpointServiceId,
   );
 
@@ -88,8 +86,7 @@ final class AwsVpcEndpointConnectionNotification extends Resource {
     required TfArg<List<String>> connectionEvents,
     required TfArg<String> connectionNotificationArn,
     TfArg<String>? region,
-    required VpcEndpointConnectionNotificationVpcEndpointIdOrVpcEndpointServiceId
-    vpcEndpointIdOrVpcEndpointServiceId,
+    required VpcEndpointConnectionNotificationVpcEndpoint vpcEndpoint,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -100,7 +97,7 @@ final class AwsVpcEndpointConnectionNotification extends Resource {
            'connection_events': connectionEvents,
            'connection_notification_arn': connectionNotificationArn,
            if (region != null) 'region': region,
-           ...vpcEndpointIdOrVpcEndpointServiceId.argMap,
+           ...vpcEndpoint.argMap,
          },
        );
 

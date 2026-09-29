@@ -39,18 +39,18 @@ enum DialogflowCxSecuritySettingsRetentionStrategy implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.retentionWindowDays(...)`.
-sealed class DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy {
-  const DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy();
+sealed class DialogflowCxSecuritySettingsRetention {
+  const DialogflowCxSecuritySettingsRetention();
 
   /// Sets `retention_window_days`.
-  const factory DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy.retentionWindowDays(
+  const factory DialogflowCxSecuritySettingsRetention.retentionWindowDays(
     TfArg<num> retentionWindowDays,
-  ) = DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRetentionWindowDays;
+  ) = DialogflowCxSecuritySettingsRetentionRetentionWindowDays;
 
   /// Sets `retention_strategy`.
-  const factory DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy.retentionStrategy(
+  const factory DialogflowCxSecuritySettingsRetention.retentionStrategy(
     TfArg<DialogflowCxSecuritySettingsRetentionStrategy> retentionStrategy,
-  ) = DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRetentionStrategy;
+  ) = DialogflowCxSecuritySettingsRetentionRetentionStrategy;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -62,10 +62,10 @@ sealed class DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy 
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy.retentionWindowDays] choice: sets `retention_window_days`.
-final class DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRetentionWindowDays
-    extends DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy {
-  const DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRetentionWindowDays(
+/// The [DialogflowCxSecuritySettingsRetention.retentionWindowDays] choice: sets `retention_window_days`.
+final class DialogflowCxSecuritySettingsRetentionRetentionWindowDays
+    extends DialogflowCxSecuritySettingsRetention {
+  const DialogflowCxSecuritySettingsRetentionRetentionWindowDays(
     this.retentionWindowDays,
   );
 
@@ -85,10 +85,10 @@ final class DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRe
   };
 }
 
-/// The [DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy.retentionStrategy] choice: sets `retention_strategy`.
-final class DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRetentionStrategy
-    extends DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy {
-  const DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRetentionStrategy(
+/// The [DialogflowCxSecuritySettingsRetention.retentionStrategy] choice: sets `retention_strategy`.
+final class DialogflowCxSecuritySettingsRetentionRetentionStrategy
+    extends DialogflowCxSecuritySettingsRetention {
+  const DialogflowCxSecuritySettingsRetentionRetentionStrategy(
     this.retentionStrategy,
   );
 
@@ -196,8 +196,7 @@ final class GoogleDialogflowCxSecuritySettings extends Resource {
     TfArg<DialogflowCxSecuritySettingsRedactionScope>? redactionScope,
     TfArg<String>? inspectTemplate,
     TfArg<String>? deidentifyTemplate,
-    DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy?
-    retentionWindowDaysOrRetentionStrategy,
+    DialogflowCxSecuritySettingsRetention? retention,
     TfArg<List<String>>? purgeDataTypes,
     DialogflowCxSecuritySettingsAudioExportSettings? audioExportSettings,
     DialogflowCxSecuritySettingsInsightsExportSettings? insightsExportSettings,
@@ -218,7 +217,7 @@ final class GoogleDialogflowCxSecuritySettings extends Resource {
            if (inspectTemplate != null) 'inspect_template': inspectTemplate,
            if (deidentifyTemplate != null)
              'deidentify_template': deidentifyTemplate,
-           ...?retentionWindowDaysOrRetentionStrategy?.argMap,
+           ...?retention?.argMap,
            if (purgeDataTypes != null) 'purge_data_types': purgeDataTypes,
            if (audioExportSettings != null)
              'audio_export_settings': TfArg.literal(

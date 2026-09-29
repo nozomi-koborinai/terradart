@@ -80,21 +80,20 @@ final class ImagebuilderInfrastructureConfigurationLoggingS3Logs {
 final class ImagebuilderInfrastructureConfigurationPlacement {
   const ImagebuilderInfrastructureConfigurationPlacement({
     this.availabilityZone,
-    this.hostIdOrHostResourceGroupArn,
+    this.host,
     this.tenancy,
   });
 
   final TfArg<String>? availabilityZone;
 
-  final ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn?
-  hostIdOrHostResourceGroupArn;
+  final ImagebuilderInfrastructureConfigurationPlacementHost? host;
 
   final TfArg<ImagebuilderInfrastructureConfigurationPlacementTenancy>? tenancy;
 
   Map<String, Object?> encode() => {
     if (availabilityZone != null)
       'availability_zone': availabilityZone!.toTfJson(),
-    ...?hostIdOrHostResourceGroupArn?.encode(),
+    ...?host?.encode(),
     if (tenancy != null) 'tenancy': tenancy!.toTfJson(),
   };
 }
@@ -104,18 +103,18 @@ final class ImagebuilderInfrastructureConfigurationPlacement {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.hostId(...)`.
-sealed class ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn {
-  const ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn();
+sealed class ImagebuilderInfrastructureConfigurationPlacementHost {
+  const ImagebuilderInfrastructureConfigurationPlacementHost();
 
   /// Sets `host_id`.
-  const factory ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn.hostId(
+  const factory ImagebuilderInfrastructureConfigurationPlacementHost.hostId(
     TfArg<String> hostId,
-  ) = ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArnHostId;
+  ) = ImagebuilderInfrastructureConfigurationPlacementHostHostId;
 
   /// Sets `host_resource_group_arn`.
-  const factory ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn.hostResourceGroupArn(
+  const factory ImagebuilderInfrastructureConfigurationPlacementHost.hostResourceGroupArn(
     TfArg<String> hostResourceGroupArn,
-  ) = ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArnHostResourceGroupArn;
+  ) = ImagebuilderInfrastructureConfigurationPlacementHostHostResourceGroupArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -123,13 +122,10 @@ sealed class ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourc
   Map<String, Object?> encode();
 }
 
-/// The [ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn.hostId] choice: sets `host_id`.
-final class ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArnHostId
-    extends
-        ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn {
-  const ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArnHostId(
-    this.hostId,
-  );
+/// The [ImagebuilderInfrastructureConfigurationPlacementHost.hostId] choice: sets `host_id`.
+final class ImagebuilderInfrastructureConfigurationPlacementHostHostId
+    extends ImagebuilderInfrastructureConfigurationPlacementHost {
+  const ImagebuilderInfrastructureConfigurationPlacementHostHostId(this.hostId);
 
   final TfArg<String> hostId;
 
@@ -140,11 +136,10 @@ final class ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResource
   Map<String, Object?> encode() => {'host_id': hostId.toTfJson()};
 }
 
-/// The [ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn.hostResourceGroupArn] choice: sets `host_resource_group_arn`.
-final class ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArnHostResourceGroupArn
-    extends
-        ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArn {
-  const ImagebuilderInfrastructureConfigurationPlacementHostIdOrHostResourceGroupArnHostResourceGroupArn(
+/// The [ImagebuilderInfrastructureConfigurationPlacementHost.hostResourceGroupArn] choice: sets `host_resource_group_arn`.
+final class ImagebuilderInfrastructureConfigurationPlacementHostHostResourceGroupArn
+    extends ImagebuilderInfrastructureConfigurationPlacementHost {
+  const ImagebuilderInfrastructureConfigurationPlacementHostHostResourceGroupArn(
     this.hostResourceGroupArn,
   );
 

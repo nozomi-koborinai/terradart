@@ -30,18 +30,18 @@ enum ImagebuilderContainerRecipePlatformOverride implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.dockerfileTemplateData(...)`.
-sealed class ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri {
-  const ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri();
+sealed class ImagebuilderContainerRecipeDockerfileTemplate {
+  const ImagebuilderContainerRecipeDockerfileTemplate();
 
   /// Sets `dockerfile_template_data`.
-  const factory ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri.dockerfileTemplateData(
+  const factory ImagebuilderContainerRecipeDockerfileTemplate.dockerfileTemplateData(
     TfArg<String> dockerfileTemplateData,
-  ) = ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUriDockerfileTemplateData;
+  ) = ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateData;
 
   /// Sets `dockerfile_template_uri`.
-  const factory ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri.dockerfileTemplateUri(
+  const factory ImagebuilderContainerRecipeDockerfileTemplate.dockerfileTemplateUri(
     TfArg<String> dockerfileTemplateUri,
-  ) = ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUriDockerfileTemplateUri;
+  ) = ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateUri;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -53,11 +53,10 @@ sealed class ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTempla
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri.dockerfileTemplateData] choice: sets `dockerfile_template_data`.
-final class ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUriDockerfileTemplateData
-    extends
-        ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri {
-  const ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUriDockerfileTemplateData(
+/// The [ImagebuilderContainerRecipeDockerfileTemplate.dockerfileTemplateData] choice: sets `dockerfile_template_data`.
+final class ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateData
+    extends ImagebuilderContainerRecipeDockerfileTemplate {
+  const ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateData(
     this.dockerfileTemplateData,
   );
 
@@ -77,11 +76,10 @@ final class ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplat
   };
 }
 
-/// The [ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri.dockerfileTemplateUri] choice: sets `dockerfile_template_uri`.
-final class ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUriDockerfileTemplateUri
-    extends
-        ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri {
-  const ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUriDockerfileTemplateUri(
+/// The [ImagebuilderContainerRecipeDockerfileTemplate.dockerfileTemplateUri] choice: sets `dockerfile_template_uri`.
+final class ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateUri
+    extends ImagebuilderContainerRecipeDockerfileTemplate {
+  const ImagebuilderContainerRecipeDockerfileTemplateDockerfileTemplateUri(
     this.dockerfileTemplateUri,
   );
 
@@ -293,8 +291,7 @@ final class AwsImagebuilderContainerRecipe extends Resource {
     required super.localName,
     required TfArg<ImagebuilderContainerRecipeContainerType> containerType,
     TfArg<String>? description,
-    required ImagebuilderContainerRecipeDockerfileTemplateDataOrDockerfileTemplateUri
-    dockerfileTemplateDataOrDockerfileTemplateUri,
+    required ImagebuilderContainerRecipeDockerfileTemplate dockerfileTemplate,
     TfArg<String>? kmsKeyId,
     required TfArg<String> name,
     required TfArg<String> parentImage,
@@ -315,7 +312,7 @@ final class AwsImagebuilderContainerRecipe extends Resource {
          argMap: {
            'container_type': containerType,
            if (description != null) 'description': description,
-           ...dockerfileTemplateDataOrDockerfileTemplateUri.argMap,
+           ...dockerfileTemplate.argMap,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
            'name': name,
            'parent_image': parentImage,

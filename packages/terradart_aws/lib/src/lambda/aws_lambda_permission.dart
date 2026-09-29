@@ -21,18 +21,18 @@ enum LambdaPermissionFunctionUrlAuthType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.statementId(...)`.
-sealed class LambdaPermissionStatementIdOrStatementIdPrefix {
-  const LambdaPermissionStatementIdOrStatementIdPrefix();
+sealed class LambdaPermissionStatementId {
+  const LambdaPermissionStatementId();
 
   /// Sets `statement_id`.
-  const factory LambdaPermissionStatementIdOrStatementIdPrefix.statementId(
+  const factory LambdaPermissionStatementId.statementId(
     TfArg<String> statementId,
-  ) = LambdaPermissionStatementIdOrStatementIdPrefixStatementId;
+  ) = LambdaPermissionStatementIdStatementId;
 
   /// Sets `statement_id_prefix`.
-  const factory LambdaPermissionStatementIdOrStatementIdPrefix.statementIdPrefix(
+  const factory LambdaPermissionStatementId.statementIdPrefix(
     TfArg<String> statementIdPrefix,
-  ) = LambdaPermissionStatementIdOrStatementIdPrefixStatementIdPrefix;
+  ) = LambdaPermissionStatementIdStatementIdPrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,12 +44,10 @@ sealed class LambdaPermissionStatementIdOrStatementIdPrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [LambdaPermissionStatementIdOrStatementIdPrefix.statementId] choice: sets `statement_id`.
-final class LambdaPermissionStatementIdOrStatementIdPrefixStatementId
-    extends LambdaPermissionStatementIdOrStatementIdPrefix {
-  const LambdaPermissionStatementIdOrStatementIdPrefixStatementId(
-    this.statementId,
-  );
+/// The [LambdaPermissionStatementId.statementId] choice: sets `statement_id`.
+final class LambdaPermissionStatementIdStatementId
+    extends LambdaPermissionStatementId {
+  const LambdaPermissionStatementIdStatementId(this.statementId);
 
   final TfArg<String> statementId;
 
@@ -63,12 +61,10 @@ final class LambdaPermissionStatementIdOrStatementIdPrefixStatementId
   Map<String, TfArg<Object?>> get argMap => {'statement_id': statementId};
 }
 
-/// The [LambdaPermissionStatementIdOrStatementIdPrefix.statementIdPrefix] choice: sets `statement_id_prefix`.
-final class LambdaPermissionStatementIdOrStatementIdPrefixStatementIdPrefix
-    extends LambdaPermissionStatementIdOrStatementIdPrefix {
-  const LambdaPermissionStatementIdOrStatementIdPrefixStatementIdPrefix(
-    this.statementIdPrefix,
-  );
+/// The [LambdaPermissionStatementId.statementIdPrefix] choice: sets `statement_id_prefix`.
+final class LambdaPermissionStatementIdStatementIdPrefix
+    extends LambdaPermissionStatementId {
+  const LambdaPermissionStatementIdStatementIdPrefix(this.statementIdPrefix);
 
   final TfArg<String> statementIdPrefix;
 
@@ -103,8 +99,7 @@ final class AwsLambdaPermission extends Resource {
     TfArg<String>? region,
     TfArg<String>? sourceAccount,
     TfArg<String>? sourceArn,
-    LambdaPermissionStatementIdOrStatementIdPrefix?
-    statementIdOrStatementIdPrefix,
+    LambdaPermissionStatementId? statementId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -125,7 +120,7 @@ final class AwsLambdaPermission extends Resource {
            if (region != null) 'region': region,
            if (sourceAccount != null) 'source_account': sourceAccount,
            if (sourceArn != null) 'source_arn': sourceArn,
-           ...?statementIdOrStatementIdPrefix?.argMap,
+           ...?statementId?.argMap,
          },
        );
 

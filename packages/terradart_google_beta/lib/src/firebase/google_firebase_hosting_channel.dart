@@ -11,17 +11,17 @@ const Set<String> _googleFirebaseHostingChannelSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.expireTime(...)`.
-sealed class FirebaseHostingChannelExpireTimeOrTtl {
-  const FirebaseHostingChannelExpireTimeOrTtl();
+sealed class FirebaseHostingChannelExpiration {
+  const FirebaseHostingChannelExpiration();
 
   /// Sets `expire_time`.
-  const factory FirebaseHostingChannelExpireTimeOrTtl.expireTime(
+  const factory FirebaseHostingChannelExpiration.expireTime(
     TfArg<String> expireTime,
-  ) = FirebaseHostingChannelExpireTimeOrTtlExpireTime;
+  ) = FirebaseHostingChannelExpirationExpireTime;
 
   /// Sets `ttl`.
-  const factory FirebaseHostingChannelExpireTimeOrTtl.ttl(TfArg<String> ttl) =
-      FirebaseHostingChannelExpireTimeOrTtlTtl;
+  const factory FirebaseHostingChannelExpiration.ttl(TfArg<String> ttl) =
+      FirebaseHostingChannelExpirationTtl;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,10 +33,10 @@ sealed class FirebaseHostingChannelExpireTimeOrTtl {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [FirebaseHostingChannelExpireTimeOrTtl.expireTime] choice: sets `expire_time`.
-final class FirebaseHostingChannelExpireTimeOrTtlExpireTime
-    extends FirebaseHostingChannelExpireTimeOrTtl {
-  const FirebaseHostingChannelExpireTimeOrTtlExpireTime(this.expireTime);
+/// The [FirebaseHostingChannelExpiration.expireTime] choice: sets `expire_time`.
+final class FirebaseHostingChannelExpirationExpireTime
+    extends FirebaseHostingChannelExpiration {
+  const FirebaseHostingChannelExpirationExpireTime(this.expireTime);
 
   final TfArg<String> expireTime;
 
@@ -50,10 +50,10 @@ final class FirebaseHostingChannelExpireTimeOrTtlExpireTime
   Map<String, TfArg<Object?>> get argMap => {'expire_time': expireTime};
 }
 
-/// The [FirebaseHostingChannelExpireTimeOrTtl.ttl] choice: sets `ttl`.
-final class FirebaseHostingChannelExpireTimeOrTtlTtl
-    extends FirebaseHostingChannelExpireTimeOrTtl {
-  const FirebaseHostingChannelExpireTimeOrTtlTtl(this.ttl);
+/// The [FirebaseHostingChannelExpiration.ttl] choice: sets `ttl`.
+final class FirebaseHostingChannelExpirationTtl
+    extends FirebaseHostingChannelExpiration {
+  const FirebaseHostingChannelExpirationTtl(this.ttl);
 
   final TfArg<String> ttl;
 
@@ -79,7 +79,7 @@ final class GoogleFirebaseHostingChannel extends Resource {
     required super.localName,
     required TfArg<String> channelId,
     TfArg<String>? deletionPolicy,
-    FirebaseHostingChannelExpireTimeOrTtl? expireTimeOrTtl,
+    FirebaseHostingChannelExpiration? expiration,
     TfArg<Map<String, String>>? labels,
     TfArg<num>? retainedReleaseCount,
     required TfArg<String> siteId,
@@ -93,7 +93,7 @@ final class GoogleFirebaseHostingChannel extends Resource {
          argMap: {
            'channel_id': channelId,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           ...?expireTimeOrTtl?.argMap,
+           ...?expiration?.argMap,
            if (labels != null) 'labels': labels,
            if (retainedReleaseCount != null)
              'retained_release_count': retainedReleaseCount,

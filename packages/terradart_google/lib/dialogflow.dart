@@ -213,10 +213,10 @@ export 'src/dialogflow/google_dialogflow_cx_security_settings.dart'
         DialogflowCxSecuritySettingsInsightsExportSettings,
         DialogflowCxSecuritySettingsRedactionScope,
         DialogflowCxSecuritySettingsRedactionStrategy,
+        DialogflowCxSecuritySettingsRetention,
+        DialogflowCxSecuritySettingsRetentionRetentionStrategy,
+        DialogflowCxSecuritySettingsRetentionRetentionWindowDays,
         DialogflowCxSecuritySettingsRetentionStrategy,
-        DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategy,
-        DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRetentionStrategy,
-        DialogflowCxSecuritySettingsRetentionWindowDaysOrRetentionStrategyRetentionWindowDays,
         GoogleDialogflowCxSecuritySettings;
 export 'src/dialogflow/google_dialogflow_cx_test_case.dart'
     show
@@ -231,9 +231,9 @@ export 'src/dialogflow/google_dialogflow_cx_test_case.dart'
         DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTextResponses,
         DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTriggeredIntent,
         DialogflowCxTestCaseTestConfig,
-        DialogflowCxTestCaseTestConfigFlowOrPage,
-        DialogflowCxTestCaseTestConfigFlowOrPageFlow,
-        DialogflowCxTestCaseTestConfigFlowOrPagePage,
+        DialogflowCxTestCaseTestConfigStart,
+        DialogflowCxTestCaseTestConfigStartFlow,
+        DialogflowCxTestCaseTestConfigStartPage,
         GoogleDialogflowCxTestCase;
 export 'src/dialogflow/google_dialogflow_cx_tool.dart'
     show

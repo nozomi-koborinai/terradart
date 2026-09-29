@@ -11,18 +11,17 @@ const Set<String> _awsSchedulerScheduleGroupSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class SchedulerScheduleGroupNameOrNamePrefix {
-  const SchedulerScheduleGroupNameOrNamePrefix();
+sealed class SchedulerScheduleGroupName {
+  const SchedulerScheduleGroupName();
 
   /// Sets `name`.
-  const factory SchedulerScheduleGroupNameOrNamePrefix.name(
-    TfArg<String> name,
-  ) = SchedulerScheduleGroupNameOrNamePrefixName;
+  const factory SchedulerScheduleGroupName.name(TfArg<String> name) =
+      SchedulerScheduleGroupNameName;
 
   /// Sets `name_prefix`.
-  const factory SchedulerScheduleGroupNameOrNamePrefix.namePrefix(
+  const factory SchedulerScheduleGroupName.namePrefix(
     TfArg<String> namePrefix,
-  ) = SchedulerScheduleGroupNameOrNamePrefixNamePrefix;
+  ) = SchedulerScheduleGroupNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +33,9 @@ sealed class SchedulerScheduleGroupNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [SchedulerScheduleGroupNameOrNamePrefix.name] choice: sets `name`.
-final class SchedulerScheduleGroupNameOrNamePrefixName
-    extends SchedulerScheduleGroupNameOrNamePrefix {
-  const SchedulerScheduleGroupNameOrNamePrefixName(this.name);
+/// The [SchedulerScheduleGroupName.name] choice: sets `name`.
+final class SchedulerScheduleGroupNameName extends SchedulerScheduleGroupName {
+  const SchedulerScheduleGroupNameName(this.name);
 
   final TfArg<String> name;
 
@@ -51,10 +49,10 @@ final class SchedulerScheduleGroupNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [SchedulerScheduleGroupNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class SchedulerScheduleGroupNameOrNamePrefixNamePrefix
-    extends SchedulerScheduleGroupNameOrNamePrefix {
-  const SchedulerScheduleGroupNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [SchedulerScheduleGroupName.namePrefix] choice: sets `name_prefix`.
+final class SchedulerScheduleGroupNameNamePrefix
+    extends SchedulerScheduleGroupName {
+  const SchedulerScheduleGroupNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -74,7 +72,7 @@ final class AwsSchedulerScheduleGroup extends Resource {
 
   AwsSchedulerScheduleGroup({
     required super.localName,
-    SchedulerScheduleGroupNameOrNamePrefix? nameOrNamePrefix,
+    SchedulerScheduleGroupName? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -84,7 +82,7 @@ final class AwsSchedulerScheduleGroup extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
          },

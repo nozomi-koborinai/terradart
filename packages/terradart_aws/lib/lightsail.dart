@@ -51,9 +51,9 @@ export 'src/lightsail/aws_lightsail_instance_public_ports.dart'
 export 'src/lightsail/aws_lightsail_key_pair.dart'
     show
         AwsLightsailKeyPair,
-        LightsailKeyPairNameOrNamePrefix,
-        LightsailKeyPairNameOrNamePrefixName,
-        LightsailKeyPairNameOrNamePrefixNamePrefix;
+        LightsailKeyPairName,
+        LightsailKeyPairNameName,
+        LightsailKeyPairNameNamePrefix;
 export 'src/lightsail/aws_lightsail_lb.dart'
     show AwsLightsailLb, LightsailLbIpAddressType;
 export 'src/lightsail/aws_lightsail_lb_attachment.dart'

@@ -347,32 +347,29 @@ final class NetappVolumeLargeCapacityConfig {
 /// `google_netapp_volume` (derived from provider schema).
 @immutable
 final class NetappVolumeRestoreParameters {
-  const NetappVolumeRestoreParameters({
-    required this.sourceBackupOrSourceSnapshot,
-  });
+  const NetappVolumeRestoreParameters({required this.source});
 
-  final NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot
-  sourceBackupOrSourceSnapshot;
+  final NetappVolumeRestoreParametersSource source;
 
-  Map<String, Object?> encode() => {...sourceBackupOrSourceSnapshot.encode()};
+  Map<String, Object?> encode() => {...source.encode()};
 }
 
 /// Exactly one of `source_backup`, `source_snapshot` on the `restore_parameters` block of `google_netapp_volume`: the provider rejects
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.sourceBackup(...)`.
-sealed class NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot {
-  const NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot();
+sealed class NetappVolumeRestoreParametersSource {
+  const NetappVolumeRestoreParametersSource();
 
   /// Sets `source_backup`.
-  const factory NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot.sourceBackup(
+  const factory NetappVolumeRestoreParametersSource.sourceBackup(
     TfArg<String> sourceBackup,
-  ) = NetappVolumeRestoreParametersSourceBackupOrSourceSnapshotSourceBackup;
+  ) = NetappVolumeRestoreParametersSourceSourceBackup;
 
   /// Sets `source_snapshot`.
-  const factory NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot.sourceSnapshot(
+  const factory NetappVolumeRestoreParametersSource.sourceSnapshot(
     TfArg<String> sourceSnapshot,
-  ) = NetappVolumeRestoreParametersSourceBackupOrSourceSnapshotSourceSnapshot;
+  ) = NetappVolumeRestoreParametersSourceSourceSnapshot;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -380,12 +377,10 @@ sealed class NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot {
   Map<String, Object?> encode();
 }
 
-/// The [NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot.sourceBackup] choice: sets `source_backup`.
-final class NetappVolumeRestoreParametersSourceBackupOrSourceSnapshotSourceBackup
-    extends NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot {
-  const NetappVolumeRestoreParametersSourceBackupOrSourceSnapshotSourceBackup(
-    this.sourceBackup,
-  );
+/// The [NetappVolumeRestoreParametersSource.sourceBackup] choice: sets `source_backup`.
+final class NetappVolumeRestoreParametersSourceSourceBackup
+    extends NetappVolumeRestoreParametersSource {
+  const NetappVolumeRestoreParametersSourceSourceBackup(this.sourceBackup);
 
   final TfArg<String> sourceBackup;
 
@@ -396,12 +391,10 @@ final class NetappVolumeRestoreParametersSourceBackupOrSourceSnapshotSourceBacku
   Map<String, Object?> encode() => {'source_backup': sourceBackup.toTfJson()};
 }
 
-/// The [NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot.sourceSnapshot] choice: sets `source_snapshot`.
-final class NetappVolumeRestoreParametersSourceBackupOrSourceSnapshotSourceSnapshot
-    extends NetappVolumeRestoreParametersSourceBackupOrSourceSnapshot {
-  const NetappVolumeRestoreParametersSourceBackupOrSourceSnapshotSourceSnapshot(
-    this.sourceSnapshot,
-  );
+/// The [NetappVolumeRestoreParametersSource.sourceSnapshot] choice: sets `source_snapshot`.
+final class NetappVolumeRestoreParametersSourceSourceSnapshot
+    extends NetappVolumeRestoreParametersSource {
+  const NetappVolumeRestoreParametersSourceSourceSnapshot(this.sourceSnapshot);
 
   final TfArg<String> sourceSnapshot;
 

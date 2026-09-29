@@ -21,18 +21,18 @@ enum ImagebuilderImagePipelineStatus implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.containerRecipeArn(...)`.
-sealed class ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn {
-  const ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn();
+sealed class ImagebuilderImagePipelineRecipeArn {
+  const ImagebuilderImagePipelineRecipeArn();
 
   /// Sets `container_recipe_arn`.
-  const factory ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn.containerRecipeArn(
+  const factory ImagebuilderImagePipelineRecipeArn.containerRecipeArn(
     TfArg<String> containerRecipeArn,
-  ) = ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnContainerRecipeArn;
+  ) = ImagebuilderImagePipelineRecipeArnContainerRecipeArn;
 
   /// Sets `image_recipe_arn`.
-  const factory ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn.imageRecipeArn(
+  const factory ImagebuilderImagePipelineRecipeArn.imageRecipeArn(
     TfArg<String> imageRecipeArn,
-  ) = ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnImageRecipeArn;
+  ) = ImagebuilderImagePipelineRecipeArnImageRecipeArn;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,10 +44,10 @@ sealed class ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn.containerRecipeArn] choice: sets `container_recipe_arn`.
-final class ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnContainerRecipeArn
-    extends ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn {
-  const ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnContainerRecipeArn(
+/// The [ImagebuilderImagePipelineRecipeArn.containerRecipeArn] choice: sets `container_recipe_arn`.
+final class ImagebuilderImagePipelineRecipeArnContainerRecipeArn
+    extends ImagebuilderImagePipelineRecipeArn {
+  const ImagebuilderImagePipelineRecipeArnContainerRecipeArn(
     this.containerRecipeArn,
   );
 
@@ -67,12 +67,10 @@ final class ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnContainer
   };
 }
 
-/// The [ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn.imageRecipeArn] choice: sets `image_recipe_arn`.
-final class ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnImageRecipeArn
-    extends ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn {
-  const ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArnImageRecipeArn(
-    this.imageRecipeArn,
-  );
+/// The [ImagebuilderImagePipelineRecipeArn.imageRecipeArn] choice: sets `image_recipe_arn`.
+final class ImagebuilderImagePipelineRecipeArnImageRecipeArn
+    extends ImagebuilderImagePipelineRecipeArn {
+  const ImagebuilderImagePipelineRecipeArnImageRecipeArn(this.imageRecipeArn);
 
   final TfArg<String> imageRecipeArn;
 
@@ -276,8 +274,7 @@ final class AwsImagebuilderImagePipeline extends Resource {
 
   AwsImagebuilderImagePipeline({
     required super.localName,
-    required ImagebuilderImagePipelineContainerRecipeArnOrImageRecipeArn
-    containerRecipeArnOrImageRecipeArn,
+    required ImagebuilderImagePipelineRecipeArn recipeArn,
     TfArg<String>? description,
     TfArg<String>? distributionConfigurationArn,
     TfArg<bool>? enhancedImageMetadataEnabled,
@@ -300,7 +297,7 @@ final class AwsImagebuilderImagePipeline extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...containerRecipeArnOrImageRecipeArn.argMap,
+           ...recipeArn.argMap,
            if (description != null) 'description': description,
            if (distributionConfigurationArn != null)
              'distribution_configuration_arn': distributionConfigurationArn,

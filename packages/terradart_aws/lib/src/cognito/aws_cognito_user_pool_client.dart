@@ -52,14 +52,13 @@ enum CognitoUserPoolClientPreventUserExistenceErrors implements TerraformEnum {
 @immutable
 final class CognitoUserPoolClientAnalyticsConfiguration {
   const CognitoUserPoolClientAnalyticsConfiguration({
-    required this.applicationArnOrApplicationId,
+    required this.application,
     this.externalId,
     this.roleArn,
     this.userDataShared,
   });
 
-  final CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId
-  applicationArnOrApplicationId;
+  final CognitoUserPoolClientAnalyticsConfigurationApplication application;
 
   final TfArg<String>? externalId;
 
@@ -68,7 +67,7 @@ final class CognitoUserPoolClientAnalyticsConfiguration {
   final TfArg<bool>? userDataShared;
 
   Map<String, Object?> encode() => {
-    ...applicationArnOrApplicationId.encode(),
+    ...application.encode(),
     if (externalId != null) 'external_id': externalId!.toTfJson(),
     if (roleArn != null) 'role_arn': roleArn!.toTfJson(),
     if (userDataShared != null) 'user_data_shared': userDataShared!.toTfJson(),
@@ -79,18 +78,18 @@ final class CognitoUserPoolClientAnalyticsConfiguration {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.applicationArn(...)`.
-sealed class CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
-  const CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId();
+sealed class CognitoUserPoolClientAnalyticsConfigurationApplication {
+  const CognitoUserPoolClientAnalyticsConfigurationApplication();
 
   /// Sets `application_arn`.
-  const factory CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationArn(
+  const factory CognitoUserPoolClientAnalyticsConfigurationApplication.applicationArn(
     TfArg<String> applicationArn,
-  ) = CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationArn;
+  ) = CognitoUserPoolClientAnalyticsConfigurationApplicationApplicationArn;
 
   /// Sets `application_id`.
-  const factory CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationId(
+  const factory CognitoUserPoolClientAnalyticsConfigurationApplication.applicationId(
     TfArg<String> applicationId,
-  ) = CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationId;
+  ) = CognitoUserPoolClientAnalyticsConfigurationApplicationApplicationId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -98,11 +97,10 @@ sealed class CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicat
   Map<String, Object?> encode();
 }
 
-/// The [CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationArn] choice: sets `application_arn`.
-final class CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationArn
-    extends
-        CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
-  const CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationArn(
+/// The [CognitoUserPoolClientAnalyticsConfigurationApplication.applicationArn] choice: sets `application_arn`.
+final class CognitoUserPoolClientAnalyticsConfigurationApplicationApplicationArn
+    extends CognitoUserPoolClientAnalyticsConfigurationApplication {
+  const CognitoUserPoolClientAnalyticsConfigurationApplicationApplicationArn(
     this.applicationArn,
   );
 
@@ -117,11 +115,10 @@ final class CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicati
   };
 }
 
-/// The [CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId.applicationId] choice: sets `application_id`.
-final class CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationId
-    extends
-        CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationId {
-  const CognitoUserPoolClientAnalyticsConfigurationApplicationArnOrApplicationIdApplicationId(
+/// The [CognitoUserPoolClientAnalyticsConfigurationApplication.applicationId] choice: sets `application_id`.
+final class CognitoUserPoolClientAnalyticsConfigurationApplicationApplicationId
+    extends CognitoUserPoolClientAnalyticsConfigurationApplication {
+  const CognitoUserPoolClientAnalyticsConfigurationApplicationApplicationId(
     this.applicationId,
   );
 

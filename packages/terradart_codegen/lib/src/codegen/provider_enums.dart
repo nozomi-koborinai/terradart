@@ -85,6 +85,11 @@ final class ProviderEnums {
     );
   }
 
+  /// Whether any exclusive-group source is loaded. Without one, no group
+  /// exists to match, so a `sealedNames` key cannot be judged stale.
+  bool get hasGroupSource =>
+      enabled || exactlyOneGroups.isNotEmpty || atMostOneGroups.isNotEmpty;
+
   const ProviderEnums._groups({
     required this.exactlyOneGroups,
     required this.atMostOneGroups,

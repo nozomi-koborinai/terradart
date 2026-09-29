@@ -11,18 +11,17 @@ const Set<String> _awsNeptuneEventSubscriptionSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.name(...)`.
-sealed class NeptuneEventSubscriptionNameOrNamePrefix {
-  const NeptuneEventSubscriptionNameOrNamePrefix();
+sealed class NeptuneEventSubscriptionName {
+  const NeptuneEventSubscriptionName();
 
   /// Sets `name`.
-  const factory NeptuneEventSubscriptionNameOrNamePrefix.name(
-    TfArg<String> name,
-  ) = NeptuneEventSubscriptionNameOrNamePrefixName;
+  const factory NeptuneEventSubscriptionName.name(TfArg<String> name) =
+      NeptuneEventSubscriptionNameName;
 
   /// Sets `name_prefix`.
-  const factory NeptuneEventSubscriptionNameOrNamePrefix.namePrefix(
+  const factory NeptuneEventSubscriptionName.namePrefix(
     TfArg<String> namePrefix,
-  ) = NeptuneEventSubscriptionNameOrNamePrefixNamePrefix;
+  ) = NeptuneEventSubscriptionNameNamePrefix;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +33,10 @@ sealed class NeptuneEventSubscriptionNameOrNamePrefix {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NeptuneEventSubscriptionNameOrNamePrefix.name] choice: sets `name`.
-final class NeptuneEventSubscriptionNameOrNamePrefixName
-    extends NeptuneEventSubscriptionNameOrNamePrefix {
-  const NeptuneEventSubscriptionNameOrNamePrefixName(this.name);
+/// The [NeptuneEventSubscriptionName.name] choice: sets `name`.
+final class NeptuneEventSubscriptionNameName
+    extends NeptuneEventSubscriptionName {
+  const NeptuneEventSubscriptionNameName(this.name);
 
   final TfArg<String> name;
 
@@ -51,10 +50,10 @@ final class NeptuneEventSubscriptionNameOrNamePrefixName
   Map<String, TfArg<Object?>> get argMap => {'name': name};
 }
 
-/// The [NeptuneEventSubscriptionNameOrNamePrefix.namePrefix] choice: sets `name_prefix`.
-final class NeptuneEventSubscriptionNameOrNamePrefixNamePrefix
-    extends NeptuneEventSubscriptionNameOrNamePrefix {
-  const NeptuneEventSubscriptionNameOrNamePrefixNamePrefix(this.namePrefix);
+/// The [NeptuneEventSubscriptionName.namePrefix] choice: sets `name_prefix`.
+final class NeptuneEventSubscriptionNameNamePrefix
+    extends NeptuneEventSubscriptionName {
+  const NeptuneEventSubscriptionNameNamePrefix(this.namePrefix);
 
   final TfArg<String> namePrefix;
 
@@ -76,7 +75,7 @@ final class AwsNeptuneEventSubscription extends Resource {
     required super.localName,
     TfArg<bool>? enabled,
     TfArg<List<String>>? eventCategories,
-    NeptuneEventSubscriptionNameOrNamePrefix? nameOrNamePrefix,
+    NeptuneEventSubscriptionName? name,
     TfArg<String>? region,
     required TfArg<String> snsTopicArn,
     TfArg<List<String>>? sourceIds,
@@ -91,7 +90,7 @@ final class AwsNeptuneEventSubscription extends Resource {
          argMap: {
            if (enabled != null) 'enabled': enabled,
            if (eventCategories != null) 'event_categories': eventCategories,
-           ...?nameOrNamePrefix?.argMap,
+           ...?name?.argMap,
            if (region != null) 'region': region,
            'sns_topic_arn': snsTopicArn,
            if (sourceIds != null) 'source_ids': sourceIds,

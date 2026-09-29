@@ -14,19 +14,19 @@ _googleComputeRegionNetworkPolicyTrafficClassificationRuleSensitive =
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.targetServiceAccounts(...)`.
-sealed class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags {
-  const ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags();
+sealed class ComputeRegionNetworkPolicyTrafficClassificationRuleTarget {
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleTarget();
 
   /// Sets `target_service_accounts`.
-  const factory ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags.targetServiceAccounts(
+  const factory ComputeRegionNetworkPolicyTrafficClassificationRuleTarget.targetServiceAccounts(
     TfArg<List<String>> targetServiceAccounts,
-  ) = ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetServiceAccounts;
+  ) = ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetServiceAccounts;
 
   /// Sets `target_secure_tags`.
-  const factory ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags.targetSecureTags(
+  const factory ComputeRegionNetworkPolicyTrafficClassificationRuleTarget.targetSecureTags(
     List<ComputeRegionNetworkPolicyTrafficClassificationRuleTargetSecureTags>
     targetSecureTags,
-  ) = ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetSecureTags;
+  ) = ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetSecureTags;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -38,11 +38,10 @@ sealed class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAcc
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags.targetServiceAccounts] choice: sets `target_service_accounts`.
-final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetServiceAccounts
-    extends
-        ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags {
-  const ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetServiceAccounts(
+/// The [ComputeRegionNetworkPolicyTrafficClassificationRuleTarget.targetServiceAccounts] choice: sets `target_service_accounts`.
+final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetServiceAccounts
+    extends ComputeRegionNetworkPolicyTrafficClassificationRuleTarget {
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetServiceAccounts(
     this.targetServiceAccounts,
   );
 
@@ -62,11 +61,10 @@ final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAcco
   };
 }
 
-/// The [ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags.targetSecureTags] choice: sets `target_secure_tags`.
-final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetSecureTags
-    extends
-        ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags {
-  const ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTagsTargetSecureTags(
+/// The [ComputeRegionNetworkPolicyTrafficClassificationRuleTarget.targetSecureTags] choice: sets `target_secure_tags`.
+final class ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetSecureTags
+    extends ComputeRegionNetworkPolicyTrafficClassificationRuleTarget {
+  const ComputeRegionNetworkPolicyTrafficClassificationRuleTargetTargetSecureTags(
     this.targetSecureTags,
   );
 
@@ -245,8 +243,7 @@ final class GoogleComputeRegionNetworkPolicyTrafficClassificationRule
     TfArg<String>? project,
     TfArg<String>? region,
     TfArg<String>? ruleName,
-    ComputeRegionNetworkPolicyTrafficClassificationRuleTargetServiceAccountsOrTargetSecureTags?
-    targetServiceAccountsOrTargetSecureTags,
+    ComputeRegionNetworkPolicyTrafficClassificationRuleTarget? target,
     ComputeRegionNetworkPolicyTrafficClassificationRuleAction? action,
     required ComputeRegionNetworkPolicyTrafficClassificationRuleMatch match,
     super.lifecycle,
@@ -265,7 +262,7 @@ final class GoogleComputeRegionNetworkPolicyTrafficClassificationRule
            if (project != null) 'project': project,
            if (region != null) 'region': region,
            if (ruleName != null) 'rule_name': ruleName,
-           ...?targetServiceAccountsOrTargetSecureTags?.argMap,
+           ...?target?.argMap,
            if (action != null) 'action': TfArg.literal(action.encode()),
            'match': TfArg.literal(match.encode()),
          },
