@@ -498,7 +498,7 @@ hashicorp/google:
         contains("import '../x/google_x_network.dart' show GoogleXNetwork;"),
       );
       expect(src, contains('RefTo<GoogleXNetwork>? network'));
-      expect(src, contains("'network': network.encodeAs('self_link')"));
+      expect(src, contains("'network': ?network?.encodeAs('self_link')"));
       expect(src, contains('required TfArg<String> name'));
       expect(emitter.typedReferences, ['data.google_x_vm.network']);
     });
