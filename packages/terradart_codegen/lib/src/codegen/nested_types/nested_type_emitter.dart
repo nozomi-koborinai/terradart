@@ -30,9 +30,14 @@ String renderNestedTypes(
 }) {
   final buf = StringBuffer();
   final rendered = <String>{};
-  final taken = nestedTypeNames(specs);
+  final layouts = _layouts(specs);
   for (final spec in _byTfName(specs, (NestedBlockSpec s) => s.tfName)) {
-    final tree = _renderBlockTree(spec, resourceTerraformType, rendered, taken);
+    final tree = _renderBlockTree(
+      spec,
+      resourceTerraformType,
+      rendered,
+      layouts,
+    );
     if (tree.isEmpty) continue;
     if (buf.isNotEmpty) buf.writeln();
     buf.write(tree);
@@ -93,10 +98,10 @@ String _renderBlockTree(
   NestedBlockSpec spec,
   String resourceTerraformType,
   Set<String> rendered,
-  Set<String> taken,
+  Map<String, _Layout> layouts,
 ) {
   if (!rendered.add(spec.className)) return '';
-  final layout = _layout(spec, taken);
+  final layout = layouts[spec.className]!;
   final buf = StringBuffer()
     ..write(_renderClass(spec, resourceTerraformType, layout.plans));
   for (final group in layout.sealed) {
@@ -132,7 +137,7 @@ String _renderBlockTree(
       child,
       resourceTerraformType,
       rendered,
-      taken,
+      layouts,
     );
     if (tree.isEmpty) continue;
     buf
@@ -307,6 +312,40 @@ typedef _SealedGroup = ({
   SealedGroupName name,
 });
 
+typedef _Layout = ({
+  List<_FieldPlan> plans,
+  List<_SealedGroup> sealed,
+  List<String> skipped,
+  List<String> skippedAtMostOne,
+});
+
+/// Every block's [_layout] by class name, laid out in render order
+/// (depth-first, alphabetical by Terraform name). Each block's sealed types
+/// and variants join the names later blocks must not take, so two blocks
+/// never emit the same class.
+Map<String, _Layout> _layouts(List<NestedBlockSpec> specs) {
+  final taken = nestedTypeNames(specs);
+  final out = <String, _Layout>{};
+  void walk(NestedBlockSpec spec) {
+    if (out.containsKey(spec.className)) return;
+    final layout = _layout(spec, taken);
+    out[spec.className] = layout;
+    for (final g in layout.sealed) {
+      taken
+        ..add(g.type)
+        ..addAll([for (final m in g.members) exactlyOneVariantName(g.type, m)]);
+    }
+    for (final c in _byTfName(spec.children, (NestedBlockSpec s) => s.tfName)) {
+      walk(c);
+    }
+  }
+
+  for (final s in _byTfName(specs, (NestedBlockSpec s) => s.tfName)) {
+    walk(s);
+  }
+  return out;
+}
+
 /// Every class and enum name [specs] declare, children included — the
 /// names a sealed group's type and variants must not take.
 Set<String> nestedTypeNames(List<NestedBlockSpec> specs) {
@@ -336,13 +375,7 @@ Set<String> nestedTypeNames(List<NestedBlockSpec> specs) {
 /// when its field shadows another input of the block or its type or a
 /// variant takes a name in [taken] (every class the resource declares) or
 /// one an earlier group chose.
-({
-  List<_FieldPlan> plans,
-  List<_SealedGroup> sealed,
-  List<String> skipped,
-  List<String> skippedAtMostOne,
-})
-_layout(NestedBlockSpec spec, Set<String> taken) {
+_Layout _layout(NestedBlockSpec spec, Set<String> taken) {
   final members = _members(spec);
   final byName = {for (final m in members) m.tfName: m};
   final claimed = <String>{};
@@ -479,13 +512,13 @@ List<String> unsealedNestedGroups(
   final out = <String>[];
   final seen = <String>{};
   final laidOut = <String>{};
-  final taken = nestedTypeNames(specs);
+  final layouts = _layouts(specs);
   // A shared helper carries its canonical occurrence's `path`, so the walk
   // tracks where each copy actually sits.
   void walk(NestedBlockSpec spec, List<String> at) {
     if (!seen.add(at.join('.'))) return;
-    if (laidOut.add(spec.path.join('.'))) {
-      final layout = _layout(spec, taken);
+    if (laidOut.add(spec.className)) {
+      final layout = layouts[spec.className]!;
       out.addAll(optional ? layout.skippedAtMostOne : layout.skipped);
     }
     for (final c in spec.children) {
@@ -511,10 +544,10 @@ List<String> unsealedNestedGroups(
 List<SealedGroupName> nestedSealedNames(List<NestedBlockSpec> specs) {
   final out = <SealedGroupName>[];
   final laidOut = <String>{};
-  final taken = nestedTypeNames(specs);
+  final layouts = _layouts(specs);
   void walk(NestedBlockSpec spec) {
-    if (laidOut.add(spec.path.join('.'))) {
-      for (final g in _layout(spec, taken).sealed) {
+    if (laidOut.add(spec.className)) {
+      for (final g in layouts[spec.className]!.sealed) {
         out.add(g.name);
       }
     }
@@ -522,6 +555,27 @@ List<SealedGroupName> nestedSealedNames(List<NestedBlockSpec> specs) {
   }
 
   specs.forEach(walk);
+  return out;
+}
+
+/// The [sealedGroupKeyOf] key of every sealed group at every place it
+/// sits, a shared helper's copies included — each key a `sealedNames`
+/// entry can name the group by.
+Set<String> nestedSealedKeys(List<NestedBlockSpec> specs) {
+  final out = <String>{};
+  final layouts = _layouts(specs);
+  void walk(NestedBlockSpec spec, List<String> at) {
+    for (final g in layouts[spec.className]!.sealed) {
+      out.add(sealedGroupKeyOf(at, g.members));
+    }
+    for (final c in spec.children) {
+      walk(c, [...at, c.tfName]);
+    }
+  }
+
+  for (final s in specs) {
+    walk(s, [s.tfName]);
+  }
   return out;
 }
 

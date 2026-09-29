@@ -123,6 +123,29 @@ void main() {
     });
   });
 
+  test('sealedNames keys go unjudged when no group source is loaded', () {
+    final def = ResourceDef(
+      terraformType: 'aws_thing',
+      root: BlockDef(attributes: [_attr('a'), _attr('b')]),
+    );
+    const o = WrapperOverride(
+      outputDir: 'thing',
+      deriveExactlyOne: true,
+      sealedNames: {'a, b': 'source'},
+    );
+    Iterable<String> errors(ProviderEnums enums) => deriveExactlyOneSlots(
+      {'aws_thing': o},
+      {'aws_thing': def},
+      providerEnums: enums,
+      rawSchemas: const {},
+    ).nameErrors;
+    expect(errors(ProviderEnums.off), isEmpty);
+    expect(
+      errors(const ProviderEnums.on(exactlyOneGroups: {'aws_other': []})),
+      ['aws_thing sealedNames "a, b" matches no sealed group'],
+    );
+  });
+
   test('deriveExactlyOneSlots seals a group of optional inputs', () {
     final def = ResourceDef(
       terraformType: 'aws_thing',
@@ -410,6 +433,102 @@ void main() {
           error: null,
         ),
       ]);
+    });
+
+    test('a nested name clashes with a sealed type another block chose', () {
+      final specs = collectNestedTypes(
+        resourceBlock: {
+          'block_types': {
+            'foo': {
+              'nesting_mode': 'list',
+              'max_items': 1,
+              'block': {
+                'attributes': {
+                  'p': {'type': 'string', 'optional': true},
+                  'q': {'type': 'string', 'optional': true},
+                },
+                'block_types': {
+                  'bar': {
+                    'nesting_mode': 'list',
+                    'max_items': 1,
+                    'block': {
+                      'attributes': {
+                        'r': {'type': 'string', 'optional': true},
+                        's': {'type': 'string', 'optional': true},
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+        resourcePrefix: 'Thing',
+        customSlotKeys: const {},
+        excludedPaths: const {},
+        exactlyOneGroups: {
+          'foo': [
+            ['p', 'q'],
+          ],
+          'foo.bar': [
+            ['r', 's'],
+          ],
+        },
+        sealedNames: {
+          'foo.p, foo.q': 'bar_match',
+          'foo.bar.r, foo.bar.s': 'match',
+        },
+      );
+      final src = renderNestedTypes(specs, resourceTerraformType: 'aws_thing');
+      expect(
+        RegExp(r'sealed class ThingFooBarMatch\b').allMatches(src),
+        hasLength(1),
+      );
+      final child = nestedSealedNames(
+        specs,
+      ).singleWhere((n) => n.key == 'foo.bar.r, foo.bar.s');
+      expect(child.concept, 'r_or_s');
+      expect(child.error, contains('ThingFooBarMatch'));
+    });
+
+    test('a shared helper takes its name from any copy', () {
+      Map<String, dynamic> settings() => {
+        'nesting_mode': 'list',
+        'max_items': 1,
+        'block': {
+          'attributes': {
+            'x': {'type': 'string', 'optional': true},
+            'y': {'type': 'string', 'optional': true},
+            'z': {'type': 'string', 'optional': true},
+          },
+        },
+      };
+      final specs = collectNestedTypes(
+        resourceBlock: {
+          'block_types': {'one': settings(), 'two': settings()},
+        },
+        resourcePrefix: 'Thing',
+        customSlotKeys: const {},
+        excludedPaths: const {},
+        shareIdenticalShapes: true,
+        exactlyOneGroups: const {
+          'one': [
+            ['x', 'y'],
+          ],
+          'two': [
+            ['x', 'y'],
+          ],
+        },
+        sealedNames: {'two.x, two.y': 'target'},
+      );
+      expect(
+        renderNestedTypes(specs, resourceTerraformType: 'aws_thing'),
+        contains(' target;'),
+      );
+      expect(
+        nestedSealedKeys(specs),
+        containsAll(['one.x, one.y', 'two.x, two.y']),
+      );
     });
   });
 

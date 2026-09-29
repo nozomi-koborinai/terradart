@@ -106,6 +106,7 @@ deriveExactlyOneSlots(
       human.remove(n.key);
       if (n.error case final e?) nameErrors.add('$type [${n.key}]: $e');
     }
+    nestedSealedKeys(specs).forEach(human.remove);
     if (providerEnums.hasGroupSource) {
       for (final k in human.values) {
         nameErrors.add('$type sealedNames "$k" matches no sealed group');
