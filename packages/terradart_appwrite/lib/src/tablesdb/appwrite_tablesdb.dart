@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_tablesdb`.
 const Set<String> _appwriteTablesdbSensitive = <String>{};
 
@@ -16,14 +18,18 @@ final class AppwriteTablesdb extends Resource {
     required super.localName,
     TfArg<bool>? enabled,
     required TfArg<String> name,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'enabled': ?enabled, 'name': name, 'project_id': ?projectId},
+         argMap: {
+           'enabled': ?enabled,
+           'name': name,
+           'project_id': ?projectId?.encodeAs('id'),
+         },
        );
 
   @override

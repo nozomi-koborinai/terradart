@@ -12,6 +12,8 @@
 #   target:     the referenced resource type; must be curated in the lane
 #   attribute:  the attribute an input emits by default
 #   slots:      regex over the input's dotted path
+#   types:      (optional) regex over the resource / data source type, for a
+#               path that names a different target per product family
 #   attributes: (optional) `<resource>.<path>: attribute` for an input that
 #               takes another attribute of the target (a bare `name`)
 #   exclude:    (optional) `<resource>.<path>` inputs the pattern matches but
@@ -254,3 +256,39 @@ cloudflare/cloudflare:
   - target: cloudflare_zone
     attribute: id
     slots: '(^|\.)(zone_id|zone_ids)$'
+
+appwrite/appwrite:
+  - target: appwrite_project
+    attribute: id
+    slots: '^project_id$'
+  - target: appwrite_function
+    attribute: id
+    slots: '^function_id$'
+  - target: appwrite_site
+    attribute: id
+    slots: '^site_id$'
+  - target: appwrite_storage_bucket
+    attribute: id
+    slots: '^bucket_id$'
+  - target: appwrite_messaging_topic
+    attribute: id
+    slots: '^topic_id$'
+  - target: appwrite_tablesdb
+    attribute: id
+    slots: '^database_id$'
+    types: '^appwrite_tablesdb_'
+  - target: appwrite_tablesdb_table
+    attribute: id
+    slots: '^(table_id|related_table_id)$'
+  - target: appwrite_mongo_database
+    attribute: id
+    slots: '^database_id$'
+    types: '^appwrite_mongo_'
+  - target: appwrite_mysql_database
+    attribute: id
+    slots: '^database_id$'
+    types: '^appwrite_mysql_'
+  - target: appwrite_postgresql_database
+    attribute: id
+    slots: '^database_id$'
+    types: '^appwrite_postgresql_'

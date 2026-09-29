@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../functions/appwrite_function.dart' show AppwriteFunction;
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_function_deployment`.
 const Set<String> _appwriteFunctionDeploymentSensitive = <String>{};
 
@@ -29,9 +32,9 @@ final class AppwriteFunctionDeployment extends Resource {
     TfArg<String>? codePath,
     TfArg<String>? commands,
     TfArg<String>? entrypoint,
-    required TfArg<String> functionId,
+    required RefTo<AppwriteFunction> functionId,
     TfArg<String>? owner,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<String>? reference,
     TfArg<String>? repository,
     TfArg<String>? rootDirectory,
@@ -50,9 +53,9 @@ final class AppwriteFunctionDeployment extends Resource {
            'code_path': ?codePath,
            'commands': ?commands,
            'entrypoint': ?entrypoint,
-           'function_id': functionId,
+           'function_id': functionId.encodeAs('id'),
            'owner': ?owner,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'reference': ?reference,
            'repository': ?repository,
            'root_directory': ?rootDirectory,

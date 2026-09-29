@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_site`.
 const Set<String> _appwriteSiteSensitive = <String>{};
 
@@ -27,7 +29,7 @@ final class AppwriteSite extends Resource {
     TfArg<bool>? logging,
     required TfArg<String> name,
     TfArg<String>? outputDirectory,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<String>? providerBranch,
     TfArg<String>? providerRepositoryId,
     TfArg<String>? providerRootDirectory,
@@ -55,7 +57,7 @@ final class AppwriteSite extends Resource {
            'logging': ?logging,
            'name': name,
            'output_directory': ?outputDirectory,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'provider_branch': ?providerBranch,
            'provider_repository_id': ?providerRepositoryId,
            'provider_root_directory': ?providerRootDirectory,

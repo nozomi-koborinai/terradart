@@ -84,6 +84,16 @@ Per-package changelogs live alongside each package and are the system of record 
   `data.<type>.<path>` key applies to the data source alone. Typed inputs go
   to 346 google, 1,197 aws and 782 cloudflare. Synth output is unchanged. See
   `MIGRATING.md`.
+- **Appwrite arguments take `RefTo<R>`** (**breaking**; `terradart_appwrite`)
+  — the appwrite lane now types references too: `project_id` →
+  `AppwriteProject`, `database_id` → the database of the same family
+  (`AppwriteTablesdb`, `AppwriteMongoDatabase`, `AppwriteMysqlDatabase`,
+  `AppwritePostgresqlDatabase`), `table_id` / `related_table_id` →
+  `AppwriteTablesdbTable`, `bucket_id`, `topic_id`, `function_id` and
+  `site_id`, all emitting `id` (93 inputs, resources and data sources). A
+  ledger rule takes an optional `types:` regex for a path that names a
+  different target per product family. Synth output is unchanged. See
+  `MIGRATING.md`.
 
 - **Sealed variants are factory constructors** (**breaking**;
   `terradart_codegen`, `terradart_migrate`, every provider package) — a

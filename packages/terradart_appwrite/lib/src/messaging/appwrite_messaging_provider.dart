@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_messaging_provider`.
 const Set<String> _appwriteMessagingProviderSensitive = <String>{
   'api_key',
@@ -60,7 +62,7 @@ final class AppwriteMessagingProvider extends Resource {
     required TfArg<String> name,
     TfArg<String>? password,
     TfArg<num>? port,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<String>? replyToEmail,
     TfArg<String>? replyToName,
     TfArg<bool>? sandbox,
@@ -97,7 +99,7 @@ final class AppwriteMessagingProvider extends Resource {
            'name': name,
            'password': ?password,
            'port': ?port,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'reply_to_email': ?replyToEmail,
            'reply_to_name': ?replyToName,
            'sandbox': ?sandbox,

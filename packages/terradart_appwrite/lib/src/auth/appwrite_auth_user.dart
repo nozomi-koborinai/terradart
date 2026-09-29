@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_auth_user`.
 const Set<String> _appwriteAuthUserSensitive = <String>{'password'};
 
@@ -21,7 +23,7 @@ final class AppwriteAuthUser extends Resource {
     TfArg<String>? password,
     TfArg<String>? phone,
     TfArg<bool>? phoneVerification,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     TfArg<bool>? status,
     super.lifecycle,
     super.dependsOn,
@@ -37,7 +39,7 @@ final class AppwriteAuthUser extends Resource {
            'password': ?password,
            'phone': ?phone,
            'phone_verification': ?phoneVerification,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'status': ?status,
          },
        );

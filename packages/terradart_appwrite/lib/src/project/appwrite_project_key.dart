@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../project/appwrite_project.dart' show AppwriteProject;
+
 /// Sensitive field paths for `appwrite_project_key`.
 const Set<String> _appwriteProjectKeySensitive = <String>{'secret'};
 
@@ -23,7 +25,7 @@ final class AppwriteProjectKey extends Resource {
     TfArg<String>? expire,
     required TfArg<String> name,
     TfArg<String>? organizationId,
-    TfArg<String>? projectId,
+    RefTo<AppwriteProject>? projectId,
     required TfArg<List<String>> scopes,
     super.lifecycle,
     super.dependsOn,
@@ -35,7 +37,7 @@ final class AppwriteProjectKey extends Resource {
            'expire': ?expire,
            'name': name,
            'organization_id': ?organizationId,
-           'project_id': ?projectId,
+           'project_id': ?projectId?.encodeAs('id'),
            'scopes': scopes,
          },
        );
