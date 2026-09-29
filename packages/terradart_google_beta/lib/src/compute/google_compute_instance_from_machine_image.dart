@@ -4,6 +4,13 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show
+        GoogleComputeNetwork,
+        GoogleComputeSubnetwork,
+        GoogleKmsCryptoKey,
+        GoogleServiceAccount;
+
 /// Sensitive field paths for `google_compute_instance_from_machine_image`.
 const Set<String> _googleComputeInstanceFromMachineImageSensitive = <String>{
   'source_machine_image_encryption_key.raw_key',
@@ -92,12 +99,12 @@ final class ComputeInstanceFromMachineImageInstanceEncryptionKey {
     this.kmsKeyServiceAccount,
   });
 
-  final TfArg<String>? kmsKeySelfLink;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeySelfLink;
 
   final TfArg<String>? kmsKeyServiceAccount;
 
   Map<String, Object?> encode() => {
-    'kms_key_self_link': ?kmsKeySelfLink?.toTfJson(),
+    'kms_key_self_link': ?kmsKeySelfLink?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
   };
 }
@@ -132,7 +139,7 @@ final class ComputeInstanceFromMachineImageNetworkInterface {
 
   final TfArg<String>? ipv6Address;
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<String>? networkAttachment;
 
@@ -146,7 +153,7 @@ final class ComputeInstanceFromMachineImageNetworkInterface {
 
   final TfArg<String>? stackType;
 
-  final TfArg<String>? subnetwork;
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
   final TfArg<String>? subnetworkProject;
 
@@ -168,14 +175,14 @@ final class ComputeInstanceFromMachineImageNetworkInterface {
     'igmp_query': ?igmpQuery?.toTfJson(),
     'internal_ipv6_prefix_length': ?internalIpv6PrefixLength?.toTfJson(),
     'ipv6_address': ?ipv6Address?.toTfJson(),
-    'network': ?network?.toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
     'network_attachment': ?networkAttachment?.toTfJson(),
     'network_ip': ?networkIp?.toTfJson(),
     'nic_type': ?nicType?.toTfJson(),
     'queue_count': ?queueCount?.toTfJson(),
     'security_policy': ?securityPolicy?.toTfJson(),
     'stack_type': ?stackType?.toTfJson(),
-    'subnetwork': ?subnetwork?.toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
     'subnetwork_project': ?subnetworkProject?.toTfJson(),
     'vlan': ?vlan?.toTfJson(),
     if (accessConfig != null)
@@ -608,12 +615,12 @@ final class ComputeInstanceFromMachineImageServiceAccount {
     required this.scopes,
   });
 
-  final TfArg<String>? email;
+  final RefTo<GoogleServiceAccount>? email;
 
   final TfArg<List<Object?>> scopes;
 
   Map<String, Object?> encode() => {
-    'email': ?email?.toTfJson(),
+    'email': ?email?.encodeAs('email').toTfJson(),
     'scopes': scopes.toTfJson(),
   };
 }
@@ -652,7 +659,7 @@ final class ComputeInstanceFromMachineImageSourceMachineImageEncryptionKey {
     this.rsaEncryptedKey,
   });
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   final TfArg<String>? kmsKeyServiceAccount;
 
@@ -661,7 +668,7 @@ final class ComputeInstanceFromMachineImageSourceMachineImageEncryptionKey {
   final TfArg<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
-    'kms_key_name': ?kmsKeyName?.toTfJson(),
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
     'kms_key_service_account': ?kmsKeyServiceAccount?.toTfJson(),
     'raw_key': ?rawKey?.toTfJson(),
     'rsa_encrypted_key': ?rsaEncryptedKey?.toTfJson(),

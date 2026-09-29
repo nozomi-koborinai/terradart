@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleComputeNetwork, GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_tpu_v2_queued_resource`.
 const Set<String> _googleTpuV2QueuedResourceSensitive = <String>{};
 
@@ -86,18 +89,18 @@ final class TpuV2QueuedResourceTpuNodeSpecNodeNetworkConfig {
 
   final TfArg<bool>? enableExternalIps;
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<num>? queueCount;
 
-  final TfArg<String>? subnetwork;
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
   Map<String, Object?> encode() => {
     'can_ip_forward': ?canIpForward?.toTfJson(),
     'enable_external_ips': ?enableExternalIps?.toTfJson(),
-    'network': ?network?.toTfJson(),
+    'network': ?network?.encodeAs('id').toTfJson(),
     'queue_count': ?queueCount?.toTfJson(),
-    'subnetwork': ?subnetwork?.toTfJson(),
+    'subnetwork': ?subnetwork?.encodeAs('id').toTfJson(),
   };
 }
 

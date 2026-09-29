@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_vertex_ai_metadata_store`.
 const Set<String> _googleVertexAiMetadataStoreSensitive = <String>{};
 
@@ -13,9 +15,11 @@ const Set<String> _googleVertexAiMetadataStoreSensitive = <String>{};
 final class VertexAiMetadataStoreEncryptionSpec {
   const VertexAiMetadataStoreEncryptionSpec({this.kmsKeyName});
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
-  Map<String, Object?> encode() => {'kms_key_name': ?kmsKeyName?.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': ?kmsKeyName?.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_vertex_ai_metadata_store`.

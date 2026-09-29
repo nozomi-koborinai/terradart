@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import 'package:terradart_google/terradart_google.dart'
+    show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_os_config_guest_policies`.
 const Set<String> _googleOsConfigGuestPoliciesSensitive = <String>{};
 
@@ -351,14 +354,14 @@ final class OsConfigGuestPoliciesRecipesArtifactsGcs {
     this.object,
   });
 
-  final TfArg<String>? bucket;
+  final RefTo<GoogleStorageBucket>? bucket;
 
   final TfArg<num>? generation;
 
   final TfArg<String>? object;
 
   Map<String, Object?> encode() => {
-    'bucket': ?bucket?.toTfJson(),
+    'bucket': ?bucket?.encodeAs('name').toTfJson(),
     'generation': ?generation?.toTfJson(),
     'object': ?object?.toTfJson(),
   };
