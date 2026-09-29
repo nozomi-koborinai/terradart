@@ -4,3 +4,17 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+paramOrder:
+  - account_id
+  - domain
+  - allowed_delivery_modes
+  - drop_dispositions
+  - ip_restrictions
+  - regions
+  - folder
+  - integration_id
+  - lookback_hops
+  - require_tls_inbound
+  - require_tls_outbound
+  - transport

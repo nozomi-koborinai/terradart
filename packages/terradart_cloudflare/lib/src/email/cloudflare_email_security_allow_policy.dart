@@ -25,23 +25,31 @@ enum EmailSecurityAllowPolicyPatternType implements TerraformEnum {
 /// Accepted Permissions
 ///
 /// - `Cloud Email Security: Read` - `Cloud Email Security: Write`
+///
+/// Email Security allow policy: exempts messages matching `pattern`
+/// (an email address, domain or IP / CIDR, per `patternType`) from
+/// detections.
+///
+/// `isTrustedSender` bypasses every detection for the sender,
+/// `isAcceptableSender` only Spam / Spoof / Bulk, and `isExemptRecipient`
+/// every detection for the recipient; `verifySender` honors the policy
+/// only for mail that passes DMARC, SPF or DKIM. The deprecated
+/// `is_sender`, `is_spoof` and `is_recipient` inputs (end of life
+/// 2026-07-01) are not exposed.
 final class CloudflareEmailSecurityAllowPolicy extends Resource {
   static const String tfType = 'cloudflare_email_security_allow_policy';
 
   CloudflareEmailSecurityAllowPolicy({
     required super.localName,
     required RefTo<CloudflareAccount> accountId,
-    TfArg<String>? comments,
-    required TfArg<bool> isAcceptableSender,
-    required TfArg<bool> isExemptRecipient,
-    TfArg<bool>? isRecipient,
-    required TfArg<bool> isRegex,
-    TfArg<bool>? isSender,
-    TfArg<bool>? isSpoof,
-    required TfArg<bool> isTrustedSender,
     required TfArg<String> pattern,
     required TfArg<EmailSecurityAllowPolicyPatternType> patternType,
+    required TfArg<bool> isRegex,
+    required TfArg<bool> isTrustedSender,
+    required TfArg<bool> isAcceptableSender,
+    required TfArg<bool> isExemptRecipient,
     required TfArg<bool> verifySender,
+    TfArg<String>? comments,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -50,17 +58,14 @@ final class CloudflareEmailSecurityAllowPolicy extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId.encodeAs('id'),
-           'comments': ?comments,
-           'is_acceptable_sender': isAcceptableSender,
-           'is_exempt_recipient': isExemptRecipient,
-           'is_recipient': ?isRecipient,
-           'is_regex': isRegex,
-           'is_sender': ?isSender,
-           'is_spoof': ?isSpoof,
-           'is_trusted_sender': isTrustedSender,
            'pattern': pattern,
            'pattern_type': patternType,
+           'is_regex': isRegex,
+           'is_trusted_sender': isTrustedSender,
+           'is_acceptable_sender': isAcceptableSender,
+           'is_exempt_recipient': isExemptRecipient,
            'verify_sender': verifySender,
+           'comments': ?comments,
          },
        );
 
