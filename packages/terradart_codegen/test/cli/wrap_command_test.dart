@@ -1353,24 +1353,26 @@ paramOrder: [name, mode, kind, regions, grants, settings]
       Directory(overrides).createSync();
       File(p.join(source, 'provider_version.txt')).writeAsStringSync('1.0.0\n');
       Map<String, dynamic> optional() => {'type': 'string', 'optional': true};
-      File(p.join(source, 'schema.json')).writeAsStringSync(jsonEncode({
-        'format_version': '1.0',
-        'provider_schemas': {
-          'registry.terraform.io/example/x': {
-            'resource_schemas': {
-              'x_thing': {
-                'version': 0,
-                'block': {
-                  'attributes': {
-                    'id': {'type': 'string', 'computed': true},
-                    'name': {'type': 'string', 'required': true},
-                    'content': optional(),
-                    'data': optional(),
-                    'settings': {
-                      'optional': true,
-                      'nested_type': {
-                        'nesting_mode': 'single',
-                        'attributes': {'a': optional(), 'b': optional()},
+      File(p.join(source, 'schema.json')).writeAsStringSync(
+        jsonEncode({
+          'format_version': '1.0',
+          'provider_schemas': {
+            'registry.terraform.io/example/x': {
+              'resource_schemas': {
+                'x_thing': {
+                  'version': 0,
+                  'block': {
+                    'attributes': {
+                      'id': {'type': 'string', 'computed': true},
+                      'name': {'type': 'string', 'required': true},
+                      'content': optional(),
+                      'data': optional(),
+                      'settings': {
+                        'optional': true,
+                        'nested_type': {
+                          'nesting_mode': 'single',
+                          'attributes': {'a': optional(), 'b': optional()},
+                        },
                       },
                     },
                   },
@@ -1378,8 +1380,8 @@ paramOrder: [name, mode, kind, regions, grants, settings]
               },
             },
           },
-        },
-      }));
+        }),
+      );
       File(p.join(source, 'hints', 'x_thing.yaml')).writeAsStringSync('''
 provider_version: "1.0.0"
 at_most_one_of_groups:
@@ -1426,8 +1428,9 @@ barrels:
         'terradart_x',
       ]);
       expect(code, CliExitCodes.success);
-      final src = File(p.join(_libSrcOut(tmp), 'thing', 'x_thing.dart'))
-          .readAsStringSync();
+      final src = File(
+        p.join(_libSrcOut(tmp), 'thing', 'x_thing.dart'),
+      ).readAsStringSync();
       expect(src, contains('XThingContentOrData? contentOrData'));
       expect(src, contains('...?contentOrData?.argMap,'));
       expect(src, isNot(contains('TfArg<String>? content,')));
@@ -1438,17 +1441,21 @@ barrels:
       final manifest = File(manifestPath).readAsStringSync();
       expect(
         manifest,
-        matches(RegExp(
-          r"dartName: 'contentOrData',\s+kind: MigrateSlotKind\.sealed,\s+"
-          r'required: false,\s+wrapped: false,\s+merged: true,',
-        )),
+        matches(
+          RegExp(
+            r"dartName: 'contentOrData',\s+kind: MigrateSlotKind\.sealed,\s+"
+            r'required: false,\s+wrapped: false,\s+merged: true,',
+          ),
+        ),
       );
       expect(
         manifest,
-        matches(RegExp(
-          r"dartName: 'aOrB',\s+kind: MigrateSlotKind\.sealed,\s+"
-          r'required: false,\s+wrapped: false,\s+merged: true,',
-        )),
+        matches(
+          RegExp(
+            r"dartName: 'aOrB',\s+kind: MigrateSlotKind\.sealed,\s+"
+            r'required: false,\s+wrapped: false,\s+merged: true,',
+          ),
+        ),
       );
     });
   });
