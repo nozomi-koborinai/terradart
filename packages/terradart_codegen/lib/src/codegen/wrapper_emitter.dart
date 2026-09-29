@@ -190,16 +190,6 @@ class WrapperEmitter {
     }
 
     final preludeSource = override?.prelude ?? '';
-    // A top-level input `deriveExactlyOne` moved into a sealed variant.
-    final sealedRefs = <String, ResolvedReference>{
-      for (final MapEntry(key: name, value: ref) in refs.entries)
-        if (!name.contains('.') &&
-            !topLevelRefs.containsKey(name) &&
-            preludeSource.contains(
-              'final ${ref.dartType} ${snakeToDartIdent(name)};',
-            ))
-          name: ref,
-    };
     unreachableHelpers.clear();
     for (final spec in nestedTypeSpecs) {
       collectNestedRefs(spec, [spec.tfName]);
@@ -208,12 +198,24 @@ class WrapperEmitter {
         unreachableHelpers.add(spec.tfName);
       }
     }
+    // A reference a sealed variant or a hand-written helper in the prelude
+    // declares as a `RefTo` field named after the input.
+    final preludeRefs = <String, ResolvedReference>{
+      for (final MapEntry(key: path, value: ref) in refs.entries)
+        if (!topLevelRefs.containsKey(path) &&
+            !nestedRefs.containsKey(path) &&
+            RegExp(
+              'final ${RegExp.escape(ref.dartType)}\\?? '
+              '${snakeToDartIdent(path.split('.').last)};',
+            ).hasMatch(preludeSource))
+          path: ref,
+    };
     typedReferences
       ..clear()
       ..addAll([
         for (final path in [
           ...topLevelRefs.keys,
-          ...sealedRefs.keys,
+          ...preludeRefs.keys,
           ...nestedRefs.keys,
         ])
           if (!unreachableHelpers.contains(path.split('.').first))
@@ -243,7 +245,7 @@ class WrapperEmitter {
     final refImports = {
       for (final ref in [
         ...topLevelRefs.values,
-        ...sealedRefs.values,
+        ...preludeRefs.values,
         ...nestedRefs.values,
       ])
         if (ref.target != def.terraformType) ref.import,

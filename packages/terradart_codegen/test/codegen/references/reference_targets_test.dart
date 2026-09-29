@@ -363,5 +363,27 @@ hashicorp/google:
       expect(field.kind, MigrateSlotKind.reference);
       expect(field.attribute, 'name');
     });
+
+    test('counts a hand-written prelude field that takes the RefTo', () {
+      const hand = WrapperOverride(
+        outputDir: 'compute',
+        deriveNestedTypes: true,
+        nestedTypeExcludes: ['nic'],
+        prelude: '''
+class XVmNic {
+  const XVmNic({this.network});
+  final RefTo<GoogleXNetwork>? network;
+}
+''',
+      );
+      final handEmitter = WrapperEmitter(
+        overrides: const {'google_x_vm': hand},
+        rawResourceSchemas: {
+          'google_x_vm': _blocks('resource_schemas')['google_x_vm']!,
+        },
+        references: references,
+      )..emit(ir.resources['google_x_vm']!, providerSource: 'hashicorp/google');
+      expect(handEmitter.typedReferences, contains('google_x_vm.nic.network'));
+    });
   });
 }
