@@ -466,9 +466,7 @@ void main() {
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
       expect(
         out,
-        contains(
-          'RefTo<GoogleEmitterTestResource> get ref => RefTo.of(this);',
-        ),
+        contains('RefTo<GoogleEmitterTestResource> get ref => RefTo.of(this);'),
       );
     });
 
