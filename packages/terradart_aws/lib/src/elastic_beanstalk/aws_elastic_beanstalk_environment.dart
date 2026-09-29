@@ -17,6 +17,86 @@ enum ElasticBeanstalkEnvironmentTier implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `platform_arn`, `solution_stack_name`, `template_name` on `aws_elastic_beanstalk_environment`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName {
+  const ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `platform_arn` (one of the [ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName] choices).
+final class ElasticBeanstalkEnvironmentPlatformArnOption
+    extends
+        ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName {
+  const ElasticBeanstalkEnvironmentPlatformArnOption({
+    required this.platformArn,
+  });
+
+  final TfArg<String> platformArn;
+
+  @override
+  String get blockKey => 'platform_arn';
+
+  @override
+  Map<String, Object?> encode() => {'platform_arn': platformArn.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'platform_arn': platformArn};
+}
+
+/// Sets `solution_stack_name` (one of the [ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName] choices).
+final class ElasticBeanstalkEnvironmentSolutionStackNameOption
+    extends
+        ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName {
+  const ElasticBeanstalkEnvironmentSolutionStackNameOption({
+    required this.solutionStackName,
+  });
+
+  final TfArg<String> solutionStackName;
+
+  @override
+  String get blockKey => 'solution_stack_name';
+
+  @override
+  Map<String, Object?> encode() => {
+    'solution_stack_name': solutionStackName.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'solution_stack_name': solutionStackName,
+  };
+}
+
+/// Sets `template_name` (one of the [ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName] choices).
+final class ElasticBeanstalkEnvironmentTemplateNameOption
+    extends
+        ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName {
+  const ElasticBeanstalkEnvironmentTemplateNameOption({
+    required this.templateName,
+  });
+
+  final TfArg<String> templateName;
+
+  @override
+  String get blockKey => 'template_name';
+
+  @override
+  Map<String, Object?> encode() => {'template_name': templateName.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'template_name': templateName};
+}
+
 /// Typed helper for the `setting` block of
 /// `aws_elastic_beanstalk_environment` (derived from provider schema).
 @immutable
@@ -54,12 +134,11 @@ final class AwsElasticBeanstalkEnvironment extends Resource {
     TfArg<String>? cnamePrefix,
     TfArg<String>? description,
     required TfArg<String> name,
-    TfArg<String>? platformArn,
+    ElasticBeanstalkEnvironmentPlatformArnOrSolutionStackNameOrTemplateName?
+    platformArnOrSolutionStackNameOrTemplateName,
     TfArg<String>? pollInterval,
     TfArg<String>? region,
-    TfArg<String>? solutionStackName,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? templateName,
     TfArg<ElasticBeanstalkEnvironmentTier>? tier,
     TfArg<String>? versionLabel,
     TfArg<String>? waitForReadyTimeout,
@@ -75,13 +154,10 @@ final class AwsElasticBeanstalkEnvironment extends Resource {
            if (cnamePrefix != null) 'cname_prefix': cnamePrefix,
            if (description != null) 'description': description,
            'name': name,
-           if (platformArn != null) 'platform_arn': platformArn,
+           ...?platformArnOrSolutionStackNameOrTemplateName?.argMap,
            if (pollInterval != null) 'poll_interval': pollInterval,
            if (region != null) 'region': region,
-           if (solutionStackName != null)
-             'solution_stack_name': solutionStackName,
            if (tags != null) 'tags': tags,
-           if (templateName != null) 'template_name': templateName,
            if (tier != null) 'tier': tier,
            if (versionLabel != null) 'version_label': versionLabel,
            if (waitForReadyTimeout != null)

@@ -41,3 +41,5 @@ properties:
               - "Maximum"
               - "SampleCount"
               - "Sum"
+at_most_one_of_groups:
+  - ["target_tracking_scaling_policy_configuration.customized_metric_specification", "target_tracking_scaling_policy_configuration.predefined_metric_specification"]

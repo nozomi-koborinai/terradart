@@ -28,3 +28,6 @@ properties:
     enum_values:
       - "MANAGED"
       - "UNMANAGED"
+at_most_one_of_groups:
+  - ["compute_resources.launch_template.launch_template_id", "compute_resources.launch_template.launch_template_name"]
+  - ["name", "name_prefix"]

@@ -15,6 +15,62 @@ enum NeptuneClusterInstanceEngine implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `identifier`, `identifier_prefix` on `aws_neptune_cluster_instance`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class NeptuneClusterInstanceIdentifierOrIdentifierPrefix {
+  const NeptuneClusterInstanceIdentifierOrIdentifierPrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `identifier` (one of the [NeptuneClusterInstanceIdentifierOrIdentifierPrefix] choices).
+final class NeptuneClusterInstanceIdentifierOption
+    extends NeptuneClusterInstanceIdentifierOrIdentifierPrefix {
+  const NeptuneClusterInstanceIdentifierOption({required this.identifier});
+
+  final TfArg<String> identifier;
+
+  @override
+  String get blockKey => 'identifier';
+
+  @override
+  Map<String, Object?> encode() => {'identifier': identifier.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'identifier': identifier};
+}
+
+/// Sets `identifier_prefix` (one of the [NeptuneClusterInstanceIdentifierOrIdentifierPrefix] choices).
+final class NeptuneClusterInstanceIdentifierPrefixOption
+    extends NeptuneClusterInstanceIdentifierOrIdentifierPrefix {
+  const NeptuneClusterInstanceIdentifierPrefixOption({
+    required this.identifierPrefix,
+  });
+
+  final TfArg<String> identifierPrefix;
+
+  @override
+  String get blockKey => 'identifier_prefix';
+
+  @override
+  Map<String, Object?> encode() => {
+    'identifier_prefix': identifierPrefix.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'identifier_prefix': identifierPrefix,
+  };
+}
+
 /// Factory wrapper for `aws_neptune_cluster_instance`.
 final class AwsNeptuneClusterInstance extends Resource {
   static const String tfType = 'aws_neptune_cluster_instance';
@@ -27,8 +83,8 @@ final class AwsNeptuneClusterInstance extends Resource {
     required TfArg<String> clusterIdentifier,
     TfArg<NeptuneClusterInstanceEngine>? engine,
     TfArg<String>? engineVersion,
-    TfArg<String>? identifier,
-    TfArg<String>? identifierPrefix,
+    NeptuneClusterInstanceIdentifierOrIdentifierPrefix?
+    identifierOrIdentifierPrefix,
     required TfArg<String> instanceClass,
     TfArg<String>? neptuneParameterGroupName,
     TfArg<String>? neptuneSubnetGroupName,
@@ -54,8 +110,7 @@ final class AwsNeptuneClusterInstance extends Resource {
            'cluster_identifier': clusterIdentifier,
            if (engine != null) 'engine': engine,
            if (engineVersion != null) 'engine_version': engineVersion,
-           if (identifier != null) 'identifier': identifier,
-           if (identifierPrefix != null) 'identifier_prefix': identifierPrefix,
+           ...?identifierOrIdentifierPrefix?.argMap,
            'instance_class': instanceClass,
            if (neptuneParameterGroupName != null)
              'neptune_parameter_group_name': neptuneParameterGroupName,

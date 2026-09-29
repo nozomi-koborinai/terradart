@@ -130,6 +130,58 @@ enum S3ObjectCopyTaggingDirective implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `acl`, `grant` on `aws_s3_object_copy`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class S3ObjectCopyAclOrGrant {
+  const S3ObjectCopyAclOrGrant();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `acl` (one of the [S3ObjectCopyAclOrGrant] choices).
+final class S3ObjectCopyAclOption extends S3ObjectCopyAclOrGrant {
+  const S3ObjectCopyAclOption({required this.acl});
+
+  final TfArg<S3ObjectCopyAcl> acl;
+
+  @override
+  String get blockKey => 'acl';
+
+  @override
+  Map<String, Object?> encode() => {'acl': acl.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'acl': acl};
+}
+
+/// Sets `grant` (one of the [S3ObjectCopyAclOrGrant] choices).
+final class S3ObjectCopyGrantOption extends S3ObjectCopyAclOrGrant {
+  const S3ObjectCopyGrantOption({required this.grant});
+
+  final List<S3ObjectCopyGrant> grant;
+
+  @override
+  String get blockKey => 'grant';
+
+  @override
+  Map<String, Object?> encode() => {
+    'grant': [for (final e in grant) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'grant': TfArg.literal([for (final e in grant) e.encode()]),
+  };
+}
+
 /// Typed helper for the `grant` block of
 /// `aws_s3_object_copy` (derived from provider schema).
 @immutable
@@ -214,7 +266,7 @@ final class AwsS3ObjectCopy extends Resource {
 
   AwsS3ObjectCopy({
     required super.localName,
-    TfArg<S3ObjectCopyAcl>? acl,
+    S3ObjectCopyAclOrGrant? aclOrGrant,
     required TfArg<String> bucket,
     TfArg<bool>? bucketKeyEnabled,
     TfArg<String>? cacheControl,
@@ -253,7 +305,6 @@ final class AwsS3ObjectCopy extends Resource {
     TfArg<S3ObjectCopyTaggingDirective>? taggingDirective,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? websiteRedirect,
-    List<S3ObjectCopyGrant>? grant,
     S3ObjectCopyOverrideProvider? overrideProvider,
     super.lifecycle,
     super.dependsOn,
@@ -262,7 +313,7 @@ final class AwsS3ObjectCopy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (acl != null) 'acl': acl,
+           ...?aclOrGrant?.argMap,
            'bucket': bucket,
            if (bucketKeyEnabled != null) 'bucket_key_enabled': bucketKeyEnabled,
            if (cacheControl != null) 'cache_control': cacheControl,
@@ -316,8 +367,6 @@ final class AwsS3ObjectCopy extends Resource {
            if (taggingDirective != null) 'tagging_directive': taggingDirective,
            if (tags != null) 'tags': tags,
            if (websiteRedirect != null) 'website_redirect': websiteRedirect,
-           if (grant != null)
-             'grant': TfArg.literal([for (final e in grant) e.encode()]),
            if (overrideProvider != null)
              'override_provider': TfArg.literal(overrideProvider.encode()),
          },

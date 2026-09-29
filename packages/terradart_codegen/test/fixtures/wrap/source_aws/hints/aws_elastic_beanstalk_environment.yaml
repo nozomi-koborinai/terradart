@@ -7,3 +7,5 @@ properties:
     enum_values:
       - "WebServer"
       - "Worker"
+at_most_one_of_groups:
+  - ["platform_arn", "solution_stack_name", "template_name"]

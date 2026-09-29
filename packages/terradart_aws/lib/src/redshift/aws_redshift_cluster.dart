@@ -20,6 +20,144 @@ enum RedshiftClusterAquaConfigurationStatus implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `manage_master_password`, `master_password`, `master_password_wo` on `aws_redshift_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo {
+  const RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `manage_master_password` (one of the [RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo] choices).
+final class RedshiftClusterManageMasterPasswordOption
+    extends
+        RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo {
+  const RedshiftClusterManageMasterPasswordOption({
+    required this.manageMasterPassword,
+  });
+
+  final TfArg<bool> manageMasterPassword;
+
+  @override
+  String get blockKey => 'manage_master_password';
+
+  @override
+  Map<String, Object?> encode() => {
+    'manage_master_password': manageMasterPassword.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'manage_master_password': manageMasterPassword,
+  };
+}
+
+/// Sets `master_password` (one of the [RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo] choices).
+final class RedshiftClusterMasterPasswordOption
+    extends
+        RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo {
+  const RedshiftClusterMasterPasswordOption({required this.masterPassword});
+
+  final TfArg<String> masterPassword;
+
+  @override
+  String get blockKey => 'master_password';
+
+  @override
+  Map<String, Object?> encode() => {
+    'master_password': masterPassword.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'master_password': masterPassword};
+}
+
+/// Sets `master_password_wo` (one of the [RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo] choices).
+final class RedshiftClusterMasterPasswordWoOption
+    extends
+        RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo {
+  const RedshiftClusterMasterPasswordWoOption({required this.masterPasswordWo});
+
+  final TfArg<String> masterPasswordWo;
+
+  @override
+  String get blockKey => 'master_password_wo';
+
+  @override
+  Map<String, Object?> encode() => {
+    'master_password_wo': masterPasswordWo.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'master_password_wo': masterPasswordWo,
+  };
+}
+
+/// At most one of `snapshot_arn`, `snapshot_identifier` on `aws_redshift_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RedshiftClusterSnapshotArnOrSnapshotIdentifier {
+  const RedshiftClusterSnapshotArnOrSnapshotIdentifier();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `snapshot_arn` (one of the [RedshiftClusterSnapshotArnOrSnapshotIdentifier] choices).
+final class RedshiftClusterSnapshotArnOption
+    extends RedshiftClusterSnapshotArnOrSnapshotIdentifier {
+  const RedshiftClusterSnapshotArnOption({required this.snapshotArn});
+
+  final TfArg<String> snapshotArn;
+
+  @override
+  String get blockKey => 'snapshot_arn';
+
+  @override
+  Map<String, Object?> encode() => {'snapshot_arn': snapshotArn.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'snapshot_arn': snapshotArn};
+}
+
+/// Sets `snapshot_identifier` (one of the [RedshiftClusterSnapshotArnOrSnapshotIdentifier] choices).
+final class RedshiftClusterSnapshotIdentifierOption
+    extends RedshiftClusterSnapshotArnOrSnapshotIdentifier {
+  const RedshiftClusterSnapshotIdentifierOption({
+    required this.snapshotIdentifier,
+  });
+
+  final TfArg<String> snapshotIdentifier;
+
+  @override
+  String get blockKey => 'snapshot_identifier';
+
+  @override
+  Map<String, Object?> encode() => {
+    'snapshot_identifier': snapshotIdentifier.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'snapshot_identifier': snapshotIdentifier,
+  };
+}
+
 /// Factory wrapper for `aws_redshift_cluster`.
 final class AwsRedshiftCluster extends Resource {
   static const String tfType = 'aws_redshift_cluster';
@@ -46,11 +184,10 @@ final class AwsRedshiftCluster extends Resource {
     TfArg<List<String>>? iamRoles,
     TfArg<String>? kmsKeyId,
     TfArg<String>? maintenanceTrackName,
-    TfArg<bool>? manageMasterPassword,
+    RedshiftClusterManageMasterPasswordOrMasterPasswordOrMasterPasswordWo?
+    manageMasterPasswordOrMasterPasswordOrMasterPasswordWo,
     TfArg<num>? manualSnapshotRetentionPeriod,
-    TfArg<String>? masterPassword,
     TfArg<String>? masterPasswordSecretKmsKeyId,
-    TfArg<String>? masterPasswordWo,
     TfArg<num>? masterPasswordWoVersion,
     TfArg<String>? masterUsername,
     TfArg<bool>? multiAz,
@@ -62,9 +199,9 @@ final class AwsRedshiftCluster extends Resource {
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,
     TfArg<bool>? skipFinalSnapshot,
-    TfArg<String>? snapshotArn,
+    RedshiftClusterSnapshotArnOrSnapshotIdentifier?
+    snapshotArnOrSnapshotIdentifier,
     TfArg<String>? snapshotClusterIdentifier,
-    TfArg<String>? snapshotIdentifier,
     TfArg<Map<String, String>>? tags,
     TfArg<List<String>>? vpcSecurityGroupIds,
     super.lifecycle,
@@ -106,14 +243,11 @@ final class AwsRedshiftCluster extends Resource {
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
            if (maintenanceTrackName != null)
              'maintenance_track_name': maintenanceTrackName,
-           if (manageMasterPassword != null)
-             'manage_master_password': manageMasterPassword,
+           ...?manageMasterPasswordOrMasterPasswordOrMasterPasswordWo?.argMap,
            if (manualSnapshotRetentionPeriod != null)
              'manual_snapshot_retention_period': manualSnapshotRetentionPeriod,
-           if (masterPassword != null) 'master_password': masterPassword,
            if (masterPasswordSecretKmsKeyId != null)
              'master_password_secret_kms_key_id': masterPasswordSecretKmsKeyId,
-           if (masterPasswordWo != null) 'master_password_wo': masterPasswordWo,
            if (masterPasswordWoVersion != null)
              'master_password_wo_version': masterPasswordWoVersion,
            if (masterUsername != null) 'master_username': masterUsername,
@@ -129,11 +263,9 @@ final class AwsRedshiftCluster extends Resource {
            if (region != null) 'region': region,
            if (skipFinalSnapshot != null)
              'skip_final_snapshot': skipFinalSnapshot,
-           if (snapshotArn != null) 'snapshot_arn': snapshotArn,
+           ...?snapshotArnOrSnapshotIdentifier?.argMap,
            if (snapshotClusterIdentifier != null)
              'snapshot_cluster_identifier': snapshotClusterIdentifier,
-           if (snapshotIdentifier != null)
-             'snapshot_identifier': snapshotIdentifier,
            if (tags != null) 'tags': tags,
            if (vpcSecurityGroupIds != null)
              'vpc_security_group_ids': vpcSecurityGroupIds,

@@ -79,10 +79,15 @@ export 'src/glue/aws_glue_classifier.dart'
         GlueClassifierCsvClassifier,
         GlueClassifierCsvClassifierContainsHeader,
         GlueClassifierCsvClassifierCustomDatatypes,
+        GlueClassifierCsvClassifierOption,
+        GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier,
         GlueClassifierCsvClassifierSerde,
         GlueClassifierGrokClassifier,
+        GlueClassifierGrokClassifierOption,
         GlueClassifierJsonClassifier,
-        GlueClassifierXmlClassifier;
+        GlueClassifierJsonClassifierOption,
+        GlueClassifierXmlClassifier,
+        GlueClassifierXmlClassifierOption;
 export 'src/glue/aws_glue_connection.dart'
     show
         AwsGlueConnection,
@@ -123,7 +128,12 @@ export 'src/glue/aws_glue_data_catalog_encryption_settings.dart'
 export 'src/glue/aws_glue_data_quality_ruleset.dart'
     show AwsGlueDataQualityRuleset, GlueDataQualityRulesetTargetTable;
 export 'src/glue/aws_glue_dev_endpoint.dart'
-    show AwsGlueDevEndpoint, GlueDevEndpointWorkerType;
+    show
+        AwsGlueDevEndpoint,
+        GlueDevEndpointPublicKeyOption,
+        GlueDevEndpointPublicKeyOrPublicKeys,
+        GlueDevEndpointPublicKeysOption,
+        GlueDevEndpointWorkerType;
 export 'src/glue/aws_glue_job.dart'
     show
         AwsGlueJob,

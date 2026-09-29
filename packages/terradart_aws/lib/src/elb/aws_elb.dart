@@ -18,6 +18,54 @@ enum ElbDesyncMitigationMode implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `name`, `name_prefix` on `aws_elb`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ElbNameOrNamePrefix {
+  const ElbNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [ElbNameOrNamePrefix] choices).
+final class ElbNameOption extends ElbNameOrNamePrefix {
+  const ElbNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [ElbNameOrNamePrefix] choices).
+final class ElbNamePrefixOption extends ElbNameOrNamePrefix {
+  const ElbNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `access_logs` block of
 /// `aws_elb` (derived from provider schema).
 @immutable
@@ -122,8 +170,7 @@ final class AwsElb extends Resource {
     TfArg<num>? idleTimeout,
     TfArg<List<String>>? instances,
     TfArg<bool>? internal,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    ElbNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? region,
     TfArg<List<String>>? securityGroups,
     TfArg<String>? sourceSecurityGroup,
@@ -152,8 +199,7 @@ final class AwsElb extends Resource {
            if (idleTimeout != null) 'idle_timeout': idleTimeout,
            if (instances != null) 'instances': instances,
            if (internal != null) 'internal': internal,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (region != null) 'region': region,
            if (securityGroups != null) 'security_groups': securityGroups,
            if (sourceSecurityGroup != null)

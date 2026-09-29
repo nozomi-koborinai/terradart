@@ -30,3 +30,5 @@ properties:
                   - "THURSDAY"
                   - "FRIDAY"
                   - "SATURDAY"
+at_most_one_of_groups:
+  - ["schedule.schedule_frequency.refresh_on_day.day_of_month", "schedule.schedule_frequency.refresh_on_day.day_of_week"]

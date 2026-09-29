@@ -39,3 +39,7 @@ properties:
     enum_values:
       - "open-read-only"
       - "mounted"
+at_most_one_of_groups:
+  - ["identifier", "identifier_prefix"]
+  - ["manage_master_user_password", "password", "password_wo"]
+  - ["restore_to_point_in_time.restore_time", "restore_to_point_in_time.use_latest_restorable_time"]

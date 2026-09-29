@@ -195,7 +195,11 @@ export 'src/cloudfront/aws_cloudfront_origin_request_policy.dart'
         CloudfrontOriginRequestPolicyQueryStringsConfigQueryStringBehavior,
         CloudfrontOriginRequestPolicyQueryStringsConfigQueryStrings;
 export 'src/cloudfront/aws_cloudfront_public_key.dart'
-    show AwsCloudfrontPublicKey;
+    show
+        AwsCloudfrontPublicKey,
+        CloudfrontPublicKeyNameOption,
+        CloudfrontPublicKeyNameOrNamePrefix,
+        CloudfrontPublicKeyNamePrefixOption;
 export 'src/cloudfront/aws_cloudfront_realtime_log_config.dart'
     show
         AwsCloudfrontRealtimeLogConfig,

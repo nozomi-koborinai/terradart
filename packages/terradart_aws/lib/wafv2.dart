@@ -5,16 +5,28 @@ library;
 
 export 'src/wafv2/aws_wafv2_api_key.dart' show AwsWafv2ApiKey, Wafv2ApiKeyScope;
 export 'src/wafv2/aws_wafv2_ip_set.dart'
-    show AwsWafv2IpSet, Wafv2IpSetIpAddressVersion, Wafv2IpSetScope;
+    show
+        AwsWafv2IpSet,
+        Wafv2IpSetIpAddressVersion,
+        Wafv2IpSetNameOption,
+        Wafv2IpSetNameOrNamePrefix,
+        Wafv2IpSetNamePrefixOption,
+        Wafv2IpSetScope;
 export 'src/wafv2/aws_wafv2_regex_pattern_set.dart'
     show
         AwsWafv2RegexPatternSet,
+        Wafv2RegexPatternSetNameOption,
+        Wafv2RegexPatternSetNameOrNamePrefix,
+        Wafv2RegexPatternSetNamePrefixOption,
         Wafv2RegexPatternSetRegularExpression,
         Wafv2RegexPatternSetScope;
 export 'src/wafv2/aws_wafv2_rule_group.dart'
     show
         AwsWafv2RuleGroup,
         Wafv2RuleGroupCustomResponseBody,
+        Wafv2RuleGroupNameOption,
+        Wafv2RuleGroupNameOrNamePrefix,
+        Wafv2RuleGroupNamePrefixOption,
         Wafv2RuleGroupRule,
         Wafv2RuleGroupRuleAction,
         Wafv2RuleGroupRuleActionAllow,
@@ -24,6 +36,8 @@ export 'src/wafv2/aws_wafv2_rule_group.dart'
         Wafv2RuleGroupRuleActionBlockCustomResponse,
         Wafv2RuleGroupRuleCaptchaConfig,
         Wafv2RuleGroupRuleCaptchaConfigImmunityTimeProperty,
+        Wafv2RuleGroupRuleOption,
+        Wafv2RuleGroupRuleOrRulesJson,
         Wafv2RuleGroupRuleRuleLabel,
         Wafv2RuleGroupRuleStatement,
         Wafv2RuleGroupRuleStatementAndStatement,
@@ -63,6 +77,7 @@ export 'src/wafv2/aws_wafv2_rule_group.dart'
         Wafv2RuleGroupRuleStatementSizeConstraintStatement,
         Wafv2RuleGroupRuleStatementSqliMatchStatement,
         Wafv2RuleGroupRuleStatementXssMatchStatement,
+        Wafv2RuleGroupRulesJsonOption,
         Wafv2RuleGroupScope,
         Wafv2RuleGroupVisibilityConfig;
 export 'src/wafv2/aws_wafv2_web_acl.dart'
@@ -85,6 +100,9 @@ export 'src/wafv2/aws_wafv2_web_acl.dart'
         Wafv2WebAclDefaultActionAllowCustomRequestHandlingInsertHeader,
         Wafv2WebAclDefaultActionBlock,
         Wafv2WebAclDefaultActionBlockCustomResponse,
+        Wafv2WebAclNameOption,
+        Wafv2WebAclNameOrNamePrefix,
+        Wafv2WebAclNamePrefixOption,
         Wafv2WebAclScope,
         Wafv2WebAclVisibilityConfig;
 export 'src/wafv2/aws_wafv2_web_acl_association.dart'
@@ -115,10 +133,13 @@ export 'src/wafv2/aws_wafv2_web_acl_rule.dart'
         Wafv2WebAclRuleActionAllowCustomRequestHandlingInsertHeader,
         Wafv2WebAclRuleActionBlock,
         Wafv2WebAclRuleActionBlockCustomResponse,
+        Wafv2WebAclRuleActionOption,
+        Wafv2WebAclRuleActionOrOverrideAction,
         Wafv2WebAclRuleCaptchaConfig,
         Wafv2WebAclRuleCaptchaConfigImmunityTimeProperty,
         Wafv2WebAclRuleOverrideAction,
         Wafv2WebAclRuleOverrideActionCount,
+        Wafv2WebAclRuleOverrideActionOption,
         Wafv2WebAclRuleRuleLabel,
         Wafv2WebAclRuleStatement,
         Wafv2WebAclRuleStatementAndStatement,

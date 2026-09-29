@@ -24,3 +24,5 @@ properties:
           - "LAMBDA"
           - "AUTOMERGE"
           - "NONE"
+at_most_one_of_groups:
+  - ["data_source", "pipeline_config"]

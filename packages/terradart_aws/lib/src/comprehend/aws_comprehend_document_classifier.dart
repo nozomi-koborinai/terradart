@@ -31,6 +31,64 @@ enum ComprehendDocumentClassifierMode implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `version_name`, `version_name_prefix` on `aws_comprehend_document_classifier`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ComprehendDocumentClassifierVersionNameOrVersionNamePrefix {
+  const ComprehendDocumentClassifierVersionNameOrVersionNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `version_name` (one of the [ComprehendDocumentClassifierVersionNameOrVersionNamePrefix] choices).
+final class ComprehendDocumentClassifierVersionNameOption
+    extends ComprehendDocumentClassifierVersionNameOrVersionNamePrefix {
+  const ComprehendDocumentClassifierVersionNameOption({
+    required this.versionName,
+  });
+
+  final TfArg<String> versionName;
+
+  @override
+  String get blockKey => 'version_name';
+
+  @override
+  Map<String, Object?> encode() => {'version_name': versionName.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'version_name': versionName};
+}
+
+/// Sets `version_name_prefix` (one of the [ComprehendDocumentClassifierVersionNameOrVersionNamePrefix] choices).
+final class ComprehendDocumentClassifierVersionNamePrefixOption
+    extends ComprehendDocumentClassifierVersionNameOrVersionNamePrefix {
+  const ComprehendDocumentClassifierVersionNamePrefixOption({
+    required this.versionNamePrefix,
+  });
+
+  final TfArg<String> versionNamePrefix;
+
+  @override
+  String get blockKey => 'version_name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {
+    'version_name_prefix': versionNamePrefix.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'version_name_prefix': versionNamePrefix,
+  };
+}
+
 /// Typed helper for the `input_data_config` block of
 /// `aws_comprehend_document_classifier` (derived from provider schema).
 @immutable
@@ -274,8 +332,8 @@ final class AwsComprehendDocumentClassifier extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? versionName,
-    TfArg<String>? versionNamePrefix,
+    ComprehendDocumentClassifierVersionNameOrVersionNamePrefix?
+    versionNameOrVersionNamePrefix,
     TfArg<String>? volumeKmsKeyId,
     required ComprehendDocumentClassifierInputDataConfig inputDataConfig,
     ComprehendDocumentClassifierOutputDataConfig? outputDataConfig,
@@ -294,9 +352,7 @@ final class AwsComprehendDocumentClassifier extends Resource {
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           if (versionName != null) 'version_name': versionName,
-           if (versionNamePrefix != null)
-             'version_name_prefix': versionNamePrefix,
+           ...?versionNameOrVersionNamePrefix?.argMap,
            if (volumeKmsKeyId != null) 'volume_kms_key_id': volumeKmsKeyId,
            'input_data_config': TfArg.literal(inputDataConfig.encode()),
            if (outputDataConfig != null)

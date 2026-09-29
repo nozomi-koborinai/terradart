@@ -298,3 +298,14 @@ properties:
           - "ipam-pool-allocation"
           - "capacity-reservation-cancellation-quote"
           - "application-status-check"
+at_most_one_of_groups:
+  - ["capacity_reservation_specification.capacity_reservation_target.capacity_reservation_id", "capacity_reservation_specification.capacity_reservation_target.capacity_reservation_resource_group_arn"]
+  - ["default_version", "update_default_version"]
+  - ["iam_instance_profile.arn", "iam_instance_profile.name"]
+  - ["instance_requirements", "instance_type"]
+  - ["instance_requirements.allowed_instance_types", "instance_requirements.excluded_instance_types"]
+  - ["instance_requirements.max_spot_price_as_percentage_of_optimal_on_demand_price", "instance_requirements.spot_max_price_percentage_over_lowest_price"]
+  - ["name", "name_prefix"]
+  - ["placement.group_id", "placement.group_name"]
+  - ["placement.host_id", "placement.host_resource_group_arn"]
+  - ["security_group_names", "vpc_security_group_ids"]

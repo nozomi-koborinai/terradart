@@ -660,8 +660,7 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration {
     this.scaleInCooldown,
     this.scaleOutCooldown,
     required this.targetValue,
-    this.customizedMetricSpecification,
-    this.predefinedMetricSpecification,
+    this.customizedMetricSpecificationOrPredefinedMetricSpecification,
   });
 
   final TfArg<bool>? disableScaleIn;
@@ -672,11 +671,8 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration {
 
   final TfArg<num> targetValue;
 
-  final AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecification?
-  customizedMetricSpecification;
-
-  final AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification?
-  predefinedMetricSpecification;
+  final AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification?
+  customizedMetricSpecificationOrPredefinedMetricSpecification;
 
   Map<String, Object?> encode() => {
     if (disableScaleIn != null) 'disable_scale_in': disableScaleIn!.toTfJson(),
@@ -685,12 +681,59 @@ final class AppautoscalingPolicyTargetTrackingScalingPolicyConfiguration {
     if (scaleOutCooldown != null)
       'scale_out_cooldown': scaleOutCooldown!.toTfJson(),
     'target_value': targetValue.toTfJson(),
-    if (customizedMetricSpecification != null)
-      'customized_metric_specification': customizedMetricSpecification!
-          .encode(),
-    if (predefinedMetricSpecification != null)
-      'predefined_metric_specification': predefinedMetricSpecification!
-          .encode(),
+    ...?customizedMetricSpecificationOrPredefinedMetricSpecification?.encode(),
+  };
+}
+
+/// At most one of `customized_metric_specification`, `predefined_metric_specification` on the `target_tracking_scaling_policy_configuration` block of `aws_appautoscaling_policy`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
+  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `customized_metric_specification` (one of the [AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification] choices).
+final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOption
+    extends
+        AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
+  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOption({
+    required this.customizedMetricSpecification,
+  });
+
+  final AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecification
+  customizedMetricSpecification;
+
+  @override
+  String get blockKey => 'customized_metric_specification';
+
+  @override
+  Map<String, Object?> encode() => {
+    'customized_metric_specification': customizedMetricSpecification.encode(),
+  };
+}
+
+/// Sets `predefined_metric_specification` (one of the [AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification] choices).
+final class AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecificationOption
+    extends
+        AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
+  const AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecificationOption({
+    required this.predefinedMetricSpecification,
+  });
+
+  final AppautoscalingPolicyTargetTrackingScalingPolicyConfigurationPredefinedMetricSpecification
+  predefinedMetricSpecification;
+
+  @override
+  String get blockKey => 'predefined_metric_specification';
+
+  @override
+  Map<String, Object?> encode() => {
+    'predefined_metric_specification': predefinedMetricSpecification.encode(),
   };
 }
 

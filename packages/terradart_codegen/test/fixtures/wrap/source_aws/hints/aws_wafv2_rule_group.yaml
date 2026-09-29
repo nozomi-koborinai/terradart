@@ -19,3 +19,6 @@ properties:
     enum_values:
       - "CLOUDFRONT"
       - "REGIONAL"
+at_most_one_of_groups:
+  - ["name", "name_prefix"]
+  - ["rule", "rules_json"]

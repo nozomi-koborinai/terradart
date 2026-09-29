@@ -81,6 +81,193 @@ final class Route53RecordRecordsOption extends Route53RecordAliasOrRecords {
   Map<String, TfArg<Object?>> get argMap => {'records': records};
 }
 
+/// At most one of `cidr_routing_policy`, `failover_routing_policy`, `geolocation_routing_policy`, `geoproximity_routing_policy`, `latency_routing_policy`, `multivalue_answer_routing_policy`, `weighted_routing_policy` on `aws_route53_record`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
+  const Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `cidr_routing_policy` (one of the [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy] choices).
+final class Route53RecordCidrRoutingPolicyOption
+    extends
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
+  const Route53RecordCidrRoutingPolicyOption({required this.cidrRoutingPolicy});
+
+  final Route53RecordCidrRoutingPolicy cidrRoutingPolicy;
+
+  @override
+  String get blockKey => 'cidr_routing_policy';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cidr_routing_policy': cidrRoutingPolicy.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'cidr_routing_policy': TfArg.literal(cidrRoutingPolicy.encode()),
+  };
+}
+
+/// Sets `failover_routing_policy` (one of the [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy] choices).
+final class Route53RecordFailoverRoutingPolicyOption
+    extends
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
+  const Route53RecordFailoverRoutingPolicyOption({
+    required this.failoverRoutingPolicy,
+  });
+
+  final Route53RecordFailoverRoutingPolicy failoverRoutingPolicy;
+
+  @override
+  String get blockKey => 'failover_routing_policy';
+
+  @override
+  Map<String, Object?> encode() => {
+    'failover_routing_policy': failoverRoutingPolicy.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'failover_routing_policy': TfArg.literal(failoverRoutingPolicy.encode()),
+  };
+}
+
+/// Sets `geolocation_routing_policy` (one of the [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy] choices).
+final class Route53RecordGeolocationRoutingPolicyOption
+    extends
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
+  const Route53RecordGeolocationRoutingPolicyOption({
+    required this.geolocationRoutingPolicy,
+  });
+
+  final Route53RecordGeolocationRoutingPolicy geolocationRoutingPolicy;
+
+  @override
+  String get blockKey => 'geolocation_routing_policy';
+
+  @override
+  Map<String, Object?> encode() => {
+    'geolocation_routing_policy': geolocationRoutingPolicy.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'geolocation_routing_policy': TfArg.literal(
+      geolocationRoutingPolicy.encode(),
+    ),
+  };
+}
+
+/// Sets `geoproximity_routing_policy` (one of the [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy] choices).
+final class Route53RecordGeoproximityRoutingPolicyOption
+    extends
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
+  const Route53RecordGeoproximityRoutingPolicyOption({
+    required this.geoproximityRoutingPolicy,
+  });
+
+  final Route53RecordGeoproximityRoutingPolicy geoproximityRoutingPolicy;
+
+  @override
+  String get blockKey => 'geoproximity_routing_policy';
+
+  @override
+  Map<String, Object?> encode() => {
+    'geoproximity_routing_policy': geoproximityRoutingPolicy.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'geoproximity_routing_policy': TfArg.literal(
+      geoproximityRoutingPolicy.encode(),
+    ),
+  };
+}
+
+/// Sets `latency_routing_policy` (one of the [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy] choices).
+final class Route53RecordLatencyRoutingPolicyOption
+    extends
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
+  const Route53RecordLatencyRoutingPolicyOption({
+    required this.latencyRoutingPolicy,
+  });
+
+  final Route53RecordLatencyRoutingPolicy latencyRoutingPolicy;
+
+  @override
+  String get blockKey => 'latency_routing_policy';
+
+  @override
+  Map<String, Object?> encode() => {
+    'latency_routing_policy': latencyRoutingPolicy.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'latency_routing_policy': TfArg.literal(latencyRoutingPolicy.encode()),
+  };
+}
+
+/// Sets `multivalue_answer_routing_policy` (one of the [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy] choices).
+final class Route53RecordMultivalueAnswerRoutingPolicyOption
+    extends
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
+  const Route53RecordMultivalueAnswerRoutingPolicyOption({
+    required this.multivalueAnswerRoutingPolicy,
+  });
+
+  final TfArg<bool> multivalueAnswerRoutingPolicy;
+
+  @override
+  String get blockKey => 'multivalue_answer_routing_policy';
+
+  @override
+  Map<String, Object?> encode() => {
+    'multivalue_answer_routing_policy': multivalueAnswerRoutingPolicy
+        .toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'multivalue_answer_routing_policy': multivalueAnswerRoutingPolicy,
+  };
+}
+
+/// Sets `weighted_routing_policy` (one of the [Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy] choices).
+final class Route53RecordWeightedRoutingPolicyOption
+    extends
+        Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy {
+  const Route53RecordWeightedRoutingPolicyOption({
+    required this.weightedRoutingPolicy,
+  });
+
+  final Route53RecordWeightedRoutingPolicy weightedRoutingPolicy;
+
+  @override
+  String get blockKey => 'weighted_routing_policy';
+
+  @override
+  Map<String, Object?> encode() => {
+    'weighted_routing_policy': weightedRoutingPolicy.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'weighted_routing_policy': TfArg.literal(weightedRoutingPolicy.encode()),
+  };
+}
+
 /// Typed helper for the `alias` block of
 /// `aws_route53_record` (derived from provider schema).
 @immutable
@@ -291,19 +478,14 @@ final class AwsRoute53Record extends Resource {
     required super.localName,
     TfArg<bool>? allowOverwrite,
     TfArg<String>? healthCheckId,
-    TfArg<bool>? multivalueAnswerRoutingPolicy,
+    Route53RecordCidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy?
+    cidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy,
     required TfArg<String> name,
     required Route53RecordAliasOrRecords aliasOrRecords,
     TfArg<String>? setIdentifier,
     TfArg<num>? ttl,
     required TfArg<Route53RecordType> type,
     required TfArg<String> zoneId,
-    Route53RecordCidrRoutingPolicy? cidrRoutingPolicy,
-    Route53RecordFailoverRoutingPolicy? failoverRoutingPolicy,
-    Route53RecordGeolocationRoutingPolicy? geolocationRoutingPolicy,
-    Route53RecordGeoproximityRoutingPolicy? geoproximityRoutingPolicy,
-    Route53RecordLatencyRoutingPolicy? latencyRoutingPolicy,
-    Route53RecordWeightedRoutingPolicy? weightedRoutingPolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -313,36 +495,14 @@ final class AwsRoute53Record extends Resource {
          argMap: {
            if (allowOverwrite != null) 'allow_overwrite': allowOverwrite,
            if (healthCheckId != null) 'health_check_id': healthCheckId,
-           if (multivalueAnswerRoutingPolicy != null)
-             'multivalue_answer_routing_policy': multivalueAnswerRoutingPolicy,
+           ...?cidrRoutingPolicyOrFailoverRoutingPolicyOrGeolocationRoutingPolicyOrGeoproximityRoutingPolicyOrLatencyRoutingPolicyOrMultivalueAnswerRoutingPolicyOrWeightedRoutingPolicy
+               ?.argMap,
            'name': name,
            ...aliasOrRecords.argMap,
            if (setIdentifier != null) 'set_identifier': setIdentifier,
            if (ttl != null) 'ttl': ttl,
            'type': type,
            'zone_id': zoneId,
-           if (cidrRoutingPolicy != null)
-             'cidr_routing_policy': TfArg.literal(cidrRoutingPolicy.encode()),
-           if (failoverRoutingPolicy != null)
-             'failover_routing_policy': TfArg.literal(
-               failoverRoutingPolicy.encode(),
-             ),
-           if (geolocationRoutingPolicy != null)
-             'geolocation_routing_policy': TfArg.literal(
-               geolocationRoutingPolicy.encode(),
-             ),
-           if (geoproximityRoutingPolicy != null)
-             'geoproximity_routing_policy': TfArg.literal(
-               geoproximityRoutingPolicy.encode(),
-             ),
-           if (latencyRoutingPolicy != null)
-             'latency_routing_policy': TfArg.literal(
-               latencyRoutingPolicy.encode(),
-             ),
-           if (weightedRoutingPolicy != null)
-             'weighted_routing_policy': TfArg.literal(
-               weightedRoutingPolicy.encode(),
-             ),
          },
        );
 

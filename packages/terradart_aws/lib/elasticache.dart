@@ -27,7 +27,10 @@ export 'src/elasticache/aws_elasticache_parameter_group.dart'
 export 'src/elasticache/aws_elasticache_replication_group.dart'
     show
         AwsElasticacheReplicationGroup,
+        ElasticacheReplicationGroupAuthTokenOption,
+        ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds,
         ElasticacheReplicationGroupAuthTokenUpdateStrategy,
+        ElasticacheReplicationGroupAuthTokenWoOption,
         ElasticacheReplicationGroupClusterMode,
         ElasticacheReplicationGroupDurability,
         ElasticacheReplicationGroupEngine,
@@ -38,7 +41,11 @@ export 'src/elasticache/aws_elasticache_replication_group.dart'
         ElasticacheReplicationGroupLogDeliveryConfigurationLogType,
         ElasticacheReplicationGroupNetworkType,
         ElasticacheReplicationGroupNodeGroupConfiguration,
-        ElasticacheReplicationGroupTransitEncryptionMode;
+        ElasticacheReplicationGroupNodeGroupConfigurationOption,
+        ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs,
+        ElasticacheReplicationGroupPreferredCacheClusterAzsOption,
+        ElasticacheReplicationGroupTransitEncryptionMode,
+        ElasticacheReplicationGroupUserGroupIdsOption;
 export 'src/elasticache/aws_elasticache_reserved_cache_node.dart'
     show AwsElasticacheReservedCacheNode;
 export 'src/elasticache/aws_elasticache_serverless_cache.dart'

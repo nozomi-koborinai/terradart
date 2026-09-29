@@ -245,8 +245,11 @@ export 'src/appmesh/aws_appmesh_virtual_node.dart'
         AppmeshVirtualNodeSpecLoggingAccessLogFileFormatJson,
         AppmeshVirtualNodeSpecServiceDiscovery,
         AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMap,
+        AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOption,
+        AppmeshVirtualNodeSpecServiceDiscoveryAwsCloudMapOrDns,
         AppmeshVirtualNodeSpecServiceDiscoveryDns,
         AppmeshVirtualNodeSpecServiceDiscoveryDnsIpPreference,
+        AppmeshVirtualNodeSpecServiceDiscoveryDnsOption,
         AppmeshVirtualNodeSpecServiceDiscoveryDnsResponseType,
         AwsAppmeshVirtualNode;
 export 'src/appmesh/aws_appmesh_virtual_router.dart'
@@ -261,5 +264,8 @@ export 'src/appmesh/aws_appmesh_virtual_service.dart'
         AppmeshVirtualServiceSpec,
         AppmeshVirtualServiceSpecProvider,
         AppmeshVirtualServiceSpecProviderVirtualNode,
+        AppmeshVirtualServiceSpecProviderVirtualNodeOption,
+        AppmeshVirtualServiceSpecProviderVirtualNodeOrVirtualRouter,
         AppmeshVirtualServiceSpecProviderVirtualRouter,
+        AppmeshVirtualServiceSpecProviderVirtualRouterOption,
         AwsAppmeshVirtualService;

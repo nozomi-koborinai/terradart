@@ -28,3 +28,5 @@ properties:
           - "OpenCSVSerDe"
           - "LazySimpleSerDe"
           - "None"
+at_most_one_of_groups:
+  - ["csv_classifier", "grok_classifier", "json_classifier", "xml_classifier"]

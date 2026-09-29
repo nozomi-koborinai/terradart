@@ -6,14 +6,76 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_networkmanager_core_network`.
 const Set<String> _awsNetworkmanagerCoreNetworkSensitive = <String>{};
 
+/// At most one of `base_policy_document`, `base_policy_regions` on `aws_networkmanager_core_network`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions {
+  const NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `base_policy_document` (one of the [NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions] choices).
+final class NetworkmanagerCoreNetworkBasePolicyDocumentOption
+    extends NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions {
+  const NetworkmanagerCoreNetworkBasePolicyDocumentOption({
+    required this.basePolicyDocument,
+  });
+
+  final TfArg<String> basePolicyDocument;
+
+  @override
+  String get blockKey => 'base_policy_document';
+
+  @override
+  Map<String, Object?> encode() => {
+    'base_policy_document': basePolicyDocument.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'base_policy_document': basePolicyDocument,
+  };
+}
+
+/// Sets `base_policy_regions` (one of the [NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions] choices).
+final class NetworkmanagerCoreNetworkBasePolicyRegionsOption
+    extends NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions {
+  const NetworkmanagerCoreNetworkBasePolicyRegionsOption({
+    required this.basePolicyRegions,
+  });
+
+  final TfArg<List<String>> basePolicyRegions;
+
+  @override
+  String get blockKey => 'base_policy_regions';
+
+  @override
+  Map<String, Object?> encode() => {
+    'base_policy_regions': basePolicyRegions.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'base_policy_regions': basePolicyRegions,
+  };
+}
+
 /// Factory wrapper for `aws_networkmanager_core_network`.
 final class AwsNetworkmanagerCoreNetwork extends Resource {
   static const String tfType = 'aws_networkmanager_core_network';
 
   AwsNetworkmanagerCoreNetwork({
     required super.localName,
-    TfArg<String>? basePolicyDocument,
-    TfArg<List<String>>? basePolicyRegions,
+    NetworkmanagerCoreNetworkBasePolicyDocumentOrBasePolicyRegions?
+    basePolicyDocumentOrBasePolicyRegions,
     TfArg<bool>? createBasePolicy,
     TfArg<String>? description,
     required TfArg<String> globalNetworkId,
@@ -25,10 +87,7 @@ final class AwsNetworkmanagerCoreNetwork extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (basePolicyDocument != null)
-             'base_policy_document': basePolicyDocument,
-           if (basePolicyRegions != null)
-             'base_policy_regions': basePolicyRegions,
+           ...?basePolicyDocumentOrBasePolicyRegions?.argMap,
            if (createBasePolicy != null) 'create_base_policy': createBasePolicy,
            if (description != null) 'description': description,
            'global_network_id': globalNetworkId,

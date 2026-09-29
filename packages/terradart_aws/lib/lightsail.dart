@@ -48,7 +48,12 @@ export 'src/lightsail/aws_lightsail_instance.dart'
         LightsailInstanceAddOnStatus;
 export 'src/lightsail/aws_lightsail_instance_public_ports.dart'
     show AwsLightsailInstancePublicPorts, LightsailInstancePublicPortsPortInfo;
-export 'src/lightsail/aws_lightsail_key_pair.dart' show AwsLightsailKeyPair;
+export 'src/lightsail/aws_lightsail_key_pair.dart'
+    show
+        AwsLightsailKeyPair,
+        LightsailKeyPairNameOption,
+        LightsailKeyPairNameOrNamePrefix,
+        LightsailKeyPairNamePrefixOption;
 export 'src/lightsail/aws_lightsail_lb.dart'
     show AwsLightsailLb, LightsailLbIpAddressType;
 export 'src/lightsail/aws_lightsail_lb_attachment.dart'

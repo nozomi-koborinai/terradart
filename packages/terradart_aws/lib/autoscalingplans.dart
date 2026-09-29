@@ -6,7 +6,10 @@ library;
 export 'src/autoscalingplans/aws_autoscalingplans_scaling_plan.dart'
     show
         AutoscalingplansScalingPlanApplicationSource,
+        AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOption,
+        AutoscalingplansScalingPlanApplicationSourceCloudformationStackArnOrTagFilter,
         AutoscalingplansScalingPlanApplicationSourceTagFilter,
+        AutoscalingplansScalingPlanApplicationSourceTagFilterOption,
         AutoscalingplansScalingPlanScalingInstruction,
         AutoscalingplansScalingPlanScalingInstructionCustomizedLoadMetricSpecification,
         AutoscalingplansScalingPlanScalingInstructionCustomizedLoadMetricSpecificationStatistic,

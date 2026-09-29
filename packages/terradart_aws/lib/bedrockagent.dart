@@ -12,13 +12,19 @@ export 'src/bedrockagent/aws_bedrockagent_agent_action_group.dart'
         BedrockagentAgentActionGroupActionGroupExecutorCustomControl,
         BedrockagentAgentActionGroupActionGroupState,
         BedrockagentAgentActionGroupApiSchema,
+        BedrockagentAgentActionGroupApiSchemaPayloadOption,
+        BedrockagentAgentActionGroupApiSchemaPayloadOrS3,
         BedrockagentAgentActionGroupApiSchemaS3,
+        BedrockagentAgentActionGroupApiSchemaS3Option,
+        BedrockagentAgentActionGroupDescriptionOption,
+        BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature,
         BedrockagentAgentActionGroupFunctionSchema,
         BedrockagentAgentActionGroupFunctionSchemaMemberFunctions,
         BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctions,
         BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsParameters,
         BedrockagentAgentActionGroupFunctionSchemaMemberFunctionsFunctionsParametersType,
-        BedrockagentAgentActionGroupParentActionGroupSignature;
+        BedrockagentAgentActionGroupParentActionGroupSignature,
+        BedrockagentAgentActionGroupParentActionGroupSignatureOption;
 export 'src/bedrockagent/aws_bedrockagent_agent_alias.dart'
     show AwsBedrockagentAgentAlias;
 export 'src/bedrockagent/aws_bedrockagent_agent_collaborator.dart'
@@ -83,9 +89,13 @@ export 'src/bedrockagent/aws_bedrockagent_data_source.dart'
         BedrockagentDataSourceVectorIngestionConfigurationChunkingConfiguration,
         BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationChunkingStrategy,
         BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfiguration,
+        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfigurationOption,
+        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationFixedSizeChunkingConfigurationOrHierarchicalChunkingConfigurationOrSemanticChunkingConfiguration,
         BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfiguration,
         BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfigurationLevelConfiguration,
+        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationHierarchicalChunkingConfigurationOption,
         BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationSemanticChunkingConfiguration,
+        BedrockagentDataSourceVectorIngestionConfigurationChunkingConfigurationSemanticChunkingConfigurationOption,
         BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfiguration,
         BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationIntermediateStorage,
         BedrockagentDataSourceVectorIngestionConfigurationCustomTransformationConfigurationIntermediateStorageS3Location,

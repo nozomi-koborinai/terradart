@@ -20,15 +20,66 @@ enum CodeconnectionsConnectionProviderType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `host_arn`, `provider_type` on `aws_codeconnections_connection`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CodeconnectionsConnectionHostArnOrProviderType {
+  const CodeconnectionsConnectionHostArnOrProviderType();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `host_arn` (one of the [CodeconnectionsConnectionHostArnOrProviderType] choices).
+final class CodeconnectionsConnectionHostArnOption
+    extends CodeconnectionsConnectionHostArnOrProviderType {
+  const CodeconnectionsConnectionHostArnOption({required this.hostArn});
+
+  final TfArg<String> hostArn;
+
+  @override
+  String get blockKey => 'host_arn';
+
+  @override
+  Map<String, Object?> encode() => {'host_arn': hostArn.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'host_arn': hostArn};
+}
+
+/// Sets `provider_type` (one of the [CodeconnectionsConnectionHostArnOrProviderType] choices).
+final class CodeconnectionsConnectionProviderTypeOption
+    extends CodeconnectionsConnectionHostArnOrProviderType {
+  const CodeconnectionsConnectionProviderTypeOption({
+    required this.providerType,
+  });
+
+  final TfArg<CodeconnectionsConnectionProviderType> providerType;
+
+  @override
+  String get blockKey => 'provider_type';
+
+  @override
+  Map<String, Object?> encode() => {'provider_type': providerType.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'provider_type': providerType};
+}
+
 /// Factory wrapper for `aws_codeconnections_connection`.
 final class AwsCodeconnectionsConnection extends Resource {
   static const String tfType = 'aws_codeconnections_connection';
 
   AwsCodeconnectionsConnection({
     required super.localName,
-    TfArg<String>? hostArn,
+    CodeconnectionsConnectionHostArnOrProviderType? hostArnOrProviderType,
     required TfArg<String> name,
-    TfArg<CodeconnectionsConnectionProviderType>? providerType,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     super.lifecycle,
@@ -38,9 +89,8 @@ final class AwsCodeconnectionsConnection extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (hostArn != null) 'host_arn': hostArn,
+           ...?hostArnOrProviderType?.argMap,
            'name': name,
-           if (providerType != null) 'provider_type': providerType,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
          },

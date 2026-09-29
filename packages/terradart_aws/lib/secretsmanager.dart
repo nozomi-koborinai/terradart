@@ -4,7 +4,12 @@
 library;
 
 export 'src/secretsmanager/aws_secretsmanager_secret.dart'
-    show AwsSecretsmanagerSecret, SecretsmanagerSecretReplica;
+    show
+        AwsSecretsmanagerSecret,
+        SecretsmanagerSecretNameOption,
+        SecretsmanagerSecretNameOrNamePrefix,
+        SecretsmanagerSecretNamePrefixOption,
+        SecretsmanagerSecretReplica;
 export 'src/secretsmanager/aws_secretsmanager_secret_policy.dart'
     show AwsSecretsmanagerSecretPolicy;
 export 'src/secretsmanager/aws_secretsmanager_secret_rotation.dart'
@@ -16,6 +21,11 @@ export 'src/secretsmanager/aws_secretsmanager_secret_rotation.dart'
         SecretsmanagerSecretRotationRotationRulesAutomaticallyAfterDaysOrScheduleExpression,
         SecretsmanagerSecretRotationRotationRulesScheduleExpressionOption;
 export 'src/secretsmanager/aws_secretsmanager_secret_version.dart'
-    show AwsSecretsmanagerSecretVersion;
+    show
+        AwsSecretsmanagerSecretVersion,
+        SecretsmanagerSecretVersionSecretBinaryOption,
+        SecretsmanagerSecretVersionSecretBinaryOrSecretStringOrSecretStringWo,
+        SecretsmanagerSecretVersionSecretStringOption,
+        SecretsmanagerSecretVersionSecretStringWoOption;
 export 'src/secretsmanager/aws_secretsmanager_tag.dart'
     show AwsSecretsmanagerTag;

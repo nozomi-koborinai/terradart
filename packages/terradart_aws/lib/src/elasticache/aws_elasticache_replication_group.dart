@@ -86,6 +86,146 @@ enum ElasticacheReplicationGroupTransitEncryptionMode implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `auth_token`, `auth_token_wo`, `user_group_ids` on `aws_elasticache_replication_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds {
+  const ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `auth_token` (one of the [ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds] choices).
+final class ElasticacheReplicationGroupAuthTokenOption
+    extends ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds {
+  const ElasticacheReplicationGroupAuthTokenOption({required this.authToken});
+
+  final TfArg<String> authToken;
+
+  @override
+  String get blockKey => 'auth_token';
+
+  @override
+  Map<String, Object?> encode() => {'auth_token': authToken.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'auth_token': authToken};
+}
+
+/// Sets `auth_token_wo` (one of the [ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds] choices).
+final class ElasticacheReplicationGroupAuthTokenWoOption
+    extends ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds {
+  const ElasticacheReplicationGroupAuthTokenWoOption({
+    required this.authTokenWo,
+  });
+
+  final TfArg<String> authTokenWo;
+
+  @override
+  String get blockKey => 'auth_token_wo';
+
+  @override
+  Map<String, Object?> encode() => {'auth_token_wo': authTokenWo.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'auth_token_wo': authTokenWo};
+}
+
+/// Sets `user_group_ids` (one of the [ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds] choices).
+final class ElasticacheReplicationGroupUserGroupIdsOption
+    extends ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds {
+  const ElasticacheReplicationGroupUserGroupIdsOption({
+    required this.userGroupIds,
+  });
+
+  final TfArg<List<String>> userGroupIds;
+
+  @override
+  String get blockKey => 'user_group_ids';
+
+  @override
+  Map<String, Object?> encode() => {'user_group_ids': userGroupIds.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'user_group_ids': userGroupIds};
+}
+
+/// At most one of `node_group_configuration`, `preferred_cache_cluster_azs` on `aws_elasticache_replication_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs {
+  const ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `node_group_configuration` (one of the [ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs] choices).
+final class ElasticacheReplicationGroupNodeGroupConfigurationOption
+    extends
+        ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs {
+  const ElasticacheReplicationGroupNodeGroupConfigurationOption({
+    required this.nodeGroupConfiguration,
+  });
+
+  final List<ElasticacheReplicationGroupNodeGroupConfiguration>
+  nodeGroupConfiguration;
+
+  @override
+  String get blockKey => 'node_group_configuration';
+
+  @override
+  Map<String, Object?> encode() => {
+    'node_group_configuration': [
+      for (final e in nodeGroupConfiguration) e.encode(),
+    ],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'node_group_configuration': TfArg.literal([
+      for (final e in nodeGroupConfiguration) e.encode(),
+    ]),
+  };
+}
+
+/// Sets `preferred_cache_cluster_azs` (one of the [ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs] choices).
+final class ElasticacheReplicationGroupPreferredCacheClusterAzsOption
+    extends
+        ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs {
+  const ElasticacheReplicationGroupPreferredCacheClusterAzsOption({
+    required this.preferredCacheClusterAzs,
+  });
+
+  final TfArg<List<String>> preferredCacheClusterAzs;
+
+  @override
+  String get blockKey => 'preferred_cache_cluster_azs';
+
+  @override
+  Map<String, Object?> encode() => {
+    'preferred_cache_cluster_azs': preferredCacheClusterAzs.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'preferred_cache_cluster_azs': preferredCacheClusterAzs,
+  };
+}
+
 /// Typed helper for the `log_delivery_configuration` block of
 /// `aws_elasticache_replication_group` (derived from provider schema).
 @immutable
@@ -208,10 +348,10 @@ final class AwsElasticacheReplicationGroup extends Resource {
     required super.localName,
     TfArg<bool>? applyImmediately,
     TfArg<String>? atRestEncryptionEnabled,
-    TfArg<String>? authToken,
+    ElasticacheReplicationGroupAuthTokenOrAuthTokenWoOrUserGroupIds?
+    authTokenOrAuthTokenWoOrUserGroupIds,
     TfArg<ElasticacheReplicationGroupAuthTokenUpdateStrategy>?
     authTokenUpdateStrategy,
-    TfArg<String>? authTokenWo,
     TfArg<num>? authTokenWoVersion,
     TfArg<String>? autoMinorVersionUpgrade,
     TfArg<bool>? automaticFailoverEnabled,
@@ -234,7 +374,8 @@ final class AwsElasticacheReplicationGroup extends Resource {
     TfArg<num>? numNodeGroups,
     TfArg<String>? parameterGroupName,
     TfArg<num>? port,
-    TfArg<List<String>>? preferredCacheClusterAzs,
+    ElasticacheReplicationGroupNodeGroupConfigurationOrPreferredCacheClusterAzs?
+    nodeGroupConfigurationOrPreferredCacheClusterAzs,
     TfArg<String>? region,
     TfArg<num>? replicasPerNodeGroup,
     required TfArg<String> replicationGroupId,
@@ -249,11 +390,8 @@ final class AwsElasticacheReplicationGroup extends Resource {
     TfArg<bool>? transitEncryptionEnabled,
     TfArg<ElasticacheReplicationGroupTransitEncryptionMode>?
     transitEncryptionMode,
-    TfArg<List<String>>? userGroupIds,
     List<ElasticacheReplicationGroupLogDeliveryConfiguration>?
     logDeliveryConfiguration,
-    List<ElasticacheReplicationGroupNodeGroupConfiguration>?
-    nodeGroupConfiguration,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -264,10 +402,9 @@ final class AwsElasticacheReplicationGroup extends Resource {
            if (applyImmediately != null) 'apply_immediately': applyImmediately,
            if (atRestEncryptionEnabled != null)
              'at_rest_encryption_enabled': atRestEncryptionEnabled,
-           if (authToken != null) 'auth_token': authToken,
+           ...?authTokenOrAuthTokenWoOrUserGroupIds?.argMap,
            if (authTokenUpdateStrategy != null)
              'auth_token_update_strategy': authTokenUpdateStrategy,
-           if (authTokenWo != null) 'auth_token_wo': authTokenWo,
            if (authTokenWoVersion != null)
              'auth_token_wo_version': authTokenWoVersion,
            if (autoMinorVersionUpgrade != null)
@@ -299,8 +436,7 @@ final class AwsElasticacheReplicationGroup extends Resource {
            if (parameterGroupName != null)
              'parameter_group_name': parameterGroupName,
            if (port != null) 'port': port,
-           if (preferredCacheClusterAzs != null)
-             'preferred_cache_cluster_azs': preferredCacheClusterAzs,
+           ...?nodeGroupConfigurationOrPreferredCacheClusterAzs?.argMap,
            if (region != null) 'region': region,
            if (replicasPerNodeGroup != null)
              'replicas_per_node_group': replicasPerNodeGroup,
@@ -319,14 +455,9 @@ final class AwsElasticacheReplicationGroup extends Resource {
              'transit_encryption_enabled': transitEncryptionEnabled,
            if (transitEncryptionMode != null)
              'transit_encryption_mode': transitEncryptionMode,
-           if (userGroupIds != null) 'user_group_ids': userGroupIds,
            if (logDeliveryConfiguration != null)
              'log_delivery_configuration': TfArg.literal([
                for (final e in logDeliveryConfiguration) e.encode(),
-             ]),
-           if (nodeGroupConfiguration != null)
-             'node_group_configuration': TfArg.literal([
-               for (final e in nodeGroupConfiguration) e.encode(),
              ]),
          },
        );

@@ -173,6 +173,118 @@ final class CloudwatchMetricAlarmMetricQueryOption
   };
 }
 
+/// At most one of `extended_statistic`, `statistic` on `aws_cloudwatch_metric_alarm`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CloudwatchMetricAlarmExtendedStatisticOrStatistic {
+  const CloudwatchMetricAlarmExtendedStatisticOrStatistic();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `extended_statistic` (one of the [CloudwatchMetricAlarmExtendedStatisticOrStatistic] choices).
+final class CloudwatchMetricAlarmExtendedStatisticOption
+    extends CloudwatchMetricAlarmExtendedStatisticOrStatistic {
+  const CloudwatchMetricAlarmExtendedStatisticOption({
+    required this.extendedStatistic,
+  });
+
+  final TfArg<String> extendedStatistic;
+
+  @override
+  String get blockKey => 'extended_statistic';
+
+  @override
+  Map<String, Object?> encode() => {
+    'extended_statistic': extendedStatistic.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'extended_statistic': extendedStatistic,
+  };
+}
+
+/// Sets `statistic` (one of the [CloudwatchMetricAlarmExtendedStatisticOrStatistic] choices).
+final class CloudwatchMetricAlarmStatisticOption
+    extends CloudwatchMetricAlarmExtendedStatisticOrStatistic {
+  const CloudwatchMetricAlarmStatisticOption({required this.statistic});
+
+  final TfArg<CloudwatchMetricAlarmStatistic> statistic;
+
+  @override
+  String get blockKey => 'statistic';
+
+  @override
+  Map<String, Object?> encode() => {'statistic': statistic.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'statistic': statistic};
+}
+
+/// At most one of `threshold`, `threshold_metric_id` on `aws_cloudwatch_metric_alarm`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CloudwatchMetricAlarmThresholdOrThresholdMetricId {
+  const CloudwatchMetricAlarmThresholdOrThresholdMetricId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `threshold` (one of the [CloudwatchMetricAlarmThresholdOrThresholdMetricId] choices).
+final class CloudwatchMetricAlarmThresholdOption
+    extends CloudwatchMetricAlarmThresholdOrThresholdMetricId {
+  const CloudwatchMetricAlarmThresholdOption({required this.threshold});
+
+  final TfArg<num> threshold;
+
+  @override
+  String get blockKey => 'threshold';
+
+  @override
+  Map<String, Object?> encode() => {'threshold': threshold.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'threshold': threshold};
+}
+
+/// Sets `threshold_metric_id` (one of the [CloudwatchMetricAlarmThresholdOrThresholdMetricId] choices).
+final class CloudwatchMetricAlarmThresholdMetricIdOption
+    extends CloudwatchMetricAlarmThresholdOrThresholdMetricId {
+  const CloudwatchMetricAlarmThresholdMetricIdOption({
+    required this.thresholdMetricId,
+  });
+
+  final TfArg<String> thresholdMetricId;
+
+  @override
+  String get blockKey => 'threshold_metric_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'threshold_metric_id': thresholdMetricId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'threshold_metric_id': thresholdMetricId,
+  };
+}
+
 /// Typed helper for the `evaluation_criteria` block of
 /// `aws_cloudwatch_metric_alarm` (derived from provider schema).
 @immutable
@@ -368,7 +480,8 @@ final class AwsCloudwatchMetricAlarm extends Resource {
     evaluateLowSampleCountPercentiles,
     TfArg<num>? evaluationInterval,
     TfArg<num>? evaluationPeriods,
-    TfArg<String>? extendedStatistic,
+    CloudwatchMetricAlarmExtendedStatisticOrStatistic?
+    extendedStatisticOrStatistic,
     TfArg<List<String>>? insufficientDataActions,
     required CloudwatchMetricAlarmEvaluationCriteriaOrMetricNameOrMetricQuery
     evaluationCriteriaOrMetricNameOrMetricQuery,
@@ -376,10 +489,9 @@ final class AwsCloudwatchMetricAlarm extends Resource {
     TfArg<List<String>>? okActions,
     TfArg<num>? period,
     TfArg<String>? region,
-    TfArg<CloudwatchMetricAlarmStatistic>? statistic,
     TfArg<Map<String, String>>? tags,
-    TfArg<num>? threshold,
-    TfArg<String>? thresholdMetricId,
+    CloudwatchMetricAlarmThresholdOrThresholdMetricId?
+    thresholdOrThresholdMetricId,
     TfArg<CloudwatchMetricAlarmTreatMissingData>? treatMissingData,
     TfArg<CloudwatchMetricAlarmUnit>? unit,
     CloudwatchMetricAlarmWarmUpConfiguration? warmUpConfiguration,
@@ -406,8 +518,7 @@ final class AwsCloudwatchMetricAlarm extends Resource {
              'evaluation_interval': evaluationInterval,
            if (evaluationPeriods != null)
              'evaluation_periods': evaluationPeriods,
-           if (extendedStatistic != null)
-             'extended_statistic': extendedStatistic,
+           ...?extendedStatisticOrStatistic?.argMap,
            if (insufficientDataActions != null)
              'insufficient_data_actions': insufficientDataActions,
            ...evaluationCriteriaOrMetricNameOrMetricQuery.argMap,
@@ -415,11 +526,8 @@ final class AwsCloudwatchMetricAlarm extends Resource {
            if (okActions != null) 'ok_actions': okActions,
            if (period != null) 'period': period,
            if (region != null) 'region': region,
-           if (statistic != null) 'statistic': statistic,
            if (tags != null) 'tags': tags,
-           if (threshold != null) 'threshold': threshold,
-           if (thresholdMetricId != null)
-             'threshold_metric_id': thresholdMetricId,
+           ...?thresholdOrThresholdMetricId?.argMap,
            if (treatMissingData != null) 'treat_missing_data': treatMissingData,
            if (unit != null) 'unit': unit,
            if (warmUpConfiguration != null)

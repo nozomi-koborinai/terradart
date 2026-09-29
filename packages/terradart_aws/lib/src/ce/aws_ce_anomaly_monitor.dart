@@ -28,14 +28,76 @@ enum CeAnomalyMonitorMonitorType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `monitor_dimension`, `monitor_specification` on `aws_ce_anomaly_monitor`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CeAnomalyMonitorMonitorDimensionOrMonitorSpecification {
+  const CeAnomalyMonitorMonitorDimensionOrMonitorSpecification();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `monitor_dimension` (one of the [CeAnomalyMonitorMonitorDimensionOrMonitorSpecification] choices).
+final class CeAnomalyMonitorMonitorDimensionOption
+    extends CeAnomalyMonitorMonitorDimensionOrMonitorSpecification {
+  const CeAnomalyMonitorMonitorDimensionOption({
+    required this.monitorDimension,
+  });
+
+  final TfArg<CeAnomalyMonitorMonitorDimension> monitorDimension;
+
+  @override
+  String get blockKey => 'monitor_dimension';
+
+  @override
+  Map<String, Object?> encode() => {
+    'monitor_dimension': monitorDimension.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'monitor_dimension': monitorDimension,
+  };
+}
+
+/// Sets `monitor_specification` (one of the [CeAnomalyMonitorMonitorDimensionOrMonitorSpecification] choices).
+final class CeAnomalyMonitorMonitorSpecificationOption
+    extends CeAnomalyMonitorMonitorDimensionOrMonitorSpecification {
+  const CeAnomalyMonitorMonitorSpecificationOption({
+    required this.monitorSpecification,
+  });
+
+  final TfArg<String> monitorSpecification;
+
+  @override
+  String get blockKey => 'monitor_specification';
+
+  @override
+  Map<String, Object?> encode() => {
+    'monitor_specification': monitorSpecification.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'monitor_specification': monitorSpecification,
+  };
+}
+
 /// Factory wrapper for `aws_ce_anomaly_monitor`.
 final class AwsCeAnomalyMonitor extends Resource {
   static const String tfType = 'aws_ce_anomaly_monitor';
 
   AwsCeAnomalyMonitor({
     required super.localName,
-    TfArg<CeAnomalyMonitorMonitorDimension>? monitorDimension,
-    TfArg<String>? monitorSpecification,
+    CeAnomalyMonitorMonitorDimensionOrMonitorSpecification?
+    monitorDimensionOrMonitorSpecification,
     required TfArg<CeAnomalyMonitorMonitorType> monitorType,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,
@@ -46,9 +108,7 @@ final class AwsCeAnomalyMonitor extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (monitorDimension != null) 'monitor_dimension': monitorDimension,
-           if (monitorSpecification != null)
-             'monitor_specification': monitorSpecification,
+           ...?monitorDimensionOrMonitorSpecification?.argMap,
            'monitor_type': monitorType,
            'name': name,
            if (tags != null) 'tags': tags,

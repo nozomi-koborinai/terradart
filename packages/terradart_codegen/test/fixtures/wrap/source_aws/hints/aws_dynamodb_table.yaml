@@ -63,3 +63,5 @@ properties:
     enum_values:
       - "STANDARD"
       - "STANDARD_INFREQUENT_ACCESS"
+at_most_one_of_groups:
+  - ["import_table", "restore_backup_arn", "restore_source_name", "restore_source_table_arn"]

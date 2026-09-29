@@ -21,6 +21,56 @@ enum GlueDevEndpointWorkerType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `public_key`, `public_keys` on `aws_glue_dev_endpoint`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class GlueDevEndpointPublicKeyOrPublicKeys {
+  const GlueDevEndpointPublicKeyOrPublicKeys();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `public_key` (one of the [GlueDevEndpointPublicKeyOrPublicKeys] choices).
+final class GlueDevEndpointPublicKeyOption
+    extends GlueDevEndpointPublicKeyOrPublicKeys {
+  const GlueDevEndpointPublicKeyOption({required this.publicKey});
+
+  final TfArg<String> publicKey;
+
+  @override
+  String get blockKey => 'public_key';
+
+  @override
+  Map<String, Object?> encode() => {'public_key': publicKey.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'public_key': publicKey};
+}
+
+/// Sets `public_keys` (one of the [GlueDevEndpointPublicKeyOrPublicKeys] choices).
+final class GlueDevEndpointPublicKeysOption
+    extends GlueDevEndpointPublicKeyOrPublicKeys {
+  const GlueDevEndpointPublicKeysOption({required this.publicKeys});
+
+  final TfArg<List<String>> publicKeys;
+
+  @override
+  String get blockKey => 'public_keys';
+
+  @override
+  Map<String, Object?> encode() => {'public_keys': publicKeys.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'public_keys': publicKeys};
+}
+
 /// Factory wrapper for `aws_glue_dev_endpoint`.
 final class AwsGlueDevEndpoint extends Resource {
   static const String tfType = 'aws_glue_dev_endpoint';
@@ -34,8 +84,7 @@ final class AwsGlueDevEndpoint extends Resource {
     required TfArg<String> name,
     TfArg<num>? numberOfNodes,
     TfArg<num>? numberOfWorkers,
-    TfArg<String>? publicKey,
-    TfArg<List<String>>? publicKeys,
+    GlueDevEndpointPublicKeyOrPublicKeys? publicKeyOrPublicKeys,
     TfArg<String>? region,
     required TfArg<String> roleArn,
     TfArg<String>? securityConfiguration,
@@ -58,8 +107,7 @@ final class AwsGlueDevEndpoint extends Resource {
            'name': name,
            if (numberOfNodes != null) 'number_of_nodes': numberOfNodes,
            if (numberOfWorkers != null) 'number_of_workers': numberOfWorkers,
-           if (publicKey != null) 'public_key': publicKey,
-           if (publicKeys != null) 'public_keys': publicKeys,
+           ...?publicKeyOrPublicKeys?.argMap,
            if (region != null) 'region': region,
            'role_arn': roleArn,
            if (securityConfiguration != null)

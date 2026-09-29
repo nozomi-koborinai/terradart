@@ -17,6 +17,56 @@ enum Macie2FindingsFilterAction implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `name`, `name_prefix` on `aws_macie2_findings_filter`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class Macie2FindingsFilterNameOrNamePrefix {
+  const Macie2FindingsFilterNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [Macie2FindingsFilterNameOrNamePrefix] choices).
+final class Macie2FindingsFilterNameOption
+    extends Macie2FindingsFilterNameOrNamePrefix {
+  const Macie2FindingsFilterNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [Macie2FindingsFilterNameOrNamePrefix] choices).
+final class Macie2FindingsFilterNamePrefixOption
+    extends Macie2FindingsFilterNameOrNamePrefix {
+  const Macie2FindingsFilterNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `finding_criteria` block of
 /// `aws_macie2_findings_filter` (derived from provider schema).
 @immutable
@@ -82,8 +132,7 @@ final class AwsMacie2FindingsFilter extends Resource {
     required super.localName,
     required TfArg<Macie2FindingsFilterAction> action,
     TfArg<String>? description,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    Macie2FindingsFilterNameOrNamePrefix? nameOrNamePrefix,
     TfArg<num>? position,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -97,8 +146,7 @@ final class AwsMacie2FindingsFilter extends Resource {
          argMap: {
            'action': action,
            if (description != null) 'description': description,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (position != null) 'position': position,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

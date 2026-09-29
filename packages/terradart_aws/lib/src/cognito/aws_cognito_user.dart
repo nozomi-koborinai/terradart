@@ -29,6 +29,60 @@ enum CognitoUserMessageAction implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `password`, `temporary_password` on `aws_cognito_user`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CognitoUserPasswordOrTemporaryPassword {
+  const CognitoUserPasswordOrTemporaryPassword();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `password` (one of the [CognitoUserPasswordOrTemporaryPassword] choices).
+final class CognitoUserPasswordOption
+    extends CognitoUserPasswordOrTemporaryPassword {
+  const CognitoUserPasswordOption({required this.password});
+
+  final TfArg<String> password;
+
+  @override
+  String get blockKey => 'password';
+
+  @override
+  Map<String, Object?> encode() => {'password': password.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'password': password};
+}
+
+/// Sets `temporary_password` (one of the [CognitoUserPasswordOrTemporaryPassword] choices).
+final class CognitoUserTemporaryPasswordOption
+    extends CognitoUserPasswordOrTemporaryPassword {
+  const CognitoUserTemporaryPasswordOption({required this.temporaryPassword});
+
+  final TfArg<String> temporaryPassword;
+
+  @override
+  String get blockKey => 'temporary_password';
+
+  @override
+  Map<String, Object?> encode() => {
+    'temporary_password': temporaryPassword.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'temporary_password': temporaryPassword,
+  };
+}
+
 /// Factory wrapper for `aws_cognito_user`.
 final class AwsCognitoUser extends Resource {
   static const String tfType = 'aws_cognito_user';
@@ -41,9 +95,8 @@ final class AwsCognitoUser extends Resource {
     TfArg<bool>? enabled,
     TfArg<bool>? forceAliasCreation,
     TfArg<CognitoUserMessageAction>? messageAction,
-    TfArg<String>? password,
+    CognitoUserPasswordOrTemporaryPassword? passwordOrTemporaryPassword,
     TfArg<String>? region,
-    TfArg<String>? temporaryPassword,
     required TfArg<String> userPoolId,
     required TfArg<String> username,
     TfArg<Map<String, String>>? validationData,
@@ -64,10 +117,8 @@ final class AwsCognitoUser extends Resource {
            if (forceAliasCreation != null)
              'force_alias_creation': forceAliasCreation,
            if (messageAction != null) 'message_action': messageAction,
-           if (password != null) 'password': password,
+           ...?passwordOrTemporaryPassword?.argMap,
            if (region != null) 'region': region,
-           if (temporaryPassword != null)
-             'temporary_password': temporaryPassword,
            'user_pool_id': userPoolId,
            'username': username,
            if (validationData != null) 'validation_data': validationData,

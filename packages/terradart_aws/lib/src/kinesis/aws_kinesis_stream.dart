@@ -33,6 +33,62 @@ enum KinesisStreamShardLevelMetrics implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `shard_count`, `warm_throughput_mib_ps` on `aws_kinesis_stream`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class KinesisStreamShardCountOrWarmThroughputMibPs {
+  const KinesisStreamShardCountOrWarmThroughputMibPs();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `shard_count` (one of the [KinesisStreamShardCountOrWarmThroughputMibPs] choices).
+final class KinesisStreamShardCountOption
+    extends KinesisStreamShardCountOrWarmThroughputMibPs {
+  const KinesisStreamShardCountOption({required this.shardCount});
+
+  final TfArg<num> shardCount;
+
+  @override
+  String get blockKey => 'shard_count';
+
+  @override
+  Map<String, Object?> encode() => {'shard_count': shardCount.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'shard_count': shardCount};
+}
+
+/// Sets `warm_throughput_mib_ps` (one of the [KinesisStreamShardCountOrWarmThroughputMibPs] choices).
+final class KinesisStreamWarmThroughputMibPsOption
+    extends KinesisStreamShardCountOrWarmThroughputMibPs {
+  const KinesisStreamWarmThroughputMibPsOption({
+    required this.warmThroughputMibPs,
+  });
+
+  final TfArg<num> warmThroughputMibPs;
+
+  @override
+  String get blockKey => 'warm_throughput_mib_ps';
+
+  @override
+  Map<String, Object?> encode() => {
+    'warm_throughput_mib_ps': warmThroughputMibPs.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'warm_throughput_mib_ps': warmThroughputMibPs,
+  };
+}
+
 /// Typed helper for the `stream_mode_details` block of
 /// `aws_kinesis_stream` (derived from provider schema).
 @immutable
@@ -68,10 +124,10 @@ final class AwsKinesisStream extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<num>? retentionPeriod,
-    TfArg<num>? shardCount,
+    KinesisStreamShardCountOrWarmThroughputMibPs?
+    shardCountOrWarmThroughputMibPs,
     List<TfArg<KinesisStreamShardLevelMetrics>>? shardLevelMetrics,
     TfArg<Map<String, String>>? tags,
-    TfArg<num>? warmThroughputMibPs,
     KinesisStreamStreamModeDetails? streamModeDetails,
     super.lifecycle,
     super.dependsOn,
@@ -90,14 +146,12 @@ final class AwsKinesisStream extends Resource {
            'name': name,
            if (region != null) 'region': region,
            if (retentionPeriod != null) 'retention_period': retentionPeriod,
-           if (shardCount != null) 'shard_count': shardCount,
+           ...?shardCountOrWarmThroughputMibPs?.argMap,
            if (shardLevelMetrics != null)
              'shard_level_metrics': TfArg.literal([
                for (final e in shardLevelMetrics) e.toTfJson(),
              ]),
            if (tags != null) 'tags': tags,
-           if (warmThroughputMibPs != null)
-             'warm_throughput_mib_ps': warmThroughputMibPs,
            if (streamModeDetails != null)
              'stream_mode_details': TfArg.literal(streamModeDetails.encode()),
          },

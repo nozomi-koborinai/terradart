@@ -38,6 +38,56 @@ enum CloudformationStackSetPermissionModel implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `template_body`, `template_url` on `aws_cloudformation_stack_set`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CloudformationStackSetTemplateBodyOrTemplateUrl {
+  const CloudformationStackSetTemplateBodyOrTemplateUrl();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `template_body` (one of the [CloudformationStackSetTemplateBodyOrTemplateUrl] choices).
+final class CloudformationStackSetTemplateBodyOption
+    extends CloudformationStackSetTemplateBodyOrTemplateUrl {
+  const CloudformationStackSetTemplateBodyOption({required this.templateBody});
+
+  final TfArg<String> templateBody;
+
+  @override
+  String get blockKey => 'template_body';
+
+  @override
+  Map<String, Object?> encode() => {'template_body': templateBody.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'template_body': templateBody};
+}
+
+/// Sets `template_url` (one of the [CloudformationStackSetTemplateBodyOrTemplateUrl] choices).
+final class CloudformationStackSetTemplateUrlOption
+    extends CloudformationStackSetTemplateBodyOrTemplateUrl {
+  const CloudformationStackSetTemplateUrlOption({required this.templateUrl});
+
+  final TfArg<String> templateUrl;
+
+  @override
+  String get blockKey => 'template_url';
+
+  @override
+  Map<String, Object?> encode() => {'template_url': templateUrl.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'template_url': templateUrl};
+}
+
 /// Typed helper for the `auto_deployment` block of
 /// `aws_cloudformation_stack_set` (derived from provider schema).
 @immutable
@@ -82,21 +132,17 @@ final class CloudformationStackSetManagedExecution {
 @immutable
 final class CloudformationStackSetOperationPreferences {
   const CloudformationStackSetOperationPreferences({
-    this.failureToleranceCount,
-    this.failureTolerancePercentage,
-    this.maxConcurrentCount,
-    this.maxConcurrentPercentage,
+    this.failureToleranceCountOrFailureTolerancePercentage,
+    this.maxConcurrentCountOrMaxConcurrentPercentage,
     this.regionConcurrencyType,
     this.regionOrder,
   });
 
-  final TfArg<num>? failureToleranceCount;
+  final CloudformationStackSetOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage?
+  failureToleranceCountOrFailureTolerancePercentage;
 
-  final TfArg<num>? failureTolerancePercentage;
-
-  final TfArg<num>? maxConcurrentCount;
-
-  final TfArg<num>? maxConcurrentPercentage;
+  final CloudformationStackSetOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage?
+  maxConcurrentCountOrMaxConcurrentPercentage;
 
   final TfArg<CloudformationStackSetOperationPreferencesRegionConcurrencyType>?
   regionConcurrencyType;
@@ -104,17 +150,111 @@ final class CloudformationStackSetOperationPreferences {
   final TfArg<List<Object?>>? regionOrder;
 
   Map<String, Object?> encode() => {
-    if (failureToleranceCount != null)
-      'failure_tolerance_count': failureToleranceCount!.toTfJson(),
-    if (failureTolerancePercentage != null)
-      'failure_tolerance_percentage': failureTolerancePercentage!.toTfJson(),
-    if (maxConcurrentCount != null)
-      'max_concurrent_count': maxConcurrentCount!.toTfJson(),
-    if (maxConcurrentPercentage != null)
-      'max_concurrent_percentage': maxConcurrentPercentage!.toTfJson(),
+    ...?failureToleranceCountOrFailureTolerancePercentage?.encode(),
+    ...?maxConcurrentCountOrMaxConcurrentPercentage?.encode(),
     if (regionConcurrencyType != null)
       'region_concurrency_type': regionConcurrencyType!.toTfJson(),
     if (regionOrder != null) 'region_order': regionOrder!.toTfJson(),
+  };
+}
+
+/// At most one of `failure_tolerance_count`, `failure_tolerance_percentage` on the `operation_preferences` block of `aws_cloudformation_stack_set`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CloudformationStackSetOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage {
+  const CloudformationStackSetOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `failure_tolerance_count` (one of the [CloudformationStackSetOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage] choices).
+final class CloudformationStackSetOperationPreferencesFailureToleranceCountOption
+    extends
+        CloudformationStackSetOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage {
+  const CloudformationStackSetOperationPreferencesFailureToleranceCountOption({
+    required this.failureToleranceCount,
+  });
+
+  final TfArg<num> failureToleranceCount;
+
+  @override
+  String get blockKey => 'failure_tolerance_count';
+
+  @override
+  Map<String, Object?> encode() => {
+    'failure_tolerance_count': failureToleranceCount.toTfJson(),
+  };
+}
+
+/// Sets `failure_tolerance_percentage` (one of the [CloudformationStackSetOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage] choices).
+final class CloudformationStackSetOperationPreferencesFailureTolerancePercentageOption
+    extends
+        CloudformationStackSetOperationPreferencesFailureToleranceCountOrFailureTolerancePercentage {
+  const CloudformationStackSetOperationPreferencesFailureTolerancePercentageOption({
+    required this.failureTolerancePercentage,
+  });
+
+  final TfArg<num> failureTolerancePercentage;
+
+  @override
+  String get blockKey => 'failure_tolerance_percentage';
+
+  @override
+  Map<String, Object?> encode() => {
+    'failure_tolerance_percentage': failureTolerancePercentage.toTfJson(),
+  };
+}
+
+/// At most one of `max_concurrent_count`, `max_concurrent_percentage` on the `operation_preferences` block of `aws_cloudformation_stack_set`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CloudformationStackSetOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage {
+  const CloudformationStackSetOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `max_concurrent_count` (one of the [CloudformationStackSetOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage] choices).
+final class CloudformationStackSetOperationPreferencesMaxConcurrentCountOption
+    extends
+        CloudformationStackSetOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage {
+  const CloudformationStackSetOperationPreferencesMaxConcurrentCountOption({
+    required this.maxConcurrentCount,
+  });
+
+  final TfArg<num> maxConcurrentCount;
+
+  @override
+  String get blockKey => 'max_concurrent_count';
+
+  @override
+  Map<String, Object?> encode() => {
+    'max_concurrent_count': maxConcurrentCount.toTfJson(),
+  };
+}
+
+/// Sets `max_concurrent_percentage` (one of the [CloudformationStackSetOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage] choices).
+final class CloudformationStackSetOperationPreferencesMaxConcurrentPercentageOption
+    extends
+        CloudformationStackSetOperationPreferencesMaxConcurrentCountOrMaxConcurrentPercentage {
+  const CloudformationStackSetOperationPreferencesMaxConcurrentPercentageOption({
+    required this.maxConcurrentPercentage,
+  });
+
+  final TfArg<num> maxConcurrentPercentage;
+
+  @override
+  String get blockKey => 'max_concurrent_percentage';
+
+  @override
+  Map<String, Object?> encode() => {
+    'max_concurrent_percentage': maxConcurrentPercentage.toTfJson(),
   };
 }
 
@@ -147,8 +287,7 @@ final class AwsCloudformationStackSet extends Resource {
     TfArg<CloudformationStackSetPermissionModel>? permissionModel,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? templateBody,
-    TfArg<String>? templateUrl,
+    CloudformationStackSetTemplateBodyOrTemplateUrl? templateBodyOrTemplateUrl,
     CloudformationStackSetAutoDeployment? autoDeployment,
     CloudformationStackSetManagedExecution? managedExecution,
     CloudformationStackSetOperationPreferences? operationPreferences,
@@ -174,8 +313,7 @@ final class AwsCloudformationStackSet extends Resource {
            if (permissionModel != null) 'permission_model': permissionModel,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           if (templateBody != null) 'template_body': templateBody,
-           if (templateUrl != null) 'template_url': templateUrl,
+           ...?templateBodyOrTemplateUrl?.argMap,
            if (autoDeployment != null)
              'auto_deployment': TfArg.literal(autoDeployment.encode()),
            if (managedExecution != null)

@@ -6,18 +6,195 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_route`.
 const Set<String> _awsRouteSensitive = <String>{};
 
+/// At most one of `carrier_gateway_id`, `destination_ipv6_cidr_block` on `aws_route`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RouteCarrierGatewayIdOrDestinationIpv6CidrBlock {
+  const RouteCarrierGatewayIdOrDestinationIpv6CidrBlock();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `carrier_gateway_id` (one of the [RouteCarrierGatewayIdOrDestinationIpv6CidrBlock] choices).
+final class RouteCarrierGatewayIdOption
+    extends RouteCarrierGatewayIdOrDestinationIpv6CidrBlock {
+  const RouteCarrierGatewayIdOption({required this.carrierGatewayId});
+
+  final TfArg<String> carrierGatewayId;
+
+  @override
+  String get blockKey => 'carrier_gateway_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'carrier_gateway_id': carrierGatewayId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'carrier_gateway_id': carrierGatewayId,
+  };
+}
+
+/// Sets `destination_ipv6_cidr_block` (one of the [RouteCarrierGatewayIdOrDestinationIpv6CidrBlock] choices).
+final class RouteDestinationIpv6CidrBlockOption
+    extends RouteCarrierGatewayIdOrDestinationIpv6CidrBlock {
+  const RouteDestinationIpv6CidrBlockOption({
+    required this.destinationIpv6CidrBlock,
+  });
+
+  final TfArg<String> destinationIpv6CidrBlock;
+
+  @override
+  String get blockKey => 'destination_ipv6_cidr_block';
+
+  @override
+  Map<String, Object?> encode() => {
+    'destination_ipv6_cidr_block': destinationIpv6CidrBlock.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'destination_ipv6_cidr_block': destinationIpv6CidrBlock,
+  };
+}
+
+/// At most one of `destination_cidr_block`, `egress_only_gateway_id` on `aws_route`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RouteDestinationCidrBlockOrEgressOnlyGatewayId {
+  const RouteDestinationCidrBlockOrEgressOnlyGatewayId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `destination_cidr_block` (one of the [RouteDestinationCidrBlockOrEgressOnlyGatewayId] choices).
+final class RouteDestinationCidrBlockOption
+    extends RouteDestinationCidrBlockOrEgressOnlyGatewayId {
+  const RouteDestinationCidrBlockOption({required this.destinationCidrBlock});
+
+  final TfArg<String> destinationCidrBlock;
+
+  @override
+  String get blockKey => 'destination_cidr_block';
+
+  @override
+  Map<String, Object?> encode() => {
+    'destination_cidr_block': destinationCidrBlock.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'destination_cidr_block': destinationCidrBlock,
+  };
+}
+
+/// Sets `egress_only_gateway_id` (one of the [RouteDestinationCidrBlockOrEgressOnlyGatewayId] choices).
+final class RouteEgressOnlyGatewayIdOption
+    extends RouteDestinationCidrBlockOrEgressOnlyGatewayId {
+  const RouteEgressOnlyGatewayIdOption({required this.egressOnlyGatewayId});
+
+  final TfArg<String> egressOnlyGatewayId;
+
+  @override
+  String get blockKey => 'egress_only_gateway_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'egress_only_gateway_id': egressOnlyGatewayId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'egress_only_gateway_id': egressOnlyGatewayId,
+  };
+}
+
+/// At most one of `destination_prefix_list_id`, `vpc_endpoint_id` on `aws_route`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class RouteDestinationPrefixListIdOrVpcEndpointId {
+  const RouteDestinationPrefixListIdOrVpcEndpointId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `destination_prefix_list_id` (one of the [RouteDestinationPrefixListIdOrVpcEndpointId] choices).
+final class RouteDestinationPrefixListIdOption
+    extends RouteDestinationPrefixListIdOrVpcEndpointId {
+  const RouteDestinationPrefixListIdOption({
+    required this.destinationPrefixListId,
+  });
+
+  final TfArg<String> destinationPrefixListId;
+
+  @override
+  String get blockKey => 'destination_prefix_list_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'destination_prefix_list_id': destinationPrefixListId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'destination_prefix_list_id': destinationPrefixListId,
+  };
+}
+
+/// Sets `vpc_endpoint_id` (one of the [RouteDestinationPrefixListIdOrVpcEndpointId] choices).
+final class RouteVpcEndpointIdOption
+    extends RouteDestinationPrefixListIdOrVpcEndpointId {
+  const RouteVpcEndpointIdOption({required this.vpcEndpointId});
+
+  final TfArg<String> vpcEndpointId;
+
+  @override
+  String get blockKey => 'vpc_endpoint_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'vpc_endpoint_id': vpcEndpointId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'vpc_endpoint_id': vpcEndpointId};
+}
+
 /// Factory wrapper for `aws_route`.
 final class AwsRoute extends Resource {
   static const String tfType = 'aws_route';
 
   AwsRoute({
     required super.localName,
-    TfArg<String>? carrierGatewayId,
+    RouteCarrierGatewayIdOrDestinationIpv6CidrBlock?
+    carrierGatewayIdOrDestinationIpv6CidrBlock,
     TfArg<String>? coreNetworkArn,
-    TfArg<String>? destinationCidrBlock,
-    TfArg<String>? destinationIpv6CidrBlock,
-    TfArg<String>? destinationPrefixListId,
-    TfArg<String>? egressOnlyGatewayId,
+    RouteDestinationCidrBlockOrEgressOnlyGatewayId?
+    destinationCidrBlockOrEgressOnlyGatewayId,
+    RouteDestinationPrefixListIdOrVpcEndpointId?
+    destinationPrefixListIdOrVpcEndpointId,
     TfArg<String>? gatewayId,
     TfArg<String>? localGatewayId,
     TfArg<String>? natGatewayId,
@@ -26,7 +203,6 @@ final class AwsRoute extends Resource {
     TfArg<String>? region,
     required TfArg<String> routeTableId,
     TfArg<String>? transitGatewayId,
-    TfArg<String>? vpcEndpointId,
     TfArg<String>? vpcPeeringConnectionId,
     super.lifecycle,
     super.dependsOn,
@@ -35,16 +211,10 @@ final class AwsRoute extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (carrierGatewayId != null) 'carrier_gateway_id': carrierGatewayId,
+           ...?carrierGatewayIdOrDestinationIpv6CidrBlock?.argMap,
            if (coreNetworkArn != null) 'core_network_arn': coreNetworkArn,
-           if (destinationCidrBlock != null)
-             'destination_cidr_block': destinationCidrBlock,
-           if (destinationIpv6CidrBlock != null)
-             'destination_ipv6_cidr_block': destinationIpv6CidrBlock,
-           if (destinationPrefixListId != null)
-             'destination_prefix_list_id': destinationPrefixListId,
-           if (egressOnlyGatewayId != null)
-             'egress_only_gateway_id': egressOnlyGatewayId,
+           ...?destinationCidrBlockOrEgressOnlyGatewayId?.argMap,
+           ...?destinationPrefixListIdOrVpcEndpointId?.argMap,
            if (gatewayId != null) 'gateway_id': gatewayId,
            if (localGatewayId != null) 'local_gateway_id': localGatewayId,
            if (natGatewayId != null) 'nat_gateway_id': natGatewayId,
@@ -54,7 +224,6 @@ final class AwsRoute extends Resource {
            if (region != null) 'region': region,
            'route_table_id': routeTableId,
            if (transitGatewayId != null) 'transit_gateway_id': transitGatewayId,
-           if (vpcEndpointId != null) 'vpc_endpoint_id': vpcEndpointId,
            if (vpcPeeringConnectionId != null)
              'vpc_peering_connection_id': vpcPeeringConnectionId,
          },

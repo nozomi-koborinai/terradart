@@ -17,6 +17,55 @@ enum SfnStateMachineType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `name`, `name_prefix` on `aws_sfn_state_machine`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SfnStateMachineNameOrNamePrefix {
+  const SfnStateMachineNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [SfnStateMachineNameOrNamePrefix] choices).
+final class SfnStateMachineNameOption extends SfnStateMachineNameOrNamePrefix {
+  const SfnStateMachineNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [SfnStateMachineNameOrNamePrefix] choices).
+final class SfnStateMachineNamePrefixOption
+    extends SfnStateMachineNameOrNamePrefix {
+  const SfnStateMachineNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `encryption_configuration` block of
 /// `aws_sfn_state_machine` (derived from provider schema).
 @immutable
@@ -108,8 +157,7 @@ final class AwsSfnStateMachine extends Resource {
   AwsSfnStateMachine({
     required super.localName,
     required TfArg<String> definition,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    SfnStateMachineNameOrNamePrefix? nameOrNamePrefix,
     TfArg<bool>? publish,
     TfArg<String>? region,
     required TfArg<String> roleArn,
@@ -126,8 +174,7 @@ final class AwsSfnStateMachine extends Resource {
          terraformType: tfType,
          argMap: {
            'definition': definition,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (publish != null) 'publish': publish,
            if (region != null) 'region': region,
            'role_arn': roleArn,

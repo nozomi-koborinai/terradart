@@ -73,7 +73,7 @@ final class _TestStack extends Stack {
     final role = AwsIamRole(
       localName: 'fn',
       assumeRolePolicy: TfArg.ref(trust.json),
-      name: TfArg.literal('hello-dart'),
+      nameOrNamePrefix: IamRoleNameOption(name: TfArg.literal('hello-dart')),
     );
     add(role);
     add(

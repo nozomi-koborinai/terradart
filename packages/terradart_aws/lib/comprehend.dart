@@ -18,6 +18,9 @@ export 'src/comprehend/aws_comprehend_document_classifier.dart'
         ComprehendDocumentClassifierLanguageCode,
         ComprehendDocumentClassifierMode,
         ComprehendDocumentClassifierOutputDataConfig,
+        ComprehendDocumentClassifierVersionNameOption,
+        ComprehendDocumentClassifierVersionNameOrVersionNamePrefix,
+        ComprehendDocumentClassifierVersionNamePrefixOption,
         ComprehendDocumentClassifierVpcConfig;
 export 'src/comprehend/aws_comprehend_entity_recognizer.dart'
     show
@@ -39,4 +42,7 @@ export 'src/comprehend/aws_comprehend_entity_recognizer.dart'
         ComprehendEntityRecognizerInputDataConfigEntityListOption,
         ComprehendEntityRecognizerInputDataConfigEntityTypes,
         ComprehendEntityRecognizerLanguageCode,
+        ComprehendEntityRecognizerVersionNameOption,
+        ComprehendEntityRecognizerVersionNameOrVersionNamePrefix,
+        ComprehendEntityRecognizerVersionNamePrefixOption,
         ComprehendEntityRecognizerVpcConfig;

@@ -6,6 +6,54 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_iam_policy`.
 const Set<String> _awsIamPolicySensitive = <String>{};
 
+/// At most one of `name`, `name_prefix` on `aws_iam_policy`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class IamPolicyNameOrNamePrefix {
+  const IamPolicyNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [IamPolicyNameOrNamePrefix] choices).
+final class IamPolicyNameOption extends IamPolicyNameOrNamePrefix {
+  const IamPolicyNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [IamPolicyNameOrNamePrefix] choices).
+final class IamPolicyNamePrefixOption extends IamPolicyNameOrNamePrefix {
+  const IamPolicyNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Factory wrapper for `aws_iam_policy`.
 final class AwsIamPolicy extends Resource {
   static const String tfType = 'aws_iam_policy';
@@ -14,8 +62,7 @@ final class AwsIamPolicy extends Resource {
     required super.localName,
     TfArg<num>? delayAfterPolicyCreationInMs,
     TfArg<String>? description,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    IamPolicyNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? path,
     required TfArg<String> policy,
     TfArg<Map<String, String>>? tags,
@@ -29,8 +76,7 @@ final class AwsIamPolicy extends Resource {
            if (delayAfterPolicyCreationInMs != null)
              'delay_after_policy_creation_in_ms': delayAfterPolicyCreationInMs,
            if (description != null) 'description': description,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (path != null) 'path': path,
            'policy': policy,
            if (tags != null) 'tags': tags,

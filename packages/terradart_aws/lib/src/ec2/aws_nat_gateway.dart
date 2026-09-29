@@ -27,6 +27,71 @@ enum NatGatewayConnectivityType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `secondary_private_ip_address_count`, `secondary_private_ip_addresses` on `aws_nat_gateway`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses {
+  const NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `secondary_private_ip_address_count` (one of the [NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses] choices).
+final class NatGatewaySecondaryPrivateIpAddressCountOption
+    extends
+        NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses {
+  const NatGatewaySecondaryPrivateIpAddressCountOption({
+    required this.secondaryPrivateIpAddressCount,
+  });
+
+  final TfArg<num> secondaryPrivateIpAddressCount;
+
+  @override
+  String get blockKey => 'secondary_private_ip_address_count';
+
+  @override
+  Map<String, Object?> encode() => {
+    'secondary_private_ip_address_count': secondaryPrivateIpAddressCount
+        .toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'secondary_private_ip_address_count': secondaryPrivateIpAddressCount,
+  };
+}
+
+/// Sets `secondary_private_ip_addresses` (one of the [NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses] choices).
+final class NatGatewaySecondaryPrivateIpAddressesOption
+    extends
+        NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses {
+  const NatGatewaySecondaryPrivateIpAddressesOption({
+    required this.secondaryPrivateIpAddresses,
+  });
+
+  final TfArg<List<String>> secondaryPrivateIpAddresses;
+
+  @override
+  String get blockKey => 'secondary_private_ip_addresses';
+
+  @override
+  Map<String, Object?> encode() => {
+    'secondary_private_ip_addresses': secondaryPrivateIpAddresses.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'secondary_private_ip_addresses': secondaryPrivateIpAddresses,
+  };
+}
+
 /// Typed helper for the `availability_zone_address` block of
 /// `aws_nat_gateway` (derived from provider schema).
 @immutable
@@ -64,8 +129,8 @@ final class AwsNatGateway extends Resource {
     TfArg<String>? privateIp,
     TfArg<String>? region,
     TfArg<List<String>>? secondaryAllocationIds,
-    TfArg<num>? secondaryPrivateIpAddressCount,
-    TfArg<List<String>>? secondaryPrivateIpAddresses,
+    NatGatewaySecondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses?
+    secondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses,
     TfArg<String>? subnetId,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? vpcId,
@@ -84,11 +149,8 @@ final class AwsNatGateway extends Resource {
            if (region != null) 'region': region,
            if (secondaryAllocationIds != null)
              'secondary_allocation_ids': secondaryAllocationIds,
-           if (secondaryPrivateIpAddressCount != null)
-             'secondary_private_ip_address_count':
-                 secondaryPrivateIpAddressCount,
-           if (secondaryPrivateIpAddresses != null)
-             'secondary_private_ip_addresses': secondaryPrivateIpAddresses,
+           ...?secondaryPrivateIpAddressCountOrSecondaryPrivateIpAddresses
+               ?.argMap,
            if (subnetId != null) 'subnet_id': subnetId,
            if (tags != null) 'tags': tags,
            if (vpcId != null) 'vpc_id': vpcId,

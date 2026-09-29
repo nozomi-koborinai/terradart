@@ -19,6 +19,68 @@ enum AutoscalingPolicyPolicyType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `scaling_adjustment`, `step_adjustment` on `aws_autoscaling_policy`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AutoscalingPolicyScalingAdjustmentOrStepAdjustment {
+  const AutoscalingPolicyScalingAdjustmentOrStepAdjustment();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `scaling_adjustment` (one of the [AutoscalingPolicyScalingAdjustmentOrStepAdjustment] choices).
+final class AutoscalingPolicyScalingAdjustmentOption
+    extends AutoscalingPolicyScalingAdjustmentOrStepAdjustment {
+  const AutoscalingPolicyScalingAdjustmentOption({
+    required this.scalingAdjustment,
+  });
+
+  final TfArg<num> scalingAdjustment;
+
+  @override
+  String get blockKey => 'scaling_adjustment';
+
+  @override
+  Map<String, Object?> encode() => {
+    'scaling_adjustment': scalingAdjustment.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'scaling_adjustment': scalingAdjustment,
+  };
+}
+
+/// Sets `step_adjustment` (one of the [AutoscalingPolicyScalingAdjustmentOrStepAdjustment] choices).
+final class AutoscalingPolicyStepAdjustmentOption
+    extends AutoscalingPolicyScalingAdjustmentOrStepAdjustment {
+  const AutoscalingPolicyStepAdjustmentOption({required this.stepAdjustment});
+
+  final List<AutoscalingPolicyStepAdjustment> stepAdjustment;
+
+  @override
+  String get blockKey => 'step_adjustment';
+
+  @override
+  Map<String, Object?> encode() => {
+    'step_adjustment': [for (final e in stepAdjustment) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'step_adjustment': TfArg.literal([
+      for (final e in stepAdjustment) e.encode(),
+    ]),
+  };
+}
+
 /// Typed helper for the `predictive_scaling_configuration` block of
 /// `aws_autoscaling_policy` (derived from provider schema).
 @immutable
@@ -91,10 +153,9 @@ final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecification {
     required this.targetValue,
     this.customizedCapacityMetricSpecification,
     this.customizedLoadMetricSpecification,
-    this.customizedScalingMetricSpecification,
+    this.customizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification,
     this.predefinedLoadMetricSpecification,
     this.predefinedMetricPairSpecification,
-    this.predefinedScalingMetricSpecification,
   });
 
   final TfArg<num> targetValue;
@@ -105,17 +166,14 @@ final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecification {
   final AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedLoadMetricSpecification?
   customizedLoadMetricSpecification;
 
-  final AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecification?
-  customizedScalingMetricSpecification;
+  final AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification?
+  customizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification;
 
   final AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedLoadMetricSpecification?
   predefinedLoadMetricSpecification;
 
   final AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedMetricPairSpecification?
   predefinedMetricPairSpecification;
-
-  final AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedScalingMetricSpecification?
-  predefinedScalingMetricSpecification;
 
   Map<String, Object?> encode() => {
     'target_value': targetValue.toTfJson(),
@@ -125,18 +183,68 @@ final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecification {
     if (customizedLoadMetricSpecification != null)
       'customized_load_metric_specification': customizedLoadMetricSpecification!
           .encode(),
-    if (customizedScalingMetricSpecification != null)
-      'customized_scaling_metric_specification':
-          customizedScalingMetricSpecification!.encode(),
+    ...?customizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification
+        ?.encode(),
     if (predefinedLoadMetricSpecification != null)
       'predefined_load_metric_specification': predefinedLoadMetricSpecification!
           .encode(),
     if (predefinedMetricPairSpecification != null)
       'predefined_metric_pair_specification': predefinedMetricPairSpecification!
           .encode(),
-    if (predefinedScalingMetricSpecification != null)
-      'predefined_scaling_metric_specification':
-          predefinedScalingMetricSpecification!.encode(),
+  };
+}
+
+/// At most one of `customized_scaling_metric_specification`, `predefined_scaling_metric_specification` on the `predictive_scaling_configuration.metric_specification` block of `aws_autoscaling_policy`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification {
+  const AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `customized_scaling_metric_specification` (one of the [AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification] choices).
+final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOption
+    extends
+        AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification {
+  const AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOption({
+    required this.customizedScalingMetricSpecification,
+  });
+
+  final AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecification
+  customizedScalingMetricSpecification;
+
+  @override
+  String get blockKey => 'customized_scaling_metric_specification';
+
+  @override
+  Map<String, Object?> encode() => {
+    'customized_scaling_metric_specification':
+        customizedScalingMetricSpecification.encode(),
+  };
+}
+
+/// Sets `predefined_scaling_metric_specification` (one of the [AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification] choices).
+final class AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedScalingMetricSpecificationOption
+    extends
+        AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationCustomizedScalingMetricSpecificationOrPredefinedScalingMetricSpecification {
+  const AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedScalingMetricSpecificationOption({
+    required this.predefinedScalingMetricSpecification,
+  });
+
+  final AutoscalingPolicyPredictiveScalingConfigurationMetricSpecificationPredefinedScalingMetricSpecification
+  predefinedScalingMetricSpecification;
+
+  @override
+  String get blockKey => 'predefined_scaling_metric_specification';
+
+  @override
+  Map<String, Object?> encode() => {
+    'predefined_scaling_metric_specification':
+        predefinedScalingMetricSpecification.encode(),
   };
 }
 
@@ -643,29 +751,72 @@ final class AutoscalingPolicyTargetTrackingConfiguration {
   const AutoscalingPolicyTargetTrackingConfiguration({
     this.disableScaleIn,
     required this.targetValue,
-    this.customizedMetricSpecification,
-    this.predefinedMetricSpecification,
+    this.customizedMetricSpecificationOrPredefinedMetricSpecification,
   });
 
   final TfArg<bool>? disableScaleIn;
 
   final TfArg<num> targetValue;
 
-  final AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecification?
-  customizedMetricSpecification;
-
-  final AutoscalingPolicyTargetTrackingConfigurationPredefinedMetricSpecification?
-  predefinedMetricSpecification;
+  final AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification?
+  customizedMetricSpecificationOrPredefinedMetricSpecification;
 
   Map<String, Object?> encode() => {
     if (disableScaleIn != null) 'disable_scale_in': disableScaleIn!.toTfJson(),
     'target_value': targetValue.toTfJson(),
-    if (customizedMetricSpecification != null)
-      'customized_metric_specification': customizedMetricSpecification!
-          .encode(),
-    if (predefinedMetricSpecification != null)
-      'predefined_metric_specification': predefinedMetricSpecification!
-          .encode(),
+    ...?customizedMetricSpecificationOrPredefinedMetricSpecification?.encode(),
+  };
+}
+
+/// At most one of `customized_metric_specification`, `predefined_metric_specification` on the `target_tracking_configuration` block of `aws_autoscaling_policy`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
+  const AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `customized_metric_specification` (one of the [AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification] choices).
+final class AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOption
+    extends
+        AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
+  const AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOption({
+    required this.customizedMetricSpecification,
+  });
+
+  final AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecification
+  customizedMetricSpecification;
+
+  @override
+  String get blockKey => 'customized_metric_specification';
+
+  @override
+  Map<String, Object?> encode() => {
+    'customized_metric_specification': customizedMetricSpecification.encode(),
+  };
+}
+
+/// Sets `predefined_metric_specification` (one of the [AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification] choices).
+final class AutoscalingPolicyTargetTrackingConfigurationPredefinedMetricSpecificationOption
+    extends
+        AutoscalingPolicyTargetTrackingConfigurationCustomizedMetricSpecificationOrPredefinedMetricSpecification {
+  const AutoscalingPolicyTargetTrackingConfigurationPredefinedMetricSpecificationOption({
+    required this.predefinedMetricSpecification,
+  });
+
+  final AutoscalingPolicyTargetTrackingConfigurationPredefinedMetricSpecification
+  predefinedMetricSpecification;
+
+  @override
+  String get blockKey => 'predefined_metric_specification';
+
+  @override
+  Map<String, Object?> encode() => {
+    'predefined_metric_specification': predefinedMetricSpecification.encode(),
   };
 }
 
@@ -875,10 +1026,10 @@ final class AwsAutoscalingPolicy extends Resource {
     required TfArg<String> name,
     TfArg<AutoscalingPolicyPolicyType>? policyType,
     TfArg<String>? region,
-    TfArg<num>? scalingAdjustment,
+    AutoscalingPolicyScalingAdjustmentOrStepAdjustment?
+    scalingAdjustmentOrStepAdjustment,
     AutoscalingPolicyPredictiveScalingConfiguration?
     predictiveScalingConfiguration,
-    List<AutoscalingPolicyStepAdjustment>? stepAdjustment,
     AutoscalingPolicyTargetTrackingConfiguration? targetTrackingConfiguration,
     super.lifecycle,
     super.dependsOn,
@@ -900,16 +1051,11 @@ final class AwsAutoscalingPolicy extends Resource {
            'name': name,
            if (policyType != null) 'policy_type': policyType,
            if (region != null) 'region': region,
-           if (scalingAdjustment != null)
-             'scaling_adjustment': scalingAdjustment,
+           ...?scalingAdjustmentOrStepAdjustment?.argMap,
            if (predictiveScalingConfiguration != null)
              'predictive_scaling_configuration': TfArg.literal(
                predictiveScalingConfiguration.encode(),
              ),
-           if (stepAdjustment != null)
-             'step_adjustment': TfArg.literal([
-               for (final e in stepAdjustment) e.encode(),
-             ]),
            if (targetTrackingConfiguration != null)
              'target_tracking_configuration': TfArg.literal(
                targetTrackingConfiguration.encode(),

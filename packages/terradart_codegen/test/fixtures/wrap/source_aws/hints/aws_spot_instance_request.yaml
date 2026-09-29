@@ -91,3 +91,7 @@ properties:
 exactly_one_of_groups:
   - ["capacity_reservation_specification.capacity_reservation_preference", "capacity_reservation_specification.capacity_reservation_target"]
   - ["launch_template.id", "launch_template.name"]
+at_most_one_of_groups:
+  - ["capacity_reservation_specification.capacity_reservation_target.capacity_reservation_id", "capacity_reservation_specification.capacity_reservation_target.capacity_reservation_resource_group_arn"]
+  - ["host_resource_group_arn", "placement_group", "placement_group_id"]
+  - ["user_data", "user_data_base64"]

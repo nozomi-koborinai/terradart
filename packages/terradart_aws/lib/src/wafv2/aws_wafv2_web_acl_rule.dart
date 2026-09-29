@@ -7,6 +7,66 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_wafv2_web_acl_rule`.
 const Set<String> _awsWafv2WebAclRuleSensitive = <String>{};
 
+/// At most one of `action`, `override_action` on `aws_wafv2_web_acl_rule`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class Wafv2WebAclRuleActionOrOverrideAction {
+  const Wafv2WebAclRuleActionOrOverrideAction();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `action` (one of the [Wafv2WebAclRuleActionOrOverrideAction] choices).
+final class Wafv2WebAclRuleActionOption
+    extends Wafv2WebAclRuleActionOrOverrideAction {
+  const Wafv2WebAclRuleActionOption({required this.action});
+
+  final List<Wafv2WebAclRuleAction> action;
+
+  @override
+  String get blockKey => 'action';
+
+  @override
+  Map<String, Object?> encode() => {
+    'action': [for (final e in action) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'action': TfArg.literal([for (final e in action) e.encode()]),
+  };
+}
+
+/// Sets `override_action` (one of the [Wafv2WebAclRuleActionOrOverrideAction] choices).
+final class Wafv2WebAclRuleOverrideActionOption
+    extends Wafv2WebAclRuleActionOrOverrideAction {
+  const Wafv2WebAclRuleOverrideActionOption({required this.overrideAction});
+
+  final List<Wafv2WebAclRuleOverrideAction> overrideAction;
+
+  @override
+  String get blockKey => 'override_action';
+
+  @override
+  Map<String, Object?> encode() => {
+    'override_action': [for (final e in overrideAction) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'override_action': TfArg.literal([
+      for (final e in overrideAction) e.encode(),
+    ]),
+  };
+}
+
 /// Typed helper for the `action` block of
 /// `aws_wafv2_web_acl_rule` (derived from provider schema).
 /// Shared by every block of this shape in the resource.
@@ -2246,10 +2306,9 @@ final class AwsWafv2WebAclRule extends Resource {
     required TfArg<num> priority,
     TfArg<String>? region,
     required TfArg<String> webAclArn,
-    List<Wafv2WebAclRuleAction>? action,
+    Wafv2WebAclRuleActionOrOverrideAction? actionOrOverrideAction,
     List<Wafv2WebAclRuleCaptchaConfig>? captchaConfig,
     List<Wafv2WebAclRuleCaptchaConfig>? challengeConfig,
-    List<Wafv2WebAclRuleOverrideAction>? overrideAction,
     List<Wafv2WebAclRuleRuleLabel>? ruleLabel,
     List<Wafv2WebAclRuleStatement>? statement,
     List<Wafv2WebAclRuleVisibilityConfig>? visibilityConfig,
@@ -2264,8 +2323,7 @@ final class AwsWafv2WebAclRule extends Resource {
            'priority': priority,
            if (region != null) 'region': region,
            'web_acl_arn': webAclArn,
-           if (action != null)
-             'action': TfArg.literal([for (final e in action) e.encode()]),
+           ...?actionOrOverrideAction?.argMap,
            if (captchaConfig != null)
              'captcha_config': TfArg.literal([
                for (final e in captchaConfig) e.encode(),
@@ -2273,10 +2331,6 @@ final class AwsWafv2WebAclRule extends Resource {
            if (challengeConfig != null)
              'challenge_config': TfArg.literal([
                for (final e in challengeConfig) e.encode(),
-             ]),
-           if (overrideAction != null)
-             'override_action': TfArg.literal([
-               for (final e in overrideAction) e.encode(),
              ]),
            if (ruleLabel != null)
              'rule_label': TfArg.literal([

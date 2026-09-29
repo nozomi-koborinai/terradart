@@ -36,22 +36,63 @@ final class S3BucketObjectLockConfigurationRule {
 @immutable
 final class S3BucketObjectLockConfigurationRuleDefaultRetention {
   const S3BucketObjectLockConfigurationRuleDefaultRetention({
-    this.days,
+    this.daysOrYears,
     this.mode,
-    this.years,
   });
 
-  final TfArg<num>? days;
+  final S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears?
+  daysOrYears;
 
   final TfArg<S3BucketObjectLockConfigurationRuleDefaultRetentionMode>? mode;
 
-  final TfArg<num>? years;
-
   Map<String, Object?> encode() => {
-    if (days != null) 'days': days!.toTfJson(),
+    ...?daysOrYears?.encode(),
     if (mode != null) 'mode': mode!.toTfJson(),
-    if (years != null) 'years': years!.toTfJson(),
   };
+}
+
+/// At most one of `days`, `years` on the `rule.default_retention` block of `aws_s3_bucket_object_lock_configuration`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears {
+  const S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `days` (one of the [S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears] choices).
+final class S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOption
+    extends S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears {
+  const S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOption({
+    required this.days,
+  });
+
+  final TfArg<num> days;
+
+  @override
+  String get blockKey => 'days';
+
+  @override
+  Map<String, Object?> encode() => {'days': days.toTfJson()};
+}
+
+/// Sets `years` (one of the [S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears] choices).
+final class S3BucketObjectLockConfigurationRuleDefaultRetentionYearsOption
+    extends S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears {
+  const S3BucketObjectLockConfigurationRuleDefaultRetentionYearsOption({
+    required this.years,
+  });
+
+  final TfArg<num> years;
+
+  @override
+  String get blockKey => 'years';
+
+  @override
+  Map<String, Object?> encode() => {'years': years.toTfJson()};
 }
 
 /// `mode` — derived from the provider schema description.

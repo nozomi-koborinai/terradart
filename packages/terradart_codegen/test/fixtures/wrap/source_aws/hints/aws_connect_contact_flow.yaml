@@ -15,3 +15,5 @@ properties:
       - "AGENT_TRANSFER"
       - "QUEUE_TRANSFER"
       - "CAMPAIGN"
+at_most_one_of_groups:
+  - ["content", "filename"]

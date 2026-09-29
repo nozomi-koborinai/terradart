@@ -7,6 +7,62 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_config_organization_conformance_pack`.
 const Set<String> _awsConfigOrganizationConformancePackSensitive = <String>{};
 
+/// At most one of `template_body`, `template_s3_uri` on `aws_config_organization_conformance_pack`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri {
+  const ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `template_body` (one of the [ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri] choices).
+final class ConfigOrganizationConformancePackTemplateBodyOption
+    extends ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri {
+  const ConfigOrganizationConformancePackTemplateBodyOption({
+    required this.templateBody,
+  });
+
+  final TfArg<String> templateBody;
+
+  @override
+  String get blockKey => 'template_body';
+
+  @override
+  Map<String, Object?> encode() => {'template_body': templateBody.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'template_body': templateBody};
+}
+
+/// Sets `template_s3_uri` (one of the [ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri] choices).
+final class ConfigOrganizationConformancePackTemplateS3UriOption
+    extends ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri {
+  const ConfigOrganizationConformancePackTemplateS3UriOption({
+    required this.templateS3Uri,
+  });
+
+  final TfArg<String> templateS3Uri;
+
+  @override
+  String get blockKey => 'template_s3_uri';
+
+  @override
+  Map<String, Object?> encode() => {
+    'template_s3_uri': templateS3Uri.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'template_s3_uri': templateS3Uri};
+}
+
 /// Typed helper for the `input_parameter` block of
 /// `aws_config_organization_conformance_pack` (derived from provider schema).
 @immutable
@@ -37,8 +93,8 @@ final class AwsConfigOrganizationConformancePack extends Resource {
     TfArg<List<String>>? excludedAccounts,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? templateBody,
-    TfArg<String>? templateS3Uri,
+    ConfigOrganizationConformancePackTemplateBodyOrTemplateS3Uri?
+    templateBodyOrTemplateS3Uri,
     List<ConfigOrganizationConformancePackInputParameter>? inputParameter,
     super.lifecycle,
     super.dependsOn,
@@ -53,8 +109,7 @@ final class AwsConfigOrganizationConformancePack extends Resource {
            if (excludedAccounts != null) 'excluded_accounts': excludedAccounts,
            'name': name,
            if (region != null) 'region': region,
-           if (templateBody != null) 'template_body': templateBody,
-           if (templateS3Uri != null) 'template_s3_uri': templateS3Uri,
+           ...?templateBodyOrTemplateS3Uri?.argMap,
            if (inputParameter != null)
              'input_parameter': TfArg.literal([
                for (final e in inputParameter) e.encode(),

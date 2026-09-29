@@ -42,3 +42,5 @@ properties:
           - api_name: propagate_tags
             enum_values:
               - "TASK_DEFINITION"
+at_most_one_of_groups:
+  - ["name", "name_prefix"]

@@ -37,3 +37,5 @@ properties:
       - "SSD"
       - "HDD"
       - "INTELLIGENT_TIERING"
+at_most_one_of_groups:
+  - ["active_directory_id", "self_managed_active_directory"]

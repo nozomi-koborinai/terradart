@@ -96,6 +96,121 @@ enum S3ObjectStorageClass implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `content`, `content_base64`, `source` on `aws_s3_object`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class S3ObjectContentOrContentBase64OrSource {
+  const S3ObjectContentOrContentBase64OrSource();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `content` (one of the [S3ObjectContentOrContentBase64OrSource] choices).
+final class S3ObjectContentOption
+    extends S3ObjectContentOrContentBase64OrSource {
+  const S3ObjectContentOption({required this.content});
+
+  final TfArg<String> content;
+
+  @override
+  String get blockKey => 'content';
+
+  @override
+  Map<String, Object?> encode() => {'content': content.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'content': content};
+}
+
+/// Sets `content_base64` (one of the [S3ObjectContentOrContentBase64OrSource] choices).
+final class S3ObjectContentBase64Option
+    extends S3ObjectContentOrContentBase64OrSource {
+  const S3ObjectContentBase64Option({required this.contentBase64});
+
+  final TfArg<String> contentBase64;
+
+  @override
+  String get blockKey => 'content_base64';
+
+  @override
+  Map<String, Object?> encode() => {'content_base64': contentBase64.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'content_base64': contentBase64};
+}
+
+/// Sets `source` (one of the [S3ObjectContentOrContentBase64OrSource] choices).
+final class S3ObjectSourceOption
+    extends S3ObjectContentOrContentBase64OrSource {
+  const S3ObjectSourceOption({required this.source});
+
+  final TfArg<String> source;
+
+  @override
+  String get blockKey => 'source';
+
+  @override
+  Map<String, Object?> encode() => {'source': source.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'source': source};
+}
+
+/// At most one of `etag`, `kms_key_id` on `aws_s3_object`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class S3ObjectEtagOrKmsKeyId {
+  const S3ObjectEtagOrKmsKeyId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `etag` (one of the [S3ObjectEtagOrKmsKeyId] choices).
+final class S3ObjectEtagOption extends S3ObjectEtagOrKmsKeyId {
+  const S3ObjectEtagOption({required this.etag});
+
+  final TfArg<String> etag;
+
+  @override
+  String get blockKey => 'etag';
+
+  @override
+  Map<String, Object?> encode() => {'etag': etag.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'etag': etag};
+}
+
+/// Sets `kms_key_id` (one of the [S3ObjectEtagOrKmsKeyId] choices).
+final class S3ObjectKmsKeyIdOption extends S3ObjectEtagOrKmsKeyId {
+  const S3ObjectKmsKeyIdOption({required this.kmsKeyId});
+
+  final TfArg<String> kmsKeyId;
+
+  @override
+  String get blockKey => 'kms_key_id';
+
+  @override
+  Map<String, Object?> encode() => {'kms_key_id': kmsKeyId.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'kms_key_id': kmsKeyId};
+}
+
 /// Typed helper for the `override_provider` block of
 /// `aws_s3_object` (derived from provider schema).
 @immutable
@@ -131,23 +246,20 @@ final class AwsS3Object extends Resource {
     TfArg<bool>? bucketKeyEnabled,
     TfArg<String>? cacheControl,
     TfArg<S3ObjectChecksumAlgorithm>? checksumAlgorithm,
-    TfArg<String>? content,
-    TfArg<String>? contentBase64,
+    S3ObjectContentOrContentBase64OrSource? contentOrContentBase64OrSource,
     TfArg<String>? contentDisposition,
     TfArg<String>? contentEncoding,
     TfArg<String>? contentLanguage,
     TfArg<String>? contentType,
-    TfArg<String>? etag,
+    S3ObjectEtagOrKmsKeyId? etagOrKmsKeyId,
     TfArg<bool>? forceDestroy,
     required TfArg<String> key,
-    TfArg<String>? kmsKeyId,
     TfArg<Map<String, String>>? metadata,
     TfArg<S3ObjectObjectLockLegalHoldStatus>? objectLockLegalHoldStatus,
     TfArg<S3ObjectObjectLockMode>? objectLockMode,
     TfArg<String>? objectLockRetainUntilDate,
     TfArg<String>? region,
     TfArg<S3ObjectServerSideEncryption>? serverSideEncryption,
-    TfArg<String>? source,
     TfArg<String>? sourceHash,
     TfArg<S3ObjectStorageClass>? storageClass,
     TfArg<Map<String, String>>? tags,
@@ -166,17 +278,15 @@ final class AwsS3Object extends Resource {
            if (cacheControl != null) 'cache_control': cacheControl,
            if (checksumAlgorithm != null)
              'checksum_algorithm': checksumAlgorithm,
-           if (content != null) 'content': content,
-           if (contentBase64 != null) 'content_base64': contentBase64,
+           ...?contentOrContentBase64OrSource?.argMap,
            if (contentDisposition != null)
              'content_disposition': contentDisposition,
            if (contentEncoding != null) 'content_encoding': contentEncoding,
            if (contentLanguage != null) 'content_language': contentLanguage,
            if (contentType != null) 'content_type': contentType,
-           if (etag != null) 'etag': etag,
+           ...?etagOrKmsKeyId?.argMap,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
            'key': key,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
            if (metadata != null) 'metadata': metadata,
            if (objectLockLegalHoldStatus != null)
              'object_lock_legal_hold_status': objectLockLegalHoldStatus,
@@ -186,7 +296,6 @@ final class AwsS3Object extends Resource {
            if (region != null) 'region': region,
            if (serverSideEncryption != null)
              'server_side_encryption': serverSideEncryption,
-           if (source != null) 'source': source,
            if (sourceHash != null) 'source_hash': sourceHash,
            if (storageClass != null) 'storage_class': storageClass,
            if (tags != null) 'tags': tags,

@@ -9,3 +9,7 @@ properties:
       - "efa-only"
       - "branch"
       - "trunk"
+at_most_one_of_groups:
+  - ["ipv4_prefix_count", "ipv4_prefixes"]
+  - ["ipv6_address_count", "ipv6_address_list", "ipv6_addresses"]
+  - ["ipv6_prefix_count", "ipv6_prefixes"]

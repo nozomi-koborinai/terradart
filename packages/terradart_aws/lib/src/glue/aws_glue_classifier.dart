@@ -7,6 +7,102 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_glue_classifier`.
 const Set<String> _awsGlueClassifierSensitive = <String>{};
 
+/// At most one of `csv_classifier`, `grok_classifier`, `json_classifier`, `xml_classifier` on `aws_glue_classifier`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier {
+  const GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `csv_classifier` (one of the [GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier] choices).
+final class GlueClassifierCsvClassifierOption
+    extends
+        GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier {
+  const GlueClassifierCsvClassifierOption({required this.csvClassifier});
+
+  final GlueClassifierCsvClassifier csvClassifier;
+
+  @override
+  String get blockKey => 'csv_classifier';
+
+  @override
+  Map<String, Object?> encode() => {'csv_classifier': csvClassifier.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'csv_classifier': TfArg.literal(csvClassifier.encode()),
+  };
+}
+
+/// Sets `grok_classifier` (one of the [GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier] choices).
+final class GlueClassifierGrokClassifierOption
+    extends
+        GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier {
+  const GlueClassifierGrokClassifierOption({required this.grokClassifier});
+
+  final GlueClassifierGrokClassifier grokClassifier;
+
+  @override
+  String get blockKey => 'grok_classifier';
+
+  @override
+  Map<String, Object?> encode() => {'grok_classifier': grokClassifier.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'grok_classifier': TfArg.literal(grokClassifier.encode()),
+  };
+}
+
+/// Sets `json_classifier` (one of the [GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier] choices).
+final class GlueClassifierJsonClassifierOption
+    extends
+        GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier {
+  const GlueClassifierJsonClassifierOption({required this.jsonClassifier});
+
+  final GlueClassifierJsonClassifier jsonClassifier;
+
+  @override
+  String get blockKey => 'json_classifier';
+
+  @override
+  Map<String, Object?> encode() => {'json_classifier': jsonClassifier.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'json_classifier': TfArg.literal(jsonClassifier.encode()),
+  };
+}
+
+/// Sets `xml_classifier` (one of the [GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier] choices).
+final class GlueClassifierXmlClassifierOption
+    extends
+        GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier {
+  const GlueClassifierXmlClassifierOption({required this.xmlClassifier});
+
+  final GlueClassifierXmlClassifier xmlClassifier;
+
+  @override
+  String get blockKey => 'xml_classifier';
+
+  @override
+  Map<String, Object?> encode() => {'xml_classifier': xmlClassifier.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'xml_classifier': TfArg.literal(xmlClassifier.encode()),
+  };
+}
+
 /// Typed helper for the `csv_classifier` block of
 /// `aws_glue_classifier` (derived from provider schema).
 @immutable
@@ -161,10 +257,8 @@ final class AwsGlueClassifier extends Resource {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? region,
-    GlueClassifierCsvClassifier? csvClassifier,
-    GlueClassifierGrokClassifier? grokClassifier,
-    GlueClassifierJsonClassifier? jsonClassifier,
-    GlueClassifierXmlClassifier? xmlClassifier,
+    GlueClassifierCsvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier?
+    csvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -174,14 +268,8 @@ final class AwsGlueClassifier extends Resource {
          argMap: {
            'name': name,
            if (region != null) 'region': region,
-           if (csvClassifier != null)
-             'csv_classifier': TfArg.literal(csvClassifier.encode()),
-           if (grokClassifier != null)
-             'grok_classifier': TfArg.literal(grokClassifier.encode()),
-           if (jsonClassifier != null)
-             'json_classifier': TfArg.literal(jsonClassifier.encode()),
-           if (xmlClassifier != null)
-             'xml_classifier': TfArg.literal(xmlClassifier.encode()),
+           ...?csvClassifierOrGrokClassifierOrJsonClassifierOrXmlClassifier
+               ?.argMap,
          },
        );
 

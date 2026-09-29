@@ -40,3 +40,5 @@ properties:
         enum_values:
           - "ApiCallRateInsight"
           - "ApiErrorRateInsight"
+at_most_one_of_groups:
+  - ["advanced_event_selector", "event_selector"]

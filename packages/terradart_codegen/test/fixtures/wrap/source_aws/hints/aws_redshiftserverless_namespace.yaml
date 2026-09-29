@@ -8,3 +8,5 @@ properties:
       - "useractivitylog"
       - "userlog"
       - "connectionlog"
+at_most_one_of_groups:
+  - ["admin_user_password", "admin_user_password_wo", "manage_admin_password"]

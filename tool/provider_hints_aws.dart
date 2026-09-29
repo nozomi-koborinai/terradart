@@ -21,11 +21,16 @@
 //   Slice arguments are evaluated over literals, constants, `Values()`,
 //   `enum.Values`, `enum.Slice`, `append` and local `*_Values()` helpers; a
 //   set with any part that does not evaluate is dropped, never guessed.
+// - Relation rules are SDKv2 `ExactlyOneOf` / `AtLeastOneOf` /
+//   `ConflictsWith` string lists and the framework validators of the same
+//   names (plus `resourcevalidator.Conflicting`); `exclusiveGroups` turns
+//   each type's rules into exactly-one and at-most-one groups.
 // ignore_for_file: avoid_print
 
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/codegen/exclusive_groups.dart';
 
 import 'extract_provider_hints.dart';
 
@@ -414,18 +419,19 @@ final class _FuncScan {
   final hints = <_LocalHint>[];
   final calls = <_Call>[];
   final groups = <List<_Member>>[];
+  final atLeast = <List<_Member>>[];
+  final conflicts = <(_Member, _Member)>[];
   var unresolved = 0;
   var unresolvedGroups = 0;
   var openSets = 0;
 }
 
-const _exactlyOneValidators = {
-  'boolvalidator',
-  'int64validator',
-  'listvalidator',
-  'objectvalidator',
-  'setvalidator',
-  'stringvalidator',
+const _sdkRelations = {'ExactlyOneOf', 'AtLeastOneOf', 'ConflictsWith'};
+const _frameworkRelations = {
+  'ExactlyOneOf',
+  'AtLeastOneOf',
+  'ConflictsWith',
+  'Conflicting',
 };
 
 /// Scans one function body: value sets under attribute keys and calls to
@@ -527,46 +533,77 @@ _FuncScan _scanFunc(
       i = _matching(t, i + 3) + 1;
       continue;
     }
-    // SDKv2: `ExactlyOneOf: []string{"a", "b.0.c"}`, paths from the root.
-    if (_isIdent(t, i, 'ExactlyOneOf') && _isPunct(t, i + 1, ':')) {
+    // SDKv2: `ExactlyOneOf: []string{"a", "b.0.c"}` (and `AtLeastOneOf`),
+    // the whole set, and `ConflictsWith`, the attribute's rivals; paths
+    // from the root.
+    if (_isIdent(t, i) &&
+        _sdkRelations.contains(tok.text) &&
+        _isPunct(t, i + 1, ':')) {
       final r = eval.expr(t, i + 2, self, f.imports, 0);
-      if (r == null) {
+      final here = openKeys();
+      if (r == null || (tok.text == 'ConflictsWith' && here.isEmpty)) {
         scan.unresolvedGroups++;
         i += 2;
-      } else {
-        scan.groups.add([
-          for (final v in r.values)
-            (
-              path: [
-                for (final s in v.split('.'))
-                  if (int.tryParse(s) == null) s,
-              ],
-              abs: true,
-            ),
-        ]);
-        i = r.end;
+        continue;
       }
+      final members = [
+        for (final v in r.values)
+          (
+            path: [
+              for (final s in v.split('.'))
+                if (int.tryParse(s) == null) s,
+            ],
+            abs: true,
+          ),
+      ];
+      switch (tok.text) {
+        case 'ExactlyOneOf':
+          scan.groups.add(members);
+        case 'AtLeastOneOf':
+          scan.atLeast.add(members);
+        default:
+          for (final m in members) {
+            scan.conflicts.add(((path: here, abs: false), m));
+          }
+      }
+      i = r.end;
       continue;
     }
     // Framework: `resourcevalidator.ExactlyOneOf(path.MatchRoot(...), ...)`
-    // in ConfigValidators, or `<kind>validator.ExactlyOneOf(...)` on an
-    // attribute, which counts the attribute itself as a member.
+    // (or `AtLeastOneOf` / `Conflicting`) in ConfigValidators, or
+    // `<kind>validator.ExactlyOneOf(...)` (or `AtLeastOneOf` /
+    // `ConflictsWith`) on an attribute, which counts the attribute itself as
+    // a member.
     if (tok.kind == GoTok.ident &&
         (tok.text == 'resourcevalidator' ||
-            _exactlyOneValidators.contains(tok.text)) &&
+            attributeValidatorKinds.contains(tok.text)) &&
         _isPunct(t, i + 1, '.') &&
-        _isIdent(t, i + 2, 'ExactlyOneOf') &&
+        _isIdent(t, i + 2) &&
+        _frameworkRelations.contains(t[i + 2].text) &&
         _isPunct(t, i + 3, '(')) {
       final close = _matching(t, i + 3);
       final here = openKeys();
+      final attribute = tok.text != 'resourcevalidator';
       final members = _pathExprs(t, i + 4, close, here, names);
-      if (members == null) {
+      if (members == null || (attribute && here.isEmpty)) {
         scan.unresolvedGroups++;
       } else {
-        scan.groups.add([
-          if (tok.text != 'resourcevalidator') (path: here, abs: false),
+        final all = [
+          if (attribute) (path: here, abs: false),
           ...members,
-        ]);
+        ];
+        switch (t[i + 2].text) {
+          case 'ExactlyOneOf':
+            scan.groups.add(all);
+          case 'AtLeastOneOf':
+            scan.atLeast.add(all);
+          default:
+            for (var a = 0; a < (attribute ? 1 : all.length); a++) {
+              for (var b = a + 1; b < all.length; b++) {
+                scan.conflicts.add((all[a], all[b]));
+              }
+            }
+        }
       }
       i = close + 1;
       continue;
@@ -636,10 +673,11 @@ _FuncScan _scanFunc(
 }
 
 /// The comma-separated path expressions from [i] up to [close], optionally
-/// wrapped in `path.Expressions{...}`: `path.MatchRoot(k)` (from the
-/// resource root) or `path.MatchRelative()` (from [here], the attribute the
-/// validator sits on), each followed by `.AtParent()` / `.AtName(k)` /
-/// list-index steps. Null when any part is something else.
+/// wrapped in `path.Expressions{...}` (and spread with `...`):
+/// `path.MatchRoot(k)` (from the resource root) or `path.MatchRelative()`
+/// (from [here], the attribute the validator sits on), each followed by
+/// `.AtParent()` / `.AtName(k)` / list-index steps. Null when any part is
+/// something else.
 List<_Member>? _pathExprs(
   List<GoToken> t,
   int i,
@@ -652,10 +690,14 @@ List<_Member>? _pathExprs(
       _isIdent(t, i + 2, 'Expressions') &&
       _isPunct(t, i + 3, '{')) {
     final inner = _matching(t, i + 3);
-    if (inner + 1 != close &&
-        !(inner + 2 == close && _isPunct(t, inner + 1, ','))) {
-      return null;
+    var k = inner + 1;
+    if (_isPunct(t, k, '.') &&
+        _isPunct(t, k + 1, '.') &&
+        _isPunct(t, k + 2, '.')) {
+      k += 3;
     }
+    if (_isPunct(t, k, ',')) k++;
+    if (k != close) return null;
     return _pathExprs(t, i + 4, inner, here, names);
   }
   final out = <_Member>[];
@@ -792,6 +834,9 @@ final class AwsHintsScan {
   /// exactly-one and at-most-one groups (member paths from the resource
   /// root).
   final Map<String, AwsTypeHints> byType;
+
+  /// Conflicts no group expresses, as `<type> [members]: reason`.
+  final unsealed = <String>[];
   var validators = 0;
   var unresolved = 0;
   var groupValidators = 0;
@@ -865,29 +910,48 @@ AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
           result.openSets += s.openSets;
           return s;
         }();
-    ({List<_LocalHint> hints, List<List<_Member>> groups}) expand(
-      String key,
-      Set<String> seen,
-    ) {
+    ({
+      List<_LocalHint> hints,
+      List<List<_Member>> groups,
+      List<List<_Member>> atLeast,
+      List<(_Member, _Member)> conflicts,
+    }) expand(String key, Set<String> seen) {
       if (!pkg.funcs.containsKey(key) || !seen.add(key)) {
-        return (hints: const [], groups: const []);
+        return (
+          hints: const [],
+          groups: const [],
+          atLeast: const [],
+          conflicts: const [],
+        );
       }
       final s = scanOf(key);
       final hints = [...s.hints];
       final groups = [...s.groups];
+      final atLeast = [...s.atLeast];
+      final conflicts = [...s.conflicts];
       for (final c in s.calls) {
         final inner = expand(c.callee, {...seen});
+        _Member at(_Member m) =>
+            m.abs ? m : (path: [...c.path, ...m.path], abs: false);
         for (final h in inner.hints) {
           hints.add((path: [...c.path, ...h.path], values: h.values, ci: h.ci));
         }
         for (final g in inner.groups) {
-          groups.add([
-            for (final m in g)
-              m.abs ? m : (path: [...c.path, ...m.path], abs: false),
-          ]);
+          groups.add([for (final m in g) at(m)]);
+        }
+        for (final g in inner.atLeast) {
+          atLeast.add([for (final m in g) at(m)]);
+        }
+        for (final (a, b) in inner.conflicts) {
+          conflicts.add((at(a), at(b)));
         }
       }
-      return (hints: hints, groups: groups);
+      return (
+        hints: hints,
+        groups: groups,
+        atLeast: atLeast,
+        conflicts: conflicts,
+      );
     }
 
     for (final MapEntry(key: fn, value: types) in pkg.resourceFuncs.entries) {
@@ -908,7 +972,11 @@ AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
         }
       }
       final byPath = <String, GoEnumHint>{};
-      final groups = <String, List<List<String>>>{};
+      final exact = <List<String>>[];
+      final atLeast = <List<String>>[];
+      final conflicts = <(String, String)>[];
+      List<String> set(List<_Member> g) =>
+          {for (final m in g) m.path.join('.')}.toList()..sort();
       for (final root in roots) {
         final found = expand(root, {});
         for (final h in found.hints) {
@@ -921,23 +989,31 @@ AwsHintsScan scanAwsProvider(Directory root, {required String sdkDir}) {
             ),
           );
         }
-        for (final g in found.groups) {
-          final members = {for (final m in g) m.path.join('.')}.toList()
-            ..sort();
-          if (members.length < 2) continue;
-          groups.putIfAbsent(
-            members.join(','),
-            () => [for (final m in members) m.split('.')],
-          );
+        exact.addAll(found.groups.map(set));
+        atLeast.addAll(found.atLeast.map(set));
+        for (final (a, b) in found.conflicts) {
+          conflicts.add((a.path.join('.'), b.path.join('.')));
         }
       }
+      final combined = exclusiveGroups(
+        exactlyOne: exact,
+        atLeastOne: atLeast,
+        conflicts: conflicts,
+      );
+      List<List<List<String>>> split(List<List<String>> gs) => [
+            for (final g in gs)
+              ([...g]..sort()).map((m) => m.split('.')).toList(),
+          ];
       for (final type in types) {
         result.byType[type] = (
           sourcePath: ctor.file,
           hints: byPath.values.toList(),
-          groups: groups.values.toList(),
-          atMostOne: const [],
+          groups: split(combined.exactlyOne),
+          atMostOne: split(combined.atMostOne),
         );
+        for (final s in combined.unsealed) {
+          result.unsealed.add('$type $s');
+        }
       }
     }
   }

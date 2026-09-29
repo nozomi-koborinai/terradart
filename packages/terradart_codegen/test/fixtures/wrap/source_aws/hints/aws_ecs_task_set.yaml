@@ -14,3 +14,5 @@ properties:
       - api_name: unit
         enum_values:
           - "PERCENT"
+at_most_one_of_groups:
+  - ["capacity_provider_strategy", "launch_type"]

@@ -17,6 +17,231 @@ enum LaunchTemplateInstanceInitiatedShutdownBehavior implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `default_version`, `update_default_version` on `aws_launch_template`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LaunchTemplateDefaultVersionOrUpdateDefaultVersion {
+  const LaunchTemplateDefaultVersionOrUpdateDefaultVersion();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `default_version` (one of the [LaunchTemplateDefaultVersionOrUpdateDefaultVersion] choices).
+final class LaunchTemplateDefaultVersionOption
+    extends LaunchTemplateDefaultVersionOrUpdateDefaultVersion {
+  const LaunchTemplateDefaultVersionOption({required this.defaultVersion});
+
+  final TfArg<num> defaultVersion;
+
+  @override
+  String get blockKey => 'default_version';
+
+  @override
+  Map<String, Object?> encode() => {
+    'default_version': defaultVersion.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'default_version': defaultVersion};
+}
+
+/// Sets `update_default_version` (one of the [LaunchTemplateDefaultVersionOrUpdateDefaultVersion] choices).
+final class LaunchTemplateUpdateDefaultVersionOption
+    extends LaunchTemplateDefaultVersionOrUpdateDefaultVersion {
+  const LaunchTemplateUpdateDefaultVersionOption({
+    required this.updateDefaultVersion,
+  });
+
+  final TfArg<bool> updateDefaultVersion;
+
+  @override
+  String get blockKey => 'update_default_version';
+
+  @override
+  Map<String, Object?> encode() => {
+    'update_default_version': updateDefaultVersion.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'update_default_version': updateDefaultVersion,
+  };
+}
+
+/// At most one of `instance_requirements`, `instance_type` on `aws_launch_template`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LaunchTemplateInstanceRequirementsOrInstanceType {
+  const LaunchTemplateInstanceRequirementsOrInstanceType();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `instance_requirements` (one of the [LaunchTemplateInstanceRequirementsOrInstanceType] choices).
+final class LaunchTemplateInstanceRequirementsOption
+    extends LaunchTemplateInstanceRequirementsOrInstanceType {
+  const LaunchTemplateInstanceRequirementsOption({
+    required this.instanceRequirements,
+  });
+
+  final LaunchTemplateInstanceRequirements instanceRequirements;
+
+  @override
+  String get blockKey => 'instance_requirements';
+
+  @override
+  Map<String, Object?> encode() => {
+    'instance_requirements': instanceRequirements.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'instance_requirements': TfArg.literal(instanceRequirements.encode()),
+  };
+}
+
+/// Sets `instance_type` (one of the [LaunchTemplateInstanceRequirementsOrInstanceType] choices).
+final class LaunchTemplateInstanceTypeOption
+    extends LaunchTemplateInstanceRequirementsOrInstanceType {
+  const LaunchTemplateInstanceTypeOption({required this.instanceType});
+
+  final TfArg<String> instanceType;
+
+  @override
+  String get blockKey => 'instance_type';
+
+  @override
+  Map<String, Object?> encode() => {'instance_type': instanceType.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'instance_type': instanceType};
+}
+
+/// At most one of `name`, `name_prefix` on `aws_launch_template`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LaunchTemplateNameOrNamePrefix {
+  const LaunchTemplateNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [LaunchTemplateNameOrNamePrefix] choices).
+final class LaunchTemplateNameOption extends LaunchTemplateNameOrNamePrefix {
+  const LaunchTemplateNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [LaunchTemplateNameOrNamePrefix] choices).
+final class LaunchTemplateNamePrefixOption
+    extends LaunchTemplateNameOrNamePrefix {
+  const LaunchTemplateNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
+/// At most one of `security_group_names`, `vpc_security_group_ids` on `aws_launch_template`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds {
+  const LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `security_group_names` (one of the [LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds] choices).
+final class LaunchTemplateSecurityGroupNamesOption
+    extends LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds {
+  const LaunchTemplateSecurityGroupNamesOption({
+    required this.securityGroupNames,
+  });
+
+  final TfArg<List<String>> securityGroupNames;
+
+  @override
+  String get blockKey => 'security_group_names';
+
+  @override
+  Map<String, Object?> encode() => {
+    'security_group_names': securityGroupNames.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'security_group_names': securityGroupNames,
+  };
+}
+
+/// Sets `vpc_security_group_ids` (one of the [LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds] choices).
+final class LaunchTemplateVpcSecurityGroupIdsOption
+    extends LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds {
+  const LaunchTemplateVpcSecurityGroupIdsOption({
+    required this.vpcSecurityGroupIds,
+  });
+
+  final TfArg<List<String>> vpcSecurityGroupIds;
+
+  @override
+  String get blockKey => 'vpc_security_group_ids';
+
+  @override
+  Map<String, Object?> encode() => {
+    'vpc_security_group_ids': vpcSecurityGroupIds.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'vpc_security_group_ids': vpcSecurityGroupIds,
+  };
+}
+
 /// Typed helper for the `block_device_mappings` block of
 /// `aws_launch_template` (derived from provider schema).
 @immutable
@@ -153,20 +378,65 @@ enum LaunchTemplateCapacityReservationSpecificationCapacityReservationPreference
 @immutable
 final class LaunchTemplateCapacityReservationSpecificationCapacityReservationTarget {
   const LaunchTemplateCapacityReservationSpecificationCapacityReservationTarget({
-    this.capacityReservationId,
-    this.capacityReservationResourceGroupArn,
+    this.capacityReservationIdOrCapacityReservationResourceGroupArn,
   });
 
-  final TfArg<String>? capacityReservationId;
-
-  final TfArg<String>? capacityReservationResourceGroupArn;
+  final LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn?
+  capacityReservationIdOrCapacityReservationResourceGroupArn;
 
   Map<String, Object?> encode() => {
-    if (capacityReservationId != null)
-      'capacity_reservation_id': capacityReservationId!.toTfJson(),
-    if (capacityReservationResourceGroupArn != null)
-      'capacity_reservation_resource_group_arn':
-          capacityReservationResourceGroupArn!.toTfJson(),
+    ...?capacityReservationIdOrCapacityReservationResourceGroupArn?.encode(),
+  };
+}
+
+/// At most one of `capacity_reservation_id`, `capacity_reservation_resource_group_arn` on the `capacity_reservation_specification.capacity_reservation_target` block of `aws_launch_template`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
+  const LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `capacity_reservation_id` (one of the [LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn] choices).
+final class LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOption
+    extends
+        LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
+  const LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOption({
+    required this.capacityReservationId,
+  });
+
+  final TfArg<String> capacityReservationId;
+
+  @override
+  String get blockKey => 'capacity_reservation_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'capacity_reservation_id': capacityReservationId.toTfJson(),
+  };
+}
+
+/// Sets `capacity_reservation_resource_group_arn` (one of the [LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn] choices).
+final class LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArnOption
+    extends
+        LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
+  const LaunchTemplateCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArnOption({
+    required this.capacityReservationResourceGroupArn,
+  });
+
+  final TfArg<String> capacityReservationResourceGroupArn;
+
+  @override
+  String get blockKey => 'capacity_reservation_resource_group_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'capacity_reservation_resource_group_arn':
+        capacityReservationResourceGroupArn.toTfJson(),
   };
 }
 
@@ -270,16 +540,51 @@ final class LaunchTemplateHibernationOptions {
 /// `aws_launch_template` (derived from provider schema).
 @immutable
 final class LaunchTemplateIamInstanceProfile {
-  const LaunchTemplateIamInstanceProfile({this.arn, this.name});
+  const LaunchTemplateIamInstanceProfile({this.arnOrName});
 
-  final TfArg<String>? arn;
+  final LaunchTemplateIamInstanceProfileArnOrName? arnOrName;
 
-  final TfArg<String>? name;
+  Map<String, Object?> encode() => {...?arnOrName?.encode()};
+}
 
-  Map<String, Object?> encode() => {
-    if (arn != null) 'arn': arn!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
-  };
+/// At most one of `arn`, `name` on the `iam_instance_profile` block of `aws_launch_template`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LaunchTemplateIamInstanceProfileArnOrName {
+  const LaunchTemplateIamInstanceProfileArnOrName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `arn` (one of the [LaunchTemplateIamInstanceProfileArnOrName] choices).
+final class LaunchTemplateIamInstanceProfileArnOption
+    extends LaunchTemplateIamInstanceProfileArnOrName {
+  const LaunchTemplateIamInstanceProfileArnOption({required this.arn});
+
+  final TfArg<String> arn;
+
+  @override
+  String get blockKey => 'arn';
+
+  @override
+  Map<String, Object?> encode() => {'arn': arn.toTfJson()};
+}
+
+/// Sets `name` (one of the [LaunchTemplateIamInstanceProfileArnOrName] choices).
+final class LaunchTemplateIamInstanceProfileNameOption
+    extends LaunchTemplateIamInstanceProfileArnOrName {
+  const LaunchTemplateIamInstanceProfileNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
 /// Typed helper for the `instance_market_options` block of
@@ -387,18 +692,16 @@ final class LaunchTemplateInstanceRequirements {
     this.acceleratorManufacturers,
     this.acceleratorNames,
     this.acceleratorTypes,
-    this.allowedInstanceTypes,
+    this.allowedInstanceTypesOrExcludedInstanceTypes,
     this.bareMetal,
     this.burstablePerformance,
     this.cpuManufacturers,
-    this.excludedInstanceTypes,
     this.instanceGenerations,
     this.localStorage,
     this.localStorageTypes,
-    this.maxSpotPriceAsPercentageOfOptimalOnDemandPrice,
+    this.maxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice,
     this.onDemandMaxPricePercentageOverLowestPrice,
     this.requireHibernateSupport,
-    this.spotMaxPricePercentageOverLowestPrice,
     this.acceleratorCount,
     this.acceleratorTotalMemoryMib,
     this.baselineEbsBandwidthMbps,
@@ -419,7 +722,8 @@ final class LaunchTemplateInstanceRequirements {
   final List<TfArg<LaunchTemplateInstanceRequirementsAcceleratorTypes>>?
   acceleratorTypes;
 
-  final TfArg<List<Object?>>? allowedInstanceTypes;
+  final LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes?
+  allowedInstanceTypesOrExcludedInstanceTypes;
 
   final TfArg<LaunchTemplateInstanceRequirementsBareMetal>? bareMetal;
 
@@ -429,8 +733,6 @@ final class LaunchTemplateInstanceRequirements {
   final List<TfArg<LaunchTemplateInstanceRequirementsCpuManufacturers>>?
   cpuManufacturers;
 
-  final TfArg<List<Object?>>? excludedInstanceTypes;
-
   final List<TfArg<LaunchTemplateInstanceRequirementsInstanceGenerations>>?
   instanceGenerations;
 
@@ -439,13 +741,12 @@ final class LaunchTemplateInstanceRequirements {
   final List<TfArg<LaunchTemplateInstanceRequirementsLocalStorageTypes>>?
   localStorageTypes;
 
-  final TfArg<num>? maxSpotPriceAsPercentageOfOptimalOnDemandPrice;
+  final LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice?
+  maxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice;
 
   final TfArg<num>? onDemandMaxPricePercentageOverLowestPrice;
 
   final TfArg<bool>? requireHibernateSupport;
-
-  final TfArg<num>? spotMaxPricePercentageOverLowestPrice;
 
   final LaunchTemplateInstanceRequirementsAcceleratorCount? acceleratorCount;
 
@@ -479,15 +780,12 @@ final class LaunchTemplateInstanceRequirements {
       'accelerator_names': [for (final e in acceleratorNames!) e.toTfJson()],
     if (acceleratorTypes != null)
       'accelerator_types': [for (final e in acceleratorTypes!) e.toTfJson()],
-    if (allowedInstanceTypes != null)
-      'allowed_instance_types': allowedInstanceTypes!.toTfJson(),
+    ...?allowedInstanceTypesOrExcludedInstanceTypes?.encode(),
     if (bareMetal != null) 'bare_metal': bareMetal!.toTfJson(),
     if (burstablePerformance != null)
       'burstable_performance': burstablePerformance!.toTfJson(),
     if (cpuManufacturers != null)
       'cpu_manufacturers': [for (final e in cpuManufacturers!) e.toTfJson()],
-    if (excludedInstanceTypes != null)
-      'excluded_instance_types': excludedInstanceTypes!.toTfJson(),
     if (instanceGenerations != null)
       'instance_generations': [
         for (final e in instanceGenerations!) e.toTfJson(),
@@ -495,17 +793,13 @@ final class LaunchTemplateInstanceRequirements {
     if (localStorage != null) 'local_storage': localStorage!.toTfJson(),
     if (localStorageTypes != null)
       'local_storage_types': [for (final e in localStorageTypes!) e.toTfJson()],
-    if (maxSpotPriceAsPercentageOfOptimalOnDemandPrice != null)
-      'max_spot_price_as_percentage_of_optimal_on_demand_price':
-          maxSpotPriceAsPercentageOfOptimalOnDemandPrice!.toTfJson(),
+    ...?maxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice
+        ?.encode(),
     if (onDemandMaxPricePercentageOverLowestPrice != null)
       'on_demand_max_price_percentage_over_lowest_price':
           onDemandMaxPricePercentageOverLowestPrice!.toTfJson(),
     if (requireHibernateSupport != null)
       'require_hibernate_support': requireHibernateSupport!.toTfJson(),
-    if (spotMaxPricePercentageOverLowestPrice != null)
-      'spot_max_price_percentage_over_lowest_price':
-          spotMaxPricePercentageOverLowestPrice!.toTfJson(),
     if (acceleratorCount != null)
       'accelerator_count': acceleratorCount!.encode(),
     if (acceleratorTotalMemoryMib != null)
@@ -522,6 +816,109 @@ final class LaunchTemplateInstanceRequirements {
     if (totalLocalStorageGb != null)
       'total_local_storage_gb': totalLocalStorageGb!.encode(),
     'vcpu_count': vcpuCount.encode(),
+  };
+}
+
+/// At most one of `allowed_instance_types`, `excluded_instance_types` on the `instance_requirements` block of `aws_launch_template`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes {
+  const LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `allowed_instance_types` (one of the [LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes] choices).
+final class LaunchTemplateInstanceRequirementsAllowedInstanceTypesOption
+    extends
+        LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes {
+  const LaunchTemplateInstanceRequirementsAllowedInstanceTypesOption({
+    required this.allowedInstanceTypes,
+  });
+
+  final TfArg<List<Object?>> allowedInstanceTypes;
+
+  @override
+  String get blockKey => 'allowed_instance_types';
+
+  @override
+  Map<String, Object?> encode() => {
+    'allowed_instance_types': allowedInstanceTypes.toTfJson(),
+  };
+}
+
+/// Sets `excluded_instance_types` (one of the [LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes] choices).
+final class LaunchTemplateInstanceRequirementsExcludedInstanceTypesOption
+    extends
+        LaunchTemplateInstanceRequirementsAllowedInstanceTypesOrExcludedInstanceTypes {
+  const LaunchTemplateInstanceRequirementsExcludedInstanceTypesOption({
+    required this.excludedInstanceTypes,
+  });
+
+  final TfArg<List<Object?>> excludedInstanceTypes;
+
+  @override
+  String get blockKey => 'excluded_instance_types';
+
+  @override
+  Map<String, Object?> encode() => {
+    'excluded_instance_types': excludedInstanceTypes.toTfJson(),
+  };
+}
+
+/// At most one of `max_spot_price_as_percentage_of_optimal_on_demand_price`, `spot_max_price_percentage_over_lowest_price` on the `instance_requirements` block of `aws_launch_template`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice {
+  const LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `max_spot_price_as_percentage_of_optimal_on_demand_price` (one of the [LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice] choices).
+final class LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOption
+    extends
+        LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice {
+  const LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOption({
+    required this.maxSpotPriceAsPercentageOfOptimalOnDemandPrice,
+  });
+
+  final TfArg<num> maxSpotPriceAsPercentageOfOptimalOnDemandPrice;
+
+  @override
+  String get blockKey =>
+      'max_spot_price_as_percentage_of_optimal_on_demand_price';
+
+  @override
+  Map<String, Object?> encode() => {
+    'max_spot_price_as_percentage_of_optimal_on_demand_price':
+        maxSpotPriceAsPercentageOfOptimalOnDemandPrice.toTfJson(),
+  };
+}
+
+/// Sets `spot_max_price_percentage_over_lowest_price` (one of the [LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice] choices).
+final class LaunchTemplateInstanceRequirementsSpotMaxPricePercentageOverLowestPriceOption
+    extends
+        LaunchTemplateInstanceRequirementsMaxSpotPriceAsPercentageOfOptimalOnDemandPriceOrSpotMaxPricePercentageOverLowestPrice {
+  const LaunchTemplateInstanceRequirementsSpotMaxPricePercentageOverLowestPriceOption({
+    required this.spotMaxPricePercentageOverLowestPrice,
+  });
+
+  final TfArg<num> spotMaxPricePercentageOverLowestPrice;
+
+  @override
+  String get blockKey => 'spot_max_price_percentage_over_lowest_price';
+
+  @override
+  Map<String, Object?> encode() => {
+    'spot_max_price_percentage_over_lowest_price':
+        spotMaxPricePercentageOverLowestPrice.toTfJson(),
   };
 }
 
@@ -1181,10 +1578,8 @@ final class LaunchTemplatePlacement {
   const LaunchTemplatePlacement({
     this.affinity,
     this.availabilityZone,
-    this.groupId,
-    this.groupName,
-    this.hostId,
-    this.hostResourceGroupArn,
+    this.groupIdOrGroupName,
+    this.hostIdOrHostResourceGroupArn,
     this.partitionNumber,
     this.spreadDomain,
     this.tenancy,
@@ -1194,13 +1589,10 @@ final class LaunchTemplatePlacement {
 
   final TfArg<String>? availabilityZone;
 
-  final TfArg<String>? groupId;
+  final LaunchTemplatePlacementGroupIdOrGroupName? groupIdOrGroupName;
 
-  final TfArg<String>? groupName;
-
-  final TfArg<String>? hostId;
-
-  final TfArg<String>? hostResourceGroupArn;
+  final LaunchTemplatePlacementHostIdOrHostResourceGroupArn?
+  hostIdOrHostResourceGroupArn;
 
   final TfArg<num>? partitionNumber;
 
@@ -1212,15 +1604,96 @@ final class LaunchTemplatePlacement {
     if (affinity != null) 'affinity': affinity!.toTfJson(),
     if (availabilityZone != null)
       'availability_zone': availabilityZone!.toTfJson(),
-    if (groupId != null) 'group_id': groupId!.toTfJson(),
-    if (groupName != null) 'group_name': groupName!.toTfJson(),
-    if (hostId != null) 'host_id': hostId!.toTfJson(),
-    if (hostResourceGroupArn != null)
-      'host_resource_group_arn': hostResourceGroupArn!.toTfJson(),
+    ...?groupIdOrGroupName?.encode(),
+    ...?hostIdOrHostResourceGroupArn?.encode(),
     if (partitionNumber != null)
       'partition_number': partitionNumber!.toTfJson(),
     if (spreadDomain != null) 'spread_domain': spreadDomain!.toTfJson(),
     if (tenancy != null) 'tenancy': tenancy!.toTfJson(),
+  };
+}
+
+/// At most one of `group_id`, `group_name` on the `placement` block of `aws_launch_template`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LaunchTemplatePlacementGroupIdOrGroupName {
+  const LaunchTemplatePlacementGroupIdOrGroupName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `group_id` (one of the [LaunchTemplatePlacementGroupIdOrGroupName] choices).
+final class LaunchTemplatePlacementGroupIdOption
+    extends LaunchTemplatePlacementGroupIdOrGroupName {
+  const LaunchTemplatePlacementGroupIdOption({required this.groupId});
+
+  final TfArg<String> groupId;
+
+  @override
+  String get blockKey => 'group_id';
+
+  @override
+  Map<String, Object?> encode() => {'group_id': groupId.toTfJson()};
+}
+
+/// Sets `group_name` (one of the [LaunchTemplatePlacementGroupIdOrGroupName] choices).
+final class LaunchTemplatePlacementGroupNameOption
+    extends LaunchTemplatePlacementGroupIdOrGroupName {
+  const LaunchTemplatePlacementGroupNameOption({required this.groupName});
+
+  final TfArg<String> groupName;
+
+  @override
+  String get blockKey => 'group_name';
+
+  @override
+  Map<String, Object?> encode() => {'group_name': groupName.toTfJson()};
+}
+
+/// At most one of `host_id`, `host_resource_group_arn` on the `placement` block of `aws_launch_template`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LaunchTemplatePlacementHostIdOrHostResourceGroupArn {
+  const LaunchTemplatePlacementHostIdOrHostResourceGroupArn();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `host_id` (one of the [LaunchTemplatePlacementHostIdOrHostResourceGroupArn] choices).
+final class LaunchTemplatePlacementHostIdOption
+    extends LaunchTemplatePlacementHostIdOrHostResourceGroupArn {
+  const LaunchTemplatePlacementHostIdOption({required this.hostId});
+
+  final TfArg<String> hostId;
+
+  @override
+  String get blockKey => 'host_id';
+
+  @override
+  Map<String, Object?> encode() => {'host_id': hostId.toTfJson()};
+}
+
+/// Sets `host_resource_group_arn` (one of the [LaunchTemplatePlacementHostIdOrHostResourceGroupArn] choices).
+final class LaunchTemplatePlacementHostResourceGroupArnOption
+    extends LaunchTemplatePlacementHostIdOrHostResourceGroupArn {
+  const LaunchTemplatePlacementHostResourceGroupArnOption({
+    required this.hostResourceGroupArn,
+  });
+
+  final TfArg<String> hostResourceGroupArn;
+
+  @override
+  String get blockKey => 'host_resource_group_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'host_resource_group_arn': hostResourceGroupArn.toTfJson(),
   };
 }
 
@@ -1476,7 +1949,8 @@ final class AwsLaunchTemplate extends Resource {
 
   AwsLaunchTemplate({
     required super.localName,
-    TfArg<num>? defaultVersion,
+    LaunchTemplateDefaultVersionOrUpdateDefaultVersion?
+    defaultVersionOrUpdateDefaultVersion,
     TfArg<String>? description,
     TfArg<bool>? disableApiStop,
     TfArg<bool>? disableApiTermination,
@@ -1484,18 +1958,17 @@ final class AwsLaunchTemplate extends Resource {
     TfArg<String>? imageId,
     TfArg<LaunchTemplateInstanceInitiatedShutdownBehavior>?
     instanceInitiatedShutdownBehavior,
-    TfArg<String>? instanceType,
+    LaunchTemplateInstanceRequirementsOrInstanceType?
+    instanceRequirementsOrInstanceType,
     TfArg<String>? kernelId,
     TfArg<String>? keyName,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    LaunchTemplateNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? ramDiskId,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroupNames,
+    LaunchTemplateSecurityGroupNamesOrVpcSecurityGroupIds?
+    securityGroupNamesOrVpcSecurityGroupIds,
     TfArg<Map<String, String>>? tags,
-    TfArg<bool>? updateDefaultVersion,
     TfArg<String>? userData,
-    TfArg<List<String>>? vpcSecurityGroupIds,
     List<LaunchTemplateBlockDeviceMappings>? blockDeviceMappings,
     LaunchTemplateCapacityReservationSpecification?
     capacityReservationSpecification,
@@ -1505,7 +1978,6 @@ final class AwsLaunchTemplate extends Resource {
     LaunchTemplateHibernationOptions? hibernationOptions,
     LaunchTemplateIamInstanceProfile? iamInstanceProfile,
     LaunchTemplateInstanceMarketOptions? instanceMarketOptions,
-    LaunchTemplateInstanceRequirements? instanceRequirements,
     List<LaunchTemplateLicenseSpecification>? licenseSpecification,
     LaunchTemplateMaintenanceOptions? maintenanceOptions,
     LaunchTemplateMetadataOptions? metadataOptions,
@@ -1523,7 +1995,7 @@ final class AwsLaunchTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (defaultVersion != null) 'default_version': defaultVersion,
+           ...?defaultVersionOrUpdateDefaultVersion?.argMap,
            if (description != null) 'description': description,
            if (disableApiStop != null) 'disable_api_stop': disableApiStop,
            if (disableApiTermination != null)
@@ -1533,21 +2005,15 @@ final class AwsLaunchTemplate extends Resource {
            if (instanceInitiatedShutdownBehavior != null)
              'instance_initiated_shutdown_behavior':
                  instanceInitiatedShutdownBehavior,
-           if (instanceType != null) 'instance_type': instanceType,
+           ...?instanceRequirementsOrInstanceType?.argMap,
            if (kernelId != null) 'kernel_id': kernelId,
            if (keyName != null) 'key_name': keyName,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (ramDiskId != null) 'ram_disk_id': ramDiskId,
            if (region != null) 'region': region,
-           if (securityGroupNames != null)
-             'security_group_names': securityGroupNames,
+           ...?securityGroupNamesOrVpcSecurityGroupIds?.argMap,
            if (tags != null) 'tags': tags,
-           if (updateDefaultVersion != null)
-             'update_default_version': updateDefaultVersion,
            if (userData != null) 'user_data': userData,
-           if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds,
            if (blockDeviceMappings != null)
              'block_device_mappings': TfArg.literal([
                for (final e in blockDeviceMappings) e.encode(),
@@ -1571,10 +2037,6 @@ final class AwsLaunchTemplate extends Resource {
            if (instanceMarketOptions != null)
              'instance_market_options': TfArg.literal(
                instanceMarketOptions.encode(),
-             ),
-           if (instanceRequirements != null)
-             'instance_requirements': TfArg.literal(
-               instanceRequirements.encode(),
              ),
            if (licenseSpecification != null)
              'license_specification': TfArg.literal([

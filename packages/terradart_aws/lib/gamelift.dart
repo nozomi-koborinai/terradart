@@ -38,7 +38,10 @@ export 'src/gamelift/aws_gamelift_game_server_group.dart'
         GameliftGameServerGroupGameServerProtectionPolicy,
         GameliftGameServerGroupInstanceDefinition,
         GameliftGameServerGroupInstanceDefinitionInstanceType,
-        GameliftGameServerGroupLaunchTemplate;
+        GameliftGameServerGroupLaunchTemplate,
+        GameliftGameServerGroupLaunchTemplateIdOption,
+        GameliftGameServerGroupLaunchTemplateIdOrName,
+        GameliftGameServerGroupLaunchTemplateNameOption;
 export 'src/gamelift/aws_gamelift_game_session_queue.dart'
     show
         AwsGameliftGameSessionQueue,

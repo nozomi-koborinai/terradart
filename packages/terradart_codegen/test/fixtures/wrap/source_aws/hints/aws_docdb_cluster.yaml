@@ -24,3 +24,8 @@ properties:
     enum_values:
       - "iopt1"
       - "standard"
+at_most_one_of_groups:
+  - ["cluster_identifier", "cluster_identifier_prefix"]
+  - ["manage_master_user_password", "master_password", "master_password_wo"]
+  - ["restore_to_point_in_time", "snapshot_identifier"]
+  - ["restore_to_point_in_time.restore_to_time", "restore_to_point_in_time.use_latest_restorable_time"]

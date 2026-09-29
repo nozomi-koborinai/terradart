@@ -95,21 +95,62 @@ enum QuicksightRefreshScheduleScheduleScheduleFrequencyInterval
 @immutable
 final class QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay {
   const QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDay({
-    this.dayOfMonth,
-    this.dayOfWeek,
+    this.dayOfMonthOrDayOfWeek,
   });
 
-  final TfArg<String>? dayOfMonth;
+  final QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfMonthOrDayOfWeek?
+  dayOfMonthOrDayOfWeek;
+
+  Map<String, Object?> encode() => {...?dayOfMonthOrDayOfWeek?.encode()};
+}
+
+/// At most one of `day_of_month`, `day_of_week` on the `schedule.schedule_frequency.refresh_on_day` block of `aws_quicksight_refresh_schedule`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfMonthOrDayOfWeek {
+  const QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfMonthOrDayOfWeek();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `day_of_month` (one of the [QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfMonthOrDayOfWeek] choices).
+final class QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfMonthOption
+    extends
+        QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfMonthOrDayOfWeek {
+  const QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfMonthOption({
+    required this.dayOfMonth,
+  });
+
+  final TfArg<String> dayOfMonth;
+
+  @override
+  String get blockKey => 'day_of_month';
+
+  @override
+  Map<String, Object?> encode() => {'day_of_month': dayOfMonth.toTfJson()};
+}
+
+/// Sets `day_of_week` (one of the [QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfMonthOrDayOfWeek] choices).
+final class QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfWeekOption
+    extends
+        QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfMonthOrDayOfWeek {
+  const QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfWeekOption({
+    required this.dayOfWeek,
+  });
 
   final TfArg<
     QuicksightRefreshScheduleScheduleScheduleFrequencyRefreshOnDayDayOfWeek
-  >?
+  >
   dayOfWeek;
 
-  Map<String, Object?> encode() => {
-    if (dayOfMonth != null) 'day_of_month': dayOfMonth!.toTfJson(),
-    if (dayOfWeek != null) 'day_of_week': dayOfWeek!.toTfJson(),
-  };
+  @override
+  String get blockKey => 'day_of_week';
+
+  @override
+  Map<String, Object?> encode() => {'day_of_week': dayOfWeek.toTfJson()};
 }
 
 /// `day_of_week` — derived from the provider schema description.

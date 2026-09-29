@@ -18,6 +18,144 @@ enum SpotInstanceRequestTenancy implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `host_resource_group_arn`, `placement_group`, `placement_group_id` on `aws_spot_instance_request`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId {
+  const SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `host_resource_group_arn` (one of the [SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId] choices).
+final class SpotInstanceRequestHostResourceGroupArnOption
+    extends
+        SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId {
+  const SpotInstanceRequestHostResourceGroupArnOption({
+    required this.hostResourceGroupArn,
+  });
+
+  final TfArg<String> hostResourceGroupArn;
+
+  @override
+  String get blockKey => 'host_resource_group_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'host_resource_group_arn': hostResourceGroupArn.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'host_resource_group_arn': hostResourceGroupArn,
+  };
+}
+
+/// Sets `placement_group` (one of the [SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId] choices).
+final class SpotInstanceRequestPlacementGroupOption
+    extends
+        SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId {
+  const SpotInstanceRequestPlacementGroupOption({required this.placementGroup});
+
+  final TfArg<String> placementGroup;
+
+  @override
+  String get blockKey => 'placement_group';
+
+  @override
+  Map<String, Object?> encode() => {
+    'placement_group': placementGroup.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'placement_group': placementGroup};
+}
+
+/// Sets `placement_group_id` (one of the [SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId] choices).
+final class SpotInstanceRequestPlacementGroupIdOption
+    extends
+        SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId {
+  const SpotInstanceRequestPlacementGroupIdOption({
+    required this.placementGroupId,
+  });
+
+  final TfArg<String> placementGroupId;
+
+  @override
+  String get blockKey => 'placement_group_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'placement_group_id': placementGroupId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'placement_group_id': placementGroupId,
+  };
+}
+
+/// At most one of `user_data`, `user_data_base64` on `aws_spot_instance_request`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SpotInstanceRequestUserDataOrUserDataBase64 {
+  const SpotInstanceRequestUserDataOrUserDataBase64();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `user_data` (one of the [SpotInstanceRequestUserDataOrUserDataBase64] choices).
+final class SpotInstanceRequestUserDataOption
+    extends SpotInstanceRequestUserDataOrUserDataBase64 {
+  const SpotInstanceRequestUserDataOption({required this.userData});
+
+  final TfArg<String> userData;
+
+  @override
+  String get blockKey => 'user_data';
+
+  @override
+  Map<String, Object?> encode() => {'user_data': userData.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'user_data': userData};
+}
+
+/// Sets `user_data_base64` (one of the [SpotInstanceRequestUserDataOrUserDataBase64] choices).
+final class SpotInstanceRequestUserDataBase64Option
+    extends SpotInstanceRequestUserDataOrUserDataBase64 {
+  const SpotInstanceRequestUserDataBase64Option({required this.userDataBase64});
+
+  final TfArg<String> userDataBase64;
+
+  @override
+  String get blockKey => 'user_data_base64';
+
+  @override
+  Map<String, Object?> encode() => {
+    'user_data_base64': userDataBase64.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'user_data_base64': userDataBase64,
+  };
+}
+
 /// Typed helper for the `capacity_reservation_specification` block of
 /// `aws_spot_instance_request` (derived from provider schema).
 @immutable
@@ -106,20 +244,65 @@ enum SpotInstanceRequestCapacityReservationSpecificationCapacityReservationPrefe
 @immutable
 final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget {
   const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTarget({
-    this.capacityReservationId,
-    this.capacityReservationResourceGroupArn,
+    this.capacityReservationIdOrCapacityReservationResourceGroupArn,
   });
 
-  final TfArg<String>? capacityReservationId;
-
-  final TfArg<String>? capacityReservationResourceGroupArn;
+  final SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn?
+  capacityReservationIdOrCapacityReservationResourceGroupArn;
 
   Map<String, Object?> encode() => {
-    if (capacityReservationId != null)
-      'capacity_reservation_id': capacityReservationId!.toTfJson(),
-    if (capacityReservationResourceGroupArn != null)
-      'capacity_reservation_resource_group_arn':
-          capacityReservationResourceGroupArn!.toTfJson(),
+    ...?capacityReservationIdOrCapacityReservationResourceGroupArn?.encode(),
+  };
+}
+
+/// At most one of `capacity_reservation_id`, `capacity_reservation_resource_group_arn` on the `capacity_reservation_specification.capacity_reservation_target` block of `aws_spot_instance_request`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
+  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `capacity_reservation_id` (one of the [SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn] choices).
+final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOption
+    extends
+        SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
+  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOption({
+    required this.capacityReservationId,
+  });
+
+  final TfArg<String> capacityReservationId;
+
+  @override
+  String get blockKey => 'capacity_reservation_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'capacity_reservation_id': capacityReservationId.toTfJson(),
+  };
+}
+
+/// Sets `capacity_reservation_resource_group_arn` (one of the [SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn] choices).
+final class SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArnOption
+    extends
+        SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationIdOrCapacityReservationResourceGroupArn {
+  const SpotInstanceRequestCapacityReservationSpecificationCapacityReservationTargetCapacityReservationResourceGroupArnOption({
+    required this.capacityReservationResourceGroupArn,
+  });
+
+  final TfArg<String> capacityReservationResourceGroupArn;
+
+  @override
+  String get blockKey => 'capacity_reservation_resource_group_arn';
+
+  @override
+  Map<String, Object?> encode() => {
+    'capacity_reservation_resource_group_arn':
+        capacityReservationResourceGroupArn.toTfJson(),
   };
 }
 
@@ -660,7 +843,8 @@ final class AwsSpotInstanceRequest extends Resource {
     TfArg<bool>? getPasswordData,
     TfArg<bool>? hibernation,
     TfArg<String>? hostId,
-    TfArg<String>? hostResourceGroupArn,
+    SpotInstanceRequestHostResourceGroupArnOrPlacementGroupOrPlacementGroupId?
+    hostResourceGroupArnOrPlacementGroupOrPlacementGroupId,
     TfArg<String>? iamInstanceProfile,
     TfArg<String>? instanceInitiatedShutdownBehavior,
     TfArg<String>? instanceInterruptionBehavior,
@@ -670,8 +854,6 @@ final class AwsSpotInstanceRequest extends Resource {
     TfArg<String>? keyName,
     TfArg<String>? launchGroup,
     TfArg<bool>? monitoring,
-    TfArg<String>? placementGroup,
-    TfArg<String>? placementGroupId,
     TfArg<num>? placementPartitionNumber,
     TfArg<String>? privateIp,
     TfArg<String>? region,
@@ -683,8 +865,7 @@ final class AwsSpotInstanceRequest extends Resource {
     TfArg<String>? subnetId,
     TfArg<Map<String, String>>? tags,
     TfArg<SpotInstanceRequestTenancy>? tenancy,
-    TfArg<String>? userData,
-    TfArg<String>? userDataBase64,
+    SpotInstanceRequestUserDataOrUserDataBase64? userDataOrUserDataBase64,
     TfArg<bool>? userDataReplaceOnChange,
     TfArg<String>? validFrom,
     TfArg<String>? validUntil,
@@ -727,8 +908,7 @@ final class AwsSpotInstanceRequest extends Resource {
            if (getPasswordData != null) 'get_password_data': getPasswordData,
            if (hibernation != null) 'hibernation': hibernation,
            if (hostId != null) 'host_id': hostId,
-           if (hostResourceGroupArn != null)
-             'host_resource_group_arn': hostResourceGroupArn,
+           ...?hostResourceGroupArnOrPlacementGroupOrPlacementGroupId?.argMap,
            if (iamInstanceProfile != null)
              'iam_instance_profile': iamInstanceProfile,
            if (instanceInitiatedShutdownBehavior != null)
@@ -742,8 +922,6 @@ final class AwsSpotInstanceRequest extends Resource {
            if (keyName != null) 'key_name': keyName,
            if (launchGroup != null) 'launch_group': launchGroup,
            if (monitoring != null) 'monitoring': monitoring,
-           if (placementGroup != null) 'placement_group': placementGroup,
-           if (placementGroupId != null) 'placement_group_id': placementGroupId,
            if (placementPartitionNumber != null)
              'placement_partition_number': placementPartitionNumber,
            if (privateIp != null) 'private_ip': privateIp,
@@ -757,8 +935,7 @@ final class AwsSpotInstanceRequest extends Resource {
            if (subnetId != null) 'subnet_id': subnetId,
            if (tags != null) 'tags': tags,
            if (tenancy != null) 'tenancy': tenancy,
-           if (userData != null) 'user_data': userData,
-           if (userDataBase64 != null) 'user_data_base64': userDataBase64,
+           ...?userDataOrUserDataBase64?.argMap,
            if (userDataReplaceOnChange != null)
              'user_data_replace_on_change': userDataReplaceOnChange,
            if (validFrom != null) 'valid_from': validFrom,

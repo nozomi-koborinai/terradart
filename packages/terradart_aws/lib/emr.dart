@@ -12,6 +12,9 @@ export 'src/emr/aws_emr_cluster.dart'
         AwsEmrCluster,
         EmrClusterAutoTerminationPolicy,
         EmrClusterBootstrapAction,
+        EmrClusterConfigurationsJsonOption,
+        EmrClusterConfigurationsOption,
+        EmrClusterConfigurationsOrConfigurationsJson,
         EmrClusterCoreInstanceFleet,
         EmrClusterCoreInstanceFleetInstanceTypeConfigs,
         EmrClusterCoreInstanceFleetInstanceTypeConfigsConfigurations,
@@ -22,6 +25,9 @@ export 'src/emr/aws_emr_cluster.dart'
         EmrClusterCoreInstanceGroup,
         EmrClusterCoreInstanceGroupEbsConfig,
         EmrClusterEc2Attributes,
+        EmrClusterEc2AttributesSubnetIdOption,
+        EmrClusterEc2AttributesSubnetIdOrSubnetIds,
+        EmrClusterEc2AttributesSubnetIdsOption,
         EmrClusterKerberosAttributes,
         EmrClusterListStepsStates,
         EmrClusterMasterInstanceFleet,
@@ -55,7 +61,11 @@ export 'src/emr/aws_emr_managed_scaling_policy.dart'
         EmrManagedScalingPolicyComputeLimitsUnitType,
         EmrManagedScalingPolicyScalingStrategy;
 export 'src/emr/aws_emr_security_configuration.dart'
-    show AwsEmrSecurityConfiguration;
+    show
+        AwsEmrSecurityConfiguration,
+        EmrSecurityConfigurationNameOption,
+        EmrSecurityConfigurationNameOrNamePrefix,
+        EmrSecurityConfigurationNamePrefixOption;
 export 'src/emr/aws_emr_studio.dart' show AwsEmrStudio, EmrStudioAuthMode;
 export 'src/emr/aws_emr_studio_session_mapping.dart'
     show

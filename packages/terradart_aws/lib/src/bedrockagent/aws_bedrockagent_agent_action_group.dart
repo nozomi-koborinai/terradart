@@ -33,6 +33,67 @@ enum BedrockagentAgentActionGroupParentActionGroupSignature
   final String terraformValue;
 }
 
+/// At most one of `description`, `parent_action_group_signature` on `aws_bedrockagent_agent_action_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature {
+  const BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `description` (one of the [BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature] choices).
+final class BedrockagentAgentActionGroupDescriptionOption
+    extends
+        BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature {
+  const BedrockagentAgentActionGroupDescriptionOption({
+    required this.description,
+  });
+
+  final TfArg<String> description;
+
+  @override
+  String get blockKey => 'description';
+
+  @override
+  Map<String, Object?> encode() => {'description': description.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'description': description};
+}
+
+/// Sets `parent_action_group_signature` (one of the [BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature] choices).
+final class BedrockagentAgentActionGroupParentActionGroupSignatureOption
+    extends
+        BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature {
+  const BedrockagentAgentActionGroupParentActionGroupSignatureOption({
+    required this.parentActionGroupSignature,
+  });
+
+  final TfArg<BedrockagentAgentActionGroupParentActionGroupSignature>
+  parentActionGroupSignature;
+
+  @override
+  String get blockKey => 'parent_action_group_signature';
+
+  @override
+  Map<String, Object?> encode() => {
+    'parent_action_group_signature': parentActionGroupSignature.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'parent_action_group_signature': parentActionGroupSignature,
+  };
+}
+
 /// Typed helper for the `action_group_executor` block of
 /// `aws_bedrockagent_agent_action_group` (derived from provider schema).
 @immutable
@@ -69,15 +130,54 @@ enum BedrockagentAgentActionGroupActionGroupExecutorCustomControl
 /// `aws_bedrockagent_agent_action_group` (derived from provider schema).
 @immutable
 final class BedrockagentAgentActionGroupApiSchema {
-  const BedrockagentAgentActionGroupApiSchema({this.payload, this.s3});
+  const BedrockagentAgentActionGroupApiSchema({this.payloadOrS3});
 
-  final TfArg<String>? payload;
+  final BedrockagentAgentActionGroupApiSchemaPayloadOrS3? payloadOrS3;
 
-  final List<BedrockagentAgentActionGroupApiSchemaS3>? s3;
+  Map<String, Object?> encode() => {...?payloadOrS3?.encode()};
+}
 
+/// At most one of `payload`, `s3` on the `api_schema` block of `aws_bedrockagent_agent_action_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class BedrockagentAgentActionGroupApiSchemaPayloadOrS3 {
+  const BedrockagentAgentActionGroupApiSchemaPayloadOrS3();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `payload` (one of the [BedrockagentAgentActionGroupApiSchemaPayloadOrS3] choices).
+final class BedrockagentAgentActionGroupApiSchemaPayloadOption
+    extends BedrockagentAgentActionGroupApiSchemaPayloadOrS3 {
+  const BedrockagentAgentActionGroupApiSchemaPayloadOption({
+    required this.payload,
+  });
+
+  final TfArg<String> payload;
+
+  @override
+  String get blockKey => 'payload';
+
+  @override
+  Map<String, Object?> encode() => {'payload': payload.toTfJson()};
+}
+
+/// Sets `s3` (one of the [BedrockagentAgentActionGroupApiSchemaPayloadOrS3] choices).
+final class BedrockagentAgentActionGroupApiSchemaS3Option
+    extends BedrockagentAgentActionGroupApiSchemaPayloadOrS3 {
+  const BedrockagentAgentActionGroupApiSchemaS3Option({required this.s3});
+
+  final List<BedrockagentAgentActionGroupApiSchemaS3> s3;
+
+  @override
+  String get blockKey => 's3';
+
+  @override
   Map<String, Object?> encode() => {
-    if (payload != null) 'payload': payload!.toTfJson(),
-    if (s3 != null) 's3': [for (final e in s3!) e.encode()],
+    's3': [for (final e in s3) e.encode()],
   };
 }
 
@@ -217,9 +317,8 @@ final class AwsBedrockagentAgentActionGroup extends Resource {
     TfArg<BedrockagentAgentActionGroupActionGroupState>? actionGroupState,
     required TfArg<String> agentId,
     required TfArg<String> agentVersion,
-    TfArg<String>? description,
-    TfArg<BedrockagentAgentActionGroupParentActionGroupSignature>?
-    parentActionGroupSignature,
+    BedrockagentAgentActionGroupDescriptionOrParentActionGroupSignature?
+    descriptionOrParentActionGroupSignature,
     TfArg<bool>? prepareAgent,
     TfArg<String>? region,
     TfArg<bool>? skipResourceInUseCheck,
@@ -237,9 +336,7 @@ final class AwsBedrockagentAgentActionGroup extends Resource {
            if (actionGroupState != null) 'action_group_state': actionGroupState,
            'agent_id': agentId,
            'agent_version': agentVersion,
-           if (description != null) 'description': description,
-           if (parentActionGroupSignature != null)
-             'parent_action_group_signature': parentActionGroupSignature,
+           ...?descriptionOrParentActionGroupSignature?.argMap,
            if (prepareAgent != null) 'prepare_agent': prepareAgent,
            if (region != null) 'region': region,
            if (skipResourceInUseCheck != null)

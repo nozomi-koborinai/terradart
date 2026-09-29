@@ -15,6 +15,61 @@ enum DocdbGlobalClusterEngine implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Exactly one of `engine`, `source_db_cluster_identifier` on `aws_docdb_global_cluster`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+sealed class DocdbGlobalClusterEngineOrSourceDbClusterIdentifier {
+  const DocdbGlobalClusterEngineOrSourceDbClusterIdentifier();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `engine` (one of the [DocdbGlobalClusterEngineOrSourceDbClusterIdentifier] choices).
+final class DocdbGlobalClusterEngineOption
+    extends DocdbGlobalClusterEngineOrSourceDbClusterIdentifier {
+  const DocdbGlobalClusterEngineOption({required this.engine});
+
+  final TfArg<DocdbGlobalClusterEngine> engine;
+
+  @override
+  String get blockKey => 'engine';
+
+  @override
+  Map<String, Object?> encode() => {'engine': engine.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'engine': engine};
+}
+
+/// Sets `source_db_cluster_identifier` (one of the [DocdbGlobalClusterEngineOrSourceDbClusterIdentifier] choices).
+final class DocdbGlobalClusterSourceDbClusterIdentifierOption
+    extends DocdbGlobalClusterEngineOrSourceDbClusterIdentifier {
+  const DocdbGlobalClusterSourceDbClusterIdentifierOption({
+    required this.sourceDbClusterIdentifier,
+  });
+
+  final TfArg<String> sourceDbClusterIdentifier;
+
+  @override
+  String get blockKey => 'source_db_cluster_identifier';
+
+  @override
+  Map<String, Object?> encode() => {
+    'source_db_cluster_identifier': sourceDbClusterIdentifier.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'source_db_cluster_identifier': sourceDbClusterIdentifier,
+  };
+}
+
 /// Factory wrapper for `aws_docdb_global_cluster`.
 final class AwsDocdbGlobalCluster extends Resource {
   static const String tfType = 'aws_docdb_global_cluster';
@@ -23,11 +78,11 @@ final class AwsDocdbGlobalCluster extends Resource {
     required super.localName,
     TfArg<String>? databaseName,
     TfArg<bool>? deletionProtection,
-    TfArg<DocdbGlobalClusterEngine>? engine,
+    required DocdbGlobalClusterEngineOrSourceDbClusterIdentifier
+    engineOrSourceDbClusterIdentifier,
     TfArg<String>? engineVersion,
     required TfArg<String> globalClusterIdentifier,
     TfArg<String>? region,
-    TfArg<String>? sourceDbClusterIdentifier,
     TfArg<bool>? storageEncrypted,
     super.lifecycle,
     super.dependsOn,
@@ -39,12 +94,10 @@ final class AwsDocdbGlobalCluster extends Resource {
            if (databaseName != null) 'database_name': databaseName,
            if (deletionProtection != null)
              'deletion_protection': deletionProtection,
-           if (engine != null) 'engine': engine,
+           ...engineOrSourceDbClusterIdentifier.argMap,
            if (engineVersion != null) 'engine_version': engineVersion,
            'global_cluster_identifier': globalClusterIdentifier,
            if (region != null) 'region': region,
-           if (sourceDbClusterIdentifier != null)
-             'source_db_cluster_identifier': sourceDbClusterIdentifier,
            if (storageEncrypted != null) 'storage_encrypted': storageEncrypted,
          },
        );

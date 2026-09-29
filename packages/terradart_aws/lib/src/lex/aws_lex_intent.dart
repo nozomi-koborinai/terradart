@@ -7,6 +7,64 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_lex_intent`.
 const Set<String> _awsLexIntentSensitive = <String>{};
 
+/// At most one of `conclusion_statement`, `follow_up_prompt` on `aws_lex_intent`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class LexIntentConclusionStatementOrFollowUpPrompt {
+  const LexIntentConclusionStatementOrFollowUpPrompt();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `conclusion_statement` (one of the [LexIntentConclusionStatementOrFollowUpPrompt] choices).
+final class LexIntentConclusionStatementOption
+    extends LexIntentConclusionStatementOrFollowUpPrompt {
+  const LexIntentConclusionStatementOption({required this.conclusionStatement});
+
+  final LexIntentConclusionStatement conclusionStatement;
+
+  @override
+  String get blockKey => 'conclusion_statement';
+
+  @override
+  Map<String, Object?> encode() => {
+    'conclusion_statement': conclusionStatement.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'conclusion_statement': TfArg.literal(conclusionStatement.encode()),
+  };
+}
+
+/// Sets `follow_up_prompt` (one of the [LexIntentConclusionStatementOrFollowUpPrompt] choices).
+final class LexIntentFollowUpPromptOption
+    extends LexIntentConclusionStatementOrFollowUpPrompt {
+  const LexIntentFollowUpPromptOption({required this.followUpPrompt});
+
+  final LexIntentFollowUpPrompt followUpPrompt;
+
+  @override
+  String get blockKey => 'follow_up_prompt';
+
+  @override
+  Map<String, Object?> encode() => {
+    'follow_up_prompt': followUpPrompt.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'follow_up_prompt': TfArg.literal(followUpPrompt.encode()),
+  };
+}
+
 /// Typed helper for the `conclusion_statement` block of
 /// `aws_lex_intent` (derived from provider schema).
 @immutable
@@ -423,10 +481,10 @@ final class AwsLexIntent extends Resource {
     TfArg<String>? parentIntentSignature,
     TfArg<String>? region,
     TfArg<List<String>>? sampleUtterances,
-    LexIntentConclusionStatement? conclusionStatement,
+    LexIntentConclusionStatementOrFollowUpPrompt?
+    conclusionStatementOrFollowUpPrompt,
     LexIntentConfirmationPrompt? confirmationPrompt,
     LexIntentDialogCodeHook? dialogCodeHook,
-    LexIntentFollowUpPrompt? followUpPrompt,
     required LexIntentFulfillmentActivity fulfillmentActivity,
     LexIntentRejectionStatement? rejectionStatement,
     List<LexIntentSlot>? slot,
@@ -444,16 +502,11 @@ final class AwsLexIntent extends Resource {
              'parent_intent_signature': parentIntentSignature,
            if (region != null) 'region': region,
            if (sampleUtterances != null) 'sample_utterances': sampleUtterances,
-           if (conclusionStatement != null)
-             'conclusion_statement': TfArg.literal(
-               conclusionStatement.encode(),
-             ),
+           ...?conclusionStatementOrFollowUpPrompt?.argMap,
            if (confirmationPrompt != null)
              'confirmation_prompt': TfArg.literal(confirmationPrompt.encode()),
            if (dialogCodeHook != null)
              'dialog_code_hook': TfArg.literal(dialogCodeHook.encode()),
-           if (followUpPrompt != null)
-             'follow_up_prompt': TfArg.literal(followUpPrompt.encode()),
            'fulfillment_activity': TfArg.literal(fulfillmentActivity.encode()),
            if (rejectionStatement != null)
              'rejection_statement': TfArg.literal(rejectionStatement.encode()),

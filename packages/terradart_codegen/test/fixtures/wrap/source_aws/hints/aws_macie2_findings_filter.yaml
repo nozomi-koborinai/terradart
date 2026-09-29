@@ -7,3 +7,5 @@ properties:
     enum_values:
       - "ARCHIVE"
       - "NOOP"
+at_most_one_of_groups:
+  - ["name", "name_prefix"]

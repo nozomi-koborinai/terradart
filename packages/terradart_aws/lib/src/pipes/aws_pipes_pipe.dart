@@ -17,6 +17,54 @@ enum PipesPipeDesiredState implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `name`, `name_prefix` on `aws_pipes_pipe`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class PipesPipeNameOrNamePrefix {
+  const PipesPipeNameOrNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `name` (one of the [PipesPipeNameOrNamePrefix] choices).
+final class PipesPipeNameOption extends PipesPipeNameOrNamePrefix {
+  const PipesPipeNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name': name};
+}
+
+/// Sets `name_prefix` (one of the [PipesPipeNameOrNamePrefix] choices).
+final class PipesPipeNamePrefixOption extends PipesPipeNameOrNamePrefix {
+  const PipesPipeNamePrefixOption({required this.namePrefix});
+
+  final TfArg<String> namePrefix;
+
+  @override
+  String get blockKey => 'name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'name_prefix': namePrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'name_prefix': namePrefix};
+}
+
 /// Typed helper for the `enrichment_parameters` block of
 /// `aws_pipes_pipe` (derived from provider schema).
 @immutable
@@ -197,55 +245,171 @@ enum PipesPipeLogConfigurationS3LogDestinationOutputFormat
 @immutable
 final class PipesPipeSourceParameters {
   const PipesPipeSourceParameters({
-    this.activemqBrokerParameters,
-    this.dynamodbStreamParameters,
+    this.activemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters,
     this.filterCriteria,
-    this.kinesisStreamParameters,
-    this.managedStreamingKafkaParameters,
-    this.rabbitmqBrokerParameters,
-    this.selfManagedKafkaParameters,
-    this.sqsQueueParameters,
   });
 
-  final PipesPipeSourceParametersActivemqBrokerParameters?
-  activemqBrokerParameters;
-
-  final PipesPipeSourceParametersDynamodbStreamParameters?
-  dynamodbStreamParameters;
+  final PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters?
+  activemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters;
 
   final PipesPipeSourceParametersFilterCriteria? filterCriteria;
 
-  final PipesPipeSourceParametersKinesisStreamParameters?
+  Map<String, Object?> encode() => {
+    ...?activemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters
+        ?.encode(),
+    if (filterCriteria != null) 'filter_criteria': filterCriteria!.encode(),
+  };
+}
+
+/// At most one of `activemq_broker_parameters`, `dynamodb_stream_parameters`, `kinesis_stream_parameters`, `managed_streaming_kafka_parameters`, `rabbitmq_broker_parameters`, `self_managed_kafka_parameters`, `sqs_queue_parameters` on the `source_parameters` block of `aws_pipes_pipe`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters {
+  const PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `activemq_broker_parameters` (one of the [PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters] choices).
+final class PipesPipeSourceParametersActivemqBrokerParametersOption
+    extends
+        PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters {
+  const PipesPipeSourceParametersActivemqBrokerParametersOption({
+    required this.activemqBrokerParameters,
+  });
+
+  final PipesPipeSourceParametersActivemqBrokerParameters
+  activemqBrokerParameters;
+
+  @override
+  String get blockKey => 'activemq_broker_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'activemq_broker_parameters': activemqBrokerParameters.encode(),
+  };
+}
+
+/// Sets `dynamodb_stream_parameters` (one of the [PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters] choices).
+final class PipesPipeSourceParametersDynamodbStreamParametersOption
+    extends
+        PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters {
+  const PipesPipeSourceParametersDynamodbStreamParametersOption({
+    required this.dynamodbStreamParameters,
+  });
+
+  final PipesPipeSourceParametersDynamodbStreamParameters
+  dynamodbStreamParameters;
+
+  @override
+  String get blockKey => 'dynamodb_stream_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'dynamodb_stream_parameters': dynamodbStreamParameters.encode(),
+  };
+}
+
+/// Sets `kinesis_stream_parameters` (one of the [PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters] choices).
+final class PipesPipeSourceParametersKinesisStreamParametersOption
+    extends
+        PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters {
+  const PipesPipeSourceParametersKinesisStreamParametersOption({
+    required this.kinesisStreamParameters,
+  });
+
+  final PipesPipeSourceParametersKinesisStreamParameters
   kinesisStreamParameters;
 
-  final PipesPipeSourceParametersManagedStreamingKafkaParameters?
+  @override
+  String get blockKey => 'kinesis_stream_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'kinesis_stream_parameters': kinesisStreamParameters.encode(),
+  };
+}
+
+/// Sets `managed_streaming_kafka_parameters` (one of the [PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters] choices).
+final class PipesPipeSourceParametersManagedStreamingKafkaParametersOption
+    extends
+        PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters {
+  const PipesPipeSourceParametersManagedStreamingKafkaParametersOption({
+    required this.managedStreamingKafkaParameters,
+  });
+
+  final PipesPipeSourceParametersManagedStreamingKafkaParameters
   managedStreamingKafkaParameters;
 
-  final PipesPipeSourceParametersRabbitmqBrokerParameters?
+  @override
+  String get blockKey => 'managed_streaming_kafka_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'managed_streaming_kafka_parameters': managedStreamingKafkaParameters
+        .encode(),
+  };
+}
+
+/// Sets `rabbitmq_broker_parameters` (one of the [PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters] choices).
+final class PipesPipeSourceParametersRabbitmqBrokerParametersOption
+    extends
+        PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters {
+  const PipesPipeSourceParametersRabbitmqBrokerParametersOption({
+    required this.rabbitmqBrokerParameters,
+  });
+
+  final PipesPipeSourceParametersRabbitmqBrokerParameters
   rabbitmqBrokerParameters;
 
-  final PipesPipeSourceParametersSelfManagedKafkaParameters?
+  @override
+  String get blockKey => 'rabbitmq_broker_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'rabbitmq_broker_parameters': rabbitmqBrokerParameters.encode(),
+  };
+}
+
+/// Sets `self_managed_kafka_parameters` (one of the [PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters] choices).
+final class PipesPipeSourceParametersSelfManagedKafkaParametersOption
+    extends
+        PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters {
+  const PipesPipeSourceParametersSelfManagedKafkaParametersOption({
+    required this.selfManagedKafkaParameters,
+  });
+
+  final PipesPipeSourceParametersSelfManagedKafkaParameters
   selfManagedKafkaParameters;
 
-  final PipesPipeSourceParametersSqsQueueParameters? sqsQueueParameters;
+  @override
+  String get blockKey => 'self_managed_kafka_parameters';
 
+  @override
   Map<String, Object?> encode() => {
-    if (activemqBrokerParameters != null)
-      'activemq_broker_parameters': activemqBrokerParameters!.encode(),
-    if (dynamodbStreamParameters != null)
-      'dynamodb_stream_parameters': dynamodbStreamParameters!.encode(),
-    if (filterCriteria != null) 'filter_criteria': filterCriteria!.encode(),
-    if (kinesisStreamParameters != null)
-      'kinesis_stream_parameters': kinesisStreamParameters!.encode(),
-    if (managedStreamingKafkaParameters != null)
-      'managed_streaming_kafka_parameters': managedStreamingKafkaParameters!
-          .encode(),
-    if (rabbitmqBrokerParameters != null)
-      'rabbitmq_broker_parameters': rabbitmqBrokerParameters!.encode(),
-    if (selfManagedKafkaParameters != null)
-      'self_managed_kafka_parameters': selfManagedKafkaParameters!.encode(),
-    if (sqsQueueParameters != null)
-      'sqs_queue_parameters': sqsQueueParameters!.encode(),
+    'self_managed_kafka_parameters': selfManagedKafkaParameters.encode(),
+  };
+}
+
+/// Sets `sqs_queue_parameters` (one of the [PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters] choices).
+final class PipesPipeSourceParametersSqsQueueParametersOption
+    extends
+        PipesPipeSourceParametersActivemqBrokerParametersOrDynamodbStreamParametersOrKinesisStreamParametersOrManagedStreamingKafkaParametersOrRabbitmqBrokerParametersOrSelfManagedKafkaParametersOrSqsQueueParameters {
+  const PipesPipeSourceParametersSqsQueueParametersOption({
+    required this.sqsQueueParameters,
+  });
+
+  final PipesPipeSourceParametersSqsQueueParameters sqsQueueParameters;
+
+  @override
+  String get blockKey => 'sqs_queue_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'sqs_queue_parameters': sqsQueueParameters.encode(),
   };
 }
 
@@ -778,74 +942,244 @@ final class PipesPipeSourceParametersSqsQueueParameters {
 final class PipesPipeTargetParameters {
   const PipesPipeTargetParameters({
     this.inputTemplate,
-    this.batchJobParameters,
-    this.cloudwatchLogsParameters,
-    this.ecsTaskParameters,
-    this.eventbridgeEventBusParameters,
-    this.httpParameters,
-    this.kinesisStreamParameters,
-    this.lambdaFunctionParameters,
-    this.redshiftDataParameters,
-    this.sagemakerPipelineParameters,
-    this.sqsQueueParameters,
-    this.stepFunctionStateMachineParameters,
+    this.batchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters,
   });
 
   final TfArg<String>? inputTemplate;
 
-  final PipesPipeTargetParametersBatchJobParameters? batchJobParameters;
-
-  final PipesPipeTargetParametersCloudwatchLogsParameters?
-  cloudwatchLogsParameters;
-
-  final PipesPipeTargetParametersEcsTaskParameters? ecsTaskParameters;
-
-  final PipesPipeTargetParametersEventbridgeEventBusParameters?
-  eventbridgeEventBusParameters;
-
-  final PipesPipeTargetParametersHttpParameters? httpParameters;
-
-  final PipesPipeTargetParametersKinesisStreamParameters?
-  kinesisStreamParameters;
-
-  final PipesPipeTargetParametersLambdaFunctionParameters?
-  lambdaFunctionParameters;
-
-  final PipesPipeTargetParametersRedshiftDataParameters? redshiftDataParameters;
-
-  final PipesPipeTargetParametersSagemakerPipelineParameters?
-  sagemakerPipelineParameters;
-
-  final PipesPipeTargetParametersSqsQueueParameters? sqsQueueParameters;
-
-  final PipesPipeTargetParametersStepFunctionStateMachineParameters?
-  stepFunctionStateMachineParameters;
+  final PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters?
+  batchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters;
 
   Map<String, Object?> encode() => {
     if (inputTemplate != null) 'input_template': inputTemplate!.toTfJson(),
-    if (batchJobParameters != null)
-      'batch_job_parameters': batchJobParameters!.encode(),
-    if (cloudwatchLogsParameters != null)
-      'cloudwatch_logs_parameters': cloudwatchLogsParameters!.encode(),
-    if (ecsTaskParameters != null)
-      'ecs_task_parameters': ecsTaskParameters!.encode(),
-    if (eventbridgeEventBusParameters != null)
-      'eventbridge_event_bus_parameters': eventbridgeEventBusParameters!
-          .encode(),
-    if (httpParameters != null) 'http_parameters': httpParameters!.encode(),
-    if (kinesisStreamParameters != null)
-      'kinesis_stream_parameters': kinesisStreamParameters!.encode(),
-    if (lambdaFunctionParameters != null)
-      'lambda_function_parameters': lambdaFunctionParameters!.encode(),
-    if (redshiftDataParameters != null)
-      'redshift_data_parameters': redshiftDataParameters!.encode(),
-    if (sagemakerPipelineParameters != null)
-      'sagemaker_pipeline_parameters': sagemakerPipelineParameters!.encode(),
-    if (sqsQueueParameters != null)
-      'sqs_queue_parameters': sqsQueueParameters!.encode(),
-    if (stepFunctionStateMachineParameters != null)
-      'step_function_state_machine_parameters':
-          stepFunctionStateMachineParameters!.encode(),
+    ...?batchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters
+        ?.encode(),
+  };
+}
+
+/// At most one of `batch_job_parameters`, `cloudwatch_logs_parameters`, `ecs_task_parameters`, `eventbridge_event_bus_parameters`, `http_parameters`, `kinesis_stream_parameters`, `lambda_function_parameters`, `redshift_data_parameters`, `sagemaker_pipeline_parameters`, `sqs_queue_parameters`, `step_function_state_machine_parameters` on the `target_parameters` block of `aws_pipes_pipe`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters {
+  const PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `batch_job_parameters` (one of the [PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters] choices).
+final class PipesPipeTargetParametersBatchJobParametersOption
+    extends
+        PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters {
+  const PipesPipeTargetParametersBatchJobParametersOption({
+    required this.batchJobParameters,
+  });
+
+  final PipesPipeTargetParametersBatchJobParameters batchJobParameters;
+
+  @override
+  String get blockKey => 'batch_job_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'batch_job_parameters': batchJobParameters.encode(),
+  };
+}
+
+/// Sets `cloudwatch_logs_parameters` (one of the [PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters] choices).
+final class PipesPipeTargetParametersCloudwatchLogsParametersOption
+    extends
+        PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters {
+  const PipesPipeTargetParametersCloudwatchLogsParametersOption({
+    required this.cloudwatchLogsParameters,
+  });
+
+  final PipesPipeTargetParametersCloudwatchLogsParameters
+  cloudwatchLogsParameters;
+
+  @override
+  String get blockKey => 'cloudwatch_logs_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'cloudwatch_logs_parameters': cloudwatchLogsParameters.encode(),
+  };
+}
+
+/// Sets `ecs_task_parameters` (one of the [PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters] choices).
+final class PipesPipeTargetParametersEcsTaskParametersOption
+    extends
+        PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters {
+  const PipesPipeTargetParametersEcsTaskParametersOption({
+    required this.ecsTaskParameters,
+  });
+
+  final PipesPipeTargetParametersEcsTaskParameters ecsTaskParameters;
+
+  @override
+  String get blockKey => 'ecs_task_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'ecs_task_parameters': ecsTaskParameters.encode(),
+  };
+}
+
+/// Sets `eventbridge_event_bus_parameters` (one of the [PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters] choices).
+final class PipesPipeTargetParametersEventbridgeEventBusParametersOption
+    extends
+        PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters {
+  const PipesPipeTargetParametersEventbridgeEventBusParametersOption({
+    required this.eventbridgeEventBusParameters,
+  });
+
+  final PipesPipeTargetParametersEventbridgeEventBusParameters
+  eventbridgeEventBusParameters;
+
+  @override
+  String get blockKey => 'eventbridge_event_bus_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'eventbridge_event_bus_parameters': eventbridgeEventBusParameters.encode(),
+  };
+}
+
+/// Sets `http_parameters` (one of the [PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters] choices).
+final class PipesPipeTargetParametersHttpParametersOption
+    extends
+        PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters {
+  const PipesPipeTargetParametersHttpParametersOption({
+    required this.httpParameters,
+  });
+
+  final PipesPipeTargetParametersHttpParameters httpParameters;
+
+  @override
+  String get blockKey => 'http_parameters';
+
+  @override
+  Map<String, Object?> encode() => {'http_parameters': httpParameters.encode()};
+}
+
+/// Sets `kinesis_stream_parameters` (one of the [PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters] choices).
+final class PipesPipeTargetParametersKinesisStreamParametersOption
+    extends
+        PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters {
+  const PipesPipeTargetParametersKinesisStreamParametersOption({
+    required this.kinesisStreamParameters,
+  });
+
+  final PipesPipeTargetParametersKinesisStreamParameters
+  kinesisStreamParameters;
+
+  @override
+  String get blockKey => 'kinesis_stream_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'kinesis_stream_parameters': kinesisStreamParameters.encode(),
+  };
+}
+
+/// Sets `lambda_function_parameters` (one of the [PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters] choices).
+final class PipesPipeTargetParametersLambdaFunctionParametersOption
+    extends
+        PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters {
+  const PipesPipeTargetParametersLambdaFunctionParametersOption({
+    required this.lambdaFunctionParameters,
+  });
+
+  final PipesPipeTargetParametersLambdaFunctionParameters
+  lambdaFunctionParameters;
+
+  @override
+  String get blockKey => 'lambda_function_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'lambda_function_parameters': lambdaFunctionParameters.encode(),
+  };
+}
+
+/// Sets `redshift_data_parameters` (one of the [PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters] choices).
+final class PipesPipeTargetParametersRedshiftDataParametersOption
+    extends
+        PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters {
+  const PipesPipeTargetParametersRedshiftDataParametersOption({
+    required this.redshiftDataParameters,
+  });
+
+  final PipesPipeTargetParametersRedshiftDataParameters redshiftDataParameters;
+
+  @override
+  String get blockKey => 'redshift_data_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'redshift_data_parameters': redshiftDataParameters.encode(),
+  };
+}
+
+/// Sets `sagemaker_pipeline_parameters` (one of the [PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters] choices).
+final class PipesPipeTargetParametersSagemakerPipelineParametersOption
+    extends
+        PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters {
+  const PipesPipeTargetParametersSagemakerPipelineParametersOption({
+    required this.sagemakerPipelineParameters,
+  });
+
+  final PipesPipeTargetParametersSagemakerPipelineParameters
+  sagemakerPipelineParameters;
+
+  @override
+  String get blockKey => 'sagemaker_pipeline_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'sagemaker_pipeline_parameters': sagemakerPipelineParameters.encode(),
+  };
+}
+
+/// Sets `sqs_queue_parameters` (one of the [PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters] choices).
+final class PipesPipeTargetParametersSqsQueueParametersOption
+    extends
+        PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters {
+  const PipesPipeTargetParametersSqsQueueParametersOption({
+    required this.sqsQueueParameters,
+  });
+
+  final PipesPipeTargetParametersSqsQueueParameters sqsQueueParameters;
+
+  @override
+  String get blockKey => 'sqs_queue_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'sqs_queue_parameters': sqsQueueParameters.encode(),
+  };
+}
+
+/// Sets `step_function_state_machine_parameters` (one of the [PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters] choices).
+final class PipesPipeTargetParametersStepFunctionStateMachineParametersOption
+    extends
+        PipesPipeTargetParametersBatchJobParametersOrCloudwatchLogsParametersOrEcsTaskParametersOrEventbridgeEventBusParametersOrHttpParametersOrKinesisStreamParametersOrLambdaFunctionParametersOrRedshiftDataParametersOrSagemakerPipelineParametersOrSqsQueueParametersOrStepFunctionStateMachineParameters {
+  const PipesPipeTargetParametersStepFunctionStateMachineParametersOption({
+    required this.stepFunctionStateMachineParameters,
+  });
+
+  final PipesPipeTargetParametersStepFunctionStateMachineParameters
+  stepFunctionStateMachineParameters;
+
+  @override
+  String get blockKey => 'step_function_state_machine_parameters';
+
+  @override
+  Map<String, Object?> encode() => {
+    'step_function_state_machine_parameters': stepFunctionStateMachineParameters
+        .encode(),
   };
 }
 
@@ -1788,8 +2122,7 @@ final class AwsPipesPipe extends Resource {
     TfArg<PipesPipeDesiredState>? desiredState,
     TfArg<String>? enrichment,
     TfArg<String>? kmsKeyIdentifier,
-    TfArg<String>? name,
-    TfArg<String>? namePrefix,
+    PipesPipeNameOrNamePrefix? nameOrNamePrefix,
     TfArg<String>? region,
     required TfArg<String> roleArn,
     required TfArg<String> source,
@@ -1810,8 +2143,7 @@ final class AwsPipesPipe extends Resource {
            if (desiredState != null) 'desired_state': desiredState,
            if (enrichment != null) 'enrichment': enrichment,
            if (kmsKeyIdentifier != null) 'kms_key_identifier': kmsKeyIdentifier,
-           if (name != null) 'name': name,
-           if (namePrefix != null) 'name_prefix': namePrefix,
+           ...?nameOrNamePrefix?.argMap,
            if (region != null) 'region': region,
            'role_arn': roleArn,
            'source': source,

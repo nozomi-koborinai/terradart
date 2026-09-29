@@ -70,6 +70,70 @@ enum CognitoUserPoolUsernameAttributes implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `alias_attributes`, `username_attributes` on `aws_cognito_user_pool`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class CognitoUserPoolAliasAttributesOrUsernameAttributes {
+  const CognitoUserPoolAliasAttributesOrUsernameAttributes();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `alias_attributes` (one of the [CognitoUserPoolAliasAttributesOrUsernameAttributes] choices).
+final class CognitoUserPoolAliasAttributesOption
+    extends CognitoUserPoolAliasAttributesOrUsernameAttributes {
+  const CognitoUserPoolAliasAttributesOption({required this.aliasAttributes});
+
+  final List<TfArg<CognitoUserPoolAliasAttributes>> aliasAttributes;
+
+  @override
+  String get blockKey => 'alias_attributes';
+
+  @override
+  Map<String, Object?> encode() => {
+    'alias_attributes': [for (final e in aliasAttributes) e.toTfJson()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'alias_attributes': TfArg.literal([
+      for (final e in aliasAttributes) e.toTfJson(),
+    ]),
+  };
+}
+
+/// Sets `username_attributes` (one of the [CognitoUserPoolAliasAttributesOrUsernameAttributes] choices).
+final class CognitoUserPoolUsernameAttributesOption
+    extends CognitoUserPoolAliasAttributesOrUsernameAttributes {
+  const CognitoUserPoolUsernameAttributesOption({
+    required this.usernameAttributes,
+  });
+
+  final List<TfArg<CognitoUserPoolUsernameAttributes>> usernameAttributes;
+
+  @override
+  String get blockKey => 'username_attributes';
+
+  @override
+  Map<String, Object?> encode() => {
+    'username_attributes': [for (final e in usernameAttributes) e.toTfJson()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'username_attributes': TfArg.literal([
+      for (final e in usernameAttributes) e.toTfJson(),
+    ]),
+  };
+}
+
 /// Typed helper for the `account_recovery_setting` block of
 /// `aws_cognito_user_pool` (derived from provider schema).
 @immutable
@@ -835,7 +899,8 @@ final class AwsCognitoUserPool extends Resource {
 
   AwsCognitoUserPool({
     required super.localName,
-    List<TfArg<CognitoUserPoolAliasAttributes>>? aliasAttributes,
+    CognitoUserPoolAliasAttributesOrUsernameAttributes?
+    aliasAttributesOrUsernameAttributes,
     List<TfArg<CognitoUserPoolAutoVerifiedAttributes>>? autoVerifiedAttributes,
     TfArg<CognitoUserPoolDeletionProtection>? deletionProtection,
     TfArg<String>? emailVerificationMessage,
@@ -847,7 +912,6 @@ final class AwsCognitoUserPool extends Resource {
     TfArg<String>? smsVerificationMessage,
     TfArg<Map<String, String>>? tags,
     TfArg<CognitoUserPoolUserPoolTier>? userPoolTier,
-    List<TfArg<CognitoUserPoolUsernameAttributes>>? usernameAttributes,
     CognitoUserPoolAccountRecoverySetting? accountRecoverySetting,
     CognitoUserPoolAdminCreateUserConfig? adminCreateUserConfig,
     CognitoUserPoolDeviceConfiguration? deviceConfiguration,
@@ -871,10 +935,7 @@ final class AwsCognitoUserPool extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (aliasAttributes != null)
-             'alias_attributes': TfArg.literal([
-               for (final e in aliasAttributes) e.toTfJson(),
-             ]),
+           ...?aliasAttributesOrUsernameAttributes?.argMap,
            if (autoVerifiedAttributes != null)
              'auto_verified_attributes': TfArg.literal([
                for (final e in autoVerifiedAttributes) e.toTfJson(),
@@ -894,10 +955,6 @@ final class AwsCognitoUserPool extends Resource {
              'sms_verification_message': smsVerificationMessage,
            if (tags != null) 'tags': tags,
            if (userPoolTier != null) 'user_pool_tier': userPoolTier,
-           if (usernameAttributes != null)
-             'username_attributes': TfArg.literal([
-               for (final e in usernameAttributes) e.toTfJson(),
-             ]),
            if (accountRecoverySetting != null)
              'account_recovery_setting': TfArg.literal(
                accountRecoverySetting.encode(),

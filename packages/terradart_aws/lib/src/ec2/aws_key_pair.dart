@@ -6,14 +6,63 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_key_pair`.
 const Set<String> _awsKeyPairSensitive = <String>{};
 
+/// At most one of `key_name`, `key_name_prefix` on `aws_key_pair`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class KeyPairKeyNameOrKeyNamePrefix {
+  const KeyPairKeyNameOrKeyNamePrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `key_name` (one of the [KeyPairKeyNameOrKeyNamePrefix] choices).
+final class KeyPairKeyNameOption extends KeyPairKeyNameOrKeyNamePrefix {
+  const KeyPairKeyNameOption({required this.keyName});
+
+  final TfArg<String> keyName;
+
+  @override
+  String get blockKey => 'key_name';
+
+  @override
+  Map<String, Object?> encode() => {'key_name': keyName.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'key_name': keyName};
+}
+
+/// Sets `key_name_prefix` (one of the [KeyPairKeyNameOrKeyNamePrefix] choices).
+final class KeyPairKeyNamePrefixOption extends KeyPairKeyNameOrKeyNamePrefix {
+  const KeyPairKeyNamePrefixOption({required this.keyNamePrefix});
+
+  final TfArg<String> keyNamePrefix;
+
+  @override
+  String get blockKey => 'key_name_prefix';
+
+  @override
+  Map<String, Object?> encode() => {
+    'key_name_prefix': keyNamePrefix.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'key_name_prefix': keyNamePrefix};
+}
+
 /// Factory wrapper for `aws_key_pair`.
 final class AwsKeyPair extends Resource {
   static const String tfType = 'aws_key_pair';
 
   AwsKeyPair({
     required super.localName,
-    TfArg<String>? keyName,
-    TfArg<String>? keyNamePrefix,
+    KeyPairKeyNameOrKeyNamePrefix? keyNameOrKeyNamePrefix,
     required TfArg<String> publicKey,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -24,8 +73,7 @@ final class AwsKeyPair extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (keyName != null) 'key_name': keyName,
-           if (keyNamePrefix != null) 'key_name_prefix': keyNamePrefix,
+           ...?keyNameOrKeyNamePrefix?.argMap,
            'public_key': publicKey,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

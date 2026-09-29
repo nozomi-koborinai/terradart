@@ -23,3 +23,5 @@ properties:
                 enum_values:
                   - "CENTRALIZED"
                   - "DISTRIBUTED"
+at_most_one_of_groups:
+  - ["resource_type", "resource_type_list"]

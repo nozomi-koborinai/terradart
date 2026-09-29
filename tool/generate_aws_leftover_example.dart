@@ -895,37 +895,62 @@ bool _isSealedMember(
 ) =>
     params.any(
       (p) =>
-          _sealedVariants[p.type]?.any(
+          _sealedVariants[p.type.replaceFirst(RegExp(r'\?$'), '')]?.any(
             (v) => helpers[v]!.requiredParams.single.name == name,
           ) ??
           false,
     );
 
-List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
-  final requiredNames = {for (final p in f.requiredParams) p.name};
-  final optional = {for (final p in f.optionalParams) p.name: p};
-  final out = <_Extra>[];
-  final extras = _extraParams[f.className];
-  if (extras != null) _usedKeys.add(f.className);
-  for (final name in extras ?? const <String>[]) {
-    if (_isSealedMember(f.requiredParams, name, helpers)) continue;
-    if (requiredNames.contains(name) || !optional.containsKey(name)) {
-      throw StateError('${f.className}.$name is not an optional parameter');
+/// The optional parameters [extras] names on [owner]: the parameter
+/// itself, or the optional sealed parameter one of whose variants sets it.
+/// A member of a required sealed parameter needs no slot: `_sealedChoice`
+/// picks its variant.
+List<_Param> _extraSlots(
+  String owner,
+  Iterable<String> extras,
+  List<_Param> required,
+  List<_Param> optional,
+  Map<String, _ClassInfo> helpers,
+) {
+  final out = <_Param>[];
+  for (final name in extras) {
+    if (_isSealedMember(required, name, helpers)) continue;
+    if (required.any((p) => p.name == name)) {
+      throw StateError('$owner.$name is not an optional parameter');
     }
-    out.add(
+    final slot = optional.where((p) => p.name == name).firstOrNull ??
+        optional
+            .where((p) => _isSealedMember([p], name, helpers))
+            .firstOrNull ??
+        (throw StateError('$owner.$name is not an optional parameter'));
+    if (!out.contains(slot)) out.add(slot);
+  }
+  return out;
+}
+
+List<_Extra> _extras(_Factory f, Map<String, _ClassInfo> helpers) {
+  final extras = _extraParams[f.className];
+  if (extras == null) return const [];
+  _usedKeys.add(f.className);
+  return [
+    for (final p in _extraSlots(
+      f.className,
+      extras,
+      f.requiredParams,
+      f.optionalParams,
+      helpers,
+    ))
       _Extra(
-        name,
+        p.name,
         _dummy(
-          optional[name]!,
+          p,
           helpers,
           sensitive: f.sensitiveLeaves,
           depth: 0,
           owner: f.className,
         ),
       ),
-    );
-  }
-  return out;
+  ];
 }
 
 List<String> _splitTopLevel(String src, String sep) {
@@ -2309,15 +2334,16 @@ String _constructHelper(
   if (info == null) return '$className()';
   final extras = _extraParams[className];
   if (extras != null) _usedKeys.add(className);
-  final optional = {for (final p in info.optionalParams) p.name: p};
-  final extraNames = extras
-      ?.where((name) => !_isSealedMember(info.requiredParams, name, helpers));
   final params = [
     ...info.requiredParams,
-    if (extraNames != null)
-      for (final name in extraNames)
-        optional[name] ??
-            (throw StateError('$className.$name is not an optional field'))
+    if (extras != null)
+      ..._extraSlots(
+        className,
+        extras,
+        info.requiredParams,
+        info.optionalParams,
+        helpers,
+      )
     else if (info.requiredParams.isEmpty && info.optionalParams.isNotEmpty)
       info.optionalParams.first,
   ];

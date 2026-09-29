@@ -45,3 +45,7 @@ properties:
         enum_values:
           - "ForecastAndScale"
           - "ForecastOnly"
+at_most_one_of_groups:
+  - ["predictive_scaling_configuration.metric_specification.customized_scaling_metric_specification", "predictive_scaling_configuration.metric_specification.predefined_scaling_metric_specification"]
+  - ["scaling_adjustment", "step_adjustment"]
+  - ["target_tracking_configuration.customized_metric_specification", "target_tracking_configuration.predefined_metric_specification"]

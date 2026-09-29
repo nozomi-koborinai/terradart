@@ -486,10 +486,9 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinition {
     this.algorithmSpecification,
     this.checkpointConfig,
     this.hyperParameterRanges,
-    this.hyperParameterTuningResourceConfig,
+    this.hyperParameterTuningResourceConfigOrResourceConfig,
     this.inputDataConfig,
     this.outputDataConfig,
-    this.resourceConfig,
     this.stoppingCondition,
     this.tuningObjective,
     this.vpcConfig,
@@ -526,10 +525,8 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinition {
   >?
   hyperParameterRanges;
 
-  final List<
-    SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfig
-  >?
-  hyperParameterTuningResourceConfig;
+  final SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig?
+  hyperParameterTuningResourceConfigOrResourceConfig;
 
   final List<
     SagemakerHyperParameterTuningJobTrainingJobDefinitionInputDataConfig
@@ -540,11 +537,6 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinition {
     SagemakerHyperParameterTuningJobTrainingJobDefinitionOutputDataConfig
   >?
   outputDataConfig;
-
-  final List<
-    SagemakerHyperParameterTuningJobTrainingJobDefinitionResourceConfig
-  >?
-  resourceConfig;
 
   final List<
     SagemakerHyperParameterTuningJobTrainingJobDefinitionStoppingCondition
@@ -583,16 +575,11 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinition {
       'hyper_parameter_ranges': [
         for (final e in hyperParameterRanges!) e.encode(),
       ],
-    if (hyperParameterTuningResourceConfig != null)
-      'hyper_parameter_tuning_resource_config': [
-        for (final e in hyperParameterTuningResourceConfig!) e.encode(),
-      ],
+    ...?hyperParameterTuningResourceConfigOrResourceConfig?.encode(),
     if (inputDataConfig != null)
       'input_data_config': [for (final e in inputDataConfig!) e.encode()],
     if (outputDataConfig != null)
       'output_data_config': [for (final e in outputDataConfig!) e.encode()],
-    if (resourceConfig != null)
-      'resource_config': [for (final e in resourceConfig!) e.encode()],
     if (stoppingCondition != null)
       'stopping_condition': [for (final e in stoppingCondition!) e.encode()],
     if (tuningObjective != null)
@@ -602,20 +589,76 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinition {
   };
 }
 
+/// At most one of `hyper_parameter_tuning_resource_config`, `resource_config` on the `training_job_definition` block of `aws_sagemaker_hyper_parameter_tuning_job`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `hyper_parameter_tuning_resource_config` (one of the [SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig] choices).
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOption
+    extends
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOption({
+    required this.hyperParameterTuningResourceConfig,
+  });
+
+  final List<
+    SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfig
+  >
+  hyperParameterTuningResourceConfig;
+
+  @override
+  String get blockKey => 'hyper_parameter_tuning_resource_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'hyper_parameter_tuning_resource_config': [
+      for (final e in hyperParameterTuningResourceConfig) e.encode(),
+    ],
+  };
+}
+
+/// Sets `resource_config` (one of the [SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig] choices).
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionResourceConfigOption
+    extends
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionHyperParameterTuningResourceConfigOrResourceConfig {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionResourceConfigOption({
+    required this.resourceConfig,
+  });
+
+  final List<
+    SagemakerHyperParameterTuningJobTrainingJobDefinitionResourceConfig
+  >
+  resourceConfig;
+
+  @override
+  String get blockKey => 'resource_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'resource_config': [for (final e in resourceConfig) e.encode()],
+  };
+}
+
 /// Typed helper for the `training_job_definition.algorithm_specification` block of
 /// `aws_sagemaker_hyper_parameter_tuning_job` (derived from provider schema).
 @immutable
 final class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecification {
   const SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecification({
-    this.algorithmName,
-    this.trainingImage,
+    this.algorithmNameOrTrainingImage,
     required this.trainingInputMode,
     this.metricDefinitions,
   });
 
-  final TfArg<String>? algorithmName;
-
-  final TfArg<String>? trainingImage;
+  final SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage?
+  algorithmNameOrTrainingImage;
 
   final TfArg<
     SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationTrainingInputMode
@@ -628,12 +671,57 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecif
   metricDefinitions;
 
   Map<String, Object?> encode() => {
-    if (algorithmName != null) 'algorithm_name': algorithmName!.toTfJson(),
-    if (trainingImage != null) 'training_image': trainingImage!.toTfJson(),
+    ...?algorithmNameOrTrainingImage?.encode(),
     'training_input_mode': trainingInputMode.toTfJson(),
     if (metricDefinitions != null)
       'metric_definitions': [for (final e in metricDefinitions!) e.encode()],
   };
+}
+
+/// At most one of `algorithm_name`, `training_image` on the `training_job_definition.algorithm_specification` block of `aws_sagemaker_hyper_parameter_tuning_job`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `algorithm_name` (one of the [SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage] choices).
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOption
+    extends
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOption({
+    required this.algorithmName,
+  });
+
+  final TfArg<String> algorithmName;
+
+  @override
+  String get blockKey => 'algorithm_name';
+
+  @override
+  Map<String, Object?> encode() => {'algorithm_name': algorithmName.toTfJson()};
+}
+
+/// Sets `training_image` (one of the [SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage] choices).
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationTrainingImageOption
+    extends
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationAlgorithmNameOrTrainingImage {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionAlgorithmSpecificationTrainingImageOption({
+    required this.trainingImage,
+  });
+
+  final TfArg<String> trainingImage;
+
+  @override
+  String get blockKey => 'training_image';
+
+  @override
+  Map<String, Object?> encode() => {'training_image': trainingImage.toTfJson()};
 }
 
 /// `training_input_mode` — derived from the provider schema description.
@@ -2172,10 +2260,9 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitions {
     this.algorithmSpecification,
     this.checkpointConfig,
     this.hyperParameterRanges,
-    this.hyperParameterTuningResourceConfig,
+    this.hyperParameterTuningResourceConfigOrResourceConfig,
     this.inputDataConfig,
     this.outputDataConfig,
-    this.resourceConfig,
     this.stoppingCondition,
     this.tuningObjective,
     this.vpcConfig,
@@ -2212,10 +2299,8 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitions {
   >?
   hyperParameterRanges;
 
-  final List<
-    SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfig
-  >?
-  hyperParameterTuningResourceConfig;
+  final SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig?
+  hyperParameterTuningResourceConfigOrResourceConfig;
 
   final List<
     SagemakerHyperParameterTuningJobTrainingJobDefinitionsInputDataConfig
@@ -2226,11 +2311,6 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitions {
     SagemakerHyperParameterTuningJobTrainingJobDefinitionsOutputDataConfig
   >?
   outputDataConfig;
-
-  final List<
-    SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourceConfig
-  >?
-  resourceConfig;
 
   final List<
     SagemakerHyperParameterTuningJobTrainingJobDefinitionsStoppingCondition
@@ -2269,16 +2349,11 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitions {
       'hyper_parameter_ranges': [
         for (final e in hyperParameterRanges!) e.encode(),
       ],
-    if (hyperParameterTuningResourceConfig != null)
-      'hyper_parameter_tuning_resource_config': [
-        for (final e in hyperParameterTuningResourceConfig!) e.encode(),
-      ],
+    ...?hyperParameterTuningResourceConfigOrResourceConfig?.encode(),
     if (inputDataConfig != null)
       'input_data_config': [for (final e in inputDataConfig!) e.encode()],
     if (outputDataConfig != null)
       'output_data_config': [for (final e in outputDataConfig!) e.encode()],
-    if (resourceConfig != null)
-      'resource_config': [for (final e in resourceConfig!) e.encode()],
     if (stoppingCondition != null)
       'stopping_condition': [for (final e in stoppingCondition!) e.encode()],
     if (tuningObjective != null)
@@ -2288,20 +2363,76 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitions {
   };
 }
 
+/// At most one of `hyper_parameter_tuning_resource_config`, `resource_config` on the `training_job_definitions` block of `aws_sagemaker_hyper_parameter_tuning_job`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `hyper_parameter_tuning_resource_config` (one of the [SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig] choices).
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOption
+    extends
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOption({
+    required this.hyperParameterTuningResourceConfig,
+  });
+
+  final List<
+    SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfig
+  >
+  hyperParameterTuningResourceConfig;
+
+  @override
+  String get blockKey => 'hyper_parameter_tuning_resource_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'hyper_parameter_tuning_resource_config': [
+      for (final e in hyperParameterTuningResourceConfig) e.encode(),
+    ],
+  };
+}
+
+/// Sets `resource_config` (one of the [SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig] choices).
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourceConfigOption
+    extends
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionsHyperParameterTuningResourceConfigOrResourceConfig {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourceConfigOption({
+    required this.resourceConfig,
+  });
+
+  final List<
+    SagemakerHyperParameterTuningJobTrainingJobDefinitionsResourceConfig
+  >
+  resourceConfig;
+
+  @override
+  String get blockKey => 'resource_config';
+
+  @override
+  Map<String, Object?> encode() => {
+    'resource_config': [for (final e in resourceConfig) e.encode()],
+  };
+}
+
 /// Typed helper for the `training_job_definitions.algorithm_specification` block of
 /// `aws_sagemaker_hyper_parameter_tuning_job` (derived from provider schema).
 @immutable
 final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecification {
   const SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecification({
-    this.algorithmName,
-    this.trainingImage,
+    this.algorithmNameOrTrainingImage,
     required this.trainingInputMode,
     this.metricDefinitions,
   });
 
-  final TfArg<String>? algorithmName;
-
-  final TfArg<String>? trainingImage;
+  final SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage?
+  algorithmNameOrTrainingImage;
 
   final TfArg<
     SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationTrainingInputMode
@@ -2314,12 +2445,57 @@ final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpeci
   metricDefinitions;
 
   Map<String, Object?> encode() => {
-    if (algorithmName != null) 'algorithm_name': algorithmName!.toTfJson(),
-    if (trainingImage != null) 'training_image': trainingImage!.toTfJson(),
+    ...?algorithmNameOrTrainingImage?.encode(),
     'training_input_mode': trainingInputMode.toTfJson(),
     if (metricDefinitions != null)
       'metric_definitions': [for (final e in metricDefinitions!) e.encode()],
   };
+}
+
+/// At most one of `algorithm_name`, `training_image` on the `training_job_definitions.algorithm_specification` block of `aws_sagemaker_hyper_parameter_tuning_job`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `algorithm_name` (one of the [SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage] choices).
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOption
+    extends
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOption({
+    required this.algorithmName,
+  });
+
+  final TfArg<String> algorithmName;
+
+  @override
+  String get blockKey => 'algorithm_name';
+
+  @override
+  Map<String, Object?> encode() => {'algorithm_name': algorithmName.toTfJson()};
+}
+
+/// Sets `training_image` (one of the [SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage] choices).
+final class SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationTrainingImageOption
+    extends
+        SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationAlgorithmNameOrTrainingImage {
+  const SagemakerHyperParameterTuningJobTrainingJobDefinitionsAlgorithmSpecificationTrainingImageOption({
+    required this.trainingImage,
+  });
+
+  final TfArg<String> trainingImage;
+
+  @override
+  String get blockKey => 'training_image';
+
+  @override
+  Map<String, Object?> encode() => {'training_image': trainingImage.toTfJson()};
 }
 
 /// `training_input_mode` — derived from the provider schema description.

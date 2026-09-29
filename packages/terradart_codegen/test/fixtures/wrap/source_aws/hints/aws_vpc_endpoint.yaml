@@ -29,3 +29,5 @@ properties:
       - "GatewayLoadBalancer"
       - "Resource"
       - "ServiceNetwork"
+at_most_one_of_groups:
+  - ["resource_configuration_arn", "service_name", "service_network_arn"]

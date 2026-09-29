@@ -16,3 +16,6 @@ properties:
     enum_values:
       - "TERMINATE_AT_INSTANCE_HOUR"
       - "TERMINATE_AT_TASK_COMPLETION"
+at_most_one_of_groups:
+  - ["configurations", "configurations_json"]
+  - ["ec2_attributes.subnet_id", "ec2_attributes.subnet_ids"]

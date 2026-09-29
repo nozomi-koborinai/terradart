@@ -19,6 +19,191 @@ enum NetworkInterfaceInterfaceType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `ipv4_prefix_count`, `ipv4_prefixes` on `aws_network_interface`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes {
+  const NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `ipv4_prefix_count` (one of the [NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes] choices).
+final class NetworkInterfaceIpv4PrefixCountOption
+    extends NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes {
+  const NetworkInterfaceIpv4PrefixCountOption({required this.ipv4PrefixCount});
+
+  final TfArg<num> ipv4PrefixCount;
+
+  @override
+  String get blockKey => 'ipv4_prefix_count';
+
+  @override
+  Map<String, Object?> encode() => {
+    'ipv4_prefix_count': ipv4PrefixCount.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'ipv4_prefix_count': ipv4PrefixCount,
+  };
+}
+
+/// Sets `ipv4_prefixes` (one of the [NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes] choices).
+final class NetworkInterfaceIpv4PrefixesOption
+    extends NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes {
+  const NetworkInterfaceIpv4PrefixesOption({required this.ipv4Prefixes});
+
+  final TfArg<List<String>> ipv4Prefixes;
+
+  @override
+  String get blockKey => 'ipv4_prefixes';
+
+  @override
+  Map<String, Object?> encode() => {'ipv4_prefixes': ipv4Prefixes.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'ipv4_prefixes': ipv4Prefixes};
+}
+
+/// At most one of `ipv6_address_count`, `ipv6_address_list`, `ipv6_addresses` on `aws_network_interface`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses {
+  const NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `ipv6_address_count` (one of the [NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses] choices).
+final class NetworkInterfaceIpv6AddressCountOption
+    extends NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses {
+  const NetworkInterfaceIpv6AddressCountOption({
+    required this.ipv6AddressCount,
+  });
+
+  final TfArg<num> ipv6AddressCount;
+
+  @override
+  String get blockKey => 'ipv6_address_count';
+
+  @override
+  Map<String, Object?> encode() => {
+    'ipv6_address_count': ipv6AddressCount.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'ipv6_address_count': ipv6AddressCount,
+  };
+}
+
+/// Sets `ipv6_address_list` (one of the [NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses] choices).
+final class NetworkInterfaceIpv6AddressListOption
+    extends NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses {
+  const NetworkInterfaceIpv6AddressListOption({required this.ipv6AddressList});
+
+  final TfArg<List<String>> ipv6AddressList;
+
+  @override
+  String get blockKey => 'ipv6_address_list';
+
+  @override
+  Map<String, Object?> encode() => {
+    'ipv6_address_list': ipv6AddressList.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'ipv6_address_list': ipv6AddressList,
+  };
+}
+
+/// Sets `ipv6_addresses` (one of the [NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses] choices).
+final class NetworkInterfaceIpv6AddressesOption
+    extends NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses {
+  const NetworkInterfaceIpv6AddressesOption({required this.ipv6Addresses});
+
+  final TfArg<List<String>> ipv6Addresses;
+
+  @override
+  String get blockKey => 'ipv6_addresses';
+
+  @override
+  Map<String, Object?> encode() => {'ipv6_addresses': ipv6Addresses.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'ipv6_addresses': ipv6Addresses};
+}
+
+/// At most one of `ipv6_prefix_count`, `ipv6_prefixes` on `aws_network_interface`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes {
+  const NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `ipv6_prefix_count` (one of the [NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes] choices).
+final class NetworkInterfaceIpv6PrefixCountOption
+    extends NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes {
+  const NetworkInterfaceIpv6PrefixCountOption({required this.ipv6PrefixCount});
+
+  final TfArg<num> ipv6PrefixCount;
+
+  @override
+  String get blockKey => 'ipv6_prefix_count';
+
+  @override
+  Map<String, Object?> encode() => {
+    'ipv6_prefix_count': ipv6PrefixCount.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'ipv6_prefix_count': ipv6PrefixCount,
+  };
+}
+
+/// Sets `ipv6_prefixes` (one of the [NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes] choices).
+final class NetworkInterfaceIpv6PrefixesOption
+    extends NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes {
+  const NetworkInterfaceIpv6PrefixesOption({required this.ipv6Prefixes});
+
+  final TfArg<List<String>> ipv6Prefixes;
+
+  @override
+  String get blockKey => 'ipv6_prefixes';
+
+  @override
+  Map<String, Object?> encode() => {'ipv6_prefixes': ipv6Prefixes.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'ipv6_prefixes': ipv6Prefixes};
+}
+
 /// Typed helper for the `attachment` block of
 /// `aws_network_interface` (derived from provider schema).
 @immutable
@@ -89,14 +274,13 @@ final class AwsNetworkInterface extends Resource {
     TfArg<String>? description,
     TfArg<bool>? enablePrimaryIpv6,
     TfArg<NetworkInterfaceInterfaceType>? interfaceType,
-    TfArg<num>? ipv4PrefixCount,
-    TfArg<List<String>>? ipv4Prefixes,
-    TfArg<num>? ipv6AddressCount,
-    TfArg<List<String>>? ipv6AddressList,
+    NetworkInterfaceIpv4PrefixCountOrIpv4Prefixes?
+    ipv4PrefixCountOrIpv4Prefixes,
+    NetworkInterfaceIpv6AddressCountOrIpv6AddressListOrIpv6Addresses?
+    ipv6AddressCountOrIpv6AddressListOrIpv6Addresses,
     TfArg<bool>? ipv6AddressListEnabled,
-    TfArg<List<String>>? ipv6Addresses,
-    TfArg<num>? ipv6PrefixCount,
-    TfArg<List<String>>? ipv6Prefixes,
+    NetworkInterfaceIpv6PrefixCountOrIpv6Prefixes?
+    ipv6PrefixCountOrIpv6Prefixes,
     TfArg<String>? privateIp,
     TfArg<List<String>>? privateIpList,
     TfArg<bool>? privateIpListEnabled,
@@ -120,15 +304,11 @@ final class AwsNetworkInterface extends Resource {
            if (enablePrimaryIpv6 != null)
              'enable_primary_ipv6': enablePrimaryIpv6,
            if (interfaceType != null) 'interface_type': interfaceType,
-           if (ipv4PrefixCount != null) 'ipv4_prefix_count': ipv4PrefixCount,
-           if (ipv4Prefixes != null) 'ipv4_prefixes': ipv4Prefixes,
-           if (ipv6AddressCount != null) 'ipv6_address_count': ipv6AddressCount,
-           if (ipv6AddressList != null) 'ipv6_address_list': ipv6AddressList,
+           ...?ipv4PrefixCountOrIpv4Prefixes?.argMap,
+           ...?ipv6AddressCountOrIpv6AddressListOrIpv6Addresses?.argMap,
            if (ipv6AddressListEnabled != null)
              'ipv6_address_list_enabled': ipv6AddressListEnabled,
-           if (ipv6Addresses != null) 'ipv6_addresses': ipv6Addresses,
-           if (ipv6PrefixCount != null) 'ipv6_prefix_count': ipv6PrefixCount,
-           if (ipv6Prefixes != null) 'ipv6_prefixes': ipv6Prefixes,
+           ...?ipv6PrefixCountOrIpv6Prefixes?.argMap,
            if (privateIp != null) 'private_ip': privateIp,
            if (privateIpList != null) 'private_ip_list': privateIpList,
            if (privateIpListEnabled != null)

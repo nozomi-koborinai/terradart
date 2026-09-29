@@ -37,6 +37,106 @@ enum S3BucketRequestPayer implements TerraformEnum {
   final String terraformValue;
 }
 
+/// At most one of `acl`, `grant` on `aws_s3_bucket`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class S3BucketAclOrGrant {
+  const S3BucketAclOrGrant();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `acl` (one of the [S3BucketAclOrGrant] choices).
+final class S3BucketAclOption extends S3BucketAclOrGrant {
+  const S3BucketAclOption({required this.acl});
+
+  final TfArg<String> acl;
+
+  @override
+  String get blockKey => 'acl';
+
+  @override
+  Map<String, Object?> encode() => {'acl': acl.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'acl': acl};
+}
+
+/// Sets `grant` (one of the [S3BucketAclOrGrant] choices).
+final class S3BucketGrantOption extends S3BucketAclOrGrant {
+  const S3BucketGrantOption({required this.grant});
+
+  final List<S3BucketGrant> grant;
+
+  @override
+  String get blockKey => 'grant';
+
+  @override
+  Map<String, Object?> encode() => {
+    'grant': [for (final e in grant) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'grant': TfArg.literal([for (final e in grant) e.encode()]),
+  };
+}
+
+/// At most one of `bucket`, `bucket_prefix` on `aws_s3_bucket`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class S3BucketBucketOrBucketPrefix {
+  const S3BucketBucketOrBucketPrefix();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `bucket` (one of the [S3BucketBucketOrBucketPrefix] choices).
+final class S3BucketBucketOption extends S3BucketBucketOrBucketPrefix {
+  const S3BucketBucketOption({required this.bucket});
+
+  final TfArg<String> bucket;
+
+  @override
+  String get blockKey => 'bucket';
+
+  @override
+  Map<String, Object?> encode() => {'bucket': bucket.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'bucket': bucket};
+}
+
+/// Sets `bucket_prefix` (one of the [S3BucketBucketOrBucketPrefix] choices).
+final class S3BucketBucketPrefixOption extends S3BucketBucketOrBucketPrefix {
+  const S3BucketBucketPrefixOption({required this.bucketPrefix});
+
+  final TfArg<String> bucketPrefix;
+
+  @override
+  String get blockKey => 'bucket_prefix';
+
+  @override
+  Map<String, Object?> encode() => {'bucket_prefix': bucketPrefix.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'bucket_prefix': bucketPrefix};
+}
+
 /// Typed helper for the `cors_rule` block of
 /// `aws_s3_bucket` (derived from provider schema).
 @immutable
@@ -692,10 +792,9 @@ final class AwsS3Bucket extends Resource {
   AwsS3Bucket({
     required super.localName,
     TfArg<S3BucketAccelerationStatus>? accelerationStatus,
-    TfArg<String>? acl,
-    TfArg<String>? bucket,
+    S3BucketAclOrGrant? aclOrGrant,
+    S3BucketBucketOrBucketPrefix? bucketOrBucketPrefix,
     TfArg<S3BucketBucketNamespace>? bucketNamespace,
-    TfArg<String>? bucketPrefix,
     TfArg<bool>? forceDestroy,
     TfArg<bool>? objectLockEnabled,
     TfArg<String>? policy,
@@ -703,7 +802,6 @@ final class AwsS3Bucket extends Resource {
     TfArg<S3BucketRequestPayer>? requestPayer,
     TfArg<Map<String, String>>? tags,
     List<S3BucketCorsRule>? corsRule,
-    List<S3BucketGrant>? grant,
     List<S3BucketLifecycleRule>? lifecycleRule,
     S3BucketLogging? logging,
     TfArg<Map<String, dynamic>>? objectLockConfiguration,
@@ -720,10 +818,9 @@ final class AwsS3Bucket extends Resource {
          argMap: {
            if (accelerationStatus != null)
              'acceleration_status': accelerationStatus,
-           if (acl != null) 'acl': acl,
-           if (bucket != null) 'bucket': bucket,
+           ...?aclOrGrant?.argMap,
+           ...?bucketOrBucketPrefix?.argMap,
            if (bucketNamespace != null) 'bucket_namespace': bucketNamespace,
-           if (bucketPrefix != null) 'bucket_prefix': bucketPrefix,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
            if (objectLockEnabled != null)
              'object_lock_enabled': objectLockEnabled,
@@ -733,8 +830,6 @@ final class AwsS3Bucket extends Resource {
            if (tags != null) 'tags': tags,
            if (corsRule != null)
              'cors_rule': TfArg.literal([for (final e in corsRule) e.encode()]),
-           if (grant != null)
-             'grant': TfArg.literal([for (final e in grant) e.encode()]),
            if (lifecycleRule != null)
              'lifecycle_rule': TfArg.literal([
                for (final e in lifecycleRule) e.encode(),

@@ -7,6 +7,63 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `aws_route53_zone`.
 const Set<String> _awsRoute53ZoneSensitive = <String>{};
 
+/// At most one of `delegation_set_id`, `vpc` on `aws_route53_zone`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class Route53ZoneDelegationSetIdOrVpc {
+  const Route53ZoneDelegationSetIdOrVpc();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// Sets `delegation_set_id` (one of the [Route53ZoneDelegationSetIdOrVpc] choices).
+final class Route53ZoneDelegationSetIdOption
+    extends Route53ZoneDelegationSetIdOrVpc {
+  const Route53ZoneDelegationSetIdOption({required this.delegationSetId});
+
+  final TfArg<String> delegationSetId;
+
+  @override
+  String get blockKey => 'delegation_set_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'delegation_set_id': delegationSetId.toTfJson(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'delegation_set_id': delegationSetId,
+  };
+}
+
+/// Sets `vpc` (one of the [Route53ZoneDelegationSetIdOrVpc] choices).
+final class Route53ZoneVpcOption extends Route53ZoneDelegationSetIdOrVpc {
+  const Route53ZoneVpcOption({required this.vpc});
+
+  final List<Route53ZoneVpc> vpc;
+
+  @override
+  String get blockKey => 'vpc';
+
+  @override
+  Map<String, Object?> encode() => {
+    'vpc': [for (final e in vpc) e.encode()],
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'vpc': TfArg.literal([for (final e in vpc) e.encode()]),
+  };
+}
+
 /// Typed helper for the `vpc` block of
 /// `aws_route53_zone` (derived from provider schema).
 @immutable
@@ -30,12 +87,11 @@ final class AwsRoute53Zone extends Resource {
   AwsRoute53Zone({
     required super.localName,
     TfArg<String>? comment,
-    TfArg<String>? delegationSetId,
+    Route53ZoneDelegationSetIdOrVpc? delegationSetIdOrVpc,
     TfArg<bool>? enableAcceleratedRecovery,
     TfArg<bool>? forceDestroy,
     required TfArg<String> name,
     TfArg<Map<String, String>>? tags,
-    List<Route53ZoneVpc>? vpc,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -44,14 +100,12 @@ final class AwsRoute53Zone extends Resource {
          terraformType: tfType,
          argMap: {
            if (comment != null) 'comment': comment,
-           if (delegationSetId != null) 'delegation_set_id': delegationSetId,
+           ...?delegationSetIdOrVpc?.argMap,
            if (enableAcceleratedRecovery != null)
              'enable_accelerated_recovery': enableAcceleratedRecovery,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
            'name': name,
            if (tags != null) 'tags': tags,
-           if (vpc != null)
-             'vpc': TfArg.literal([for (final e in vpc) e.encode()]),
          },
        );
 

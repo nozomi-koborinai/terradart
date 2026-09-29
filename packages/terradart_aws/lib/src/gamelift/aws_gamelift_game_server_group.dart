@@ -187,23 +187,56 @@ enum GameliftGameServerGroupInstanceDefinitionInstanceType
 /// `aws_gamelift_game_server_group` (derived from provider schema).
 @immutable
 final class GameliftGameServerGroupLaunchTemplate {
-  const GameliftGameServerGroupLaunchTemplate({
-    this.id,
-    this.name,
-    this.version,
-  });
+  const GameliftGameServerGroupLaunchTemplate({this.idOrName, this.version});
 
-  final TfArg<String>? id;
-
-  final TfArg<String>? name;
+  final GameliftGameServerGroupLaunchTemplateIdOrName? idOrName;
 
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    if (id != null) 'id': id!.toTfJson(),
-    if (name != null) 'name': name!.toTfJson(),
+    ...?idOrName?.encode(),
     if (version != null) 'version': version!.toTfJson(),
   };
+}
+
+/// At most one of `id`, `name` on the `launch_template` block of `aws_gamelift_game_server_group`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+sealed class GameliftGameServerGroupLaunchTemplateIdOrName {
+  const GameliftGameServerGroupLaunchTemplateIdOrName();
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// Sets `id` (one of the [GameliftGameServerGroupLaunchTemplateIdOrName] choices).
+final class GameliftGameServerGroupLaunchTemplateIdOption
+    extends GameliftGameServerGroupLaunchTemplateIdOrName {
+  const GameliftGameServerGroupLaunchTemplateIdOption({required this.id});
+
+  final TfArg<String> id;
+
+  @override
+  String get blockKey => 'id';
+
+  @override
+  Map<String, Object?> encode() => {'id': id.toTfJson()};
+}
+
+/// Sets `name` (one of the [GameliftGameServerGroupLaunchTemplateIdOrName] choices).
+final class GameliftGameServerGroupLaunchTemplateNameOption
+    extends GameliftGameServerGroupLaunchTemplateIdOrName {
+  const GameliftGameServerGroupLaunchTemplateNameOption({required this.name});
+
+  final TfArg<String> name;
+
+  @override
+  String get blockKey => 'name';
+
+  @override
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
 }
 
 /// Factory wrapper for `aws_gamelift_game_server_group`.
