@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- pub.dev: add `example/main.dart` (a `TimeSleep` synthesized to Terraform JSON) and dartdoc on the `TimeProvider` and `TimeSleep` constructors. No API changes.
+
 ## 0.30.0 - 2026-09-28
 
 Lockstep release. No `terradart_time` API changes.
