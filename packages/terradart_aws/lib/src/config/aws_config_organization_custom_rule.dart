@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_config_organization_custom_rule`.
 const Set<String> _awsConfigOrganizationCustomRuleSensitive = <String>{};
 
@@ -44,7 +46,7 @@ final class AwsConfigOrganizationCustomRule extends Resource {
     TfArg<String>? description,
     TfArg<List<String>>? excludedAccounts,
     TfArg<String>? inputParameters,
-    required TfArg<String> lambdaFunctionArn,
+    required RefTo<AwsLambdaFunction> lambdaFunctionArn,
     TfArg<ConfigOrganizationCustomRuleMaximumExecutionFrequency>?
     maximumExecutionFrequency,
     required TfArg<String> name,
@@ -64,7 +66,7 @@ final class AwsConfigOrganizationCustomRule extends Resource {
            if (description != null) 'description': description,
            if (excludedAccounts != null) 'excluded_accounts': excludedAccounts,
            if (inputParameters != null) 'input_parameters': inputParameters,
-           'lambda_function_arn': lambdaFunctionArn,
+           'lambda_function_arn': lambdaFunctionArn.encodeAs('arn'),
            if (maximumExecutionFrequency != null)
              'maximum_execution_frequency': maximumExecutionFrequency,
            'name': name,

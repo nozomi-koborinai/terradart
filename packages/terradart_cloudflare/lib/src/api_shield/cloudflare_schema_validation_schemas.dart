@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_schema_validation_schemas`.
 const Set<String> _cloudflareSchemaValidationSchemasSensitive = <String>{};
 
@@ -31,7 +33,7 @@ final class CloudflareSchemaValidationSchemas extends Resource {
     TfArg<bool>? omitSource,
     required TfArg<String> source,
     required TfArg<bool> validationEnabled,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -44,7 +46,7 @@ final class CloudflareSchemaValidationSchemas extends Resource {
            if (omitSource != null) 'omit_source': omitSource,
            'source': source,
            'validation_enabled': validationEnabled,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_authenticated_origin_pulls_hostname_certificate`.
 const Set<String>
 _cloudflareAuthenticatedOriginPullsHostnameCertificateSensitive = <String>{
@@ -19,7 +21,7 @@ final class CloudflareAuthenticatedOriginPullsHostnameCertificate
     required super.localName,
     required TfArg<String> certificate,
     required TfArg<String> privateKey,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -29,7 +31,7 @@ final class CloudflareAuthenticatedOriginPullsHostnameCertificate
          argMap: {
            'certificate': certificate,
            'private_key': privateKey,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

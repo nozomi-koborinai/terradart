@@ -17,14 +17,14 @@ GoogleComputeGlobalAddress buildPsaRange(GoogleComputeNetwork vpc) =>
       addressType: .literal(.internal),
       purpose: .literal(.vpcPeering),
       prefixLength: .literal(16),
-      network: .ref(vpc.selfLink),
+      network: vpc.ref,
     );
 
 GoogleServiceNetworkingConnection buildPsaConnection(
   GoogleComputeNetwork vpc,
 ) => GoogleServiceNetworkingConnection(
   localName: 'psa',
-  network: .ref(vpc.selfLink),
+  network: vpc.ref,
   service: .literal('servicenetworking.googleapis.com'),
   reservedPeeringRanges: .literal([
     '\${google_compute_global_address.psa_range.name}',

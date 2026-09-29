@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_scc_v2_organization_notification_config`.
 const Set<String> _googleSccV2OrganizationNotificationConfigSensitive =
     <String>{};
@@ -40,7 +42,7 @@ final class GoogleSccV2OrganizationNotificationConfig extends Resource {
     TfArg<String>? description,
     TfArg<String>? location,
     required TfArg<String> organization,
-    required TfArg<String> pubsubTopic,
+    required RefTo<GooglePubsubTopic> pubsubTopic,
     required SccV2OrganizationNotificationConfigStreamingConfig streamingConfig,
     super.lifecycle,
     super.dependsOn,
@@ -54,7 +56,7 @@ final class GoogleSccV2OrganizationNotificationConfig extends Resource {
            if (description != null) 'description': description,
            if (location != null) 'location': location,
            'organization': organization,
-           'pubsub_topic': pubsubTopic,
+           'pubsub_topic': pubsubTopic.encodeAs('id'),
            'streaming_config': TfArg.literal(streamingConfig.encode()),
          },
        );

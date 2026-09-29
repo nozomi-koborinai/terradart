@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_api_shield_operation`.
 const Set<String> _cloudflareApiShieldOperationSensitive = <String>{};
 
@@ -51,7 +53,7 @@ final class CloudflareApiShieldOperation extends Resource {
     required TfArg<String> host,
     required TfArg<ApiShieldOperationMethod> method,
     TfArg<bool>? withSchemas,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -65,7 +67,7 @@ final class CloudflareApiShieldOperation extends Resource {
            'host': host,
            'method': method,
            if (withSchemas != null) 'with_schemas': withSchemas,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

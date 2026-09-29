@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_email_security_block_sender`.
 const Set<String> _cloudflareEmailSecurityBlockSenderSensitive = <String>{};
 
@@ -28,7 +30,7 @@ final class CloudflareEmailSecurityBlockSender extends Resource {
 
   CloudflareEmailSecurityBlockSender({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comments,
     required TfArg<bool> isRegex,
     required TfArg<String> pattern,
@@ -40,7 +42,7 @@ final class CloudflareEmailSecurityBlockSender extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (comments != null) 'comments': comments,
            'is_regex': isRegex,
            'pattern': pattern,

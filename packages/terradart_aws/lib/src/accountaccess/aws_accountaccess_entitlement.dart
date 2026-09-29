@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_accountaccess_entitlement`.
 const Set<String> _awsAccountaccessEntitlementSensitive = <String>{};
 
@@ -30,13 +32,13 @@ final class AccountaccessEntitlementEntitlementPrincipalRole {
     this.principal,
   });
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final List<AccountaccessEntitlementEntitlementPrincipalRolePrincipal>?
   principal;
 
   Map<String, Object?> encode() => {
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (principal != null)
       'principal': [for (final e in principal!) e.encode()],
   };

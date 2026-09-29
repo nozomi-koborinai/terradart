@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_bedrockagentcore_gateway`.
 const Set<String> _awsBedrockagentcoreGatewaySensitive = <String>{};
 
@@ -312,9 +317,9 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPri
 
   final TfArg<String>? routingDomain;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -324,8 +329,8 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPri
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
@@ -433,9 +438,9 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPri
 
   final TfArg<String>? routingDomain;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -445,8 +450,8 @@ final class BedrockagentcoreGatewayAuthorizerConfigurationCustomJwtAuthorizerPri
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
@@ -712,11 +717,11 @@ final class AwsBedrockagentcoreGateway extends Resource {
     required TfArg<BedrockagentcoreGatewayAuthorizerType> authorizerType,
     TfArg<String>? description,
     TfArg<BedrockagentcoreGatewayExceptionLevel>? exceptionLevel,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> name,
     TfArg<BedrockagentcoreGatewayProtocolType>? protocolType,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     List<BedrockagentcoreGatewayAuthorizerConfiguration>?
     authorizerConfiguration,
@@ -735,11 +740,11 @@ final class AwsBedrockagentcoreGateway extends Resource {
            'authorizer_type': authorizerType,
            if (description != null) 'description': description,
            if (exceptionLevel != null) 'exception_level': exceptionLevel,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            'name': name,
            if (protocolType != null) 'protocol_type': protocolType,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (authorizerConfiguration != null)
              'authorizer_configuration': TfArg.literal([

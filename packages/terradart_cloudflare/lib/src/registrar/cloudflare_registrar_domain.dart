@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_registrar_domain`.
 const Set<String> _cloudflareRegistrarDomainSensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class CloudflareRegistrarDomain extends Resource {
 
   CloudflareRegistrarDomain({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? autoRenew,
     required TfArg<String> domainName,
     TfArg<bool>? locked,
@@ -24,7 +26,7 @@ final class CloudflareRegistrarDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (autoRenew != null) 'auto_renew': autoRenew,
            'domain_name': domainName,
            if (locked != null) 'locked': locked,

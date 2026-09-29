@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zero_trust_access_mtls_hostname_settings`.
 const Set<String> _cloudflareZeroTrustAccessMtlsHostnameSettingsSensitive =
     <String>{};
@@ -43,8 +46,8 @@ final class CloudflareZeroTrustAccessMtlsHostnameSettings extends Resource {
 
   CloudflareZeroTrustAccessMtlsHostnameSettings({
     required super.localName,
-    TfArg<String>? accountId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareAccount>? accountId,
+    RefTo<CloudflareZone>? zoneId,
     required List<ZeroTrustAccessMtlsHostnameSettingsSettings> settings,
     super.lifecycle,
     super.dependsOn,
@@ -53,8 +56,8 @@ final class CloudflareZeroTrustAccessMtlsHostnameSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
-           if (zoneId != null) 'zone_id': zoneId,
+           if (accountId != null) 'account_id': accountId.encodeAs('id'),
+           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
            'settings': TfArg.literal([for (final e in settings) e.encode()]),
          },
        );

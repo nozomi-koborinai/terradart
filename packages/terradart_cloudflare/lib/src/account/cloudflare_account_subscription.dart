@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_account_subscription`.
 const Set<String> _cloudflareAccountSubscriptionSensitive = <String>{};
 
@@ -64,7 +66,7 @@ final class CloudflareAccountSubscription extends Resource {
 
   CloudflareAccountSubscription({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<AccountSubscriptionFrequency>? frequency,
     AccountSubscriptionRatePlan? ratePlan,
     super.lifecycle,
@@ -74,7 +76,7 @@ final class CloudflareAccountSubscription extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           if (accountId != null) 'account_id': accountId.encodeAs('id'),
            if (frequency != null) 'frequency': frequency,
            if (ratePlan != null) 'rate_plan': TfArg.literal(ratePlan.encode()),
          },

@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_lb`.
 const Set<String> _awsLbSensitive = <String>{};
 
@@ -209,14 +213,14 @@ final class LbNameNamePrefix extends LbName {
 final class LbAccessLogs {
   const LbAccessLogs({required this.bucket, this.enabled, this.prefix});
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<bool>? enabled;
 
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };
@@ -228,14 +232,14 @@ final class LbAccessLogs {
 final class LbConnectionLogs {
   const LbConnectionLogs({required this.bucket, this.enabled, this.prefix});
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<bool>? enabled;
 
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };
@@ -247,14 +251,14 @@ final class LbConnectionLogs {
 final class LbHealthCheckLogs {
   const LbHealthCheckLogs({required this.bucket, this.enabled, this.prefix});
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<bool>? enabled;
 
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };
@@ -301,14 +305,14 @@ final class LbSubnetMapping {
 
   final TfArg<String>? privateIpv4Address;
 
-  final TfArg<String> subnetId;
+  final RefTo<AwsSubnet> subnetId;
 
   Map<String, Object?> encode() => {
     if (allocationId != null) 'allocation_id': allocationId!.toTfJson(),
     if (ipv6Address != null) 'ipv6_address': ipv6Address!.toTfJson(),
     if (privateIpv4Address != null)
       'private_ipv4_address': privateIpv4Address!.toTfJson(),
-    'subnet_id': subnetId.toTfJson(),
+    'subnet_id': subnetId.encodeAs('id').toTfJson(),
   };
 }
 
@@ -341,7 +345,7 @@ final class AwsLb extends Resource {
     TfArg<bool>? preserveHostHeader,
     TfArg<String>? region,
     TfArg<num>? secondaryIpsAutoAssignedPerSubnet,
-    TfArg<List<String>>? securityGroups,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups,
     required LbSubnet subnet,
     TfArg<Map<String, String>>? tags,
     TfArg<LbXffHeaderProcessingMode>? xffHeaderProcessingMode,
@@ -395,7 +399,8 @@ final class AwsLb extends Resource {
            if (secondaryIpsAutoAssignedPerSubnet != null)
              'secondary_ips_auto_assigned_per_subnet':
                  secondaryIpsAutoAssignedPerSubnet,
-           if (securityGroups != null) 'security_groups': securityGroups,
+           if (securityGroups != null)
+             'security_groups': securityGroups.encodeAs('id'),
            ...subnet.argMap,
            if (tags != null) 'tags': tags,
            if (xffHeaderProcessingMode != null)

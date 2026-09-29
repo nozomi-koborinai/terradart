@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_pipeline_sink`.
 const Set<String> _cloudflarePipelineSinkSensitive = <String>{
   'config.credentials.secret_access_key',
@@ -38,7 +40,7 @@ final class PipelineSinkConfig {
     this.rollingPolicy,
   });
 
-  final TfArg<String> accountId;
+  final RefTo<CloudflareAccount> accountId;
 
   final TfArg<String> bucket;
 
@@ -61,7 +63,7 @@ final class PipelineSinkConfig {
   final PipelineSinkConfigRollingPolicy? rollingPolicy;
 
   Map<String, Object?> encode() => {
-    'account_id': accountId.toTfJson(),
+    'account_id': accountId.encodeAs('id').toTfJson(),
     'bucket': bucket.toTfJson(),
     if (jurisdiction != null) 'jurisdiction': jurisdiction!.toTfJson(),
     if (namespace != null) 'namespace': namespace!.toTfJson(),
@@ -334,7 +336,7 @@ final class CloudflarePipelineSink extends Resource {
 
   CloudflarePipelineSink({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     required TfArg<PipelineSinkType> type,
     PipelineSinkConfig? config,
@@ -347,7 +349,7 @@ final class CloudflarePipelineSink extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'name': name,
            'type': type,
            if (config != null) 'config': TfArg.literal(config.encode()),

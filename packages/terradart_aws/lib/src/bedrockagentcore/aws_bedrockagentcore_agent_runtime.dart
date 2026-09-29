@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_bedrockagentcore_agent_runtime`.
 const Set<String> _awsBedrockagentcoreAgentRuntimeSensitive = <String>{};
 
@@ -108,14 +113,14 @@ final class BedrockagentcoreAgentRuntimeAgentRuntimeArtifactCodeConfigurationCod
     this.versionId,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String> prefix;
 
   final TfArg<String>? versionId;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     'prefix': prefix.toTfJson(),
     if (versionId != null) 'version_id': versionId!.toTfJson(),
   };
@@ -411,9 +416,9 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 
   final TfArg<String>? routingDomain;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -423,8 +428,8 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
@@ -532,9 +537,9 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
 
   final TfArg<String>? routingDomain;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -544,8 +549,8 @@ final class BedrockagentcoreAgentRuntimeAuthorizerConfigurationCustomJwtAuthoriz
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
@@ -709,13 +714,13 @@ final class BedrockagentcoreAgentRuntimeNetworkConfigurationNetworkModeConfig {
     required this.subnets,
   });
 
-  final TfArg<List<Object?>> securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroups;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
-    'security_groups': securityGroups.toTfJson(),
-    'subnets': subnets.toTfJson(),
+    'security_groups': securityGroups.encodeAs('id').toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
 
@@ -777,7 +782,7 @@ final class AwsBedrockagentcoreAgentRuntime extends Resource {
     TfArg<Map<String, String>>? environmentVariables,
     TfArg<List<Map<String, Object?>>>? lifecycleConfiguration,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     List<BedrockagentcoreAgentRuntimeAgentRuntimeArtifact>?
     agentRuntimeArtifact,
@@ -805,7 +810,7 @@ final class AwsBedrockagentcoreAgentRuntime extends Resource {
            if (lifecycleConfiguration != null)
              'lifecycle_configuration': lifecycleConfiguration,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (agentRuntimeArtifact != null)
              'agent_runtime_artifact': TfArg.literal([

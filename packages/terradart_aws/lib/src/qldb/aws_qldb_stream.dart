@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_qldb_stream`.
 const Set<String> _awsQldbStreamSensitive = <String>{};
 
@@ -37,7 +39,7 @@ final class AwsQldbStream extends Resource {
     required TfArg<String> inclusiveStartTime,
     required TfArg<String> ledgerName,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     required TfArg<String> streamName,
     TfArg<Map<String, String>>? tags,
     required QldbStreamKinesisConfiguration kinesisConfiguration,
@@ -52,7 +54,7 @@ final class AwsQldbStream extends Resource {
            'inclusive_start_time': inclusiveStartTime,
            'ledger_name': ledgerName,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            'stream_name': streamName,
            if (tags != null) 'tags': tags,
            'kinesis_configuration': TfArg.literal(

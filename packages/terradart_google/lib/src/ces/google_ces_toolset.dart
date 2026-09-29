@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_ces_toolset`.
 const Set<String> _googleCesToolsetSensitive = <String>{};
 
@@ -291,11 +293,11 @@ final class CesToolsetMcpToolsetApiAuthenticationServiceAccountAuthConfig {
 
   final TfArg<List<Object?>>? scopes;
 
-  final TfArg<String> serviceAccount;
+  final RefTo<GoogleServiceAccount> serviceAccount;
 
   Map<String, Object?> encode() => {
     if (scopes != null) 'scopes': scopes!.toTfJson(),
-    'service_account': serviceAccount.toTfJson(),
+    'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
 }
 
@@ -527,11 +529,11 @@ final class CesToolsetOpenApiToolsetApiAuthenticationServiceAccountAuthConfig {
 
   final TfArg<List<Object?>>? scopes;
 
-  final TfArg<String> serviceAccount;
+  final RefTo<GoogleServiceAccount> serviceAccount;
 
   Map<String, Object?> encode() => {
     if (scopes != null) 'scopes': scopes!.toTfJson(),
-    'service_account': serviceAccount.toTfJson(),
+    'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
 }
 

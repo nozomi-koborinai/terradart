@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_athena_database`.
 const Set<String> _awsAthenaDatabaseSensitive = <String>{};
 
@@ -39,11 +42,11 @@ final class AthenaDatabaseEncryptionConfiguration {
   final TfArg<AthenaDatabaseEncryptionConfigurationEncryptionOption>
   encryptionOption;
 
-  final TfArg<String>? kmsKey;
+  final RefTo<AwsKmsKey>? kmsKey;
 
   Map<String, Object?> encode() => {
     'encryption_option': encryptionOption.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -67,7 +70,7 @@ final class AwsAthenaDatabase extends Resource {
 
   AwsAthenaDatabase({
     required super.localName,
-    TfArg<String>? bucket,
+    RefTo<AwsS3Bucket>? bucket,
     TfArg<String>? comment,
     TfArg<String>? expectedBucketOwner,
     TfArg<bool>? forceDestroy,
@@ -84,7 +87,7 @@ final class AwsAthenaDatabase extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (bucket != null) 'bucket': bucket,
+           if (bucket != null) 'bucket': bucket.encodeAs('id'),
            if (comment != null) 'comment': comment,
            if (expectedBucketOwner != null)
              'expected_bucket_owner': expectedBucketOwner,

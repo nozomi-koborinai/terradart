@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_hypercomputecluster_cluster`.
 const Set<String> _googleHypercomputeclusterClusterSensitive = <String>{};
 
@@ -190,13 +194,13 @@ final class HypercomputeclusterClusterNetworkResourcesConfigExistingNetwork {
     required this.subnetwork,
   });
 
-  final TfArg<String> network;
+  final RefTo<GoogleComputeNetwork> network;
 
-  final TfArg<String> subnetwork;
+  final RefTo<GoogleComputeSubnetwork> subnetwork;
 
   Map<String, Object?> encode() => {
-    'network': network.toTfJson(),
-    'subnetwork': subnetwork.toTfJson(),
+    'network': network.encodeAs('id').toTfJson(),
+    'subnetwork': subnetwork.encodeAs('id').toTfJson(),
   };
 }
 
@@ -548,9 +552,11 @@ final class HypercomputeclusterClusterStorageResourcesConfigExistingBucket {
     required this.bucket,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<GoogleStorageBucket> bucket;
 
-  Map<String, Object?> encode() => {'bucket': bucket.toTfJson()};
+  Map<String, Object?> encode() => {
+    'bucket': bucket.encodeAs('name').toTfJson(),
+  };
 }
 
 /// Typed helper for the `storage_resources.config.existing_filestore` block of

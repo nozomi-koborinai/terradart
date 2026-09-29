@@ -60,7 +60,7 @@ final class FeatureStack extends Stack {
     final table = add(
       GoogleBigqueryTable(
         localName: 'entities',
-        datasetId: .ref(dataset.datasetIdRef),
+        datasetId: dataset.ref,
         tableId: .literal('entities'),
         deletionProtection: .literal(false),
         schema: .literal(

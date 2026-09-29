@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_imagebuilder_image_recipe`.
 const Set<String> _awsImagebuilderImageRecipeSensitive = <String>{};
 
@@ -55,7 +57,7 @@ final class ImagebuilderImageRecipeBlockDeviceMappingEbs {
 
   final TfArg<num>? iops;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String>? snapshotId;
 
@@ -71,7 +73,7 @@ final class ImagebuilderImageRecipeBlockDeviceMappingEbs {
       'delete_on_termination': deleteOnTermination!.toTfJson(),
     if (encrypted != null) 'encrypted': encrypted!.toTfJson(),
     if (iops != null) 'iops': iops!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (snapshotId != null) 'snapshot_id': snapshotId!.toTfJson(),
     if (throughput != null) 'throughput': throughput!.toTfJson(),
     if (volumeSize != null) 'volume_size': volumeSize!.toTfJson(),

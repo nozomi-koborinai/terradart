@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_transfer_workflow`.
 const Set<String> _awsTransferWorkflowSensitive = <String>{};
 
@@ -152,12 +154,12 @@ final class TransferWorkflowOnExceptionStepsCopyStepDetailsDestinationFileLocati
     this.key,
   });
 
-  final TfArg<String>? bucket;
+  final RefTo<AwsS3Bucket>? bucket;
 
   final TfArg<String>? key;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
+    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
     if (key != null) 'key': key!.toTfJson(),
   };
 }
@@ -302,12 +304,12 @@ final class TransferWorkflowOnExceptionStepsDecryptStepDetailsDestinationFileLoc
     this.key,
   });
 
-  final TfArg<String>? bucket;
+  final RefTo<AwsS3Bucket>? bucket;
 
   final TfArg<String>? key;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
+    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
     if (key != null) 'key': key!.toTfJson(),
   };
 }
@@ -520,12 +522,12 @@ final class TransferWorkflowStepsCopyStepDetailsDestinationFileLocationS3FileLoc
     this.key,
   });
 
-  final TfArg<String>? bucket;
+  final RefTo<AwsS3Bucket>? bucket;
 
   final TfArg<String>? key;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
+    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
     if (key != null) 'key': key!.toTfJson(),
   };
 }
@@ -665,12 +667,12 @@ final class TransferWorkflowStepsDecryptStepDetailsDestinationFileLocationS3File
     this.key,
   });
 
-  final TfArg<String>? bucket;
+  final RefTo<AwsS3Bucket>? bucket;
 
   final TfArg<String>? key;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
+    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
     if (key != null) 'key': key!.toTfJson(),
   };
 }

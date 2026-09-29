@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_workers_kv`.
 const Set<String> _cloudflareWorkersKvSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareWorkersKv extends Resource {
 
   CloudflareWorkersKv({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<num>? expiration,
     TfArg<num>? expirationTtl,
     required TfArg<String> keyName,
@@ -30,7 +32,7 @@ final class CloudflareWorkersKv extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (expiration != null) 'expiration': expiration,
            if (expirationTtl != null) 'expiration_ttl': expirationTtl,
            'key_name': keyName,

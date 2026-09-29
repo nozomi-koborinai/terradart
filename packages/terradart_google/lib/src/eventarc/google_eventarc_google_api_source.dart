@@ -5,6 +5,8 @@ import 'package:terradart_google/src/eventarc/google_eventarc_message_bus.dart'
     show EventarcMessageBusLoggingConfig;
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_eventarc_google_api_source`.
 const Set<String> _googleEventarcGoogleApiSourceSensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleEventarcGoogleApiSource extends Resource {
   GoogleEventarcGoogleApiSource({
     required super.localName,
     TfArg<Map<String, String>>? annotations,
-    TfArg<String>? cryptoKeyName,
+    RefTo<GoogleKmsCryptoKey>? cryptoKeyName,
     required TfArg<String> destination,
     TfArg<String>? displayName,
     required TfArg<String> googleApiSourceId,
@@ -33,7 +35,8 @@ final class GoogleEventarcGoogleApiSource extends Resource {
          terraformType: tfType,
          argMap: {
            if (annotations != null) 'annotations': annotations,
-           if (cryptoKeyName != null) 'crypto_key_name': cryptoKeyName,
+           if (cryptoKeyName != null)
+             'crypto_key_name': cryptoKeyName.encodeAs('id'),
            'destination': destination,
            if (displayName != null) 'display_name': displayName,
            'google_api_source_id': googleApiSourceId,

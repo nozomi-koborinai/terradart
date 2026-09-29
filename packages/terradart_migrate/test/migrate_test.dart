@@ -184,7 +184,7 @@ resource "google_pubsub_topic_iam_member" "viewer" {
       );
       expect(src, contains("setRequiredVersion(r'>= 1.11.0');"));
       // Typed references, enum members, nested helpers, dependencies.
-      expect(src, contains('topic: .ref(orders.id)'));
+      expect(src, contains('topic: orders.ref,'));
       expect(src, contains('.literal(.protocolBuffer)'));
       expect(src, contains('.pushConfig(PubsubSubscriptionPushConfig('));
       expect(src, contains('ackDeadlineSeconds: .literal(60)'));
@@ -1222,7 +1222,7 @@ output "first" {
         ),
       );
       expect(src, contains("localName: r't_1', name: .literal(r't-1')"));
-      expect(src, contains('topic: .ref(t1.nameRef)'));
+      expect(src, contains("topic: t1.ref.pinned(r'name')"));
       expect(
         src,
         contains('dependsOn: [ResourceDependency(t0), ResourceDependency(t1)]'),
@@ -1642,7 +1642,7 @@ resource "google_pubsub_subscription" "s" {
           "lifecycle: LifecycleOptions(preventDestroy: true, ignoreChanges: [r'labels'])",
         ),
       );
-      expect(src, contains('topic: .ref(t.id)'));
+      expect(src, contains('topic: t.ref'));
       expect(
         src,
         contains(

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_bucket_metadata_configuration`.
 const Set<String> _awsS3BucketMetadataConfigurationSensitive = <String>{};
 
@@ -88,7 +91,7 @@ final class S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConf
     required this.sseAlgorithm,
   });
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<
     S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConfigurationEncryptionConfigurationSseAlgorithm
@@ -96,7 +99,7 @@ final class S3BucketMetadataConfigurationMetadataConfigurationInventoryTableConf
   sseAlgorithm;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     'sse_algorithm': sseAlgorithm.toTfJson(),
   };
 }
@@ -152,7 +155,7 @@ final class S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfig
     required this.sseAlgorithm,
   });
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<
     S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfigurationEncryptionConfigurationSseAlgorithm
@@ -160,7 +163,7 @@ final class S3BucketMetadataConfigurationMetadataConfigurationJournalTableConfig
   sseAlgorithm;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     'sse_algorithm': sseAlgorithm.toTfJson(),
   };
 }
@@ -219,7 +222,7 @@ final class AwsS3BucketMetadataConfiguration extends Resource {
 
   AwsS3BucketMetadataConfiguration({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,
     List<S3BucketMetadataConfigurationMetadataConfiguration>?
@@ -231,7 +234,7 @@ final class AwsS3BucketMetadataConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (expectedBucketOwner != null)
              'expected_bucket_owner': expectedBucketOwner,
            if (region != null) 'region': region,

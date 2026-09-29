@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_account_dns_settings_internal_view`.
 const Set<String> _cloudflareAccountDnsSettingsInternalViewSensitive =
     <String>{};
@@ -17,7 +19,7 @@ final class CloudflareAccountDnsSettingsInternalView extends Resource {
 
   CloudflareAccountDnsSettingsInternalView({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     required TfArg<List<String>> zones,
     super.lifecycle,
@@ -26,7 +28,11 @@ final class CloudflareAccountDnsSettingsInternalView extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'name': name, 'zones': zones},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'name': name,
+           'zones': zones,
+         },
        );
 
   @override

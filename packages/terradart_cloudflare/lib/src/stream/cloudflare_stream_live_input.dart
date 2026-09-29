@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_stream_live_input`.
 const Set<String> _cloudflareStreamLiveInputSensitive = <String>{
   'rtmps.stream_key',
@@ -71,7 +73,7 @@ final class CloudflareStreamLiveInput extends Resource {
 
   CloudflareStreamLiveInput({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? defaultCreator,
     TfArg<num>? deleteRecordingAfterDays,
     TfArg<bool>? enabled,
@@ -86,7 +88,7 @@ final class CloudflareStreamLiveInput extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (defaultCreator != null) 'default_creator': defaultCreator,
            if (deleteRecordingAfterDays != null)
              'delete_recording_after_days': deleteRecordingAfterDays,

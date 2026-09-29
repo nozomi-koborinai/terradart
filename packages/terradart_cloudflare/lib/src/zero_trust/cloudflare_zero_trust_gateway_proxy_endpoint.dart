@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_gateway_proxy_endpoint`.
 const Set<String> _cloudflareZeroTrustGatewayProxyEndpointSensitive =
     <String>{};
@@ -23,7 +25,7 @@ final class CloudflareZeroTrustGatewayProxyEndpoint extends Resource {
 
   CloudflareZeroTrustGatewayProxyEndpoint({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<List<String>>? ips,
     TfArg<ZeroTrustGatewayProxyEndpointKind>? kind,
     required TfArg<String> name,
@@ -34,7 +36,7 @@ final class CloudflareZeroTrustGatewayProxyEndpoint extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (ips != null) 'ips': ips,
            if (kind != null) 'kind': kind,
            'name': name,

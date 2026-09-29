@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_network_security_mirroring_deployment_group`.
 const Set<String> _googleNetworkSecurityMirroringDeploymentGroupSensitive =
     <String>{};
@@ -30,7 +32,7 @@ final class GoogleNetworkSecurityMirroringDeploymentGroup extends Resource {
     required super.localName,
     required TfArg<String> location,
     required TfArg<String> mirroringDeploymentGroupId,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? project,
@@ -44,7 +46,7 @@ final class GoogleNetworkSecurityMirroringDeploymentGroup extends Resource {
          argMap: {
            'location': location,
            'mirroring_deployment_group_id': mirroringDeploymentGroupId,
-           'network': network,
+           'network': network.encodeAs('id'),
            if (description != null) 'description': description,
            if (labels != null) 'labels': labels,
            if (project != null) 'project': project,

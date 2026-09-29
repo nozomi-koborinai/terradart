@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+
 /// Sensitive field paths for `google_bigquery_row_access_policy`.
 const Set<String> _googleBigqueryRowAccessPolicySensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class GoogleBigqueryRowAccessPolicy extends Resource {
 
   GoogleBigqueryRowAccessPolicy({
     required super.localName,
-    required TfArg<String> datasetId,
+    required RefTo<GoogleBigqueryDataset> datasetId,
     required TfArg<String> filterPredicate,
     TfArg<List<String>>? grantees,
     required TfArg<String> policyId,
@@ -29,7 +31,7 @@ final class GoogleBigqueryRowAccessPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset_id': datasetId,
+           'dataset_id': datasetId.encodeAs('dataset_id'),
            'filter_predicate': filterPredicate,
            if (grantees != null) 'grantees': grantees,
            'policy_id': policyId,

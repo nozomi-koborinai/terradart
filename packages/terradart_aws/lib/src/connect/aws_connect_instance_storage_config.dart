@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_connect_instance_storage_config`.
 const Set<String> _awsConnectInstanceStorageConfigSensitive = <String>{};
 
@@ -148,11 +151,11 @@ final class ConnectInstanceStorageConfigStorageConfigKinesisVideoStreamConfigEnc
   >
   encryptionType;
 
-  final TfArg<String> keyId;
+  final RefTo<AwsKmsKey> keyId;
 
   Map<String, Object?> encode() => {
     'encryption_type': encryptionType.toTfJson(),
-    'key_id': keyId.toTfJson(),
+    'key_id': keyId.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -178,7 +181,7 @@ final class ConnectInstanceStorageConfigStorageConfigS3Config {
     this.encryptionConfig,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String> bucketPrefix;
 
@@ -186,7 +189,7 @@ final class ConnectInstanceStorageConfigStorageConfigS3Config {
   encryptionConfig;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     'bucket_prefix': bucketPrefix.toTfJson(),
     if (encryptionConfig != null)
       'encryption_config': encryptionConfig!.encode(),
@@ -207,11 +210,11 @@ final class ConnectInstanceStorageConfigStorageConfigS3ConfigEncryptionConfig {
   >
   encryptionType;
 
-  final TfArg<String> keyId;
+  final RefTo<AwsKmsKey> keyId;
 
   Map<String, Object?> encode() => {
     'encryption_type': encryptionType.toTfJson(),
-    'key_id': keyId.toTfJson(),
+    'key_id': keyId.encodeAs('arn').toTfJson(),
   };
 }
 

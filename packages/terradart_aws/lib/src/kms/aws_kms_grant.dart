@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_kms_grant`.
 const Set<String> _awsKmsGrantSensitive = <String>{'grant_token'};
 
@@ -61,7 +63,7 @@ final class AwsKmsGrant extends Resource {
     required super.localName,
     TfArg<List<String>>? grantCreationTokens,
     required TfArg<String> granteePrincipal,
-    required TfArg<String> keyId,
+    required RefTo<AwsKmsKey> keyId,
     TfArg<String>? name,
     required List<TfArg<KmsGrantOperations>> operations,
     TfArg<String>? region,
@@ -78,7 +80,7 @@ final class AwsKmsGrant extends Resource {
            if (grantCreationTokens != null)
              'grant_creation_tokens': grantCreationTokens,
            'grantee_principal': granteePrincipal,
-           'key_id': keyId,
+           'key_id': keyId.encodeAs('key_id'),
            if (name != null) 'name': name,
            'operations': TfArg.literal([
              for (final e in operations) e.toTfJson(),

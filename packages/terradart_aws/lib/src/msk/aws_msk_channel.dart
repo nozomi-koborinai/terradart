@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_msk_channel`.
 const Set<String> _awsMskChannelSensitive = <String>{};
 
@@ -85,9 +89,11 @@ final class MskChannelDestinationS3Destination extends MskChannelDestination {
 final class MskChannelEncryptionConfiguration {
   const MskChannelEncryptionConfiguration({required this.kmsKeyArn});
 
-  final TfArg<String> kmsKeyArn;
+  final RefTo<AwsKmsKey> kmsKeyArn;
 
-  Map<String, Object?> encode() => {'kms_key_arn': kmsKeyArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `iceberg_destination` block of
@@ -183,14 +189,14 @@ final class MskChannelIcebergDestinationDeadLetterQueueS3 {
     this.expectedBucketOwner,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<String>? errorOutputPrefix;
 
   final TfArg<String>? expectedBucketOwner;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (errorOutputPrefix != null)
       'error_output_prefix': errorOutputPrefix!.toTfJson(),
     if (expectedBucketOwner != null)
@@ -336,11 +342,11 @@ final class MskChannelLoggingInfoCloudwatchLogs {
 
   final TfArg<bool> enabled;
 
-  final TfArg<String>? logGroup;
+  final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (logGroup != null) 'log_group': logGroup!.toTfJson(),
+    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
   };
 }
 
@@ -373,14 +379,14 @@ final class MskChannelLoggingInfoS3 {
     this.prefix,
   });
 
-  final TfArg<String>? bucket;
+  final RefTo<AwsS3Bucket>? bucket;
 
   final TfArg<bool> enabled;
 
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
+    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
     'enabled': enabled.toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };
@@ -425,14 +431,14 @@ final class MskChannelS3DestinationDeadLetterQueueS3 {
     this.expectedBucketOwner,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<String>? errorOutputPrefix;
 
   final TfArg<String>? expectedBucketOwner;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     if (errorOutputPrefix != null)
       'error_output_prefix': errorOutputPrefix!.toTfJson(),
     if (expectedBucketOwner != null)
@@ -453,7 +459,7 @@ final class MskChannelS3DestinationStorage {
     required this.storageClass,
   });
 
-  final TfArg<String> bucketArn;
+  final RefTo<AwsS3Bucket> bucketArn;
 
   final TfArg<MskChannelS3DestinationStorageCompressionType> compressionType;
 
@@ -466,7 +472,7 @@ final class MskChannelS3DestinationStorage {
   final TfArg<MskChannelS3DestinationStorageStorageClass> storageClass;
 
   Map<String, Object?> encode() => {
-    'bucket_arn': bucketArn.toTfJson(),
+    'bucket_arn': bucketArn.encodeAs('arn').toTfJson(),
     'compression_type': compressionType.toTfJson(),
     if (expectedBucketOwner != null)
       'expected_bucket_owner': expectedBucketOwner!.toTfJson(),

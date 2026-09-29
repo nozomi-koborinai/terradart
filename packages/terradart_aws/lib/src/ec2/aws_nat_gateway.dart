@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_nat_gateway`.
 const Set<String> _awsNatGatewaySensitive = <String>{};
 
@@ -140,9 +143,9 @@ final class AwsNatGateway extends Resource {
     TfArg<String>? region,
     TfArg<List<String>>? secondaryAllocationIds,
     NatGatewaySecondaryPrivateIpAddress? secondaryPrivateIpAddress,
-    TfArg<String>? subnetId,
+    RefTo<AwsSubnet>? subnetId,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? vpcId,
+    RefTo<AwsVpc>? vpcId,
     List<NatGatewayAvailabilityZoneAddress>? availabilityZoneAddress,
     super.lifecycle,
     super.dependsOn,
@@ -159,9 +162,9 @@ final class AwsNatGateway extends Resource {
            if (secondaryAllocationIds != null)
              'secondary_allocation_ids': secondaryAllocationIds,
            ...?secondaryPrivateIpAddress?.argMap,
-           if (subnetId != null) 'subnet_id': subnetId,
+           if (subnetId != null) 'subnet_id': subnetId.encodeAs('id'),
            if (tags != null) 'tags': tags,
-           if (vpcId != null) 'vpc_id': vpcId,
+           if (vpcId != null) 'vpc_id': vpcId.encodeAs('id'),
            if (availabilityZoneAddress != null)
              'availability_zone_address': TfArg.literal([
                for (final e in availabilityZoneAddress) e.encode(),

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_gemini_code_repository_index`.
 const Set<String> _googleGeminiCodeRepositoryIndexSensitive = <String>{};
 
@@ -29,7 +31,7 @@ final class GoogleGeminiCodeRepositoryIndex extends Resource {
     required super.localName,
     required TfArg<String> codeRepositoryIndexId,
     required TfArg<String> location,
-    TfArg<String>? kmsKey,
+    RefTo<GoogleKmsCryptoKey>? kmsKey,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? forceDestroy,
     TfArg<String>? deletionPolicy,
@@ -43,7 +45,7 @@ final class GoogleGeminiCodeRepositoryIndex extends Resource {
          argMap: {
            'code_repository_index_id': codeRepositoryIndexId,
            'location': location,
-           if (kmsKey != null) 'kms_key': kmsKey,
+           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
            if (labels != null) 'labels': labels,
            if (forceDestroy != null) 'force_destroy': forceDestroy,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

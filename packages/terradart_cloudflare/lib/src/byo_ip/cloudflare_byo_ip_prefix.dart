@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_byo_ip_prefix`.
 const Set<String> _cloudflareByoIpPrefixSensitive = <String>{};
 
@@ -18,7 +20,7 @@ final class CloudflareByoIpPrefix extends Resource {
 
   CloudflareByoIpPrefix({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<num> asn,
     required TfArg<String> cidr,
     TfArg<bool>? delegateLoaCreation,
@@ -31,7 +33,7 @@ final class CloudflareByoIpPrefix extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'asn': asn,
            'cidr': cidr,
            if (delegateLoaCreation != null)

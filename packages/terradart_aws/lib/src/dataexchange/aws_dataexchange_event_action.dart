@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_dataexchange_event_action`.
 const Set<String> _awsDataexchangeEventActionSensitive = <String>{};
 
@@ -60,13 +63,13 @@ final class DataexchangeEventActionActionExportRevisionToS3Encryption {
     this.type,
   });
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<DataexchangeEventActionActionExportRevisionToS3EncryptionType>?
   type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
 }
@@ -93,12 +96,12 @@ final class DataexchangeEventActionActionExportRevisionToS3RevisionDestination {
     this.keyPattern,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String>? keyPattern;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     if (keyPattern != null) 'key_pattern': keyPattern!.toTfJson(),
   };
 }

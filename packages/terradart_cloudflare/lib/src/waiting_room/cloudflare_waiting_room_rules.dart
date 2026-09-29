@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_waiting_room_rules`.
 const Set<String> _cloudflareWaitingRoomRulesSensitive = <String>{};
 
@@ -54,7 +56,7 @@ final class CloudflareWaitingRoomRules extends Resource {
   CloudflareWaitingRoomRules({
     required super.localName,
     required TfArg<String> waitingRoomId,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required List<WaitingRoomRulesRules> rules,
     super.lifecycle,
     super.dependsOn,
@@ -64,7 +66,7 @@ final class CloudflareWaitingRoomRules extends Resource {
          terraformType: tfType,
          argMap: {
            'waiting_room_id': waitingRoomId,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'rules': TfArg.literal([for (final e in rules) e.encode()]),
          },
        );

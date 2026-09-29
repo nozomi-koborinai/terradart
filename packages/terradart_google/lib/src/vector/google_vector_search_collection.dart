@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_vector_search_collection`.
 const Set<String> _googleVectorSearchCollectionSensitive = <String>{};
 
@@ -13,10 +15,10 @@ const Set<String> _googleVectorSearchCollectionSensitive = <String>{};
 final class VectorSearchCollectionEncryptionSpec {
   const VectorSearchCollectionEncryptionSpec({required this.cryptoKeyName});
 
-  final TfArg<String> cryptoKeyName;
+  final RefTo<GoogleKmsCryptoKey> cryptoKeyName;
 
   Map<String, Object?> encode() => {
-    'crypto_key_name': cryptoKeyName.toTfJson(),
+    'crypto_key_name': cryptoKeyName.encodeAs('id').toTfJson(),
   };
 }
 

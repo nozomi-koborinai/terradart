@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_oracle_database_autonomous_database`.
 const Set<String> _googleOracleDatabaseAutonomousDatabaseSensitive = <String>{};
 
@@ -63,7 +65,7 @@ final class GoogleOracleDatabaseAutonomousDatabase extends Resource {
     TfArg<Map<String, dynamic>>? properties,
     TfArg<String>? odbSubnet,
     TfArg<String>? odbNetwork,
-    TfArg<String>? network,
+    RefTo<GoogleComputeNetwork>? network,
     TfArg<String>? cidr,
     TfArg<Map<String, String>>? labels,
     TfArg<OracleDatabaseAutonomousDatabaseDeletionPolicy>? deletionPolicy,
@@ -84,7 +86,7 @@ final class GoogleOracleDatabaseAutonomousDatabase extends Resource {
            if (properties != null) 'properties': properties,
            if (odbSubnet != null) 'odb_subnet': odbSubnet,
            if (odbNetwork != null) 'odb_network': odbNetwork,
-           if (network != null) 'network': network,
+           if (network != null) 'network': network.encodeAs('id'),
            if (cidr != null) 'cidr': cidr,
            if (labels != null) 'labels': labels,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

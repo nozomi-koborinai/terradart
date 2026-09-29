@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_dlp_data_class`.
 const Set<String> _cloudflareZeroTrustDlpDataClassSensitive = <String>{};
 
@@ -36,7 +38,7 @@ final class CloudflareZeroTrustDlpDataClass extends Resource {
 
   CloudflareZeroTrustDlpDataClass({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<List<String>> dataTags,
     TfArg<String>? description,
     required TfArg<String> expression,
@@ -49,7 +51,7 @@ final class CloudflareZeroTrustDlpDataClass extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'data_tags': dataTags,
            if (description != null) 'description': description,
            'expression': expression,

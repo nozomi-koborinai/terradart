@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_flow_log`.
 const Set<String> _awsFlowLogSensitive = <String>{};
 
@@ -253,7 +255,7 @@ final class AwsFlowLog extends Resource {
     required super.localName,
     TfArg<String>? deliverCrossAccountRole,
     required FlowLogSource source,
-    TfArg<String>? iamRoleArn,
+    RefTo<AwsIamRole>? iamRoleArn,
     TfArg<String>? logDestination,
     TfArg<FlowLogLogDestinationType>? logDestinationType,
     TfArg<String>? logFormat,
@@ -273,7 +275,7 @@ final class AwsFlowLog extends Resource {
            if (deliverCrossAccountRole != null)
              'deliver_cross_account_role': deliverCrossAccountRole,
            ...source.argMap,
-           if (iamRoleArn != null) 'iam_role_arn': iamRoleArn,
+           if (iamRoleArn != null) 'iam_role_arn': iamRoleArn.encodeAs('arn'),
            if (logDestination != null) 'log_destination': logDestination,
            if (logDestinationType != null)
              'log_destination_type': logDestinationType,

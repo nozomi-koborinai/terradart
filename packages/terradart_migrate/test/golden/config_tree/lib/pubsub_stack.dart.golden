@@ -20,7 +20,7 @@ final class PubsubStack extends Stack {
       GooglePubsubSubscription(
         localName: r'this',
         name: .expression(r'${var.topic}-sub'),
-        topic: .ref(thisPubsubTopic.nameRef),
+        topic: thisPubsubTopic.ref.pinned(r'name'),
       ),
     );
     add(

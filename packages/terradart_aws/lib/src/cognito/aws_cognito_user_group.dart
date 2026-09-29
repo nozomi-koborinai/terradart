@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_cognito_user_group`.
 const Set<String> _awsCognitoUserGroupSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class AwsCognitoUserGroup extends Resource {
     required TfArg<String> name,
     TfArg<num>? precedence,
     TfArg<String>? region,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     required TfArg<String> userPoolId,
     super.lifecycle,
     super.dependsOn,
@@ -29,7 +31,7 @@ final class AwsCognitoUserGroup extends Resource {
            'name': name,
            if (precedence != null) 'precedence': precedence,
            if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
            'user_pool_id': userPoolId,
          },
        );

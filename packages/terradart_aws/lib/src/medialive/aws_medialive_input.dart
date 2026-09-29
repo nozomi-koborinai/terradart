@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_medialive_input`.
 const Set<String> _awsMedialiveInputSensitive = <String>{};
 
@@ -93,14 +97,14 @@ final class MedialiveInputSources {
 final class MedialiveInputVpc {
   const MedialiveInputVpc({this.securityGroupIds, required this.subnetIds});
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 
@@ -113,7 +117,7 @@ final class AwsMedialiveInput extends Resource {
     TfArg<List<String>>? inputSecurityGroups,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? roleArn,
+    RefTo<AwsIamRole>? roleArn,
     TfArg<Map<String, String>>? tags,
     required TfArg<MedialiveInputType> type,
     List<MedialiveInputDestinations>? destinations,
@@ -132,7 +136,7 @@ final class AwsMedialiveInput extends Resource {
              'input_security_groups': inputSecurityGroups,
            'name': name,
            if (region != null) 'region': region,
-           if (roleArn != null) 'role_arn': roleArn,
+           if (roleArn != null) 'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            'type': type,
            if (destinations != null)

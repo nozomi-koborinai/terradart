@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_bedrockagentcore_policy_engine`.
 const Set<String> _awsBedrockagentcorePolicyEngineSensitive = <String>{};
 
@@ -13,7 +15,7 @@ final class AwsBedrockagentcorePolicyEngine extends Resource {
   AwsBedrockagentcorePolicyEngine({
     required super.localName,
     TfArg<String>? description,
-    TfArg<String>? encryptionKeyArn,
+    RefTo<AwsKmsKey>? encryptionKeyArn,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -25,7 +27,8 @@ final class AwsBedrockagentcorePolicyEngine extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           if (encryptionKeyArn != null) 'encryption_key_arn': encryptionKeyArn,
+           if (encryptionKeyArn != null)
+             'encryption_key_arn': encryptionKeyArn.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

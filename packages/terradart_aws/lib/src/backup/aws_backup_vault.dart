@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_backup_vault`.
 const Set<String> _awsBackupVaultSensitive = <String>{};
 
@@ -13,7 +15,7 @@ final class AwsBackupVault extends Resource {
   AwsBackupVault({
     required super.localName,
     TfArg<bool>? forceDestroy,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -25,7 +27,7 @@ final class AwsBackupVault extends Resource {
          terraformType: tfType,
          argMap: {
            if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

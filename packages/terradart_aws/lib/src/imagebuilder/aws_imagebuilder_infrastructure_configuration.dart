@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+import '../sns/aws_sns_topic.dart' show AwsSnsTopic;
+
 /// Sensitive field paths for `aws_imagebuilder_infrastructure_configuration`.
 const Set<String> _awsImagebuilderInfrastructureConfigurationSensitive =
     <String>{};
@@ -64,12 +69,12 @@ final class ImagebuilderInfrastructureConfigurationLoggingS3Logs {
     this.s3KeyPrefix,
   });
 
-  final TfArg<String> s3BucketName;
+  final RefTo<AwsS3Bucket> s3BucketName;
 
   final TfArg<String>? s3KeyPrefix;
 
   Map<String, Object?> encode() => {
-    's3_bucket_name': s3BucketName.toTfJson(),
+    's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
     if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix!.toTfJson(),
   };
 }
@@ -181,9 +186,9 @@ final class AwsImagebuilderInfrastructureConfiguration extends Resource {
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? resourceTags,
-    TfArg<List<String>>? securityGroupIds,
-    TfArg<String>? snsTopicArn,
-    TfArg<String>? subnetId,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
+    RefTo<AwsSnsTopic>? snsTopicArn,
+    RefTo<AwsSubnet>? subnetId,
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? terminateInstanceOnFailure,
     ImagebuilderInfrastructureConfigurationInstanceMetadataOptions?
@@ -204,9 +209,11 @@ final class AwsImagebuilderInfrastructureConfiguration extends Resource {
            'name': name,
            if (region != null) 'region': region,
            if (resourceTags != null) 'resource_tags': resourceTags,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
-           if (snsTopicArn != null) 'sns_topic_arn': snsTopicArn,
-           if (subnetId != null) 'subnet_id': subnetId,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
+           if (snsTopicArn != null)
+             'sns_topic_arn': snsTopicArn.encodeAs('arn'),
+           if (subnetId != null) 'subnet_id': subnetId.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (terminateInstanceOnFailure != null)
              'terminate_instance_on_failure': terminateInstanceOnFailure,

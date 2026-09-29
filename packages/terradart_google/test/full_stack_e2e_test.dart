@@ -39,7 +39,7 @@ void main() {
         GooglePubsubSubscription(
           localName: 'orders_push',
           name: TfArg.literal('orders-push'),
-          topic: TfArg.ref(ordersTopic.id),
+          topic: ordersTopic.ref,
           delivery: const .pushConfig(
             PubsubSubscriptionPushConfig(
               pushEndpoint: TfArgLiteral<String>(
@@ -53,7 +53,7 @@ void main() {
       stack.add(
         GooglePubsubTopicIamMember(
           localName: 'orders_publisher',
-          topic: TfArg.ref(ordersTopic.nameRef),
+          topic: ordersTopic.ref.pinned('name'),
           role: TfArg.literal('roles/pubsub.publisher'),
           member: TfArg.literal(
             'serviceAccount:pub@demo.iam.gserviceaccount.com',

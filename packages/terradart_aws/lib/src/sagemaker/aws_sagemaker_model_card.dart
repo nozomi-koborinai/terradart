@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sagemaker_model_card`.
 const Set<String> _awsSagemakerModelCardSensitive = <String>{};
 
@@ -25,9 +27,11 @@ enum SagemakerModelCardModelCardStatus implements TerraformEnum {
 final class SagemakerModelCardSecurityConfig {
   const SagemakerModelCardSecurityConfig({required this.kmsKeyId});
 
-  final TfArg<String> kmsKeyId;
+  final RefTo<AwsKmsKey> kmsKeyId;
 
-  Map<String, Object?> encode() => {'kms_key_id': kmsKeyId.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_id': kmsKeyId.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `aws_sagemaker_model_card`.

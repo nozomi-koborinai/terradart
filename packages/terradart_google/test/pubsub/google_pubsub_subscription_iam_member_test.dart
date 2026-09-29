@@ -11,7 +11,7 @@ void main() {
     final sub = GooglePubsubSubscription(
       localName: 'orders_worker',
       name: TfArg.literal('orders-worker'),
-      topic: TfArg.ref(topic.id),
+      topic: topic.ref,
     );
     final iam = GooglePubsubSubscriptionIamMember(
       localName: 'orders_consumer',

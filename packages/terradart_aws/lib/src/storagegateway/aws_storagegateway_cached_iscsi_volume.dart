@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_storagegateway_cached_iscsi_volume`.
 const Set<String> _awsStoragegatewayCachedIscsiVolumeSensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class AwsStoragegatewayCachedIscsiVolume extends Resource {
     required super.localName,
     required TfArg<String> gatewayArn,
     TfArg<bool>? kmsEncrypted,
-    TfArg<String>? kmsKey,
+    RefTo<AwsKmsKey>? kmsKey,
     required TfArg<String> networkInterfaceId,
     TfArg<String>? region,
     TfArg<String>? snapshotId,
@@ -31,7 +33,7 @@ final class AwsStoragegatewayCachedIscsiVolume extends Resource {
          argMap: {
            'gateway_arn': gatewayArn,
            if (kmsEncrypted != null) 'kms_encrypted': kmsEncrypted,
-           if (kmsKey != null) 'kms_key': kmsKey,
+           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('arn'),
            'network_interface_id': networkInterfaceId,
            if (region != null) 'region': region,
            if (snapshotId != null) 'snapshot_id': snapshotId,

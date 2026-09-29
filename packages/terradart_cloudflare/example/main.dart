@@ -18,7 +18,7 @@ final class HelloStack extends Stack {
     add(
       CloudflareDnsRecord(
         localName: 'api',
-        zoneId: .ref(zone.id),
+        zoneId: zone.ref,
         name: .literal('api.example.com'),
         type: .literal(.cname),
         ttl: .literal(1),

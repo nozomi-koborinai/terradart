@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zero_trust_device_default_profile_certificates`.
 const Set<String>
 _cloudflareZeroTrustDeviceDefaultProfileCertificatesSensitive = <String>{};
@@ -20,14 +22,14 @@ final class CloudflareZeroTrustDeviceDefaultProfileCertificates
   CloudflareZeroTrustDeviceDefaultProfileCertificates({
     required super.localName,
     required TfArg<bool> enabled,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'enabled': enabled, 'zone_id': zoneId},
+         argMap: {'enabled': enabled, 'zone_id': zoneId.encodeAs('id')},
        );
 
   @override

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_redshiftserverless_workgroup`.
 const Set<String> _awsRedshiftserverlessWorkgroupSensitive = <String>{};
 
@@ -58,8 +61,8 @@ final class AwsRedshiftserverlessWorkgroup extends Resource {
     TfArg<num>? port,
     TfArg<bool>? publiclyAccessible,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroupIds,
-    TfArg<List<String>>? subnetIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? trackName,
     required TfArg<String> workgroupName,
@@ -81,8 +84,9 @@ final class AwsRedshiftserverlessWorkgroup extends Resource {
            if (publiclyAccessible != null)
              'publicly_accessible': publiclyAccessible,
            if (region != null) 'region': region,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
-           if (subnetIds != null) 'subnet_ids': subnetIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
+           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            if (trackName != null) 'track_name': trackName,
            'workgroup_name': workgroupName,

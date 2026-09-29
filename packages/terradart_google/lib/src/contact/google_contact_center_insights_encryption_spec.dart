@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_contact_center_insights_encryption_spec`.
 const Set<String> _googleContactCenterInsightsEncryptionSpecSensitive =
     <String>{};
@@ -30,7 +32,7 @@ final class GoogleContactCenterInsightsEncryptionSpec extends Resource {
   GoogleContactCenterInsightsEncryptionSpec({
     required super.localName,
     required TfArg<String> location,
-    required TfArg<String> kmsKey,
+    required RefTo<GoogleKmsCryptoKey> kmsKey,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -40,7 +42,7 @@ final class GoogleContactCenterInsightsEncryptionSpec extends Resource {
          terraformType: tfType,
          argMap: {
            'location': location,
-           'kms_key': kmsKey,
+           'kms_key': kmsKey.encodeAs('id'),
            if (project != null) 'project': project,
          },
        );

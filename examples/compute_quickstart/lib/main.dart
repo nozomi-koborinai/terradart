@@ -137,7 +137,7 @@ final class NetworkStack extends Stack {
       localName: 'workload',
       name: .literal('workload-subnet'),
       region: .literal('asia-northeast1'),
-      network: .ref(mainVpc.id),
+      network: mainVpc.ref,
       ipCidrRange: .literal('10.10.0.0/20'),
       dependsOn: apiDeps,
     );
@@ -148,7 +148,7 @@ final class NetworkStack extends Stack {
         localName: 'edge_router',
         name: .literal('edge-router'),
         region: .literal('asia-northeast1'),
-        network: .ref(mainVpc.id),
+        network: mainVpc.ref,
         description: .literal('Cloud Router for private egress'),
         bgp: ComputeRouterBgp(
           advertiseMode: ComputeRouterBgpAdvertiseMode.defaultMode,
@@ -309,7 +309,7 @@ final class NetworkStack extends Stack {
     add(
       GoogleComputeSubnetworkIamMember(
         localName: 'workload_subnet_user',
-        subnetwork: .ref(workloadSubnet.nameRef),
+        subnetwork: workloadSubnet.ref,
         role: .literal('roles/compute.networkUser'),
         // Google APIs service agent for this project. Interpolate the real
         // project number from the `google_project` data source so the
@@ -794,8 +794,8 @@ final class NetworkStack extends Stack {
         localName: 'ops_bastion_neg',
         name: .literal('ops-bastion-neg'),
         zone: .literal('asia-northeast1-a'),
-        network: .ref(mainVpc.selfLink),
-        subnetwork: .ref(workloadSubnet.selfLink),
+        network: mainVpc.ref,
+        subnetwork: workloadSubnet.ref,
         networkEndpointType: .literal(.gceVmIpPort),
         defaultPort: .literal(80),
         dependsOn: apiDeps,
@@ -1010,7 +1010,7 @@ final class NetworkStack extends Stack {
         localName: 'ops_unmanaged',
         name: .literal('ops-unmanaged'),
         zone: .literal('asia-northeast1-a'),
-        network: .ref(mainVpc.selfLink),
+        network: mainVpc.ref,
         dependsOn: apiDeps,
       ),
     );

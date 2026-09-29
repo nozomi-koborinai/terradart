@@ -26,7 +26,7 @@ final class _TestStack extends Stack {
     add(
       CloudflareDnsRecord(
         localName: 'api',
-        zoneId: TfArg.ref(zone.id),
+        zoneId: zone.ref,
         name: TfArg.literal('api.example.com'),
         type: TfArg.literal(DnsRecordType.cname),
         ttl: TfArg.literal(1),

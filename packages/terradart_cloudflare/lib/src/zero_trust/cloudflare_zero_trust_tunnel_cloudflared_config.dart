@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_tunnel_cloudflared_config`.
 const Set<String> _cloudflareZeroTrustTunnelCloudflaredConfigSensitive =
     <String>{};
@@ -277,7 +279,7 @@ final class CloudflareZeroTrustTunnelCloudflaredConfig extends Resource {
 
   CloudflareZeroTrustTunnelCloudflaredConfig({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<ZeroTrustTunnelCloudflaredConfigSource>? source,
     required TfArg<String> tunnelId,
     ZeroTrustTunnelCloudflaredConfigConfig? config,
@@ -288,7 +290,7 @@ final class CloudflareZeroTrustTunnelCloudflaredConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (source != null) 'source': source,
            'tunnel_id': tunnelId,
            if (config != null) 'config': TfArg.literal(config.encode()),

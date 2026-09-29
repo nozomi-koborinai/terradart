@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_vmwareengine_datastore`.
 const Set<String> _googleVmwareengineDatastoreSensitive = <String>{};
 
@@ -61,13 +63,13 @@ final class VmwareengineDatastoreNfsDatastoreThirdPartyFileService {
 
   final TfArg<String> fileShare;
 
-  final TfArg<String> network;
+  final RefTo<GoogleComputeNetwork> network;
 
   final TfArg<List<Object?>> servers;
 
   Map<String, Object?> encode() => {
     'file_share': fileShare.toTfJson(),
-    'network': network.toTfJson(),
+    'network': network.encodeAs('id').toTfJson(),
     'servers': servers.toTfJson(),
   };
 }

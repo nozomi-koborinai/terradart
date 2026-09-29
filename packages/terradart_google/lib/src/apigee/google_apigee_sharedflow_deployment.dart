@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_apigee_sharedflow_deployment`.
 const Set<String> _googleApigeeSharedflowDeploymentSensitive = <String>{};
 
@@ -27,7 +29,7 @@ final class GoogleApigeeSharedflowDeployment extends Resource {
     required TfArg<String> environment,
     required TfArg<String> sharedflowId,
     required TfArg<String> revision,
-    TfArg<String>? serviceAccount,
+    RefTo<GoogleServiceAccount>? serviceAccount,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
@@ -40,7 +42,8 @@ final class GoogleApigeeSharedflowDeployment extends Resource {
            'environment': environment,
            'sharedflow_id': sharedflowId,
            'revision': revision,
-           if (serviceAccount != null) 'service_account': serviceAccount,
+           if (serviceAccount != null)
+             'service_account': serviceAccount.encodeAs('email'),
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
          },
        );

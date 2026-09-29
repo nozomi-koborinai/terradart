@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_stream_download`.
 const Set<String> _cloudflareStreamDownloadSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareStreamDownload extends Resource {
 
   CloudflareStreamDownload({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> identifier,
     super.lifecycle,
     super.dependsOn,
@@ -24,7 +26,10 @@ final class CloudflareStreamDownload extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'identifier': identifier},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'identifier': identifier,
+         },
        );
 
   @override

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_content_scanning_expression`.
 const Set<String> _cloudflareContentScanningExpressionSensitive = <String>{};
 
@@ -29,7 +31,7 @@ final class CloudflareContentScanningExpression extends Resource {
   CloudflareContentScanningExpression({
     required super.localName,
     TfArg<String>? payload,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required List<ContentScanningExpressionBody> body,
     super.lifecycle,
     super.dependsOn,
@@ -39,7 +41,7 @@ final class CloudflareContentScanningExpression extends Resource {
          terraformType: tfType,
          argMap: {
            if (payload != null) 'payload': payload,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'body': TfArg.literal([for (final e in body) e.encode()]),
          },
        );

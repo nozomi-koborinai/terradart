@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_healthcheck`.
 const Set<String> _cloudflareHealthcheckSensitive = <String>{};
 
@@ -129,7 +131,7 @@ final class CloudflareHealthcheck extends Resource {
     TfArg<bool>? suspended,
     TfArg<num>? timeout,
     TfArg<String>? type,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     HealthcheckHttpConfig? httpConfig,
     HealthcheckTcpConfig? tcpConfig,
     super.lifecycle,
@@ -154,7 +156,7 @@ final class CloudflareHealthcheck extends Resource {
            if (suspended != null) 'suspended': suspended,
            if (timeout != null) 'timeout': timeout,
            if (type != null) 'type': type,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            if (httpConfig != null)
              'http_config': TfArg.literal(httpConfig.encode()),
            if (tcpConfig != null)

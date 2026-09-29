@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_ecs_express_gateway_service`.
 const Set<String> _awsEcsExpressGatewayServiceSensitive = <String>{};
 
@@ -113,7 +115,7 @@ final class AwsEcsExpressGatewayService extends Resource {
     required super.localName,
     TfArg<String>? cluster,
     TfArg<String>? cpu,
-    required TfArg<String> executionRoleArn,
+    required RefTo<AwsIamRole> executionRoleArn,
     TfArg<String>? healthCheckPath,
     required TfArg<String> infrastructureRoleArn,
     TfArg<String>? memory,
@@ -122,7 +124,7 @@ final class AwsEcsExpressGatewayService extends Resource {
     TfArg<List<Map<String, Object?>>>? scalingTarget,
     TfArg<String>? serviceName,
     TfArg<Map<String, String>>? tags,
-    TfArg<String>? taskRoleArn,
+    RefTo<AwsIamRole>? taskRoleArn,
     TfArg<bool>? waitForSteadyState,
     List<EcsExpressGatewayServicePrimaryContainer>? primaryContainer,
     super.lifecycle,
@@ -134,7 +136,7 @@ final class AwsEcsExpressGatewayService extends Resource {
          argMap: {
            if (cluster != null) 'cluster': cluster,
            if (cpu != null) 'cpu': cpu,
-           'execution_role_arn': executionRoleArn,
+           'execution_role_arn': executionRoleArn.encodeAs('arn'),
            if (healthCheckPath != null) 'health_check_path': healthCheckPath,
            'infrastructure_role_arn': infrastructureRoleArn,
            if (memory != null) 'memory': memory,
@@ -144,7 +146,8 @@ final class AwsEcsExpressGatewayService extends Resource {
            if (scalingTarget != null) 'scaling_target': scalingTarget,
            if (serviceName != null) 'service_name': serviceName,
            if (tags != null) 'tags': tags,
-           if (taskRoleArn != null) 'task_role_arn': taskRoleArn,
+           if (taskRoleArn != null)
+             'task_role_arn': taskRoleArn.encodeAs('arn'),
            if (waitForSteadyState != null)
              'wait_for_steady_state': waitForSteadyState,
            if (primaryContainer != null)

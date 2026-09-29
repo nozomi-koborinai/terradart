@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_web_analytics_rule`.
 const Set<String> _cloudflareWebAnalyticsRuleSensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class CloudflareWebAnalyticsRule extends Resource {
 
   CloudflareWebAnalyticsRule({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? host,
     TfArg<bool>? inclusive,
     TfArg<bool>? isPaused,
@@ -25,7 +27,7 @@ final class CloudflareWebAnalyticsRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (host != null) 'host': host,
            if (inclusive != null) 'inclusive': inclusive,
            if (isPaused != null) 'is_paused': isPaused,

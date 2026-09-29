@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_cognito_log_delivery_configuration`.
 const Set<String> _awsCognitoLogDeliveryConfigurationSensitive = <String>{};
 
@@ -88,10 +91,11 @@ final class CognitoLogDeliveryConfigurationLogConfigurationsCloudWatchLogsConfig
     this.logGroupArn,
   });
 
-  final TfArg<String>? logGroupArn;
+  final RefTo<AwsCloudwatchLogGroup>? logGroupArn;
 
   Map<String, Object?> encode() => {
-    if (logGroupArn != null) 'log_group_arn': logGroupArn!.toTfJson(),
+    if (logGroupArn != null)
+      'log_group_arn': logGroupArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -118,10 +122,10 @@ final class CognitoLogDeliveryConfigurationLogConfigurationsS3Configuration {
     this.bucketArn,
   });
 
-  final TfArg<String>? bucketArn;
+  final RefTo<AwsS3Bucket>? bucketArn;
 
   Map<String, Object?> encode() => {
-    if (bucketArn != null) 'bucket_arn': bucketArn!.toTfJson(),
+    if (bucketArn != null) 'bucket_arn': bucketArn!.encodeAs('arn').toTfJson(),
   };
 }
 

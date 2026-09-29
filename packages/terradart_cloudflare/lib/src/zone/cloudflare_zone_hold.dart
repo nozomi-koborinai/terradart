@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_zone_hold`.
 const Set<String> _cloudflareZoneHoldSensitive = <String>{};
 
@@ -29,7 +31,7 @@ final class CloudflareZoneHold extends Resource {
     required super.localName,
     TfArg<String>? holdAfter,
     TfArg<bool>? includeSubdomains,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -40,7 +42,7 @@ final class CloudflareZoneHold extends Resource {
            if (holdAfter != null) 'hold_after': holdAfter,
            if (includeSubdomains != null)
              'include_subdomains': includeSubdomains,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

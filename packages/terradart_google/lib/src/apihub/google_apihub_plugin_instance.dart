@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_apihub_plugin_instance`.
 const Set<String> _googleApihubPluginInstanceSensitive = <String>{};
 
@@ -149,10 +151,10 @@ final class ApihubPluginInstanceAuthConfigGoogleServiceAccountConfig {
     required this.serviceAccount,
   });
 
-  final TfArg<String> serviceAccount;
+  final RefTo<GoogleServiceAccount> serviceAccount;
 
   Map<String, Object?> encode() => {
-    'service_account': serviceAccount.toTfJson(),
+    'service_account': serviceAccount.encodeAs('email').toTfJson(),
   };
 }
 

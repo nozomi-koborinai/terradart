@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_email_routing_settings`.
 const Set<String> _cloudflareEmailRoutingSettingsSensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class CloudflareEmailRoutingSettings extends Resource {
   CloudflareEmailRoutingSettings({
     required super.localName,
     TfArg<bool>? supportSubaddress,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -27,7 +29,7 @@ final class CloudflareEmailRoutingSettings extends Resource {
          argMap: {
            if (supportSubaddress != null)
              'support_subaddress': supportSubaddress,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

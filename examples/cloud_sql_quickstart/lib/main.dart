@@ -60,7 +60,7 @@ final class CloudSqlStack extends Stack {
         addressType: .literal(.internal),
         purpose: .literal(.vpcPeering),
         prefixLength: .literal(16),
-        network: .ref(vpc.selfLink),
+        network: vpc.ref,
       ),
     );
 
@@ -69,7 +69,7 @@ final class CloudSqlStack extends Stack {
     final psaConnection = add(
       GoogleServiceNetworkingConnection(
         localName: 'psa',
-        network: .ref(vpc.selfLink),
+        network: vpc.ref,
         service: .literal('servicenetworking.googleapis.com'),
         reservedPeeringRanges: .literal([
           // ServiceNetworking expects the *name* of the global_address, not

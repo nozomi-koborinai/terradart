@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_document_ai_warehouse_location`.
 const Set<String> _googleDocumentAiWarehouseLocationSensitive = <String>{};
 
@@ -65,7 +67,7 @@ final class GoogleDocumentAiWarehouseLocation extends Resource {
     required TfArg<DocumentAiWarehouseLocationDatabaseType> databaseType,
     TfArg<DocumentAiWarehouseLocationDocumentCreatorDefaultRole>?
     documentCreatorDefaultRole,
-    TfArg<String>? kmsKey,
+    RefTo<GoogleKmsCryptoKey>? kmsKey,
     required TfArg<String> location,
     required TfArg<String> projectNumber,
     super.lifecycle,
@@ -79,7 +81,7 @@ final class GoogleDocumentAiWarehouseLocation extends Resource {
            'database_type': databaseType,
            if (documentCreatorDefaultRole != null)
              'document_creator_default_role': documentCreatorDefaultRole,
-           if (kmsKey != null) 'kms_key': kmsKey,
+           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
            'location': location,
            'project_number': projectNumber,
          },

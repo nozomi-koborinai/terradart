@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_bucket_cors_configuration`.
 const Set<String> _awsS3BucketCorsConfigurationSensitive = <String>{};
 
@@ -48,7 +50,7 @@ final class AwsS3BucketCorsConfiguration extends Resource {
 
   AwsS3BucketCorsConfiguration({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,
     required List<S3BucketCorsConfigurationCorsRule> corsRule,
@@ -59,7 +61,7 @@ final class AwsS3BucketCorsConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (expectedBucketOwner != null)
              'expected_bucket_owner': expectedBucketOwner,
            if (region != null) 'region': region,

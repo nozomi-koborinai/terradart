@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_r2_bucket_cors`.
 const Set<String> _cloudflareR2BucketCorsSensitive = <String>{};
 
@@ -87,7 +89,7 @@ final class CloudflareR2BucketCors extends Resource {
 
   CloudflareR2BucketCors({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     TfArg<R2BucketCorsJurisdiction>? jurisdiction,
     List<R2BucketCorsRules>? rules,
@@ -98,7 +100,7 @@ final class CloudflareR2BucketCors extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
            if (jurisdiction != null) 'jurisdiction': jurisdiction,
            if (rules != null)

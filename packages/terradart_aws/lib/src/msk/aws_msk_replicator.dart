@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_msk_replicator`.
 const Set<String> _awsMskReplicatorSensitive = <String>{};
 
@@ -167,12 +171,12 @@ final class MskReplicatorKafkaClusterVpcConfig {
 
   final TfArg<List<Object?>>? securityGroupsIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   Map<String, Object?> encode() => {
     if (securityGroupsIds != null)
       'security_groups_ids': securityGroupsIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
   };
 }
 
@@ -225,11 +229,11 @@ final class MskReplicatorLogDeliveryReplicatorLogDeliveryCloudwatchLogs {
 
   final TfArg<bool> enabled;
 
-  final TfArg<String>? logGroup;
+  final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (logGroup != null) 'log_group': logGroup!.toTfJson(),
+    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
   };
 }
 
@@ -262,14 +266,14 @@ final class MskReplicatorLogDeliveryReplicatorLogDeliveryS3 {
     this.prefix,
   });
 
-  final TfArg<String>? bucket;
+  final RefTo<AwsS3Bucket>? bucket;
 
   final TfArg<bool> enabled;
 
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
+    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
     'enabled': enabled.toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };

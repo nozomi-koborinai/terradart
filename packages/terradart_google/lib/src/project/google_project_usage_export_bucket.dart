@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_project_usage_export_bucket`.
 const Set<String> _googleProjectUsageExportBucketSensitive = <String>{};
 
@@ -38,7 +40,7 @@ final class GoogleProjectUsageExportBucket extends Resource {
 
   GoogleProjectUsageExportBucket({
     required super.localName,
-    required TfArg<String> bucketName,
+    required RefTo<GoogleStorageBucket> bucketName,
     TfArg<String>? prefix,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -49,7 +51,7 @@ final class GoogleProjectUsageExportBucket extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket_name': bucketName,
+           'bucket_name': bucketName.encodeAs('name'),
            if (prefix != null) 'prefix': prefix,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (project != null) 'project': project,

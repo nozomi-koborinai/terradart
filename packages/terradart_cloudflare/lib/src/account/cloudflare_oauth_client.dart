@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_oauth_client`.
 const Set<String> _cloudflareOauthClientSensitive = <String>{'client_secret'};
 
@@ -57,7 +59,7 @@ final class CloudflareOauthClient extends Resource {
 
   CloudflareOauthClient({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<List<String>>? allowedCorsOrigins,
     required TfArg<String> clientName,
     TfArg<String>? clientUri,
@@ -80,7 +82,7 @@ final class CloudflareOauthClient extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (allowedCorsOrigins != null)
              'allowed_cors_origins': allowedCorsOrigins,
            'client_name': clientName,

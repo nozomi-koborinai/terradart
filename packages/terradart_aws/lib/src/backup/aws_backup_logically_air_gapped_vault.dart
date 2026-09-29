@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_backup_logically_air_gapped_vault`.
 const Set<String> _awsBackupLogicallyAirGappedVaultSensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class AwsBackupLogicallyAirGappedVault extends Resource {
 
   AwsBackupLogicallyAirGappedVault({
     required super.localName,
-    TfArg<String>? encryptionKeyArn,
+    RefTo<AwsKmsKey>? encryptionKeyArn,
     required TfArg<num> maxRetentionDays,
     required TfArg<num> minRetentionDays,
     required TfArg<String> name,
@@ -25,7 +27,8 @@ final class AwsBackupLogicallyAirGappedVault extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (encryptionKeyArn != null) 'encryption_key_arn': encryptionKeyArn,
+           if (encryptionKeyArn != null)
+             'encryption_key_arn': encryptionKeyArn.encodeAs('arn'),
            'max_retention_days': maxRetentionDays,
            'min_retention_days': minRetentionDays,
            'name': name,

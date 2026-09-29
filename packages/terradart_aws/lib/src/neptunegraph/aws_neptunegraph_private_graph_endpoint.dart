@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_neptunegraph_private_graph_endpoint`.
 const Set<String> _awsNeptunegraphPrivateGraphEndpointSensitive = <String>{};
 
@@ -14,9 +18,9 @@ final class AwsNeptunegraphPrivateGraphEndpoint extends Resource {
     required super.localName,
     required TfArg<String> graphIdentifier,
     TfArg<String>? region,
-    TfArg<List<String>>? subnetIds,
-    required TfArg<String> vpcId,
-    TfArg<List<String>>? vpcSecurityGroupIds,
+    TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
+    required RefTo<AwsVpc> vpcId,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -26,10 +30,10 @@ final class AwsNeptunegraphPrivateGraphEndpoint extends Resource {
          argMap: {
            'graph_identifier': graphIdentifier,
            if (region != null) 'region': region,
-           if (subnetIds != null) 'subnet_ids': subnetIds,
-           'vpc_id': vpcId,
+           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
+           'vpc_id': vpcId.encodeAs('id'),
            if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds,
+             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
          },
        );
 

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_ecr_repository`.
 const Set<String> _awsEcrRepositorySensitive = <String>{};
 
@@ -31,11 +33,11 @@ final class EcrRepositoryEncryptionConfiguration {
   final TfArg<EcrRepositoryEncryptionConfigurationEncryptionType>?
   encryptionType;
 
-  final TfArg<String>? kmsKey;
+  final RefTo<AwsKmsKey>? kmsKey;
 
   Map<String, Object?> encode() => {
     if (encryptionType != null) 'encryption_type': encryptionType!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('arn').toTfJson(),
   };
 }
 

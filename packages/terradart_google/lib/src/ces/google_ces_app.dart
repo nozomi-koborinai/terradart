@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_ces_app`.
 const Set<String> _googleCesAppSensitive = <String>{};
 
@@ -579,12 +581,12 @@ final class CesAppLoggingSettingsAudioRecordingConfig {
     this.gcsPathPrefix,
   });
 
-  final TfArg<String>? gcsBucket;
+  final RefTo<GoogleStorageBucket>? gcsBucket;
 
   final TfArg<String>? gcsPathPrefix;
 
   Map<String, Object?> encode() => {
-    if (gcsBucket != null) 'gcs_bucket': gcsBucket!.toTfJson(),
+    if (gcsBucket != null) 'gcs_bucket': gcsBucket!.encodeAs('name').toTfJson(),
     if (gcsPathPrefix != null) 'gcs_path_prefix': gcsPathPrefix!.toTfJson(),
   };
 }

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+
 /// Sensitive field paths for `aws_elasticache_cluster`.
 const Set<String> _awsElasticacheClusterSensitive = <String>{};
 
@@ -213,7 +215,7 @@ final class AwsElasticacheCluster extends Resource {
     TfArg<List<String>>? preferredAvailabilityZones,
     TfArg<String>? preferredOutpostArn,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     TfArg<List<String>>? snapshotArns,
     TfArg<String>? snapshotName,
     TfArg<num>? snapshotRetentionLimit,
@@ -256,7 +258,8 @@ final class AwsElasticacheCluster extends Resource {
            if (preferredOutpostArn != null)
              'preferred_outpost_arn': preferredOutpostArn,
            if (region != null) 'region': region,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
            if (snapshotArns != null) 'snapshot_arns': snapshotArns,
            if (snapshotName != null) 'snapshot_name': snapshotName,
            if (snapshotRetentionLimit != null)

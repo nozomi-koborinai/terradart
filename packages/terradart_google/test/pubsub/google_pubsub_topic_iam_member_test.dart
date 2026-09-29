@@ -14,7 +14,7 @@ void main() {
     );
     final iam = GooglePubsubTopicIamMember(
       localName: 'orders_publisher',
-      topic: TfArg.ref(topic.nameRef),
+      topic: topic.ref,
       role: TfArg.literal('roles/pubsub.publisher'),
       member: TfArg.literal(
         'serviceAccount:publisher@p.iam.gserviceaccount.com',
@@ -26,7 +26,7 @@ void main() {
     );
     expect(
       iam.argMap['topic']!.toTfJson(),
-      equals(r'${google_pubsub_topic.orders.name}'),
+      equals(r'${google_pubsub_topic.orders.id}'),
     );
     expect(iam.argMap['role']!.toTfJson(), equals('roles/pubsub.publisher'));
     expect(
@@ -44,7 +44,7 @@ void main() {
     );
     final iam = GooglePubsubTopicIamMember(
       localName: 'binding',
-      topic: TfArg.ref(topic.nameRef),
+      topic: topic.ref,
       role: TfArg.literal('roles/pubsub.publisher'),
       member: TfArg.literal('serviceAccount:x'),
     );

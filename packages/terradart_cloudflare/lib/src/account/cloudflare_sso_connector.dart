@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_sso_connector`.
 const Set<String> _cloudflareSsoConnectorSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareSsoConnector extends Resource {
 
   CloudflareSsoConnector({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? beginVerification,
     required TfArg<String> emailDomain,
     TfArg<bool>? enabled,
@@ -28,7 +30,7 @@ final class CloudflareSsoConnector extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (beginVerification != null)
              'begin_verification': beginVerification,
            'email_domain': emailDomain,

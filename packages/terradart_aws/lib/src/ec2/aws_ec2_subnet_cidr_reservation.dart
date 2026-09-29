@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_ec2_subnet_cidr_reservation`.
 const Set<String> _awsEc2SubnetCidrReservationSensitive = <String>{};
 
@@ -26,7 +28,7 @@ final class AwsEc2SubnetCidrReservation extends Resource {
     TfArg<String>? description,
     TfArg<String>? region,
     required TfArg<Ec2SubnetCidrReservationReservationType> reservationType,
-    required TfArg<String> subnetId,
+    required RefTo<AwsSubnet> subnetId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -38,7 +40,7 @@ final class AwsEc2SubnetCidrReservation extends Resource {
            if (description != null) 'description': description,
            if (region != null) 'region': region,
            'reservation_type': reservationType,
-           'subnet_id': subnetId,
+           'subnet_id': subnetId.encodeAs('id'),
          },
        );
 

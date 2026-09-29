@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_apprunner_vpc_ingress_connection`.
 const Set<String> _awsApprunnerVpcIngressConnectionSensitive = <String>{};
 
@@ -18,11 +20,11 @@ final class ApprunnerVpcIngressConnectionIngressVpcConfiguration {
 
   final TfArg<String>? vpcEndpointId;
 
-  final TfArg<String>? vpcId;
+  final RefTo<AwsVpc>? vpcId;
 
   Map<String, Object?> encode() => {
     if (vpcEndpointId != null) 'vpc_endpoint_id': vpcEndpointId!.toTfJson(),
-    if (vpcId != null) 'vpc_id': vpcId!.toTfJson(),
+    if (vpcId != null) 'vpc_id': vpcId!.encodeAs('id').toTfJson(),
   };
 }
 

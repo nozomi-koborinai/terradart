@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_s3control_storage_lens_configuration`.
 const Set<String> _awsS3controlStorageLensConfigurationSensitive = <String>{};
 
@@ -482,9 +484,9 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationDataExportS
     required this.keyId,
   });
 
-  final TfArg<String> keyId;
+  final RefTo<AwsKmsKey> keyId;
 
-  Map<String, Object?> encode() => {'key_id': keyId.toTfJson()};
+  Map<String, Object?> encode() => {'key_id': keyId.encodeAs('arn').toTfJson()};
 }
 
 /// Typed helper for the `storage_lens_configuration.data_export.s3_bucket_destination.encryption.sse_s3` block of
@@ -547,9 +549,9 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationDataExportS
     required this.keyId,
   });
 
-  final TfArg<String> keyId;
+  final RefTo<AwsKmsKey> keyId;
 
-  Map<String, Object?> encode() => {'key_id': keyId.toTfJson()};
+  Map<String, Object?> encode() => {'key_id': keyId.encodeAs('arn').toTfJson()};
 }
 
 /// Typed helper for the `storage_lens_configuration.data_export.storage_lens_table_destination.encryption.sse_s3` block of
@@ -670,9 +672,9 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationExpandedPre
     required this.keyId,
   });
 
-  final TfArg<String> keyId;
+  final RefTo<AwsKmsKey> keyId;
 
-  Map<String, Object?> encode() => {'key_id': keyId.toTfJson()};
+  Map<String, Object?> encode() => {'key_id': keyId.encodeAs('arn').toTfJson()};
 }
 
 /// Typed helper for the `storage_lens_configuration.expanded_prefixes_data_export.s3_bucket_destination.encryption.sse_s3` block of
@@ -735,9 +737,9 @@ final class S3controlStorageLensConfigurationStorageLensConfigurationExpandedPre
     required this.keyId,
   });
 
-  final TfArg<String> keyId;
+  final RefTo<AwsKmsKey> keyId;
 
-  Map<String, Object?> encode() => {'key_id': keyId.toTfJson()};
+  Map<String, Object?> encode() => {'key_id': keyId.encodeAs('arn').toTfJson()};
 }
 
 /// Typed helper for the `storage_lens_configuration.expanded_prefixes_data_export.storage_lens_table_destination.encryption.sse_s3` block of

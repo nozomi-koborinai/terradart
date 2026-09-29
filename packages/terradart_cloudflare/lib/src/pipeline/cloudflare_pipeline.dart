@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_pipeline`.
 const Set<String> _cloudflarePipelineSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflarePipeline extends Resource {
 
   CloudflarePipeline({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> name,
     required TfArg<String> sql,
     super.lifecycle,
@@ -25,7 +27,11 @@ final class CloudflarePipeline extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'name': name, 'sql': sql},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'name': name,
+           'sql': sql,
+         },
        );
 
   @override

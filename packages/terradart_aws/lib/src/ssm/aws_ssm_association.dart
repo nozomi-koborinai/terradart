@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_ssm_association`.
 const Set<String> _awsSsmAssociationSensitive = <String>{};
 
@@ -41,14 +43,14 @@ final class SsmAssociationOutputLocation {
     this.s3Region,
   });
 
-  final TfArg<String> s3BucketName;
+  final RefTo<AwsS3Bucket> s3BucketName;
 
   final TfArg<String>? s3KeyPrefix;
 
   final TfArg<String>? s3Region;
 
   Map<String, Object?> encode() => {
-    's3_bucket_name': s3BucketName.toTfJson(),
+    's3_bucket_name': s3BucketName.encodeAs('id').toTfJson(),
     if (s3KeyPrefix != null) 's3_key_prefix': s3KeyPrefix!.toTfJson(),
     if (s3Region != null) 's3_region': s3Region!.toTfJson(),
   };

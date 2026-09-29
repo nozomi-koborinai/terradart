@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+
 /// Sensitive field paths for `google_data_loss_prevention_content_policy`.
 const Set<String> _googleDataLossPreventionContentPolicySensitive = <String>{};
 
@@ -1117,14 +1119,14 @@ final class DataLossPreventionContentPolicyLoggingConfigsLogToBigQuery {
     required this.tableId,
   });
 
-  final TfArg<String> datasetId;
+  final RefTo<GoogleBigqueryDataset> datasetId;
 
   final TfArg<String> projectId;
 
   final TfArg<String> tableId;
 
   Map<String, Object?> encode() => {
-    'dataset_id': datasetId.toTfJson(),
+    'dataset_id': datasetId.encodeAs('dataset_id').toTfJson(),
     'project_id': projectId.toTfJson(),
     'table_id': tableId.toTfJson(),
   };

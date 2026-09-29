@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_networkfirewall_firewall`.
 const Set<String> _awsNetworkfirewallFirewallSensitive = <String>{};
 
@@ -107,12 +110,12 @@ final class NetworkfirewallFirewallEncryptionConfiguration {
     required this.type,
   });
 
-  final TfArg<String>? keyId;
+  final RefTo<AwsKmsKey>? keyId;
 
   final TfArg<NetworkfirewallFirewallEncryptionConfigurationType> type;
 
   Map<String, Object?> encode() => {
-    if (keyId != null) 'key_id': keyId!.toTfJson(),
+    if (keyId != null) 'key_id': keyId!.encodeAs('arn').toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -139,11 +142,11 @@ final class NetworkfirewallFirewallSubnetMapping {
 
   final TfArg<NetworkfirewallFirewallSubnetMappingIpAddressType>? ipAddressType;
 
-  final TfArg<String> subnetId;
+  final RefTo<AwsSubnet> subnetId;
 
   Map<String, Object?> encode() => {
     if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
-    'subnet_id': subnetId.toTfJson(),
+    'subnet_id': subnetId.encodeAs('id').toTfJson(),
   };
 }
 

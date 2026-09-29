@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_r2_custom_domain`.
 const Set<String> _cloudflareR2CustomDomainSensitive = <String>{};
 
@@ -39,14 +42,14 @@ final class CloudflareR2CustomDomain extends Resource {
 
   CloudflareR2CustomDomain({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bucketName,
     TfArg<List<String>>? ciphers,
     required TfArg<String> domain,
     required TfArg<bool> enabled,
     TfArg<R2CustomDomainJurisdiction>? jurisdiction,
     TfArg<R2CustomDomainMinTls>? minTls,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -54,14 +57,14 @@ final class CloudflareR2CustomDomain extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'bucket_name': bucketName,
            if (ciphers != null) 'ciphers': ciphers,
            'domain': domain,
            'enabled': enabled,
            if (jurisdiction != null) 'jurisdiction': jurisdiction,
            if (minTls != null) 'min_tls': minTls,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

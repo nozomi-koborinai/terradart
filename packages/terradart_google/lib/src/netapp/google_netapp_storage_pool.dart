@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_netapp_storage_pool`.
 const Set<String> _googleNetappStoragePoolSensitive = <String>{};
 
@@ -118,7 +120,7 @@ final class GoogleNetappStoragePool extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     required TfArg<NetappStoragePoolServiceLevel> serviceLevel,
     required TfArg<String> capacityGib,
     TfArg<String>? description,
@@ -143,7 +145,7 @@ final class GoogleNetappStoragePool extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           'network': network,
+           'network': network.encodeAs('id'),
            'service_level': serviceLevel,
            'capacity_gib': capacityGib,
            if (description != null) 'description': description,

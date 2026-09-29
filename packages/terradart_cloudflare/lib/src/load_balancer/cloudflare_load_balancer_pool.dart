@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_load_balancer_pool`.
 const Set<String> _cloudflareLoadBalancerPoolSensitive = <String>{};
 
@@ -226,7 +228,7 @@ final class CloudflareLoadBalancerPool extends Resource {
 
   CloudflareLoadBalancerPool({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     List<TfArg<LoadBalancerPoolCheckRegions>>? checkRegions,
     TfArg<String>? description,
     TfArg<bool>? enabled,
@@ -249,7 +251,7 @@ final class CloudflareLoadBalancerPool extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (checkRegions != null)
              'check_regions': TfArg.literal([
                for (final e in checkRegions) e.toTfJson(),

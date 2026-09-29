@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_connectivity_directory_service`.
 const Set<String> _cloudflareConnectivityDirectoryServiceSensitive = <String>{};
 
@@ -109,7 +111,7 @@ final class CloudflareConnectivityDirectoryService extends Resource {
 
   CloudflareConnectivityDirectoryService({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<ConnectivityDirectoryServiceAppProtocol>? appProtocol,
     TfArg<num>? httpPort,
     TfArg<num>? httpsPort,
@@ -125,7 +127,7 @@ final class CloudflareConnectivityDirectoryService extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (appProtocol != null) 'app_protocol': appProtocol,
            if (httpPort != null) 'http_port': httpPort,
            if (httpsPort != null) 'https_port': httpsPort,

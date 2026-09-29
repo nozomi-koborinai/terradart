@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_elastictranscoder_pipeline`.
 const Set<String> _awsElastictranscoderPipelineSensitive = <String>{};
 
@@ -16,12 +19,12 @@ final class ElastictranscoderPipelineContentConfig {
     this.storageClass,
   });
 
-  final TfArg<String>? bucket;
+  final RefTo<AwsS3Bucket>? bucket;
 
   final TfArg<ElastictranscoderPipelineContentConfigStorageClass>? storageClass;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
+    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
     if (storageClass != null) 'storage_class': storageClass!.toTfJson(),
   };
 }
@@ -127,13 +130,13 @@ final class ElastictranscoderPipelineThumbnailConfig {
     this.storageClass,
   });
 
-  final TfArg<String>? bucket;
+  final RefTo<AwsS3Bucket>? bucket;
 
   final TfArg<ElastictranscoderPipelineThumbnailConfigStorageClass>?
   storageClass;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
+    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
     if (storageClass != null) 'storage_class': storageClass!.toTfJson(),
   };
 }
@@ -216,7 +219,7 @@ final class AwsElastictranscoderPipeline extends Resource {
     TfArg<String>? name,
     TfArg<String>? outputBucket,
     TfArg<String>? region,
-    required TfArg<String> role,
+    required RefTo<AwsIamRole> role,
     ElastictranscoderPipelineContentConfig? contentConfig,
     List<ElastictranscoderPipelineContentConfigPermissions>?
     contentConfigPermissions,
@@ -236,7 +239,7 @@ final class AwsElastictranscoderPipeline extends Resource {
            if (name != null) 'name': name,
            if (outputBucket != null) 'output_bucket': outputBucket,
            if (region != null) 'region': region,
-           'role': role,
+           'role': role.encodeAs('arn'),
            if (contentConfig != null)
              'content_config': TfArg.literal(contentConfig.encode()),
            if (contentConfigPermissions != null)

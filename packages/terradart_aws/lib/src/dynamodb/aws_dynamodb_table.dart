@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_dynamodb_table`.
 const Set<String> _awsDynamodbTableSensitive = <String>{};
 
@@ -426,14 +429,14 @@ final class DynamodbTableImportTableS3BucketSource {
     this.keyPrefix,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String>? bucketOwner;
 
   final TfArg<String>? keyPrefix;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     if (bucketOwner != null) 'bucket_owner': bucketOwner!.toTfJson(),
     if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),
   };
@@ -536,7 +539,7 @@ final class DynamodbTableReplica {
 
   final TfArg<bool>? deletionProtectionEnabled;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   final TfArg<bool>? pointInTimeRecovery;
 
@@ -549,7 +552,7 @@ final class DynamodbTableReplica {
       'consistency_mode': consistencyMode!.toTfJson(),
     if (deletionProtectionEnabled != null)
       'deletion_protection_enabled': deletionProtectionEnabled!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
     if (pointInTimeRecovery != null)
       'point_in_time_recovery': pointInTimeRecovery!.toTfJson(),
     if (propagateTags != null) 'propagate_tags': propagateTags!.toTfJson(),
@@ -578,11 +581,11 @@ final class DynamodbTableServerSideEncryption {
 
   final TfArg<bool> enabled;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
   };
 }
 

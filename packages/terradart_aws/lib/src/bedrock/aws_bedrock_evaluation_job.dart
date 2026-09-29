@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_bedrock_evaluation_job`.
 const Set<String> _awsBedrockEvaluationJobSensitive = <String>{};
 
@@ -1268,7 +1270,7 @@ final class AwsBedrockEvaluationJob extends Resource {
     TfArg<String>? jobDescription,
     required TfArg<String> jobName,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<bool>? skipDestroy,
     TfArg<Map<String, String>>? tags,
     List<BedrockEvaluationJobEvaluationConfig>? evaluationConfig,
@@ -1287,7 +1289,7 @@ final class AwsBedrockEvaluationJob extends Resource {
            if (jobDescription != null) 'job_description': jobDescription,
            'job_name': jobName,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (skipDestroy != null) 'skip_destroy': skipDestroy,
            if (tags != null) 'tags': tags,
            if (evaluationConfig != null)

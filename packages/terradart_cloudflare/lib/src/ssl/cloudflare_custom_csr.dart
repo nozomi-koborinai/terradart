@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_custom_csr`.
 const Set<String> _cloudflareCustomCsrSensitive = <String>{};
 
@@ -27,7 +30,7 @@ final class CloudflareCustomCsr extends Resource {
 
   CloudflareCustomCsr({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> commonName,
     required TfArg<String> country,
     TfArg<String>? description,
@@ -38,7 +41,7 @@ final class CloudflareCustomCsr extends Resource {
     TfArg<String>? organizationalUnit,
     required TfArg<List<String>> sans,
     required TfArg<String> state,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -46,7 +49,7 @@ final class CloudflareCustomCsr extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (accountId != null) 'account_id': accountId,
+           if (accountId != null) 'account_id': accountId.encodeAs('id'),
            'common_name': commonName,
            'country': country,
            if (description != null) 'description': description,
@@ -58,7 +61,7 @@ final class CloudflareCustomCsr extends Resource {
              'organizational_unit': organizationalUnit,
            'sans': sans,
            'state': state,
-           if (zoneId != null) 'zone_id': zoneId,
+           if (zoneId != null) 'zone_id': zoneId.encodeAs('id'),
          },
        );
 

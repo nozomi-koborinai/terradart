@@ -155,7 +155,7 @@ final class IamShowcaseStack extends Stack {
         localName: 'demo_sub',
         name: .literal('demo-sub'),
         // topic.id (NOT topic.nameRef) -- subscriptions need full path.
-        topic: .ref(topic.id),
+        topic: topic.ref,
         dependsOn: [ResourceDependency(apiPubsub)],
       ),
     );
@@ -184,7 +184,7 @@ final class IamShowcaseStack extends Stack {
       GooglePubsubTopicIamMember(
         localName: 'topic_publisher',
         // Topic IAM identifies the topic by its **name** (not id).
-        topic: .ref(topic.nameRef),
+        topic: topic.ref,
         role: .literal('roles/pubsub.publisher'),
         member: saMember,
       ),
@@ -369,7 +369,7 @@ final class IamShowcaseStack extends Stack {
       GoogleServiceAccountIamMember(
         localName: 'demo_sa_user',
         // Target SA is the demo SA; identified by its full resource path.
-        serviceAccountId: .ref(sa.name),
+        serviceAccountId: sa.ref,
         role: .literal('roles/iam.serviceAccountUser'),
         member: .ref(impersonator.iamMember),
       ),
@@ -384,7 +384,7 @@ final class IamShowcaseStack extends Stack {
     add(
       GoogleServiceAccountKey(
         localName: 'demo_sa_key',
-        serviceAccountId: .ref(sa.name),
+        serviceAccountId: sa.ref,
         keyAlgorithm: .literal(.rsa2048),
         privateKeyType: .literal(.googleCredentialsFile),
       ),

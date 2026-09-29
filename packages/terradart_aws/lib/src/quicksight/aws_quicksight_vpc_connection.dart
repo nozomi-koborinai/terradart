@@ -3,6 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_quicksight_vpc_connection`.
 const Set<String> _awsQuicksightVpcConnectionSensitive = <String>{};
 
@@ -16,9 +20,9 @@ final class AwsQuicksightVpcConnection extends Resource {
     TfArg<List<String>>? dnsResolvers,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
-    required TfArg<List<String>> securityGroupIds,
-    required TfArg<List<String>> subnetIds,
+    required RefTo<AwsIamRole> roleArn,
+    required TfArg<List<RefTo<AwsSecurityGroup>>> securityGroupIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> vpcConnectionId,
     super.lifecycle,
@@ -32,9 +36,9 @@ final class AwsQuicksightVpcConnection extends Resource {
            if (dnsResolvers != null) 'dns_resolvers': dnsResolvers,
            'name': name,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
-           'security_group_ids': securityGroupIds,
-           'subnet_ids': subnetIds,
+           'role_arn': roleArn.encodeAs('arn'),
+           'security_group_ids': securityGroupIds.encodeAs('id'),
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            'vpc_connection_id': vpcConnectionId,
          },

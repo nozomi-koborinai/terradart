@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_email_routing_address`.
 const Set<String> _cloudflareEmailRoutingAddressSensitive = <String>{};
 
@@ -26,7 +28,7 @@ final class CloudflareEmailRoutingAddress extends Resource {
 
   CloudflareEmailRoutingAddress({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> email,
     TfArg<EmailRoutingAddressStatus>? status,
     super.lifecycle,
@@ -36,7 +38,7 @@ final class CloudflareEmailRoutingAddress extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'email': email,
            if (status != null) 'status': status,
          },

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_client_certificate`.
 const Set<String> _cloudflareClientCertificateSensitive = <String>{};
 
@@ -19,7 +21,7 @@ final class CloudflareClientCertificate extends Resource {
     required TfArg<String> csr,
     TfArg<bool>? reactivate,
     required TfArg<num> validityDays,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -30,7 +32,7 @@ final class CloudflareClientCertificate extends Resource {
            'csr': csr,
            if (reactivate != null) 'reactivate': reactivate,
            'validity_days': validityDays,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

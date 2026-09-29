@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_verifiedaccess_endpoint`.
 const Set<String> _awsVerifiedaccessEndpointSensitive = <String>{};
 
@@ -43,14 +47,14 @@ final class VerifiedaccessEndpointCidrOptions {
 
   final TfArg<VerifiedaccessEndpointCidrOptionsProtocol>? protocol;
 
-  final TfArg<List<Object?>>? subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   final List<VerifiedaccessEndpointCidrOptionsPortRange> portRange;
 
   Map<String, Object?> encode() => {
     'cidr': cidr.toTfJson(),
     if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.toTfJson(),
+    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
     'port_range': [for (final e in portRange) e.encode()],
   };
 }
@@ -101,7 +105,7 @@ final class VerifiedaccessEndpointLoadBalancerOptions {
 
   final TfArg<VerifiedaccessEndpointLoadBalancerOptionsProtocol>? protocol;
 
-  final TfArg<List<Object?>>? subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   final List<VerifiedaccessEndpointLoadBalancerOptionsPortRange>? portRange;
 
@@ -110,7 +114,7 @@ final class VerifiedaccessEndpointLoadBalancerOptions {
       'load_balancer_arn': loadBalancerArn!.toTfJson(),
     if (port != null) 'port': port!.toTfJson(),
     if (protocol != null) 'protocol': protocol!.toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.toTfJson(),
+    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
     if (portRange != null)
       'port_range': [for (final e in portRange!) e.encode()],
   };
@@ -235,7 +239,7 @@ final class VerifiedaccessEndpointRdsOptions {
 
   final TfArg<String>? rdsEndpoint;
 
-  final TfArg<List<Object?>>? subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   Map<String, Object?> encode() => {
     if (port != null) 'port': port!.toTfJson(),
@@ -246,7 +250,7 @@ final class VerifiedaccessEndpointRdsOptions {
       'rds_db_instance_arn': rdsDbInstanceArn!.toTfJson(),
     if (rdsDbProxyArn != null) 'rds_db_proxy_arn': rdsDbProxyArn!.toTfJson(),
     if (rdsEndpoint != null) 'rds_endpoint': rdsEndpoint!.toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.toTfJson(),
+    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -270,12 +274,12 @@ final class VerifiedaccessEndpointSseSpecification {
 
   final TfArg<bool>? customerManagedKeyEnabled;
 
-  final TfArg<String>? kmsKeyArn;
+  final RefTo<AwsKmsKey>? kmsKeyArn;
 
   Map<String, Object?> encode() => {
     if (customerManagedKeyEnabled != null)
       'customer_managed_key_enabled': customerManagedKeyEnabled!.toTfJson(),
-    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.toTfJson(),
+    if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -293,7 +297,7 @@ final class AwsVerifiedaccessEndpoint extends Resource {
     required TfArg<VerifiedaccessEndpointEndpointType> endpointType,
     TfArg<String>? policyDocument,
     TfArg<String>? region,
-    TfArg<List<String>>? securityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> verifiedAccessGroupId,
     VerifiedaccessEndpointCidrOptions? cidrOptions,
@@ -319,7 +323,8 @@ final class AwsVerifiedaccessEndpoint extends Resource {
            'endpoint_type': endpointType,
            if (policyDocument != null) 'policy_document': policyDocument,
            if (region != null) 'region': region,
-           if (securityGroupIds != null) 'security_group_ids': securityGroupIds,
+           if (securityGroupIds != null)
+             'security_group_ids': securityGroupIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            'verified_access_group_id': verifiedAccessGroupId,
            if (cidrOptions != null)

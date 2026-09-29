@@ -26,7 +26,7 @@ GooglePubsubSubscription buildOrderSubscription({
 }) => GooglePubsubSubscription(
   localName: 'orders_subscription',
   name: .literal('coffee-orders-sub'),
-  topic: .ref(orderTopic.id),
+  topic: orderTopic.ref,
   delivery: .pushConfig(
     PubsubSubscriptionPushConfig(
       pushEndpoint: .ref(coffeeService.uri),

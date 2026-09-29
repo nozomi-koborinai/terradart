@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_ebs_default_kms_key`.
 const Set<String> _awsEbsDefaultKmsKeySensitive = <String>{};
 
@@ -12,7 +14,7 @@ final class AwsEbsDefaultKmsKey extends Resource {
 
   AwsEbsDefaultKmsKey({
     required super.localName,
-    required TfArg<String> keyArn,
+    required RefTo<AwsKmsKey> keyArn,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
@@ -20,7 +22,10 @@ final class AwsEbsDefaultKmsKey extends Resource {
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'key_arn': keyArn, if (region != null) 'region': region},
+         argMap: {
+           'key_arn': keyArn.encodeAs('arn'),
+           if (region != null) 'region': region,
+         },
        );
 
   @override

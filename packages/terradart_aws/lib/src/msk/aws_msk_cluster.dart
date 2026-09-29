@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_msk_cluster`.
 const Set<String> _awsMskClusterSensitive = <String>{};
 
@@ -48,7 +52,7 @@ final class MskClusterBrokerNodeGroupInfo {
 
   final TfArg<String> instanceType;
 
-  final TfArg<List<Object?>> securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroups;
 
   final MskClusterBrokerNodeGroupInfoConnectivityInfo? connectivityInfo;
 
@@ -58,7 +62,7 @@ final class MskClusterBrokerNodeGroupInfo {
     if (azDistribution != null) 'az_distribution': azDistribution!.toTfJson(),
     'client_subnets': clientSubnets.toTfJson(),
     'instance_type': instanceType.toTfJson(),
-    'security_groups': securityGroups.toTfJson(),
+    'security_groups': securityGroups.encodeAs('id').toTfJson(),
     if (connectivityInfo != null)
       'connectivity_info': connectivityInfo!.encode(),
     if (storageInfo != null) 'storage_info': storageInfo!.encode(),
@@ -419,11 +423,11 @@ final class MskClusterLoggingInfoBrokerLogsCloudwatchLogs {
 
   final TfArg<bool> enabled;
 
-  final TfArg<String>? logGroup;
+  final RefTo<AwsCloudwatchLogGroup>? logGroup;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (logGroup != null) 'log_group': logGroup!.toTfJson(),
+    if (logGroup != null) 'log_group': logGroup!.encodeAs('name').toTfJson(),
   };
 }
 
@@ -456,14 +460,14 @@ final class MskClusterLoggingInfoBrokerLogsS3 {
     this.prefix,
   });
 
-  final TfArg<String>? bucket;
+  final RefTo<AwsS3Bucket>? bucket;
 
   final TfArg<bool> enabled;
 
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    if (bucket != null) 'bucket': bucket!.toTfJson(),
+    if (bucket != null) 'bucket': bucket!.encodeAs('id').toTfJson(),
     'enabled': enabled.toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_chronicle_data_export`.
 const Set<String> _googleChronicleDataExportSensitive = <String>{};
 
@@ -48,7 +50,7 @@ final class GoogleChronicleDataExport extends Resource {
 
   GoogleChronicleDataExport({
     required super.localName,
-    required TfArg<String> gcsBucket,
+    required RefTo<GoogleStorageBucket> gcsBucket,
     required TfArg<String> startTime,
     required TfArg<String> endTime,
     required TfArg<String> location,
@@ -64,7 +66,7 @@ final class GoogleChronicleDataExport extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'gcs_bucket': gcsBucket,
+           'gcs_bucket': gcsBucket.encodeAs('name'),
            'start_time': startTime,
            'end_time': endTime,
            'location': location,

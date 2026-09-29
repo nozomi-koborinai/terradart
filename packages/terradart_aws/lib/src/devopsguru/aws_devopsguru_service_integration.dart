@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_devopsguru_service_integration`.
 const Set<String> _awsDevopsguruServiceIntegrationSensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class DevopsguruServiceIntegrationKmsServerSideEncryption {
     this.type,
   });
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<DevopsguruServiceIntegrationKmsServerSideEncryptionOptInStatus>?
   optInStatus;
@@ -25,7 +27,7 @@ final class DevopsguruServiceIntegrationKmsServerSideEncryption {
   final TfArg<DevopsguruServiceIntegrationKmsServerSideEncryptionType>? type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (optInStatus != null) 'opt_in_status': optInStatus!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };

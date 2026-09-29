@@ -529,11 +529,13 @@ String _dummy(
     return _secretVarRef;
   }
   if (n == 'accountId' || n == 'account') {
+    if (p.type.startsWith('RefTo')) return 'RefTo.literal(accountId)';
     if (p.type.startsWith('TfArg')) {
       return 'TfArg.literal(accountId)';
     }
   }
   if (n == 'zoneId' || n == 'zone') {
+    if (p.type.startsWith('RefTo')) return 'RefTo.literal(zoneId)';
     if (p.type.startsWith('TfArg')) {
       return 'TfArg.literal(zoneId)';
     }
@@ -578,6 +580,11 @@ String _dummyForType(
   var t = type.trim();
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
 
+  if (t.startsWith('RefTo<')) {
+    final value =
+        _valueByKey['$owner.$name'] ?? _stringLiteral(name, owner: owner);
+    return 'RefTo.literal($value)';
+  }
   if (t.startsWith('TfArg<') && t.endsWith('>')) {
     if (_isSensitive(name, sensitive)) {
       return _secretVarRef;
@@ -650,6 +657,9 @@ String _literalInner(
   if (t == 'bool') return 'true';
   if (t.startsWith('List<') && t.endsWith('>')) {
     final listInner = t.substring(5, t.length - 1).trim().replaceAll('?', '');
+    if (listInner.startsWith('RefTo<')) {
+      return '[RefTo.literal(${_stringLiteral(name, owner: owner)})]';
+    }
     if (helpers.containsKey(listInner)) {
       return '[${_constructHelper(listInner, helpers, depth: depth + 1, sensitive: sensitive)},]';
     }

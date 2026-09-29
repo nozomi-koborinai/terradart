@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_magic_wan_bgp_filter_profile`.
 const Set<String> _cloudflareMagicWanBgpFilterProfileSensitive = <String>{};
 
@@ -22,7 +24,7 @@ final class CloudflareMagicWanBgpFilterProfile extends Resource {
 
   CloudflareMagicWanBgpFilterProfile({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     required TfArg<MagicWanBgpFilterProfileMatchAction> matchAction,
     required TfArg<String> name,
@@ -34,7 +36,7 @@ final class CloudflareMagicWanBgpFilterProfile extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (description != null) 'description': description,
            'match_action': matchAction,
            'name': name,

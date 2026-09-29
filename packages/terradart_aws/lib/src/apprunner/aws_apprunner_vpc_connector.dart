@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_apprunner_vpc_connector`.
 const Set<String> _awsApprunnerVpcConnectorSensitive = <String>{};
 
@@ -13,8 +16,8 @@ final class AwsApprunnerVpcConnector extends Resource {
   AwsApprunnerVpcConnector({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<List<String>> securityGroups,
-    required TfArg<List<String>> subnets,
+    required TfArg<List<RefTo<AwsSecurityGroup>>> securityGroups,
+    required TfArg<List<RefTo<AwsSubnet>>> subnets,
     TfArg<Map<String, String>>? tags,
     required TfArg<String> vpcConnectorName,
     super.lifecycle,
@@ -25,8 +28,8 @@ final class AwsApprunnerVpcConnector extends Resource {
          terraformType: tfType,
          argMap: {
            if (region != null) 'region': region,
-           'security_groups': securityGroups,
-           'subnets': subnets,
+           'security_groups': securityGroups.encodeAs('id'),
+           'subnets': subnets.encodeAs('id'),
            if (tags != null) 'tags': tags,
            'vpc_connector_name': vpcConnectorName,
          },

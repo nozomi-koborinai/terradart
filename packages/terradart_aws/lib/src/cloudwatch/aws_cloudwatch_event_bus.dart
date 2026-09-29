@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_cloudwatch_event_bus`.
 const Set<String> _awsCloudwatchEventBusSensitive = <String>{};
 
@@ -64,7 +66,7 @@ final class AwsCloudwatchEventBus extends Resource {
     required super.localName,
     TfArg<String>? description,
     TfArg<String>? eventSourceName,
-    TfArg<String>? kmsKeyIdentifier,
+    RefTo<AwsKmsKey>? kmsKeyIdentifier,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -79,7 +81,8 @@ final class AwsCloudwatchEventBus extends Resource {
          argMap: {
            if (description != null) 'description': description,
            if (eventSourceName != null) 'event_source_name': eventSourceName,
-           if (kmsKeyIdentifier != null) 'kms_key_identifier': kmsKeyIdentifier,
+           if (kmsKeyIdentifier != null)
+             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

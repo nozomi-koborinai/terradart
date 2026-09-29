@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_dns_zone_transfers_outgoing`.
 const Set<String> _cloudflareDnsZoneTransfersOutgoingSensitive = <String>{};
 
@@ -19,14 +21,18 @@ final class CloudflareDnsZoneTransfersOutgoing extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<List<String>> peers,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'name': name, 'peers': peers, 'zone_id': zoneId},
+         argMap: {
+           'name': name,
+           'peers': peers,
+           'zone_id': zoneId.encodeAs('id'),
+         },
        );
 
   @override

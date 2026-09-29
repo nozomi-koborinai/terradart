@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_cloudwatch_event_connection`.
 const Set<String> _awsCloudwatchEventConnectionSensitive = <String>{
   'auth_parameters.api_key.value',
@@ -502,7 +504,7 @@ final class AwsCloudwatchEventConnection extends Resource {
     required TfArg<CloudwatchEventConnectionAuthorizationType>
     authorizationType,
     TfArg<String>? description,
-    TfArg<String>? kmsKeyIdentifier,
+    RefTo<AwsKmsKey>? kmsKeyIdentifier,
     required TfArg<String> name,
     TfArg<String>? region,
     required CloudwatchEventConnectionAuthParameters authParameters,
@@ -517,7 +519,8 @@ final class AwsCloudwatchEventConnection extends Resource {
          argMap: {
            'authorization_type': authorizationType,
            if (description != null) 'description': description,
-           if (kmsKeyIdentifier != null) 'kms_key_identifier': kmsKeyIdentifier,
+           if (kmsKeyIdentifier != null)
+             'kms_key_identifier': kmsKeyIdentifier.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            'auth_parameters': TfArg.literal(authParameters.encode()),

@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_sagemaker_workforce`.
 const Set<String> _awsSagemakerWorkforceSensitive = <String>{
   'oidc_config.client_secret',
@@ -167,17 +171,17 @@ final class SagemakerWorkforceWorkforceVpcConfig {
     this.vpcId,
   });
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>>? subnets;
+  final TfArg<List<RefTo<AwsSubnet>>>? subnets;
 
-  final TfArg<String>? vpcId;
+  final RefTo<AwsVpc>? vpcId;
 
   Map<String, Object?> encode() => {
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    if (subnets != null) 'subnets': subnets!.toTfJson(),
-    if (vpcId != null) 'vpc_id': vpcId!.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    if (subnets != null) 'subnets': subnets!.encodeAs('id').toTfJson(),
+    if (vpcId != null) 'vpc_id': vpcId!.encodeAs('id').toTfJson(),
   };
 }
 

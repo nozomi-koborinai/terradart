@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
+
 /// Sensitive field paths for `google_bigquery_dataset_access`.
 const Set<String> _googleBigqueryDatasetAccessSensitive = <String>{};
 
@@ -351,7 +353,7 @@ final class GoogleBigqueryDatasetAccess extends Resource {
 
   GoogleBigqueryDatasetAccess({
     required super.localName,
-    required TfArg<String> datasetId,
+    required RefTo<GoogleBigqueryDataset> datasetId,
     TfArg<String>? role,
     required BigqueryDatasetAccessGrantee grantee,
     TfArg<String>? deletionPolicy,
@@ -363,7 +365,7 @@ final class GoogleBigqueryDatasetAccess extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset_id': datasetId,
+           'dataset_id': datasetId.encodeAs('dataset_id'),
            if (role != null) 'role': role,
            ...grantee.argMap,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

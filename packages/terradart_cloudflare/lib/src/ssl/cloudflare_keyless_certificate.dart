@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_keyless_certificate`.
 const Set<String> _cloudflareKeylessCertificateSensitive = <String>{};
 
@@ -64,7 +66,7 @@ final class CloudflareKeylessCertificate extends Resource {
     required TfArg<String> host,
     TfArg<String>? name,
     TfArg<num>? port,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     KeylessCertificateTunnel? tunnel,
     super.lifecycle,
     super.dependsOn,
@@ -79,7 +81,7 @@ final class CloudflareKeylessCertificate extends Resource {
            'host': host,
            if (name != null) 'name': name,
            if (port != null) 'port': port,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            if (tunnel != null) 'tunnel': TfArg.literal(tunnel.encode()),
          },
        );

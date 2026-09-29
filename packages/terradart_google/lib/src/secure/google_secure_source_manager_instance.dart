@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_secure_source_manager_instance`.
 const Set<String> _googleSecureSourceManagerInstanceSensitive = <String>{};
 
@@ -134,7 +136,7 @@ final class GoogleSecureSourceManagerInstance extends Resource {
     required TfArg<String> location,
     required TfArg<String> instanceId,
     TfArg<Map<String, String>>? labels,
-    TfArg<String>? kmsKey,
+    RefTo<GoogleKmsCryptoKey>? kmsKey,
     SecureSourceManagerInstancePrivateConfig? privateConfig,
     SecureSourceManagerInstanceWorkforceIdentityFederationConfig?
     workforceIdentityFederationConfig,
@@ -150,7 +152,7 @@ final class GoogleSecureSourceManagerInstance extends Resource {
            'location': location,
            'instance_id': instanceId,
            if (labels != null) 'labels': labels,
-           if (kmsKey != null) 'kms_key': kmsKey,
+           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
            if (privateConfig != null)
              'private_config': TfArg.literal(privateConfig.encode()),
            if (workforceIdentityFederationConfig != null)

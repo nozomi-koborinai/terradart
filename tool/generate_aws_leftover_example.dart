@@ -1056,6 +1056,14 @@ String _dummy(
           ? 'TfArg.literal($member,)'
           : '[TfArg.literal($member,),]';
     }
+    if (p.type.startsWith('RefTo')) return 'RefTo.literal($value)';
+    if (p.type.contains('List<RefTo<')) {
+      final refs = value.replaceAllMapped(
+        RegExp(r"'[^']*'"),
+        (m) => 'RefTo.literal(${m[0]})',
+      );
+      return 'TfArg.literal($refs)';
+    }
     return p.type.startsWith('TfArg') ? 'TfArg.literal($value)' : value;
   }
   if (_isSensitive(n, sensitive) && p.type.startsWith('TfArg')) {
@@ -1143,6 +1151,9 @@ String _dummyForType(
   var t = type.trim();
   if (t.endsWith('?')) t = t.substring(0, t.length - 1).trim();
 
+  if (t.startsWith('RefTo<')) {
+    return 'RefTo.literal(${_stringLiteral(name, owner: owner)})';
+  }
   if (t.startsWith('TfArg<') && t.endsWith('>')) {
     if (_isSensitive(name, sensitive)) {
       return _secretVarRef;
@@ -1211,6 +1222,9 @@ String _literalInner(
   if (t == 'bool') return 'true';
   if (t.startsWith('List<') && t.endsWith('>')) {
     final listInner = t.substring(5, t.length - 1).trim().replaceAll('?', '');
+    if (listInner.startsWith('RefTo<')) {
+      return '[RefTo.literal(${_stringLiteral(name, owner: owner)})]';
+    }
     if (helpers.containsKey(listInner)) {
       return '[${_constructHelper(listInner, helpers, depth: depth + 1, sensitive: sensitive)},]';
     }
@@ -2278,12 +2292,20 @@ String _repeat(String listExpr, int count) {
   if (!inner.startsWith('[') || !inner.endsWith(']')) {
     throw StateError('not a list literal: $listExpr');
   }
-  var element = inner.substring(1, inner.length - 1).trim();
-  if (element.endsWith(',')) {
-    element = element.substring(0, element.length - 1);
+  var outer = inner.substring(1, inner.length - 1).trim();
+  if (outer.endsWith(',')) {
+    outer = outer.substring(0, outer.length - 1);
   }
-  String vary(int i) {
+  String vary(int i, [String? of]) {
+    final element = of ?? outer;
     if (i == 0) return element;
+    if (element.startsWith('RefTo.literal(') && element.endsWith(')')) {
+      final ref = element.substring(
+        'RefTo.literal('.length,
+        element.length - 1,
+      );
+      return 'RefTo.literal(${vary(i, ref)})';
+    }
     if (element == 'leftover') return "'leftover$i'";
     if (element == 'arn') return "'arn:aws:iam::$_accountId:role/leftover$i'";
     if (RegExp(r"^'[^']*'$").hasMatch(element)) {
@@ -2296,12 +2318,14 @@ String _repeat(String listExpr, int count) {
         "TfArg.literal('leftover$i')",
       );
     }
-    final quoted = RegExp(r"TfArg\.literal\('([^']*)'\)").firstMatch(element);
+    final quoted = RegExp(
+      r"(TfArg|RefTo)\.literal\('([^']*)'\)",
+    ).firstMatch(element);
     if (quoted != null) {
       return element.replaceRange(
         quoted.start,
         quoted.end,
-        "TfArg.literal('${quoted.group(1)}$i')",
+        "${quoted.group(1)}.literal('${quoted.group(2)}$i')",
       );
     }
     return element;

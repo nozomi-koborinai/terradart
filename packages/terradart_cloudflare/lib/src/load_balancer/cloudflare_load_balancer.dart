@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_load_balancer`.
 const Set<String> _cloudflareLoadBalancerSensitive = <String>{};
 
@@ -523,7 +525,7 @@ final class CloudflareLoadBalancer extends Resource {
     TfArg<num>? sessionAffinityTtl,
     TfArg<LoadBalancerSteeringPolicy>? steeringPolicy,
     TfArg<num>? ttl,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     LoadBalancerAdaptiveRouting? adaptiveRouting,
     LoadBalancerLocationStrategy? locationStrategy,
     LoadBalancerRandomSteering? randomSteering,
@@ -551,7 +553,7 @@ final class CloudflareLoadBalancer extends Resource {
              'session_affinity_ttl': sessionAffinityTtl,
            if (steeringPolicy != null) 'steering_policy': steeringPolicy,
            if (ttl != null) 'ttl': ttl,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            if (adaptiveRouting != null)
              'adaptive_routing': TfArg.literal(adaptiveRouting.encode()),
            if (locationStrategy != null)

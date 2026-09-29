@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_workflow`.
 const Set<String> _cloudflareWorkflowSensitive = <String>{};
 
@@ -71,7 +73,7 @@ final class CloudflareWorkflow extends Resource {
 
   CloudflareWorkflow({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> className,
     required TfArg<String> scriptName,
     required TfArg<String> workflowName,
@@ -86,7 +88,7 @@ final class CloudflareWorkflow extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'class_name': className,
            'script_name': scriptName,
            'workflow_name': workflowName,

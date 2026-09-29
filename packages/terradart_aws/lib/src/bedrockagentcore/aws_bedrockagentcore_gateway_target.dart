@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_bedrockagentcore_gateway_target`.
 const Set<String> _awsBedrockagentcoreGatewayTargetSensitive = <String>{};
 
@@ -272,9 +276,9 @@ final class BedrockagentcoreGatewayTargetPrivateEndpointManagedVpcResource {
 
   final TfArg<String>? routingDomain;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -284,8 +288,8 @@ final class BedrockagentcoreGatewayTargetPrivateEndpointManagedVpcResource {
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
@@ -1123,7 +1127,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambda {
     this.toolSchema,
   });
 
-  final TfArg<String> lambdaArn;
+  final RefTo<AwsLambdaFunction> lambdaArn;
 
   final List<
     BedrockagentcoreGatewayTargetTargetConfigurationMcpLambdaToolSchema
@@ -1131,7 +1135,7 @@ final class BedrockagentcoreGatewayTargetTargetConfigurationMcpLambda {
   toolSchema;
 
   Map<String, Object?> encode() => {
-    'lambda_arn': lambdaArn.toTfJson(),
+    'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     if (toolSchema != null)
       'tool_schema': [for (final e in toolSchema!) e.encode()],
   };

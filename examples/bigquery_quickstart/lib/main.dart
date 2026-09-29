@@ -79,7 +79,7 @@ final class AnalyticsStack extends Stack {
 
     final eventsTable = GoogleBigqueryTable(
       localName: 'events',
-      datasetId: .ref(dataset.datasetIdRef),
+      datasetId: dataset.ref,
       tableId: .literal('events'),
       deletionProtection: .literal(false),
       schema: .literal(
@@ -97,7 +97,7 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryDatasetIamMember(
         localName: 'analytics_reader_binding',
-        datasetId: .ref(dataset.datasetIdRef),
+        datasetId: dataset.ref,
         role: .literal('roles/bigquery.dataViewer'),
         member: .ref(reader.iamMember),
       ),
@@ -120,7 +120,7 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryTableIamMember(
         localName: 'events_ingestor_binding',
-        datasetId: .ref(dataset.datasetIdRef),
+        datasetId: dataset.ref,
         tableId: .ref(eventsTable.tableIdRef),
         role: .literal('roles/bigquery.dataEditor'),
         member: .ref(ingestor.iamMember),
@@ -210,7 +210,7 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryRowAccessPolicy(
         localName: 'events_tenant_filter',
-        datasetId: .ref(dataset.datasetIdRef),
+        datasetId: dataset.ref,
         tableId: .ref(eventsTable.tableIdRef),
         policyId: .literal('tenant-filter'),
         filterPredicate: .literal('tenant_id = SESSION_USER()'),
@@ -300,7 +300,7 @@ final class AnalyticsStack extends Stack {
     final addOneRoutine = add(
       GoogleBigqueryRoutine(
         localName: 'add_one',
-        datasetId: .ref(dataset.datasetIdRef),
+        datasetId: dataset.ref,
         routineId: .literal('add_one'),
         routineType: .literal(.scalarFunction),
         definitionBody: .literal('x + 1'),
@@ -318,7 +318,7 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryRoutineIamMember(
         localName: 'add_one_reader',
-        datasetId: .ref(dataset.datasetIdRef),
+        datasetId: dataset.ref,
         routineId: .ref(addOneRoutine.routineIdRef),
         role: .literal('roles/bigquery.dataViewer'),
         member: .ref(reader.iamMember),
@@ -328,7 +328,7 @@ final class AnalyticsStack extends Stack {
     final addOneBinding = add(
       GoogleBigqueryRoutineIamBinding(
         localName: 'add_one_binding',
-        datasetId: .ref(dataset.datasetIdRef),
+        datasetId: dataset.ref,
         routineId: .ref(addOneRoutine.routineIdRef),
         role: .literal('roles/bigquery.dataEditor'),
         members: .literal([reader.iamMember.interpolation]),
@@ -339,7 +339,7 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryRoutineIamPolicy(
         localName: 'add_one_policy',
-        datasetId: .ref(dataset.datasetIdRef),
+        datasetId: dataset.ref,
         routineId: .ref(addOneRoutine.routineIdRef),
         policyData: .literal(
           _iamPolicyDataJson(
@@ -388,7 +388,7 @@ final class AnalyticsStack extends Stack {
     add(
       GoogleBigqueryDatasetAccess(
         localName: 'project_writers_reader',
-        datasetId: .ref(dataset.datasetIdRef),
+        datasetId: dataset.ref,
         role: .literal('READER'),
         grantee: .specialGroup(.literal(.projectWriters)),
         dependsOn: [ResourceDependency(dataset)],

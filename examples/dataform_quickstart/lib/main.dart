@@ -69,7 +69,7 @@ final class DataformStack extends Stack {
         name: .literal('terradart-analytics'),
         region: .literal('us-central1'),
         displayName: .literal('TerraDart analytics'),
-        serviceAccount: .ref(runner.email),
+        serviceAccount: runner.ref,
         workspaceCompilationOverrides: .literal(<String, Object?>{
           'schema_suffix': 'terradart',
           'table_prefix': 'terradart_',

@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_workbench_instance`.
 const Set<String> _googleWorkbenchInstanceSensitive = <String>{};
 
@@ -198,13 +203,13 @@ final class WorkbenchInstanceGceSetupBootDisk {
 
   final TfArg<WorkbenchInstanceGceSetupBootDiskDiskType>? diskType;
 
-  final TfArg<String>? kmsKey;
+  final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
   Map<String, Object?> encode() => {
     if (diskEncryption != null) 'disk_encryption': diskEncryption!.toTfJson(),
     if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
     if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -286,7 +291,7 @@ final class WorkbenchInstanceGceSetupDataDisks {
 
   final TfArg<WorkbenchInstanceGceSetupDataDisksDiskType>? diskType;
 
-  final TfArg<String>? kmsKey;
+  final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
   final TfArg<List<Object?>>? resourcePolicies;
 
@@ -294,7 +299,7 @@ final class WorkbenchInstanceGceSetupDataDisks {
     if (diskEncryption != null) 'disk_encryption': diskEncryption!.toTfJson(),
     if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
     if (diskType != null) 'disk_type': diskType!.toTfJson(),
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
     if (resourcePolicies != null)
       'resource_policies': resourcePolicies!.toTfJson(),
   };
@@ -338,19 +343,19 @@ final class WorkbenchInstanceGceSetupNetworkInterfaces {
     this.accessConfigs,
   });
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<WorkbenchInstanceGceSetupNetworkInterfacesNicType>? nicType;
 
-  final TfArg<String>? subnet;
+  final RefTo<GoogleComputeSubnetwork>? subnet;
 
   final List<WorkbenchInstanceGceSetupNetworkInterfacesAccessConfigs>?
   accessConfigs;
 
   Map<String, Object?> encode() => {
-    if (network != null) 'network': network!.toTfJson(),
+    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
     if (nicType != null) 'nic_type': nicType!.toTfJson(),
-    if (subnet != null) 'subnet': subnet!.toTfJson(),
+    if (subnet != null) 'subnet': subnet!.encodeAs('id').toTfJson(),
     if (accessConfigs != null)
       'access_configs': [for (final e in accessConfigs!) e.encode()],
   };
@@ -427,10 +432,10 @@ enum WorkbenchInstanceGceSetupReservationAffinityConsumeReservationType
 final class WorkbenchInstanceGceSetupServiceAccounts {
   const WorkbenchInstanceGceSetupServiceAccounts({this.email});
 
-  final TfArg<String>? email;
+  final RefTo<GoogleServiceAccount>? email;
 
   Map<String, Object?> encode() => {
-    if (email != null) 'email': email!.toTfJson(),
+    if (email != null) 'email': email!.encodeAs('email').toTfJson(),
   };
 }
 

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_cloudfront_trust_store`.
 const Set<String> _awsCloudfrontTrustStoreSensitive = <String>{};
 
@@ -39,7 +41,7 @@ final class CloudfrontTrustStoreCaCertificatesBundleSourceCaCertificatesBundleS3
     this.version,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String> key;
 
@@ -48,7 +50,7 @@ final class CloudfrontTrustStoreCaCertificatesBundleSourceCaCertificatesBundleS3
   final TfArg<String>? version;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),
     'region': region.toTfJson(),
     if (version != null) 'version': version!.toTfJson(),

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_s3_bucket_acl`.
 const Set<String> _awsS3BucketAclSensitive = <String>{};
 
@@ -180,7 +182,7 @@ final class AwsS3BucketAcl extends Resource {
   AwsS3BucketAcl({
     required super.localName,
     required S3BucketAclAccess access,
-    required TfArg<String> bucket,
+    required RefTo<AwsS3Bucket> bucket,
     TfArg<String>? expectedBucketOwner,
     TfArg<String>? region,
     super.lifecycle,
@@ -191,7 +193,7 @@ final class AwsS3BucketAcl extends Resource {
          terraformType: tfType,
          argMap: {
            ...access.argMap,
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('id'),
            if (expectedBucketOwner != null)
              'expected_bucket_owner': expectedBucketOwner,
            if (region != null) 'region': region,

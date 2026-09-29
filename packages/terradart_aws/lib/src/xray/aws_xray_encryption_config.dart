@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_xray_encryption_config`.
 const Set<String> _awsXrayEncryptionConfigSensitive = <String>{};
 
@@ -22,7 +24,7 @@ final class AwsXrayEncryptionConfig extends Resource {
 
   AwsXrayEncryptionConfig({
     required super.localName,
-    TfArg<String>? keyId,
+    RefTo<AwsKmsKey>? keyId,
     TfArg<String>? region,
     required TfArg<XrayEncryptionConfigType> type,
     super.lifecycle,
@@ -32,7 +34,7 @@ final class AwsXrayEncryptionConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (keyId != null) 'key_id': keyId,
+           if (keyId != null) 'key_id': keyId.encodeAs('arn'),
            if (region != null) 'region': region,
            'type': type,
          },

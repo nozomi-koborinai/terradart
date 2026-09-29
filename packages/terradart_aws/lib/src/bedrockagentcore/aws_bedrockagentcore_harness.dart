@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_bedrockagentcore_harness`.
 const Set<String> _awsBedrockagentcoreHarnessSensitive = <String>{
   'environment_variables',
@@ -288,9 +293,9 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
 
   final TfArg<String>? routingDomain;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -300,8 +305,8 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
@@ -409,9 +414,9 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
 
   final TfArg<String>? routingDomain;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -421,8 +426,8 @@ final class BedrockagentcoreHarnessAuthorizerConfigurationCustomJwtAuthorizerPri
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
@@ -647,13 +652,13 @@ final class BedrockagentcoreHarnessEnvironmentAgentcoreRuntimeEnvironmentNetwork
     required this.subnets,
   });
 
-  final TfArg<List<Object?>> securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroups;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
-    'security_groups': securityGroups.toTfJson(),
-    'subnets': subnets.toTfJson(),
+    'security_groups': securityGroups.encodeAs('id').toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
 
@@ -797,7 +802,7 @@ final class BedrockagentcoreHarnessMemoryManagedMemoryConfiguration {
     this.strategies,
   });
 
-  final TfArg<String>? encryptionKeyArn;
+  final RefTo<AwsKmsKey>? encryptionKeyArn;
 
   final TfArg<num>? eventExpiryDuration;
 
@@ -808,7 +813,7 @@ final class BedrockagentcoreHarnessMemoryManagedMemoryConfiguration {
 
   Map<String, Object?> encode() => {
     if (encryptionKeyArn != null)
-      'encryption_key_arn': encryptionKeyArn!.toTfJson(),
+      'encryption_key_arn': encryptionKeyArn!.encodeAs('arn').toTfJson(),
     if (eventExpiryDuration != null)
       'event_expiry_duration': eventExpiryDuration!.toTfJson(),
     if (strategies != null)
@@ -1403,7 +1408,7 @@ final class AwsBedrockagentcoreHarness extends Resource {
     required super.localName,
     TfArg<List<String>>? allowedTools,
     TfArg<Map<String, String>>? environmentVariables,
-    required TfArg<String> executionRoleArn,
+    required RefTo<AwsIamRole> executionRoleArn,
     required TfArg<String> harnessName,
     TfArg<num>? maxIterations,
     TfArg<num>? maxTokens,
@@ -1430,7 +1435,7 @@ final class AwsBedrockagentcoreHarness extends Resource {
            if (allowedTools != null) 'allowed_tools': allowedTools,
            if (environmentVariables != null)
              'environment_variables': environmentVariables,
-           'execution_role_arn': executionRoleArn,
+           'execution_role_arn': executionRoleArn.encodeAs('arn'),
            'harness_name': harnessName,
            if (maxIterations != null) 'max_iterations': maxIterations,
            if (maxTokens != null) 'max_tokens': maxTokens,

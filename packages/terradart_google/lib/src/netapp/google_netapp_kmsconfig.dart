@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_netapp_kmsconfig`.
 const Set<String> _googleNetappKmsconfigSensitive = <String>{};
 
@@ -26,7 +28,7 @@ final class GoogleNetappKmsconfig extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> cryptoKeyName,
+    required RefTo<GoogleKmsCryptoKey> cryptoKeyName,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
@@ -40,7 +42,7 @@ final class GoogleNetappKmsconfig extends Resource {
          argMap: {
            'name': name,
            'location': location,
-           'crypto_key_name': cryptoKeyName,
+           'crypto_key_name': cryptoKeyName.encodeAs('id'),
            if (description != null) 'description': description,
            if (labels != null) 'labels': labels,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

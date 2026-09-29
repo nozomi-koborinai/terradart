@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_elastic_beanstalk_application`.
 const Set<String> _awsElasticBeanstalkApplicationSensitive = <String>{};
 
@@ -24,14 +26,14 @@ final class ElasticBeanstalkApplicationAppversionLifecycle {
 
   final TfArg<num>? maxCount;
 
-  final TfArg<String> serviceRole;
+  final RefTo<AwsIamRole> serviceRole;
 
   Map<String, Object?> encode() => {
     if (deleteSourceFromS3 != null)
       'delete_source_from_s3': deleteSourceFromS3!.toTfJson(),
     if (maxAgeInDays != null) 'max_age_in_days': maxAgeInDays!.toTfJson(),
     if (maxCount != null) 'max_count': maxCount!.toTfJson(),
-    'service_role': serviceRole.toTfJson(),
+    'service_role': serviceRole.encodeAs('arn').toTfJson(),
   };
 }
 

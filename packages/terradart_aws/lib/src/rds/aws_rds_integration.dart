@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_rds_integration`.
 const Set<String> _awsRdsIntegrationSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class AwsRdsIntegration extends Resource {
     TfArg<Map<String, String>>? additionalEncryptionContext,
     TfArg<String>? dataFilter,
     required TfArg<String> integrationName,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? region,
     required TfArg<String> sourceArn,
     TfArg<Map<String, String>>? tags,
@@ -31,7 +33,7 @@ final class AwsRdsIntegration extends Resource {
              'additional_encryption_context': additionalEncryptionContext,
            if (dataFilter != null) 'data_filter': dataFilter,
            'integration_name': integrationName,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (region != null) 'region': region,
            'source_arn': sourceArn,
            if (tags != null) 'tags': tags,

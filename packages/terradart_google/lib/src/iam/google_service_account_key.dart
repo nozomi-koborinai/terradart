@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_service_account_key`.
 const Set<String> _googleServiceAccountKeySensitive = <String>{'private_key'};
 
@@ -86,7 +88,7 @@ final class GoogleServiceAccountKey extends Resource {
 
   GoogleServiceAccountKey({
     required super.localName,
-    required TfArg<String> serviceAccountId,
+    required RefTo<GoogleServiceAccount> serviceAccountId,
     TfArg<KeyAlgorithm>? keyAlgorithm,
     TfArg<PrivateKeyType>? privateKeyType,
     TfArg<PublicKeyType>? publicKeyType,
@@ -99,7 +101,7 @@ final class GoogleServiceAccountKey extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'service_account_id': serviceAccountId,
+           'service_account_id': serviceAccountId.encodeAs('name'),
            if (keyAlgorithm != null) 'key_algorithm': keyAlgorithm,
            if (privateKeyType != null) 'private_key_type': privateKeyType,
            if (publicKeyType != null) 'public_key_type': publicKeyType,

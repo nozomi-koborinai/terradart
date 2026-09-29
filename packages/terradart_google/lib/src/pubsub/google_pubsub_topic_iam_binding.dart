@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+
 /// Sensitive field paths for `google_pubsub_topic_iam_binding`.
 const Set<String> _googlePubsubTopicIamBindingSensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GooglePubsubTopicIamBinding extends Resource {
 
   GooglePubsubTopicIamBinding({
     required super.localName,
-    required TfArg<String> topic,
+    required RefTo<GooglePubsubTopic> topic,
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<Map<String, dynamic>>? condition,
@@ -29,7 +31,7 @@ final class GooglePubsubTopicIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'topic': topic,
+           'topic': topic.encodeAs('id'),
            'role': role,
            'members': members,
            if (condition != null) 'condition': condition,

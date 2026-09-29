@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_storage_default_object_acl`.
 const Set<String> _googleStorageDefaultObjectAclSensitive = <String>{};
 
@@ -32,7 +34,7 @@ final class GoogleStorageDefaultObjectAcl extends Resource {
 
   GoogleStorageDefaultObjectAcl({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<GoogleStorageBucket> bucket,
     TfArg<List<String>>? roleEntity,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
@@ -42,7 +44,7 @@ final class GoogleStorageDefaultObjectAcl extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('name'),
            if (roleEntity != null) 'role_entity': roleEntity,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
          },

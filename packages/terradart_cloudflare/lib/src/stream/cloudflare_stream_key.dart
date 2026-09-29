@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_stream_key`.
 const Set<String> _cloudflareStreamKeySensitive = <String>{'jwk', 'pem'};
 
@@ -16,12 +18,15 @@ final class CloudflareStreamKey extends Resource {
 
   CloudflareStreamKey({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'account_id': accountId});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'account_id': accountId.encodeAs('id')},
+       );
 
   @override
   Set<String> get sensitiveFields => _cloudflareStreamKeySensitive;

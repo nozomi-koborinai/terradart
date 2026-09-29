@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_osis_pipeline`.
 const Set<String> _awsOsisPipelineSensitive = <String>{};
 
@@ -26,9 +31,11 @@ final class OsisPipelineBufferOptions {
 final class OsisPipelineEncryptionAtRestOptions {
   const OsisPipelineEncryptionAtRestOptions({required this.kmsKeyArn});
 
-  final TfArg<String> kmsKeyArn;
+  final RefTo<AwsKmsKey> kmsKeyArn;
 
-  Map<String, Object?> encode() => {'kms_key_arn': kmsKeyArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Typed helper for the `log_publishing_options` block of
@@ -63,9 +70,11 @@ final class OsisPipelineLogPublishingOptionsCloudwatchLogDestination {
     required this.logGroup,
   });
 
-  final TfArg<String> logGroup;
+  final RefTo<AwsCloudwatchLogGroup> logGroup;
 
-  Map<String, Object?> encode() => {'log_group': logGroup.toTfJson()};
+  Map<String, Object?> encode() => {
+    'log_group': logGroup.encodeAs('name').toTfJson(),
+  };
 }
 
 /// Typed helper for the `vpc_options` block of
@@ -78,17 +87,17 @@ final class OsisPipelineVpcOptions {
     this.vpcEndpointManagement,
   });
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   final TfArg<OsisPipelineVpcOptionsVpcEndpointManagement>?
   vpcEndpointManagement;
 
   Map<String, Object?> encode() => {
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     if (vpcEndpointManagement != null)
       'vpc_endpoint_management': vpcEndpointManagement!.toTfJson(),
   };

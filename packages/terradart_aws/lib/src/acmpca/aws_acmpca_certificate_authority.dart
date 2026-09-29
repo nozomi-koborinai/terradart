@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_acmpca_certificate_authority`.
 const Set<String> _awsAcmpcaCertificateAuthoritySensitive = <String>{};
 
@@ -226,7 +228,7 @@ final class AcmpcaCertificateAuthorityRevocationConfigurationCrlConfiguration {
 
   final TfArg<num>? expirationInDays;
 
-  final TfArg<String>? s3BucketName;
+  final RefTo<AwsS3Bucket>? s3BucketName;
 
   final TfArg<
     AcmpcaCertificateAuthorityRevocationConfigurationCrlConfigurationS3ObjectAcl
@@ -239,7 +241,8 @@ final class AcmpcaCertificateAuthorityRevocationConfigurationCrlConfiguration {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     if (expirationInDays != null)
       'expiration_in_days': expirationInDays!.toTfJson(),
-    if (s3BucketName != null) 's3_bucket_name': s3BucketName!.toTfJson(),
+    if (s3BucketName != null)
+      's3_bucket_name': s3BucketName!.encodeAs('id').toTfJson(),
     if (s3ObjectAcl != null) 's3_object_acl': s3ObjectAcl!.toTfJson(),
   };
 }

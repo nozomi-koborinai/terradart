@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_amplify_app`.
 const Set<String> _awsAmplifyAppSensitive = <String>{
   'access_token',
@@ -198,7 +200,7 @@ final class AwsAmplifyApp extends Resource {
     TfArg<bool>? enableBranchAutoBuild,
     TfArg<bool>? enableBranchAutoDeletion,
     TfArg<Map<String, String>>? environmentVariables,
-    TfArg<String>? iamServiceRoleArn,
+    RefTo<AwsIamRole>? iamServiceRoleArn,
     required TfArg<String> name,
     TfArg<String>? oauthToken,
     TfArg<AmplifyAppPlatform>? platform,
@@ -235,7 +237,7 @@ final class AwsAmplifyApp extends Resource {
            if (environmentVariables != null)
              'environment_variables': environmentVariables,
            if (iamServiceRoleArn != null)
-             'iam_service_role_arn': iamServiceRoleArn,
+             'iam_service_role_arn': iamServiceRoleArn.encodeAs('arn'),
            'name': name,
            if (oauthToken != null) 'oauth_token': oauthToken,
            if (platform != null) 'platform': platform,

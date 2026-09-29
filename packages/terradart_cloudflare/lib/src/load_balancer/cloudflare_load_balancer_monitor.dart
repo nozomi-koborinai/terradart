@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_load_balancer_monitor`.
 const Set<String> _cloudflareLoadBalancerMonitorSensitive = <String>{};
 
@@ -31,7 +33,7 @@ final class CloudflareLoadBalancerMonitor extends Resource {
 
   CloudflareLoadBalancerMonitor({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? allowInsecure,
     TfArg<num>? consecutiveDown,
     TfArg<num>? consecutiveUp,
@@ -55,7 +57,7 @@ final class CloudflareLoadBalancerMonitor extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (allowInsecure != null) 'allow_insecure': allowInsecure,
            if (consecutiveDown != null) 'consecutive_down': consecutiveDown,
            if (consecutiveUp != null) 'consecutive_up': consecutiveUp,

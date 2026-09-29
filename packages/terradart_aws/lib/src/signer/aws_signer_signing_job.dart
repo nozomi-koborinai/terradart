@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_signer_signing_job`.
 const Set<String> _awsSignerSigningJobSensitive = <String>{};
 
@@ -24,12 +26,12 @@ final class SignerSigningJobDestination {
 final class SignerSigningJobDestinationS3 {
   const SignerSigningJobDestinationS3({required this.bucket, this.prefix});
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String>? prefix;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     if (prefix != null) 'prefix': prefix!.toTfJson(),
   };
 }
@@ -55,14 +57,14 @@ final class SignerSigningJobSourceS3 {
     required this.version,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String> key;
 
   final TfArg<String> version;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     'key': key.toTfJson(),
     'version': version.toTfJson(),
   };

@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_bedrockagentcore_browser`.
 const Set<String> _awsBedrockagentcoreBrowserSensitive = <String>{};
 
@@ -108,14 +113,14 @@ final class BedrockagentcoreBrowserEnterprisePolicyLocationS3 {
     this.versionId,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String> prefix;
 
   final TfArg<String>? versionId;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     'prefix': prefix.toTfJson(),
     if (versionId != null) 'version_id': versionId!.toTfJson(),
   };
@@ -164,13 +169,13 @@ final class BedrockagentcoreBrowserNetworkConfigurationVpcConfig {
     required this.subnets,
   });
 
-  final TfArg<List<Object?>> securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroups;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
-    'security_groups': securityGroups.toTfJson(),
-    'subnets': subnets.toTfJson(),
+    'security_groups': securityGroups.encodeAs('id').toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
 
@@ -200,12 +205,12 @@ final class BedrockagentcoreBrowserRecordingS3Location {
     required this.prefix,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String> prefix;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     'prefix': prefix.toTfJson(),
   };
 }
@@ -217,7 +222,7 @@ final class AwsBedrockagentcoreBrowser extends Resource {
   AwsBedrockagentcoreBrowser({
     required super.localName,
     TfArg<String>? description,
-    TfArg<String>? executionRoleArn,
+    RefTo<AwsIamRole>? executionRoleArn,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -234,7 +239,8 @@ final class AwsBedrockagentcoreBrowser extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           if (executionRoleArn != null) 'execution_role_arn': executionRoleArn,
+           if (executionRoleArn != null)
+             'execution_role_arn': executionRoleArn.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_api_shield`.
 const Set<String> _cloudflareApiShieldSensitive = <String>{};
 
@@ -49,7 +51,7 @@ final class CloudflareApiShield extends Resource {
   CloudflareApiShield({
     required super.localName,
     TfArg<bool>? normalize,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     required List<ApiShieldAuthIdCharacteristics> authIdCharacteristics,
     super.lifecycle,
     super.dependsOn,
@@ -59,7 +61,7 @@ final class CloudflareApiShield extends Resource {
          terraformType: tfType,
          argMap: {
            if (normalize != null) 'normalize': normalize,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
            'auth_id_characteristics': TfArg.literal([
              for (final e in authIdCharacteristics) e.encode(),
            ]),

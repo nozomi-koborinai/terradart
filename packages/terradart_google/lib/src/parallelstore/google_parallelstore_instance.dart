@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+
 /// Sensitive field paths for `google_parallelstore_instance`.
 const Set<String> _googleParallelstoreInstanceSensitive = <String>{};
 
@@ -42,7 +44,7 @@ final class GoogleParallelstoreInstance extends Resource {
     required TfArg<String> instanceId,
     required TfArg<String> location,
     required TfArg<String> capacityGib,
-    TfArg<String>? network,
+    RefTo<GoogleComputeNetwork>? network,
     TfArg<String>? description,
     TfArg<ParallelstoreInstanceDeploymentType>? deploymentType,
     TfArg<String>? directoryStripeLevel,
@@ -61,7 +63,7 @@ final class GoogleParallelstoreInstance extends Resource {
            'instance_id': instanceId,
            'location': location,
            'capacity_gib': capacityGib,
-           if (network != null) 'network': network,
+           if (network != null) 'network': network.encodeAs('id'),
            if (description != null) 'description': description,
            if (deploymentType != null) 'deployment_type': deploymentType,
            if (directoryStripeLevel != null)

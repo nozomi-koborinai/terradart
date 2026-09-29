@@ -110,7 +110,7 @@ final class ComputeLbStack extends Stack {
         localName: 'lb_subnet',
         name: .literal('app-lb-subnet'),
         region: .literal(region),
-        network: .ref(lbVpc.selfLink),
+        network: lbVpc.ref,
         ipCidrRange: .literal('10.20.0.0/20'),
       ),
     );
@@ -393,8 +393,8 @@ final class ComputeLbStack extends Stack {
         localName: 'lb_neg',
         name: .literal('app-lb-neg'),
         zone: .literal(zone),
-        network: .ref(lbVpc.selfLink),
-        subnetwork: .ref(lbSubnet.selfLink),
+        network: lbVpc.ref,
+        subnetwork: lbSubnet.ref,
         networkEndpointType: .literal(.gceVmIpPort),
         defaultPort: .literal(443),
         // Document the chain to the backing VM even though endpoint
@@ -619,7 +619,7 @@ final class ComputeLbStack extends Stack {
         name: .literal('app-regional-neg'),
         region: .literal(region),
         networkEndpointType: .literal(.internetIpPort),
-        network: .ref(lbVpc.selfLink),
+        network: lbVpc.ref,
       ),
     );
 
@@ -726,7 +726,7 @@ final class ComputeLbStack extends Stack {
       GoogleComputeFirewall(
         localName: 'allow_lb_health',
         name: .literal('app-allow-lb-health'),
-        network: .ref(lbVpc.selfLink),
+        network: lbVpc.ref,
         direction: .literal(.ingress),
         rulePolicy: .allow(protocol: .literal('tcp'), ports: ['443']),
         sourceRanges: .literal(['130.211.0.0/22', '35.191.0.0/16']),
@@ -835,7 +835,7 @@ final class ComputeLbStack extends Stack {
         localName: 'ilb_vip',
         name: .literal('app-ilb-vip'),
         region: .literal(region),
-        subnetwork: .ref(lbSubnet.selfLink),
+        subnetwork: lbSubnet.ref,
         addressType: .literal(.internal),
       ),
     );
@@ -916,8 +916,8 @@ final class ComputeLbStack extends Stack {
         name: .literal('app-ilb-https'),
         region: .literal(region),
         target: .ref(regionHttpsProxy.selfLink),
-        network: .ref(lbVpc.selfLink),
-        subnetwork: .ref(lbSubnet.selfLink),
+        network: lbVpc.ref,
+        subnetwork: lbSubnet.ref,
         ipAddress: .ref(ilbAddress.selfLink),
         ipProtocol: .literal(.tcp),
         portRange: .literal('443'),
@@ -931,8 +931,8 @@ final class ComputeLbStack extends Stack {
         name: .literal('app-ilb-http'),
         region: .literal(region),
         target: .ref(regionHttpProxy.selfLink),
-        network: .ref(lbVpc.selfLink),
-        subnetwork: .ref(lbSubnet.selfLink),
+        network: lbVpc.ref,
+        subnetwork: lbSubnet.ref,
         ipAddress: .ref(ilbAddress.selfLink),
         ipProtocol: .literal(.tcp),
         portRange: .literal('80'),

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_email_security_trusted_domains`.
 const Set<String> _cloudflareEmailSecurityTrustedDomainsSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareEmailSecurityTrustedDomains extends Resource {
 
   CloudflareEmailSecurityTrustedDomains({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? comments,
     TfArg<bool>? isRecent,
     TfArg<bool>? isRegex,
@@ -29,7 +31,7 @@ final class CloudflareEmailSecurityTrustedDomains extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (comments != null) 'comments': comments,
            if (isRecent != null) 'is_recent': isRecent,
            if (isRegex != null) 'is_regex': isRegex,

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
+
 /// Sensitive field paths for `cloudflare_api_shield_schema_validation_settings`.
 const Set<String> _cloudflareApiShieldSchemaValidationSettingsSensitive =
     <String>{};
@@ -52,7 +54,7 @@ final class CloudflareApiShieldSchemaValidationSettings extends Resource {
     validationDefaultMitigationAction,
     TfArg<ApiShieldSchemaValidationSettingsValidationOverrideMitigationAction>?
     validationOverrideMitigationAction,
-    required TfArg<String> zoneId,
+    required RefTo<CloudflareZone> zoneId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -65,7 +67,7 @@ final class CloudflareApiShieldSchemaValidationSettings extends Resource {
            if (validationOverrideMitigationAction != null)
              'validation_override_mitigation_action':
                  validationOverrideMitigationAction,
-           'zone_id': zoneId,
+           'zone_id': zoneId.encodeAs('id'),
          },
        );
 

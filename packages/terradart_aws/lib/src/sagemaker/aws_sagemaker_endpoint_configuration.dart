@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sagemaker_endpoint_configuration`.
 const Set<String> _awsSagemakerEndpointConfigurationSensitive = <String>{};
 
@@ -117,7 +120,7 @@ final class SagemakerEndpointConfigurationAsyncInferenceConfigOutputConfig {
     this.notificationConfig,
   });
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String>? s3FailurePath;
 
@@ -127,7 +130,7 @@ final class SagemakerEndpointConfigurationAsyncInferenceConfigOutputConfig {
   notificationConfig;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (s3FailurePath != null) 's3_failure_path': s3FailurePath!.toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
     if (notificationConfig != null)
@@ -198,7 +201,7 @@ final class SagemakerEndpointConfigurationDataCaptureConfig {
 
   final TfArg<num> initialSamplingPercentage;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final SagemakerEndpointConfigurationDataCaptureConfigCaptureContentTypeHeader?
   captureContentTypeHeader;
@@ -210,7 +213,7 @@ final class SagemakerEndpointConfigurationDataCaptureConfig {
     'destination_s3_uri': destinationS3Uri.toTfJson(),
     if (enableCapture != null) 'enable_capture': enableCapture!.toTfJson(),
     'initial_sampling_percentage': initialSamplingPercentage.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (captureContentTypeHeader != null)
       'capture_content_type_header': captureContentTypeHeader!.encode(),
     'capture_options': [for (final e in captureOptions) e.encode()],
@@ -735,11 +738,11 @@ final class SagemakerEndpointConfigurationProductionVariantsCoreDumpConfig {
 
   final TfArg<String> destinationS3Uri;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   Map<String, Object?> encode() => {
     'destination_s3_uri': destinationS3Uri.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -1313,11 +1316,11 @@ final class SagemakerEndpointConfigurationShadowProductionVariantsCoreDumpConfig
 
   final TfArg<String> destinationS3Uri;
 
-  final TfArg<String> kmsKeyId;
+  final RefTo<AwsKmsKey> kmsKeyId;
 
   Map<String, Object?> encode() => {
     'destination_s3_uri': destinationS3Uri.toTfJson(),
-    'kms_key_id': kmsKeyId.toTfJson(),
+    'kms_key_id': kmsKeyId.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -1424,8 +1427,8 @@ final class AwsSagemakerEndpointConfiguration extends Resource {
 
   AwsSagemakerEndpointConfiguration({
     required super.localName,
-    TfArg<String>? executionRoleArn,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsIamRole>? executionRoleArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     SagemakerEndpointConfigurationName? name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -1442,8 +1445,9 @@ final class AwsSagemakerEndpointConfiguration extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           if (executionRoleArn != null) 'execution_role_arn': executionRoleArn,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (executionRoleArn != null)
+             'execution_role_arn': executionRoleArn.encodeAs('arn'),
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            ...?name?.argMap,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

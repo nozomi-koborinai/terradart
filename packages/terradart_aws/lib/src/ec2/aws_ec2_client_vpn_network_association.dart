@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_ec2_client_vpn_network_association`.
 const Set<String> _awsEc2ClientVpnNetworkAssociationSensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class AwsEc2ClientVpnNetworkAssociation extends Resource {
     required super.localName,
     required TfArg<String> clientVpnEndpointId,
     TfArg<String>? region,
-    required TfArg<String> subnetId,
+    required RefTo<AwsSubnet> subnetId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -24,7 +26,7 @@ final class AwsEc2ClientVpnNetworkAssociation extends Resource {
          argMap: {
            'client_vpn_endpoint_id': clientVpnEndpointId,
            if (region != null) 'region': region,
-           'subnet_id': subnetId,
+           'subnet_id': subnetId.encodeAs('id'),
          },
        );
 

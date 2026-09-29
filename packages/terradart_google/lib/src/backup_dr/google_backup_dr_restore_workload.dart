@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_backup_dr_restore_workload`.
 const Set<String> _googleBackupDrRestoreWorkloadSensitive = <String>{
   'compute_instance_restore_properties.disks.disk_encryption_key.raw_key',
@@ -447,7 +452,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksDiskEncr
     this.rsaEncryptedKey,
   });
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   final TfArg<String>? kmsKeyServiceAccount;
 
@@ -456,7 +461,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesDisksDiskEncr
   final TfArg<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+    if (kmsKeyName != null)
+      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
     if (kmsKeyServiceAccount != null)
       'kms_key_service_account': kmsKeyServiceAccount!.toTfJson(),
     if (rawKey != null) 'raw_key': rawKey!.toTfJson(),
@@ -573,7 +579,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesInstanceEncry
     this.rsaEncryptedKey,
   });
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   final TfArg<String>? kmsKeyServiceAccount;
 
@@ -582,7 +588,8 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesInstanceEncry
   final TfArg<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+    if (kmsKeyName != null)
+      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
     if (kmsKeyServiceAccount != null)
       'kms_key_service_account': kmsKeyServiceAccount!.toTfJson(),
     if (rawKey != null) 'raw_key': rawKey!.toTfJson(),
@@ -678,7 +685,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
 
   final TfArg<String>? ipv6Address;
 
-  final TfArg<String>? network;
+  final RefTo<GoogleComputeNetwork>? network;
 
   final TfArg<String>? networkAttachment;
 
@@ -694,7 +701,7 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
   >?
   stackType;
 
-  final TfArg<String>? subnetwork;
+  final RefTo<GoogleComputeSubnetwork>? subnetwork;
 
   final List<
     BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterfacesAccessConfigs
@@ -717,13 +724,13 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesNetworkInterf
     if (ipAddress != null) 'ip_address': ipAddress!.toTfJson(),
     if (ipv6AccessType != null) 'ipv6_access_type': ipv6AccessType!.toTfJson(),
     if (ipv6Address != null) 'ipv6_address': ipv6Address!.toTfJson(),
-    if (network != null) 'network': network!.toTfJson(),
+    if (network != null) 'network': network!.encodeAs('id').toTfJson(),
     if (networkAttachment != null)
       'network_attachment': networkAttachment!.toTfJson(),
     if (nicType != null) 'nic_type': nicType!.toTfJson(),
     if (queueCount != null) 'queue_count': queueCount!.toTfJson(),
     if (stackType != null) 'stack_type': stackType!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+    if (subnetwork != null) 'subnetwork': subnetwork!.encodeAs('id').toTfJson(),
     if (accessConfigs != null)
       'access_configs': [for (final e in accessConfigs!) e.encode()],
     if (aliasIpRanges != null)
@@ -1229,12 +1236,12 @@ final class BackupDrRestoreWorkloadComputeInstanceRestorePropertiesServiceAccoun
     this.scopes,
   });
 
-  final TfArg<String>? email;
+  final RefTo<GoogleServiceAccount>? email;
 
   final TfArg<List<Object?>>? scopes;
 
   Map<String, Object?> encode() => {
-    if (email != null) 'email': email!.toTfJson(),
+    if (email != null) 'email': email!.encodeAs('email').toTfJson(),
     if (scopes != null) 'scopes': scopes!.toTfJson(),
   };
 }
@@ -1435,7 +1442,7 @@ final class BackupDrRestoreWorkloadDiskRestorePropertiesDiskEncryptionKey {
     this.rsaEncryptedKey,
   });
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   final TfArg<String>? kmsKeyServiceAccount;
 
@@ -1444,7 +1451,8 @@ final class BackupDrRestoreWorkloadDiskRestorePropertiesDiskEncryptionKey {
   final TfArg<String>? rsaEncryptedKey;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+    if (kmsKeyName != null)
+      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
     if (kmsKeyServiceAccount != null)
       'kms_key_service_account': kmsKeyServiceAccount!.toTfJson(),
     if (rawKey != null) 'raw_key': rawKey!.toTfJson(),

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_sagemaker_user_profile`.
 const Set<String> _awsSagemakerUserProfileSensitive = <String>{};
 
@@ -39,7 +42,7 @@ final class SagemakerUserProfileUserSettings {
 
   final TfArg<String> executionRole;
 
-  final TfArg<List<Object?>>? securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
   final TfArg<SagemakerUserProfileUserSettingsStudioWebPortal>? studioWebPortal;
 
@@ -86,7 +89,8 @@ final class SagemakerUserProfileUserSettings {
     if (defaultLandingUri != null)
       'default_landing_uri': defaultLandingUri!.toTfJson(),
     'execution_role': executionRole.toTfJson(),
-    if (securityGroups != null) 'security_groups': securityGroups!.toTfJson(),
+    if (securityGroups != null)
+      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
     if (studioWebPortal != null)
       'studio_web_portal': studioWebPortal!.toTfJson(),
     if (canvasAppSettings != null)
@@ -243,7 +247,7 @@ final class SagemakerUserProfileUserSettingsCanvasAppSettingsEmrServerlessSettin
     this.status,
   });
 
-  final TfArg<String>? executionRoleArn;
+  final RefTo<AwsIamRole>? executionRoleArn;
 
   final TfArg<
     SagemakerUserProfileUserSettingsCanvasAppSettingsEmrServerlessSettingsStatus
@@ -252,7 +256,7 @@ final class SagemakerUserProfileUserSettingsCanvasAppSettingsEmrServerlessSettin
 
   Map<String, Object?> encode() => {
     if (executionRoleArn != null)
-      'execution_role_arn': executionRoleArn!.toTfJson(),
+      'execution_role_arn': executionRoleArn!.encodeAs('arn').toTfJson(),
     if (status != null) 'status': status!.toTfJson(),
   };
 }

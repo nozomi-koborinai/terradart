@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_db_instance`.
 const Set<String> _awsDbInstanceSensitive = <String>{'password', 'password_wo'};
 
@@ -342,7 +346,7 @@ final class DbInstanceS3Import {
     required this.sourceEngineVersion,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<AwsS3Bucket> bucketName;
 
   final TfArg<String>? bucketPrefix;
 
@@ -353,7 +357,7 @@ final class DbInstanceS3Import {
   final TfArg<String> sourceEngineVersion;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('id').toTfJson(),
     if (bucketPrefix != null) 'bucket_prefix': bucketPrefix!.toTfJson(),
     'ingestion_role': ingestionRole.toTfJson(),
     'source_engine': sourceEngine.toTfJson(),
@@ -402,7 +406,7 @@ final class AwsDbInstance extends Resource {
     DbInstanceIdentifier? identifier,
     required TfArg<String> instanceClass,
     TfArg<num>? iops,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? licenseModel,
     TfArg<String>? maintenanceWindow,
     DbInstancePassword? password,
@@ -417,7 +421,7 @@ final class AwsDbInstance extends Resource {
     TfArg<String>? parameterGroupName,
     TfArg<num>? passwordWoVersion,
     TfArg<bool>? performanceInsightsEnabled,
-    TfArg<String>? performanceInsightsKmsKeyId,
+    RefTo<AwsKmsKey>? performanceInsightsKmsKeyId,
     TfArg<num>? performanceInsightsRetentionPeriod,
     TfArg<num>? port,
     TfArg<bool>? publiclyAccessible,
@@ -433,7 +437,7 @@ final class AwsDbInstance extends Resource {
     TfArg<String>? timezone,
     TfArg<bool>? upgradeStorageConfig,
     TfArg<String>? username,
-    TfArg<List<String>>? vpcSecurityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     TfArg<List<String>>? warningEventCategories,
     DbInstanceBlueGreenUpdate? blueGreenUpdate,
     DbInstanceRestoreToPointInTime? restoreToPointInTime,
@@ -499,7 +503,7 @@ final class AwsDbInstance extends Resource {
            ...?identifier?.argMap,
            'instance_class': instanceClass,
            if (iops != null) 'iops': iops,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (licenseModel != null) 'license_model': licenseModel,
            if (maintenanceWindow != null)
              'maintenance_window': maintenanceWindow,
@@ -524,7 +528,8 @@ final class AwsDbInstance extends Resource {
            if (performanceInsightsEnabled != null)
              'performance_insights_enabled': performanceInsightsEnabled,
            if (performanceInsightsKmsKeyId != null)
-             'performance_insights_kms_key_id': performanceInsightsKmsKeyId,
+             'performance_insights_kms_key_id': performanceInsightsKmsKeyId
+                 .encodeAs('arn'),
            if (performanceInsightsRetentionPeriod != null)
              'performance_insights_retention_period':
                  performanceInsightsRetentionPeriod,
@@ -549,7 +554,7 @@ final class AwsDbInstance extends Resource {
              'upgrade_storage_config': upgradeStorageConfig,
            if (username != null) 'username': username,
            if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds,
+             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
            if (warningEventCategories != null)
              'warning_event_categories': warningEventCategories,
            if (blueGreenUpdate != null)

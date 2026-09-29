@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_ai_search_token`.
 const Set<String> _cloudflareAiSearchTokenSensitive = <String>{'cf_api_key'};
 
@@ -12,7 +14,7 @@ final class CloudflareAiSearchToken extends Resource {
 
   CloudflareAiSearchToken({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> cfApiId,
     required TfArg<String> cfApiKey,
     TfArg<bool>? legacy,
@@ -24,7 +26,7 @@ final class CloudflareAiSearchToken extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'cf_api_id': cfApiId,
            'cf_api_key': cfApiKey,
            if (legacy != null) 'legacy': legacy,

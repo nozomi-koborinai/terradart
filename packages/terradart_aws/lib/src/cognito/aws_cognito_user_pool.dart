@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_cognito_user_pool`.
 const Set<String> _awsCognitoUserPoolSensitive = <String>{};
 
@@ -354,7 +357,7 @@ final class CognitoUserPoolLambdaConfig {
 
   final TfArg<String>? defineAuthChallenge;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String>? postAuthentication;
 
@@ -383,7 +386,7 @@ final class CognitoUserPoolLambdaConfig {
     if (customMessage != null) 'custom_message': customMessage!.toTfJson(),
     if (defineAuthChallenge != null)
       'define_auth_challenge': defineAuthChallenge!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (postAuthentication != null)
       'post_authentication': postAuthentication!.toTfJson(),
     if (postConfirmation != null)
@@ -413,13 +416,13 @@ final class CognitoUserPoolLambdaConfigCustomEmailSender {
     required this.lambdaVersion,
   });
 
-  final TfArg<String> lambdaArn;
+  final RefTo<AwsLambdaFunction> lambdaArn;
 
   final TfArg<CognitoUserPoolLambdaConfigCustomEmailSenderLambdaVersion>
   lambdaVersion;
 
   Map<String, Object?> encode() => {
-    'lambda_arn': lambdaArn.toTfJson(),
+    'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     'lambda_version': lambdaVersion.toTfJson(),
   };
 }
@@ -445,13 +448,13 @@ final class CognitoUserPoolLambdaConfigCustomSmsSender {
     required this.lambdaVersion,
   });
 
-  final TfArg<String> lambdaArn;
+  final RefTo<AwsLambdaFunction> lambdaArn;
 
   final TfArg<CognitoUserPoolLambdaConfigCustomSmsSenderLambdaVersion>
   lambdaVersion;
 
   Map<String, Object?> encode() => {
-    'lambda_arn': lambdaArn.toTfJson(),
+    'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     'lambda_version': lambdaVersion.toTfJson(),
   };
 }
@@ -477,13 +480,13 @@ final class CognitoUserPoolLambdaConfigPreTokenGenerationConfig {
     required this.lambdaVersion,
   });
 
-  final TfArg<String> lambdaArn;
+  final RefTo<AwsLambdaFunction> lambdaArn;
 
   final TfArg<CognitoUserPoolLambdaConfigPreTokenGenerationConfigLambdaVersion>
   lambdaVersion;
 
   Map<String, Object?> encode() => {
-    'lambda_arn': lambdaArn.toTfJson(),
+    'lambda_arn': lambdaArn.encodeAs('arn').toTfJson(),
     'lambda_version': lambdaVersion.toTfJson(),
   };
 }

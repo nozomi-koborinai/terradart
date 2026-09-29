@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_iam_role_policy_attachments_exclusive`.
 const Set<String> _awsIamRolePolicyAttachmentsExclusiveSensitive = <String>{};
 
@@ -13,14 +15,17 @@ final class AwsIamRolePolicyAttachmentsExclusive extends Resource {
   AwsIamRolePolicyAttachmentsExclusive({
     required super.localName,
     required TfArg<List<String>> policyArns,
-    required TfArg<String> roleName,
+    required RefTo<AwsIamRole> roleName,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'policy_arns': policyArns, 'role_name': roleName},
+         argMap: {
+           'policy_arns': policyArns,
+           'role_name': roleName.encodeAs('name'),
+         },
        );
 
   @override

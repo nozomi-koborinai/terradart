@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_worker`.
 const Set<String> _cloudflareWorkerSensitive = <String>{};
 
@@ -457,7 +459,7 @@ final class CloudflareWorker extends Resource {
 
   CloudflareWorker({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? force,
     TfArg<bool>? logpush,
     required TfArg<String> name,
@@ -473,7 +475,7 @@ final class CloudflareWorker extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (force != null) 'force': force,
            if (logpush != null) 'logpush': logpush,
            'name': name,

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_efs_file_system`.
 const Set<String> _awsEfsFileSystemSensitive = <String>{};
 
@@ -136,7 +138,7 @@ final class AwsEfsFileSystem extends Resource {
     TfArg<String>? availabilityZoneName,
     TfArg<String>? creationToken,
     TfArg<bool>? encrypted,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<EfsFileSystemPerformanceMode>? performanceMode,
     TfArg<num>? provisionedThroughputInMibps,
     TfArg<String>? region,
@@ -155,7 +157,7 @@ final class AwsEfsFileSystem extends Resource {
              'availability_zone_name': availabilityZoneName,
            if (creationToken != null) 'creation_token': creationToken,
            if (encrypted != null) 'encrypted': encrypted,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (performanceMode != null) 'performance_mode': performanceMode,
            if (provisionedThroughputInMibps != null)
              'provisioned_throughput_in_mibps': provisionedThroughputInMibps,

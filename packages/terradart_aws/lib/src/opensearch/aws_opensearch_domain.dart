@@ -4,6 +4,12 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../cloudwatch/aws_cloudwatch_log_group.dart' show AwsCloudwatchLogGroup;
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_opensearch_domain`.
 const Set<String> _awsOpensearchDomainSensitive = <String>{
   'advanced_security_options.master_user_options.master_user_password',
@@ -480,14 +486,14 @@ final class OpensearchDomainCognitoOptions {
 
   final TfArg<String> identityPoolId;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final TfArg<String> userPoolId;
 
   Map<String, Object?> encode() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     'identity_pool_id': identityPoolId.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     'user_pool_id': userPoolId.toTfJson(),
   };
 }
@@ -623,11 +629,11 @@ final class OpensearchDomainEncryptAtRest {
 
   final TfArg<bool> enabled;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
   };
 }
 
@@ -691,14 +697,16 @@ final class OpensearchDomainLogPublishingOptions {
     required this.logType,
   });
 
-  final TfArg<String> cloudwatchLogGroupArn;
+  final RefTo<AwsCloudwatchLogGroup> cloudwatchLogGroupArn;
 
   final TfArg<bool>? enabled;
 
   final TfArg<OpensearchDomainLogPublishingOptionsLogType> logType;
 
   Map<String, Object?> encode() => {
-    'cloudwatch_log_group_arn': cloudwatchLogGroupArn.toTfJson(),
+    'cloudwatch_log_group_arn': cloudwatchLogGroupArn
+        .encodeAs('arn')
+        .toTfJson(),
     if (enabled != null) 'enabled': enabled!.toTfJson(),
     'log_type': logType.toTfJson(),
   };
@@ -816,14 +824,14 @@ final class OpensearchDomainSoftwareUpdateOptions {
 final class OpensearchDomainVpcOptions {
   const OpensearchDomainVpcOptions({this.securityGroupIds, this.subnetIds});
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>>? subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   Map<String, Object?> encode() => {
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
   };
 }
 

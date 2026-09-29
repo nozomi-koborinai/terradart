@@ -4,6 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_scheduler_schedule`.
 const Set<String> _awsSchedulerScheduleSensitive = <String>{};
 
@@ -136,7 +141,7 @@ final class SchedulerScheduleTarget {
 
   final TfArg<String>? input;
 
-  final TfArg<String> roleArn;
+  final RefTo<AwsIamRole> roleArn;
 
   final SchedulerScheduleTargetDeadLetterConfig? deadLetterConfig;
 
@@ -156,7 +161,7 @@ final class SchedulerScheduleTarget {
   Map<String, Object?> encode() => {
     'arn': arn.toTfJson(),
     if (input != null) 'input': input!.toTfJson(),
-    'role_arn': roleArn.toTfJson(),
+    'role_arn': roleArn.encodeAs('arn').toTfJson(),
     if (deadLetterConfig != null)
       'dead_letter_config': deadLetterConfig!.encode(),
     if (ecsParameters != null) 'ecs_parameters': ecsParameters!.encode(),
@@ -320,14 +325,15 @@ final class SchedulerScheduleTargetEcsParametersNetworkConfiguration {
 
   final TfArg<bool>? assignPublicIp;
 
-  final TfArg<List<Object?>>? securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroups;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
     if (assignPublicIp != null) 'assign_public_ip': assignPublicIp!.toTfJson(),
-    if (securityGroups != null) 'security_groups': securityGroups!.toTfJson(),
-    'subnets': subnets.toTfJson(),
+    if (securityGroups != null)
+      'security_groups': securityGroups!.encodeAs('id').toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
 
@@ -509,7 +515,7 @@ final class AwsSchedulerSchedule extends Resource {
     TfArg<String>? description,
     TfArg<String>? endDate,
     TfArg<String>? groupName,
-    TfArg<String>? kmsKeyArn,
+    RefTo<AwsKmsKey>? kmsKeyArn,
     SchedulerScheduleName? name,
     TfArg<String>? region,
     required TfArg<String> scheduleExpression,
@@ -530,7 +536,7 @@ final class AwsSchedulerSchedule extends Resource {
            if (description != null) 'description': description,
            if (endDate != null) 'end_date': endDate,
            if (groupName != null) 'group_name': groupName,
-           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn,
+           if (kmsKeyArn != null) 'kms_key_arn': kmsKeyArn.encodeAs('arn'),
            ...?name?.argMap,
            if (region != null) 'region': region,
            'schedule_expression': scheduleExpression,

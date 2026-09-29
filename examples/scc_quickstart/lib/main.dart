@@ -50,7 +50,7 @@ final class SccLeftoverStack extends Stack {
         dependsOn: apiDeps,
       ),
     );
-    final topicPath = TfArg.literal(
+    final topicPath = RefTo<GooglePubsubTopic>.literal(
       'projects/$projectId/topics/terradart-scc-findings',
     );
 
@@ -146,7 +146,7 @@ final class SccLeftoverStack extends Stack {
       GoogleSccV2ProjectNotificationConfig(
         localName: 'v2_project_notify',
         configId: .literal('terradart-v2-project-notify'),
-        pubsubTopic: .ref(topic.id),
+        pubsubTopic: topic.ref,
         streamingConfig: SccV2ProjectNotificationConfigStreamingConfig(
           filter: .literal('state = "ACTIVE"'),
         ),

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_subnetwork.dart' show GoogleComputeSubnetwork;
+
 /// Sensitive field paths for `google_compute_subnetwork_iam_policy`.
 const Set<String> _googleComputeSubnetworkIamPolicySensitive = <String>{};
 
@@ -17,7 +19,7 @@ final class GoogleComputeSubnetworkIamPolicy extends Resource {
 
   GoogleComputeSubnetworkIamPolicy({
     required super.localName,
-    required TfArg<String> subnetwork,
+    required RefTo<GoogleComputeSubnetwork> subnetwork,
     required TfArg<String> policyData,
     TfArg<String>? region,
     TfArg<String>? project,
@@ -28,7 +30,7 @@ final class GoogleComputeSubnetworkIamPolicy extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'subnetwork': subnetwork,
+           'subnetwork': subnetwork.encodeAs('id'),
            'policy_data': policyData,
            if (region != null) 'region': region,
            if (project != null) 'project': project,

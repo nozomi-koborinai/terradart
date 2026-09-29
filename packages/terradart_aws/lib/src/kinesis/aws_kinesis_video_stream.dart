@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_kinesis_video_stream`.
 const Set<String> _awsKinesisVideoStreamSensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class AwsKinesisVideoStream extends Resource {
     required super.localName,
     TfArg<num>? dataRetentionInHours,
     TfArg<String>? deviceName,
-    TfArg<String>? kmsKeyId,
+    RefTo<AwsKmsKey>? kmsKeyId,
     TfArg<String>? mediaType,
     required TfArg<String> name,
     TfArg<String>? region,
@@ -29,7 +31,7 @@ final class AwsKinesisVideoStream extends Resource {
            if (dataRetentionInHours != null)
              'data_retention_in_hours': dataRetentionInHours,
            if (deviceName != null) 'device_name': deviceName,
-           if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
+           if (kmsKeyId != null) 'kms_key_id': kmsKeyId.encodeAs('arn'),
            if (mediaType != null) 'media_type': mediaType,
            'name': name,
            if (region != null) 'region': region,

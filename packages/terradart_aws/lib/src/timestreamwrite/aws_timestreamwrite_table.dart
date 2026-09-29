@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_timestreamwrite_table`.
 const Set<String> _awsTimestreamwriteTableSensitive = <String>{};
 
@@ -57,22 +60,23 @@ final class TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejecte
     this.objectKeyPrefix,
   });
 
-  final TfArg<String>? bucketName;
+  final RefTo<AwsS3Bucket>? bucketName;
 
   final TfArg<
     TimestreamwriteTableMagneticStoreWritePropertiesMagneticStoreRejectedDataLocationS3ConfigurationEncryptionOption
   >?
   encryptionOption;
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String>? objectKeyPrefix;
 
   Map<String, Object?> encode() => {
-    if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+    if (bucketName != null)
+      'bucket_name': bucketName!.encodeAs('id').toTfJson(),
     if (encryptionOption != null)
       'encryption_option': encryptionOption!.toTfJson(),
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     if (objectKeyPrefix != null)
       'object_key_prefix': objectKeyPrefix!.toTfJson(),
   };

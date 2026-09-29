@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_lustre_instance`.
 const Set<String> _googleLustreInstanceSensitive = <String>{};
 
@@ -32,11 +35,11 @@ final class GoogleLustreInstance extends Resource {
     required TfArg<String> location,
     required TfArg<String> filesystem,
     required TfArg<String> capacityGib,
-    required TfArg<String> network,
+    required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? description,
     TfArg<String>? perUnitStorageThroughput,
     TfArg<bool>? gkeSupportEnabled,
-    TfArg<String>? kmsKey,
+    RefTo<GoogleKmsCryptoKey>? kmsKey,
     TfArg<String>? placementPolicy,
     TfArg<Map<String, dynamic>>? accessRulesOptions,
     TfArg<Map<String, dynamic>>? dynamicTierOptions,
@@ -55,13 +58,13 @@ final class GoogleLustreInstance extends Resource {
            'location': location,
            'filesystem': filesystem,
            'capacity_gib': capacityGib,
-           'network': network,
+           'network': network.encodeAs('id'),
            if (description != null) 'description': description,
            if (perUnitStorageThroughput != null)
              'per_unit_storage_throughput': perUnitStorageThroughput,
            if (gkeSupportEnabled != null)
              'gke_support_enabled': gkeSupportEnabled,
-           if (kmsKey != null) 'kms_key': kmsKey,
+           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('id'),
            if (placementPolicy != null) 'placement_policy': placementPolicy,
            if (accessRulesOptions != null)
              'access_rules_options': accessRulesOptions,

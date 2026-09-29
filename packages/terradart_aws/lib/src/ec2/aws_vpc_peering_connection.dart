@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_vpc_peering_connection`.
 const Set<String> _awsVpcPeeringConnectionSensitive = <String>{};
 
@@ -46,10 +48,10 @@ final class AwsVpcPeeringConnection extends Resource {
     TfArg<bool>? autoAccept,
     TfArg<String>? peerOwnerId,
     TfArg<String>? peerRegion,
-    required TfArg<String> peerVpcId,
+    required RefTo<AwsVpc> peerVpcId,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     VpcPeeringConnectionAccepter? accepter,
     VpcPeeringConnectionRequester? requester,
     super.lifecycle,
@@ -62,10 +64,10 @@ final class AwsVpcPeeringConnection extends Resource {
            if (autoAccept != null) 'auto_accept': autoAccept,
            if (peerOwnerId != null) 'peer_owner_id': peerOwnerId,
            if (peerRegion != null) 'peer_region': peerRegion,
-           'peer_vpc_id': peerVpcId,
+           'peer_vpc_id': peerVpcId.encodeAs('id'),
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
            if (accepter != null) 'accepter': TfArg.literal(accepter.encode()),
            if (requester != null)
              'requester': TfArg.literal(requester.encode()),

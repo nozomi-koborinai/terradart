@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_vpc_ipv4_cidr_block_association`.
 const Set<String> _awsVpcIpv4CidrBlockAssociationSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class AwsVpcIpv4CidrBlockAssociation extends Resource {
     TfArg<String>? ipv4IpamPoolId,
     TfArg<num>? ipv4NetmaskLength,
     TfArg<String>? region,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -29,7 +31,7 @@ final class AwsVpcIpv4CidrBlockAssociation extends Resource {
            if (ipv4NetmaskLength != null)
              'ipv4_netmask_length': ipv4NetmaskLength,
            if (region != null) 'region': region,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
          },
        );
 

@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_redshiftserverless_endpoint_access`.
 const Set<String> _awsRedshiftserverlessEndpointAccessSensitive = <String>{};
 
@@ -15,8 +18,8 @@ final class AwsRedshiftserverlessEndpointAccess extends Resource {
     required TfArg<String> endpointName,
     TfArg<String>? ownerAccount,
     TfArg<String>? region,
-    required TfArg<List<String>> subnetIds,
-    TfArg<List<String>>? vpcSecurityGroupIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     required TfArg<String> workgroupName,
     super.lifecycle,
     super.dependsOn,
@@ -28,9 +31,9 @@ final class AwsRedshiftserverlessEndpointAccess extends Resource {
            'endpoint_name': endpointName,
            if (ownerAccount != null) 'owner_account': ownerAccount,
            if (region != null) 'region': region,
-           'subnet_ids': subnetIds,
+           'subnet_ids': subnetIds.encodeAs('id'),
            if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds,
+             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
            'workgroup_name': workgroupName,
          },
        );

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_iot_logging_options`.
 const Set<String> _awsIotLoggingOptionsSensitive = <String>{};
 
@@ -28,7 +30,7 @@ final class AwsIotLoggingOptions extends Resource {
     required TfArg<IotLoggingOptionsDefaultLogLevel> defaultLogLevel,
     TfArg<bool>? disableAllLogs,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -39,7 +41,7 @@ final class AwsIotLoggingOptions extends Resource {
            'default_log_level': defaultLogLevel,
            if (disableAllLogs != null) 'disable_all_logs': disableAllLogs,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
          },
        );
 

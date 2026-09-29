@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_lambda_invocation`.
 const Set<String> _awsLambdaInvocationSensitive = <String>{};
 
@@ -22,7 +24,7 @@ final class AwsLambdaInvocation extends Resource {
 
   AwsLambdaInvocation({
     required super.localName,
-    required TfArg<String> functionName,
+    required RefTo<AwsLambdaFunction> functionName,
     required TfArg<String> input,
     TfArg<LambdaInvocationLifecycleScope>? lifecycleScope,
     TfArg<String>? qualifier,
@@ -37,7 +39,7 @@ final class AwsLambdaInvocation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'function_name': functionName,
+           'function_name': functionName.encodeAs('function_name'),
            'input': input,
            if (lifecycleScope != null) 'lifecycle_scope': lifecycleScope,
            if (qualifier != null) 'qualifier': qualifier,

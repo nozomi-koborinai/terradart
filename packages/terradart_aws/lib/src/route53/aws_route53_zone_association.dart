@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_route53_zone_association`.
 const Set<String> _awsRoute53ZoneAssociationSensitive = <String>{};
 
@@ -66,7 +68,7 @@ final class AwsRoute53ZoneAssociation extends Resource {
 
   AwsRoute53ZoneAssociation({
     required super.localName,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     TfArg<Route53ZoneAssociationVpcRegion>? vpcRegion,
     required TfArg<String> zoneId,
     super.lifecycle,
@@ -76,7 +78,7 @@ final class AwsRoute53ZoneAssociation extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
            if (vpcRegion != null) 'vpc_region': vpcRegion,
            'zone_id': zoneId,
          },

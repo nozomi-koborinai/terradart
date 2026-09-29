@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_web_analytics_site`.
 const Set<String> _cloudflareWebAnalyticsSiteSensitive = <String>{};
 
@@ -16,7 +18,7 @@ final class CloudflareWebAnalyticsSite extends Resource {
 
   CloudflareWebAnalyticsSite({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? autoInstall,
     TfArg<bool>? enabled,
     TfArg<String>? host,
@@ -29,7 +31,7 @@ final class CloudflareWebAnalyticsSite extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (autoInstall != null) 'auto_install': autoInstall,
            if (enabled != null) 'enabled': enabled,
            if (host != null) 'host': host,

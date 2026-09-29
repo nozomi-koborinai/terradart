@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../s3/aws_s3_bucket.dart' show AwsS3Bucket;
+
 /// Sensitive field paths for `aws_workspacesweb_session_logger`.
 const Set<String> _awsWorkspaceswebSessionLoggerSensitive = <String>{};
 
@@ -138,7 +140,7 @@ final class WorkspaceswebSessionLoggerLogConfigurationS3 {
     required this.logFileFormat,
   });
 
-  final TfArg<String> bucket;
+  final RefTo<AwsS3Bucket> bucket;
 
   final TfArg<String>? bucketOwner;
 
@@ -151,7 +153,7 @@ final class WorkspaceswebSessionLoggerLogConfigurationS3 {
   logFileFormat;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket.toTfJson(),
+    'bucket': bucket.encodeAs('id').toTfJson(),
     if (bucketOwner != null) 'bucket_owner': bucketOwner!.toTfJson(),
     'folder_structure': folderStructure.toTfJson(),
     if (keyPrefix != null) 'key_prefix': keyPrefix!.toTfJson(),

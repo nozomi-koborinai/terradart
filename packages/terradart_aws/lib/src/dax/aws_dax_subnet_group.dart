@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_dax_subnet_group`.
 const Set<String> _awsDaxSubnetGroupSensitive = <String>{};
 
@@ -15,7 +17,7 @@ final class AwsDaxSubnetGroup extends Resource {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<List<String>> subnetIds,
+    required TfArg<List<RefTo<AwsSubnet>>> subnetIds,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -26,7 +28,7 @@ final class AwsDaxSubnetGroup extends Resource {
            if (description != null) 'description': description,
            'name': name,
            if (region != null) 'region': region,
-           'subnet_ids': subnetIds,
+           'subnet_ids': subnetIds.encodeAs('id'),
          },
        );
 

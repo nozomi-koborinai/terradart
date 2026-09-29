@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+
 /// Sensitive field paths for `google_dataproc_gdc_service_instance`.
 const Set<String> _googleDataprocGdcServiceInstanceSensitive = <String>{};
 
@@ -47,7 +49,7 @@ final class GoogleDataprocGdcServiceInstance extends Resource {
     required TfArg<String> serviceInstanceId,
     DataprocGdcServiceInstanceGdceCluster? gdceCluster,
     TfArg<String>? displayName,
-    TfArg<String>? serviceAccount,
+    RefTo<GoogleServiceAccount>? serviceAccount,
     TfArg<Map<String, dynamic>>? sparkServiceInstanceConfig,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
@@ -64,7 +66,8 @@ final class GoogleDataprocGdcServiceInstance extends Resource {
            if (gdceCluster != null)
              'gdce_cluster': TfArg.literal(gdceCluster.encode()),
            if (displayName != null) 'display_name': displayName,
-           if (serviceAccount != null) 'service_account': serviceAccount,
+           if (serviceAccount != null)
+             'service_account': serviceAccount.encodeAs('email'),
            if (sparkServiceInstanceConfig != null)
              'spark_service_instance_config': sparkServiceInstanceConfig,
            if (labels != null) 'labels': labels,

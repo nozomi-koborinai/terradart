@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_glue_crawler`.
 const Set<String> _awsGlueCrawlerSensitive = <String>{};
 
@@ -369,7 +371,7 @@ final class AwsGlueCrawler extends Resource {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> role,
+    required RefTo<AwsIamRole> role,
     TfArg<String>? schedule,
     TfArg<String>? securityConfiguration,
     TfArg<String>? tablePrefix,
@@ -399,7 +401,7 @@ final class AwsGlueCrawler extends Resource {
            if (description != null) 'description': description,
            'name': name,
            if (region != null) 'region': region,
-           'role': role,
+           'role': role.encodeAs('name'),
            if (schedule != null) 'schedule': schedule,
            if (securityConfiguration != null)
              'security_configuration': securityConfiguration,

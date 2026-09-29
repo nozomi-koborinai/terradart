@@ -133,7 +133,7 @@ final class OrdersStack extends Stack {
         name: .literal('orders-push'),
         // Cloud Scheduler / Pub/Sub cross-resource refs need topic.id (the
         // full `projects/.../topics/orders-prod` path), NOT topic.nameRef.
-        topic: .ref(topic.id),
+        topic: topic.ref,
         ackDeadlineSeconds: .literal(60),
         delivery: .pushConfig(
           PubsubSubscriptionPushConfig(
@@ -146,7 +146,7 @@ final class OrdersStack extends Stack {
     add(
       GooglePubsubTopicIamMember(
         localName: 'orders_pubsub_agent',
-        topic: .ref(topic.nameRef),
+        topic: topic.ref,
         role: .literal('roles/pubsub.publisher'),
         member: .literal(
           'serviceAccount:service-${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com',
@@ -160,7 +160,7 @@ final class OrdersStack extends Stack {
     final topicViewerBinding = add(
       GooglePubsubTopicIamBinding(
         localName: 'orders_publisher_binding',
-        topic: .ref(topic.nameRef),
+        topic: topic.ref,
         role: .literal('roles/pubsub.viewer'),
         members: .literal([ordersPublisher.iamMember.interpolation]),
         dependsOn: [
@@ -173,7 +173,7 @@ final class OrdersStack extends Stack {
     add(
       GooglePubsubTopicIamPolicy(
         localName: 'orders_publisher_policy',
-        topic: .ref(topic.nameRef),
+        topic: topic.ref,
         policyData: .literal(
           _iamPolicyDataJson(
             role: 'roles/pubsub.viewer',

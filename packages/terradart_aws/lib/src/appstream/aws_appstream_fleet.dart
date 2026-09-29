@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_appstream_fleet`.
 const Set<String> _awsAppstreamFleetSensitive = <String>{};
 
@@ -76,14 +80,14 @@ final class AppstreamFleetDomainJoinInfo {
 final class AppstreamFleetVpcConfig {
   const AppstreamFleetVpcConfig({this.securityGroupIds, this.subnetIds});
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>>? subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>>? subnetIds;
 
   Map<String, Object?> encode() => {
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    if (subnetIds != null) 'subnet_ids': subnetIds!.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    if (subnetIds != null) 'subnet_ids': subnetIds!.encodeAs('id').toTfJson(),
   };
 }
 
@@ -98,7 +102,7 @@ final class AwsAppstreamFleet extends Resource {
     TfArg<String>? displayName,
     TfArg<bool>? enableDefaultInternetAccess,
     TfArg<AppstreamFleetFleetType>? fleetType,
-    TfArg<String>? iamRoleArn,
+    RefTo<AwsIamRole>? iamRoleArn,
     TfArg<num>? idleDisconnectTimeoutInSeconds,
     TfArg<String>? imageArn,
     TfArg<String>? imageName,
@@ -126,7 +130,7 @@ final class AwsAppstreamFleet extends Resource {
            if (enableDefaultInternetAccess != null)
              'enable_default_internet_access': enableDefaultInternetAccess,
            if (fleetType != null) 'fleet_type': fleetType,
-           if (iamRoleArn != null) 'iam_role_arn': iamRoleArn,
+           if (iamRoleArn != null) 'iam_role_arn': iamRoleArn.encodeAs('arn'),
            if (idleDisconnectTimeoutInSeconds != null)
              'idle_disconnect_timeout_in_seconds':
                  idleDisconnectTimeoutInSeconds,

@@ -145,7 +145,7 @@ final class DeployStack extends Stack {
     final deployerActAs = add(
       GoogleServiceAccountIamMember(
         localName: 'deployer_actas',
-        serviceAccountId: .ref(deployer.name),
+        serviceAccountId: deployer.ref,
         role: .literal('roles/iam.serviceAccountUser'),
         member: .literal(
           'serviceAccount:service-${current.number.interpolation}'
@@ -177,7 +177,7 @@ final class DeployStack extends Stack {
         name: .literal('terradart-automation'),
         location: .literal('us-central1'),
         deliveryPipeline: .ref(pipeline.nameRef),
-        serviceAccount: .ref(deployer.email),
+        serviceAccount: deployer.ref,
         suspended: .literal(true),
         selector: .literal(<String, Object?>{
           'targets': [

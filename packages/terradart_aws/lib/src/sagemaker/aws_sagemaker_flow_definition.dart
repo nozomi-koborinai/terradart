@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_sagemaker_flow_definition`.
 const Set<String> _awsSagemakerFlowDefinitionSensitive = <String>{};
 
@@ -176,12 +179,12 @@ final class SagemakerFlowDefinitionOutputConfig {
     required this.s3OutputPath,
   });
 
-  final TfArg<String>? kmsKeyId;
+  final RefTo<AwsKmsKey>? kmsKeyId;
 
   final TfArg<String> s3OutputPath;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.toTfJson(),
+    if (kmsKeyId != null) 'kms_key_id': kmsKeyId!.encodeAs('arn').toTfJson(),
     's3_output_path': s3OutputPath.toTfJson(),
   };
 }
@@ -194,7 +197,7 @@ final class AwsSagemakerFlowDefinition extends Resource {
     required super.localName,
     required TfArg<String> flowDefinitionName,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     TfArg<Map<String, String>>? tags,
     SagemakerFlowDefinitionHumanLoopActivationConfig? humanLoopActivationConfig,
     required SagemakerFlowDefinitionHumanLoopConfig humanLoopConfig,
@@ -209,7 +212,7 @@ final class AwsSagemakerFlowDefinition extends Resource {
          argMap: {
            'flow_definition_name': flowDefinitionName,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (tags != null) 'tags': tags,
            if (humanLoopActivationConfig != null)
              'human_loop_activation_config': TfArg.literal(

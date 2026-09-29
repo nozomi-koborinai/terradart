@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_bedrockagentcore_code_interpreter`.
 const Set<String> _awsBedrockagentcoreCodeInterpreterSensitive = <String>{};
 
@@ -95,13 +99,13 @@ final class BedrockagentcoreCodeInterpreterNetworkConfigurationVpcConfig {
     required this.subnets,
   });
 
-  final TfArg<List<Object?>> securityGroups;
+  final TfArg<List<RefTo<AwsSecurityGroup>>> securityGroups;
 
-  final TfArg<List<Object?>> subnets;
+  final TfArg<List<RefTo<AwsSubnet>>> subnets;
 
   Map<String, Object?> encode() => {
-    'security_groups': securityGroups.toTfJson(),
-    'subnets': subnets.toTfJson(),
+    'security_groups': securityGroups.encodeAs('id').toTfJson(),
+    'subnets': subnets.encodeAs('id').toTfJson(),
   };
 }
 
@@ -112,7 +116,7 @@ final class AwsBedrockagentcoreCodeInterpreter extends Resource {
   AwsBedrockagentcoreCodeInterpreter({
     required super.localName,
     TfArg<String>? description,
-    TfArg<String>? executionRoleArn,
+    RefTo<AwsIamRole>? executionRoleArn,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -127,7 +131,8 @@ final class AwsBedrockagentcoreCodeInterpreter extends Resource {
          terraformType: tfType,
          argMap: {
            if (description != null) 'description': description,
-           if (executionRoleArn != null) 'execution_role_arn': executionRoleArn,
+           if (executionRoleArn != null)
+             'execution_role_arn': executionRoleArn.encodeAs('arn'),
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

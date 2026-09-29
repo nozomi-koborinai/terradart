@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../ec2/aws_vpc.dart' show AwsVpc;
+
 /// Sensitive field paths for `aws_networkfirewall_vpc_endpoint_association`.
 const Set<String> _awsNetworkfirewallVpcEndpointAssociationSensitive =
     <String>{};
@@ -20,11 +23,11 @@ final class NetworkfirewallVpcEndpointAssociationSubnetMapping {
   final TfArg<NetworkfirewallVpcEndpointAssociationSubnetMappingIpAddressType>?
   ipAddressType;
 
-  final TfArg<String> subnetId;
+  final RefTo<AwsSubnet> subnetId;
 
   Map<String, Object?> encode() => {
     if (ipAddressType != null) 'ip_address_type': ipAddressType!.toTfJson(),
-    'subnet_id': subnetId.toTfJson(),
+    'subnet_id': subnetId.encodeAs('id').toTfJson(),
   };
 }
 
@@ -52,7 +55,7 @@ final class AwsNetworkfirewallVpcEndpointAssociation extends Resource {
     required TfArg<String> firewallArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
-    required TfArg<String> vpcId,
+    required RefTo<AwsVpc> vpcId,
     List<NetworkfirewallVpcEndpointAssociationSubnetMapping>? subnetMapping,
     super.lifecycle,
     super.dependsOn,
@@ -65,7 +68,7 @@ final class AwsNetworkfirewallVpcEndpointAssociation extends Resource {
            'firewall_arn': firewallArn,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,
-           'vpc_id': vpcId,
+           'vpc_id': vpcId.encodeAs('id'),
            if (subnetMapping != null)
              'subnet_mapping': TfArg.literal([
                for (final e in subnetMapping) e.encode(),

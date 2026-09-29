@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_agentregistry_registry`.
 const Set<String> _awsAgentregistryRegistrySensitive = <String>{};
 
@@ -336,9 +340,9 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 
   final TfArg<String>? routingDomain;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -348,8 +352,8 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
@@ -457,9 +461,9 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 
   final TfArg<String>? routingDomain;
 
-  final TfArg<List<Object?>>? securityGroupIds;
+  final TfArg<List<RefTo<AwsSecurityGroup>>>? securityGroupIds;
 
-  final TfArg<List<Object?>> subnetIds;
+  final TfArg<List<RefTo<AwsSubnet>>> subnetIds;
 
   final TfArg<Map<String, String>>? tags;
 
@@ -469,8 +473,8 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
     'endpoint_ip_address_type': endpointIpAddressType.toTfJson(),
     if (routingDomain != null) 'routing_domain': routingDomain!.toTfJson(),
     if (securityGroupIds != null)
-      'security_group_ids': securityGroupIds!.toTfJson(),
-    'subnet_ids': subnetIds.toTfJson(),
+      'security_group_ids': securityGroupIds!.encodeAs('id').toTfJson(),
+    'subnet_ids': subnetIds.encodeAs('id').toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     'vpc_identifier': vpcIdentifier.toTfJson(),
   };
@@ -512,9 +516,11 @@ final class AgentregistryRegistryDiscoveryConfigurationAuthorizerConfigurationCu
 final class AgentregistryRegistryEncryptionConfiguration {
   const AgentregistryRegistryEncryptionConfiguration({required this.kmsKeyArn});
 
-  final TfArg<String> kmsKeyArn;
+  final RefTo<AwsKmsKey> kmsKeyArn;
 
-  Map<String, Object?> encode() => {'kms_key_arn': kmsKeyArn.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_arn': kmsKeyArn.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `aws_agentregistry_registry`.

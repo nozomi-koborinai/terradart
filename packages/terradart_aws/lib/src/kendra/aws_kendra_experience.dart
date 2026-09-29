@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+
 /// Sensitive field paths for `aws_kendra_experience`.
 const Set<String> _awsKendraExperienceSensitive = <String>{};
 
@@ -79,7 +81,7 @@ final class AwsKendraExperience extends Resource {
     required TfArg<String> indexId,
     required TfArg<String> name,
     TfArg<String>? region,
-    required TfArg<String> roleArn,
+    required RefTo<AwsIamRole> roleArn,
     KendraExperienceConfiguration? configuration,
     super.lifecycle,
     super.dependsOn,
@@ -92,7 +94,7 @@ final class AwsKendraExperience extends Resource {
            'index_id': indexId,
            'name': name,
            if (region != null) 'region': region,
-           'role_arn': roleArn,
+           'role_arn': roleArn.encodeAs('arn'),
            if (configuration != null)
              'configuration': TfArg.literal(configuration.encode()),
          },

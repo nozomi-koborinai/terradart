@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_vertex_ai_index_endpoint`.
 const Set<String> _googleVertexAiIndexEndpointSensitive = <String>{};
 
@@ -85,9 +88,11 @@ final class VertexAiIndexEndpointConnectivityPrivateServiceConnectConfig
 final class VertexAiIndexEndpointEncryptionSpec {
   const VertexAiIndexEndpointEncryptionSpec({required this.kmsKeyName});
 
-  final TfArg<String> kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
-  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
 }
 
 /// Typed helper for the `private_service_connect_config` block of
@@ -129,12 +134,12 @@ final class VertexAiIndexEndpointPrivateServiceConnectConfigPscAutomationConfigs
     required this.projectId,
   });
 
-  final TfArg<String> network;
+  final RefTo<GoogleComputeNetwork> network;
 
   final TfArg<String> projectId;
 
   Map<String, Object?> encode() => {
-    'network': network.toTfJson(),
+    'network': network.encodeAs('id').toTfJson(),
     'project_id': projectId.toTfJson(),
   };
 }

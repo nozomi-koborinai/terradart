@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_dataproc_batch`.
 const Set<String> _googleDataprocBatchSensitive = <String>{};
 
@@ -218,13 +221,13 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
     this.authenticationConfig,
   });
 
-  final TfArg<String>? kmsKey;
+  final RefTo<GoogleKmsCryptoKey>? kmsKey;
 
   final TfArg<List<Object?>>? networkTags;
 
   final DataprocBatchEnvironmentConfigExecutionConfigNetwork? network;
 
-  final TfArg<String>? serviceAccount;
+  final RefTo<GoogleServiceAccount>? serviceAccount;
 
   final TfArg<String>? stagingBucket;
 
@@ -234,10 +237,11 @@ final class DataprocBatchEnvironmentConfigExecutionConfig {
   authenticationConfig;
 
   Map<String, Object?> encode() => {
-    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.encodeAs('id').toTfJson(),
     if (networkTags != null) 'network_tags': networkTags!.toTfJson(),
     ...?network?.encode(),
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
+    if (serviceAccount != null)
+      'service_account': serviceAccount!.encodeAs('email').toTfJson(),
     if (stagingBucket != null) 'staging_bucket': stagingBucket!.toTfJson(),
     if (ttl != null) 'ttl': ttl!.toTfJson(),
     if (authenticationConfig != null)

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_zero_trust_device_posture_rule`.
 const Set<String> _cloudflareZeroTrustDevicePostureRuleSensitive = <String>{};
 
@@ -457,7 +459,7 @@ final class CloudflareZeroTrustDevicePostureRule extends Resource {
 
   CloudflareZeroTrustDevicePostureRule({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<String>? description,
     TfArg<String>? expiration,
     TfArg<String>? name,
@@ -472,7 +474,7 @@ final class CloudflareZeroTrustDevicePostureRule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (description != null) 'description': description,
            if (expiration != null) 'expiration': expiration,
            if (name != null) 'name': name,

@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_auditmanager_account_registration`.
 const Set<String> _awsAuditmanagerAccountRegistrationSensitive = <String>{};
 
@@ -14,7 +16,7 @@ final class AwsAuditmanagerAccountRegistration extends Resource {
     required super.localName,
     TfArg<String>? delegatedAdminAccount,
     TfArg<bool>? deregisterOnDestroy,
-    TfArg<String>? kmsKey,
+    RefTo<AwsKmsKey>? kmsKey,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,
@@ -27,7 +29,7 @@ final class AwsAuditmanagerAccountRegistration extends Resource {
              'delegated_admin_account': delegatedAdminAccount,
            if (deregisterOnDestroy != null)
              'deregister_on_destroy': deregisterOnDestroy,
-           if (kmsKey != null) 'kms_key': kmsKey,
+           if (kmsKey != null) 'kms_key': kmsKey.encodeAs('arn'),
            if (region != null) 'region': region,
          },
        );

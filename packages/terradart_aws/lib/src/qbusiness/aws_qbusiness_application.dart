@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/aws_iam_role.dart' show AwsIamRole;
+import '../kms/aws_kms_key.dart' show AwsKmsKey;
+
 /// Sensitive field paths for `aws_qbusiness_application`.
 const Set<String> _awsQbusinessApplicationSensitive = <String>{};
 
@@ -44,9 +47,11 @@ enum QbusinessApplicationAttachmentsConfigurationAttachmentsControlMode
 final class QbusinessApplicationEncryptionConfiguration {
   const QbusinessApplicationEncryptionConfiguration({required this.kmsKeyId});
 
-  final TfArg<String> kmsKeyId;
+  final RefTo<AwsKmsKey> kmsKeyId;
 
-  Map<String, Object?> encode() => {'kms_key_id': kmsKeyId.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_id': kmsKeyId.encodeAs('arn').toTfJson(),
+  };
 }
 
 /// Factory wrapper for `aws_qbusiness_application`.
@@ -57,7 +62,7 @@ final class AwsQbusinessApplication extends Resource {
     required super.localName,
     TfArg<String>? description,
     required TfArg<String> displayName,
-    required TfArg<String> iamServiceRoleArn,
+    required RefTo<AwsIamRole> iamServiceRoleArn,
     required TfArg<String> identityCenterInstanceArn,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -73,7 +78,7 @@ final class AwsQbusinessApplication extends Resource {
          argMap: {
            if (description != null) 'description': description,
            'display_name': displayName,
-           'iam_service_role_arn': iamServiceRoleArn,
+           'iam_service_role_arn': iamServiceRoleArn.encodeAs('arn'),
            'identity_center_instance_arn': identityCenterInstanceArn,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

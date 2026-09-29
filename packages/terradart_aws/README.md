@@ -60,7 +60,7 @@ final class HelloStack extends Stack {
     add(AwsLambdaFunction(
       localName: 'hello',
       functionName: .literal('hello-dart'),
-      role: .ref(role.arn),
+      role: role.ref,
       runtime: .literal('provided.al2023'),
       handler: .literal('bootstrap'),
       filename: .literal('build/bootstrap.zip'),

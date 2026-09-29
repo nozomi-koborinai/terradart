@@ -4,6 +4,10 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
+
 /// Sensitive field paths for `google_storage_transfer_job`.
 const Set<String> _googleStorageTransferJobSensitive = <String>{
   'transfer_spec.aws_s3_data_source.aws_access_key.access_key_id',
@@ -78,12 +82,12 @@ final class StorageTransferJobNotificationConfig {
 
   final TfArg<String> payloadFormat;
 
-  final TfArg<String> pubsubTopic;
+  final RefTo<GooglePubsubTopic> pubsubTopic;
 
   Map<String, Object?> encode() => {
     if (eventTypes != null) 'event_types': eventTypes!.toTfJson(),
     'payload_format': payloadFormat.toTfJson(),
-    'pubsub_topic': pubsubTopic.toTfJson(),
+    'pubsub_topic': pubsubTopic.encodeAs('id').toTfJson(),
   };
 }
 
@@ -124,12 +128,12 @@ final class StorageTransferJobReplicationSpecGcsDataSink {
     this.path,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<GoogleStorageBucket> bucketName;
 
   final TfArg<String>? path;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('name').toTfJson(),
     if (path != null) 'path': path!.toTfJson(),
   };
 }
@@ -143,12 +147,12 @@ final class StorageTransferJobReplicationSpecGcsDataSource {
     this.path,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<GoogleStorageBucket> bucketName;
 
   final TfArg<String>? path;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('name').toTfJson(),
     if (path != null) 'path': path!.toTfJson(),
   };
 }
@@ -662,12 +666,12 @@ final class StorageTransferJobTransferSpecGcsDataSink {
     this.path,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<GoogleStorageBucket> bucketName;
 
   final TfArg<String>? path;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('name').toTfJson(),
     if (path != null) 'path': path!.toTfJson(),
   };
 }
@@ -681,12 +685,12 @@ final class StorageTransferJobTransferSpecGcsDataSource {
     this.path,
   });
 
-  final TfArg<String> bucketName;
+  final RefTo<GoogleStorageBucket> bucketName;
 
   final TfArg<String>? path;
 
   Map<String, Object?> encode() => {
-    'bucket_name': bucketName.toTfJson(),
+    'bucket_name': bucketName.encodeAs('name').toTfJson(),
     if (path != null) 'path': path!.toTfJson(),
   };
 }
@@ -917,7 +921,7 @@ final class GoogleStorageTransferJob extends Resource {
     StorageTransferJobTransferSpec? transferSpec,
     StorageTransferJobSchedule? schedule,
     TfArg<String>? status,
-    TfArg<String>? serviceAccount,
+    RefTo<GoogleServiceAccount>? serviceAccount,
     TfArg<String>? name,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -933,7 +937,8 @@ final class GoogleStorageTransferJob extends Resource {
              'transfer_spec': TfArg.literal(transferSpec.encode()),
            if (schedule != null) 'schedule': TfArg.literal(schedule.encode()),
            if (status != null) 'status': status,
-           if (serviceAccount != null) 'service_account': serviceAccount,
+           if (serviceAccount != null)
+             'service_account': serviceAccount.encodeAs('email'),
            if (name != null) 'name': name,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (project != null) 'project': project,

@@ -4,6 +4,9 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../iam/google_service_account.dart' show GoogleServiceAccount;
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_integration_connectors_connection`.
 const Set<String> _googleIntegrationConnectorsConnectionSensitive = <String>{};
 
@@ -132,7 +135,7 @@ final class IntegrationConnectorsConnectionAuthConfigAdditionalVariableEncryptio
     required this.type,
   });
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   final TfArg<
     IntegrationConnectorsConnectionAuthConfigAdditionalVariableEncryptionKeyValueType
@@ -140,7 +143,8 @@ final class IntegrationConnectorsConnectionAuthConfigAdditionalVariableEncryptio
   type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+    if (kmsKeyName != null)
+      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -440,7 +444,7 @@ final class IntegrationConnectorsConnectionConfigVariableEncryptionKeyValue {
     required this.type,
   });
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   final TfArg<
     IntegrationConnectorsConnectionConfigVariableEncryptionKeyValueType
@@ -448,7 +452,8 @@ final class IntegrationConnectorsConnectionConfigVariableEncryptionKeyValue {
   type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+    if (kmsKeyName != null)
+      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
     'type': type.toTfJson(),
   };
 }
@@ -602,7 +607,7 @@ final class IntegrationConnectorsConnectionEventingConfigAdditionalVariableEncry
     this.type,
   });
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   final TfArg<
     IntegrationConnectorsConnectionEventingConfigAdditionalVariableEncryptionKeyValueType
@@ -610,7 +615,8 @@ final class IntegrationConnectorsConnectionEventingConfigAdditionalVariableEncry
   type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+    if (kmsKeyName != null)
+      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
 }
@@ -720,7 +726,7 @@ final class IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVar
     this.type,
   });
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   final TfArg<
     IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVariableEncryptionKeyValueType
@@ -728,7 +734,8 @@ final class IntegrationConnectorsConnectionEventingConfigAuthConfigAdditionalVar
   type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+    if (kmsKeyName != null)
+      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
 }
@@ -1038,7 +1045,7 @@ final class IntegrationConnectorsConnectionSslConfigAdditionalVariableEncryption
     this.type,
   });
 
-  final TfArg<String>? kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey>? kmsKeyName;
 
   final TfArg<
     IntegrationConnectorsConnectionSslConfigAdditionalVariableEncryptionKeyValueType
@@ -1046,7 +1053,8 @@ final class IntegrationConnectorsConnectionSslConfigAdditionalVariableEncryption
   type;
 
   Map<String, Object?> encode() => {
-    if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+    if (kmsKeyName != null)
+      'kms_key_name': kmsKeyName!.encodeAs('id').toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
   };
 }
@@ -1157,7 +1165,7 @@ final class GoogleIntegrationConnectorsConnection extends Resource {
     required TfArg<String> location,
     required TfArg<String> connectorVersion,
     TfArg<String>? description,
-    TfArg<String>? serviceAccount,
+    RefTo<GoogleServiceAccount>? serviceAccount,
     TfArg<IntegrationConnectorsConnectionEventingEnablementType>?
     eventingEnablementType,
     TfArg<bool>? suspended,
@@ -1183,7 +1191,8 @@ final class GoogleIntegrationConnectorsConnection extends Resource {
            'location': location,
            'connector_version': connectorVersion,
            if (description != null) 'description': description,
-           if (serviceAccount != null) 'service_account': serviceAccount,
+           if (serviceAccount != null)
+             'service_account': serviceAccount.encodeAs('email'),
            if (eventingEnablementType != null)
              'eventing_enablement_type': eventingEnablementType,
            if (suspended != null) 'suspended': suspended,

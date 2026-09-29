@@ -81,7 +81,7 @@ final class NetworkRouteStack extends Stack {
       GoogleComputeRoute(
         localName: 'egress_demo',
         name: .literal('terradart-egress-demo'),
-        network: .ref(vpc.id),
+        network: vpc.ref,
         destRange: .literal('192.168.255.0/24'),
         description: .literal('Demo egress route to the internet gateway'),
         priority: .literal(1000),
@@ -94,7 +94,7 @@ final class NetworkRouteStack extends Stack {
       GoogleComputeRouter(
         localName: 'edge',
         name: .literal('terradart-route-router'),
-        network: .ref(vpc.id),
+        network: vpc.ref,
         region: .literal('us-central1'),
         description: .literal('Cloud Router for Named Set demo'),
         dependsOn: [ResourceDependency(vpc)],

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_eks_fargate_profile`.
 const Set<String> _awsEksFargateProfileSensitive = <String>{};
 
@@ -33,7 +35,7 @@ final class AwsEksFargateProfile extends Resource {
     required TfArg<String> fargateProfileName,
     required TfArg<String> podExecutionRoleArn,
     TfArg<String>? region,
-    TfArg<List<String>>? subnetIds,
+    TfArg<List<RefTo<AwsSubnet>>>? subnetIds,
     TfArg<Map<String, String>>? tags,
     required List<EksFargateProfileSelector> selector,
     super.lifecycle,
@@ -47,7 +49,7 @@ final class AwsEksFargateProfile extends Resource {
            'fargate_profile_name': fargateProfileName,
            'pod_execution_role_arn': podExecutionRoleArn,
            if (region != null) 'region': region,
-           if (subnetIds != null) 'subnet_ids': subnetIds,
+           if (subnetIds != null) 'subnet_ids': subnetIds.encodeAs('id'),
            if (tags != null) 'tags': tags,
            'selector': TfArg.literal([for (final e in selector) e.encode()]),
          },

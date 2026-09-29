@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_security_group.dart' show AwsSecurityGroup;
+
 /// Sensitive field paths for `aws_db_proxy_endpoint`.
 const Set<String> _awsDbProxyEndpointSensitive = <String>{};
 
@@ -27,7 +29,7 @@ final class AwsDbProxyEndpoint extends Resource {
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
     TfArg<DbProxyEndpointTargetRole>? targetRole,
-    TfArg<List<String>>? vpcSecurityGroupIds,
+    TfArg<List<RefTo<AwsSecurityGroup>>>? vpcSecurityGroupIds,
     required TfArg<List<String>> vpcSubnetIds,
     super.lifecycle,
     super.dependsOn,
@@ -42,7 +44,7 @@ final class AwsDbProxyEndpoint extends Resource {
            if (tags != null) 'tags': tags,
            if (targetRole != null) 'target_role': targetRole,
            if (vpcSecurityGroupIds != null)
-             'vpc_security_group_ids': vpcSecurityGroupIds,
+             'vpc_security_group_ids': vpcSecurityGroupIds.encodeAs('id'),
            'vpc_subnet_ids': vpcSubnetIds,
          },
        );

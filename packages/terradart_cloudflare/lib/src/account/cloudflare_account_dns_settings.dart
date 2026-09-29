@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+
 /// Sensitive field paths for `cloudflare_account_dns_settings`.
 const Set<String> _cloudflareAccountDnsSettingsSensitive = <String>{};
 
@@ -153,7 +155,7 @@ final class CloudflareAccountDnsSettings extends Resource {
 
   CloudflareAccountDnsSettings({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     TfArg<bool>? enforceDnsOnly,
     AccountDnsSettingsZoneDefaults? zoneDefaults,
     super.lifecycle,
@@ -163,7 +165,7 @@ final class CloudflareAccountDnsSettings extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (enforceDnsOnly != null) 'enforce_dns_only': enforceDnsOnly,
            if (zoneDefaults != null)
              'zone_defaults': TfArg.literal(zoneDefaults.encode()),

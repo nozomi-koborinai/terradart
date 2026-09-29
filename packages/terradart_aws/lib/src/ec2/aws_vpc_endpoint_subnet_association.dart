@@ -3,6 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../ec2/aws_subnet.dart' show AwsSubnet;
+
 /// Sensitive field paths for `aws_vpc_endpoint_subnet_association`.
 const Set<String> _awsVpcEndpointSubnetAssociationSensitive = <String>{};
 
@@ -13,7 +15,7 @@ final class AwsVpcEndpointSubnetAssociation extends Resource {
   AwsVpcEndpointSubnetAssociation({
     required super.localName,
     TfArg<String>? region,
-    required TfArg<String> subnetId,
+    required RefTo<AwsSubnet> subnetId,
     required TfArg<String> vpcEndpointId,
     super.lifecycle,
     super.dependsOn,
@@ -23,7 +25,7 @@ final class AwsVpcEndpointSubnetAssociation extends Resource {
          terraformType: tfType,
          argMap: {
            if (region != null) 'region': region,
-           'subnet_id': subnetId,
+           'subnet_id': subnetId.encodeAs('id'),
            'vpc_endpoint_id': vpcEndpointId,
          },
        );

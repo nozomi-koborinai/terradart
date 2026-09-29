@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../lambda/aws_lambda_function.dart' show AwsLambdaFunction;
+
 /// Sensitive field paths for `aws_lambda_function_event_invoke_config`.
 const Set<String> _awsLambdaFunctionEventInvokeConfigSensitive = <String>{};
 
@@ -58,7 +60,7 @@ final class AwsLambdaFunctionEventInvokeConfig extends Resource {
 
   AwsLambdaFunctionEventInvokeConfig({
     required super.localName,
-    required TfArg<String> functionName,
+    required RefTo<AwsLambdaFunction> functionName,
     TfArg<num>? maximumEventAgeInSeconds,
     TfArg<num>? maximumRetryAttempts,
     TfArg<String>? qualifier,
@@ -71,7 +73,7 @@ final class AwsLambdaFunctionEventInvokeConfig extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'function_name': functionName,
+           'function_name': functionName.encodeAs('function_name'),
            if (maximumEventAgeInSeconds != null)
              'maximum_event_age_in_seconds': maximumEventAgeInSeconds,
            if (maximumRetryAttempts != null)
