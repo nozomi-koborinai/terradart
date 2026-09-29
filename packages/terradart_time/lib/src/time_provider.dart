@@ -10,6 +10,8 @@ const String kTimeProviderVersionConstraint = '~> 0.12';
 /// Concrete [StackProvider] for `hashicorp/time` (used by `TimeSleep`).
 @immutable
 final class TimeProvider implements StackProvider {
+  /// Creates the `hashicorp/time` provider configuration, optionally under
+  /// [alias]. The provider takes no other settings.
   const TimeProvider({this.alias});
 
   /// Provider alias (`provider "time" { alias = "eu" }`), or `null` for

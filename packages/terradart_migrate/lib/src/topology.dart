@@ -12,22 +12,35 @@ import 'package:terradart_hcl/terradart_hcl.dart';
 import 'emit/body_map.dart';
 import 'emit/tf_expr.dart';
 
-enum ModuleRole { root, child }
+/// Whether a module directory is applied on its own or only called.
+enum ModuleRole {
+  /// Applied on its own: `terraform apply` runs in this directory.
+  root,
+
+  /// Only reached through another module's `module` block.
+  child,
+}
 
 /// One directory holding `*.tf` / `*.tf.json` files.
 final class ModuleDir {
+  /// Creates the entry for [directory], parsed as [module].
   ModuleDir({
     required this.directory,
     required this.relPath,
     required this.module,
   });
 
+  /// The directory on disk.
   final Directory directory;
 
   /// The path relative to the scanned root, with forward slashes; `.` for
   /// the root itself.
   final String relPath;
+
+  /// Every `*.tf` / `*.tf.json` file in [directory], read as one module.
   final TfModule module;
+
+  /// The inferred role; [scanModuleTree] sets it.
   ModuleRole role = ModuleRole.root;
 
   /// `relPath`s of the modules whose `module` blocks call this directory.
@@ -42,6 +55,7 @@ final class ModuleDir {
   /// Notes from the scan: a source outside the tree, a non-literal source.
   final List<String> warnings = [];
 
+  /// True when [role] is [ModuleRole.root].
   bool get isRoot => role == ModuleRole.root;
 
   /// The directory's base name (`dev`, `service_account`).
@@ -52,18 +66,22 @@ final class ModuleDir {
 
 /// The scanned tree.
 final class ModuleTree {
+  /// Creates the tree scanned from [root].
   ModuleTree({required this.root, required this.modules});
 
+  /// The scanned directory.
   final Directory root;
 
   /// Every module directory, the root first, then by path.
   final List<ModuleDir> modules;
 
+  /// The [modules] with role [ModuleRole.root], in tree order.
   List<ModuleDir> get roots => [
     for (final m in modules)
       if (m.isRoot) m,
   ];
 
+  /// The [modules] with role [ModuleRole.child], in tree order.
   List<ModuleDir> get children => [
     for (final m in modules)
       if (!m.isRoot) m,
@@ -79,6 +97,7 @@ final class ModuleTree {
     return out;
   }
 
+  /// The module at [relPath] (see [ModuleDir.relPath]), if any.
   ModuleDir? byPath(String relPath) {
     for (final m in modules) {
       if (m.relPath == relPath) return m;
@@ -89,9 +108,13 @@ final class ModuleTree {
 
 /// A module directory that did not parse.
 final class ModuleParseError {
+  /// Creates the error for the directory at [relPath].
   const ModuleParseError(this.relPath, this.exception);
 
+  /// The directory's path relative to the scanned root.
   final String relPath;
+
+  /// The parser's diagnostics.
   final HclParseException exception;
 
   @override
@@ -100,8 +123,10 @@ final class ModuleParseError {
 
 /// Thrown by [scanModuleTree] when a module directory does not parse.
 final class ModuleTreeException implements Exception {
+  /// Creates the exception from every directory that failed to parse.
   const ModuleTreeException(this.errors);
 
+  /// One entry per directory that failed to parse.
   final List<ModuleParseError> errors;
 
   @override
@@ -255,6 +280,7 @@ String _sortKey(String relPath) => relPath == '.' ? '' : relPath;
 
 /// How the roots of one environment group differ from each other.
 final class EnvironmentComparison {
+  /// Creates the comparison of environment [group]; see [compareEnvironment].
   const EnvironmentComparison({
     required this.group,
     required this.roots,
@@ -264,6 +290,7 @@ final class EnvironmentComparison {
     required this.differing,
   });
 
+  /// The environment group's name.
   final String group;
 
   /// The roots' `relPath`s.
@@ -282,6 +309,7 @@ final class EnvironmentComparison {
   /// Shared address → the top-level arguments whose values differ.
   final Map<String, List<String>> differing;
 
+  /// The comparison as JSON, keyed by the field names.
   Map<String, Object?> toJson() => {
     'group': group,
     'roots': roots,

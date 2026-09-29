@@ -23,6 +23,7 @@ import 'migrate_manifest.dart';
 
 /// A run of consecutive statements sharing one guard.
 final class EnvGuard {
+  /// Creates the guard [dartName], true exactly in [members].
   const EnvGuard({required this.dartName, required this.members});
 
   /// `isProd` — the `Env` field that is true exactly in [members].
@@ -35,6 +36,7 @@ final class EnvGuard {
 /// Sibling environment roots folded into one Stack, or the reason they
 /// could not be.
 final class MergedEnvironment {
+  /// Creates the result for environment [group]; see [mergeEnvironments].
   const MergedEnvironment({
     required this.group,
     required this.envs,
@@ -55,14 +57,20 @@ final class MergedEnvironment {
 
   /// The directory the roots share (`.`, `envs`).
   final String group;
+
+  /// The environments folded together, in enum order.
   final List<EnvBinding> envs;
 
   /// `AppStack`, in `lib/<stackFile>.dart`.
   final String stackClass;
+
+  /// `app_stack` — the Stack library's base name.
   final String stackFile;
 
   /// `Env`, in `lib/<envFile>.dart`.
   final String envClass;
+
+  /// `env` — the enum library's base name.
   final String envFile;
 
   /// Enum member → that environment's own migration (its report drives
@@ -74,7 +82,12 @@ final class MergedEnvironment {
 
   /// The `Env` enum, empty when [refusal] is set.
   final String envSource;
+
+  /// The TerraDart packages the merged Stack imports, sorted.
   final List<String> packages;
+
+  /// File stems of the generated local-module wrappers the merged Stack
+  /// imports (`lib/<stem>.dart`).
   final Set<String> moduleWrappers;
 
   /// The values the environments disagree on.
@@ -90,6 +103,7 @@ final class MergedEnvironment {
   /// Why the roots stayed one Stack each; `null` when they merged.
   final String? refusal;
 
+  /// True when the roots became one Stack.
   bool get isMerged => refusal == null;
 }
 

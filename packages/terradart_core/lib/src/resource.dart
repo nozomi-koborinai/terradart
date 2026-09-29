@@ -64,6 +64,8 @@ abstract base class Resource implements TfAddressed {
   /// exposes it as its `provider:` constructor parameter.
   final String? provider;
 
+  /// Terraform address `<terraformType>.<localName>`, e.g.
+  /// `google_pubsub_topic.orders`.
   @override
   String get tfAddress => '$terraformType.$localName';
 

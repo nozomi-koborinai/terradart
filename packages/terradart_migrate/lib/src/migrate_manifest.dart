@@ -45,6 +45,7 @@ enum MigrateSlotKind {
 /// One constructor parameter of a curated factory, or one constructor
 /// parameter of a nested helper class.
 final class MigrateSlot {
+  /// Creates the recipe for the Dart parameter [dartName].
   const MigrateSlot({
     required this.tfName,
     required this.dartName,
@@ -71,6 +72,7 @@ final class MigrateSlot {
   /// Dart parameter name (`ackDeadlineSeconds`, `pushConfig`, ...).
   final String dartName;
 
+  /// How the parameter's value maps to Terraform.
   final MigrateSlotKind kind;
 
   /// Whether the Dart parameter is `required`.
@@ -133,12 +135,14 @@ final class MigrateSlot {
 /// `CloudSchedulerJobPubsubTarget`, ...): its constructor slots and, when
 /// its Terraform encoding could not be derived, the reason.
 final class MigrateHelper {
+  /// Creates the recipe for helper class [className].
   const MigrateHelper({
     required this.className,
     required this.slots,
     this.reason,
   });
 
+  /// The helper's Dart class name.
   final String className;
 
   /// Constructor parameters in declaration order. Each slot's
@@ -155,6 +159,7 @@ final class MigrateHelper {
 
 /// One output-attribute getter on a factory (`nameRef`, `id`, `selfLink`).
 final class MigrateGetter {
+  /// Creates the recipe for the getter [dartName].
   const MigrateGetter({
     required this.tfName,
     required this.dartName,
@@ -173,8 +178,10 @@ final class MigrateGetter {
 
 /// A `TerraformEnum` and its raw-value → member-name map.
 final class MigrateEnum {
+  /// Creates the recipe for the enum [name].
   const MigrateEnum({required this.name, required this.members});
 
+  /// The enum's Dart type name.
   final String name;
 
   /// Raw Terraform value (`'PROTOCOL_BUFFER'`) → Dart member (`protocolBuffer`).
@@ -183,6 +190,7 @@ final class MigrateEnum {
 
 /// The migration recipe for one curated factory.
 final class MigrateEntry {
+  /// Creates the recipe for the factory [className] of [tfType].
   const MigrateEntry({
     required this.tfType,
     required this.className,
@@ -224,6 +232,7 @@ final class MigrateEntry {
 /// `terradart wrap --migrate-manifest`. Edit this type by hand; never
 /// hand-edit a generated value.
 final class MigrateManifest {
+  /// Creates the manifest of [package].
   const MigrateManifest({
     required this.package,
     required this.entries,

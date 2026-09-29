@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- The migration manifest emitter writes a dartdoc line on the generated `<package>MigrateManifest` constant.
+
 ## 0.30.0 - 2026-09-28
 
 - Fix: a nested block with `nesting_mode: "map"` (a plugin-framework map of objects) derived one helper object instead of `Map<String, Helper>`, and its encode wrote one object where Terraform expects a map. `NestedBlockSpec.keyed` marks it; the slot, helper field and encode are keyed by the map key, and the migration manifest records the slot as `keyed: true`. A hand-written `Map<String, Helper>` slot whose encode is not a keyed map comprehension stays `manual`. Passthrough slots (`TfArg<Map>` vs `TfArg<List<Map>>`) treat `map` and `group` blocks as objects (`nestedBlockIsObject`).

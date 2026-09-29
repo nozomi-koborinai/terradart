@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Dartdoc on `TfAddressed.tfAddress` and `Resource.tfAddress`, which every factory inherits. No API changes.
+
 ## 0.30.0 - 2026-09-28
 
 - Sensitive-field paths accept a `*` segment for a map of blocks: `env_vars.*.value` checks `value` in every entry of `env_vars`, and a plain literal fails synth with the entry's key in the field path (`env_vars.API_KEY.value`).
