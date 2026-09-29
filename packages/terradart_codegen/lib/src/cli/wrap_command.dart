@@ -348,8 +348,8 @@ class WrapCommand extends Command<int> {
     final rawDataSourceSchemas = needsRawDataSourceSchemas
         ? _rawSchemaBlocks(schemaSrc, schemasKey: 'data_source_schemas')
         : const <String, Map<String, dynamic>>{};
-    // `deriveExactlyOne`: the hints' top-level exactly-one groups become
-    // sealed custom slots before anything reads the overrides.
+    // `deriveExactlyOne`: the hints' top-level exactly-one and at-most-one
+    // groups become sealed custom slots before anything reads the overrides.
     final exactlyOne = deriveExactlyOneSlots(
       typedOverrides,
       ir.resources,
@@ -359,6 +359,9 @@ class WrapCommand extends Command<int> {
     final resourceOverrides = exactlyOne.overrides;
     for (final s in exactlyOne.skipped) {
       stderr.writeln('terradart wrap: exactly-one group not sealed: $s');
+    }
+    for (final s in exactlyOne.skippedAtMostOne) {
+      stderr.writeln('terradart wrap: at-most-one group not sealed: $s');
     }
     final resourceEmitter = WrapperEmitter(
       overrides: resourceOverrides,
@@ -417,6 +420,10 @@ class WrapCommand extends Command<int> {
             rawSchemaBlock: rawResourceSchemas[entry.key],
             enumValues: providerEnums.resolver(entry.key),
             exactlyOneGroups: providerEnums.nestedExactlyOneGroups(
+              entry.key,
+              entry.value,
+            ),
+            atMostOneGroups: providerEnums.nestedAtMostOneGroups(
               entry.key,
               entry.value,
             ),

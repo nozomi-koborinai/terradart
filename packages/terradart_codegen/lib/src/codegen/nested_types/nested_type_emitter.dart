@@ -104,6 +104,7 @@ String _renderBlockTree(
         members: group.members,
         where: 'the `${spec.path.join('.')}` block of `$resourceTerraformType`',
         variants: group.variants,
+        optional: group.optional,
       ));
   }
 
@@ -275,29 +276,37 @@ List<_Member> _members(NestedBlockSpec spec) {
   return members;
 }
 
-/// One sealed exactly-one field of a helper class.
+/// One sealed field of a helper class: required for an exactly-one group,
+/// nullable for an at-most-one ([optional]) group.
 typedef _SealedGroup = ({
   List<String> members,
   List<ExactlyOneVariant> variants,
+  bool optional,
 });
 
 /// [spec]'s field plans with each sealable [NestedBlockSpec.exactlyOne]
-/// group folded into one required sealed field, at its first member's
-/// position. A group is sealable when every member is an optional typed
-/// input of this block, not a keyed block, and no earlier group took one of
-/// them.
+/// group folded into one required sealed field, and each sealable
+/// [NestedBlockSpec.atMostOne] group into one nullable sealed field, at its
+/// first member's position. A group is sealable when every member is an
+/// optional typed input of this block, not a keyed block, and no earlier
+/// group (exactly-one groups come first) took one of them.
 ({
   List<_FieldPlan> plans,
   List<_SealedGroup> sealed,
   List<String> skipped,
+  List<String> skippedAtMostOne,
 }) _layout(NestedBlockSpec spec) {
   final members = _members(spec);
   final byName = {for (final m in members) m.tfName: m};
   final taken = <String>{};
   final sealed = <_SealedGroup>[];
   final skipped = <String>[];
+  final skippedAtMostOne = <String>[];
   final firstOf = <String, _SealedGroup>{};
-  for (final group in spec.exactlyOne) {
+  for (final (group, optional) in [
+    for (final g in spec.exactlyOne) (g, false),
+    for (final g in spec.atMostOne) (g, true),
+  ]) {
     final ms = [for (final name in group) byName[name]];
     String? reason;
     for (final (i, m) in ms.indexed) {
@@ -315,13 +324,15 @@ typedef _SealedGroup = ({
       if (reason != null) break;
     }
     if (reason != null) {
-      skipped.add('${spec.path.join('.')} [${group.join(', ')}]: $reason');
+      (optional ? skippedAtMostOne : skipped)
+          .add('${spec.path.join('.')} [${group.join(', ')}]: $reason');
       continue;
     }
     taken.addAll(group);
     final g = (
       members: group,
       variants: [for (final m in ms) m!.variant!],
+      optional: optional,
     );
     sealed.add(g);
     firstOf[members.firstWhere((m) => group.contains(m.tfName)).tfName] = g;
@@ -333,26 +344,39 @@ typedef _SealedGroup = ({
       final ident = safeDartIdentifier(snakeToCamel(
         exactlyOneSlotName(g.members),
       ));
-      plans.add((
-        ctorParam: 'required this.$ident,',
-        fieldDecl:
-            'final ${exactlyOneSealedName(spec.className, g.members)} $ident;',
-        encodeEntry: '...$ident.encode(),',
-      ));
+      final type = exactlyOneSealedName(spec.className, g.members);
+      plans.add(g.optional
+          ? (
+              ctorParam: 'this.$ident,',
+              fieldDecl: 'final $type? $ident;',
+              encodeEntry: '...?$ident?.encode(),',
+            )
+          : (
+              ctorParam: 'required this.$ident,',
+              fieldDecl: 'final $type $ident;',
+              encodeEntry: '...$ident.encode(),',
+            ));
     } else if (!taken.contains(m.tfName)) {
       plans.add(m.plan);
     }
   }
-  return (plans: plans, sealed: sealed, skipped: skipped);
+  return (
+    plans: plans,
+    sealed: sealed,
+    skipped: skipped,
+    skippedAtMostOne: skippedAtMostOne,
+  );
 }
 
-/// The nested exactly-one [groups] (parent path → member names, as
-/// `collectNestedTypes` takes them) that [renderNestedTypes] leaves unsealed
-/// for [specs], each as `<path> [<members>]: <reason>`.
+/// The nested exactly-one [groups] — at-most-one groups when [optional] —
+/// (parent path → member names, as `collectNestedTypes` takes them) that
+/// [renderNestedTypes] leaves unsealed for [specs], each as
+/// `<path> [<members>]: <reason>`.
 List<String> unsealedNestedGroups(
   List<NestedBlockSpec> specs,
-  Map<String, List<List<String>>> groups,
-) {
+  Map<String, List<List<String>>> groups, {
+  bool optional = false,
+}) {
   final out = <String>[];
   final seen = <String>{};
   final laidOut = <String>{};
@@ -360,7 +384,10 @@ List<String> unsealedNestedGroups(
   // tracks where each copy actually sits.
   void walk(NestedBlockSpec spec, List<String> at) {
     if (!seen.add(at.join('.'))) return;
-    if (laidOut.add(spec.path.join('.'))) out.addAll(_layout(spec).skipped);
+    if (laidOut.add(spec.path.join('.'))) {
+      final layout = _layout(spec);
+      out.addAll(optional ? layout.skippedAtMostOne : layout.skipped);
+    }
     for (final c in spec.children) {
       walk(c, [...at, c.tfName]);
     }

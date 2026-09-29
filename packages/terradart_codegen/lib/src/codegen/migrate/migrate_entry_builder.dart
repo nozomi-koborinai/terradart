@@ -46,6 +46,7 @@ final class MigrateEntryInput {
     this.rawSchemaBlock,
     this.enumValues = descriptionEnumValues,
     this.exactlyOneGroups = const {},
+    this.atMostOneGroups = const {},
   });
 
   final String tfType;
@@ -69,6 +70,10 @@ final class MigrateEntryInput {
   /// The nested exactly-one groups the wrapper emitter sealed for this
   /// type (`ProviderEnums.nestedExactlyOneGroups`).
   final Map<String, List<List<String>>> exactlyOneGroups;
+
+  /// The nested at-most-one groups, likewise
+  /// (`ProviderEnums.nestedAtMostOneGroups`).
+  final Map<String, List<List<String>>> atMostOneGroups;
 }
 
 /// Builds every factory's recipe against one package-wide symbol table.
@@ -114,6 +119,7 @@ List<MigrateEntryBuild> buildMigrateEntries(
         rawSchemaBlock: inputs[i].rawSchemaBlock,
         enumValues: inputs[i].enumValues,
         exactlyOneGroups: inputs[i].exactlyOneGroups,
+        atMostOneGroups: inputs[i].atMostOneGroups,
         context: ctx,
         fileHelpers: perFileHelpers[i],
         fileEnums: perFileEnums[i],
@@ -135,6 +141,7 @@ MigrateEntryBuild buildMigrateEntry({
   Map<String, dynamic>? rawSchemaBlock,
   EnumValuesResolver enumValues = descriptionEnumValues,
   Map<String, List<List<String>>> exactlyOneGroups = const {},
+  Map<String, List<List<String>>> atMostOneGroups = const {},
   ShapeContext? context,
   HelperExtraction? fileHelpers,
   List<EmittedEnum>? fileEnums,
@@ -177,6 +184,7 @@ MigrateEntryBuild buildMigrateEntry({
       shareIdenticalShapes: override.dedupeNestedTypes,
       enumValues: enumValues,
       exactlyOneGroups: exactlyOneGroups,
+      atMostOneGroups: atMostOneGroups,
     );
     for (final s in collected) {
       specs[s.tfName] = s;

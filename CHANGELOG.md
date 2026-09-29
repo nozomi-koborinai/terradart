@@ -6,6 +6,17 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ## Unreleased
 
+### Added
+
+- **At-most-one sealed arguments** (`terradart_codegen`,
+  `terradart_migrate`) — the shape for mutually exclusive inputs the
+  provider also accepts none of: `deriveExactlyOne` seals a hints file's
+  `at_most_one_of_groups` into one nullable sealed-type argument (or helper
+  field) whose variants each set one member, beside the required sealed
+  arguments of exactly-one groups. The migration manifest and the migrator
+  carry them as optional sealed slots. No provider lane emits the groups
+  yet; per-provider adoption follows.
+
 ### Changed
 
 - **`terradart_cloudflare` exactly-one groups are sealed types**
