@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../magic/cloudflare_magic_wan_bgp_filter_profile.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_magic_wan_bgp_filter_profile`.
 const Set<String> _cloudflareMagicWanBgpFilterProfileSensitive = <String>{};
@@ -13,13 +14,16 @@ final class DataCloudflareMagicWanBgpFilterProfile extends Data {
 
   DataCloudflareMagicWanBgpFilterProfile({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> profileId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'profile_id': profileId},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'profile_id': profileId,
+         },
        );
 
   @override

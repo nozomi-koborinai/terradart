@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_page_shield_cookies_list`.
 const Set<String> _cloudflarePageShieldCookiesListSensitive = <String>{};
@@ -32,7 +33,7 @@ final class DataCloudflarePageShieldCookiesList extends Data {
     TfArg<String>? sameSite,
     TfArg<bool>? secure,
     TfArg<String>? type,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
@@ -53,7 +54,7 @@ final class DataCloudflarePageShieldCookiesList extends Data {
            'same_site': ?sameSite,
            'secure': ?secure,
            'type': ?type,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

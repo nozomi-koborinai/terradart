@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../pages/cloudflare_pages_project.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_pages_project`.
 const Set<String> _cloudflarePagesProjectSensitive = <String>{
@@ -25,13 +26,16 @@ final class DataCloudflarePagesProject extends Data {
 
   DataCloudflarePagesProject({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> projectName,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'project_name': projectName},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'project_name': projectName,
+         },
        );
 
   @override

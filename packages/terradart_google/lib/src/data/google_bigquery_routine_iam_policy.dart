@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../bigquery/google_bigquery_routine_iam_policy.dart';
+import '../bigquery/google_bigquery_dataset.dart' show GoogleBigqueryDataset;
 
 /// Sensitive field paths for `google_bigquery_routine_iam_policy`.
 const Set<String> _googleBigqueryRoutineIamPolicySensitive = <String>{};
@@ -16,7 +17,7 @@ final class DataGoogleBigqueryRoutineIamPolicy extends Data {
 
   DataGoogleBigqueryRoutineIamPolicy({
     required super.localName,
-    required TfArg<String> datasetId,
+    required RefTo<GoogleBigqueryDataset> datasetId,
     TfArg<String>? project,
     required TfArg<String> routineId,
     super.provider,
@@ -24,7 +25,7 @@ final class DataGoogleBigqueryRoutineIamPolicy extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dataset_id': datasetId,
+           'dataset_id': datasetId.encodeAs('dataset_id'),
            'project': ?project,
            'routine_id': routineId,
          },

@@ -4,6 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_access_identity_provider.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_zero_trust_access_identity_provider`.
 const Set<String> _cloudflareZeroTrustAccessIdentityProviderSensitive =
@@ -31,18 +33,18 @@ final class DataCloudflareZeroTrustAccessIdentityProvider extends Data {
 
   DataCloudflareZeroTrustAccessIdentityProvider({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? identityProviderId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataZeroTrustAccessIdentityProviderFilter? filter,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'identity_provider_id': ?identityProviderId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

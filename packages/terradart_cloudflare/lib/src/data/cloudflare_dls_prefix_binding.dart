@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../dls/cloudflare_dls_prefix_binding.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_dls_prefix_binding`.
 const Set<String> _cloudflareDlsPrefixBindingSensitive = <String>{};
@@ -13,13 +14,16 @@ final class DataCloudflareDlsPrefixBinding extends Data {
 
   DataCloudflareDlsPrefixBinding({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> bindingId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'binding_id': bindingId},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'binding_id': bindingId,
+         },
        );
 
   @override

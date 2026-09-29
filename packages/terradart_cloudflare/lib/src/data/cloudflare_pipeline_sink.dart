@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../pipeline/cloudflare_pipeline_sink.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_pipeline_sink`.
 const Set<String> _cloudflarePipelineSinkSensitive = <String>{};
@@ -34,7 +35,7 @@ final class DataCloudflarePipelineSink extends Data {
 
   DataCloudflarePipelineSink({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? sinkId,
     DataPipelineSinkFilter? filter,
     super.provider,
@@ -42,7 +43,7 @@ final class DataCloudflarePipelineSink extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'sink_id': ?sinkId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

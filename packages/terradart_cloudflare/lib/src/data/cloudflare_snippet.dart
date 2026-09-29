@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../snippet/cloudflare_snippet.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_snippet`.
 const Set<String> _cloudflareSnippetSensitive = <String>{};
@@ -18,12 +19,15 @@ final class DataCloudflareSnippet extends Data {
   DataCloudflareSnippet({
     required super.localName,
     required TfArg<String> snippetName,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'snippet_name': snippetName, 'zone_id': ?zoneId},
+         argMap: {
+           'snippet_name': snippetName,
+           'zone_id': ?zoneId?.encodeAs('id'),
+         },
        );
 
   @override

@@ -22427,9 +22427,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'role_arn',
           dartName: 'roleArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsIamRole',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'type_name',
@@ -34931,9 +34932,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'function_arn',
           dartName: 'functionArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsLambdaFunction',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'instance_id',
@@ -75671,9 +75673,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'role_name',
           dartName: 'roleName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsIamRole',
+          attribute: 'name',
         ),
       ],
       getters: <MigrateGetter>[
@@ -76333,9 +76336,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'role_name',
           dartName: 'roleName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsIamRole',
+          attribute: 'name',
         ),
       ],
       getters: <MigrateGetter>[
@@ -76451,9 +76455,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'role_name',
           dartName: 'roleName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsIamRole',
+          attribute: 'name',
         ),
       ],
       getters: <MigrateGetter>[
@@ -85022,9 +85027,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'key_id',
           dartName: 'keyId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsKmsKey',
+          attribute: 'key_id',
         ),
         MigrateSlot(
           tfName: 'plaintext',
@@ -85673,9 +85679,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'key_id',
           dartName: 'keyId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsKmsKey',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -86814,9 +86821,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'function_name',
           dartName: 'functionName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsLambdaFunction',
+          attribute: 'function_name',
         ),
         MigrateSlot(
           tfName: 'name',
@@ -88053,9 +88061,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'function_name',
           dartName: 'functionName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsLambdaFunction',
+          attribute: 'function_name',
         ),
         MigrateSlot(
           tfName: 'qualifier',
@@ -88218,9 +88227,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'function_name',
           dartName: 'functionName',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsLambdaFunction',
+          attribute: 'function_name',
         ),
         MigrateSlot(
           tfName: 'input',
@@ -94778,9 +94788,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'kms_key_id',
           dartName: 'kmsKeyId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsKmsKey',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -100779,9 +100790,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'subnet_id',
           dartName: 'subnetId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsSubnet',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'tags',
@@ -100793,9 +100805,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'vpc_id',
           dartName: 'vpcId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsVpc',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'filter',
@@ -100945,9 +100958,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'vpc_id',
           dartName: 'vpcId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsVpc',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'filter',
@@ -102524,9 +102538,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'vpc_id',
           dartName: 'vpcId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsVpc',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'filter',
@@ -108674,9 +108689,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'iam_role_arn',
           dartName: 'iamRoleArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsIamRole',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -126974,9 +126990,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'vpc_id',
           dartName: 'vpcId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsVpc',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'zone_id',
@@ -128107,9 +128124,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'subnet_id',
           dartName: 'subnetId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsSubnet',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'tags',
@@ -128121,9 +128139,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'vpc_id',
           dartName: 'vpcId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsVpc',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'filter',
@@ -128215,9 +128234,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'vpc_id',
           dartName: 'vpcId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsVpc',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'filter',
@@ -129487,9 +129507,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket',
           dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsS3Bucket',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -129714,9 +129735,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket',
           dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsS3Bucket',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'key',
@@ -129915,9 +129937,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket',
           dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsS3Bucket',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'expected_bucket_owner',
@@ -129956,9 +129979,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket',
           dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsS3Bucket',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'delimiter',
@@ -130105,9 +130129,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket',
           dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsS3Bucket',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -130242,9 +130267,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket',
           dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsS3Bucket',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'region',
@@ -130847,9 +130873,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket',
           dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsS3Bucket',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'checksum_mode',
@@ -131388,9 +131415,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket',
           dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'String',
+          dartType: 'AwsS3Bucket',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'delimiter',
@@ -131770,9 +131798,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'bucket',
           dartName: 'bucket',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsS3Bucket',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'data_source_id',
@@ -137841,9 +137870,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'vpc_id',
           dartName: 'vpcId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsVpc',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'filter',
@@ -150222,9 +150252,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'vpc_id',
           dartName: 'vpcId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsVpc',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'filter',
@@ -154479,9 +154510,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'vpc_id',
           dartName: 'vpcId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsVpc',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'filter',
@@ -156387,9 +156419,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'peer_vpc_id',
           dartName: 'peerVpcId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsVpc',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'status',
@@ -156408,9 +156441,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'vpc_id',
           dartName: 'vpcId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsVpc',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'filter',
@@ -221694,9 +221728,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'role_arn',
           dartName: 'roleArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsIamRole',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'principal',
@@ -222498,9 +222533,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'log_group',
               dartName: 'logGroup',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.reference,
               required: true,
-              dartType: 'String',
+              dartType: 'AwsCloudwatchLogGroup',
+              attribute: 'name',
             ),
           ],
         ),
@@ -222526,9 +222562,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
             MigrateSlot(
               tfName: 'bucket',
               dartName: 'bucket',
-              kind: MigrateSlotKind.scalar,
+              kind: MigrateSlotKind.reference,
               required: true,
-              dartType: 'String',
+              dartType: 'AwsS3Bucket',
+              attribute: 'id',
             ),
           ],
         ),
@@ -223654,16 +223691,20 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'security_groups',
           dartName: 'securityGroups',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'List<Object?>',
+          repeated: true,
+          dartType: 'AwsSecurityGroup',
+          attribute: 'id',
         ),
         MigrateSlot(
           tfName: 'subnets',
           dartName: 'subnets',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: true,
-          dartType: 'List<Object?>',
+          repeated: true,
+          dartType: 'AwsSubnet',
+          attribute: 'id',
         ),
       ],
     ),
@@ -223680,9 +223721,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'execution_role_arn',
           dartName: 'executionRoleArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsIamRole',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'memory',
@@ -223694,9 +223736,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'task_role_arn',
           dartName: 'taskRoleArn',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsIamRole',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'container_overrides',
@@ -224598,9 +224641,10 @@ const MigrateManifest awsMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'key_id',
           dartName: 'keyId',
-          kind: MigrateSlotKind.scalar,
+          kind: MigrateSlotKind.reference,
           required: false,
-          dartType: 'String',
+          dartType: 'AwsKmsKey',
+          attribute: 'arn',
         ),
         MigrateSlot(
           tfName: 'name',

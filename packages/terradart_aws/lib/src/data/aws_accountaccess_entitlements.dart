@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../iam/aws_iam_role.dart' show AwsIamRole;
 
 /// Sensitive field paths for `aws_accountaccess_entitlements`.
 const Set<String> _awsAccountaccessEntitlementsSensitive = <String>{};
@@ -33,14 +34,14 @@ final class DataAccountaccessEntitlementsFilterPrincipalRole {
 
   final TfArg<String>? accountId;
 
-  final TfArg<String>? roleArn;
+  final RefTo<AwsIamRole>? roleArn;
 
   final List<DataAccountaccessEntitlementsFilterPrincipalRolePrincipal>?
   principal;
 
   Map<String, Object?> encode() => {
     'account_id': ?accountId?.toTfJson(),
-    'role_arn': ?roleArn?.toTfJson(),
+    'role_arn': ?roleArn?.encodeAs('arn').toTfJson(),
     if (principal != null)
       'principal': [for (final e in principal!) e.encode()],
   };

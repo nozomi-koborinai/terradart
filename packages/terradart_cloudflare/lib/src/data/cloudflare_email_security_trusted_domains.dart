@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../email/cloudflare_email_security_trusted_domains.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_email_security_trusted_domains`.
 const Set<String> _cloudflareEmailSecurityTrustedDomainsSensitive = <String>{};
@@ -73,7 +74,7 @@ final class DataCloudflareEmailSecurityTrustedDomains extends Data {
 
   DataCloudflareEmailSecurityTrustedDomains({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? trustedDomainId,
     DataEmailSecurityTrustedDomainsFilter? filter,
     super.provider,
@@ -81,7 +82,7 @@ final class DataCloudflareEmailSecurityTrustedDomains extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'trusted_domain_id': ?trustedDomainId,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },

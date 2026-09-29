@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../storage/google_storage_bucket.dart' show GoogleStorageBucket;
 
 /// Sensitive field paths for `google_storage_bucket_object_contents`.
 const Set<String> _googleStorageBucketObjectContentsSensitive = <String>{};
@@ -15,7 +16,7 @@ final class DataGoogleStorageBucketObjectContents extends Data {
 
   DataGoogleStorageBucketObjectContents({
     required super.localName,
-    required TfArg<String> bucket,
+    required RefTo<GoogleStorageBucket> bucket,
     TfArg<String>? matchGlob,
     TfArg<String>? prefix,
     super.provider,
@@ -23,7 +24,7 @@ final class DataGoogleStorageBucketObjectContents extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('name'),
            'match_glob': ?matchGlob,
            'prefix': ?prefix,
          },

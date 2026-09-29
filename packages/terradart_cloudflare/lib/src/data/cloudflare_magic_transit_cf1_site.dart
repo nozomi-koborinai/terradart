@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../magic/cloudflare_magic_transit_cf1_site.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_magic_transit_cf1_site`.
 const Set<String> _cloudflareMagicTransitCf1SiteSensitive = <String>{};
@@ -18,13 +19,16 @@ final class DataCloudflareMagicTransitCf1Site extends Data {
 
   DataCloudflareMagicTransitCf1Site({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> cf1SiteId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'cf1_site_id': cf1SiteId},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'cf1_site_id': cf1SiteId,
+         },
        );
 
   @override

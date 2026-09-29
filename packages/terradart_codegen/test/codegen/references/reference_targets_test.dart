@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/codegen/data_source_wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/exactly_one_derivation.dart';
 import 'package:terradart_codegen/src/codegen/migrate/migrate_entry_builder.dart';
 import 'package:terradart_codegen/src/codegen/migrate/migrate_manifest_data.dart';
@@ -232,6 +233,78 @@ void main() {
       );
     });
 
+    group('data sources', () {
+      ReferenceResolution resolveData(ReferenceRule rule) => resolveReferences(
+        rules: [rule],
+        resourceSchemas: _blocks('resource_schemas'),
+        curated: const ['google_x_network', 'google_x_vm'],
+        targetDirs: const {'google_x_network': 'x', 'google_x_vm': 'x'},
+        dataSourceSchemas: {
+          ..._blocks('data_source_schemas'),
+          'google_x_vm': {
+            'attributes': {
+              'name': {'type': 'string', 'required': true},
+              'network': {'type': 'string', 'optional': true},
+            },
+          },
+          'google_x_vms': {
+            'attributes': {
+              'network': {'type': 'string', 'optional': true},
+            },
+          },
+        },
+      );
+
+      test('types data-source inputs under data.<type>.<path>', () {
+        final r = resolveData(_rule());
+        expect(r.errors, isEmpty);
+        expect(
+          r.byDataSource.keys,
+          unorderedEquals(['google_x_vm', 'google_x_vms']),
+        );
+        expect(r.byDataSource['google_x_vm']!.keys, ['network']);
+        expect(
+          r.byDataSource['google_x_vm']!['network']!.dartType,
+          'RefTo<GoogleXNetwork>',
+        );
+        expect(r.byDataSource['google_x_network'], isNull);
+        expect(r.slotCount, 5);
+      });
+
+      test('inherits the resource twin entries', () {
+        final r = resolveData(
+          _rule(
+            attributes: {'google_x_vm.network': 'name'},
+            exclude: {'google_x_vm.networks'},
+          ),
+        );
+        expect(r.errors, isEmpty);
+        expect(r.byResource['google_x_vm']!['network']!.attribute, 'name');
+        expect(r.byDataSource['google_x_vm']!['network']!.attribute, 'name');
+        expect(
+          r.byDataSource['google_x_vms']!['network']!.attribute,
+          'self_link',
+        );
+      });
+
+      test('data. keys apply to the data source only', () {
+        final r = resolveData(
+          _rule(
+            attributes: {'data.google_x_vms.network': 'name'},
+            exclude: {'data.google_x_vm.network'},
+          ),
+        );
+        expect(r.errors, isEmpty);
+        expect(r.byDataSource['google_x_vm'], isNull);
+        expect(r.byResource['google_x_vm']!['network']!.attribute, 'self_link');
+        expect(r.byDataSource['google_x_vms']!['network']!.attribute, 'name');
+        expect(
+          resolveData(_rule(exclude: {'data.google_x_gone.network'})).errors,
+          contains(contains('exclude entry "data.google_x_gone.network"')),
+        );
+      });
+    });
+
     test('a partial run does not report entries it cannot see', () {
       expect(
         _resolve([
@@ -364,6 +437,70 @@ hashicorp/google:
       final field = slot(nic.slots, 'network');
       expect(field.kind, MigrateSlotKind.reference);
       expect(field.attribute, 'name');
+    });
+  });
+
+  group('data-source emission', () {
+    final block = {
+      'attributes': {
+        'name': {'type': 'string', 'required': true},
+        'network': {'type': 'string', 'optional': true},
+        'self_link': {'type': 'string', 'computed': true},
+      },
+    };
+    final schema = {
+      'format_version': '1.0',
+      'provider_schemas': {
+        'registry.terraform.io/hashicorp/google': {
+          'resource_schemas': const <String, Object?>{},
+          'data_source_schemas': {
+            'google_x_vm': {'block': block},
+          },
+        },
+      },
+    };
+    final ir = const SchemaJsonParser().parseString(jsonEncode(schema));
+    final references = {
+      'google_x_vm': {
+        'network': const ResolvedReference(
+          target: 'google_x_network',
+          className: 'GoogleXNetwork',
+          outputDir: 'x',
+          attribute: 'self_link',
+          list: false,
+        ),
+      },
+    };
+    final emitter = DataSourceWrapperEmitter(
+      overrides: const {
+        'google_x_vm': WrapperOverride(
+          kind: WrapperOverrideKind.dataSource,
+          outputDir: 'compute',
+        ),
+      },
+      rawDataSourceSchemas: {'google_x_vm': block},
+      resourceDirs: const {'google_x_vm': 'compute', 'google_x_network': 'x'},
+      references: references,
+    );
+    final src =
+        DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        ).format(
+          emitter.emit(
+            ir.dataSources['google_x_vm']!,
+            providerSource: 'hashicorp/google',
+          ),
+        );
+
+    test('types a matched input and imports the target', () {
+      expect(
+        src,
+        contains("import '../x/google_x_network.dart' show GoogleXNetwork;"),
+      );
+      expect(src, contains('RefTo<GoogleXNetwork>? network'));
+      expect(src, contains("'network': ?network?.encodeAs('self_link')"));
+      expect(src, contains('required TfArg<String> name'));
+      expect(emitter.typedReferences, ['data.google_x_vm.network']);
     });
   });
 

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../notifications/cloudflare_notification_policy_webhooks.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_notification_policy_webhooks`.
 const Set<String> _cloudflareNotificationPolicyWebhooksSensitive = <String>{
@@ -20,13 +21,16 @@ final class DataCloudflareNotificationPolicyWebhooks extends Data {
 
   DataCloudflareNotificationPolicyWebhooks({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> webhookId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'webhook_id': webhookId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'webhook_id': webhookId,
+         },
        );
 
   @override

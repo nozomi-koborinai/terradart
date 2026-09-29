@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../dns/cloudflare_dns_zone_transfers_peer.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_dns_zone_transfers_peer`.
 const Set<String> _cloudflareDnsZoneTransfersPeerSensitive = <String>{};
@@ -17,13 +18,13 @@ final class DataCloudflareDnsZoneTransfersPeer extends Data {
 
   DataCloudflareDnsZoneTransfersPeer({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> peerId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'peer_id': peerId},
+         argMap: {'account_id': ?accountId?.encodeAs('id'), 'peer_id': peerId},
        );
 
   @override

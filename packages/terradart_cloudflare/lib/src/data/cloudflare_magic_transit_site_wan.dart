@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../magic/cloudflare_magic_transit_site_wan.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_magic_transit_site_wan`.
 const Set<String> _cloudflareMagicTransitSiteWanSensitive = <String>{};
@@ -18,14 +19,18 @@ final class DataCloudflareMagicTransitSiteWan extends Data {
 
   DataCloudflareMagicTransitSiteWan({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> siteId,
     required TfArg<String> wanId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': accountId, 'site_id': siteId, 'wan_id': wanId},
+         argMap: {
+           'account_id': accountId.encodeAs('id'),
+           'site_id': siteId,
+           'wan_id': wanId,
+         },
        );
 
   @override

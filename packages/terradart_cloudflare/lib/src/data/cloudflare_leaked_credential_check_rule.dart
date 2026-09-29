@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../security/cloudflare_leaked_credential_check_rule.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_leaked_credential_check_rule`.
 const Set<String> _cloudflareLeakedCredentialCheckRuleSensitive = <String>{};
@@ -19,12 +20,15 @@ final class DataCloudflareLeakedCredentialCheckRule extends Data {
   DataCloudflareLeakedCredentialCheckRule({
     required super.localName,
     required TfArg<String> detectionId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'detection_id': detectionId, 'zone_id': ?zoneId},
+         argMap: {
+           'detection_id': detectionId,
+           'zone_id': ?zoneId?.encodeAs('id'),
+         },
        );
 
   @override

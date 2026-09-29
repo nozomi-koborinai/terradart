@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../ssl/cloudflare_authenticated_origin_pulls_settings.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_authenticated_origin_pulls_settings`.
 const Set<String> _cloudflareAuthenticatedOriginPullsSettingsSensitive =
@@ -18,10 +19,13 @@ final class DataCloudflareAuthenticatedOriginPullsSettings extends Data {
 
   DataCloudflareAuthenticatedOriginPullsSettings({
     required super.localName,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
-  }) : super(terraformType: tfType, argMap: {'zone_id': ?zoneId});
+  }) : super(
+         terraformType: tfType,
+         argMap: {'zone_id': ?zoneId?.encodeAs('id')},
+       );
 
   @override
   Set<String> get sensitiveFields =>

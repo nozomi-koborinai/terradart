@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_email_security_trusted_domains_list`.
 const Set<String> _cloudflareEmailSecurityTrustedDomainsListSensitive =
@@ -17,7 +18,7 @@ final class DataCloudflareEmailSecurityTrustedDomainsList extends Data {
 
   DataCloudflareEmailSecurityTrustedDomainsList({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? direction,
     TfArg<bool>? isRecent,
     TfArg<bool>? isSimilarity,
@@ -30,7 +31,7 @@ final class DataCloudflareEmailSecurityTrustedDomainsList extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': ?accountId,
+           'account_id': ?accountId?.encodeAs('id'),
            'direction': ?direction,
            'is_recent': ?isRecent,
            'is_similarity': ?isSimilarity,

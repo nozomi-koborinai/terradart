@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../dns/cloudflare_dns_record.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_dns_record`.
 const Set<String> _cloudflareDnsRecordSensitive = <String>{};
@@ -279,7 +280,7 @@ final class DataCloudflareDnsRecord extends Data {
     required super.localName,
     TfArg<String>? dnsRecordId,
     TfArg<bool>? includeShadowMetadata,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     DataDnsRecordFilter? filter,
     super.provider,
     super.timeouts,
@@ -288,7 +289,7 @@ final class DataCloudflareDnsRecord extends Data {
          argMap: {
            'dns_record_id': ?dnsRecordId,
            'include_shadow_metadata': ?includeShadowMetadata,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

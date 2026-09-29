@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../cloudforce_one/cloudflare_cloudforce_one_request_priority.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_cloudforce_one_request_priority`.
 const Set<String> _cloudflareCloudforceOneRequestPrioritySensitive = <String>{};
@@ -17,13 +18,16 @@ final class DataCloudflareCloudforceOneRequestPriority extends Data {
 
   DataCloudflareCloudforceOneRequestPriority({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     required TfArg<String> priorityId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'priority_id': priorityId},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'priority_id': priorityId,
+         },
        );
 
   @override

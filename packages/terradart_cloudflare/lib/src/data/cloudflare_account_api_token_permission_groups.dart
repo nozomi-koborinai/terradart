@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_account_api_token_permission_groups`.
 const Set<String> _cloudflareAccountApiTokenPermissionGroupsSensitive =
@@ -17,14 +18,18 @@ final class DataCloudflareAccountApiTokenPermissionGroups extends Data {
 
   DataCloudflareAccountApiTokenPermissionGroups({
     required super.localName,
-    TfArg<String>? accountId,
+    RefTo<CloudflareAccount>? accountId,
     TfArg<String>? name,
     TfArg<String>? scope,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'account_id': ?accountId, 'name': ?name, 'scope': ?scope},
+         argMap: {
+           'account_id': ?accountId?.encodeAs('id'),
+           'name': ?name,
+           'scope': ?scope,
+         },
        );
 
   @override

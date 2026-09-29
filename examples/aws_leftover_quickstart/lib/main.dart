@@ -17688,7 +17688,7 @@ final class AwsLeftoverStack extends Stack {
                     DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestination(
                       cloudwatchLogs:
                           DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestinationCloudwatchLogs(
-                            logGroup: TfArg.literal(leftover),
+                            logGroup: RefTo.literal(leftover),
                           ),
                     ),
               ),
@@ -17702,7 +17702,7 @@ final class AwsLeftoverStack extends Stack {
                     DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestination(
                       cloudwatchLogs:
                           DataCloudwatchLogDataProtectionPolicyDocumentStatementOperationAuditFindingsDestinationCloudwatchLogs(
-                            logGroup: TfArg.literal('leftover1'),
+                            logGroup: RefTo.literal(leftover),
                           ),
                     ),
               ),
@@ -17890,7 +17890,7 @@ final class AwsLeftoverStack extends Stack {
     addData(
       DataAwsConnectLambdaFunctionAssociation(
         localName: 'd_connect_lambda_function_association',
-        functionArn: TfArg.literal(arn),
+        functionArn: RefTo.literal(arn),
         instanceId: TfArg.literal('i-0123456789abcdef0'),
       ),
     );
@@ -18860,7 +18860,7 @@ final class AwsLeftoverStack extends Stack {
     addData(
       DataAwsIamInstanceProfiles(
         localName: 'd_iam_instance_profiles',
-        roleName: TfArg.literal(leftover),
+        roleName: RefTo.literal(leftover),
       ),
     );
 
@@ -18894,14 +18894,14 @@ final class AwsLeftoverStack extends Stack {
     addData(
       DataAwsIamRolePolicies(
         localName: 'd_iam_role_policies',
-        roleName: TfArg.literal(leftover),
+        roleName: RefTo.literal(leftover),
       ),
     );
 
     addData(
       DataAwsIamRolePolicyAttachments(
         localName: 'd_iam_role_policy_attachments',
-        roleName: TfArg.literal(leftover),
+        roleName: RefTo.literal(leftover),
       ),
     );
 
@@ -19164,7 +19164,7 @@ final class AwsLeftoverStack extends Stack {
     addData(
       DataAwsKmsCiphertext(
         localName: 'd_kms_ciphertext',
-        keyId: TfArg.literal(leftover),
+        keyId: RefTo.literal(leftover),
         plaintext: TfArg.variable('leftover_secret'),
       ),
     );
@@ -19181,7 +19181,7 @@ final class AwsLeftoverStack extends Stack {
     addData(
       DataAwsKmsPublicKey(
         localName: 'd_kms_public_key',
-        keyId: TfArg.literal('alias/leftover'),
+        keyId: RefTo.literal('alias/leftover'),
       ),
     );
 
@@ -19232,7 +19232,7 @@ final class AwsLeftoverStack extends Stack {
     addData(
       DataAwsLambdaAlias(
         localName: 'd_lambda_alias',
-        functionName: TfArg.literal(leftover),
+        functionName: RefTo.literal(leftover),
         name: TfArg.literal(leftover),
       ),
     );
@@ -19254,7 +19254,7 @@ final class AwsLeftoverStack extends Stack {
     addData(
       DataAwsLambdaFunctionUrl(
         localName: 'd_lambda_function_url',
-        functionName: TfArg.literal(leftover),
+        functionName: RefTo.literal(leftover),
       ),
     );
 
@@ -19263,7 +19263,7 @@ final class AwsLeftoverStack extends Stack {
     addData(
       DataAwsLambdaInvocation(
         localName: 'd_lambda_invocation',
-        functionName: TfArg.literal(leftover),
+        functionName: RefTo.literal(leftover),
         input: TfArg.literal(policy),
       ),
     );
@@ -19758,7 +19758,7 @@ final class AwsLeftoverStack extends Stack {
     addData(
       DataAwsOdbIamRoleAssociation(
         localName: 'd_odb_iam_role_association',
-        iamRoleArn: TfArg.literal(arn),
+        iamRoleArn: RefTo.literal(arn),
         resourceArn: TfArg.literal(arn),
       ),
     );
@@ -20341,14 +20341,14 @@ final class AwsLeftoverStack extends Stack {
     addData(
       DataAwsS3BucketNotification(
         localName: 'd_s3_bucket_notification',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
       ),
     );
 
     addData(
       DataAwsS3BucketObject(
         localName: 'd_s3_bucket_object',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
         key: TfArg.literal(leftover),
       ),
     );
@@ -20356,28 +20356,28 @@ final class AwsLeftoverStack extends Stack {
     addData(
       DataAwsS3BucketObjectLockConfiguration(
         localName: 'd_s3_bucket_object_lock_configuration',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
       ),
     );
 
     addData(
       DataAwsS3BucketObjects(
         localName: 'd_s3_bucket_objects',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
       ),
     );
 
     addData(
       DataAwsS3BucketPolicy(
         localName: 'd_s3_bucket_policy',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
       ),
     );
 
     addData(
       DataAwsS3BucketReplicationConfiguration(
         localName: 'd_s3_bucket_replication_configuration',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
       ),
     );
 
@@ -20388,7 +20388,7 @@ final class AwsLeftoverStack extends Stack {
     addData(
       DataAwsS3Object(
         localName: 'd_s3_object',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
         key: TfArg.literal(leftover),
       ),
     );
@@ -20396,7 +20396,7 @@ final class AwsLeftoverStack extends Stack {
     addData(
       DataAwsS3Objects(
         localName: 'd_s3_objects',
-        bucket: TfArg.literal(leftover),
+        bucket: RefTo.literal(leftover),
       ),
     );
 

@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../zero_trust/cloudflare_zero_trust_resource_library_application.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_zero_trust_resource_library_application`.
 const Set<String> _cloudflareZeroTrustResourceLibraryApplicationSensitive =
@@ -51,14 +52,14 @@ final class DataCloudflareZeroTrustResourceLibraryApplication extends Data {
 
   DataCloudflareZeroTrustResourceLibraryApplication({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     DataZeroTrustResourceLibraryApplicationFilter? filter,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            if (filter != null) 'filter': TfArg.literal(filter.encode()),
          },
        );

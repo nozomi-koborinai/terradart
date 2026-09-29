@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../rules/cloudflare_page_rule.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_page_rule`.
 const Set<String> _cloudflarePageRuleSensitive = <String>{};
@@ -29,12 +30,15 @@ final class DataCloudflarePageRule extends Data {
   DataCloudflarePageRule({
     required super.localName,
     required TfArg<String> pageruleId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'pagerule_id': pageruleId, 'zone_id': ?zoneId},
+         argMap: {
+           'pagerule_id': pageruleId,
+           'zone_id': ?zoneId?.encodeAs('id'),
+         },
        );
 
   @override

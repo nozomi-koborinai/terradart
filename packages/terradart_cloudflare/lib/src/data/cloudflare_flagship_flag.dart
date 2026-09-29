@@ -4,6 +4,7 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 import '../flagship/cloudflare_flagship_flag.dart';
+import '../account/cloudflare_account.dart' show CloudflareAccount;
 
 /// Sensitive field paths for `cloudflare_flagship_flag`.
 const Set<String> _cloudflareFlagshipFlagSensitive = <String>{};
@@ -29,7 +30,7 @@ final class DataCloudflareFlagshipFlag extends Data {
 
   DataCloudflareFlagshipFlag({
     required super.localName,
-    required TfArg<String> accountId,
+    required RefTo<CloudflareAccount> accountId,
     required TfArg<String> appId,
     TfArg<String>? flagKey,
     DataFlagshipFlagFilter? filter,
@@ -38,7 +39,7 @@ final class DataCloudflareFlagshipFlag extends Data {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'account_id': accountId,
+           'account_id': accountId.encodeAs('id'),
            'app_id': appId,
            'flag_key': ?flagKey,
            if (filter != null) 'filter': TfArg.literal(filter.encode()),

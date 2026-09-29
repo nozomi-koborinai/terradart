@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../kms/google_kms_crypto_key_version.dart';
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_kms_crypto_key_version`.
 const Set<String> _googleKmsCryptoKeyVersionSensitive = <String>{};
@@ -16,13 +17,13 @@ final class DataGoogleKmsCryptoKeyVersion extends Data {
 
   DataGoogleKmsCryptoKeyVersion({
     required super.localName,
-    required TfArg<String> cryptoKey,
+    required RefTo<GoogleKmsCryptoKey> cryptoKey,
     TfArg<num>? version,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'crypto_key': cryptoKey, 'version': ?version},
+         argMap: {'crypto_key': cryptoKey.encodeAs('id'), 'version': ?version},
        );
 
   @override

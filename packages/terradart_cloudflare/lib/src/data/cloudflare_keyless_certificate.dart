@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../ssl/cloudflare_keyless_certificate.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_keyless_certificate`.
 const Set<String> _cloudflareKeylessCertificateSensitive = <String>{};
@@ -29,14 +30,14 @@ final class DataCloudflareKeylessCertificate extends Data {
   DataCloudflareKeylessCertificate({
     required super.localName,
     required TfArg<String> keylessCertificateId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
          argMap: {
            'keyless_certificate_id': keylessCertificateId,
-           'zone_id': ?zoneId,
+           'zone_id': ?zoneId?.encodeAs('id'),
          },
        );
 

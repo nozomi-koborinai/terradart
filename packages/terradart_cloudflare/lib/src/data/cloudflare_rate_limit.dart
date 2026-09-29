@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 import '../security/cloudflare_rate_limit.dart';
+import '../zone/cloudflare_zone.dart' show CloudflareZone;
 
 /// Sensitive field paths for `cloudflare_rate_limit`.
 const Set<String> _cloudflareRateLimitSensitive = <String>{};
@@ -18,12 +19,15 @@ final class DataCloudflareRateLimit extends Data {
   DataCloudflareRateLimit({
     required super.localName,
     required TfArg<String> rateLimitId,
-    TfArg<String>? zoneId,
+    RefTo<CloudflareZone>? zoneId,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'rate_limit_id': rateLimitId, 'zone_id': ?zoneId},
+         argMap: {
+           'rate_limit_id': rateLimitId,
+           'zone_id': ?zoneId?.encodeAs('id'),
+         },
        );
 
   @override
