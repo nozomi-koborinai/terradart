@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- pub.dev: add `example/main.dart` (`migrateModule` on an inline module), dartdoc on every public member, and a `pubspec.yaml` description short enough for the pub.dev score (180 characters at most). No API changes.
+
 ## 0.30.0 - 2026-09-28
 
 - `MigrateSlot.keyed`: a helper slot typed `Map<String, Helper>` (a `nesting_mode: "map"` block) migrates from an object of blocks, one helper per key. A `*` segment in a sensitive path matches every key.

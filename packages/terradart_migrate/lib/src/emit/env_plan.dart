@@ -19,6 +19,7 @@ import 'tf_expr.dart';
 
 /// One environment of a merged Stack.
 final class EnvBinding {
+  /// Binds the enum [member] to the root at [path].
   const EnvBinding({
     required this.member,
     required this.path,
@@ -38,6 +39,7 @@ final class EnvBinding {
 
 /// One value the environments disagree on, lifted to a constant on `Env`.
 final class EnvField {
+  /// Creates the field [dartName], valued per environment by [values].
   const EnvField({
     required this.dartName,
     required this.inferredType,
@@ -79,6 +81,7 @@ const Set<String> envMemberNames = {
 
 /// The lifting plan for one environment group.
 final class EnvPlan {
+  /// Creates the plan; see [planEnvironments].
   const EnvPlan({
     required this.envs,
     required this.fields,
@@ -86,6 +89,7 @@ final class EnvPlan {
     required this.notes,
   });
 
+  /// The environments the plan covers, in enum order.
   final List<EnvBinding> envs;
 
   /// The constants, in declaration order.
