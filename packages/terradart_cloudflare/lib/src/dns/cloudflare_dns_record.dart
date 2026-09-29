@@ -41,16 +41,16 @@ enum DnsRecordType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.content(...)`.
-sealed class DnsRecordContentOrData {
-  const DnsRecordContentOrData();
+sealed class DnsRecordContent {
+  const DnsRecordContent();
 
   /// Sets `content`.
-  const factory DnsRecordContentOrData.content(TfArg<String> content) =
-      DnsRecordContentOrDataContent;
+  const factory DnsRecordContent.content(TfArg<String> content) =
+      DnsRecordContentContent;
 
   /// Sets `data`.
-  const factory DnsRecordContentOrData.data(DnsRecordData data) =
-      DnsRecordContentOrDataData;
+  const factory DnsRecordContent.data(DnsRecordData data) =
+      DnsRecordContentData;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -62,9 +62,9 @@ sealed class DnsRecordContentOrData {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DnsRecordContentOrData.content] choice: sets `content`.
-final class DnsRecordContentOrDataContent extends DnsRecordContentOrData {
-  const DnsRecordContentOrDataContent(this.content);
+/// The [DnsRecordContent.content] choice: sets `content`.
+final class DnsRecordContentContent extends DnsRecordContent {
+  const DnsRecordContentContent(this.content);
 
   final TfArg<String> content;
 
@@ -78,9 +78,9 @@ final class DnsRecordContentOrDataContent extends DnsRecordContentOrData {
   Map<String, TfArg<Object?>> get argMap => {'content': content};
 }
 
-/// The [DnsRecordContentOrData.data] choice: sets `data`.
-final class DnsRecordContentOrDataData extends DnsRecordContentOrData {
-  const DnsRecordContentOrDataData(this.data);
+/// The [DnsRecordContent.data] choice: sets `data`.
+final class DnsRecordContentData extends DnsRecordContent {
+  const DnsRecordContentData(this.data);
 
   final DnsRecordData data;
 
@@ -315,7 +315,7 @@ final class CloudflareDnsRecord extends Resource {
     required TfArg<String> name,
     required TfArg<DnsRecordType> type,
     required TfArg<num> ttl,
-    DnsRecordContentOrData? contentOrData,
+    DnsRecordContent? content,
     TfArg<bool>? proxied,
     TfArg<String>? comment,
     TfArg<num>? priority,
@@ -333,7 +333,7 @@ final class CloudflareDnsRecord extends Resource {
            'name': name,
            'type': type,
            'ttl': ttl,
-           ...?contentOrData?.argMap,
+           ...?content?.argMap,
            if (proxied != null) 'proxied': proxied,
            if (comment != null) 'comment': comment,
            if (priority != null) 'priority': priority,

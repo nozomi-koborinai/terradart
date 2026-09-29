@@ -22,18 +22,18 @@ enum ZeroTrustDeviceCustomProfileProfileType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.exclude(...)`.
-sealed class ZeroTrustDeviceCustomProfileExcludeOrInclude {
-  const ZeroTrustDeviceCustomProfileExcludeOrInclude();
+sealed class ZeroTrustDeviceCustomProfileSplitTunnel {
+  const ZeroTrustDeviceCustomProfileSplitTunnel();
 
   /// Sets `exclude`.
-  const factory ZeroTrustDeviceCustomProfileExcludeOrInclude.exclude(
+  const factory ZeroTrustDeviceCustomProfileSplitTunnel.exclude(
     List<ZeroTrustDeviceCustomProfileExclude> exclude,
-  ) = ZeroTrustDeviceCustomProfileExcludeOrIncludeExclude;
+  ) = ZeroTrustDeviceCustomProfileSplitTunnelExclude;
 
   /// Sets `include`.
-  const factory ZeroTrustDeviceCustomProfileExcludeOrInclude.include(
+  const factory ZeroTrustDeviceCustomProfileSplitTunnel.include(
     List<ZeroTrustDeviceCustomProfileInclude> include,
-  ) = ZeroTrustDeviceCustomProfileExcludeOrIncludeInclude;
+  ) = ZeroTrustDeviceCustomProfileSplitTunnelInclude;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -45,10 +45,10 @@ sealed class ZeroTrustDeviceCustomProfileExcludeOrInclude {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ZeroTrustDeviceCustomProfileExcludeOrInclude.exclude] choice: sets `exclude`.
-final class ZeroTrustDeviceCustomProfileExcludeOrIncludeExclude
-    extends ZeroTrustDeviceCustomProfileExcludeOrInclude {
-  const ZeroTrustDeviceCustomProfileExcludeOrIncludeExclude(this.exclude);
+/// The [ZeroTrustDeviceCustomProfileSplitTunnel.exclude] choice: sets `exclude`.
+final class ZeroTrustDeviceCustomProfileSplitTunnelExclude
+    extends ZeroTrustDeviceCustomProfileSplitTunnel {
+  const ZeroTrustDeviceCustomProfileSplitTunnelExclude(this.exclude);
 
   final List<ZeroTrustDeviceCustomProfileExclude> exclude;
 
@@ -66,10 +66,10 @@ final class ZeroTrustDeviceCustomProfileExcludeOrIncludeExclude
   };
 }
 
-/// The [ZeroTrustDeviceCustomProfileExcludeOrInclude.include] choice: sets `include`.
-final class ZeroTrustDeviceCustomProfileExcludeOrIncludeInclude
-    extends ZeroTrustDeviceCustomProfileExcludeOrInclude {
-  const ZeroTrustDeviceCustomProfileExcludeOrIncludeInclude(this.include);
+/// The [ZeroTrustDeviceCustomProfileSplitTunnel.include] choice: sets `include`.
+final class ZeroTrustDeviceCustomProfileSplitTunnelInclude
+    extends ZeroTrustDeviceCustomProfileSplitTunnel {
+  const ZeroTrustDeviceCustomProfileSplitTunnelInclude(this.include);
 
   final List<ZeroTrustDeviceCustomProfileInclude> include;
 
@@ -281,7 +281,7 @@ final class CloudflareZeroTrustDeviceCustomProfile extends Resource {
     TfArg<bool>? uninstallProtection,
     ZeroTrustDeviceCustomProfileBrowserExtensionConfig? browserExtensionConfig,
     List<ZeroTrustDeviceCustomProfileDnsSearchSuffixes>? dnsSearchSuffixes,
-    ZeroTrustDeviceCustomProfileExcludeOrInclude? excludeOrInclude,
+    ZeroTrustDeviceCustomProfileSplitTunnel? splitTunnel,
     ZeroTrustDeviceCustomProfileGlobalAcceleration? globalAcceleration,
     ZeroTrustDeviceCustomProfileServiceModeV2? serviceModeV2,
     ZeroTrustDeviceCustomProfileVirtualNetworks? virtualNetworks,
@@ -327,7 +327,7 @@ final class CloudflareZeroTrustDeviceCustomProfile extends Resource {
              'dns_search_suffixes': TfArg.literal([
                for (final e in dnsSearchSuffixes) e.encode(),
              ]),
-           ...?excludeOrInclude?.argMap,
+           ...?splitTunnel?.argMap,
            if (globalAcceleration != null)
              'global_acceleration': TfArg.literal(globalAcceleration.encode()),
            if (serviceModeV2 != null)

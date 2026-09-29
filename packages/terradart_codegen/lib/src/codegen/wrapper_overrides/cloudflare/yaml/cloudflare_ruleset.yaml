@@ -4,3 +4,10 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "account_id, zone_id": scope
+  "rules.action_parameters.asset_name, rules.action_parameters.content": body
+  "rules.action_parameters.expression, rules.action_parameters.values": value
+  "rules.action_parameters.from_list, rules.action_parameters.from_value": source
+  "rules.action_parameters.headers.expression, rules.action_parameters.headers.value": value
