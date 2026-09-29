@@ -36,36 +36,87 @@ const _google = {
 
 void main() {
   group('passthrough slots', () {
-    // The two passthrough parameter shapes the catalogs carry: a
+    // The two passthrough parameter shapes a catalog carries: a
     // `TfArg<Map<String, dynamic>>` (an IAM `condition`) and a bare
-    // `Map<String, Object?>` spread into its block (`advancedExtra` on
-    // `SqlDatabaseInstanceSettings`). The manifest's `wrapped` flag tells
-    // them apart; emitting `TfArg.literal` for the bare one produced a Stack
-    // that did not compile, found on a real Cloud SQL module.
+    // `Map<String, Object?>` spread into its block (`advancedExtra` on a
+    // hand-written helper). The manifest's `wrapped` flag tells them apart;
+    // emitting `TfArg.literal` for the bare one produced a Stack that did
+    // not compile, found on a real Cloud SQL module.
     test('a bare Map parameter takes the collection itself', () {
-      final r = _migrateJson({
-        'terraform': _google,
-        'resource': {
-          'google_sql_database_instance': {
-            'primary': {
-              'name': 'primary',
-              'database_version': 'POSTGRES_16',
-              'region': 'asia-northeast1',
-              'settings': [
-                {
-                  'tier': 'db-f1-micro',
-                  'insights_config': [
+      const manifest = MigrateManifest(
+        package: 'terradart_google',
+        entries: [
+          MigrateEntry(
+            tfType: 'google_x_instance',
+            className: 'GoogleXInstance',
+            barrel: 'instance',
+            kind: CatalogKind.resource,
+            slots: [
+              MigrateSlot(
+                tfName: 'settings',
+                dartName: 'settings',
+                kind: MigrateSlotKind.helper,
+                required: true,
+                wrapped: false,
+                helper: 'XInstanceSettings',
+              ),
+            ],
+            getters: [],
+          ),
+        ],
+        helpers: {
+          'XInstanceSettings': MigrateHelper(
+            className: 'XInstanceSettings',
+            slots: [
+              MigrateSlot(
+                tfName: 'tier',
+                dartName: 'tier',
+                kind: MigrateSlotKind.scalar,
+                required: true,
+                dartType: 'String',
+              ),
+              MigrateSlot(
+                tfName: '',
+                dartName: 'advancedExtra',
+                kind: MigrateSlotKind.passthrough,
+                required: false,
+                wrapped: false,
+                merged: true,
+                dartType: 'Map<String, Object?>',
+              ),
+            ],
+          ),
+        },
+        enums: {},
+      );
+      final r = migrateModule(
+        TfModule.fromTfJson(
+          jsonEncode({
+            'terraform': _google,
+            'resource': {
+              'google_x_instance': {
+                'primary': {
+                  'settings': [
                     {
-                      'query_insights_enabled': true,
-                      'query_string_length': 1024,
+                      'tier': 'db-f1-micro',
+                      'insights_config': [
+                        {
+                          'query_insights_enabled': true,
+                          'query_string_length': 1024,
+                        },
+                      ],
                     },
                   ],
                 },
-              ],
+              },
             },
-          },
-        },
-      });
+          }),
+          fileName: 'main.tf.json',
+        ),
+        name: 'demo',
+        format: false,
+        manifests: const [manifest],
+      );
       expect(r.report.isComplete, isTrue, reason: r.report.renderText());
       expect(
         r.stackSource,
@@ -451,6 +502,87 @@ resource "google_pubsub_topic_iam_member" "viewer" {
           contains('more than one of "content", "data" is set'),
         );
       });
+    });
+
+    test('a helper variant whose block has a scalar of the same name', () {
+      const manifest = MigrateManifest(
+        package: 'terradart_google',
+        entries: [
+          MigrateEntry(
+            tfType: 'google_x_job',
+            className: 'GoogleXJob',
+            barrel: 'job',
+            kind: CatalogKind.resource,
+            slots: [
+              MigrateSlot(
+                tfName: '',
+                dartName: 'configuration',
+                kind: MigrateSlotKind.sealed,
+                required: true,
+                wrapped: false,
+                merged: true,
+                variants: {'query': 'XJobConfigurationQuery'},
+              ),
+            ],
+            getters: [],
+          ),
+        ],
+        helpers: {
+          'XJobConfigurationQuery': MigrateHelper(
+            className: 'XJobConfigurationQuery',
+            slots: [
+              MigrateSlot(
+                tfName: 'query',
+                dartName: 'query',
+                kind: MigrateSlotKind.helper,
+                required: true,
+                wrapped: false,
+                positional: true,
+                helper: 'XJobQuery',
+              ),
+            ],
+            shorthand: 'query',
+          ),
+          'XJobQuery': MigrateHelper(
+            className: 'XJobQuery',
+            slots: [
+              MigrateSlot(
+                tfName: 'query',
+                dartName: 'query',
+                kind: MigrateSlotKind.scalar,
+                required: true,
+                dartType: 'String',
+              ),
+            ],
+          ),
+        },
+        enums: {},
+      );
+      final r = migrateModule(
+        TfModule.fromTfJson(
+          jsonEncode({
+            'terraform': _google,
+            'resource': {
+              'google_x_job': {
+                'j': {
+                  'query': {'query': 'SELECT 1'},
+                },
+              },
+            },
+          }),
+          fileName: 'main.tf.json',
+        ),
+        name: 'demo',
+        format: false,
+        manifests: const [manifest],
+      );
+      expect(r.report.migratedAddresses, contains('google_x_job.j'));
+      expect(
+        r.files['lib/demo_stack.dart'],
+        contains(
+          "configuration: .query(XJobQuery(query: .literal(r'SELECT 1')))",
+        ),
+      );
     });
 
     group('an enum value that differs from a member only in case', () {
