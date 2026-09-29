@@ -52,6 +52,9 @@ class MigrateManifestEmitter {
           'file>` (lanes: tool/providers.yaml).')
       ..writeln("import '../migrate_manifest.dart';")
       ..writeln()
+      ..writeln(
+          '/// The migration manifest of `$package`: one [MigrateEntry] per '
+          'curated factory.')
       ..writeln('const MigrateManifest $constName = MigrateManifest(')
       ..writeln('  package: ${_str(package)},')
       ..writeln('  entries: <MigrateEntry>[');

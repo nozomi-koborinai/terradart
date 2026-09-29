@@ -2,6 +2,7 @@
 // Regenerate with `terradart wrap --migrate-manifest <this file>` (lanes: tool/providers.yaml).
 import '../migrate_manifest.dart';
 
+/// The migration manifest of `terradart_google`: one [MigrateEntry] per curated factory.
 const MigrateManifest googleMigrateManifest = MigrateManifest(
   package: 'terradart_google',
   entries: <MigrateEntry>[
