@@ -49,6 +49,18 @@ const mmSourcesFile = 'mm_sources.yaml';
 /// carries the generated Go source, and the services directory in it.
 typedef MmSync = ({String providerRepo, String servicesDir});
 
+/// The reference-target ledger every lane with `references:` wraps with.
+const referenceTargetsPath = 'tool/reference_targets.yaml';
+
+/// `references:` — what a lane does with [referenceTargetsPath].
+enum ReferenceMode {
+  /// Check the ledger against the lane's schema; inputs stay strings.
+  check,
+
+  /// Also type every input the ledger matches as `RefTo<Target>`.
+  typed,
+}
+
 /// One `providers:` entry, reduced to the fields the gates read.
 class WrapLane {
   const WrapLane({
@@ -65,6 +77,7 @@ class WrapLane {
     this.mmGroups = false,
     this.mmSync,
     this.hintsRepo,
+    this.references,
   });
 
   final String name;
@@ -95,6 +108,9 @@ class WrapLane {
 
   /// `bump.repo`: the GitHub repo regen re-extracts stale hints from.
   final String? hintsRepo;
+
+  /// `references:`, or null when the lane has no reference targets.
+  final ReferenceMode? references;
 
   /// Paths that must exist before any gate can say something meaningful.
   /// The migration manifest is absent until the lane's first wrap, so it is
@@ -139,6 +155,11 @@ enum WrapGate {
         if (lane.providerEnums) '--provider-enums',
         if (lane.mmHints) '--mm-hints',
         if (lane.mmGroups) '--mm-groups',
+        if (lane.references case final mode?) ...[
+          '--reference-targets',
+          rel(referenceTargetsPath),
+          if (mode == ReferenceMode.typed) '--typed-references',
+        ],
         '--migrate-manifest',
         rel(lane.migrateManifest),
         '--sealed-name-debt',
@@ -217,6 +238,12 @@ WrapLane _parseLane(String name, Object? entry) {
         'lane $name: mmSync needs providerRepo and servicesDir strings',
       );
   }
+  final references = switch (entry['references']) {
+    null => null,
+    final String mode when ReferenceMode.values.any((m) => m.name == mode) =>
+      ReferenceMode.values.byName(mode),
+    _ => throw FormatException('lane $name: references must be check or typed'),
+  };
   final bump = entry['bump'];
   final hintsRepo = bump is YamlMap ? bump['repo'] : null;
   return WrapLane(
@@ -233,6 +260,7 @@ WrapLane _parseLane(String name, Object? entry) {
     mmGroups: mmGroups,
     mmSync: mmSync,
     hintsRepo: hintsRepo is String ? hintsRepo : null,
+    references: references,
   );
 }
 

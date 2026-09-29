@@ -18,6 +18,7 @@ import '../codegen/migrate/migrate_entry_builder.dart';
 import '../codegen/migrate/migrate_manifest_emitter.dart';
 import '../codegen/provider_enums.dart';
 import '../codegen/provider_version_emitter.dart';
+import '../codegen/references/reference_targets.dart';
 import '../codegen/sealed_name_debt.dart';
 import '../codegen/wrapper_emitter.dart';
 import '../codegen/wrapper_overrides/_registry.dart';
@@ -159,6 +160,21 @@ class WrapCommand extends Command<int> {
             'Only the exactly_one_of / conflicts / at_least_one_of groups of '
             '--mm-hints feed `deriveExactlyOne`; enum typing stays the '
             'merged IR\'s. Exclusive with --mm-hints and --provider-enums.',
+      )
+      ..addOption(
+        'reference-targets',
+        help:
+            'Reference-target ledger (tool/reference_targets.yaml): which '
+            'string inputs name another curated resource. wrap fails on an '
+            'entry that no longer matches the schema.',
+        valueHelp: 'FILE',
+      )
+      ..addFlag(
+        'typed-references',
+        negatable: false,
+        help:
+            'Type the inputs --reference-targets matches as `RefTo<Target>` '
+            '(`TfArg<List<RefTo<Target>>>` for a list).',
       );
   }
 
@@ -449,12 +465,62 @@ class WrapCommand extends Command<int> {
         }
       }
     }
+
+    // `--reference-targets`: the ledger is checked against the schema on
+    // every run; `--typed-references` also types what it matches.
+    final referenceLedger = results['reference-targets'] as String?;
+    final typedReferences = results['typed-references'] as bool;
+    if (typedReferences && referenceLedger == null) {
+      stderr.writeln(
+        'terradart wrap: --typed-references needs --reference-targets.',
+      );
+      return CliExitCodes.dataError;
+    }
+    var references = const <String, Map<String, ResolvedReference>>{};
+    if (referenceLedger != null) {
+      final List<ReferenceRule> rules;
+      try {
+        rules = loadReferenceRules(referenceLedger, provider);
+      } on FormatException catch (e) {
+        stderr.writeln('[E406] terradart wrap: ${e.message}');
+        return CliExitCodes.dataError;
+      }
+      final dataSchemas = _rawSchemaBlocks(
+        schemaSrc,
+        schemasKey: 'data_source_schemas',
+      );
+      final resolution = resolveReferences(
+        rules: rules,
+        resourceSchemas: _rawSchemaBlocks(
+          schemaSrc,
+          schemasKey: 'resource_schemas',
+        ),
+        curated: resourceOverrides.keys,
+        targetDirs: {
+          if (only != null) ..._generatedResourceDirs(output),
+          for (final e in resourceOverrides.entries) e.key: e.value.outputDir,
+        },
+        dataSourceSchemas: {
+          for (final type in loaded.dataSources.keys) type: ?dataSchemas[type],
+        },
+        complete: only == null,
+      );
+      if (resolution.errors.isNotEmpty) {
+        for (final e in resolution.errors) {
+          stderr.writeln('[E406] terradart wrap: $referenceLedger: $e');
+        }
+        return CliExitCodes.dataError;
+      }
+      if (typedReferences) references = resolution.byResource;
+    }
     final resourceEmitter = WrapperEmitter(
       overrides: resourceOverrides,
       rawResourceSchemas: rawResourceSchemas,
       resourceProvider: argResults?['resource-provider'] as String?,
       providerEnums: providerEnums,
+      references: references,
     );
+    var typedReferenceCount = 0;
     final dataSourceEmitter = DataSourceWrapperEmitter(
       overrides: loaded.dataSources,
       rawDataSourceSchemas: rawDataSourceSchemas,
@@ -487,6 +553,7 @@ class WrapCommand extends Command<int> {
         providerSource: provider,
         extraSensitiveFields: entry.value.extraSensitiveFields,
       );
+      typedReferenceCount += resourceEmitter.typedReferences.length;
       final dartSrc = generatedFileHeader + formatter.format(raw);
       buffer[p.join(entry.value.outputDir, '${entry.key}.dart')] = dartSrc;
       catalogEntries.add(
@@ -516,9 +583,15 @@ class WrapCommand extends Command<int> {
               entry.key,
               entry.value,
             ),
+            references: references[entry.key] ?? const {},
           ),
         );
       }
+    }
+    if (typedReferences) {
+      stdout.writeln(
+        'terradart wrap: $typedReferenceCount inputs typed as references.',
+      );
     }
 
     for (final entry in loaded.dataSources.entries) {
@@ -823,6 +896,19 @@ String? _pubspecName(String output) {
     multiLine: true,
   ).firstMatch(pubspec.readAsStringSync());
   return match?.group(1);
+}
+
+/// Terraform type → directory under [output] of every generated resource
+/// wrapper on disk, for the reference targets a `--only` run did not load.
+Map<String, String> _generatedResourceDirs(String output) {
+  final root = Directory(output);
+  if (!root.existsSync()) return const {};
+  return {
+    for (final dir in root.listSync().whereType<Directory>())
+      for (final file in dir.listSync().whereType<File>())
+        if (file.path.endsWith('.dart'))
+          p.basenameWithoutExtension(file.path): p.basename(dir.path),
+  };
 }
 
 /// Decodes [schemaJson]'s raw `resource_schemas` or `data_source_schemas`

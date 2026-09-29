@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- A `reference` slot migrates a reference to a migrated block of the slot's type (or a data source reading that type) to `x.ref`, pinned (`x.ref.pinned('id')`) when it reads another attribute than the slot emits; a block of another type to an unchecked `RefTo.arg(...)` with a warning; a string to `RefTo.literal`, a variable to `RefTo.variable`, other expressions to `RefTo.expression`. A list slot takes a literal list element by element and a whole-list value as `TfArg.variable` / `TfArg.expression`. `MigrateSlotKind.reference` and `MigrateSlot.attribute` are new.
 - `MigrateHelper.shorthand`: a sealed variant whose sealed type declares a factory constructor for it migrates to the dot shorthand `.member(value)` (`filenameOrImageUriOrS3Bucket: .filename(TfArg.literal(r'f.zip'))`, `replication: .auto()`) instead of naming the variant class.
 - A migrated package's generated `pubspec.yaml` declares `sdk: ^3.10.0` (was `^3.6.0`), the minimum of the `terradart_*` packages it depends on.
 - An optional merged `sealed` slot (the nullable at-most-one sealed arguments `terradart wrap` derives) migrates to nothing when none of its keys is set, to the variant of the one that is set, and keeps a block that sets more than one in Terraform.

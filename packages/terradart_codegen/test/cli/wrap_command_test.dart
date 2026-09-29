@@ -1675,6 +1675,32 @@ deriveExactlyOne: true
       expect(code, CliExitCodes.dataError);
       expect(err, contains('--mm-hints and --mm-groups are exclusive'));
     });
+
+    test('--typed-references needs --reference-targets', () async {
+      final (code, err) = await wrap(const ['--typed-references']);
+      expect(code, CliExitCodes.dataError);
+      expect(err, contains('--typed-references needs --reference-targets'));
+    });
+
+    test(
+      '--reference-targets fails on a ledger entry the lane lacks',
+      () async {
+        final ledger = File(p.join(tmp.path, 'refs.yaml'))
+          ..writeAsStringSync('''
+hashicorp/google-beta:
+  - target: google_missing
+    attribute: id
+    slots: '^uri\$'
+''');
+        final (code, err) = await wrap(['--reference-targets', ledger.path]);
+        expect(code, CliExitCodes.dataError);
+        expect(err, contains('[E406]'));
+        expect(
+          err,
+          contains('google_missing: target is not a curated resource'),
+        );
+      },
+    );
   });
 }
 

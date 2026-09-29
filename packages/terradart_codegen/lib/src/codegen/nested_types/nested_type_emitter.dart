@@ -1,5 +1,6 @@
 import '../exactly_one_types.dart';
 import '../naming.dart';
+import '../references/reference_slots.dart';
 import 'nested_type_collector.dart';
 
 /// Renders the Dart source for a resource's derived nested-block helper
@@ -602,7 +603,17 @@ ExactlyOneVariant _variant({
   );
 }
 
-_FieldPlan _planAttr(NestedAttrSpec attr) => _plan(
+_FieldPlan _planAttr(NestedAttrSpec attr) => switch (attr.reference) {
+  final reference? => referenceField(
+    tfName: attr.tfName,
+    dartName: attr.dartName,
+    reference: reference,
+    required: attr.required,
+  ),
+  null => _planPlainAttr(attr),
+};
+
+_FieldPlan _planPlainAttr(NestedAttrSpec attr) => _plan(
   dartName: attr.dartName,
   tfName: attr.tfName,
   elementType: attr.dartType,

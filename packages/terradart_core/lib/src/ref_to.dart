@@ -71,6 +71,20 @@ extension type const RefTo<R extends Resource>._(_RefSource _source) {
   }
 }
 
+/// A list-valued reference argument (`security_group_ids`, `subnet_ids`):
+/// a literal list of [RefTo]s, or one value that is the whole list
+/// (`TfArg.variable('subnet_ids')`, `TfArg.expression(...)`).
+extension RefToList<R extends Resource> on TfArg<List<RefTo<R>>> {
+  /// The argument value: each element's [RefTo.encodeAs] for a literal
+  /// list, the value itself otherwise.
+  TfArg<Object?> encodeAs(String attribute) => switch (this) {
+    TfArgLiteral(:final value) => TfArg.literal<Object?>([
+      for (final ref in value) ref.encodeAs(attribute),
+    ]),
+    final whole => whole,
+  };
+}
+
 typedef _RefSource = ({
   TfAddressed? owner,
   String? attribute,
