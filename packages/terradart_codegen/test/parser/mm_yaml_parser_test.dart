@@ -289,6 +289,19 @@ properties:
         ['shared_secret', 'shared_secret_wo'],
       ]);
     });
+
+    test('names the _wo sibling after the Terraform name, not api_name', () {
+      final result = const MmYamlParser().parseString('''
+properties:
+  - name: secretData
+    api_name: data
+    write_only: true
+    required: true
+''');
+      expect(result.exactlyOneOfPaths, [
+        ['secret_data', 'secret_data_wo'],
+      ]);
+    });
   });
 
   test(
