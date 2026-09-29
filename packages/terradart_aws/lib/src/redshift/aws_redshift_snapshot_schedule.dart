@@ -105,6 +105,10 @@ final class AwsRedshiftSnapshotSchedule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRedshiftSnapshotScheduleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRedshiftSnapshotSchedule>`.
+  RefTo<AwsRedshiftSnapshotSchedule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

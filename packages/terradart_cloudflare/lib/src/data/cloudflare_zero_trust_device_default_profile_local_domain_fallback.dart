@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_device_default_profile_local_domain_fallback.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_device_default_profile_local_domain_fallback`.
 const Set<String>
@@ -27,6 +28,11 @@ final class DataCloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDeviceDefaultProfileLocalDomainFallbackSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_device_default_profile_local_domain_fallback` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback>`.
+  RefTo<CloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

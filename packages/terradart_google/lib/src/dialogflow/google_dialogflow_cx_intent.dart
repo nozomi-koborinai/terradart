@@ -134,6 +134,10 @@ final class GoogleDialogflowCxIntent extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDialogflowCxIntentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDialogflowCxIntent>`.
+  RefTo<GoogleDialogflowCxIntent> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

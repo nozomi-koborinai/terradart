@@ -70,6 +70,10 @@ final class GoogleAppEngineServiceNetworkSettings extends Resource {
   Set<String> get sensitiveFields =>
       _googleAppEngineServiceNetworkSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleAppEngineServiceNetworkSettings>`.
+  RefTo<GoogleAppEngineServiceNetworkSettings> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

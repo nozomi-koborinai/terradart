@@ -63,6 +63,10 @@ final class GoogleComputeHttpHealthCheck extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeHttpHealthCheckSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeHttpHealthCheck>`.
+  RefTo<GoogleComputeHttpHealthCheck> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

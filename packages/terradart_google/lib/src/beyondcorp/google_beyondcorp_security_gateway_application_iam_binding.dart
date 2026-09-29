@@ -46,6 +46,11 @@ final class GoogleBeyondcorpSecurityGatewayApplicationIamBinding
   Set<String> get sensitiveFields =>
       _googleBeyondcorpSecurityGatewayApplicationIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBeyondcorpSecurityGatewayApplicationIamBinding>`.
+  RefTo<GoogleBeyondcorpSecurityGatewayApplicationIamBinding> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

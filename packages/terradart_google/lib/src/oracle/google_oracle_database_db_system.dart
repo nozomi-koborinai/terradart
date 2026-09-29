@@ -90,6 +90,10 @@ final class GoogleOracleDatabaseDbSystem extends Resource {
   @override
   bool get supportsDeletionProtection => true;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleOracleDatabaseDbSystem>`.
+  RefTo<GoogleOracleDatabaseDbSystem> get ref => RefTo.of(this);
+
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 

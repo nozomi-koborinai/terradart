@@ -31,4 +31,9 @@ final class AwsNotificationsOrganizationalUnitAssociation extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsNotificationsOrganizationalUnitAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNotificationsOrganizationalUnitAssociation>`.
+  RefTo<AwsNotificationsOrganizationalUnitAssociation> get ref =>
+      RefTo.of(this);
 }

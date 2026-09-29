@@ -40,4 +40,8 @@ final class AwsLambdaFunctionRecursionConfig extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsLambdaFunctionRecursionConfigSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLambdaFunctionRecursionConfig>`.
+  RefTo<AwsLambdaFunctionRecursionConfig> get ref => RefTo.of(this);
 }

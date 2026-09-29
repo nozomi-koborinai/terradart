@@ -790,6 +790,10 @@ final class CloudflareZeroTrustGatewayPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareZeroTrustGatewayPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustGatewayPolicy>`.
+  RefTo<CloudflareZeroTrustGatewayPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

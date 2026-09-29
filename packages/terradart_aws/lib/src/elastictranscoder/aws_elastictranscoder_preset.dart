@@ -608,6 +608,10 @@ final class AwsElastictranscoderPreset extends Resource {
   @override
   Set<String> get sensitiveFields => _awsElastictranscoderPresetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsElastictranscoderPreset>`.
+  RefTo<AwsElastictranscoderPreset> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

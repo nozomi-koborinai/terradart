@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_api_token.dart';
 
 /// Sensitive field paths for `cloudflare_api_token`.
 const Set<String> _cloudflareApiTokenSensitive = <String>{};
@@ -57,6 +58,11 @@ final class DataCloudflareApiToken extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareApiTokenSensitive;
+
+  /// A reference to the `cloudflare_api_token` this data source reads, for
+  /// arguments typed `RefTo<CloudflareApiToken>`.
+  RefTo<CloudflareApiToken> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

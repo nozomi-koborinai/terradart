@@ -44,6 +44,10 @@ final class CloudflareZeroTrustDeviceIpProfile extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDeviceIpProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustDeviceIpProfile>`.
+  RefTo<CloudflareZeroTrustDeviceIpProfile> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

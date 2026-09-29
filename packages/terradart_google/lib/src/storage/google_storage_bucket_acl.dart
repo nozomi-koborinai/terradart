@@ -54,6 +54,10 @@ final class GoogleStorageBucketAcl extends Resource {
   @override
   Set<String> get sensitiveFields => _googleStorageBucketAclSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleStorageBucketAcl>`.
+  RefTo<GoogleStorageBucketAcl> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

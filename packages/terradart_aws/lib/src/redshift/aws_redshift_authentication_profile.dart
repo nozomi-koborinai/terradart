@@ -31,6 +31,10 @@ final class AwsRedshiftAuthenticationProfile extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRedshiftAuthenticationProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRedshiftAuthenticationProfile>`.
+  RefTo<AwsRedshiftAuthenticationProfile> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

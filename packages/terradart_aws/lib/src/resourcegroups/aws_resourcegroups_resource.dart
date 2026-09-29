@@ -31,6 +31,10 @@ final class AwsResourcegroupsResource extends Resource {
   @override
   Set<String> get sensitiveFields => _awsResourcegroupsResourceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsResourcegroupsResource>`.
+  RefTo<AwsResourcegroupsResource> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

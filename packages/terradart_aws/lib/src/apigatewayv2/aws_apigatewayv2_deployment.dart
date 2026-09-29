@@ -33,6 +33,10 @@ final class AwsApigatewayv2Deployment extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApigatewayv2DeploymentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApigatewayv2Deployment>`.
+  RefTo<AwsApigatewayv2Deployment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

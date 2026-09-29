@@ -385,6 +385,10 @@ final class GoogleGkeBackupBackupPlan extends Resource {
   @override
   Set<String> get sensitiveFields => _googleGkeBackupBackupPlanSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGkeBackupBackupPlan>`.
+  RefTo<GoogleGkeBackupBackupPlan> get ref => RefTo.of(this);
+
   /// Reference to `effective_labels` attribute.
   TfRef<Map<String, String>> get effectiveLabels =>
       TfRef.attribute<Map<String, String>>(this, 'effective_labels');

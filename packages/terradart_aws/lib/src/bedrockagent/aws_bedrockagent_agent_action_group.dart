@@ -382,6 +382,10 @@ final class AwsBedrockagentAgentActionGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBedrockagentAgentActionGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentAgentActionGroup>`.
+  RefTo<AwsBedrockagentAgentActionGroup> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

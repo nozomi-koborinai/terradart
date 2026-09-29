@@ -35,6 +35,10 @@ final class AwsApigatewayv2ApiMapping extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApigatewayv2ApiMappingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApigatewayv2ApiMapping>`.
+  RefTo<AwsApigatewayv2ApiMapping> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_ami.dart';
 
 /// Sensitive field paths for `aws_ami`.
 const Set<String> _awsAmiSensitive = <String>{};
@@ -62,6 +63,11 @@ final class DataAwsAmi extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsAmiSensitive;
+
+  /// A reference to the `aws_ami` this data source reads, for
+  /// arguments typed `RefTo<AwsAmi>`.
+  RefTo<AwsAmi> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

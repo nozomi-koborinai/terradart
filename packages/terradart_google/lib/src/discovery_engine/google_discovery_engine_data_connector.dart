@@ -228,6 +228,10 @@ final class GoogleDiscoveryEngineDataConnector extends Resource {
   Set<String> get sensitiveFields =>
       _googleDiscoveryEngineDataConnectorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDiscoveryEngineDataConnector>`.
+  RefTo<GoogleDiscoveryEngineDataConnector> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

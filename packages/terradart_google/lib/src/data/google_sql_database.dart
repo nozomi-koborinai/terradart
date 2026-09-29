@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../sql/google_sql_database.dart';
 
 /// Sensitive field paths for `google_sql_database`.
 const Set<String> _googleSqlDatabaseSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleSqlDatabase extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleSqlDatabaseSensitive;
+
+  /// A reference to the `google_sql_database` this data source reads, for
+  /// arguments typed `RefTo<GoogleSqlDatabase>`.
+  RefTo<GoogleSqlDatabase> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

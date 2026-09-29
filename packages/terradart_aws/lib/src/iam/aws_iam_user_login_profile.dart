@@ -34,6 +34,10 @@ final class AwsIamUserLoginProfile extends Resource {
   @override
   Set<String> get sensitiveFields => _awsIamUserLoginProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIamUserLoginProfile>`.
+  RefTo<AwsIamUserLoginProfile> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

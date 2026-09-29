@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ssl/cloudflare_keyless_certificate.dart';
 
 /// Sensitive field paths for `cloudflare_keyless_certificate`.
 const Set<String> _cloudflareKeylessCertificateSensitive = <String>{};
@@ -41,6 +42,11 @@ final class DataCloudflareKeylessCertificate extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareKeylessCertificateSensitive;
+
+  /// A reference to the `cloudflare_keyless_certificate` this data source reads, for
+  /// arguments typed `RefTo<CloudflareKeylessCertificate>`.
+  RefTo<CloudflareKeylessCertificate> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

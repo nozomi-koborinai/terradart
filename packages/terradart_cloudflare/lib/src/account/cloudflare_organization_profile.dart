@@ -36,4 +36,8 @@ final class CloudflareOrganizationProfile extends Resource {
 
   @override
   Set<String> get sensitiveFields => _cloudflareOrganizationProfileSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareOrganizationProfile>`.
+  RefTo<CloudflareOrganizationProfile> get ref => RefTo.of(this);
 }

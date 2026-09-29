@@ -70,6 +70,11 @@ final class CloudflareMagicNetworkMonitoringConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareMagicNetworkMonitoringConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareMagicNetworkMonitoringConfiguration>`.
+  RefTo<CloudflareMagicNetworkMonitoringConfiguration> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

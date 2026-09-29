@@ -130,6 +130,10 @@ final class AwsDmsMigrationProject extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDmsMigrationProjectSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDmsMigrationProject>`.
+  RefTo<AwsDmsMigrationProject> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -282,6 +282,10 @@ final class CloudflareZeroTrustDeviceDefaultProfile extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDeviceDefaultProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustDeviceDefaultProfile>`.
+  RefTo<CloudflareZeroTrustDeviceDefaultProfile> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

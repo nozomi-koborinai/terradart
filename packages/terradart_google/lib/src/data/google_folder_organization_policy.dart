@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../folder/google_folder_organization_policy.dart';
 
 /// Sensitive field paths for `google_folder_organization_policy`.
 const Set<String> _googleFolderOrganizationPolicySensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataGoogleFolderOrganizationPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleFolderOrganizationPolicySensitive;
+
+  /// A reference to the `google_folder_organization_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleFolderOrganizationPolicy>`.
+  RefTo<GoogleFolderOrganizationPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

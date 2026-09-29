@@ -61,6 +61,10 @@ final class GoogleApiGatewayApiIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApiGatewayApiIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApiGatewayApiIamMember>`.
+  RefTo<GoogleApiGatewayApiIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

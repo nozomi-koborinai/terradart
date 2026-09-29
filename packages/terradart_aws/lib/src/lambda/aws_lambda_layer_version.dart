@@ -125,6 +125,10 @@ final class AwsLambdaLayerVersion extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLambdaLayerVersionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLambdaLayerVersion>`.
+  RefTo<AwsLambdaLayerVersion> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

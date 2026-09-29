@@ -98,6 +98,10 @@ final class AwsPinpointsmsvoicev2PhoneNumber extends Resource {
   @override
   Set<String> get sensitiveFields => _awsPinpointsmsvoicev2PhoneNumberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPinpointsmsvoicev2PhoneNumber>`.
+  RefTo<AwsPinpointsmsvoicev2PhoneNumber> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

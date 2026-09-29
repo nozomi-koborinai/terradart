@@ -32,6 +32,10 @@ final class AwsEc2ClientVpnNetworkAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsEc2ClientVpnNetworkAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2ClientVpnNetworkAssociation>`.
+  RefTo<AwsEc2ClientVpnNetworkAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -168,6 +168,10 @@ final class AwsFsxS3AccessPointAttachment extends Resource {
   @override
   Set<String> get sensitiveFields => _awsFsxS3AccessPointAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsFsxS3AccessPointAttachment>`.
+  RefTo<AwsFsxS3AccessPointAttachment> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

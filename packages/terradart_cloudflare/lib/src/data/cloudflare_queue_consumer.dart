@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../queues/cloudflare_queue_consumer.dart';
 
 /// Sensitive field paths for `cloudflare_queue_consumer`.
 const Set<String> _cloudflareQueueConsumerSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataCloudflareQueueConsumer extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareQueueConsumerSensitive;
+
+  /// A reference to the `cloudflare_queue_consumer` this data source reads, for
+  /// arguments typed `RefTo<CloudflareQueueConsumer>`.
+  RefTo<CloudflareQueueConsumer> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `consumer_id` attribute.
   TfRef<String> get consumerId => TfRef.attribute<String>(this, 'consumer_id');

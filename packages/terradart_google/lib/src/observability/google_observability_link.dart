@@ -42,4 +42,8 @@ final class GoogleObservabilityLink extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleObservabilityLinkSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleObservabilityLink>`.
+  RefTo<GoogleObservabilityLink> get ref => RefTo.of(this);
 }

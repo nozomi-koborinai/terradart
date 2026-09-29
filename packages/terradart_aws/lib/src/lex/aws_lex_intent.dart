@@ -534,6 +534,10 @@ final class AwsLexIntent extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLexIntentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLexIntent>`.
+  RefTo<AwsLexIntent> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

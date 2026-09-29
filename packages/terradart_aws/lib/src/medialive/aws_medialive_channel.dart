@@ -5402,6 +5402,10 @@ final class AwsMedialiveChannel extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMedialiveChannelSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMedialiveChannel>`.
+  RefTo<AwsMedialiveChannel> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -64,6 +64,10 @@ final class AwsAppintegrationsDataIntegration extends Resource {
   Set<String> get sensitiveFields =>
       _awsAppintegrationsDataIntegrationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppintegrationsDataIntegration>`.
+  RefTo<AwsAppintegrationsDataIntegration> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

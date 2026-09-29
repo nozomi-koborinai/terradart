@@ -41,6 +41,10 @@ final class GoogleSecretManagerRegionalSecretVersion extends Resource {
   Set<String> get sensitiveFields =>
       _googleSecretManagerRegionalSecretVersionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSecretManagerRegionalSecretVersion>`.
+  RefTo<GoogleSecretManagerRegionalSecretVersion> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

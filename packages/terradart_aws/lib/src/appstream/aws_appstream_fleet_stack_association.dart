@@ -32,6 +32,10 @@ final class AwsAppstreamFleetStackAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsAppstreamFleetStackAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppstreamFleetStackAssociation>`.
+  RefTo<AwsAppstreamFleetStackAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

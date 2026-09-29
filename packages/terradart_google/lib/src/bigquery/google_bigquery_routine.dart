@@ -323,6 +323,10 @@ final class GoogleBigqueryRoutine extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryRoutineSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryRoutine>`.
+  RefTo<GoogleBigqueryRoutine> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -228,6 +228,10 @@ final class GoogleComputeNodeTemplate extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeNodeTemplateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeNodeTemplate>`.
+  RefTo<GoogleComputeNodeTemplate> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

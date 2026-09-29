@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../api_gateway/aws_api_gateway_resource.dart';
 
 /// Sensitive field paths for `aws_api_gateway_resource`.
 const Set<String> _awsApiGatewayResourceSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsApiGatewayResource extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsApiGatewayResourceSensitive;
+
+  /// A reference to the `aws_api_gateway_resource` this data source reads, for
+  /// arguments typed `RefTo<AwsApiGatewayResource>`.
+  RefTo<AwsApiGatewayResource> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

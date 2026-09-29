@@ -276,6 +276,10 @@ final class AwsRoute extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRouteSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute>`.
+  RefTo<AwsRoute> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

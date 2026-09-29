@@ -75,6 +75,10 @@ final class AwsGlobalacceleratorAccelerator extends Resource {
   @override
   Set<String> get sensitiveFields => _awsGlobalacceleratorAcceleratorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGlobalacceleratorAccelerator>`.
+  RefTo<AwsGlobalacceleratorAccelerator> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

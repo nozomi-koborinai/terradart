@@ -163,6 +163,10 @@ final class CloudflareR2BucketSippy extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareR2BucketSippySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareR2BucketSippy>`.
+  RefTo<CloudflareR2BucketSippy> get ref => RefTo.of(this);
+
   /// Reference to `enabled` attribute.
   TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
 }

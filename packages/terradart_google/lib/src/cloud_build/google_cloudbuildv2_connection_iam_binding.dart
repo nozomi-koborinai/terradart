@@ -43,6 +43,10 @@ final class GoogleCloudbuildv2ConnectionIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleCloudbuildv2ConnectionIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudbuildv2ConnectionIamBinding>`.
+  RefTo<GoogleCloudbuildv2ConnectionIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -33,6 +33,10 @@ final class AppwriteTablesdb extends Resource {
   @override
   Set<String> get sensitiveFields => _appwriteTablesdbSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwriteTablesdb>`.
+  RefTo<AppwriteTablesdb> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

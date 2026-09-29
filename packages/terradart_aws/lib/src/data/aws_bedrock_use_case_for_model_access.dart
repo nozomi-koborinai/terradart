@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../bedrock/aws_bedrock_use_case_for_model_access.dart';
 
 /// Sensitive field paths for `aws_bedrock_use_case_for_model_access`.
 const Set<String> _awsBedrockUseCaseForModelAccessSensitive = <String>{};
@@ -18,6 +19,11 @@ final class DataAwsBedrockUseCaseForModelAccess extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsBedrockUseCaseForModelAccessSensitive;
+
+  /// A reference to the `aws_bedrock_use_case_for_model_access` this data source reads, for
+  /// arguments typed `RefTo<AwsBedrockUseCaseForModelAccess>`.
+  RefTo<AwsBedrockUseCaseForModelAccess> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `form_data` attribute.
   TfRef<String> get formData => TfRef.attribute<String>(this, 'form_data');

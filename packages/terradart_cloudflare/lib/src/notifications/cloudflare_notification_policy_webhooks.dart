@@ -41,6 +41,10 @@ final class CloudflareNotificationPolicyWebhooks extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareNotificationPolicyWebhooksSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareNotificationPolicyWebhooks>`.
+  RefTo<CloudflareNotificationPolicyWebhooks> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -93,6 +93,10 @@ final class AwsDocdbSubnetGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDocdbSubnetGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDocdbSubnetGroup>`.
+  RefTo<AwsDocdbSubnetGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -145,6 +145,10 @@ final class GoogleSaasRuntimeUnitOperation extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSaasRuntimeUnitOperationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSaasRuntimeUnitOperation>`.
+  RefTo<GoogleSaasRuntimeUnitOperation> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

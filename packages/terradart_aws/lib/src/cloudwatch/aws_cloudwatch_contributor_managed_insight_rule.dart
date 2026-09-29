@@ -38,6 +38,10 @@ final class AwsCloudwatchContributorManagedInsightRule extends Resource {
   Set<String> get sensitiveFields =>
       _awsCloudwatchContributorManagedInsightRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudwatchContributorManagedInsightRule>`.
+  RefTo<AwsCloudwatchContributorManagedInsightRule> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

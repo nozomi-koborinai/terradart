@@ -38,6 +38,10 @@ final class CloudflareZeroTrustDlpPredefinedEntry extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDlpPredefinedEntrySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustDlpPredefinedEntry>`.
+  RefTo<CloudflareZeroTrustDlpPredefinedEntry> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -304,6 +304,10 @@ final class AwsSesReceiptRule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSesReceiptRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSesReceiptRule>`.
+  RefTo<AwsSesReceiptRule> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

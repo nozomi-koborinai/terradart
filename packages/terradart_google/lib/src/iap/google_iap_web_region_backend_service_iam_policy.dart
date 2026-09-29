@@ -41,6 +41,10 @@ final class GoogleIapWebRegionBackendServiceIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleIapWebRegionBackendServiceIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapWebRegionBackendServiceIamPolicy>`.
+  RefTo<GoogleIapWebRegionBackendServiceIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

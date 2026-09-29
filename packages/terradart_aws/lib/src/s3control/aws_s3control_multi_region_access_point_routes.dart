@@ -59,4 +59,8 @@ final class AwsS3controlMultiRegionAccessPointRoutes extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsS3controlMultiRegionAccessPointRoutesSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3controlMultiRegionAccessPointRoutes>`.
+  RefTo<AwsS3controlMultiRegionAccessPointRoutes> get ref => RefTo.of(this);
 }

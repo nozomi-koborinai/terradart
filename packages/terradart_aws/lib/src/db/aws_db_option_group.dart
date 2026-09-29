@@ -159,6 +159,10 @@ final class AwsDbOptionGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDbOptionGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDbOptionGroup>`.
+  RefTo<AwsDbOptionGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -129,6 +129,10 @@ final class GoogleMonitoringService extends Resource {
   @override
   Set<String> get sensitiveFields => _googleMonitoringServiceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleMonitoringService>`.
+  RefTo<GoogleMonitoringService> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -32,6 +32,10 @@ final class GoogleHealthcareFhirStoreIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleHealthcareFhirStoreIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleHealthcareFhirStoreIamPolicy>`.
+  RefTo<GoogleHealthcareFhirStoreIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

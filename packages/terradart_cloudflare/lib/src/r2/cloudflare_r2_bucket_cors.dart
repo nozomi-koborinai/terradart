@@ -108,4 +108,8 @@ final class CloudflareR2BucketCors extends Resource {
 
   @override
   Set<String> get sensitiveFields => _cloudflareR2BucketCorsSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareR2BucketCors>`.
+  RefTo<CloudflareR2BucketCors> get ref => RefTo.of(this);
 }

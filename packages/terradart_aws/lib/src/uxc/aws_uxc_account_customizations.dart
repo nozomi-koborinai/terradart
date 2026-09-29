@@ -30,4 +30,8 @@ final class AwsUxcAccountCustomizations extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsUxcAccountCustomizationsSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsUxcAccountCustomizations>`.
+  RefTo<AwsUxcAccountCustomizations> get ref => RefTo.of(this);
 }

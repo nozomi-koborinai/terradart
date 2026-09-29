@@ -8,6 +8,12 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Added
 
+- **Typed resource references, part 1** (`terradart_core`, `terradart_codegen`,
+  every provider package) — `RefTo<R>`, a compile-time-only reference to a
+  resource of type `R`. Every generated resource has a `ref` getter
+  (`vpc.ref` is a `RefTo<GoogleComputeNetwork>`), and so does every data
+  source that reads a resource of the same package. Nothing takes a `RefTo`
+  yet; arguments that name another resource switch to it in a later change.
 - **At-most-one sealed arguments** (`terradart_codegen`,
   `terradart_migrate`) — the shape for mutually exclusive inputs the
   provider also accepts none of: `deriveExactlyOne` seals a hints file's

@@ -26,6 +26,10 @@ final class CloudflareZeroTrustAccessTag extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareZeroTrustAccessTagSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustAccessTag>`.
+  RefTo<CloudflareZeroTrustAccessTag> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -57,6 +57,10 @@ final class GoogleStorageHmacKey extends Resource {
   @override
   Set<String> get sensitiveFields => _googleStorageHmacKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleStorageHmacKey>`.
+  RefTo<GoogleStorageHmacKey> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

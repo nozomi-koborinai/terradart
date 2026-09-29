@@ -35,6 +35,10 @@ final class AwsSsmcontactsContact extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSsmcontactsContactSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSsmcontactsContact>`.
+  RefTo<AwsSsmcontactsContact> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

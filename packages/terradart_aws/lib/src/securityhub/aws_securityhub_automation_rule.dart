@@ -2000,6 +2000,10 @@ final class AwsSecurityhubAutomationRule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSecurityhubAutomationRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSecurityhubAutomationRule>`.
+  RefTo<AwsSecurityhubAutomationRule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -262,6 +262,10 @@ final class GoogleStorageBucketObject extends Resource {
   @override
   Set<String> get sensitiveFields => _googleStorageBucketObjectSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleStorageBucketObject>`.
+  RefTo<GoogleStorageBucketObject> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

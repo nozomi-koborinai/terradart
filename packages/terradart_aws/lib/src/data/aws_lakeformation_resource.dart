@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../lakeformation/aws_lakeformation_resource.dart';
 
 /// Sensitive field paths for `aws_lakeformation_resource`.
 const Set<String> _awsLakeformationResourceSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsLakeformationResource extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsLakeformationResourceSensitive;
+
+  /// A reference to the `aws_lakeformation_resource` this data source reads, for
+  /// arguments typed `RefTo<AwsLakeformationResource>`.
+  RefTo<AwsLakeformationResource> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

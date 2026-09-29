@@ -150,6 +150,10 @@ final class AwsRoute53recoverycontrolconfigSafetyRule extends Resource {
   Set<String> get sensitiveFields =>
       _awsRoute53recoverycontrolconfigSafetyRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53recoverycontrolconfigSafetyRule>`.
+  RefTo<AwsRoute53recoverycontrolconfigSafetyRule> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

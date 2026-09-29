@@ -39,6 +39,10 @@ final class AwsChimesdkvoiceGlobalSettings extends Resource {
   @override
   Set<String> get sensitiveFields => _awsChimesdkvoiceGlobalSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsChimesdkvoiceGlobalSettings>`.
+  RefTo<AwsChimesdkvoiceGlobalSettings> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

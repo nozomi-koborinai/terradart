@@ -42,6 +42,10 @@ final class GoogleFirebaseAndroidApp extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirebaseAndroidAppSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseAndroidApp>`.
+  RefTo<GoogleFirebaseAndroidApp> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

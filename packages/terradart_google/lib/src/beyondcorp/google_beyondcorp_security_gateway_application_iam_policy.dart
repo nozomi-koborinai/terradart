@@ -42,6 +42,11 @@ final class GoogleBeyondcorpSecurityGatewayApplicationIamPolicy
   Set<String> get sensitiveFields =>
       _googleBeyondcorpSecurityGatewayApplicationIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBeyondcorpSecurityGatewayApplicationIamPolicy>`.
+  RefTo<GoogleBeyondcorpSecurityGatewayApplicationIamPolicy> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

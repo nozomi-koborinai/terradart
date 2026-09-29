@@ -47,6 +47,10 @@ final class AwsDatazoneGlossary extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDatazoneGlossarySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDatazoneGlossary>`.
+  RefTo<AwsDatazoneGlossary> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

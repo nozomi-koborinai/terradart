@@ -100,6 +100,10 @@ final class AwsCloudhsmV2Hsm extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudhsmV2HsmSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudhsmV2Hsm>`.
+  RefTo<AwsCloudhsmV2Hsm> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

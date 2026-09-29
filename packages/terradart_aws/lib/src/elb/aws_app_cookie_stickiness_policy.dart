@@ -35,6 +35,10 @@ final class AwsAppCookieStickinessPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppCookieStickinessPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppCookieStickinessPolicy>`.
+  RefTo<AwsAppCookieStickinessPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

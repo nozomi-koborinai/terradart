@@ -70,6 +70,10 @@ final class GoogleSecureSourceManagerBranchRule extends Resource {
   Set<String> get sensitiveFields =>
       _googleSecureSourceManagerBranchRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSecureSourceManagerBranchRule>`.
+  RefTo<GoogleSecureSourceManagerBranchRule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

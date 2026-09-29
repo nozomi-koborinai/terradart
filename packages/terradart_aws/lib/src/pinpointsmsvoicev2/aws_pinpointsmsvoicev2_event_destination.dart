@@ -271,6 +271,10 @@ final class AwsPinpointsmsvoicev2EventDestination extends Resource {
   Set<String> get sensitiveFields =>
       _awsPinpointsmsvoicev2EventDestinationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPinpointsmsvoicev2EventDestination>`.
+  RefTo<AwsPinpointsmsvoicev2EventDestination> get ref => RefTo.of(this);
+
   /// Reference to `configuration_set_arn` attribute.
   TfRef<String> get configurationSetArn =>
       TfRef.attribute<String>(this, 'configuration_set_arn');

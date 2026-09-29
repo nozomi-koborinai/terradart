@@ -35,6 +35,10 @@ final class AwsQuicksightNamespace extends Resource {
   @override
   Set<String> get sensitiveFields => _awsQuicksightNamespaceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsQuicksightNamespace>`.
+  RefTo<AwsQuicksightNamespace> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

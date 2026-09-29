@@ -69,6 +69,10 @@ final class GoogleIamWorkloadIdentityPoolManagedIdentity extends Resource {
   Set<String> get sensitiveFields =>
       _googleIamWorkloadIdentityPoolManagedIdentitySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIamWorkloadIdentityPoolManagedIdentity>`.
+  RefTo<GoogleIamWorkloadIdentityPoolManagedIdentity> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

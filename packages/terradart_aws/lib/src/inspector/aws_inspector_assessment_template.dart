@@ -76,6 +76,10 @@ final class AwsInspectorAssessmentTemplate extends Resource {
   @override
   Set<String> get sensitiveFields => _awsInspectorAssessmentTemplateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsInspectorAssessmentTemplate>`.
+  RefTo<AwsInspectorAssessmentTemplate> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

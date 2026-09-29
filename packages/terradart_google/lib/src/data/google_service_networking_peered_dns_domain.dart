@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../service_networking/google_service_networking_peered_dns_domain.dart';
 
 /// Sensitive field paths for `google_service_networking_peered_dns_domain`.
 const Set<String> _googleServiceNetworkingPeeredDnsDomainSensitive = <String>{};
@@ -36,6 +37,11 @@ final class DataGoogleServiceNetworkingPeeredDnsDomain extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleServiceNetworkingPeeredDnsDomainSensitive;
+
+  /// A reference to the `google_service_networking_peered_dns_domain` this data source reads, for
+  /// arguments typed `RefTo<GoogleServiceNetworkingPeeredDnsDomain>`.
+  RefTo<GoogleServiceNetworkingPeeredDnsDomain> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -784,6 +784,10 @@ final class GoogleGkeonpremBareMetalAdminCluster extends Resource {
   Set<String> get sensitiveFields =>
       _googleGkeonpremBareMetalAdminClusterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGkeonpremBareMetalAdminCluster>`.
+  RefTo<GoogleGkeonpremBareMetalAdminCluster> get ref => RefTo.of(this);
+
   /// Reference to `local_name` attribute.
   TfRef<String> get localNameRef => TfRef.attribute<String>(this, 'local_name');
 

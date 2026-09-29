@@ -67,6 +67,10 @@ final class GoogleRuntimeconfigConfigIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleRuntimeconfigConfigIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleRuntimeconfigConfigIamBinding>`.
+  RefTo<GoogleRuntimeconfigConfigIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

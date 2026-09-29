@@ -33,4 +33,9 @@ final class AwsWorkspaceswebDataProtectionSettingsAssociation extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsWorkspaceswebDataProtectionSettingsAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebDataProtectionSettingsAssociation>`.
+  RefTo<AwsWorkspaceswebDataProtectionSettingsAssociation> get ref =>
+      RefTo.of(this);
 }

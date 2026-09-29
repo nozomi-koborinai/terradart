@@ -104,6 +104,10 @@ final class GoogleFirebaseHostingChannel extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirebaseHostingChannelSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseHostingChannel>`.
+  RefTo<GoogleFirebaseHostingChannel> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

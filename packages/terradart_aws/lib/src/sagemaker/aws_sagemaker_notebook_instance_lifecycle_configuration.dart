@@ -39,6 +39,11 @@ final class AwsSagemakerNotebookInstanceLifecycleConfiguration
   Set<String> get sensitiveFields =>
       _awsSagemakerNotebookInstanceLifecycleConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSagemakerNotebookInstanceLifecycleConfiguration>`.
+  RefTo<AwsSagemakerNotebookInstanceLifecycleConfiguration> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

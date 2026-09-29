@@ -604,6 +604,10 @@ final class CloudflareAiSearchInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareAiSearchInstanceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareAiSearchInstance>`.
+  RefTo<CloudflareAiSearchInstance> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

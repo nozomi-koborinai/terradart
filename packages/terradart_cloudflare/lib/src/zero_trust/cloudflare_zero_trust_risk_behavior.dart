@@ -65,4 +65,8 @@ final class CloudflareZeroTrustRiskBehavior extends Resource {
 
   @override
   Set<String> get sensitiveFields => _cloudflareZeroTrustRiskBehaviorSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustRiskBehavior>`.
+  RefTo<CloudflareZeroTrustRiskBehavior> get ref => RefTo.of(this);
 }

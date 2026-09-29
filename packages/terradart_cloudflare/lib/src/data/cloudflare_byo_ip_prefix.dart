@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../byo_ip/cloudflare_byo_ip_prefix.dart';
 
 /// Sensitive field paths for `cloudflare_byo_ip_prefix`.
 const Set<String> _cloudflareByoIpPrefixSensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataCloudflareByoIpPrefix extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareByoIpPrefixSensitive;
+
+  /// A reference to the `cloudflare_byo_ip_prefix` this data source reads, for
+  /// arguments typed `RefTo<CloudflareByoIpPrefix>`.
+  RefTo<CloudflareByoIpPrefix> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

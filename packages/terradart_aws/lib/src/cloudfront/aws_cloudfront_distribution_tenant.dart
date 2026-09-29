@@ -255,6 +255,10 @@ final class AwsCloudfrontDistributionTenant extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudfrontDistributionTenantSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudfrontDistributionTenant>`.
+  RefTo<AwsCloudfrontDistributionTenant> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -86,6 +86,10 @@ final class GoogleChronicleFindingsRefinementDeployment extends Resource {
   Set<String> get sensitiveFields =>
       _googleChronicleFindingsRefinementDeploymentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleChronicleFindingsRefinementDeployment>`.
+  RefTo<GoogleChronicleFindingsRefinementDeployment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

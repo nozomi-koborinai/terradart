@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../resiliencehubv2/aws_resiliencehubv2_system.dart';
 
 /// Sensitive field paths for `aws_resiliencehubv2_system`.
 const Set<String> _awsResiliencehubv2SystemSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsResiliencehubv2System extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsResiliencehubv2SystemSensitive;
+
+  /// A reference to the `aws_resiliencehubv2_system` this data source reads, for
+  /// arguments typed `RefTo<AwsResiliencehubv2System>`.
+  RefTo<AwsResiliencehubv2System> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

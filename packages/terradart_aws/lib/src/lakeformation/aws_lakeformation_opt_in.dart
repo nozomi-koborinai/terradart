@@ -509,6 +509,10 @@ final class AwsLakeformationOptIn extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLakeformationOptInSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLakeformationOptIn>`.
+  RefTo<AwsLakeformationOptIn> get ref => RefTo.of(this);
+
   /// Reference to `last_modified` attribute.
   TfRef<String> get lastModified =>
       TfRef.attribute<String>(this, 'last_modified');

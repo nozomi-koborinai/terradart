@@ -39,4 +39,8 @@ final class AwsRedshiftNamespaceRegistration extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsRedshiftNamespaceRegistrationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRedshiftNamespaceRegistration>`.
+  RefTo<AwsRedshiftNamespaceRegistration> get ref => RefTo.of(this);
 }

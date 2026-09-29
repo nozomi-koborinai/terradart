@@ -44,6 +44,10 @@ final class AwsDatasyncLocationFsxWindowsFileSystem extends Resource {
   Set<String> get sensitiveFields =>
       _awsDatasyncLocationFsxWindowsFileSystemSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDatasyncLocationFsxWindowsFileSystem>`.
+  RefTo<AwsDatasyncLocationFsxWindowsFileSystem> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

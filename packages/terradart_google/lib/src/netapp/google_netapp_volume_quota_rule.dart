@@ -67,6 +67,10 @@ final class GoogleNetappVolumeQuotaRule extends Resource {
   @override
   Set<String> get sensitiveFields => _googleNetappVolumeQuotaRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetappVolumeQuotaRule>`.
+  RefTo<GoogleNetappVolumeQuotaRule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

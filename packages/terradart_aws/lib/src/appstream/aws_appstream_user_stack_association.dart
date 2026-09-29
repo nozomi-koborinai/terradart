@@ -49,6 +49,10 @@ final class AwsAppstreamUserStackAssociation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppstreamUserStackAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppstreamUserStackAssociation>`.
+  RefTo<AwsAppstreamUserStackAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

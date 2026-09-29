@@ -938,6 +938,10 @@ final class AwsQuicksightDataSet extends Resource {
   @override
   Set<String> get sensitiveFields => _awsQuicksightDataSetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsQuicksightDataSet>`.
+  RefTo<AwsQuicksightDataSet> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

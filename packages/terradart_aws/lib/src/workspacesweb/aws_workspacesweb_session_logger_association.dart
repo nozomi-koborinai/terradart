@@ -32,4 +32,8 @@ final class AwsWorkspaceswebSessionLoggerAssociation extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsWorkspaceswebSessionLoggerAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebSessionLoggerAssociation>`.
+  RefTo<AwsWorkspaceswebSessionLoggerAssociation> get ref => RefTo.of(this);
 }

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../vpclattice/aws_vpclattice_service_network.dart';
 
 /// Sensitive field paths for `aws_vpclattice_service_network`.
 const Set<String> _awsVpclatticeServiceNetworkSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsVpclatticeServiceNetwork extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsVpclatticeServiceNetworkSensitive;
+
+  /// A reference to the `aws_vpclattice_service_network` this data source reads, for
+  /// arguments typed `RefTo<AwsVpclatticeServiceNetwork>`.
+  RefTo<AwsVpclatticeServiceNetwork> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

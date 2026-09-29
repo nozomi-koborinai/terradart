@@ -31,6 +31,10 @@ final class AwsResiliencehubv2Assertion extends Resource {
   @override
   Set<String> get sensitiveFields => _awsResiliencehubv2AssertionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsResiliencehubv2Assertion>`.
+  RefTo<AwsResiliencehubv2Assertion> get ref => RefTo.of(this);
+
   /// Reference to `assertion_id` attribute.
   TfRef<String> get assertionId =>
       TfRef.attribute<String>(this, 'assertion_id');

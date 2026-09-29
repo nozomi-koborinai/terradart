@@ -38,6 +38,10 @@ final class AwsGrafanaWorkspaceServiceAccountToken extends Resource {
   Set<String> get sensitiveFields =>
       _awsGrafanaWorkspaceServiceAccountTokenSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGrafanaWorkspaceServiceAccountToken>`.
+  RefTo<AwsGrafanaWorkspaceServiceAccountToken> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

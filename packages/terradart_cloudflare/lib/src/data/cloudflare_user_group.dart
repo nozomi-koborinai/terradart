@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../user/cloudflare_user_group.dart';
 
 /// Sensitive field paths for `cloudflare_user_group`.
 const Set<String> _cloudflareUserGroupSensitive = <String>{};
@@ -70,6 +71,11 @@ final class DataCloudflareUserGroup extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareUserGroupSensitive;
+
+  /// A reference to the `cloudflare_user_group` this data source reads, for
+  /// arguments typed `RefTo<CloudflareUserGroup>`.
+  RefTo<CloudflareUserGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

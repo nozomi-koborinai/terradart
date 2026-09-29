@@ -33,6 +33,10 @@ final class AwsSchemasRegistry extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSchemasRegistrySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSchemasRegistry>`.
+  RefTo<AwsSchemasRegistry> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

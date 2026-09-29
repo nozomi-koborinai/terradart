@@ -76,6 +76,10 @@ final class AwsWafregionalSqlInjectionMatchSet extends Resource {
   Set<String> get sensitiveFields =>
       _awsWafregionalSqlInjectionMatchSetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWafregionalSqlInjectionMatchSet>`.
+  RefTo<AwsWafregionalSqlInjectionMatchSet> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -59,6 +59,10 @@ final class GoogleChronicleSoarNetwork extends Resource {
   @override
   Set<String> get sensitiveFields => _googleChronicleSoarNetworkSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleChronicleSoarNetwork>`.
+  RefTo<GoogleChronicleSoarNetwork> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

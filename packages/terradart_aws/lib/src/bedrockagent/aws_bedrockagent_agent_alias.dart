@@ -38,6 +38,10 @@ final class AwsBedrockagentAgentAlias extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBedrockagentAgentAliasSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentAgentAlias>`.
+  RefTo<AwsBedrockagentAgentAlias> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

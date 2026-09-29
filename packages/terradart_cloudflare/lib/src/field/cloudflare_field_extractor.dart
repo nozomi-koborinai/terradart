@@ -74,6 +74,10 @@ final class CloudflareFieldExtractor extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareFieldExtractorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareFieldExtractor>`.
+  RefTo<CloudflareFieldExtractor> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

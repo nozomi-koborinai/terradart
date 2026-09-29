@@ -560,6 +560,10 @@ final class AwsDatazonePolicyGrant extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDatazonePolicyGrantSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDatazonePolicyGrant>`.
+  RefTo<AwsDatazonePolicyGrant> get ref => RefTo.of(this);
+
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
 

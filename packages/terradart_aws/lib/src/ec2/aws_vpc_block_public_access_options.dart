@@ -44,6 +44,10 @@ final class AwsVpcBlockPublicAccessOptions extends Resource {
   @override
   Set<String> get sensitiveFields => _awsVpcBlockPublicAccessOptionsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcBlockPublicAccessOptions>`.
+  RefTo<AwsVpcBlockPublicAccessOptions> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

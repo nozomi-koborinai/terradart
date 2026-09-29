@@ -75,6 +75,10 @@ final class AwsAppsyncApiCache extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppsyncApiCacheSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppsyncApiCache>`.
+  RefTo<AwsAppsyncApiCache> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

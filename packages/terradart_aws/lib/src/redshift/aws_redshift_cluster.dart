@@ -303,6 +303,10 @@ final class AwsRedshiftCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRedshiftClusterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRedshiftCluster>`.
+  RefTo<AwsRedshiftCluster> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

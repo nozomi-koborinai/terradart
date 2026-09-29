@@ -30,6 +30,10 @@ final class AwsSecurityhubStandardsSubscription extends Resource {
   Set<String> get sensitiveFields =>
       _awsSecurityhubStandardsSubscriptionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSecurityhubStandardsSubscription>`.
+  RefTo<AwsSecurityhubStandardsSubscription> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

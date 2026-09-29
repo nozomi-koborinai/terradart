@@ -374,6 +374,10 @@ final class GoogleBigqueryDatasetAccess extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryDatasetAccessSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryDatasetAccess>`.
+  RefTo<GoogleBigqueryDatasetAccess> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -152,6 +152,10 @@ final class AwsDrsReplicationConfigurationTemplate extends Resource {
   Set<String> get sensitiveFields =>
       _awsDrsReplicationConfigurationTemplateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDrsReplicationConfigurationTemplate>`.
+  RefTo<AwsDrsReplicationConfigurationTemplate> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

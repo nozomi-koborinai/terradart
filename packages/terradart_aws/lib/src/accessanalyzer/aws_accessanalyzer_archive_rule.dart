@@ -65,6 +65,10 @@ final class AwsAccessanalyzerArchiveRule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAccessanalyzerArchiveRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAccessanalyzerArchiveRule>`.
+  RefTo<AwsAccessanalyzerArchiveRule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

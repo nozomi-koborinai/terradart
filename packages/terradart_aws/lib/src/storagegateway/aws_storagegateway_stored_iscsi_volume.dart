@@ -46,6 +46,10 @@ final class AwsStoragegatewayStoredIscsiVolume extends Resource {
   Set<String> get sensitiveFields =>
       _awsStoragegatewayStoredIscsiVolumeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsStoragegatewayStoredIscsiVolume>`.
+  RefTo<AwsStoragegatewayStoredIscsiVolume> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

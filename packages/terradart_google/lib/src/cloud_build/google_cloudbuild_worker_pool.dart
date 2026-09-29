@@ -203,6 +203,10 @@ final class GoogleCloudbuildWorkerPool extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudbuildWorkerPoolSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudbuildWorkerPool>`.
+  RefTo<GoogleCloudbuildWorkerPool> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

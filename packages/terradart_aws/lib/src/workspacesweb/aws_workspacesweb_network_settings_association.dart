@@ -32,4 +32,8 @@ final class AwsWorkspaceswebNetworkSettingsAssociation extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsWorkspaceswebNetworkSettingsAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebNetworkSettingsAssociation>`.
+  RefTo<AwsWorkspaceswebNetworkSettingsAssociation> get ref => RefTo.of(this);
 }

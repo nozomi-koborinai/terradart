@@ -53,4 +53,8 @@ final class GoogleChronicleCaseCloseDefinition extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleChronicleCaseCloseDefinitionSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleChronicleCaseCloseDefinition>`.
+  RefTo<GoogleChronicleCaseCloseDefinition> get ref => RefTo.of(this);
 }

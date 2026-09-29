@@ -50,6 +50,10 @@ final class AwsSagemakerModelCardExportJob extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSagemakerModelCardExportJobSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSagemakerModelCardExportJob>`.
+  RefTo<AwsSagemakerModelCardExportJob> get ref => RefTo.of(this);
+
   /// Reference to `export_artifacts` attribute.
   TfRef<List<Map<String, Object?>>> get exportArtifacts =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'export_artifacts');

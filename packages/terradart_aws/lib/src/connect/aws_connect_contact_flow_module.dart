@@ -101,6 +101,10 @@ final class AwsConnectContactFlowModule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsConnectContactFlowModuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsConnectContactFlowModule>`.
+  RefTo<AwsConnectContactFlowModule> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

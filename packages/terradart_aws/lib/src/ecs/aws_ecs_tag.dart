@@ -33,6 +33,10 @@ final class AwsEcsTag extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEcsTagSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEcsTag>`.
+  RefTo<AwsEcsTag> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../location/aws_location_geofence_collection.dart';
 
 /// Sensitive field paths for `aws_location_geofence_collection`.
 const Set<String> _awsLocationGeofenceCollectionSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsLocationGeofenceCollection extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsLocationGeofenceCollectionSensitive;
+
+  /// A reference to the `aws_location_geofence_collection` this data source reads, for
+  /// arguments typed `RefTo<AwsLocationGeofenceCollection>`.
+  RefTo<AwsLocationGeofenceCollection> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -35,4 +35,8 @@ final class AwsConnectPhoneNumberContactFlowAssociation extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsConnectPhoneNumberContactFlowAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsConnectPhoneNumberContactFlowAssociation>`.
+  RefTo<AwsConnectPhoneNumberContactFlowAssociation> get ref => RefTo.of(this);
 }

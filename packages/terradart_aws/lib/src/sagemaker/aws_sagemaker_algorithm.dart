@@ -2760,6 +2760,10 @@ final class AwsSagemakerAlgorithm extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSagemakerAlgorithmSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSagemakerAlgorithm>`.
+  RefTo<AwsSagemakerAlgorithm> get ref => RefTo.of(this);
+
   /// Reference to `algorithm_status` attribute.
   TfRef<String> get algorithmStatus =>
       TfRef.attribute<String>(this, 'algorithm_status');

@@ -73,6 +73,10 @@ final class GoogleProjectAccessApprovalSettings extends Resource {
   Set<String> get sensitiveFields =>
       _googleProjectAccessApprovalSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleProjectAccessApprovalSettings>`.
+  RefTo<GoogleProjectAccessApprovalSettings> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

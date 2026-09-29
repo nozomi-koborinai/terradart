@@ -31,6 +31,10 @@ final class AwsSsoadminRegion extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSsoadminRegionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSsoadminRegion>`.
+  RefTo<AwsSsoadminRegion> get ref => RefTo.of(this);
+
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
 }

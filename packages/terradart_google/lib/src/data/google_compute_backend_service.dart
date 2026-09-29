@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../compute/google_compute_backend_service.dart';
 
 /// Sensitive field paths for `google_compute_backend_service`.
 const Set<String> _googleComputeBackendServiceSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataGoogleComputeBackendService extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleComputeBackendServiceSensitive;
+
+  /// A reference to the `google_compute_backend_service` this data source reads, for
+  /// arguments typed `RefTo<GoogleComputeBackendService>`.
+  RefTo<GoogleComputeBackendService> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

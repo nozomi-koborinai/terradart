@@ -39,6 +39,10 @@ final class GoogleIapTunnelDestGroupIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleIapTunnelDestGroupIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapTunnelDestGroupIamPolicy>`.
+  RefTo<GoogleIapTunnelDestGroupIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

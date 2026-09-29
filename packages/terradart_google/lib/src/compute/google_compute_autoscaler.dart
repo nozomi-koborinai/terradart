@@ -461,6 +461,10 @@ final class GoogleComputeAutoscaler extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeAutoscalerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeAutoscaler>`.
+  RefTo<GoogleComputeAutoscaler> get ref => RefTo.of(this);
+
   /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');

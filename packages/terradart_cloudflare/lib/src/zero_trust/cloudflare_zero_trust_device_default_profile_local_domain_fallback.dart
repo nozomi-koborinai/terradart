@@ -63,6 +63,11 @@ final class CloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDeviceDefaultProfileLocalDomainFallbackSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback>`.
+  RefTo<CloudflareZeroTrustDeviceDefaultProfileLocalDomainFallback> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

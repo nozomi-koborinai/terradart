@@ -194,6 +194,10 @@ final class AwsFsxOpenzfsVolume extends Resource {
   @override
   Set<String> get sensitiveFields => _awsFsxOpenzfsVolumeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsFsxOpenzfsVolume>`.
+  RefTo<AwsFsxOpenzfsVolume> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

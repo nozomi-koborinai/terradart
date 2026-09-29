@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../cloudfunctions/google_cloudfunctions_function_iam_policy.dart';
 
 /// Sensitive field paths for `google_cloudfunctions_function_iam_policy`.
 const Set<String> _googleCloudfunctionsFunctionIamPolicySensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataGoogleCloudfunctionsFunctionIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleCloudfunctionsFunctionIamPolicySensitive;
+
+  /// A reference to the `google_cloudfunctions_function_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleCloudfunctionsFunctionIamPolicy>`.
+  RefTo<GoogleCloudfunctionsFunctionIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

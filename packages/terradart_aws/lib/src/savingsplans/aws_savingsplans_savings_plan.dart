@@ -36,6 +36,10 @@ final class AwsSavingsplansSavingsPlan extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSavingsplansSavingsPlanSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSavingsplansSavingsPlan>`.
+  RefTo<AwsSavingsplansSavingsPlan> get ref => RefTo.of(this);
+
   /// Reference to `currency` attribute.
   TfRef<String> get currency => TfRef.attribute<String>(this, 'currency');
 

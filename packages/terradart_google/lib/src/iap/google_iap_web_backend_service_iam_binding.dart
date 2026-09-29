@@ -61,6 +61,10 @@ final class GoogleIapWebBackendServiceIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleIapWebBackendServiceIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapWebBackendServiceIamBinding>`.
+  RefTo<GoogleIapWebBackendServiceIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

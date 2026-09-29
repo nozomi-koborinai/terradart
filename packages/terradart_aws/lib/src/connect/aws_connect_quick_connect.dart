@@ -135,6 +135,10 @@ final class AwsConnectQuickConnect extends Resource {
   @override
   Set<String> get sensitiveFields => _awsConnectQuickConnectSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsConnectQuickConnect>`.
+  RefTo<AwsConnectQuickConnect> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

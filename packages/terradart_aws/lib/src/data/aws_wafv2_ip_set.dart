@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../wafv2/aws_wafv2_ip_set.dart';
 
 /// Sensitive field paths for `aws_wafv2_ip_set`.
 const Set<String> _awsWafv2IpSetSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsWafv2IpSet extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsWafv2IpSetSensitive;
+
+  /// A reference to the `aws_wafv2_ip_set` this data source reads, for
+  /// arguments typed `RefTo<AwsWafv2IpSet>`.
+  RefTo<AwsWafv2IpSet> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

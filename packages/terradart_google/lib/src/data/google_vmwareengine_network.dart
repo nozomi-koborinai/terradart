@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../vmwareengine/google_vmwareengine_network.dart';
 
 /// Sensitive field paths for `google_vmwareengine_network`.
 const Set<String> _googleVmwareengineNetworkSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleVmwareengineNetwork extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleVmwareengineNetworkSensitive;
+
+  /// A reference to the `google_vmwareengine_network` this data source reads, for
+  /// arguments typed `RefTo<GoogleVmwareengineNetwork>`.
+  RefTo<GoogleVmwareengineNetwork> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -33,6 +33,10 @@ final class AwsMediaPackageChannel extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMediaPackageChannelSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMediaPackageChannel>`.
+  RefTo<AwsMediaPackageChannel> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -511,6 +511,10 @@ final class AwsFmsPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsFmsPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsFmsPolicy>`.
+  RefTo<AwsFmsPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

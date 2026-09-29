@@ -40,6 +40,10 @@ final class AwsS3filesFileSystem extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3filesFileSystemSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3filesFileSystem>`.
+  RefTo<AwsS3filesFileSystem> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

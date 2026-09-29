@@ -700,6 +700,10 @@ final class AwsAlbListenerRule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAlbListenerRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAlbListenerRule>`.
+  RefTo<AwsAlbListenerRule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

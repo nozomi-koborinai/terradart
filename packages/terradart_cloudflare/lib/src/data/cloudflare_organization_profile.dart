@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../account/cloudflare_organization_profile.dart';
 
 /// Sensitive field paths for `cloudflare_organization_profile`.
 const Set<String> _cloudflareOrganizationProfileSensitive = <String>{};
@@ -22,6 +23,11 @@ final class DataCloudflareOrganizationProfile extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareOrganizationProfileSensitive;
+
+  /// A reference to the `cloudflare_organization_profile` this data source reads, for
+  /// arguments typed `RefTo<CloudflareOrganizationProfile>`.
+  RefTo<CloudflareOrganizationProfile> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `business_address` attribute.
   TfRef<String> get businessAddress =>

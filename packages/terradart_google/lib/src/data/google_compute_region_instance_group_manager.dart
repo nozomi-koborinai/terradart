@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../compute/google_compute_region_instance_group_manager.dart';
 
 /// Sensitive field paths for `google_compute_region_instance_group_manager`.
 const Set<String> _googleComputeRegionInstanceGroupManagerSensitive =
@@ -35,6 +36,11 @@ final class DataGoogleComputeRegionInstanceGroupManager extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleComputeRegionInstanceGroupManagerSensitive;
+
+  /// A reference to the `google_compute_region_instance_group_manager` this data source reads, for
+  /// arguments typed `RefTo<GoogleComputeRegionInstanceGroupManager>`.
+  RefTo<GoogleComputeRegionInstanceGroupManager> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -104,6 +104,10 @@ final class AwsCloudfrontVpcOrigin extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudfrontVpcOriginSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudfrontVpcOrigin>`.
+  RefTo<AwsCloudfrontVpcOrigin> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

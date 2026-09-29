@@ -51,6 +51,10 @@ final class GoogleSccV2OrganizationMuteConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleSccV2OrganizationMuteConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSccV2OrganizationMuteConfig>`.
+  RefTo<GoogleSccV2OrganizationMuteConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

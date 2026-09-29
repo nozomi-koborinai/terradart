@@ -31,6 +31,10 @@ final class AwsLambdaResourcePolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLambdaResourcePolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLambdaResourcePolicy>`.
+  RefTo<AwsLambdaResourcePolicy> get ref => RefTo.of(this);
+
   /// Reference to `revision_id` attribute.
   TfRef<String> get revisionId => TfRef.attribute<String>(this, 'revision_id');
 }

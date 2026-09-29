@@ -309,6 +309,10 @@ final class GoogleContainerAzureCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _googleContainerAzureClusterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleContainerAzureCluster>`.
+  RefTo<GoogleContainerAzureCluster> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

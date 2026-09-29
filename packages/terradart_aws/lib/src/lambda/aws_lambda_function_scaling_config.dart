@@ -59,6 +59,10 @@ final class AwsLambdaFunctionScalingConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLambdaFunctionScalingConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLambdaFunctionScalingConfig>`.
+  RefTo<AwsLambdaFunctionScalingConfig> get ref => RefTo.of(this);
+
   /// Reference to `function_arn` attribute.
   TfRef<String> get functionArn =>
       TfRef.attribute<String>(this, 'function_arn');

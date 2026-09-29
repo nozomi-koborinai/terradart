@@ -45,6 +45,10 @@ final class GoogleGeminiRepositoryGroupIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleGeminiRepositoryGroupIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGeminiRepositoryGroupIamBinding>`.
+  RefTo<GoogleGeminiRepositoryGroupIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

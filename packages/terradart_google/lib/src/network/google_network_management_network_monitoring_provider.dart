@@ -37,4 +37,9 @@ final class GoogleNetworkManagementNetworkMonitoringProvider extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleNetworkManagementNetworkMonitoringProviderSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkManagementNetworkMonitoringProvider>`.
+  RefTo<GoogleNetworkManagementNetworkMonitoringProvider> get ref =>
+      RefTo.of(this);
 }

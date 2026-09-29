@@ -30,4 +30,8 @@ final class AwsS3tablesTableBucketPolicy extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsS3tablesTableBucketPolicySensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3tablesTableBucketPolicy>`.
+  RefTo<AwsS3tablesTableBucketPolicy> get ref => RefTo.of(this);
 }

@@ -43,6 +43,10 @@ final class GoogleLoggingBillingAccountExclusion extends Resource {
   Set<String> get sensitiveFields =>
       _googleLoggingBillingAccountExclusionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleLoggingBillingAccountExclusion>`.
+  RefTo<GoogleLoggingBillingAccountExclusion> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

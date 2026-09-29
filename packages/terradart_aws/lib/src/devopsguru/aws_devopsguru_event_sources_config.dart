@@ -79,6 +79,10 @@ final class AwsDevopsguruEventSourcesConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDevopsguruEventSourcesConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDevopsguruEventSourcesConfig>`.
+  RefTo<AwsDevopsguruEventSourcesConfig> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

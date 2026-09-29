@@ -35,6 +35,10 @@ final class AwsDsqlClusterPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDsqlClusterPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDsqlClusterPolicy>`.
+  RefTo<AwsDsqlClusterPolicy> get ref => RefTo.of(this);
+
   /// Reference to `policy_version` attribute.
   TfRef<String> get policyVersion =>
       TfRef.attribute<String>(this, 'policy_version');

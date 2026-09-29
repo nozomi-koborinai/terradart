@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../mskconnect/aws_mskconnect_worker_configuration.dart';
 
 /// Sensitive field paths for `aws_mskconnect_worker_configuration`.
 const Set<String> _awsMskconnectWorkerConfigurationSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsMskconnectWorkerConfiguration extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsMskconnectWorkerConfigurationSensitive;
+
+  /// A reference to the `aws_mskconnect_worker_configuration` this data source reads, for
+  /// arguments typed `RefTo<AwsMskconnectWorkerConfiguration>`.
+  RefTo<AwsMskconnectWorkerConfiguration> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

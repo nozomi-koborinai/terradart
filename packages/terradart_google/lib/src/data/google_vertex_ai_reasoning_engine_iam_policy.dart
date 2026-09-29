@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../vertex_ai/google_vertex_ai_reasoning_engine_iam_policy.dart';
 
 /// Sensitive field paths for `google_vertex_ai_reasoning_engine_iam_policy`.
 const Set<String> _googleVertexAiReasoningEngineIamPolicySensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataGoogleVertexAiReasoningEngineIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleVertexAiReasoningEngineIamPolicySensitive;
+
+  /// A reference to the `google_vertex_ai_reasoning_engine_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleVertexAiReasoningEngineIamPolicy>`.
+  RefTo<GoogleVertexAiReasoningEngineIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

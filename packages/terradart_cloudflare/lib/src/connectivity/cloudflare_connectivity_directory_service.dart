@@ -142,6 +142,10 @@ final class CloudflareConnectivityDirectoryService extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareConnectivityDirectoryServiceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareConnectivityDirectoryService>`.
+  RefTo<CloudflareConnectivityDirectoryService> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

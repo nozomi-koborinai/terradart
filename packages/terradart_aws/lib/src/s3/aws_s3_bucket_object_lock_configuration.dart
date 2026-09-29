@@ -154,6 +154,10 @@ final class AwsS3BucketObjectLockConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsS3BucketObjectLockConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3BucketObjectLockConfiguration>`.
+  RefTo<AwsS3BucketObjectLockConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -164,6 +164,10 @@ final class AwsApiGatewayRestApi extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApiGatewayRestApiSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApiGatewayRestApi>`.
+  RefTo<AwsApiGatewayRestApi> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

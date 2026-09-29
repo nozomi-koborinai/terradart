@@ -29,6 +29,10 @@ final class AwsInspector2MemberAssociation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsInspector2MemberAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsInspector2MemberAssociation>`.
+  RefTo<AwsInspector2MemberAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

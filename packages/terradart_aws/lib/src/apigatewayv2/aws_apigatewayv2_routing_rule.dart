@@ -141,6 +141,10 @@ final class AwsApigatewayv2RoutingRule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApigatewayv2RoutingRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApigatewayv2RoutingRule>`.
+  RefTo<AwsApigatewayv2RoutingRule> get ref => RefTo.of(this);
+
   /// Reference to `routing_rule_arn` attribute.
   TfRef<String> get routingRuleArn =>
       TfRef.attribute<String>(this, 'routing_rule_arn');

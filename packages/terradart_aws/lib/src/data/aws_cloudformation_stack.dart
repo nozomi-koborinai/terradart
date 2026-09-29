@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../cloudformation/aws_cloudformation_stack.dart';
 
 /// Sensitive field paths for `aws_cloudformation_stack`.
 const Set<String> _awsCloudformationStackSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsCloudformationStack extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsCloudformationStackSensitive;
+
+  /// A reference to the `aws_cloudformation_stack` this data source reads, for
+  /// arguments typed `RefTo<AwsCloudformationStack>`.
+  RefTo<AwsCloudformationStack> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

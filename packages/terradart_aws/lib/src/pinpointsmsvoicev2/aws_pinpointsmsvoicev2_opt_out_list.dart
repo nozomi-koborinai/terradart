@@ -31,6 +31,10 @@ final class AwsPinpointsmsvoicev2OptOutList extends Resource {
   @override
   Set<String> get sensitiveFields => _awsPinpointsmsvoicev2OptOutListSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPinpointsmsvoicev2OptOutList>`.
+  RefTo<AwsPinpointsmsvoicev2OptOutList> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

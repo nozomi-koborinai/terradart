@@ -37,6 +37,10 @@ final class GoogleComputeDiskResourcePolicyAttachment extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeDiskResourcePolicyAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeDiskResourcePolicyAttachment>`.
+  RefTo<GoogleComputeDiskResourcePolicyAttachment> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

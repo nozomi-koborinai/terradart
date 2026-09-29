@@ -166,6 +166,10 @@ final class GoogleSecureSourceManagerInstance extends Resource {
   Set<String> get sensitiveFields =>
       _googleSecureSourceManagerInstanceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSecureSourceManagerInstance>`.
+  RefTo<GoogleSecureSourceManagerInstance> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

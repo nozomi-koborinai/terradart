@@ -38,6 +38,10 @@ final class GoogleDataplexDataProductIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataplexDataProductIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexDataProductIamMember>`.
+  RefTo<GoogleDataplexDataProductIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

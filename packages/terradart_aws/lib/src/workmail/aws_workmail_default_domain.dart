@@ -30,4 +30,8 @@ final class AwsWorkmailDefaultDomain extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsWorkmailDefaultDomainSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkmailDefaultDomain>`.
+  RefTo<AwsWorkmailDefaultDomain> get ref => RefTo.of(this);
 }

@@ -35,6 +35,10 @@ final class AwsS3tablesTablePolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3tablesTablePolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3tablesTablePolicy>`.
+  RefTo<AwsS3tablesTablePolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

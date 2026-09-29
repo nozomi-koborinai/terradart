@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../cloudhsm/aws_cloudhsm_v2_cluster.dart';
 
 /// Sensitive field paths for `aws_cloudhsm_v2_cluster`.
 const Set<String> _awsCloudhsmV2ClusterSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsCloudhsmV2Cluster extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsCloudhsmV2ClusterSensitive;
+
+  /// A reference to the `aws_cloudhsm_v2_cluster` this data source reads, for
+  /// arguments typed `RefTo<AwsCloudhsmV2Cluster>`.
+  RefTo<AwsCloudhsmV2Cluster> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

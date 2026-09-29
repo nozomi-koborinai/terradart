@@ -30,4 +30,8 @@ final class AwsS3filesFileSystemPolicy extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsS3filesFileSystemPolicySensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3filesFileSystemPolicy>`.
+  RefTo<AwsS3filesFileSystemPolicy> get ref => RefTo.of(this);
 }

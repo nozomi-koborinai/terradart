@@ -33,6 +33,10 @@ final class AwsTransferTag extends Resource {
   @override
   Set<String> get sensitiveFields => _awsTransferTagSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsTransferTag>`.
+  RefTo<AwsTransferTag> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

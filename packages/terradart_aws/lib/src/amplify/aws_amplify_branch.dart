@@ -86,6 +86,10 @@ final class AwsAmplifyBranch extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAmplifyBranchSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAmplifyBranch>`.
+  RefTo<AwsAmplifyBranch> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -767,6 +767,10 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeRegionInstanceGroupManagerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRegionInstanceGroupManager>`.
+  RefTo<GoogleComputeRegionInstanceGroupManager> get ref => RefTo.of(this);
+
   /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');

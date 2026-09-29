@@ -40,6 +40,10 @@ final class GoogleArtifactRegistryRepositoryIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleArtifactRegistryRepositoryIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleArtifactRegistryRepositoryIamPolicy>`.
+  RefTo<GoogleArtifactRegistryRepositoryIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

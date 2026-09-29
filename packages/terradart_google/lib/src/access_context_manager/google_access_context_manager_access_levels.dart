@@ -366,6 +366,10 @@ final class GoogleAccessContextManagerAccessLevels extends Resource {
   Set<String> get sensitiveFields =>
       _googleAccessContextManagerAccessLevelsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleAccessContextManagerAccessLevels>`.
+  RefTo<GoogleAccessContextManagerAccessLevels> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

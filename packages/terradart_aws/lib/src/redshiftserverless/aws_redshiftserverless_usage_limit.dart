@@ -69,6 +69,10 @@ final class AwsRedshiftserverlessUsageLimit extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRedshiftserverlessUsageLimitSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRedshiftserverlessUsageLimit>`.
+  RefTo<AwsRedshiftserverlessUsageLimit> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -43,6 +43,10 @@ final class GoogleDiscoveryEngineSearchEngineIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleDiscoveryEngineSearchEngineIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDiscoveryEngineSearchEngineIamPolicy>`.
+  RefTo<GoogleDiscoveryEngineSearchEngineIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

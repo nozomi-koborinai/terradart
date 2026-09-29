@@ -81,6 +81,10 @@ final class AwsWafregionalRateBasedRule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWafregionalRateBasedRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWafregionalRateBasedRule>`.
+  RefTo<AwsWafregionalRateBasedRule> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

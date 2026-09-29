@@ -88,6 +88,11 @@ final class GoogleNetworkSecurityBackendAuthenticationConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleNetworkSecurityBackendAuthenticationConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkSecurityBackendAuthenticationConfig>`.
+  RefTo<GoogleNetworkSecurityBackendAuthenticationConfig> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

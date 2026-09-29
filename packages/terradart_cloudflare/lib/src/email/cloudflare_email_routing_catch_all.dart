@@ -101,6 +101,10 @@ final class CloudflareEmailRoutingCatchAll extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareEmailRoutingCatchAllSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareEmailRoutingCatchAll>`.
+  RefTo<CloudflareEmailRoutingCatchAll> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

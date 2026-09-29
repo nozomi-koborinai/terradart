@@ -64,6 +64,10 @@ final class AwsSagemakerModelCard extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSagemakerModelCardSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSagemakerModelCard>`.
+  RefTo<AwsSagemakerModelCard> get ref => RefTo.of(this);
+
   /// Reference to `model_card_arn` attribute.
   TfRef<String> get modelCardArn =>
       TfRef.attribute<String>(this, 'model_card_arn');

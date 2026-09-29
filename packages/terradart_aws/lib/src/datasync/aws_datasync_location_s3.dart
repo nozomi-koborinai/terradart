@@ -69,6 +69,10 @@ final class AwsDatasyncLocationS3 extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDatasyncLocationS3Sensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDatasyncLocationS3>`.
+  RefTo<AwsDatasyncLocationS3> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

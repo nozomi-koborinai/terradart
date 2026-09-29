@@ -359,6 +359,10 @@ final class GoogleBillingBudget extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBillingBudgetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBillingBudget>`.
+  RefTo<GoogleBillingBudget> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

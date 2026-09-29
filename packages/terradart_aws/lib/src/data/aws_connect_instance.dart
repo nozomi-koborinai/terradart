@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../connect/aws_connect_instance.dart';
 
 /// Sensitive field paths for `aws_connect_instance`.
 const Set<String> _awsConnectInstanceSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsConnectInstance extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsConnectInstanceSensitive;
+
+  /// A reference to the `aws_connect_instance` this data source reads, for
+  /// arguments typed `RefTo<AwsConnectInstance>`.
+  RefTo<AwsConnectInstance> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

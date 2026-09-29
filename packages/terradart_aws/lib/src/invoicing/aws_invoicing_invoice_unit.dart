@@ -55,6 +55,10 @@ final class AwsInvoicingInvoiceUnit extends Resource {
   @override
   Set<String> get sensitiveFields => _awsInvoicingInvoiceUnitSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsInvoicingInvoiceUnit>`.
+  RefTo<AwsInvoicingInvoiceUnit> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

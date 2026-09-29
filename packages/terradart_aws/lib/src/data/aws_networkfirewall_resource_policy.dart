@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../networkfirewall/aws_networkfirewall_resource_policy.dart';
 
 /// Sensitive field paths for `aws_networkfirewall_resource_policy`.
 const Set<String> _awsNetworkfirewallResourcePolicySensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataAwsNetworkfirewallResourcePolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsNetworkfirewallResourcePolicySensitive;
+
+  /// A reference to the `aws_networkfirewall_resource_policy` this data source reads, for
+  /// arguments typed `RefTo<AwsNetworkfirewallResourcePolicy>`.
+  RefTo<AwsNetworkfirewallResourcePolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

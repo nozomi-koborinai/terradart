@@ -34,4 +34,8 @@ final class AwsFisTargetAccountConfiguration extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsFisTargetAccountConfigurationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsFisTargetAccountConfiguration>`.
+  RefTo<AwsFisTargetAccountConfiguration> get ref => RefTo.of(this);
 }

@@ -86,6 +86,10 @@ final class AwsDatazoneDomain extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDatazoneDomainSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDatazoneDomain>`.
+  RefTo<AwsDatazoneDomain> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -95,6 +95,10 @@ final class GoogleIamWorkloadIdentityPool extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIamWorkloadIdentityPoolSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIamWorkloadIdentityPool>`.
+  RefTo<GoogleIamWorkloadIdentityPool> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute (full path
   /// `projects/{project}/locations/global/workloadIdentityPools/{poolId}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

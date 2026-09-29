@@ -38,6 +38,10 @@ final class CloudflareLogpushOwnershipChallenge extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareLogpushOwnershipChallengeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareLogpushOwnershipChallenge>`.
+  RefTo<CloudflareLogpushOwnershipChallenge> get ref => RefTo.of(this);
+
   /// Reference to `filename` attribute.
   TfRef<String> get filename => TfRef.attribute<String>(this, 'filename');
 

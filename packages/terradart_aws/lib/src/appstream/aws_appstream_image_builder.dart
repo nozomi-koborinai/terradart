@@ -184,6 +184,10 @@ final class AwsAppstreamImageBuilder extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppstreamImageBuilderSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppstreamImageBuilder>`.
+  RefTo<AwsAppstreamImageBuilder> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

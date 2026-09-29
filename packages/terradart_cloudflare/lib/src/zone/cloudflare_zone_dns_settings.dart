@@ -145,4 +145,8 @@ final class CloudflareZoneDnsSettings extends Resource {
 
   @override
   Set<String> get sensitiveFields => _cloudflareZoneDnsSettingsSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZoneDnsSettings>`.
+  RefTo<CloudflareZoneDnsSettings> get ref => RefTo.of(this);
 }

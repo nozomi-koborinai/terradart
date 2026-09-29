@@ -65,6 +65,10 @@ final class AwsMqConfiguration extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMqConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMqConfiguration>`.
+  RefTo<AwsMqConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

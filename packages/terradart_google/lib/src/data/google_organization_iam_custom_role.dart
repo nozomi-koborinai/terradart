@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../organization/google_organization_iam_custom_role.dart';
 
 /// Sensitive field paths for `google_organization_iam_custom_role`.
 const Set<String> _googleOrganizationIamCustomRoleSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataGoogleOrganizationIamCustomRole extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleOrganizationIamCustomRoleSensitive;
+
+  /// A reference to the `google_organization_iam_custom_role` this data source reads, for
+  /// arguments typed `RefTo<GoogleOrganizationIamCustomRole>`.
+  RefTo<GoogleOrganizationIamCustomRole> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

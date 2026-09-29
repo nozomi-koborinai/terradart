@@ -736,6 +736,10 @@ final class AwsObservabilityadminTelemetryRule extends Resource {
   Set<String> get sensitiveFields =>
       _awsObservabilityadminTelemetryRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsObservabilityadminTelemetryRule>`.
+  RefTo<AwsObservabilityadminTelemetryRule> get ref => RefTo.of(this);
+
   /// Reference to `rule_arn` attribute.
   TfRef<String> get ruleArn => TfRef.attribute<String>(this, 'rule_arn');
 

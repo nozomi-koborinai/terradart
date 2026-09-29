@@ -35,6 +35,10 @@ final class AwsNotificationsEventRule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsNotificationsEventRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNotificationsEventRule>`.
+  RefTo<AwsNotificationsEventRule> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 }

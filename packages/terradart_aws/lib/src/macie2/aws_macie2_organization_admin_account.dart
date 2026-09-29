@@ -30,6 +30,10 @@ final class AwsMacie2OrganizationAdminAccount extends Resource {
   Set<String> get sensitiveFields =>
       _awsMacie2OrganizationAdminAccountSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMacie2OrganizationAdminAccount>`.
+  RefTo<AwsMacie2OrganizationAdminAccount> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

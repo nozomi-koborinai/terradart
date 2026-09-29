@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_ec2_transit_gateway_vpc_attachment.dart';
 
 /// Sensitive field paths for `aws_ec2_transit_gateway_vpc_attachment`.
 const Set<String> _awsEc2TransitGatewayVpcAttachmentSensitive = <String>{};
@@ -50,6 +51,11 @@ final class DataAwsEc2TransitGatewayVpcAttachment extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsEc2TransitGatewayVpcAttachmentSensitive;
+
+  /// A reference to the `aws_ec2_transit_gateway_vpc_attachment` this data source reads, for
+  /// arguments typed `RefTo<AwsEc2TransitGatewayVpcAttachment>`.
+  RefTo<AwsEc2TransitGatewayVpcAttachment> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -39,6 +39,10 @@ final class GoogleApigeeEnvironmentAddonsConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleApigeeEnvironmentAddonsConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApigeeEnvironmentAddonsConfig>`.
+  RefTo<GoogleApigeeEnvironmentAddonsConfig> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

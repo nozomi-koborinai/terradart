@@ -49,6 +49,10 @@ final class AwsDbSnapshotCopy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDbSnapshotCopySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDbSnapshotCopy>`.
+  RefTo<AwsDbSnapshotCopy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

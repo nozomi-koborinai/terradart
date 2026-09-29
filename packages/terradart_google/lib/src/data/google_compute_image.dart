@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../compute/google_compute_image.dart';
 
 /// Sensitive field paths for `google_compute_image`.
 const Set<String> _googleComputeImageSensitive = <String>{};
@@ -35,6 +36,11 @@ final class DataGoogleComputeImage extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleComputeImageSensitive;
+
+  /// A reference to the `google_compute_image` this data source reads, for
+  /// arguments typed `RefTo<GoogleComputeImage>`.
+  RefTo<GoogleComputeImage> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

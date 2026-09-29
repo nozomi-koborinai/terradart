@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../cloudforce_one/cloudflare_cloudforce_one_request_priority.dart';
 
 /// Sensitive field paths for `cloudflare_cloudforce_one_request_priority`.
 const Set<String> _cloudflareCloudforceOneRequestPrioritySensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataCloudflareCloudforceOneRequestPriority extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareCloudforceOneRequestPrioritySensitive;
+
+  /// A reference to the `cloudflare_cloudforce_one_request_priority` this data source reads, for
+  /// arguments typed `RefTo<CloudflareCloudforceOneRequestPriority>`.
+  RefTo<CloudflareCloudforceOneRequestPriority> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

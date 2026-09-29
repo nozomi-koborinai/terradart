@@ -475,6 +475,10 @@ final class AwsEmrserverlessApplication extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEmrserverlessApplicationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEmrserverlessApplication>`.
+  RefTo<AwsEmrserverlessApplication> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

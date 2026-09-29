@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone_cache_reserve.dart';
 
 /// Sensitive field paths for `cloudflare_zone_cache_reserve`.
 const Set<String> _cloudflareZoneCacheReserveSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataCloudflareZoneCacheReserve extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareZoneCacheReserveSensitive;
+
+  /// A reference to the `cloudflare_zone_cache_reserve` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZoneCacheReserve>`.
+  RefTo<CloudflareZoneCacheReserve> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

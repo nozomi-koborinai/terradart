@@ -196,6 +196,10 @@ final class AwsM2Environment extends Resource {
   @override
   Set<String> get sensitiveFields => _awsM2EnvironmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsM2Environment>`.
+  RefTo<AwsM2Environment> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

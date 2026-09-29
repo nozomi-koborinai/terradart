@@ -149,6 +149,11 @@ final class AwsBedrockModelInvocationLoggingConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsBedrockModelInvocationLoggingConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockModelInvocationLoggingConfiguration>`.
+  RefTo<AwsBedrockModelInvocationLoggingConfiguration> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

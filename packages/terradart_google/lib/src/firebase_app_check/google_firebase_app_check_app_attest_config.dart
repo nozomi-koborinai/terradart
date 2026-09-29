@@ -61,6 +61,10 @@ final class GoogleFirebaseAppCheckAppAttestConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleFirebaseAppCheckAppAttestConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseAppCheckAppAttestConfig>`.
+  RefTo<GoogleFirebaseAppCheckAppAttestConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute (the relative resource name of the
   /// App Attest configuration object, in the shape
   /// `projects/{project}/apps/{app_id}/appAttestConfig`).

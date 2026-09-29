@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../functions/appwrite_function.dart';
 
 /// Sensitive field paths for `appwrite_function`.
 const Set<String> _appwriteFunctionSensitive = <String>{};
@@ -25,6 +26,11 @@ final class DataAppwriteFunction extends Data {
 
   @override
   Set<String> get sensitiveFields => _appwriteFunctionSensitive;
+
+  /// A reference to the `appwrite_function` this data source reads, for
+  /// arguments typed `RefTo<AppwriteFunction>`.
+  RefTo<AppwriteFunction> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

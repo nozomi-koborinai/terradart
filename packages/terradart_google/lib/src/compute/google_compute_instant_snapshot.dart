@@ -49,6 +49,10 @@ final class GoogleComputeInstantSnapshot extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeInstantSnapshotSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeInstantSnapshot>`.
+  RefTo<GoogleComputeInstantSnapshot> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

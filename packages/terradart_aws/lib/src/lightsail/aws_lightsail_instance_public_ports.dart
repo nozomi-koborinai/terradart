@@ -68,6 +68,10 @@ final class AwsLightsailInstancePublicPorts extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLightsailInstancePublicPortsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLightsailInstancePublicPorts>`.
+  RefTo<AwsLightsailInstancePublicPorts> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

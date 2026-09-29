@@ -33,6 +33,10 @@ final class AwsKinesisanalyticsv2ApplicationSnapshot extends Resource {
   Set<String> get sensitiveFields =>
       _awsKinesisanalyticsv2ApplicationSnapshotSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsKinesisanalyticsv2ApplicationSnapshot>`.
+  RefTo<AwsKinesisanalyticsv2ApplicationSnapshot> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

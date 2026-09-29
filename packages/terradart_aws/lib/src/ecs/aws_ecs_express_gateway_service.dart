@@ -157,6 +157,10 @@ final class AwsEcsExpressGatewayService extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEcsExpressGatewayServiceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEcsExpressGatewayService>`.
+  RefTo<AwsEcsExpressGatewayService> get ref => RefTo.of(this);
+
   /// Reference to `current_deployment` attribute.
   TfRef<String> get currentDeployment =>
       TfRef.attribute<String>(this, 'current_deployment');

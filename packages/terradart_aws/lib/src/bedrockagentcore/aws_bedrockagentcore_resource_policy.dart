@@ -31,4 +31,8 @@ final class AwsBedrockagentcoreResourcePolicy extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsBedrockagentcoreResourcePolicySensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentcoreResourcePolicy>`.
+  RefTo<AwsBedrockagentcoreResourcePolicy> get ref => RefTo.of(this);
 }

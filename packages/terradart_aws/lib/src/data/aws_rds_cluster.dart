@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../rds/aws_rds_cluster.dart';
 
 /// Sensitive field paths for `aws_rds_cluster`.
 const Set<String> _awsRdsClusterSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsRdsCluster extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsRdsClusterSensitive;
+
+  /// A reference to the `aws_rds_cluster` this data source reads, for
+  /// arguments typed `RefTo<AwsRdsCluster>`.
+  RefTo<AwsRdsCluster> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -31,6 +31,10 @@ final class AwsOpensearchPackageAssociation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsOpensearchPackageAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOpensearchPackageAssociation>`.
+  RefTo<AwsOpensearchPackageAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

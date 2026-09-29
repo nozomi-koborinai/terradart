@@ -61,6 +61,10 @@ final class GoogleFolderIamAuditConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFolderIamAuditConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFolderIamAuditConfig>`.
+  RefTo<GoogleFolderIamAuditConfig> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

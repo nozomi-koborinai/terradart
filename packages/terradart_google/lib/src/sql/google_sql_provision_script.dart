@@ -44,6 +44,10 @@ final class GoogleSqlProvisionScript extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSqlProvisionScriptSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSqlProvisionScript>`.
+  RefTo<GoogleSqlProvisionScript> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -32,6 +32,10 @@ final class AwsConfigConfigurationRecorderStatus extends Resource {
   Set<String> get sensitiveFields =>
       _awsConfigConfigurationRecorderStatusSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsConfigConfigurationRecorderStatus>`.
+  RefTo<AwsConfigConfigurationRecorderStatus> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

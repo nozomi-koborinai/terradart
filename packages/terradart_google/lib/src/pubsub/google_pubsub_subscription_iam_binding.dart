@@ -41,6 +41,10 @@ final class GooglePubsubSubscriptionIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googlePubsubSubscriptionIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GooglePubsubSubscriptionIamBinding>`.
+  RefTo<GooglePubsubSubscriptionIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

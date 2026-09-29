@@ -101,6 +101,10 @@ final class AwsLambdaFunctionUrl extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLambdaFunctionUrlSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLambdaFunctionUrl>`.
+  RefTo<AwsLambdaFunctionUrl> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

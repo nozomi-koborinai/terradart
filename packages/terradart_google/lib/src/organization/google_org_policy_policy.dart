@@ -250,6 +250,10 @@ final class GoogleOrgPolicyPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleOrgPolicyPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleOrgPolicyPolicy>`.
+  RefTo<GoogleOrgPolicyPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

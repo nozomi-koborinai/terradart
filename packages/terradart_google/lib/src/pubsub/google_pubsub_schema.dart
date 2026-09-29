@@ -78,6 +78,10 @@ final class GooglePubsubSchema extends Resource {
   @override
   Set<String> get sensitiveFields => _googlePubsubSchemaSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GooglePubsubSchema>`.
+  RefTo<GooglePubsubSchema> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

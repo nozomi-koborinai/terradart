@@ -35,6 +35,10 @@ final class AwsCloudwatchLogDestination extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudwatchLogDestinationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudwatchLogDestination>`.
+  RefTo<AwsCloudwatchLogDestination> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -45,6 +45,10 @@ final class GoogleComputeNetworkPeeringRoutesConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeNetworkPeeringRoutesConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeNetworkPeeringRoutesConfig>`.
+  RefTo<GoogleComputeNetworkPeeringRoutesConfig> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

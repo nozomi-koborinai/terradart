@@ -177,6 +177,10 @@ final class AwsIdentitystoreUser extends Resource {
   @override
   Set<String> get sensitiveFields => _awsIdentitystoreUserSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIdentitystoreUser>`.
+  RefTo<AwsIdentitystoreUser> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

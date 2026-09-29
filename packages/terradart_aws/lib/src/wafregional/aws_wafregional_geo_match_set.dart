@@ -54,6 +54,10 @@ final class AwsWafregionalGeoMatchSet extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWafregionalGeoMatchSetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWafregionalGeoMatchSet>`.
+  RefTo<AwsWafregionalGeoMatchSet> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

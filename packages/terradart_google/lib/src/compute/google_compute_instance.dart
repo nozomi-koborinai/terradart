@@ -909,6 +909,10 @@ final class GoogleComputeInstance extends Resource {
   @override
   bool get supportsDeletionProtection => true;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeInstance>`.
+  RefTo<GoogleComputeInstance> get ref => RefTo.of(this);
+
   /// Reference to `cpu_platform` attribute.
   TfRef<String> get cpuPlatform =>
       TfRef.attribute<String>(this, 'cpu_platform');

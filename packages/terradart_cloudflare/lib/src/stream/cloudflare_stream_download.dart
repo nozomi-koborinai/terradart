@@ -29,4 +29,8 @@ final class CloudflareStreamDownload extends Resource {
 
   @override
   Set<String> get sensitiveFields => _cloudflareStreamDownloadSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareStreamDownload>`.
+  RefTo<CloudflareStreamDownload> get ref => RefTo.of(this);
 }

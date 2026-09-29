@@ -40,6 +40,10 @@ final class GoogleLoggingLogViewIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleLoggingLogViewIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleLoggingLogViewIamPolicy>`.
+  RefTo<GoogleLoggingLogViewIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

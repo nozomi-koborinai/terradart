@@ -31,6 +31,10 @@ final class AwsS3BucketPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3BucketPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3BucketPolicy>`.
+  RefTo<AwsS3BucketPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

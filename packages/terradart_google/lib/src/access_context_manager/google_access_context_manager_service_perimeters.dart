@@ -1162,6 +1162,10 @@ final class GoogleAccessContextManagerServicePerimeters extends Resource {
   Set<String> get sensitiveFields =>
       _googleAccessContextManagerServicePerimetersSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleAccessContextManagerServicePerimeters>`.
+  RefTo<GoogleAccessContextManagerServicePerimeters> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

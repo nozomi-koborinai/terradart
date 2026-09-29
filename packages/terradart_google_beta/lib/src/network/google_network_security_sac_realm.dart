@@ -79,6 +79,10 @@ final class GoogleNetworkSecuritySacRealm extends Resource {
   @override
   Set<String> get sensitiveFields => _googleNetworkSecuritySacRealmSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkSecuritySacRealm>`.
+  RefTo<GoogleNetworkSecuritySacRealm> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

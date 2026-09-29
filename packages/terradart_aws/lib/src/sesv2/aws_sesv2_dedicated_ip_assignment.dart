@@ -31,6 +31,10 @@ final class AwsSesv2DedicatedIpAssignment extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSesv2DedicatedIpAssignmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSesv2DedicatedIpAssignment>`.
+  RefTo<AwsSesv2DedicatedIpAssignment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

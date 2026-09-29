@@ -50,6 +50,10 @@ final class GoogleSccV2ProjectMuteConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSccV2ProjectMuteConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSccV2ProjectMuteConfig>`.
+  RefTo<GoogleSccV2ProjectMuteConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

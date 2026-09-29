@@ -84,6 +84,10 @@ final class AwsCloud9EnvironmentEc2 extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloud9EnvironmentEc2Sensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloud9EnvironmentEc2>`.
+  RefTo<AwsCloud9EnvironmentEc2> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

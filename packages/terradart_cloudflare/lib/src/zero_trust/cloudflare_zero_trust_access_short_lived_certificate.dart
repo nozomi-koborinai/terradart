@@ -38,6 +38,11 @@ final class CloudflareZeroTrustAccessShortLivedCertificate extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustAccessShortLivedCertificateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustAccessShortLivedCertificate>`.
+  RefTo<CloudflareZeroTrustAccessShortLivedCertificate> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

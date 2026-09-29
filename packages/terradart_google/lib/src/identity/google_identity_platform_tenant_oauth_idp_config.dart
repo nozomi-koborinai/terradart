@@ -81,6 +81,10 @@ final class GoogleIdentityPlatformTenantOauthIdpConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleIdentityPlatformTenantOauthIdpConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIdentityPlatformTenantOauthIdpConfig>`.
+  RefTo<GoogleIdentityPlatformTenantOauthIdpConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

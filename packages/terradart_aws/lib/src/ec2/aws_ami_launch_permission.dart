@@ -166,6 +166,10 @@ final class AwsAmiLaunchPermission extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAmiLaunchPermissionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAmiLaunchPermission>`.
+  RefTo<AwsAmiLaunchPermission> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

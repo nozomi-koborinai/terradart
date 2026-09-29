@@ -87,6 +87,10 @@ final class AwsDatasyncLocationAzureBlob extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDatasyncLocationAzureBlobSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDatasyncLocationAzureBlob>`.
+  RefTo<AwsDatasyncLocationAzureBlob> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

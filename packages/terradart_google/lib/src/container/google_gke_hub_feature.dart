@@ -58,6 +58,10 @@ final class GoogleGkeHubFeature extends Resource {
   @override
   Set<String> get sensitiveFields => _googleGkeHubFeatureSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleGkeHubFeature>`.
+  RefTo<GoogleGkeHubFeature> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../iap/google_iap_web_type_app_engine_iam_policy.dart';
 
 /// Sensitive field paths for `google_iap_web_type_app_engine_iam_policy`.
 const Set<String> _googleIapWebTypeAppEngineIamPolicySensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataGoogleIapWebTypeAppEngineIamPolicy extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleIapWebTypeAppEngineIamPolicySensitive;
+
+  /// A reference to the `google_iap_web_type_app_engine_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleIapWebTypeAppEngineIamPolicy>`.
+  RefTo<GoogleIapWebTypeAppEngineIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

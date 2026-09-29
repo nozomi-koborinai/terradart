@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../api_gateway/aws_api_gateway_api_key.dart';
 
 /// Sensitive field paths for `aws_api_gateway_api_key`.
 const Set<String> _awsApiGatewayApiKeySensitive = <String>{'value'};
@@ -28,6 +29,11 @@ final class DataAwsApiGatewayApiKey extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsApiGatewayApiKeySensitive;
+
+  /// A reference to the `aws_api_gateway_api_key` this data source reads, for
+  /// arguments typed `RefTo<AwsApiGatewayApiKey>`.
+  RefTo<AwsApiGatewayApiKey> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

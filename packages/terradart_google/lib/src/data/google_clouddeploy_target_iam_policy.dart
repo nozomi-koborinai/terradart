@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../clouddeploy/google_clouddeploy_target_iam_policy.dart';
 
 /// Sensitive field paths for `google_clouddeploy_target_iam_policy`.
 const Set<String> _googleClouddeployTargetIamPolicySensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataGoogleClouddeployTargetIamPolicy extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleClouddeployTargetIamPolicySensitive;
+
+  /// A reference to the `google_clouddeploy_target_iam_policy` this data source reads, for
+  /// arguments typed `RefTo<GoogleClouddeployTargetIamPolicy>`.
+  RefTo<GoogleClouddeployTargetIamPolicy> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -59,6 +59,10 @@ final class AwsDirectoryServiceRegion extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDirectoryServiceRegionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDirectoryServiceRegion>`.
+  RefTo<AwsDirectoryServiceRegion> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

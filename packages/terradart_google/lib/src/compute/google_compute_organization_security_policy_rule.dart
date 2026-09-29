@@ -321,6 +321,10 @@ final class GoogleComputeOrganizationSecurityPolicyRule extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeOrganizationSecurityPolicyRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeOrganizationSecurityPolicyRule>`.
+  RefTo<GoogleComputeOrganizationSecurityPolicyRule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

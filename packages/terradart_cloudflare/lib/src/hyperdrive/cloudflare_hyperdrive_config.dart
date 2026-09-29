@@ -156,6 +156,10 @@ final class CloudflareHyperdriveConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareHyperdriveConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareHyperdriveConfig>`.
+  RefTo<CloudflareHyperdriveConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

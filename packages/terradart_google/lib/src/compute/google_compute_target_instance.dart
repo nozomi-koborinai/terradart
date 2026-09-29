@@ -60,6 +60,10 @@ final class GoogleComputeTargetInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeTargetInstanceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeTargetInstance>`.
+  RefTo<GoogleComputeTargetInstance> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

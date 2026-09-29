@@ -506,6 +506,10 @@ final class AwsS3BucketReplicationConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsS3BucketReplicationConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3BucketReplicationConfiguration>`.
+  RefTo<AwsS3BucketReplicationConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

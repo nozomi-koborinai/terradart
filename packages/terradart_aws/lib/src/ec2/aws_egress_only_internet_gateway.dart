@@ -31,6 +31,10 @@ final class AwsEgressOnlyInternetGateway extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEgressOnlyInternetGatewaySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEgressOnlyInternetGateway>`.
+  RefTo<AwsEgressOnlyInternetGateway> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

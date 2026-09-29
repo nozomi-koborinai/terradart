@@ -40,6 +40,10 @@ final class GoogleHealthcareConsentStore extends Resource {
   @override
   Set<String> get sensitiveFields => _googleHealthcareConsentStoreSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleHealthcareConsentStore>`.
+  RefTo<GoogleHealthcareConsentStore> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

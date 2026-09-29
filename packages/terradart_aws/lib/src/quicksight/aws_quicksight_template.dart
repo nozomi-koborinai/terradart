@@ -12049,6 +12049,10 @@ final class AwsQuicksightTemplate extends Resource {
   @override
   Set<String> get sensitiveFields => _awsQuicksightTemplateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsQuicksightTemplate>`.
+  RefTo<AwsQuicksightTemplate> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

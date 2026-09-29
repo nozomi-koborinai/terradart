@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../observability/google_observability_organization_settings.dart';
 
 /// Sensitive field paths for `google_observability_organization_settings`.
 const Set<String> _googleObservabilityOrganizationSettingsSensitive =
@@ -28,6 +29,11 @@ final class DataGoogleObservabilityOrganizationSettings extends Data {
   @override
   Set<String> get sensitiveFields =>
       _googleObservabilityOrganizationSettingsSensitive;
+
+  /// A reference to the `google_observability_organization_settings` this data source reads, for
+  /// arguments typed `RefTo<GoogleObservabilityOrganizationSettings>`.
+  RefTo<GoogleObservabilityOrganizationSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

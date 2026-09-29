@@ -35,6 +35,10 @@ final class AwsDxGatewayAssociationProposal extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDxGatewayAssociationProposalSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDxGatewayAssociationProposal>`.
+  RefTo<AwsDxGatewayAssociationProposal> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

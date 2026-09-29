@@ -155,6 +155,10 @@ final class AwsGlueMlTransform extends Resource {
   @override
   Set<String> get sensitiveFields => _awsGlueMlTransformSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGlueMlTransform>`.
+  RefTo<AwsGlueMlTransform> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

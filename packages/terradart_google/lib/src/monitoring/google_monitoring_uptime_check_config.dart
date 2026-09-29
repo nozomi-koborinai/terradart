@@ -721,6 +721,10 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleMonitoringUptimeCheckConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleMonitoringUptimeCheckConfig>`.
+  RefTo<GoogleMonitoringUptimeCheckConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

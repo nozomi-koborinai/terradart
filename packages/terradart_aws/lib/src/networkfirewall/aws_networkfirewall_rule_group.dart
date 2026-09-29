@@ -838,6 +838,10 @@ final class AwsNetworkfirewallRuleGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsNetworkfirewallRuleGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkfirewallRuleGroup>`.
+  RefTo<AwsNetworkfirewallRuleGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

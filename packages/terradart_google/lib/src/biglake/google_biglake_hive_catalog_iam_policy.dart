@@ -36,4 +36,8 @@ final class GoogleBiglakeHiveCatalogIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleBiglakeHiveCatalogIamPolicySensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBiglakeHiveCatalogIamPolicy>`.
+  RefTo<GoogleBiglakeHiveCatalogIamPolicy> get ref => RefTo.of(this);
 }

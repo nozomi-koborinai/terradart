@@ -37,6 +37,10 @@ final class AwsAlbTargetGroupAttachment extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAlbTargetGroupAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAlbTargetGroupAttachment>`.
+  RefTo<AwsAlbTargetGroupAttachment> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

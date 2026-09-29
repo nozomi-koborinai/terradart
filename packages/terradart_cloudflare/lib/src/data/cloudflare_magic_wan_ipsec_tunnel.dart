@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../magic/cloudflare_magic_wan_ipsec_tunnel.dart';
 
 /// Sensitive field paths for `cloudflare_magic_wan_ipsec_tunnel`.
 const Set<String> _cloudflareMagicWanIpsecTunnelSensitive = <String>{};
@@ -31,6 +32,11 @@ final class DataCloudflareMagicWanIpsecTunnel extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareMagicWanIpsecTunnelSensitive;
+
+  /// A reference to the `cloudflare_magic_wan_ipsec_tunnel` this data source reads, for
+  /// arguments typed `RefTo<CloudflareMagicWanIpsecTunnel>`.
+  RefTo<CloudflareMagicWanIpsecTunnel> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

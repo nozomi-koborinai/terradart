@@ -1671,6 +1671,10 @@ final class AwsWafv2RuleGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWafv2RuleGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWafv2RuleGroup>`.
+  RefTo<AwsWafv2RuleGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

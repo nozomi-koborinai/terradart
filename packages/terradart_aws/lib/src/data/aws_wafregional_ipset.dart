@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../wafregional/aws_wafregional_ipset.dart';
 
 /// Sensitive field paths for `aws_wafregional_ipset`.
 const Set<String> _awsWafregionalIpsetSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsWafregionalIpset extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsWafregionalIpsetSensitive;
+
+  /// A reference to the `aws_wafregional_ipset` this data source reads, for
+  /// arguments typed `RefTo<AwsWafregionalIpset>`.
+  RefTo<AwsWafregionalIpset> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -87,6 +87,10 @@ final class AwsFinspaceKxDataview extends Resource {
   @override
   Set<String> get sensitiveFields => _awsFinspaceKxDataviewSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsFinspaceKxDataview>`.
+  RefTo<AwsFinspaceKxDataview> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

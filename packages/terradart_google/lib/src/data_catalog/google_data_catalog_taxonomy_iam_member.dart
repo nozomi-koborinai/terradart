@@ -41,6 +41,10 @@ final class GoogleDataCatalogTaxonomyIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataCatalogTaxonomyIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataCatalogTaxonomyIamMember>`.
+  RefTo<GoogleDataCatalogTaxonomyIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zone/cloudflare_zone_dns_settings.dart';
 
 /// Sensitive field paths for `cloudflare_zone_dns_settings`.
 const Set<String> _cloudflareZoneDnsSettingsSensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataCloudflareZoneDnsSettings extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareZoneDnsSettingsSensitive;
+
+  /// A reference to the `cloudflare_zone_dns_settings` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZoneDnsSettings>`.
+  RefTo<CloudflareZoneDnsSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `flatten_all_cnames` attribute.
   TfRef<bool> get flattenAllCnames =>

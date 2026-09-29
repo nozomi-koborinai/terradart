@@ -133,6 +133,10 @@ final class AwsEvidentlyProject extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEvidentlyProjectSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEvidentlyProject>`.
+  RefTo<AwsEvidentlyProject> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

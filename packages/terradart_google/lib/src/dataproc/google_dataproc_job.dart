@@ -490,6 +490,10 @@ final class GoogleDataprocJob extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataprocJobSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataprocJob>`.
+  RefTo<GoogleDataprocJob> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

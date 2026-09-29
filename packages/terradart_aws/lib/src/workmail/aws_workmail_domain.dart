@@ -31,6 +31,10 @@ final class AwsWorkmailDomain extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWorkmailDomainSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkmailDomain>`.
+  RefTo<AwsWorkmailDomain> get ref => RefTo.of(this);
+
   /// Reference to `dkim_verification_status` attribute.
   TfRef<String> get dkimVerificationStatus =>
       TfRef.attribute<String>(this, 'dkim_verification_status');

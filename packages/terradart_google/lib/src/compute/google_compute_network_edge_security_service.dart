@@ -40,4 +40,8 @@ final class GoogleComputeNetworkEdgeSecurityService extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googleComputeNetworkEdgeSecurityServiceSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeNetworkEdgeSecurityService>`.
+  RefTo<GoogleComputeNetworkEdgeSecurityService> get ref => RefTo.of(this);
 }

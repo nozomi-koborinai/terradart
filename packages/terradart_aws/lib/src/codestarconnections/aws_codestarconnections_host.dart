@@ -77,6 +77,10 @@ final class AwsCodestarconnectionsHost extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCodestarconnectionsHostSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCodestarconnectionsHost>`.
+  RefTo<AwsCodestarconnectionsHost> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

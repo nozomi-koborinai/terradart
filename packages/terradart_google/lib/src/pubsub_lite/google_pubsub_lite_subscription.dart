@@ -81,6 +81,10 @@ final class GooglePubsubLiteSubscription extends Resource {
   @override
   Set<String> get sensitiveFields => _googlePubsubLiteSubscriptionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GooglePubsubLiteSubscription>`.
+  RefTo<GooglePubsubLiteSubscription> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

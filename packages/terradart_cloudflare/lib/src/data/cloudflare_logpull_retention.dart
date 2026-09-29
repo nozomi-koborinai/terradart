@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../logs/cloudflare_logpull_retention.dart';
 
 /// Sensitive field paths for `cloudflare_logpull_retention`.
 const Set<String> _cloudflareLogpullRetentionSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataCloudflareLogpullRetention extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareLogpullRetentionSensitive;
+
+  /// A reference to the `cloudflare_logpull_retention` this data source reads, for
+  /// arguments typed `RefTo<CloudflareLogpullRetention>`.
+  RefTo<CloudflareLogpullRetention> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

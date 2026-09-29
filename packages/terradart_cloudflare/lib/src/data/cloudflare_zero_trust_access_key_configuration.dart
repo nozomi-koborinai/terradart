@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_access_key_configuration.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_access_key_configuration`.
 const Set<String> _cloudflareZeroTrustAccessKeyConfigurationSensitive =
@@ -29,6 +30,11 @@ final class DataCloudflareZeroTrustAccessKeyConfiguration extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustAccessKeyConfigurationSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_access_key_configuration` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustAccessKeyConfiguration>`.
+  RefTo<CloudflareZeroTrustAccessKeyConfiguration> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

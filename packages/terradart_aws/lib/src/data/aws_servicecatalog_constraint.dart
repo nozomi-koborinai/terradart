@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../servicecatalog/aws_servicecatalog_constraint.dart';
 
 /// Sensitive field paths for `aws_servicecatalog_constraint`.
 const Set<String> _awsServicecatalogConstraintSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsServicecatalogConstraint extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsServicecatalogConstraintSensitive;
+
+  /// A reference to the `aws_servicecatalog_constraint` this data source reads, for
+  /// arguments typed `RefTo<AwsServicecatalogConstraint>`.
+  RefTo<AwsServicecatalogConstraint> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -39,6 +39,10 @@ final class GoogleLoggingLogViewIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleLoggingLogViewIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleLoggingLogViewIamMember>`.
+  RefTo<GoogleLoggingLogViewIamMember> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -36,6 +36,10 @@ final class GoogleBigqueryDatasetIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryDatasetIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryDatasetIamPolicy>`.
+  RefTo<GoogleBigqueryDatasetIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

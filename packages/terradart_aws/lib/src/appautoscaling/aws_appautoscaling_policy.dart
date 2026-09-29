@@ -1001,6 +1001,10 @@ final class AwsAppautoscalingPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppautoscalingPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppautoscalingPolicy>`.
+  RefTo<AwsAppautoscalingPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

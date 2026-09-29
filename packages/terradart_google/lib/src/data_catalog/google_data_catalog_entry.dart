@@ -133,6 +133,10 @@ final class GoogleDataCatalogEntry extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataCatalogEntrySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataCatalogEntry>`.
+  RefTo<GoogleDataCatalogEntry> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

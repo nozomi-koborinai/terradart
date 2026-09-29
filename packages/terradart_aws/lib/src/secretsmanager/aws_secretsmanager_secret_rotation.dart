@@ -150,6 +150,10 @@ final class AwsSecretsmanagerSecretRotation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSecretsmanagerSecretRotationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSecretsmanagerSecretRotation>`.
+  RefTo<AwsSecretsmanagerSecretRotation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

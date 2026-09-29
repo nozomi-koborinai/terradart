@@ -98,6 +98,10 @@ final class AwsSignerSigningJob extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSignerSigningJobSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSignerSigningJob>`.
+  RefTo<AwsSignerSigningJob> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

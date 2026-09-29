@@ -31,6 +31,10 @@ final class AwsRamResourceAssociation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRamResourceAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRamResourceAssociation>`.
+  RefTo<AwsRamResourceAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

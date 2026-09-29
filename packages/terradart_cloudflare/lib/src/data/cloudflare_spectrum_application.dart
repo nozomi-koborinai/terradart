@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../spectrum/cloudflare_spectrum_application.dart';
 
 /// Sensitive field paths for `cloudflare_spectrum_application`.
 const Set<String> _cloudflareSpectrumApplicationSensitive = <String>{};
@@ -72,6 +73,11 @@ final class DataCloudflareSpectrumApplication extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareSpectrumApplicationSensitive;
+
+  /// A reference to the `cloudflare_spectrum_application` this data source reads, for
+  /// arguments typed `RefTo<CloudflareSpectrumApplication>`.
+  RefTo<CloudflareSpectrumApplication> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../appmesh/aws_appmesh_virtual_node.dart';
 
 /// Sensitive field paths for `aws_appmesh_virtual_node`.
 const Set<String> _awsAppmeshVirtualNodeSensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataAwsAppmeshVirtualNode extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsAppmeshVirtualNodeSensitive;
+
+  /// A reference to the `aws_appmesh_virtual_node` this data source reads, for
+  /// arguments typed `RefTo<AwsAppmeshVirtualNode>`.
+  RefTo<AwsAppmeshVirtualNode> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -651,6 +651,10 @@ final class AwsEksNodeGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEksNodeGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEksNodeGroup>`.
+  RefTo<AwsEksNodeGroup> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

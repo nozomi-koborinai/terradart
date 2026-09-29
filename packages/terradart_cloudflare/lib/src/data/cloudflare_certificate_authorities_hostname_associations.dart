@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ssl/cloudflare_certificate_authorities_hostname_associations.dart';
 
 /// Sensitive field paths for `cloudflare_certificate_authorities_hostname_associations`.
 const Set<String>
@@ -35,6 +36,11 @@ final class DataCloudflareCertificateAuthoritiesHostnameAssociations
   @override
   Set<String> get sensitiveFields =>
       _cloudflareCertificateAuthoritiesHostnameAssociationsSensitive;
+
+  /// A reference to the `cloudflare_certificate_authorities_hostname_associations` this data source reads, for
+  /// arguments typed `RefTo<CloudflareCertificateAuthoritiesHostnameAssociations>`.
+  RefTo<CloudflareCertificateAuthoritiesHostnameAssociations> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

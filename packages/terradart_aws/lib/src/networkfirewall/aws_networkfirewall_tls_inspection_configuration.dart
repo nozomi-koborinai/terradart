@@ -292,6 +292,10 @@ final class AwsNetworkfirewallTlsInspectionConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsNetworkfirewallTlsInspectionConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkfirewallTlsInspectionConfiguration>`.
+  RefTo<AwsNetworkfirewallTlsInspectionConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

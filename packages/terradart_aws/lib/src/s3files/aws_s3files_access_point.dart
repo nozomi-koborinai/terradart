@@ -108,6 +108,10 @@ final class AwsS3filesAccessPoint extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3filesAccessPointSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3filesAccessPoint>`.
+  RefTo<AwsS3filesAccessPoint> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

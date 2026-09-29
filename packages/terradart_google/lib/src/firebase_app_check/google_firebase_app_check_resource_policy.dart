@@ -89,6 +89,10 @@ final class GoogleFirebaseAppCheckResourcePolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleFirebaseAppCheckResourcePolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseAppCheckResourcePolicy>`.
+  RefTo<GoogleFirebaseAppCheckResourcePolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute (the full resource path).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

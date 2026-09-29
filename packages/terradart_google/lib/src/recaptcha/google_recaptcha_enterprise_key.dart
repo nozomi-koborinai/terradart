@@ -310,6 +310,10 @@ final class GoogleRecaptchaEnterpriseKey extends Resource {
   @override
   Set<String> get sensitiveFields => _googleRecaptchaEnterpriseKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleRecaptchaEnterpriseKey>`.
+  RefTo<GoogleRecaptchaEnterpriseKey> get ref => RefTo.of(this);
+
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 

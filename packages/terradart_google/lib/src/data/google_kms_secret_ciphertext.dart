@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../kms/google_kms_secret_ciphertext.dart';
 
 /// Sensitive field paths for `google_kms_secret_ciphertext`.
 const Set<String> _googleKmsSecretCiphertextSensitive = <String>{'plaintext'};
@@ -26,6 +27,11 @@ final class DataGoogleKmsSecretCiphertext extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleKmsSecretCiphertextSensitive;
+
+  /// A reference to the `google_kms_secret_ciphertext` this data source reads, for
+  /// arguments typed `RefTo<GoogleKmsSecretCiphertext>`.
+  RefTo<GoogleKmsSecretCiphertext> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -698,6 +698,10 @@ final class AwsLbListenerRule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLbListenerRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLbListenerRule>`.
+  RefTo<AwsLbListenerRule> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

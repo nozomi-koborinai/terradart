@@ -280,6 +280,10 @@ final class AwsElasticacheCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _awsElasticacheClusterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsElasticacheCluster>`.
+  RefTo<AwsElasticacheCluster> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

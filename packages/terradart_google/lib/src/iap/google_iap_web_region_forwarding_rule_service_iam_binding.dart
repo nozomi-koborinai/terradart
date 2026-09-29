@@ -47,6 +47,11 @@ final class GoogleIapWebRegionForwardingRuleServiceIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleIapWebRegionForwardingRuleServiceIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapWebRegionForwardingRuleServiceIamBinding>`.
+  RefTo<GoogleIapWebRegionForwardingRuleServiceIamBinding> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

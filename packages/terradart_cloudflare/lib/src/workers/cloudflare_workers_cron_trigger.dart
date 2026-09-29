@@ -47,6 +47,10 @@ final class CloudflareWorkersCronTrigger extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareWorkersCronTriggerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareWorkersCronTrigger>`.
+  RefTo<CloudflareWorkersCronTrigger> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

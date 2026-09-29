@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../cloudfront/aws_cloudfront_distribution.dart';
 
 /// Sensitive field paths for `aws_cloudfront_distribution`.
 const Set<String> _awsCloudfrontDistributionSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsCloudfrontDistribution extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsCloudfrontDistributionSensitive;
+
+  /// A reference to the `aws_cloudfront_distribution` this data source reads, for
+  /// arguments typed `RefTo<AwsCloudfrontDistribution>`.
+  RefTo<AwsCloudfrontDistribution> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

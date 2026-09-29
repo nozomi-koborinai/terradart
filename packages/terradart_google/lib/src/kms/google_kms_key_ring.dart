@@ -51,6 +51,10 @@ final class GoogleKmsKeyRing extends Resource {
   @override
   Set<String> get sensitiveFields => _googleKmsKeyRingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleKmsKeyRing>`.
+  RefTo<GoogleKmsKeyRing> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

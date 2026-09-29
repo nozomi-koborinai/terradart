@@ -244,6 +244,10 @@ final class AwsBedrockagentcoreOnlineEvaluationConfig extends Resource {
   Set<String> get sensitiveFields =>
       _awsBedrockagentcoreOnlineEvaluationConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentcoreOnlineEvaluationConfig>`.
+  RefTo<AwsBedrockagentcoreOnlineEvaluationConfig> get ref => RefTo.of(this);
+
   /// Reference to `online_evaluation_config_arn` attribute.
   TfRef<String> get onlineEvaluationConfigArn =>
       TfRef.attribute<String>(this, 'online_evaluation_config_arn');

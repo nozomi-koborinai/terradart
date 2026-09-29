@@ -33,6 +33,10 @@ final class AppwriteMessagingSubscriber extends Resource {
   @override
   Set<String> get sensitiveFields => _appwriteMessagingSubscriberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwriteMessagingSubscriber>`.
+  RefTo<AppwriteMessagingSubscriber> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -54,6 +54,10 @@ final class AwsTransferCertificate extends Resource {
   @override
   Set<String> get sensitiveFields => _awsTransferCertificateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsTransferCertificate>`.
+  RefTo<AwsTransferCertificate> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

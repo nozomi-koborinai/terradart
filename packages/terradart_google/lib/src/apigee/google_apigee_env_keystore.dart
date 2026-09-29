@@ -33,6 +33,10 @@ final class GoogleApigeeEnvKeystore extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApigeeEnvKeystoreSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApigeeEnvKeystore>`.
+  RefTo<GoogleApigeeEnvKeystore> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

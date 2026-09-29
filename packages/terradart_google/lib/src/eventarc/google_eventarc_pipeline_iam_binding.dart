@@ -42,4 +42,8 @@ final class GoogleEventarcPipelineIamBinding extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleEventarcPipelineIamBindingSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleEventarcPipelineIamBinding>`.
+  RefTo<GoogleEventarcPipelineIamBinding> get ref => RefTo.of(this);
 }

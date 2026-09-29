@@ -1804,6 +1804,10 @@ final class AwsSagemakerTrainingJob extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSagemakerTrainingJobSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSagemakerTrainingJob>`.
+  RefTo<AwsSagemakerTrainingJob> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

@@ -1056,6 +1056,10 @@ final class AwsSpotInstanceRequest extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSpotInstanceRequestSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSpotInstanceRequest>`.
+  RefTo<AwsSpotInstanceRequest> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

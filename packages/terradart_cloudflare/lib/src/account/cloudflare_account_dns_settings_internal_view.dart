@@ -33,6 +33,10 @@ final class CloudflareAccountDnsSettingsInternalView extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareAccountDnsSettingsInternalViewSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareAccountDnsSettingsInternalView>`.
+  RefTo<CloudflareAccountDnsSettingsInternalView> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -34,6 +34,10 @@ final class AwsS3controlAccessGrantsInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _awsS3controlAccessGrantsInstanceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3controlAccessGrantsInstance>`.
+  RefTo<AwsS3controlAccessGrantsInstance> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

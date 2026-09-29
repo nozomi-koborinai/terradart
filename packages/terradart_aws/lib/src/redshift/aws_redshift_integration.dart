@@ -42,6 +42,10 @@ final class AwsRedshiftIntegration extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRedshiftIntegrationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRedshiftIntegration>`.
+  RefTo<AwsRedshiftIntegration> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

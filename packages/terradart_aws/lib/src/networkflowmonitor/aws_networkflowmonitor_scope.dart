@@ -98,6 +98,10 @@ final class AwsNetworkflowmonitorScope extends Resource {
   @override
   Set<String> get sensitiveFields => _awsNetworkflowmonitorScopeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkflowmonitorScope>`.
+  RefTo<AwsNetworkflowmonitorScope> get ref => RefTo.of(this);
+
   /// Reference to `scope_arn` attribute.
   TfRef<String> get scopeArn => TfRef.attribute<String>(this, 'scope_arn');
 

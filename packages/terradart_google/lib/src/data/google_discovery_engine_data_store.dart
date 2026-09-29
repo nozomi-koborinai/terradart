@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../discovery_engine/google_discovery_engine_data_store.dart';
 
 /// Sensitive field paths for `google_discovery_engine_data_store`.
 const Set<String> _googleDiscoveryEngineDataStoreSensitive = <String>{};
@@ -33,6 +34,11 @@ final class DataGoogleDiscoveryEngineDataStore extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleDiscoveryEngineDataStoreSensitive;
+
+  /// A reference to the `google_discovery_engine_data_store` this data source reads, for
+  /// arguments typed `RefTo<GoogleDiscoveryEngineDataStore>`.
+  RefTo<GoogleDiscoveryEngineDataStore> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

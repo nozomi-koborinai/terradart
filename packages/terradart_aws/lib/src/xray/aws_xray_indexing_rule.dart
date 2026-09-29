@@ -62,6 +62,10 @@ final class AwsXrayIndexingRule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsXrayIndexingRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsXrayIndexingRule>`.
+  RefTo<AwsXrayIndexingRule> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

@@ -45,6 +45,10 @@ final class CloudflareSnippets extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareSnippetsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareSnippets>`.
+  RefTo<CloudflareSnippets> get ref => RefTo.of(this);
+
   /// Reference to `created_on` attribute.
   TfRef<String> get createdOn => TfRef.attribute<String>(this, 'created_on');
 

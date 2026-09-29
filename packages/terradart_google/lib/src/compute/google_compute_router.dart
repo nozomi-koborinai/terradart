@@ -98,6 +98,10 @@ final class GoogleComputeRouter extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeRouterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRouter>`.
+  RefTo<GoogleComputeRouter> get ref => RefTo.of(this);
+
   /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');

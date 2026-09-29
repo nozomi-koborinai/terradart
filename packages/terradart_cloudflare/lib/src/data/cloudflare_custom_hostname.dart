@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../custom_hostname/cloudflare_custom_hostname.dart';
 
 /// Sensitive field paths for `cloudflare_custom_hostname`.
 const Set<String> _cloudflareCustomHostnameSensitive = <String>{
@@ -196,6 +197,11 @@ final class DataCloudflareCustomHostname extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareCustomHostnameSensitive;
+
+  /// A reference to the `cloudflare_custom_hostname` this data source reads, for
+  /// arguments typed `RefTo<CloudflareCustomHostname>`.
+  RefTo<CloudflareCustomHostname> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

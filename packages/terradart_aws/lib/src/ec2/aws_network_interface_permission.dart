@@ -43,6 +43,10 @@ final class AwsNetworkInterfacePermission extends Resource {
   @override
   Set<String> get sensitiveFields => _awsNetworkInterfacePermissionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkInterfacePermission>`.
+  RefTo<AwsNetworkInterfacePermission> get ref => RefTo.of(this);
+
   /// Reference to `network_interface_permission_id` attribute.
   TfRef<String> get networkInterfacePermissionId =>
       TfRef.attribute<String>(this, 'network_interface_permission_id');

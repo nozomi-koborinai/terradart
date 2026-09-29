@@ -37,6 +37,10 @@ final class GoogleBigtableTableIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigtableTableIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigtableTableIamMember>`.
+  RefTo<GoogleBigtableTableIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../api_shield/cloudflare_schema_validation_schemas.dart';
 
 /// Sensitive field paths for `cloudflare_schema_validation_schemas`.
 const Set<String> _cloudflareSchemaValidationSchemasSensitive = <String>{};
@@ -51,6 +52,11 @@ final class DataCloudflareSchemaValidationSchemas extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareSchemaValidationSchemasSensitive;
+
+  /// A reference to the `cloudflare_schema_validation_schemas` this data source reads, for
+  /// arguments typed `RefTo<CloudflareSchemaValidationSchemas>`.
+  RefTo<CloudflareSchemaValidationSchemas> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

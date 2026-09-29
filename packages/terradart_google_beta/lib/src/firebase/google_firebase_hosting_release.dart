@@ -50,6 +50,10 @@ final class GoogleFirebaseHostingRelease extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirebaseHostingReleaseSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseHostingRelease>`.
+  RefTo<GoogleFirebaseHostingRelease> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -251,6 +251,10 @@ final class CloudflarePipelineStream extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflarePipelineStreamSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflarePipelineStream>`.
+  RefTo<CloudflarePipelineStream> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

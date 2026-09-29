@@ -42,6 +42,10 @@ final class GoogleApphubServiceProjectAttachment extends Resource {
   Set<String> get sensitiveFields =>
       _googleApphubServiceProjectAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApphubServiceProjectAttachment>`.
+  RefTo<GoogleApphubServiceProjectAttachment> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

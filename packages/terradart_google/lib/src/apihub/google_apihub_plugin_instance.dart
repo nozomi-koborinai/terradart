@@ -273,6 +273,10 @@ final class GoogleApihubPluginInstance extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApihubPluginInstanceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApihubPluginInstance>`.
+  RefTo<GoogleApihubPluginInstance> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

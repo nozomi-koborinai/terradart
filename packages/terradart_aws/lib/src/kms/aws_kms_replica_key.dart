@@ -44,6 +44,10 @@ final class AwsKmsReplicaKey extends Resource {
   @override
   Set<String> get sensitiveFields => _awsKmsReplicaKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsKmsReplicaKey>`.
+  RefTo<AwsKmsReplicaKey> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

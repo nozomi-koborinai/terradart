@@ -47,6 +47,10 @@ final class AwsSagemakerHumanTaskUi extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSagemakerHumanTaskUiSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSagemakerHumanTaskUi>`.
+  RefTo<AwsSagemakerHumanTaskUi> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

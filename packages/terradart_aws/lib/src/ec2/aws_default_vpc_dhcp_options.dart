@@ -31,6 +31,10 @@ final class AwsDefaultVpcDhcpOptions extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDefaultVpcDhcpOptionsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDefaultVpcDhcpOptions>`.
+  RefTo<AwsDefaultVpcDhcpOptions> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

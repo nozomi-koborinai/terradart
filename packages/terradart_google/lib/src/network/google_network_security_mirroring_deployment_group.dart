@@ -56,6 +56,11 @@ final class GoogleNetworkSecurityMirroringDeploymentGroup extends Resource {
   Set<String> get sensitiveFields =>
       _googleNetworkSecurityMirroringDeploymentGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkSecurityMirroringDeploymentGroup>`.
+  RefTo<GoogleNetworkSecurityMirroringDeploymentGroup> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

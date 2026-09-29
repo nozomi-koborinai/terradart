@@ -64,6 +64,10 @@ final class GoogleFirebaseAppCheckPlayIntegrityConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleFirebaseAppCheckPlayIntegrityConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseAppCheckPlayIntegrityConfig>`.
+  RefTo<GoogleFirebaseAppCheckPlayIntegrityConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute (the relative resource name of the
   /// Play Integrity configuration object, in the shape
   /// `projects/{project}/apps/{app_id}/playIntegrityConfig`).

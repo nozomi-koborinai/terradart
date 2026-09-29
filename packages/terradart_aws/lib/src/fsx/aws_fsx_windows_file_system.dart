@@ -335,6 +335,10 @@ final class AwsFsxWindowsFileSystem extends Resource {
   @override
   Set<String> get sensitiveFields => _awsFsxWindowsFileSystemSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsFsxWindowsFileSystem>`.
+  RefTo<AwsFsxWindowsFileSystem> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

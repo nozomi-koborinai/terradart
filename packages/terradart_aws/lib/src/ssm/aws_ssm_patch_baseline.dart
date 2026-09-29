@@ -291,6 +291,10 @@ final class AwsSsmPatchBaseline extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSsmPatchBaselineSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSsmPatchBaseline>`.
+  RefTo<AwsSsmPatchBaseline> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

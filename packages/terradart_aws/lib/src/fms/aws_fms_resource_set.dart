@@ -68,6 +68,10 @@ final class AwsFmsResourceSet extends Resource {
   @override
   Set<String> get sensitiveFields => _awsFmsResourceSetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsFmsResourceSet>`.
+  RefTo<AwsFmsResourceSet> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -62,6 +62,10 @@ final class GoogleSccEventThreatDetectionCustomModule extends Resource {
   Set<String> get sensitiveFields =>
       _googleSccEventThreatDetectionCustomModuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSccEventThreatDetectionCustomModule>`.
+  RefTo<GoogleSccEventThreatDetectionCustomModule> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

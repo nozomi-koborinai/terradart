@@ -132,6 +132,10 @@ final class AwsOdbCloudExadataInfrastructure extends Resource {
   @override
   Set<String> get sensitiveFields => _awsOdbCloudExadataInfrastructureSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOdbCloudExadataInfrastructure>`.
+  RefTo<AwsOdbCloudExadataInfrastructure> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

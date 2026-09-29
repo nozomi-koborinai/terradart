@@ -75,6 +75,10 @@ final class AwsCodecommitTrigger extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCodecommitTriggerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCodecommitTrigger>`.
+  RefTo<AwsCodecommitTrigger> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

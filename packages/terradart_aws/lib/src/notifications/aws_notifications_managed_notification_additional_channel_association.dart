@@ -33,4 +33,9 @@ final class AwsNotificationsManagedNotificationAdditionalChannelAssociation
   @override
   Set<String> get sensitiveFields =>
       _awsNotificationsManagedNotificationAdditionalChannelAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNotificationsManagedNotificationAdditionalChannelAssociation>`.
+  RefTo<AwsNotificationsManagedNotificationAdditionalChannelAssociation>
+  get ref => RefTo.of(this);
 }

@@ -33,6 +33,10 @@ final class AwsEc2ManagedPrefixListEntry extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEc2ManagedPrefixListEntrySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2ManagedPrefixListEntry>`.
+  RefTo<AwsEc2ManagedPrefixListEntry> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

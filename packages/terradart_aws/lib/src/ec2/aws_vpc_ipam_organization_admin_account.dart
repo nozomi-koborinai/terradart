@@ -26,6 +26,10 @@ final class AwsVpcIpamOrganizationAdminAccount extends Resource {
   Set<String> get sensitiveFields =>
       _awsVpcIpamOrganizationAdminAccountSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcIpamOrganizationAdminAccount>`.
+  RefTo<AwsVpcIpamOrganizationAdminAccount> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

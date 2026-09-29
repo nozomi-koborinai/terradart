@@ -43,6 +43,10 @@ final class AwsEc2LocalGatewayRouteTable extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEc2LocalGatewayRouteTableSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2LocalGatewayRouteTable>`.
+  RefTo<AwsEc2LocalGatewayRouteTable> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

@@ -31,4 +31,8 @@ final class AwsBedrockFoundationModelAgreement extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsBedrockFoundationModelAgreementSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockFoundationModelAgreement>`.
+  RefTo<AwsBedrockFoundationModelAgreement> get ref => RefTo.of(this);
 }

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../beyondcorp/google_beyondcorp_security_gateway.dart';
 
 /// Sensitive field paths for `google_beyondcorp_security_gateway`.
 const Set<String> _googleBeyondcorpSecurityGatewaySensitive = <String>{};
@@ -29,6 +30,11 @@ final class DataGoogleBeyondcorpSecurityGateway extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleBeyondcorpSecurityGatewaySensitive;
+
+  /// A reference to the `google_beyondcorp_security_gateway` this data source reads, for
+  /// arguments typed `RefTo<GoogleBeyondcorpSecurityGateway>`.
+  RefTo<GoogleBeyondcorpSecurityGateway> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

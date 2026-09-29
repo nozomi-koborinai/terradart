@@ -31,6 +31,10 @@ final class AwsApiGatewayClientCertificate extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApiGatewayClientCertificateSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApiGatewayClientCertificate>`.
+  RefTo<AwsApiGatewayClientCertificate> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

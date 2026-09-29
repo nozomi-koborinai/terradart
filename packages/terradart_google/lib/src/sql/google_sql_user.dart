@@ -129,6 +129,10 @@ final class GoogleSqlUser extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSqlUserSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSqlUser>`.
+  RefTo<GoogleSqlUser> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

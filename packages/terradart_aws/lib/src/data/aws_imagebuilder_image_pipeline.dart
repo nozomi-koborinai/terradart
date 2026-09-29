@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../imagebuilder/aws_imagebuilder_image_pipeline.dart';
 
 /// Sensitive field paths for `aws_imagebuilder_image_pipeline`.
 const Set<String> _awsImagebuilderImagePipelineSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsImagebuilderImagePipeline extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsImagebuilderImagePipelineSensitive;
+
+  /// A reference to the `aws_imagebuilder_image_pipeline` this data source reads, for
+  /// arguments typed `RefTo<AwsImagebuilderImagePipeline>`.
+  RefTo<AwsImagebuilderImagePipeline> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

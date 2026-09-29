@@ -34,4 +34,8 @@ final class AwsVpcEndpointServicePrivateDnsVerification extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsVpcEndpointServicePrivateDnsVerificationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcEndpointServicePrivateDnsVerification>`.
+  RefTo<AwsVpcEndpointServicePrivateDnsVerification> get ref => RefTo.of(this);
 }

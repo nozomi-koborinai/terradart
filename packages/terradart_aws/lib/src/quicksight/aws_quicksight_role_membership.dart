@@ -48,4 +48,8 @@ final class AwsQuicksightRoleMembership extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsQuicksightRoleMembershipSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsQuicksightRoleMembership>`.
+  RefTo<AwsQuicksightRoleMembership> get ref => RefTo.of(this);
 }

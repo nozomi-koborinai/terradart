@@ -54,6 +54,10 @@ final class GoogleDeveloperConnectGitRepositoryLink extends Resource {
   Set<String> get sensitiveFields =>
       _googleDeveloperConnectGitRepositoryLinkSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDeveloperConnectGitRepositoryLink>`.
+  RefTo<GoogleDeveloperConnectGitRepositoryLink> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

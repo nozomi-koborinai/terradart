@@ -82,6 +82,10 @@ final class GoogleSourcerepoRepository extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSourcerepoRepositorySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSourcerepoRepository>`.
+  RefTo<GoogleSourcerepoRepository> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -341,6 +341,10 @@ final class AwsCloudformationStackInstances extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudformationStackInstancesSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudformationStackInstances>`.
+  RefTo<AwsCloudformationStackInstances> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

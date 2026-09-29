@@ -33,4 +33,8 @@ final class AwsQuicksightAccountSettings extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsQuicksightAccountSettingsSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsQuicksightAccountSettings>`.
+  RefTo<AwsQuicksightAccountSettings> get ref => RefTo.of(this);
 }

@@ -46,6 +46,10 @@ final class AppwriteWebhook extends Resource {
   @override
   Set<String> get sensitiveFields => _appwriteWebhookSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwriteWebhook>`.
+  RefTo<AppwriteWebhook> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

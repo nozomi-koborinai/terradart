@@ -280,6 +280,10 @@ final class GoogleLoggingMetric extends Resource {
   @override
   Set<String> get sensitiveFields => _googleLoggingMetricSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleLoggingMetric>`.
+  RefTo<GoogleLoggingMetric> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

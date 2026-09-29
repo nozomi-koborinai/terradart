@@ -36,6 +36,10 @@ final class AwsEc2LocalGatewayRouteTableVpcAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsEc2LocalGatewayRouteTableVpcAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2LocalGatewayRouteTableVpcAssociation>`.
+  RefTo<AwsEc2LocalGatewayRouteTableVpcAssociation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

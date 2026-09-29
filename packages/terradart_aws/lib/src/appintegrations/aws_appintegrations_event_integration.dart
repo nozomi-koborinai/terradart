@@ -50,6 +50,10 @@ final class AwsAppintegrationsEventIntegration extends Resource {
   Set<String> get sensitiveFields =>
       _awsAppintegrationsEventIntegrationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppintegrationsEventIntegration>`.
+  RefTo<AwsAppintegrationsEventIntegration> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

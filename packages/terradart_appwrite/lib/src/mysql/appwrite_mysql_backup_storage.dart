@@ -70,6 +70,10 @@ final class AppwriteMysqlBackupStorage extends Resource {
   @override
   Set<String> get sensitiveFields => _appwriteMysqlBackupStorageSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwriteMysqlBackupStorage>`.
+  RefTo<AppwriteMysqlBackupStorage> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

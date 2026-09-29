@@ -38,6 +38,10 @@ final class GoogleFolderIamBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFolderIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFolderIamBinding>`.
+  RefTo<GoogleFolderIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

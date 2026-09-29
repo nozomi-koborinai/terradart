@@ -53,6 +53,10 @@ final class AwsEfsBackupPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEfsBackupPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEfsBackupPolicy>`.
+  RefTo<AwsEfsBackupPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

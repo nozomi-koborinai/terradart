@@ -274,6 +274,10 @@ final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeRegionNetworkEndpointGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRegionNetworkEndpointGroup>`.
+  RefTo<GoogleComputeRegionNetworkEndpointGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

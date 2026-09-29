@@ -66,6 +66,10 @@ final class CloudflareUrlNormalizationSettings extends Resource {
   Set<String> get sensitiveFields =>
       _cloudflareUrlNormalizationSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareUrlNormalizationSettings>`.
+  RefTo<CloudflareUrlNormalizationSettings> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

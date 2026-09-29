@@ -38,4 +38,8 @@ final class GoogleEventarcPipelineIamPolicy extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleEventarcPipelineIamPolicySensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleEventarcPipelineIamPolicy>`.
+  RefTo<GoogleEventarcPipelineIamPolicy> get ref => RefTo.of(this);
 }

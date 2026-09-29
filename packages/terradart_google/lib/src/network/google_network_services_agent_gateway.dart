@@ -186,6 +186,10 @@ final class GoogleNetworkServicesAgentGateway extends Resource {
   Set<String> get sensitiveFields =>
       _googleNetworkServicesAgentGatewaySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkServicesAgentGateway>`.
+  RefTo<GoogleNetworkServicesAgentGateway> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

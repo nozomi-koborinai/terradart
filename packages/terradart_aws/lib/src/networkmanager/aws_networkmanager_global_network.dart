@@ -29,6 +29,10 @@ final class AwsNetworkmanagerGlobalNetwork extends Resource {
   @override
   Set<String> get sensitiveFields => _awsNetworkmanagerGlobalNetworkSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkmanagerGlobalNetwork>`.
+  RefTo<AwsNetworkmanagerGlobalNetwork> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

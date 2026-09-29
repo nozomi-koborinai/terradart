@@ -120,6 +120,10 @@ final class AwsGlueDataCatalogEncryptionSettings extends Resource {
   Set<String> get sensitiveFields =>
       _awsGlueDataCatalogEncryptionSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsGlueDataCatalogEncryptionSettings>`.
+  RefTo<AwsGlueDataCatalogEncryptionSettings> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

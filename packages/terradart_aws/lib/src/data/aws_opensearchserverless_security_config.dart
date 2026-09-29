@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../opensearchserverless/aws_opensearchserverless_security_config.dart';
 
 /// Sensitive field paths for `aws_opensearchserverless_security_config`.
 const Set<String> _awsOpensearchserverlessSecurityConfigSensitive = <String>{};
@@ -72,6 +73,11 @@ final class DataAwsOpensearchserverlessSecurityConfig extends Data {
   @override
   Set<String> get sensitiveFields =>
       _awsOpensearchserverlessSecurityConfigSensitive;
+
+  /// A reference to the `aws_opensearchserverless_security_config` this data source reads, for
+  /// arguments typed `RefTo<AwsOpensearchserverlessSecurityConfig>`.
+  RefTo<AwsOpensearchserverlessSecurityConfig> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -449,6 +449,10 @@ final class AwsCloudfrontResponseHeadersPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _awsCloudfrontResponseHeadersPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudfrontResponseHeadersPolicy>`.
+  RefTo<AwsCloudfrontResponseHeadersPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -227,6 +227,10 @@ final class AwsSagemakerFlowDefinition extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSagemakerFlowDefinitionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSagemakerFlowDefinition>`.
+  RefTo<AwsSagemakerFlowDefinition> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

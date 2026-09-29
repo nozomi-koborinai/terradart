@@ -42,6 +42,10 @@ final class AwsEc2SecondaryNetwork extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEc2SecondaryNetworkSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2SecondaryNetwork>`.
+  RefTo<AwsEc2SecondaryNetwork> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

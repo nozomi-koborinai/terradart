@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../magic/cloudflare_magic_transit_connector.dart';
 
 /// Sensitive field paths for `cloudflare_magic_transit_connector`.
 const Set<String> _cloudflareMagicTransitConnectorSensitive = <String>{};
@@ -56,6 +57,11 @@ final class DataCloudflareMagicTransitConnector extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareMagicTransitConnectorSensitive;
+
+  /// A reference to the `cloudflare_magic_transit_connector` this data source reads, for
+  /// arguments typed `RefTo<CloudflareMagicTransitConnector>`.
+  RefTo<CloudflareMagicTransitConnector> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

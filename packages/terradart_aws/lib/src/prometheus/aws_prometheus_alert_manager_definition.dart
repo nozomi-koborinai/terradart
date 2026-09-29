@@ -32,6 +32,10 @@ final class AwsPrometheusAlertManagerDefinition extends Resource {
   Set<String> get sensitiveFields =>
       _awsPrometheusAlertManagerDefinitionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPrometheusAlertManagerDefinition>`.
+  RefTo<AwsPrometheusAlertManagerDefinition> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

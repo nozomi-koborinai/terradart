@@ -44,6 +44,10 @@ final class GoogleApigeeEnvironmentKeyvaluemapsEntries extends Resource {
   Set<String> get sensitiveFields =>
       _googleApigeeEnvironmentKeyvaluemapsEntriesSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApigeeEnvironmentKeyvaluemapsEntries>`.
+  RefTo<GoogleApigeeEnvironmentKeyvaluemapsEntries> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

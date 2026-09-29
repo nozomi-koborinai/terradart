@@ -58,6 +58,10 @@ final class GoogleDataplexAspectType extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDataplexAspectTypeSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexAspectType>`.
+  RefTo<GoogleDataplexAspectType> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

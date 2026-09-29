@@ -34,6 +34,10 @@ final class AwsRedshiftDataShareAuthorization extends Resource {
   Set<String> get sensitiveFields =>
       _awsRedshiftDataShareAuthorizationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRedshiftDataShareAuthorization>`.
+  RefTo<AwsRedshiftDataShareAuthorization> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

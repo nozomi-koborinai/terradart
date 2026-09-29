@@ -184,4 +184,8 @@ final class CloudflareRateLimit extends Resource {
 
   @override
   Set<String> get sensitiveFields => _cloudflareRateLimitSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareRateLimit>`.
+  RefTo<CloudflareRateLimit> get ref => RefTo.of(this);
 }

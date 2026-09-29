@@ -39,6 +39,10 @@ final class AwsCodeartifactRepositoryPermissionsPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _awsCodeartifactRepositoryPermissionsPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCodeartifactRepositoryPermissionsPolicy>`.
+  RefTo<AwsCodeartifactRepositoryPermissionsPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

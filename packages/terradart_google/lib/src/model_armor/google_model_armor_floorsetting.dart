@@ -305,6 +305,10 @@ final class GoogleModelArmorFloorsetting extends Resource {
   @override
   Set<String> get sensitiveFields => _googleModelArmorFloorsettingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleModelArmorFloorsetting>`.
+  RefTo<GoogleModelArmorFloorsetting> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -3280,6 +3280,10 @@ final class GoogleDatastreamStream extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDatastreamStreamSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDatastreamStream>`.
+  RefTo<GoogleDatastreamStream> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

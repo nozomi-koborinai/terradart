@@ -103,6 +103,10 @@ final class CloudflareStreamLiveInput extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareStreamLiveInputSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareStreamLiveInput>`.
+  RefTo<CloudflareStreamLiveInput> get ref => RefTo.of(this);
+
   /// Reference to `created` attribute.
   TfRef<String> get created => TfRef.attribute<String>(this, 'created');
 

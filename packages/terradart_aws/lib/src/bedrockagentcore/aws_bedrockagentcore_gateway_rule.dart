@@ -569,6 +569,10 @@ final class AwsBedrockagentcoreGatewayRule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBedrockagentcoreGatewayRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentcoreGatewayRule>`.
+  RefTo<AwsBedrockagentcoreGatewayRule> get ref => RefTo.of(this);
+
   /// Reference to `gateway_arn` attribute.
   TfRef<String> get gatewayArn => TfRef.attribute<String>(this, 'gateway_arn');
 

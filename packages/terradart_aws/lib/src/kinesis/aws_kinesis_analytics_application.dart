@@ -743,6 +743,10 @@ final class AwsKinesisAnalyticsApplication extends Resource {
   @override
   Set<String> get sensitiveFields => _awsKinesisAnalyticsApplicationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsKinesisAnalyticsApplication>`.
+  RefTo<AwsKinesisAnalyticsApplication> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

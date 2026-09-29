@@ -92,6 +92,10 @@ final class AwsRoute53ResolverRule extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRoute53ResolverRuleSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53ResolverRule>`.
+  RefTo<AwsRoute53ResolverRule> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

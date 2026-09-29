@@ -34,6 +34,11 @@ final class AwsRoute53recoverycontrolconfigRoutingControl extends Resource {
   Set<String> get sensitiveFields =>
       _awsRoute53recoverycontrolconfigRoutingControlSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53recoverycontrolconfigRoutingControl>`.
+  RefTo<AwsRoute53recoverycontrolconfigRoutingControl> get ref =>
+      RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

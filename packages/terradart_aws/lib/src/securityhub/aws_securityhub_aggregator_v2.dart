@@ -33,6 +33,10 @@ final class AwsSecurityhubAggregatorV2 extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSecurityhubAggregatorV2Sensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSecurityhubAggregatorV2>`.
+  RefTo<AwsSecurityhubAggregatorV2> get ref => RefTo.of(this);
+
   /// Reference to `aggregation_region` attribute.
   TfRef<String> get aggregationRegion =>
       TfRef.attribute<String>(this, 'aggregation_region');

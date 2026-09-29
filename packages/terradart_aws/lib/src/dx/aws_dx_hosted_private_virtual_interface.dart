@@ -62,6 +62,10 @@ final class AwsDxHostedPrivateVirtualInterface extends Resource {
   Set<String> get sensitiveFields =>
       _awsDxHostedPrivateVirtualInterfaceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDxHostedPrivateVirtualInterface>`.
+  RefTo<AwsDxHostedPrivateVirtualInterface> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

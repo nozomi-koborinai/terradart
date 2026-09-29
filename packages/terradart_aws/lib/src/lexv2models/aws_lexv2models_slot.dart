@@ -3289,6 +3289,10 @@ final class AwsLexv2modelsSlot extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLexv2modelsSlotSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLexv2modelsSlot>`.
+  RefTo<AwsLexv2modelsSlot> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

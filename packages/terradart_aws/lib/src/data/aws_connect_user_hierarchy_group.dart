@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../connect/aws_connect_user_hierarchy_group.dart';
 
 /// Sensitive field paths for `aws_connect_user_hierarchy_group`.
 const Set<String> _awsConnectUserHierarchyGroupSensitive = <String>{};
@@ -32,6 +33,11 @@ final class DataAwsConnectUserHierarchyGroup extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsConnectUserHierarchyGroupSensitive;
+
+  /// A reference to the `aws_connect_user_hierarchy_group` this data source reads, for
+  /// arguments typed `RefTo<AwsConnectUserHierarchyGroup>`.
+  RefTo<AwsConnectUserHierarchyGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

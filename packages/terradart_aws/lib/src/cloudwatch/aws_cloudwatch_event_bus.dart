@@ -93,6 +93,10 @@ final class AwsCloudwatchEventBus extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudwatchEventBusSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudwatchEventBus>`.
+  RefTo<AwsCloudwatchEventBus> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

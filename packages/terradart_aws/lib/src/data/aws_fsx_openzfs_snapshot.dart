@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../fsx/aws_fsx_openzfs_snapshot.dart';
 
 /// Sensitive field paths for `aws_fsx_openzfs_snapshot`.
 const Set<String> _awsFsxOpenzfsSnapshotSensitive = <String>{};
@@ -55,6 +56,11 @@ final class DataAwsFsxOpenzfsSnapshot extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsFsxOpenzfsSnapshotSensitive;
+
+  /// A reference to the `aws_fsx_openzfs_snapshot` this data source reads, for
+  /// arguments typed `RefTo<AwsFsxOpenzfsSnapshot>`.
+  RefTo<AwsFsxOpenzfsSnapshot> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

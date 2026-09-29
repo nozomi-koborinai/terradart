@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../alloydb/google_alloydb_instance.dart';
 
 /// Sensitive field paths for `google_alloydb_instance`.
 const Set<String> _googleAlloydbInstanceSensitive = <String>{};
@@ -33,6 +34,11 @@ final class DataGoogleAlloydbInstance extends Data {
 
   @override
   Set<String> get sensitiveFields => _googleAlloydbInstanceSensitive;
+
+  /// A reference to the `google_alloydb_instance` this data source reads, for
+  /// arguments typed `RefTo<GoogleAlloydbInstance>`.
+  RefTo<GoogleAlloydbInstance> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

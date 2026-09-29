@@ -152,6 +152,10 @@ final class AwsAppstreamFleet extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppstreamFleetSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppstreamFleet>`.
+  RefTo<AwsAppstreamFleet> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

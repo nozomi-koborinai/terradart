@@ -41,6 +41,10 @@ final class AppwriteBackupPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _appwriteBackupPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwriteBackupPolicy>`.
+  RefTo<AppwriteBackupPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

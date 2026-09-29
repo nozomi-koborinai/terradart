@@ -50,6 +50,10 @@ final class GoogleSccV2FolderMuteConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSccV2FolderMuteConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSccV2FolderMuteConfig>`.
+  RefTo<GoogleSccV2FolderMuteConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

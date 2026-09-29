@@ -730,6 +730,10 @@ final class AwsDynamodbTable extends Resource {
   @override
   Set<String> get sensitiveFields => _awsDynamodbTableSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsDynamodbTable>`.
+  RefTo<AwsDynamodbTable> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

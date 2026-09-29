@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../zero_trust/cloudflare_zero_trust_gateway_certificate.dart';
 
 /// Sensitive field paths for `cloudflare_zero_trust_gateway_certificate`.
 const Set<String> _cloudflareZeroTrustGatewayCertificateSensitive = <String>{};
@@ -27,6 +28,11 @@ final class DataCloudflareZeroTrustGatewayCertificate extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustGatewayCertificateSensitive;
+
+  /// A reference to the `cloudflare_zero_trust_gateway_certificate` this data source reads, for
+  /// arguments typed `RefTo<CloudflareZeroTrustGatewayCertificate>`.
+  RefTo<CloudflareZeroTrustGatewayCertificate> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

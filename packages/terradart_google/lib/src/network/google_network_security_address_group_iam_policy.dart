@@ -41,6 +41,10 @@ final class GoogleNetworkSecurityAddressGroupIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleNetworkSecurityAddressGroupIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkSecurityAddressGroupIamPolicy>`.
+  RefTo<GoogleNetworkSecurityAddressGroupIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

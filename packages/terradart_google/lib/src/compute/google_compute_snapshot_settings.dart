@@ -105,6 +105,10 @@ final class GoogleComputeSnapshotSettings extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeSnapshotSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeSnapshotSettings>`.
+  RefTo<GoogleComputeSnapshotSettings> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -720,6 +720,10 @@ final class AwsEcsDaemonTaskDefinition extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEcsDaemonTaskDefinitionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEcsDaemonTaskDefinition>`.
+  RefTo<AwsEcsDaemonTaskDefinition> get ref => RefTo.of(this);
+
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
 

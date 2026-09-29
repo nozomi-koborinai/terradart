@@ -62,6 +62,10 @@ final class AwsWorkspaceswebIpAccessSettings extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWorkspaceswebIpAccessSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebIpAccessSettings>`.
+  RefTo<AwsWorkspaceswebIpAccessSettings> get ref => RefTo.of(this);
+
   /// Reference to `associated_portal_arns` attribute.
   TfRef<List<String>> get associatedPortalArns =>
       TfRef.attribute<List<String>>(this, 'associated_portal_arns');

@@ -34,6 +34,10 @@ final class AwsRoute53ResolverFirewallDomainList extends Resource {
   Set<String> get sensitiveFields =>
       _awsRoute53ResolverFirewallDomainListSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53ResolverFirewallDomainList>`.
+  RefTo<AwsRoute53ResolverFirewallDomainList> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

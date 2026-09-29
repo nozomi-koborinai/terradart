@@ -57,6 +57,10 @@ final class GoogleSccV2OrganizationSccBigQueryExports extends Resource {
   Set<String> get sensitiveFields =>
       _googleSccV2OrganizationSccBigQueryExportsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSccV2OrganizationSccBigQueryExports>`.
+  RefTo<GoogleSccV2OrganizationSccBigQueryExports> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

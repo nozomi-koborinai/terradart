@@ -52,4 +52,9 @@ final class AwsNotificationsManagedNotificationAccountContactAssociation
   @override
   Set<String> get sensitiveFields =>
       _awsNotificationsManagedNotificationAccountContactAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNotificationsManagedNotificationAccountContactAssociation>`.
+  RefTo<AwsNotificationsManagedNotificationAccountContactAssociation> get ref =>
+      RefTo.of(this);
 }

@@ -39,6 +39,10 @@ final class GoogleDataplexEntryGroupIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataplexEntryGroupIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataplexEntryGroupIamPolicy>`.
+  RefTo<GoogleDataplexEntryGroupIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

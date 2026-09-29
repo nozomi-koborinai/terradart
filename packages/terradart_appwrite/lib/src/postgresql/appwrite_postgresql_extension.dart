@@ -35,6 +35,10 @@ final class AppwritePostgresqlExtension extends Resource {
   @override
   Set<String> get sensitiveFields => _appwritePostgresqlExtensionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwritePostgresqlExtension>`.
+  RefTo<AppwritePostgresqlExtension> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

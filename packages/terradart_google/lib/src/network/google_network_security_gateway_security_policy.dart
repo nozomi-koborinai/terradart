@@ -61,6 +61,10 @@ final class GoogleNetworkSecurityGatewaySecurityPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleNetworkSecurityGatewaySecurityPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkSecurityGatewaySecurityPolicy>`.
+  RefTo<GoogleNetworkSecurityGatewaySecurityPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

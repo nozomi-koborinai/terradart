@@ -62,6 +62,10 @@ final class GoogleRuntimeconfigConfigIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleRuntimeconfigConfigIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleRuntimeconfigConfigIamMember>`.
+  RefTo<GoogleRuntimeconfigConfigIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

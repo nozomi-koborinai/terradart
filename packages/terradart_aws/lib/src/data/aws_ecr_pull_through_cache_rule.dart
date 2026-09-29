@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ecr/aws_ecr_pull_through_cache_rule.dart';
 
 /// Sensitive field paths for `aws_ecr_pull_through_cache_rule`.
 const Set<String> _awsEcrPullThroughCacheRuleSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataAwsEcrPullThroughCacheRule extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsEcrPullThroughCacheRuleSensitive;
+
+  /// A reference to the `aws_ecr_pull_through_cache_rule` this data source reads, for
+  /// arguments typed `RefTo<AwsEcrPullThroughCacheRule>`.
+  RefTo<AwsEcrPullThroughCacheRule> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

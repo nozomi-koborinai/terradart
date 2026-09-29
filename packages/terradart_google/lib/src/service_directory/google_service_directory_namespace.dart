@@ -38,6 +38,10 @@ final class GoogleServiceDirectoryNamespace extends Resource {
   @override
   Set<String> get sensitiveFields => _googleServiceDirectoryNamespaceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleServiceDirectoryNamespace>`.
+  RefTo<GoogleServiceDirectoryNamespace> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

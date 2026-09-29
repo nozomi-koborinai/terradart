@@ -35,6 +35,10 @@ final class AwsPinpointSmsChannel extends Resource {
   @override
   Set<String> get sensitiveFields => _awsPinpointSmsChannelSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsPinpointSmsChannel>`.
+  RefTo<AwsPinpointSmsChannel> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

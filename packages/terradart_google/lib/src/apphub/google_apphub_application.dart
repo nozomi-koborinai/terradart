@@ -234,6 +234,10 @@ final class GoogleApphubApplication extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApphubApplicationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApphubApplication>`.
+  RefTo<GoogleApphubApplication> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

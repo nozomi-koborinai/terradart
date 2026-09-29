@@ -37,6 +37,10 @@ final class GoogleBigqueryRoutineIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryRoutineIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigqueryRoutineIamMember>`.
+  RefTo<GoogleBigqueryRoutineIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

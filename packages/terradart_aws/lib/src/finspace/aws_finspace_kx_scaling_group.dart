@@ -37,6 +37,10 @@ final class AwsFinspaceKxScalingGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsFinspaceKxScalingGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsFinspaceKxScalingGroup>`.
+  RefTo<AwsFinspaceKxScalingGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

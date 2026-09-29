@@ -37,6 +37,10 @@ final class GoogleBiglakeTable extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBiglakeTableSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBiglakeTable>`.
+  RefTo<GoogleBiglakeTable> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

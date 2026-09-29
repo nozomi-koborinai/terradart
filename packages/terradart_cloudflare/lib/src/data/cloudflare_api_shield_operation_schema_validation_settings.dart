@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../api_shield/cloudflare_api_shield_operation_schema_validation_settings.dart';
 
 /// Sensitive field paths for `cloudflare_api_shield_operation_schema_validation_settings`.
 const Set<String>
@@ -35,6 +36,11 @@ final class DataCloudflareApiShieldOperationSchemaValidationSettings
   @override
   Set<String> get sensitiveFields =>
       _cloudflareApiShieldOperationSchemaValidationSettingsSensitive;
+
+  /// A reference to the `cloudflare_api_shield_operation_schema_validation_settings` this data source reads, for
+  /// arguments typed `RefTo<CloudflareApiShieldOperationSchemaValidationSettings>`.
+  RefTo<CloudflareApiShieldOperationSchemaValidationSettings> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `mitigation_action` attribute.
   TfRef<String> get mitigationAction =>

@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../eks/aws_eks_node_group.dart';
 
 /// Sensitive field paths for `aws_eks_node_group`.
 const Set<String> _awsEksNodeGroupSensitive = <String>{};
@@ -30,6 +31,11 @@ final class DataAwsEksNodeGroup extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsEksNodeGroupSensitive;
+
+  /// A reference to the `aws_eks_node_group` this data source reads, for
+  /// arguments typed `RefTo<AwsEksNodeGroup>`.
+  RefTo<AwsEksNodeGroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

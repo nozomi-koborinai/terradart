@@ -34,6 +34,10 @@ final class AwsEc2TransitGatewayRouteTablePropagation extends Resource {
   Set<String> get sensitiveFields =>
       _awsEc2TransitGatewayRouteTablePropagationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2TransitGatewayRouteTablePropagation>`.
+  RefTo<AwsEc2TransitGatewayRouteTablePropagation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

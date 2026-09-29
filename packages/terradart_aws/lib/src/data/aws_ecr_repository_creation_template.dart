@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../ecr/aws_ecr_repository_creation_template.dart';
 
 /// Sensitive field paths for `aws_ecr_repository_creation_template`.
 const Set<String> _awsEcrRepositoryCreationTemplateSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsEcrRepositoryCreationTemplate extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsEcrRepositoryCreationTemplateSensitive;
+
+  /// A reference to the `aws_ecr_repository_creation_template` this data source reads, for
+  /// arguments typed `RefTo<AwsEcrRepositoryCreationTemplate>`.
+  RefTo<AwsEcrRepositoryCreationTemplate> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

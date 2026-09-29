@@ -36,6 +36,10 @@ final class CloudflareArgoTieredCaching extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareArgoTieredCachingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareArgoTieredCaching>`.
+  RefTo<CloudflareArgoTieredCaching> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

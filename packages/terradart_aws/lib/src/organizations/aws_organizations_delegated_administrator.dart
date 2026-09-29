@@ -30,6 +30,10 @@ final class AwsOrganizationsDelegatedAdministrator extends Resource {
   Set<String> get sensitiveFields =>
       _awsOrganizationsDelegatedAdministratorSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOrganizationsDelegatedAdministrator>`.
+  RefTo<AwsOrganizationsDelegatedAdministrator> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

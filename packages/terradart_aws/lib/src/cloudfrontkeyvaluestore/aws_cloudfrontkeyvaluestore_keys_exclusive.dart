@@ -57,6 +57,10 @@ final class AwsCloudfrontkeyvaluestoreKeysExclusive extends Resource {
   Set<String> get sensitiveFields =>
       _awsCloudfrontkeyvaluestoreKeysExclusiveSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudfrontkeyvaluestoreKeysExclusive>`.
+  RefTo<AwsCloudfrontkeyvaluestoreKeysExclusive> get ref => RefTo.of(this);
+
   /// Reference to `total_size_in_bytes` attribute.
   TfRef<num> get totalSizeInBytes =>
       TfRef.attribute<num>(this, 'total_size_in_bytes');

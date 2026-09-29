@@ -62,6 +62,10 @@ final class AwsApprunnerObservabilityConfiguration extends Resource {
   Set<String> get sensitiveFields =>
       _awsApprunnerObservabilityConfigurationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApprunnerObservabilityConfiguration>`.
+  RefTo<AwsApprunnerObservabilityConfiguration> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

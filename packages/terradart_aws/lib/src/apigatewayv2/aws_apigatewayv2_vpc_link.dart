@@ -35,6 +35,10 @@ final class AwsApigatewayv2VpcLink extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApigatewayv2VpcLinkSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApigatewayv2VpcLink>`.
+  RefTo<AwsApigatewayv2VpcLink> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

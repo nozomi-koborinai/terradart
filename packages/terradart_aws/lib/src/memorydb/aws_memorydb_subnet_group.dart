@@ -93,6 +93,10 @@ final class AwsMemorydbSubnetGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMemorydbSubnetGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMemorydbSubnetGroup>`.
+  RefTo<AwsMemorydbSubnetGroup> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

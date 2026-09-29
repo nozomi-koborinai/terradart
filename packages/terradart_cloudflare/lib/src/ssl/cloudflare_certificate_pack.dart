@@ -75,6 +75,10 @@ final class CloudflareCertificatePack extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareCertificatePackSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareCertificatePack>`.
+  RefTo<CloudflareCertificatePack> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

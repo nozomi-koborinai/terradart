@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../cloudwatch/aws_cloudwatch_event_connection.dart';
 
 /// Sensitive field paths for `aws_cloudwatch_event_connection`.
 const Set<String> _awsCloudwatchEventConnectionSensitive = <String>{};
@@ -23,6 +24,11 @@ final class DataAwsCloudwatchEventConnection extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsCloudwatchEventConnectionSensitive;
+
+  /// A reference to the `aws_cloudwatch_event_connection` this data source reads, for
+  /// arguments typed `RefTo<AwsCloudwatchEventConnection>`.
+  RefTo<AwsCloudwatchEventConnection> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

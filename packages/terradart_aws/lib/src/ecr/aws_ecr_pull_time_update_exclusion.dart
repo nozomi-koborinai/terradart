@@ -28,4 +28,8 @@ final class AwsEcrPullTimeUpdateExclusion extends Resource {
 
   @override
   Set<String> get sensitiveFields => _awsEcrPullTimeUpdateExclusionSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEcrPullTimeUpdateExclusion>`.
+  RefTo<AwsEcrPullTimeUpdateExclusion> get ref => RefTo.of(this);
 }

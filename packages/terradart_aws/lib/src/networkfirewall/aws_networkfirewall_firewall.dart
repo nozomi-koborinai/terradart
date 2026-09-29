@@ -227,6 +227,10 @@ final class AwsNetworkfirewallFirewall extends Resource {
   @override
   Set<String> get sensitiveFields => _awsNetworkfirewallFirewallSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkfirewallFirewall>`.
+  RefTo<AwsNetworkfirewallFirewall> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

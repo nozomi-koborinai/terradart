@@ -252,6 +252,10 @@ final class AwsAppsyncResolver extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppsyncResolverSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppsyncResolver>`.
+  RefTo<AwsAppsyncResolver> get ref => RefTo.of(this);
+
   /// Reference to `kind` attribute.
   TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
 

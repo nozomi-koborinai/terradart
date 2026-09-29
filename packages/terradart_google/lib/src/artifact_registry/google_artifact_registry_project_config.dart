@@ -88,6 +88,10 @@ final class GoogleArtifactRegistryProjectConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleArtifactRegistryProjectConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleArtifactRegistryProjectConfig>`.
+  RefTo<GoogleArtifactRegistryProjectConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

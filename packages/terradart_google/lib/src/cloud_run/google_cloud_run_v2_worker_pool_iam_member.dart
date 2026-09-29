@@ -38,6 +38,10 @@ final class GoogleCloudRunV2WorkerPoolIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleCloudRunV2WorkerPoolIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleCloudRunV2WorkerPoolIamMember>`.
+  RefTo<GoogleCloudRunV2WorkerPoolIamMember> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

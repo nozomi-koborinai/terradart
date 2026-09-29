@@ -71,6 +71,10 @@ final class AwsCloudwatchCompositeAlarm extends Resource {
   @override
   Set<String> get sensitiveFields => _awsCloudwatchCompositeAlarmSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsCloudwatchCompositeAlarm>`.
+  RefTo<AwsCloudwatchCompositeAlarm> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -31,6 +31,10 @@ final class GoogleComputeProjectMetadataItem extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeProjectMetadataItemSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeProjectMetadataItem>`.
+  RefTo<GoogleComputeProjectMetadataItem> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -83,6 +83,10 @@ final class GoogleNetworkSecuritySacAttachment extends Resource {
   Set<String> get sensitiveFields =>
       _googleNetworkSecuritySacAttachmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleNetworkSecuritySacAttachment>`.
+  RefTo<GoogleNetworkSecuritySacAttachment> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

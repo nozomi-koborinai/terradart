@@ -22,4 +22,8 @@ final class AwsNotificationsOrganizationsAccess extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsNotificationsOrganizationsAccessSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNotificationsOrganizationsAccess>`.
+  RefTo<AwsNotificationsOrganizationsAccess> get ref => RefTo.of(this);
 }

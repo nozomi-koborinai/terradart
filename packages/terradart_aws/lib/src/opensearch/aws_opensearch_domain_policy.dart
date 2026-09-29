@@ -31,6 +31,10 @@ final class AwsOpensearchDomainPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _awsOpensearchDomainPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsOpensearchDomainPolicy>`.
+  RefTo<AwsOpensearchDomainPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

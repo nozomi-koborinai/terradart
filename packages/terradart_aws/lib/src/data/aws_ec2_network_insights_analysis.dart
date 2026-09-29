@@ -3,6 +3,7 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+import '../ec2/aws_ec2_network_insights_analysis.dart';
 
 /// Sensitive field paths for `aws_ec2_network_insights_analysis`.
 const Set<String> _awsEc2NetworkInsightsAnalysisSensitive = <String>{};
@@ -52,6 +53,11 @@ final class DataAwsEc2NetworkInsightsAnalysis extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsEc2NetworkInsightsAnalysisSensitive;
+
+  /// A reference to the `aws_ec2_network_insights_analysis` this data source reads, for
+  /// arguments typed `RefTo<AwsEc2NetworkInsightsAnalysis>`.
+  RefTo<AwsEc2NetworkInsightsAnalysis> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

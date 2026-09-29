@@ -82,6 +82,10 @@ final class GoogleStorageTransferAgentPool extends Resource {
   @override
   Set<String> get sensitiveFields => _googleStorageTransferAgentPoolSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleStorageTransferAgentPool>`.
+  RefTo<GoogleStorageTransferAgentPool> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

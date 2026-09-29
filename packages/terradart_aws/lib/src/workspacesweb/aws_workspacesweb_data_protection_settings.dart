@@ -193,6 +193,10 @@ final class AwsWorkspaceswebDataProtectionSettings extends Resource {
   Set<String> get sensitiveFields =>
       _awsWorkspaceswebDataProtectionSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebDataProtectionSettings>`.
+  RefTo<AwsWorkspaceswebDataProtectionSettings> get ref => RefTo.of(this);
+
   /// Reference to `associated_portal_arns` attribute.
   TfRef<List<String>> get associatedPortalArns =>
       TfRef.attribute<List<String>>(this, 'associated_portal_arns');

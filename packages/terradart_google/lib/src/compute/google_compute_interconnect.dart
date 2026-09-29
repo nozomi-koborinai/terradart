@@ -103,6 +103,10 @@ final class GoogleComputeInterconnect extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeInterconnectSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeInterconnect>`.
+  RefTo<GoogleComputeInterconnect> get ref => RefTo.of(this);
+
   /// Reference to `available_features` attribute.
   TfRef<List<String>> get availableFeatures =>
       TfRef.attribute<List<String>>(this, 'available_features');

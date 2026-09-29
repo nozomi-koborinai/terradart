@@ -341,6 +341,10 @@ final class AwsEc2ClientVpnEndpoint extends Resource {
   @override
   Set<String> get sensitiveFields => _awsEc2ClientVpnEndpointSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsEc2ClientVpnEndpoint>`.
+  RefTo<AwsEc2ClientVpnEndpoint> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

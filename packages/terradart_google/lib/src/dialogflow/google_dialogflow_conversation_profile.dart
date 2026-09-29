@@ -66,6 +66,10 @@ final class GoogleDialogflowConversationProfile extends Resource {
   Set<String> get sensitiveFields =>
       _googleDialogflowConversationProfileSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDialogflowConversationProfile>`.
+  RefTo<GoogleDialogflowConversationProfile> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

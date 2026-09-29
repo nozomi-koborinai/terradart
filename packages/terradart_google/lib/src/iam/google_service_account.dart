@@ -91,6 +91,10 @@ final class GoogleServiceAccount extends Resource {
   @override
   Set<String> get sensitiveFields => _googleServiceAccountSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleServiceAccount>`.
+  RefTo<GoogleServiceAccount> get ref => RefTo.of(this);
+
   /// `id` — full resource path
   /// `projects/{project}/serviceAccounts/{email}`.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

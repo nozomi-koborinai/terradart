@@ -63,6 +63,10 @@ final class AwsIvschatRoom extends Resource {
   @override
   Set<String> get sensitiveFields => _awsIvschatRoomSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIvschatRoom>`.
+  RefTo<AwsIvschatRoom> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

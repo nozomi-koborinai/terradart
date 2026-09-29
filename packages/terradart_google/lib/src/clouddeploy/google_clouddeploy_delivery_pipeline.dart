@@ -47,6 +47,10 @@ final class GoogleClouddeployDeliveryPipeline extends Resource {
   Set<String> get sensitiveFields =>
       _googleClouddeployDeliveryPipelineSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleClouddeployDeliveryPipeline>`.
+  RefTo<GoogleClouddeployDeliveryPipeline> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

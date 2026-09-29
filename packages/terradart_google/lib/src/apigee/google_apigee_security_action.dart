@@ -236,6 +236,10 @@ final class GoogleApigeeSecurityAction extends Resource {
   @override
   Set<String> get sensitiveFields => _googleApigeeSecurityActionSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleApigeeSecurityAction>`.
+  RefTo<GoogleApigeeSecurityAction> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -101,6 +101,10 @@ final class GoogleBigtableGcPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigtableGcPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBigtableGcPolicy>`.
+  RefTo<GoogleBigtableGcPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

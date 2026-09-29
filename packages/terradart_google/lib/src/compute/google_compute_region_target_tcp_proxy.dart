@@ -53,6 +53,10 @@ final class GoogleComputeRegionTargetTcpProxy extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeRegionTargetTcpProxySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRegionTargetTcpProxy>`.
+  RefTo<GoogleComputeRegionTargetTcpProxy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

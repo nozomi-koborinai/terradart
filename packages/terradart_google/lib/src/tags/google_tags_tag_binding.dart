@@ -30,6 +30,10 @@ final class GoogleTagsTagBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleTagsTagBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleTagsTagBinding>`.
+  RefTo<GoogleTagsTagBinding> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

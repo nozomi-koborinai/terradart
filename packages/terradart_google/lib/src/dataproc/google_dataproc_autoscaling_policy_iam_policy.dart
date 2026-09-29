@@ -40,6 +40,10 @@ final class GoogleDataprocAutoscalingPolicyIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataprocAutoscalingPolicyIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataprocAutoscalingPolicyIamPolicy>`.
+  RefTo<GoogleDataprocAutoscalingPolicyIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

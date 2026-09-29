@@ -39,6 +39,10 @@ final class GoogleComputeFirewallPolicyIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeFirewallPolicyIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeFirewallPolicyIamMember>`.
+  RefTo<GoogleComputeFirewallPolicyIamMember> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

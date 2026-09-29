@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../redshiftserverless/aws_redshiftserverless_workgroup.dart';
 
 /// Sensitive field paths for `aws_redshiftserverless_workgroup`.
 const Set<String> _awsRedshiftserverlessWorkgroupSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataAwsRedshiftserverlessWorkgroup extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsRedshiftserverlessWorkgroupSensitive;
+
+  /// A reference to the `aws_redshiftserverless_workgroup` this data source reads, for
+  /// arguments typed `RefTo<AwsRedshiftserverlessWorkgroup>`.
+  RefTo<AwsRedshiftserverlessWorkgroup> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

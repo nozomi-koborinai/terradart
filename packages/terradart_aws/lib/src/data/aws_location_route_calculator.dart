@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../location/aws_location_route_calculator.dart';
 
 /// Sensitive field paths for `aws_location_route_calculator`.
 const Set<String> _awsLocationRouteCalculatorSensitive = <String>{};
@@ -28,6 +29,11 @@ final class DataAwsLocationRouteCalculator extends Data {
 
   @override
   Set<String> get sensitiveFields => _awsLocationRouteCalculatorSensitive;
+
+  /// A reference to the `aws_location_route_calculator` this data source reads, for
+  /// arguments typed `RefTo<AwsLocationRouteCalculator>`.
+  RefTo<AwsLocationRouteCalculator> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

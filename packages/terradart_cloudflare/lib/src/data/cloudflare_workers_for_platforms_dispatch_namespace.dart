@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../workers/cloudflare_workers_for_platforms_dispatch_namespace.dart';
 
 /// Sensitive field paths for `cloudflare_workers_for_platforms_dispatch_namespace`.
 const Set<String> _cloudflareWorkersForPlatformsDispatchNamespaceSensitive =
@@ -33,6 +34,11 @@ final class DataCloudflareWorkersForPlatformsDispatchNamespace extends Data {
   @override
   Set<String> get sensitiveFields =>
       _cloudflareWorkersForPlatformsDispatchNamespaceSensitive;
+
+  /// A reference to the `cloudflare_workers_for_platforms_dispatch_namespace` this data source reads, for
+  /// arguments typed `RefTo<CloudflareWorkersForPlatformsDispatchNamespace>`.
+  RefTo<CloudflareWorkersForPlatformsDispatchNamespace> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

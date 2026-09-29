@@ -22,6 +22,10 @@ final class AwsIamOutboundWebIdentityFederation extends Resource {
   Set<String> get sensitiveFields =>
       _awsIamOutboundWebIdentityFederationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsIamOutboundWebIdentityFederation>`.
+  RefTo<AwsIamOutboundWebIdentityFederation> get ref => RefTo.of(this);
+
   /// Reference to `issuer_identifier` attribute.
   TfRef<String> get issuerIdentifier =>
       TfRef.attribute<String>(this, 'issuer_identifier');

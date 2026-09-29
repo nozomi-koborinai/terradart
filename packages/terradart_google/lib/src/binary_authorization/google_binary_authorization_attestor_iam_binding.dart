@@ -44,6 +44,10 @@ final class GoogleBinaryAuthorizationAttestorIamBinding extends Resource {
   Set<String> get sensitiveFields =>
       _googleBinaryAuthorizationAttestorIamBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleBinaryAuthorizationAttestorIamBinding>`.
+  RefTo<GoogleBinaryAuthorizationAttestorIamBinding> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

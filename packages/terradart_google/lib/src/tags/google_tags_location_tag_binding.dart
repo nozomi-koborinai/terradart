@@ -56,6 +56,10 @@ final class GoogleTagsLocationTagBinding extends Resource {
   @override
   Set<String> get sensitiveFields => _googleTagsLocationTagBindingSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleTagsLocationTagBinding>`.
+  RefTo<GoogleTagsLocationTagBinding> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

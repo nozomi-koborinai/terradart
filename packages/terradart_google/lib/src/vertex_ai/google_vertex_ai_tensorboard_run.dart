@@ -52,6 +52,10 @@ final class GoogleVertexAiTensorboardRun extends Resource {
   @override
   Set<String> get sensitiveFields => _googleVertexAiTensorboardRunSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleVertexAiTensorboardRun>`.
+  RefTo<GoogleVertexAiTensorboardRun> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -239,6 +239,10 @@ final class GoogleComputeNetworkFirewallPolicyWithRules extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeNetworkFirewallPolicyWithRulesSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeNetworkFirewallPolicyWithRules>`.
+  RefTo<GoogleComputeNetworkFirewallPolicyWithRules> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

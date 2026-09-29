@@ -71,6 +71,10 @@ final class GoogleFolderAccessApprovalSettings extends Resource {
   Set<String> get sensitiveFields =>
       _googleFolderAccessApprovalSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFolderAccessApprovalSettings>`.
+  RefTo<GoogleFolderAccessApprovalSettings> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

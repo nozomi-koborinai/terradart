@@ -118,6 +118,10 @@ final class GoogleIdentityPlatformInboundSamlConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleIdentityPlatformInboundSamlConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIdentityPlatformInboundSamlConfig>`.
+  RefTo<GoogleIdentityPlatformInboundSamlConfig> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

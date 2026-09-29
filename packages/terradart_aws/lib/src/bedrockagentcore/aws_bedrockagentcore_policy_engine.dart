@@ -35,6 +35,10 @@ final class AwsBedrockagentcorePolicyEngine extends Resource {
   @override
   Set<String> get sensitiveFields => _awsBedrockagentcorePolicyEngineSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsBedrockagentcorePolicyEngine>`.
+  RefTo<AwsBedrockagentcorePolicyEngine> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -37,6 +37,10 @@ final class GoogleIapLocationWebIamPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIapLocationWebIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapLocationWebIamPolicy>`.
+  RefTo<GoogleIapLocationWebIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

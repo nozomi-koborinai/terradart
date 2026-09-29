@@ -161,6 +161,10 @@ final class AwsS3controlObjectLambdaAccessPoint extends Resource {
   Set<String> get sensitiveFields =>
       _awsS3controlObjectLambdaAccessPointSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsS3controlObjectLambdaAccessPoint>`.
+  RefTo<AwsS3controlObjectLambdaAccessPoint> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

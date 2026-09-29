@@ -44,6 +44,10 @@ final class AppwriteMysqlBranch extends Resource {
   @override
   Set<String> get sensitiveFields => _appwriteMysqlBranchSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AppwriteMysqlBranch>`.
+  RefTo<AppwriteMysqlBranch> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

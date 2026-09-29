@@ -181,6 +181,10 @@ final class AwsFsxFileCache extends Resource {
   @override
   Set<String> get sensitiveFields => _awsFsxFileCacheSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsFsxFileCache>`.
+  RefTo<AwsFsxFileCache> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

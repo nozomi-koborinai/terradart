@@ -95,6 +95,10 @@ final class GoogleSiteVerificationWebResource extends Resource {
   Set<String> get sensitiveFields =>
       _googleSiteVerificationWebResourceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSiteVerificationWebResource>`.
+  RefTo<GoogleSiteVerificationWebResource> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

@@ -68,6 +68,10 @@ final class CloudflareZeroTrustDlpSettings extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareZeroTrustDlpSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustDlpSettings>`.
+  RefTo<CloudflareZeroTrustDlpSettings> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

@@ -50,6 +50,10 @@ final class AwsVpclatticeService extends Resource {
   @override
   Set<String> get sensitiveFields => _awsVpclatticeServiceSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpclatticeService>`.
+  RefTo<AwsVpclatticeService> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

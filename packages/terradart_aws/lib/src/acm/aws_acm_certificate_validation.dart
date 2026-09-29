@@ -32,6 +32,10 @@ final class AwsAcmCertificateValidation extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAcmCertificateValidationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAcmCertificateValidation>`.
+  RefTo<AwsAcmCertificateValidation> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

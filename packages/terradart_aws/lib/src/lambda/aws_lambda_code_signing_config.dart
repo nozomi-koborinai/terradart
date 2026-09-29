@@ -81,6 +81,10 @@ final class AwsLambdaCodeSigningConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _awsLambdaCodeSigningConfigSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsLambdaCodeSigningConfig>`.
+  RefTo<AwsLambdaCodeSigningConfig> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

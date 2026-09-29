@@ -240,6 +240,10 @@ final class CloudflareCustomHostname extends Resource {
   @override
   Set<String> get sensitiveFields => _cloudflareCustomHostnameSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareCustomHostname>`.
+  RefTo<CloudflareCustomHostname> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

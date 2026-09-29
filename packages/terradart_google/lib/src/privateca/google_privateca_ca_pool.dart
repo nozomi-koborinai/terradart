@@ -138,6 +138,10 @@ final class GooglePrivatecaCaPool extends Resource {
   @override
   Set<String> get sensitiveFields => _googlePrivatecaCaPoolSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GooglePrivatecaCaPool>`.
+  RefTo<GooglePrivatecaCaPool> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

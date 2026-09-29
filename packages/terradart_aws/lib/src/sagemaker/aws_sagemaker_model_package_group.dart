@@ -34,6 +34,10 @@ final class AwsSagemakerModelPackageGroup extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSagemakerModelPackageGroupSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSagemakerModelPackageGroup>`.
+  RefTo<AwsSagemakerModelPackageGroup> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

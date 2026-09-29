@@ -33,4 +33,9 @@ final class CloudflareZeroTrustDeviceDefaultProfileCertificates
   @override
   Set<String> get sensitiveFields =>
       _cloudflareZeroTrustDeviceDefaultProfileCertificatesSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<CloudflareZeroTrustDeviceDefaultProfileCertificates>`.
+  RefTo<CloudflareZeroTrustDeviceDefaultProfileCertificates> get ref =>
+      RefTo.of(this);
 }

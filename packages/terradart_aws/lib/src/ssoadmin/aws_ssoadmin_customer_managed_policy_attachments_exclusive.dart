@@ -62,4 +62,9 @@ final class AwsSsoadminCustomerManagedPolicyAttachmentsExclusive
   @override
   Set<String> get sensitiveFields =>
       _awsSsoadminCustomerManagedPolicyAttachmentsExclusiveSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSsoadminCustomerManagedPolicyAttachmentsExclusive>`.
+  RefTo<AwsSsoadminCustomerManagedPolicyAttachmentsExclusive> get ref =>
+      RefTo.of(this);
 }

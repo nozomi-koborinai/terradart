@@ -45,6 +45,10 @@ final class GoogleEventarcEnrollment extends Resource {
   @override
   Set<String> get sensitiveFields => _googleEventarcEnrollmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleEventarcEnrollment>`.
+  RefTo<GoogleEventarcEnrollment> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

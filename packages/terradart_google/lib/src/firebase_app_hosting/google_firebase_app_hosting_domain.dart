@@ -129,6 +129,10 @@ final class GoogleFirebaseAppHostingDomain extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirebaseAppHostingDomainSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleFirebaseAppHostingDomain>`.
+  RefTo<GoogleFirebaseAppHostingDomain> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend}/domains/{domain_id}`).
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

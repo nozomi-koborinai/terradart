@@ -37,6 +37,10 @@ final class AwsWorkspaceswebBrowserSettings extends Resource {
   @override
   Set<String> get sensitiveFields => _awsWorkspaceswebBrowserSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebBrowserSettings>`.
+  RefTo<AwsWorkspaceswebBrowserSettings> get ref => RefTo.of(this);
+
   /// Reference to `associated_portal_arns` attribute.
   TfRef<List<String>> get associatedPortalArns =>
       TfRef.attribute<List<String>>(this, 'associated_portal_arns');

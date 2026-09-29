@@ -39,6 +39,10 @@ final class GoogleComputeStoragePoolIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeStoragePoolIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeStoragePoolIamPolicy>`.
+  RefTo<GoogleComputeStoragePoolIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

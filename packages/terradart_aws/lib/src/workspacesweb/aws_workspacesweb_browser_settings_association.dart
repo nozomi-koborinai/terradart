@@ -32,4 +32,8 @@ final class AwsWorkspaceswebBrowserSettingsAssociation extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _awsWorkspaceswebBrowserSettingsAssociationSensitive;
+
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsWorkspaceswebBrowserSettingsAssociation>`.
+  RefTo<AwsWorkspaceswebBrowserSettingsAssociation> get ref => RefTo.of(this);
 }

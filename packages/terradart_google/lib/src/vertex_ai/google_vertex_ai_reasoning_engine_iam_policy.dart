@@ -39,6 +39,10 @@ final class GoogleVertexAiReasoningEngineIamPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleVertexAiReasoningEngineIamPolicySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleVertexAiReasoningEngineIamPolicy>`.
+  RefTo<GoogleVertexAiReasoningEngineIamPolicy> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

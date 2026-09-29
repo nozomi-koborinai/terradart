@@ -41,6 +41,10 @@ final class GoogleDataprocMetastoreDatabaseIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleDataprocMetastoreDatabaseIamMemberSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleDataprocMetastoreDatabaseIamMember>`.
+  RefTo<GoogleDataprocMetastoreDatabaseIamMember> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

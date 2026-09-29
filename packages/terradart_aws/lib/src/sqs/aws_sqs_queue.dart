@@ -72,6 +72,10 @@ final class AwsSqsQueue extends Resource {
   @override
   Set<String> get sensitiveFields => _awsSqsQueueSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsSqsQueue>`.
+  RefTo<AwsSqsQueue> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

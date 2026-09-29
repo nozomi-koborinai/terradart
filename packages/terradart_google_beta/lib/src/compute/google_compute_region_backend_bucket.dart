@@ -68,6 +68,10 @@ final class GoogleComputeRegionBackendBucket extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeRegionBackendBucketSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleComputeRegionBackendBucket>`.
+  RefTo<GoogleComputeRegionBackendBucket> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

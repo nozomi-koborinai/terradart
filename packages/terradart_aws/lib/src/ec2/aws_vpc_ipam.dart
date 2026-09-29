@@ -75,6 +75,10 @@ final class AwsVpcIpam extends Resource {
   @override
   Set<String> get sensitiveFields => _awsVpcIpamSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsVpcIpam>`.
+  RefTo<AwsVpcIpam> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

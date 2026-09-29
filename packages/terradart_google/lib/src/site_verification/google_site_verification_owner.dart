@@ -38,6 +38,10 @@ final class GoogleSiteVerificationOwner extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSiteVerificationOwnerSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleSiteVerificationOwner>`.
+  RefTo<GoogleSiteVerificationOwner> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

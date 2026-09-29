@@ -34,6 +34,10 @@ final class AwsRoute53ResolverRuleAssociation extends Resource {
   Set<String> get sensitiveFields =>
       _awsRoute53ResolverRuleAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRoute53ResolverRuleAssociation>`.
+  RefTo<AwsRoute53ResolverRuleAssociation> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

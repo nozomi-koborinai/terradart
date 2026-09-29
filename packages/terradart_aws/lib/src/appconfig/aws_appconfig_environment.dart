@@ -58,6 +58,10 @@ final class AwsAppconfigEnvironment extends Resource {
   @override
   Set<String> get sensitiveFields => _awsAppconfigEnvironmentSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsAppconfigEnvironment>`.
+  RefTo<AwsAppconfigEnvironment> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

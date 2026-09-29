@@ -63,6 +63,10 @@ final class AwsServicecatalogConstraint extends Resource {
   @override
   Set<String> get sensitiveFields => _awsServicecatalogConstraintSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsServicecatalogConstraint>`.
+  RefTo<AwsServicecatalogConstraint> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

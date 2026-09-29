@@ -384,6 +384,10 @@ final class GoogleIapSettings extends Resource {
   @override
   Set<String> get sensitiveFields => _googleIapSettingsSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<GoogleIapSettings>`.
+  RefTo<GoogleIapSettings> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

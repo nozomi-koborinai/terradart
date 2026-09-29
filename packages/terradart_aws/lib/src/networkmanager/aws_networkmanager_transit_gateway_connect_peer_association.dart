@@ -37,6 +37,11 @@ final class AwsNetworkmanagerTransitGatewayConnectPeerAssociation
   Set<String> get sensitiveFields =>
       _awsNetworkmanagerTransitGatewayConnectPeerAssociationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsNetworkmanagerTransitGatewayConnectPeerAssociation>`.
+  RefTo<AwsNetworkmanagerTransitGatewayConnectPeerAssociation> get ref =>
+      RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

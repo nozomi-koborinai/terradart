@@ -249,6 +249,10 @@ final class AwsRedshiftIdcApplication extends Resource {
   @override
   Set<String> get sensitiveFields => _awsRedshiftIdcApplicationSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsRedshiftIdcApplication>`.
+  RefTo<AwsRedshiftIdcApplication> get ref => RefTo.of(this);
+
   /// Reference to `idc_managed_application_arn` attribute.
   TfRef<String> get idcManagedApplicationArn =>
       TfRef.attribute<String>(this, 'idc_managed_application_arn');

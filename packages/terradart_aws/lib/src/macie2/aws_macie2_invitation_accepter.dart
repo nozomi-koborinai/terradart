@@ -29,6 +29,10 @@ final class AwsMacie2InvitationAccepter extends Resource {
   @override
   Set<String> get sensitiveFields => _awsMacie2InvitationAccepterSensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsMacie2InvitationAccepter>`.
+  RefTo<AwsMacie2InvitationAccepter> get ref => RefTo.of(this);
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 

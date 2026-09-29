@@ -2,6 +2,7 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
+import '../argo/cloudflare_argo_smart_routing.dart';
 
 /// Sensitive field paths for `cloudflare_argo_smart_routing`.
 const Set<String> _cloudflareArgoSmartRoutingSensitive = <String>{};
@@ -26,6 +27,11 @@ final class DataCloudflareArgoSmartRouting extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareArgoSmartRoutingSensitive;
+
+  /// A reference to the `cloudflare_argo_smart_routing` this data source reads, for
+  /// arguments typed `RefTo<CloudflareArgoSmartRouting>`.
+  RefTo<CloudflareArgoSmartRouting> get ref =>
+      RefTo.read(this); // ignore: invalid_use_of_internal_member
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

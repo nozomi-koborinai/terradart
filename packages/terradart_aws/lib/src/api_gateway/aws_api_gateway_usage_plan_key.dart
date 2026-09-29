@@ -33,6 +33,10 @@ final class AwsApiGatewayUsagePlanKey extends Resource {
   @override
   Set<String> get sensitiveFields => _awsApiGatewayUsagePlanKeySensitive;
 
+  /// A reference to this resource, for arguments typed
+  /// `RefTo<AwsApiGatewayUsagePlanKey>`.
+  RefTo<AwsApiGatewayUsagePlanKey> get ref => RefTo.of(this);
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
