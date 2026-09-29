@@ -323,6 +323,14 @@ func resourceWidget() *schema.Resource {
 				ValidateFunc: validation.StringInSlice(unknownValues(), false),
 				ExactlyOneOf: unknownKeys(),
 			},
+			"name": {
+				Type:          schema.TypeString,
+				ConflictsWith: []string{"name_prefix"},
+			},
+			"name_prefix": {
+				Type:          schema.TypeString,
+				ConflictsWith: []string{"name"},
+			},
 			"role_arn": {
 				Type: schema.TypeString,
 				ValidateFunc: validation.Any(
@@ -382,6 +390,18 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
 			path.MatchRoot("left"),
 			path.MatchRoot("right"),
 		),
+		resourcevalidator.AtLeastOneOf(
+			path.MatchRoot("north"),
+			path.MatchRoot("south"),
+		),
+		resourcevalidator.Conflicting(
+			path.MatchRoot("north"),
+			path.MatchRoot("south"),
+		),
+		resourcevalidator.Conflicting(
+			path.MatchRoot("up"),
+			path.MatchRoot("down"),
+		),
 	}
 }
 ''');
@@ -431,7 +451,7 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
       expect(scan.openSets, 1, reason: '"" is one alternative beside an ARN');
     });
 
-    test('reads SDKv2 and framework exactly-one groups', () {
+    test('reads SDKv2 and framework exactly-one and at-most-one groups', () {
       writeProvider();
       final scan = scanAwsProvider(root, sdkDir: sdkDir);
       Set<String> groups(String type) => {
@@ -442,7 +462,18 @@ func (r *gadgetResource) ConfigValidators(context.Context) []resource.ConfigVali
         'color,type',
         'settings.depth,settings.level',
       });
-      expect(groups('aws_widget_gadget'), {'mode,name', 'left,right'});
+      expect(groups('aws_widget_gadget'), {
+        'mode,name',
+        'left,right',
+        'north,south',
+      });
+      Set<String> atMostOne(String type) => {
+            for (final g in scan.byType[type]!.atMostOne)
+              g.map((m) => m.join('.')).join(','),
+          };
+      expect(atMostOne('aws_widget'), {'name,name_prefix'});
+      expect(atMostOne('aws_widget_gadget'), {'down,up'});
+      expect(scan.unsealed, isEmpty);
       expect(scan.groupValidators, 6);
       expect(
         scan.unresolvedGroups,

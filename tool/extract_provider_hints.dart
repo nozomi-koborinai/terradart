@@ -699,8 +699,14 @@ const _frameworkGroups =
 const _awsGroups =
     '\n\n`exactly_one_of_groups` lists the input sets the provider requires\n'
     'exactly one of (`ExactlyOneOf` in SDKv2 schemas, `*validator.ExactlyOneOf`\n'
-    'in framework schemas and `ConfigValidators`), as dotted paths that share\n'
-    'one parent block; `wrap` turns each into a sealed type.';
+    'in framework schemas and `ConfigValidators`, or an `AtLeastOneOf` set\n'
+    'whose members all pairwise `ConflictsWith` / `Conflicting`), as dotted\n'
+    'paths that share one parent block; `wrap` turns each into a required\n'
+    'sealed type. `at_most_one_of_groups` lists the other sets of one\n'
+    'block\'s inputs that pairwise `ConflictsWith` / `Conflicting` (and\n'
+    'conflict with nothing else): the provider accepts none of them, so\n'
+    '`wrap` turns each into a nullable sealed type. A conflict neither\n'
+    'expresses is listed on stdout.';
 const _awsSources = '`enum.Validate[T]`, `fwtypes.StringEnumType[T]`,\n'
     '`validation.StringInSlice` and `stringvalidator.OneOf` in the resource\n'
     'schemas under `internal/service/`, with `T`\'s members read from the\n'
@@ -792,11 +798,13 @@ Future<void> main(List<String> args) async {
     }
     final scan = scanAwsProvider(root, sdkDir: sdk);
     found.addAll(scan.byType);
+    unsealed.addAll(scan.unsealed);
     print('extract_provider_hints: ${scan.validators} value-set validator(s) '
         'in resource schemas, ${scan.unresolved} not evaluable (dropped); '
         '${scan.openSets} Any(...) alternative(s) skipped');
     print('extract_provider_hints: ${scan.groupValidators} exactly-one '
-        'validator(s), ${scan.unresolvedGroups} not evaluable (dropped)');
+        'validator(s), ${scan.unresolvedGroups} relation validator(s) not '
+        'evaluable (dropped)');
   } else {
     final services = Directory(p.join(root.path, 'internal', 'services'));
     if (!services.existsSync()) {
