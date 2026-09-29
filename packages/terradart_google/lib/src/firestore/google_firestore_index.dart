@@ -110,6 +110,24 @@ class FirestoreIndexIndexField {
 sealed class FirestoreIndexIndexFieldSpec {
   const FirestoreIndexIndexFieldSpec();
 
+  /// Range / equality / order-by dimension for a field.
+  const factory FirestoreIndexIndexFieldSpec.order(FirestoreIndexOrder order) =
+      FirestoreIndexIndexFieldOrder;
+
+  /// Array-contains dimension for a field.
+  const factory FirestoreIndexIndexFieldSpec.arrayConfig() =
+      FirestoreIndexIndexFieldArrayConfig;
+
+  /// Text-search dimension for a field (Firestore Vector Search / full-text search).
+  const factory FirestoreIndexIndexFieldSpec.searchConfig({
+    FirestoreIndexIndexFieldTextSpec? textSpec,
+  }) = FirestoreIndexIndexFieldSearchConfig;
+
+  /// Vector-search dimension for a field.
+  const factory FirestoreIndexIndexFieldSpec.vectorConfig({
+    required TfArg<int> dimension,
+  }) = FirestoreIndexIndexFieldVectorConfig;
+
   /// Returns the JSON fragment to merge into [FirestoreIndexIndexField.encode].
   Map<String, Object?> encode();
 }

@@ -59,7 +59,7 @@ final class ConfigDeploymentStack extends Stack {
         serviceAccount: TfArg.ref(actuationSa.name),
         forceDestroy: TfArg.literal(true),
         terraformBlueprint: ConfigDeploymentTerraformBlueprint(
-          source: ConfigDeploymentBlueprintFromGit(
+          source: .git(
             repo: TfArg.literal(
               'https://github.com/terraform-google-modules/terraform-google-network',
             ),

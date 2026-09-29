@@ -55,7 +55,7 @@ final class DbCredentialsStack extends Stack {
       GoogleSecretManagerSecretVersion(
         localName: 'db_password_v$secretVersion',
         secret: TfArg.ref(secret.id),
-        payload: SecretManagerSecretVersionWriteOnlyPayload(
+        payload: .writeOnly(
           secretDataWo: TfArg.literal(dbPasswordCleartext),
           secretDataWoVersion: TfArg.literal('$secretVersion'),
         ),

@@ -10,6 +10,16 @@ const Set<String> _googleBigtableGcPolicySensitive = <String>{};
 sealed class BigtableGcPolicyRule {
   const BigtableGcPolicyRule();
 
+  /// Keep only cells younger than the given age.
+  const factory BigtableGcPolicyRule.maxAge({
+    TfArg<num>? days,
+    TfArg<String>? duration,
+  }) = BigtableGcPolicyMaxAge;
+
+  /// Keep only the N most recent cell versions.
+  const factory BigtableGcPolicyRule.maxVersion({required TfArg<num> number}) =
+      BigtableGcPolicyMaxVersion;
+
   String get blockKey;
   Map<String, Object?> encode();
 }

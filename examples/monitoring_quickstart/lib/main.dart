@@ -80,7 +80,7 @@ final class LatencyAlertStack extends Stack {
           validateSsl: TfArg.literal(true),
           requestMethod: MonitoringUptimeCheckHttpMethod.get,
         ),
-        target: MonitoringUptimeCheckConfigMonitoredResource(
+        target: .monitoredResource(
           type: TfArg.literal('uptime_url'),
           labels: {'host': 'api.example.com', 'project_id': projectId},
         ),
@@ -135,10 +135,8 @@ final class LatencyAlertStack extends Stack {
         service: TfArg.ref(apiService.serviceIdRef),
         goal: TfArg.literal(0.99),
         displayName: TfArg.literal('API availability'),
-        period: .rollingPeriodDays(
-          TfArg.literal(30),
-        ),
-        sli: MonitoringSloRequestBasedSli(
+        period: .rollingPeriodDays(TfArg.literal(30)),
+        sli: .requestBasedSli(
           goodTotalRatio: MonitoringSloGoodTotalRatio(
             goodServiceFilter: TfArg.literal(
               'metric.type="run.googleapis.com/request_count" '

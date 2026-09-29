@@ -11,6 +11,41 @@ const Set<String> _googleDataprocBatchSensitive = <String>{};
 sealed class DataprocBatchWorkload {
   const DataprocBatchWorkload();
 
+  /// `pyspark_batch` — PySpark driver.
+  const factory DataprocBatchWorkload.pyspark({
+    TfArg<String>? mainPythonFileUri,
+    TfArg<List<String>>? args,
+    TfArg<List<String>>? pythonFileUris,
+    TfArg<List<String>>? jarFileUris,
+    TfArg<List<String>>? fileUris,
+    TfArg<List<String>>? archiveUris,
+  }) = DataprocBatchPysparkWorkload;
+
+  /// `spark_batch` — JVM Spark.
+  const factory DataprocBatchWorkload.spark({
+    TfArg<String>? mainClass,
+    TfArg<String>? mainJarFileUri,
+    TfArg<List<String>>? args,
+    TfArg<List<String>>? jarFileUris,
+    TfArg<List<String>>? fileUris,
+    TfArg<List<String>>? archiveUris,
+  }) = DataprocBatchSparkWorkload;
+
+  /// `spark_sql_batch` — Spark SQL script.
+  const factory DataprocBatchWorkload.sparkSql({
+    TfArg<String>? queryFileUri,
+    TfArg<List<String>>? jarFileUris,
+    TfArg<Map<String, String>>? queryVariables,
+  }) = DataprocBatchSparkSqlWorkload;
+
+  /// `spark_r_batch` — SparkR driver.
+  const factory DataprocBatchWorkload.sparkR({
+    TfArg<String>? mainRFileUri,
+    TfArg<List<String>>? args,
+    TfArg<List<String>>? fileUris,
+    TfArg<List<String>>? archiveUris,
+  }) = DataprocBatchSparkRWorkload;
+
   /// argMap key (`pyspark_batch` / `spark_batch` / `spark_sql_batch` /
   /// `spark_r_batch`).
   String get blockKey;

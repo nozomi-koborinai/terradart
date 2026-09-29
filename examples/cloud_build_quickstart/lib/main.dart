@@ -102,18 +102,17 @@ final class CloudBuildStack extends Stack {
         localName: 'lb_conn',
         location: TfArg.literal(region),
         name: TfArg.literal('github-app-conn'),
-        host:
-            .githubConfig(
-              Cloudbuildv2ConnectionGithubConfig(
-                appInstallationId: TfArg.literal(12345),
-                authorizerCredential:
-                    Cloudbuildv2ConnectionGithubAuthorizerCredential(
-                      oauthTokenSecretVersion: TfArg.literal(
-                        'projects/p/secrets/github-oauth/versions/1',
-                      ),
-                    ),
-              ),
-            ),
+        host: .githubConfig(
+          Cloudbuildv2ConnectionGithubConfig(
+            appInstallationId: TfArg.literal(12345),
+            authorizerCredential:
+                Cloudbuildv2ConnectionGithubAuthorizerCredential(
+                  oauthTokenSecretVersion: TfArg.literal(
+                    'projects/p/secrets/github-oauth/versions/1',
+                  ),
+                ),
+          ),
+        ),
         dependsOn: apiDeps,
       ),
     );
@@ -225,9 +224,7 @@ final class CloudBuildStack extends Stack {
           repository: TfArg.ref<String>(lbRepo.id),
           push: CloudbuildTriggerPushFilter(branch: TfArg.literal('^main\$')),
         ),
-        buildSpec: CloudbuildTriggerFilenameSpec(
-          filename: TfArg.literal('cloudbuild.yaml'),
-        ),
+        buildSpec: .filename(filename: TfArg.literal('cloudbuild.yaml')),
         // `service_account` wants the full SA resource path
         // `projects/{project}/serviceAccounts/{email}` — `buildSa.id` is
         // exactly that, so reference it instead of hand-building the string.

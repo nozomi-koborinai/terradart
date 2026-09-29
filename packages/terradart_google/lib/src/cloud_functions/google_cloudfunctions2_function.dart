@@ -136,6 +136,24 @@ class Cloudfunctions2FunctionBuildConfig {
 sealed class Cloudfunctions2FunctionSourceConfig {
   const Cloudfunctions2FunctionSourceConfig();
 
+  /// GCS-backed source archive (`build_config.source.storage_source`).
+  const factory Cloudfunctions2FunctionSourceConfig.storageSource({
+    required TfArg<String> bucket,
+    required TfArg<String> object,
+    TfArg<int>? generation,
+  }) = StorageSource;
+
+  /// Cloud Source Repositories-backed source (`build_config.source.repo_source`).
+  const factory Cloudfunctions2FunctionSourceConfig.repoSource({
+    required TfArg<String> repoName,
+    TfArg<String>? projectId,
+    TfArg<String>? dir,
+    TfArg<String>? branchName,
+    TfArg<String>? tagName,
+    TfArg<String>? commitSha,
+    TfArg<bool>? invertRegex,
+  }) = RepoSource;
+
   /// Returns the JSON fragment to merge into the `source` block.
   Map<String, Object?> encode();
 }
@@ -231,6 +249,14 @@ final class RepoSource extends Cloudfunctions2FunctionSourceConfig {
 /// -- pin runtime version at deploy time).
 sealed class Cloudfunctions2FunctionUpdatePolicy {
   const Cloudfunctions2FunctionUpdatePolicy();
+
+  /// `automatic_update_policy` sub-block.
+  const factory Cloudfunctions2FunctionUpdatePolicy.automaticUpdatePolicy() =
+      AutomaticUpdatePolicy;
+
+  /// `on_deploy_update_policy` sub-block.
+  const factory Cloudfunctions2FunctionUpdatePolicy.onDeployUpdatePolicy() =
+      OnDeployUpdatePolicy;
 
   /// Returns the JSON fragment to merge into [Cloudfunctions2FunctionBuildConfig.encode].
   Map<String, Object?> encode();

@@ -35,6 +35,36 @@ prelude: |
   sealed class DataplexDatascanSpec {
     const DataplexDatascanSpec();
 
+    /// `data_profile_spec` — column statistics for BigQuery tables or entities.
+    const factory DataplexDatascanSpec.dataProfileSpec({
+      TfArg<double>? samplingPercent,
+      TfArg<String>? rowFilter,
+      TfArg<bool>? catalogPublishingEnabled,
+      TfArg<Map<String, Object?>>? postScanActions,
+      TfArg<Map<String, Object?>>? includeFields,
+      TfArg<Map<String, Object?>>? excludeFields,
+    }) = DataplexDatascanDataProfileSpec;
+
+    /// `data_quality_spec` — rule-based quality checks.
+    const factory DataplexDatascanSpec.dataQualitySpec({
+      TfArg<List<Map<String, Object?>>>? rules,
+      TfArg<double>? samplingPercent,
+      TfArg<String>? rowFilter,
+      TfArg<String>? filter,
+      TfArg<bool>? catalogPublishingEnabled,
+      TfArg<bool>? enableCatalogBasedRules,
+      TfArg<Map<String, Object?>>? postScanActions,
+    }) = DataplexDatascanDataQualitySpec;
+
+    /// `data_discovery_spec` — infer schema from Cloud Storage objects.
+    const factory DataplexDatascanSpec.dataDiscoverySpec({
+      TfArg<Map<String, Object?>>? storageConfig,
+      TfArg<Map<String, Object?>>? bigqueryPublishingConfig,
+    }) = DataplexDatascanDataDiscoverySpec;
+
+    /// `data_documentation_spec` — generate data documentation.
+    const factory DataplexDatascanSpec.dataDocumentationSpec() = DataplexDatascanDataDocumentationSpec;
+
     String get blockKey;
 
     Map<String, Object?> encode();

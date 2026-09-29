@@ -132956,6 +132956,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'agent',
     ),
     'AgentRegistryServiceEndpointSpec': MigrateHelper(
       className: 'AgentRegistryServiceEndpointSpec',
@@ -132969,6 +132970,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'AgentRegistryServiceEndpointSpecType',
         ),
       ],
+      shorthand: 'endpoint',
     ),
     'AgentRegistryServiceInterfaces': MigrateHelper(
       className: 'AgentRegistryServiceInterfaces',
@@ -133009,6 +133011,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'mcpServer',
     ),
     'AgenticApplicationsAnalystAgentPersonaArtifactExamples': MigrateHelper(
       className: 'AgenticApplicationsAnalystAgentPersonaArtifactExamples',
@@ -136260,6 +136263,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'int',
         ),
       ],
+      shorthand: 'automaticScaling',
     ),
     'AppEngineFlexibleAppVersionDeployment': MigrateHelper(
       className: 'AppEngineFlexibleAppVersionDeployment',
@@ -136628,6 +136632,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'int',
         ),
       ],
+      shorthand: 'manualScaling',
     ),
     'AppEngineFlexibleAppVersionNetwork': MigrateHelper(
       className: 'AppEngineFlexibleAppVersionNetwork',
@@ -138266,6 +138271,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'AutomaticUpdatePolicy': MigrateHelper(
       className: 'AutomaticUpdatePolicy',
       slots: <MigrateSlot>[],
+      shorthand: 'automaticUpdatePolicy',
     ),
     'BackupDrBackupPlanBackupRules': MigrateHelper(
       className: 'BackupDrBackupPlanBackupRules',
@@ -140932,6 +140938,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BigqueryConnectionAwsAccessRole',
         ),
       ],
+      shorthand: 'aws',
     ),
     'BigqueryConnectionAwsAccessRole': MigrateHelper(
       className: 'BigqueryConnectionAwsAccessRole',
@@ -140963,10 +140970,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'azure',
     ),
     'BigqueryConnectionCloudResource': MigrateHelper(
       className: 'BigqueryConnectionCloudResource',
       slots: <MigrateSlot>[],
+      shorthand: 'cloudResource',
     ),
     'BigqueryConnectionCloudSpanner': MigrateHelper(
       className: 'BigqueryConnectionCloudSpanner',
@@ -141014,6 +141023,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
+      shorthand: 'cloudSpanner',
     ),
     'BigqueryConnectionCloudSql': MigrateHelper(
       className: 'BigqueryConnectionCloudSql',
@@ -141049,6 +141059,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BigqueryConnectionCloudSqlCredential',
         ),
       ],
+      shorthand: 'cloudSql',
     ),
     'BigqueryConnectionCloudSqlCredential': MigrateHelper(
       className: 'BigqueryConnectionCloudSqlCredential',
@@ -141112,6 +141123,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BigqueryConnectionConfigurationNetwork',
         ),
       ],
+      shorthand: 'configuration',
     ),
     'BigqueryConnectionConfigurationAsset': MigrateHelper(
       className: 'BigqueryConnectionConfigurationAsset',
@@ -141239,6 +141251,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BigqueryConnectionSparkSparkHistoryServerConfig',
         ),
       ],
+      shorthand: 'spark',
     ),
     'BigqueryConnectionSparkMetastoreServiceConfig': MigrateHelper(
       className: 'BigqueryConnectionSparkMetastoreServiceConfig',
@@ -141299,6 +141312,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'plaintext',
     ),
     'BigqueryDataTransferConfigScheduleOptions': MigrateHelper(
       className: 'BigqueryDataTransferConfigScheduleOptions',
@@ -141363,6 +141377,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'writeOnly',
     ),
     'BigqueryDatapolicyDataPolicyDataMaskingPolicy': MigrateHelper(
       className: 'BigqueryDatapolicyDataPolicyDataMaskingPolicy',
@@ -141562,6 +141577,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BigqueryDatasetAccessCondition',
         ),
       ],
+      shorthand: 'dataset',
     ),
     'BigqueryDatasetAccessDomain': MigrateHelper(
       className: 'BigqueryDatasetAccessDomain',
@@ -141589,6 +141605,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BigqueryDatasetAccessCondition',
         ),
       ],
+      shorthand: 'domain',
     ),
     'BigqueryDatasetAccessGranteeDataset': MigrateHelper(
       className: 'BigqueryDatasetAccessGranteeDataset',
@@ -141731,6 +141748,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BigqueryDatasetAccessCondition',
         ),
       ],
+      shorthand: 'groupByEmail',
     ),
     'BigqueryDatasetAccessIamMember': MigrateHelper(
       className: 'BigqueryDatasetAccessIamMember',
@@ -141758,6 +141776,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BigqueryDatasetAccessCondition',
         ),
       ],
+      shorthand: 'iamMember',
     ),
     'BigqueryDatasetAccessRoutine': MigrateHelper(
       className: 'BigqueryDatasetAccessRoutine',
@@ -141779,6 +141798,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BigqueryDatasetAccessCondition',
         ),
       ],
+      shorthand: 'routine',
     ),
     'BigqueryDatasetAccessSpecialGroup': MigrateHelper(
       className: 'BigqueryDatasetAccessSpecialGroup',
@@ -141806,6 +141826,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BigqueryDatasetAccessCondition',
         ),
       ],
+      shorthand: 'specialGroup',
     ),
     'BigqueryDatasetAccessUserByEmail': MigrateHelper(
       className: 'BigqueryDatasetAccessUserByEmail',
@@ -141833,6 +141854,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BigqueryDatasetAccessCondition',
         ),
       ],
+      shorthand: 'userByEmail',
     ),
     'BigqueryDatasetAccessView': MigrateHelper(
       className: 'BigqueryDatasetAccessView',
@@ -141854,6 +141876,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'BigqueryDatasetAccessCondition',
         ),
       ],
+      shorthand: 'view',
     ),
     'BigqueryDatasetDatasetAccessChild': MigrateHelper(
       className: 'BigqueryDatasetDatasetAccessChild',
@@ -142042,6 +142065,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'BigqueryJobWriteDisposition',
         ),
       ],
+      shorthand: 'copy',
     ),
     'BigqueryJobDefaultDataset': MigrateHelper(
       className: 'BigqueryJobDefaultDataset',
@@ -142164,6 +142188,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
+      shorthand: 'extract',
     ),
     'BigqueryJobLoad': MigrateHelper(
       className: 'BigqueryJobLoad',
@@ -142327,6 +142352,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'load',
     ),
     'BigqueryJobParquetOptions': MigrateHelper(
       className: 'BigqueryJobParquetOptions',
@@ -142491,6 +142517,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'query',
     ),
     'BigqueryJobQueryConnectionProperty': MigrateHelper(
       className: 'BigqueryJobQueryConnectionProperty',
@@ -143414,6 +143441,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'BigtableAppProfileComputeBillingOwner',
         ),
       ],
+      shorthand: 'dataBoostIsolation',
     ),
     'BigtableAppProfileSingleClusterRouting': MigrateHelper(
       className: 'BigtableAppProfileSingleClusterRouting',
@@ -143433,6 +143461,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
+      shorthand: 'singleClusterRouting',
     ),
     'BigtableAppProfileStandardIsolation': MigrateHelper(
       className: 'BigtableAppProfileStandardIsolation',
@@ -143445,6 +143474,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'BigtableAppProfileIsolationPriority',
         ),
       ],
+      shorthand: 'standardIsolation',
     ),
     'BigtableAuthorizedViewSubsetView': MigrateHelper(
       className: 'BigtableAuthorizedViewSubsetView',
@@ -143477,6 +143507,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'maxAge',
     ),
     'BigtableGcPolicyMaxVersion': MigrateHelper(
       className: 'BigtableGcPolicyMaxVersion',
@@ -143489,6 +143520,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
+      shorthand: 'maxVersion',
     ),
     'BigtableInstanceCluster': MigrateHelper(
       className: 'BigtableInstanceCluster',
@@ -144063,6 +144095,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'managed',
     ),
     'CertificateManagerCertificateMapEntryHostname': MigrateHelper(
       className: 'CertificateManagerCertificateMapEntryHostname',
@@ -144110,6 +144143,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'selfManaged',
     ),
     'CertificateManagerTrustConfigAllowlistedCertificate': MigrateHelper(
       className: 'CertificateManagerTrustConfigAllowlistedCertificate',
@@ -156638,6 +156672,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'cloudSqlInstance',
     ),
     'CloudRunV2JobContainer': MigrateHelper(
       className: 'CloudRunV2JobContainer',
@@ -156777,6 +156812,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'emptyDir',
     ),
     'CloudRunV2JobEnvVar': MigrateHelper(
       className: 'CloudRunV2JobEnvVar',
@@ -156814,6 +156850,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'value',
     ),
     'CloudRunV2JobEnvVarFromSecret': MigrateHelper(
       className: 'CloudRunV2JobEnvVarFromSecret',
@@ -156833,6 +156870,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'secret',
     ),
     'CloudRunV2JobGcsVolume': MigrateHelper(
       className: 'CloudRunV2JobGcsVolume',
@@ -156859,6 +156897,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'gcs',
     ),
     'CloudRunV2JobHttpGetAction': MigrateHelper(
       className: 'CloudRunV2JobHttpGetAction',
@@ -156932,6 +156971,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
+      shorthand: 'nfs',
     ),
     'CloudRunV2JobNodeSelector': MigrateHelper(
       className: 'CloudRunV2JobNodeSelector',
@@ -157242,6 +157282,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'CloudRunV2JobSecretVolumeItem',
         ),
       ],
+      shorthand: 'secret',
     ),
     'CloudRunV2JobVpcAccess': MigrateHelper(
       className: 'CloudRunV2JobVpcAccess',
@@ -157334,6 +157375,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'cloudSqlInstance',
     ),
     'CloudRunV2ServiceContainerPort': MigrateHelper(
       className: 'CloudRunV2ServiceContainerPort',
@@ -157398,6 +157440,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'emptyDir',
     ),
     'CloudRunV2ServiceEnvVar': MigrateHelper(
       className: 'CloudRunV2ServiceEnvVar',
@@ -157435,6 +157478,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'value',
     ),
     'CloudRunV2ServiceEnvVarFromSecret': MigrateHelper(
       className: 'CloudRunV2ServiceEnvVarFromSecret',
@@ -157454,6 +157498,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'secret',
     ),
     'CloudRunV2ServiceGcsVolume': MigrateHelper(
       className: 'CloudRunV2ServiceGcsVolume',
@@ -157480,6 +157525,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'gcs',
     ),
     'CloudRunV2ServiceHttpGetAction': MigrateHelper(
       className: 'CloudRunV2ServiceHttpGetAction',
@@ -157610,6 +157656,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
+      shorthand: 'nfs',
     ),
     'CloudRunV2ServiceNodeSelector': MigrateHelper(
       className: 'CloudRunV2ServiceNodeSelector',
@@ -158112,6 +158159,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'CloudRunV2ServiceSecretVolumeItem',
         ),
       ],
+      shorthand: 'secret',
     ),
     'CloudRunV2ServiceVpcAccess': MigrateHelper(
       className: 'CloudRunV2ServiceVpcAccess',
@@ -158418,6 +158466,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'CloudSchedulerJobAppEngineRouting',
         ),
       ],
+      shorthand: 'appEngineHttpTarget',
     ),
     'CloudSchedulerJobAppEngineRouting': MigrateHelper(
       className: 'CloudSchedulerJobAppEngineRouting',
@@ -158531,6 +158580,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'CloudSchedulerJobHttpOidcToken',
         ),
       ],
+      shorthand: 'httpTarget',
     ),
     'CloudSchedulerJobPubsubTarget': MigrateHelper(
       className: 'CloudSchedulerJobPubsubTarget',
@@ -158557,6 +158607,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, String>',
         ),
       ],
+      shorthand: 'pubsubTarget',
     ),
     'CloudSchedulerJobSchedulerRetryConfig': MigrateHelper(
       className: 'CloudSchedulerJobSchedulerRetryConfig',
@@ -161580,6 +161631,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'filename',
     ),
     'CloudbuildTriggerGitFileSource': MigrateHelper(
       className: 'CloudbuildTriggerGitFileSource',
@@ -161647,6 +161699,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'CloudbuildTriggerGitFileSource',
         ),
       ],
+      shorthand: 'gitFileSource',
     ),
     'CloudbuildTriggerGithub': MigrateHelper(
       className: 'CloudbuildTriggerGithub',
@@ -161702,6 +161755,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'CloudbuildTriggerBuild',
         ),
       ],
+      shorthand: 'build',
     ),
     'CloudbuildTriggerPubsubConfig': MigrateHelper(
       className: 'CloudbuildTriggerPubsubConfig',
@@ -163641,6 +163695,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, Object?>',
         ),
       ],
+      shorthand: 'custom',
     ),
     'ColabNotebookExecutionDataformSource': MigrateHelper(
       className: 'ColabNotebookExecutionDataformSource',
@@ -163660,6 +163715,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'dataform',
     ),
     'ColabNotebookExecutionDirectSource': MigrateHelper(
       className: 'ColabNotebookExecutionDirectSource',
@@ -163672,6 +163728,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'direct',
     ),
     'ColabNotebookExecutionExecutionUser': MigrateHelper(
       className: 'ColabNotebookExecutionExecutionUser',
@@ -163705,6 +163762,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'gcs',
     ),
     'ColabNotebookExecutionServiceAccount': MigrateHelper(
       className: 'ColabNotebookExecutionServiceAccount',
@@ -163732,6 +163790,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'template',
     ),
     'ColabNotebookExecutionWorkbenchRuntime': MigrateHelper(
       className: 'ColabNotebookExecutionWorkbenchRuntime',
@@ -166136,6 +166195,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'ComputeFirewallFirewallAllowRule',
         ),
       ],
+      shorthand: 'allow',
       reason:
           'encode() returns a list with more than one map; field `protocol` has no encode entry; field `ports` has no encode entry; field `additionalRules` has no encode entry',
     ),
@@ -166168,6 +166228,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'ComputeFirewallFirewallDenyRule',
         ),
       ],
+      shorthand: 'deny',
       reason:
           'encode() returns a list with more than one map; field `protocol` has no encode entry; field `ports` has no encode entry; field `additionalRules` has no encode entry',
     ),
@@ -166869,6 +166930,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'grpc',
     ),
     'ComputeHealthCheckHealthCheckLogConfig': MigrateHelper(
       className: 'ComputeHealthCheckHealthCheckLogConfig',
@@ -166937,6 +166999,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'HealthCheckPortSpecification',
         ),
       ],
+      shorthand: 'http2',
     ),
     'ComputeHealthCheckHttpHealthCheckConfig': MigrateHelper(
       className: 'ComputeHealthCheckHttpHealthCheckConfig',
@@ -166993,6 +167056,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'HealthCheckPortSpecification',
         ),
       ],
+      shorthand: 'http',
     ),
     'ComputeHealthCheckHttpsHealthCheckConfig': MigrateHelper(
       className: 'ComputeHealthCheckHttpsHealthCheckConfig',
@@ -167049,6 +167113,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'HealthCheckPortSpecification',
         ),
       ],
+      shorthand: 'https',
     ),
     'ComputeHealthCheckSslHealthCheckConfig': MigrateHelper(
       className: 'ComputeHealthCheckSslHealthCheckConfig',
@@ -167098,6 +167163,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'HealthCheckPortSpecification',
         ),
       ],
+      shorthand: 'ssl',
     ),
     'ComputeHealthCheckTcpHealthCheckConfig': MigrateHelper(
       className: 'ComputeHealthCheckTcpHealthCheckConfig',
@@ -167147,6 +167213,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'HealthCheckPortSpecification',
         ),
       ],
+      shorthand: 'tcp',
     ),
     'ComputeImageDiskSource': MigrateHelper(
       className: 'ComputeImageDiskSource',
@@ -167159,6 +167226,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'disk',
     ),
     'ComputeImageImageSource': MigrateHelper(
       className: 'ComputeImageImageSource',
@@ -167171,6 +167239,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'image',
     ),
     'ComputeImageSnapshotSource': MigrateHelper(
       className: 'ComputeImageSnapshotSource',
@@ -167183,6 +167252,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'snapshot',
     ),
     'ComputeInstanceAccessConfig': MigrateHelper(
       className: 'ComputeInstanceAccessConfig',
@@ -171345,6 +171415,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'grpc',
     ),
     'ComputeRegionHealthCheckRegionHealthCheckHttp2Config': MigrateHelper(
       className: 'ComputeRegionHealthCheckRegionHealthCheckHttp2Config',
@@ -171401,6 +171472,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'RegionHealthCheckPortSpecification',
         ),
       ],
+      shorthand: 'http2',
     ),
     'ComputeRegionHealthCheckRegionHealthCheckHttpConfig': MigrateHelper(
       className: 'ComputeRegionHealthCheckRegionHealthCheckHttpConfig',
@@ -171457,6 +171529,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'RegionHealthCheckPortSpecification',
         ),
       ],
+      shorthand: 'http',
     ),
     'ComputeRegionHealthCheckRegionHealthCheckHttpsConfig': MigrateHelper(
       className: 'ComputeRegionHealthCheckRegionHealthCheckHttpsConfig',
@@ -171513,6 +171586,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'RegionHealthCheckPortSpecification',
         ),
       ],
+      shorthand: 'https',
     ),
     'ComputeRegionHealthCheckRegionHealthCheckLogConfig': MigrateHelper(
       className: 'ComputeRegionHealthCheckRegionHealthCheckLogConfig',
@@ -171574,6 +171648,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'RegionHealthCheckPortSpecification',
         ),
       ],
+      shorthand: 'ssl',
     ),
     'ComputeRegionHealthCheckRegionHealthCheckTcpConfig': MigrateHelper(
       className: 'ComputeRegionHealthCheckRegionHealthCheckTcpConfig',
@@ -171623,6 +171698,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'RegionHealthCheckPortSpecification',
         ),
       ],
+      shorthand: 'tcp',
     ),
     'ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesConfig':
         MigrateHelper(
@@ -174172,6 +174248,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'daily',
     ),
     'ComputeResourcePolicyDayOfWeek': MigrateHelper(
       className: 'ComputeResourcePolicyDayOfWeek',
@@ -174210,6 +174287,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'hourly',
     ),
     'ComputeResourcePolicyRetentionPolicy': MigrateHelper(
       className: 'ComputeResourcePolicyRetentionPolicy',
@@ -174310,6 +174388,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'ComputeResourcePolicyDayOfWeek',
         ),
       ],
+      shorthand: 'weekly',
     ),
     'ComputeResourcePolicyWorkloadPolicy': MigrateHelper(
       className: 'ComputeResourcePolicyWorkloadPolicy',
@@ -174534,6 +174613,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'gateway',
     ),
     'ComputeRouteIlbNextHop': MigrateHelper(
       className: 'ComputeRouteIlbNextHop',
@@ -174546,6 +174626,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'ilb',
     ),
     'ComputeRouteInstanceNextHop': MigrateHelper(
       className: 'ComputeRouteInstanceNextHop',
@@ -174558,6 +174639,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'instance',
     ),
     'ComputeRouteIpNextHop': MigrateHelper(
       className: 'ComputeRouteIpNextHop',
@@ -174570,6 +174652,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'ip',
     ),
     'ComputeRouteVpnTunnelNextHop': MigrateHelper(
       className: 'ComputeRouteVpnTunnelNextHop',
@@ -174582,6 +174665,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'vpnTunnel',
     ),
     'ComputeRouterBgp': MigrateHelper(
       className: 'ComputeRouterBgp',
@@ -175605,6 +175689,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'disk',
     ),
     'ComputeSnapshotInstantSource': MigrateHelper(
       className: 'ComputeSnapshotInstantSource',
@@ -175617,6 +175702,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'instantSnapshot',
     ),
     'ComputeSnapshotSettingsStorageLocation': MigrateHelper(
       className: 'ComputeSnapshotSettingsStorageLocation',
@@ -176526,6 +176612,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'gcs',
     ),
     'ConfigDeploymentBlueprintFromGit': MigrateHelper(
       className: 'ConfigDeploymentBlueprintFromGit',
@@ -176552,6 +176639,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'git',
     ),
     'ConfigDeploymentInputValue': MigrateHelper(
       className: 'ConfigDeploymentInputValue',
@@ -178139,10 +178227,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'customType',
     ),
     'DataCatalogEntryFileset': MigrateHelper(
       className: 'DataCatalogEntryFileset',
       slots: <MigrateSlot>[],
+      shorthand: 'fileset',
     ),
     'DataCatalogEntryGcsFilesetSpec': MigrateHelper(
       className: 'DataCatalogEntryGcsFilesetSpec',
@@ -178168,6 +178258,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
+      shorthand: 'boolValue',
     ),
     'DataCatalogTagDoubleValue': MigrateHelper(
       className: 'DataCatalogTagDoubleValue',
@@ -178181,6 +178272,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'num',
         ),
       ],
+      shorthand: 'doubleValue',
     ),
     'DataCatalogTagEnumValue': MigrateHelper(
       className: 'DataCatalogTagEnumValue',
@@ -178194,6 +178286,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'enumValue',
     ),
     'DataCatalogTagField': MigrateHelper(
       className: 'DataCatalogTagField',
@@ -178234,6 +178327,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'stringValue',
     ),
     'DataCatalogTagTemplateEnumAllowedValue': MigrateHelper(
       className: 'DataCatalogTagTemplateEnumAllowedValue',
@@ -178260,6 +178354,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'DataCatalogTagTemplateEnumAllowedValue',
         ),
       ],
+      shorthand: 'enumType',
     ),
     'DataCatalogTagTemplateField': MigrateHelper(
       className: 'DataCatalogTagTemplateField',
@@ -178325,6 +178420,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'DataCatalogTagTemplatePrimitiveType',
         ),
       ],
+      shorthand: 'primitiveType',
     ),
     'DataCatalogTagTimestampValue': MigrateHelper(
       className: 'DataCatalogTagTimestampValue',
@@ -178338,6 +178434,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'timestampValue',
     ),
     'DataLineageConfigIngestion': MigrateHelper(
       className: 'DataLineageConfigIngestion',
@@ -181304,6 +181401,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'dictionary',
     ),
     'DataLossPreventionStoredInfoTypeLargeCustomDictionary': MigrateHelper(
       className: 'DataLossPreventionStoredInfoTypeLargeCustomDictionary',
@@ -181323,6 +181421,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'largeCustomDictionary',
     ),
     'DataLossPreventionStoredInfoTypeRegex': MigrateHelper(
       className: 'DataLossPreventionStoredInfoTypeRegex',
@@ -181342,6 +181441,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<num>',
         ),
       ],
+      shorthand: 'regex',
     ),
     'DataPipelinePipelineScheduleInfo': MigrateHelper(
       className: 'DataPipelinePipelineScheduleInfo',
@@ -183106,10 +183206,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, Object?>',
         ),
       ],
+      shorthand: 'dataDiscoverySpec',
     ),
     'DataplexDatascanDataDocumentationSpec': MigrateHelper(
       className: 'DataplexDatascanDataDocumentationSpec',
       slots: <MigrateSlot>[],
+      shorthand: 'dataDocumentationSpec',
     ),
     'DataplexDatascanDataProfileSpec': MigrateHelper(
       className: 'DataplexDatascanDataProfileSpec',
@@ -183157,6 +183259,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, Object?>',
         ),
       ],
+      shorthand: 'dataProfileSpec',
     ),
     'DataplexDatascanDataQualitySpec': MigrateHelper(
       className: 'DataplexDatascanDataQualitySpec',
@@ -183211,6 +183314,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, Object?>',
         ),
       ],
+      shorthand: 'dataQualitySpec',
     ),
     'DataplexDatascanExecutionIdentity': MigrateHelper(
       className: 'DataplexDatascanExecutionIdentity',
@@ -183597,6 +183701,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, Object?>',
         ),
       ],
+      shorthand: 'notebook',
     ),
     'DataplexTaskSparkWorkload': MigrateHelper(
       className: 'DataplexTaskSparkWorkload',
@@ -183658,6 +183763,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, Object?>',
         ),
       ],
+      shorthand: 'spark',
     ),
     'DataplexTaskTriggerSpec': MigrateHelper(
       className: 'DataplexTaskTriggerSpec',
@@ -184136,6 +184242,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'pyspark',
     ),
     'DataprocBatchRuntimeConfig': MigrateHelper(
       className: 'DataprocBatchRuntimeConfig',
@@ -184223,6 +184330,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'sparkR',
     ),
     'DataprocBatchSparkSqlWorkload': MigrateHelper(
       className: 'DataprocBatchSparkSqlWorkload',
@@ -184249,6 +184357,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, String>',
         ),
       ],
+      shorthand: 'sparkSql',
     ),
     'DataprocBatchSparkWorkload': MigrateHelper(
       className: 'DataprocBatchSparkWorkload',
@@ -184296,6 +184405,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'spark',
     ),
     'DataprocClusterClusterConfig': MigrateHelper(
       className: 'DataprocClusterClusterConfig',
@@ -200190,6 +200300,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'DiscoveryEngineControlInterpolationBoostSpec',
         ),
       ],
+      shorthand: 'boostAction',
     ),
     'DiscoveryEngineControlFilterAction': MigrateHelper(
       className: 'DiscoveryEngineControlFilterAction',
@@ -200209,6 +200320,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'filterAction',
     ),
     'DiscoveryEngineControlInterpolationBoostSpec': MigrateHelper(
       className: 'DiscoveryEngineControlInterpolationBoostSpec',
@@ -200255,6 +200367,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'DiscoveryEngineControlSearchLinkPromotion',
         ),
       ],
+      shorthand: 'promoteAction',
     ),
     'DiscoveryEngineControlRedirectAction': MigrateHelper(
       className: 'DiscoveryEngineControlRedirectAction',
@@ -200267,6 +200380,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'redirectAction',
     ),
     'DiscoveryEngineControlSearchLinkPromotion': MigrateHelper(
       className: 'DiscoveryEngineControlSearchLinkPromotion',
@@ -200326,6 +200440,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'synonymsAction',
     ),
     'DiscoveryEngineDataConnectorActionConfig': MigrateHelper(
       className: 'DiscoveryEngineDataConnectorActionConfig',
@@ -202071,6 +202186,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'EdgecontainerClusterSharedDeploymentPolicy',
         ),
       ],
+      shorthand: 'local',
     ),
     'EdgecontainerClusterControlPlaneRemote': MigrateHelper(
       className: 'EdgecontainerClusterControlPlaneRemote',
@@ -202083,6 +202199,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'remote',
     ),
     'EdgecontainerClusterFleet': MigrateHelper(
       className: 'EdgecontainerClusterFleet',
@@ -202668,6 +202785,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'codebase',
     ),
     'FirebaseAppHostingBuildAppHostingBuildSourceContainer': MigrateHelper(
       className: 'FirebaseAppHostingBuildAppHostingBuildSourceContainer',
@@ -202680,6 +202798,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'container',
     ),
     'FirebaseAppHostingDomainAppHostingDomainRedirect': MigrateHelper(
       className: 'FirebaseAppHostingDomainAppHostingDomainRedirect',
@@ -202992,6 +203111,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'FirestoreBackupScheduleDailyRecurrence': MigrateHelper(
       className: 'FirestoreBackupScheduleDailyRecurrence',
       slots: <MigrateSlot>[],
+      shorthand: 'daily',
     ),
     'FirestoreBackupScheduleWeeklyRecurrence': MigrateHelper(
       className: 'FirestoreBackupScheduleWeeklyRecurrence',
@@ -203005,6 +203125,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'BackupDayOfWeek',
         ),
       ],
+      shorthand: 'weekly',
     ),
     'FirestoreDatabaseCmekConfig': MigrateHelper(
       className: 'FirestoreDatabaseCmekConfig',
@@ -203095,6 +203216,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'FirestoreIndexIndexFieldArrayConfig': MigrateHelper(
       className: 'FirestoreIndexIndexFieldArrayConfig',
       slots: <MigrateSlot>[],
+      shorthand: 'arrayConfig',
     ),
     'FirestoreIndexIndexFieldOrder': MigrateHelper(
       className: 'FirestoreIndexIndexFieldOrder',
@@ -203109,6 +203231,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'FirestoreIndexOrder',
         ),
       ],
+      shorthand: 'order',
     ),
     'FirestoreIndexIndexFieldSearchConfig': MigrateHelper(
       className: 'FirestoreIndexIndexFieldSearchConfig',
@@ -203122,6 +203245,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'FirestoreIndexIndexFieldTextSpec',
         ),
       ],
+      shorthand: 'searchConfig',
     ),
     'FirestoreIndexIndexFieldTextSpec': MigrateHelper(
       className: 'FirestoreIndexIndexFieldTextSpec',
@@ -203167,6 +203291,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'int',
         ),
       ],
+      shorthand: 'vectorConfig',
     ),
     'FolderAccessApprovalSettingsEnrolledServices': MigrateHelper(
       className: 'FolderAccessApprovalSettingsEnrolledServices',
@@ -209649,6 +209774,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'oidc',
     ),
     'IamWorkforcePoolProviderSaml': MigrateHelper(
       className: 'IamWorkforcePoolProviderSaml',
@@ -209673,6 +209799,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'saml',
     ),
     'IamWorkloadIdentityPoolProviderAwsTrust': MigrateHelper(
       className: 'IamWorkloadIdentityPoolProviderAwsTrust',
@@ -209685,6 +209812,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'aws',
     ),
     'IamWorkloadIdentityPoolProviderOidcTrust': MigrateHelper(
       className: 'IamWorkloadIdentityPoolProviderOidcTrust',
@@ -209712,6 +209840,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'oidc',
     ),
     'IamWorkloadIdentityPoolProviderSamlTrust': MigrateHelper(
       className: 'IamWorkloadIdentityPoolProviderSamlTrust',
@@ -209724,6 +209853,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'saml',
     ),
     'IamWorkloadIdentityPoolProviderX509PemCertificate': MigrateHelper(
       className: 'IamWorkloadIdentityPoolProviderX509PemCertificate',
@@ -209749,6 +209879,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'IamWorkloadIdentityPoolProviderX509TrustStore',
         ),
       ],
+      shorthand: 'x509',
     ),
     'IamWorkloadIdentityPoolProviderX509TrustStore': MigrateHelper(
       className: 'IamWorkloadIdentityPoolProviderX509TrustStore',
@@ -215035,6 +215166,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'MonitoringSloBasicSliLatency',
         ),
       ],
+      shorthand: 'basicSli',
     ),
     'MonitoringSloBasicSliAvailability': MigrateHelper(
       className: 'MonitoringSloBasicSliAvailability',
@@ -215126,6 +215258,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'MonitoringSloGoodTotalRatio',
         ),
       ],
+      shorthand: 'requestBasedSli',
     ),
     'MonitoringSloWindowsBasedSli': MigrateHelper(
       className: 'MonitoringSloWindowsBasedSli',
@@ -215153,6 +215286,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'MonitoringSloWindowsGoodTotalRatioThreshold',
         ),
       ],
+      shorthand: 'windowsBasedSli',
     ),
     'MonitoringSloWindowsGoodTotalRatioThreshold': MigrateHelper(
       className: 'MonitoringSloWindowsGoodTotalRatioThreshold',
@@ -215262,6 +215396,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'plaintext',
     ),
     'MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword': MigrateHelper(
       className: 'MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword',
@@ -215281,6 +215416,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'writeOnly',
     ),
     'MonitoringUptimeCheckConfigHttpCheck': MigrateHelper(
       className: 'MonitoringUptimeCheckConfigHttpCheck',
@@ -215432,6 +215568,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, String>',
         ),
       ],
+      shorthand: 'monitoredResource',
     ),
     'MonitoringUptimeCheckConfigPingConfig': MigrateHelper(
       className: 'MonitoringUptimeCheckConfigPingConfig',
@@ -215464,6 +215601,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'MonitoringUptimeCheckResourceType',
         ),
       ],
+      shorthand: 'resourceGroup',
     ),
     'MonitoringUptimeCheckConfigServiceAgentAuthentication': MigrateHelper(
       className: 'MonitoringUptimeCheckConfigServiceAgentAuthentication',
@@ -215490,6 +215628,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'MonitoringUptimeCheckConfigCloudFunctionV2',
         ),
       ],
+      shorthand: 'syntheticMonitor',
     ),
     'MonitoringUptimeCheckConfigTcpCheck': MigrateHelper(
       className: 'MonitoringUptimeCheckConfigTcpCheck',
@@ -216429,6 +216568,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'NetworkConnectivitySpokeGatewayIpRangeReservation',
         ),
       ],
+      shorthand: 'gateway',
     ),
     'NetworkConnectivitySpokeGatewayIpRangeReservation': MigrateHelper(
       className: 'NetworkConnectivitySpokeGatewayIpRangeReservation',
@@ -216488,6 +216628,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'linkedInterconnectAttachments',
     ),
     'NetworkConnectivitySpokeLinkedProducerVpcNetwork': MigrateHelper(
       className: 'NetworkConnectivitySpokeLinkedProducerVpcNetwork',
@@ -216521,6 +216662,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'linkedProducerVpcNetwork',
     ),
     'NetworkConnectivitySpokeLinkedRouterApplianceInstances': MigrateHelper(
       className: 'NetworkConnectivitySpokeLinkedRouterApplianceInstances',
@@ -216570,6 +216712,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'linkedRouterApplianceInstances',
     ),
     'NetworkConnectivitySpokeLinkedVpcNetwork': MigrateHelper(
       className: 'NetworkConnectivitySpokeLinkedVpcNetwork',
@@ -216596,6 +216739,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'linkedVpcNetwork',
     ),
     'NetworkConnectivitySpokeLinkedVpnTunnels': MigrateHelper(
       className: 'NetworkConnectivitySpokeLinkedVpnTunnels',
@@ -216643,6 +216787,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'linkedVpnTunnels',
     ),
     'NetworkConnectivitySpokeRouterApplianceInstance': MigrateHelper(
       className: 'NetworkConnectivitySpokeRouterApplianceInstance',
@@ -218591,6 +218736,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
               'NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath',
         ),
       ],
+      shorthand: 'googleManaged',
     ),
     'NetworkServicesAgentGatewayNetworkConfig': MigrateHelper(
       className: 'NetworkServicesAgentGatewayNetworkConfig',
@@ -218662,6 +218808,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'selfManaged',
     ),
     'NetworkServicesEdgeCacheKeysetPublicKey': MigrateHelper(
       className: 'NetworkServicesEdgeCacheKeysetPublicKey',
@@ -221470,6 +221617,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'OnDeployUpdatePolicy': MigrateHelper(
       className: 'OnDeployUpdatePolicy',
       slots: <MigrateSlot>[],
+      shorthand: 'onDeployUpdatePolicy',
     ),
     'OrgPolicyPolicyDryRunSpec': MigrateHelper(
       className: 'OrgPolicyPolicyDryRunSpec',
@@ -222135,6 +222283,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'oneTime',
     ),
     'OsConfigPatchDeploymentPatchConfig': MigrateHelper(
       className: 'OsConfigPatchDeploymentPatchConfig',
@@ -222847,6 +222996,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'OsConfigPatchDeploymentRecurringScheduleMonthly',
         ),
       ],
+      shorthand: 'recurring',
     ),
     'OsConfigPatchDeploymentRecurringScheduleMonthly': MigrateHelper(
       className: 'OsConfigPatchDeploymentRecurringScheduleMonthly',
@@ -228415,6 +228565,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
+      shorthand: 'repoSource',
     ),
     'SccFolderCustomModuleCustomConfig': MigrateHelper(
       className: 'SccFolderCustomModuleCustomConfig',
@@ -229626,6 +229777,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'plaintext',
     ),
     'SecretManagerSecretVersionWriteOnlyPayload': MigrateHelper(
       className: 'SecretManagerSecretVersionWriteOnlyPayload',
@@ -229645,6 +229797,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'writeOnly',
     ),
     'SecureSourceManagerHookPushOption': MigrateHelper(
       className: 'SecureSourceManagerHookPushOption',
@@ -230575,10 +230728,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'SpannerBackupScheduleFullBackupSpec': MigrateHelper(
       className: 'SpannerBackupScheduleFullBackupSpec',
       slots: <MigrateSlot>[],
+      shorthand: 'fullBackupSpec',
     ),
     'SpannerBackupScheduleIncrementalBackupSpec': MigrateHelper(
       className: 'SpannerBackupScheduleIncrementalBackupSpec',
       slots: <MigrateSlot>[],
+      shorthand: 'incrementalBackupSpec',
     ),
     'SpannerBackupScheduleSpec': MigrateHelper(
       className: 'SpannerBackupScheduleSpec',
@@ -231432,6 +231587,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'bool',
         ),
       ],
+      shorthand: 'deleteObject',
     ),
     'StorageBatchOperationsJobManifest': MigrateHelper(
       className: 'StorageBatchOperationsJobManifest',
@@ -231510,6 +231666,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'putMetadata',
     ),
     'StorageBatchOperationsJobPutObjectHold': MigrateHelper(
       className: 'StorageBatchOperationsJobPutObjectHold',
@@ -231529,6 +231686,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'putObjectHold',
     ),
     'StorageBatchOperationsJobRewriteObject': MigrateHelper(
       className: 'StorageBatchOperationsJobRewriteObject',
@@ -231541,6 +231699,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'rewriteObject',
     ),
     'StorageBucketAutoclass': MigrateHelper(
       className: 'StorageBucketAutoclass',
@@ -231924,6 +232083,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'content',
     ),
     'StorageBucketObjectBucketObjectFromSource': MigrateHelper(
       className: 'StorageBucketObjectBucketObjectFromSource',
@@ -231936,6 +232096,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'source',
     ),
     'StorageBucketObjectBucketObjectRetention': MigrateHelper(
       className: 'StorageBucketObjectBucketObjectRetention',
@@ -232578,6 +232739,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'external',
     ),
     'StorageFtpServerInternalConfig': MigrateHelper(
       className: 'StorageFtpServerInternalConfig',
@@ -232601,6 +232763,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           helper: 'StorageFtpServerConsumerReject',
         ),
       ],
+      shorthand: 'internal',
     ),
     'StorageFtpUserStorageDirectoryMappings': MigrateHelper(
       className: 'StorageFtpUserStorageDirectoryMappings',
@@ -232772,6 +232935,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'StorageInsightsDatasetConfigOrganizationScope': MigrateHelper(
       className: 'StorageInsightsDatasetConfigOrganizationScope',
       slots: <MigrateSlot>[],
+      shorthand: 'organizationScope',
     ),
     'StorageInsightsDatasetConfigSourceFolders': MigrateHelper(
       className: 'StorageInsightsDatasetConfigSourceFolders',
@@ -232784,6 +232948,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'sourceFolders',
     ),
     'StorageInsightsDatasetConfigSourceProjects': MigrateHelper(
       className: 'StorageInsightsDatasetConfigSourceProjects',
@@ -232796,6 +232961,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'sourceProjects',
     ),
     'StorageInsightsReportConfigCsvFormat': MigrateHelper(
       className: 'StorageInsightsReportConfigCsvFormat',
@@ -232822,6 +232988,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'csv',
     ),
     'StorageInsightsReportConfigFrequencyOptions': MigrateHelper(
       className: 'StorageInsightsReportConfigFrequencyOptions',
@@ -232971,6 +233138,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'StorageInsightsReportConfigParquetFormat': MigrateHelper(
       className: 'StorageInsightsReportConfigParquetFormat',
       slots: <MigrateSlot>[],
+      shorthand: 'parquet',
     ),
     'StorageSource': MigrateHelper(
       className: 'StorageSource',
@@ -232997,6 +233165,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'int',
         ),
       ],
+      shorthand: 'storageSource',
     ),
     'StorageTransferAgentPoolBandwidthLimit': MigrateHelper(
       className: 'StorageTransferAgentPoolBandwidthLimit',
@@ -236134,6 +236303,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'huggingFaceModel',
     ),
     'VertexAiEndpointWithModelGardenDeploymentModelConfig': MigrateHelper(
       className: 'VertexAiEndpointWithModelGardenDeploymentModelConfig',
@@ -236946,6 +237116,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'publisherModel',
     ),
     'VertexAiFeatureOnlineStoreBigtable': MigrateHelper(
       className: 'VertexAiFeatureOnlineStoreBigtable',
@@ -236973,6 +237144,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'bigtable',
     ),
     'VertexAiFeatureOnlineStoreBigtableAutoScaling': MigrateHelper(
       className: 'VertexAiFeatureOnlineStoreBigtableAutoScaling',
@@ -237018,6 +237190,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
       ],
+      shorthand: 'bigQuerySource',
     ),
     'VertexAiFeatureOnlineStoreFeatureviewFeatureGroup': MigrateHelper(
       className: 'VertexAiFeatureOnlineStoreFeatureviewFeatureGroup',
@@ -237058,6 +237231,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
       ],
+      shorthand: 'featureRegistrySource',
     ),
     'VertexAiFeatureOnlineStoreFeatureviewSyncConfig': MigrateHelper(
       className: 'VertexAiFeatureOnlineStoreFeatureviewSyncConfig',
@@ -237081,6 +237255,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'VertexAiFeatureOnlineStoreOptimized': MigrateHelper(
       className: 'VertexAiFeatureOnlineStoreOptimized',
       slots: <MigrateSlot>[],
+      shorthand: 'optimized',
     ),
     'VertexAiFeaturestoreEncryptionSpec': MigrateHelper(
       className: 'VertexAiFeaturestoreEncryptionSpec',
@@ -238164,14 +238339,17 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
     'VertexAiRagEngineConfigBasic': MigrateHelper(
       className: 'VertexAiRagEngineConfigBasic',
       slots: <MigrateSlot>[],
+      shorthand: 'basic',
     ),
     'VertexAiRagEngineConfigScaled': MigrateHelper(
       className: 'VertexAiRagEngineConfigScaled',
       slots: <MigrateSlot>[],
+      shorthand: 'scaled',
     ),
     'VertexAiRagEngineConfigUnprovisioned': MigrateHelper(
       className: 'VertexAiRagEngineConfigUnprovisioned',
       slots: <MigrateSlot>[],
+      shorthand: 'unprovisioned',
     ),
     'VertexAiReasoningEngineContextSpec': MigrateHelper(
       className: 'VertexAiReasoningEngineContextSpec',

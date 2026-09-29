@@ -24,6 +24,17 @@ enum NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath
 sealed class NetworkServicesAgentGatewayDeployment {
   const NetworkServicesAgentGatewayDeployment();
 
+  /// `google_managed` — proxy orchestrated in a Google tenant project.
+  const factory NetworkServicesAgentGatewayDeployment.googleManaged({
+    required NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath
+    governedAccessPath,
+  }) = NetworkServicesAgentGatewayGoogleManaged;
+
+  /// `self_managed` — attach an existing networking proxy in-project.
+  const factory NetworkServicesAgentGatewayDeployment.selfManaged({
+    required TfArg<String> resourceUri,
+  }) = NetworkServicesAgentGatewaySelfManaged;
+
   String get blockKey;
   Map<String, Object?> encode();
 }

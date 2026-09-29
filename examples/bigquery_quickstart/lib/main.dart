@@ -63,11 +63,11 @@ final class AnalyticsStack extends Stack {
       access: [
         // UserByEmail variant pointed at the in-stack reader SA — a real
         // identity once applied, not a placeholder address.
-        BigqueryDatasetAccessUserByEmail(
+        .userByEmail(
           userByEmail: TfArg.ref(reader.email),
           role: TfArg.literal('OWNER'),
         ),
-        BigqueryDatasetAccessSpecialGroup(
+        .specialGroup(
           specialGroup: TfArg.literal('allAuthenticatedUsers'),
           role: TfArg.literal('READER'),
         ),
@@ -267,7 +267,7 @@ final class AnalyticsStack extends Stack {
         localName: 'cloud_resource_link',
         connectionId: TfArg.literal('cloud-resource-link'),
         location: TfArg.literal('asia-northeast1'),
-        backend: BigqueryConnectionCloudResource(),
+        backend: .cloudResource(),
       ),
     );
 
@@ -288,7 +288,7 @@ final class AnalyticsStack extends Stack {
         localName: 'events_count_job',
         jobId: TfArg.literal('events-count-backfill'),
         location: TfArg.literal('asia-northeast1'),
-        jobConfiguration: BigqueryJobQuery(
+        jobConfiguration: .query(
           query: TfArg.literal(
             'SELECT COUNT(*) AS event_count FROM analytics_prod.events',
           ),
@@ -397,12 +397,9 @@ final class AnalyticsStack extends Stack {
         localName: 'project_writers_reader',
         datasetId: TfArg.ref(dataset.datasetIdRef),
         role: TfArg.literal('READER'),
-        grantee:
-            .specialGroup(
-              TfArg.literal(
-                BigqueryDatasetAccessPredefinedGroup.projectWriters,
-              ),
-            ),
+        grantee: .specialGroup(
+          TfArg.literal(BigqueryDatasetAccessPredefinedGroup.projectWriters),
+        ),
         dependsOn: [ResourceDependency(dataset)],
       ),
     );

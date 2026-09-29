@@ -25,6 +25,20 @@ enum StorageInsightsDatasetConfigDatasetConfigState implements TerraformEnum {
 sealed class StorageInsightsDatasetConfigSource {
   const StorageInsightsDatasetConfigSource();
 
+  /// `source_projects` — index these project numbers.
+  const factory StorageInsightsDatasetConfigSource.sourceProjects({
+    required TfArg<List<String>> projectNumbers,
+  }) = StorageInsightsDatasetConfigSourceProjects;
+
+  /// `source_folders` — index these folder numbers.
+  const factory StorageInsightsDatasetConfigSource.sourceFolders({
+    required TfArg<List<String>> folderNumbers,
+  }) = StorageInsightsDatasetConfigSourceFolders;
+
+  /// `organization_scope` — index the whole organization.
+  const factory StorageInsightsDatasetConfigSource.organizationScope() =
+      StorageInsightsDatasetConfigOrganizationScope;
+
   /// Terraform attribute or nested-block key.
   String get blockKey;
 

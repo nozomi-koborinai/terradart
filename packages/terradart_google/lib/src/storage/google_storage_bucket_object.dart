@@ -26,6 +26,16 @@ const Set<String> _googleStorageBucketObjectSensitive = <String>{
 sealed class StorageBucketObjectBucketObjectContent {
   const StorageBucketObjectBucketObjectContent();
 
+  /// Upload from a local filesystem path.
+  const factory StorageBucketObjectBucketObjectContent.source({
+    required TfArg<String> source,
+  }) = StorageBucketObjectBucketObjectFromSource;
+
+  /// Inline string payload.
+  const factory StorageBucketObjectBucketObjectContent.content({
+    required TfArg<String> content,
+  }) = StorageBucketObjectBucketObjectFromContent;
+
   /// argMap key under which this payload is emitted (`'source'` or
   /// `'content'`).
   String get blockKey;

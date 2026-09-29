@@ -13,6 +13,32 @@ const Set<String> _googleCloudSchedulerJobSensitive = <String>{};
 sealed class CloudSchedulerJobSchedulerTarget {
   const CloudSchedulerJobSchedulerTarget();
 
+  /// `pubsub_target` block.
+  const factory CloudSchedulerJobSchedulerTarget.pubsubTarget({
+    required TfArg<String> topicName,
+    TfArg<String>? data,
+    TfArg<Map<String, String>>? attributes,
+  }) = CloudSchedulerJobPubsubTarget;
+
+  /// Generic webhook `http_target` block.
+  const factory CloudSchedulerJobSchedulerTarget.httpTarget({
+    required TfArg<String> uri,
+    TfArg<String>? httpMethod,
+    TfArg<String>? body,
+    TfArg<Map<String, String>>? headers,
+    CloudSchedulerJobHttpOauthToken? oauthToken,
+    CloudSchedulerJobHttpOidcToken? oidcToken,
+  }) = CloudSchedulerJobHttpTarget;
+
+  /// `app_engine_http_target` block — App Engine routing variant.
+  const factory CloudSchedulerJobSchedulerTarget.appEngineHttpTarget({
+    required TfArg<String> relativeUri,
+    TfArg<String>? httpMethod,
+    TfArg<String>? body,
+    TfArg<Map<String, String>>? headers,
+    CloudSchedulerJobAppEngineRouting? appEngineRouting,
+  }) = CloudSchedulerJobAppEngineHttpTarget;
+
   /// argMap key under which this target is emitted (e.g. `pubsub_target`).
   String get blockKey;
 

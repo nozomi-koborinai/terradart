@@ -119,6 +119,17 @@ class BigqueryDataTransferConfigSensitiveParams {
 sealed class BigqueryDataTransferConfigSecretAccessKey {
   const BigqueryDataTransferConfigSecretAccessKey();
 
+  /// Write-only secret access key (Terraform 1.11+): the provider sends [secretAccessKeyWo] but never stores it in Terraform state.
+  const factory BigqueryDataTransferConfigSecretAccessKey.writeOnly({
+    required TfArg<String> secretAccessKeyWo,
+    TfArg<String>? secretAccessKeyWoVersion,
+  }) = BigqueryDataTransferConfigWriteOnlySecretAccessKey;
+
+  /// Plaintext secret access key.
+  const factory BigqueryDataTransferConfigSecretAccessKey.plaintext({
+    required TfArg<String> secretAccessKey,
+  }) = BigqueryDataTransferConfigPlaintextSecretAccessKey;
+
   /// The key that tells the variants apart.
   String get blockKey;
 

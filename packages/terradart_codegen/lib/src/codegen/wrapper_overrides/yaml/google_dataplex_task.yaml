@@ -28,6 +28,26 @@ prelude: |
   sealed class DataplexTaskWorkload {
     const DataplexTaskWorkload();
 
+    /// `spark` — Dataproc Serverless Spark, Python, or SQL workload.
+    const factory DataplexTaskWorkload.spark({
+      TfArg<String>? pythonScriptFile,
+      TfArg<String>? mainJarFileUri,
+      TfArg<String>? mainClass,
+      TfArg<String>? sqlScript,
+      TfArg<String>? sqlScriptFile,
+      TfArg<List<String>>? fileUris,
+      TfArg<List<String>>? archiveUris,
+      TfArg<Map<String, Object?>>? infrastructureSpec,
+    }) = DataplexTaskSparkWorkload;
+
+    /// `notebook` — Vertex AI Workbench or Colab notebook execution.
+    const factory DataplexTaskWorkload.notebook({
+      required TfArg<String> notebook,
+      TfArg<List<String>>? fileUris,
+      TfArg<List<String>>? archiveUris,
+      TfArg<Map<String, Object?>>? infrastructureSpec,
+    }) = DataplexTaskNotebookWorkload;
+
     String get blockKey;
 
     Map<String, Object?> encode();

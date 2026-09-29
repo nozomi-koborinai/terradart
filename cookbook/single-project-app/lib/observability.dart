@@ -53,7 +53,7 @@ GoogleMonitoringUptimeCheckConfig buildUptimeCheck(
   displayName: TfArg.literal('Coffee Shop uptime'),
   timeout: TfArg.literal('10s'),
   period: TfArg.literal('60s'),
-  target: MonitoringUptimeCheckConfigMonitoredResource(
+  target: .monitoredResource(
     type: TfArg.literal('uptime_url'),
     labels: {
       'host':

@@ -10,6 +10,22 @@ const Set<String> _googleBigtableAppProfileSensitive = <String>{};
 sealed class BigtableAppProfileRouting {
   const BigtableAppProfileRouting();
 
+  /// Route all traffic to one cluster.
+  const factory BigtableAppProfileRouting.singleClusterRouting({
+    required TfArg<String> clusterId,
+    TfArg<bool>? allowTransactionalWrites,
+  }) = BigtableAppProfileSingleClusterRouting;
+
+  /// Multi-cluster routing with a priority tier.
+  const factory BigtableAppProfileRouting.standardIsolation({
+    required TfArg<BigtableAppProfileIsolationPriority> priority,
+  }) = BigtableAppProfileStandardIsolation;
+
+  /// Read-only Data Boost isolation.
+  const factory BigtableAppProfileRouting.dataBoostIsolation({
+    required TfArg<BigtableAppProfileComputeBillingOwner> computeBillingOwner,
+  }) = BigtableAppProfileDataBoostIsolation;
+
   String get blockKey;
   Map<String, Object?> encode();
 }

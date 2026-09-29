@@ -92,9 +92,7 @@ final class AppEngineStack extends Stack {
         service: TfArg.literal('flex'),
         versionId: TfArg.literal('v1'),
         runtime: TfArg.literal('nodejs'),
-        scaling: AppEngineFlexibleAppVersionManualScalingMode(
-          instances: TfArg.literal(1),
-        ),
+        scaling: .manualScaling(instances: TfArg.literal(1)),
         livenessCheck: AppEngineFlexibleAppVersionLivenessCheck(
           path: TfArg.literal('/'),
         ),

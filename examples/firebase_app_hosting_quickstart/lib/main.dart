@@ -77,9 +77,7 @@ final class AppHostingStack extends Stack {
         backend: TfArg.ref(backend.backendIdRef),
         location: TfArg.literal('us-central1'),
         buildId: TfArg.literal('release-1'),
-        source: FirebaseAppHostingBuildAppHostingBuildSourceCodebase(
-          branch: TfArg.literal('main'),
-        ),
+        source: .codebase(branch: TfArg.literal('main')),
         displayName: TfArg.literal('Initial release build'),
       ),
     );

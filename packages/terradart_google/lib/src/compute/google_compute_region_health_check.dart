@@ -70,6 +70,67 @@ enum RegionHealthCheckPortSpecification implements TerraformEnum {
 sealed class ComputeRegionHealthCheckProtocol {
   const ComputeRegionHealthCheckProtocol();
 
+  /// `http_health_check` block.
+  const factory ComputeRegionHealthCheckProtocol.http({
+    TfArg<String>? host,
+    TfArg<String>? requestPath,
+    TfArg<String>? response,
+    TfArg<int>? port,
+    TfArg<String>? portName,
+    RegionHealthCheckProxyHeader? proxyHeader,
+    RegionHealthCheckPortSpecification? portSpecification,
+  }) = ComputeRegionHealthCheckRegionHealthCheckHttpConfig;
+
+  /// `https_health_check` block.
+  const factory ComputeRegionHealthCheckProtocol.https({
+    TfArg<String>? host,
+    TfArg<String>? requestPath,
+    TfArg<String>? response,
+    TfArg<int>? port,
+    TfArg<String>? portName,
+    RegionHealthCheckProxyHeader? proxyHeader,
+    RegionHealthCheckPortSpecification? portSpecification,
+  }) = ComputeRegionHealthCheckRegionHealthCheckHttpsConfig;
+
+  /// `http2_health_check` block.
+  const factory ComputeRegionHealthCheckProtocol.http2({
+    TfArg<String>? host,
+    TfArg<String>? requestPath,
+    TfArg<String>? response,
+    TfArg<int>? port,
+    TfArg<String>? portName,
+    RegionHealthCheckProxyHeader? proxyHeader,
+    RegionHealthCheckPortSpecification? portSpecification,
+  }) = ComputeRegionHealthCheckRegionHealthCheckHttp2Config;
+
+  /// `tcp_health_check` block.
+  const factory ComputeRegionHealthCheckProtocol.tcp({
+    TfArg<String>? request,
+    TfArg<String>? response,
+    TfArg<int>? port,
+    TfArg<String>? portName,
+    RegionHealthCheckProxyHeader? proxyHeader,
+    RegionHealthCheckPortSpecification? portSpecification,
+  }) = ComputeRegionHealthCheckRegionHealthCheckTcpConfig;
+
+  /// `ssl_health_check` block.
+  const factory ComputeRegionHealthCheckProtocol.ssl({
+    TfArg<String>? request,
+    TfArg<String>? response,
+    TfArg<int>? port,
+    TfArg<String>? portName,
+    RegionHealthCheckProxyHeader? proxyHeader,
+    RegionHealthCheckPortSpecification? portSpecification,
+  }) = ComputeRegionHealthCheckRegionHealthCheckSslConfig;
+
+  /// `grpc_health_check` block.
+  const factory ComputeRegionHealthCheckProtocol.grpc({
+    TfArg<int>? port,
+    TfArg<String>? portName,
+    RegionHealthCheckPortSpecification? portSpecification,
+    TfArg<String>? grpcServiceName,
+  }) = ComputeRegionHealthCheckRegionHealthCheckGrpcConfig;
+
   String get blockKey;
 
   List<Map<String, Object?>> encode();

@@ -195,9 +195,7 @@ final class MobileAppBackendStack extends Stack {
             env: [
               CloudRunV2ServiceEnvVar(
                 name: TfArg.literal('UPLOAD_BUCKET'),
-                source: CloudRunV2ServiceEnvVarFromLiteral(
-                  TfArg.ref(uploadsBucket.nameRef),
-                ),
+                source: .value(TfArg.ref(uploadsBucket.nameRef)),
               ),
             ],
           ),

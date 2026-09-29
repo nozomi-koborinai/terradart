@@ -531,7 +531,7 @@ final class DataplexCatalogStack extends Stack {
         localName: 'lake_discovery',
         dataScanId: TfArg.literal('terradart-lake-discovery'),
         location: TfArg.literal('us-central1'),
-        scanSpec: const DataplexDatascanDataDiscoverySpec(),
+        scanSpec: const .dataDiscoverySpec(),
         data: DataplexDatascanData(
           data: .resource(
             TfArg.literal(
@@ -580,9 +580,7 @@ final class DataplexCatalogStack extends Stack {
         taskId: TfArg.literal('terradart-sql-task'),
         location: TfArg.literal('us-central1'),
         lake: TfArg.literal('terradart-lake'),
-        workload: DataplexTaskSparkWorkload(
-          sqlScript: TfArg.literal('SELECT 1'),
-        ),
+        workload: .spark(sqlScript: TfArg.literal('SELECT 1')),
         triggerSpec: DataplexTaskTriggerSpec(
           type: TfArg.literal(DataplexTaskTriggerSpecType.onDemand),
         ),
