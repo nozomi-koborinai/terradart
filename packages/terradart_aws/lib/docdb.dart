@@ -11,15 +11,15 @@ export 'src/docdb/aws_docdb_cluster.dart'
         DocdbClusterClusterIdentifierClusterIdentifierPrefix,
         DocdbClusterEnabledCloudwatchLogsExports,
         DocdbClusterEngine,
-        DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo,
-        DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword,
-        DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword,
-        DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo,
+        DocdbClusterMasterPassword,
+        DocdbClusterMasterPasswordManageMasterUserPassword,
+        DocdbClusterMasterPasswordMasterPassword,
+        DocdbClusterMasterPasswordMasterPasswordWo,
         DocdbClusterNetworkType,
+        DocdbClusterRestoreSource,
+        DocdbClusterRestoreSourceRestoreToPointInTime,
+        DocdbClusterRestoreSourceSnapshotIdentifier,
         DocdbClusterRestoreToPointInTime,
-        DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier,
-        DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierRestoreToPointInTime,
-        DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierSnapshotIdentifier,
         DocdbClusterRestoreToPointInTimeRestoreType,
         DocdbClusterRestoreToPointInTimeTime,
         DocdbClusterRestoreToPointInTimeTimeRestoreToTime,
@@ -52,9 +52,9 @@ export 'src/docdb/aws_docdb_global_cluster.dart'
     show
         AwsDocdbGlobalCluster,
         DocdbGlobalClusterEngine,
-        DocdbGlobalClusterEngineOrSourceDbClusterIdentifier,
-        DocdbGlobalClusterEngineOrSourceDbClusterIdentifierEngine,
-        DocdbGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier;
+        DocdbGlobalClusterSource,
+        DocdbGlobalClusterSourceEngine,
+        DocdbGlobalClusterSourceSourceDbClusterIdentifier;
 export 'src/docdb/aws_docdb_subnet_group.dart'
     show
         AwsDocdbSubnetGroup,

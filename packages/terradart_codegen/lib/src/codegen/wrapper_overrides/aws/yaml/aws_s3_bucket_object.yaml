@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "content, content_base64, source": body
+  "etag, kms_key_id": integrity

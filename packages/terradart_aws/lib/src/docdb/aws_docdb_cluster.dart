@@ -123,23 +123,23 @@ final class DocdbClusterClusterIdentifierClusterIdentifierPrefix
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.manageMasterUserPassword(...)`.
-sealed class DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
-  const DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo();
+sealed class DocdbClusterMasterPassword {
+  const DocdbClusterMasterPassword();
 
   /// Sets `manage_master_user_password`.
-  const factory DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.manageMasterUserPassword(
+  const factory DocdbClusterMasterPassword.manageMasterUserPassword(
     TfArg<bool> manageMasterUserPassword,
-  ) = DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword;
+  ) = DocdbClusterMasterPasswordManageMasterUserPassword;
 
   /// Sets `master_password`.
-  const factory DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.masterPassword(
+  const factory DocdbClusterMasterPassword.masterPassword(
     TfArg<String> masterPassword,
-  ) = DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword;
+  ) = DocdbClusterMasterPasswordMasterPassword;
 
   /// Sets `master_password_wo`.
-  const factory DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.masterPasswordWo(
+  const factory DocdbClusterMasterPassword.masterPasswordWo(
     TfArg<String> masterPasswordWo,
-  ) = DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo;
+  ) = DocdbClusterMasterPasswordMasterPasswordWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -151,11 +151,10 @@ sealed class DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswor
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.manageMasterUserPassword] choice: sets `manage_master_user_password`.
-final class DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword
-    extends
-        DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
-  const DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoManageMasterUserPassword(
+/// The [DocdbClusterMasterPassword.manageMasterUserPassword] choice: sets `manage_master_user_password`.
+final class DocdbClusterMasterPasswordManageMasterUserPassword
+    extends DocdbClusterMasterPassword {
+  const DocdbClusterMasterPasswordManageMasterUserPassword(
     this.manageMasterUserPassword,
   );
 
@@ -175,13 +174,10 @@ final class DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPassword
   };
 }
 
-/// The [DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.masterPassword] choice: sets `master_password`.
-final class DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword
-    extends
-        DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
-  const DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPassword(
-    this.masterPassword,
-  );
+/// The [DocdbClusterMasterPassword.masterPassword] choice: sets `master_password`.
+final class DocdbClusterMasterPasswordMasterPassword
+    extends DocdbClusterMasterPassword {
+  const DocdbClusterMasterPasswordMasterPassword(this.masterPassword);
 
   final TfArg<String> masterPassword;
 
@@ -197,13 +193,10 @@ final class DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPassword
   Map<String, TfArg<Object?>> get argMap => {'master_password': masterPassword};
 }
 
-/// The [DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo.masterPasswordWo] choice: sets `master_password_wo`.
-final class DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo
-    extends
-        DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo {
-  const DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWoMasterPasswordWo(
-    this.masterPasswordWo,
-  );
+/// The [DocdbClusterMasterPassword.masterPasswordWo] choice: sets `master_password_wo`.
+final class DocdbClusterMasterPasswordMasterPasswordWo
+    extends DocdbClusterMasterPassword {
+  const DocdbClusterMasterPasswordMasterPasswordWo(this.masterPasswordWo);
 
   final TfArg<String> masterPasswordWo;
 
@@ -226,18 +219,18 @@ final class DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPassword
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.restoreToPointInTime(...)`.
-sealed class DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier {
-  const DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier();
+sealed class DocdbClusterRestoreSource {
+  const DocdbClusterRestoreSource();
 
   /// Sets `restore_to_point_in_time`.
-  const factory DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier.restoreToPointInTime(
+  const factory DocdbClusterRestoreSource.restoreToPointInTime(
     DocdbClusterRestoreToPointInTime restoreToPointInTime,
-  ) = DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierRestoreToPointInTime;
+  ) = DocdbClusterRestoreSourceRestoreToPointInTime;
 
   /// Sets `snapshot_identifier`.
-  const factory DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier.snapshotIdentifier(
+  const factory DocdbClusterRestoreSource.snapshotIdentifier(
     TfArg<String> snapshotIdentifier,
-  ) = DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierSnapshotIdentifier;
+  ) = DocdbClusterRestoreSourceSnapshotIdentifier;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -249,10 +242,10 @@ sealed class DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier.restoreToPointInTime] choice: sets `restore_to_point_in_time`.
-final class DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierRestoreToPointInTime
-    extends DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier {
-  const DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierRestoreToPointInTime(
+/// The [DocdbClusterRestoreSource.restoreToPointInTime] choice: sets `restore_to_point_in_time`.
+final class DocdbClusterRestoreSourceRestoreToPointInTime
+    extends DocdbClusterRestoreSource {
+  const DocdbClusterRestoreSourceRestoreToPointInTime(
     this.restoreToPointInTime,
   );
 
@@ -272,12 +265,10 @@ final class DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierRestoreToPointIn
   };
 }
 
-/// The [DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier.snapshotIdentifier] choice: sets `snapshot_identifier`.
-final class DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierSnapshotIdentifier
-    extends DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier {
-  const DocdbClusterRestoreToPointInTimeOrSnapshotIdentifierSnapshotIdentifier(
-    this.snapshotIdentifier,
-  );
+/// The [DocdbClusterRestoreSource.snapshotIdentifier] choice: sets `snapshot_identifier`.
+final class DocdbClusterRestoreSourceSnapshotIdentifier
+    extends DocdbClusterRestoreSource {
+  const DocdbClusterRestoreSourceSnapshotIdentifier(this.snapshotIdentifier);
 
   final TfArg<String> snapshotIdentifier;
 
@@ -427,8 +418,7 @@ final class AwsDocdbCluster extends Resource {
     TfArg<String>? finalSnapshotIdentifier,
     TfArg<String>? globalClusterIdentifier,
     TfArg<String>? kmsKeyId,
-    DocdbClusterManageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo?
-    manageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo,
+    DocdbClusterMasterPassword? masterPassword,
     TfArg<num>? masterPasswordWoVersion,
     TfArg<String>? masterUsername,
     TfArg<DocdbClusterNetworkType>? networkType,
@@ -437,8 +427,7 @@ final class AwsDocdbCluster extends Resource {
     TfArg<String>? preferredMaintenanceWindow,
     TfArg<String>? region,
     TfArg<bool>? skipFinalSnapshot,
-    DocdbClusterRestoreToPointInTimeOrSnapshotIdentifier?
-    restoreToPointInTimeOrSnapshotIdentifier,
+    DocdbClusterRestoreSource? restoreSource,
     TfArg<bool>? storageEncrypted,
     TfArg<DocdbClusterStorageType>? storageType,
     TfArg<Map<String, String>>? tags,
@@ -478,8 +467,7 @@ final class AwsDocdbCluster extends Resource {
            if (globalClusterIdentifier != null)
              'global_cluster_identifier': globalClusterIdentifier,
            if (kmsKeyId != null) 'kms_key_id': kmsKeyId,
-           ...?manageMasterUserPasswordOrMasterPasswordOrMasterPasswordWo
-               ?.argMap,
+           ...?masterPassword?.argMap,
            if (masterPasswordWoVersion != null)
              'master_password_wo_version': masterPasswordWoVersion,
            if (masterUsername != null) 'master_username': masterUsername,
@@ -492,7 +480,7 @@ final class AwsDocdbCluster extends Resource {
            if (region != null) 'region': region,
            if (skipFinalSnapshot != null)
              'skip_final_snapshot': skipFinalSnapshot,
-           ...?restoreToPointInTimeOrSnapshotIdentifier?.argMap,
+           ...?restoreSource?.argMap,
            if (storageEncrypted != null) 'storage_encrypted': storageEncrypted,
            if (storageType != null) 'storage_type': storageType,
            if (tags != null) 'tags': tags,

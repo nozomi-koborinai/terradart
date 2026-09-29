@@ -48,12 +48,12 @@ export 'src/ssm/aws_ssm_parameter.dart'
     show
         AwsSsmParameter,
         SsmParameterDataType,
-        SsmParameterInsecureValueOrValueOrValueWo,
-        SsmParameterInsecureValueOrValueOrValueWoInsecureValue,
-        SsmParameterInsecureValueOrValueOrValueWoValue,
-        SsmParameterInsecureValueOrValueOrValueWoValueWo,
         SsmParameterTier,
-        SsmParameterType;
+        SsmParameterType,
+        SsmParameterValue,
+        SsmParameterValueInsecureValue,
+        SsmParameterValueValue,
+        SsmParameterValueValueWo;
 export 'src/ssm/aws_ssm_patch_baseline.dart'
     show
         AwsSsmPatchBaseline,

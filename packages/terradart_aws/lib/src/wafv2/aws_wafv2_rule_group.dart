@@ -80,18 +80,16 @@ final class Wafv2RuleGroupNameNamePrefix extends Wafv2RuleGroupName {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.rule(...)`.
-sealed class Wafv2RuleGroupRuleOrRulesJson {
-  const Wafv2RuleGroupRuleOrRulesJson();
+sealed class Wafv2RuleGroupRules {
+  const Wafv2RuleGroupRules();
 
   /// Sets `rule`.
-  const factory Wafv2RuleGroupRuleOrRulesJson.rule(
-    List<Wafv2RuleGroupRule> rule,
-  ) = Wafv2RuleGroupRuleOrRulesJsonRule;
+  const factory Wafv2RuleGroupRules.rule(List<Wafv2RuleGroupRule> rule) =
+      Wafv2RuleGroupRulesRule;
 
   /// Sets `rules_json`.
-  const factory Wafv2RuleGroupRuleOrRulesJson.rulesJson(
-    TfArg<String> rulesJson,
-  ) = Wafv2RuleGroupRuleOrRulesJsonRulesJson;
+  const factory Wafv2RuleGroupRules.rulesJson(TfArg<String> rulesJson) =
+      Wafv2RuleGroupRulesRulesJson;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -103,10 +101,9 @@ sealed class Wafv2RuleGroupRuleOrRulesJson {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Wafv2RuleGroupRuleOrRulesJson.rule] choice: sets `rule`.
-final class Wafv2RuleGroupRuleOrRulesJsonRule
-    extends Wafv2RuleGroupRuleOrRulesJson {
-  const Wafv2RuleGroupRuleOrRulesJsonRule(this.rule);
+/// The [Wafv2RuleGroupRules.rule] choice: sets `rule`.
+final class Wafv2RuleGroupRulesRule extends Wafv2RuleGroupRules {
+  const Wafv2RuleGroupRulesRule(this.rule);
 
   final List<Wafv2RuleGroupRule> rule;
 
@@ -124,10 +121,9 @@ final class Wafv2RuleGroupRuleOrRulesJsonRule
   };
 }
 
-/// The [Wafv2RuleGroupRuleOrRulesJson.rulesJson] choice: sets `rules_json`.
-final class Wafv2RuleGroupRuleOrRulesJsonRulesJson
-    extends Wafv2RuleGroupRuleOrRulesJson {
-  const Wafv2RuleGroupRuleOrRulesJsonRulesJson(this.rulesJson);
+/// The [Wafv2RuleGroupRules.rulesJson] choice: sets `rules_json`.
+final class Wafv2RuleGroupRulesRulesJson extends Wafv2RuleGroupRules {
+  const Wafv2RuleGroupRulesRulesJson(this.rulesJson);
 
   final TfArg<String> rulesJson;
 
@@ -1641,7 +1637,7 @@ final class AwsWafv2RuleGroup extends Resource {
     TfArg<String>? description,
     Wafv2RuleGroupName? name,
     TfArg<String>? region,
-    Wafv2RuleGroupRuleOrRulesJson? ruleOrRulesJson,
+    Wafv2RuleGroupRules? rules,
     required TfArg<Wafv2RuleGroupScope> scope,
     TfArg<Map<String, String>>? tags,
     List<Wafv2RuleGroupCustomResponseBody>? customResponseBody,
@@ -1657,7 +1653,7 @@ final class AwsWafv2RuleGroup extends Resource {
            if (description != null) 'description': description,
            ...?name?.argMap,
            if (region != null) 'region': region,
-           ...?ruleOrRulesJson?.argMap,
+           ...?rules?.argMap,
            'scope': scope,
            if (tags != null) 'tags': tags,
            if (customResponseBody != null)

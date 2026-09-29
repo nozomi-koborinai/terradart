@@ -146,6 +146,32 @@ void main() {
     );
   });
 
+  test('a sealed name cannot take a meta-argument name', () {
+    final def = ResourceDef(
+      terraformType: 'aws_thing',
+      root: BlockDef(attributes: [_attr('a'), _attr('b')]),
+    );
+    final derived = deriveExactlyOneSlots(
+      {
+        'aws_thing': const WrapperOverride(
+          outputDir: 'thing',
+          deriveExactlyOne: true,
+          sealedNames: {'a, b': 'provider'},
+        ),
+      },
+      {'aws_thing': def},
+      providerEnums: const ProviderEnums.on(
+        exactlyOneGroups: {
+          'aws_thing': [
+            ['a', 'b'],
+          ],
+        },
+      ),
+      rawSchemas: const {},
+    );
+    expect(derived.nameErrors.single, contains('the slot provider is taken'));
+  });
+
   test('deriveExactlyOneSlots seals a group of optional inputs', () {
     final def = ResourceDef(
       terraformType: 'aws_thing',

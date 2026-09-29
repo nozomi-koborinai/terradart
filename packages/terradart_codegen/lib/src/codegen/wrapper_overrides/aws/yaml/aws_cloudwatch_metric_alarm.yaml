@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "evaluation_criteria, metric_name, metric_query": metric
+  "extended_statistic, statistic": aggregation

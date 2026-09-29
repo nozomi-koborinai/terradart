@@ -29,18 +29,16 @@ enum ConnectContactFlowType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.content(...)`.
-sealed class ConnectContactFlowContentOrFilename {
-  const ConnectContactFlowContentOrFilename();
+sealed class ConnectContactFlowContent {
+  const ConnectContactFlowContent();
 
   /// Sets `content`.
-  const factory ConnectContactFlowContentOrFilename.content(
-    TfArg<String> content,
-  ) = ConnectContactFlowContentOrFilenameContent;
+  const factory ConnectContactFlowContent.content(TfArg<String> content) =
+      ConnectContactFlowContentContent;
 
   /// Sets `filename`.
-  const factory ConnectContactFlowContentOrFilename.filename(
-    TfArg<String> filename,
-  ) = ConnectContactFlowContentOrFilenameFilename;
+  const factory ConnectContactFlowContent.filename(TfArg<String> filename) =
+      ConnectContactFlowContentFilename;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -52,10 +50,9 @@ sealed class ConnectContactFlowContentOrFilename {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ConnectContactFlowContentOrFilename.content] choice: sets `content`.
-final class ConnectContactFlowContentOrFilenameContent
-    extends ConnectContactFlowContentOrFilename {
-  const ConnectContactFlowContentOrFilenameContent(this.content);
+/// The [ConnectContactFlowContent.content] choice: sets `content`.
+final class ConnectContactFlowContentContent extends ConnectContactFlowContent {
+  const ConnectContactFlowContentContent(this.content);
 
   final TfArg<String> content;
 
@@ -69,10 +66,10 @@ final class ConnectContactFlowContentOrFilenameContent
   Map<String, TfArg<Object?>> get argMap => {'content': content};
 }
 
-/// The [ConnectContactFlowContentOrFilename.filename] choice: sets `filename`.
-final class ConnectContactFlowContentOrFilenameFilename
-    extends ConnectContactFlowContentOrFilename {
-  const ConnectContactFlowContentOrFilenameFilename(this.filename);
+/// The [ConnectContactFlowContent.filename] choice: sets `filename`.
+final class ConnectContactFlowContentFilename
+    extends ConnectContactFlowContent {
+  const ConnectContactFlowContentFilename(this.filename);
 
   final TfArg<String> filename;
 
@@ -92,7 +89,7 @@ final class AwsConnectContactFlow extends Resource {
 
   AwsConnectContactFlow({
     required super.localName,
-    ConnectContactFlowContentOrFilename? contentOrFilename,
+    ConnectContactFlowContent? content,
     TfArg<String>? contentHash,
     TfArg<String>? description,
     required TfArg<String> instanceId,
@@ -107,7 +104,7 @@ final class AwsConnectContactFlow extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?contentOrFilename?.argMap,
+           ...?content?.argMap,
            if (contentHash != null) 'content_hash': contentHash,
            if (description != null) 'description': description,
            'instance_id': instanceId,

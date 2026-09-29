@@ -24,18 +24,18 @@ enum CodestarconnectionsConnectionProviderType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.hostArn(...)`.
-sealed class CodestarconnectionsConnectionHostArnOrProviderType {
-  const CodestarconnectionsConnectionHostArnOrProviderType();
+sealed class CodestarconnectionsConnectionHost {
+  const CodestarconnectionsConnectionHost();
 
   /// Sets `host_arn`.
-  const factory CodestarconnectionsConnectionHostArnOrProviderType.hostArn(
+  const factory CodestarconnectionsConnectionHost.hostArn(
     TfArg<String> hostArn,
-  ) = CodestarconnectionsConnectionHostArnOrProviderTypeHostArn;
+  ) = CodestarconnectionsConnectionHostHostArn;
 
   /// Sets `provider_type`.
-  const factory CodestarconnectionsConnectionHostArnOrProviderType.providerType(
+  const factory CodestarconnectionsConnectionHost.providerType(
     TfArg<CodestarconnectionsConnectionProviderType> providerType,
-  ) = CodestarconnectionsConnectionHostArnOrProviderTypeProviderType;
+  ) = CodestarconnectionsConnectionHostProviderType;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -47,10 +47,10 @@ sealed class CodestarconnectionsConnectionHostArnOrProviderType {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CodestarconnectionsConnectionHostArnOrProviderType.hostArn] choice: sets `host_arn`.
-final class CodestarconnectionsConnectionHostArnOrProviderTypeHostArn
-    extends CodestarconnectionsConnectionHostArnOrProviderType {
-  const CodestarconnectionsConnectionHostArnOrProviderTypeHostArn(this.hostArn);
+/// The [CodestarconnectionsConnectionHost.hostArn] choice: sets `host_arn`.
+final class CodestarconnectionsConnectionHostHostArn
+    extends CodestarconnectionsConnectionHost {
+  const CodestarconnectionsConnectionHostHostArn(this.hostArn);
 
   final TfArg<String> hostArn;
 
@@ -64,12 +64,10 @@ final class CodestarconnectionsConnectionHostArnOrProviderTypeHostArn
   Map<String, TfArg<Object?>> get argMap => {'host_arn': hostArn};
 }
 
-/// The [CodestarconnectionsConnectionHostArnOrProviderType.providerType] choice: sets `provider_type`.
-final class CodestarconnectionsConnectionHostArnOrProviderTypeProviderType
-    extends CodestarconnectionsConnectionHostArnOrProviderType {
-  const CodestarconnectionsConnectionHostArnOrProviderTypeProviderType(
-    this.providerType,
-  );
+/// The [CodestarconnectionsConnectionHost.providerType] choice: sets `provider_type`.
+final class CodestarconnectionsConnectionHostProviderType
+    extends CodestarconnectionsConnectionHost {
+  const CodestarconnectionsConnectionHostProviderType(this.providerType);
 
   final TfArg<CodestarconnectionsConnectionProviderType> providerType;
 
@@ -89,7 +87,7 @@ final class AwsCodestarconnectionsConnection extends Resource {
 
   AwsCodestarconnectionsConnection({
     required super.localName,
-    CodestarconnectionsConnectionHostArnOrProviderType? hostArnOrProviderType,
+    CodestarconnectionsConnectionHost? host,
     required TfArg<String> name,
     TfArg<String>? region,
     TfArg<Map<String, String>>? tags,
@@ -100,7 +98,7 @@ final class AwsCodestarconnectionsConnection extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?hostArnOrProviderType?.argMap,
+           ...?host?.argMap,
            'name': name,
            if (region != null) 'region': region,
            if (tags != null) 'tags': tags,

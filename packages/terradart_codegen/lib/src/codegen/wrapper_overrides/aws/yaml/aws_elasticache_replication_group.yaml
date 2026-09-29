@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "auth_token, auth_token_wo, user_group_ids": auth
+  "node_group_configuration, preferred_cache_cluster_azs": topology

@@ -4,3 +4,7 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "input_data_config.annotations, input_data_config.entity_list": labels
+  "input_data_config.augmented_manifests, input_data_config.documents": source

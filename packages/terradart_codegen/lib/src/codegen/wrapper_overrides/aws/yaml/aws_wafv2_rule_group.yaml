@@ -8,3 +8,6 @@ deriveExactlyOne: true
 # Nesting reaches depth 14 with thousands of blocks that repeat a few hundred
 # shapes; one helper per shape keeps the file small.
 dedupeNestedTypes: true
+
+sealedNames:
+  "rule, rules_json": rules

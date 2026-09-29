@@ -12,18 +12,18 @@ const Set<String> _awsWafv2WebAclRuleSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.action(...)`.
-sealed class Wafv2WebAclRuleActionOrOverrideAction {
-  const Wafv2WebAclRuleActionOrOverrideAction();
+sealed class Wafv2WebAclRuleRuleAction {
+  const Wafv2WebAclRuleRuleAction();
 
   /// Sets `action`.
-  const factory Wafv2WebAclRuleActionOrOverrideAction.action(
+  const factory Wafv2WebAclRuleRuleAction.action(
     List<Wafv2WebAclRuleAction> action,
-  ) = Wafv2WebAclRuleActionOrOverrideActionAction;
+  ) = Wafv2WebAclRuleRuleActionAction;
 
   /// Sets `override_action`.
-  const factory Wafv2WebAclRuleActionOrOverrideAction.overrideAction(
+  const factory Wafv2WebAclRuleRuleAction.overrideAction(
     List<Wafv2WebAclRuleOverrideAction> overrideAction,
-  ) = Wafv2WebAclRuleActionOrOverrideActionOverrideAction;
+  ) = Wafv2WebAclRuleRuleActionOverrideAction;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -35,10 +35,9 @@ sealed class Wafv2WebAclRuleActionOrOverrideAction {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [Wafv2WebAclRuleActionOrOverrideAction.action] choice: sets `action`.
-final class Wafv2WebAclRuleActionOrOverrideActionAction
-    extends Wafv2WebAclRuleActionOrOverrideAction {
-  const Wafv2WebAclRuleActionOrOverrideActionAction(this.action);
+/// The [Wafv2WebAclRuleRuleAction.action] choice: sets `action`.
+final class Wafv2WebAclRuleRuleActionAction extends Wafv2WebAclRuleRuleAction {
+  const Wafv2WebAclRuleRuleActionAction(this.action);
 
   final List<Wafv2WebAclRuleAction> action;
 
@@ -56,12 +55,10 @@ final class Wafv2WebAclRuleActionOrOverrideActionAction
   };
 }
 
-/// The [Wafv2WebAclRuleActionOrOverrideAction.overrideAction] choice: sets `override_action`.
-final class Wafv2WebAclRuleActionOrOverrideActionOverrideAction
-    extends Wafv2WebAclRuleActionOrOverrideAction {
-  const Wafv2WebAclRuleActionOrOverrideActionOverrideAction(
-    this.overrideAction,
-  );
+/// The [Wafv2WebAclRuleRuleAction.overrideAction] choice: sets `override_action`.
+final class Wafv2WebAclRuleRuleActionOverrideAction
+    extends Wafv2WebAclRuleRuleAction {
+  const Wafv2WebAclRuleRuleActionOverrideAction(this.overrideAction);
 
   final List<Wafv2WebAclRuleOverrideAction> overrideAction;
 
@@ -2320,7 +2317,7 @@ final class AwsWafv2WebAclRule extends Resource {
     required TfArg<num> priority,
     TfArg<String>? region,
     required TfArg<String> webAclArn,
-    Wafv2WebAclRuleActionOrOverrideAction? actionOrOverrideAction,
+    Wafv2WebAclRuleRuleAction? ruleAction,
     List<Wafv2WebAclRuleCaptchaConfig>? captchaConfig,
     List<Wafv2WebAclRuleCaptchaConfig>? challengeConfig,
     List<Wafv2WebAclRuleRuleLabel>? ruleLabel,
@@ -2337,7 +2334,7 @@ final class AwsWafv2WebAclRule extends Resource {
            'priority': priority,
            if (region != null) 'region': region,
            'web_acl_arn': webAclArn,
-           ...?actionOrOverrideAction?.argMap,
+           ...?ruleAction?.argMap,
            if (captchaConfig != null)
              'captcha_config': TfArg.literal([
                for (final e in captchaConfig) e.encode(),

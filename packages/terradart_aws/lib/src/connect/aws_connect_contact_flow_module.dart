@@ -11,18 +11,17 @@ const Set<String> _awsConnectContactFlowModuleSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.content(...)`.
-sealed class ConnectContactFlowModuleContentOrFilename {
-  const ConnectContactFlowModuleContentOrFilename();
+sealed class ConnectContactFlowModuleContent {
+  const ConnectContactFlowModuleContent();
 
   /// Sets `content`.
-  const factory ConnectContactFlowModuleContentOrFilename.content(
-    TfArg<String> content,
-  ) = ConnectContactFlowModuleContentOrFilenameContent;
+  const factory ConnectContactFlowModuleContent.content(TfArg<String> content) =
+      ConnectContactFlowModuleContentContent;
 
   /// Sets `filename`.
-  const factory ConnectContactFlowModuleContentOrFilename.filename(
+  const factory ConnectContactFlowModuleContent.filename(
     TfArg<String> filename,
-  ) = ConnectContactFlowModuleContentOrFilenameFilename;
+  ) = ConnectContactFlowModuleContentFilename;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +33,10 @@ sealed class ConnectContactFlowModuleContentOrFilename {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ConnectContactFlowModuleContentOrFilename.content] choice: sets `content`.
-final class ConnectContactFlowModuleContentOrFilenameContent
-    extends ConnectContactFlowModuleContentOrFilename {
-  const ConnectContactFlowModuleContentOrFilenameContent(this.content);
+/// The [ConnectContactFlowModuleContent.content] choice: sets `content`.
+final class ConnectContactFlowModuleContentContent
+    extends ConnectContactFlowModuleContent {
+  const ConnectContactFlowModuleContentContent(this.content);
 
   final TfArg<String> content;
 
@@ -51,10 +50,10 @@ final class ConnectContactFlowModuleContentOrFilenameContent
   Map<String, TfArg<Object?>> get argMap => {'content': content};
 }
 
-/// The [ConnectContactFlowModuleContentOrFilename.filename] choice: sets `filename`.
-final class ConnectContactFlowModuleContentOrFilenameFilename
-    extends ConnectContactFlowModuleContentOrFilename {
-  const ConnectContactFlowModuleContentOrFilenameFilename(this.filename);
+/// The [ConnectContactFlowModuleContent.filename] choice: sets `filename`.
+final class ConnectContactFlowModuleContentFilename
+    extends ConnectContactFlowModuleContent {
+  const ConnectContactFlowModuleContentFilename(this.filename);
 
   final TfArg<String> filename;
 
@@ -74,7 +73,7 @@ final class AwsConnectContactFlowModule extends Resource {
 
   AwsConnectContactFlowModule({
     required super.localName,
-    ConnectContactFlowModuleContentOrFilename? contentOrFilename,
+    ConnectContactFlowModuleContent? content,
     TfArg<String>? contentHash,
     TfArg<String>? description,
     required TfArg<String> instanceId,
@@ -88,7 +87,7 @@ final class AwsConnectContactFlowModule extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?contentOrFilename?.argMap,
+           ...?content?.argMap,
            if (contentHash != null) 'content_hash': contentHash,
            if (description != null) 'description': description,
            'instance_id': instanceId,

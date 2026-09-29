@@ -36,17 +36,16 @@ final class S3BucketObjectLockConfigurationRule {
 @immutable
 final class S3BucketObjectLockConfigurationRuleDefaultRetention {
   const S3BucketObjectLockConfigurationRuleDefaultRetention({
-    this.daysOrYears,
+    this.period,
     this.mode,
   });
 
-  final S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears?
-  daysOrYears;
+  final S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod? period;
 
   final TfArg<S3BucketObjectLockConfigurationRuleDefaultRetentionMode>? mode;
 
   Map<String, Object?> encode() => {
-    ...?daysOrYears?.encode(),
+    ...?period?.encode(),
     if (mode != null) 'mode': mode!.toTfJson(),
   };
 }
@@ -56,18 +55,18 @@ final class S3BucketObjectLockConfigurationRuleDefaultRetention {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.days(...)`.
-sealed class S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears {
-  const S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears();
+sealed class S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod {
+  const S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod();
 
   /// Sets `days`.
-  const factory S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears.days(
+  const factory S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod.days(
     TfArg<num> days,
-  ) = S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsDays;
+  ) = S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodDays;
 
   /// Sets `years`.
-  const factory S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears.years(
+  const factory S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod.years(
     TfArg<num> years,
-  ) = S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsYears;
+  ) = S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodYears;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -75,10 +74,10 @@ sealed class S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears {
   Map<String, Object?> encode();
 }
 
-/// The [S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears.days] choice: sets `days`.
-final class S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsDays
-    extends S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears {
-  const S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsDays(
+/// The [S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod.days] choice: sets `days`.
+final class S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodDays
+    extends S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod {
+  const S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodDays(
     this.days,
   );
 
@@ -91,10 +90,10 @@ final class S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsDays
   Map<String, Object?> encode() => {'days': days.toTfJson()};
 }
 
-/// The [S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears.years] choice: sets `years`.
-final class S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsYears
-    extends S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYears {
-  const S3BucketObjectLockConfigurationRuleDefaultRetentionDaysOrYearsYears(
+/// The [S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod.years] choice: sets `years`.
+final class S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodYears
+    extends S3BucketObjectLockConfigurationRuleDefaultRetentionPeriod {
+  const S3BucketObjectLockConfigurationRuleDefaultRetentionPeriodYears(
     this.years,
   );
 

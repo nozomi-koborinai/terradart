@@ -37,23 +37,20 @@ enum AcmCertificateValidationMethod implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.domainName(...)`.
-sealed class AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo {
-  const AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo();
+sealed class AcmCertificateSource {
+  const AcmCertificateSource();
 
   /// Sets `domain_name`.
-  const factory AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo.domainName(
-    TfArg<String> domainName,
-  ) = AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoDomainName;
+  const factory AcmCertificateSource.domainName(TfArg<String> domainName) =
+      AcmCertificateSourceDomainName;
 
   /// Sets `private_key`.
-  const factory AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo.privateKey(
-    TfArg<String> privateKey,
-  ) = AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKey;
+  const factory AcmCertificateSource.privateKey(TfArg<String> privateKey) =
+      AcmCertificateSourcePrivateKey;
 
   /// Sets `private_key_wo`.
-  const factory AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo.privateKeyWo(
-    TfArg<String> privateKeyWo,
-  ) = AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKeyWo;
+  const factory AcmCertificateSource.privateKeyWo(TfArg<String> privateKeyWo) =
+      AcmCertificateSourcePrivateKeyWo;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -65,12 +62,9 @@ sealed class AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo.domainName] choice: sets `domain_name`.
-final class AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoDomainName
-    extends AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo {
-  const AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoDomainName(
-    this.domainName,
-  );
+/// The [AcmCertificateSource.domainName] choice: sets `domain_name`.
+final class AcmCertificateSourceDomainName extends AcmCertificateSource {
+  const AcmCertificateSourceDomainName(this.domainName);
 
   final TfArg<String> domainName;
 
@@ -84,12 +78,9 @@ final class AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoDomainName
   Map<String, TfArg<Object?>> get argMap => {'domain_name': domainName};
 }
 
-/// The [AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo.privateKey] choice: sets `private_key`.
-final class AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKey
-    extends AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo {
-  const AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKey(
-    this.privateKey,
-  );
+/// The [AcmCertificateSource.privateKey] choice: sets `private_key`.
+final class AcmCertificateSourcePrivateKey extends AcmCertificateSource {
+  const AcmCertificateSourcePrivateKey(this.privateKey);
 
   final TfArg<String> privateKey;
 
@@ -103,12 +94,9 @@ final class AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKey
   Map<String, TfArg<Object?>> get argMap => {'private_key': privateKey};
 }
 
-/// The [AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo.privateKeyWo] choice: sets `private_key_wo`.
-final class AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKeyWo
-    extends AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo {
-  const AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWoPrivateKeyWo(
-    this.privateKeyWo,
-  );
+/// The [AcmCertificateSource.privateKeyWo] choice: sets `private_key_wo`.
+final class AcmCertificateSourcePrivateKeyWo extends AcmCertificateSource {
+  const AcmCertificateSourcePrivateKeyWo(this.privateKeyWo);
 
   final TfArg<String> privateKeyWo;
 
@@ -195,8 +183,7 @@ final class AwsAcmCertificate extends Resource {
     TfArg<String>? certificateAuthorityArn,
     TfArg<String>? certificateBody,
     TfArg<String>? certificateChain,
-    required AcmCertificateDomainNameOrPrivateKeyOrPrivateKeyWo
-    domainNameOrPrivateKeyOrPrivateKeyWo,
+    required AcmCertificateSource source,
     TfArg<String>? earlyRenewalDuration,
     TfArg<AcmCertificateKeyAlgorithm>? keyAlgorithm,
     TfArg<num>? privateKeyWoVersion,
@@ -217,7 +204,7 @@ final class AwsAcmCertificate extends Resource {
              'certificate_authority_arn': certificateAuthorityArn,
            if (certificateBody != null) 'certificate_body': certificateBody,
            if (certificateChain != null) 'certificate_chain': certificateChain,
-           ...domainNameOrPrivateKeyOrPrivateKeyWo.argMap,
+           ...source.argMap,
            if (earlyRenewalDuration != null)
              'early_renewal_duration': earlyRenewalDuration,
            if (keyAlgorithm != null) 'key_algorithm': keyAlgorithm,

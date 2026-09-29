@@ -12,17 +12,16 @@ const Set<String> _awsVpcIpamPoolCidrSensitive = <String>{};
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.cidr(...)`.
-sealed class VpcIpamPoolCidrCidrOrNetmaskLength {
-  const VpcIpamPoolCidrCidrOrNetmaskLength();
+sealed class VpcIpamPoolCidrCidr {
+  const VpcIpamPoolCidrCidr();
 
   /// Sets `cidr`.
-  const factory VpcIpamPoolCidrCidrOrNetmaskLength.cidr(TfArg<String> cidr) =
-      VpcIpamPoolCidrCidrOrNetmaskLengthCidr;
+  const factory VpcIpamPoolCidrCidr.cidr(TfArg<String> cidr) =
+      VpcIpamPoolCidrCidrCidr;
 
   /// Sets `netmask_length`.
-  const factory VpcIpamPoolCidrCidrOrNetmaskLength.netmaskLength(
-    TfArg<num> netmaskLength,
-  ) = VpcIpamPoolCidrCidrOrNetmaskLengthNetmaskLength;
+  const factory VpcIpamPoolCidrCidr.netmaskLength(TfArg<num> netmaskLength) =
+      VpcIpamPoolCidrCidrNetmaskLength;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,10 +33,9 @@ sealed class VpcIpamPoolCidrCidrOrNetmaskLength {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [VpcIpamPoolCidrCidrOrNetmaskLength.cidr] choice: sets `cidr`.
-final class VpcIpamPoolCidrCidrOrNetmaskLengthCidr
-    extends VpcIpamPoolCidrCidrOrNetmaskLength {
-  const VpcIpamPoolCidrCidrOrNetmaskLengthCidr(this.cidr);
+/// The [VpcIpamPoolCidrCidr.cidr] choice: sets `cidr`.
+final class VpcIpamPoolCidrCidrCidr extends VpcIpamPoolCidrCidr {
+  const VpcIpamPoolCidrCidrCidr(this.cidr);
 
   final TfArg<String> cidr;
 
@@ -51,10 +49,9 @@ final class VpcIpamPoolCidrCidrOrNetmaskLengthCidr
   Map<String, TfArg<Object?>> get argMap => {'cidr': cidr};
 }
 
-/// The [VpcIpamPoolCidrCidrOrNetmaskLength.netmaskLength] choice: sets `netmask_length`.
-final class VpcIpamPoolCidrCidrOrNetmaskLengthNetmaskLength
-    extends VpcIpamPoolCidrCidrOrNetmaskLength {
-  const VpcIpamPoolCidrCidrOrNetmaskLengthNetmaskLength(this.netmaskLength);
+/// The [VpcIpamPoolCidrCidr.netmaskLength] choice: sets `netmask_length`.
+final class VpcIpamPoolCidrCidrNetmaskLength extends VpcIpamPoolCidrCidr {
+  const VpcIpamPoolCidrCidrNetmaskLength(this.netmaskLength);
 
   final TfArg<num> netmaskLength;
 
@@ -90,7 +87,7 @@ final class AwsVpcIpamPoolCidr extends Resource {
 
   AwsVpcIpamPoolCidr({
     required super.localName,
-    VpcIpamPoolCidrCidrOrNetmaskLength? cidrOrNetmaskLength,
+    VpcIpamPoolCidrCidr? cidr,
     required TfArg<String> ipamPoolId,
     TfArg<String>? region,
     VpcIpamPoolCidrCidrAuthorizationContext? cidrAuthorizationContext,
@@ -101,7 +98,7 @@ final class AwsVpcIpamPoolCidr extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...?cidrOrNetmaskLength?.argMap,
+           ...?cidr?.argMap,
            'ipam_pool_id': ipamPoolId,
            if (region != null) 'region': region,
            if (cidrAuthorizationContext != null)

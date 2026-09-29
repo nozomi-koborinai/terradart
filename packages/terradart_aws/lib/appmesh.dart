@@ -263,9 +263,9 @@ export 'src/appmesh/aws_appmesh_virtual_service.dart'
     show
         AppmeshVirtualServiceSpec,
         AppmeshVirtualServiceSpecProvider,
-        AppmeshVirtualServiceSpecProviderVirtual,
+        AppmeshVirtualServiceSpecProviderProvider,
+        AppmeshVirtualServiceSpecProviderProviderVirtualNode,
+        AppmeshVirtualServiceSpecProviderProviderVirtualRouter,
         AppmeshVirtualServiceSpecProviderVirtualNode,
         AppmeshVirtualServiceSpecProviderVirtualRouter,
-        AppmeshVirtualServiceSpecProviderVirtualVirtualNode,
-        AppmeshVirtualServiceSpecProviderVirtualVirtualRouter,
         AwsAppmeshVirtualService;

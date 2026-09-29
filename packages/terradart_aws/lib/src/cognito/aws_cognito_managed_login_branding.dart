@@ -11,18 +11,18 @@ const Set<String> _awsCognitoManagedLoginBrandingSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.settings(...)`.
-sealed class CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues {
-  const CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues();
+sealed class CognitoManagedLoginBrandingStyle {
+  const CognitoManagedLoginBrandingStyle();
 
   /// Sets `settings`.
-  const factory CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues.settings(
+  const factory CognitoManagedLoginBrandingStyle.settings(
     TfArg<String> settings,
-  ) = CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesSettings;
+  ) = CognitoManagedLoginBrandingStyleSettings;
 
   /// Sets `use_cognito_provided_values`.
-  const factory CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues.useCognitoProvidedValues(
+  const factory CognitoManagedLoginBrandingStyle.useCognitoProvidedValues(
     TfArg<bool> useCognitoProvidedValues,
-  ) = CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesUseCognitoProvidedValues;
+  ) = CognitoManagedLoginBrandingStyleUseCognitoProvidedValues;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -34,12 +34,10 @@ sealed class CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues.settings] choice: sets `settings`.
-final class CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesSettings
-    extends CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues {
-  const CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesSettings(
-    this.settings,
-  );
+/// The [CognitoManagedLoginBrandingStyle.settings] choice: sets `settings`.
+final class CognitoManagedLoginBrandingStyleSettings
+    extends CognitoManagedLoginBrandingStyle {
+  const CognitoManagedLoginBrandingStyleSettings(this.settings);
 
   final TfArg<String> settings;
 
@@ -53,10 +51,10 @@ final class CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesSetting
   Map<String, TfArg<Object?>> get argMap => {'settings': settings};
 }
 
-/// The [CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues.useCognitoProvidedValues] choice: sets `use_cognito_provided_values`.
-final class CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesUseCognitoProvidedValues
-    extends CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues {
-  const CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValuesUseCognitoProvidedValues(
+/// The [CognitoManagedLoginBrandingStyle.useCognitoProvidedValues] choice: sets `use_cognito_provided_values`.
+final class CognitoManagedLoginBrandingStyleUseCognitoProvidedValues
+    extends CognitoManagedLoginBrandingStyle {
+  const CognitoManagedLoginBrandingStyleUseCognitoProvidedValues(
     this.useCognitoProvidedValues,
   );
 
@@ -162,8 +160,7 @@ final class AwsCognitoManagedLoginBranding extends Resource {
     required super.localName,
     required TfArg<String> clientId,
     TfArg<String>? region,
-    required CognitoManagedLoginBrandingSettingsOrUseCognitoProvidedValues
-    settingsOrUseCognitoProvidedValues,
+    required CognitoManagedLoginBrandingStyle style,
     required TfArg<String> userPoolId,
     List<CognitoManagedLoginBrandingAsset>? asset,
     super.lifecycle,
@@ -175,7 +172,7 @@ final class AwsCognitoManagedLoginBranding extends Resource {
          argMap: {
            'client_id': clientId,
            if (region != null) 'region': region,
-           ...settingsOrUseCognitoProvidedValues.argMap,
+           ...style.argMap,
            'user_pool_id': userPoolId,
            if (asset != null)
              'asset': TfArg.literal([for (final e in asset) e.encode()]),

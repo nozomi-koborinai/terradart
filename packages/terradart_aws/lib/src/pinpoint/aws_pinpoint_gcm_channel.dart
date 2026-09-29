@@ -23,18 +23,17 @@ enum PinpointGcmChannelDefaultAuthenticationMethod implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.apiKey(...)`.
-sealed class PinpointGcmChannelApiKeyOrServiceJson {
-  const PinpointGcmChannelApiKeyOrServiceJson();
+sealed class PinpointGcmChannelCredentials {
+  const PinpointGcmChannelCredentials();
 
   /// Sets `api_key`.
-  const factory PinpointGcmChannelApiKeyOrServiceJson.apiKey(
-    TfArg<String> apiKey,
-  ) = PinpointGcmChannelApiKeyOrServiceJsonApiKey;
+  const factory PinpointGcmChannelCredentials.apiKey(TfArg<String> apiKey) =
+      PinpointGcmChannelCredentialsApiKey;
 
   /// Sets `service_json`.
-  const factory PinpointGcmChannelApiKeyOrServiceJson.serviceJson(
+  const factory PinpointGcmChannelCredentials.serviceJson(
     TfArg<String> serviceJson,
-  ) = PinpointGcmChannelApiKeyOrServiceJsonServiceJson;
+  ) = PinpointGcmChannelCredentialsServiceJson;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -46,10 +45,10 @@ sealed class PinpointGcmChannelApiKeyOrServiceJson {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [PinpointGcmChannelApiKeyOrServiceJson.apiKey] choice: sets `api_key`.
-final class PinpointGcmChannelApiKeyOrServiceJsonApiKey
-    extends PinpointGcmChannelApiKeyOrServiceJson {
-  const PinpointGcmChannelApiKeyOrServiceJsonApiKey(this.apiKey);
+/// The [PinpointGcmChannelCredentials.apiKey] choice: sets `api_key`.
+final class PinpointGcmChannelCredentialsApiKey
+    extends PinpointGcmChannelCredentials {
+  const PinpointGcmChannelCredentialsApiKey(this.apiKey);
 
   final TfArg<String> apiKey;
 
@@ -63,10 +62,10 @@ final class PinpointGcmChannelApiKeyOrServiceJsonApiKey
   Map<String, TfArg<Object?>> get argMap => {'api_key': apiKey};
 }
 
-/// The [PinpointGcmChannelApiKeyOrServiceJson.serviceJson] choice: sets `service_json`.
-final class PinpointGcmChannelApiKeyOrServiceJsonServiceJson
-    extends PinpointGcmChannelApiKeyOrServiceJson {
-  const PinpointGcmChannelApiKeyOrServiceJsonServiceJson(this.serviceJson);
+/// The [PinpointGcmChannelCredentials.serviceJson] choice: sets `service_json`.
+final class PinpointGcmChannelCredentialsServiceJson
+    extends PinpointGcmChannelCredentials {
+  const PinpointGcmChannelCredentialsServiceJson(this.serviceJson);
 
   final TfArg<String> serviceJson;
 
@@ -86,7 +85,7 @@ final class AwsPinpointGcmChannel extends Resource {
 
   AwsPinpointGcmChannel({
     required super.localName,
-    required PinpointGcmChannelApiKeyOrServiceJson apiKeyOrServiceJson,
+    required PinpointGcmChannelCredentials credentials,
     required TfArg<String> applicationId,
     TfArg<PinpointGcmChannelDefaultAuthenticationMethod>?
     defaultAuthenticationMethod,
@@ -99,7 +98,7 @@ final class AwsPinpointGcmChannel extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...apiKeyOrServiceJson.argMap,
+           ...credentials.argMap,
            'application_id': applicationId,
            if (defaultAuthenticationMethod != null)
              'default_authentication_method': defaultAuthenticationMethod,

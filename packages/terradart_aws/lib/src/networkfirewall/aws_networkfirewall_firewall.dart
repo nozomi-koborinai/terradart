@@ -21,18 +21,17 @@ enum NetworkfirewallFirewallEnabledAnalysisTypes implements TerraformEnum {
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.transitGatewayId(...)`.
-sealed class NetworkfirewallFirewallTransitGatewayIdOrVpcId {
-  const NetworkfirewallFirewallTransitGatewayIdOrVpcId();
+sealed class NetworkfirewallFirewallAttachment {
+  const NetworkfirewallFirewallAttachment();
 
   /// Sets `transit_gateway_id`.
-  const factory NetworkfirewallFirewallTransitGatewayIdOrVpcId.transitGatewayId(
+  const factory NetworkfirewallFirewallAttachment.transitGatewayId(
     TfArg<String> transitGatewayId,
-  ) = NetworkfirewallFirewallTransitGatewayIdOrVpcIdTransitGatewayId;
+  ) = NetworkfirewallFirewallAttachmentTransitGatewayId;
 
   /// Sets `vpc_id`.
-  const factory NetworkfirewallFirewallTransitGatewayIdOrVpcId.vpcId(
-    TfArg<String> vpcId,
-  ) = NetworkfirewallFirewallTransitGatewayIdOrVpcIdVpcId;
+  const factory NetworkfirewallFirewallAttachment.vpcId(TfArg<String> vpcId) =
+      NetworkfirewallFirewallAttachmentVpcId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -44,10 +43,10 @@ sealed class NetworkfirewallFirewallTransitGatewayIdOrVpcId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [NetworkfirewallFirewallTransitGatewayIdOrVpcId.transitGatewayId] choice: sets `transit_gateway_id`.
-final class NetworkfirewallFirewallTransitGatewayIdOrVpcIdTransitGatewayId
-    extends NetworkfirewallFirewallTransitGatewayIdOrVpcId {
-  const NetworkfirewallFirewallTransitGatewayIdOrVpcIdTransitGatewayId(
+/// The [NetworkfirewallFirewallAttachment.transitGatewayId] choice: sets `transit_gateway_id`.
+final class NetworkfirewallFirewallAttachmentTransitGatewayId
+    extends NetworkfirewallFirewallAttachment {
+  const NetworkfirewallFirewallAttachmentTransitGatewayId(
     this.transitGatewayId,
   );
 
@@ -67,10 +66,10 @@ final class NetworkfirewallFirewallTransitGatewayIdOrVpcIdTransitGatewayId
   };
 }
 
-/// The [NetworkfirewallFirewallTransitGatewayIdOrVpcId.vpcId] choice: sets `vpc_id`.
-final class NetworkfirewallFirewallTransitGatewayIdOrVpcIdVpcId
-    extends NetworkfirewallFirewallTransitGatewayIdOrVpcId {
-  const NetworkfirewallFirewallTransitGatewayIdOrVpcIdVpcId(this.vpcId);
+/// The [NetworkfirewallFirewallAttachment.vpcId] choice: sets `vpc_id`.
+final class NetworkfirewallFirewallAttachmentVpcId
+    extends NetworkfirewallFirewallAttachment {
+  const NetworkfirewallFirewallAttachmentVpcId(this.vpcId);
 
   final TfArg<String> vpcId;
 
@@ -177,8 +176,7 @@ final class AwsNetworkfirewallFirewall extends Resource {
     TfArg<String>? region,
     TfArg<bool>? subnetChangeProtection,
     TfArg<Map<String, String>>? tags,
-    required NetworkfirewallFirewallTransitGatewayIdOrVpcId
-    transitGatewayIdOrVpcId,
+    required NetworkfirewallFirewallAttachment attachment,
     List<NetworkfirewallFirewallAvailabilityZoneMapping>?
     availabilityZoneMapping,
     NetworkfirewallFirewallEncryptionConfiguration? encryptionConfiguration,
@@ -208,7 +206,7 @@ final class AwsNetworkfirewallFirewall extends Resource {
            if (subnetChangeProtection != null)
              'subnet_change_protection': subnetChangeProtection,
            if (tags != null) 'tags': tags,
-           ...transitGatewayIdOrVpcId.argMap,
+           ...attachment.argMap,
            if (availabilityZoneMapping != null)
              'availability_zone_mapping': TfArg.literal([
                for (final e in availabilityZoneMapping) e.encode(),

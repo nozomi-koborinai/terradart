@@ -6,9 +6,9 @@ library;
 export 'src/imagebuilder/aws_imagebuilder_component.dart'
     show
         AwsImagebuilderComponent,
-        ImagebuilderComponentDataOrUri,
-        ImagebuilderComponentDataOrUriData,
-        ImagebuilderComponentDataOrUriUri,
+        ImagebuilderComponentDocument,
+        ImagebuilderComponentDocumentData,
+        ImagebuilderComponentDocumentUri,
         ImagebuilderComponentPlatform;
 export 'src/imagebuilder/aws_imagebuilder_container_recipe.dart'
     show
@@ -113,7 +113,7 @@ export 'src/imagebuilder/aws_imagebuilder_lifecycle_policy.dart'
 export 'src/imagebuilder/aws_imagebuilder_workflow.dart'
     show
         AwsImagebuilderWorkflow,
-        ImagebuilderWorkflowDataOrUri,
-        ImagebuilderWorkflowDataOrUriData,
-        ImagebuilderWorkflowDataOrUriUri,
+        ImagebuilderWorkflowDocument,
+        ImagebuilderWorkflowDocumentData,
+        ImagebuilderWorkflowDocumentUri,
         ImagebuilderWorkflowType;

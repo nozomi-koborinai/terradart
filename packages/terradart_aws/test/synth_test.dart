@@ -83,9 +83,7 @@ final class _TestStack extends Stack {
         role: TfArg.ref(role.arn),
         runtime: TfArg.literal(LambdaFunctionRuntime.providedAl2023),
         handler: TfArg.literal('bootstrap'),
-        filenameOrImageUriOrS3Bucket: .filename(
-          TfArg.literal('build/bootstrap.zip'),
-        ),
+        code: .filename(TfArg.literal('build/bootstrap.zip')),
       ),
     );
   }

@@ -21,11 +21,11 @@ export 'src/lex/aws_lex_bot_alias.dart'
 export 'src/lex/aws_lex_intent.dart'
     show
         AwsLexIntent,
+        LexIntentClosing,
+        LexIntentClosingConclusionStatement,
+        LexIntentClosingFollowUpPrompt,
         LexIntentConclusionStatement,
         LexIntentConclusionStatementMessage,
-        LexIntentConclusionStatementOrFollowUpPrompt,
-        LexIntentConclusionStatementOrFollowUpPromptConclusionStatement,
-        LexIntentConclusionStatementOrFollowUpPromptFollowUpPrompt,
         LexIntentConfirmationPrompt,
         LexIntentConfirmationPromptMessage,
         LexIntentDialogCodeHook,

@@ -47,18 +47,18 @@ enum ShieldProtectionGroupResourceType implements TerraformEnum {
 /// null choice sets none.
 ///
 /// Pick one with a dot shorthand: `.members(...)`.
-sealed class ShieldProtectionGroupMembersOrResourceType {
-  const ShieldProtectionGroupMembersOrResourceType();
+sealed class ShieldProtectionGroupScope {
+  const ShieldProtectionGroupScope();
 
   /// Sets `members`.
-  const factory ShieldProtectionGroupMembersOrResourceType.members(
+  const factory ShieldProtectionGroupScope.members(
     TfArg<List<String>> members,
-  ) = ShieldProtectionGroupMembersOrResourceTypeMembers;
+  ) = ShieldProtectionGroupScopeMembers;
 
   /// Sets `resource_type`.
-  const factory ShieldProtectionGroupMembersOrResourceType.resourceType(
+  const factory ShieldProtectionGroupScope.resourceType(
     TfArg<ShieldProtectionGroupResourceType> resourceType,
-  ) = ShieldProtectionGroupMembersOrResourceTypeResourceType;
+  ) = ShieldProtectionGroupScopeResourceType;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -70,10 +70,10 @@ sealed class ShieldProtectionGroupMembersOrResourceType {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [ShieldProtectionGroupMembersOrResourceType.members] choice: sets `members`.
-final class ShieldProtectionGroupMembersOrResourceTypeMembers
-    extends ShieldProtectionGroupMembersOrResourceType {
-  const ShieldProtectionGroupMembersOrResourceTypeMembers(this.members);
+/// The [ShieldProtectionGroupScope.members] choice: sets `members`.
+final class ShieldProtectionGroupScopeMembers
+    extends ShieldProtectionGroupScope {
+  const ShieldProtectionGroupScopeMembers(this.members);
 
   final TfArg<List<String>> members;
 
@@ -87,12 +87,10 @@ final class ShieldProtectionGroupMembersOrResourceTypeMembers
   Map<String, TfArg<Object?>> get argMap => {'members': members};
 }
 
-/// The [ShieldProtectionGroupMembersOrResourceType.resourceType] choice: sets `resource_type`.
-final class ShieldProtectionGroupMembersOrResourceTypeResourceType
-    extends ShieldProtectionGroupMembersOrResourceType {
-  const ShieldProtectionGroupMembersOrResourceTypeResourceType(
-    this.resourceType,
-  );
+/// The [ShieldProtectionGroupScope.resourceType] choice: sets `resource_type`.
+final class ShieldProtectionGroupScopeResourceType
+    extends ShieldProtectionGroupScope {
+  const ShieldProtectionGroupScopeResourceType(this.resourceType);
 
   final TfArg<ShieldProtectionGroupResourceType> resourceType;
 
@@ -113,7 +111,7 @@ final class AwsShieldProtectionGroup extends Resource {
   AwsShieldProtectionGroup({
     required super.localName,
     required TfArg<ShieldProtectionGroupAggregation> aggregation,
-    ShieldProtectionGroupMembersOrResourceType? membersOrResourceType,
+    ShieldProtectionGroupScope? scope,
     required TfArg<ShieldProtectionGroupPattern> pattern,
     required TfArg<String> protectionGroupId,
     TfArg<Map<String, String>>? tags,
@@ -125,7 +123,7 @@ final class AwsShieldProtectionGroup extends Resource {
          terraformType: tfType,
          argMap: {
            'aggregation': aggregation,
-           ...?membersOrResourceType?.argMap,
+           ...?scope?.argMap,
            'pattern': pattern,
            'protection_group_id': protectionGroupId,
            if (tags != null) 'tags': tags,

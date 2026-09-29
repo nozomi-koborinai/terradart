@@ -4,3 +4,9 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 deriveExactlyOne: true
+
+sealedNames:
+  "training_job_definition.algorithm_specification.algorithm_name, training_job_definition.algorithm_specification.training_image": algorithm
+  "training_job_definition.hyper_parameter_tuning_resource_config, training_job_definition.resource_config": resources
+  "training_job_definitions.algorithm_specification.algorithm_name, training_job_definitions.algorithm_specification.training_image": algorithm
+  "training_job_definitions.hyper_parameter_tuning_resource_config, training_job_definitions.resource_config": resources

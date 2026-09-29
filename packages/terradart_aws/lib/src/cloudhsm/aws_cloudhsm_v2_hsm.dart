@@ -10,18 +10,17 @@ const Set<String> _awsCloudhsmV2HsmSensitive = <String>{};
 /// none and more than one, so each variant sets one of them.
 ///
 /// Pick one with a dot shorthand: `.availabilityZone(...)`.
-sealed class CloudhsmV2HsmAvailabilityZoneOrSubnetId {
-  const CloudhsmV2HsmAvailabilityZoneOrSubnetId();
+sealed class CloudhsmV2HsmPlacement {
+  const CloudhsmV2HsmPlacement();
 
   /// Sets `availability_zone`.
-  const factory CloudhsmV2HsmAvailabilityZoneOrSubnetId.availabilityZone(
+  const factory CloudhsmV2HsmPlacement.availabilityZone(
     TfArg<String> availabilityZone,
-  ) = CloudhsmV2HsmAvailabilityZoneOrSubnetIdAvailabilityZone;
+  ) = CloudhsmV2HsmPlacementAvailabilityZone;
 
   /// Sets `subnet_id`.
-  const factory CloudhsmV2HsmAvailabilityZoneOrSubnetId.subnetId(
-    TfArg<String> subnetId,
-  ) = CloudhsmV2HsmAvailabilityZoneOrSubnetIdSubnetId;
+  const factory CloudhsmV2HsmPlacement.subnetId(TfArg<String> subnetId) =
+      CloudhsmV2HsmPlacementSubnetId;
 
   /// The Terraform argument this choice sets.
   String get blockKey;
@@ -33,12 +32,10 @@ sealed class CloudhsmV2HsmAvailabilityZoneOrSubnetId {
   Map<String, TfArg<Object?>> get argMap;
 }
 
-/// The [CloudhsmV2HsmAvailabilityZoneOrSubnetId.availabilityZone] choice: sets `availability_zone`.
-final class CloudhsmV2HsmAvailabilityZoneOrSubnetIdAvailabilityZone
-    extends CloudhsmV2HsmAvailabilityZoneOrSubnetId {
-  const CloudhsmV2HsmAvailabilityZoneOrSubnetIdAvailabilityZone(
-    this.availabilityZone,
-  );
+/// The [CloudhsmV2HsmPlacement.availabilityZone] choice: sets `availability_zone`.
+final class CloudhsmV2HsmPlacementAvailabilityZone
+    extends CloudhsmV2HsmPlacement {
+  const CloudhsmV2HsmPlacementAvailabilityZone(this.availabilityZone);
 
   final TfArg<String> availabilityZone;
 
@@ -56,10 +53,9 @@ final class CloudhsmV2HsmAvailabilityZoneOrSubnetIdAvailabilityZone
   };
 }
 
-/// The [CloudhsmV2HsmAvailabilityZoneOrSubnetId.subnetId] choice: sets `subnet_id`.
-final class CloudhsmV2HsmAvailabilityZoneOrSubnetIdSubnetId
-    extends CloudhsmV2HsmAvailabilityZoneOrSubnetId {
-  const CloudhsmV2HsmAvailabilityZoneOrSubnetIdSubnetId(this.subnetId);
+/// The [CloudhsmV2HsmPlacement.subnetId] choice: sets `subnet_id`.
+final class CloudhsmV2HsmPlacementSubnetId extends CloudhsmV2HsmPlacement {
+  const CloudhsmV2HsmPlacementSubnetId(this.subnetId);
 
   final TfArg<String> subnetId;
 
@@ -79,7 +75,7 @@ final class AwsCloudhsmV2Hsm extends Resource {
 
   AwsCloudhsmV2Hsm({
     required super.localName,
-    required CloudhsmV2HsmAvailabilityZoneOrSubnetId availabilityZoneOrSubnetId,
+    required CloudhsmV2HsmPlacement placement,
     required TfArg<String> clusterId,
     TfArg<String>? ipAddress,
     TfArg<String>? region,
@@ -90,7 +86,7 @@ final class AwsCloudhsmV2Hsm extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           ...availabilityZoneOrSubnetId.argMap,
+           ...placement.argMap,
            'cluster_id': clusterId,
            if (ipAddress != null) 'ip_address': ipAddress,
            if (region != null) 'region': region,

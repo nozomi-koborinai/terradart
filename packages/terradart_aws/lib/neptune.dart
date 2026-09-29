@@ -42,9 +42,9 @@ export 'src/neptune/aws_neptune_global_cluster.dart'
     show
         AwsNeptuneGlobalCluster,
         NeptuneGlobalClusterEngine,
-        NeptuneGlobalClusterEngineOrSourceDbClusterIdentifier,
-        NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierEngine,
-        NeptuneGlobalClusterEngineOrSourceDbClusterIdentifierSourceDbClusterIdentifier;
+        NeptuneGlobalClusterSource,
+        NeptuneGlobalClusterSourceEngine,
+        NeptuneGlobalClusterSourceSourceDbClusterIdentifier;
 export 'src/neptune/aws_neptune_parameter_group.dart'
     show
         AwsNeptuneParameterGroup,

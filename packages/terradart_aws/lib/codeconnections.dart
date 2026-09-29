@@ -6,9 +6,9 @@ library;
 export 'src/codeconnections/aws_codeconnections_connection.dart'
     show
         AwsCodeconnectionsConnection,
-        CodeconnectionsConnectionHostArnOrProviderType,
-        CodeconnectionsConnectionHostArnOrProviderTypeHostArn,
-        CodeconnectionsConnectionHostArnOrProviderTypeProviderType,
+        CodeconnectionsConnectionHost,
+        CodeconnectionsConnectionHostHostArn,
+        CodeconnectionsConnectionHostProviderType,
         CodeconnectionsConnectionProviderType;
 export 'src/codeconnections/aws_codeconnections_host.dart'
     show
