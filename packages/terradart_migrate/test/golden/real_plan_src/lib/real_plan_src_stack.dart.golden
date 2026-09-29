@@ -44,7 +44,7 @@ final class RealPlanSrcStack extends Stack {
       GoogleComputeRouter(
         localName: r'router',
         name: .literal(r'example-router'),
-        network: .literal(r'default'),
+        network: .network(.literal(r'default')),
         region: .literal(r'us-central1'),
       ),
     );
