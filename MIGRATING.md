@@ -1,5 +1,40 @@
 # Migrating terradart
 
+## 0.30.x → next release
+
+### `terradart_cloudflare` exactly-one inputs are sealed types
+
+**Breaking (`terradart_cloudflare`)** — 13 input groups across 5 resources
+that the provider requires exactly one of take one required sealed-type
+argument (or helper field) instead of several optional ones. These are the
+provider's `ExactlyOneOf` sets at the pinned `5.26.0`, plus the
+`AtLeastOneOf` sets whose members all conflict with each other; 2 are on
+resource arguments and 11 inside nested blocks. The argument is named after
+its members joined by `Or`, and each member is a variant class named
+`<Prefix><Member>Option`. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `CloudflareRuleset(zoneId: TfArg.literal(zoneId), ...)` | `CloudflareRuleset(accountIdOrZoneId: RulesetZoneIdOption(zoneId: TfArg.literal(zoneId)), ...)` |
+| `CloudflareAccountMember(roles: TfArg.literal([roleId]), ...)` | `CloudflareAccountMember(rolesOrPolicies: AccountMemberRolesOption(roles: TfArg.literal([roleId])), ...)` |
+| `WorkerVersionModules(contentFile: TfArg.literal('dist/index.js'), ...)` | `WorkerVersionModules(contentBase64OrContentFile: WorkerVersionModulesContentFileOption(contentFile: TfArg.literal('dist/index.js')), ...)` |
+| `RulesetRulesActionParametersUriPath(value: TfArg.literal('/new'))` | `RulesetRulesActionParametersUriPath(valueOrExpression: RulesetRulesActionParametersUriPathValueOption(value: TfArg.literal('/new')))` |
+
+The other groups: `WorkersScriptFiles` (`content_base64` / `content_file`),
+the ruleset's `from_value.target_url` (`value` / `expression`), `uri.query`
+(`value` / `expression`), `edge_ttl.status_code_ttl`
+(`status_code_range` / `status_code`) and the cache key's
+`query_string.include` / `exclude` (`list` / `all`), and
+`CloudflareZeroTrustAccessApplication`'s `cors_headers`
+(`allow_all_methods` / `allowed_methods`, `allow_all_origins` /
+`allowed_origins`) and `policies` (`id` / `include`). Leaving the argument
+out, or setting two members, used to fail at `terraform validate`; now it
+doesn't compile. Mutually exclusive inputs the provider lets you
+leave all unset (`CloudflareDnsRecord` `content` / `data`,
+`CloudflareWorkersScript` `content` / `content_file`, ...) are unchanged.
+`terradart-migrate` picks the variant from whichever member the source
+sets.
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it

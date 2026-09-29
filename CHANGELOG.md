@@ -4,6 +4,28 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_migrate` — this top-level file summarises cross-cutting milestones.
 
+## Unreleased
+
+### Changed
+
+- **`terradart_cloudflare` exactly-one groups are sealed types**
+  (**breaking**) — 13 groups on 5 resources (2 on resource arguments, 11 in
+  nested blocks) take one required sealed argument whose variants each set
+  one member, e.g. `CloudflareRuleset(accountIdOrZoneId:
+  RulesetZoneIdOption(zoneId: ...))`. `tool/extract_provider_hints.dart`
+  now reads the plugin-framework relation validators too and writes
+  `exactly_one_of_groups` into `source_cloudflare/hints/`: every
+  `ExactlyOneOf` set (attribute validators and `resourcevalidator` in
+  `ConfigValidators`), and every `AtLeastOneOf` set whose members all
+  pairwise `ConflictsWith`. A `ConflictsWith` set nothing requires one of
+  (for example `cloudflare_dns_record` `content` / `data`) accepts none, so
+  it stays as optional arguments and the tool only lists it. Every
+  cloudflare resource override sets `deriveExactlyOne: true` (and the lane
+  scaffold fills it for new types), so a re-extraction at a later pin seals
+  new groups in the same bump. The migration manifest derives the sealed
+  shapes; the round-trip gate stays green. Synth output is unchanged. See
+  `MIGRATING.md`.
+
 ## [0.30.0] - 2026-09-28
 
 Lockstep release across the workspace. `terradart_hcl` and `terradart_migrate` ship on pub.dev for the first time; `terradart-migrate` installs with `dart pub global activate terradart_migrate`. **Breaking** — `terradart_google` / `terradart_google_beta` move to `hashicorp/google` 8.x (22 removed factories, 16 beta → GA promotions, sealed write-only secrets; existing root modules need `terraform init -upgrade`, and removed types must leave state first), Cloudflare follows 5.26.0, and Cloudflare, Appwrite and AWS inputs with a fixed value set become enums; AWS exactly-one groups are sealed. `terradart-coverage` is retired and four `terradart-migrate` flags are gone. Read the upgrade steps in [MIGRATING.md](MIGRATING.md) before bumping. The `terradart_google` catalog is **1359 curated resource factories + 468 data sources** (1827 entries).

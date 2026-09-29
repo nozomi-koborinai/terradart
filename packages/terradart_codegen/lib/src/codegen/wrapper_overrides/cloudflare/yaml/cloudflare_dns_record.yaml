@@ -3,6 +3,7 @@ deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
+deriveExactlyOne: true
 
 curatedDoc: |-
   /// Cloudflare **DNS record** — points a name inside a zone at your
