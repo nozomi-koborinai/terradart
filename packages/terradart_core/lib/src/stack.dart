@@ -237,11 +237,14 @@ abstract base class Stack {
   /// `owner.attr` when [value] references a field its owner marks
   /// sensitive, else `null`.
   static String? _sensitiveFieldRead(TfArg<Object?> value) {
-    if (value case TfArgRef(ref: AttributeRef(:final owner, :final attr))) {
-      // ignore: invalid_use_of_protected_member
-      if (owner is Resource && owner.sensitiveFields.contains(attr)) {
-        return '${owner.tfAddress}.$attr';
-      }
+    final (owner, attr) = switch (value) {
+      TfArgRef(ref: AttributeRef(:final owner, :final attr)) => (owner, attr),
+      TfArgRef(ref: DataRef(:final owner, :final attr)) => (owner, attr),
+      _ => (null, null),
+    };
+    // ignore: invalid_use_of_protected_member
+    if (owner is Resource && owner.sensitiveFields.contains(attr)) {
+      return '${owner.tfAddress}.$attr';
     }
     return null;
   }

@@ -259,6 +259,18 @@ void main() {
         );
       });
 
+      test('a map key Terraform would interpolate', () {
+        final stack = _stack();
+        final topic = _topic(stack, {
+          'labels': TfArg.literal<Map<String, String>>({r'${var.k}': 'v'}),
+        });
+        stack.addConstant(
+          'x',
+          .ref(TfRef.attribute<Map<String, String>>(topic, 'labels')),
+        );
+        expect(stack.synth, _stateError('a literal holding a reference'));
+      });
+
       test('a value of another type', () {
         expectFailure(const TfArgLiteral<int>(3), 'is a String');
       });
@@ -275,6 +287,18 @@ void main() {
           'x',
           .ref(TfRef.attribute<String>(version, 'secret_data')),
         );
+        expect(stack.synth, _stateError('sensitive field'));
+      });
+
+      test('a sensitive field of a data source', () {
+        final stack = _stack();
+        final secret = stack.addData(
+          FakeSecretData(
+            localName: 's',
+            argMap: const {'plaintext': TfArgLiteral<String>('pw')},
+          ),
+        );
+        stack.addConstant('x', .ref(TfRef.data<String>(secret, 'plaintext')));
         expect(stack.synth, _stateError('sensitive field'));
       });
 
@@ -346,6 +370,25 @@ void main() {
       );
       stack.addOutput('pw', .ref(ref), sensitive: true);
       expect(stack.outputs.keys, ['pw']);
+    });
+
+    test('requires sensitive: true for a data source sensitive field', () {
+      final stack = _plainStack();
+      final secret = stack.addData(
+        FakeSecretData(localName: 's', argMap: const {}),
+      );
+      final ref = TfRef.data<String>(secret, 'plaintext');
+      expect(
+        () => stack.addOutput('pw', .ref(ref)),
+        _argumentError('sensitive: true'),
+      );
+      expect(
+        () => stack.addOutput(
+          'pw2',
+          .ref(TfRef.attribute<String>(secret, 'plaintext')),
+        ),
+        _argumentError('sensitive: true'),
+      );
     });
 
     test('synth rejects an undeclared variable in an output', () {

@@ -94,20 +94,20 @@ abstract final class AppExportsEmitter {
       ResourceRef() => throw StateError('unreachable: checked in addConstant'),
     };
     final address = ref.bareAddress;
+    // ignore: invalid_use_of_protected_member
+    if (owner is Resource && owner.sensitiveFields.contains(attr)) {
+      throw StateError(
+        'Constant "$name" reads $address, a sensitive field; a secret '
+        'never becomes a Dart constant. Use '
+        "addOutput('<name>', .ref(...), sensitive: true) or read it at "
+        'runtime.',
+      );
+    }
     final Map<String, TfArg<dynamic>?> argMap;
     switch (owner) {
-      case Resource() when stack.resources.contains(owner):
-        // ignore: invalid_use_of_protected_member
-        if (owner.sensitiveFields.contains(attr)) {
-          throw StateError(
-            'Constant "$name" reads $address, a sensitive field; a secret '
-            'never becomes a Dart constant. Use '
-            "addOutput('<name>', .ref(...), sensitive: true) or read it at "
-            'runtime.',
-          );
-        }
-        argMap = owner.argMap;
       case Data() when stack.dataSources.contains(owner):
+        argMap = owner.argMap;
+      case Resource() when owner is! Data && stack.resources.contains(owner):
         argMap = owner.argMap;
       default:
         throw StateError(
@@ -157,7 +157,10 @@ abstract final class AppExportsEmitter {
         final out = {
           for (final MapEntry(:key, value: v) in value.entries) key: _plain(v),
         };
-        return out.values.contains(_notPlain) ? _notPlain : out;
+        final templatedKey = value.keys.any(
+          (k) => k is String && hasTemplateSequence(k),
+        );
+        return templatedKey || out.values.contains(_notPlain) ? _notPlain : out;
       default:
         return value;
     }

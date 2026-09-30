@@ -94,6 +94,14 @@ final class FakeSecretVersion extends Resource {
   Set<String> get sensitiveFields => const {'secret_data'};
 }
 
+final class FakeSecretData extends Data {
+  FakeSecretData({required super.localName, required super.argMap})
+    : super(terraformType: 'google_kms_secret');
+
+  @override
+  Set<String> get sensitiveFields => const {'plaintext'};
+}
+
 final class FakeProjectData extends Data {
   FakeProjectData({
     required super.localName,
