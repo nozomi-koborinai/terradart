@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- 11,760 new `<name>Ref` getters, one per input a resource or data source takes (`TfRef<String> get scopeIdRef`), so another argument, an output or a constant reads what the input is set to with `.ref(...)`.
 - **Breaking** — 1,142 value-list fields in helper classes take their element type: `TfArg<List<String>>` / `TfArg<List<num>>` instead of `TfArg<List<Object?>>`. Five QuickSight helpers shared by blocks of one shape split where the element type tells the blocks apart (string parameter `defaultValues`, `decimalParameters` / `integerParameters`). Synth output is unchanged. See `MIGRATING.md`.
 - Every resource has a `ref` getter returning `RefTo<ItsClass>`, and so does every data source that reads a resource of this package — the reference the arguments naming another resource take.
 - **Breaking** — 1,140 arguments that name another resource (IAM role, KMS key, S3 bucket, subnet, security group, VPC, CloudWatch log group, SNS topic and Lambda function) take a `RefTo<Target>` instead of a `TfArg<String>`: `AwsLambdaFunction(role: role.ref)`, `subnetIds: TfArg.literal([a.ref, b.ref])`. The argument picks the attribute it emits; `.literal(...)`, `.variable(...)`, `.expression(...)` and `.arg(...)` take a value outside the Stack, and `.pinned('attr')` keeps emitting another attribute. See `MIGRATING.md`.
