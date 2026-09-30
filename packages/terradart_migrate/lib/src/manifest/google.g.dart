@@ -14357,6 +14357,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'unenroll_location',
+          dartName: 'unenrollLocation',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'deletion_policy',
           dartName: 'deletionPolicy',
           kind: MigrateSlotKind.scalar,
@@ -14370,15 +14377,81 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           dartType: 'String',
         ),
-        MigrateSlot(
-          tfName: 'unenroll_location',
-          dartName: 'unenrollLocation',
-          kind: MigrateSlotKind.scalar,
-          required: false,
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'authorization_type',
+          dartName: 'authorizationType',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'client_id',
+          dartName: 'clientId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'data_refresh_type',
+          dartName: 'dataRefreshType',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'default_data_refresh_window_days',
+          dartName: 'defaultDataRefreshWindowDays',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'default_schedule',
+          dartName: 'defaultSchedule',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'description',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'help_url',
+          dartName: 'helpUrl',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'manual_runs_disabled',
+          dartName: 'manualRunsDisabled',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'minimum_schedule_interval',
+          dartName: 'minimumScheduleInterval',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'parameters',
+          dartName: 'parameters',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(
+          tfName: 'scopes',
+          dartName: 'scopes',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'supports_custom_schedule',
+          dartName: 'supportsCustomSchedule',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'update_deadline_seconds',
+          dartName: 'updateDeadlineSeconds',
+          dartType: 'num',
+        ),
       ],
-      getters: <MigrateGetter>[],
     ),
     MigrateEntry(
       tfType: 'google_bigquery_datapolicy_data_policy',
@@ -102204,6 +102277,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'agent_connectivity_template_id',
+          dartName: 'agentConnectivityTemplateId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'location',
+          dartName: 'location',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'access_path',
           dartName: 'accessPath',
           kind: MigrateSlotKind.enumValue,
@@ -102218,18 +102305,12 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'List<String>',
         ),
         MigrateSlot(
-          tfName: 'agent_connectivity_template_id',
-          dartName: 'agentConnectivityTemplateId',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'deletion_policy',
-          dartName: 'deletionPolicy',
-          kind: MigrateSlotKind.scalar,
+          tfName: 'egress_network_config',
+          dartName: 'egressNetworkConfig',
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'String',
+          wrapped: false,
+          helper: 'NetworkServicesAgentConnectivityTemplateEgressNetworkConfig',
         ),
         MigrateSlot(
           tfName: 'description',
@@ -102246,10 +102327,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, String>',
         ),
         MigrateSlot(
-          tfName: 'location',
-          dartName: 'location',
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
           kind: MigrateSlotKind.scalar,
-          required: true,
+          required: false,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -102259,16 +102340,32 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           dartType: 'String',
         ),
-        MigrateSlot(
-          tfName: 'egress_network_config',
-          dartName: 'egressNetworkConfig',
-          kind: MigrateSlotKind.helper,
-          required: false,
-          wrapped: false,
-          helper: 'NetworkServicesAgentConnectivityTemplateEgressNetworkConfig',
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'create_time',
+          dartName: 'createTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'effective_labels',
+          dartName: 'effectiveLabels',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'terraform_labels',
+          dartName: 'terraformLabels',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'update_time',
+          dartName: 'updateTime',
+          dartType: 'String',
         ),
       ],
-      getters: <MigrateGetter>[],
     ),
     MigrateEntry(
       tfType: 'google_network_services_agent_gateway',
@@ -124199,6 +124296,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
+          tfName: 'server_id',
+          dartName: 'serverId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'location',
+          dartName: 'location',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'access_type',
           dartName: 'accessType',
           kind: MigrateSlotKind.enumValue,
@@ -124213,16 +124324,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           wrapped: false,
           merged: true,
           variants: <String, String>{
-            'internal_config': 'StorageFtpServerInternalConfig',
-            'external_config': 'StorageFtpServerExternalConfig',
+            'internal_config': 'StorageFtpServerConfigInternalConfig',
+            'external_config': 'StorageFtpServerConfigExternalConfig',
           },
-        ),
-        MigrateSlot(
-          tfName: 'deletion_policy',
-          dartName: 'deletionPolicy',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'display_name',
@@ -124239,43 +124343,6 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, String>',
         ),
         MigrateSlot(
-          tfName: 'location',
-          dartName: 'location',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'project',
-          dartName: 'project',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'server_id',
-          dartName: 'serverId',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-      ],
-      getters: <MigrateGetter>[],
-    ),
-    MigrateEntry(
-      tfType: 'google_storage_ftp_user',
-      className: 'GoogleStorageFtpUser',
-      barrel: 'storage',
-      kind: CatalogKind.resource,
-      slots: <MigrateSlot>[
-        MigrateSlot(
-          tfName: 'customer_service_account',
-          dartName: 'customerServiceAccount',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
           tfName: 'deletion_policy',
           dartName: 'deletionPolicy',
           kind: MigrateSlotKind.scalar,
@@ -124283,26 +124350,33 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'labels',
-          dartName: 'labels',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'Map<String, String>',
-        ),
-        MigrateSlot(
-          tfName: 'location',
-          dartName: 'location',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
           tfName: 'project',
           dartName: 'project',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
         ),
+      ],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'effective_labels',
+          dartName: 'effectiveLabels',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'terraform_labels',
+          dartName: 'terraformLabels',
+          dartType: 'Map<String, String>',
+        ),
+      ],
+    ),
+    MigrateEntry(
+      tfType: 'google_storage_ftp_user',
+      className: 'GoogleStorageFtpUser',
+      barrel: 'storage',
+      kind: CatalogKind.resource,
+      slots: <MigrateSlot>[
         MigrateSlot(
           tfName: 'server_id',
           dartName: 'serverId',
@@ -124313,6 +124387,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'user_id',
           dartName: 'userId',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'location',
+          dartName: 'location',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'customer_service_account',
+          dartName: 'customerServiceAccount',
           kind: MigrateSlotKind.scalar,
           required: true,
           dartType: 'String',
@@ -124334,8 +124422,41 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           wrapped: false,
           helper: 'StorageFtpUserUserCredentials',
         ),
+        MigrateSlot(
+          tfName: 'labels',
+          dartName: 'labels',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'effective_labels',
+          dartName: 'effectiveLabels',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'terraform_labels',
+          dartName: 'terraformLabels',
+          dartType: 'Map<String, String>',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_storage_hmac_key',
@@ -128218,31 +128339,10 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
       kind: CatalogKind.resource,
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'deletion_policy',
-          dartName: 'deletionPolicy',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'description',
-          dartName: 'description',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
-        ),
-        MigrateSlot(
           tfName: 'display_name',
           dartName: 'displayName',
           kind: MigrateSlotKind.scalar,
           required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'project',
-          dartName: 'project',
-          kind: MigrateSlotKind.scalar,
-          required: false,
           dartType: 'String',
         ),
         MigrateSlot(
@@ -128253,12 +128353,11 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'encryption_spec',
-          dartName: 'encryptionSpec',
-          kind: MigrateSlotKind.helper,
+          tfName: 'description',
+          dartName: 'description',
+          kind: MigrateSlotKind.scalar,
           required: false,
-          wrapped: false,
-          helper: 'VertexAiRagCorpusEncryptionSpec',
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: '',
@@ -128273,8 +128372,48 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
                 'VertexAiRagCorpusBackendVertexAiSearchConfig',
           },
         ),
+        MigrateSlot(
+          tfName: 'encryption_spec',
+          dartName: 'encryptionSpec',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'VertexAiRagCorpusEncryptionSpec',
+        ),
+        MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
       ],
-      getters: <MigrateGetter>[],
+      getters: <MigrateGetter>[
+        MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
+        MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'corpus_status',
+          dartName: 'corpusStatus',
+          dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(
+          tfName: 'create_time',
+          dartName: 'createTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'update_time',
+          dartName: 'updateTime',
+          dartType: 'String',
+        ),
+      ],
     ),
     MigrateEntry(
       tfType: 'google_vertex_ai_rag_engine_config',
@@ -272725,36 +272864,35 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
             ),
           ],
         ),
-    'StorageFtpServerConsumerAccept': MigrateHelper(
-      className: 'StorageFtpServerConsumerAccept',
+    'StorageFtpServerConfigExternalConfig': MigrateHelper(
+      className: 'StorageFtpServerConfigExternalConfig',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'project',
-          dartName: 'project',
-          kind: MigrateSlotKind.scalar,
+          tfName: 'external_config',
+          dartName: 'externalConfig',
+          kind: MigrateSlotKind.helper,
           required: true,
-          dartType: 'String',
-        ),
-        MigrateSlot(
-          tfName: 'connection_limit',
-          dartName: 'connectionLimit',
-          kind: MigrateSlotKind.scalar,
-          required: true,
-          dartType: 'int',
+          wrapped: false,
+          positional: true,
+          helper: 'StorageFtpServerExternalConfig',
         ),
       ],
+      shorthand: 'externalConfig',
     ),
-    'StorageFtpServerConsumerReject': MigrateHelper(
-      className: 'StorageFtpServerConsumerReject',
+    'StorageFtpServerConfigInternalConfig': MigrateHelper(
+      className: 'StorageFtpServerConfigInternalConfig',
       slots: <MigrateSlot>[
         MigrateSlot(
-          tfName: 'project',
-          dartName: 'project',
-          kind: MigrateSlotKind.scalar,
+          tfName: 'internal_config',
+          dartName: 'internalConfig',
+          kind: MigrateSlotKind.helper,
           required: true,
-          dartType: 'String',
+          wrapped: false,
+          positional: true,
+          helper: 'StorageFtpServerInternalConfig',
         ),
       ],
+      shorthand: 'internalConfig',
     ),
     'StorageFtpServerExternalConfig': MigrateHelper(
       className: 'StorageFtpServerExternalConfig',
@@ -272764,10 +272902,9 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartName: 'allowedCidrBlocks',
           kind: MigrateSlotKind.scalar,
           required: false,
-          dartType: 'List<String>',
+          dartType: 'List<Object?>',
         ),
       ],
-      shorthand: 'external',
     ),
     'StorageFtpServerInternalConfig': MigrateHelper(
       className: 'StorageFtpServerInternalConfig',
@@ -272779,7 +272916,7 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'StorageFtpServerConsumerAccept',
+          helper: 'StorageFtpServerInternalConfigConsumerAcceptList',
         ),
         MigrateSlot(
           tfName: 'consumer_reject_list',
@@ -272788,10 +272925,40 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           required: false,
           repeated: true,
           wrapped: false,
-          helper: 'StorageFtpServerConsumerReject',
+          helper: 'StorageFtpServerInternalConfigConsumerRejectList',
         ),
       ],
-      shorthand: 'internal',
+    ),
+    'StorageFtpServerInternalConfigConsumerAcceptList': MigrateHelper(
+      className: 'StorageFtpServerInternalConfigConsumerAcceptList',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'connection_limit',
+          dartName: 'connectionLimit',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'StorageFtpServerInternalConfigConsumerRejectList': MigrateHelper(
+      className: 'StorageFtpServerInternalConfigConsumerRejectList',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
     ),
     'StorageFtpUserStorageDirectoryMappings': MigrateHelper(
       className: 'StorageFtpUserStorageDirectoryMappings',

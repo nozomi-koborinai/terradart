@@ -17,95 +17,134 @@ enum StorageFtpServerAccessType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// The `internal_config` | `external_config` exactly-one-of group.
+/// Exactly one of `internal_config`, `external_config` on `google_storage_ftp_server`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.internalConfig(...)`.
 sealed class StorageFtpServerConfig {
   const StorageFtpServerConfig();
 
-  /// `internal_config`: Private Service Connect access for the listed consumer projects.
-  const factory StorageFtpServerConfig.internal({
-    List<StorageFtpServerConsumerAccept>? consumerAcceptList,
-    List<StorageFtpServerConsumerReject>? consumerRejectList,
-  }) = StorageFtpServerInternalConfig;
+  /// Sets `internal_config`.
+  const factory StorageFtpServerConfig.internalConfig(
+    StorageFtpServerInternalConfig internalConfig,
+  ) = StorageFtpServerConfigInternalConfig;
 
-  /// `external_config`: public access from the allowed CIDR ranges.
-  const factory StorageFtpServerConfig.external({
-    TfArg<List<String>>? allowedCidrBlocks,
-  }) = StorageFtpServerExternalConfig;
+  /// Sets `external_config`.
+  const factory StorageFtpServerConfig.externalConfig(
+    StorageFtpServerExternalConfig externalConfig,
+  ) = StorageFtpServerConfigExternalConfig;
 
+  /// The Terraform argument this choice sets.
   String get blockKey;
 
   Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
 }
 
-/// `internal_config`: Private Service Connect access for the listed
-/// consumer projects.
-@immutable
-final class StorageFtpServerInternalConfig extends StorageFtpServerConfig {
-  const StorageFtpServerInternalConfig({
-    this.consumerAcceptList,
-    this.consumerRejectList,
-  });
+/// The [StorageFtpServerConfig.internalConfig] choice: sets `internal_config`.
+final class StorageFtpServerConfigInternalConfig
+    extends StorageFtpServerConfig {
+  const StorageFtpServerConfigInternalConfig(this.internalConfig);
 
-  final List<StorageFtpServerConsumerAccept>? consumerAcceptList;
-  final List<StorageFtpServerConsumerReject>? consumerRejectList;
+  final StorageFtpServerInternalConfig internalConfig;
 
   @override
   String get blockKey => 'internal_config';
 
   @override
-  Map<String, Object?> encode() => {
-    if (consumerAcceptList != null)
-      'consumer_accept_list': consumerAcceptList!
-          .map((e) => e.encode())
-          .toList(),
-    if (consumerRejectList != null)
-      'consumer_reject_list': consumerRejectList!
-          .map((e) => e.encode())
-          .toList(),
+  Map<String, Object?> encode() => {'internal_config': internalConfig.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'internal_config': TfArg.literal(internalConfig.encode()),
   };
 }
 
-/// `external_config`: public access from the allowed CIDR ranges.
-@immutable
-final class StorageFtpServerExternalConfig extends StorageFtpServerConfig {
-  const StorageFtpServerExternalConfig({this.allowedCidrBlocks});
+/// The [StorageFtpServerConfig.externalConfig] choice: sets `external_config`.
+final class StorageFtpServerConfigExternalConfig
+    extends StorageFtpServerConfig {
+  const StorageFtpServerConfigExternalConfig(this.externalConfig);
 
-  final TfArg<List<String>>? allowedCidrBlocks;
+  final StorageFtpServerExternalConfig externalConfig;
 
   @override
   String get blockKey => 'external_config';
 
   @override
-  Map<String, Object?> encode() => {
-    if (allowedCidrBlocks != null)
-      'allowed_cidr_blocks': allowedCidrBlocks!.toTfJson(),
+  Map<String, Object?> encode() => {'external_config': externalConfig.encode()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'external_config': TfArg.literal(externalConfig.encode()),
   };
 }
 
-/// One `internal_config.consumer_accept_list` entry.
+/// Typed helper for the `external_config` block of
+/// `google_storage_ftp_server` (derived from provider schema).
 @immutable
-class StorageFtpServerConsumerAccept {
-  const StorageFtpServerConsumerAccept({
-    required this.project,
-    required this.connectionLimit,
+final class StorageFtpServerExternalConfig {
+  const StorageFtpServerExternalConfig({this.allowedCidrBlocks});
+
+  final TfArg<List<Object?>>? allowedCidrBlocks;
+
+  Map<String, Object?> encode() => {
+    'allowed_cidr_blocks': ?allowedCidrBlocks?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `internal_config` block of
+/// `google_storage_ftp_server` (derived from provider schema).
+@immutable
+final class StorageFtpServerInternalConfig {
+  const StorageFtpServerInternalConfig({
+    this.consumerAcceptList,
+    this.consumerRejectList,
   });
 
-  /// `projects/{project}`.
-  final TfArg<String> project;
-  final TfArg<int> connectionLimit;
+  final List<StorageFtpServerInternalConfigConsumerAcceptList>?
+  consumerAcceptList;
+
+  final List<StorageFtpServerInternalConfigConsumerRejectList>?
+  consumerRejectList;
 
   Map<String, Object?> encode() => {
-    'project': project.toTfJson(),
-    'connection_limit': connectionLimit.toTfJson(),
+    if (consumerAcceptList != null)
+      'consumer_accept_list': [for (final e in consumerAcceptList!) e.encode()],
+    if (consumerRejectList != null)
+      'consumer_reject_list': [for (final e in consumerRejectList!) e.encode()],
   };
 }
 
-/// One `internal_config.consumer_reject_list` entry.
+/// Typed helper for the `internal_config.consumer_accept_list` block of
+/// `google_storage_ftp_server` (derived from provider schema).
 @immutable
-class StorageFtpServerConsumerReject {
-  const StorageFtpServerConsumerReject({required this.project});
+final class StorageFtpServerInternalConfigConsumerAcceptList {
+  const StorageFtpServerInternalConfigConsumerAcceptList({
+    required this.connectionLimit,
+    required this.project,
+  });
 
-  /// `projects/{project}`.
+  final TfArg<num> connectionLimit;
+
+  final TfArg<String> project;
+
+  Map<String, Object?> encode() => {
+    'connection_limit': connectionLimit.toTfJson(),
+    'project': project.toTfJson(),
+  };
+}
+
+/// Typed helper for the `internal_config.consumer_reject_list` block of
+/// `google_storage_ftp_server` (derived from provider schema).
+@immutable
+final class StorageFtpServerInternalConfigConsumerRejectList {
+  const StorageFtpServerInternalConfigConsumerRejectList({
+    required this.project,
+  });
+
   final TfArg<String> project;
 
   Map<String, Object?> encode() => {'project': project.toTfJson()};
@@ -116,24 +155,23 @@ class StorageFtpServerConsumerReject {
 /// An SFTP Server resource supporting internal and external connectivity
 /// configurations.
 ///
-/// `config` is the MM `exactly_one_of` group (`internal_config` |
-/// `external_config`), sealed: pass [StorageFtpServerInternalConfig] with
-/// `accessType: StorageFtpServerAccessType.internal` or
-/// [StorageFtpServerExternalConfig] with
-/// `accessType: StorageFtpServerAccessType.external`.
+/// `config` carries the access mode: `.internalConfig(...)` for Private
+/// Service Connect consumers (with `accessType: .internal`) or
+/// `.externalConfig(...)` for allowed CIDR ranges (with
+/// `accessType: .external`).
 final class GoogleStorageFtpServer extends Resource {
   static const String tfType = 'google_storage_ftp_server';
 
   GoogleStorageFtpServer({
     required super.localName,
+    required TfArg<String> serverId,
+    required TfArg<String> location,
     required TfArg<StorageFtpServerAccessType> accessType,
     required StorageFtpServerConfig config,
-    TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,
-    required TfArg<String> location,
+    TfArg<String>? deletionPolicy,
     TfArg<String>? project,
-    required TfArg<String> serverId,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -141,14 +179,14 @@ final class GoogleStorageFtpServer extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
+           'server_id': serverId,
+           'location': location,
            'access_type': accessType,
-           config.blockKey: TfArg.literal(config.encode()),
-           'deletion_policy': ?deletionPolicy,
+           ...config.argMap,
            'display_name': ?displayName,
            'labels': ?labels,
-           'location': location,
+           'deletion_policy': ?deletionPolicy,
            'project': ?project,
-           'server_id': serverId,
          },
        );
 
@@ -158,4 +196,15 @@ final class GoogleStorageFtpServer extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleStorageFtpServer>`.
   RefTo<GoogleStorageFtpServer> get ref => RefTo.of(this);
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 }
