@@ -1523,6 +1523,33 @@ parameter declaration's `defaultValues` takes
 `integerParameters` take `Quicksight{Analysis,Dashboard}ParametersDecimalParameters`
 (was `...ParametersDateTimeParameters`).
 
+### Remaining platform, serverless and operations blocks use derived helper types
+
+**Breaking (`terradart_google`)** — every remaining Google override
+without hand-written helpers (Cloud Run, Cloud Functions, App Engine,
+GKE, GKE Hub, GKE Backup, Cloud Deploy, Cloud Build, Artifact Registry,
+Vertex AI, Gemini, Eventarc, Service Directory, Monitoring, Logging,
+Observability, Endpoints, Apigee, Workstations, Workbench, Colab, Cloud
+Tasks, Chronicle, and the other platform services) now sets
+`deriveNestedTypes`, so the blocks that still took `TfArg<Map>` take the
+helper `terradart wrap` derives from the provider schema. Most are IAM
+conditions: `condition` on the 63 IAM member / binding factories of these
+services takes `<Resource>Condition`. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `condition: .literal({'title': 't', 'expression': 'e'})` | `condition: CloudRunV2ServiceIamMemberCondition(title: .literal('t'), expression: .literal('e'))` |
+| `dispatchRules: .literal([{'domain': '*', 'path': '/*', 'service': 'default'}])` | `dispatchRules: [AppEngineApplicationUrlDispatchRulesDispatchRules(domain: .literal('*'), path: .literal('/*'), service: .literal('default'))]` |
+| `serialPipeline: .literal({'stages': [...]})` | `serialPipeline: ClouddeployDeliveryPipelineSerialPipeline(stages: [...])` |
+| `bigQuery: .literal({'big_query_source': {'input_uri': uri}, ...})` | `bigQuery: VertexAiFeatureGroupBigQuery(bigQuerySource: VertexAiFeatureGroupBigQueryBigQuerySource(inputUri: .literal(uri)), ...)` |
+
+`GoogleGkeHubMembership` `endpoint` / `authority` and
+`GoogleGkeHubRolloutSequence` `stages` / `autoUpgradeConfig` /
+`ignoredClustersSelector` are typed the same way.
+
+Newly exposed inputs: `GoogleMonitoringCustomService.telemetry`, and
+`condition` on the three Cloud Deploy IAM members.
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it
