@@ -179,10 +179,13 @@ export 'src/vertex_ai/google_vertex_ai_rag_corpus.dart'
 export 'src/vertex_ai/google_vertex_ai_rag_engine_config.dart'
     show
         GoogleVertexAiRagEngineConfig,
-        VertexAiRagEngineConfigBasic,
-        VertexAiRagEngineConfigManagedDbTier,
-        VertexAiRagEngineConfigScaled,
-        VertexAiRagEngineConfigUnprovisioned;
+        VertexAiRagEngineConfigRagManagedDbConfig,
+        VertexAiRagEngineConfigRagManagedDbConfigBasic,
+        VertexAiRagEngineConfigRagManagedDbConfigBasicChoice,
+        VertexAiRagEngineConfigRagManagedDbConfigScaled,
+        VertexAiRagEngineConfigRagManagedDbConfigScaledChoice,
+        VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned,
+        VertexAiRagEngineConfigRagManagedDbConfigUnprovisionedChoice;
 export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
     show
         GoogleVertexAiReasoningEngine,

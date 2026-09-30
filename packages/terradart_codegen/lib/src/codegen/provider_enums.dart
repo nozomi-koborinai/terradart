@@ -142,8 +142,10 @@ final class ProviderEnums {
   }
 
   /// These groups plus each override's `exactlyOneOf` / `atMostOneOf`
-  /// entries. [error] hears an entry that names no input of [defs] or that
-  /// these groups already hold, as `type [members]: reason`.
+  /// entries. An `exactlyOneOf` entry that matches an at-most-one group
+  /// tightens it to exactly one (the API requires a member the group source
+  /// only marks exclusive). [error] hears an entry that names no input of
+  /// [defs] or that these groups already hold, as `type [members]: reason`.
   ProviderEnums withOverrideGroups(
     Map<String, WrapperOverride> overrides,
     Map<String, ResourceDef> defs, {
@@ -175,6 +177,17 @@ final class ProviderEnums {
           continue;
         }
         final key = sealedGroupKeyOf(const [], members);
+        final atMostIndex =
+            atMost[type]?.indexWhere(
+              (g) => sealedGroupKeyOf(const [], g) == key,
+            ) ??
+            -1;
+        if (identical(into, exactly) && atMostIndex >= 0) {
+          atMost[type]!.removeAt(atMostIndex);
+          if (atMost[type]!.isEmpty) atMost.remove(type);
+          (into[type] ??= []).add(members);
+          continue;
+        }
         final declared = [
           ...?exactlyOneGroups[type],
           ...?atMostOneGroups[type],

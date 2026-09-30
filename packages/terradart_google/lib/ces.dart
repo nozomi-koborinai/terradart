@@ -34,7 +34,6 @@ export 'src/ces/google_ces_app.dart'
         CesAppAudioProcessingConfigBargeInConfig,
         CesAppAudioProcessingConfigSynthesizeSpeechConfigs,
         CesAppClientCertificateSettings,
-        CesAppDataStoreSettings,
         CesAppDefaultChannelProfile,
         CesAppDefaultChannelProfilePersonaProperty,
         CesAppDefaultChannelProfileWebWidgetConfig,

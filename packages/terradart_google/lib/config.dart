@@ -5,11 +5,12 @@ library;
 
 export 'src/config/google_config_deployment.dart'
     show
-        ConfigDeploymentBlueprintFromGcs,
-        ConfigDeploymentBlueprintFromGit,
-        ConfigDeploymentBlueprintSource,
         ConfigDeploymentDeletionPolicy,
-        ConfigDeploymentInputValue,
         ConfigDeploymentQuotaValidation,
         ConfigDeploymentTerraformBlueprint,
+        ConfigDeploymentTerraformBlueprintGitSource,
+        ConfigDeploymentTerraformBlueprintInputValues,
+        ConfigDeploymentTerraformBlueprintSource,
+        ConfigDeploymentTerraformBlueprintSourceGcsSource,
+        ConfigDeploymentTerraformBlueprintSourceGitSource,
         GoogleConfigDeployment;

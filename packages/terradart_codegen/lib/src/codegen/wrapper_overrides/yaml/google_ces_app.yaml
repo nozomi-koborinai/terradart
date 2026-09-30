@@ -53,7 +53,6 @@ paramOrder:
   - audio_processing_config
   - logging_settings
   - client_certificate_settings
-  - data_store_settings
   - default_channel_profile
   - evaluation_metrics_thresholds
   - variable_declarations

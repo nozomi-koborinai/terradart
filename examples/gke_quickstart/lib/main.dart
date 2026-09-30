@@ -86,9 +86,10 @@ final class GkeQuickstartStack extends Stack {
         ),
         // Backup for GKE (Wave 10) requires the agent addon on the cluster.
         addonsConfig: ContainerClusterAddonsConfig(
-          gkeBackupAgentConfig: ContainerClusterAddonsConfigGkeBackupAgentConfig(
-            enabled: .literal(true),
-          ),
+          gkeBackupAgentConfig:
+              ContainerClusterAddonsConfigGkeBackupAgentConfig(
+                enabled: .literal(true),
+              ),
         ),
         dependsOn: [
           ResourceDependency(apiContainer),
@@ -204,14 +205,11 @@ final class GkeQuickstartStack extends Stack {
         // restore mode for those resources to be set, otherwise the API
         // rejects creation with MISSING_NAMESPACED_RESOURCE_RESTORE_MODE.
         restoreConfig: GkeBackupRestorePlanRestoreConfig(
-          allNamespaces: .literal(true),
-          namespacedResourceRestoreMode:
-              GkeBackupRestorePlanNamespacedResourceRestoreMode
-                  .deleteAndRestore,
+          namespaces: .allNamespaces(.literal(true)),
+          namespacedResourceRestoreMode: .literal(.deleteAndRestore),
           // Required whenever namespaced resources are selected; this demo has
           // no persistent volumes to restore.
-          volumeDataRestorePolicy: GkeBackupRestorePlanVolumeDataRestorePolicy
-              .noVolumeDataRestoration,
+          volumeDataRestorePolicy: .literal(.noVolumeDataRestoration),
         ),
         dependsOn: [
           ResourceDependency(apiGkeBackup),

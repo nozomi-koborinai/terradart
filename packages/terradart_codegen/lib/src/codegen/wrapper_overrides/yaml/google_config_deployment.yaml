@@ -2,6 +2,7 @@ outputDir: config
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 curatedDoc: |-
@@ -22,17 +23,19 @@ curatedDoc: |-
   ///     'projects/my-project/serviceAccounts/im-sa@my-project.iam.gserviceaccount.com',
   ///   ),
   ///   terraformBlueprint: ConfigDeploymentTerraformBlueprint(
-  ///     source: ConfigDeploymentBlueprintFromGit(
-  ///       repo: TfArg.literal(
-  ///         'https://github.com/terraform-google-modules/terraform-google-network',
+  ///     source: .gitSource(
+  ///       ConfigDeploymentTerraformBlueprintGitSource(
+  ///         repo: .literal(
+  ///           'https://github.com/terraform-google-modules/terraform-google-network',
+  ///         ),
+  ///         directory: .literal('modules/vpc'),
+  ///         ref: .literal('main'),
   ///       ),
-  ///       directory: TfArg.literal('modules/vpc'),
-  ///       ref: TfArg.literal('main'),
   ///     ),
   ///     inputValues: [
-  ///       ConfigDeploymentInputValue(
-  ///         variableName: TfArg.literal('project_id'),
-  ///         inputValue: TfArg.literal('"my-project"'),
+  ///       ConfigDeploymentTerraformBlueprintInputValues(
+  ///         variableName: .literal('project_id'),
+  ///         inputValue: .literal('"my-project"'),
   ///       ),
   ///     ],
   ///   ),
@@ -83,103 +86,3 @@ prelude: |
     @override
     final String terraformValue;
   }
-
-  /// Blueprint input variable (`terraform_blueprint.input_values` entry).
-  @immutable
-  class ConfigDeploymentInputValue {
-    const ConfigDeploymentInputValue({
-      required this.variableName,
-      required this.inputValue,
-    });
-
-    final TfArg<String> variableName;
-    final TfArg<String> inputValue;
-
-    Map<String, Object?> toArgMap() => {
-      'variable_name': variableName.toTfJson(),
-      'input_value': inputValue.toTfJson(),
-    };
-  }
-
-  /// Sealed dispatch for `terraform_blueprint` source — `gcs_source` or
-  /// `git_source` (exactly one required).
-  sealed class ConfigDeploymentBlueprintSource {
-    const ConfigDeploymentBlueprintSource();
-
-    /// GCS object URI containing a zipped Terraform blueprint.
-    const factory ConfigDeploymentBlueprintSource.gcs({
-      required TfArg<String> gcsSource,
-    }) = ConfigDeploymentBlueprintFromGcs;
-
-    /// Public Git repository containing the blueprint.
-    const factory ConfigDeploymentBlueprintSource.git({
-      required TfArg<String> repo,
-      TfArg<String>? directory,
-      TfArg<String>? ref,
-    }) = ConfigDeploymentBlueprintFromGit;
-
-    Map<String, Object?> encode();
-  }
-
-  /// GCS object URI containing a zipped Terraform blueprint.
-  @immutable
-  final class ConfigDeploymentBlueprintFromGcs
-      extends ConfigDeploymentBlueprintSource {
-    const ConfigDeploymentBlueprintFromGcs({required this.gcsSource});
-
-    final TfArg<String> gcsSource;
-
-    @override
-    Map<String, Object?> encode() => {
-      'gcs_source': gcsSource.toTfJson(),
-    };
-  }
-
-  /// Public Git repository containing the blueprint.
-  @immutable
-  final class ConfigDeploymentBlueprintFromGit
-      extends ConfigDeploymentBlueprintSource {
-    const ConfigDeploymentBlueprintFromGit({
-      required this.repo,
-      this.directory,
-      this.ref,
-    });
-
-    final TfArg<String> repo;
-    final TfArg<String>? directory;
-    final TfArg<String>? ref;
-
-    @override
-    Map<String, Object?> encode() => {
-      'git_source': [
-        {
-          'repo': repo.toTfJson(),
-          if (directory != null) 'directory': directory!.toTfJson(),
-          if (ref != null) 'ref': ref!.toTfJson(),
-        },
-      ],
-    };
-  }
-
-  /// `terraform_blueprint` block — blueprint source plus optional input values.
-  @immutable
-  class ConfigDeploymentTerraformBlueprint {
-    const ConfigDeploymentTerraformBlueprint({
-      required this.source,
-      this.inputValues,
-    });
-
-    final ConfigDeploymentBlueprintSource source;
-    final List<ConfigDeploymentInputValue>? inputValues;
-
-    Map<String, Object?> toArgMap() => {
-      ...source.encode(),
-      if (inputValues != null)
-        'input_values': inputValues!.map((v) => v.toArgMap()).toList(),
-    };
-  }
-
-customSlots:
-  terraform_blueprint:
-    paramDeclaration: 'required ConfigDeploymentTerraformBlueprint terraformBlueprint'
-    argMapEntry: "'terraform_blueprint': TfArg.literal([terraformBlueprint.toArgMap()]),"
