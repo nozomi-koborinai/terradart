@@ -14,13 +14,13 @@ final class GoogleObservabilityLink extends Resource {
 
   GoogleObservabilityLink({
     required super.localName,
-    required TfArg<String> bucket,
-    required TfArg<String> dataset,
-    TfArg<String>? deletionPolicy,
-    TfArg<String>? description,
-    TfArg<String>? displayName,
     required TfArg<String> linkId,
     required TfArg<String> location,
+    required TfArg<String> bucket,
+    required TfArg<String> dataset,
+    TfArg<String>? displayName,
+    TfArg<String>? description,
+    TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -29,13 +29,13 @@ final class GoogleObservabilityLink extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'bucket': bucket,
-           'dataset': dataset,
-           'deletion_policy': ?deletionPolicy,
-           'description': ?description,
-           'display_name': ?displayName,
            'link_id': linkId,
            'location': location,
+           'bucket': bucket,
+           'dataset': dataset,
+           'display_name': ?displayName,
+           'description': ?description,
+           'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
        );
@@ -46,4 +46,13 @@ final class GoogleObservabilityLink extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleObservabilityLink>`.
   RefTo<GoogleObservabilityLink> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 }

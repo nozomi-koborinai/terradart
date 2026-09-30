@@ -8,17 +8,22 @@ const Set<String> _googleNetworkManagementNetworkMonitoringProviderSensitive =
     <String>{};
 
 /// Factory wrapper for `google_network_management_network_monitoring_provider`.
+///
+/// A Network Monitoring Provider resource that allows third-party network
+/// monitoring solutions to integrate with Google Cloud Network Management. A
+/// provider acts as the parent resource for MonitoringPoints, NetworkPaths, and
+/// WebPaths.
 final class GoogleNetworkManagementNetworkMonitoringProvider extends Resource {
   static const String tfType =
       'google_network_management_network_monitoring_provider';
 
   GoogleNetworkManagementNetworkMonitoringProvider({
     required super.localName,
-    TfArg<String>? deletionPolicy,
-    required TfArg<String> location,
     required TfArg<String> networkMonitoringProviderId,
-    TfArg<String>? project,
+    required TfArg<String> location,
     required TfArg<String> providerType,
+    TfArg<String>? deletionPolicy,
+    TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -26,11 +31,11 @@ final class GoogleNetworkManagementNetworkMonitoringProvider extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'deletion_policy': ?deletionPolicy,
-           'location': location,
            'network_monitoring_provider_id': networkMonitoringProviderId,
-           'project': ?project,
+           'location': location,
            'provider_type': providerType,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 
@@ -42,4 +47,27 @@ final class GoogleNetworkManagementNetworkMonitoringProvider extends Resource {
   /// `RefTo<GoogleNetworkManagementNetworkMonitoringProvider>`.
   RefTo<GoogleNetworkManagementNetworkMonitoringProvider> get ref =>
       RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `errors` attribute.
+  TfRef<List<String>> get errors =>
+      TfRef.attribute<List<String>>(this, 'errors');
+
+  /// Reference to `provider_uri` attribute.
+  TfRef<String> get providerUri =>
+      TfRef.attribute<String>(this, 'provider_uri');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }
