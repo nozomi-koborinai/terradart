@@ -1,11 +1,35 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_dataproc_metastore_service_iam_binding`.
 const Set<String> _googleDataprocMetastoreServiceIamBindingSensitive =
     <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_dataproc_metastore_service_iam_binding` (derived from provider schema).
+@immutable
+final class DataprocMetastoreServiceIamBindingCondition {
+  const DataprocMetastoreServiceIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_dataproc_metastore_service_iam_binding`.
 ///
@@ -23,7 +47,7 @@ final class GoogleDataprocMetastoreServiceIamBinding extends Resource {
     required TfArg<String> role,
     required TfArg<List<String>> members,
     TfArg<String>? location,
-    TfArg<Map<String, dynamic>>? condition,
+    DataprocMetastoreServiceIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -36,7 +60,8 @@ final class GoogleDataprocMetastoreServiceIamBinding extends Resource {
            'role': role,
            'members': members,
            'location': ?location,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
            'project': ?project,
          },
        );

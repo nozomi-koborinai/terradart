@@ -1,10 +1,30 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_dataplex_data_product_data_asset`.
 const Set<String> _googleDataplexDataProductDataAssetSensitive = <String>{};
+
+/// Typed helper for the `access_group_configs` block of
+/// `google_dataplex_data_product_data_asset` (derived from provider schema).
+@immutable
+final class DataplexDataProductDataAssetAccessGroupConfigs {
+  const DataplexDataProductDataAssetAccessGroupConfigs({
+    required this.accessGroup,
+    this.iamRoles,
+  });
+
+  final TfArg<String> accessGroup;
+
+  final TfArg<List<String>>? iamRoles;
+
+  Map<String, Object?> encode() => {
+    'access_group': accessGroup.toTfJson(),
+    'iam_roles': ?iamRoles?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_dataplex_data_product_data_asset`.
 ///
@@ -19,7 +39,7 @@ final class GoogleDataplexDataProductDataAsset extends Resource {
     required TfArg<String> location,
     required TfArg<String> resource,
     TfArg<Map<String, String>>? labels,
-    TfArg<List<Map<String, dynamic>>>? accessGroupConfigs,
+    List<DataplexDataProductDataAssetAccessGroupConfigs>? accessGroupConfigs,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -34,7 +54,10 @@ final class GoogleDataplexDataProductDataAsset extends Resource {
            'location': location,
            'resource': resource,
            'labels': ?labels,
-           'access_group_configs': ?accessGroupConfigs,
+           if (accessGroupConfigs != null)
+             'access_group_configs': TfArg.literal([
+               for (final e in accessGroupConfigs) e.encode(),
+             ]),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },

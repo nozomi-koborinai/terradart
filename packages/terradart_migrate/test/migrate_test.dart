@@ -37,7 +37,8 @@ const _google = {
 void main() {
   group('passthrough slots', () {
     // The two passthrough parameter shapes a catalog carries: a
-    // `TfArg<Map<String, dynamic>>` (an IAM `condition`) and a bare
+    // `TfArg<Map<String, dynamic>>` (`aws_s3_bucket`'s deprecated
+    // `object_lock_configuration`) and a bare
     // `Map<String, Object?>` spread into its block (`advancedExtra` on a
     // hand-written helper). The manifest's `wrapped` flag tells them apart;
     // emitting `TfArg.literal` for the bare one produced a Stack that did
@@ -130,16 +131,22 @@ void main() {
 
     test('a TfArg<Map> parameter keeps TfArg.literal, from tf.json and HCL', () {
       const expected =
-          "condition: .literal({r'title': r'expires', r'expression': r'true'})";
+          "objectLockConfiguration: .literal({r'object_lock_enabled': r'Enabled'})";
+      final aws = {
+        'required_providers': {
+          'aws': {
+            'source': 'hashicorp/aws',
+            'version': kAwsProviderVersionConstraint,
+          },
+        },
+      };
       final json = _migrateJson({
-        'terraform': _google,
+        'terraform': aws,
         'resource': {
-          'google_pubsub_topic_iam_member': {
-            'viewer': {
-              'topic': 'orders',
-              'role': 'roles/pubsub.viewer',
-              'member': 'user:a@example.com',
-              'condition': {'title': 'expires', 'expression': 'true'},
+          'aws_s3_bucket': {
+            'logs': {
+              'bucket': 'logs',
+              'object_lock_configuration': {'object_lock_enabled': 'Enabled'},
             },
           },
         },
@@ -151,17 +158,14 @@ void main() {
       final hcl = _migrateHcl('''
 terraform {
   required_providers {
-    google = { source = "hashicorp/google", version = "~> 8.0" }
+    aws = { source = "hashicorp/aws", version = "$kAwsProviderVersionConstraint" }
   }
 }
 
-resource "google_pubsub_topic_iam_member" "viewer" {
-  topic  = "orders"
-  role   = "roles/pubsub.viewer"
-  member = "user:a@example.com"
-  condition {
-    title      = "expires"
-    expression = "true"
+resource "aws_s3_bucket" "logs" {
+  bucket = "logs"
+  object_lock_configuration {
+    object_lock_enabled = "Enabled"
   }
 }
 ''');
@@ -170,15 +174,13 @@ resource "google_pubsub_topic_iam_member" "viewer" {
 
       // The tf.json list form of a block written once fits a Map parameter.
       final listForm = _migrateJson({
-        'terraform': _google,
+        'terraform': aws,
         'resource': {
-          'google_pubsub_topic_iam_member': {
-            'viewer': {
-              'topic': 'orders',
-              'role': 'roles/pubsub.viewer',
-              'member': 'user:a@example.com',
-              'condition': [
-                {'title': 'expires', 'expression': 'true'},
+          'aws_s3_bucket': {
+            'logs': {
+              'bucket': 'logs',
+              'object_lock_configuration': [
+                {'object_lock_enabled': 'Enabled'},
               ],
             },
           },

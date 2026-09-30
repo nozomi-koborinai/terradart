@@ -119,9 +119,13 @@ export 'src/discovery_engine/google_discovery_engine_search_engine.dart'
         DiscoveryEngineSearchEngineSearchTier,
         GoogleDiscoveryEngineSearchEngine;
 export 'src/discovery_engine/google_discovery_engine_search_engine_iam_binding.dart'
-    show GoogleDiscoveryEngineSearchEngineIamBinding;
+    show
+        DiscoveryEngineSearchEngineIamBindingCondition,
+        GoogleDiscoveryEngineSearchEngineIamBinding;
 export 'src/discovery_engine/google_discovery_engine_search_engine_iam_member.dart'
-    show GoogleDiscoveryEngineSearchEngineIamMember;
+    show
+        DiscoveryEngineSearchEngineIamMemberCondition,
+        GoogleDiscoveryEngineSearchEngineIamMember;
 export 'src/discovery_engine/google_discovery_engine_search_engine_iam_policy.dart'
     show GoogleDiscoveryEngineSearchEngineIamPolicy;
 export 'src/discovery_engine/google_discovery_engine_serving_config.dart'

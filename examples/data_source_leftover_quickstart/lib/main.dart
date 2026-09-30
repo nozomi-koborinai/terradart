@@ -638,7 +638,7 @@ final class DataSourceLeftoverStack extends Stack {
     addData(
       DataGoogleCloudIdentityGroupLookup(
         localName: 'cloud_identity_group_lookup',
-        groupKey: TfArg.literal(<String, dynamic>{'id': leftover}),
+        groupKey: DataCloudIdentityGroupLookupGroupKey(id: .literal(leftover)),
       ),
     );
 

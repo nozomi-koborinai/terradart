@@ -16,9 +16,13 @@ export 'src/dataplex/google_data_lineage_config.dart'
 export 'src/dataplex/google_dataplex_aspect_type.dart'
     show DataplexAspectTypeDataClassification, GoogleDataplexAspectType;
 export 'src/dataplex/google_dataplex_aspect_type_iam_binding.dart'
-    show GoogleDataplexAspectTypeIamBinding;
+    show
+        DataplexAspectTypeIamBindingCondition,
+        GoogleDataplexAspectTypeIamBinding;
 export 'src/dataplex/google_dataplex_aspect_type_iam_member.dart'
-    show GoogleDataplexAspectTypeIamMember;
+    show
+        DataplexAspectTypeIamMemberCondition,
+        GoogleDataplexAspectTypeIamMember;
 export 'src/dataplex/google_dataplex_aspect_type_iam_policy.dart'
     show GoogleDataplexAspectTypeIamPolicy;
 export 'src/dataplex/google_dataplex_asset.dart'
@@ -31,9 +35,9 @@ export 'src/dataplex/google_dataplex_asset.dart'
         DataplexAssetResourceSpecType,
         GoogleDataplexAsset;
 export 'src/dataplex/google_dataplex_asset_iam_binding.dart'
-    show GoogleDataplexAssetIamBinding;
+    show DataplexAssetIamBindingCondition, GoogleDataplexAssetIamBinding;
 export 'src/dataplex/google_dataplex_asset_iam_member.dart'
-    show GoogleDataplexAssetIamMember;
+    show DataplexAssetIamMemberCondition, GoogleDataplexAssetIamMember;
 export 'src/dataplex/google_dataplex_asset_iam_policy.dart'
     show GoogleDataplexAssetIamPolicy;
 export 'src/dataplex/google_dataplex_data_product.dart'
@@ -43,11 +47,17 @@ export 'src/dataplex/google_dataplex_data_product.dart'
         DataplexDataProductAccessGroupsPrincipal,
         GoogleDataplexDataProduct;
 export 'src/dataplex/google_dataplex_data_product_data_asset.dart'
-    show GoogleDataplexDataProductDataAsset;
+    show
+        DataplexDataProductDataAssetAccessGroupConfigs,
+        GoogleDataplexDataProductDataAsset;
 export 'src/dataplex/google_dataplex_data_product_iam_binding.dart'
-    show GoogleDataplexDataProductIamBinding;
+    show
+        DataplexDataProductIamBindingCondition,
+        GoogleDataplexDataProductIamBinding;
 export 'src/dataplex/google_dataplex_data_product_iam_member.dart'
-    show GoogleDataplexDataProductIamMember;
+    show
+        DataplexDataProductIamMemberCondition,
+        GoogleDataplexDataProductIamMember;
 export 'src/dataplex/google_dataplex_data_product_iam_policy.dart'
     show GoogleDataplexDataProductIamPolicy;
 export 'src/dataplex/google_dataplex_datascan.dart'
@@ -79,18 +89,28 @@ export 'src/dataplex/google_dataplex_datascan.dart'
         DataplexDatascanType,
         GoogleDataplexDatascan;
 export 'src/dataplex/google_dataplex_datascan_iam_binding.dart'
-    show GoogleDataplexDatascanIamBinding;
+    show DataplexDatascanIamBindingCondition, GoogleDataplexDatascanIamBinding;
 export 'src/dataplex/google_dataplex_datascan_iam_member.dart'
-    show GoogleDataplexDatascanIamMember;
+    show DataplexDatascanIamMemberCondition, GoogleDataplexDatascanIamMember;
 export 'src/dataplex/google_dataplex_datascan_iam_policy.dart'
     show GoogleDataplexDatascanIamPolicy;
-export 'src/dataplex/google_dataplex_entry.dart' show GoogleDataplexEntry;
+export 'src/dataplex/google_dataplex_entry.dart'
+    show
+        DataplexEntryAspects,
+        DataplexEntryAspectsAspect,
+        DataplexEntryEntrySource,
+        DataplexEntryEntrySourceAncestors,
+        GoogleDataplexEntry;
 export 'src/dataplex/google_dataplex_entry_group.dart'
     show GoogleDataplexEntryGroup;
 export 'src/dataplex/google_dataplex_entry_group_iam_binding.dart'
-    show GoogleDataplexEntryGroupIamBinding;
+    show
+        DataplexEntryGroupIamBindingCondition,
+        GoogleDataplexEntryGroupIamBinding;
 export 'src/dataplex/google_dataplex_entry_group_iam_member.dart'
-    show GoogleDataplexEntryGroupIamMember;
+    show
+        DataplexEntryGroupIamMemberCondition,
+        GoogleDataplexEntryGroupIamMember;
 export 'src/dataplex/google_dataplex_entry_group_iam_policy.dart'
     show GoogleDataplexEntryGroupIamPolicy;
 export 'src/dataplex/google_dataplex_entry_link.dart'
@@ -101,29 +121,32 @@ export 'src/dataplex/google_dataplex_entry_link.dart'
         DataplexEntryLinkEntryReferencesType,
         GoogleDataplexEntryLink;
 export 'src/dataplex/google_dataplex_entry_type.dart'
-    show GoogleDataplexEntryType;
+    show DataplexEntryTypeRequiredAspects, GoogleDataplexEntryType;
 export 'src/dataplex/google_dataplex_entry_type_iam_binding.dart'
-    show GoogleDataplexEntryTypeIamBinding;
+    show
+        DataplexEntryTypeIamBindingCondition,
+        GoogleDataplexEntryTypeIamBinding;
 export 'src/dataplex/google_dataplex_entry_type_iam_member.dart'
-    show GoogleDataplexEntryTypeIamMember;
+    show DataplexEntryTypeIamMemberCondition, GoogleDataplexEntryTypeIamMember;
 export 'src/dataplex/google_dataplex_entry_type_iam_policy.dart'
     show GoogleDataplexEntryTypeIamPolicy;
 export 'src/dataplex/google_dataplex_glossary.dart' show GoogleDataplexGlossary;
 export 'src/dataplex/google_dataplex_glossary_category.dart'
     show GoogleDataplexGlossaryCategory;
 export 'src/dataplex/google_dataplex_glossary_iam_binding.dart'
-    show GoogleDataplexGlossaryIamBinding;
+    show DataplexGlossaryIamBindingCondition, GoogleDataplexGlossaryIamBinding;
 export 'src/dataplex/google_dataplex_glossary_iam_member.dart'
-    show GoogleDataplexGlossaryIamMember;
+    show DataplexGlossaryIamMemberCondition, GoogleDataplexGlossaryIamMember;
 export 'src/dataplex/google_dataplex_glossary_iam_policy.dart'
     show GoogleDataplexGlossaryIamPolicy;
 export 'src/dataplex/google_dataplex_glossary_term.dart'
     show GoogleDataplexGlossaryTerm;
-export 'src/dataplex/google_dataplex_lake.dart' show GoogleDataplexLake;
+export 'src/dataplex/google_dataplex_lake.dart'
+    show DataplexLakeMetastore, GoogleDataplexLake;
 export 'src/dataplex/google_dataplex_lake_iam_binding.dart'
-    show GoogleDataplexLakeIamBinding;
+    show DataplexLakeIamBindingCondition, GoogleDataplexLakeIamBinding;
 export 'src/dataplex/google_dataplex_lake_iam_member.dart'
-    show GoogleDataplexLakeIamMember;
+    show DataplexLakeIamMemberCondition, GoogleDataplexLakeIamMember;
 export 'src/dataplex/google_dataplex_lake_iam_policy.dart'
     show GoogleDataplexLakeIamPolicy;
 export 'src/dataplex/google_dataplex_metadata_feed.dart'
@@ -163,9 +186,9 @@ export 'src/dataplex/google_dataplex_task.dart'
         DataplexTaskWorkloadSpark,
         GoogleDataplexTask;
 export 'src/dataplex/google_dataplex_task_iam_binding.dart'
-    show GoogleDataplexTaskIamBinding;
+    show DataplexTaskIamBindingCondition, GoogleDataplexTaskIamBinding;
 export 'src/dataplex/google_dataplex_task_iam_member.dart'
-    show GoogleDataplexTaskIamMember;
+    show DataplexTaskIamMemberCondition, GoogleDataplexTaskIamMember;
 export 'src/dataplex/google_dataplex_task_iam_policy.dart'
     show GoogleDataplexTaskIamPolicy;
 export 'src/dataplex/google_dataplex_zone.dart'
@@ -178,8 +201,8 @@ export 'src/dataplex/google_dataplex_zone.dart'
         DataplexZoneType,
         GoogleDataplexZone;
 export 'src/dataplex/google_dataplex_zone_iam_binding.dart'
-    show GoogleDataplexZoneIamBinding;
+    show DataplexZoneIamBindingCondition, GoogleDataplexZoneIamBinding;
 export 'src/dataplex/google_dataplex_zone_iam_member.dart'
-    show GoogleDataplexZoneIamMember;
+    show DataplexZoneIamMemberCondition, GoogleDataplexZoneIamMember;
 export 'src/dataplex/google_dataplex_zone_iam_policy.dart'
     show GoogleDataplexZoneIamPolicy;

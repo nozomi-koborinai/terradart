@@ -15,9 +15,13 @@ export 'src/bigquery/google_bigquery_analytics_hub_data_exchange.dart'
         BigqueryAnalyticsHubDataExchangeSharingEnvironmentConfigDefaultExchangeConfigChoice,
         GoogleBigqueryAnalyticsHubDataExchange;
 export 'src/bigquery/google_bigquery_analytics_hub_data_exchange_iam_binding.dart'
-    show GoogleBigqueryAnalyticsHubDataExchangeIamBinding;
+    show
+        BigqueryAnalyticsHubDataExchangeIamBindingCondition,
+        GoogleBigqueryAnalyticsHubDataExchangeIamBinding;
 export 'src/bigquery/google_bigquery_analytics_hub_data_exchange_iam_member.dart'
-    show GoogleBigqueryAnalyticsHubDataExchangeIamMember;
+    show
+        BigqueryAnalyticsHubDataExchangeIamMemberCondition,
+        GoogleBigqueryAnalyticsHubDataExchangeIamMember;
 export 'src/bigquery/google_bigquery_analytics_hub_data_exchange_iam_policy.dart'
     show GoogleBigqueryAnalyticsHubDataExchangeIamPolicy;
 export 'src/bigquery/google_bigquery_analytics_hub_listing.dart'
@@ -36,9 +40,13 @@ export 'src/bigquery/google_bigquery_analytics_hub_listing.dart'
         BigqueryAnalyticsHubListingSourcePubsubTopic,
         GoogleBigqueryAnalyticsHubListing;
 export 'src/bigquery/google_bigquery_analytics_hub_listing_iam_binding.dart'
-    show GoogleBigqueryAnalyticsHubListingIamBinding;
+    show
+        BigqueryAnalyticsHubListingIamBindingCondition,
+        GoogleBigqueryAnalyticsHubListingIamBinding;
 export 'src/bigquery/google_bigquery_analytics_hub_listing_iam_member.dart'
-    show GoogleBigqueryAnalyticsHubListingIamMember;
+    show
+        BigqueryAnalyticsHubListingIamMemberCondition,
+        GoogleBigqueryAnalyticsHubListingIamMember;
 export 'src/bigquery/google_bigquery_analytics_hub_listing_iam_policy.dart'
     show GoogleBigqueryAnalyticsHubListingIamPolicy;
 export 'src/bigquery/google_bigquery_analytics_hub_listing_subscription.dart'
@@ -96,9 +104,13 @@ export 'src/bigquery/google_bigquery_connection.dart'
         BigqueryConnectionSparkSparkHistoryServerConfig,
         GoogleBigqueryConnection;
 export 'src/bigquery/google_bigquery_connection_iam_binding.dart'
-    show GoogleBigqueryConnectionIamBinding;
+    show
+        BigqueryConnectionIamBindingCondition,
+        GoogleBigqueryConnectionIamBinding;
 export 'src/bigquery/google_bigquery_connection_iam_member.dart'
-    show GoogleBigqueryConnectionIamMember;
+    show
+        BigqueryConnectionIamMemberCondition,
+        GoogleBigqueryConnectionIamMember;
 export 'src/bigquery/google_bigquery_connection_iam_policy.dart'
     show GoogleBigqueryConnectionIamPolicy;
 export 'src/bigquery/google_bigquery_data_transfer_config.dart'
@@ -122,9 +134,13 @@ export 'src/bigquery/google_bigquery_datapolicy_data_policy.dart'
         BigqueryDatapolicyDataPolicyType,
         GoogleBigqueryDatapolicyDataPolicy;
 export 'src/bigquery/google_bigquery_datapolicy_data_policy_iam_binding.dart'
-    show GoogleBigqueryDatapolicyDataPolicyIamBinding;
+    show
+        BigqueryDatapolicyDataPolicyIamBindingCondition,
+        GoogleBigqueryDatapolicyDataPolicyIamBinding;
 export 'src/bigquery/google_bigquery_datapolicy_data_policy_iam_member.dart'
-    show GoogleBigqueryDatapolicyDataPolicyIamMember;
+    show
+        BigqueryDatapolicyDataPolicyIamMemberCondition,
+        GoogleBigqueryDatapolicyDataPolicyIamMember;
 export 'src/bigquery/google_bigquery_datapolicy_data_policy_iam_policy.dart'
     show GoogleBigqueryDatapolicyDataPolicyIamPolicy;
 export 'src/bigquery/google_bigquery_datapolicyv2_data_policy.dart'
@@ -135,9 +151,13 @@ export 'src/bigquery/google_bigquery_datapolicyv2_data_policy.dart'
         BigqueryDatapolicyv2DataPolicyType,
         GoogleBigqueryDatapolicyv2DataPolicy;
 export 'src/bigquery/google_bigquery_datapolicyv2_data_policy_iam_binding.dart'
-    show GoogleBigqueryDatapolicyv2DataPolicyIamBinding;
+    show
+        BigqueryDatapolicyv2DataPolicyIamBindingCondition,
+        GoogleBigqueryDatapolicyv2DataPolicyIamBinding;
 export 'src/bigquery/google_bigquery_datapolicyv2_data_policy_iam_member.dart'
-    show GoogleBigqueryDatapolicyv2DataPolicyIamMember;
+    show
+        BigqueryDatapolicyv2DataPolicyIamMemberCondition,
+        GoogleBigqueryDatapolicyv2DataPolicyIamMember;
 export 'src/bigquery/google_bigquery_datapolicyv2_data_policy_iam_policy.dart'
     show GoogleBigqueryDatapolicyv2DataPolicyIamPolicy;
 export 'src/bigquery/google_bigquery_dataset.dart'
@@ -180,9 +200,9 @@ export 'src/bigquery/google_bigquery_dataset_access.dart'
         BigqueryDatasetAccessPredefinedGroup,
         GoogleBigqueryDatasetAccess;
 export 'src/bigquery/google_bigquery_dataset_iam_binding.dart'
-    show GoogleBigqueryDatasetIamBinding;
+    show BigqueryDatasetIamBindingCondition, GoogleBigqueryDatasetIamBinding;
 export 'src/bigquery/google_bigquery_dataset_iam_member.dart'
-    show GoogleBigqueryDatasetIamMember;
+    show BigqueryDatasetIamMemberCondition, GoogleBigqueryDatasetIamMember;
 export 'src/bigquery/google_bigquery_dataset_iam_policy.dart'
     show GoogleBigqueryDatasetIamPolicy;
 export 'src/bigquery/google_bigquery_job.dart'
@@ -252,9 +272,9 @@ export 'src/bigquery/google_bigquery_routine.dart'
         BigqueryRoutineType,
         GoogleBigqueryRoutine;
 export 'src/bigquery/google_bigquery_routine_iam_binding.dart'
-    show GoogleBigqueryRoutineIamBinding;
+    show BigqueryRoutineIamBindingCondition, GoogleBigqueryRoutineIamBinding;
 export 'src/bigquery/google_bigquery_routine_iam_member.dart'
-    show GoogleBigqueryRoutineIamMember;
+    show BigqueryRoutineIamMemberCondition, GoogleBigqueryRoutineIamMember;
 export 'src/bigquery/google_bigquery_routine_iam_policy.dart'
     show GoogleBigqueryRoutineIamPolicy;
 export 'src/bigquery/google_bigquery_row_access_policy.dart'
@@ -297,8 +317,8 @@ export 'src/bigquery/google_bigquery_table.dart'
         TableMetadataView,
         TimePartitioningType;
 export 'src/bigquery/google_bigquery_table_iam_binding.dart'
-    show GoogleBigqueryTableIamBinding;
+    show BigqueryTableIamBindingCondition, GoogleBigqueryTableIamBinding;
 export 'src/bigquery/google_bigquery_table_iam_member.dart'
-    show GoogleBigqueryTableIamMember;
+    show BigqueryTableIamMemberCondition, GoogleBigqueryTableIamMember;
 export 'src/bigquery/google_bigquery_table_iam_policy.dart'
     show GoogleBigqueryTableIamPolicy;

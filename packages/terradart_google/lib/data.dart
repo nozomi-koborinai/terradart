@@ -162,7 +162,9 @@ export 'src/data/google_client_openid_userinfo.dart'
 export 'src/data/google_cloud_asset_search_all_resources.dart'
     show DataGoogleCloudAssetSearchAllResources;
 export 'src/data/google_cloud_identity_group_lookup.dart'
-    show DataGoogleCloudIdentityGroupLookup;
+    show
+        DataCloudIdentityGroupLookupGroupKey,
+        DataGoogleCloudIdentityGroupLookup;
 export 'src/data/google_cloud_identity_group_memberships.dart'
     show DataGoogleCloudIdentityGroupMemberships;
 export 'src/data/google_cloud_identity_group_transitive_memberships.dart'
@@ -498,7 +500,13 @@ export 'src/data/google_healthcare_fhir_store_iam_policy.dart'
     show DataGoogleHealthcareFhirStoreIamPolicy;
 export 'src/data/google_healthcare_hl7_v2_store_iam_policy.dart'
     show DataGoogleHealthcareHl7V2StoreIamPolicy;
-export 'src/data/google_iam_policy.dart' show DataGoogleIamPolicy;
+export 'src/data/google_iam_policy.dart'
+    show
+        DataGoogleIamPolicy,
+        DataIamPolicyAuditConfig,
+        DataIamPolicyAuditConfigAuditLogConfigs,
+        DataIamPolicyBinding,
+        DataIamPolicyBindingCondition;
 export 'src/data/google_iam_role.dart' show DataGoogleIamRole;
 export 'src/data/google_iam_testable_permissions.dart'
     show DataGoogleIamTestablePermissions;
