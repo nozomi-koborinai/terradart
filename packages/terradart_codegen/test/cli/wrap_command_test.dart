@@ -436,10 +436,36 @@ hashicorp/google:
     attribute: id
     slots: '(^|\\.)network\$'
 ''');
+          final overridesDir = Directory(p.join(tmpOut.path, 'overrides'))
+            ..createSync();
+          File(
+            p.join(overridesDir.path, 'google_network_connectivity_spoke.yaml'),
+          ).writeAsStringSync('''
+outputDir: network
+prelude: |
+  final class ProducerVpc {
+    const ProducerVpc({required this.network, required this.peering});
+    final TfArg<String> network;
+    final TfArg<String> peering;
+    Map<String, Object?> encode() =>
+        {'network': network.toTfJson(), 'peering': peering.toTfJson()};
+  }
+customSlots:
+  linked_producer_vpc_network:
+    paramDeclaration: 'ProducerVpc? linkedProducerVpcNetwork'
+    argMapEntry: "if (linkedProducerVpcNetwork != null) 'linked_producer_vpc_network': TfArg.literal([linkedProducerVpcNetwork.encode()]),"
+paramOrder:
+  - name
+  - location
+  - hub
+  - linked_producer_vpc_network
+''');
           final err = StringBuffer();
           final code = await IOOverrides.runZoned(
             () => buildCliRunner().run(
               wrapArgs(tmpOut, [
+                '--overrides-root',
+                overridesDir.path,
                 '--only',
                 'google_network_connectivity_spoke',
                 '--reference-targets',

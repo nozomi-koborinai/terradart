@@ -1496,6 +1496,45 @@ Newly exposed inputs: `GoogleContainerCluster` `dataplaneOptimizationMode`,
 | `user: .literal('alice@example.com')` | `principal: .user(.literal('alice@example.com'))` |
 | *(not available)* | `principal: .group(.literal('team@example.com'))` |
 
+### The last hand-written Google sealed helpers are derived
+
+**Breaking (`terradart_google`)** — six factories that kept a hand-written
+sealed helper take the helpers `terradart wrap` derives, so each variant
+wraps the block's own helper class and nested enum fields are
+`TfArg<Enum>`. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `ConfigDeploymentTerraformBlueprint(source: .git(repo: ..., ref: ...))` | `ConfigDeploymentTerraformBlueprint(source: .gitSource(ConfigDeploymentTerraformBlueprintGitSource(repo: ..., ref: ...)))` |
+| `source: .gcs(gcsSource: .literal('gs://b/bp.zip'))` | `source: .gcsSource(.literal('gs://b/bp.zip'))` |
+| `ConfigDeploymentInputValue(variableName: ..., inputValue: ...)` | `ConfigDeploymentTerraformBlueprintInputValues(variableName: ..., inputValue: ...)` |
+| `controlPlane: .remote(nodeLocation: ...)` | `controlPlane: .remote(EdgecontainerClusterControlPlaneRemote(nodeLocation: ...))` |
+| `EdgecontainerClusterSharedDeploymentPolicy.allowed` | `EdgecontainerClusterControlPlaneLocalSharedDeploymentPolicy.allowed` |
+| `source: .codebase(branch: .literal('main'))` | `source: .codebase(FirebaseAppHostingBuildSourceCodebase(branch: .literal('main')))` |
+| `GkeBackupRestorePlanRestoreConfig(allNamespaces: .literal(true), namespacedResourceRestoreMode: GkeBackupRestorePlanNamespacedResourceRestoreMode.deleteAndRestore)` | `GkeBackupRestorePlanRestoreConfig(namespaces: .allNamespaces(.literal(true)), namespacedResourceRestoreMode: .literal(.deleteAndRestore))` |
+| `ragManagedDbConfig: const .basic()` | `ragManagedDbConfig: const .basic(VertexAiRagEngineConfigRagManagedDbConfigBasic())` |
+| `attachment: .linkedVpcNetwork(uri: .ref(vpc.id))` | `attachment: .linkedVpcNetwork(NetworkConnectivitySpokeLinkedVpcNetwork(uri: .ref(vpc.id)))` |
+
+`GkeBackupRestorePlanRestoreConfig`'s five namespace selectors are one
+required sealed `namespaces` argument, and the restore plan's other hand
+enums are named after their block (`GkeBackupRestorePlanRestoreConfig*`).
+`GoogleEdgecontainerCluster.controlPlane` is optional, as in the provider
+schema. The spoke's `linked_producer_vpc_network` `network` takes
+`RefTo<GoogleComputeNetwork>`; `attachment` stays required.
+
+`GoogleIamWorkforcePoolProvider` takes `extendedAttributesOauth2Client` and
+`scimUsage` as one nullable sealed argument, because the API rejects a
+provider that sets both:
+
+| Before | After |
+|--------|-------|
+| `scimUsage: .literal(IamWorkforcePoolProviderScimUsage.enabledForGroups)` | `groupSource: .scimUsage(.literal(.enabledForGroups))` |
+| `extendedAttributesOauth2Client: IamWorkforcePoolProviderExtendedAttributesOauth2Client(...)` | `groupSource: .extendedAttributesOauth2Client(IamWorkforcePoolProviderExtendedAttributesOauth2Client(...))` |
+
+`GoogleCesApp` no longer takes `dataStoreSettings`, and
+`ChronicleFeedFailureDetails` is gone: both blocks are output-only, and
+the API ignored them.
+
 ### Value lists inside helper classes take their element type
 
 **Breaking (`terradart_google`, `terradart_google_beta`, `terradart_aws`,

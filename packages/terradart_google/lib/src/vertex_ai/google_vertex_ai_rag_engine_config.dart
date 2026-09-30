@@ -7,69 +7,103 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_vertex_ai_rag_engine_config`.
 const Set<String> _googleVertexAiRagEngineConfigSensitive = <String>{};
 
-// ===========================================================================
-// VertexAiRagEngineConfigManagedDbTier — sealed (Basic | Scaled | Unprovisioned)
-// ===========================================================================
+/// Exactly one of `scaled`, `basic`, `unprovisioned` on the `rag_managed_db_config` block of `google_vertex_ai_rag_engine_config`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.scaled(...)`.
+sealed class VertexAiRagEngineConfigRagManagedDbConfig {
+  const VertexAiRagEngineConfigRagManagedDbConfig();
 
-/// RagManagedDb tier for [GoogleVertexAiRagEngineConfig]. Sealed so the MM
-/// `exactly_one_of` under `rag_managed_db_config` is exhaustive at the type
-/// level. Each variant is an empty nested block (`allow_empty_object`).
-sealed class VertexAiRagEngineConfigManagedDbTier {
-  const VertexAiRagEngineConfigManagedDbTier();
+  /// Sets `scaled`.
+  const factory VertexAiRagEngineConfigRagManagedDbConfig.scaled(
+    VertexAiRagEngineConfigRagManagedDbConfigScaled scaled,
+  ) = VertexAiRagEngineConfigRagManagedDbConfigScaledChoice;
 
-  /// `basic` tier — cost-effective default for experiments / small data.
-  const factory VertexAiRagEngineConfigManagedDbTier.basic() =
-      VertexAiRagEngineConfigBasic;
+  /// Sets `basic`.
+  const factory VertexAiRagEngineConfigRagManagedDbConfig.basic(
+    VertexAiRagEngineConfigRagManagedDbConfigBasic basic,
+  ) = VertexAiRagEngineConfigRagManagedDbConfigBasicChoice;
 
-  /// `scaled` tier — production-grade performance with autoscaling.
-  const factory VertexAiRagEngineConfigManagedDbTier.scaled() =
-      VertexAiRagEngineConfigScaled;
+  /// Sets `unprovisioned`.
+  const factory VertexAiRagEngineConfigRagManagedDbConfig.unprovisioned(
+    VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned unprovisioned,
+  ) = VertexAiRagEngineConfigRagManagedDbConfigUnprovisionedChoice;
 
-  /// `unprovisioned` — disables RAG Engine and deletes managed data.
-  const factory VertexAiRagEngineConfigManagedDbTier.unprovisioned() =
-      VertexAiRagEngineConfigUnprovisioned;
+  /// The Terraform argument this choice sets.
+  String get blockKey;
 
-  /// Inner block key under `rag_managed_db_config` (`basic` / `scaled` /
-  /// `unprovisioned`).
-  String get tierKey;
-
-  /// Encodes as `rag_managed_db_config` list max 1:
-  /// `[{ <tierKey>: [{}] }]`.
-  List<Map<String, Object?>> encode() => [
-    {
-      tierKey: const [<String, Object?>{}],
-    },
-  ];
+  Map<String, Object?> encode();
 }
 
-/// `basic` tier — cost-effective default for experiments / small data.
-@immutable
-final class VertexAiRagEngineConfigBasic
-    extends VertexAiRagEngineConfigManagedDbTier {
-  const VertexAiRagEngineConfigBasic();
+/// The [VertexAiRagEngineConfigRagManagedDbConfig.scaled] choice: sets `scaled`.
+final class VertexAiRagEngineConfigRagManagedDbConfigScaledChoice
+    extends VertexAiRagEngineConfigRagManagedDbConfig {
+  const VertexAiRagEngineConfigRagManagedDbConfigScaledChoice(this.scaled);
+
+  final VertexAiRagEngineConfigRagManagedDbConfigScaled scaled;
 
   @override
-  String get tierKey => 'basic';
+  String get blockKey => 'scaled';
+
+  @override
+  Map<String, Object?> encode() => {'scaled': scaled.encode()};
 }
 
-/// `scaled` tier — production-grade performance with autoscaling.
-@immutable
-final class VertexAiRagEngineConfigScaled
-    extends VertexAiRagEngineConfigManagedDbTier {
-  const VertexAiRagEngineConfigScaled();
+/// The [VertexAiRagEngineConfigRagManagedDbConfig.basic] choice: sets `basic`.
+final class VertexAiRagEngineConfigRagManagedDbConfigBasicChoice
+    extends VertexAiRagEngineConfigRagManagedDbConfig {
+  const VertexAiRagEngineConfigRagManagedDbConfigBasicChoice(this.basic);
+
+  final VertexAiRagEngineConfigRagManagedDbConfigBasic basic;
 
   @override
-  String get tierKey => 'scaled';
+  String get blockKey => 'basic';
+
+  @override
+  Map<String, Object?> encode() => {'basic': basic.encode()};
 }
 
-/// `unprovisioned` — disables RAG Engine and deletes managed data.
-@immutable
-final class VertexAiRagEngineConfigUnprovisioned
-    extends VertexAiRagEngineConfigManagedDbTier {
-  const VertexAiRagEngineConfigUnprovisioned();
+/// The [VertexAiRagEngineConfigRagManagedDbConfig.unprovisioned] choice: sets `unprovisioned`.
+final class VertexAiRagEngineConfigRagManagedDbConfigUnprovisionedChoice
+    extends VertexAiRagEngineConfigRagManagedDbConfig {
+  const VertexAiRagEngineConfigRagManagedDbConfigUnprovisionedChoice(
+    this.unprovisioned,
+  );
+
+  final VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned unprovisioned;
 
   @override
-  String get tierKey => 'unprovisioned';
+  String get blockKey => 'unprovisioned';
+
+  @override
+  Map<String, Object?> encode() => {'unprovisioned': unprovisioned.encode()};
+}
+
+/// Typed helper for the `rag_managed_db_config.basic` block of
+/// `google_vertex_ai_rag_engine_config` (derived from provider schema).
+@immutable
+final class VertexAiRagEngineConfigRagManagedDbConfigBasic {
+  const VertexAiRagEngineConfigRagManagedDbConfigBasic();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `rag_managed_db_config.scaled` block of
+/// `google_vertex_ai_rag_engine_config` (derived from provider schema).
+@immutable
+final class VertexAiRagEngineConfigRagManagedDbConfigScaled {
+  const VertexAiRagEngineConfigRagManagedDbConfigScaled();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `rag_managed_db_config.unprovisioned` block of
+/// `google_vertex_ai_rag_engine_config` (derived from provider schema).
+@immutable
+final class VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned {
+  const VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned();
+
+  Map<String, Object?> encode() => {};
 }
 
 /// Factory wrapper for `google_vertex_ai_rag_engine_config`.
@@ -85,11 +119,11 @@ final class VertexAiRagEngineConfigUnprovisioned
 /// Vertex AI **RAG Engine config** — project/location singleton that sets
 /// the RagManagedDb compute tier for Vertex AI RAG Engine.
 ///
-/// Choose exactly one [VertexAiRagEngineConfigManagedDbTier]:
-/// - [VertexAiRagEngineConfigBasic] — default low-compute tier.
-/// - [VertexAiRagEngineConfigScaled] — production autoscaling tier.
-/// - [VertexAiRagEngineConfigUnprovisioned] — disables RAG Engine and
-///   deletes managed data (halts billing; data is not recoverable).
+/// [ragManagedDbConfig] is exactly one tier:
+/// - `.basic(...)` — default low-compute tier.
+/// - `.scaled(...)` — production autoscaling tier.
+/// - `.unprovisioned(...)` — disables RAG Engine and deletes managed data
+///   (halts billing; data is not recoverable).
 ///
 /// **Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` has **no
 /// RagManagedDb / RAG Engine SKU** after MCP `list_skus` (keywords
@@ -105,7 +139,9 @@ final class VertexAiRagEngineConfigUnprovisioned
 /// GoogleVertexAiRagEngineConfig(
 ///   localName: 'rag',
 ///   region: TfArg.literal('us-central1'),
-///   ragManagedDbConfig: const VertexAiRagEngineConfigBasic(),
+///   ragManagedDbConfig: const .basic(
+///     VertexAiRagEngineConfigRagManagedDbConfigBasic(),
+///   ),
 /// );
 /// ```
 final class GoogleVertexAiRagEngineConfig extends Resource {
@@ -114,7 +150,7 @@ final class GoogleVertexAiRagEngineConfig extends Resource {
   GoogleVertexAiRagEngineConfig({
     required super.localName,
     required TfArg<String> region,
-    required VertexAiRagEngineConfigManagedDbTier ragManagedDbConfig,
+    required VertexAiRagEngineConfigRagManagedDbConfig ragManagedDbConfig,
     TfArg<String>? project,
     TfArg<String>? deletionPolicy,
     super.lifecycle,

@@ -59,19 +59,21 @@ final class ConfigDeploymentStack extends Stack {
         serviceAccount: actuationSa.ref,
         forceDestroy: .literal(true),
         terraformBlueprint: ConfigDeploymentTerraformBlueprint(
-          source: .git(
-            repo: .literal(
-              'https://github.com/terraform-google-modules/terraform-google-network',
+          source: .gitSource(
+            ConfigDeploymentTerraformBlueprintGitSource(
+              repo: .literal(
+                'https://github.com/terraform-google-modules/terraform-google-network',
+              ),
+              directory: .literal('modules/vpc'),
+              ref: .literal('main'),
             ),
-            directory: .literal('modules/vpc'),
-            ref: .literal('main'),
           ),
           inputValues: [
-            ConfigDeploymentInputValue(
+            ConfigDeploymentTerraformBlueprintInputValues(
               variableName: .literal('project_id'),
               inputValue: .literal(jsonEncode(projectId)),
             ),
-            ConfigDeploymentInputValue(
+            ConfigDeploymentTerraformBlueprintInputValues(
               variableName: .literal('network_name'),
               inputValue: .literal(jsonEncode('terradart-test-network')),
             ),

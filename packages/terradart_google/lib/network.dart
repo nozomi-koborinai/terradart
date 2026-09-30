@@ -76,15 +76,21 @@ export 'src/network/google_network_connectivity_spoke.dart'
     show
         GoogleNetworkConnectivitySpoke,
         NetworkConnectivitySpokeAttachment,
+        NetworkConnectivitySpokeAttachmentGateway,
+        NetworkConnectivitySpokeAttachmentLinkedInterconnectAttachments,
+        NetworkConnectivitySpokeAttachmentLinkedProducerVpcNetwork,
+        NetworkConnectivitySpokeAttachmentLinkedRouterApplianceInstances,
+        NetworkConnectivitySpokeAttachmentLinkedVpcNetwork,
+        NetworkConnectivitySpokeAttachmentLinkedVpnTunnels,
         NetworkConnectivitySpokeGateway,
         NetworkConnectivitySpokeGatewayCapacity,
-        NetworkConnectivitySpokeGatewayIpRangeReservation,
+        NetworkConnectivitySpokeGatewayIpRangeReservations,
         NetworkConnectivitySpokeLinkedInterconnectAttachments,
         NetworkConnectivitySpokeLinkedProducerVpcNetwork,
         NetworkConnectivitySpokeLinkedRouterApplianceInstances,
+        NetworkConnectivitySpokeLinkedRouterApplianceInstancesInstances,
         NetworkConnectivitySpokeLinkedVpcNetwork,
-        NetworkConnectivitySpokeLinkedVpnTunnels,
-        NetworkConnectivitySpokeRouterApplianceInstance;
+        NetworkConnectivitySpokeLinkedVpnTunnels;
 export 'src/network/google_network_connectivity_transport.dart'
     show
         GoogleNetworkConnectivityTransport,

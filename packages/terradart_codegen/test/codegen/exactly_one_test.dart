@@ -196,6 +196,31 @@ void main() {
       ]);
     });
 
+    test('an exactly-one entry tightens a declared at-most-one group', () {
+      const source = ProviderEnums.on(
+        atMostOneGroups: {
+          'aws_thing': [
+            ['a', 'b'],
+          ],
+        },
+      );
+      final enums = source.withOverrideGroups(
+        {
+          'aws_thing': const WrapperOverride(
+            outputDir: 'thing',
+            exactlyOneOf: ['b, a'],
+          ),
+        },
+        defs,
+        error: (e) => fail(e),
+      );
+      expect(enums.exactlyOneGroups['aws_thing'], [
+        ['a', 'b'],
+      ]);
+      expect(enums.atMostOneGroups['aws_thing'], isNull);
+      expect(source.atMostOneGroups['aws_thing'], hasLength(1));
+    });
+
     test('override groups alone are no group source', () {
       final enums = ProviderEnums.off.withOverrideGroups(
         {
