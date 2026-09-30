@@ -37,8 +37,12 @@ export 'src/cloud_functions/google_cloudfunctions2_function.dart'
         IngressSettings,
         VpcConnectorEgressSettings;
 export 'src/cloud_functions/google_cloudfunctions2_function_iam_binding.dart'
-    show GoogleCloudfunctions2FunctionIamBinding;
+    show
+        Cloudfunctions2FunctionIamBindingCondition,
+        GoogleCloudfunctions2FunctionIamBinding;
 export 'src/cloud_functions/google_cloudfunctions2_function_iam_member.dart'
-    show GoogleCloudfunctions2FunctionIamMember;
+    show
+        Cloudfunctions2FunctionIamMemberCondition,
+        GoogleCloudfunctions2FunctionIamMember;
 export 'src/cloud_functions/google_cloudfunctions2_function_iam_policy.dart'
     show GoogleCloudfunctions2FunctionIamPolicy;

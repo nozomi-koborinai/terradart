@@ -1,5 +1,6 @@
 outputDir: gke_backup
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 

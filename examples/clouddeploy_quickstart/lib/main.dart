@@ -76,11 +76,14 @@ final class DeployStack extends Stack {
         name: .literal('terradart-pipeline'),
         location: .literal('us-central1'),
         description: .literal('App delivery pipeline'),
-        serialPipeline: .literal(<String, Object?>{
-          'stages': [
-            {'target_id': 'terradart-run-target', 'profiles': <String>[]},
+        serialPipeline: ClouddeployDeliveryPipelineSerialPipeline(
+          stages: [
+            ClouddeployDeliveryPipelineSerialPipelineStages(
+              targetId: .literal('terradart-run-target'),
+              profiles: .literal([]),
+            ),
           ],
-        }),
+        ),
         dependsOn: [
           ResourceDependency(apiClouddeploy),
           ResourceDependency(runTarget),

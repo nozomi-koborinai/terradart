@@ -1,6 +1,7 @@
 outputDir: firebase_app_hosting
 
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 
 curatedDoc: |-

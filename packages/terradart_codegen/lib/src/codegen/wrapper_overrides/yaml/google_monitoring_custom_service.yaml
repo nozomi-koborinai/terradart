@@ -1,5 +1,6 @@
 outputDir: monitoring
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 
@@ -7,6 +8,7 @@ paramOrder:
   - service_id
   - display_name
   - user_labels
+  - telemetry
   - project
 
 curatedDoc: |-

@@ -53,9 +53,13 @@ export 'src/colab/google_colab_runtime_template.dart'
         ColabRuntimeTemplateSoftwareConfigPostStartupScriptConfigPostStartupScriptBehavior,
         GoogleColabRuntimeTemplate;
 export 'src/colab/google_colab_runtime_template_iam_binding.dart'
-    show GoogleColabRuntimeTemplateIamBinding;
+    show
+        ColabRuntimeTemplateIamBindingCondition,
+        GoogleColabRuntimeTemplateIamBinding;
 export 'src/colab/google_colab_runtime_template_iam_member.dart'
-    show GoogleColabRuntimeTemplateIamMember;
+    show
+        ColabRuntimeTemplateIamMemberCondition,
+        GoogleColabRuntimeTemplateIamMember;
 export 'src/colab/google_colab_runtime_template_iam_policy.dart'
     show GoogleColabRuntimeTemplateIamPolicy;
 export 'src/colab/google_colab_schedule.dart'
