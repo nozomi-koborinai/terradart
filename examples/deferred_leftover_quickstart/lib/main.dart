@@ -1311,13 +1311,13 @@ final class DeferredLeftoverStack extends Stack {
       GoogleMonitoringSnooze(
         localName: 'monitoring_snooze',
         displayName: .literal('terradart leftover'),
-        criteria: .literal({
-          'policies': ['projects/$projectId/alertPolicies/123456789'],
-        }),
-        interval: .literal({
-          'start_time': '2030-01-01T00:00:00Z',
-          'end_time': '2030-01-02T00:00:00Z',
-        }),
+        criteria: MonitoringSnoozeCriteria(
+          policies: .literal(['projects/$projectId/alertPolicies/123456789']),
+        ),
+        interval: MonitoringSnoozeInterval(
+          startTime: .literal('2030-01-01T00:00:00Z'),
+          endTime: .literal('2030-01-02T00:00:00Z'),
+        ),
       ),
     );
 
