@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_billing_account_iam_binding`.
 const Set<String> _googleBillingAccountIamBindingSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_billing_account_iam_binding` (derived from provider schema).
+@immutable
+final class BillingAccountIamBindingCondition {
+  const BillingAccountIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_billing_account_iam_binding`.
 ///
@@ -20,7 +44,7 @@ final class GoogleBillingAccountIamBinding extends Resource {
     required TfArg<String> billingAccountId,
     required TfArg<String> role,
     required TfArg<List<String>> members,
-    TfArg<Map<String, dynamic>>? condition,
+    BillingAccountIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -31,7 +55,8 @@ final class GoogleBillingAccountIamBinding extends Resource {
            'billing_account_id': billingAccountId,
            'role': role,
            'members': members,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
          },
        );
 

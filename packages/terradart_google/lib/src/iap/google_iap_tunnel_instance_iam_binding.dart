@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_iap_tunnel_instance_iam_binding`.
 const Set<String> _googleIapTunnelInstanceIamBindingSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_iap_tunnel_instance_iam_binding` (derived from provider schema).
+@immutable
+final class IapTunnelInstanceIamBindingCondition {
+  const IapTunnelInstanceIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_iap_tunnel_instance_iam_binding`.
 ///
@@ -21,7 +45,7 @@ final class GoogleIapTunnelInstanceIamBinding extends Resource {
     required TfArg<String> instance,
     required TfArg<String> role,
     required TfArg<List<String>> members,
-    TfArg<Map<String, dynamic>>? condition,
+    IapTunnelInstanceIamBindingCondition? condition,
     TfArg<String>? zone,
     TfArg<String>? project,
     super.lifecycle,
@@ -34,7 +58,8 @@ final class GoogleIapTunnelInstanceIamBinding extends Resource {
            'instance': instance,
            'role': role,
            'members': members,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
            'zone': ?zone,
            'project': ?project,
          },

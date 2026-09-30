@@ -1682,6 +1682,7 @@ Newly exposed inputs: `params` (resource manager tags) on
 `GoogleComputeInterconnect.macsec`, `GoogleComputeVpnTunnel.cipherSuite`,
 `GoogleComputeZoneVmExtensionPolicy.instanceSelectors`, and `condition`
 on the two network firewall policy IAM members.
+
 ### Remaining data, analytics and storage blocks use derived helper types
 
 **Breaking (`terradart_google`)** — every BigQuery, BigLake, Dataplex,
@@ -1734,6 +1735,27 @@ parent's own id attribute.
 the same synth output; only code that passed a `TfArg<String>` value needs a
 change (`.arg(value)` keeps it as is). Switching to `.ref` emits the parent's
 attribute instead of the literal id, so Terraform orders the two.
+
+### Remaining security, IAM and resource-manager blocks use derived helper types
+
+**Breaking (`terradart_google`)** — every IAP, IAM, KMS, Secret Manager,
+Security Command Center, Secure Source Manager, Private CA, Parameter
+Manager, Access Context Manager, BeyondCorp, Binary Authorization, API
+Keys, Tags, resource-manager (organization, folder, project), Billing and
+Firebase App Check override now sets `deriveNestedTypes`, so the blocks
+that still took `TfArg<Map>` take the helper `terradart wrap` derives
+from the provider schema. Most are IAM conditions: `condition` on the 84
+IAM member / binding factories of these services takes
+`<Resource>Condition`. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `condition: .literal({'title': 't', 'expression': 'e'})` | `condition: IapWebIamMemberCondition(title: .literal('t'), expression: .literal('e'))` |
+| `restrictions: .literal({'api_targets': [{'service': s}]})` | `restrictions: ApikeysKeyRestrictions(apiTargets: [ApikeysKeyRestrictionsApiTargets(service: .literal(s))])` |
+| `attestationAuthorityNote: .literal({'note_reference': n, 'public_keys': [...]})` | `attestationAuthorityNote: BinaryAuthorizationAttestorAttestationAuthorityNote(noteReference: .literal(n), publicKeys: [...])` |
+
+`GoogleIamWorkloadIdentityPoolManagedIdentity.attestationRules` is typed
+the same way.
 
 ## 0.29.x → 0.30.0
 

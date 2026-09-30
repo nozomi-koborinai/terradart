@@ -1,11 +1,35 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_iap_agent_registry_endpoint_iam_binding`.
 const Set<String> _googleIapAgentRegistryEndpointIamBindingSensitive =
     <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_iap_agent_registry_endpoint_iam_binding` (derived from provider schema).
+@immutable
+final class IapAgentRegistryEndpointIamBindingCondition {
+  const IapAgentRegistryEndpointIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_iap_agent_registry_endpoint_iam_binding`.
 ///
@@ -25,7 +49,7 @@ final class GoogleIapAgentRegistryEndpointIamBinding extends Resource {
     required TfArg<List<String>> members,
     TfArg<String>? location,
     TfArg<String>? project,
-    TfArg<Map<String, dynamic>>? condition,
+    IapAgentRegistryEndpointIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -38,7 +62,8 @@ final class GoogleIapAgentRegistryEndpointIamBinding extends Resource {
            'members': members,
            'location': ?location,
            'project': ?project,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
          },
        );
 

@@ -10,9 +10,13 @@ export 'src/secret_manager/google_secret_manager_regional_secret.dart'
         SecretManagerRegionalSecretRotation,
         SecretManagerRegionalSecretTopics;
 export 'src/secret_manager/google_secret_manager_regional_secret_iam_binding.dart'
-    show GoogleSecretManagerRegionalSecretIamBinding;
+    show
+        GoogleSecretManagerRegionalSecretIamBinding,
+        SecretManagerRegionalSecretIamBindingCondition;
 export 'src/secret_manager/google_secret_manager_regional_secret_iam_member.dart'
-    show GoogleSecretManagerRegionalSecretIamMember;
+    show
+        GoogleSecretManagerRegionalSecretIamMember,
+        SecretManagerRegionalSecretIamMemberCondition;
 export 'src/secret_manager/google_secret_manager_regional_secret_iam_policy.dart'
     show GoogleSecretManagerRegionalSecretIamPolicy;
 export 'src/secret_manager/google_secret_manager_regional_secret_version.dart'
@@ -31,9 +35,13 @@ export 'src/secret_manager/google_secret_manager_secret.dart'
         SecretManagerSecretRotation,
         SecretManagerSecretTopics;
 export 'src/secret_manager/google_secret_manager_secret_iam_binding.dart'
-    show GoogleSecretManagerSecretIamBinding;
+    show
+        GoogleSecretManagerSecretIamBinding,
+        SecretManagerSecretIamBindingCondition;
 export 'src/secret_manager/google_secret_manager_secret_iam_member.dart'
-    show GoogleSecretManagerSecretIamMember;
+    show
+        GoogleSecretManagerSecretIamMember,
+        SecretManagerSecretIamMemberCondition;
 export 'src/secret_manager/google_secret_manager_secret_iam_policy.dart'
     show GoogleSecretManagerSecretIamPolicy;
 export 'src/secret_manager/google_secret_manager_secret_version.dart'

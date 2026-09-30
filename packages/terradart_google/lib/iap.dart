@@ -5,45 +5,65 @@
 library;
 
 export 'src/iap/google_iap_agent_registry_agent_iam_binding.dart'
-    show GoogleIapAgentRegistryAgentIamBinding;
+    show
+        GoogleIapAgentRegistryAgentIamBinding,
+        IapAgentRegistryAgentIamBindingCondition;
 export 'src/iap/google_iap_agent_registry_agent_iam_member.dart'
-    show GoogleIapAgentRegistryAgentIamMember;
+    show
+        GoogleIapAgentRegistryAgentIamMember,
+        IapAgentRegistryAgentIamMemberCondition;
 export 'src/iap/google_iap_agent_registry_agent_iam_policy.dart'
     show GoogleIapAgentRegistryAgentIamPolicy;
 export 'src/iap/google_iap_agent_registry_endpoint_iam_binding.dart'
-    show GoogleIapAgentRegistryEndpointIamBinding;
+    show
+        GoogleIapAgentRegistryEndpointIamBinding,
+        IapAgentRegistryEndpointIamBindingCondition;
 export 'src/iap/google_iap_agent_registry_endpoint_iam_member.dart'
-    show GoogleIapAgentRegistryEndpointIamMember;
+    show
+        GoogleIapAgentRegistryEndpointIamMember,
+        IapAgentRegistryEndpointIamMemberCondition;
 export 'src/iap/google_iap_agent_registry_endpoint_iam_policy.dart'
     show GoogleIapAgentRegistryEndpointIamPolicy;
 export 'src/iap/google_iap_agent_registry_iam_binding.dart'
-    show GoogleIapAgentRegistryIamBinding;
+    show GoogleIapAgentRegistryIamBinding, IapAgentRegistryIamBindingCondition;
 export 'src/iap/google_iap_agent_registry_iam_member.dart'
-    show GoogleIapAgentRegistryIamMember;
+    show GoogleIapAgentRegistryIamMember, IapAgentRegistryIamMemberCondition;
 export 'src/iap/google_iap_agent_registry_iam_policy.dart'
     show GoogleIapAgentRegistryIamPolicy;
 export 'src/iap/google_iap_agent_registry_mcp_server_iam_binding.dart'
-    show GoogleIapAgentRegistryMcpServerIamBinding;
+    show
+        GoogleIapAgentRegistryMcpServerIamBinding,
+        IapAgentRegistryMcpServerIamBindingCondition;
 export 'src/iap/google_iap_agent_registry_mcp_server_iam_member.dart'
-    show GoogleIapAgentRegistryMcpServerIamMember;
+    show
+        GoogleIapAgentRegistryMcpServerIamMember,
+        IapAgentRegistryMcpServerIamMemberCondition;
 export 'src/iap/google_iap_agent_registry_mcp_server_iam_policy.dart'
     show GoogleIapAgentRegistryMcpServerIamPolicy;
 export 'src/iap/google_iap_app_engine_service_iam_binding.dart'
-    show GoogleIapAppEngineServiceIamBinding;
+    show
+        GoogleIapAppEngineServiceIamBinding,
+        IapAppEngineServiceIamBindingCondition;
 export 'src/iap/google_iap_app_engine_service_iam_member.dart'
-    show GoogleIapAppEngineServiceIamMember;
+    show
+        GoogleIapAppEngineServiceIamMember,
+        IapAppEngineServiceIamMemberCondition;
 export 'src/iap/google_iap_app_engine_service_iam_policy.dart'
     show GoogleIapAppEngineServiceIamPolicy;
 export 'src/iap/google_iap_app_engine_version_iam_binding.dart'
-    show GoogleIapAppEngineVersionIamBinding;
+    show
+        GoogleIapAppEngineVersionIamBinding,
+        IapAppEngineVersionIamBindingCondition;
 export 'src/iap/google_iap_app_engine_version_iam_member.dart'
-    show GoogleIapAppEngineVersionIamMember;
+    show
+        GoogleIapAppEngineVersionIamMember,
+        IapAppEngineVersionIamMemberCondition;
 export 'src/iap/google_iap_app_engine_version_iam_policy.dart'
     show GoogleIapAppEngineVersionIamPolicy;
 export 'src/iap/google_iap_location_web_iam_binding.dart'
-    show GoogleIapLocationWebIamBinding;
+    show GoogleIapLocationWebIamBinding, IapLocationWebIamBindingCondition;
 export 'src/iap/google_iap_location_web_iam_member.dart'
-    show GoogleIapLocationWebIamMember;
+    show GoogleIapLocationWebIamMember, IapLocationWebIamMemberCondition;
 export 'src/iap/google_iap_location_web_iam_policy.dart'
     show GoogleIapLocationWebIamPolicy;
 export 'src/iap/google_iap_settings.dart'
@@ -67,65 +87,99 @@ export 'src/iap/google_iap_settings.dart'
 export 'src/iap/google_iap_tunnel_dest_group.dart'
     show GoogleIapTunnelDestGroup;
 export 'src/iap/google_iap_tunnel_dest_group_iam_binding.dart'
-    show GoogleIapTunnelDestGroupIamBinding;
+    show
+        GoogleIapTunnelDestGroupIamBinding,
+        IapTunnelDestGroupIamBindingCondition;
 export 'src/iap/google_iap_tunnel_dest_group_iam_member.dart'
-    show GoogleIapTunnelDestGroupIamMember;
+    show
+        GoogleIapTunnelDestGroupIamMember,
+        IapTunnelDestGroupIamMemberCondition;
 export 'src/iap/google_iap_tunnel_dest_group_iam_policy.dart'
     show GoogleIapTunnelDestGroupIamPolicy;
 export 'src/iap/google_iap_tunnel_iam_binding.dart'
-    show GoogleIapTunnelIamBinding;
+    show GoogleIapTunnelIamBinding, IapTunnelIamBindingCondition;
 export 'src/iap/google_iap_tunnel_iam_member.dart'
-    show GoogleIapTunnelIamMember;
+    show GoogleIapTunnelIamMember, IapTunnelIamMemberCondition;
 export 'src/iap/google_iap_tunnel_iam_policy.dart'
     show GoogleIapTunnelIamPolicy;
 export 'src/iap/google_iap_tunnel_instance_iam_binding.dart'
-    show GoogleIapTunnelInstanceIamBinding;
+    show
+        GoogleIapTunnelInstanceIamBinding,
+        IapTunnelInstanceIamBindingCondition;
 export 'src/iap/google_iap_tunnel_instance_iam_member.dart'
-    show GoogleIapTunnelInstanceIamMember;
+    show GoogleIapTunnelInstanceIamMember, IapTunnelInstanceIamMemberCondition;
 export 'src/iap/google_iap_tunnel_instance_iam_policy.dart'
     show GoogleIapTunnelInstanceIamPolicy;
 export 'src/iap/google_iap_web_backend_service_iam_binding.dart'
-    show GoogleIapWebBackendServiceIamBinding;
+    show
+        GoogleIapWebBackendServiceIamBinding,
+        IapWebBackendServiceIamBindingCondition;
 export 'src/iap/google_iap_web_backend_service_iam_member.dart'
-    show GoogleIapWebBackendServiceIamMember;
+    show
+        GoogleIapWebBackendServiceIamMember,
+        IapWebBackendServiceIamMemberCondition;
 export 'src/iap/google_iap_web_backend_service_iam_policy.dart'
     show GoogleIapWebBackendServiceIamPolicy;
 export 'src/iap/google_iap_web_cloud_run_service_iam_binding.dart'
-    show GoogleIapWebCloudRunServiceIamBinding;
+    show
+        GoogleIapWebCloudRunServiceIamBinding,
+        IapWebCloudRunServiceIamBindingCondition;
 export 'src/iap/google_iap_web_cloud_run_service_iam_member.dart'
-    show GoogleIapWebCloudRunServiceIamMember;
+    show
+        GoogleIapWebCloudRunServiceIamMember,
+        IapWebCloudRunServiceIamMemberCondition;
 export 'src/iap/google_iap_web_cloud_run_service_iam_policy.dart'
     show GoogleIapWebCloudRunServiceIamPolicy;
 export 'src/iap/google_iap_web_forwarding_rule_service_iam_binding.dart'
-    show GoogleIapWebForwardingRuleServiceIamBinding;
+    show
+        GoogleIapWebForwardingRuleServiceIamBinding,
+        IapWebForwardingRuleServiceIamBindingCondition;
 export 'src/iap/google_iap_web_forwarding_rule_service_iam_member.dart'
-    show GoogleIapWebForwardingRuleServiceIamMember;
+    show
+        GoogleIapWebForwardingRuleServiceIamMember,
+        IapWebForwardingRuleServiceIamMemberCondition;
 export 'src/iap/google_iap_web_forwarding_rule_service_iam_policy.dart'
     show GoogleIapWebForwardingRuleServiceIamPolicy;
-export 'src/iap/google_iap_web_iam_binding.dart' show GoogleIapWebIamBinding;
-export 'src/iap/google_iap_web_iam_member.dart' show GoogleIapWebIamMember;
+export 'src/iap/google_iap_web_iam_binding.dart'
+    show GoogleIapWebIamBinding, IapWebIamBindingCondition;
+export 'src/iap/google_iap_web_iam_member.dart'
+    show GoogleIapWebIamMember, IapWebIamMemberCondition;
 export 'src/iap/google_iap_web_iam_policy.dart' show GoogleIapWebIamPolicy;
 export 'src/iap/google_iap_web_region_backend_service_iam_binding.dart'
-    show GoogleIapWebRegionBackendServiceIamBinding;
+    show
+        GoogleIapWebRegionBackendServiceIamBinding,
+        IapWebRegionBackendServiceIamBindingCondition;
 export 'src/iap/google_iap_web_region_backend_service_iam_member.dart'
-    show GoogleIapWebRegionBackendServiceIamMember;
+    show
+        GoogleIapWebRegionBackendServiceIamMember,
+        IapWebRegionBackendServiceIamMemberCondition;
 export 'src/iap/google_iap_web_region_backend_service_iam_policy.dart'
     show GoogleIapWebRegionBackendServiceIamPolicy;
 export 'src/iap/google_iap_web_region_forwarding_rule_service_iam_binding.dart'
-    show GoogleIapWebRegionForwardingRuleServiceIamBinding;
+    show
+        GoogleIapWebRegionForwardingRuleServiceIamBinding,
+        IapWebRegionForwardingRuleServiceIamBindingCondition;
 export 'src/iap/google_iap_web_region_forwarding_rule_service_iam_member.dart'
-    show GoogleIapWebRegionForwardingRuleServiceIamMember;
+    show
+        GoogleIapWebRegionForwardingRuleServiceIamMember,
+        IapWebRegionForwardingRuleServiceIamMemberCondition;
 export 'src/iap/google_iap_web_region_forwarding_rule_service_iam_policy.dart'
     show GoogleIapWebRegionForwardingRuleServiceIamPolicy;
 export 'src/iap/google_iap_web_type_app_engine_iam_binding.dart'
-    show GoogleIapWebTypeAppEngineIamBinding;
+    show
+        GoogleIapWebTypeAppEngineIamBinding,
+        IapWebTypeAppEngineIamBindingCondition;
 export 'src/iap/google_iap_web_type_app_engine_iam_member.dart'
-    show GoogleIapWebTypeAppEngineIamMember;
+    show
+        GoogleIapWebTypeAppEngineIamMember,
+        IapWebTypeAppEngineIamMemberCondition;
 export 'src/iap/google_iap_web_type_app_engine_iam_policy.dart'
     show GoogleIapWebTypeAppEngineIamPolicy;
 export 'src/iap/google_iap_web_type_compute_iam_binding.dart'
-    show GoogleIapWebTypeComputeIamBinding;
+    show
+        GoogleIapWebTypeComputeIamBinding,
+        IapWebTypeComputeIamBindingCondition;
 export 'src/iap/google_iap_web_type_compute_iam_member.dart'
-    show GoogleIapWebTypeComputeIamMember;
+    show GoogleIapWebTypeComputeIamMember, IapWebTypeComputeIamMemberCondition;
 export 'src/iap/google_iap_web_type_compute_iam_policy.dart'
     show GoogleIapWebTypeComputeIamPolicy;

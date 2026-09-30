@@ -5,9 +5,9 @@
 library;
 
 export 'src/billing/google_billing_account_iam_binding.dart'
-    show GoogleBillingAccountIamBinding;
+    show BillingAccountIamBindingCondition, GoogleBillingAccountIamBinding;
 export 'src/billing/google_billing_account_iam_member.dart'
-    show GoogleBillingAccountIamMember;
+    show BillingAccountIamMemberCondition, GoogleBillingAccountIamMember;
 export 'src/billing/google_billing_account_iam_policy.dart'
     show GoogleBillingAccountIamPolicy;
 export 'src/billing/google_billing_budget.dart'
