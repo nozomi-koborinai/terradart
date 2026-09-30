@@ -67,6 +67,29 @@ final class GoogleApigeeKeystoresAliasesPkcs12 extends Resource {
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `environment` attribute.
+  TfRef<String> get environmentRef =>
+      TfRef.attribute<String>(this, 'environment');
+
+  /// Reference to `file` attribute.
+  TfRef<String> get fileRef => TfRef.attribute<String>(this, 'file');
+
+  /// Reference to `filehash` attribute.
+  TfRef<String> get filehashRef => TfRef.attribute<String>(this, 'filehash');
+
+  /// Reference to `keystore` attribute.
+  TfRef<String> get keystoreRef => TfRef.attribute<String>(this, 'keystore');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `password` attribute.
+  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

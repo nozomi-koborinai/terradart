@@ -81,4 +81,7 @@ final class DataGoogleApigeeInstance extends Data {
   /// Reference to `service_attachment` attribute.
   TfRef<String> get serviceAttachment =>
       TfRef.attribute<String>(this, 'service_attachment');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
 }

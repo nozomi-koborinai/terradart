@@ -35,4 +35,14 @@ final class DataAwsRedshiftProducerDataShares extends Data {
   /// Reference to `data_shares` attribute.
   TfRef<List<Map<String, Object?>>> get dataShares =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'data_shares');
+
+  /// Reference to `producer_arn` attribute.
+  TfRef<String> get producerArnRef =>
+      TfRef.attribute<String>(this, 'producer_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
 }

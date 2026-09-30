@@ -59,5 +59,26 @@ final class GoogleMonitoringGroup extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `is_cluster` attribute.
+  TfRef<bool> get isClusterRef => TfRef.attribute<bool>(this, 'is_cluster');
+
+  /// Reference to `parent_name` attribute.
+  TfRef<String> get parentNameRef =>
+      TfRef.attribute<String>(this, 'parent_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

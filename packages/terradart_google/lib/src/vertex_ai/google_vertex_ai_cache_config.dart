@@ -35,4 +35,11 @@ final class GoogleVertexAiCacheConfig extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `disable_cache` attribute.
+  TfRef<bool> get disableCacheRef =>
+      TfRef.attribute<bool>(this, 'disable_cache');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

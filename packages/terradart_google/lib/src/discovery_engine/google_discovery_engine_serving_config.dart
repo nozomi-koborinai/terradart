@@ -70,6 +70,39 @@ final class GoogleDiscoveryEngineServingConfig extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `boost_control_ids` attribute.
+  TfRef<List<String>> get boostControlIdsRef =>
+      TfRef.attribute<List<String>>(this, 'boost_control_ids');
+
+  /// Reference to `collection_id` attribute.
+  TfRef<String> get collectionIdRef =>
+      TfRef.attribute<String>(this, 'collection_id');
+
+  /// Reference to `engine_id` attribute.
+  TfRef<String> get engineIdRef => TfRef.attribute<String>(this, 'engine_id');
+
+  /// Reference to `filter_control_ids` attribute.
+  TfRef<List<String>> get filterControlIdsRef =>
+      TfRef.attribute<List<String>>(this, 'filter_control_ids');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `promote_control_ids` attribute.
+  TfRef<List<String>> get promoteControlIdsRef =>
+      TfRef.attribute<List<String>>(this, 'promote_control_ids');
+
+  /// Reference to `redirect_control_ids` attribute.
+  TfRef<List<String>> get redirectControlIdsRef =>
+      TfRef.attribute<List<String>>(this, 'redirect_control_ids');
+
+  /// Reference to `synonyms_control_ids` attribute.
+  TfRef<List<String>> get synonymsControlIdsRef =>
+      TfRef.attribute<List<String>>(this, 'synonyms_control_ids');
+
   /// Reference to `serving_config_id` attribute.
   TfRef<String> get servingConfigIdRef =>
       TfRef.attribute<String>(this, 'serving_config_id');

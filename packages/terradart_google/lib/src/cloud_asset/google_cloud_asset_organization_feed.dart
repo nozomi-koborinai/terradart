@@ -135,4 +135,30 @@ final class GoogleCloudAssetOrganizationFeed extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `asset_names` attribute.
+  TfRef<List<String>> get assetNamesRef =>
+      TfRef.attribute<List<String>>(this, 'asset_names');
+
+  /// Reference to `asset_types` attribute.
+  TfRef<List<String>> get assetTypesRef =>
+      TfRef.attribute<List<String>>(this, 'asset_types');
+
+  /// Reference to `billing_project` attribute.
+  TfRef<String> get billingProjectRef =>
+      TfRef.attribute<String>(this, 'billing_project');
+
+  /// Reference to `content_type` attribute.
+  TfRef<String> get contentTypeRef =>
+      TfRef.attribute<String>(this, 'content_type');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `feed_id` attribute.
+  TfRef<String> get feedIdRef => TfRef.attribute<String>(this, 'feed_id');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
 }

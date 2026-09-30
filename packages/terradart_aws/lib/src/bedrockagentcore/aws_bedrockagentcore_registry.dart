@@ -507,4 +507,22 @@ final class AwsBedrockagentcoreRegistry extends Resource {
 
   /// Reference to `registry_id` attribute.
   TfRef<String> get registryId => TfRef.attribute<String>(this, 'registry_id');
+
+  /// Reference to `approval_configuration` attribute.
+  TfRef<List<Map<String, Object?>>> get approvalConfigurationRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'approval_configuration',
+      );
+
+  /// Reference to `authorizer_type` attribute.
+  TfRef<String> get authorizerTypeRef =>
+      TfRef.attribute<String>(this, 'authorizer_type');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

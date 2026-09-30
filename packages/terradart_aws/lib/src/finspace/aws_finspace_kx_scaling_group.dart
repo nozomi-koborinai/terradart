@@ -68,4 +68,22 @@ final class AwsFinspaceKxScalingGroup extends Resource {
   /// Reference to `status_reason` attribute.
   TfRef<String> get statusReason =>
       TfRef.attribute<String>(this, 'status_reason');
+
+  /// Reference to `availability_zone_id` attribute.
+  TfRef<String> get availabilityZoneIdRef =>
+      TfRef.attribute<String>(this, 'availability_zone_id');
+
+  /// Reference to `environment_id` attribute.
+  TfRef<String> get environmentIdRef =>
+      TfRef.attribute<String>(this, 'environment_id');
+
+  /// Reference to `host_type` attribute.
+  TfRef<String> get hostTypeRef => TfRef.attribute<String>(this, 'host_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

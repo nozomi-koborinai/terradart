@@ -358,4 +358,23 @@ final class GoogleAccessContextManagerGcpUserAccessBinding extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `access_levels` attribute.
+  TfRef<List<String>> get accessLevelsRef =>
+      TfRef.attribute<List<String>>(this, 'access_levels');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `dry_run_access_levels` attribute.
+  TfRef<List<String>> get dryRunAccessLevelsRef =>
+      TfRef.attribute<List<String>>(this, 'dry_run_access_levels');
+
+  /// Reference to `group_key` attribute.
+  TfRef<String> get groupKeyRef => TfRef.attribute<String>(this, 'group_key');
+
+  /// Reference to `organization_id` attribute.
+  TfRef<String> get organizationIdRef =>
+      TfRef.attribute<String>(this, 'organization_id');
 }

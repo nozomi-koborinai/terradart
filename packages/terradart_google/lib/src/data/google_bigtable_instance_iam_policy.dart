@@ -41,4 +41,10 @@ final class DataGoogleBigtableInstanceIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

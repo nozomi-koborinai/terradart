@@ -52,4 +52,35 @@ final class AwsRedshiftHsmConfiguration extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `hsm_configuration_identifier` attribute.
+  TfRef<String> get hsmConfigurationIdentifierRef =>
+      TfRef.attribute<String>(this, 'hsm_configuration_identifier');
+
+  /// Reference to `hsm_ip_address` attribute.
+  TfRef<String> get hsmIpAddressRef =>
+      TfRef.attribute<String>(this, 'hsm_ip_address');
+
+  /// Reference to `hsm_partition_name` attribute.
+  TfRef<String> get hsmPartitionNameRef =>
+      TfRef.attribute<String>(this, 'hsm_partition_name');
+
+  /// Reference to `hsm_partition_password` attribute.
+  TfRef<String> get hsmPartitionPasswordRef =>
+      TfRef.attribute<String>(this, 'hsm_partition_password');
+
+  /// Reference to `hsm_server_public_certificate` attribute.
+  TfRef<String> get hsmServerPublicCertificateRef =>
+      TfRef.attribute<String>(this, 'hsm_server_public_certificate');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -115,4 +115,19 @@ final class AwsEc2CapacityBlockReservation extends Resource {
 
   /// Reference to `tenancy` attribute.
   TfRef<String> get tenancy => TfRef.attribute<String>(this, 'tenancy');
+
+  /// Reference to `capacity_block_offering_id` attribute.
+  TfRef<String> get capacityBlockOfferingIdRef =>
+      TfRef.attribute<String>(this, 'capacity_block_offering_id');
+
+  /// Reference to `instance_platform` attribute.
+  TfRef<String> get instancePlatformRef =>
+      TfRef.attribute<String>(this, 'instance_platform');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

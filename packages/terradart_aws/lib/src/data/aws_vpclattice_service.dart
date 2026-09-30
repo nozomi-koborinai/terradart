@@ -67,4 +67,15 @@ final class DataAwsVpclatticeService extends Data {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_identifier` attribute.
+  TfRef<String> get serviceIdentifierRef =>
+      TfRef.attribute<String>(this, 'service_identifier');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

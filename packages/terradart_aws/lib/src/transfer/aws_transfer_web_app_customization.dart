@@ -38,4 +38,20 @@ final class AwsTransferWebAppCustomization extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsTransferWebAppCustomization>`.
   RefTo<AwsTransferWebAppCustomization> get ref => RefTo.of(this);
+
+  /// Reference to `favicon_file` attribute.
+  TfRef<String> get faviconFileRef =>
+      TfRef.attribute<String>(this, 'favicon_file');
+
+  /// Reference to `logo_file` attribute.
+  TfRef<String> get logoFileRef => TfRef.attribute<String>(this, 'logo_file');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `title` attribute.
+  TfRef<String> get titleRef => TfRef.attribute<String>(this, 'title');
+
+  /// Reference to `web_app_id` attribute.
+  TfRef<String> get webAppIdRef => TfRef.attribute<String>(this, 'web_app_id');
 }

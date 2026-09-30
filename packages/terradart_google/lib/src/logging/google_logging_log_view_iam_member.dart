@@ -51,4 +51,19 @@ final class GoogleLoggingLogViewIamMember extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `member` attribute.
+  TfRef<String> get memberRef => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

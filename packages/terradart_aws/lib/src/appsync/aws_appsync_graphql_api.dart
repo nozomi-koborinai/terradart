@@ -453,4 +453,44 @@ final class AwsAppsyncGraphqlApi extends Resource {
   /// Reference to `uris` attribute.
   TfRef<Map<String, String>> get uris =>
       TfRef.attribute<Map<String, String>>(this, 'uris');
+
+  /// Reference to `api_type` attribute.
+  TfRef<String> get apiTypeRef => TfRef.attribute<String>(this, 'api_type');
+
+  /// Reference to `authentication_type` attribute.
+  TfRef<String> get authenticationTypeRef =>
+      TfRef.attribute<String>(this, 'authentication_type');
+
+  /// Reference to `introspection_config` attribute.
+  TfRef<String> get introspectionConfigRef =>
+      TfRef.attribute<String>(this, 'introspection_config');
+
+  /// Reference to `merged_api_execution_role_arn` attribute.
+  TfRef<String> get mergedApiExecutionRoleArnRef =>
+      TfRef.attribute<String>(this, 'merged_api_execution_role_arn');
+
+  /// Reference to `query_depth_limit` attribute.
+  TfRef<num> get queryDepthLimitRef =>
+      TfRef.attribute<num>(this, 'query_depth_limit');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resolver_count_limit` attribute.
+  TfRef<num> get resolverCountLimitRef =>
+      TfRef.attribute<num>(this, 'resolver_count_limit');
+
+  /// Reference to `schema` attribute.
+  TfRef<String> get schemaRef => TfRef.attribute<String>(this, 'schema');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `visibility` attribute.
+  TfRef<String> get visibilityRef =>
+      TfRef.attribute<String>(this, 'visibility');
+
+  /// Reference to `xray_enabled` attribute.
+  TfRef<bool> get xrayEnabledRef => TfRef.attribute<bool>(this, 'xray_enabled');
 }

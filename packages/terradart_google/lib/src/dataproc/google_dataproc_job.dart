@@ -508,6 +508,27 @@ final class GoogleDataprocJob extends Resource {
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `force_delete` attribute.
+  TfRef<bool> get forceDeleteRef => TfRef.attribute<bool>(this, 'force_delete');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `wait_for_completion` attribute.
+  TfRef<bool> get waitForCompletionRef =>
+      TfRef.attribute<bool>(this, 'wait_for_completion');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

@@ -143,4 +143,18 @@ final class GoogleFolderOrganizationPolicy extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `constraint` attribute.
+  TfRef<String> get constraintRef =>
+      TfRef.attribute<String>(this, 'constraint');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `folder` attribute.
+  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+
+  /// Reference to `version` attribute.
+  TfRef<num> get versionRef => TfRef.attribute<num>(this, 'version');
 }

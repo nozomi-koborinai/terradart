@@ -173,4 +173,16 @@ final class AwsBillingView extends Resource {
   /// Reference to `view_definition_last_updated_at` attribute.
   TfRef<String> get viewDefinitionLastUpdatedAt =>
       TfRef.attribute<String>(this, 'view_definition_last_updated_at');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `source_views` attribute.
+  TfRef<List<String>> get sourceViewsRef =>
+      TfRef.attribute<List<String>>(this, 'source_views');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

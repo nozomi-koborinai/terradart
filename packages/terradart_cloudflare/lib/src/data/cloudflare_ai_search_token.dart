@@ -72,4 +72,7 @@ final class DataCloudflareAiSearchToken extends Data {
 
   /// Reference to `modified_by` attribute.
   TfRef<String> get modifiedBy => TfRef.attribute<String>(this, 'modified_by');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

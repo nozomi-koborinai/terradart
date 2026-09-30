@@ -1028,6 +1028,23 @@ final class GoogleBigqueryJob extends Resource {
   /// Reference to `user_email` attribute.
   TfRef<String> get userEmail => TfRef.attribute<String>(this, 'user_email');
 
+  /// Reference to `job_id` attribute.
+  TfRef<String> get jobIdRef => TfRef.attribute<String>(this, 'job_id');
+
+  /// Reference to `job_timeout_ms` attribute.
+  TfRef<String> get jobTimeoutMsRef =>
+      TfRef.attribute<String>(this, 'job_timeout_ms');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `status` — server-computed terminal status of the
   /// job (a list-of-object with `state`, `error_result`, `errors`).
   /// Use `.state` downstream to inspect `DONE` vs `PENDING` /

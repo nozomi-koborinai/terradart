@@ -75,4 +75,14 @@ final class GoogleBiglakeDatabase extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `catalog` attribute.
+  TfRef<String> get catalogRef => TfRef.attribute<String>(this, 'catalog');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

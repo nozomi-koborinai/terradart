@@ -590,4 +590,18 @@ final class AwsCeAnomalySubscription extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `frequency` attribute.
+  TfRef<String> get frequencyRef => TfRef.attribute<String>(this, 'frequency');
+
+  /// Reference to `monitor_arn_list` attribute.
+  TfRef<List<String>> get monitorArnListRef =>
+      TfRef.attribute<List<String>>(this, 'monitor_arn_list');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

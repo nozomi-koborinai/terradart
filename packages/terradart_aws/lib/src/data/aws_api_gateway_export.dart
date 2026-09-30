@@ -48,4 +48,25 @@ final class DataAwsApiGatewayExport extends Data {
   /// Reference to `content_type` attribute.
   TfRef<String> get contentType =>
       TfRef.attribute<String>(this, 'content_type');
+
+  /// Reference to `accepts` attribute.
+  TfRef<String> get acceptsRef => TfRef.attribute<String>(this, 'accepts');
+
+  /// Reference to `export_type` attribute.
+  TfRef<String> get exportTypeRef =>
+      TfRef.attribute<String>(this, 'export_type');
+
+  /// Reference to `parameters` attribute.
+  TfRef<Map<String, String>> get parametersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'parameters');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rest_api_id` attribute.
+  TfRef<String> get restApiIdRef =>
+      TfRef.attribute<String>(this, 'rest_api_id');
+
+  /// Reference to `stage_name` attribute.
+  TfRef<String> get stageNameRef => TfRef.attribute<String>(this, 'stage_name');
 }

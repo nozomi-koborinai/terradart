@@ -80,4 +80,14 @@ final class DataAwsTransferServer extends Data {
 
   /// Reference to `url` attribute.
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `server_id` attribute.
+  TfRef<String> get serverIdRef => TfRef.attribute<String>(this, 'server_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

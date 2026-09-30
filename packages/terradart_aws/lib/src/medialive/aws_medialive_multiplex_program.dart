@@ -142,4 +142,15 @@ final class AwsMedialiveMultiplexProgram extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `multiplex_id` attribute.
+  TfRef<String> get multiplexIdRef =>
+      TfRef.attribute<String>(this, 'multiplex_id');
+
+  /// Reference to `program_name` attribute.
+  TfRef<String> get programNameRef =>
+      TfRef.attribute<String>(this, 'program_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

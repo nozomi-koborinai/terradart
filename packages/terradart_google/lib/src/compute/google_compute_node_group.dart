@@ -175,6 +175,31 @@ final class GoogleComputeNodeGroup extends Resource {
   /// Reference to `size` attribute.
   TfRef<num> get size => TfRef.attribute<num>(this, 'size');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `initial_size` attribute.
+  TfRef<num> get initialSizeRef => TfRef.attribute<num>(this, 'initial_size');
+
+  /// Reference to `maintenance_policy` attribute.
+  TfRef<String> get maintenancePolicyRef =>
+      TfRef.attribute<String>(this, 'maintenance_policy');
+
+  /// Reference to `node_template` attribute.
+  TfRef<String> get nodeTemplateRef =>
+      TfRef.attribute<String>(this, 'node_template');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

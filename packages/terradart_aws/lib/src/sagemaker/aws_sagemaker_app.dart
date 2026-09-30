@@ -344,4 +344,27 @@ final class AwsSagemakerApp extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `app_name` attribute.
+  TfRef<String> get appNameRef => TfRef.attribute<String>(this, 'app_name');
+
+  /// Reference to `app_type` attribute.
+  TfRef<String> get appTypeRef => TfRef.attribute<String>(this, 'app_type');
+
+  /// Reference to `domain_id` attribute.
+  TfRef<String> get domainIdRef => TfRef.attribute<String>(this, 'domain_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `space_name` attribute.
+  TfRef<String> get spaceNameRef => TfRef.attribute<String>(this, 'space_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_profile_name` attribute.
+  TfRef<String> get userProfileNameRef =>
+      TfRef.attribute<String>(this, 'user_profile_name');
 }

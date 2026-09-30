@@ -86,4 +86,26 @@ final class GoogleComputeRegionBackendBucket extends Resource {
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `bucket_name` attribute.
+  TfRef<String> get bucketNameRef =>
+      TfRef.attribute<String>(this, 'bucket_name');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `load_balancing_scheme` attribute.
+  TfRef<String> get loadBalancingSchemeRef =>
+      TfRef.attribute<String>(this, 'load_balancing_scheme');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

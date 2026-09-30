@@ -57,4 +57,7 @@ final class DataCloudflareEmailRoutingSettings extends Data {
 
   /// Reference to `tag` attribute.
   TfRef<String> get tag => TfRef.attribute<String>(this, 'tag');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

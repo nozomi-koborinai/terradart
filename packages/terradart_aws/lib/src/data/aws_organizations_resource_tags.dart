@@ -26,4 +26,12 @@ final class DataAwsOrganizationsResourceTags extends Data {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `resource_id` attribute.
+  TfRef<String> get resourceIdRef =>
+      TfRef.attribute<String>(this, 'resource_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -146,4 +146,55 @@ final class AwsApigatewayv2Api extends Resource {
   /// Reference to `execution_arn` attribute.
   TfRef<String> get executionArn =>
       TfRef.attribute<String>(this, 'execution_arn');
+
+  /// Reference to `api_key_selection_expression` attribute.
+  TfRef<String> get apiKeySelectionExpressionRef =>
+      TfRef.attribute<String>(this, 'api_key_selection_expression');
+
+  /// Reference to `body` attribute.
+  TfRef<String> get bodyRef => TfRef.attribute<String>(this, 'body');
+
+  /// Reference to `credentials_arn` attribute.
+  TfRef<String> get credentialsArnRef =>
+      TfRef.attribute<String>(this, 'credentials_arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disable_execute_api_endpoint` attribute.
+  TfRef<bool> get disableExecuteApiEndpointRef =>
+      TfRef.attribute<bool>(this, 'disable_execute_api_endpoint');
+
+  /// Reference to `fail_on_warnings` attribute.
+  TfRef<bool> get failOnWarningsRef =>
+      TfRef.attribute<bool>(this, 'fail_on_warnings');
+
+  /// Reference to `ip_address_type` attribute.
+  TfRef<String> get ipAddressTypeRef =>
+      TfRef.attribute<String>(this, 'ip_address_type');
+
+  /// Reference to `protocol_type` attribute.
+  TfRef<String> get protocolTypeRef =>
+      TfRef.attribute<String>(this, 'protocol_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `route_key` attribute.
+  TfRef<String> get routeKeyRef => TfRef.attribute<String>(this, 'route_key');
+
+  /// Reference to `route_selection_expression` attribute.
+  TfRef<String> get routeSelectionExpressionRef =>
+      TfRef.attribute<String>(this, 'route_selection_expression');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target` attribute.
+  TfRef<String> get targetRef => TfRef.attribute<String>(this, 'target');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

@@ -755,4 +755,54 @@ final class GooglePrivatecaCertificateAuthority extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `certificate_authority_id` attribute.
+  TfRef<String> get certificateAuthorityIdRef =>
+      TfRef.attribute<String>(this, 'certificate_authority_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `desired_state` attribute.
+  TfRef<String> get desiredStateRef =>
+      TfRef.attribute<String>(this, 'desired_state');
+
+  /// Reference to `gcs_bucket` attribute.
+  TfRef<String> get gcsBucketRef => TfRef.attribute<String>(this, 'gcs_bucket');
+
+  /// Reference to `ignore_active_certificates_on_deletion` attribute.
+  TfRef<bool> get ignoreActiveCertificatesOnDeletionRef =>
+      TfRef.attribute<bool>(this, 'ignore_active_certificates_on_deletion');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `lifetime` attribute.
+  TfRef<String> get lifetimeRef => TfRef.attribute<String>(this, 'lifetime');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `pem_ca_certificate` attribute.
+  TfRef<String> get pemCaCertificateRef =>
+      TfRef.attribute<String>(this, 'pem_ca_certificate');
+
+  /// Reference to `pool` attribute.
+  TfRef<String> get poolRef => TfRef.attribute<String>(this, 'pool');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `skip_grace_period` attribute.
+  TfRef<bool> get skipGracePeriodRef =>
+      TfRef.attribute<bool>(this, 'skip_grace_period');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

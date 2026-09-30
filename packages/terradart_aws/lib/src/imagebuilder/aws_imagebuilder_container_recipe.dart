@@ -359,4 +359,45 @@ final class AwsImagebuilderContainerRecipe extends Resource {
 
   /// Reference to `platform` attribute.
   TfRef<String> get platform => TfRef.attribute<String>(this, 'platform');
+
+  /// Reference to `container_type` attribute.
+  TfRef<String> get containerTypeRef =>
+      TfRef.attribute<String>(this, 'container_type');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `dockerfile_template_data` attribute.
+  TfRef<String> get dockerfileTemplateDataRef =>
+      TfRef.attribute<String>(this, 'dockerfile_template_data');
+
+  /// Reference to `dockerfile_template_uri` attribute.
+  TfRef<String> get dockerfileTemplateUriRef =>
+      TfRef.attribute<String>(this, 'dockerfile_template_uri');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `parent_image` attribute.
+  TfRef<String> get parentImageRef =>
+      TfRef.attribute<String>(this, 'parent_image');
+
+  /// Reference to `platform_override` attribute.
+  TfRef<String> get platformOverrideRef =>
+      TfRef.attribute<String>(this, 'platform_override');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `working_directory` attribute.
+  TfRef<String> get workingDirectoryRef =>
+      TfRef.attribute<String>(this, 'working_directory');
 }

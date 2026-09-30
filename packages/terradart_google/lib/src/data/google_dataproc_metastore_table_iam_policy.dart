@@ -51,4 +51,20 @@ final class DataGoogleDataprocMetastoreTableIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `database_id` attribute.
+  TfRef<String> get databaseIdRef =>
+      TfRef.attribute<String>(this, 'database_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_id` attribute.
+  TfRef<String> get serviceIdRef => TfRef.attribute<String>(this, 'service_id');
+
+  /// Reference to `table` attribute.
+  TfRef<String> get tableRef => TfRef.attribute<String>(this, 'table');
 }

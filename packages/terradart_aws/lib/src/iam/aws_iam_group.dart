@@ -38,4 +38,7 @@ final class AwsIamGroup extends Resource {
 
   /// Reference to `unique_id` attribute.
   TfRef<String> get uniqueId => TfRef.attribute<String>(this, 'unique_id');
+
+  /// Reference to `path` attribute.
+  TfRef<String> get pathRef => TfRef.attribute<String>(this, 'path');
 }

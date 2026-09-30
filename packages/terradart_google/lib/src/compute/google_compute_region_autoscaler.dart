@@ -489,6 +489,23 @@ final class GoogleComputeRegionAutoscaler extends Resource {
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `target` attribute.
+  TfRef<String> get targetRef => TfRef.attribute<String>(this, 'target');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

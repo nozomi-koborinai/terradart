@@ -58,4 +58,17 @@ final class AwsOpensearchserverlessAccessPolicy extends Resource {
   /// Reference to `policy_version` attribute.
   TfRef<String> get policyVersion =>
       TfRef.attribute<String>(this, 'policy_version');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

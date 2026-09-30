@@ -64,4 +64,8 @@ final class DataAwsCloudfrontConnectionGroup extends Data {
   /// Reference to `tags` attribute.
   TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `routing_endpoint` attribute.
+  TfRef<String> get routingEndpointRef =>
+      TfRef.attribute<String>(this, 'routing_endpoint');
 }

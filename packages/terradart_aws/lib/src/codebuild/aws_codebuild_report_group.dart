@@ -139,4 +139,18 @@ final class AwsCodebuildReportGroup extends Resource {
 
   /// Reference to `created` attribute.
   TfRef<String> get created => TfRef.attribute<String>(this, 'created');
+
+  /// Reference to `delete_reports` attribute.
+  TfRef<bool> get deleteReportsRef =>
+      TfRef.attribute<bool>(this, 'delete_reports');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

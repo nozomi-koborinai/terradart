@@ -40,4 +40,19 @@ final class AwsEc2LocalGatewayRoute extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `destination_cidr_block` attribute.
+  TfRef<String> get destinationCidrBlockRef =>
+      TfRef.attribute<String>(this, 'destination_cidr_block');
+
+  /// Reference to `local_gateway_route_table_id` attribute.
+  TfRef<String> get localGatewayRouteTableIdRef =>
+      TfRef.attribute<String>(this, 'local_gateway_route_table_id');
+
+  /// Reference to `local_gateway_virtual_interface_group_id` attribute.
+  TfRef<String> get localGatewayVirtualInterfaceGroupIdRef =>
+      TfRef.attribute<String>(this, 'local_gateway_virtual_interface_group_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

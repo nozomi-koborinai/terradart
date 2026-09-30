@@ -59,4 +59,17 @@ final class CloudflareZeroTrustDeviceSubnet extends Resource {
 
   /// Reference to `subnet_type` attribute.
   TfRef<String> get subnetType => TfRef.attribute<String>(this, 'subnet_type');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `comment` attribute.
+  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+
+  /// Reference to `is_default_network` attribute.
+  TfRef<bool> get isDefaultNetworkRef =>
+      TfRef.attribute<bool>(this, 'is_default_network');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
 }

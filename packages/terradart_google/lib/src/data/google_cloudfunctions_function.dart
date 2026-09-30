@@ -178,4 +178,10 @@ final class DataGoogleCloudfunctionsFunction extends Data {
   /// Reference to `vpc_connector_egress_settings` attribute.
   TfRef<String> get vpcConnectorEgressSettings =>
       TfRef.attribute<String>(this, 'vpc_connector_egress_settings');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

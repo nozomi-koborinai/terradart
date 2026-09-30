@@ -514,6 +514,50 @@ final class GoogleLookerInstance extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `consumer_network` attribute.
+  TfRef<String> get consumerNetworkRef =>
+      TfRef.attribute<String>(this, 'consumer_network');
+
+  /// Reference to `controlled_egress_enabled` attribute.
+  TfRef<bool> get controlledEgressEnabledRef =>
+      TfRef.attribute<bool>(this, 'controlled_egress_enabled');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `fips_enabled` attribute.
+  TfRef<bool> get fipsEnabledRef => TfRef.attribute<bool>(this, 'fips_enabled');
+
+  /// Reference to `gemini_enabled` attribute.
+  TfRef<bool> get geminiEnabledRef =>
+      TfRef.attribute<bool>(this, 'gemini_enabled');
+
+  /// Reference to `platform_edition` attribute.
+  TfRef<String> get platformEditionRef =>
+      TfRef.attribute<String>(this, 'platform_edition');
+
+  /// Reference to `private_ip_enabled` attribute.
+  TfRef<bool> get privateIpEnabledRef =>
+      TfRef.attribute<bool>(this, 'private_ip_enabled');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `psc_enabled` attribute.
+  TfRef<bool> get pscEnabledRef => TfRef.attribute<bool>(this, 'psc_enabled');
+
+  /// Reference to `public_ip_enabled` attribute.
+  TfRef<bool> get publicIpEnabledRef =>
+      TfRef.attribute<bool>(this, 'public_ip_enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `reserved_range` attribute.
+  TfRef<String> get reservedRangeRef =>
+      TfRef.attribute<String>(this, 'reserved_range');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

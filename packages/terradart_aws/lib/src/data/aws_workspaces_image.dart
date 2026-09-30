@@ -43,4 +43,10 @@ final class DataAwsWorkspacesImage extends Data {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `image_id` attribute.
+  TfRef<String> get imageIdRef => TfRef.attribute<String>(this, 'image_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

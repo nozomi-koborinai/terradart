@@ -71,4 +71,11 @@ final class DataCloudflareStreamWatermark extends Data {
 
   /// Reference to `width` attribute.
   TfRef<num> get width => TfRef.attribute<num>(this, 'width');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `identifier` attribute.
+  TfRef<String> get identifierRef =>
+      TfRef.attribute<String>(this, 'identifier');
 }

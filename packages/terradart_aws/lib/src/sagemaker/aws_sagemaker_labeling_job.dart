@@ -443,4 +443,30 @@ final class AwsSagemakerLabelingJob extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `label_attribute_name` attribute.
+  TfRef<String> get labelAttributeNameRef =>
+      TfRef.attribute<String>(this, 'label_attribute_name');
+
+  /// Reference to `label_category_config_s3_uri` attribute.
+  TfRef<String> get labelCategoryConfigS3UriRef =>
+      TfRef.attribute<String>(this, 'label_category_config_s3_uri');
+
+  /// Reference to `labeling_job_name` attribute.
+  TfRef<String> get labelingJobNameRef =>
+      TfRef.attribute<String>(this, 'labeling_job_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `stopping_conditions` attribute.
+  TfRef<List<Map<String, Object?>>> get stoppingConditionsRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'stopping_conditions');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

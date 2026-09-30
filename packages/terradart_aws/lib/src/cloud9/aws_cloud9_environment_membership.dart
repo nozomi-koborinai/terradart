@@ -53,4 +53,18 @@ final class AwsCloud9EnvironmentMembership extends Resource {
 
   /// Reference to `user_id` attribute.
   TfRef<String> get userId => TfRef.attribute<String>(this, 'user_id');
+
+  /// Reference to `environment_id` attribute.
+  TfRef<String> get environmentIdRef =>
+      TfRef.attribute<String>(this, 'environment_id');
+
+  /// Reference to `permissions` attribute.
+  TfRef<String> get permissionsRef =>
+      TfRef.attribute<String>(this, 'permissions');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `user_arn` attribute.
+  TfRef<String> get userArnRef => TfRef.attribute<String>(this, 'user_arn');
 }

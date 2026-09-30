@@ -100,6 +100,31 @@ final class GoogleNetworkSecurityInterceptEndpointGroupAssociation
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `intercept_endpoint_group` attribute.
+  TfRef<String> get interceptEndpointGroupRef =>
+      TfRef.attribute<String>(this, 'intercept_endpoint_group');
+
+  /// Reference to `intercept_endpoint_group_association_id` attribute.
+  TfRef<String> get interceptEndpointGroupAssociationIdRef =>
+      TfRef.attribute<String>(this, 'intercept_endpoint_group_association_id');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

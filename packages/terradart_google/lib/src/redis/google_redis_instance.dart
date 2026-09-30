@@ -331,4 +331,87 @@ final class GoogleRedisInstance extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `alternative_location_id` attribute.
+  TfRef<String> get alternativeLocationIdRef =>
+      TfRef.attribute<String>(this, 'alternative_location_id');
+
+  /// Reference to `auth_enabled` attribute.
+  TfRef<bool> get authEnabledRef => TfRef.attribute<bool>(this, 'auth_enabled');
+
+  /// Reference to `authorized_network` attribute.
+  TfRef<String> get authorizedNetworkRef =>
+      TfRef.attribute<String>(this, 'authorized_network');
+
+  /// Reference to `connect_mode` attribute.
+  TfRef<String> get connectModeRef =>
+      TfRef.attribute<String>(this, 'connect_mode');
+
+  /// Reference to `customer_managed_key` attribute.
+  TfRef<String> get customerManagedKeyRef =>
+      TfRef.attribute<String>(this, 'customer_managed_key');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location_id` attribute.
+  TfRef<String> get locationIdRef =>
+      TfRef.attribute<String>(this, 'location_id');
+
+  /// Reference to `maintenance_version` attribute.
+  TfRef<String> get maintenanceVersionRef =>
+      TfRef.attribute<String>(this, 'maintenance_version');
+
+  /// Reference to `memory_size_gb` attribute.
+  TfRef<num> get memorySizeGbRef =>
+      TfRef.attribute<num>(this, 'memory_size_gb');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `read_replicas_mode` attribute.
+  TfRef<String> get readReplicasModeRef =>
+      TfRef.attribute<String>(this, 'read_replicas_mode');
+
+  /// Reference to `redis_configs` attribute.
+  TfRef<Map<String, String>> get redisConfigsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'redis_configs');
+
+  /// Reference to `redis_version` attribute.
+  TfRef<String> get redisVersionRef =>
+      TfRef.attribute<String>(this, 'redis_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `replica_count` attribute.
+  TfRef<num> get replicaCountRef => TfRef.attribute<num>(this, 'replica_count');
+
+  /// Reference to `reserved_ip_range` attribute.
+  TfRef<String> get reservedIpRangeRef =>
+      TfRef.attribute<String>(this, 'reserved_ip_range');
+
+  /// Reference to `secondary_ip_range` attribute.
+  TfRef<String> get secondaryIpRangeRef =>
+      TfRef.attribute<String>(this, 'secondary_ip_range');
+
+  /// Reference to `tier` attribute.
+  TfRef<String> get tierRef => TfRef.attribute<String>(this, 'tier');
+
+  /// Reference to `transit_encryption_mode` attribute.
+  TfRef<String> get transitEncryptionModeRef =>
+      TfRef.attribute<String>(this, 'transit_encryption_mode');
 }

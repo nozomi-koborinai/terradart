@@ -28,4 +28,7 @@ final class DataAppwriteMongoSpecifications extends Data {
 
   @override
   Set<String> get sensitiveFields => _appwriteMongoSpecificationsSensitive;
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
 }

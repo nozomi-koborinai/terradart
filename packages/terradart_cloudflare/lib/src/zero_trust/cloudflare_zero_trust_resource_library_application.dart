@@ -92,4 +92,29 @@ final class CloudflareZeroTrustResourceLibraryApplication extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `category_id` attribute.
+  TfRef<num> get categoryIdRef => TfRef.attribute<num>(this, 'category_id');
+
+  /// Reference to `hostnames` attribute.
+  TfRef<List<String>> get hostnamesRef =>
+      TfRef.attribute<List<String>>(this, 'hostnames');
+
+  /// Reference to `human_id` attribute.
+  TfRef<String> get humanIdRef => TfRef.attribute<String>(this, 'human_id');
+
+  /// Reference to `ip_subnets` attribute.
+  TfRef<List<String>> get ipSubnetsRef =>
+      TfRef.attribute<List<String>>(this, 'ip_subnets');
+
+  /// Reference to `port_protocols` attribute.
+  TfRef<List<String>> get portProtocolsRef =>
+      TfRef.attribute<List<String>>(this, 'port_protocols');
+
+  /// Reference to `support_domains` attribute.
+  TfRef<List<String>> get supportDomainsRef =>
+      TfRef.attribute<List<String>>(this, 'support_domains');
 }

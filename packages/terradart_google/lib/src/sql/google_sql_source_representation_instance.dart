@@ -67,4 +67,45 @@ final class GoogleSqlSourceRepresentationInstance extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `ca_certificate` attribute.
+  TfRef<String> get caCertificateRef =>
+      TfRef.attribute<String>(this, 'ca_certificate');
+
+  /// Reference to `client_certificate` attribute.
+  TfRef<String> get clientCertificateRef =>
+      TfRef.attribute<String>(this, 'client_certificate');
+
+  /// Reference to `client_key` attribute.
+  TfRef<String> get clientKeyRef => TfRef.attribute<String>(this, 'client_key');
+
+  /// Reference to `database_version` attribute.
+  TfRef<String> get databaseVersionRef =>
+      TfRef.attribute<String>(this, 'database_version');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `dump_file_path` attribute.
+  TfRef<String> get dumpFilePathRef =>
+      TfRef.attribute<String>(this, 'dump_file_path');
+
+  /// Reference to `host` attribute.
+  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+
+  /// Reference to `password` attribute.
+  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+
+  /// Reference to `port` attribute.
+  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `username` attribute.
+  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
 }

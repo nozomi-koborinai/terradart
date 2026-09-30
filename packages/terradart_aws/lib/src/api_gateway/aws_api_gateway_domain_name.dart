@@ -208,4 +208,62 @@ final class AwsApiGatewayDomainName extends Resource {
   /// Reference to `regional_zone_id` attribute.
   TfRef<String> get regionalZoneId =>
       TfRef.attribute<String>(this, 'regional_zone_id');
+
+  /// Reference to `certificate_arn` attribute.
+  TfRef<String> get certificateArnRef =>
+      TfRef.attribute<String>(this, 'certificate_arn');
+
+  /// Reference to `certificate_body` attribute.
+  TfRef<String> get certificateBodyRef =>
+      TfRef.attribute<String>(this, 'certificate_body');
+
+  /// Reference to `certificate_chain` attribute.
+  TfRef<String> get certificateChainRef =>
+      TfRef.attribute<String>(this, 'certificate_chain');
+
+  /// Reference to `certificate_name` attribute.
+  TfRef<String> get certificateNameRef =>
+      TfRef.attribute<String>(this, 'certificate_name');
+
+  /// Reference to `certificate_private_key` attribute.
+  TfRef<String> get certificatePrivateKeyRef =>
+      TfRef.attribute<String>(this, 'certificate_private_key');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `endpoint_access_mode` attribute.
+  TfRef<String> get endpointAccessModeRef =>
+      TfRef.attribute<String>(this, 'endpoint_access_mode');
+
+  /// Reference to `ownership_verification_certificate_arn` attribute.
+  TfRef<String> get ownershipVerificationCertificateArnRef =>
+      TfRef.attribute<String>(this, 'ownership_verification_certificate_arn');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `regional_certificate_arn` attribute.
+  TfRef<String> get regionalCertificateArnRef =>
+      TfRef.attribute<String>(this, 'regional_certificate_arn');
+
+  /// Reference to `regional_certificate_name` attribute.
+  TfRef<String> get regionalCertificateNameRef =>
+      TfRef.attribute<String>(this, 'regional_certificate_name');
+
+  /// Reference to `routing_mode` attribute.
+  TfRef<String> get routingModeRef =>
+      TfRef.attribute<String>(this, 'routing_mode');
+
+  /// Reference to `security_policy` attribute.
+  TfRef<String> get securityPolicyRef =>
+      TfRef.attribute<String>(this, 'security_policy');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

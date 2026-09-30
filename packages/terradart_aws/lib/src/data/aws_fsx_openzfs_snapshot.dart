@@ -80,4 +80,18 @@ final class DataAwsFsxOpenzfsSnapshot extends Data {
 
   /// Reference to `volume_id` attribute.
   TfRef<String> get volumeId => TfRef.attribute<String>(this, 'volume_id');
+
+  /// Reference to `most_recent` attribute.
+  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `snapshot_ids` attribute.
+  TfRef<List<String>> get snapshotIdsRef =>
+      TfRef.attribute<List<String>>(this, 'snapshot_ids');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

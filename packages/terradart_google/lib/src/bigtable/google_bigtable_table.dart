@@ -81,5 +81,32 @@ final class GoogleBigtableTable extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `change_stream_retention` attribute.
+  TfRef<String> get changeStreamRetentionRef =>
+      TfRef.attribute<String>(this, 'change_stream_retention');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<String> get deletionProtectionRef =>
+      TfRef.attribute<String>(this, 'deletion_protection');
+
+  /// Reference to `instance_name` attribute.
+  TfRef<String> get instanceNameRef =>
+      TfRef.attribute<String>(this, 'instance_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `row_key_schema` attribute.
+  TfRef<String> get rowKeySchemaRef =>
+      TfRef.attribute<String>(this, 'row_key_schema');
+
+  /// Reference to `split_keys` attribute.
+  TfRef<List<String>> get splitKeysRef =>
+      TfRef.attribute<List<String>>(this, 'split_keys');
+
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

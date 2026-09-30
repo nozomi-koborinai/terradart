@@ -80,4 +80,18 @@ final class DataGoogleGkeHubMembershipBinding extends Data {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `membership_binding_id` attribute.
+  TfRef<String> get membershipBindingIdRef =>
+      TfRef.attribute<String>(this, 'membership_binding_id');
+
+  /// Reference to `membership_id` attribute.
+  TfRef<String> get membershipIdRef =>
+      TfRef.attribute<String>(this, 'membership_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

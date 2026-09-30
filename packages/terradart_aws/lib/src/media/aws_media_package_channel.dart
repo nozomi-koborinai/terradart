@@ -46,4 +46,18 @@ final class AwsMediaPackageChannel extends Resource {
   /// Reference to `hls_ingest` attribute.
   TfRef<List<Map<String, Object?>>> get hlsIngest =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'hls_ingest');
+
+  /// Reference to `channel_id` attribute.
+  TfRef<String> get channelIdRef => TfRef.attribute<String>(this, 'channel_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

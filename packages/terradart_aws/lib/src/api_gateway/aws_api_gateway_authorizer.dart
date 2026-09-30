@@ -68,4 +68,38 @@ final class AwsApiGatewayAuthorizer extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `authorizer_credentials` attribute.
+  TfRef<String> get authorizerCredentialsRef =>
+      TfRef.attribute<String>(this, 'authorizer_credentials');
+
+  /// Reference to `authorizer_result_ttl_in_seconds` attribute.
+  TfRef<num> get authorizerResultTtlInSecondsRef =>
+      TfRef.attribute<num>(this, 'authorizer_result_ttl_in_seconds');
+
+  /// Reference to `authorizer_uri` attribute.
+  TfRef<String> get authorizerUriRef =>
+      TfRef.attribute<String>(this, 'authorizer_uri');
+
+  /// Reference to `identity_source` attribute.
+  TfRef<String> get identitySourceRef =>
+      TfRef.attribute<String>(this, 'identity_source');
+
+  /// Reference to `identity_validation_expression` attribute.
+  TfRef<String> get identityValidationExpressionRef =>
+      TfRef.attribute<String>(this, 'identity_validation_expression');
+
+  /// Reference to `provider_arns` attribute.
+  TfRef<List<String>> get providerArnsRef =>
+      TfRef.attribute<List<String>>(this, 'provider_arns');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rest_api_id` attribute.
+  TfRef<String> get restApiIdRef =>
+      TfRef.attribute<String>(this, 'rest_api_id');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

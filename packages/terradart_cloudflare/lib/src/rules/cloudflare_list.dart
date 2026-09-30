@@ -234,4 +234,11 @@ final class CloudflareList extends Resource {
   /// Reference to `num_referencing_filters` attribute.
   TfRef<num> get numReferencingFilters =>
       TfRef.attribute<num>(this, 'num_referencing_filters');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
 }

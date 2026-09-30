@@ -87,4 +87,7 @@ final class DataCloudflareApiToken extends Data {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `token_id` attribute.
+  TfRef<String> get tokenIdRef => TfRef.attribute<String>(this, 'token_id');
 }

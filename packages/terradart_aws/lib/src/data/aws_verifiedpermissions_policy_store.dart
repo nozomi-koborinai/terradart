@@ -56,4 +56,7 @@ final class DataAwsVerifiedpermissionsPolicyStore extends Data {
   /// Reference to `validation_settings` attribute.
   TfRef<List<Map<String, Object?>>> get validationSettings =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'validation_settings');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

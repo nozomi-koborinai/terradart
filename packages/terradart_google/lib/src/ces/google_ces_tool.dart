@@ -1200,4 +1200,27 @@ final class GoogleCesTool extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `app` attribute.
+  TfRef<String> get appRef => TfRef.attribute<String>(this, 'app');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `execution_type` attribute.
+  TfRef<String> get executionTypeRef =>
+      TfRef.attribute<String>(this, 'execution_type');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `timeout` attribute.
+  TfRef<String> get timeoutRef => TfRef.attribute<String>(this, 'timeout');
+
+  /// Reference to `tool_id` attribute.
+  TfRef<String> get toolIdRef => TfRef.attribute<String>(this, 'tool_id');
 }

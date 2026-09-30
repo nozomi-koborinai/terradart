@@ -42,4 +42,7 @@ final class DataCloudflareStreamKey extends Data {
 
   /// Reference to `key_id` attribute.
   TfRef<String> get keyId => TfRef.attribute<String>(this, 'key_id');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

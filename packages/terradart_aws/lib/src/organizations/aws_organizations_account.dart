@@ -80,4 +80,29 @@ final class AwsOrganizationsAccount extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `close_on_deletion` attribute.
+  TfRef<bool> get closeOnDeletionRef =>
+      TfRef.attribute<bool>(this, 'close_on_deletion');
+
+  /// Reference to `create_govcloud` attribute.
+  TfRef<bool> get createGovcloudRef =>
+      TfRef.attribute<bool>(this, 'create_govcloud');
+
+  /// Reference to `email` attribute.
+  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+
+  /// Reference to `iam_user_access_to_billing` attribute.
+  TfRef<String> get iamUserAccessToBillingRef =>
+      TfRef.attribute<String>(this, 'iam_user_access_to_billing');
+
+  /// Reference to `parent_id` attribute.
+  TfRef<String> get parentIdRef => TfRef.attribute<String>(this, 'parent_id');
+
+  /// Reference to `role_name` attribute.
+  TfRef<String> get roleNameRef => TfRef.attribute<String>(this, 'role_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

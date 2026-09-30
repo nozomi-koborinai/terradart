@@ -190,4 +190,17 @@ final class CloudflareRateLimit extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<CloudflareRateLimit>`.
   RefTo<CloudflareRateLimit> get ref => RefTo.of(this);
+
+  /// Reference to `period` attribute.
+  TfRef<num> get periodRef => TfRef.attribute<num>(this, 'period');
+
+  /// Reference to `rate_limit_id` attribute.
+  TfRef<String> get rateLimitIdRef =>
+      TfRef.attribute<String>(this, 'rate_limit_id');
+
+  /// Reference to `threshold` attribute.
+  TfRef<num> get thresholdRef => TfRef.attribute<num>(this, 'threshold');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

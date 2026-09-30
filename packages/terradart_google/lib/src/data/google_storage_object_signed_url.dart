@@ -50,4 +50,33 @@ final class DataGoogleStorageObjectSignedUrl extends Data {
 
   /// Reference to `signed_url` attribute.
   TfRef<String> get signedUrl => TfRef.attribute<String>(this, 'signed_url');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `content_md5` attribute.
+  TfRef<String> get contentMd5Ref =>
+      TfRef.attribute<String>(this, 'content_md5');
+
+  /// Reference to `content_type` attribute.
+  TfRef<String> get contentTypeRef =>
+      TfRef.attribute<String>(this, 'content_type');
+
+  /// Reference to `credentials` attribute.
+  TfRef<String> get credentialsRef =>
+      TfRef.attribute<String>(this, 'credentials');
+
+  /// Reference to `duration` attribute.
+  TfRef<String> get durationRef => TfRef.attribute<String>(this, 'duration');
+
+  /// Reference to `extension_headers` attribute.
+  TfRef<Map<String, String>> get extensionHeadersRef =>
+      TfRef.attribute<Map<String, String>>(this, 'extension_headers');
+
+  /// Reference to `http_method` attribute.
+  TfRef<String> get httpMethodRef =>
+      TfRef.attribute<String>(this, 'http_method');
+
+  /// Reference to `path` attribute.
+  TfRef<String> get pathRef => TfRef.attribute<String>(this, 'path');
 }

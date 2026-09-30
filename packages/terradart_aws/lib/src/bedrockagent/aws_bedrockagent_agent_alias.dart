@@ -55,4 +55,29 @@ final class AwsBedrockagentAgentAlias extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `agent_alias_name` attribute.
+  TfRef<String> get agentAliasNameRef =>
+      TfRef.attribute<String>(this, 'agent_alias_name');
+
+  /// Reference to `agent_id` attribute.
+  TfRef<String> get agentIdRef => TfRef.attribute<String>(this, 'agent_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `routing_configuration` attribute.
+  TfRef<List<Map<String, Object?>>> get routingConfigurationRef =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'routing_configuration',
+      );
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

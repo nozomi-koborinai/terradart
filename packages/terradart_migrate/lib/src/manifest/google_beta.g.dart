@@ -83,6 +83,46 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'terraformLabels',
           dartType: 'Map<String, String>',
         ),
+        MigrateGetter(
+          tfName: 'authorized_network',
+          dartName: 'authorizedNetworkRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'domain_resource',
+          dartName: 'domainResourceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'peering_id',
+          dartName: 'peeringIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'status',
+          dartName: 'statusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'status_message',
+          dartName: 'statusMessageRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -151,6 +191,36 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           tfName: 'terraform_labels',
           dartName: 'terraformLabels',
           dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'api_id',
+          dartName: 'apiIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'managed_service',
+          dartName: 'managedServiceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -257,6 +327,37 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'terraformLabels',
           dartType: 'Map<String, String>',
         ),
+        MigrateGetter(tfName: 'api', dartName: 'apiRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'api_config_id',
+          dartName: 'apiConfigIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'api_config_id_prefix',
+          dartName: 'apiConfigIdPrefixRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -312,6 +413,23 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(tfName: 'api', dartName: 'apiRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'api_config',
+          dartName: 'apiConfigRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -367,6 +485,23 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(tfName: 'api', dartName: 'apiRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'api_config',
+          dartName: 'apiConfigRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -407,6 +542,22 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(tfName: 'api', dartName: 'apiRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'api_config',
+          dartName: 'apiConfigRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -455,6 +606,18 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(tfName: 'api', dartName: 'apiRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -503,6 +666,18 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(tfName: 'api', dartName: 'apiRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -536,6 +711,17 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(tfName: 'api', dartName: 'apiRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -612,6 +798,41 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'terraformLabels',
           dartType: 'Map<String, String>',
         ),
+        MigrateGetter(
+          tfName: 'api_config',
+          dartName: 'apiConfigRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'gateway_id',
+          dartName: 'gatewayIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -667,6 +888,27 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'gateway',
+          dartName: 'gatewayRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -722,6 +964,27 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'gateway',
+          dartName: 'gatewayRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -762,6 +1025,26 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'gateway',
+          dartName: 'gatewayRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -795,6 +1078,21 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'vpcsc_policy',
+          dartName: 'vpcscPolicyRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -925,6 +1223,51 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'data_exchange_id',
+          dartName: 'dataExchangeIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'data_exchange_location',
+          dartName: 'dataExchangeLocationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'data_exchange_project',
+          dartName: 'dataExchangeProjectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'refresh_policy',
+          dartName: 'refreshPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'subscriber_contact',
+          dartName: 'subscriberContactRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'subscription_id',
+          dartName: 'subscriptionIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1041,6 +1384,42 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'updateTime',
           dartType: 'String',
         ),
+        MigrateGetter(tfName: 'app', dartName: 'appRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'evaluation_id',
+          dartName: 'evaluationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tags',
+          dartName: 'tagsRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1084,6 +1463,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'update_time',
           dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
           dartType: 'String',
         ),
       ],
@@ -1145,6 +1534,36 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'soarDomainId',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'environments_json',
+          dartName: 'environmentsJsonRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'instance',
+          dartName: 'instanceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1187,6 +1606,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'customer',
+          dartName: 'customerRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1236,6 +1665,17 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -1285,6 +1725,17 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -1319,6 +1770,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1368,6 +1829,17 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -1417,6 +1889,17 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -1451,6 +1934,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -1637,6 +2130,67 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'status',
           dartType: 'List<Map<String, Object?>>',
         ),
+        MigrateGetter(
+          tfName: 'auto_created_reservations_delete_time',
+          dartName: 'autoCreatedReservationsDeleteTimeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'auto_delete_auto_created_reservations',
+          dartName: 'autoDeleteAutoCreatedReservationsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deployment_type',
+          dartName: 'deploymentTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'name_prefix',
+          dartName: 'namePrefixRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'planning_status',
+          dartName: 'planningStatusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'reservation_mode',
+          dartName: 'reservationModeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'reservation_name',
+          dartName: 'reservationNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'scheduling_type',
+          dartName: 'schedulingTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'specific_reservation_required',
+          dartName: 'specificReservationRequiredRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(tfName: 'zone', dartName: 'zoneRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -1975,6 +2529,107 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'terraformLabels',
           dartType: 'Map<String, String>',
         ),
+        MigrateGetter(
+          tfName: 'allow_stopping_for_update',
+          dartName: 'allowStoppingForUpdateRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'can_ip_forward',
+          dartName: 'canIpForwardRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_protection',
+          dartName: 'deletionProtectionRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'desired_status',
+          dartName: 'desiredStatusRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enable_display',
+          dartName: 'enableDisplayRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'erase_windows_vss_signature',
+          dartName: 'eraseWindowsVssSignatureRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'hostname',
+          dartName: 'hostnameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'key_revocation_action_type',
+          dartName: 'keyRevocationActionTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'machine_type',
+          dartName: 'machineTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'metadata',
+          dartName: 'metadataRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'metadata_startup_script',
+          dartName: 'metadataStartupScriptRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'min_cpu_platform',
+          dartName: 'minCpuPlatformRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'partner_metadata',
+          dartName: 'partnerMetadataRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'resource_policies',
+          dartName: 'resourcePoliciesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'source_machine_image',
+          dartName: 'sourceMachineImageRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tags',
+          dartName: 'tagsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'zone', dartName: 'zoneRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -2055,6 +2710,31 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'storageLocations',
           dartType: 'List<String>',
         ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'guest_flush',
+          dartName: 'guestFlushRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'source_instance',
+          dartName: 'sourceInstanceRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2103,6 +2783,22 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'machine_image',
+          dartName: 'machineImageRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -2151,6 +2847,22 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'machine_image',
+          dartName: 'machineImageRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -2184,6 +2896,21 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'machine_image',
+          dartName: 'machineImageRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2301,6 +3028,61 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'ruleTupleCount',
           dartType: 'num',
         ),
+        MigrateGetter(
+          tfName: 'action',
+          dartName: 'actionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'direction',
+          dartName: 'directionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'disabled',
+          dartName: 'disabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'firewall_policy',
+          dartName: 'firewallPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'priority',
+          dartName: 'priorityRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'rule_name',
+          dartName: 'ruleNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'security_profile_group',
+          dartName: 'securityProfileGroupRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tls_inspect',
+          dartName: 'tlsInspectRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2373,6 +3155,36 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'selfLink',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'bucket_name',
+          dartName: 'bucketNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'load_balancing_scheme',
+          dartName: 'loadBalancingSchemeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2429,6 +3241,22 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -2485,6 +3313,22 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -2526,6 +3370,21 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2582,6 +3441,22 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -2638,6 +3513,22 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -2679,6 +3570,21 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -2754,6 +3660,26 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'self_link_with_id',
           dartName: 'selfLinkWithId',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
           dartType: 'String',
         ),
       ],
@@ -2864,6 +3790,51 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           tfName: 'rule_tuple_count',
           dartName: 'ruleTupleCount',
           dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'disabled',
+          dartName: 'disabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'network_policy',
+          dartName: 'networkPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'priority',
+          dartName: 'priorityRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'rule_name',
+          dartName: 'ruleNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'target_service_accounts',
+          dartName: 'targetServiceAccountsRef',
+          dartType: 'List<String>',
         ),
       ],
     ),
@@ -3083,6 +4054,136 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartType: 'Map<String, String>',
         ),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'additional_experiments',
+          dartName: 'additionalExperimentsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'additional_pipeline_options',
+          dartName: 'additionalPipelineOptionsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'autoscaling_algorithm',
+          dartName: 'autoscalingAlgorithmRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'container_spec_gcs_path',
+          dartName: 'containerSpecGcsPathRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'create_ignore_already_exists',
+          dartName: 'createIgnoreAlreadyExistsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'enable_streaming_engine',
+          dartName: 'enableStreamingEngineRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'ip_configuration',
+          dartName: 'ipConfigurationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'kms_key_name',
+          dartName: 'kmsKeyNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'launcher_machine_type',
+          dartName: 'launcherMachineTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'machine_type',
+          dartName: 'machineTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'max_workers',
+          dartName: 'maxWorkersRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'network',
+          dartName: 'networkRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'num_workers',
+          dartName: 'numWorkersRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'on_delete',
+          dartName: 'onDeleteRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'parameters',
+          dartName: 'parametersRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sdk_container_image',
+          dartName: 'sdkContainerImageRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service_account_email',
+          dartName: 'serviceAccountEmailRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'skip_wait_on_job_termination',
+          dartName: 'skipWaitOnJobTerminationRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'staging_location',
+          dartName: 'stagingLocationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'subnetwork',
+          dartName: 'subnetworkRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'temp_location',
+          dartName: 'tempLocationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'transform_name_mapping',
+          dartName: 'transformNameMappingRef',
+          dartType: 'Map<String, String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3115,6 +4216,21 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'default_kms_key_name',
+          dartName: 'defaultKmsKeyNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3202,6 +4318,46 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           tfName: 'recent_scheduled_release_records',
           dartName: 'recentScheduledReleaseRecords',
           dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(
+          tfName: 'cron_schedule',
+          dartName: 'cronScheduleRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'disabled',
+          dartName: 'disabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'git_commitish',
+          dartName: 'gitCommitishRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'repository',
+          dartName: 'repositoryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'time_zone',
+          dartName: 'timeZoneRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -3291,6 +4447,46 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'recentScheduledExecutionRecords',
           dartType: 'List<Map<String, Object?>>',
         ),
+        MigrateGetter(
+          tfName: 'cron_schedule',
+          dartName: 'cronScheduleRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'disabled',
+          dartName: 'disabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'release_config',
+          dartName: 'releaseConfigRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'repository',
+          dartName: 'repositoryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'time_zone',
+          dartName: 'timeZoneRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3371,6 +4567,41 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartType: 'Map<String, String>',
         ),
         MigrateGetter(tfName: 'uid', dartName: 'uid', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'data_asset_id',
+          dartName: 'dataAssetIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'data_product_id',
+          dartName: 'dataProductIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'resource',
+          dartName: 'resourceRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3428,6 +4659,21 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3506,6 +4752,41 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'updateTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'regional_propagation_disabled',
+          dartName: 'regionalPropagationDisabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'template_id',
+          dartName: 'templateIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'template_string',
+          dartName: 'templateStringRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3554,6 +4835,31 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'locked', dartName: 'locked', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'regional_propagation_disabled',
+          dartName: 'regionalPropagationDisabledRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'template_id',
+          dartName: 'templateIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3617,6 +4923,41 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'app_id', dartName: 'appId', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'api_key_id',
+          dartName: 'apiKeyIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'package_name',
+          dartName: 'packageNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sha1_hashes',
+          dartName: 'sha1HashesRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'sha256_hashes',
+          dartName: 'sha256HashesRef',
+          dartType: 'List<String>',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3679,6 +5020,41 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'app_id', dartName: 'appId', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'api_key_id',
+          dartName: 'apiKeyIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'app_store_id',
+          dartName: 'appStoreIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'bundle_id',
+          dartName: 'bundleIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'team_id',
+          dartName: 'teamIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3739,6 +5115,32 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'state', dartName: 'state', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'desired_state',
+          dartName: 'desiredStateRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'instance_id',
+          dartName: 'instanceIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -3817,6 +5219,21 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'updateTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'instance_id',
+          dartName: 'instanceIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -3886,6 +5303,37 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'terraformLabels',
           dartType: 'Map<String, String>',
         ),
+        MigrateGetter(
+          tfName: 'channel_id',
+          dartName: 'channelIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'expire_time',
+          dartName: 'expireTimeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'retained_release_count',
+          dartName: 'retainedReleaseCountRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'ttl', dartName: 'ttlRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -3998,6 +5446,41 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'updateTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'cert_preference',
+          dartName: 'certPreferenceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'custom_domain',
+          dartName: 'customDomainRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'redirect_target',
+          dartName: 'redirectTargetRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'wait_dns_verification',
+          dartName: 'waitDnsVerificationRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4050,6 +5533,27 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'releaseId',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'channel_id',
+          dartName: 'channelIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'message',
+          dartName: 'messageRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'type', dartName: 'typeRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'version_name',
+          dartName: 'versionNameRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4096,6 +5600,26 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateGetter(tfName: 'type', dartName: 'type', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'app_id',
+          dartName: 'appIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4128,6 +5652,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'versionId',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'site_id',
+          dartName: 'siteIdRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4154,6 +5683,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'project_number',
           dartName: 'projectNumber',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
           dartType: 'String',
         ),
       ],
@@ -4189,6 +5723,21 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'bucket_id',
+          dartName: 'bucketIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4226,6 +5775,21 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           tfName: 'bucket',
           dartName: 'bucket',
           dartType: 'List<Map<String, Object?>>',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
         ),
       ],
     ),
@@ -4273,6 +5837,26 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'appUrls',
           dartType: 'List<String>',
         ),
+        MigrateGetter(
+          tfName: 'api_key_id',
+          dartName: 'apiKeyIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4300,6 +5884,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'email', dartName: 'email', dartType: 'String'),
         MigrateGetter(tfName: 'member', dartName: 'member', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'folder',
+          dartName: 'folderRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service',
+          dartName: 'serviceRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4383,6 +5977,32 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'updateTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'membership_id',
+          dartName: 'membershipIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'membership_rbac_role_binding_id',
+          dartName: 'membershipRbacRoleBindingIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'user', dartName: 'userRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -4409,6 +6029,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'folder',
+          dartName: 'folderRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4436,6 +6061,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'organization',
+          dartName: 'organizationRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4463,6 +6093,11 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       ],
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4551,6 +6186,36 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'update_time',
           dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'action',
+          dartName: 'actionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
           dartType: 'String',
         ),
       ],
@@ -4657,6 +6322,46 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'updateTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'country',
+          dartName: 'countryRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ncc_gateway',
+          dartName: 'nccGatewayRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'sac_realm',
+          dartName: 'sacRealmRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'time_zone',
+          dartName: 'timeZoneRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4736,6 +6441,26 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'update_time',
           dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'security_service',
+          dartName: 'securityServiceRef',
           dartType: 'String',
         ),
       ],
@@ -4843,6 +6568,36 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'updateTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'load_balancing_algorithm',
+          dartName: 'loadBalancingAlgorithmRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4870,6 +6625,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'email', dartName: 'email', dartType: 'String'),
         MigrateGetter(tfName: 'member', dartName: 'member', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'organization',
+          dartName: 'organizationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service',
+          dartName: 'serviceRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -4962,6 +6727,27 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'updateTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'etag', dartName: 'etagRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'guest_policy_id',
+          dartName: 'guestPolicyIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5021,6 +6807,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'updateTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'parent',
+          dartName: 'parentRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5048,6 +6844,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'email', dartName: 'email', dartType: 'String'),
         MigrateGetter(tfName: 'member', dartName: 'member', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service',
+          dartName: 'serviceRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5088,6 +6894,21 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5136,6 +6957,22 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'config',
+          dartName: 'configRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -5184,6 +7021,22 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'config',
+          dartName: 'configRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -5217,6 +7070,21 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'config',
+          dartName: 'configRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5274,6 +7142,27 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'update_time',
           dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'parent',
+          dartName: 'parentRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'text', dartName: 'textRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'value',
+          dartName: 'valueRef',
           dartType: 'String',
         ),
       ],
@@ -5399,6 +7288,41 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'updateTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'annotations',
+          dartName: 'annotationsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'release_id',
+          dartName: 'releaseIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'unit_kind',
+          dartName: 'unitKindRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5515,6 +7439,56 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'updateTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'annotations',
+          dartName: 'annotationsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'rollout_kind_id',
+          dartName: 'rolloutKindIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'rollout_orchestration_strategy',
+          dartName: 'rolloutOrchestrationStrategyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'unit_filter',
+          dartName: 'unitFilterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'unit_kind',
+          dartName: 'unitKindRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'update_unit_kind_strategy',
+          dartName: 'updateUnitKindStrategyRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5603,6 +7577,36 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'update_time',
           dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'annotations',
+          dartName: 'annotationsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'saas_id',
+          dartName: 'saasIdRef',
           dartType: 'String',
         ),
       ],
@@ -5697,6 +7701,42 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'update_time',
           dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'annotations',
+          dartName: 'annotationsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'consumer_resource',
+          dartName: 'consumerResourceRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'saas', dartName: 'saasRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'tenant_id',
+          dartName: 'tenantIdRef',
           dartType: 'String',
         ),
       ],
@@ -5864,6 +7904,51 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'updateTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'annotations',
+          dartName: 'annotationsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'management_mode',
+          dartName: 'managementModeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tenant',
+          dartName: 'tenantRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'unit_id',
+          dartName: 'unitIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'unit_kind',
+          dartName: 'unitKindRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -5984,6 +8069,42 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'update_time',
           dartName: 'updateTime',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'annotations',
+          dartName: 'annotationsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'default_release',
+          dartName: 'defaultReleaseRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'saas', dartName: 'saasRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'unit_kind_id',
+          dartName: 'unitKindIdRef',
           dartType: 'String',
         ),
       ],
@@ -6121,6 +8242,42 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'updateTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'annotations',
+          dartName: 'annotationsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'unit', dartName: 'unitRef', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'unit_operation_id',
+          dartName: 'unitOperationIdRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'wait_for_completion',
+          dartName: 'waitForCompletionRef',
+          dartType: 'bool',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6227,6 +8384,61 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'blacklist_patterns',
+          dartName: 'blacklistPatternsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'display_name',
+          dartName: 'displayNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'export_to_security_command_center',
+          dartName: 'exportToSecurityCommandCenterRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'ignore_http_status_errors',
+          dartName: 'ignoreHttpStatusErrorsRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'max_qps',
+          dartName: 'maxQpsRef',
+          dartType: 'num',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'starting_urls',
+          dartName: 'startingUrlsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'static_ip_scan',
+          dartName: 'staticIpScanRef',
+          dartType: 'bool',
+        ),
+        MigrateGetter(
+          tfName: 'target_platforms',
+          dartName: 'targetPlatformsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'user_agent',
+          dartName: 'userAgentRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6295,6 +8507,42 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'dimensions',
+          dartName: 'dimensionsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(tfName: 'force', dartName: 'forceRef', dartType: 'bool'),
+        MigrateGetter(
+          tfName: 'limit',
+          dartName: 'limitRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'metric',
+          dartName: 'metricRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'override_value',
+          dartName: 'overrideValueRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'service',
+          dartName: 'serviceRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6331,6 +8579,21 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'active_tags',
           dartName: 'activeTags',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'full_resource_name',
+          dartName: 'fullResourceNameRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tags',
+          dartName: 'tagsRef',
           dartType: 'Map<String, String>',
         ),
       ],
@@ -6381,6 +8644,17 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'name', dartName: 'nameRef', dartType: 'String'),
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'zone', dartName: 'zoneRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -6562,6 +8836,52 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'terraformLabels',
           dartType: 'Map<String, String>',
         ),
+        MigrateGetter(
+          tfName: 'accelerator_type',
+          dartName: 'acceleratorTypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'cidr_block',
+          dartName: 'cidrBlockRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'labels',
+          dartName: 'labelsRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'metadata',
+          dartName: 'metadataRef',
+          dartType: 'Map<String, String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'runtime_version',
+          dartName: 'runtimeVersionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'tags',
+          dartName: 'tagsRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'zone', dartName: 'zoneRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -6617,6 +8937,27 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'endpoint',
+          dartName: 'endpointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -6672,6 +9013,27 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'endpoint',
+          dartName: 'endpointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -6712,6 +9074,26 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'endpoint',
+          dartName: 'endpointRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'location',
+          dartName: 'locationRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6767,6 +9149,27 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'feature_group',
+          dartName: 'featureGroupRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -6822,6 +9225,27 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'feature_group',
+          dartName: 'featureGroupRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -6862,6 +9286,26 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'feature_group',
+          dartName: 'featureGroupRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -6924,6 +9368,32 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'feature_online_store',
+          dartName: 'featureOnlineStoreRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'feature_view',
+          dartName: 'featureViewRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -6986,6 +9456,32 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'feature_online_store',
+          dartName: 'featureOnlineStoreRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'feature_view',
+          dartName: 'featureViewRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -7033,6 +9529,31 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'feature_online_store',
+          dartName: 'featureOnlineStoreRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'feature_view',
+          dartName: 'featureViewRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7088,6 +9609,27 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'feature_online_store',
+          dartName: 'featureOnlineStoreRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -7143,6 +9685,27 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'feature_online_store',
+          dartName: 'featureOnlineStoreRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -7183,6 +9746,26 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'feature_online_store',
+          dartName: 'featureOnlineStoreRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7231,6 +9814,22 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'entitytype',
+          dartName: 'entitytypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'featurestore',
+          dartName: 'featurestoreRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -7279,6 +9878,22 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'entitytype',
+          dartName: 'entitytypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'featurestore',
+          dartName: 'featurestoreRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -7312,6 +9927,21 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'entitytype',
+          dartName: 'entitytypeRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'featurestore',
+          dartName: 'featurestoreRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7367,6 +9997,27 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'featurestore',
+          dartName: 'featurestoreRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'members',
+          dartName: 'membersRef',
+          dartType: 'List<String>',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -7422,6 +10073,27 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'featurestore',
+          dartName: 'featurestoreRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'member',
+          dartName: 'memberRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(tfName: 'role', dartName: 'roleRef', dartType: 'String'),
       ],
     ),
     MigrateEntry(
@@ -7462,6 +10134,26 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
       getters: <MigrateGetter>[
         MigrateGetter(tfName: 'id', dartName: 'id', dartType: 'String'),
         MigrateGetter(tfName: 'etag', dartName: 'etag', dartType: 'String'),
+        MigrateGetter(
+          tfName: 'featurestore',
+          dartName: 'featurestoreRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'policy_data',
+          dartName: 'policyDataRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7532,6 +10224,26 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
           dartName: 'updateTime',
           dartType: 'String',
         ),
+        MigrateGetter(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicyRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'description',
+          dartName: 'descriptionRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'region',
+          dartName: 'regionRef',
+          dartType: 'String',
+        ),
       ],
     ),
     MigrateEntry(
@@ -7565,6 +10277,16 @@ const MigrateManifest googleBetaMigrateManifest = MigrateManifest(
         MigrateGetter(
           tfName: 'publisher_endpoint',
           dartName: 'publisherEndpoint',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'project',
+          dartName: 'projectRef',
+          dartType: 'String',
+        ),
+        MigrateGetter(
+          tfName: 'publisher_model_name',
+          dartName: 'publisherModelNameRef',
           dartType: 'String',
         ),
       ],

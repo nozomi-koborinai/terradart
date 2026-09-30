@@ -1239,4 +1239,32 @@ final class AwsBedrockEvaluationJob extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `application_type` attribute.
+  TfRef<String> get applicationTypeRef =>
+      TfRef.attribute<String>(this, 'application_type');
+
+  /// Reference to `customer_encryption_key_id` attribute.
+  TfRef<String> get customerEncryptionKeyIdRef =>
+      TfRef.attribute<String>(this, 'customer_encryption_key_id');
+
+  /// Reference to `job_description` attribute.
+  TfRef<String> get jobDescriptionRef =>
+      TfRef.attribute<String>(this, 'job_description');
+
+  /// Reference to `job_name` attribute.
+  TfRef<String> get jobNameRef => TfRef.attribute<String>(this, 'job_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `skip_destroy` attribute.
+  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

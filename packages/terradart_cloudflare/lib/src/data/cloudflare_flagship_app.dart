@@ -49,4 +49,10 @@ final class DataCloudflareFlagshipApp extends Data {
 
   /// Reference to `updated_by` attribute.
   TfRef<String> get updatedBy => TfRef.attribute<String>(this, 'updated_by');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
 }

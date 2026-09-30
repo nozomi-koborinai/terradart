@@ -54,4 +54,13 @@ final class CloudflareZeroTrustAccessShortLivedCertificate extends Resource {
 
   /// Reference to `public_key` attribute.
   TfRef<String> get publicKey => TfRef.attribute<String>(this, 'public_key');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

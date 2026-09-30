@@ -83,4 +83,23 @@ final class AwsEc2NetworkInsightsAnalysis extends Resource {
   /// Reference to `warning_message` attribute.
   TfRef<String> get warningMessage =>
       TfRef.attribute<String>(this, 'warning_message');
+
+  /// Reference to `filter_in_arns` attribute.
+  TfRef<List<String>> get filterInArnsRef =>
+      TfRef.attribute<List<String>>(this, 'filter_in_arns');
+
+  /// Reference to `network_insights_path_id` attribute.
+  TfRef<String> get networkInsightsPathIdRef =>
+      TfRef.attribute<String>(this, 'network_insights_path_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `wait_for_completion` attribute.
+  TfRef<bool> get waitForCompletionRef =>
+      TfRef.attribute<bool>(this, 'wait_for_completion');
 }

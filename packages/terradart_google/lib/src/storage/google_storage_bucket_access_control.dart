@@ -92,4 +92,17 @@ final class GoogleStorageBucketAccessControl extends Resource {
 
   /// Reference to `email` attribute.
   TfRef<String> get email => TfRef.attribute<String>(this, 'email');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `entity` attribute.
+  TfRef<String> get entityRef => TfRef.attribute<String>(this, 'entity');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

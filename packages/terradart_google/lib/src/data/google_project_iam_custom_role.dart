@@ -58,4 +58,10 @@ final class DataGoogleProjectIamCustomRole extends Data {
 
   /// Reference to `title` attribute.
   TfRef<String> get title => TfRef.attribute<String>(this, 'title');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role_id` attribute.
+  TfRef<String> get roleIdRef => TfRef.attribute<String>(this, 'role_id');
 }

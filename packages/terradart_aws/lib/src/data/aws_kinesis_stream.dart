@@ -81,4 +81,11 @@ final class DataAwsKinesisStream extends Data {
   /// Reference to `warm_throughput` attribute.
   TfRef<List<Map<String, Object?>>> get warmThroughput =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'warm_throughput');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

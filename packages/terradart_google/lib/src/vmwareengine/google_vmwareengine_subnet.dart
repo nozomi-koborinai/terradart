@@ -84,6 +84,13 @@ final class GoogleVmwareengineSubnet extends Resource {
   /// Reference to `vlan_id` attribute.
   TfRef<num> get vlanId => TfRef.attribute<num>(this, 'vlan_id');
 
+  /// Reference to `ip_cidr_range` attribute.
+  TfRef<String> get ipCidrRangeRef =>
+      TfRef.attribute<String>(this, 'ip_cidr_range');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

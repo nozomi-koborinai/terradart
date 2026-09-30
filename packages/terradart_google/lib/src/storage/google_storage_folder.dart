@@ -80,4 +80,15 @@ final class GoogleStorageFolder extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `force_destroy` attribute.
+  TfRef<bool> get forceDestroyRef =>
+      TfRef.attribute<bool>(this, 'force_destroy');
 }

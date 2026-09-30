@@ -46,4 +46,7 @@ final class DataAwsOrganizationsPolicy extends Data {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `policy_id` attribute.
+  TfRef<String> get policyIdRef => TfRef.attribute<String>(this, 'policy_id');
 }

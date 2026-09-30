@@ -89,4 +89,19 @@ final class AwsLexSlotType extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `create_version` attribute.
+  TfRef<bool> get createVersionRef =>
+      TfRef.attribute<bool>(this, 'create_version');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `value_selection_strategy` attribute.
+  TfRef<String> get valueSelectionStrategyRef =>
+      TfRef.attribute<String>(this, 'value_selection_strategy');
 }

@@ -54,4 +54,19 @@ final class DataAwsConnectUserHierarchyGroup extends Data {
 
   /// Reference to `level_id` attribute.
   TfRef<String> get levelId => TfRef.attribute<String>(this, 'level_id');
+
+  /// Reference to `hierarchy_group_id` attribute.
+  TfRef<String> get hierarchyGroupIdRef =>
+      TfRef.attribute<String>(this, 'hierarchy_group_id');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

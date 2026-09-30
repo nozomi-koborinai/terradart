@@ -134,4 +134,28 @@ final class GoogleAlloydbUser extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `cluster` attribute.
+  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+
+  /// Reference to `database_roles` attribute.
+  TfRef<List<String>> get databaseRolesRef =>
+      TfRef.attribute<List<String>>(this, 'database_roles');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `password` attribute.
+  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+
+  /// Reference to `password_wo_version` attribute.
+  TfRef<String> get passwordWoVersionRef =>
+      TfRef.attribute<String>(this, 'password_wo_version');
+
+  /// Reference to `user_id` attribute.
+  TfRef<String> get userIdRef => TfRef.attribute<String>(this, 'user_id');
+
+  /// Reference to `user_type` attribute.
+  TfRef<String> get userTypeRef => TfRef.attribute<String>(this, 'user_type');
 }

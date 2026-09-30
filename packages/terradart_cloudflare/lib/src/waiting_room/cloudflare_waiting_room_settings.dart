@@ -41,4 +41,11 @@ final class CloudflareWaitingRoomSettings extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `search_engine_crawler_bypass` attribute.
+  TfRef<bool> get searchEngineCrawlerBypassRef =>
+      TfRef.attribute<bool>(this, 'search_engine_crawler_bypass');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

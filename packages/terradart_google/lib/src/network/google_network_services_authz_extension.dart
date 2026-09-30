@@ -116,6 +116,56 @@ final class GoogleNetworkServicesAuthzExtension extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `authority` attribute.
+  TfRef<String> get authorityRef => TfRef.attribute<String>(this, 'authority');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `fail_open` attribute.
+  TfRef<bool> get failOpenRef => TfRef.attribute<bool>(this, 'fail_open');
+
+  /// Reference to `forward_attributes` attribute.
+  TfRef<List<String>> get forwardAttributesRef =>
+      TfRef.attribute<List<String>>(this, 'forward_attributes');
+
+  /// Reference to `forward_headers` attribute.
+  TfRef<List<String>> get forwardHeadersRef =>
+      TfRef.attribute<List<String>>(this, 'forward_headers');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `load_balancing_scheme` attribute.
+  TfRef<String> get loadBalancingSchemeRef =>
+      TfRef.attribute<String>(this, 'load_balancing_scheme');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `metadata` attribute.
+  TfRef<Map<String, String>> get metadataRef =>
+      TfRef.attribute<Map<String, String>>(this, 'metadata');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
+
+  /// Reference to `timeout` attribute.
+  TfRef<String> get timeoutRef => TfRef.attribute<String>(this, 'timeout');
+
+  /// Reference to `wire_format` attribute.
+  TfRef<String> get wireFormatRef =>
+      TfRef.attribute<String>(this, 'wire_format');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

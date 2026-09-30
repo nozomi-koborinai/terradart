@@ -69,4 +69,30 @@ final class AwsDxLag extends Resource {
   /// Reference to `rate_limiter_status` attribute.
   TfRef<List<Map<String, Object?>>> get rateLimiterStatus =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'rate_limiter_status');
+
+  /// Reference to `connection_id` attribute.
+  TfRef<String> get connectionIdRef =>
+      TfRef.attribute<String>(this, 'connection_id');
+
+  /// Reference to `connections_bandwidth` attribute.
+  TfRef<String> get connectionsBandwidthRef =>
+      TfRef.attribute<String>(this, 'connections_bandwidth');
+
+  /// Reference to `force_destroy` attribute.
+  TfRef<bool> get forceDestroyRef =>
+      TfRef.attribute<bool>(this, 'force_destroy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `provider_name` attribute.
+  TfRef<String> get providerNameRef =>
+      TfRef.attribute<String>(this, 'provider_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

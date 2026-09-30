@@ -42,4 +42,19 @@ final class AwsEc2TransitGatewayMulticastGroupSource extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `group_ip_address` attribute.
+  TfRef<String> get groupIpAddressRef =>
+      TfRef.attribute<String>(this, 'group_ip_address');
+
+  /// Reference to `network_interface_id` attribute.
+  TfRef<String> get networkInterfaceIdRef =>
+      TfRef.attribute<String>(this, 'network_interface_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `transit_gateway_multicast_domain_id` attribute.
+  TfRef<String> get transitGatewayMulticastDomainIdRef =>
+      TfRef.attribute<String>(this, 'transit_gateway_multicast_domain_id');
 }

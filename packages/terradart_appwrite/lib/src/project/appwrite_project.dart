@@ -62,4 +62,11 @@ final class AppwriteProject extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `organization_id` attribute.
+  TfRef<String> get organizationIdRef =>
+      TfRef.attribute<String>(this, 'organization_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

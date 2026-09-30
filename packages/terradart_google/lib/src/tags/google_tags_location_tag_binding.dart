@@ -65,4 +65,17 @@ final class GoogleTagsLocationTagBinding extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `tag_value` attribute.
+  TfRef<String> get tagValueRef => TfRef.attribute<String>(this, 'tag_value');
 }

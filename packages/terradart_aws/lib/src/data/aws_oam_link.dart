@@ -61,4 +61,15 @@ final class DataAwsOamLink extends Data {
 
   /// Reference to `sink_arn` attribute.
   TfRef<String> get sinkArn => TfRef.attribute<String>(this, 'sink_arn');
+
+  /// Reference to `link_identifier` attribute.
+  TfRef<String> get linkIdentifierRef =>
+      TfRef.attribute<String>(this, 'link_identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

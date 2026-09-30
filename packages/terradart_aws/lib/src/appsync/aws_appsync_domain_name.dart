@@ -47,4 +47,19 @@ final class AwsAppsyncDomainName extends Resource {
   /// Reference to `hosted_zone_id` attribute.
   TfRef<String> get hostedZoneId =>
       TfRef.attribute<String>(this, 'hosted_zone_id');
+
+  /// Reference to `certificate_arn` attribute.
+  TfRef<String> get certificateArnRef =>
+      TfRef.attribute<String>(this, 'certificate_arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

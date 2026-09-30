@@ -80,6 +80,51 @@ final class GoogleSecureSourceManagerBranchRule extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `allow_stale_reviews` attribute.
+  TfRef<bool> get allowStaleReviewsRef =>
+      TfRef.attribute<bool>(this, 'allow_stale_reviews');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `include_pattern` attribute.
+  TfRef<String> get includePatternRef =>
+      TfRef.attribute<String>(this, 'include_pattern');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `minimum_approvals_count` attribute.
+  TfRef<num> get minimumApprovalsCountRef =>
+      TfRef.attribute<num>(this, 'minimum_approvals_count');
+
+  /// Reference to `minimum_reviews_count` attribute.
+  TfRef<num> get minimumReviewsCountRef =>
+      TfRef.attribute<num>(this, 'minimum_reviews_count');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `repository_id` attribute.
+  TfRef<String> get repositoryIdRef =>
+      TfRef.attribute<String>(this, 'repository_id');
+
+  /// Reference to `require_comments_resolved` attribute.
+  TfRef<bool> get requireCommentsResolvedRef =>
+      TfRef.attribute<bool>(this, 'require_comments_resolved');
+
+  /// Reference to `require_linear_history` attribute.
+  TfRef<bool> get requireLinearHistoryRef =>
+      TfRef.attribute<bool>(this, 'require_linear_history');
+
+  /// Reference to `require_pull_request` attribute.
+  TfRef<bool> get requirePullRequestRef =>
+      TfRef.attribute<bool>(this, 'require_pull_request');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

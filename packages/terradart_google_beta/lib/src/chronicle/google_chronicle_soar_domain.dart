@@ -55,4 +55,25 @@ final class GoogleChronicleSoarDomain extends Resource {
   /// Reference to `soar_domain_id` attribute.
   TfRef<String> get soarDomainId =>
       TfRef.attribute<String>(this, 'soar_domain_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `environments_json` attribute.
+  TfRef<String> get environmentsJsonRef =>
+      TfRef.attribute<String>(this, 'environments_json');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

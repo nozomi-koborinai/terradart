@@ -58,4 +58,18 @@ final class DataGoogleMonitoringMeshIstioService extends Data {
   /// Reference to `user_labels` attribute.
   TfRef<Map<String, String>> get userLabels =>
       TfRef.attribute<Map<String, String>>(this, 'user_labels');
+
+  /// Reference to `mesh_uid` attribute.
+  TfRef<String> get meshUidRef => TfRef.attribute<String>(this, 'mesh_uid');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_name` attribute.
+  TfRef<String> get serviceNameRef =>
+      TfRef.attribute<String>(this, 'service_name');
+
+  /// Reference to `service_namespace` attribute.
+  TfRef<String> get serviceNamespaceRef =>
+      TfRef.attribute<String>(this, 'service_namespace');
 }

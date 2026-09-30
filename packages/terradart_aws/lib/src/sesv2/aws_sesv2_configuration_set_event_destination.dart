@@ -353,4 +353,15 @@ final class AwsSesv2ConfigurationSetEventDestination extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `configuration_set_name` attribute.
+  TfRef<String> get configurationSetNameRef =>
+      TfRef.attribute<String>(this, 'configuration_set_name');
+
+  /// Reference to `event_destination_name` attribute.
+  TfRef<String> get eventDestinationNameRef =>
+      TfRef.attribute<String>(this, 'event_destination_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

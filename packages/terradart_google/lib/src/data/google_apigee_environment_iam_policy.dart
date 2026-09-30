@@ -38,4 +38,10 @@ final class DataGoogleApigeeEnvironmentIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `env_id` attribute.
+  TfRef<String> get envIdRef => TfRef.attribute<String>(this, 'env_id');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
 }

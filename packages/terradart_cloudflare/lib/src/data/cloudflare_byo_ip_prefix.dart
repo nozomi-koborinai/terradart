@@ -99,4 +99,10 @@ final class DataCloudflareByoIpPrefix extends Data {
   /// Reference to `rpki_validation_state` attribute.
   TfRef<String> get rpkiValidationState =>
       TfRef.attribute<String>(this, 'rpki_validation_state');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `prefix_id` attribute.
+  TfRef<String> get prefixIdRef => TfRef.attribute<String>(this, 'prefix_id');
 }

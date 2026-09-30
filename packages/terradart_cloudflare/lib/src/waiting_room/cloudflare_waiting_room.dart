@@ -251,4 +251,75 @@ final class CloudflareWaitingRoom extends Resource {
   /// Reference to `next_event_start_time` attribute.
   TfRef<String> get nextEventStartTime =>
       TfRef.attribute<String>(this, 'next_event_start_time');
+
+  /// Reference to `cookie_suffix` attribute.
+  TfRef<String> get cookieSuffixRef =>
+      TfRef.attribute<String>(this, 'cookie_suffix');
+
+  /// Reference to `custom_page_html` attribute.
+  TfRef<String> get customPageHtmlRef =>
+      TfRef.attribute<String>(this, 'custom_page_html');
+
+  /// Reference to `default_template_language` attribute.
+  TfRef<String> get defaultTemplateLanguageRef =>
+      TfRef.attribute<String>(this, 'default_template_language');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disable_session_renewal` attribute.
+  TfRef<bool> get disableSessionRenewalRef =>
+      TfRef.attribute<bool>(this, 'disable_session_renewal');
+
+  /// Reference to `enabled_origin_commands` attribute.
+  TfRef<List<String>> get enabledOriginCommandsRef =>
+      TfRef.attribute<List<String>>(this, 'enabled_origin_commands');
+
+  /// Reference to `host` attribute.
+  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+
+  /// Reference to `json_response_enabled` attribute.
+  TfRef<bool> get jsonResponseEnabledRef =>
+      TfRef.attribute<bool>(this, 'json_response_enabled');
+
+  /// Reference to `new_users_per_minute` attribute.
+  TfRef<num> get newUsersPerMinuteRef =>
+      TfRef.attribute<num>(this, 'new_users_per_minute');
+
+  /// Reference to `path` attribute.
+  TfRef<String> get pathRef => TfRef.attribute<String>(this, 'path');
+
+  /// Reference to `queue_all` attribute.
+  TfRef<bool> get queueAllRef => TfRef.attribute<bool>(this, 'queue_all');
+
+  /// Reference to `queueing_method` attribute.
+  TfRef<String> get queueingMethodRef =>
+      TfRef.attribute<String>(this, 'queueing_method');
+
+  /// Reference to `queueing_status_code` attribute.
+  TfRef<num> get queueingStatusCodeRef =>
+      TfRef.attribute<num>(this, 'queueing_status_code');
+
+  /// Reference to `session_duration` attribute.
+  TfRef<num> get sessionDurationRef =>
+      TfRef.attribute<num>(this, 'session_duration');
+
+  /// Reference to `suspended` attribute.
+  TfRef<bool> get suspendedRef => TfRef.attribute<bool>(this, 'suspended');
+
+  /// Reference to `total_active_users` attribute.
+  TfRef<num> get totalActiveUsersRef =>
+      TfRef.attribute<num>(this, 'total_active_users');
+
+  /// Reference to `turnstile_action` attribute.
+  TfRef<String> get turnstileActionRef =>
+      TfRef.attribute<String>(this, 'turnstile_action');
+
+  /// Reference to `turnstile_mode` attribute.
+  TfRef<String> get turnstileModeRef =>
+      TfRef.attribute<String>(this, 'turnstile_mode');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

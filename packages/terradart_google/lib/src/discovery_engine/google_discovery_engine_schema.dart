@@ -60,6 +60,24 @@ final class GoogleDiscoveryEngineSchema extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `data_store_id` attribute.
+  TfRef<String> get dataStoreIdRef =>
+      TfRef.attribute<String>(this, 'data_store_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `json_schema` attribute.
+  TfRef<String> get jsonSchemaRef =>
+      TfRef.attribute<String>(this, 'json_schema');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `schema_id` attribute.
   TfRef<String> get schemaIdRef => TfRef.attribute<String>(this, 'schema_id');
 }

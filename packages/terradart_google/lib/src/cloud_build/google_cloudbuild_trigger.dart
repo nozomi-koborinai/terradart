@@ -1777,4 +1777,51 @@ final class GoogleCloudbuildTrigger extends Resource {
 
   /// Reference to `trigger_id` attribute.
   TfRef<String> get triggerId => TfRef.attribute<String>(this, 'trigger_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `filename` attribute.
+  TfRef<String> get filenameRef => TfRef.attribute<String>(this, 'filename');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `ignored_files` attribute.
+  TfRef<List<String>> get ignoredFilesRef =>
+      TfRef.attribute<List<String>>(this, 'ignored_files');
+
+  /// Reference to `include_build_logs` attribute.
+  TfRef<String> get includeBuildLogsRef =>
+      TfRef.attribute<String>(this, 'include_build_logs');
+
+  /// Reference to `included_files` attribute.
+  TfRef<List<String>> get includedFilesRef =>
+      TfRef.attribute<List<String>>(this, 'included_files');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_account` attribute.
+  TfRef<String> get serviceAccountRef =>
+      TfRef.attribute<String>(this, 'service_account');
+
+  /// Reference to `substitutions` attribute.
+  TfRef<Map<String, String>> get substitutionsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'substitutions');
+
+  /// Reference to `tags` attribute.
+  TfRef<List<String>> get tagsRef =>
+      TfRef.attribute<List<String>>(this, 'tags');
 }

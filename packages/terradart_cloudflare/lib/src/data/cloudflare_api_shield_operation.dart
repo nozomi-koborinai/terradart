@@ -118,4 +118,18 @@ final class DataCloudflareApiShieldOperation extends Data {
 
   /// Reference to `method` attribute.
   TfRef<String> get method => TfRef.attribute<String>(this, 'method');
+
+  /// Reference to `feature` attribute.
+  TfRef<List<String>> get featureRef =>
+      TfRef.attribute<List<String>>(this, 'feature');
+
+  /// Reference to `operation_id` attribute.
+  TfRef<String> get operationIdRef =>
+      TfRef.attribute<String>(this, 'operation_id');
+
+  /// Reference to `with_schemas` attribute.
+  TfRef<bool> get withSchemasRef => TfRef.attribute<bool>(this, 'with_schemas');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

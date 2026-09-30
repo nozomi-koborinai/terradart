@@ -76,4 +76,17 @@ final class GoogleNetworkConnectivityHubIamBinding extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `hub` attribute.
+  TfRef<String> get hubRef => TfRef.attribute<String>(this, 'hub');
+
+  /// Reference to `members` attribute.
+  TfRef<List<String>> get membersRef =>
+      TfRef.attribute<List<String>>(this, 'members');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

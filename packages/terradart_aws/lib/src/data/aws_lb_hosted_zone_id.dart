@@ -26,4 +26,11 @@ final class DataAwsLbHostedZoneId extends Data {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `load_balancer_type` attribute.
+  TfRef<String> get loadBalancerTypeRef =>
+      TfRef.attribute<String>(this, 'load_balancer_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

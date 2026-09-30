@@ -107,4 +107,21 @@ final class AwsKmsCiphertext extends Resource {
   /// Reference to `ciphertext_blob` attribute.
   TfRef<String> get ciphertextBlob =>
       TfRef.attribute<String>(this, 'ciphertext_blob');
+
+  /// Reference to `context` attribute.
+  TfRef<Map<String, String>> get contextRef =>
+      TfRef.attribute<Map<String, String>>(this, 'context');
+
+  /// Reference to `key_id` attribute.
+  TfRef<String> get keyIdRef => TfRef.attribute<String>(this, 'key_id');
+
+  /// Reference to `plaintext` attribute.
+  TfRef<String> get plaintextRef => TfRef.attribute<String>(this, 'plaintext');
+
+  /// Reference to `plaintext_wo_version` attribute.
+  TfRef<String> get plaintextWoVersionRef =>
+      TfRef.attribute<String>(this, 'plaintext_wo_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -211,4 +211,38 @@ final class AwsFsxFileCache extends Resource {
 
   /// Reference to `vpc_id` attribute.
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
+
+  /// Reference to `copy_tags_to_data_repository_associations` attribute.
+  TfRef<bool> get copyTagsToDataRepositoryAssociationsRef =>
+      TfRef.attribute<bool>(this, 'copy_tags_to_data_repository_associations');
+
+  /// Reference to `file_cache_type` attribute.
+  TfRef<String> get fileCacheTypeRef =>
+      TfRef.attribute<String>(this, 'file_cache_type');
+
+  /// Reference to `file_cache_type_version` attribute.
+  TfRef<String> get fileCacheTypeVersionRef =>
+      TfRef.attribute<String>(this, 'file_cache_type_version');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_group_ids` attribute.
+  TfRef<List<String>> get securityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'security_group_ids');
+
+  /// Reference to `storage_capacity` attribute.
+  TfRef<num> get storageCapacityRef =>
+      TfRef.attribute<num>(this, 'storage_capacity');
+
+  /// Reference to `subnet_ids` attribute.
+  TfRef<List<String>> get subnetIdsRef =>
+      TfRef.attribute<List<String>>(this, 'subnet_ids');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

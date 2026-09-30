@@ -124,4 +124,18 @@ final class AwsCodestarconnectionsConnection extends Resource {
   /// Reference to `connection_status` attribute.
   TfRef<String> get connectionStatus =>
       TfRef.attribute<String>(this, 'connection_status');
+
+  /// Reference to `host_arn` attribute.
+  TfRef<String> get hostArnRef => TfRef.attribute<String>(this, 'host_arn');
+
+  /// Reference to `provider_type` attribute.
+  TfRef<String> get providerTypeRef =>
+      TfRef.attribute<String>(this, 'provider_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

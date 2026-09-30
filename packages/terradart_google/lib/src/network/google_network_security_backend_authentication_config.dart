@@ -111,4 +111,34 @@ final class GoogleNetworkSecurityBackendAuthenticationConfig extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `client_certificate` attribute.
+  TfRef<String> get clientCertificateRef =>
+      TfRef.attribute<String>(this, 'client_certificate');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `trust_config` attribute.
+  TfRef<String> get trustConfigRef =>
+      TfRef.attribute<String>(this, 'trust_config');
+
+  /// Reference to `well_known_roots` attribute.
+  TfRef<String> get wellKnownRootsRef =>
+      TfRef.attribute<String>(this, 'well_known_roots');
 }

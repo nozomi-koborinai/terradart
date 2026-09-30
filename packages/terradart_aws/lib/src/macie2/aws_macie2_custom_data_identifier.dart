@@ -117,4 +117,34 @@ final class AwsMacie2CustomDataIdentifier extends Resource {
 
   /// Reference to `created_at` attribute.
   TfRef<String> get createdAt => TfRef.attribute<String>(this, 'created_at');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `ignore_words` attribute.
+  TfRef<List<String>> get ignoreWordsRef =>
+      TfRef.attribute<List<String>>(this, 'ignore_words');
+
+  /// Reference to `keywords` attribute.
+  TfRef<List<String>> get keywordsRef =>
+      TfRef.attribute<List<String>>(this, 'keywords');
+
+  /// Reference to `maximum_match_distance` attribute.
+  TfRef<num> get maximumMatchDistanceRef =>
+      TfRef.attribute<num>(this, 'maximum_match_distance');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `regex` attribute.
+  TfRef<String> get regexRef => TfRef.attribute<String>(this, 'regex');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

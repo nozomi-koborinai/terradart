@@ -71,4 +71,24 @@ final class GoogleChronicleCaseCloseDefinition extends Resource {
   /// Reference to `case_close_definition_id` attribute.
   TfRef<String> get caseCloseDefinitionId =>
       TfRef.attribute<String>(this, 'case_close_definition_id');
+
+  /// Reference to `close_reason` attribute.
+  TfRef<String> get closeReasonRef =>
+      TfRef.attribute<String>(this, 'close_reason');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `root_cause` attribute.
+  TfRef<String> get rootCauseRef => TfRef.attribute<String>(this, 'root_cause');
 }

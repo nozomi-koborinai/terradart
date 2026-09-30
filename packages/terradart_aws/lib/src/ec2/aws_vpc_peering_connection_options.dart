@@ -69,4 +69,11 @@ final class AwsVpcPeeringConnectionOptions extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `vpc_peering_connection_id` attribute.
+  TfRef<String> get vpcPeeringConnectionIdRef =>
+      TfRef.attribute<String>(this, 'vpc_peering_connection_id');
 }

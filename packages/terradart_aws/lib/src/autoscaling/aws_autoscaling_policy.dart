@@ -1100,4 +1100,41 @@ final class AwsAutoscalingPolicy extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `adjustment_type` attribute.
+  TfRef<String> get adjustmentTypeRef =>
+      TfRef.attribute<String>(this, 'adjustment_type');
+
+  /// Reference to `autoscaling_group_name` attribute.
+  TfRef<String> get autoscalingGroupNameRef =>
+      TfRef.attribute<String>(this, 'autoscaling_group_name');
+
+  /// Reference to `cooldown` attribute.
+  TfRef<num> get cooldownRef => TfRef.attribute<num>(this, 'cooldown');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `estimated_instance_warmup` attribute.
+  TfRef<num> get estimatedInstanceWarmupRef =>
+      TfRef.attribute<num>(this, 'estimated_instance_warmup');
+
+  /// Reference to `metric_aggregation_type` attribute.
+  TfRef<String> get metricAggregationTypeRef =>
+      TfRef.attribute<String>(this, 'metric_aggregation_type');
+
+  /// Reference to `min_adjustment_magnitude` attribute.
+  TfRef<num> get minAdjustmentMagnitudeRef =>
+      TfRef.attribute<num>(this, 'min_adjustment_magnitude');
+
+  /// Reference to `policy_type` attribute.
+  TfRef<String> get policyTypeRef =>
+      TfRef.attribute<String>(this, 'policy_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scaling_adjustment` attribute.
+  TfRef<num> get scalingAdjustmentRef =>
+      TfRef.attribute<num>(this, 'scaling_adjustment');
 }

@@ -49,4 +49,15 @@ final class DataAwsServerlessapplicationrepositoryApplication extends Data {
   /// Reference to `template_url` attribute.
   TfRef<String> get templateUrl =>
       TfRef.attribute<String>(this, 'template_url');
+
+  /// Reference to `application_id` attribute.
+  TfRef<String> get applicationIdRef =>
+      TfRef.attribute<String>(this, 'application_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `semantic_version` attribute.
+  TfRef<String> get semanticVersionRef =>
+      TfRef.attribute<String>(this, 'semantic_version');
 }

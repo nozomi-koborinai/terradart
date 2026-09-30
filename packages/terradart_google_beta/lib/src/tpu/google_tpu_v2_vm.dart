@@ -406,4 +406,41 @@ final class GoogleTpuV2Vm extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `accelerator_type` attribute.
+  TfRef<String> get acceleratorTypeRef =>
+      TfRef.attribute<String>(this, 'accelerator_type');
+
+  /// Reference to `cidr_block` attribute.
+  TfRef<String> get cidrBlockRef => TfRef.attribute<String>(this, 'cidr_block');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `metadata` attribute.
+  TfRef<Map<String, String>> get metadataRef =>
+      TfRef.attribute<Map<String, String>>(this, 'metadata');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `runtime_version` attribute.
+  TfRef<String> get runtimeVersionRef =>
+      TfRef.attribute<String>(this, 'runtime_version');
+
+  /// Reference to `tags` attribute.
+  TfRef<List<String>> get tagsRef =>
+      TfRef.attribute<List<String>>(this, 'tags');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
 }

@@ -610,4 +610,21 @@ final class AwsDmsDataProvider extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `engine` attribute.
+  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `virtual` attribute.
+  TfRef<bool> get virtualRef => TfRef.attribute<bool>(this, 'virtual');
 }

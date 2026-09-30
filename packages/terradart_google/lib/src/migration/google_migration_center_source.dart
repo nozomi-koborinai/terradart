@@ -102,4 +102,34 @@ final class GoogleMigrationCenterSource extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `managed` attribute.
+  TfRef<bool> get managedRef => TfRef.attribute<bool>(this, 'managed');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `source_id` attribute.
+  TfRef<String> get sourceIdRef => TfRef.attribute<String>(this, 'source_id');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

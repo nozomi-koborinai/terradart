@@ -40,4 +40,10 @@ final class AwsEcsAccountSettingDefault extends Resource {
   /// Reference to `principal_arn` attribute.
   TfRef<String> get principalArn =>
       TfRef.attribute<String>(this, 'principal_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `value` attribute.
+  TfRef<String> get valueRef => TfRef.attribute<String>(this, 'value');
 }

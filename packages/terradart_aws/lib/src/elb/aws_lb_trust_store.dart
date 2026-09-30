@@ -111,4 +111,27 @@ final class AwsLbTrustStore extends Resource {
 
   /// Reference to `arn_suffix` attribute.
   TfRef<String> get arnSuffix => TfRef.attribute<String>(this, 'arn_suffix');
+
+  /// Reference to `ca_certificates_bundle_s3_bucket` attribute.
+  TfRef<String> get caCertificatesBundleS3BucketRef =>
+      TfRef.attribute<String>(this, 'ca_certificates_bundle_s3_bucket');
+
+  /// Reference to `ca_certificates_bundle_s3_key` attribute.
+  TfRef<String> get caCertificatesBundleS3KeyRef =>
+      TfRef.attribute<String>(this, 'ca_certificates_bundle_s3_key');
+
+  /// Reference to `ca_certificates_bundle_s3_object_version` attribute.
+  TfRef<String> get caCertificatesBundleS3ObjectVersionRef =>
+      TfRef.attribute<String>(this, 'ca_certificates_bundle_s3_object_version');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

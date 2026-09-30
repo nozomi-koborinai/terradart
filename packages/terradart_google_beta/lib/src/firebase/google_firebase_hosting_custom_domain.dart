@@ -116,4 +116,30 @@ final class GoogleFirebaseHostingCustomDomain extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `cert_preference` attribute.
+  TfRef<String> get certPreferenceRef =>
+      TfRef.attribute<String>(this, 'cert_preference');
+
+  /// Reference to `custom_domain` attribute.
+  TfRef<String> get customDomainRef =>
+      TfRef.attribute<String>(this, 'custom_domain');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `redirect_target` attribute.
+  TfRef<String> get redirectTargetRef =>
+      TfRef.attribute<String>(this, 'redirect_target');
+
+  /// Reference to `site_id` attribute.
+  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
+
+  /// Reference to `wait_dns_verification` attribute.
+  TfRef<bool> get waitDnsVerificationRef =>
+      TfRef.attribute<bool>(this, 'wait_dns_verification');
 }

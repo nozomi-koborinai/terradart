@@ -270,4 +270,33 @@ final class AwsCodebuildFleet extends Resource {
   /// Reference to `status` attribute.
   TfRef<List<Map<String, Object?>>> get status =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'status');
+
+  /// Reference to `base_capacity` attribute.
+  TfRef<num> get baseCapacityRef => TfRef.attribute<num>(this, 'base_capacity');
+
+  /// Reference to `compute_type` attribute.
+  TfRef<String> get computeTypeRef =>
+      TfRef.attribute<String>(this, 'compute_type');
+
+  /// Reference to `environment_type` attribute.
+  TfRef<String> get environmentTypeRef =>
+      TfRef.attribute<String>(this, 'environment_type');
+
+  /// Reference to `fleet_service_role` attribute.
+  TfRef<String> get fleetServiceRoleRef =>
+      TfRef.attribute<String>(this, 'fleet_service_role');
+
+  /// Reference to `image_id` attribute.
+  TfRef<String> get imageIdRef => TfRef.attribute<String>(this, 'image_id');
+
+  /// Reference to `overflow_behavior` attribute.
+  TfRef<String> get overflowBehaviorRef =>
+      TfRef.attribute<String>(this, 'overflow_behavior');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

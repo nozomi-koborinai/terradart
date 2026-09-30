@@ -47,4 +47,22 @@ final class AwsEc2TransitGatewayPrefixListReference extends Resource {
   /// Reference to `prefix_list_owner_id` attribute.
   TfRef<String> get prefixListOwnerId =>
       TfRef.attribute<String>(this, 'prefix_list_owner_id');
+
+  /// Reference to `blackhole` attribute.
+  TfRef<bool> get blackholeRef => TfRef.attribute<bool>(this, 'blackhole');
+
+  /// Reference to `prefix_list_id` attribute.
+  TfRef<String> get prefixListIdRef =>
+      TfRef.attribute<String>(this, 'prefix_list_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `transit_gateway_attachment_id` attribute.
+  TfRef<String> get transitGatewayAttachmentIdRef =>
+      TfRef.attribute<String>(this, 'transit_gateway_attachment_id');
+
+  /// Reference to `transit_gateway_route_table_id` attribute.
+  TfRef<String> get transitGatewayRouteTableIdRef =>
+      TfRef.attribute<String>(this, 'transit_gateway_route_table_id');
 }

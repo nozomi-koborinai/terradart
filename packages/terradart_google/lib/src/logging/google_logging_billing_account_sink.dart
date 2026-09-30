@@ -110,4 +110,26 @@ final class GoogleLoggingBillingAccountSink extends Resource {
   /// Reference to `writer_identity` attribute.
   TfRef<String> get writerIdentity =>
       TfRef.attribute<String>(this, 'writer_identity');
+
+  /// Reference to `billing_account` attribute.
+  TfRef<String> get billingAccountRef =>
+      TfRef.attribute<String>(this, 'billing_account');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `destination` attribute.
+  TfRef<String> get destinationRef =>
+      TfRef.attribute<String>(this, 'destination');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
 }

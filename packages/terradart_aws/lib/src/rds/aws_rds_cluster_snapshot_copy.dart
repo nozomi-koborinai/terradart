@@ -91,4 +91,37 @@ final class AwsRdsClusterSnapshotCopy extends Resource {
 
   /// Reference to `vpc_id` attribute.
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
+
+  /// Reference to `copy_tags` attribute.
+  TfRef<bool> get copyTagsRef => TfRef.attribute<bool>(this, 'copy_tags');
+
+  /// Reference to `destination_region` attribute.
+  TfRef<String> get destinationRegionRef =>
+      TfRef.attribute<String>(this, 'destination_region');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `presigned_url` attribute.
+  TfRef<String> get presignedUrlRef =>
+      TfRef.attribute<String>(this, 'presigned_url');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `shared_accounts` attribute.
+  TfRef<List<String>> get sharedAccountsRef =>
+      TfRef.attribute<List<String>>(this, 'shared_accounts');
+
+  /// Reference to `source_db_cluster_snapshot_identifier` attribute.
+  TfRef<String> get sourceDbClusterSnapshotIdentifierRef =>
+      TfRef.attribute<String>(this, 'source_db_cluster_snapshot_identifier');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target_db_cluster_snapshot_identifier` attribute.
+  TfRef<String> get targetDbClusterSnapshotIdentifierRef =>
+      TfRef.attribute<String>(this, 'target_db_cluster_snapshot_identifier');
 }

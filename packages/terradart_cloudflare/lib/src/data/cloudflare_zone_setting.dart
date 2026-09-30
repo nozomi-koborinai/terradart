@@ -52,4 +52,10 @@ final class DataCloudflareZoneSetting extends Data {
 
   /// Reference to `value` attribute.
   TfRef<String> get value => TfRef.attribute<String>(this, 'value');
+
+  /// Reference to `setting_id` attribute.
+  TfRef<String> get settingIdRef => TfRef.attribute<String>(this, 'setting_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

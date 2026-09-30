@@ -116,4 +116,22 @@ final class GoogleComputeGlobalNetworkEndpointGroup extends Resource {
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `default_port` attribute.
+  TfRef<num> get defaultPortRef => TfRef.attribute<num>(this, 'default_port');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `network_endpoint_type` attribute.
+  TfRef<String> get networkEndpointTypeRef =>
+      TfRef.attribute<String>(this, 'network_endpoint_type');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

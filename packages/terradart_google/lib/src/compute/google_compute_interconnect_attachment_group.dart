@@ -124,6 +124,21 @@ final class GoogleComputeInterconnectAttachmentGroup extends Resource {
   TfRef<List<Map<String, Object?>>> get logicalStructure =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'logical_structure');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `interconnect_group` attribute.
+  TfRef<String> get interconnectGroupRef =>
+      TfRef.attribute<String>(this, 'interconnect_group');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -37,4 +37,15 @@ final class AwsSsoadminRegion extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `instance_arn` attribute.
+  TfRef<String> get instanceArnRef =>
+      TfRef.attribute<String>(this, 'instance_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `region_name` attribute.
+  TfRef<String> get regionNameRef =>
+      TfRef.attribute<String>(this, 'region_name');
 }

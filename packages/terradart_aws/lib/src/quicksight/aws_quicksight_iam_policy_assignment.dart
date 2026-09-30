@@ -81,4 +81,25 @@ final class AwsQuicksightIamPolicyAssignment extends Resource {
   /// Reference to `assignment_id` attribute.
   TfRef<String> get assignmentId =>
       TfRef.attribute<String>(this, 'assignment_id');
+
+  /// Reference to `assignment_name` attribute.
+  TfRef<String> get assignmentNameRef =>
+      TfRef.attribute<String>(this, 'assignment_name');
+
+  /// Reference to `assignment_status` attribute.
+  TfRef<String> get assignmentStatusRef =>
+      TfRef.attribute<String>(this, 'assignment_status');
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `namespace` attribute.
+  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+
+  /// Reference to `policy_arn` attribute.
+  TfRef<String> get policyArnRef => TfRef.attribute<String>(this, 'policy_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -123,4 +123,26 @@ final class AwsMediaConvertQueue extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `concurrent_jobs` attribute.
+  TfRef<num> get concurrentJobsRef =>
+      TfRef.attribute<num>(this, 'concurrent_jobs');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `pricing_plan` attribute.
+  TfRef<String> get pricingPlanRef =>
+      TfRef.attribute<String>(this, 'pricing_plan');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

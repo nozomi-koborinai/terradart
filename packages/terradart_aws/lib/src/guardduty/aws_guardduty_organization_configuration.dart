@@ -166,4 +166,15 @@ final class AwsGuarddutyOrganizationConfiguration extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `auto_enable_organization_members` attribute.
+  TfRef<String> get autoEnableOrganizationMembersRef =>
+      TfRef.attribute<String>(this, 'auto_enable_organization_members');
+
+  /// Reference to `detector_id` attribute.
+  TfRef<String> get detectorIdRef =>
+      TfRef.attribute<String>(this, 'detector_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -44,4 +44,11 @@ final class AwsApiGatewayAccount extends Resource {
   /// Reference to `throttle_settings` attribute.
   TfRef<List<Map<String, Object?>>> get throttleSettings =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'throttle_settings');
+
+  /// Reference to `cloudwatch_role_arn` attribute.
+  TfRef<String> get cloudwatchRoleArnRef =>
+      TfRef.attribute<String>(this, 'cloudwatch_role_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

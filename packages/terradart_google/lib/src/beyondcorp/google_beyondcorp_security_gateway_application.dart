@@ -361,6 +361,28 @@ final class GoogleBeyondcorpSecurityGatewayApplication extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `application_id` attribute.
+  TfRef<String> get applicationIdRef =>
+      TfRef.attribute<String>(this, 'application_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `schema` attribute.
+  TfRef<String> get schemaRef => TfRef.attribute<String>(this, 'schema');
+
+  /// Reference to `security_gateway_id` attribute.
+  TfRef<String> get securityGatewayIdRef =>
+      TfRef.attribute<String>(this, 'security_gateway_id');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

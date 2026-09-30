@@ -119,4 +119,11 @@ final class CloudflareMagicTransitCf1Site extends Resource {
 
   /// Reference to `modified_on` attribute.
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
 }

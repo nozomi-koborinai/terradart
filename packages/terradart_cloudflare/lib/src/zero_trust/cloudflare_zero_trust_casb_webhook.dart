@@ -108,4 +108,25 @@ final class CloudflareZeroTrustCasbWebhook extends Resource {
 
   /// Reference to `version` attribute.
   TfRef<num> get version => TfRef.attribute<num>(this, 'version');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `authentication_type` attribute.
+  TfRef<String> get authenticationTypeRef =>
+      TfRef.attribute<String>(this, 'authentication_type');
+
+  /// Reference to `destination_url` attribute.
+  TfRef<String> get destinationUrlRef =>
+      TfRef.attribute<String>(this, 'destination_url');
+
+  /// Reference to `label` attribute.
+  TfRef<String> get labelRef => TfRef.attribute<String>(this, 'label');
+
+  /// Reference to `signing_secret` attribute.
+  TfRef<String> get signingSecretRef =>
+      TfRef.attribute<String>(this, 'signing_secret');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
 }

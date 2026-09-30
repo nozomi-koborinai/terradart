@@ -783,6 +783,59 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
   TfRef<List<Map<String, Object?>>> get status =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'status');
 
+  /// Reference to `base_instance_name` attribute.
+  TfRef<String> get baseInstanceNameRef =>
+      TfRef.attribute<String>(this, 'base_instance_name');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `distribution_policy_target_shape` attribute.
+  TfRef<String> get distributionPolicyTargetShapeRef =>
+      TfRef.attribute<String>(this, 'distribution_policy_target_shape');
+
+  /// Reference to `distribution_policy_zones` attribute.
+  TfRef<List<String>> get distributionPolicyZonesRef =>
+      TfRef.attribute<List<String>>(this, 'distribution_policy_zones');
+
+  /// Reference to `list_managed_instances_results` attribute.
+  TfRef<String> get listManagedInstancesResultsRef =>
+      TfRef.attribute<String>(this, 'list_managed_instances_results');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `target_pools` attribute.
+  TfRef<List<String>> get targetPoolsRef =>
+      TfRef.attribute<List<String>>(this, 'target_pools');
+
+  /// Reference to `target_size` attribute.
+  TfRef<num> get targetSizeRef => TfRef.attribute<num>(this, 'target_size');
+
+  /// Reference to `target_stopped_size` attribute.
+  TfRef<num> get targetStoppedSizeRef =>
+      TfRef.attribute<num>(this, 'target_stopped_size');
+
+  /// Reference to `target_suspended_size` attribute.
+  TfRef<num> get targetSuspendedSizeRef =>
+      TfRef.attribute<num>(this, 'target_suspended_size');
+
+  /// Reference to `wait_for_instances` attribute.
+  TfRef<bool> get waitForInstancesRef =>
+      TfRef.attribute<bool>(this, 'wait_for_instances');
+
+  /// Reference to `wait_for_instances_status` attribute.
+  TfRef<String> get waitForInstancesStatusRef =>
+      TfRef.attribute<String>(this, 'wait_for_instances_status');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

@@ -42,4 +42,10 @@ final class AwsShieldSubscription extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `auto_renew` attribute.
+  TfRef<String> get autoRenewRef => TfRef.attribute<String>(this, 'auto_renew');
+
+  /// Reference to `skip_destroy` attribute.
+  TfRef<bool> get skipDestroyRef => TfRef.attribute<bool>(this, 'skip_destroy');
 }

@@ -30,4 +30,7 @@ final class DataCloudflareBotnetFeedConfigAsn extends Data {
 
   /// Reference to `asn` attribute.
   TfRef<num> get asn => TfRef.attribute<num>(this, 'asn');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
 }

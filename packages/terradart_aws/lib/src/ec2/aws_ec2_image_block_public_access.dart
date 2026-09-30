@@ -42,4 +42,10 @@ final class AwsEc2ImageBlockPublicAccess extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
 }

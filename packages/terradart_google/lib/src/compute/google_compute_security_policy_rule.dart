@@ -182,4 +182,28 @@ final class GoogleComputeSecurityPolicyRule extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `action` attribute.
+  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `preview` attribute.
+  TfRef<bool> get previewRef => TfRef.attribute<bool>(this, 'preview');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `security_policy` attribute.
+  TfRef<String> get securityPolicyRef =>
+      TfRef.attribute<String>(this, 'security_policy');
 }

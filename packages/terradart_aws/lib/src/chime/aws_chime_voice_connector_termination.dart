@@ -46,4 +46,29 @@ final class AwsChimeVoiceConnectorTermination extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `calling_regions` attribute.
+  TfRef<List<String>> get callingRegionsRef =>
+      TfRef.attribute<List<String>>(this, 'calling_regions');
+
+  /// Reference to `cidr_allow_list` attribute.
+  TfRef<List<String>> get cidrAllowListRef =>
+      TfRef.attribute<List<String>>(this, 'cidr_allow_list');
+
+  /// Reference to `cps_limit` attribute.
+  TfRef<num> get cpsLimitRef => TfRef.attribute<num>(this, 'cps_limit');
+
+  /// Reference to `default_phone_number` attribute.
+  TfRef<String> get defaultPhoneNumberRef =>
+      TfRef.attribute<String>(this, 'default_phone_number');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `voice_connector_id` attribute.
+  TfRef<String> get voiceConnectorIdRef =>
+      TfRef.attribute<String>(this, 'voice_connector_id');
 }

@@ -35,4 +35,11 @@ final class AwsOrganizationsResourcePolicy extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `content` attribute.
+  TfRef<String> get contentRef => TfRef.attribute<String>(this, 'content');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

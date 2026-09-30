@@ -116,4 +116,22 @@ final class AwsCloudwatchAlarmMuteRule extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `expire_date` attribute.
+  TfRef<String> get expireDateRef =>
+      TfRef.attribute<String>(this, 'expire_date');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `start_date` attribute.
+  TfRef<String> get startDateRef => TfRef.attribute<String>(this, 'start_date');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

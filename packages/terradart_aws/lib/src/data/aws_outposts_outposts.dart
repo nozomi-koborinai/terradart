@@ -41,4 +41,21 @@ final class DataAwsOutpostsOutposts extends Data {
 
   /// Reference to `ids` attribute.
   TfRef<List<String>> get ids => TfRef.attribute<List<String>>(this, 'ids');
+
+  /// Reference to `availability_zone` attribute.
+  TfRef<String> get availabilityZoneRef =>
+      TfRef.attribute<String>(this, 'availability_zone');
+
+  /// Reference to `availability_zone_id` attribute.
+  TfRef<String> get availabilityZoneIdRef =>
+      TfRef.attribute<String>(this, 'availability_zone_id');
+
+  /// Reference to `owner_id` attribute.
+  TfRef<String> get ownerIdRef => TfRef.attribute<String>(this, 'owner_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `site_id` attribute.
+  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
 }

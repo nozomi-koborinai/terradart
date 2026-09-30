@@ -530,4 +530,7 @@ final class AwsAutoscalingplansScalingPlan extends Resource {
   /// Reference to `scaling_plan_version` attribute.
   TfRef<num> get scalingPlanVersion =>
       TfRef.attribute<num>(this, 'scaling_plan_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

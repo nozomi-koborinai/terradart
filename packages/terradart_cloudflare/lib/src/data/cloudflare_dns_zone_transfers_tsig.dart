@@ -46,4 +46,10 @@ final class DataCloudflareDnsZoneTransfersTsig extends Data {
 
   /// Reference to `secret` attribute.
   TfRef<String> get secret => TfRef.attribute<String>(this, 'secret');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `tsig_id` attribute.
+  TfRef<String> get tsigIdRef => TfRef.attribute<String>(this, 'tsig_id');
 }

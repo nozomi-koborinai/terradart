@@ -47,4 +47,11 @@ final class AwsRoute53ResolverFirewallRuleGroup extends Resource {
   /// Reference to `share_status` attribute.
   TfRef<String> get shareStatus =>
       TfRef.attribute<String>(this, 'share_status');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

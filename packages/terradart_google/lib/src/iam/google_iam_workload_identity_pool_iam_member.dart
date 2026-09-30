@@ -70,4 +70,17 @@ final class GoogleIamWorkloadIdentityPoolIamMember extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `member` attribute.
+  TfRef<String> get memberRef => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+
+  /// Reference to `workload_identity_pool_id` attribute.
+  TfRef<String> get workloadIdentityPoolIdRef =>
+      TfRef.attribute<String>(this, 'workload_identity_pool_id');
 }

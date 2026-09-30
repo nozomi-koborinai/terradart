@@ -120,4 +120,29 @@ final class CloudflareStreamLiveInput extends Resource {
 
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `default_creator` attribute.
+  TfRef<String> get defaultCreatorRef =>
+      TfRef.attribute<String>(this, 'default_creator');
+
+  /// Reference to `delete_recording_after_days` attribute.
+  TfRef<num> get deleteRecordingAfterDaysRef =>
+      TfRef.attribute<num>(this, 'delete_recording_after_days');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `live_input_identifier` attribute.
+  TfRef<String> get liveInputIdentifierRef =>
+      TfRef.attribute<String>(this, 'live_input_identifier');
+
+  /// Reference to `meta` attribute.
+  TfRef<String> get metaRef => TfRef.attribute<String>(this, 'meta');
+
+  /// Reference to `prefer_low_latency` attribute.
+  TfRef<bool> get preferLowLatencyRef =>
+      TfRef.attribute<bool>(this, 'prefer_low_latency');
 }

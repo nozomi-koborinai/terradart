@@ -63,4 +63,29 @@ final class CloudflareZoneTracing extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `destinations` attribute.
+  TfRef<List<String>> get destinationsRef =>
+      TfRef.attribute<List<String>>(this, 'destinations');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `forward_context` attribute.
+  TfRef<bool> get forwardContextRef =>
+      TfRef.attribute<bool>(this, 'forward_context');
+
+  /// Reference to `persist` attribute.
+  TfRef<bool> get persistRef => TfRef.attribute<bool>(this, 'persist');
+
+  /// Reference to `propagation_policy` attribute.
+  TfRef<String> get propagationPolicyRef =>
+      TfRef.attribute<String>(this, 'propagation_policy');
+
+  /// Reference to `sampling_ratio` attribute.
+  TfRef<num> get samplingRatioRef =>
+      TfRef.attribute<num>(this, 'sampling_ratio');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

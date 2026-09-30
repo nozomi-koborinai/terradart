@@ -47,4 +47,14 @@ final class AwsEc2AvailabilityZoneGroup extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `group_name` attribute.
+  TfRef<String> get groupNameRef => TfRef.attribute<String>(this, 'group_name');
+
+  /// Reference to `opt_in_status` attribute.
+  TfRef<String> get optInStatusRef =>
+      TfRef.attribute<String>(this, 'opt_in_status');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

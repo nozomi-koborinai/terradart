@@ -75,4 +75,22 @@ final class AwsPlacementGroup extends Resource {
   /// Reference to `placement_group_id` attribute.
   TfRef<String> get placementGroupId =>
       TfRef.attribute<String>(this, 'placement_group_id');
+
+  /// Reference to `partition_count` attribute.
+  TfRef<num> get partitionCountRef =>
+      TfRef.attribute<num>(this, 'partition_count');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `spread_level` attribute.
+  TfRef<String> get spreadLevelRef =>
+      TfRef.attribute<String>(this, 'spread_level');
+
+  /// Reference to `strategy` attribute.
+  TfRef<String> get strategyRef => TfRef.attribute<String>(this, 'strategy');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

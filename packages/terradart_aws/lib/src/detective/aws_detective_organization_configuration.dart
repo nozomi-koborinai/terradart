@@ -38,4 +38,13 @@ final class AwsDetectiveOrganizationConfiguration extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `auto_enable` attribute.
+  TfRef<bool> get autoEnableRef => TfRef.attribute<bool>(this, 'auto_enable');
+
+  /// Reference to `graph_arn` attribute.
+  TfRef<String> get graphArnRef => TfRef.attribute<String>(this, 'graph_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

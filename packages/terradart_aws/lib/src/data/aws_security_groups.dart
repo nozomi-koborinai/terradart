@@ -59,4 +59,11 @@ final class DataAwsSecurityGroups extends Data {
   /// Reference to `vpc_ids` attribute.
   TfRef<List<String>> get vpcIds =>
       TfRef.attribute<List<String>>(this, 'vpc_ids');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

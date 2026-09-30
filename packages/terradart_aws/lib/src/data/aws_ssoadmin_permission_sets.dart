@@ -29,4 +29,11 @@ final class DataAwsSsoadminPermissionSets extends Data {
 
   /// Reference to `arns` attribute.
   TfRef<List<String>> get arns => TfRef.attribute<List<String>>(this, 'arns');
+
+  /// Reference to `instance_arn` attribute.
+  TfRef<String> get instanceArnRef =>
+      TfRef.attribute<String>(this, 'instance_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

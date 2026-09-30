@@ -471,4 +471,22 @@ final class AwsAthenaWorkgroup extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `force_destroy` attribute.
+  TfRef<bool> get forceDestroyRef =>
+      TfRef.attribute<bool>(this, 'force_destroy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

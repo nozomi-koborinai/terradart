@@ -59,4 +59,11 @@ final class AwsQuicksightKeyRegistration extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsQuicksightKeyRegistration>`.
   RefTo<AwsQuicksightKeyRegistration> get ref => RefTo.of(this);
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

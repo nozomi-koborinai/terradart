@@ -64,4 +64,13 @@ final class DataCloudflareList extends Data {
   /// Reference to `num_referencing_filters` attribute.
   TfRef<num> get numReferencingFilters =>
       TfRef.attribute<num>(this, 'num_referencing_filters');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `list_id` attribute.
+  TfRef<String> get listIdRef => TfRef.attribute<String>(this, 'list_id');
+
+  /// Reference to `search` attribute.
+  TfRef<String> get searchRef => TfRef.attribute<String>(this, 'search');
 }

@@ -58,4 +58,18 @@ final class AwsVpcIpamResourceDiscoveryAssociation extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `ipam_id` attribute.
+  TfRef<String> get ipamIdRef => TfRef.attribute<String>(this, 'ipam_id');
+
+  /// Reference to `ipam_resource_discovery_id` attribute.
+  TfRef<String> get ipamResourceDiscoveryIdRef =>
+      TfRef.attribute<String>(this, 'ipam_resource_discovery_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

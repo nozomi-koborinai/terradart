@@ -34,4 +34,13 @@ final class DataGoogleComputeMachineTypes extends Data {
   /// Reference to `machine_types` attribute.
   TfRef<List<Map<String, Object?>>> get machineTypes =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'machine_types');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
 }

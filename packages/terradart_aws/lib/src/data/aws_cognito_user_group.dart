@@ -45,4 +45,11 @@ final class DataAwsCognitoUserGroup extends Data {
 
   /// Reference to `role_arn` attribute.
   TfRef<String> get roleArn => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `user_pool_id` attribute.
+  TfRef<String> get userPoolIdRef =>
+      TfRef.attribute<String>(this, 'user_pool_id');
 }

@@ -63,4 +63,17 @@ final class DataAwsOutpostsOutpost extends Data {
   /// Reference to `supported_hardware_type` attribute.
   TfRef<String> get supportedHardwareType =>
       TfRef.attribute<String>(this, 'supported_hardware_type');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `owner_id` attribute.
+  TfRef<String> get ownerIdRef => TfRef.attribute<String>(this, 'owner_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

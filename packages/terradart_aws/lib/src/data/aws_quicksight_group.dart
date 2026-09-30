@@ -49,4 +49,17 @@ final class DataAwsQuicksightGroup extends Data {
   /// Reference to `principal_id` attribute.
   TfRef<String> get principalId =>
       TfRef.attribute<String>(this, 'principal_id');
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `group_name` attribute.
+  TfRef<String> get groupNameRef => TfRef.attribute<String>(this, 'group_name');
+
+  /// Reference to `namespace` attribute.
+  TfRef<String> get namespaceRef => TfRef.attribute<String>(this, 'namespace');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -57,4 +57,11 @@ final class DataAwsSsoadminApplication extends Data {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `application_arn` attribute.
+  TfRef<String> get applicationArnRef =>
+      TfRef.attribute<String>(this, 'application_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

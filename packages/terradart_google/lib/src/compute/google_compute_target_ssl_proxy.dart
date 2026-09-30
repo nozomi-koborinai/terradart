@@ -72,4 +72,34 @@ final class GoogleComputeTargetSslProxy extends Resource {
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `backend_service` attribute.
+  TfRef<String> get backendServiceRef =>
+      TfRef.attribute<String>(this, 'backend_service');
+
+  /// Reference to `certificate_map` attribute.
+  TfRef<String> get certificateMapRef =>
+      TfRef.attribute<String>(this, 'certificate_map');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `proxy_header` attribute.
+  TfRef<String> get proxyHeaderRef =>
+      TfRef.attribute<String>(this, 'proxy_header');
+
+  /// Reference to `ssl_certificates` attribute.
+  TfRef<List<String>> get sslCertificatesRef =>
+      TfRef.attribute<List<String>>(this, 'ssl_certificates');
+
+  /// Reference to `ssl_policy` attribute.
+  TfRef<String> get sslPolicyRef => TfRef.attribute<String>(this, 'ssl_policy');
 }

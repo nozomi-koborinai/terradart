@@ -55,4 +55,27 @@ final class AwsRedshiftEndpointAccess extends Resource {
   /// Reference to `vpc_endpoint` attribute.
   TfRef<List<Map<String, Object?>>> get vpcEndpoint =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'vpc_endpoint');
+
+  /// Reference to `cluster_identifier` attribute.
+  TfRef<String> get clusterIdentifierRef =>
+      TfRef.attribute<String>(this, 'cluster_identifier');
+
+  /// Reference to `endpoint_name` attribute.
+  TfRef<String> get endpointNameRef =>
+      TfRef.attribute<String>(this, 'endpoint_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_owner` attribute.
+  TfRef<String> get resourceOwnerRef =>
+      TfRef.attribute<String>(this, 'resource_owner');
+
+  /// Reference to `subnet_group_name` attribute.
+  TfRef<String> get subnetGroupNameRef =>
+      TfRef.attribute<String>(this, 'subnet_group_name');
+
+  /// Reference to `vpc_security_group_ids` attribute.
+  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
 }

@@ -38,4 +38,15 @@ final class AwsNatGatewayEipAssociation extends Resource {
   /// Reference to `association_id` attribute.
   TfRef<String> get associationId =>
       TfRef.attribute<String>(this, 'association_id');
+
+  /// Reference to `allocation_id` attribute.
+  TfRef<String> get allocationIdRef =>
+      TfRef.attribute<String>(this, 'allocation_id');
+
+  /// Reference to `nat_gateway_id` attribute.
+  TfRef<String> get natGatewayIdRef =>
+      TfRef.attribute<String>(this, 'nat_gateway_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

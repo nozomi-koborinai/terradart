@@ -101,4 +101,26 @@ final class GoogleLoggingOrganizationBucketConfig extends Resource {
   /// Reference to `lifecycle_state` attribute.
   TfRef<String> get lifecycleState =>
       TfRef.attribute<String>(this, 'lifecycle_state');
+
+  /// Reference to `bucket_id` attribute.
+  TfRef<String> get bucketIdRef => TfRef.attribute<String>(this, 'bucket_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organizationRef =>
+      TfRef.attribute<String>(this, 'organization');
+
+  /// Reference to `retention_days` attribute.
+  TfRef<num> get retentionDaysRef =>
+      TfRef.attribute<num>(this, 'retention_days');
 }

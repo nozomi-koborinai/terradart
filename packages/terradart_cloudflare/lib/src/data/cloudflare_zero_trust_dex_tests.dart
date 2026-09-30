@@ -39,4 +39,13 @@ final class DataCloudflareZeroTrustDexTests extends Data {
 
   /// Reference to `kind` attribute.
   TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `test_name` attribute.
+  TfRef<String> get testNameRef => TfRef.attribute<String>(this, 'test_name');
 }

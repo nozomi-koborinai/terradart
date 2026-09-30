@@ -113,6 +113,35 @@ final class GoogleLoggingProjectSink extends Resource {
   TfRef<String> get writerIdentity =>
       TfRef.attribute<String>(this, 'writer_identity');
 
+  /// Reference to `custom_writer_identity` attribute.
+  TfRef<String> get customWriterIdentityRef =>
+      TfRef.attribute<String>(this, 'custom_writer_identity');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `destination` attribute.
+  TfRef<String> get destinationRef =>
+      TfRef.attribute<String>(this, 'destination');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `unique_writer_identity` attribute.
+  TfRef<bool> get uniqueWriterIdentityRef =>
+      TfRef.attribute<bool>(this, 'unique_writer_identity');
+
   /// Reference to `writer_identity` attribute. Auto-populated when
   /// `unique_writer_identity = true`; pass via `TfArg.ref(sink.writerIdentityRef)`
   /// to the destination's IAM member resource so the sink can write logs.

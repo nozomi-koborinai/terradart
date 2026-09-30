@@ -76,4 +76,40 @@ final class AppwriteStorageBucket extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `allowed_file_extensions` attribute.
+  TfRef<List<String>> get allowedFileExtensionsRef =>
+      TfRef.attribute<List<String>>(this, 'allowed_file_extensions');
+
+  /// Reference to `antivirus` attribute.
+  TfRef<bool> get antivirusRef => TfRef.attribute<bool>(this, 'antivirus');
+
+  /// Reference to `compression` attribute.
+  TfRef<String> get compressionRef =>
+      TfRef.attribute<String>(this, 'compression');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `encryption` attribute.
+  TfRef<bool> get encryptionRef => TfRef.attribute<bool>(this, 'encryption');
+
+  /// Reference to `file_security` attribute.
+  TfRef<bool> get fileSecurityRef =>
+      TfRef.attribute<bool>(this, 'file_security');
+
+  /// Reference to `maximum_file_size` attribute.
+  TfRef<num> get maximumFileSizeRef =>
+      TfRef.attribute<num>(this, 'maximum_file_size');
+
+  /// Reference to `permissions` attribute.
+  TfRef<List<String>> get permissionsRef =>
+      TfRef.attribute<List<String>>(this, 'permissions');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
+
+  /// Reference to `transformations` attribute.
+  TfRef<bool> get transformationsRef =>
+      TfRef.attribute<bool>(this, 'transformations');
 }

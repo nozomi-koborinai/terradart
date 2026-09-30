@@ -783,4 +783,34 @@ final class AwsBedrockagentcoreGateway extends Resource {
         this,
         'workload_identity_details',
       );
+
+  /// Reference to `authorizer_type` attribute.
+  TfRef<String> get authorizerTypeRef =>
+      TfRef.attribute<String>(this, 'authorizer_type');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `exception_level` attribute.
+  TfRef<String> get exceptionLevelRef =>
+      TfRef.attribute<String>(this, 'exception_level');
+
+  /// Reference to `kms_key_arn` attribute.
+  TfRef<String> get kmsKeyArnRef =>
+      TfRef.attribute<String>(this, 'kms_key_arn');
+
+  /// Reference to `protocol_type` attribute.
+  TfRef<String> get protocolTypeRef =>
+      TfRef.attribute<String>(this, 'protocol_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

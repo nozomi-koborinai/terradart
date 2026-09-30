@@ -54,4 +54,11 @@ final class CloudflareR2DataCatalog extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `bucket_name` attribute.
+  TfRef<String> get bucketNameRef =>
+      TfRef.attribute<String>(this, 'bucket_name');
 }

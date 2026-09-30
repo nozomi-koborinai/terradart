@@ -135,4 +135,30 @@ final class GoogleCloudAssetFolderFeed extends Resource {
 
   /// Reference to `folder_id` attribute.
   TfRef<String> get folderId => TfRef.attribute<String>(this, 'folder_id');
+
+  /// Reference to `asset_names` attribute.
+  TfRef<List<String>> get assetNamesRef =>
+      TfRef.attribute<List<String>>(this, 'asset_names');
+
+  /// Reference to `asset_types` attribute.
+  TfRef<List<String>> get assetTypesRef =>
+      TfRef.attribute<List<String>>(this, 'asset_types');
+
+  /// Reference to `billing_project` attribute.
+  TfRef<String> get billingProjectRef =>
+      TfRef.attribute<String>(this, 'billing_project');
+
+  /// Reference to `content_type` attribute.
+  TfRef<String> get contentTypeRef =>
+      TfRef.attribute<String>(this, 'content_type');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `feed_id` attribute.
+  TfRef<String> get feedIdRef => TfRef.attribute<String>(this, 'feed_id');
+
+  /// Reference to `folder` attribute.
+  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
 }

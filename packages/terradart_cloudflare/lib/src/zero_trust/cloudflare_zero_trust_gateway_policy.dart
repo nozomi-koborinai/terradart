@@ -808,4 +808,34 @@ final class CloudflareZeroTrustGatewayPolicy extends Resource {
   /// Reference to `warning_status` attribute.
   TfRef<String> get warningStatus =>
       TfRef.attribute<String>(this, 'warning_status');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `action` attribute.
+  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `device_posture` attribute.
+  TfRef<String> get devicePostureRef =>
+      TfRef.attribute<String>(this, 'device_posture');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `filters` attribute.
+  TfRef<List<String>> get filtersRef =>
+      TfRef.attribute<List<String>>(this, 'filters');
+
+  /// Reference to `identity` attribute.
+  TfRef<String> get identityRef => TfRef.attribute<String>(this, 'identity');
+
+  /// Reference to `precedence` attribute.
+  TfRef<num> get precedenceRef => TfRef.attribute<num>(this, 'precedence');
+
+  /// Reference to `traffic` attribute.
+  TfRef<String> get trafficRef => TfRef.attribute<String>(this, 'traffic');
 }

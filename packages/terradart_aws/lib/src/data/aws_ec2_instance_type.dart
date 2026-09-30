@@ -269,4 +269,11 @@ final class DataAwsEc2InstanceType extends Data {
   /// Reference to `valid_threads_per_core` attribute.
   TfRef<List<num>> get validThreadsPerCore =>
       TfRef.attribute<List<num>>(this, 'valid_threads_per_core');
+
+  /// Reference to `instance_type` attribute.
+  TfRef<String> get instanceTypeRef =>
+      TfRef.attribute<String>(this, 'instance_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

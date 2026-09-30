@@ -92,4 +92,28 @@ final class GoogleMigrationCenterImportDataFile extends Resource {
   /// Reference to `upload_file_info` attribute.
   TfRef<List<Map<String, Object?>>> get uploadFileInfo =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'upload_file_info');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `format` attribute.
+  TfRef<String> get formatRef => TfRef.attribute<String>(this, 'format');
+
+  /// Reference to `import_data_file_id` attribute.
+  TfRef<String> get importDataFileIdRef =>
+      TfRef.attribute<String>(this, 'import_data_file_id');
+
+  /// Reference to `import_job` attribute.
+  TfRef<String> get importJobRef => TfRef.attribute<String>(this, 'import_job');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -45,4 +45,20 @@ final class DataAwsLambdaInvocation extends Data {
 
   /// Reference to `result` attribute.
   TfRef<String> get result => TfRef.attribute<String>(this, 'result');
+
+  /// Reference to `function_name` attribute.
+  TfRef<String> get functionNameRef =>
+      TfRef.attribute<String>(this, 'function_name');
+
+  /// Reference to `input` attribute.
+  TfRef<String> get inputRef => TfRef.attribute<String>(this, 'input');
+
+  /// Reference to `qualifier` attribute.
+  TfRef<String> get qualifierRef => TfRef.attribute<String>(this, 'qualifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tenant_id` attribute.
+  TfRef<String> get tenantIdRef => TfRef.attribute<String>(this, 'tenant_id');
 }

@@ -37,4 +37,14 @@ final class AwsLambdaResourcePolicy extends Resource {
 
   /// Reference to `revision_id` attribute.
   TfRef<String> get revisionId => TfRef.attribute<String>(this, 'revision_id');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_arn` attribute.
+  TfRef<String> get resourceArnRef =>
+      TfRef.attribute<String>(this, 'resource_arn');
 }

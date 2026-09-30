@@ -58,4 +58,19 @@ final class AwsConnectUserHierarchyGroup extends Resource {
 
   /// Reference to `level_id` attribute.
   TfRef<String> get levelId => TfRef.attribute<String>(this, 'level_id');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `parent_group_id` attribute.
+  TfRef<String> get parentGroupIdRef =>
+      TfRef.attribute<String>(this, 'parent_group_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

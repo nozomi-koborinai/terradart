@@ -43,4 +43,13 @@ final class DataAwsDatazoneEnvironmentBlueprint extends Data {
 
   /// Reference to `description` attribute.
   TfRef<String> get description => TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `domain_id` attribute.
+  TfRef<String> get domainIdRef => TfRef.attribute<String>(this, 'domain_id');
+
+  /// Reference to `managed` attribute.
+  TfRef<bool> get managedRef => TfRef.attribute<bool>(this, 'managed');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

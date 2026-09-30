@@ -154,4 +154,10 @@ final class DataCloudflareAccountDnsSettingsInternalView extends Data {
 
   /// Reference to `zones` attribute.
   TfRef<List<String>> get zones => TfRef.attribute<List<String>>(this, 'zones');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `view_id` attribute.
+  TfRef<String> get viewIdRef => TfRef.attribute<String>(this, 'view_id');
 }

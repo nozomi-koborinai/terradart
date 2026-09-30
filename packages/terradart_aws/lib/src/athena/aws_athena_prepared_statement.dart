@@ -44,4 +44,18 @@ final class AwsAthenaPreparedStatement extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `query_statement` attribute.
+  TfRef<String> get queryStatementRef =>
+      TfRef.attribute<String>(this, 'query_statement');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `workgroup` attribute.
+  TfRef<String> get workgroupRef => TfRef.attribute<String>(this, 'workgroup');
 }

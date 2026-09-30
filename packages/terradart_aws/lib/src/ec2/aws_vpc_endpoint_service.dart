@@ -96,4 +96,39 @@ final class AwsVpcEndpointService extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `acceptance_required` attribute.
+  TfRef<bool> get acceptanceRequiredRef =>
+      TfRef.attribute<bool>(this, 'acceptance_required');
+
+  /// Reference to `allowed_principals` attribute.
+  TfRef<List<String>> get allowedPrincipalsRef =>
+      TfRef.attribute<List<String>>(this, 'allowed_principals');
+
+  /// Reference to `gateway_load_balancer_arns` attribute.
+  TfRef<List<String>> get gatewayLoadBalancerArnsRef =>
+      TfRef.attribute<List<String>>(this, 'gateway_load_balancer_arns');
+
+  /// Reference to `network_load_balancer_arns` attribute.
+  TfRef<List<String>> get networkLoadBalancerArnsRef =>
+      TfRef.attribute<List<String>>(this, 'network_load_balancer_arns');
+
+  /// Reference to `private_dns_name` attribute.
+  TfRef<String> get privateDnsNameRef =>
+      TfRef.attribute<String>(this, 'private_dns_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `supported_ip_address_types` attribute.
+  TfRef<List<String>> get supportedIpAddressTypesRef =>
+      TfRef.attribute<List<String>>(this, 'supported_ip_address_types');
+
+  /// Reference to `supported_regions` attribute.
+  TfRef<List<String>> get supportedRegionsRef =>
+      TfRef.attribute<List<String>>(this, 'supported_regions');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

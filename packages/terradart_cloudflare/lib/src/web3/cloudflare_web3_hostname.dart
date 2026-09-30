@@ -70,4 +70,17 @@ final class CloudflareWeb3Hostname extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `dnslink` attribute.
+  TfRef<String> get dnslinkRef => TfRef.attribute<String>(this, 'dnslink');
+
+  /// Reference to `target` attribute.
+  TfRef<String> get targetRef => TfRef.attribute<String>(this, 'target');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

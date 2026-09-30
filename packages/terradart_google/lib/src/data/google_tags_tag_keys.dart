@@ -29,4 +29,7 @@ final class DataGoogleTagsTagKeys extends Data {
   /// Reference to `keys` attribute.
   TfRef<List<Map<String, Object?>>> get keys =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'keys');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
 }

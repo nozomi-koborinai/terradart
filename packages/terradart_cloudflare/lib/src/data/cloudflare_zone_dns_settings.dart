@@ -56,4 +56,7 @@ final class DataCloudflareZoneDnsSettings extends Data {
 
   /// Reference to `zone_mode` attribute.
   TfRef<String> get zoneMode => TfRef.attribute<String>(this, 'zone_mode');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -81,4 +81,27 @@ final class GoogleEndpointsService extends Resource {
   /// Reference to `endpoints` attribute.
   TfRef<List<Map<String, Object?>>> get endpoints =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'endpoints');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `grpc_config` attribute.
+  TfRef<String> get grpcConfigRef =>
+      TfRef.attribute<String>(this, 'grpc_config');
+
+  /// Reference to `openapi_config` attribute.
+  TfRef<String> get openapiConfigRef =>
+      TfRef.attribute<String>(this, 'openapi_config');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `protoc_output_base64` attribute.
+  TfRef<String> get protocOutputBase64Ref =>
+      TfRef.attribute<String>(this, 'protoc_output_base64');
+
+  /// Reference to `service_name` attribute.
+  TfRef<String> get serviceNameRef =>
+      TfRef.attribute<String>(this, 'service_name');
 }

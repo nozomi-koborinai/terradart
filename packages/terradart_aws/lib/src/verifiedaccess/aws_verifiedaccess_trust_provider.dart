@@ -213,4 +213,31 @@ final class AwsVerifiedaccessTrustProvider extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `device_trust_provider_type` attribute.
+  TfRef<String> get deviceTrustProviderTypeRef =>
+      TfRef.attribute<String>(this, 'device_trust_provider_type');
+
+  /// Reference to `policy_reference_name` attribute.
+  TfRef<String> get policyReferenceNameRef =>
+      TfRef.attribute<String>(this, 'policy_reference_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `trust_provider_type` attribute.
+  TfRef<String> get trustProviderTypeRef =>
+      TfRef.attribute<String>(this, 'trust_provider_type');
+
+  /// Reference to `user_trust_provider_type` attribute.
+  TfRef<String> get userTrustProviderTypeRef =>
+      TfRef.attribute<String>(this, 'user_trust_provider_type');
 }

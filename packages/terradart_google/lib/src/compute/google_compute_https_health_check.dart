@@ -74,6 +74,42 @@ final class GoogleComputeHttpsHealthCheck extends Resource {
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
 
+  /// Reference to `check_interval_sec` attribute.
+  TfRef<num> get checkIntervalSecRef =>
+      TfRef.attribute<num>(this, 'check_interval_sec');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `healthy_threshold` attribute.
+  TfRef<num> get healthyThresholdRef =>
+      TfRef.attribute<num>(this, 'healthy_threshold');
+
+  /// Reference to `host` attribute.
+  TfRef<String> get hostRef => TfRef.attribute<String>(this, 'host');
+
+  /// Reference to `port` attribute.
+  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `request_path` attribute.
+  TfRef<String> get requestPathRef =>
+      TfRef.attribute<String>(this, 'request_path');
+
+  /// Reference to `timeout_sec` attribute.
+  TfRef<num> get timeoutSecRef => TfRef.attribute<num>(this, 'timeout_sec');
+
+  /// Reference to `unhealthy_threshold` attribute.
+  TfRef<num> get unhealthyThresholdRef =>
+      TfRef.attribute<num>(this, 'unhealthy_threshold');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

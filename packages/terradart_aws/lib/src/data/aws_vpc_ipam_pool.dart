@@ -116,4 +116,19 @@ final class DataAwsVpcIpamPool extends Data {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `allocation_resource_tags` attribute.
+  TfRef<Map<String, String>> get allocationResourceTagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'allocation_resource_tags');
+
+  /// Reference to `ipam_pool_id` attribute.
+  TfRef<String> get ipamPoolIdRef =>
+      TfRef.attribute<String>(this, 'ipam_pool_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

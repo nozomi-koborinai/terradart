@@ -1753,4 +1753,30 @@ final class CloudflareZeroTrustAccessPolicy extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `approval_required` attribute.
+  TfRef<bool> get approvalRequiredRef =>
+      TfRef.attribute<bool>(this, 'approval_required');
+
+  /// Reference to `decision` attribute.
+  TfRef<String> get decisionRef => TfRef.attribute<String>(this, 'decision');
+
+  /// Reference to `isolation_required` attribute.
+  TfRef<bool> get isolationRequiredRef =>
+      TfRef.attribute<bool>(this, 'isolation_required');
+
+  /// Reference to `purpose_justification_prompt` attribute.
+  TfRef<String> get purposeJustificationPromptRef =>
+      TfRef.attribute<String>(this, 'purpose_justification_prompt');
+
+  /// Reference to `purpose_justification_required` attribute.
+  TfRef<bool> get purposeJustificationRequiredRef =>
+      TfRef.attribute<bool>(this, 'purpose_justification_required');
+
+  /// Reference to `session_duration` attribute.
+  TfRef<String> get sessionDurationRef =>
+      TfRef.attribute<String>(this, 'session_duration');
 }

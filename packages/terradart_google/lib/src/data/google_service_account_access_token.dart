@@ -42,4 +42,19 @@ final class DataGoogleServiceAccountAccessToken extends Data {
   /// Reference to `access_token` attribute.
   TfRef<String> get accessToken =>
       TfRef.attribute<String>(this, 'access_token');
+
+  /// Reference to `delegates` attribute.
+  TfRef<List<String>> get delegatesRef =>
+      TfRef.attribute<List<String>>(this, 'delegates');
+
+  /// Reference to `lifetime` attribute.
+  TfRef<String> get lifetimeRef => TfRef.attribute<String>(this, 'lifetime');
+
+  /// Reference to `scopes` attribute.
+  TfRef<List<String>> get scopesRef =>
+      TfRef.attribute<List<String>>(this, 'scopes');
+
+  /// Reference to `target_service_account` attribute.
+  TfRef<String> get targetServiceAccountRef =>
+      TfRef.attribute<String>(this, 'target_service_account');
 }

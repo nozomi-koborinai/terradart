@@ -112,4 +112,31 @@ final class AwsRedshiftSnapshotSchedule extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `definitions` attribute.
+  TfRef<List<String>> get definitionsRef =>
+      TfRef.attribute<List<String>>(this, 'definitions');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `force_destroy` attribute.
+  TfRef<bool> get forceDestroyRef =>
+      TfRef.attribute<bool>(this, 'force_destroy');
+
+  /// Reference to `identifier` attribute.
+  TfRef<String> get identifierRef =>
+      TfRef.attribute<String>(this, 'identifier');
+
+  /// Reference to `identifier_prefix` attribute.
+  TfRef<String> get identifierPrefixRef =>
+      TfRef.attribute<String>(this, 'identifier_prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

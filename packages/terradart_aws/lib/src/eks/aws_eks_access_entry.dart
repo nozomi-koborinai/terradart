@@ -69,4 +69,29 @@ final class AwsEksAccessEntry extends Resource {
 
   /// Reference to `modified_at` attribute.
   TfRef<String> get modifiedAt => TfRef.attribute<String>(this, 'modified_at');
+
+  /// Reference to `cluster_name` attribute.
+  TfRef<String> get clusterNameRef =>
+      TfRef.attribute<String>(this, 'cluster_name');
+
+  /// Reference to `kubernetes_groups` attribute.
+  TfRef<List<String>> get kubernetesGroupsRef =>
+      TfRef.attribute<List<String>>(this, 'kubernetes_groups');
+
+  /// Reference to `principal_arn` attribute.
+  TfRef<String> get principalArnRef =>
+      TfRef.attribute<String>(this, 'principal_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `user_name` attribute.
+  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
 }

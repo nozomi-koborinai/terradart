@@ -58,4 +58,18 @@ final class AwsVpcRouteServerEndpoint extends Resource {
 
   /// Reference to `vpc_id` attribute.
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `route_server_id` attribute.
+  TfRef<String> get routeServerIdRef =>
+      TfRef.attribute<String>(this, 'route_server_id');
+
+  /// Reference to `subnet_id` attribute.
+  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

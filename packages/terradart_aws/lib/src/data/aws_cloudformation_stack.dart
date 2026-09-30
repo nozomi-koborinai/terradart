@@ -70,4 +70,11 @@ final class DataAwsCloudformationStack extends Data {
   /// Reference to `timeout_in_minutes` attribute.
   TfRef<num> get timeoutInMinutes =>
       TfRef.attribute<num>(this, 'timeout_in_minutes');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

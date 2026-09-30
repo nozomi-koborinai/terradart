@@ -35,4 +35,14 @@ final class AwsBedrockagentcoreResourcePolicy extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<AwsBedrockagentcoreResourcePolicy>`.
   RefTo<AwsBedrockagentcoreResourcePolicy> get ref => RefTo.of(this);
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_arn` attribute.
+  TfRef<String> get resourceArnRef =>
+      TfRef.attribute<String>(this, 'resource_arn');
 }

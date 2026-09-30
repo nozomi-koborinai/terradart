@@ -58,4 +58,17 @@ final class AwsGluePartitionIndex extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `catalog_id` attribute.
+  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+
+  /// Reference to `database_name` attribute.
+  TfRef<String> get databaseNameRef =>
+      TfRef.attribute<String>(this, 'database_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `table_name` attribute.
+  TfRef<String> get tableNameRef => TfRef.attribute<String>(this, 'table_name');
 }

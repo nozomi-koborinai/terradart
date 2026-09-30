@@ -101,4 +101,7 @@ final class DataAwsS3filesAccessPoint extends Data {
   /// Reference to `tags` attribute.
   TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

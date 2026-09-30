@@ -27,4 +27,11 @@ final class DataAwsOdbDbNodes extends Data {
   /// Reference to `db_nodes` attribute.
   TfRef<List<Map<String, Object?>>> get dbNodes =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'db_nodes');
+
+  /// Reference to `cloud_vm_cluster_id` attribute.
+  TfRef<String> get cloudVmClusterIdRef =>
+      TfRef.attribute<String>(this, 'cloud_vm_cluster_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

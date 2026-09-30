@@ -72,4 +72,23 @@ final class AwsIvschatRoom extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `logging_configuration_identifiers` attribute.
+  TfRef<List<String>> get loggingConfigurationIdentifiersRef =>
+      TfRef.attribute<List<String>>(this, 'logging_configuration_identifiers');
+
+  /// Reference to `maximum_message_length` attribute.
+  TfRef<num> get maximumMessageLengthRef =>
+      TfRef.attribute<num>(this, 'maximum_message_length');
+
+  /// Reference to `maximum_message_rate_per_second` attribute.
+  TfRef<num> get maximumMessageRatePerSecondRef =>
+      TfRef.attribute<num>(this, 'maximum_message_rate_per_second');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

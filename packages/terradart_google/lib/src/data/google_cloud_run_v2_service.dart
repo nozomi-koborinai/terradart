@@ -191,4 +191,10 @@ final class DataGoogleCloudRunV2Service extends Data {
 
   /// Reference to `urls` attribute.
   TfRef<List<String>> get urls => TfRef.attribute<List<String>>(this, 'urls');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

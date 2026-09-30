@@ -63,4 +63,23 @@ final class GoogleComputeOrganizationSecurityPolicyAssociation
   /// Reference to `display_name` attribute.
   TfRef<String> get displayName =>
       TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `attachment_id` attribute.
+  TfRef<String> get attachmentIdRef =>
+      TfRef.attribute<String>(this, 'attachment_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `excluded_folders` attribute.
+  TfRef<List<String>> get excludedFoldersRef =>
+      TfRef.attribute<List<String>>(this, 'excluded_folders');
+
+  /// Reference to `excluded_projects` attribute.
+  TfRef<List<String>> get excludedProjectsRef =>
+      TfRef.attribute<List<String>>(this, 'excluded_projects');
+
+  /// Reference to `policy_id` attribute.
+  TfRef<String> get policyIdRef => TfRef.attribute<String>(this, 'policy_id');
 }

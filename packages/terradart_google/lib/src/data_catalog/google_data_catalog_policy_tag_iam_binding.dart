@@ -73,4 +73,14 @@ final class GoogleDataCatalogPolicyTagIamBinding extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `members` attribute.
+  TfRef<List<String>> get membersRef =>
+      TfRef.attribute<List<String>>(this, 'members');
+
+  /// Reference to `policy_tag` attribute.
+  TfRef<String> get policyTagRef => TfRef.attribute<String>(this, 'policy_tag');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

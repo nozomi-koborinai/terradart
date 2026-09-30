@@ -43,6 +43,13 @@ final class GoogleApigeeEnvironmentAddonsConfig extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `analytics_enabled` attribute.
+  TfRef<bool> get analyticsEnabledRef =>
+      TfRef.attribute<bool>(this, 'analytics_enabled');
+
+  /// Reference to `env_id` attribute.
+  TfRef<String> get envIdRef => TfRef.attribute<String>(this, 'env_id');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

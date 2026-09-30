@@ -53,4 +53,22 @@ final class AwsLocationGeofenceCollection extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `collection_name` attribute.
+  TfRef<String> get collectionNameRef =>
+      TfRef.attribute<String>(this, 'collection_name');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

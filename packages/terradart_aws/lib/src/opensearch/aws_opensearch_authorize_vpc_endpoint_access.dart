@@ -40,4 +40,14 @@ final class AwsOpensearchAuthorizeVpcEndpointAccess extends Resource {
   /// Reference to `authorized_principal` attribute.
   TfRef<List<Map<String, Object?>>> get authorizedPrincipal =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'authorized_principal');
+
+  /// Reference to `account` attribute.
+  TfRef<String> get accountRef => TfRef.attribute<String>(this, 'account');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

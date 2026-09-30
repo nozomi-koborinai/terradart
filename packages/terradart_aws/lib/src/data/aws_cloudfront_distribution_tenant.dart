@@ -76,4 +76,10 @@ final class DataAwsCloudfrontDistributionTenant extends Data {
   /// Reference to `tags` attribute.
   TfRef<Map<String, String>> get tags =>
       TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `domain` attribute.
+  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
 }

@@ -95,4 +95,15 @@ final class DataAwsBudgetsBudget extends Data {
 
   /// Reference to `time_unit` attribute.
   TfRef<String> get timeUnit => TfRef.attribute<String>(this, 'time_unit');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

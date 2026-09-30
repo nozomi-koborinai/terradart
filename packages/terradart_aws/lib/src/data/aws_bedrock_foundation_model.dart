@@ -56,4 +56,10 @@ final class DataAwsBedrockFoundationModel extends Data {
   /// Reference to `response_streaming_supported` attribute.
   TfRef<bool> get responseStreamingSupported =>
       TfRef.attribute<bool>(this, 'response_streaming_supported');
+
+  /// Reference to `model_id` attribute.
+  TfRef<String> get modelIdRef => TfRef.attribute<String>(this, 'model_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

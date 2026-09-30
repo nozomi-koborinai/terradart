@@ -167,4 +167,30 @@ final class GoogleDeveloperConnectInsightsConfig extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `app_hub_application` attribute.
+  TfRef<String> get appHubApplicationRef =>
+      TfRef.attribute<String>(this, 'app_hub_application');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `insights_config_id` attribute.
+  TfRef<String> get insightsConfigIdRef =>
+      TfRef.attribute<String>(this, 'insights_config_id');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

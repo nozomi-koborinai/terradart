@@ -170,4 +170,7 @@ final class GoogleFirebaseHostingVersion extends Resource {
 
   /// Reference to `version_id` attribute.
   TfRef<String> get versionId => TfRef.attribute<String>(this, 'version_id');
+
+  /// Reference to `site_id` attribute.
+  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
 }

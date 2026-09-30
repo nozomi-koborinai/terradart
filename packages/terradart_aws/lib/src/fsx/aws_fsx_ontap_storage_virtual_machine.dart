@@ -142,4 +142,23 @@ final class AwsFsxOntapStorageVirtualMachine extends Resource {
 
   /// Reference to `uuid` attribute.
   TfRef<String> get uuid => TfRef.attribute<String>(this, 'uuid');
+
+  /// Reference to `file_system_id` attribute.
+  TfRef<String> get fileSystemIdRef =>
+      TfRef.attribute<String>(this, 'file_system_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `root_volume_security_style` attribute.
+  TfRef<String> get rootVolumeSecurityStyleRef =>
+      TfRef.attribute<String>(this, 'root_volume_security_style');
+
+  /// Reference to `svm_admin_password` attribute.
+  TfRef<String> get svmAdminPasswordRef =>
+      TfRef.attribute<String>(this, 'svm_admin_password');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

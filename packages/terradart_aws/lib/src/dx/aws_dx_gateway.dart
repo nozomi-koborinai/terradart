@@ -47,4 +47,12 @@ final class AwsDxGateway extends Resource {
   /// Reference to `owner_account_id` attribute.
   TfRef<String> get ownerAccountId =>
       TfRef.attribute<String>(this, 'owner_account_id');
+
+  /// Reference to `amazon_side_asn` attribute.
+  TfRef<String> get amazonSideAsnRef =>
+      TfRef.attribute<String>(this, 'amazon_side_asn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

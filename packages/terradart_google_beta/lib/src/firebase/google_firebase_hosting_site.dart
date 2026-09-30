@@ -51,4 +51,17 @@ final class GoogleFirebaseHostingSite extends Resource {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `site_id` attribute.
+  TfRef<String> get siteIdRef => TfRef.attribute<String>(this, 'site_id');
 }

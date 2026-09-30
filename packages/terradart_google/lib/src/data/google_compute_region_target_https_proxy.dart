@@ -79,4 +79,10 @@ final class DataGoogleComputeRegionTargetHttpsProxy extends Data {
 
   /// Reference to `url_map` attribute.
   TfRef<String> get urlMap => TfRef.attribute<String>(this, 'url_map');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

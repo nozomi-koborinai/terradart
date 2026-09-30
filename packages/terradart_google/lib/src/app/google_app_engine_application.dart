@@ -111,4 +111,26 @@ final class GoogleAppEngineApplication extends Resource {
   /// Reference to `url_dispatch_rule` attribute.
   TfRef<List<Map<String, Object?>>> get urlDispatchRule =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'url_dispatch_rule');
+
+  /// Reference to `auth_domain` attribute.
+  TfRef<String> get authDomainRef =>
+      TfRef.attribute<String>(this, 'auth_domain');
+
+  /// Reference to `database_type` attribute.
+  TfRef<String> get databaseTypeRef =>
+      TfRef.attribute<String>(this, 'database_type');
+
+  /// Reference to `location_id` attribute.
+  TfRef<String> get locationIdRef =>
+      TfRef.attribute<String>(this, 'location_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `serving_status` attribute.
+  TfRef<String> get servingStatusRef =>
+      TfRef.attribute<String>(this, 'serving_status');
+
+  /// Reference to `ssl_policy` attribute.
+  TfRef<String> get sslPolicyRef => TfRef.attribute<String>(this, 'ssl_policy');
 }

@@ -2286,4 +2286,18 @@ final class AwsAppflowFlow extends Resource {
 
   /// Reference to `flow_status` attribute.
   TfRef<String> get flowStatus => TfRef.attribute<String>(this, 'flow_status');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `kms_arn` attribute.
+  TfRef<String> get kmsArnRef => TfRef.attribute<String>(this, 'kms_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

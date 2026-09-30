@@ -27,4 +27,10 @@ final class DataAwsBedrockInferenceProfiles extends Data {
         this,
         'inference_profile_summaries',
       );
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

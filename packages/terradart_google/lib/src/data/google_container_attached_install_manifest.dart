@@ -40,4 +40,17 @@ final class DataGoogleContainerAttachedInstallManifest extends Data {
 
   /// Reference to `manifest` attribute.
   TfRef<String> get manifest => TfRef.attribute<String>(this, 'manifest');
+
+  /// Reference to `cluster_id` attribute.
+  TfRef<String> get clusterIdRef => TfRef.attribute<String>(this, 'cluster_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `platform_version` attribute.
+  TfRef<String> get platformVersionRef =>
+      TfRef.attribute<String>(this, 'platform_version');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

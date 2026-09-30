@@ -55,4 +55,14 @@ final class DataCloudflareR2CustomDomain extends Data {
 
   /// Reference to `zone_name` attribute.
   TfRef<String> get zoneName => TfRef.attribute<String>(this, 'zone_name');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `bucket_name` attribute.
+  TfRef<String> get bucketNameRef =>
+      TfRef.attribute<String>(this, 'bucket_name');
+
+  /// Reference to `domain` attribute.
+  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
 }

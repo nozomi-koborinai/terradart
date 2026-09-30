@@ -544,4 +544,21 @@ final class GoogleBigqueryAnalyticsHubListingSubscription extends Resource {
   /// Reference to `subscription_id` attribute.
   TfRef<String> get subscriptionId =>
       TfRef.attribute<String>(this, 'subscription_id');
+
+  /// Reference to `data_exchange_id` attribute.
+  TfRef<String> get dataExchangeIdRef =>
+      TfRef.attribute<String>(this, 'data_exchange_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `listing_id` attribute.
+  TfRef<String> get listingIdRef => TfRef.attribute<String>(this, 'listing_id');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

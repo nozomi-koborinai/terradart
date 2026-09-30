@@ -41,4 +41,24 @@ final class DataAwsRoute53ResolverRules extends Data {
   /// Reference to `resolver_rule_ids` attribute.
   TfRef<List<String>> get resolverRuleIds =>
       TfRef.attribute<List<String>>(this, 'resolver_rule_ids');
+
+  /// Reference to `name_regex` attribute.
+  TfRef<String> get nameRegexRef => TfRef.attribute<String>(this, 'name_regex');
+
+  /// Reference to `owner_id` attribute.
+  TfRef<String> get ownerIdRef => TfRef.attribute<String>(this, 'owner_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resolver_endpoint_id` attribute.
+  TfRef<String> get resolverEndpointIdRef =>
+      TfRef.attribute<String>(this, 'resolver_endpoint_id');
+
+  /// Reference to `rule_type` attribute.
+  TfRef<String> get ruleTypeRef => TfRef.attribute<String>(this, 'rule_type');
+
+  /// Reference to `share_status` attribute.
+  TfRef<String> get shareStatusRef =>
+      TfRef.attribute<String>(this, 'share_status');
 }

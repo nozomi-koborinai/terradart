@@ -115,4 +115,17 @@ final class CloudflareEmailRoutingCatchAll extends Resource {
 
   /// Reference to `tag` attribute.
   TfRef<String> get tag => TfRef.attribute<String>(this, 'tag');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `owner_worker_tag` attribute.
+  TfRef<String> get ownerWorkerTagRef =>
+      TfRef.attribute<String>(this, 'owner_worker_tag');
+
+  /// Reference to `source` attribute.
+  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -77,4 +77,32 @@ final class GoogleContactCenterInsightsQaScorecard extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `is_default` attribute.
+  TfRef<bool> get isDefaultRef => TfRef.attribute<bool>(this, 'is_default');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `qa_scorecard_id` attribute.
+  TfRef<String> get qaScorecardIdRef =>
+      TfRef.attribute<String>(this, 'qa_scorecard_id');
+
+  /// Reference to `source` attribute.
+  TfRef<String> get sourceRef => TfRef.attribute<String>(this, 'source');
 }

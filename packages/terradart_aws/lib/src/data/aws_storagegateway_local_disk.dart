@@ -36,4 +36,17 @@ final class DataAwsStoragegatewayLocalDisk extends Data {
 
   /// Reference to `disk_id` attribute.
   TfRef<String> get diskId => TfRef.attribute<String>(this, 'disk_id');
+
+  /// Reference to `disk_node` attribute.
+  TfRef<String> get diskNodeRef => TfRef.attribute<String>(this, 'disk_node');
+
+  /// Reference to `disk_path` attribute.
+  TfRef<String> get diskPathRef => TfRef.attribute<String>(this, 'disk_path');
+
+  /// Reference to `gateway_arn` attribute.
+  TfRef<String> get gatewayArnRef =>
+      TfRef.attribute<String>(this, 'gateway_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

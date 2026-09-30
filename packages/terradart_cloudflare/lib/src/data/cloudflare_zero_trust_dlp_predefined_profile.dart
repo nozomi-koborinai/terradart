@@ -67,4 +67,10 @@ final class DataCloudflareZeroTrustDlpPredefinedProfile extends Data {
 
   /// Reference to `open_access` attribute.
   TfRef<bool> get openAccess => TfRef.attribute<bool>(this, 'open_access');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `profile_id` attribute.
+  TfRef<String> get profileIdRef => TfRef.attribute<String>(this, 'profile_id');
 }

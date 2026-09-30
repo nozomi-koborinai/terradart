@@ -37,4 +37,15 @@ final class AwsRedshiftAuthenticationProfile extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `authentication_profile_content` attribute.
+  TfRef<String> get authenticationProfileContentRef =>
+      TfRef.attribute<String>(this, 'authentication_profile_content');
+
+  /// Reference to `authentication_profile_name` attribute.
+  TfRef<String> get authenticationProfileNameRef =>
+      TfRef.attribute<String>(this, 'authentication_profile_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

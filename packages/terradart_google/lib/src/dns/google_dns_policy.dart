@@ -87,4 +87,23 @@ final class GoogleDnsPolicy extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enable_inbound_forwarding` attribute.
+  TfRef<bool> get enableInboundForwardingRef =>
+      TfRef.attribute<bool>(this, 'enable_inbound_forwarding');
+
+  /// Reference to `enable_logging` attribute.
+  TfRef<bool> get enableLoggingRef =>
+      TfRef.attribute<bool>(this, 'enable_logging');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

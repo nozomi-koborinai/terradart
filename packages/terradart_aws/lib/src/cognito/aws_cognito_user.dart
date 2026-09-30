@@ -164,4 +164,48 @@ final class AwsCognitoUser extends Resource {
 
   /// Reference to `sub` attribute.
   TfRef<String> get sub => TfRef.attribute<String>(this, 'sub');
+
+  /// Reference to `attributes` attribute.
+  TfRef<Map<String, String>> get attributesRef =>
+      TfRef.attribute<Map<String, String>>(this, 'attributes');
+
+  /// Reference to `client_metadata` attribute.
+  TfRef<Map<String, String>> get clientMetadataRef =>
+      TfRef.attribute<Map<String, String>>(this, 'client_metadata');
+
+  /// Reference to `desired_delivery_mediums` attribute.
+  TfRef<List<String>> get desiredDeliveryMediumsRef =>
+      TfRef.attribute<List<String>>(this, 'desired_delivery_mediums');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `force_alias_creation` attribute.
+  TfRef<bool> get forceAliasCreationRef =>
+      TfRef.attribute<bool>(this, 'force_alias_creation');
+
+  /// Reference to `message_action` attribute.
+  TfRef<String> get messageActionRef =>
+      TfRef.attribute<String>(this, 'message_action');
+
+  /// Reference to `password` attribute.
+  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `temporary_password` attribute.
+  TfRef<String> get temporaryPasswordRef =>
+      TfRef.attribute<String>(this, 'temporary_password');
+
+  /// Reference to `user_pool_id` attribute.
+  TfRef<String> get userPoolIdRef =>
+      TfRef.attribute<String>(this, 'user_pool_id');
+
+  /// Reference to `username` attribute.
+  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
+
+  /// Reference to `validation_data` attribute.
+  TfRef<Map<String, String>> get validationDataRef =>
+      TfRef.attribute<Map<String, String>>(this, 'validation_data');
 }

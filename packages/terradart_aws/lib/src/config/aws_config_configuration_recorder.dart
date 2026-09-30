@@ -204,4 +204,10 @@ final class AwsConfigConfigurationRecorder extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
 }

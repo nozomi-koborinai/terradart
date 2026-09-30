@@ -341,6 +341,35 @@ final class GoogleContainerAzureCluster extends Resource {
         'workload_identity_config',
       );
 
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `azure_region` attribute.
+  TfRef<String> get azureRegionRef =>
+      TfRef.attribute<String>(this, 'azure_region');
+
+  /// Reference to `client` attribute.
+  TfRef<String> get clientRef => TfRef.attribute<String>(this, 'client');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `resource_group_id` attribute.
+  TfRef<String> get resourceGroupIdRef =>
+      TfRef.attribute<String>(this, 'resource_group_id');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

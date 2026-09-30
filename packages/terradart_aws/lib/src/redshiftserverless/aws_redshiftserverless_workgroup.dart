@@ -118,4 +118,47 @@ final class AwsRedshiftserverlessWorkgroup extends Resource {
   /// Reference to `workgroup_id` attribute.
   TfRef<String> get workgroupId =>
       TfRef.attribute<String>(this, 'workgroup_id');
+
+  /// Reference to `base_capacity` attribute.
+  TfRef<num> get baseCapacityRef => TfRef.attribute<num>(this, 'base_capacity');
+
+  /// Reference to `enhanced_vpc_routing` attribute.
+  TfRef<bool> get enhancedVpcRoutingRef =>
+      TfRef.attribute<bool>(this, 'enhanced_vpc_routing');
+
+  /// Reference to `max_capacity` attribute.
+  TfRef<num> get maxCapacityRef => TfRef.attribute<num>(this, 'max_capacity');
+
+  /// Reference to `namespace_name` attribute.
+  TfRef<String> get namespaceNameRef =>
+      TfRef.attribute<String>(this, 'namespace_name');
+
+  /// Reference to `port` attribute.
+  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `publicly_accessible` attribute.
+  TfRef<bool> get publiclyAccessibleRef =>
+      TfRef.attribute<bool>(this, 'publicly_accessible');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_group_ids` attribute.
+  TfRef<List<String>> get securityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'security_group_ids');
+
+  /// Reference to `subnet_ids` attribute.
+  TfRef<List<String>> get subnetIdsRef =>
+      TfRef.attribute<List<String>>(this, 'subnet_ids');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `track_name` attribute.
+  TfRef<String> get trackNameRef => TfRef.attribute<String>(this, 'track_name');
+
+  /// Reference to `workgroup_name` attribute.
+  TfRef<String> get workgroupNameRef =>
+      TfRef.attribute<String>(this, 'workgroup_name');
 }

@@ -48,4 +48,11 @@ final class AppwritePostgresqlExtension extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `database_id` attribute.
+  TfRef<String> get databaseIdRef =>
+      TfRef.attribute<String>(this, 'database_id');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
 }

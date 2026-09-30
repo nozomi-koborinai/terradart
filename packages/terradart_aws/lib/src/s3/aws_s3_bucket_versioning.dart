@@ -76,4 +76,17 @@ final class AwsS3BucketVersioning extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `expected_bucket_owner` attribute.
+  TfRef<String> get expectedBucketOwnerRef =>
+      TfRef.attribute<String>(this, 'expected_bucket_owner');
+
+  /// Reference to `mfa` attribute.
+  TfRef<String> get mfaRef => TfRef.attribute<String>(this, 'mfa');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

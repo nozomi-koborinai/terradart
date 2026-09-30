@@ -216,4 +216,22 @@ final class AwsEvidentlyLaunch extends Resource {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `randomization_salt` attribute.
+  TfRef<String> get randomizationSaltRef =>
+      TfRef.attribute<String>(this, 'randomization_salt');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

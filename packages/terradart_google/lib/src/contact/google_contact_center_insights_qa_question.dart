@@ -113,4 +113,44 @@ final class GoogleContactCenterInsightsQaQuestion extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `abbreviation` attribute.
+  TfRef<String> get abbreviationRef =>
+      TfRef.attribute<String>(this, 'abbreviation');
+
+  /// Reference to `answer_instructions` attribute.
+  TfRef<String> get answerInstructionsRef =>
+      TfRef.attribute<String>(this, 'answer_instructions');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `order` attribute.
+  TfRef<num> get orderRef => TfRef.attribute<num>(this, 'order');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `qa_scorecard` attribute.
+  TfRef<String> get qaScorecardRef =>
+      TfRef.attribute<String>(this, 'qa_scorecard');
+
+  /// Reference to `question_body` attribute.
+  TfRef<String> get questionBodyRef =>
+      TfRef.attribute<String>(this, 'question_body');
+
+  /// Reference to `question_type` attribute.
+  TfRef<String> get questionTypeRef =>
+      TfRef.attribute<String>(this, 'question_type');
+
+  /// Reference to `revision` attribute.
+  TfRef<String> get revisionRef => TfRef.attribute<String>(this, 'revision');
+
+  /// Reference to `tags` attribute.
+  TfRef<List<String>> get tagsRef =>
+      TfRef.attribute<List<String>>(this, 'tags');
 }

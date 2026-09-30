@@ -473,6 +473,59 @@ final class GoogleApigeeApiProduct extends Resource {
   TfRef<String> get lastModifiedAt =>
       TfRef.attribute<String>(this, 'last_modified_at');
 
+  /// Reference to `api_resources` attribute.
+  TfRef<List<String>> get apiResourcesRef =>
+      TfRef.attribute<List<String>>(this, 'api_resources');
+
+  /// Reference to `approval_type` attribute.
+  TfRef<String> get approvalTypeRef =>
+      TfRef.attribute<String>(this, 'approval_type');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `environments` attribute.
+  TfRef<List<String>> get environmentsRef =>
+      TfRef.attribute<List<String>>(this, 'environments');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `proxies` attribute.
+  TfRef<List<String>> get proxiesRef =>
+      TfRef.attribute<List<String>>(this, 'proxies');
+
+  /// Reference to `quota` attribute.
+  TfRef<String> get quotaRef => TfRef.attribute<String>(this, 'quota');
+
+  /// Reference to `quota_counter_scope` attribute.
+  TfRef<String> get quotaCounterScopeRef =>
+      TfRef.attribute<String>(this, 'quota_counter_scope');
+
+  /// Reference to `quota_interval` attribute.
+  TfRef<String> get quotaIntervalRef =>
+      TfRef.attribute<String>(this, 'quota_interval');
+
+  /// Reference to `quota_time_unit` attribute.
+  TfRef<String> get quotaTimeUnitRef =>
+      TfRef.attribute<String>(this, 'quota_time_unit');
+
+  /// Reference to `scopes` attribute.
+  TfRef<List<String>> get scopesRef =>
+      TfRef.attribute<List<String>>(this, 'scopes');
+
+  /// Reference to `space` attribute.
+  TfRef<String> get spaceRef => TfRef.attribute<String>(this, 'space');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

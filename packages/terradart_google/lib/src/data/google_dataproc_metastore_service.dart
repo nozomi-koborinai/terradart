@@ -143,4 +143,13 @@ final class DataGoogleDataprocMetastoreService extends Data {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_id` attribute.
+  TfRef<String> get serviceIdRef => TfRef.attribute<String>(this, 'service_id');
 }

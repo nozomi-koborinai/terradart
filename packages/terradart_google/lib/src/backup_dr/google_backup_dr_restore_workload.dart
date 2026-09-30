@@ -1626,6 +1626,35 @@ final class GoogleBackupDrRestoreWorkload extends Resource {
   TfRef<List<Map<String, Object?>>> get targetResource =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'target_resource');
 
+  /// Reference to `backup_id` attribute.
+  TfRef<String> get backupIdRef => TfRef.attribute<String>(this, 'backup_id');
+
+  /// Reference to `backup_vault_id` attribute.
+  TfRef<String> get backupVaultIdRef =>
+      TfRef.attribute<String>(this, 'backup_vault_id');
+
+  /// Reference to `clear_overrides_field_mask` attribute.
+  TfRef<String> get clearOverridesFieldMaskRef =>
+      TfRef.attribute<String>(this, 'clear_overrides_field_mask');
+
+  /// Reference to `data_source_id` attribute.
+  TfRef<String> get dataSourceIdRef =>
+      TfRef.attribute<String>(this, 'data_source_id');
+
+  /// Reference to `delete_restored_instance` attribute.
+  TfRef<bool> get deleteRestoredInstanceRef =>
+      TfRef.attribute<bool>(this, 'delete_restored_instance');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `request_id` attribute.
+  TfRef<String> get requestIdRef => TfRef.attribute<String>(this, 'request_id');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

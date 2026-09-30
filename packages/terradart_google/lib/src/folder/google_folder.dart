@@ -72,4 +72,23 @@ final class GoogleFolder extends Resource {
   /// Reference to `management_project` attribute.
   TfRef<String> get managementProject =>
       TfRef.attribute<String>(this, 'management_project');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

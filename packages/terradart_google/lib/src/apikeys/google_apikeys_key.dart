@@ -188,6 +188,25 @@ final class GoogleApikeysKey extends Resource {
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
 
+  /// Reference to `check_existing_usage` attribute.
+  TfRef<String> get checkExistingUsageRef =>
+      TfRef.attribute<String>(this, 'check_existing_usage');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `service_account_email` attribute.
+  TfRef<String> get serviceAccountEmailRef =>
+      TfRef.attribute<String>(this, 'service_account_email');
+
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
   TfRef<String> get keyString => TfRef.attribute<String>(this, 'key_string');

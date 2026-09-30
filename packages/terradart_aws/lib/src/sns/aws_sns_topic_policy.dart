@@ -36,4 +36,13 @@ final class AwsSnsTopicPolicy extends Resource {
 
   /// Reference to `owner` attribute.
   TfRef<String> get owner => TfRef.attribute<String>(this, 'owner');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `policy` attribute.
+  TfRef<String> get policyRef => TfRef.attribute<String>(this, 'policy');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

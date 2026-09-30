@@ -58,4 +58,31 @@ final class AwsElasticBeanstalkApplicationVersion extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `application` attribute.
+  TfRef<String> get applicationRef =>
+      TfRef.attribute<String>(this, 'application');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `force_delete` attribute.
+  TfRef<bool> get forceDeleteRef => TfRef.attribute<bool>(this, 'force_delete');
+
+  /// Reference to `key` attribute.
+  TfRef<String> get keyRef => TfRef.attribute<String>(this, 'key');
+
+  /// Reference to `process` attribute.
+  TfRef<bool> get processRef => TfRef.attribute<bool>(this, 'process');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

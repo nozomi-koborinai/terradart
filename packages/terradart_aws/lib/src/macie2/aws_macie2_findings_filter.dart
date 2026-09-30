@@ -177,4 +177,25 @@ final class AwsMacie2FindingsFilter extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `action` attribute.
+  TfRef<String> get actionRef => TfRef.attribute<String>(this, 'action');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `position` attribute.
+  TfRef<num> get positionRef => TfRef.attribute<num>(this, 'position');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

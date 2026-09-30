@@ -57,4 +57,7 @@ final class DataAppwriteWebhook extends Data {
 
   /// Reference to `url` attribute.
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
+
+  /// Reference to `project_id` attribute.
+  TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
 }

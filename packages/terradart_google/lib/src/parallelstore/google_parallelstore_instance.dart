@@ -117,6 +117,47 @@ final class GoogleParallelstoreInstance extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `capacity_gib` attribute.
+  TfRef<String> get capacityGibRef =>
+      TfRef.attribute<String>(this, 'capacity_gib');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deployment_type` attribute.
+  TfRef<String> get deploymentTypeRef =>
+      TfRef.attribute<String>(this, 'deployment_type');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `directory_stripe_level` attribute.
+  TfRef<String> get directoryStripeLevelRef =>
+      TfRef.attribute<String>(this, 'directory_stripe_level');
+
+  /// Reference to `file_stripe_level` attribute.
+  TfRef<String> get fileStripeLevelRef =>
+      TfRef.attribute<String>(this, 'file_stripe_level');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `reserved_ip_range` attribute.
+  TfRef<String> get reservedIpRangeRef =>
+      TfRef.attribute<String>(this, 'reserved_ip_range');
+
   /// Reference to `instance_id` attribute.
   TfRef<String> get instanceIdRef =>
       TfRef.attribute<String>(this, 'instance_id');

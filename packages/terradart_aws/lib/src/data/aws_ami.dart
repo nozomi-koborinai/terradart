@@ -185,4 +185,36 @@ final class DataAwsAmi extends Data {
   /// Reference to `virtualization_type` attribute.
   TfRef<String> get virtualizationType =>
       TfRef.attribute<String>(this, 'virtualization_type');
+
+  /// Reference to `allow_unsafe_filter` attribute.
+  TfRef<bool> get allowUnsafeFilterRef =>
+      TfRef.attribute<bool>(this, 'allow_unsafe_filter');
+
+  /// Reference to `executable_users` attribute.
+  TfRef<List<String>> get executableUsersRef =>
+      TfRef.attribute<List<String>>(this, 'executable_users');
+
+  /// Reference to `include_deprecated` attribute.
+  TfRef<bool> get includeDeprecatedRef =>
+      TfRef.attribute<bool>(this, 'include_deprecated');
+
+  /// Reference to `most_recent` attribute.
+  TfRef<bool> get mostRecentRef => TfRef.attribute<bool>(this, 'most_recent');
+
+  /// Reference to `name_regex` attribute.
+  TfRef<String> get nameRegexRef => TfRef.attribute<String>(this, 'name_regex');
+
+  /// Reference to `owners` attribute.
+  TfRef<List<String>> get ownersRef =>
+      TfRef.attribute<List<String>>(this, 'owners');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `uefi_data` attribute.
+  TfRef<String> get uefiDataRef => TfRef.attribute<String>(this, 'uefi_data');
 }

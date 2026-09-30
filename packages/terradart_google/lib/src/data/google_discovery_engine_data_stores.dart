@@ -33,4 +33,10 @@ final class DataGoogleDiscoveryEngineDataStores extends Data {
   /// Reference to `data_stores` attribute.
   TfRef<List<Map<String, Object?>>> get dataStores =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'data_stores');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

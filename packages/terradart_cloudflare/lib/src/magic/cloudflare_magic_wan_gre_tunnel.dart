@@ -172,4 +172,37 @@ final class CloudflareMagicWanGreTunnel extends Resource {
 
   /// Reference to `modified_on` attribute.
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `automatic_return_routing` attribute.
+  TfRef<bool> get automaticReturnRoutingRef =>
+      TfRef.attribute<bool>(this, 'automatic_return_routing');
+
+  /// Reference to `cloudflare_gre_endpoint` attribute.
+  TfRef<String> get cloudflareGreEndpointRef =>
+      TfRef.attribute<String>(this, 'cloudflare_gre_endpoint');
+
+  /// Reference to `customer_gre_endpoint` attribute.
+  TfRef<String> get customerGreEndpointRef =>
+      TfRef.attribute<String>(this, 'customer_gre_endpoint');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `interface_address` attribute.
+  TfRef<String> get interfaceAddressRef =>
+      TfRef.attribute<String>(this, 'interface_address');
+
+  /// Reference to `interface_address6` attribute.
+  TfRef<String> get interfaceAddress6Ref =>
+      TfRef.attribute<String>(this, 'interface_address6');
+
+  /// Reference to `mtu` attribute.
+  TfRef<num> get mtuRef => TfRef.attribute<num>(this, 'mtu');
+
+  /// Reference to `ttl` attribute.
+  TfRef<num> get ttlRef => TfRef.attribute<num>(this, 'ttl');
 }

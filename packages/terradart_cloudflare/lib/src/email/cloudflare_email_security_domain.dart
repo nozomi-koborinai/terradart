@@ -99,4 +99,47 @@ final class CloudflareEmailSecurityDomain extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `allowed_delivery_modes` attribute.
+  TfRef<List<String>> get allowedDeliveryModesRef =>
+      TfRef.attribute<List<String>>(this, 'allowed_delivery_modes');
+
+  /// Reference to `domain` attribute.
+  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+
+  /// Reference to `drop_dispositions` attribute.
+  TfRef<List<String>> get dropDispositionsRef =>
+      TfRef.attribute<List<String>>(this, 'drop_dispositions');
+
+  /// Reference to `folder` attribute.
+  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+
+  /// Reference to `integration_id` attribute.
+  TfRef<String> get integrationIdRef =>
+      TfRef.attribute<String>(this, 'integration_id');
+
+  /// Reference to `ip_restrictions` attribute.
+  TfRef<List<String>> get ipRestrictionsRef =>
+      TfRef.attribute<List<String>>(this, 'ip_restrictions');
+
+  /// Reference to `lookback_hops` attribute.
+  TfRef<num> get lookbackHopsRef => TfRef.attribute<num>(this, 'lookback_hops');
+
+  /// Reference to `regions` attribute.
+  TfRef<List<String>> get regionsRef =>
+      TfRef.attribute<List<String>>(this, 'regions');
+
+  /// Reference to `require_tls_inbound` attribute.
+  TfRef<bool> get requireTlsInboundRef =>
+      TfRef.attribute<bool>(this, 'require_tls_inbound');
+
+  /// Reference to `require_tls_outbound` attribute.
+  TfRef<bool> get requireTlsOutboundRef =>
+      TfRef.attribute<bool>(this, 'require_tls_outbound');
+
+  /// Reference to `transport` attribute.
+  TfRef<String> get transportRef => TfRef.attribute<String>(this, 'transport');
 }

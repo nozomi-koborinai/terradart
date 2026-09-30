@@ -71,4 +71,19 @@ final class DataAwsVpclatticeListener extends Data {
 
   /// Reference to `service_id` attribute.
   TfRef<String> get serviceId => TfRef.attribute<String>(this, 'service_id');
+
+  /// Reference to `listener_identifier` attribute.
+  TfRef<String> get listenerIdentifierRef =>
+      TfRef.attribute<String>(this, 'listener_identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_identifier` attribute.
+  TfRef<String> get serviceIdentifierRef =>
+      TfRef.attribute<String>(this, 'service_identifier');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

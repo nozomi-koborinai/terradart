@@ -67,4 +67,19 @@ final class DataAwsAppconfigConfigurationProfile extends Data {
   /// Reference to `validator` attribute.
   TfRef<List<Map<String, Object?>>> get validator =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'validator');
+
+  /// Reference to `application_id` attribute.
+  TfRef<String> get applicationIdRef =>
+      TfRef.attribute<String>(this, 'application_id');
+
+  /// Reference to `configuration_profile_id` attribute.
+  TfRef<String> get configurationProfileIdRef =>
+      TfRef.attribute<String>(this, 'configuration_profile_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

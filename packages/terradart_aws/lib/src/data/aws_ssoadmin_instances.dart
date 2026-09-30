@@ -29,4 +29,7 @@ final class DataAwsSsoadminInstances extends Data {
   /// Reference to `identity_store_ids` attribute.
   TfRef<List<String>> get identityStoreIds =>
       TfRef.attribute<List<String>>(this, 'identity_store_ids');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

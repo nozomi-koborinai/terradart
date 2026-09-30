@@ -102,4 +102,66 @@ final class CloudflareWaitingRoomEvent extends Resource {
 
   /// Reference to `modified_on` attribute.
   TfRef<String> get modifiedOn => TfRef.attribute<String>(this, 'modified_on');
+
+  /// Reference to `custom_page_html` attribute.
+  TfRef<String> get customPageHtmlRef =>
+      TfRef.attribute<String>(this, 'custom_page_html');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disable_session_renewal` attribute.
+  TfRef<bool> get disableSessionRenewalRef =>
+      TfRef.attribute<bool>(this, 'disable_session_renewal');
+
+  /// Reference to `event_end_time` attribute.
+  TfRef<String> get eventEndTimeRef =>
+      TfRef.attribute<String>(this, 'event_end_time');
+
+  /// Reference to `event_start_time` attribute.
+  TfRef<String> get eventStartTimeRef =>
+      TfRef.attribute<String>(this, 'event_start_time');
+
+  /// Reference to `new_users_per_minute` attribute.
+  TfRef<num> get newUsersPerMinuteRef =>
+      TfRef.attribute<num>(this, 'new_users_per_minute');
+
+  /// Reference to `prequeue_start_time` attribute.
+  TfRef<String> get prequeueStartTimeRef =>
+      TfRef.attribute<String>(this, 'prequeue_start_time');
+
+  /// Reference to `queueing_method` attribute.
+  TfRef<String> get queueingMethodRef =>
+      TfRef.attribute<String>(this, 'queueing_method');
+
+  /// Reference to `session_duration` attribute.
+  TfRef<num> get sessionDurationRef =>
+      TfRef.attribute<num>(this, 'session_duration');
+
+  /// Reference to `shuffle_at_event_start` attribute.
+  TfRef<bool> get shuffleAtEventStartRef =>
+      TfRef.attribute<bool>(this, 'shuffle_at_event_start');
+
+  /// Reference to `suspended` attribute.
+  TfRef<bool> get suspendedRef => TfRef.attribute<bool>(this, 'suspended');
+
+  /// Reference to `total_active_users` attribute.
+  TfRef<num> get totalActiveUsersRef =>
+      TfRef.attribute<num>(this, 'total_active_users');
+
+  /// Reference to `turnstile_action` attribute.
+  TfRef<String> get turnstileActionRef =>
+      TfRef.attribute<String>(this, 'turnstile_action');
+
+  /// Reference to `turnstile_mode` attribute.
+  TfRef<String> get turnstileModeRef =>
+      TfRef.attribute<String>(this, 'turnstile_mode');
+
+  /// Reference to `waiting_room_id` attribute.
+  TfRef<String> get waitingRoomIdRef =>
+      TfRef.attribute<String>(this, 'waiting_room_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

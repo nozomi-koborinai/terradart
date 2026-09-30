@@ -42,4 +42,11 @@ final class DataGoogleAccessContextManagerAccessPolicy extends Data {
 
   /// Reference to `title` attribute.
   TfRef<String> get title => TfRef.attribute<String>(this, 'title');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
+
+  /// Reference to `scopes` attribute.
+  TfRef<List<String>> get scopesRef =>
+      TfRef.attribute<List<String>>(this, 'scopes');
 }

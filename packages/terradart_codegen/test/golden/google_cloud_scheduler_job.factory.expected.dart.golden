@@ -274,4 +274,27 @@ final class GoogleCloudSchedulerJob extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `attempt_deadline` attribute.
+  TfRef<String> get attemptDeadlineRef =>
+      TfRef.attribute<String>(this, 'attempt_deadline');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `paused` attribute.
+  TfRef<bool> get pausedRef => TfRef.attribute<bool>(this, 'paused');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `schedule` attribute.
+  TfRef<String> get scheduleRef => TfRef.attribute<String>(this, 'schedule');
+
+  /// Reference to `time_zone` attribute.
+  TfRef<String> get timeZoneRef => TfRef.attribute<String>(this, 'time_zone');
 }

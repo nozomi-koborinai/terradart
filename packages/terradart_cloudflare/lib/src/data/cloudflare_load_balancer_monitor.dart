@@ -101,4 +101,10 @@ final class DataCloudflareLoadBalancerMonitor extends Data {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `monitor_id` attribute.
+  TfRef<String> get monitorIdRef => TfRef.attribute<String>(this, 'monitor_id');
 }

@@ -316,4 +316,28 @@ final class AwsConnectPhoneNumber extends Resource {
   /// Reference to `status` attribute.
   TfRef<List<Map<String, Object?>>> get status =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'status');
+
+  /// Reference to `country_code` attribute.
+  TfRef<String> get countryCodeRef =>
+      TfRef.attribute<String>(this, 'country_code');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `prefix` attribute.
+  TfRef<String> get prefixRef => TfRef.attribute<String>(this, 'prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target_arn` attribute.
+  TfRef<String> get targetArnRef => TfRef.attribute<String>(this, 'target_arn');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

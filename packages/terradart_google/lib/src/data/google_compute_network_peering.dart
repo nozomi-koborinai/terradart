@@ -77,4 +77,7 @@ final class DataGoogleComputeNetworkPeering extends Data {
   /// Reference to `update_strategy` attribute.
   TfRef<String> get updateStrategy =>
       TfRef.attribute<String>(this, 'update_strategy');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
 }

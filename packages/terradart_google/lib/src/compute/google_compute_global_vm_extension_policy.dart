@@ -235,6 +235,20 @@ final class GoogleComputeGlobalVmExtensionPolicy extends Resource {
   TfRef<String> get updateTimestamp =>
       TfRef.attribute<String>(this, 'update_timestamp');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

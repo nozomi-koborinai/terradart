@@ -316,4 +316,36 @@ final class GoogleMonitoringNotificationChannel extends Resource {
   /// Reference to `verification_status` attribute.
   TfRef<String> get verificationStatus =>
       TfRef.attribute<String>(this, 'verification_status');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `force_delete` attribute.
+  TfRef<bool> get forceDeleteRef => TfRef.attribute<bool>(this, 'force_delete');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `user_labels` attribute.
+  TfRef<Map<String, String>> get userLabelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'user_labels');
 }

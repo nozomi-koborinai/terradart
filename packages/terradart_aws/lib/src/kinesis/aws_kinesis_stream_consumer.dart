@@ -49,4 +49,14 @@ final class AwsKinesisStreamConsumer extends Resource {
   /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `stream_arn` attribute.
+  TfRef<String> get streamArnRef => TfRef.attribute<String>(this, 'stream_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

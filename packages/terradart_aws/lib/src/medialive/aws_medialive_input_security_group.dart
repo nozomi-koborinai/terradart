@@ -58,4 +58,11 @@ final class AwsMedialiveInputSecurityGroup extends Resource {
   /// Reference to `inputs` attribute.
   TfRef<List<String>> get inputs =>
       TfRef.attribute<List<String>>(this, 'inputs');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

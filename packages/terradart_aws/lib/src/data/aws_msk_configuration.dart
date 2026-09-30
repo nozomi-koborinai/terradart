@@ -50,4 +50,7 @@ final class DataAwsMskConfiguration extends Data {
   /// Reference to `server_properties` attribute.
   TfRef<String> get serverProperties =>
       TfRef.attribute<String>(this, 'server_properties');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

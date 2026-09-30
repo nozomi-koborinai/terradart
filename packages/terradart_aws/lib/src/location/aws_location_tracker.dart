@@ -65,4 +65,26 @@ final class AwsLocationTracker extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `position_filtering` attribute.
+  TfRef<String> get positionFilteringRef =>
+      TfRef.attribute<String>(this, 'position_filtering');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `tracker_name` attribute.
+  TfRef<String> get trackerNameRef =>
+      TfRef.attribute<String>(this, 'tracker_name');
 }

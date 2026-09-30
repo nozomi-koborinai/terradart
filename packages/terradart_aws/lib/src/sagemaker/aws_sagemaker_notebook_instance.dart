@@ -335,4 +335,55 @@ final class AwsSagemakerNotebookInstance extends Resource {
 
   /// Reference to `url` attribute.
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
+
+  /// Reference to `additional_code_repositories` attribute.
+  TfRef<List<String>> get additionalCodeRepositoriesRef =>
+      TfRef.attribute<List<String>>(this, 'additional_code_repositories');
+
+  /// Reference to `default_code_repository` attribute.
+  TfRef<String> get defaultCodeRepositoryRef =>
+      TfRef.attribute<String>(this, 'default_code_repository');
+
+  /// Reference to `direct_internet_access` attribute.
+  TfRef<String> get directInternetAccessRef =>
+      TfRef.attribute<String>(this, 'direct_internet_access');
+
+  /// Reference to `instance_type` attribute.
+  TfRef<String> get instanceTypeRef =>
+      TfRef.attribute<String>(this, 'instance_type');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `lifecycle_config_name` attribute.
+  TfRef<String> get lifecycleConfigNameRef =>
+      TfRef.attribute<String>(this, 'lifecycle_config_name');
+
+  /// Reference to `platform_identifier` attribute.
+  TfRef<String> get platformIdentifierRef =>
+      TfRef.attribute<String>(this, 'platform_identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `root_access` attribute.
+  TfRef<String> get rootAccessRef =>
+      TfRef.attribute<String>(this, 'root_access');
+
+  /// Reference to `security_groups` attribute.
+  TfRef<List<String>> get securityGroupsRef =>
+      TfRef.attribute<List<String>>(this, 'security_groups');
+
+  /// Reference to `subnet_id` attribute.
+  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `volume_size` attribute.
+  TfRef<num> get volumeSizeRef => TfRef.attribute<num>(this, 'volume_size');
 }

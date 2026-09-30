@@ -107,4 +107,11 @@ final class DataAwsEcsTaskDefinition extends Data {
   /// Reference to `volume` attribute.
   TfRef<List<Map<String, Object?>>> get volume =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'volume');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `task_definition` attribute.
+  TfRef<String> get taskDefinitionRef =>
+      TfRef.attribute<String>(this, 'task_definition');
 }

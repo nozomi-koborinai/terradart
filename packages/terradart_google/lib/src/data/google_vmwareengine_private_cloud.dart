@@ -95,4 +95,10 @@ final class DataGoogleVmwareenginePrivateCloud extends Data {
   /// Reference to `vcenter` attribute.
   TfRef<List<Map<String, Object?>>> get vcenter =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'vcenter');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

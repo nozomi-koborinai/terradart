@@ -201,4 +201,27 @@ final class AwsBedrockagentcoreMemory extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `encryption_key_arn` attribute.
+  TfRef<String> get encryptionKeyArnRef =>
+      TfRef.attribute<String>(this, 'encryption_key_arn');
+
+  /// Reference to `event_expiry_duration` attribute.
+  TfRef<num> get eventExpiryDurationRef =>
+      TfRef.attribute<num>(this, 'event_expiry_duration');
+
+  /// Reference to `memory_execution_role_arn` attribute.
+  TfRef<String> get memoryExecutionRoleArnRef =>
+      TfRef.attribute<String>(this, 'memory_execution_role_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

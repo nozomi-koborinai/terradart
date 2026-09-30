@@ -59,4 +59,12 @@ final class GoogleComputeDiskAsyncReplication extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `primary_disk` attribute.
+  TfRef<String> get primaryDiskRef =>
+      TfRef.attribute<String>(this, 'primary_disk');
 }

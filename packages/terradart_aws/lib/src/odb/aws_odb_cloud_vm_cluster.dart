@@ -193,4 +193,85 @@ final class AwsOdbCloudVmCluster extends Resource {
   /// Reference to `vip_ids` attribute.
   TfRef<List<String>> get vipIds =>
       TfRef.attribute<List<String>>(this, 'vip_ids');
+
+  /// Reference to `cloud_exadata_infrastructure_arn` attribute.
+  TfRef<String> get cloudExadataInfrastructureArnRef =>
+      TfRef.attribute<String>(this, 'cloud_exadata_infrastructure_arn');
+
+  /// Reference to `cloud_exadata_infrastructure_id` attribute.
+  TfRef<String> get cloudExadataInfrastructureIdRef =>
+      TfRef.attribute<String>(this, 'cloud_exadata_infrastructure_id');
+
+  /// Reference to `cluster_name` attribute.
+  TfRef<String> get clusterNameRef =>
+      TfRef.attribute<String>(this, 'cluster_name');
+
+  /// Reference to `cpu_core_count` attribute.
+  TfRef<num> get cpuCoreCountRef =>
+      TfRef.attribute<num>(this, 'cpu_core_count');
+
+  /// Reference to `data_storage_size_in_tbs` attribute.
+  TfRef<num> get dataStorageSizeInTbsRef =>
+      TfRef.attribute<num>(this, 'data_storage_size_in_tbs');
+
+  /// Reference to `db_node_storage_size_in_gbs` attribute.
+  TfRef<num> get dbNodeStorageSizeInGbsRef =>
+      TfRef.attribute<num>(this, 'db_node_storage_size_in_gbs');
+
+  /// Reference to `db_servers` attribute.
+  TfRef<List<String>> get dbServersRef =>
+      TfRef.attribute<List<String>>(this, 'db_servers');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `gi_version` attribute.
+  TfRef<String> get giVersionRef => TfRef.attribute<String>(this, 'gi_version');
+
+  /// Reference to `hostname_prefix` attribute.
+  TfRef<String> get hostnamePrefixRef =>
+      TfRef.attribute<String>(this, 'hostname_prefix');
+
+  /// Reference to `is_local_backup_enabled` attribute.
+  TfRef<bool> get isLocalBackupEnabledRef =>
+      TfRef.attribute<bool>(this, 'is_local_backup_enabled');
+
+  /// Reference to `is_sparse_diskgroup_enabled` attribute.
+  TfRef<bool> get isSparseDiskgroupEnabledRef =>
+      TfRef.attribute<bool>(this, 'is_sparse_diskgroup_enabled');
+
+  /// Reference to `license_model` attribute.
+  TfRef<String> get licenseModelRef =>
+      TfRef.attribute<String>(this, 'license_model');
+
+  /// Reference to `memory_size_in_gbs` attribute.
+  TfRef<num> get memorySizeInGbsRef =>
+      TfRef.attribute<num>(this, 'memory_size_in_gbs');
+
+  /// Reference to `odb_network_arn` attribute.
+  TfRef<String> get odbNetworkArnRef =>
+      TfRef.attribute<String>(this, 'odb_network_arn');
+
+  /// Reference to `odb_network_id` attribute.
+  TfRef<String> get odbNetworkIdRef =>
+      TfRef.attribute<String>(this, 'odb_network_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scan_listener_port_tcp` attribute.
+  TfRef<num> get scanListenerPortTcpRef =>
+      TfRef.attribute<num>(this, 'scan_listener_port_tcp');
+
+  /// Reference to `ssh_public_keys` attribute.
+  TfRef<List<String>> get sshPublicKeysRef =>
+      TfRef.attribute<List<String>>(this, 'ssh_public_keys');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `timezone` attribute.
+  TfRef<String> get timezoneRef => TfRef.attribute<String>(this, 'timezone');
 }

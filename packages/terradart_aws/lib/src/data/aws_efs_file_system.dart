@@ -85,4 +85,19 @@ final class DataAwsEfsFileSystem extends Data {
   /// Reference to `throughput_mode` attribute.
   TfRef<String> get throughputMode =>
       TfRef.attribute<String>(this, 'throughput_mode');
+
+  /// Reference to `creation_token` attribute.
+  TfRef<String> get creationTokenRef =>
+      TfRef.attribute<String>(this, 'creation_token');
+
+  /// Reference to `file_system_id` attribute.
+  TfRef<String> get fileSystemIdRef =>
+      TfRef.attribute<String>(this, 'file_system_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -74,4 +74,15 @@ final class GoogleHealthcareFhirStoreIamBinding extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `fhir_store_id` attribute.
+  TfRef<String> get fhirStoreIdRef =>
+      TfRef.attribute<String>(this, 'fhir_store_id');
+
+  /// Reference to `members` attribute.
+  TfRef<List<String>> get membersRef =>
+      TfRef.attribute<List<String>>(this, 'members');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

@@ -54,4 +54,16 @@ final class GoogleBillingSubaccount extends Resource {
 
   /// Reference to `open` attribute.
   TfRef<bool> get open => TfRef.attribute<bool>(this, 'open');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `master_billing_account` attribute.
+  TfRef<String> get masterBillingAccountRef =>
+      TfRef.attribute<String>(this, 'master_billing_account');
 }

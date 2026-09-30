@@ -50,4 +50,11 @@ final class AwsSesv2AccountSuppressionAttributes extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `suppressed_reasons` attribute.
+  TfRef<List<String>> get suppressedReasonsRef =>
+      TfRef.attribute<List<String>>(this, 'suppressed_reasons');
 }

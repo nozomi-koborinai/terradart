@@ -67,4 +67,15 @@ final class AwsEcsClusterCapacityProviders extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `capacity_providers` attribute.
+  TfRef<List<String>> get capacityProvidersRef =>
+      TfRef.attribute<List<String>>(this, 'capacity_providers');
+
+  /// Reference to `cluster_name` attribute.
+  TfRef<String> get clusterNameRef =>
+      TfRef.attribute<String>(this, 'cluster_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

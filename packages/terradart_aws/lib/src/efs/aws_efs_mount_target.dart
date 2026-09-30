@@ -85,4 +85,29 @@ final class AwsEfsMountTarget extends Resource {
 
   /// Reference to `owner_id` attribute.
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
+
+  /// Reference to `file_system_id` attribute.
+  TfRef<String> get fileSystemIdRef =>
+      TfRef.attribute<String>(this, 'file_system_id');
+
+  /// Reference to `ip_address` attribute.
+  TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
+
+  /// Reference to `ip_address_type` attribute.
+  TfRef<String> get ipAddressTypeRef =>
+      TfRef.attribute<String>(this, 'ip_address_type');
+
+  /// Reference to `ipv6_address` attribute.
+  TfRef<String> get ipv6AddressRef =>
+      TfRef.attribute<String>(this, 'ipv6_address');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_groups` attribute.
+  TfRef<List<String>> get securityGroupsRef =>
+      TfRef.attribute<List<String>>(this, 'security_groups');
+
+  /// Reference to `subnet_id` attribute.
+  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
 }

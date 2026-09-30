@@ -48,4 +48,18 @@ final class AwsEc2LocalGatewayRouteTableVpcAssociation extends Resource {
   /// Reference to `local_gateway_id` attribute.
   TfRef<String> get localGatewayId =>
       TfRef.attribute<String>(this, 'local_gateway_id');
+
+  /// Reference to `local_gateway_route_table_id` attribute.
+  TfRef<String> get localGatewayRouteTableIdRef =>
+      TfRef.attribute<String>(this, 'local_gateway_route_table_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
 }

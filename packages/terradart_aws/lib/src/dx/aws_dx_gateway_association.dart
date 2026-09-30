@@ -60,4 +60,27 @@ final class AwsDxGatewayAssociation extends Resource {
   /// Reference to `transit_gateway_attachment_id` attribute.
   TfRef<String> get transitGatewayAttachmentId =>
       TfRef.attribute<String>(this, 'transit_gateway_attachment_id');
+
+  /// Reference to `allowed_prefixes` attribute.
+  TfRef<List<String>> get allowedPrefixesRef =>
+      TfRef.attribute<List<String>>(this, 'allowed_prefixes');
+
+  /// Reference to `associated_gateway_id` attribute.
+  TfRef<String> get associatedGatewayIdRef =>
+      TfRef.attribute<String>(this, 'associated_gateway_id');
+
+  /// Reference to `associated_gateway_owner_account_id` attribute.
+  TfRef<String> get associatedGatewayOwnerAccountIdRef =>
+      TfRef.attribute<String>(this, 'associated_gateway_owner_account_id');
+
+  /// Reference to `dx_gateway_id` attribute.
+  TfRef<String> get dxGatewayIdRef =>
+      TfRef.attribute<String>(this, 'dx_gateway_id');
+
+  /// Reference to `proposal_id` attribute.
+  TfRef<String> get proposalIdRef =>
+      TfRef.attribute<String>(this, 'proposal_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

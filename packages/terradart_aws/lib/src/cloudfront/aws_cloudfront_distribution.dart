@@ -1245,4 +1245,56 @@ final class AwsCloudfrontDistribution extends Resource {
   /// Reference to `trusted_signers` attribute.
   TfRef<List<Map<String, Object?>>> get trustedSigners =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'trusted_signers');
+
+  /// Reference to `aliases` attribute.
+  TfRef<List<String>> get aliasesRef =>
+      TfRef.attribute<List<String>>(this, 'aliases');
+
+  /// Reference to `anycast_ip_list_id` attribute.
+  TfRef<String> get anycastIpListIdRef =>
+      TfRef.attribute<String>(this, 'anycast_ip_list_id');
+
+  /// Reference to `comment` attribute.
+  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+
+  /// Reference to `continuous_deployment_policy_id` attribute.
+  TfRef<String> get continuousDeploymentPolicyIdRef =>
+      TfRef.attribute<String>(this, 'continuous_deployment_policy_id');
+
+  /// Reference to `default_root_object` attribute.
+  TfRef<String> get defaultRootObjectRef =>
+      TfRef.attribute<String>(this, 'default_root_object');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `http_version` attribute.
+  TfRef<String> get httpVersionRef =>
+      TfRef.attribute<String>(this, 'http_version');
+
+  /// Reference to `is_ipv6_enabled` attribute.
+  TfRef<bool> get isIpv6EnabledRef =>
+      TfRef.attribute<bool>(this, 'is_ipv6_enabled');
+
+  /// Reference to `price_class` attribute.
+  TfRef<String> get priceClassRef =>
+      TfRef.attribute<String>(this, 'price_class');
+
+  /// Reference to `retain_on_delete` attribute.
+  TfRef<bool> get retainOnDeleteRef =>
+      TfRef.attribute<bool>(this, 'retain_on_delete');
+
+  /// Reference to `staging` attribute.
+  TfRef<bool> get stagingRef => TfRef.attribute<bool>(this, 'staging');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `wait_for_deployment` attribute.
+  TfRef<bool> get waitForDeploymentRef =>
+      TfRef.attribute<bool>(this, 'wait_for_deployment');
+
+  /// Reference to `web_acl_id` attribute.
+  TfRef<String> get webAclIdRef => TfRef.attribute<String>(this, 'web_acl_id');
 }

@@ -74,4 +74,23 @@ final class AwsControltowerBaseline extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `baseline_identifier` attribute.
+  TfRef<String> get baselineIdentifierRef =>
+      TfRef.attribute<String>(this, 'baseline_identifier');
+
+  /// Reference to `baseline_version` attribute.
+  TfRef<String> get baselineVersionRef =>
+      TfRef.attribute<String>(this, 'baseline_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `target_identifier` attribute.
+  TfRef<String> get targetIdentifierRef =>
+      TfRef.attribute<String>(this, 'target_identifier');
 }

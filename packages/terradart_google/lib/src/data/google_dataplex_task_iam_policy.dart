@@ -48,4 +48,16 @@ final class DataGoogleDataplexTaskIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `lake` attribute.
+  TfRef<String> get lakeRef => TfRef.attribute<String>(this, 'lake');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `task_id` attribute.
+  TfRef<String> get taskIdRef => TfRef.attribute<String>(this, 'task_id');
 }

@@ -70,4 +70,20 @@ final class CloudflareEmailSecurityBlockSender extends Resource {
 
   /// Reference to `modified_at` attribute.
   TfRef<String> get modifiedAt => TfRef.attribute<String>(this, 'modified_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `comments` attribute.
+  TfRef<String> get commentsRef => TfRef.attribute<String>(this, 'comments');
+
+  /// Reference to `is_regex` attribute.
+  TfRef<bool> get isRegexRef => TfRef.attribute<bool>(this, 'is_regex');
+
+  /// Reference to `pattern` attribute.
+  TfRef<String> get patternRef => TfRef.attribute<String>(this, 'pattern');
+
+  /// Reference to `pattern_type` attribute.
+  TfRef<String> get patternTypeRef =>
+      TfRef.attribute<String>(this, 'pattern_type');
 }

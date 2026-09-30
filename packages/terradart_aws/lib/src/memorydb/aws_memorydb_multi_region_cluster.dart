@@ -84,4 +84,43 @@ final class AwsMemorydbMultiRegionCluster extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `engine` attribute.
+  TfRef<String> get engineRef => TfRef.attribute<String>(this, 'engine');
+
+  /// Reference to `engine_version` attribute.
+  TfRef<String> get engineVersionRef =>
+      TfRef.attribute<String>(this, 'engine_version');
+
+  /// Reference to `multi_region_cluster_name_suffix` attribute.
+  TfRef<String> get multiRegionClusterNameSuffixRef =>
+      TfRef.attribute<String>(this, 'multi_region_cluster_name_suffix');
+
+  /// Reference to `multi_region_parameter_group_name` attribute.
+  TfRef<String> get multiRegionParameterGroupNameRef =>
+      TfRef.attribute<String>(this, 'multi_region_parameter_group_name');
+
+  /// Reference to `node_type` attribute.
+  TfRef<String> get nodeTypeRef => TfRef.attribute<String>(this, 'node_type');
+
+  /// Reference to `num_shards` attribute.
+  TfRef<num> get numShardsRef => TfRef.attribute<num>(this, 'num_shards');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `tls_enabled` attribute.
+  TfRef<bool> get tlsEnabledRef => TfRef.attribute<bool>(this, 'tls_enabled');
+
+  /// Reference to `update_strategy` attribute.
+  TfRef<String> get updateStrategyRef =>
+      TfRef.attribute<String>(this, 'update_strategy');
 }

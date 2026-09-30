@@ -59,4 +59,11 @@ final class DataCloudflareWaitingRoomRules extends Data {
 
   /// Reference to `version` attribute.
   TfRef<String> get version => TfRef.attribute<String>(this, 'version');
+
+  /// Reference to `waiting_room_id` attribute.
+  TfRef<String> get waitingRoomIdRef =>
+      TfRef.attribute<String>(this, 'waiting_room_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

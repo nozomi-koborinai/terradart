@@ -57,4 +57,19 @@ final class AwsLightsailCertificate extends Resource {
         this,
         'domain_validation_options',
       );
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `subject_alternative_names` attribute.
+  TfRef<List<String>> get subjectAlternativeNamesRef =>
+      TfRef.attribute<List<String>>(this, 'subject_alternative_names');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

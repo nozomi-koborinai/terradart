@@ -170,6 +170,31 @@ final class GoogleComputeRouter extends Resource {
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `encrypted_interconnect_router` attribute.
+  TfRef<bool> get encryptedInterconnectRouterRef =>
+      TfRef.attribute<bool>(this, 'encrypted_interconnect_router');
+
+  /// Reference to `ncc_gateway` attribute.
+  TfRef<String> get nccGatewayRef =>
+      TfRef.attribute<String>(this, 'ncc_gateway');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

@@ -53,4 +53,24 @@ final class GoogleChronicleCaseStageDefinition extends Resource {
   /// Reference to `case_stage_definition_id` attribute.
   TfRef<String> get caseStageDefinitionId =>
       TfRef.attribute<String>(this, 'case_stage_definition_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `order` attribute.
+  TfRef<num> get orderRef => TfRef.attribute<num>(this, 'order');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

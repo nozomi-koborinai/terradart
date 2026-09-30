@@ -87,6 +87,27 @@ final class GoogleComputeTargetHttpProxy extends Resource {
   /// Reference to `proxy_id` attribute.
   TfRef<num> get proxyId => TfRef.attribute<num>(this, 'proxy_id');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `http_keep_alive_timeout_sec` attribute.
+  TfRef<num> get httpKeepAliveTimeoutSecRef =>
+      TfRef.attribute<num>(this, 'http_keep_alive_timeout_sec');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `proxy_bind` attribute.
+  TfRef<bool> get proxyBindRef => TfRef.attribute<bool>(this, 'proxy_bind');
+
+  /// Reference to `url_map` attribute.
+  TfRef<String> get urlMapRef => TfRef.attribute<String>(this, 'url_map');
+
   /// Reference to `name` attribute. Use for interpolations like
   /// `proxy.nameRef` →
   /// `${google_compute_target_http_proxy.<localName>.name}`.

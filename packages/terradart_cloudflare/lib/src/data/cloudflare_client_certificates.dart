@@ -37,4 +37,19 @@ final class DataCloudflareClientCertificates extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareClientCertificatesSensitive;
+
+  /// Reference to `limit` attribute.
+  TfRef<num> get limitRef => TfRef.attribute<num>(this, 'limit');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `offset` attribute.
+  TfRef<num> get offsetRef => TfRef.attribute<num>(this, 'offset');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get statusRef => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

@@ -462,4 +462,35 @@ final class AwsComprehendEntityRecognizer extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `data_access_role_arn` attribute.
+  TfRef<String> get dataAccessRoleArnRef =>
+      TfRef.attribute<String>(this, 'data_access_role_arn');
+
+  /// Reference to `language_code` attribute.
+  TfRef<String> get languageCodeRef =>
+      TfRef.attribute<String>(this, 'language_code');
+
+  /// Reference to `model_kms_key_id` attribute.
+  TfRef<String> get modelKmsKeyIdRef =>
+      TfRef.attribute<String>(this, 'model_kms_key_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `version_name` attribute.
+  TfRef<String> get versionNameRef =>
+      TfRef.attribute<String>(this, 'version_name');
+
+  /// Reference to `version_name_prefix` attribute.
+  TfRef<String> get versionNamePrefixRef =>
+      TfRef.attribute<String>(this, 'version_name_prefix');
+
+  /// Reference to `volume_kms_key_id` attribute.
+  TfRef<String> get volumeKmsKeyIdRef =>
+      TfRef.attribute<String>(this, 'volume_kms_key_id');
 }

@@ -38,4 +38,11 @@ final class AwsConfigRetentionConfiguration extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `retention_period_in_days` attribute.
+  TfRef<num> get retentionPeriodInDaysRef =>
+      TfRef.attribute<num>(this, 'retention_period_in_days');
 }

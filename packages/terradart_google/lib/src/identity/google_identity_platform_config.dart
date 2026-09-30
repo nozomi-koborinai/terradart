@@ -492,4 +492,15 @@ final class GoogleIdentityPlatformConfig extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `authorized_domains` attribute.
+  TfRef<List<String>> get authorizedDomainsRef =>
+      TfRef.attribute<List<String>>(this, 'authorized_domains');
+
+  /// Reference to `autodelete_anonymous_users` attribute.
+  TfRef<bool> get autodeleteAnonymousUsersRef =>
+      TfRef.attribute<bool>(this, 'autodelete_anonymous_users');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

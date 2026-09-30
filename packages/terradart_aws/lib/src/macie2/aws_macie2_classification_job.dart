@@ -995,4 +995,36 @@ final class AwsMacie2ClassificationJob extends Resource {
   /// Reference to `user_paused_details` attribute.
   TfRef<List<Map<String, Object?>>> get userPausedDetails =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'user_paused_details');
+
+  /// Reference to `custom_data_identifier_ids` attribute.
+  TfRef<List<String>> get customDataIdentifierIdsRef =>
+      TfRef.attribute<List<String>>(this, 'custom_data_identifier_ids');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `initial_run` attribute.
+  TfRef<bool> get initialRunRef => TfRef.attribute<bool>(this, 'initial_run');
+
+  /// Reference to `job_status` attribute.
+  TfRef<String> get jobStatusRef => TfRef.attribute<String>(this, 'job_status');
+
+  /// Reference to `job_type` attribute.
+  TfRef<String> get jobTypeRef => TfRef.attribute<String>(this, 'job_type');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `sampling_percentage` attribute.
+  TfRef<num> get samplingPercentageRef =>
+      TfRef.attribute<num>(this, 'sampling_percentage');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

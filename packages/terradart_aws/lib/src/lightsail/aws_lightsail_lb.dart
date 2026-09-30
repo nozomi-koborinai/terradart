@@ -76,4 +76,22 @@ final class AwsLightsailLb extends Resource {
   /// Reference to `support_code` attribute.
   TfRef<String> get supportCode =>
       TfRef.attribute<String>(this, 'support_code');
+
+  /// Reference to `health_check_path` attribute.
+  TfRef<String> get healthCheckPathRef =>
+      TfRef.attribute<String>(this, 'health_check_path');
+
+  /// Reference to `instance_port` attribute.
+  TfRef<num> get instancePortRef => TfRef.attribute<num>(this, 'instance_port');
+
+  /// Reference to `ip_address_type` attribute.
+  TfRef<String> get ipAddressTypeRef =>
+      TfRef.attribute<String>(this, 'ip_address_type');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

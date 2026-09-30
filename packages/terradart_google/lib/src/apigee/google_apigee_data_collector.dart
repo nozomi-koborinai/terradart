@@ -78,4 +78,22 @@ final class GoogleApigeeDataCollector extends Resource {
   /// Reference to `last_modified_at` attribute.
   TfRef<String> get lastModifiedAt =>
       TfRef.attribute<String>(this, 'last_modified_at');
+
+  /// Reference to `data_collector_id` attribute.
+  TfRef<String> get dataCollectorIdRef =>
+      TfRef.attribute<String>(this, 'data_collector_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
 }

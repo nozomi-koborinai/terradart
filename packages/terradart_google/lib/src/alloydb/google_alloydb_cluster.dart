@@ -856,4 +856,52 @@ final class GoogleAlloydbCluster extends Resource {
 
   /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `cluster_id` attribute.
+  TfRef<String> get clusterIdRef => TfRef.attribute<String>(this, 'cluster_id');
+
+  /// Reference to `cluster_type` attribute.
+  TfRef<String> get clusterTypeRef =>
+      TfRef.attribute<String>(this, 'cluster_type');
+
+  /// Reference to `database_version` attribute.
+  TfRef<String> get databaseVersionRef =>
+      TfRef.attribute<String>(this, 'database_version');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<bool> get deletionProtectionRef =>
+      TfRef.attribute<bool>(this, 'deletion_protection');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etagRef => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `skip_await_major_version_upgrade` attribute.
+  TfRef<bool> get skipAwaitMajorVersionUpgradeRef =>
+      TfRef.attribute<bool>(this, 'skip_await_major_version_upgrade');
+
+  /// Reference to `subscription_type` attribute.
+  TfRef<String> get subscriptionTypeRef =>
+      TfRef.attribute<String>(this, 'subscription_type');
 }

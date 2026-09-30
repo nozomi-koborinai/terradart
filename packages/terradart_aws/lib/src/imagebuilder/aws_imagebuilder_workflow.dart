@@ -134,4 +134,34 @@ final class AwsImagebuilderWorkflow extends Resource {
 
   /// Reference to `owner` attribute.
   TfRef<String> get owner => TfRef.attribute<String>(this, 'owner');
+
+  /// Reference to `change_description` attribute.
+  TfRef<String> get changeDescriptionRef =>
+      TfRef.attribute<String>(this, 'change_description');
+
+  /// Reference to `data` attribute.
+  TfRef<String> get dataRef => TfRef.attribute<String>(this, 'data');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `uri` attribute.
+  TfRef<String> get uriRef => TfRef.attribute<String>(this, 'uri');
+
+  /// Reference to `version` attribute.
+  TfRef<String> get versionRef => TfRef.attribute<String>(this, 'version');
 }

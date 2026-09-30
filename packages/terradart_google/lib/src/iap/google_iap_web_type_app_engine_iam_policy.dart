@@ -46,4 +46,14 @@ final class GoogleIapWebTypeAppEngineIamPolicy extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `app_id` attribute.
+  TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `policy_data` attribute.
+  TfRef<String> get policyDataRef =>
+      TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -57,4 +57,23 @@ final class AwsBedrockagentcoreAgentRuntimeEndpoint extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `agent_runtime_id` attribute.
+  TfRef<String> get agentRuntimeIdRef =>
+      TfRef.attribute<String>(this, 'agent_runtime_id');
+
+  /// Reference to `agent_runtime_version` attribute.
+  TfRef<String> get agentRuntimeVersionRef =>
+      TfRef.attribute<String>(this, 'agent_runtime_version');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

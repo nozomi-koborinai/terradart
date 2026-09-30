@@ -69,4 +69,37 @@ final class AwsCloudwatchLogAnomalyDetector extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `anomaly_visibility_time` attribute.
+  TfRef<num> get anomalyVisibilityTimeRef =>
+      TfRef.attribute<num>(this, 'anomaly_visibility_time');
+
+  /// Reference to `detector_name` attribute.
+  TfRef<String> get detectorNameRef =>
+      TfRef.attribute<String>(this, 'detector_name');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `evaluation_frequency` attribute.
+  TfRef<String> get evaluationFrequencyRef =>
+      TfRef.attribute<String>(this, 'evaluation_frequency');
+
+  /// Reference to `filter_pattern` attribute.
+  TfRef<String> get filterPatternRef =>
+      TfRef.attribute<String>(this, 'filter_pattern');
+
+  /// Reference to `kms_key_id` attribute.
+  TfRef<String> get kmsKeyIdRef => TfRef.attribute<String>(this, 'kms_key_id');
+
+  /// Reference to `log_group_arn_list` attribute.
+  TfRef<List<String>> get logGroupArnListRef =>
+      TfRef.attribute<List<String>>(this, 'log_group_arn_list');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

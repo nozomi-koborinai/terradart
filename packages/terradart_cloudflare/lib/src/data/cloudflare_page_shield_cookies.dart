@@ -80,4 +80,10 @@ final class DataCloudflarePageShieldCookies extends Data {
 
   /// Reference to `type` attribute.
   TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `cookie_id` attribute.
+  TfRef<String> get cookieIdRef => TfRef.attribute<String>(this, 'cookie_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

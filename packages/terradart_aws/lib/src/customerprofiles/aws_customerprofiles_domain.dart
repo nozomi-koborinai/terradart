@@ -412,4 +412,27 @@ final class AwsCustomerprofilesDomain extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `dead_letter_queue_url` attribute.
+  TfRef<String> get deadLetterQueueUrlRef =>
+      TfRef.attribute<String>(this, 'dead_letter_queue_url');
+
+  /// Reference to `default_encryption_key` attribute.
+  TfRef<String> get defaultEncryptionKeyRef =>
+      TfRef.attribute<String>(this, 'default_encryption_key');
+
+  /// Reference to `default_expiration_days` attribute.
+  TfRef<num> get defaultExpirationDaysRef =>
+      TfRef.attribute<num>(this, 'default_expiration_days');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

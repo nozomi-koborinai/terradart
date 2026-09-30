@@ -207,4 +207,23 @@ final class AwsDatasyncLocationFsxOntapFileSystem extends Resource {
 
   /// Reference to `uri` attribute.
   TfRef<String> get uri => TfRef.attribute<String>(this, 'uri');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_group_arns` attribute.
+  TfRef<List<String>> get securityGroupArnsRef =>
+      TfRef.attribute<List<String>>(this, 'security_group_arns');
+
+  /// Reference to `storage_virtual_machine_arn` attribute.
+  TfRef<String> get storageVirtualMachineArnRef =>
+      TfRef.attribute<String>(this, 'storage_virtual_machine_arn');
+
+  /// Reference to `subdirectory` attribute.
+  TfRef<String> get subdirectoryRef =>
+      TfRef.attribute<String>(this, 'subdirectory');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

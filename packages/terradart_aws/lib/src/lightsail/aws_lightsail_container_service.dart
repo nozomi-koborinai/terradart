@@ -147,4 +147,20 @@ final class AwsLightsailContainerService extends Resource {
 
   /// Reference to `url` attribute.
   TfRef<String> get url => TfRef.attribute<String>(this, 'url');
+
+  /// Reference to `is_disabled` attribute.
+  TfRef<bool> get isDisabledRef => TfRef.attribute<bool>(this, 'is_disabled');
+
+  /// Reference to `power` attribute.
+  TfRef<String> get powerRef => TfRef.attribute<String>(this, 'power');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `scale` attribute.
+  TfRef<num> get scaleRef => TfRef.attribute<num>(this, 'scale');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -46,4 +46,10 @@ final class GoogleFolderServiceIdentity extends Resource {
 
   /// Reference to `member` attribute.
   TfRef<String> get member => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `folder` attribute.
+  TfRef<String> get folderRef => TfRef.attribute<String>(this, 'folder');
+
+  /// Reference to `service` attribute.
+  TfRef<String> get serviceRef => TfRef.attribute<String>(this, 'service');
 }

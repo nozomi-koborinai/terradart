@@ -35,4 +35,16 @@ final class DataCloudflareWorkers extends Data {
 
   @override
   Set<String> get sensitiveFields => _cloudflareWorkersSensitive;
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `max_items` attribute.
+  TfRef<num> get maxItemsRef => TfRef.attribute<num>(this, 'max_items');
+
+  /// Reference to `order` attribute.
+  TfRef<String> get orderRef => TfRef.attribute<String>(this, 'order');
+
+  /// Reference to `order_by` attribute.
+  TfRef<String> get orderByRef => TfRef.attribute<String>(this, 'order_by');
 }

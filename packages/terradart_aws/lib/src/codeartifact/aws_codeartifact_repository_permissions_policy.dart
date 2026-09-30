@@ -49,4 +49,26 @@ final class AwsCodeartifactRepositoryPermissionsPolicy extends Resource {
   /// Reference to `resource_arn` attribute.
   TfRef<String> get resourceArn =>
       TfRef.attribute<String>(this, 'resource_arn');
+
+  /// Reference to `domain` attribute.
+  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+
+  /// Reference to `domain_owner` attribute.
+  TfRef<String> get domainOwnerRef =>
+      TfRef.attribute<String>(this, 'domain_owner');
+
+  /// Reference to `policy_document` attribute.
+  TfRef<String> get policyDocumentRef =>
+      TfRef.attribute<String>(this, 'policy_document');
+
+  /// Reference to `policy_revision` attribute.
+  TfRef<String> get policyRevisionRef =>
+      TfRef.attribute<String>(this, 'policy_revision');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `repository` attribute.
+  TfRef<String> get repositoryRef =>
+      TfRef.attribute<String>(this, 'repository');
 }

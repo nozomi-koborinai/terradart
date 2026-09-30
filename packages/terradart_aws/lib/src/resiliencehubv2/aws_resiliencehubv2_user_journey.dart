@@ -45,4 +45,17 @@ final class AwsResiliencehubv2UserJourney extends Resource {
   /// Reference to `user_journey_id` attribute.
   TfRef<String> get userJourneyId =>
       TfRef.attribute<String>(this, 'user_journey_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `policy_arn` attribute.
+  TfRef<String> get policyArnRef => TfRef.attribute<String>(this, 'policy_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `system_arn` attribute.
+  TfRef<String> get systemArnRef => TfRef.attribute<String>(this, 'system_arn');
 }

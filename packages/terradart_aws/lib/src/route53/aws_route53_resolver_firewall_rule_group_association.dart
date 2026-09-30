@@ -71,4 +71,25 @@ final class AwsRoute53ResolverFirewallRuleGroupAssociation extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `firewall_rule_group_id` attribute.
+  TfRef<String> get firewallRuleGroupIdRef =>
+      TfRef.attribute<String>(this, 'firewall_rule_group_id');
+
+  /// Reference to `mutation_protection` attribute.
+  TfRef<String> get mutationProtectionRef =>
+      TfRef.attribute<String>(this, 'mutation_protection');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `vpc_id` attribute.
+  TfRef<String> get vpcIdRef => TfRef.attribute<String>(this, 'vpc_id');
 }

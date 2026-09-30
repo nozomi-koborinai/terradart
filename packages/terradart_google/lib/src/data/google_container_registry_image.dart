@@ -44,4 +44,16 @@ final class DataGoogleContainerRegistryImage extends Data {
 
   /// Reference to `image_url` attribute.
   TfRef<String> get imageUrl => TfRef.attribute<String>(this, 'image_url');
+
+  /// Reference to `digest` attribute.
+  TfRef<String> get digestRef => TfRef.attribute<String>(this, 'digest');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tag` attribute.
+  TfRef<String> get tagRef => TfRef.attribute<String>(this, 'tag');
 }

@@ -565,4 +565,45 @@ final class GooglePubsubSubscription extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `ack_deadline_seconds` attribute.
+  TfRef<num> get ackDeadlineSecondsRef =>
+      TfRef.attribute<num>(this, 'ack_deadline_seconds');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `enable_exactly_once_delivery` attribute.
+  TfRef<bool> get enableExactlyOnceDeliveryRef =>
+      TfRef.attribute<bool>(this, 'enable_exactly_once_delivery');
+
+  /// Reference to `enable_message_ordering` attribute.
+  TfRef<bool> get enableMessageOrderingRef =>
+      TfRef.attribute<bool>(this, 'enable_message_ordering');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `message_retention_duration` attribute.
+  TfRef<String> get messageRetentionDurationRef =>
+      TfRef.attribute<String>(this, 'message_retention_duration');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `retain_acked_messages` attribute.
+  TfRef<bool> get retainAckedMessagesRef =>
+      TfRef.attribute<bool>(this, 'retain_acked_messages');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `topic` attribute.
+  TfRef<String> get topicRef => TfRef.attribute<String>(this, 'topic');
 }

@@ -54,4 +54,28 @@ final class GoogleFirebaseAppleApp extends Resource {
 
   /// Reference to `app_id` attribute.
   TfRef<String> get appId => TfRef.attribute<String>(this, 'app_id');
+
+  /// Reference to `api_key_id` attribute.
+  TfRef<String> get apiKeyIdRef => TfRef.attribute<String>(this, 'api_key_id');
+
+  /// Reference to `app_store_id` attribute.
+  TfRef<String> get appStoreIdRef =>
+      TfRef.attribute<String>(this, 'app_store_id');
+
+  /// Reference to `bundle_id` attribute.
+  TfRef<String> get bundleIdRef => TfRef.attribute<String>(this, 'bundle_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `team_id` attribute.
+  TfRef<String> get teamIdRef => TfRef.attribute<String>(this, 'team_id');
 }

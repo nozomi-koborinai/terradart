@@ -1028,4 +1028,51 @@ final class AwsCognitoUserPool extends Resource {
   /// Reference to `last_modified_date` attribute.
   TfRef<String> get lastModifiedDate =>
       TfRef.attribute<String>(this, 'last_modified_date');
+
+  /// Reference to `alias_attributes` attribute.
+  TfRef<List<String>> get aliasAttributesRef =>
+      TfRef.attribute<List<String>>(this, 'alias_attributes');
+
+  /// Reference to `auto_verified_attributes` attribute.
+  TfRef<List<String>> get autoVerifiedAttributesRef =>
+      TfRef.attribute<List<String>>(this, 'auto_verified_attributes');
+
+  /// Reference to `deletion_protection` attribute.
+  TfRef<String> get deletionProtectionRef =>
+      TfRef.attribute<String>(this, 'deletion_protection');
+
+  /// Reference to `email_verification_message` attribute.
+  TfRef<String> get emailVerificationMessageRef =>
+      TfRef.attribute<String>(this, 'email_verification_message');
+
+  /// Reference to `email_verification_subject` attribute.
+  TfRef<String> get emailVerificationSubjectRef =>
+      TfRef.attribute<String>(this, 'email_verification_subject');
+
+  /// Reference to `mfa_configuration` attribute.
+  TfRef<String> get mfaConfigurationRef =>
+      TfRef.attribute<String>(this, 'mfa_configuration');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `sms_authentication_message` attribute.
+  TfRef<String> get smsAuthenticationMessageRef =>
+      TfRef.attribute<String>(this, 'sms_authentication_message');
+
+  /// Reference to `sms_verification_message` attribute.
+  TfRef<String> get smsVerificationMessageRef =>
+      TfRef.attribute<String>(this, 'sms_verification_message');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `user_pool_tier` attribute.
+  TfRef<String> get userPoolTierRef =>
+      TfRef.attribute<String>(this, 'user_pool_tier');
+
+  /// Reference to `username_attributes` attribute.
+  TfRef<List<String>> get usernameAttributesRef =>
+      TfRef.attribute<List<String>>(this, 'username_attributes');
 }

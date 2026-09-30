@@ -86,4 +86,10 @@ final class DataGoogleComputeNetworkAttachment extends Data {
   /// Reference to `subnetworks` attribute.
   TfRef<List<String>> get subnetworks =>
       TfRef.attribute<List<String>>(this, 'subnetworks');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

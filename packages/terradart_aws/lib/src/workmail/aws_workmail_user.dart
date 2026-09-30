@@ -111,4 +111,69 @@ final class AwsWorkmailUser extends Resource {
 
   /// Reference to `user_id` attribute.
   TfRef<String> get userId => TfRef.attribute<String>(this, 'user_id');
+
+  /// Reference to `city` attribute.
+  TfRef<String> get cityRef => TfRef.attribute<String>(this, 'city');
+
+  /// Reference to `company` attribute.
+  TfRef<String> get companyRef => TfRef.attribute<String>(this, 'company');
+
+  /// Reference to `country` attribute.
+  TfRef<String> get countryRef => TfRef.attribute<String>(this, 'country');
+
+  /// Reference to `department` attribute.
+  TfRef<String> get departmentRef =>
+      TfRef.attribute<String>(this, 'department');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `email` attribute.
+  TfRef<String> get emailRef => TfRef.attribute<String>(this, 'email');
+
+  /// Reference to `first_name` attribute.
+  TfRef<String> get firstNameRef => TfRef.attribute<String>(this, 'first_name');
+
+  /// Reference to `hidden_from_global_address_list` attribute.
+  TfRef<bool> get hiddenFromGlobalAddressListRef =>
+      TfRef.attribute<bool>(this, 'hidden_from_global_address_list');
+
+  /// Reference to `identity_provider_user_id` attribute.
+  TfRef<String> get identityProviderUserIdRef =>
+      TfRef.attribute<String>(this, 'identity_provider_user_id');
+
+  /// Reference to `initials` attribute.
+  TfRef<String> get initialsRef => TfRef.attribute<String>(this, 'initials');
+
+  /// Reference to `job_title` attribute.
+  TfRef<String> get jobTitleRef => TfRef.attribute<String>(this, 'job_title');
+
+  /// Reference to `last_name` attribute.
+  TfRef<String> get lastNameRef => TfRef.attribute<String>(this, 'last_name');
+
+  /// Reference to `office` attribute.
+  TfRef<String> get officeRef => TfRef.attribute<String>(this, 'office');
+
+  /// Reference to `organization_id` attribute.
+  TfRef<String> get organizationIdRef =>
+      TfRef.attribute<String>(this, 'organization_id');
+
+  /// Reference to `password` attribute.
+  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `street` attribute.
+  TfRef<String> get streetRef => TfRef.attribute<String>(this, 'street');
+
+  /// Reference to `telephone` attribute.
+  TfRef<String> get telephoneRef => TfRef.attribute<String>(this, 'telephone');
+
+  /// Reference to `user_role` attribute.
+  TfRef<String> get userRoleRef => TfRef.attribute<String>(this, 'user_role');
+
+  /// Reference to `zip_code` attribute.
+  TfRef<String> get zipCodeRef => TfRef.attribute<String>(this, 'zip_code');
 }

@@ -264,4 +264,31 @@ final class AwsBudgetsBudgetAction extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `action_type` attribute.
+  TfRef<String> get actionTypeRef =>
+      TfRef.attribute<String>(this, 'action_type');
+
+  /// Reference to `approval_model` attribute.
+  TfRef<String> get approvalModelRef =>
+      TfRef.attribute<String>(this, 'approval_model');
+
+  /// Reference to `budget_name` attribute.
+  TfRef<String> get budgetNameRef =>
+      TfRef.attribute<String>(this, 'budget_name');
+
+  /// Reference to `execution_role_arn` attribute.
+  TfRef<String> get executionRoleArnRef =>
+      TfRef.attribute<String>(this, 'execution_role_arn');
+
+  /// Reference to `notification_type` attribute.
+  TfRef<String> get notificationTypeRef =>
+      TfRef.attribute<String>(this, 'notification_type');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

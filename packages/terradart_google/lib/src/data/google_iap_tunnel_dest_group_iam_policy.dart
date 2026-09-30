@@ -47,4 +47,13 @@ final class DataGoogleIapTunnelDestGroupIamPolicy extends Data {
 
   /// Reference to `policy_data` attribute.
   TfRef<String> get policyData => TfRef.attribute<String>(this, 'policy_data');
+
+  /// Reference to `dest_group` attribute.
+  TfRef<String> get destGroupRef => TfRef.attribute<String>(this, 'dest_group');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

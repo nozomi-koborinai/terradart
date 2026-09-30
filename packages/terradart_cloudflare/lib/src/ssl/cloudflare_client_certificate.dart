@@ -91,4 +91,16 @@ final class CloudflareClientCertificate extends Resource {
 
   /// Reference to `status` attribute.
   TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `csr` attribute.
+  TfRef<String> get csrRef => TfRef.attribute<String>(this, 'csr');
+
+  /// Reference to `reactivate` attribute.
+  TfRef<bool> get reactivateRef => TfRef.attribute<bool>(this, 'reactivate');
+
+  /// Reference to `validity_days` attribute.
+  TfRef<num> get validityDaysRef => TfRef.attribute<num>(this, 'validity_days');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

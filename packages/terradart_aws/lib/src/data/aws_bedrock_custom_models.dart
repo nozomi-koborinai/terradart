@@ -26,4 +26,7 @@ final class DataAwsBedrockCustomModels extends Data {
   /// Reference to `model_summaries` attribute.
   TfRef<List<Map<String, Object?>>> get modelSummaries =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'model_summaries');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

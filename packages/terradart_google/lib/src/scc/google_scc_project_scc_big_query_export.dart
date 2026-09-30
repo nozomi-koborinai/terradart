@@ -73,4 +73,25 @@ final class GoogleSccProjectSccBigQueryExport extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `big_query_export_id` attribute.
+  TfRef<String> get bigQueryExportIdRef =>
+      TfRef.attribute<String>(this, 'big_query_export_id');
+
+  /// Reference to `dataset` attribute.
+  TfRef<String> get datasetRef => TfRef.attribute<String>(this, 'dataset');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

@@ -118,4 +118,35 @@ final class AwsEcsDaemon extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `capacity_provider_arns` attribute.
+  TfRef<List<String>> get capacityProviderArnsRef =>
+      TfRef.attribute<List<String>>(this, 'capacity_provider_arns');
+
+  /// Reference to `cluster_arn` attribute.
+  TfRef<String> get clusterArnRef =>
+      TfRef.attribute<String>(this, 'cluster_arn');
+
+  /// Reference to `daemon_task_definition_arn` attribute.
+  TfRef<String> get daemonTaskDefinitionArnRef =>
+      TfRef.attribute<String>(this, 'daemon_task_definition_arn');
+
+  /// Reference to `enable_ecs_managed_tags` attribute.
+  TfRef<bool> get enableEcsManagedTagsRef =>
+      TfRef.attribute<bool>(this, 'enable_ecs_managed_tags');
+
+  /// Reference to `enable_execute_command` attribute.
+  TfRef<bool> get enableExecuteCommandRef =>
+      TfRef.attribute<bool>(this, 'enable_execute_command');
+
+  /// Reference to `propagate_tags` attribute.
+  TfRef<String> get propagateTagsRef =>
+      TfRef.attribute<String>(this, 'propagate_tags');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -59,4 +59,18 @@ final class AwsRoute53profilesResourceAssociation extends Resource {
   /// Reference to `status_message` attribute.
   TfRef<String> get statusMessage =>
       TfRef.attribute<String>(this, 'status_message');
+
+  /// Reference to `profile_id` attribute.
+  TfRef<String> get profileIdRef => TfRef.attribute<String>(this, 'profile_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_arn` attribute.
+  TfRef<String> get resourceArnRef =>
+      TfRef.attribute<String>(this, 'resource_arn');
+
+  /// Reference to `resource_properties` attribute.
+  TfRef<String> get resourcePropertiesRef =>
+      TfRef.attribute<String>(this, 'resource_properties');
 }

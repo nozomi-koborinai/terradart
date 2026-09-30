@@ -713,4 +713,25 @@ final class GoogleGkeHubFeatureMembership extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `feature` attribute.
+  TfRef<String> get featureRef => TfRef.attribute<String>(this, 'feature');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `membership` attribute.
+  TfRef<String> get membershipRef =>
+      TfRef.attribute<String>(this, 'membership');
+
+  /// Reference to `membership_location` attribute.
+  TfRef<String> get membershipLocationRef =>
+      TfRef.attribute<String>(this, 'membership_location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

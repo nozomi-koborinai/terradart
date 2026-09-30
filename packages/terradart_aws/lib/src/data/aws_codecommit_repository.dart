@@ -50,4 +50,11 @@ final class DataAwsCodecommitRepository extends Data {
   /// Reference to `repository_id` attribute.
   TfRef<String> get repositoryId =>
       TfRef.attribute<String>(this, 'repository_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `repository_name` attribute.
+  TfRef<String> get repositoryNameRef =>
+      TfRef.attribute<String>(this, 'repository_name');
 }

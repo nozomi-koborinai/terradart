@@ -61,4 +61,16 @@ final class CloudflareAiSearchToken extends Resource {
 
   /// Reference to `modified_by` attribute.
   TfRef<String> get modifiedBy => TfRef.attribute<String>(this, 'modified_by');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `cf_api_id` attribute.
+  TfRef<String> get cfApiIdRef => TfRef.attribute<String>(this, 'cf_api_id');
+
+  /// Reference to `cf_api_key` attribute.
+  TfRef<String> get cfApiKeyRef => TfRef.attribute<String>(this, 'cf_api_key');
+
+  /// Reference to `legacy` attribute.
+  TfRef<bool> get legacyRef => TfRef.attribute<bool>(this, 'legacy');
 }

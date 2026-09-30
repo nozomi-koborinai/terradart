@@ -138,4 +138,26 @@ final class GoogleAccessContextManagerAuthorizedOrgsDesc extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `asset_type` attribute.
+  TfRef<String> get assetTypeRef => TfRef.attribute<String>(this, 'asset_type');
+
+  /// Reference to `authorization_direction` attribute.
+  TfRef<String> get authorizationDirectionRef =>
+      TfRef.attribute<String>(this, 'authorization_direction');
+
+  /// Reference to `authorization_type` attribute.
+  TfRef<String> get authorizationTypeRef =>
+      TfRef.attribute<String>(this, 'authorization_type');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `orgs` attribute.
+  TfRef<List<String>> get orgsRef =>
+      TfRef.attribute<List<String>>(this, 'orgs');
+
+  /// Reference to `parent` attribute.
+  TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');
 }

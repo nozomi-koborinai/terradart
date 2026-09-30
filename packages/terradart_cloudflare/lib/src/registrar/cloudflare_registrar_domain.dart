@@ -40,4 +40,20 @@ final class CloudflareRegistrarDomain extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<CloudflareRegistrarDomain>`.
   RefTo<CloudflareRegistrarDomain> get ref => RefTo.of(this);
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `auto_renew` attribute.
+  TfRef<bool> get autoRenewRef => TfRef.attribute<bool>(this, 'auto_renew');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `locked` attribute.
+  TfRef<bool> get lockedRef => TfRef.attribute<bool>(this, 'locked');
+
+  /// Reference to `privacy` attribute.
+  TfRef<bool> get privacyRef => TfRef.attribute<bool>(this, 'privacy');
 }

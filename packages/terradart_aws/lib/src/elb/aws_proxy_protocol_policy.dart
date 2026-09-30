@@ -37,4 +37,15 @@ final class AwsProxyProtocolPolicy extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `instance_ports` attribute.
+  TfRef<List<String>> get instancePortsRef =>
+      TfRef.attribute<List<String>>(this, 'instance_ports');
+
+  /// Reference to `load_balancer` attribute.
+  TfRef<String> get loadBalancerRef =>
+      TfRef.attribute<String>(this, 'load_balancer');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

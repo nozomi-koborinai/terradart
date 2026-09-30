@@ -42,4 +42,16 @@ final class AwsTransferSshKey extends Resource {
 
   /// Reference to `ssh_key_id` attribute.
   TfRef<String> get sshKeyId => TfRef.attribute<String>(this, 'ssh_key_id');
+
+  /// Reference to `body` attribute.
+  TfRef<String> get bodyRef => TfRef.attribute<String>(this, 'body');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `server_id` attribute.
+  TfRef<String> get serverIdRef => TfRef.attribute<String>(this, 'server_id');
+
+  /// Reference to `user_name` attribute.
+  TfRef<String> get userNameRef => TfRef.attribute<String>(this, 'user_name');
 }

@@ -222,4 +222,67 @@ final class AwsTimestreaminfluxdbDbCluster extends Resource {
   /// Reference to `tags_all` attribute.
   TfRef<Map<String, String>> get tagsAll =>
       TfRef.attribute<Map<String, String>>(this, 'tags_all');
+
+  /// Reference to `allocated_storage` attribute.
+  TfRef<num> get allocatedStorageRef =>
+      TfRef.attribute<num>(this, 'allocated_storage');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `db_instance_type` attribute.
+  TfRef<String> get dbInstanceTypeRef =>
+      TfRef.attribute<String>(this, 'db_instance_type');
+
+  /// Reference to `db_parameter_group_identifier` attribute.
+  TfRef<String> get dbParameterGroupIdentifierRef =>
+      TfRef.attribute<String>(this, 'db_parameter_group_identifier');
+
+  /// Reference to `db_storage_type` attribute.
+  TfRef<String> get dbStorageTypeRef =>
+      TfRef.attribute<String>(this, 'db_storage_type');
+
+  /// Reference to `deployment_type` attribute.
+  TfRef<String> get deploymentTypeRef =>
+      TfRef.attribute<String>(this, 'deployment_type');
+
+  /// Reference to `failover_mode` attribute.
+  TfRef<String> get failoverModeRef =>
+      TfRef.attribute<String>(this, 'failover_mode');
+
+  /// Reference to `network_type` attribute.
+  TfRef<String> get networkTypeRef =>
+      TfRef.attribute<String>(this, 'network_type');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organizationRef =>
+      TfRef.attribute<String>(this, 'organization');
+
+  /// Reference to `password` attribute.
+  TfRef<String> get passwordRef => TfRef.attribute<String>(this, 'password');
+
+  /// Reference to `port` attribute.
+  TfRef<num> get portRef => TfRef.attribute<num>(this, 'port');
+
+  /// Reference to `publicly_accessible` attribute.
+  TfRef<bool> get publiclyAccessibleRef =>
+      TfRef.attribute<bool>(this, 'publicly_accessible');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `username` attribute.
+  TfRef<String> get usernameRef => TfRef.attribute<String>(this, 'username');
+
+  /// Reference to `vpc_security_group_ids` attribute.
+  TfRef<List<String>> get vpcSecurityGroupIdsRef =>
+      TfRef.attribute<List<String>>(this, 'vpc_security_group_ids');
+
+  /// Reference to `vpc_subnet_ids` attribute.
+  TfRef<List<String>> get vpcSubnetIdsRef =>
+      TfRef.attribute<List<String>>(this, 'vpc_subnet_ids');
 }

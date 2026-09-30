@@ -47,4 +47,19 @@ final class DataGoogleBillingAccount extends Data {
   /// Reference to `project_ids` attribute.
   TfRef<List<String>> get projectIds =>
       TfRef.attribute<List<String>>(this, 'project_ids');
+
+  /// Reference to `billing_account` attribute.
+  TfRef<String> get billingAccountRef =>
+      TfRef.attribute<String>(this, 'billing_account');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `lookup_projects` attribute.
+  TfRef<bool> get lookupProjectsRef =>
+      TfRef.attribute<bool>(this, 'lookup_projects');
+
+  /// Reference to `open` attribute.
+  TfRef<bool> get openRef => TfRef.attribute<bool>(this, 'open');
 }

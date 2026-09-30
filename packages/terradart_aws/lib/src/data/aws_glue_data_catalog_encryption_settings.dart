@@ -40,4 +40,10 @@ final class DataAwsGlueDataCatalogEncryptionSettings extends Data {
         this,
         'data_catalog_encryption_settings',
       );
+
+  /// Reference to `catalog_id` attribute.
+  TfRef<String> get catalogIdRef => TfRef.attribute<String>(this, 'catalog_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

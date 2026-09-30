@@ -38,4 +38,7 @@ final class DataAwsEcrpublicAuthorizationToken extends Data {
 
   /// Reference to `user_name` attribute.
   TfRef<String> get userName => TfRef.attribute<String>(this, 'user_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -68,4 +68,24 @@ final class CloudflareZeroTrustAccessServiceToken extends Resource {
 
   /// Reference to `expires_at` attribute.
   TfRef<String> get expiresAt => TfRef.attribute<String>(this, 'expires_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `client_secret_version` attribute.
+  TfRef<num> get clientSecretVersionRef =>
+      TfRef.attribute<num>(this, 'client_secret_version');
+
+  /// Reference to `duration` attribute.
+  TfRef<String> get durationRef => TfRef.attribute<String>(this, 'duration');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `previous_client_secret_expires_at` attribute.
+  TfRef<String> get previousClientSecretExpiresAtRef =>
+      TfRef.attribute<String>(this, 'previous_client_secret_expires_at');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

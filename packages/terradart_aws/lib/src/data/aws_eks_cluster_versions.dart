@@ -38,4 +38,25 @@ final class DataAwsEksClusterVersions extends Data {
   /// Reference to `cluster_versions` attribute.
   TfRef<List<Map<String, Object?>>> get clusterVersions =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'cluster_versions');
+
+  /// Reference to `cluster_type` attribute.
+  TfRef<String> get clusterTypeRef =>
+      TfRef.attribute<String>(this, 'cluster_type');
+
+  /// Reference to `cluster_versions_only` attribute.
+  TfRef<List<String>> get clusterVersionsOnlyRef =>
+      TfRef.attribute<List<String>>(this, 'cluster_versions_only');
+
+  /// Reference to `default_only` attribute.
+  TfRef<bool> get defaultOnlyRef => TfRef.attribute<bool>(this, 'default_only');
+
+  /// Reference to `include_all` attribute.
+  TfRef<bool> get includeAllRef => TfRef.attribute<bool>(this, 'include_all');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `version_status` attribute.
+  TfRef<String> get versionStatusRef =>
+      TfRef.attribute<String>(this, 'version_status');
 }

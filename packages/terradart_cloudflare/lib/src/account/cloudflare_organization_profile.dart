@@ -40,4 +40,28 @@ final class CloudflareOrganizationProfile extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<CloudflareOrganizationProfile>`.
   RefTo<CloudflareOrganizationProfile> get ref => RefTo.of(this);
+
+  /// Reference to `business_address` attribute.
+  TfRef<String> get businessAddressRef =>
+      TfRef.attribute<String>(this, 'business_address');
+
+  /// Reference to `business_email` attribute.
+  TfRef<String> get businessEmailRef =>
+      TfRef.attribute<String>(this, 'business_email');
+
+  /// Reference to `business_name` attribute.
+  TfRef<String> get businessNameRef =>
+      TfRef.attribute<String>(this, 'business_name');
+
+  /// Reference to `business_phone` attribute.
+  TfRef<String> get businessPhoneRef =>
+      TfRef.attribute<String>(this, 'business_phone');
+
+  /// Reference to `external_metadata` attribute.
+  TfRef<String> get externalMetadataRef =>
+      TfRef.attribute<String>(this, 'external_metadata');
+
+  /// Reference to `organization_id` attribute.
+  TfRef<String> get organizationIdRef =>
+      TfRef.attribute<String>(this, 'organization_id');
 }

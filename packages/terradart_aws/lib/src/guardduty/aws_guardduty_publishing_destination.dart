@@ -62,4 +62,27 @@ final class AwsGuarddutyPublishingDestination extends Resource {
   /// Reference to `destination_id` attribute.
   TfRef<String> get destinationId =>
       TfRef.attribute<String>(this, 'destination_id');
+
+  /// Reference to `destination_arn` attribute.
+  TfRef<String> get destinationArnRef =>
+      TfRef.attribute<String>(this, 'destination_arn');
+
+  /// Reference to `destination_type` attribute.
+  TfRef<String> get destinationTypeRef =>
+      TfRef.attribute<String>(this, 'destination_type');
+
+  /// Reference to `detector_id` attribute.
+  TfRef<String> get detectorIdRef =>
+      TfRef.attribute<String>(this, 'detector_id');
+
+  /// Reference to `kms_key_arn` attribute.
+  TfRef<String> get kmsKeyArnRef =>
+      TfRef.attribute<String>(this, 'kms_key_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

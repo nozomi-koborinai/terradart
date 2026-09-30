@@ -61,4 +61,15 @@ final class DataAwsVpclatticeServiceNetwork extends Data {
   /// Reference to `number_of_associated_vpcs` attribute.
   TfRef<num> get numberOfAssociatedVpcs =>
       TfRef.attribute<num>(this, 'number_of_associated_vpcs');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `service_network_identifier` attribute.
+  TfRef<String> get serviceNetworkIdentifierRef =>
+      TfRef.attribute<String>(this, 'service_network_identifier');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

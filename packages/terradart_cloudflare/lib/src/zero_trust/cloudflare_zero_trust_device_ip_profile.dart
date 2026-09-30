@@ -61,4 +61,23 @@ final class CloudflareZeroTrustDeviceIpProfile extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `match` attribute.
+  TfRef<String> get matchRef => TfRef.attribute<String>(this, 'match');
+
+  /// Reference to `precedence` attribute.
+  TfRef<num> get precedenceRef => TfRef.attribute<num>(this, 'precedence');
+
+  /// Reference to `subnet_id` attribute.
+  TfRef<String> get subnetIdRef => TfRef.attribute<String>(this, 'subnet_id');
 }

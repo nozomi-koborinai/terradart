@@ -119,6 +119,34 @@ final class GoogleEdgecontainerNodePool extends Resource {
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
+  /// Reference to `cluster` attribute.
+  TfRef<String> get clusterRef => TfRef.attribute<String>(this, 'cluster');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `machine_filter` attribute.
+  TfRef<String> get machineFilterRef =>
+      TfRef.attribute<String>(this, 'machine_filter');
+
+  /// Reference to `node_count` attribute.
+  TfRef<num> get nodeCountRef => TfRef.attribute<num>(this, 'node_count');
+
+  /// Reference to `node_location` attribute.
+  TfRef<String> get nodeLocationRef =>
+      TfRef.attribute<String>(this, 'node_location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

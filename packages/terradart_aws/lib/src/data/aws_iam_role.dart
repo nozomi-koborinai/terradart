@@ -63,4 +63,8 @@ final class DataAwsIamRole extends Data {
 
   /// Reference to `unique_id` attribute.
   TfRef<String> get uniqueId => TfRef.attribute<String>(this, 'unique_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

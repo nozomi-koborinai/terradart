@@ -3595,4 +3595,25 @@ final class AwsKinesisFirehoseDeliveryStream extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `arn` attribute.
+  TfRef<String> get arnRef => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `destination` attribute.
+  TfRef<String> get destinationRef =>
+      TfRef.attribute<String>(this, 'destination');
+
+  /// Reference to `destination_id` attribute.
+  TfRef<String> get destinationIdRef =>
+      TfRef.attribute<String>(this, 'destination_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `version_id` attribute.
+  TfRef<String> get versionIdRef => TfRef.attribute<String>(this, 'version_id');
 }

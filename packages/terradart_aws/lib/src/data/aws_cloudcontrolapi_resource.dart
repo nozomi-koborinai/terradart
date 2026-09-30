@@ -45,4 +45,21 @@ final class DataAwsCloudcontrolapiResource extends Data {
 
   /// Reference to `properties` attribute.
   TfRef<String> get properties => TfRef.attribute<String>(this, 'properties');
+
+  /// Reference to `identifier` attribute.
+  TfRef<String> get identifierRef =>
+      TfRef.attribute<String>(this, 'identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `type_name` attribute.
+  TfRef<String> get typeNameRef => TfRef.attribute<String>(this, 'type_name');
+
+  /// Reference to `type_version_id` attribute.
+  TfRef<String> get typeVersionIdRef =>
+      TfRef.attribute<String>(this, 'type_version_id');
 }

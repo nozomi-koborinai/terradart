@@ -92,4 +92,11 @@ final class DataAwsVpcSecurityGroupRule extends Data {
 
   /// Reference to `to_port` attribute.
   TfRef<num> get toPort => TfRef.attribute<num>(this, 'to_port');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `security_group_rule_id` attribute.
+  TfRef<String> get securityGroupRuleIdRef =>
+      TfRef.attribute<String>(this, 'security_group_rule_id');
 }

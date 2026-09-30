@@ -544,4 +544,21 @@ final class GoogleChronicleDashboardChart extends Resource {
 
   /// Reference to `chart_id` attribute.
   TfRef<String> get chartId => TfRef.attribute<String>(this, 'chart_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `instance` attribute.
+  TfRef<String> get instanceRef => TfRef.attribute<String>(this, 'instance');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `native_dashboard` attribute.
+  TfRef<String> get nativeDashboardRef =>
+      TfRef.attribute<String>(this, 'native_dashboard');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

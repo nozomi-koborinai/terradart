@@ -115,6 +115,26 @@ final class GoogleComputeRouterNamedSet extends Resource {
   /// Reference to `fingerprint` attribute.
   TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
 
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `router` attribute.
+  TfRef<String> get routerRef => TfRef.attribute<String>(this, 'router');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

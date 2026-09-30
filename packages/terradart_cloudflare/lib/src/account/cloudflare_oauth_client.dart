@@ -131,4 +131,63 @@ final class CloudflareOauthClient extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `allowed_cors_origins` attribute.
+  TfRef<List<String>> get allowedCorsOriginsRef =>
+      TfRef.attribute<List<String>>(this, 'allowed_cors_origins');
+
+  /// Reference to `client_name` attribute.
+  TfRef<String> get clientNameRef =>
+      TfRef.attribute<String>(this, 'client_name');
+
+  /// Reference to `client_uri` attribute.
+  TfRef<String> get clientUriRef => TfRef.attribute<String>(this, 'client_uri');
+
+  /// Reference to `grant_types` attribute.
+  TfRef<List<String>> get grantTypesRef =>
+      TfRef.attribute<List<String>>(this, 'grant_types');
+
+  /// Reference to `logo_uri` attribute.
+  TfRef<String> get logoUriRef => TfRef.attribute<String>(this, 'logo_uri');
+
+  /// Reference to `oauth_client_id` attribute.
+  TfRef<String> get oauthClientIdRef =>
+      TfRef.attribute<String>(this, 'oauth_client_id');
+
+  /// Reference to `optional_scopes` attribute.
+  TfRef<List<String>> get optionalScopesRef =>
+      TfRef.attribute<List<String>>(this, 'optional_scopes');
+
+  /// Reference to `policy_uri` attribute.
+  TfRef<String> get policyUriRef => TfRef.attribute<String>(this, 'policy_uri');
+
+  /// Reference to `post_logout_redirect_uris` attribute.
+  TfRef<List<String>> get postLogoutRedirectUrisRef =>
+      TfRef.attribute<List<String>>(this, 'post_logout_redirect_uris');
+
+  /// Reference to `redirect_uris` attribute.
+  TfRef<List<String>> get redirectUrisRef =>
+      TfRef.attribute<List<String>>(this, 'redirect_uris');
+
+  /// Reference to `response_types` attribute.
+  TfRef<List<String>> get responseTypesRef =>
+      TfRef.attribute<List<String>>(this, 'response_types');
+
+  /// Reference to `scopes` attribute.
+  TfRef<List<String>> get scopesRef =>
+      TfRef.attribute<List<String>>(this, 'scopes');
+
+  /// Reference to `token_endpoint_auth_method` attribute.
+  TfRef<String> get tokenEndpointAuthMethodRef =>
+      TfRef.attribute<String>(this, 'token_endpoint_auth_method');
+
+  /// Reference to `tos_uri` attribute.
+  TfRef<String> get tosUriRef => TfRef.attribute<String>(this, 'tos_uri');
+
+  /// Reference to `visibility` attribute.
+  TfRef<String> get visibilityRef =>
+      TfRef.attribute<String>(this, 'visibility');
 }

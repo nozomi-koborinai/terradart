@@ -71,4 +71,20 @@ final class GoogleBigtableTableIamMember extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `instance_name` attribute.
+  TfRef<String> get instanceNameRef =>
+      TfRef.attribute<String>(this, 'instance_name');
+
+  /// Reference to `member` attribute.
+  TfRef<String> get memberRef => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+
+  /// Reference to `table` attribute.
+  TfRef<String> get tableRef => TfRef.attribute<String>(this, 'table');
 }

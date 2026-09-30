@@ -53,4 +53,10 @@ final class DataGoogleKmsCryptoKeyVersion extends Data {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `crypto_key` attribute.
+  TfRef<String> get cryptoKeyRef => TfRef.attribute<String>(this, 'crypto_key');
+
+  /// Reference to `version` attribute.
+  TfRef<num> get versionRef => TfRef.attribute<num>(this, 'version');
 }

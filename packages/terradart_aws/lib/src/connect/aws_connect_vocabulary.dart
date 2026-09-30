@@ -105,4 +105,22 @@ final class AwsConnectVocabulary extends Resource {
   /// Reference to `vocabulary_id` attribute.
   TfRef<String> get vocabularyId =>
       TfRef.attribute<String>(this, 'vocabulary_id');
+
+  /// Reference to `content` attribute.
+  TfRef<String> get contentRef => TfRef.attribute<String>(this, 'content');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceIdRef =>
+      TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `language_code` attribute.
+  TfRef<String> get languageCodeRef =>
+      TfRef.attribute<String>(this, 'language_code');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

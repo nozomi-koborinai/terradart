@@ -91,4 +91,10 @@ final class DataAwsBedrockCustomModel extends Data {
   /// Reference to `validation_metrics` attribute.
   TfRef<List<Map<String, Object?>>> get validationMetrics =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'validation_metrics');
+
+  /// Reference to `model_id` attribute.
+  TfRef<String> get modelIdRef => TfRef.attribute<String>(this, 'model_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

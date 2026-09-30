@@ -341,4 +341,15 @@ final class AwsAppsyncApi extends Resource {
 
   /// Reference to `xray_enabled` attribute.
   TfRef<bool> get xrayEnabled => TfRef.attribute<bool>(this, 'xray_enabled');
+
+  /// Reference to `owner_contact` attribute.
+  TfRef<String> get ownerContactRef =>
+      TfRef.attribute<String>(this, 'owner_contact');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

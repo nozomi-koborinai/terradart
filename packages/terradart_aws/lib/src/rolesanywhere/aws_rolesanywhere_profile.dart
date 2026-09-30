@@ -55,4 +55,35 @@ final class AwsRolesanywhereProfile extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `accept_role_session_name` attribute.
+  TfRef<bool> get acceptRoleSessionNameRef =>
+      TfRef.attribute<bool>(this, 'accept_role_session_name');
+
+  /// Reference to `duration_seconds` attribute.
+  TfRef<num> get durationSecondsRef =>
+      TfRef.attribute<num>(this, 'duration_seconds');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `managed_policy_arns` attribute.
+  TfRef<List<String>> get managedPolicyArnsRef =>
+      TfRef.attribute<List<String>>(this, 'managed_policy_arns');
+
+  /// Reference to `require_instance_properties` attribute.
+  TfRef<bool> get requireInstancePropertiesRef =>
+      TfRef.attribute<bool>(this, 'require_instance_properties');
+
+  /// Reference to `role_arns` attribute.
+  TfRef<List<String>> get roleArnsRef =>
+      TfRef.attribute<List<String>>(this, 'role_arns');
+
+  /// Reference to `session_policy` attribute.
+  TfRef<String> get sessionPolicyRef =>
+      TfRef.attribute<String>(this, 'session_policy');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

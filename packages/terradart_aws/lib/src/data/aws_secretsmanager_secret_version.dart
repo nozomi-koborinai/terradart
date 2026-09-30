@@ -64,4 +64,17 @@ final class DataAwsSecretsmanagerSecretVersion extends Data {
   /// Reference to `version_stages` attribute.
   TfRef<List<String>> get versionStages =>
       TfRef.attribute<List<String>>(this, 'version_stages');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `secret_id` attribute.
+  TfRef<String> get secretIdRef => TfRef.attribute<String>(this, 'secret_id');
+
+  /// Reference to `version_id` attribute.
+  TfRef<String> get versionIdRef => TfRef.attribute<String>(this, 'version_id');
+
+  /// Reference to `version_stage` attribute.
+  TfRef<String> get versionStageRef =>
+      TfRef.attribute<String>(this, 'version_stage');
 }

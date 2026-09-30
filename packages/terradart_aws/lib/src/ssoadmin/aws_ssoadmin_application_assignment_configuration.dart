@@ -41,4 +41,15 @@ final class AwsSsoadminApplicationAssignmentConfiguration extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `application_arn` attribute.
+  TfRef<String> get applicationArnRef =>
+      TfRef.attribute<String>(this, 'application_arn');
+
+  /// Reference to `assignment_required` attribute.
+  TfRef<bool> get assignmentRequiredRef =>
+      TfRef.attribute<bool>(this, 'assignment_required');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

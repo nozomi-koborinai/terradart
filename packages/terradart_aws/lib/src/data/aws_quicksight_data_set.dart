@@ -96,4 +96,19 @@ final class DataAwsQuicksightDataSet extends Data {
         this,
         'row_level_permission_tag_configuration',
       );
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `data_set_id` attribute.
+  TfRef<String> get dataSetIdRef =>
+      TfRef.attribute<String>(this, 'data_set_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

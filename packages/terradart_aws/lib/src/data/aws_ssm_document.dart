@@ -52,4 +52,15 @@ final class DataAwsSsmDocument extends Data {
   /// Reference to `document_type` attribute.
   TfRef<String> get documentType =>
       TfRef.attribute<String>(this, 'document_type');
+
+  /// Reference to `document_format` attribute.
+  TfRef<String> get documentFormatRef =>
+      TfRef.attribute<String>(this, 'document_format');
+
+  /// Reference to `document_version` attribute.
+  TfRef<String> get documentVersionRef =>
+      TfRef.attribute<String>(this, 'document_version');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

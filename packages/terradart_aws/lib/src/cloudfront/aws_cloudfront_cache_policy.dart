@@ -241,4 +241,16 @@ final class AwsCloudfrontCachePolicy extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `comment` attribute.
+  TfRef<String> get commentRef => TfRef.attribute<String>(this, 'comment');
+
+  /// Reference to `default_ttl` attribute.
+  TfRef<num> get defaultTtlRef => TfRef.attribute<num>(this, 'default_ttl');
+
+  /// Reference to `max_ttl` attribute.
+  TfRef<num> get maxTtlRef => TfRef.attribute<num>(this, 'max_ttl');
+
+  /// Reference to `min_ttl` attribute.
+  TfRef<num> get minTtlRef => TfRef.attribute<num>(this, 'min_ttl');
 }

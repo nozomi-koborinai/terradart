@@ -77,4 +77,21 @@ final class GoogleComputeInstanceIamBinding extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `instance_name` attribute.
+  TfRef<String> get instanceNameRef =>
+      TfRef.attribute<String>(this, 'instance_name');
+
+  /// Reference to `members` attribute.
+  TfRef<List<String>> get membersRef =>
+      TfRef.attribute<List<String>>(this, 'members');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+
+  /// Reference to `zone` attribute.
+  TfRef<String> get zoneRef => TfRef.attribute<String>(this, 'zone');
 }

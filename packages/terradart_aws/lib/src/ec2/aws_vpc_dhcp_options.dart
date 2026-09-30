@@ -53,4 +53,35 @@ final class AwsVpcDhcpOptions extends Resource {
 
   /// Reference to `owner_id` attribute.
   TfRef<String> get ownerId => TfRef.attribute<String>(this, 'owner_id');
+
+  /// Reference to `domain_name` attribute.
+  TfRef<String> get domainNameRef =>
+      TfRef.attribute<String>(this, 'domain_name');
+
+  /// Reference to `domain_name_servers` attribute.
+  TfRef<List<String>> get domainNameServersRef =>
+      TfRef.attribute<List<String>>(this, 'domain_name_servers');
+
+  /// Reference to `ipv6_address_preferred_lease_time` attribute.
+  TfRef<String> get ipv6AddressPreferredLeaseTimeRef =>
+      TfRef.attribute<String>(this, 'ipv6_address_preferred_lease_time');
+
+  /// Reference to `netbios_name_servers` attribute.
+  TfRef<List<String>> get netbiosNameServersRef =>
+      TfRef.attribute<List<String>>(this, 'netbios_name_servers');
+
+  /// Reference to `netbios_node_type` attribute.
+  TfRef<String> get netbiosNodeTypeRef =>
+      TfRef.attribute<String>(this, 'netbios_node_type');
+
+  /// Reference to `ntp_servers` attribute.
+  TfRef<List<String>> get ntpServersRef =>
+      TfRef.attribute<List<String>>(this, 'ntp_servers');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

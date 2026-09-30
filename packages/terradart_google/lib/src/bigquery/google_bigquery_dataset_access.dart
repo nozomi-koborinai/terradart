@@ -386,4 +386,35 @@ final class GoogleBigqueryDatasetAccess extends Resource {
   /// Reference to `api_updated_member` attribute.
   TfRef<bool> get apiUpdatedMember =>
       TfRef.attribute<bool>(this, 'api_updated_member');
+
+  /// Reference to `dataset_id` attribute.
+  TfRef<String> get datasetIdRef => TfRef.attribute<String>(this, 'dataset_id');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `domain` attribute.
+  TfRef<String> get domainRef => TfRef.attribute<String>(this, 'domain');
+
+  /// Reference to `group_by_email` attribute.
+  TfRef<String> get groupByEmailRef =>
+      TfRef.attribute<String>(this, 'group_by_email');
+
+  /// Reference to `iam_member` attribute.
+  TfRef<String> get iamMemberRef => TfRef.attribute<String>(this, 'iam_member');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
+
+  /// Reference to `special_group` attribute.
+  TfRef<String> get specialGroupRef =>
+      TfRef.attribute<String>(this, 'special_group');
+
+  /// Reference to `user_by_email` attribute.
+  TfRef<String> get userByEmailRef =>
+      TfRef.attribute<String>(this, 'user_by_email');
 }

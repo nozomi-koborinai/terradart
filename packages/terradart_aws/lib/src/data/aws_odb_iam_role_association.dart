@@ -46,4 +46,15 @@ final class DataAwsOdbIamRoleAssociation extends Data {
   /// Reference to `status_reason` attribute.
   TfRef<String> get statusReason =>
       TfRef.attribute<String>(this, 'status_reason');
+
+  /// Reference to `iam_role_arn` attribute.
+  TfRef<String> get iamRoleArnRef =>
+      TfRef.attribute<String>(this, 'iam_role_arn');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `resource_arn` attribute.
+  TfRef<String> get resourceArnRef =>
+      TfRef.attribute<String>(this, 'resource_arn');
 }

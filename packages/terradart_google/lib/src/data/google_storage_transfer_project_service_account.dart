@@ -37,4 +37,7 @@ final class DataGoogleStorageTransferProjectServiceAccount extends Data {
 
   /// Reference to `subject_id` attribute.
   TfRef<String> get subjectId => TfRef.attribute<String>(this, 'subject_id');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

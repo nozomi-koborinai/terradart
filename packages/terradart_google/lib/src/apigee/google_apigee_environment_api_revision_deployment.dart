@@ -74,6 +74,34 @@ final class GoogleApigeeEnvironmentApiRevisionDeployment extends Resource {
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
+  /// Reference to `api` attribute.
+  TfRef<String> get apiRef => TfRef.attribute<String>(this, 'api');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `environment` attribute.
+  TfRef<String> get environmentRef =>
+      TfRef.attribute<String>(this, 'environment');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgIdRef => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `override` attribute.
+  TfRef<bool> get overrideRef => TfRef.attribute<bool>(this, 'override');
+
+  /// Reference to `revision` attribute.
+  TfRef<num> get revisionRef => TfRef.attribute<num>(this, 'revision');
+
+  /// Reference to `sequenced_rollout` attribute.
+  TfRef<bool> get sequencedRolloutRef =>
+      TfRef.attribute<bool>(this, 'sequenced_rollout');
+
+  /// Reference to `service_account` attribute.
+  TfRef<String> get serviceAccountRef =>
+      TfRef.attribute<String>(this, 'service_account');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 }

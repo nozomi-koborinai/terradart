@@ -284,4 +284,50 @@ final class GoogleAssuredWorkloadsWorkload extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `billing_account` attribute.
+  TfRef<String> get billingAccountRef =>
+      TfRef.attribute<String>(this, 'billing_account');
+
+  /// Reference to `compliance_regime` attribute.
+  TfRef<String> get complianceRegimeRef =>
+      TfRef.attribute<String>(this, 'compliance_regime');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `enable_sovereign_controls` attribute.
+  TfRef<bool> get enableSovereignControlsRef =>
+      TfRef.attribute<bool>(this, 'enable_sovereign_controls');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `organization` attribute.
+  TfRef<String> get organizationRef =>
+      TfRef.attribute<String>(this, 'organization');
+
+  /// Reference to `partner` attribute.
+  TfRef<String> get partnerRef => TfRef.attribute<String>(this, 'partner');
+
+  /// Reference to `partner_services_billing_account` attribute.
+  TfRef<String> get partnerServicesBillingAccountRef =>
+      TfRef.attribute<String>(this, 'partner_services_billing_account');
+
+  /// Reference to `provisioned_resources_parent` attribute.
+  TfRef<String> get provisionedResourcesParentRef =>
+      TfRef.attribute<String>(this, 'provisioned_resources_parent');
+
+  /// Reference to `violation_notifications_enabled` attribute.
+  TfRef<bool> get violationNotificationsEnabledRef =>
+      TfRef.attribute<bool>(this, 'violation_notifications_enabled');
 }

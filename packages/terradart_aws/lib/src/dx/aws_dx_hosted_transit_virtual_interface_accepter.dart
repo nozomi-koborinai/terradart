@@ -49,4 +49,27 @@ final class AwsDxHostedTransitVirtualInterfaceAccepter extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `dx_gateway_id` attribute.
+  TfRef<String> get dxGatewayIdRef =>
+      TfRef.attribute<String>(this, 'dx_gateway_id');
+
+  /// Reference to `prefix_pool_allocated_count_ipv4` attribute.
+  TfRef<num> get prefixPoolAllocatedCountIpv4Ref =>
+      TfRef.attribute<num>(this, 'prefix_pool_allocated_count_ipv4');
+
+  /// Reference to `prefix_pool_allocated_count_ipv6` attribute.
+  TfRef<num> get prefixPoolAllocatedCountIpv6Ref =>
+      TfRef.attribute<num>(this, 'prefix_pool_allocated_count_ipv6');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `virtual_interface_id` attribute.
+  TfRef<String> get virtualInterfaceIdRef =>
+      TfRef.attribute<String>(this, 'virtual_interface_id');
 }

@@ -30,4 +30,11 @@ final class DataAwsAccountRegions extends Data {
   /// Reference to `regions` attribute.
   TfRef<List<Map<String, Object?>>> get regions =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'regions');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `region_opt_status_contains` attribute.
+  TfRef<List<String>> get regionOptStatusContainsRef =>
+      TfRef.attribute<List<String>>(this, 'region_opt_status_contains');
 }

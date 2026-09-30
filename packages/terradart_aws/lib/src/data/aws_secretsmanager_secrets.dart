@@ -56,4 +56,7 @@ final class DataAwsSecretsmanagerSecrets extends Data {
 
   /// Reference to `names` attribute.
   TfRef<List<String>> get names => TfRef.attribute<List<String>>(this, 'names');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

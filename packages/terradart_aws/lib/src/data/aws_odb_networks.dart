@@ -23,4 +23,7 @@ final class DataAwsOdbNetworks extends Data {
   /// Reference to `odb_networks` attribute.
   TfRef<List<Map<String, Object?>>> get odbNetworks =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'odb_networks');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

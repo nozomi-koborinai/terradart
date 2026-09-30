@@ -61,4 +61,11 @@ final class DataCloudflareAddressMap extends Data {
 
   /// Reference to `modified_at` attribute.
   TfRef<String> get modifiedAt => TfRef.attribute<String>(this, 'modified_at');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `address_map_id` attribute.
+  TfRef<String> get addressMapIdRef =>
+      TfRef.attribute<String>(this, 'address_map_id');
 }

@@ -81,4 +81,31 @@ final class AwsDatazoneEnvironmentProfile extends Resource {
 
   /// Reference to `updated_at` attribute.
   TfRef<String> get updatedAt => TfRef.attribute<String>(this, 'updated_at');
+
+  /// Reference to `aws_account_id` attribute.
+  TfRef<String> get awsAccountIdRef =>
+      TfRef.attribute<String>(this, 'aws_account_id');
+
+  /// Reference to `aws_account_region` attribute.
+  TfRef<String> get awsAccountRegionRef =>
+      TfRef.attribute<String>(this, 'aws_account_region');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `domain_identifier` attribute.
+  TfRef<String> get domainIdentifierRef =>
+      TfRef.attribute<String>(this, 'domain_identifier');
+
+  /// Reference to `environment_blueprint_identifier` attribute.
+  TfRef<String> get environmentBlueprintIdentifierRef =>
+      TfRef.attribute<String>(this, 'environment_blueprint_identifier');
+
+  /// Reference to `project_identifier` attribute.
+  TfRef<String> get projectIdentifierRef =>
+      TfRef.attribute<String>(this, 'project_identifier');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

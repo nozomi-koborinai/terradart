@@ -296,4 +296,30 @@ final class AwsCloudwatchMetricStream extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `firehose_arn` attribute.
+  TfRef<String> get firehoseArnRef =>
+      TfRef.attribute<String>(this, 'firehose_arn');
+
+  /// Reference to `include_linked_accounts_metrics` attribute.
+  TfRef<bool> get includeLinkedAccountsMetricsRef =>
+      TfRef.attribute<bool>(this, 'include_linked_accounts_metrics');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `output_format` attribute.
+  TfRef<String> get outputFormatRef =>
+      TfRef.attribute<String>(this, 'output_format');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

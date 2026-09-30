@@ -65,4 +65,10 @@ final class AwsS3controlMultiRegionAccessPointPolicy extends Resource {
 
   /// Reference to `proposed` attribute.
   TfRef<String> get proposed => TfRef.attribute<String>(this, 'proposed');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

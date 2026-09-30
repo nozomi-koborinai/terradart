@@ -112,4 +112,14 @@ final class DataAwsIdentitystoreGroup extends Data {
   /// Reference to `external_ids` attribute.
   TfRef<List<Map<String, Object?>>> get externalIds =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'external_ids');
+
+  /// Reference to `group_id` attribute.
+  TfRef<String> get groupIdRef => TfRef.attribute<String>(this, 'group_id');
+
+  /// Reference to `identity_store_id` attribute.
+  TfRef<String> get identityStoreIdRef =>
+      TfRef.attribute<String>(this, 'identity_store_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -289,4 +289,33 @@ final class GoogleLoggingMetric extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `bucket_name` attribute.
+  TfRef<String> get bucketNameRef =>
+      TfRef.attribute<String>(this, 'bucket_name');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `disabled` attribute.
+  TfRef<bool> get disabledRef => TfRef.attribute<bool>(this, 'disabled');
+
+  /// Reference to `filter` attribute.
+  TfRef<String> get filterRef => TfRef.attribute<String>(this, 'filter');
+
+  /// Reference to `label_extractors` attribute.
+  TfRef<Map<String, String>> get labelExtractorsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'label_extractors');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `value_extractor` attribute.
+  TfRef<String> get valueExtractorRef =>
+      TfRef.attribute<String>(this, 'value_extractor');
 }

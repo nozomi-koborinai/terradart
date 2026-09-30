@@ -42,4 +42,17 @@ final class AwsApiGatewayResource extends Resource {
 
   /// Reference to `path` attribute.
   TfRef<String> get path => TfRef.attribute<String>(this, 'path');
+
+  /// Reference to `parent_id` attribute.
+  TfRef<String> get parentIdRef => TfRef.attribute<String>(this, 'parent_id');
+
+  /// Reference to `path_part` attribute.
+  TfRef<String> get pathPartRef => TfRef.attribute<String>(this, 'path_part');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `rest_api_id` attribute.
+  TfRef<String> get restApiIdRef =>
+      TfRef.attribute<String>(this, 'rest_api_id');
 }

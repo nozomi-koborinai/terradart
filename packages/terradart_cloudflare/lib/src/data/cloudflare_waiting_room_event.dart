@@ -105,4 +105,14 @@ final class DataCloudflareWaitingRoomEvent extends Data {
   /// Reference to `turnstile_mode` attribute.
   TfRef<String> get turnstileMode =>
       TfRef.attribute<String>(this, 'turnstile_mode');
+
+  /// Reference to `event_id` attribute.
+  TfRef<String> get eventIdRef => TfRef.attribute<String>(this, 'event_id');
+
+  /// Reference to `waiting_room_id` attribute.
+  TfRef<String> get waitingRoomIdRef =>
+      TfRef.attribute<String>(this, 'waiting_room_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

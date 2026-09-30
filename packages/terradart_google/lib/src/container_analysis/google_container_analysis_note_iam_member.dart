@@ -83,4 +83,16 @@ final class GoogleContainerAnalysisNoteIamMember extends Resource {
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `member` attribute.
+  TfRef<String> get memberRef => TfRef.attribute<String>(this, 'member');
+
+  /// Reference to `note` attribute.
+  TfRef<String> get noteRef => TfRef.attribute<String>(this, 'note');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `role` attribute.
+  TfRef<String> get roleRef => TfRef.attribute<String>(this, 'role');
 }

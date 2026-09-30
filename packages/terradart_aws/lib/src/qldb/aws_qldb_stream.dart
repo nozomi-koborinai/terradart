@@ -74,4 +74,30 @@ final class AwsQldbStream extends Resource {
 
   /// Reference to `arn` attribute.
   TfRef<String> get arn => TfRef.attribute<String>(this, 'arn');
+
+  /// Reference to `exclusive_end_time` attribute.
+  TfRef<String> get exclusiveEndTimeRef =>
+      TfRef.attribute<String>(this, 'exclusive_end_time');
+
+  /// Reference to `inclusive_start_time` attribute.
+  TfRef<String> get inclusiveStartTimeRef =>
+      TfRef.attribute<String>(this, 'inclusive_start_time');
+
+  /// Reference to `ledger_name` attribute.
+  TfRef<String> get ledgerNameRef =>
+      TfRef.attribute<String>(this, 'ledger_name');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `role_arn` attribute.
+  TfRef<String> get roleArnRef => TfRef.attribute<String>(this, 'role_arn');
+
+  /// Reference to `stream_name` attribute.
+  TfRef<String> get streamNameRef =>
+      TfRef.attribute<String>(this, 'stream_name');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

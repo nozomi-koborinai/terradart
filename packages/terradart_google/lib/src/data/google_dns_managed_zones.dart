@@ -29,4 +29,7 @@ final class DataGoogleDnsManagedZones extends Data {
   /// Reference to `managed_zones` attribute.
   TfRef<List<Map<String, Object?>>> get managedZones =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'managed_zones');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
 }

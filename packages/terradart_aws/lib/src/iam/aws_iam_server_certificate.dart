@@ -113,4 +113,27 @@ final class AwsIamServerCertificate extends Resource {
 
   /// Reference to `upload_date` attribute.
   TfRef<String> get uploadDate => TfRef.attribute<String>(this, 'upload_date');
+
+  /// Reference to `certificate_body` attribute.
+  TfRef<String> get certificateBodyRef =>
+      TfRef.attribute<String>(this, 'certificate_body');
+
+  /// Reference to `certificate_chain` attribute.
+  TfRef<String> get certificateChainRef =>
+      TfRef.attribute<String>(this, 'certificate_chain');
+
+  /// Reference to `name_prefix` attribute.
+  TfRef<String> get namePrefixRef =>
+      TfRef.attribute<String>(this, 'name_prefix');
+
+  /// Reference to `path` attribute.
+  TfRef<String> get pathRef => TfRef.attribute<String>(this, 'path');
+
+  /// Reference to `private_key` attribute.
+  TfRef<String> get privateKeyRef =>
+      TfRef.attribute<String>(this, 'private_key');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

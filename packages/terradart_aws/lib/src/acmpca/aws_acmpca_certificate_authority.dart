@@ -345,4 +345,28 @@ final class AwsAcmpcaCertificateAuthority extends Resource {
 
   /// Reference to `serial` attribute.
   TfRef<String> get serial => TfRef.attribute<String>(this, 'serial');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabledRef => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `key_storage_security_standard` attribute.
+  TfRef<String> get keyStorageSecurityStandardRef =>
+      TfRef.attribute<String>(this, 'key_storage_security_standard');
+
+  /// Reference to `permanent_deletion_time_in_days` attribute.
+  TfRef<num> get permanentDeletionTimeInDaysRef =>
+      TfRef.attribute<num>(this, 'permanent_deletion_time_in_days');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `usage_mode` attribute.
+  TfRef<String> get usageModeRef => TfRef.attribute<String>(this, 'usage_mode');
 }

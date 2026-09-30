@@ -312,4 +312,8 @@ final class GoogleStorageControlProjectIntelligenceConfig extends Resource {
 
   /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `edition_config` attribute.
+  TfRef<String> get editionConfigRef =>
+      TfRef.attribute<String>(this, 'edition_config');
 }

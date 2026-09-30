@@ -52,4 +52,14 @@ final class DataAwsCloudhsmV2Cluster extends Data {
 
   /// Reference to `vpc_id` attribute.
   TfRef<String> get vpcId => TfRef.attribute<String>(this, 'vpc_id');
+
+  /// Reference to `cluster_id` attribute.
+  TfRef<String> get clusterIdRef => TfRef.attribute<String>(this, 'cluster_id');
+
+  /// Reference to `cluster_state` attribute.
+  TfRef<String> get clusterStateRef =>
+      TfRef.attribute<String>(this, 'cluster_state');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

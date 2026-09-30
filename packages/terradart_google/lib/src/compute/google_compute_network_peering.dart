@@ -87,4 +87,38 @@ final class GoogleComputeNetworkPeering extends Resource {
   /// Reference to `state_details` attribute.
   TfRef<String> get stateDetails =>
       TfRef.attribute<String>(this, 'state_details');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `export_custom_routes` attribute.
+  TfRef<bool> get exportCustomRoutesRef =>
+      TfRef.attribute<bool>(this, 'export_custom_routes');
+
+  /// Reference to `export_subnet_routes_with_public_ip` attribute.
+  TfRef<bool> get exportSubnetRoutesWithPublicIpRef =>
+      TfRef.attribute<bool>(this, 'export_subnet_routes_with_public_ip');
+
+  /// Reference to `import_custom_routes` attribute.
+  TfRef<bool> get importCustomRoutesRef =>
+      TfRef.attribute<bool>(this, 'import_custom_routes');
+
+  /// Reference to `import_subnet_routes_with_public_ip` attribute.
+  TfRef<bool> get importSubnetRoutesWithPublicIpRef =>
+      TfRef.attribute<bool>(this, 'import_subnet_routes_with_public_ip');
+
+  /// Reference to `network` attribute.
+  TfRef<String> get networkRef => TfRef.attribute<String>(this, 'network');
+
+  /// Reference to `peer_network` attribute.
+  TfRef<String> get peerNetworkRef =>
+      TfRef.attribute<String>(this, 'peer_network');
+
+  /// Reference to `stack_type` attribute.
+  TfRef<String> get stackTypeRef => TfRef.attribute<String>(this, 'stack_type');
+
+  /// Reference to `update_strategy` attribute.
+  TfRef<String> get updateStrategyRef =>
+      TfRef.attribute<String>(this, 'update_strategy');
 }

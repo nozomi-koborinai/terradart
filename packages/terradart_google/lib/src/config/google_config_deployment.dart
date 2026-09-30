@@ -256,4 +256,50 @@ final class GoogleConfigDeployment extends Resource {
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `annotations` attribute.
+  TfRef<Map<String, String>> get annotationsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'annotations');
+
+  /// Reference to `artifacts_gcs_bucket` attribute.
+  TfRef<String> get artifactsGcsBucketRef =>
+      TfRef.attribute<String>(this, 'artifacts_gcs_bucket');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `force_destroy` attribute.
+  TfRef<bool> get forceDestroyRef =>
+      TfRef.attribute<bool>(this, 'force_destroy');
+
+  /// Reference to `import_existing_resources` attribute.
+  TfRef<bool> get importExistingResourcesRef =>
+      TfRef.attribute<bool>(this, 'import_existing_resources');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labelsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `quota_validation` attribute.
+  TfRef<String> get quotaValidationRef =>
+      TfRef.attribute<String>(this, 'quota_validation');
+
+  /// Reference to `service_account` attribute.
+  TfRef<String> get serviceAccountRef =>
+      TfRef.attribute<String>(this, 'service_account');
+
+  /// Reference to `tf_version_constraint` attribute.
+  TfRef<String> get tfVersionConstraintRef =>
+      TfRef.attribute<String>(this, 'tf_version_constraint');
+
+  /// Reference to `worker_pool` attribute.
+  TfRef<String> get workerPoolRef =>
+      TfRef.attribute<String>(this, 'worker_pool');
 }

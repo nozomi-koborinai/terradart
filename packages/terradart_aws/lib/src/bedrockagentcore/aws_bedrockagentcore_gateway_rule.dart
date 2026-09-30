@@ -536,4 +536,18 @@ final class AwsBedrockagentcoreGatewayRule extends Resource {
   /// Reference to `system` attribute.
   TfRef<List<Map<String, Object?>>> get system =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'system');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `gateway_identifier` attribute.
+  TfRef<String> get gatewayIdentifierRef =>
+      TfRef.attribute<String>(this, 'gateway_identifier');
+
+  /// Reference to `priority` attribute.
+  TfRef<num> get priorityRef => TfRef.attribute<num>(this, 'priority');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

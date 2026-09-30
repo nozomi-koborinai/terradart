@@ -144,6 +144,25 @@ final class GoogleComputeWireGroup extends Resource {
   TfRef<List<Map<String, Object?>>> get wires =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'wires');
 
+  /// Reference to `admin_enabled` attribute.
+  TfRef<bool> get adminEnabledRef =>
+      TfRef.attribute<bool>(this, 'admin_enabled');
+
+  /// Reference to `cross_site_network` attribute.
+  TfRef<String> get crossSiteNetworkRef =>
+      TfRef.attribute<String>(this, 'cross_site_network');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
   /// Reference to `id` attribute.
   TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
 

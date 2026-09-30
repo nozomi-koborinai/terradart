@@ -50,4 +50,10 @@ final class DataCloudflareFirewallRule extends Data {
 
   /// Reference to `ref` attribute.
   TfRef<String> get ref => TfRef.attribute<String>(this, 'ref');
+
+  /// Reference to `rule_id` attribute.
+  TfRef<String> get ruleIdRef => TfRef.attribute<String>(this, 'rule_id');
+
+  /// Reference to `zone_id` attribute.
+  TfRef<String> get zoneIdRef => TfRef.attribute<String>(this, 'zone_id');
 }

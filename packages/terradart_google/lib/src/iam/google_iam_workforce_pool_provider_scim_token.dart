@@ -71,4 +71,31 @@ final class GoogleIamWorkforcePoolProviderScimToken extends Resource {
 
   /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `display_name` attribute.
+  TfRef<String> get displayNameRef =>
+      TfRef.attribute<String>(this, 'display_name');
+
+  /// Reference to `location` attribute.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `provider_id` attribute.
+  TfRef<String> get providerIdRef =>
+      TfRef.attribute<String>(this, 'provider_id');
+
+  /// Reference to `scim_tenant_id` attribute.
+  TfRef<String> get scimTenantIdRef =>
+      TfRef.attribute<String>(this, 'scim_tenant_id');
+
+  /// Reference to `scim_token_id` attribute.
+  TfRef<String> get scimTokenIdRef =>
+      TfRef.attribute<String>(this, 'scim_token_id');
+
+  /// Reference to `workforce_pool_id` attribute.
+  TfRef<String> get workforcePoolIdRef =>
+      TfRef.attribute<String>(this, 'workforce_pool_id');
 }

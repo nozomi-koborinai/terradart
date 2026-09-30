@@ -57,4 +57,17 @@ final class AwsDynamodbKinesisStreamingDestination extends Resource {
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `approximate_creation_date_time_precision` attribute.
+  TfRef<String> get approximateCreationDateTimePrecisionRef =>
+      TfRef.attribute<String>(this, 'approximate_creation_date_time_precision');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `stream_arn` attribute.
+  TfRef<String> get streamArnRef => TfRef.attribute<String>(this, 'stream_arn');
+
+  /// Reference to `table_name` attribute.
+  TfRef<String> get tableNameRef => TfRef.attribute<String>(this, 'table_name');
 }

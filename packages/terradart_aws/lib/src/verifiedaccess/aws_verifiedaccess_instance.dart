@@ -60,4 +60,22 @@ final class AwsVerifiedaccessInstance extends Resource {
         this,
         'verified_access_trust_providers',
       );
+
+  /// Reference to `cidr_endpoints_custom_subdomain` attribute.
+  TfRef<String> get cidrEndpointsCustomSubdomainRef =>
+      TfRef.attribute<String>(this, 'cidr_endpoints_custom_subdomain');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `fips_enabled` attribute.
+  TfRef<bool> get fipsEnabledRef => TfRef.attribute<bool>(this, 'fips_enabled');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tagsRef =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
 }

@@ -104,4 +104,37 @@ final class GoogleComputePublicDelegatedPrefix extends Resource {
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `allocatable_prefix_length` attribute.
+  TfRef<num> get allocatablePrefixLengthRef =>
+      TfRef.attribute<num>(this, 'allocatable_prefix_length');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicyRef =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `description` attribute.
+  TfRef<String> get descriptionRef =>
+      TfRef.attribute<String>(this, 'description');
+
+  /// Reference to `ip_cidr_range` attribute.
+  TfRef<String> get ipCidrRangeRef =>
+      TfRef.attribute<String>(this, 'ip_cidr_range');
+
+  /// Reference to `is_live_migration` attribute.
+  TfRef<bool> get isLiveMigrationRef =>
+      TfRef.attribute<bool>(this, 'is_live_migration');
+
+  /// Reference to `mode` attribute.
+  TfRef<String> get modeRef => TfRef.attribute<String>(this, 'mode');
+
+  /// Reference to `parent_prefix` attribute.
+  TfRef<String> get parentPrefixRef =>
+      TfRef.attribute<String>(this, 'parent_prefix');
+
+  /// Reference to `project` attribute.
+  TfRef<String> get projectRef => TfRef.attribute<String>(this, 'project');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

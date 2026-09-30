@@ -45,4 +45,10 @@ final class DataAwsS3BucketNotification extends Data {
   /// Reference to `topic` attribute.
   TfRef<List<Map<String, Object?>>> get topic =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'topic');
+
+  /// Reference to `bucket` attribute.
+  TfRef<String> get bucketRef => TfRef.attribute<String>(this, 'bucket');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

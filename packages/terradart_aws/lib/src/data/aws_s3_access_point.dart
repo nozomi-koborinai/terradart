@@ -77,4 +77,10 @@ final class DataAwsS3AccessPoint extends Data {
   /// Reference to `vpc_configuration` attribute.
   TfRef<List<Map<String, Object?>>> get vpcConfiguration =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'vpc_configuration');
+
+  /// Reference to `account_id` attribute.
+  TfRef<String> get accountIdRef => TfRef.attribute<String>(this, 'account_id');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }
