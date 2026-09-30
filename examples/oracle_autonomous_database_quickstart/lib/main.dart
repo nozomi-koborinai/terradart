@@ -64,13 +64,10 @@ final class OracleAutonomousDatabaseStack extends Stack {
         adminPassword: .literal('Placeholder-Pass1'),
         odbSubnet: .ref(odbSubnet.nameRef),
         odbNetwork: .ref(odbNetwork.nameRef),
-        properties: .literal({
-          'db_workload':
-              OracleDatabaseAutonomousDatabaseDbWorkload.oltp.terraformValue,
-          'license_type': OracleDatabaseAutonomousDatabaseLicenseType
-              .licenseIncluded
-              .terraformValue,
-        }),
+        properties: OracleDatabaseAutonomousDatabaseProperties(
+          dbWorkload: .literal(.oltp),
+          licenseType: .literal(.licenseIncluded),
+        ),
         dependsOn: [...apiDeps, ResourceDependency(odbSubnet)],
       ),
     );

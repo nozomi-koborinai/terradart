@@ -1,4 +1,5 @@
 outputDir: firebase_app_check
+deriveNestedTypes: true
 
 deriveClassDoc: true
 deriveExactlyOne: true

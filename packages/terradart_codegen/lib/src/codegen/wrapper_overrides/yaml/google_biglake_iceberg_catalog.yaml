@@ -1,6 +1,7 @@
 outputDir: biglake
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 # MM uses hyphenated api_name (catalog-type / credential-mode), so
@@ -47,5 +48,7 @@ paramOrder:
   - credential_mode
   - primary_location
   - default_location
+  - federated_catalog_options
+  - restricted_locations_config
   - deletion_policy
   - project

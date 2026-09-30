@@ -1780,6 +1780,47 @@ the same way.
 Newly exposed inputs: `GoogleMonitoringCustomService.telemetry`, and
 `condition` on the three Cloud Deploy IAM members.
 
+### Hand-curated Google overrides derive their remaining blocks
+
+**Breaking (`terradart_google`)** — 122 overrides with hand-written
+helpers or `customSlots` now also set `deriveNestedTypes`. Their hand
+helpers stay as they are; the blocks the hand curation did not cover
+take the helper `terradart wrap` derives instead of `TfArg<Map>`, and
+blocks a hand `paramOrder` hid are exposed. Hand enums that were only
+usable as `.terraformValue` inside a map literal now type the derived
+field. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `properties: .literal({'db_workload': OracleDatabaseAutonomousDatabaseDbWorkload.oltp.terraformValue, 'license_type': ...})` | `properties: OracleDatabaseAutonomousDatabaseProperties(dbWorkload: .literal(.oltp), licenseType: .literal(.licenseIncluded))` |
+| `properties: .literal({'shape': 'Exadata.X9M', 'compute_count': 2})` | `properties: OracleDatabaseCloudExadataInfrastructureProperties(shape: .literal('Exadata.X9M'), computeCount: .literal(2))` |
+| `properties: .literal({'goldengate_connection': TfArg.ref(c.nameRef), ...})` | `properties: OracleDatabaseGoldengateConnectionAssignmentProperties(goldengateConnection: .ref(c.nameRef), ...)` |
+| `performanceData: .literal({'max_days': 30})` | `performanceData: MigrationCenterAssetsExportJobPerformanceData(maxDays: .literal(30))` |
+
+The same applies to `properties` on the other Oracle Database factories
+(DB system, Exadata VM cluster, Exascale storage vault, GoldenGate
+deployment), `GoogleAppEngineApplication` `featureSettings` / `iap`,
+`GoogleChronicleNativeDashboard.charts`, `GoogleComputeRouter`
+`md5AuthenticationKeys` / `params`, `GoogleComputeSecurityPolicyRule`
+`headerAction` / `redirectOptions`,
+`GoogleComputeRegionSecurityPolicyRule.networkMatch`,
+`GoogleComputeServiceAttachment.consumerAcceptLists`, `GoogleDnsPolicy`
+`dns64Config` / `networks`, and `GoogleMigrationCenterAssetsExportJob`
+`condition` / `signedUriDestination`.
+
+Newly exposed inputs: `params` on `GoogleComputeFirewall`,
+`GoogleComputeNetwork`, `GoogleComputeRoute` and
+`GoogleComputeSubnetwork`; `GoogleBiglakeIcebergCatalog`
+`federatedCatalogOptions` / `restrictedLocationsConfig`,
+`GoogleBigtableTable.automatedBackupPolicy`,
+`GoogleKmsCryptoKeyVersion.externalProtectionLevelOptions`,
+`GoogleMemcacheInstance.memcacheParameters`,
+`GoogleNetworkConnectivityInternalRange.migration`,
+`GoogleOracleDatabaseAutonomousDatabase.sourceConfig`,
+`GooglePrivatecaCertificateTemplate` `passthroughExtensions` /
+`predefinedValues`, `GoogleSqlUser.passwordPolicy` and
+`GoogleStorageBucketObject.contexts`.
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it

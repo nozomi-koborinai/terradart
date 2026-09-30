@@ -2,6 +2,7 @@ outputDir: oracle
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 deriveEnums: true
 
@@ -59,6 +60,8 @@ prelude: |
 
 dartTypeOverrides:
   deletion_policy: OracleDatabaseDbSystemDeletionPolicy
+  properties.database_edition: OracleDatabaseDbSystemDatabaseEdition
+  properties.license_model: OracleDatabaseDbSystemLicenseModel
 
 extraGetters: |2
     TfRef<String> get id => TfRef.attribute<String>(this, 'id');

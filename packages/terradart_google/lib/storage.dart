@@ -67,6 +67,8 @@ export 'src/storage/google_storage_bucket_object.dart'
         StorageBucketObjectBodyContent,
         StorageBucketObjectBodySource,
         StorageBucketObjectBucketObjectRetention,
+        StorageBucketObjectContexts,
+        StorageBucketObjectContextsCustom,
         StorageBucketObjectCustomerEncryption;
 export 'src/storage/google_storage_default_object_access_control.dart'
     show

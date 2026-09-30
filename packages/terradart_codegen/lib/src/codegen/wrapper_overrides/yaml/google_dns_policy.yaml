@@ -1,6 +1,7 @@
 outputDir: dns
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 extraImports:

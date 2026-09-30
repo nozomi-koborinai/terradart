@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_oracle_database_cloud_exadata_infrastructure`.
@@ -21,6 +22,107 @@ enum OracleDatabaseCloudExadataInfrastructureDeletionPolicy
   final String terraformValue;
 }
 
+/// Typed helper for the `properties` block of
+/// `google_oracle_database_cloud_exadata_infrastructure` (derived from provider schema).
+@immutable
+final class OracleDatabaseCloudExadataInfrastructureProperties {
+  const OracleDatabaseCloudExadataInfrastructureProperties({
+    this.computeCount,
+    required this.shape,
+    this.storageCount,
+    this.totalStorageSizeGb,
+    this.customerContacts,
+    this.maintenanceWindow,
+  });
+
+  final TfArg<num>? computeCount;
+
+  final TfArg<String> shape;
+
+  final TfArg<num>? storageCount;
+
+  final TfArg<num>? totalStorageSizeGb;
+
+  final List<
+    OracleDatabaseCloudExadataInfrastructurePropertiesCustomerContacts
+  >?
+  customerContacts;
+
+  final OracleDatabaseCloudExadataInfrastructurePropertiesMaintenanceWindow?
+  maintenanceWindow;
+
+  Map<String, Object?> encode() => {
+    'compute_count': ?computeCount?.toTfJson(),
+    'shape': shape.toTfJson(),
+    'storage_count': ?storageCount?.toTfJson(),
+    'total_storage_size_gb': ?totalStorageSizeGb?.toTfJson(),
+    if (customerContacts != null)
+      'customer_contacts': [for (final e in customerContacts!) e.encode()],
+    'maintenance_window': ?maintenanceWindow?.encode(),
+  };
+}
+
+/// Typed helper for the `properties.customer_contacts` block of
+/// `google_oracle_database_cloud_exadata_infrastructure` (derived from provider schema).
+@immutable
+final class OracleDatabaseCloudExadataInfrastructurePropertiesCustomerContacts {
+  const OracleDatabaseCloudExadataInfrastructurePropertiesCustomerContacts({
+    required this.email,
+  });
+
+  final TfArg<String> email;
+
+  Map<String, Object?> encode() => {'email': email.toTfJson()};
+}
+
+/// Typed helper for the `properties.maintenance_window` block of
+/// `google_oracle_database_cloud_exadata_infrastructure` (derived from provider schema).
+@immutable
+final class OracleDatabaseCloudExadataInfrastructurePropertiesMaintenanceWindow {
+  const OracleDatabaseCloudExadataInfrastructurePropertiesMaintenanceWindow({
+    this.customActionTimeoutMins,
+    this.daysOfWeek,
+    this.hoursOfDay,
+    this.isCustomActionTimeoutEnabled,
+    this.leadTimeWeek,
+    this.months,
+    this.patchingMode,
+    this.preference,
+    this.weeksOfMonth,
+  });
+
+  final TfArg<num>? customActionTimeoutMins;
+
+  final TfArg<List<String>>? daysOfWeek;
+
+  final TfArg<List<num>>? hoursOfDay;
+
+  final TfArg<bool>? isCustomActionTimeoutEnabled;
+
+  final TfArg<num>? leadTimeWeek;
+
+  final TfArg<List<String>>? months;
+
+  final TfArg<String>? patchingMode;
+
+  final TfArg<String>? preference;
+
+  final TfArg<List<num>>? weeksOfMonth;
+
+  Map<String, Object?> encode() => {
+    'custom_action_timeout_mins': ?customActionTimeoutMins?.toTfJson(),
+    'days_of_week': ?daysOfWeek?.toTfJson(),
+    'hours_of_day': ?hoursOfDay?.toTfJson(),
+    'is_custom_action_timeout_enabled': ?isCustomActionTimeoutEnabled
+        ?.toTfJson(),
+    'lead_time_week': ?leadTimeWeek?.toTfJson(),
+    'months': ?months?.toTfJson(),
+    'patching_mode': ?patchingMode?.toTfJson(),
+    'preference': ?preference?.toTfJson(),
+    'weeks_of_month': ?weeksOfMonth?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_oracle_database_cloud_exadata_infrastructure`.
 ///
 /// A CloudExadataInfrastructure resource.
@@ -39,7 +141,7 @@ final class GoogleOracleDatabaseCloudExadataInfrastructure extends Resource {
     required TfArg<String> location,
     required TfArg<String> cloudExadataInfrastructureId,
     TfArg<String>? displayName,
-    TfArg<Map<String, dynamic>>? properties,
+    OracleDatabaseCloudExadataInfrastructureProperties? properties,
     TfArg<Map<String, String>>? labels,
     TfArg<OracleDatabaseCloudExadataInfrastructureDeletionPolicy>?
     deletionPolicy,
@@ -55,7 +157,8 @@ final class GoogleOracleDatabaseCloudExadataInfrastructure extends Resource {
            'location': location,
            'cloud_exadata_infrastructure_id': cloudExadataInfrastructureId,
            'display_name': ?displayName,
-           'properties': ?properties,
+           if (properties != null)
+             'properties': TfArg.literal(properties.encode()),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'deletion_protection': ?deletionProtection,

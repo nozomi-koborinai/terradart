@@ -2,6 +2,7 @@ outputDir: migration
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 curatedDoc: |-
@@ -44,3 +45,5 @@ prelude: |
 
 dartTypeOverrides:
   deletion_policy: MigrationCenterAssetsExportJobDeletionPolicy
+
+  signed_uri_destination.file_format: MigrationCenterAssetsExportJobFileFormat

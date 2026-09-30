@@ -66,24 +66,21 @@ final class OracleDbSystemStack extends Stack {
         displayName: .literal('TerraDart DB System'),
         odbSubnet: .ref(odbSubnet.nameRef),
         odbNetwork: .ref(odbNetwork.nameRef),
-        properties: .literal({
-          'shape': 'VM.Standard2.1',
-          'compute_count': 2,
-          'database_edition': OracleDatabaseDbSystemDatabaseEdition
-              .enterpriseEdition
-              .terraformValue,
-          'initial_data_storage_size_gb': 256,
-          'license_model':
-              OracleDatabaseDbSystemLicenseModel.licenseIncluded.terraformValue,
-          'ssh_public_keys': [_placeholderSshPublicKey],
-          'db_home': {
-            'db_version': '19',
-            'database': {
-              'database_id': 'terradartdb',
-              'admin_password': 'Placeholder-Pass1',
-            },
-          },
-        }),
+        properties: OracleDatabaseDbSystemProperties(
+          shape: .literal('VM.Standard2.1'),
+          computeCount: .literal(2),
+          databaseEdition: .literal(.enterpriseEdition),
+          initialDataStorageSizeGb: .literal(256),
+          licenseModel: .literal(.licenseIncluded),
+          sshPublicKeys: .literal([_placeholderSshPublicKey]),
+          dbHome: OracleDatabaseDbSystemPropertiesDbHome(
+            dbVersion: .literal('19'),
+            database: OracleDatabaseDbSystemPropertiesDbHomeDatabase(
+              databaseId: .literal('terradartdb'),
+              adminPassword: .literal('Placeholder-Pass1'),
+            ),
+          ),
+        ),
         dependsOn: [...apiDeps, ResourceDependency(odbSubnet)],
       ),
     );

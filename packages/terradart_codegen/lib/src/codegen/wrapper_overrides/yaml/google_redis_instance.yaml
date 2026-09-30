@@ -2,6 +2,7 @@ outputDir: redis
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 paramOrder:

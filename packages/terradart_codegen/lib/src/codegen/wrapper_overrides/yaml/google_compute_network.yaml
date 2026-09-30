@@ -19,6 +19,7 @@ curatedDoc: |-
   /// );
   /// ```
 
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 paramOrder:
@@ -36,6 +37,7 @@ paramOrder:
   - bgp_best_path_selection_mode
   - bgp_inter_region_cost
   - internal_ipv6_range
+  - params
   - project
 
 dartTypeOverrides:

@@ -120,6 +120,38 @@ final class ComputeRouterNetworkNccGateway extends ComputeRouterNetwork {
   Map<String, TfArg<Object?>> get argMap => {'ncc_gateway': nccGateway};
 }
 
+/// Typed helper for the `md5_authentication_keys` block of
+/// `google_compute_router` (derived from provider schema).
+@immutable
+final class ComputeRouterMd5AuthenticationKeys {
+  const ComputeRouterMd5AuthenticationKeys({
+    required this.key,
+    required this.name,
+  });
+
+  final TfArg<String> key;
+
+  final TfArg<String> name;
+
+  Map<String, Object?> encode() => {
+    'key': key.toTfJson(),
+    'name': name.toTfJson(),
+  };
+}
+
+/// Typed helper for the `params` block of
+/// `google_compute_router` (derived from provider schema).
+@immutable
+final class ComputeRouterParams {
+  const ComputeRouterParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_router`.
 ///
 /// Represents a Router resource.
@@ -135,8 +167,8 @@ final class GoogleComputeRouter extends Resource {
     TfArg<String>? description,
     TfArg<bool>? encryptedInterconnectRouter,
     ComputeRouterBgp? bgp,
-    TfArg<Map<String, dynamic>>? md5AuthenticationKeys,
-    TfArg<Map<String, dynamic>>? params,
+    ComputeRouterMd5AuthenticationKeys? md5AuthenticationKeys,
+    ComputeRouterParams? params,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -151,8 +183,11 @@ final class GoogleComputeRouter extends Resource {
            'description': ?description,
            'encrypted_interconnect_router': ?encryptedInterconnectRouter,
            if (bgp != null) 'bgp': TfArg.literal([bgp.encode()]),
-           'md5_authentication_keys': ?md5AuthenticationKeys,
-           'params': ?params,
+           if (md5AuthenticationKeys != null)
+             'md5_authentication_keys': TfArg.literal(
+               md5AuthenticationKeys.encode(),
+             ),
+           if (params != null) 'params': TfArg.literal(params.encode()),
          },
        );
 

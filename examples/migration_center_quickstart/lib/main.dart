@@ -114,7 +114,9 @@ final class MigrationCenterStack extends Stack {
         localName: 'export',
         location: .literal(location),
         assetsExportJobId: .literal('terradart-export'),
-        performanceData: .literal(<String, Object?>{'max_days': 30}),
+        performanceData: MigrationCenterAssetsExportJobPerformanceData(
+          maxDays: .literal(30),
+        ),
         dependsOn: apiDeps,
       ),
     );

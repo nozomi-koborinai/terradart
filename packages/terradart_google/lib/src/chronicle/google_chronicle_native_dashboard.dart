@@ -132,6 +132,56 @@ class ChronicleNativeDashboardFilter {
   };
 }
 
+/// Typed helper for the `charts` block of
+/// `google_chronicle_native_dashboard` (derived from provider schema).
+@immutable
+final class ChronicleNativeDashboardCharts {
+  const ChronicleNativeDashboardCharts({
+    this.dashboardChart,
+    this.filtersIds,
+    this.chartLayout,
+  });
+
+  final TfArg<String>? dashboardChart;
+
+  final TfArg<List<String>>? filtersIds;
+
+  final ChronicleNativeDashboardChartsChartLayout? chartLayout;
+
+  Map<String, Object?> encode() => {
+    'dashboard_chart': ?dashboardChart?.toTfJson(),
+    'filters_ids': ?filtersIds?.toTfJson(),
+    'chart_layout': ?chartLayout?.encode(),
+  };
+}
+
+/// Typed helper for the `charts.chart_layout` block of
+/// `google_chronicle_native_dashboard` (derived from provider schema).
+@immutable
+final class ChronicleNativeDashboardChartsChartLayout {
+  const ChronicleNativeDashboardChartsChartLayout({
+    required this.spanX,
+    required this.spanY,
+    this.startX,
+    this.startY,
+  });
+
+  final TfArg<num> spanX;
+
+  final TfArg<num> spanY;
+
+  final TfArg<num>? startX;
+
+  final TfArg<num>? startY;
+
+  Map<String, Object?> encode() => {
+    'span_x': spanX.toTfJson(),
+    'span_y': spanY.toTfJson(),
+    'start_x': ?startX?.toTfJson(),
+    'start_y': ?startY?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_chronicle_native_dashboard`.
 ///
 /// A configuration for a native dashboard within a Google SecOps (Chronicle)
@@ -156,7 +206,7 @@ final class GoogleChronicleNativeDashboard extends Resource {
     TfArg<ChronicleNativeDashboardType>? type,
     TfArg<bool>? isPinned,
     List<ChronicleNativeDashboardFilter>? filters,
-    TfArg<List<Map<String, dynamic>>>? charts,
+    List<ChronicleNativeDashboardCharts>? charts,
     TfArg<ChronicleNativeDashboardDeletionPolicy>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -177,7 +227,8 @@ final class GoogleChronicleNativeDashboard extends Resource {
              'filters': TfArg.literal(
                filters.map((f) => f.toArgMap()).toList(),
              ),
-           'charts': ?charts,
+           if (charts != null)
+             'charts': TfArg.literal([for (final e in charts) e.encode()]),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },

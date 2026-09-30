@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_service_attachment`.
@@ -14,6 +15,33 @@ enum ServiceAttachmentConnectionPreference implements TerraformEnum {
   const ServiceAttachmentConnectionPreference(this.terraformValue);
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `consumer_accept_lists` block of
+/// `google_compute_service_attachment` (derived from provider schema).
+@immutable
+final class ComputeServiceAttachmentConsumerAcceptLists {
+  const ComputeServiceAttachmentConsumerAcceptLists({
+    required this.connectionLimit,
+    this.endpointUrl,
+    this.networkUrl,
+    this.projectIdOrNum,
+  });
+
+  final TfArg<num> connectionLimit;
+
+  final TfArg<String>? endpointUrl;
+
+  final TfArg<String>? networkUrl;
+
+  final TfArg<String>? projectIdOrNum;
+
+  Map<String, Object?> encode() => {
+    'connection_limit': connectionLimit.toTfJson(),
+    'endpoint_url': ?endpointUrl?.toTfJson(),
+    'network_url': ?networkUrl?.toTfJson(),
+    'project_id_or_num': ?projectIdOrNum?.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_service_attachment`.
@@ -38,7 +66,7 @@ final class GoogleComputeServiceAttachment extends Resource {
     TfArg<bool>? sendPropagatedConnectionLimitIfZero,
     TfArg<bool>? showNatIps,
     required TfArg<String> targetService,
-    TfArg<List<Map<String, dynamic>>>? consumerAcceptLists,
+    List<ComputeServiceAttachmentConsumerAcceptLists>? consumerAcceptLists,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -61,7 +89,10 @@ final class GoogleComputeServiceAttachment extends Resource {
                ?sendPropagatedConnectionLimitIfZero,
            'show_nat_ips': ?showNatIps,
            'target_service': targetService,
-           'consumer_accept_lists': ?consumerAcceptLists,
+           if (consumerAcceptLists != null)
+             'consumer_accept_lists': TfArg.literal([
+               for (final e in consumerAcceptLists) e.encode(),
+             ]),
          },
        );
 

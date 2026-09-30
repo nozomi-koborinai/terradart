@@ -65,6 +65,25 @@ final class NetworkConnectivityInternalRangeAllocationOptions {
   };
 }
 
+/// Typed helper for the `migration` block of
+/// `google_network_connectivity_internal_range` (derived from provider schema).
+@immutable
+final class NetworkConnectivityInternalRangeMigration {
+  const NetworkConnectivityInternalRangeMigration({
+    required this.source,
+    required this.target,
+  });
+
+  final TfArg<String> source;
+
+  final TfArg<String> target;
+
+  Map<String, Object?> encode() => {
+    'source': source.toTfJson(),
+    'target': target.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_network_connectivity_internal_range`.
 ///
 /// Network Connectivity **internal range** — reserves or allocates a CIDR
@@ -100,6 +119,7 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
     TfArg<List<String>>? targetCidrRange,
     TfArg<List<String>>? overlaps,
     TfArg<Map<String, String>>? labels,
+    NetworkConnectivityInternalRangeMigration? migration,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -120,6 +140,8 @@ final class GoogleNetworkConnectivityInternalRange extends Resource {
            'target_cidr_range': ?targetCidrRange,
            'overlaps': ?overlaps,
            'labels': ?labels,
+           if (migration != null)
+             'migration': TfArg.literal(migration.encode()),
            'project': ?project,
          },
        );

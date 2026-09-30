@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_app_engine_application`.
@@ -30,6 +31,42 @@ enum AppEngineServingStatus implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `feature_settings` block of
+/// `google_app_engine_application` (derived from provider schema).
+@immutable
+final class AppEngineApplicationFeatureSettings {
+  const AppEngineApplicationFeatureSettings({required this.splitHealthChecks});
+
+  final TfArg<bool> splitHealthChecks;
+
+  Map<String, Object?> encode() => {
+    'split_health_checks': splitHealthChecks.toTfJson(),
+  };
+}
+
+/// Typed helper for the `iap` block of
+/// `google_app_engine_application` (derived from provider schema).
+@immutable
+final class AppEngineApplicationIap {
+  const AppEngineApplicationIap({
+    this.enabled,
+    required this.oauth2ClientId,
+    required this.oauth2ClientSecret,
+  });
+
+  final TfArg<bool>? enabled;
+
+  final TfArg<String> oauth2ClientId;
+
+  final TfArg<String> oauth2ClientSecret;
+
+  Map<String, Object?> encode() => {
+    'enabled': ?enabled?.toTfJson(),
+    'oauth2_client_id': oauth2ClientId.toTfJson(),
+    'oauth2_client_secret': oauth2ClientSecret.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_app_engine_application`.
 ///
 /// Registers the App Engine application for a GCP project (one per project).
@@ -57,8 +94,8 @@ final class GoogleAppEngineApplication extends Resource {
     TfArg<AppEngineServingStatus>? servingStatus,
     TfArg<String>? authDomain,
     TfArg<String>? sslPolicy,
-    TfArg<Map<String, dynamic>>? featureSettings,
-    TfArg<Map<String, dynamic>>? iap,
+    AppEngineApplicationFeatureSettings? featureSettings,
+    AppEngineApplicationIap? iap,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -72,8 +109,9 @@ final class GoogleAppEngineApplication extends Resource {
            'serving_status': ?servingStatus,
            'auth_domain': ?authDomain,
            'ssl_policy': ?sslPolicy,
-           'feature_settings': ?featureSettings,
-           'iap': ?iap,
+           if (featureSettings != null)
+             'feature_settings': TfArg.literal(featureSettings.encode()),
+           if (iap != null) 'iap': TfArg.literal(iap.encode()),
            'project': ?project,
          },
        );

@@ -183,6 +183,19 @@ class ComputeSubnetworkSubnetworkLogConfig {
   };
 }
 
+/// Typed helper for the `params` block of
+/// `google_compute_subnetwork` (derived from provider schema).
+@immutable
+final class ComputeSubnetworkParams {
+  const ComputeSubnetworkParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_subnetwork`.
 ///
 /// A VPC network is a virtual version of the traditional physical networks that
@@ -264,6 +277,7 @@ final class GoogleComputeSubnetwork extends Resource {
     TfArg<bool>? sendSecondaryIpRangeIfEmpty,
     TfArg<bool>? allowSubnetCidrRoutesOverlap,
     TfArg<String>? description,
+    ComputeSubnetworkParams? params,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -296,6 +310,7 @@ final class GoogleComputeSubnetwork extends Resource {
            'send_secondary_ip_range_if_empty': ?sendSecondaryIpRangeIfEmpty,
            'allow_subnet_cidr_routes_overlap': ?allowSubnetCidrRoutesOverlap,
            'description': ?description,
+           if (params != null) 'params': TfArg.literal(params.encode()),
            'project': ?project,
          },
        );

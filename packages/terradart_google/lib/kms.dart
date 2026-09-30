@@ -18,7 +18,10 @@ export 'src/kms/google_kms_crypto_key_iam_member.dart'
 export 'src/kms/google_kms_crypto_key_iam_policy.dart'
     show GoogleKmsCryptoKeyIamPolicy;
 export 'src/kms/google_kms_crypto_key_version.dart'
-    show GoogleKmsCryptoKeyVersion, KmsCryptoKeyVersionState;
+    show
+        GoogleKmsCryptoKeyVersion,
+        KmsCryptoKeyVersionExternalProtectionLevelOptions,
+        KmsCryptoKeyVersionState;
 export 'src/kms/google_kms_ekm_connection.dart'
     show
         GoogleKmsEkmConnection,

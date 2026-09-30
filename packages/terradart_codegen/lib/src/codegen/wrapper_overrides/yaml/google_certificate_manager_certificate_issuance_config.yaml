@@ -2,6 +2,7 @@ outputDir: certificate_manager
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 dartTypeOverrides:

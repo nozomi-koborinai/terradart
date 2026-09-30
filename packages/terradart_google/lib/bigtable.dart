@@ -41,7 +41,10 @@ export 'src/bigtable/google_bigtable_materialized_view.dart'
 export 'src/bigtable/google_bigtable_schema_bundle.dart'
     show BigtableSchemaBundleProtoSchema, GoogleBigtableSchemaBundle;
 export 'src/bigtable/google_bigtable_table.dart'
-    show BigtableTableColumnFamily, GoogleBigtableTable;
+    show
+        BigtableTableAutomatedBackupPolicy,
+        BigtableTableColumnFamily,
+        GoogleBigtableTable;
 export 'src/bigtable/google_bigtable_table_iam_binding.dart'
     show BigtableTableIamBindingCondition, GoogleBigtableTableIamBinding;
 export 'src/bigtable/google_bigtable_table_iam_member.dart'

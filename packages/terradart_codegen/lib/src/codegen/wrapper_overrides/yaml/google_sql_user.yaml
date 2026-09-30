@@ -2,6 +2,7 @@ outputDir: sql
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 curatedDoc: |-
@@ -63,6 +64,7 @@ paramOrder:
   - password_wo_version
   - host
   - database_roles
+  - password_policy
   - deletion_policy
   - project
 

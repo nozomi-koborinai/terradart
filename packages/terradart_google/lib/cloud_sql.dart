@@ -49,4 +49,8 @@ export 'src/sql/google_sql_source_representation_instance.dart'
     show GoogleSqlSourceRepresentationInstance;
 export 'src/sql/google_sql_ssl_cert.dart' show GoogleSqlSslCert;
 export 'src/sql/google_sql_user.dart'
-    show GoogleSqlUser, SqlUserDeletionPolicy, SqlUserType;
+    show
+        GoogleSqlUser,
+        SqlUserDeletionPolicy,
+        SqlUserPasswordPolicy,
+        SqlUserType;

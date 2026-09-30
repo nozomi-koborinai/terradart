@@ -33,6 +33,7 @@ curatedDoc: |-
   /// );
   /// ```
 
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 paramOrder:
