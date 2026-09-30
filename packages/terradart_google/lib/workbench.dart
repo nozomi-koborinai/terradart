@@ -29,8 +29,10 @@ export 'src/workbench/google_workbench_instance.dart'
         WorkbenchInstanceGceSetupShieldedInstanceConfig,
         WorkbenchInstanceGceSetupVmImage;
 export 'src/workbench/google_workbench_instance_iam_binding.dart'
-    show GoogleWorkbenchInstanceIamBinding;
+    show
+        GoogleWorkbenchInstanceIamBinding,
+        WorkbenchInstanceIamBindingCondition;
 export 'src/workbench/google_workbench_instance_iam_member.dart'
-    show GoogleWorkbenchInstanceIamMember;
+    show GoogleWorkbenchInstanceIamMember, WorkbenchInstanceIamMemberCondition;
 export 'src/workbench/google_workbench_instance_iam_policy.dart'
     show GoogleWorkbenchInstanceIamPolicy;

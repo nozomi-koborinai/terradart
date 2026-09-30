@@ -11,7 +11,9 @@ export 'src/app/google_app_engine_application.dart'
         AppEngineServingStatus,
         GoogleAppEngineApplication;
 export 'src/app/google_app_engine_application_url_dispatch_rules.dart'
-    show GoogleAppEngineApplicationUrlDispatchRules;
+    show
+        AppEngineApplicationUrlDispatchRulesDispatchRules,
+        GoogleAppEngineApplicationUrlDispatchRules;
 export 'src/app/google_app_engine_domain_mapping.dart'
     show
         AppEngineDomainMappingOverrideStrategy,

@@ -1,11 +1,35 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_app_engine_application_url_dispatch_rules`.
 const Set<String> _googleAppEngineApplicationUrlDispatchRulesSensitive =
     <String>{};
+
+/// Typed helper for the `dispatch_rules` block of
+/// `google_app_engine_application_url_dispatch_rules` (derived from provider schema).
+@immutable
+final class AppEngineApplicationUrlDispatchRulesDispatchRules {
+  const AppEngineApplicationUrlDispatchRulesDispatchRules({
+    this.domain,
+    required this.path,
+    required this.service,
+  });
+
+  final TfArg<String>? domain;
+
+  final TfArg<String> path;
+
+  final TfArg<String> service;
+
+  Map<String, Object?> encode() => {
+    'domain': ?domain?.toTfJson(),
+    'path': path.toTfJson(),
+    'service': service.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_app_engine_application_url_dispatch_rules`.
 ///
@@ -16,7 +40,8 @@ final class GoogleAppEngineApplicationUrlDispatchRules extends Resource {
 
   GoogleAppEngineApplicationUrlDispatchRules({
     required super.localName,
-    required TfArg<List<Map<String, dynamic>>> dispatchRules,
+    required List<AppEngineApplicationUrlDispatchRulesDispatchRules>
+    dispatchRules,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -26,7 +51,9 @@ final class GoogleAppEngineApplicationUrlDispatchRules extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'dispatch_rules': dispatchRules,
+           'dispatch_rules': TfArg.literal([
+             for (final e in dispatchRules) e.encode(),
+           ]),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },

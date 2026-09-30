@@ -1,10 +1,87 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_gke_hub_rollout_sequence`.
 const Set<String> _googleGkeHubRolloutSequenceSensitive = <String>{};
+
+/// Typed helper for the `auto_upgrade_config` block of
+/// `google_gke_hub_rollout_sequence` (derived from provider schema).
+@immutable
+final class GkeHubRolloutSequenceAutoUpgradeConfig {
+  const GkeHubRolloutSequenceAutoUpgradeConfig({this.rolloutCreationScope});
+
+  final GkeHubRolloutSequenceAutoUpgradeConfigRolloutCreationScope?
+  rolloutCreationScope;
+
+  Map<String, Object?> encode() => {
+    'rollout_creation_scope': ?rolloutCreationScope?.encode(),
+  };
+}
+
+/// Typed helper for the `auto_upgrade_config.rollout_creation_scope` block of
+/// `google_gke_hub_rollout_sequence` (derived from provider schema).
+@immutable
+final class GkeHubRolloutSequenceAutoUpgradeConfigRolloutCreationScope {
+  const GkeHubRolloutSequenceAutoUpgradeConfigRolloutCreationScope({
+    this.upgradeTypes,
+  });
+
+  final TfArg<List<String>>? upgradeTypes;
+
+  Map<String, Object?> encode() => {'upgrade_types': ?upgradeTypes?.toTfJson()};
+}
+
+/// Typed helper for the `ignored_clusters_selector` block of
+/// `google_gke_hub_rollout_sequence` (derived from provider schema).
+@immutable
+final class GkeHubRolloutSequenceIgnoredClustersSelector {
+  const GkeHubRolloutSequenceIgnoredClustersSelector({
+    required this.labelSelector,
+  });
+
+  final TfArg<String> labelSelector;
+
+  Map<String, Object?> encode() => {'label_selector': labelSelector.toTfJson()};
+}
+
+/// Typed helper for the `stages` block of
+/// `google_gke_hub_rollout_sequence` (derived from provider schema).
+@immutable
+final class GkeHubRolloutSequenceStages {
+  const GkeHubRolloutSequenceStages({
+    required this.fleetProjects,
+    this.soakDuration,
+    this.clusterSelector,
+  });
+
+  final TfArg<List<String>> fleetProjects;
+
+  final TfArg<String>? soakDuration;
+
+  final GkeHubRolloutSequenceStagesClusterSelector? clusterSelector;
+
+  Map<String, Object?> encode() => {
+    'fleet_projects': fleetProjects.toTfJson(),
+    'soak_duration': ?soakDuration?.toTfJson(),
+    'cluster_selector': ?clusterSelector?.encode(),
+  };
+}
+
+/// Typed helper for the `stages.cluster_selector` block of
+/// `google_gke_hub_rollout_sequence` (derived from provider schema).
+@immutable
+final class GkeHubRolloutSequenceStagesClusterSelector {
+  const GkeHubRolloutSequenceStagesClusterSelector({
+    required this.labelSelector,
+  });
+
+  final TfArg<String> labelSelector;
+
+  Map<String, Object?> encode() => {'label_selector': labelSelector.toTfJson()};
+}
 
 /// Factory wrapper for `google_gke_hub_rollout_sequence`.
 ///
@@ -15,10 +92,10 @@ final class GoogleGkeHubRolloutSequence extends Resource {
   GoogleGkeHubRolloutSequence({
     required super.localName,
     required TfArg<String> rolloutSequenceId,
-    required TfArg<List<Map<String, dynamic>>> stages,
+    required List<GkeHubRolloutSequenceStages> stages,
     TfArg<String>? displayName,
-    TfArg<Map<String, dynamic>>? autoUpgradeConfig,
-    TfArg<Map<String, dynamic>>? ignoredClustersSelector,
+    GkeHubRolloutSequenceAutoUpgradeConfig? autoUpgradeConfig,
+    GkeHubRolloutSequenceIgnoredClustersSelector? ignoredClustersSelector,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -30,10 +107,14 @@ final class GoogleGkeHubRolloutSequence extends Resource {
          terraformType: tfType,
          argMap: {
            'rollout_sequence_id': rolloutSequenceId,
-           'stages': stages,
+           'stages': TfArg.literal([for (final e in stages) e.encode()]),
            'display_name': ?displayName,
-           'auto_upgrade_config': ?autoUpgradeConfig,
-           'ignored_clusters_selector': ?ignoredClustersSelector,
+           if (autoUpgradeConfig != null)
+             'auto_upgrade_config': TfArg.literal(autoUpgradeConfig.encode()),
+           if (ignoredClustersSelector != null)
+             'ignored_clusters_selector': TfArg.literal(
+               ignoredClustersSelector.encode(),
+             ),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

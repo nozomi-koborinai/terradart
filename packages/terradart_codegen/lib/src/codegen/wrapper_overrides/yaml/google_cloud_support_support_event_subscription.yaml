@@ -1,6 +1,7 @@
 outputDir: cloud_support
 
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true

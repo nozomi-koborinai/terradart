@@ -1,10 +1,44 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_gke_hub_membership`.
 const Set<String> _googleGkeHubMembershipSensitive = <String>{};
+
+/// Typed helper for the `authority` block of
+/// `google_gke_hub_membership` (derived from provider schema).
+@immutable
+final class GkeHubMembershipAuthority {
+  const GkeHubMembershipAuthority({required this.issuer});
+
+  final TfArg<String> issuer;
+
+  Map<String, Object?> encode() => {'issuer': issuer.toTfJson()};
+}
+
+/// Typed helper for the `endpoint` block of
+/// `google_gke_hub_membership` (derived from provider schema).
+@immutable
+final class GkeHubMembershipEndpoint {
+  const GkeHubMembershipEndpoint({this.gkeCluster});
+
+  final GkeHubMembershipEndpointGkeCluster? gkeCluster;
+
+  Map<String, Object?> encode() => {'gke_cluster': ?gkeCluster?.encode()};
+}
+
+/// Typed helper for the `endpoint.gke_cluster` block of
+/// `google_gke_hub_membership` (derived from provider schema).
+@immutable
+final class GkeHubMembershipEndpointGkeCluster {
+  const GkeHubMembershipEndpointGkeCluster({required this.resourceLink});
+
+  final TfArg<String> resourceLink;
+
+  Map<String, Object?> encode() => {'resource_link': resourceLink.toTfJson()};
+}
 
 /// Factory wrapper for `google_gke_hub_membership`.
 ///
@@ -48,8 +82,8 @@ final class GoogleGkeHubMembership extends Resource {
     required TfArg<String> membershipId,
     TfArg<String>? location,
     TfArg<Map<String, String>>? labels,
-    TfArg<Map<String, dynamic>>? endpoint,
-    TfArg<Map<String, dynamic>>? authority,
+    GkeHubMembershipEndpoint? endpoint,
+    GkeHubMembershipAuthority? authority,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -61,8 +95,9 @@ final class GoogleGkeHubMembership extends Resource {
            'membership_id': membershipId,
            'location': ?location,
            'labels': ?labels,
-           'endpoint': ?endpoint,
-           'authority': ?authority,
+           if (endpoint != null) 'endpoint': TfArg.literal(endpoint.encode()),
+           if (authority != null)
+             'authority': TfArg.literal(authority.encode()),
            'project': ?project,
          },
        );

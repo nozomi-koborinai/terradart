@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_sourcerepo_repository_iam_member`.
 const Set<String> _googleSourcerepoRepositoryIamMemberSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_sourcerepo_repository_iam_member` (derived from provider schema).
+@immutable
+final class SourcerepoRepositoryIamMemberCondition {
+  const SourcerepoRepositoryIamMemberCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_sourcerepo_repository_iam_member`.
 ///
@@ -19,7 +43,7 @@ final class GoogleSourcerepoRepositoryIamMember extends Resource {
     required TfArg<String> repository,
     required TfArg<String> role,
     required TfArg<String> member,
-    TfArg<Map<String, dynamic>>? condition,
+    SourcerepoRepositoryIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -31,7 +55,8 @@ final class GoogleSourcerepoRepositoryIamMember extends Resource {
            'repository': repository,
            'role': role,
            'member': member,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
            'project': ?project,
          },
        );

@@ -81,12 +81,12 @@ final class FeatureStack extends Stack {
         name: .literal('terradart_customer_features'),
         region: .literal('us-central1'),
         description: .literal('Customer features backed by BigQuery'),
-        bigQuery: .literal(<String, Object?>{
-          'big_query_source': {
-            'input_uri': 'bq://$projectId.vertex_features.entities',
-          },
-          'entity_id_columns': ['entity_id'],
-        }),
+        bigQuery: VertexAiFeatureGroupBigQuery(
+          bigQuerySource: VertexAiFeatureGroupBigQueryBigQuerySource(
+            inputUri: .literal('bq://$projectId.vertex_features.entities'),
+          ),
+          entityIdColumns: .literal(['entity_id']),
+        ),
         dependsOn: [ResourceDependency(apiVertex), ResourceDependency(table)],
       ),
     );

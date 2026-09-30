@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_gke_hub_membership_iam_member`.
 const Set<String> _googleGkeHubMembershipIamMemberSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_gke_hub_membership_iam_member` (derived from provider schema).
+@immutable
+final class GkeHubMembershipIamMemberCondition {
+  const GkeHubMembershipIamMemberCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_gke_hub_membership_iam_member`.
 final class GoogleGkeHubMembershipIamMember extends Resource {
@@ -17,7 +41,7 @@ final class GoogleGkeHubMembershipIamMember extends Resource {
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? project,
-    TfArg<Map<String, dynamic>>? condition,
+    GkeHubMembershipIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -30,7 +54,8 @@ final class GoogleGkeHubMembershipIamMember extends Resource {
            'role': role,
            'member': member,
            'project': ?project,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
          },
        );
 

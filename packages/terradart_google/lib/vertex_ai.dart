@@ -67,7 +67,10 @@ export 'src/vertex_ai/google_vertex_ai_endpoint_with_model_garden_deployment.dar
 export 'src/vertex_ai/google_vertex_ai_evaluation_metric.dart'
     show GoogleVertexAiEvaluationMetric, VertexAiEvaluationMetricEncryptionSpec;
 export 'src/vertex_ai/google_vertex_ai_feature_group.dart'
-    show GoogleVertexAiFeatureGroup;
+    show
+        GoogleVertexAiFeatureGroup,
+        VertexAiFeatureGroupBigQuery,
+        VertexAiFeatureGroupBigQueryBigQuerySource;
 export 'src/vertex_ai/google_vertex_ai_feature_group_feature.dart'
     show GoogleVertexAiFeatureGroupFeature;
 export 'src/vertex_ai/google_vertex_ai_feature_online_store.dart'
@@ -256,9 +259,13 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
         VertexAiReasoningEngineSpecSourceCodeSpecRuntimeImageSpec,
         VertexAiReasoningEngineSpecSourceCodeSpecRuntimePythonSpec;
 export 'src/vertex_ai/google_vertex_ai_reasoning_engine_iam_binding.dart'
-    show GoogleVertexAiReasoningEngineIamBinding;
+    show
+        GoogleVertexAiReasoningEngineIamBinding,
+        VertexAiReasoningEngineIamBindingCondition;
 export 'src/vertex_ai/google_vertex_ai_reasoning_engine_iam_member.dart'
-    show GoogleVertexAiReasoningEngineIamMember;
+    show
+        GoogleVertexAiReasoningEngineIamMember,
+        VertexAiReasoningEngineIamMemberCondition;
 export 'src/vertex_ai/google_vertex_ai_reasoning_engine_iam_policy.dart'
     show GoogleVertexAiReasoningEngineIamPolicy;
 export 'src/vertex_ai/google_vertex_ai_semantic_governance_policy_engine.dart'

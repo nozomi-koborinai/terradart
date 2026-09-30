@@ -1,6 +1,7 @@
 outputDir: cloud_build
 
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 
 curatedDoc: |-

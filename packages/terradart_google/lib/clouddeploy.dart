@@ -47,17 +47,78 @@ export 'src/clouddeploy/google_clouddeploy_custom_target_type.dart'
         ClouddeployCustomTargetTypeTasksRenderContainer,
         GoogleClouddeployCustomTargetType;
 export 'src/clouddeploy/google_clouddeploy_custom_target_type_iam_binding.dart'
-    show GoogleClouddeployCustomTargetTypeIamBinding;
+    show
+        ClouddeployCustomTargetTypeIamBindingCondition,
+        GoogleClouddeployCustomTargetTypeIamBinding;
 export 'src/clouddeploy/google_clouddeploy_custom_target_type_iam_member.dart'
-    show GoogleClouddeployCustomTargetTypeIamMember;
+    show
+        ClouddeployCustomTargetTypeIamMemberCondition,
+        GoogleClouddeployCustomTargetTypeIamMember;
 export 'src/clouddeploy/google_clouddeploy_custom_target_type_iam_policy.dart'
     show GoogleClouddeployCustomTargetTypeIamPolicy;
 export 'src/clouddeploy/google_clouddeploy_delivery_pipeline.dart'
-    show GoogleClouddeployDeliveryPipeline;
+    show
+        ClouddeployDeliveryPipelineSerialPipeline,
+        ClouddeployDeliveryPipelineSerialPipelineStages,
+        ClouddeployDeliveryPipelineSerialPipelineStagesDeployParameters,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategy,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanary,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeployment,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysis,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisCustomChecks,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisCustomChecksTask,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisCustomChecksTaskContainer,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisGoogleCloud,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentAnalysisGoogleCloudAlertPolicyChecks,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentPostdeploy,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentPredeploy,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentVerifyConfig,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentVerifyConfigTasks,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCanaryDeploymentVerifyConfigTasksContainer,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeployment,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigs,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysis,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisCustomChecks,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisCustomChecksTask,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisCustomChecksTaskContainer,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisGoogleCloud,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsAnalysisGoogleCloudAlertPolicyChecks,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsPostdeploy,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsPredeploy,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsVerifyConfig,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsVerifyConfigTasks,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryCustomCanaryDeploymentPhaseConfigsVerifyConfigTasksContainer,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfig,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigCloudRun,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetes,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetesGatewayServiceMesh,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetesGatewayServiceMeshRouteDestinations,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyCanaryRuntimeConfigKubernetesServiceNetworking,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandard,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysis,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisCustomChecks,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisCustomChecksTask,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisCustomChecksTaskContainer,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisGoogleCloud,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardAnalysisGoogleCloudAlertPolicyChecks,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPostdeploy,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPostdeployTasks,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPostdeployTasksContainer,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPredeploy,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPredeployTasks,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardPredeployTasksContainer,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardVerifyConfig,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardVerifyConfigTasks,
+        ClouddeployDeliveryPipelineSerialPipelineStagesStrategyStandardVerifyConfigTasksContainer,
+        GoogleClouddeployDeliveryPipeline;
 export 'src/clouddeploy/google_clouddeploy_delivery_pipeline_iam_binding.dart'
-    show GoogleClouddeployDeliveryPipelineIamBinding;
+    show
+        ClouddeployDeliveryPipelineIamBindingCondition,
+        GoogleClouddeployDeliveryPipelineIamBinding;
 export 'src/clouddeploy/google_clouddeploy_delivery_pipeline_iam_member.dart'
-    show GoogleClouddeployDeliveryPipelineIamMember;
+    show
+        ClouddeployDeliveryPipelineIamMemberCondition,
+        GoogleClouddeployDeliveryPipelineIamMember;
 export 'src/clouddeploy/google_clouddeploy_delivery_pipeline_iam_policy.dart'
     show GoogleClouddeployDeliveryPipelineIamPolicy;
 export 'src/clouddeploy/google_clouddeploy_deploy_policy.dart'
@@ -77,8 +138,10 @@ export 'src/clouddeploy/google_clouddeploy_target.dart'
         ClouddeployTargetRun,
         GoogleClouddeployTarget;
 export 'src/clouddeploy/google_clouddeploy_target_iam_binding.dart'
-    show GoogleClouddeployTargetIamBinding;
+    show
+        ClouddeployTargetIamBindingCondition,
+        GoogleClouddeployTargetIamBinding;
 export 'src/clouddeploy/google_clouddeploy_target_iam_member.dart'
-    show GoogleClouddeployTargetIamMember;
+    show ClouddeployTargetIamMemberCondition, GoogleClouddeployTargetIamMember;
 export 'src/clouddeploy/google_clouddeploy_target_iam_policy.dart'
     show GoogleClouddeployTargetIamPolicy;

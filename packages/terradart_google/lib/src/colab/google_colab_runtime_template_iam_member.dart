@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_colab_runtime_template_iam_member`.
 const Set<String> _googleColabRuntimeTemplateIamMemberSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_colab_runtime_template_iam_member` (derived from provider schema).
+@immutable
+final class ColabRuntimeTemplateIamMemberCondition {
+  const ColabRuntimeTemplateIamMemberCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_colab_runtime_template_iam_member`.
 ///
@@ -20,7 +44,7 @@ final class GoogleColabRuntimeTemplateIamMember extends Resource {
     required TfArg<String> role,
     required TfArg<String> member,
     TfArg<String>? location,
-    TfArg<Map<String, dynamic>>? condition,
+    ColabRuntimeTemplateIamMemberCondition? condition,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -33,7 +57,8 @@ final class GoogleColabRuntimeTemplateIamMember extends Resource {
            'role': role,
            'member': member,
            'location': ?location,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
            'project': ?project,
          },
        );
