@@ -80026,11 +80026,16 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
-          tfName: 'user',
-          dartName: 'user',
-          kind: MigrateSlotKind.scalar,
-          required: false,
-          dartType: 'String',
+          tfName: '',
+          dartName: 'principal',
+          kind: MigrateSlotKind.sealed,
+          required: true,
+          wrapped: false,
+          merged: true,
+          variants: <String, String>{
+            'user': 'GkeHubScopeRbacRoleBindingPrincipalUser',
+            'group': 'GkeHubScopeRbacRoleBindingPrincipalGroup',
+          },
         ),
         MigrateSlot(
           tfName: 'role',
@@ -243535,6 +243540,34 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'GkeHubFleetSecurityPostureVulnerabilityMode',
         ),
       ],
+    ),
+    'GkeHubScopeRbacRoleBindingPrincipalGroup': MigrateHelper(
+      className: 'GkeHubScopeRbacRoleBindingPrincipalGroup',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'group',
+          dartName: 'group',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'group',
+    ),
+    'GkeHubScopeRbacRoleBindingPrincipalUser': MigrateHelper(
+      className: 'GkeHubScopeRbacRoleBindingPrincipalUser',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'user',
+          dartName: 'user',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          positional: true,
+          dartType: 'String',
+        ),
+      ],
+      shorthand: 'user',
     ),
     'GkeHubScopeRbacRoleBindingRoleCustomRole': MigrateHelper(
       className: 'GkeHubScopeRbacRoleBindingRoleCustomRole',
