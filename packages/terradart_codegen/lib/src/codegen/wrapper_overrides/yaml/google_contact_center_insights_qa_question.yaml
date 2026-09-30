@@ -8,12 +8,9 @@ deriveNestedTypes: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
-# Computed / advanced nests stay Map for this thin Wave.
+# `metrics` is output-only.
 nestedTypeExcludes:
   - metrics
-  - tuning_metadata
-  - qa_question_data_options
-  - predefined_question_config
 
 curatedDoc: |-
   /// QA question under a Contact Center AI Insights scorecard revision.
@@ -34,5 +31,8 @@ paramOrder:
   - answer_choices
   - order
   - tags
+  - predefined_question_config
+  - qa_question_data_options
+  - tuning_metadata
   - project
   - deletion_policy

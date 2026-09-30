@@ -62,6 +62,7 @@ final class GoogleProjectIamCustomRole extends Resource {
     required TfArg<List<String>> permissions,
     TfArg<String>? description,
     TfArg<CustomRoleStage>? stage,
+    TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -75,6 +76,7 @@ final class GoogleProjectIamCustomRole extends Resource {
            'permissions': permissions,
            'description': ?description,
            'stage': ?stage,
+           'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
        );

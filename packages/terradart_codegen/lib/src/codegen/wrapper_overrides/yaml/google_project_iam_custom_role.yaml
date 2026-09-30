@@ -38,6 +38,7 @@ paramOrder:
   - permissions
   - description
   - stage
+  - deletion_policy
   - project
 
 dartTypeOverrides:

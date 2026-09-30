@@ -62,6 +62,7 @@ curatedDoc: |-
 paramOrder:
   - service_id
   - enforcement_mode
+  - deletion_policy
   - project
 
 extraGetters: |2

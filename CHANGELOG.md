@@ -8,6 +8,24 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Added
 
+- **The last hidden Google inputs are constructor parameters**
+  (`terradart_google`) — 24 inputs on 17 factories that no constructor
+  took, because their `paramOrder` left them out: `deletionPolicy` on 10
+  factories (`GoogleServiceAccount`, `GoogleServiceAccountKey`,
+  `GoogleProjectIamCustomRole`, `GoogleIamWorkloadIdentityPool`, the
+  Firebase App Check and App Hosting factories,
+  `GoogleComputeZoneVmExtensionPolicy`), `priority` on
+  `GoogleComputeZoneVmExtensionPolicy`, and 13 blocks that take derived
+  helpers: `GoogleComputeImage` `guestOsFeatures` / `params` /
+  `shieldedInstanceInitialState` and a `.rawDisk(...)` `source` variant
+  for a Cloud Storage tarball, `GoogleGkeHubFeature` `spec` /
+  `fleetDefaultMemberConfig`, `GoogleIdentityPlatformTenant.client`,
+  `GoogleMigrationCenterPreferenceSet.virtualMachinePreferences`,
+  `GoogleDialogflowGenerator.inferenceParameter`, and the Contact Center
+  AI Insights analysis rule `annotatorSelector` and QA question
+  `predefinedQuestionConfig` / `qaQuestionDataOptions` /
+  `tuningMetadata`. Every new parameter is optional; synth output is
+  unchanged.
 - **A reference getter for every input** (`terradart_codegen`,
   `terradart_google`, `terradart_google_beta`, `terradart_aws`,
   `terradart_cloudflare`, `terradart_appwrite`, `terradart_migrate`) — each

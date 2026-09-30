@@ -89,6 +89,7 @@ final class GoogleFirebaseAppCheckServiceConfig extends Resource {
     required super.localName,
     required TfArg<String> serviceId,
     TfArg<AppCheckEnforcementMode>? enforcementMode,
+    TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -99,6 +100,7 @@ final class GoogleFirebaseAppCheckServiceConfig extends Resource {
          argMap: {
            'service_id': serviceId,
            'enforcement_mode': ?enforcementMode,
+           'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },
        );

@@ -85,9 +85,9 @@ ResourceDef _loadGoogleCloudTasksQueueIamMemberV7() {
   return ir.resources['google_cloud_tasks_queue_iam_member']!;
 }
 
-ResourceDef _loadGoogleServiceAccountV7() {
+ResourceDef _loadGoogleServiceAccountV8() {
   final json = File(
-    'test/fixtures/schema/google_service_account_v7.schema.json',
+    'test/fixtures/schema/google_service_account_v8.schema.json',
   ).readAsStringSync();
   final ir = const SchemaJsonParser().parseString(
     json,
@@ -696,7 +696,7 @@ void main() {
     test(
       'Level A: google_service_account formatted emit matches hand-written golden',
       () {
-        final def = _loadGoogleServiceAccountV7();
+        final def = _loadGoogleServiceAccountV8();
         final emitter = WrapperEmitter(
           overrides: overrides,
           rawResourceSchemas: _perResourceRawBlocks,

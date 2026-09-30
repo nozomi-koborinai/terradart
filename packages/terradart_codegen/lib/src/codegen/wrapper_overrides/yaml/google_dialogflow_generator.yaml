@@ -5,13 +5,11 @@ deriveOutputGetters: true
 deriveEnums: true
 deriveNestedTypes: true
 # Replaced by the thin prelude [summarizationContext] slot. Nested
-# enum sites under few-shot / sections / inference stay
-# frozen-by-exclude.
+# enum sites under few-shot / sections stay frozen-by-exclude.
 nestedTypeExcludes:
   - summarization_context
   - few_shot_examples
   - summarization_sections
-  - inference_parameter
 
 curatedDoc: |-
   /// Dialogflow **Agent Assist summarization generator** — LLM
@@ -52,6 +50,7 @@ paramOrder:
   - trigger_event
   - summarization_context
   - published_model
+  - inference_parameter
   - project
   - deletion_policy
 

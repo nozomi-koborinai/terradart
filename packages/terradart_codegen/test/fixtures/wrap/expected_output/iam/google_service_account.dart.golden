@@ -66,6 +66,7 @@ final class GoogleServiceAccount extends Resource {
   GoogleServiceAccount({
     required super.localName,
     required TfArg<String> accountId,
+    TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     TfArg<String>? displayName,
     TfArg<String>? description,
@@ -79,6 +80,7 @@ final class GoogleServiceAccount extends Resource {
          terraformType: tfType,
          argMap: {
            'account_id': accountId,
+           'deletion_policy': ?deletionPolicy,
            'project': ?project,
            'display_name': ?displayName,
            'description': ?description,
