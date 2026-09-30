@@ -1523,6 +1523,36 @@ parameter declaration's `defaultValues` takes
 `integerParameters` take `Quicksight{Analysis,Dashboard}ParametersDecimalParameters`
 (was `...ParametersDateTimeParameters`).
 
+### Remaining Compute, networking and DNS blocks use derived helper types
+
+**Breaking (`terradart_google`)** — every Compute, networking, DNS and
+certificate override now sets `deriveNestedTypes`, so the blocks that
+still took `TfArg<Map>` take the helper `terradart wrap` derives from the
+provider schema (a repeated block is a `List` of helpers). Most are IAM
+conditions: `condition` on the 26 Compute, DNS and network IAM
+member / binding factories takes `<Resource>Condition`. Synth output is
+unchanged.
+
+| Before | After |
+|--------|-------|
+| `condition: .literal({'title': 't', 'expression': 'e'})` | `condition: ComputeDiskIamMemberCondition(title: .literal('t'), expression: .literal('e'))` |
+| `instances: .literal([{'name': 'vm-1'}])` | `instances: [ComputeBulkPerInstanceConfigInstances(name: .literal('vm-1'))]` |
+| `secondaryDisk: .literal({'disk': disk.id.interpolation})` | `secondaryDisk: ComputeDiskAsyncReplicationSecondaryDisk(disk: .ref(disk.id))` |
+| `interface: .literal([{'id': 0, 'ip_address': '203.0.113.1'}])` | `interface: [ComputeExternalVpnGatewayInterface(id: .literal(0), ipAddress: .literal('203.0.113.1'))]` |
+| `extensionPolicies: .literal([{'extension_name': 'ops-agent'}])` | `extensionPolicies: [ComputeZoneVmExtensionPolicyExtensionPolicies(extensionName: .literal('ops-agent'))]` |
+
+`GoogleComputeInstanceGroup.namedPort` and `GoogleDnsResponsePolicy`'s
+`networks` / `gkeClusters` are typed the same way.
+
+Newly exposed inputs: `params` (resource manager tags) on
+`GoogleComputeExternalVpnGateway`, `GoogleComputeHaVpnGateway`,
+`GoogleComputeInstantSnapshot`, `GoogleComputeInterconnect`,
+`GoogleComputeVpnGateway` and `GoogleComputeVpnTunnel`;
+`GoogleComputeHaVpnGateway.vpnInterfaces`,
+`GoogleComputeInterconnect.macsec`, `GoogleComputeVpnTunnel.cipherSuite`,
+`GoogleComputeZoneVmExtensionPolicy.instanceSelectors`, and `condition`
+on the two network firewall policy IAM members.
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it
