@@ -1,5 +1,5 @@
-/// Chronicle quickstart — custom list, SOAR network, native dashboard, and
-/// dashboard chart.
+/// Chronicle quickstart — custom list, SOAR network, SOAR case close / stage /
+/// tag definitions, native dashboard, and dashboard chart.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -44,6 +44,45 @@ final class ChronicleCustomListStack extends Stack {
         displayName: .literal('Corp internal'),
         address: .literal('10.0.0.0/8'),
         environmentsJson: .literal('["Default Environment"]'),
+        priority: .literal(1),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    // SOAR case lifecycle: a closing reason, a triage stage, and a tag the
+    // case title can be taken from.
+    add(
+      GoogleChronicleCaseCloseDefinition(
+        localName: 'false_positive_close',
+        location: .literal('us'),
+        instance: .literal(instanceId),
+        closeReason: .literal(.notMalicious),
+        rootCause: .literal('False positive'),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleChronicleCaseStageDefinition(
+        localName: 'triage_stage',
+        location: .literal('us'),
+        instance: .literal(instanceId),
+        displayName: .literal('Triage'),
+        order: .literal(1),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleChronicleCaseTagDefinition(
+        localName: 'phishing_tag',
+        location: .literal('us'),
+        instance: .literal(instanceId),
+        displayName: .literal('Phishing'),
+        value: .literal('phishing'),
+        comparisonType: .literal(.contain),
+        matchCriteria: .literal(.byRuleGenerator),
+        canBeCaseTitle: .literal(true),
         priority: .literal(1),
         dependsOn: apiDeps,
       ),

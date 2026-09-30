@@ -4,7 +4,8 @@
 /// - an inspect template (EMAIL_ADDRESS),
 /// - a de-identify template (replace EMAIL_ADDRESS),
 /// - a regex stored info type,
-/// - a paused job trigger over an empty GCS prefix.
+/// - a paused job trigger over an empty GCS prefix,
+/// - a content policy (BLOCK verdict on EMAIL_ADDRESS findings).
 ///
 /// Job trigger status is [DataLossPreventionJobTriggerStatus.paused] so apply
 /// does not start inspect scans (DLP bills for bytes inspected).
@@ -153,6 +154,45 @@ final class DlpStack extends Stack {
           ResourceDependency(inspect),
           ResourceDependency(scanBucket),
         ],
+      ),
+    );
+
+    // A content policy turns inspection findings into an ALLOW / BLOCK
+    // verdict: block content with an email address, allow everything else.
+    add(
+      GoogleDataLossPreventionContentPolicy(
+        localName: 'block_emails',
+        parent: .literal('$parent/locations/us-central1'),
+        displayName: .literal('terradart-block-emails'),
+        inspectConfig: DataLossPreventionContentPolicyInspectConfig(
+          infoTypes: [
+            DataLossPreventionContentPolicyInspectConfigInfoTypes(
+              name: .literal('EMAIL_ADDRESS'),
+            ),
+          ],
+        ),
+        rules: [
+          DataLossPreventionContentPolicyRules(
+            action: DataLossPreventionContentPolicyRulesAction(
+              returnVerdict: .literal(.block),
+            ),
+            conditions: [
+              DataLossPreventionContentPolicyRulesConditions(
+                infoTypeCondition:
+                    DataLossPreventionContentPolicyRulesConditionsInfoTypeCondition(
+                      infoTypes:
+                          DataLossPreventionContentPolicyRulesConditionsInfoTypeConditionInfoTypes(
+                            infoTypeNames: .literal(['EMAIL_ADDRESS']),
+                          ),
+                    ),
+              ),
+            ],
+          ),
+        ],
+        defaultAction: DataLossPreventionContentPolicyDefaultAction(
+          returnVerdict: .literal(.allow),
+        ),
+        dependsOn: [ResourceDependency(apiDlp)],
       ),
     );
 

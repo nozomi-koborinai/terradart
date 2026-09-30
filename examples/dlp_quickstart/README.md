@@ -5,9 +5,10 @@ End-to-end terradart example for Cloud DLP. Enables `dlp.googleapis.com` and pro
 - an inspect template (EMAIL_ADDRESS),
 - a de-identify template (replace EMAIL_ADDRESS with the info-type name),
 - a regex stored info type,
-- a **paused** job trigger over an empty GCS prefix (so apply does not start scans).
+- a **paused** job trigger over an empty GCS prefix (so apply does not start scans),
+- a content policy that returns a BLOCK verdict for content with an email address.
 
-Templates and paused triggers are configuration metadata; DLP bills for bytes inspected/transformed when jobs run.
+Templates, content policies and paused triggers are configuration metadata; DLP bills for bytes inspected/transformed when jobs run.
 
 ## Prerequisites
 

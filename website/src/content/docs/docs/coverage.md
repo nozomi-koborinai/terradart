@@ -379,7 +379,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_bigquery_connection_iam_member` | `GoogleBigqueryConnectionIamMember` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) |
 | `google_bigquery_connection_iam_policy` | `GoogleBigqueryConnectionIamPolicy` | — |
 | `google_bigquery_data_transfer_config` | `GoogleBigqueryDataTransferConfig` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) |
-| `google_bigquery_data_transfer_data_source_enrollment` | `GoogleBigqueryDataTransferDataSourceEnrollment` | — |
+| `google_bigquery_data_transfer_data_source_enrollment` | `GoogleBigqueryDataTransferDataSourceEnrollment` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) |
 | `google_bigquery_datapolicy_data_policy` | `GoogleBigqueryDatapolicyDataPolicy` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) |
 | `google_bigquery_datapolicy_data_policy_iam_binding` | `GoogleBigqueryDatapolicyDataPolicyIamBinding` | — |
 | `google_bigquery_datapolicy_data_policy_iam_member` | `GoogleBigqueryDatapolicyDataPolicyIamMember` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) |
@@ -483,9 +483,9 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
 | `google_chronicle_big_query_export` | `GoogleChronicleBigQueryExport` | — |
-| `google_chronicle_case_close_definition` | `GoogleChronicleCaseCloseDefinition` | — |
-| `google_chronicle_case_stage_definition` | `GoogleChronicleCaseStageDefinition` | — |
-| `google_chronicle_case_tag_definition` | `GoogleChronicleCaseTagDefinition` | — |
+| `google_chronicle_case_close_definition` | `GoogleChronicleCaseCloseDefinition` | [chronicle_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/chronicle_quickstart) |
+| `google_chronicle_case_stage_definition` | `GoogleChronicleCaseStageDefinition` | [chronicle_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/chronicle_quickstart) |
+| `google_chronicle_case_tag_definition` | `GoogleChronicleCaseTagDefinition` | [chronicle_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/chronicle_quickstart) |
 | `google_chronicle_custom_list` | `GoogleChronicleCustomList` | [chronicle_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/chronicle_quickstart) |
 | `google_chronicle_dashboard_chart` | `GoogleChronicleDashboardChart` | [chronicle_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/chronicle_quickstart) |
 | `google_chronicle_data_access_label` | `GoogleChronicleDataAccessLabel` | — |
@@ -966,9 +966,9 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_beyondcorp_security_gateway` (data source) | `DataGoogleBeyondcorpSecurityGateway` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_beyondcorp_security_gateway_application_iam_policy` (data source) | `DataGoogleBeyondcorpSecurityGatewayApplicationIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_beyondcorp_security_gateway_iam_policy` (data source) | `DataGoogleBeyondcorpSecurityGatewayIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
-| `google_biglake_hive_catalog_iam_policy` (data source) | `DataGoogleBiglakeHiveCatalogIamPolicy` | — |
-| `google_biglake_hive_database_iam_policy` (data source) | `DataGoogleBiglakeHiveDatabaseIamPolicy` | — |
-| `google_biglake_hive_table_iam_policy` (data source) | `DataGoogleBiglakeHiveTableIamPolicy` | — |
+| `google_biglake_hive_catalog_iam_policy` (data source) | `DataGoogleBiglakeHiveCatalogIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
+| `google_biglake_hive_database_iam_policy` (data source) | `DataGoogleBiglakeHiveDatabaseIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
+| `google_biglake_hive_table_iam_policy` (data source) | `DataGoogleBiglakeHiveTableIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_biglake_iceberg_catalog_iam_policy` (data source) | `DataGoogleBiglakeIcebergCatalogIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_biglake_iceberg_namespace_iam_policy` (data source) | `DataGoogleBiglakeIcebergNamespaceIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_biglake_iceberg_table_iam_policy` (data source) | `DataGoogleBiglakeIcebergTableIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
@@ -1015,7 +1015,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_cloud_run_v2_worker_pool_iam_policy` (data source) | `DataGoogleCloudRunV2WorkerPoolIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_cloud_tasks_queue_iam_policy` (data source) | `DataGoogleCloudTasksQueueIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_cloudbuild_trigger` (data source) | `DataGoogleCloudbuildTrigger` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
-| `google_cloudbuild_worker_pool` (data source) | `DataGoogleCloudbuildWorkerPool` | — |
+| `google_cloudbuild_worker_pool` (data source) | `DataGoogleCloudbuildWorkerPool` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_cloudbuildv2_connection_iam_policy` (data source) | `DataGoogleCloudbuildv2ConnectionIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_clouddeploy_custom_target_type_iam_policy` (data source) | `DataGoogleClouddeployCustomTargetTypeIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_clouddeploy_delivery_pipeline_iam_policy` (data source) | `DataGoogleClouddeployDeliveryPipelineIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
@@ -1093,7 +1093,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_compute_routers` (data source) | `DataGoogleComputeRouters` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_compute_security_policy` (data source) | `DataGoogleComputeSecurityPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_compute_service_attachment` (data source) | `DataGoogleComputeServiceAttachment` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
-| `google_compute_service_attachments` (data source) | `DataGoogleComputeServiceAttachments` | — |
+| `google_compute_service_attachments` (data source) | `DataGoogleComputeServiceAttachments` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_compute_snapshot` (data source) | `DataGoogleComputeSnapshot` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_compute_snapshot_iam_policy` (data source) | `DataGoogleComputeSnapshotIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_compute_ssl_certificate` (data source) | `DataGoogleComputeSslCertificate` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
@@ -1124,7 +1124,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_data_catalog_taxonomy_iam_policy` (data source) | `DataGoogleDataCatalogTaxonomyIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_data_fusion_instance_iam_policy` (data source) | `DataGoogleDataFusionInstanceIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_data_lineage_config` (data source) | `DataGoogleDataLineageConfig` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
-| `google_dataform_repository_iam_policy` (data source) | `DataGoogleDataformRepositoryIamPolicy` | — |
+| `google_dataform_repository_iam_policy` (data source) | `DataGoogleDataformRepositoryIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_dataplex_aspect_type_iam_policy` (data source) | `DataGoogleDataplexAspectTypeIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_dataplex_asset_iam_policy` (data source) | `DataGoogleDataplexAssetIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_dataplex_data_product_iam_policy` (data source) | `DataGoogleDataplexDataProductIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
@@ -1156,7 +1156,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_dns_record_sets` (data source) | `DataGoogleDnsRecordSets` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_endpoints_service_consumers_iam_policy` (data source) | `DataGoogleEndpointsServiceConsumersIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_endpoints_service_iam_policy` (data source) | `DataGoogleEndpointsServiceIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
-| `google_eventarc_pipeline_iam_policy` (data source) | `DataGoogleEventarcPipelineIamPolicy` | — |
+| `google_eventarc_pipeline_iam_policy` (data source) | `DataGoogleEventarcPipelineIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_filestore_instance` (data source) | `DataGoogleFilestoreInstance` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_firestore_document` (data source) | `DataGoogleFirestoreDocument` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_folder` (data source) | `DataGoogleFolder` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
@@ -1183,7 +1183,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_iam_workforce_pool_iam_policy` (data source) | `DataGoogleIamWorkforcePoolIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_iam_workload_identity_pool` (data source) | `DataGoogleIamWorkloadIdentityPool` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_iam_workload_identity_pool_iam_policy` (data source) | `DataGoogleIamWorkloadIdentityPoolIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
-| `google_iam_workload_identity_pool_openid_config` (data source) | `DataGoogleIamWorkloadIdentityPoolOpenidConfig` | — |
+| `google_iam_workload_identity_pool_openid_config` (data source) | `DataGoogleIamWorkloadIdentityPoolOpenidConfig` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_iam_workload_identity_pool_provider` (data source) | `DataGoogleIamWorkloadIdentityPoolProvider` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_iap_agent_registry_agent_iam_policy` (data source) | `DataGoogleIapAgentRegistryAgentIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_iap_agent_registry_endpoint_iam_policy` (data source) | `DataGoogleIapAgentRegistryEndpointIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
@@ -1228,7 +1228,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_logging_sink` (data source) | `DataGoogleLoggingSink` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_lustre_instance` (data source) | `DataGoogleLustreInstance` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_memcache_instance` (data source) | `DataGoogleMemcacheInstance` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
-| `google_memorystore_acl_policy` (data source) | `DataGoogleMemorystoreAclPolicy` | — |
+| `google_memorystore_acl_policy` (data source) | `DataGoogleMemorystoreAclPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_memorystore_instance` (data source) | `DataGoogleMemorystoreInstance` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_monitoring_app_engine_service` (data source) | `DataGoogleMonitoringAppEngineService` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_monitoring_cluster_istio_service` (data source) | `DataGoogleMonitoringClusterIstioService` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
@@ -1242,9 +1242,9 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_network_management_connectivity_tests` (data source) | `DataGoogleNetworkManagementConnectivityTests` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_network_security_address_group_iam_policy` (data source) | `DataGoogleNetworkSecurityAddressGroupIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_network_security_address_groups` (data source) | `DataGoogleNetworkSecurityAddressGroups` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
-| `google_observability_folder_settings` (data source) | `DataGoogleObservabilityFolderSettings` | — |
-| `google_observability_organization_settings` (data source) | `DataGoogleObservabilityOrganizationSettings` | — |
-| `google_observability_project_settings` (data source) | `DataGoogleObservabilityProjectSettings` | — |
+| `google_observability_folder_settings` (data source) | `DataGoogleObservabilityFolderSettings` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
+| `google_observability_organization_settings` (data source) | `DataGoogleObservabilityOrganizationSettings` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
+| `google_observability_project_settings` (data source) | `DataGoogleObservabilityProjectSettings` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_oracle_database_autonomous_database` (data source) | `DataGoogleOracleDatabaseAutonomousDatabase` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_oracle_database_autonomous_databases` (data source) | `DataGoogleOracleDatabaseAutonomousDatabases` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_oracle_database_cloud_exadata_infrastructure` (data source) | `DataGoogleOracleDatabaseCloudExadataInfrastructure` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
@@ -1292,7 +1292,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_pubsub_topic` (data source) | `DataGooglePubsubTopic` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_pubsub_topic_iam_policy` (data source) | `DataGooglePubsubTopicIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_redis_cluster` (data source) | `DataGoogleRedisCluster` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
-| `google_redis_cluster_acl_policy` (data source) | `DataGoogleRedisClusterAclPolicy` | — |
+| `google_redis_cluster_acl_policy` (data source) | `DataGoogleRedisClusterAclPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_redis_instance` (data source) | `DataGoogleRedisInstance` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_scc_source_iam_policy` (data source) | `DataGoogleSccSourceIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
 | `google_scc_v2_organization_source_iam_policy` (data source) | `DataGoogleSccV2OrganizationSourceIamPolicy` | [data_source_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_source_leftover_quickstart) |
@@ -1610,7 +1610,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
-| `google_data_loss_prevention_content_policy` | `GoogleDataLossPreventionContentPolicy` | — |
+| `google_data_loss_prevention_content_policy` | `GoogleDataLossPreventionContentPolicy` | [dlp_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dlp_quickstart) |
 | `google_data_loss_prevention_deidentify_template` | `GoogleDataLossPreventionDeidentifyTemplate` | [dlp_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dlp_quickstart) |
 | `google_data_loss_prevention_discovery_config` | `GoogleDataLossPreventionDiscoveryConfig` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_data_loss_prevention_inspect_template` | `GoogleDataLossPreventionInspectTemplate` | [dlp_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dlp_quickstart) |
@@ -1684,9 +1684,9 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_eventarc_google_channel_config` | `GoogleEventarcGoogleChannelConfig` | [eventarc_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/eventarc_quickstart) |
 | `google_eventarc_message_bus` | `GoogleEventarcMessageBus` | [eventarc_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/eventarc_quickstart) |
 | `google_eventarc_pipeline` | `GoogleEventarcPipeline` | [eventarc_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/eventarc_quickstart) |
-| `google_eventarc_pipeline_iam_binding` | `GoogleEventarcPipelineIamBinding` | — |
-| `google_eventarc_pipeline_iam_member` | `GoogleEventarcPipelineIamMember` | — |
-| `google_eventarc_pipeline_iam_policy` | `GoogleEventarcPipelineIamPolicy` | — |
+| `google_eventarc_pipeline_iam_binding` | `GoogleEventarcPipelineIamBinding` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
+| `google_eventarc_pipeline_iam_member` | `GoogleEventarcPipelineIamMember` | [eventarc_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/eventarc_quickstart) |
+| `google_eventarc_pipeline_iam_policy` | `GoogleEventarcPipelineIamPolicy` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_eventarc_trigger` | `GoogleEventarcTrigger` | [eventarc_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/eventarc_quickstart) |
 
 ## filestore
@@ -1772,12 +1772,12 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_gemini_code_tools_setting_binding` | `GoogleGeminiCodeToolsSettingBinding` | — |
 | `google_gemini_data_sharing_with_google_setting` | `GoogleGeminiDataSharingWithGoogleSetting` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
 | `google_gemini_data_sharing_with_google_setting_binding` | `GoogleGeminiDataSharingWithGoogleSettingBinding` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
-| `google_gemini_gda_observability_setting` | `GoogleGeminiGdaObservabilitySetting` | — |
-| `google_gemini_gda_observability_setting_binding` | `GoogleGeminiGdaObservabilitySettingBinding` | — |
+| `google_gemini_gda_observability_setting` | `GoogleGeminiGdaObservabilitySetting` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
+| `google_gemini_gda_observability_setting_binding` | `GoogleGeminiGdaObservabilitySettingBinding` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
 | `google_gemini_gemini_gcp_enablement_setting` | `GoogleGeminiGeminiGcpEnablementSetting` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
 | `google_gemini_gemini_gcp_enablement_setting_binding` | `GoogleGeminiGeminiGcpEnablementSettingBinding` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
-| `google_gemini_gibq_observability_setting` | `GoogleGeminiGibqObservabilitySetting` | — |
-| `google_gemini_gibq_observability_setting_binding` | `GoogleGeminiGibqObservabilitySettingBinding` | — |
+| `google_gemini_gibq_observability_setting` | `GoogleGeminiGibqObservabilitySetting` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
+| `google_gemini_gibq_observability_setting_binding` | `GoogleGeminiGibqObservabilitySettingBinding` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
 | `google_gemini_logging_setting` | `GoogleGeminiLoggingSetting` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
 | `google_gemini_logging_setting_binding` | `GoogleGeminiLoggingSettingBinding` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
 | `google_gemini_release_channel_setting` | `GoogleGeminiReleaseChannelSetting` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
@@ -2108,7 +2108,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_monitoring_notification_channel` | `GoogleMonitoringNotificationChannel` | [monitoring_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/monitoring_quickstart) |
 | `google_monitoring_service` | `GoogleMonitoringService` | — |
 | `google_monitoring_slo` | `GoogleMonitoringSlo` | [monitoring_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/monitoring_quickstart) |
-| `google_monitoring_snooze` | `GoogleMonitoringSnooze` | — |
+| `google_monitoring_snooze` | `GoogleMonitoringSnooze` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_monitoring_uptime_check_config` | `GoogleMonitoringUptimeCheckConfig` | [monitoring_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/monitoring_quickstart) |
 
 ## netapp
@@ -2146,7 +2146,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_network_connectivity_spoke` | `GoogleNetworkConnectivitySpoke` | [ncc_hub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ncc_hub_quickstart) |
 | `google_network_connectivity_transport` | `GoogleNetworkConnectivityTransport` | [network_connectivity_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_connectivity_quickstart) |
 | `google_network_management_connectivity_test` | `GoogleNetworkManagementConnectivityTest` | [api_security_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/api_security_quickstart) |
-| `google_network_management_network_monitoring_provider` | `GoogleNetworkManagementNetworkMonitoringProvider` | — |
+| `google_network_management_network_monitoring_provider` | `GoogleNetworkManagementNetworkMonitoringProvider` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_network_management_organization_vpc_flow_logs_config` | `GoogleNetworkManagementOrganizationVpcFlowLogsConfig` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_network_management_vpc_flow_logs_config` | `GoogleNetworkManagementVpcFlowLogsConfig` | [network_management_vpc_flow_logs_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_management_vpc_flow_logs_quickstart) |
 | `google_network_security_address_group` | `GoogleNetworkSecurityAddressGroup` | [network_security_lists_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_lists_quickstart) |
@@ -2178,7 +2178,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_network_security_ull_mirroring_collector_rule` | `GoogleNetworkSecurityUllMirroringCollectorRule` | [network_security_ull_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_ull_quickstart) |
 | `google_network_security_ull_mirroring_engine` | `GoogleNetworkSecurityUllMirroringEngine` | [network_security_ull_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_ull_quickstart) |
 | `google_network_security_url_lists` | `GoogleNetworkSecurityUrlLists` | [network_security_lists_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_lists_quickstart) |
-| `google_network_services_agent_connectivity_template` | `GoogleNetworkServicesAgentConnectivityTemplate` | — |
+| `google_network_services_agent_connectivity_template` | `GoogleNetworkServicesAgentConnectivityTemplate` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_network_services_agent_gateway` | `GoogleNetworkServicesAgentGateway` | — |
 | `google_network_services_authz_extension` | `GoogleNetworkServicesAuthzExtension` | — |
 | `google_network_services_edge_cache_keyset` | `GoogleNetworkServicesEdgeCacheKeyset` | — |
@@ -2210,9 +2210,9 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
-| `google_observability_bucket` | `GoogleObservabilityBucket` | — |
+| `google_observability_bucket` | `GoogleObservabilityBucket` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_observability_folder_settings` | `GoogleObservabilityFolderSettings` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
-| `google_observability_link` | `GoogleObservabilityLink` | — |
+| `google_observability_link` | `GoogleObservabilityLink` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_observability_organization_settings` | `GoogleObservabilityOrganizationSettings` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_observability_project_settings` | `GoogleObservabilityProjectSettings` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_observability_trace_scope` | `GoogleObservabilityTraceScope` | [observability_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/observability_quickstart) |
@@ -2326,7 +2326,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_pubsub_subscription_iam_policy` | `GooglePubsubSubscriptionIamPolicy` | — |
 | `google_pubsub_topic` | `GooglePubsubTopic` | [cloud_asset_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_asset_quickstart), [cloud_scheduler_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_scheduler_quickstart), [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart), [iam_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/iam_quickstart), [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart), [scc_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/scc_quickstart), [storage_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/storage_quickstart) |
 | `google_pubsub_topic_iam_binding` | `GooglePubsubTopicIamBinding` | [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) |
-| `google_pubsub_topic_iam_member` | `GooglePubsubTopicIamMember` | [cloud_asset_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_asset_quickstart), [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart), [iam_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/iam_quickstart), [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) |
+| `google_pubsub_topic_iam_member` | `GooglePubsubTopicIamMember` | [cloud_asset_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_asset_quickstart), [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart), [iam_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/iam_quickstart), [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart), [scc_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/scc_quickstart) |
 | `google_pubsub_topic_iam_policy` | `GooglePubsubTopicIamPolicy` | [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) |
 
 ## pubsub_lite
@@ -2366,7 +2366,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_scc_management_project_security_health_analytics_custom_module` | `GoogleSccManagementProjectSecurityHealthAnalyticsCustomModule` | [scc_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/scc_quickstart) |
 | `google_scc_mute_config` | `GoogleSccMuteConfig` | [scc_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/scc_quickstart) |
 | `google_scc_notification_config` | `GoogleSccNotificationConfig` | [scc_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/scc_quickstart) |
-| `google_scc_notification_service_account` | `GoogleSccNotificationServiceAccount` | — |
+| `google_scc_notification_service_account` | `GoogleSccNotificationServiceAccount` | [scc_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/scc_quickstart) |
 | `google_scc_organization_custom_module` | `GoogleSccOrganizationCustomModule` | [scc_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/scc_quickstart) |
 | `google_scc_organization_scc_big_query_export` | `GoogleSccOrganizationSccBigQueryExport` | [scc_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/scc_quickstart) |
 | `google_scc_project_custom_module` | `GoogleSccProjectCustomModule` | [scc_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/scc_quickstart) |
@@ -2510,8 +2510,8 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_storage_default_object_access_control` | `GoogleStorageDefaultObjectAccessControl` | [storage_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/storage_quickstart) |
 | `google_storage_default_object_acl` | `GoogleStorageDefaultObjectAcl` | [storage_transfer_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/storage_transfer_quickstart) |
 | `google_storage_folder` | `GoogleStorageFolder` | [storage_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/storage_quickstart) |
-| `google_storage_ftp_server` | `GoogleStorageFtpServer` | — |
-| `google_storage_ftp_user` | `GoogleStorageFtpUser` | — |
+| `google_storage_ftp_server` | `GoogleStorageFtpServer` | [storage_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/storage_quickstart) |
+| `google_storage_ftp_user` | `GoogleStorageFtpUser` | [storage_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/storage_quickstart) |
 | `google_storage_hmac_key` | `GoogleStorageHmacKey` | [storage_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/storage_quickstart) |
 | `google_storage_insights_dataset_config` | `GoogleStorageInsightsDatasetConfig` | — |
 | `google_storage_insights_report_config` | `GoogleStorageInsightsReportConfig` | [storage_transfer_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/storage_transfer_quickstart) |
@@ -2584,7 +2584,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_vertex_ai_index_endpoint` | `GoogleVertexAiIndexEndpoint` | — |
 | `google_vertex_ai_index_endpoint_deployed_index` | `GoogleVertexAiIndexEndpointDeployedIndex` | — |
 | `google_vertex_ai_persistent_resource` | `GoogleVertexAiPersistentResource` | — |
-| `google_vertex_ai_rag_corpus` | `GoogleVertexAiRagCorpus` | — |
+| `google_vertex_ai_rag_corpus` | `GoogleVertexAiRagCorpus` | [deferred_leftover_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/deferred_leftover_quickstart) |
 | `google_vertex_ai_rag_engine_config` | `GoogleVertexAiRagEngineConfig` | — |
 | `google_vertex_ai_reasoning_engine` | `GoogleVertexAiReasoningEngine` | — |
 | `google_vertex_ai_reasoning_engine_iam_binding` | `GoogleVertexAiReasoningEngineIamBinding` | — |
