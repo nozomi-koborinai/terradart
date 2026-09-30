@@ -7,7 +7,7 @@
 /// `deletionProtection` is set to `false` so the workflow can be torn down
 /// (the provider defaults it to `true`, which blocks `terraform destroy`).
 ///
-/// Exports the workflow name as a typed Dart constant via `Stack.addExport`.
+/// Exports the workflow name as a typed Dart constant via `Stack.addConstant`.
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
@@ -21,6 +21,7 @@ final class WorkflowStack extends Stack {
   WorkflowStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/workflow_stack.app.dart'),
       ) {
     final apiWorkflows = add(
       GoogleProjectService(
@@ -51,14 +52,9 @@ main:
     );
 
     // Literal workflow name -- emitted as a Dart constant at synth time.
-    addExport('HELLO_WORKFLOW_NAME', StringExport('terradart-hello'));
+    addConstant('helloWorkflowName', .ref(hello.nameRef));
 
     // Full workflow resource id -- Terraform output only (computed).
-    addExport(
-      'HELLO_WORKFLOW_ID',
-      ResourceIdExport(hello.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/workflow_stack.app.dart');
+    addOutput('hello_workflow_id', .ref(hello.id));
   }
 }

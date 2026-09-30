@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/orders_stack.app.dart`
-/// (literal exports such as `ORDERS_TOPIC_NAME`). Computed exports like
-/// `ORDERS_TOPIC_ID` appear as Terraform outputs only.
+/// (with `OrdersStackConstants.ordersTopicName`). Computed values such as
+/// `orders_topic_id` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

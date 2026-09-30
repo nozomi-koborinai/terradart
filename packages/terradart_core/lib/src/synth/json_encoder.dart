@@ -3,7 +3,6 @@ import 'package:terradart_core/src/lifecycle.dart';
 import 'package:terradart_core/src/module_call.dart';
 import 'package:terradart_core/src/resource.dart';
 import 'package:terradart_core/src/stack.dart';
-import 'package:terradart_core/src/synth/output_emitter.dart';
 import 'package:terradart_core/src/synth/sensitive_literal_error.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_ref.dart';
@@ -244,6 +243,9 @@ class TfJsonEncoder {
     }
     for (final m in stack.modules) {
       scan(m.tfAddress, [...m.inputs.values, m.count, m.forEach]);
+    }
+    for (final MapEntry(key: name, value: o) in stack.outputs.entries) {
+      scan('output.$name', [o.value]);
     }
     if (undeclared.isEmpty) return;
 
@@ -640,20 +642,5 @@ class TfJsonEncoder {
       );
     }
     return [for (final m in moved) m.toTfJson()];
-  }
-
-  /// Top-level `output { ... }` block built from Pass-2's
-  /// [TerraformOutputSpec] list. Returns `null` for an empty list.
-  static Map<String, dynamic>? outputBlock(List<TerraformOutputSpec> outs) {
-    if (outs.isEmpty) return null;
-    final out = <String, dynamic>{};
-    for (final o in outs) {
-      out[o.name] = {
-        'value': o.value,
-        if (o.sensitive) 'sensitive': true,
-        if (o.description != null) 'description': o.description,
-      };
-    }
-    return out;
   }
 }

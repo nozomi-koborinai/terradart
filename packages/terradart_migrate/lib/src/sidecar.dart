@@ -28,7 +28,7 @@ const variablesFileName = 'variables.tf';
 /// Every `locals` block.
 const localsFileName = 'locals.tf';
 
-/// `output` blocks that did not become exports.
+/// `output` blocks that did not become `addOutput` calls.
 const outputsFileName = 'outputs.tf';
 
 /// One module's sidecar files.

@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class ObservabilityStackExports {
-  ObservabilityStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class ObservabilityStackConstants {
+  ObservabilityStackConstants._();
 
-  static const String TRACE_SCOPE_ID = r'terradart-traces';
+  static const String traceScopeId = r'terradart-traces';
 }

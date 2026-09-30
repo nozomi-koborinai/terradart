@@ -2,6 +2,85 @@
 
 ## 0.30.x → next release
 
+### `addOutput` and `addConstant` replace `addExport`
+
+**Breaking (`terradart_core`)** — a Terraform output and a Dart constant are
+separate methods, and the constants file is a constructor parameter.
+`AppExport`, `ResourceIdExport`, `ResourceAttributeExport`, `StringExport`,
+`EnvBackedExport` and `setAppExportsOutputPath` are gone.
+
+```dart
+// Before
+final class OrdersStack extends Stack {
+  OrdersStack() : super(providers: [...]) {
+    final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
+    addExport('ORDERS_TOPIC_NAME', ResourceIdExport(topic.nameRef));
+    addExport('ORDERS_TOPIC_ID', ResourceIdExport(topic.id, emitTerraformOutput: true));
+    addExport('API_VERSION', StringExport('v1'));
+    setAppExportsOutputPath('lib/generated/orders_stack.app.dart');
+  }
+}
+// OrdersStackExports.ORDERS_TOPIC_NAME
+
+// After
+final class OrdersStack extends Stack {
+  OrdersStack()
+    : super(
+        providers: [...],
+        appExports: AppExports('lib/generated/orders_stack.app.dart'),
+      ) {
+    final topic = add(GooglePubsubTopic(localName: 'orders', name: .literal('orders-prod')));
+    addConstant('ordersTopicName', .ref(topic.nameRef));
+    addOutput('orders_topic_id', .ref(topic.id));
+    addConstant('apiVersion', const .value('v1'));
+  }
+}
+// OrdersStackConstants.ordersTopicName
+```
+
+| Before | After |
+|--------|-------|
+| `ResourceIdExport(x.attr)` on a literal attribute | `addConstant('name', .ref(x.attr))` |
+| `ResourceIdExport(x.attr)` on an apply-time attribute (it became an output) | `addOutput('name', .ref(x.attr))` |
+| `emitTerraformOutput: true` | a separate `addOutput` |
+| `terraformOutputName: 'x'` | `addOutput('x', ...)` — the output name is the first argument |
+| `StringExport('v')` | `addConstant('name', const .value('v'))` — any `String` / `int` / `double` / `num` / `bool` / `Object`, or a `List` / `String`-keyed `Map` of them |
+| `EnvBackedExport(envVarName: 'X')` | `addConstant('name', .fromEnvironment('X'))` |
+| `setAppExportsOutputPath(path)` | `appExports: AppExports(path)` on the `super(...)` call |
+| `synth(stackName: 'Custom')` | `AppExports(path, name: 'Custom')` |
+| `SynthResult.dartConstants` | `SynthResult.dartSource` (and `dartSourcePath`) |
+| `OrdersStackExports.ORDERS_TOPIC_NAME` | `OrdersStackConstants.ordersTopicName` |
+
+What changes in behavior:
+
+- **A `.ref` constant that cannot resolve fails synth.** `ResourceIdExport`
+  silently dropped the constant when its attribute was not a literal (and
+  emitted an output instead). `addConstant(.ref(...))` throws a `StateError`
+  that says what the attribute is set by — a reference, a variable, an
+  expression, or nothing (the provider computes it) — or that it is a
+  sensitive field. Use `addOutput` for those values.
+- **Names are checked at registration.** A constant name must be a public
+  Dart identifier (`ordersTopicName`, not `ORDERS_TOPIC_NAME`, although that
+  still compiles); an output name a Terraform identifier. A duplicate of
+  either throws `ArgumentError`, as does an output that reads a sensitive
+  field without `sensitive: true` (Terraform rejects it at plan).
+- **Output names are yours.** An export used to emit its Dart name as the
+  output name; rename outputs to snake_case when you migrate if you like, and
+  update anything that reads them (`terraform output -raw orders_topic_id`,
+  `terraform_remote_state`).
+- **The file is always written** when `appExports` is set, rewritten in full
+  on every synth, and the class is `<Stack>Constants` (was `<Stack>Exports`).
+  The Stack's class name drops a leading `_`.
+- `DartConstantsEmitter`, `LiteralResolver` and the `OutputEmitter` types are
+  no longer exported from `package:terradart_core/terradart_core.dart`; they
+  were synth internals.
+
+A Stack `terradart-migrate` wrote before this release has an `addExport` per
+`output` block; re-run the migration, or replace each
+`addExport(r'key', ResourceIdExport(x.attr, emitTerraformOutput: true, ...))`
+with `addOutput(r'<output name>', .ref(x.attr), ...)` and delete the
+`setAppExportsOutputPath` line.
+
 ### Dart 3.10 is the minimum SDK
 
 **Breaking (every package)** — all `terradart_*` packages declare

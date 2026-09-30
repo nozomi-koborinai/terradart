@@ -26,6 +26,7 @@ final class LunchStack extends Stack {
            GoogleProvider(project: projectId, region: region),
            const TimeProvider(),
          ],
+         appExports: lunchAppExports,
        ) {
     final apis = addApisAndRepository(this);
     final network = addNetwork(this, apis.apiDeps);
@@ -51,6 +52,6 @@ final class LunchStack extends Stack {
       database: database,
       identity: identity,
     );
-    addLunchExports(stack: this, projectId: projectId, database: database);
+    addLunchConstants(stack: this, projectId: projectId, database: database);
   }
 }

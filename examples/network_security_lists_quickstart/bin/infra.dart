@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/lists_stack.app.dart`
-/// (literal exports such as `BLOCKLIST_NAME`). Computed exports like
-/// `BLOCKLIST_ID` appear as Terraform outputs only.
+/// (with `ListsStackConstants.blocklistName`). Computed values such as
+/// `blocklist_id` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

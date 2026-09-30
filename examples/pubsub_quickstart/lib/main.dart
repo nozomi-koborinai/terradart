@@ -7,8 +7,8 @@
 ///   number from the `GoogleProject` data source),
 /// - authoritative topic IAM binding + policy for a demo publisher SA,
 ///
-/// and exports the topic's resource ID as a typed Dart constant via
-/// `Stack.addExport`. Run `bin/infra.dart` to synth into `tf-out/`.
+/// and hands the topic name to application code as a typed Dart constant
+/// via `Stack.addConstant`. Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
 import 'dart:convert';
@@ -32,14 +32,15 @@ String _iamPolicyDataJson({required String role, required String member}) {
 
 /// Pub/Sub Stack: a topic and a push subscription.
 ///
-/// `addExport` registers the topic name ("ORDERS_TOPIC_NAME"), a literal,
-/// as a typed Dart constant in the generated `<stack>.app.dart` file that
-/// subscribers import. The full resource path ("ORDERS_TOPIC_ID") is only
-/// known after apply, so it is a Terraform output only.
+/// `addConstant` reads the topic's literal name into
+/// `OrdersStackConstants.ordersTopicName` in the generated `<stack>.app.dart`
+/// file that subscribers import. The full resource path is only known after
+/// apply, so `addOutput` makes it the Terraform output `orders_topic_id`.
 final class OrdersStack extends Stack {
   OrdersStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/orders_stack.app.dart'),
       ) {
     final current = addData(GoogleProject(localName: 'current'));
 
@@ -191,18 +192,9 @@ final class OrdersStack extends Stack {
 
     // Literal topic name — emitted as a Dart constant at synth time (see
     // lib/generated/orders_stack.app.dart). Subscribers compare against this.
-    addExport(
-      'ORDERS_TOPIC_NAME',
-      ResourceIdExport(topic.nameRef, emitTerraformOutput: true),
-    );
+    addConstant('ordersTopicName', .ref(topic.nameRef));
 
     // Full resource ID — Terraform output only (computed until after apply).
-    addExport(
-      'ORDERS_TOPIC_ID',
-      ResourceIdExport(topic.id, emitTerraformOutput: true),
-    );
-
-    // Tell the synth pipeline where to drop the generated `.dart` file.
-    setAppExportsOutputPath('lib/generated/orders_stack.app.dart');
+    addOutput('orders_topic_id', .ref(topic.id));
   }
 }

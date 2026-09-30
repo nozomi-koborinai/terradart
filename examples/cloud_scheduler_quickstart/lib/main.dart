@@ -68,9 +68,6 @@ final class NightlyCleanupStack extends Stack {
       ),
     );
 
-    addExport(
-      'NIGHTLY_TOPIC_ID',
-      ResourceIdExport(topic.id, emitTerraformOutput: true),
-    );
+    addOutput('nightly_topic_id', .ref(topic.id));
   }
 }
