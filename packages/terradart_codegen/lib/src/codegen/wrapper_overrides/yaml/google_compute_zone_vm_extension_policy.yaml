@@ -11,6 +11,8 @@ paramOrder:
   - extension_policies
   - description
   - instance_selectors
+  - deletion_policy
+  - priority
   - project
 
 extraGetters: |2

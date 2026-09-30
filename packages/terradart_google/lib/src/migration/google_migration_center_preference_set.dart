@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_migration_center_preference_set`.
@@ -15,6 +16,211 @@ enum MigrationCenterPreferenceSetDeletionPolicy implements TerraformEnum {
   const MigrationCenterPreferenceSetDeletionPolicy(this.terraformValue);
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `virtual_machine_preferences` block of
+/// `google_migration_center_preference_set` (derived from provider schema).
+@immutable
+final class MigrationCenterPreferenceSetVirtualMachinePreferences {
+  const MigrationCenterPreferenceSetVirtualMachinePreferences({
+    this.commitmentPlan,
+    this.sizingOptimizationStrategy,
+    this.targetProduct,
+    this.computeEnginePreferences,
+    this.regionPreferences,
+    this.soleTenancyPreferences,
+    this.vmwareEnginePreferences,
+  });
+
+  final TfArg<String>? commitmentPlan;
+
+  final TfArg<String>? sizingOptimizationStrategy;
+
+  final TfArg<String>? targetProduct;
+
+  final MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferences?
+  computeEnginePreferences;
+
+  final MigrationCenterPreferenceSetVirtualMachinePreferencesRegionPreferences?
+  regionPreferences;
+
+  final MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferences?
+  soleTenancyPreferences;
+
+  final MigrationCenterPreferenceSetVirtualMachinePreferencesVmwareEnginePreferences?
+  vmwareEnginePreferences;
+
+  Map<String, Object?> encode() => {
+    'commitment_plan': ?commitmentPlan?.toTfJson(),
+    'sizing_optimization_strategy': ?sizingOptimizationStrategy?.toTfJson(),
+    'target_product': ?targetProduct?.toTfJson(),
+    'compute_engine_preferences': ?computeEnginePreferences?.encode(),
+    'region_preferences': ?regionPreferences?.encode(),
+    'sole_tenancy_preferences': ?soleTenancyPreferences?.encode(),
+    'vmware_engine_preferences': ?vmwareEnginePreferences?.encode(),
+  };
+}
+
+/// Typed helper for the `virtual_machine_preferences.compute_engine_preferences` block of
+/// `google_migration_center_preference_set` (derived from provider schema).
+@immutable
+final class MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferences {
+  const MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferences({
+    this.licenseType,
+    this.persistentDiskType,
+    this.machinePreferences,
+  });
+
+  final TfArg<String>? licenseType;
+
+  final TfArg<
+    MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesPersistentDiskType
+  >?
+  persistentDiskType;
+
+  final MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferences?
+  machinePreferences;
+
+  Map<String, Object?> encode() => {
+    'license_type': ?licenseType?.toTfJson(),
+    'persistent_disk_type': ?persistentDiskType?.toTfJson(),
+    'machine_preferences': ?machinePreferences?.encode(),
+  };
+}
+
+/// `persistent_disk_type` — derived from the provider schema description.
+enum MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesPersistentDiskType
+    implements TerraformEnum {
+  persistentDiskTypeStandard('PERSISTENT_DISK_TYPE_STANDARD'),
+  persistentDiskTypeBalanced('PERSISTENT_DISK_TYPE_BALANCED'),
+  persistentDiskTypeSsd('PERSISTENT_DISK_TYPE_SSD');
+
+  const MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesPersistentDiskType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `virtual_machine_preferences.compute_engine_preferences.machine_preferences` block of
+/// `google_migration_center_preference_set` (derived from provider schema).
+@immutable
+final class MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferences {
+  const MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferences({
+    this.allowedMachineSeries,
+  });
+
+  final List<
+    MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferencesAllowedMachineSeries
+  >?
+  allowedMachineSeries;
+
+  Map<String, Object?> encode() => {
+    if (allowedMachineSeries != null)
+      'allowed_machine_series': [
+        for (final e in allowedMachineSeries!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `virtual_machine_preferences.compute_engine_preferences.machine_preferences.allowed_machine_series` block of
+/// `google_migration_center_preference_set` (derived from provider schema).
+@immutable
+final class MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferencesAllowedMachineSeries {
+  const MigrationCenterPreferenceSetVirtualMachinePreferencesComputeEnginePreferencesMachinePreferencesAllowedMachineSeries({
+    this.code,
+  });
+
+  final TfArg<String>? code;
+
+  Map<String, Object?> encode() => {'code': ?code?.toTfJson()};
+}
+
+/// Typed helper for the `virtual_machine_preferences.region_preferences` block of
+/// `google_migration_center_preference_set` (derived from provider schema).
+@immutable
+final class MigrationCenterPreferenceSetVirtualMachinePreferencesRegionPreferences {
+  const MigrationCenterPreferenceSetVirtualMachinePreferencesRegionPreferences({
+    this.preferredRegions,
+  });
+
+  final TfArg<List<String>>? preferredRegions;
+
+  Map<String, Object?> encode() => {
+    'preferred_regions': ?preferredRegions?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `virtual_machine_preferences.sole_tenancy_preferences` block of
+/// `google_migration_center_preference_set` (derived from provider schema).
+@immutable
+final class MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferences {
+  const MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferences({
+    this.commitmentPlan,
+    this.cpuOvercommitRatio,
+    this.hostMaintenancePolicy,
+    this.nodeTypes,
+  });
+
+  final TfArg<String>? commitmentPlan;
+
+  final TfArg<num>? cpuOvercommitRatio;
+
+  final TfArg<String>? hostMaintenancePolicy;
+
+  final List<
+    MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferencesNodeTypes
+  >?
+  nodeTypes;
+
+  Map<String, Object?> encode() => {
+    'commitment_plan': ?commitmentPlan?.toTfJson(),
+    'cpu_overcommit_ratio': ?cpuOvercommitRatio?.toTfJson(),
+    'host_maintenance_policy': ?hostMaintenancePolicy?.toTfJson(),
+    if (nodeTypes != null)
+      'node_types': [for (final e in nodeTypes!) e.encode()],
+  };
+}
+
+/// Typed helper for the `virtual_machine_preferences.sole_tenancy_preferences.node_types` block of
+/// `google_migration_center_preference_set` (derived from provider schema).
+@immutable
+final class MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferencesNodeTypes {
+  const MigrationCenterPreferenceSetVirtualMachinePreferencesSoleTenancyPreferencesNodeTypes({
+    this.nodeName,
+  });
+
+  final TfArg<String>? nodeName;
+
+  Map<String, Object?> encode() => {'node_name': ?nodeName?.toTfJson()};
+}
+
+/// Typed helper for the `virtual_machine_preferences.vmware_engine_preferences` block of
+/// `google_migration_center_preference_set` (derived from provider schema).
+@immutable
+final class MigrationCenterPreferenceSetVirtualMachinePreferencesVmwareEnginePreferences {
+  const MigrationCenterPreferenceSetVirtualMachinePreferencesVmwareEnginePreferences({
+    this.commitmentPlan,
+    this.cpuOvercommitRatio,
+    this.memoryOvercommitRatio,
+    this.storageDeduplicationCompressionRatio,
+  });
+
+  final TfArg<String>? commitmentPlan;
+
+  final TfArg<num>? cpuOvercommitRatio;
+
+  final TfArg<num>? memoryOvercommitRatio;
+
+  final TfArg<num>? storageDeduplicationCompressionRatio;
+
+  Map<String, Object?> encode() => {
+    'commitment_plan': ?commitmentPlan?.toTfJson(),
+    'cpu_overcommit_ratio': ?cpuOvercommitRatio?.toTfJson(),
+    'memory_overcommit_ratio': ?memoryOvercommitRatio?.toTfJson(),
+    'storage_deduplication_compression_ratio':
+        ?storageDeduplicationCompressionRatio?.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_migration_center_preference_set`.
@@ -37,6 +243,8 @@ final class GoogleMigrationCenterPreferenceSet extends Resource {
     TfArg<String>? displayName,
     TfArg<String>? description,
     TfArg<MigrationCenterPreferenceSetDeletionPolicy>? deletionPolicy,
+    MigrationCenterPreferenceSetVirtualMachinePreferences?
+    virtualMachinePreferences,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -50,6 +258,10 @@ final class GoogleMigrationCenterPreferenceSet extends Resource {
            'display_name': ?displayName,
            'description': ?description,
            'deletion_policy': ?deletionPolicy,
+           if (virtualMachinePreferences != null)
+             'virtual_machine_preferences': TfArg.literal(
+               virtualMachinePreferences.encode(),
+             ),
            'project': ?project,
          },
        );

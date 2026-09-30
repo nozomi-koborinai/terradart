@@ -94,6 +94,7 @@ final class GoogleServiceAccountKey extends Resource {
     TfArg<PublicKeyType>? publicKeyType,
     TfArg<String>? publicKeyData,
     TfArg<Map<String, String>>? keepers,
+    TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -107,6 +108,7 @@ final class GoogleServiceAccountKey extends Resource {
            'public_key_type': ?publicKeyType,
            'public_key_data': ?publicKeyData,
            'keepers': ?keepers,
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

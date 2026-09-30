@@ -46,6 +46,7 @@ paramOrder:
   - app_id
   - display_name
   - token
+  - deletion_policy
   - project
 
 extraGetters: |2

@@ -4,7 +4,13 @@
 library;
 
 export 'src/contact/google_contact_center_insights_analysis_rule.dart'
-    show GoogleContactCenterInsightsAnalysisRule;
+    show
+        ContactCenterInsightsAnalysisRuleAnnotatorSelector,
+        ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfig,
+        ContactCenterInsightsAnalysisRuleAnnotatorSelectorQaConfigScorecardList,
+        ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfig,
+        ContactCenterInsightsAnalysisRuleAnnotatorSelectorSummarizationConfigSummarizationModel,
+        GoogleContactCenterInsightsAnalysisRule;
 export 'src/contact/google_contact_center_insights_assessment_rule.dart'
     show
         ContactCenterInsightsAssessmentRuleSampleRule,
@@ -23,6 +29,10 @@ export 'src/contact/google_contact_center_insights_encryption_spec.dart'
 export 'src/contact/google_contact_center_insights_qa_question.dart'
     show
         ContactCenterInsightsQaQuestionAnswerChoices,
+        ContactCenterInsightsQaQuestionPredefinedQuestionConfig,
+        ContactCenterInsightsQaQuestionQaQuestionDataOptions,
+        ContactCenterInsightsQaQuestionQaQuestionDataOptionsConversationDataOptions,
+        ContactCenterInsightsQaQuestionTuningMetadata,
         GoogleContactCenterInsightsQaQuestion;
 export 'src/contact/google_contact_center_insights_qa_scorecard.dart'
     show
