@@ -62,6 +62,7 @@ paramOrder:
   - private_service_connect
   - project
 
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 extraImports:

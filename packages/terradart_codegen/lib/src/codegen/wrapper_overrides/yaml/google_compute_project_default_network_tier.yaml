@@ -2,6 +2,7 @@ outputDir: compute
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 # Schema prose uses "following values: PREMIUM or STANDARD" (not MM
 # "Possible values: […]"), so deriveEnums cannot emit — hand-write the

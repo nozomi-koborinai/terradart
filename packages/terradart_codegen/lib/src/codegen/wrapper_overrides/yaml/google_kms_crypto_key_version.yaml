@@ -1,6 +1,7 @@
 outputDir: kms
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 dartTypeOverrides:
@@ -24,6 +25,7 @@ prelude: |
 paramOrder:
   - crypto_key
   - state
+  - external_protection_level_options
 
 curatedDoc: |-
   /// Manages a [GoogleKmsCryptoKey] version (rotation / destroy lifecycle).

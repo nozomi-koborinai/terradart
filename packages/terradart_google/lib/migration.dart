@@ -7,8 +7,11 @@ library;
 export 'src/migration/google_migration_center_assets_export_job.dart'
     show
         GoogleMigrationCenterAssetsExportJob,
+        MigrationCenterAssetsExportJobCondition,
         MigrationCenterAssetsExportJobDeletionPolicy,
-        MigrationCenterAssetsExportJobFileFormat;
+        MigrationCenterAssetsExportJobFileFormat,
+        MigrationCenterAssetsExportJobPerformanceData,
+        MigrationCenterAssetsExportJobSignedUriDestination;
 export 'src/migration/google_migration_center_discovery_client.dart'
     show
         GoogleMigrationCenterDiscoveryClient,

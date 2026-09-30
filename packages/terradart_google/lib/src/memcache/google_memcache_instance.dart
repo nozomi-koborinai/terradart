@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
@@ -73,6 +74,17 @@ class MemcacheInstanceMaintenancePolicy {
   };
 }
 
+/// Typed helper for the `memcache_parameters` block of
+/// `google_memcache_instance` (derived from provider schema).
+@immutable
+final class MemcacheInstanceMemcacheParameters {
+  const MemcacheInstanceMemcacheParameters({this.params});
+
+  final TfArg<Map<String, String>>? params;
+
+  Map<String, Object?> encode() => {'params': ?params?.toTfJson()};
+}
+
 /// Factory wrapper for `google_memcache_instance`.
 ///
 /// A Google Cloud Memcache instance.
@@ -119,6 +131,7 @@ final class GoogleMemcacheInstance extends Resource {
     MemcacheInstanceMaintenancePolicy? maintenancePolicy,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? deletionProtection,
+    MemcacheInstanceMemcacheParameters? memcacheParameters,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -139,6 +152,8 @@ final class GoogleMemcacheInstance extends Resource {
              ]),
            'labels': ?labels,
            'deletion_protection': ?deletionProtection,
+           if (memcacheParameters != null)
+             'memcache_parameters': TfArg.literal(memcacheParameters.encode()),
          },
        );
 

@@ -37,6 +37,39 @@ class DnsPolicyAlternativeNameServerConfig {
   };
 }
 
+/// Typed helper for the `dns64_config` block of
+/// `google_dns_policy` (derived from provider schema).
+@immutable
+final class DnsPolicyDns64Config {
+  const DnsPolicyDns64Config({required this.scope});
+
+  final DnsPolicyDns64ConfigScope scope;
+
+  Map<String, Object?> encode() => {'scope': scope.encode()};
+}
+
+/// Typed helper for the `dns64_config.scope` block of
+/// `google_dns_policy` (derived from provider schema).
+@immutable
+final class DnsPolicyDns64ConfigScope {
+  const DnsPolicyDns64ConfigScope({this.allQueries});
+
+  final TfArg<bool>? allQueries;
+
+  Map<String, Object?> encode() => {'all_queries': ?allQueries?.toTfJson()};
+}
+
+/// Typed helper for the `networks` block of
+/// `google_dns_policy` (derived from provider schema).
+@immutable
+final class DnsPolicyNetworks {
+  const DnsPolicyNetworks({required this.networkUrl});
+
+  final TfArg<String> networkUrl;
+
+  Map<String, Object?> encode() => {'network_url': networkUrl.toTfJson()};
+}
+
 /// Factory wrapper for `google_dns_policy`.
 ///
 /// A policy is a collection of DNS rules applied to one or more Virtual Private
@@ -52,8 +85,8 @@ final class GoogleDnsPolicy extends Resource {
     required TfArg<String> name,
     TfArg<String>? project,
     DnsPolicyAlternativeNameServerConfig? alternativeNameServerConfig,
-    TfArg<Map<String, dynamic>>? dns64Config,
-    TfArg<List<Map<String, dynamic>>>? networks,
+    DnsPolicyDns64Config? dns64Config,
+    List<DnsPolicyNetworks>? networks,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -70,8 +103,10 @@ final class GoogleDnsPolicy extends Resource {
              'alternative_name_server_config': TfArg.literal([
                alternativeNameServerConfig.encode(),
              ]),
-           'dns64_config': ?dns64Config,
-           'networks': ?networks,
+           if (dns64Config != null)
+             'dns64_config': TfArg.literal(dns64Config.encode()),
+           if (networks != null)
+             'networks': TfArg.literal([for (final e in networks) e.encode()]),
          },
        );
 

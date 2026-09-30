@@ -2,6 +2,7 @@ outputDir: chronicle
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 curatedDoc: |-

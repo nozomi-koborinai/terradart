@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
@@ -20,6 +21,25 @@ enum KmsCryptoKeyVersionState implements TerraformEnum {
   const KmsCryptoKeyVersionState(this.terraformValue);
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `external_protection_level_options` block of
+/// `google_kms_crypto_key_version` (derived from provider schema).
+@immutable
+final class KmsCryptoKeyVersionExternalProtectionLevelOptions {
+  const KmsCryptoKeyVersionExternalProtectionLevelOptions({
+    this.ekmConnectionKeyPath,
+    this.externalKeyUri,
+  });
+
+  final TfArg<String>? ekmConnectionKeyPath;
+
+  final TfArg<String>? externalKeyUri;
+
+  Map<String, Object?> encode() => {
+    'ekm_connection_key_path': ?ekmConnectionKeyPath?.toTfJson(),
+    'external_key_uri': ?externalKeyUri?.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_kms_crypto_key_version`.
@@ -46,13 +66,22 @@ final class GoogleKmsCryptoKeyVersion extends Resource {
     required super.localName,
     required RefTo<GoogleKmsCryptoKey> cryptoKey,
     TfArg<KmsCryptoKeyVersionState>? state,
+    KmsCryptoKeyVersionExternalProtectionLevelOptions?
+    externalProtectionLevelOptions,
     super.lifecycle,
     super.dependsOn,
     super.provider,
     super.timeouts,
   }) : super(
          terraformType: tfType,
-         argMap: {'crypto_key': cryptoKey.encodeAs('id'), 'state': ?state},
+         argMap: {
+           'crypto_key': cryptoKey.encodeAs('id'),
+           'state': ?state,
+           if (externalProtectionLevelOptions != null)
+             'external_protection_level_options': TfArg.literal(
+               externalProtectionLevelOptions.encode(),
+             ),
+         },
        );
 
   @override

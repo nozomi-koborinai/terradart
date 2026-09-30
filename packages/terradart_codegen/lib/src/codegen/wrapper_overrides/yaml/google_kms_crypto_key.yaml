@@ -45,6 +45,7 @@ paramOrder:
   - crypto_key_backend
   - version_template
 
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 dartTypeOverrides:

@@ -2,6 +2,7 @@ outputDir: apigee
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 paramOrder:

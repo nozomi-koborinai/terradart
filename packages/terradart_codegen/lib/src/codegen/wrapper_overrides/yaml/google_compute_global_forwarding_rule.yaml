@@ -104,6 +104,7 @@ paramOrder:
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 extraGetters: |2

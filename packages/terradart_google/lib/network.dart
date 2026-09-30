@@ -47,6 +47,7 @@ export 'src/network/google_network_connectivity_internal_range.dart'
         GoogleNetworkConnectivityInternalRange,
         NetworkConnectivityInternalRangeAllocationOptions,
         NetworkConnectivityInternalRangeAllocationStrategy,
+        NetworkConnectivityInternalRangeMigration,
         NetworkConnectivityInternalRangePeering,
         NetworkConnectivityInternalRangeUsage;
 export 'src/network/google_network_connectivity_multicloud_data_transfer_config.dart'

@@ -117,6 +117,19 @@ final class ComputeRouteVpnTunnelNextHop extends ComputeRouteNextHop {
   TfArg<String> get value => nextHopVpnTunnel;
 }
 
+/// Typed helper for the `params` block of
+/// `google_compute_route` (derived from provider schema).
+@immutable
+final class ComputeRouteParams {
+  const ComputeRouteParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_compute_route`.
 ///
 /// Represents a Route resource.
@@ -161,6 +174,7 @@ final class GoogleComputeRoute extends Resource {
     TfArg<num>? priority,
     TfArg<String>? nextHopInstanceZone,
     TfArg<List<String>>? tags,
+    ComputeRouteParams? params,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -176,6 +190,7 @@ final class GoogleComputeRoute extends Resource {
            'priority': ?priority,
            'next_hop_instance_zone': ?nextHopInstanceZone,
            'tags': ?tags,
+           if (params != null) 'params': TfArg.literal(params.encode()),
            'project': ?project,
            nextHop.blockKey: nextHop.value,
          },

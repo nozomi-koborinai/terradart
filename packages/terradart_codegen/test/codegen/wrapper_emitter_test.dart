@@ -1070,6 +1070,30 @@ void main() {
           ),
         );
       });
+
+      test('a helper named only as a prefix of a prelude class is '
+          'unreachable (google_compute_firewall.allow)', () {
+        const terraformType = 'google_compute_firewall';
+        final def = _loadFromWrapFixture(terraformType);
+        final emitter = WrapperEmitter(
+          overrides: {
+            terraformType: const WrapperOverride(
+              outputDir: 'compute',
+              deriveNestedTypes: true,
+              paramOrder: ['name', 'network', 'deny'],
+              prelude:
+                  'final class ComputeFirewallAllowPolicy {}\n'
+                  'final class ComputeFirewallLogConfig {}\n',
+            ),
+          },
+          rawResourceSchemas: rawResourceSchemas,
+        );
+        emitter.emit(def, providerSource: 'hashicorp/google');
+
+        expect(emitter.unreachableHelpers, contains('allow'));
+        expect(emitter.unreachableHelpers, isNot(contains('deny')));
+        expect(emitter.unreachableHelpers, isNot(contains('log_config')));
+      });
     });
   });
 }

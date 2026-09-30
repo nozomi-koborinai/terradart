@@ -171,6 +171,38 @@ class StorageBucketObjectBucketObjectRetention {
   };
 }
 
+/// Typed helper for the `contexts` block of
+/// `google_storage_bucket_object` (derived from provider schema).
+@immutable
+final class StorageBucketObjectContexts {
+  const StorageBucketObjectContexts({required this.custom});
+
+  final List<StorageBucketObjectContextsCustom> custom;
+
+  Map<String, Object?> encode() => {
+    'custom': [for (final e in custom) e.encode()],
+  };
+}
+
+/// Typed helper for the `contexts.custom` block of
+/// `google_storage_bucket_object` (derived from provider schema).
+@immutable
+final class StorageBucketObjectContextsCustom {
+  const StorageBucketObjectContextsCustom({
+    required this.key,
+    required this.value,
+  });
+
+  final TfArg<String> key;
+
+  final TfArg<String> value;
+
+  Map<String, Object?> encode() => {
+    'key': key.toTfJson(),
+    'value': value.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_storage_bucket_object`.
 ///
 /// Pass `bucket.ref` for `bucket`; it emits the bucket name the API wants.
@@ -231,6 +263,7 @@ final class GoogleStorageBucketObject extends Resource {
     TfArg<bool>? forceEmptyContentType,
     TfArg<String>? detectMd5hash,
     TfArg<String>? sourceMd5hash,
+    StorageBucketObjectContexts? contexts,
     TfArg<String>? deletionPolicy,
     StorageBucketObjectCustomerEncryption? customerEncryption,
     StorageBucketObjectBucketObjectRetention? retention,
@@ -256,6 +289,7 @@ final class GoogleStorageBucketObject extends Resource {
            'force_empty_content_type': ?forceEmptyContentType,
            'detect_md5hash': ?detectMd5hash,
            'source_md5hash': ?sourceMd5hash,
+           if (contexts != null) 'contexts': TfArg.literal(contexts.encode()),
            'deletion_policy': ?deletionPolicy,
            if (customerEncryption != null)
              'customer_encryption': TfArg.literal([

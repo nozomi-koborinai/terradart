@@ -1,6 +1,7 @@
 outputDir: compute
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 deriveOutputGetters: true
 
 curatedDoc: |-
@@ -136,6 +137,7 @@ paramOrder:
   - priority
   - next_hop_instance_zone
   - tags
+  - params
   - project
 
 argMapOrder:
@@ -146,6 +148,7 @@ argMapOrder:
   - priority
   - next_hop_instance_zone
   - tags
+  - params
   - project
   - next_hop
 
