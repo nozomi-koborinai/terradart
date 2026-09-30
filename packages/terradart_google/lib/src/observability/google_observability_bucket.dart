@@ -31,11 +31,11 @@ final class GoogleObservabilityBucket extends Resource {
   GoogleObservabilityBucket({
     required super.localName,
     required TfArg<String> bucketId,
-    TfArg<String>? description,
-    TfArg<String>? displayName,
     required TfArg<String> location,
-    TfArg<String>? project,
+    TfArg<String>? displayName,
+    TfArg<String>? description,
     ObservabilityBucketCmekSettings? cmekSettings,
+    TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -44,12 +44,12 @@ final class GoogleObservabilityBucket extends Resource {
          terraformType: tfType,
          argMap: {
            'bucket_id': bucketId,
-           'description': ?description,
-           'display_name': ?displayName,
            'location': location,
-           'project': ?project,
+           'display_name': ?displayName,
+           'description': ?description,
            if (cmekSettings != null)
              'cmek_settings': TfArg.literal(cmekSettings.encode()),
+           'project': ?project,
          },
        );
 
@@ -59,4 +59,22 @@ final class GoogleObservabilityBucket extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleObservabilityBucket>`.
   RefTo<GoogleObservabilityBucket> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `delete_time` attribute.
+  TfRef<String> get deleteTime => TfRef.attribute<String>(this, 'delete_time');
+
+  /// Reference to `purge_time` attribute.
+  TfRef<String> get purgeTime => TfRef.attribute<String>(this, 'purge_time');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }

@@ -1451,6 +1451,18 @@ Synth output changes in one way, accepted by the provider: a
 `monitored_resource`, `logging_query`, `one_time_schedule`, ...) is an
 object.
 
+### Monitoring snooze and Gemini observability settings use derived helper types
+
+**Breaking (`terradart_google`)** — the blocks the 8.x schema bumps left as
+`TfArg<Map>` take the helper types `terradart wrap` derives from the
+provider schema. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `GoogleMonitoringSnooze(criteria: .literal({'policies': [...]}), interval: .literal({'end_time': ...}))` | `GoogleMonitoringSnooze(criteria: MonitoringSnoozeCriteria(policies: .literal([...])), interval: MonitoringSnoozeInterval(endTime: ...))` |
+| `GoogleGeminiGdaObservabilitySetting(conversationalAnalyticsSetting: .literal({'logging_enabled': true}))` | `GoogleGeminiGdaObservabilitySetting(conversationalAnalyticsSetting: GeminiGdaObservabilitySettingConversationalAnalyticsSetting(loggingEnabled: .literal(true)))` |
+| `GoogleGeminiGibqObservabilitySetting(conversationalAnalyticsSetting: .literal({...}))` | `GoogleGeminiGibqObservabilitySetting(conversationalAnalyticsSetting: GeminiGibqObservabilitySettingConversationalAnalyticsSetting(...))` |
+
 ### GKE nested blocks use derived helper types
 
 **Breaking (`terradart_google`)** — `GoogleContainerCluster` and

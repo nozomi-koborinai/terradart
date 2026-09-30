@@ -21,7 +21,9 @@ export 'src/gemini/google_gemini_data_sharing_with_google_setting.dart'
 export 'src/gemini/google_gemini_data_sharing_with_google_setting_binding.dart'
     show GoogleGeminiDataSharingWithGoogleSettingBinding;
 export 'src/gemini/google_gemini_gda_observability_setting.dart'
-    show GoogleGeminiGdaObservabilitySetting;
+    show
+        GeminiGdaObservabilitySettingConversationalAnalyticsSetting,
+        GoogleGeminiGdaObservabilitySetting;
 export 'src/gemini/google_gemini_gda_observability_setting_binding.dart'
     show GoogleGeminiGdaObservabilitySettingBinding;
 export 'src/gemini/google_gemini_gemini_gcp_enablement_setting.dart'
@@ -29,7 +31,9 @@ export 'src/gemini/google_gemini_gemini_gcp_enablement_setting.dart'
 export 'src/gemini/google_gemini_gemini_gcp_enablement_setting_binding.dart'
     show GoogleGeminiGeminiGcpEnablementSettingBinding;
 export 'src/gemini/google_gemini_gibq_observability_setting.dart'
-    show GoogleGeminiGibqObservabilitySetting;
+    show
+        GeminiGibqObservabilitySettingConversationalAnalyticsSetting,
+        GoogleGeminiGibqObservabilitySetting;
 export 'src/gemini/google_gemini_gibq_observability_setting_binding.dart'
     show GoogleGeminiGibqObservabilitySettingBinding;
 export 'src/gemini/google_gemini_logging_setting.dart'

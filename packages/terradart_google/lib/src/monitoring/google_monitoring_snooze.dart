@@ -1,10 +1,43 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_monitoring_snooze`.
 const Set<String> _googleMonitoringSnoozeSensitive = <String>{};
+
+/// Typed helper for the `criteria` block of
+/// `google_monitoring_snooze` (derived from provider schema).
+@immutable
+final class MonitoringSnoozeCriteria {
+  const MonitoringSnoozeCriteria({this.filter, this.policies});
+
+  final TfArg<String>? filter;
+
+  final TfArg<List<Object?>>? policies;
+
+  Map<String, Object?> encode() => {
+    'filter': ?filter?.toTfJson(),
+    'policies': ?policies?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `interval` block of
+/// `google_monitoring_snooze` (derived from provider schema).
+@immutable
+final class MonitoringSnoozeInterval {
+  const MonitoringSnoozeInterval({required this.endTime, this.startTime});
+
+  final TfArg<String> endTime;
+
+  final TfArg<String>? startTime;
+
+  Map<String, Object?> encode() => {
+    'end_time': endTime.toTfJson(),
+    'start_time': ?startTime?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_monitoring_snooze`.
 ///
@@ -22,9 +55,9 @@ final class GoogleMonitoringSnooze extends Resource {
   GoogleMonitoringSnooze({
     required super.localName,
     required TfArg<String> displayName,
+    required MonitoringSnoozeCriteria criteria,
+    required MonitoringSnoozeInterval interval,
     TfArg<String>? project,
-    required TfArg<Map<String, dynamic>> criteria,
-    required TfArg<Map<String, dynamic>> interval,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -33,9 +66,9 @@ final class GoogleMonitoringSnooze extends Resource {
          terraformType: tfType,
          argMap: {
            'display_name': displayName,
+           'criteria': TfArg.literal(criteria.encode()),
+           'interval': TfArg.literal(interval.encode()),
            'project': ?project,
-           'criteria': criteria,
-           'interval': interval,
          },
        );
 
@@ -45,4 +78,10 @@ final class GoogleMonitoringSnooze extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleMonitoringSnooze>`.
   RefTo<GoogleMonitoringSnooze> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }
