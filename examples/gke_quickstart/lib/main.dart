@@ -81,13 +81,15 @@ final class GkeQuickstartStack extends Stack {
         deletionProtection: .literal(false),
         // The GKE Hub membership below requires the cluster to have Workload
         // Identity enabled; the workload pool is always `<project>.svc.id.goog`.
-        workloadIdentityConfig: .literal({
-          'workload_pool': TfArg.literal('$projectId.svc.id.goog'),
-        }),
+        workloadIdentityConfig: ContainerClusterWorkloadIdentityConfig(
+          workloadPool: .literal('$projectId.svc.id.goog'),
+        ),
         // Backup for GKE (Wave 10) requires the agent addon on the cluster.
-        addonsConfig: .literal({
-          'gke_backup_agent_config': {'enabled': TfArg.literal(true)},
-        }),
+        addonsConfig: ContainerClusterAddonsConfig(
+          gkeBackupAgentConfig: ContainerClusterAddonsConfigGkeBackupAgentConfig(
+            enabled: .literal(true),
+          ),
+        ),
         dependsOn: [
           ResourceDependency(apiContainer),
           ResourceDependency(subnet),

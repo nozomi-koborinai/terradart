@@ -54701,11 +54701,25 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'dataplane_optimization_mode',
+          dartName: 'dataplaneOptimizationMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
           tfName: 'default_max_pods_per_node',
           dartName: 'defaultMaxPodsPerNode',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
         ),
         MigrateSlot(
           tfName: 'deletion_protection',
@@ -54717,6 +54731,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'description',
           dartName: 'description',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'desired_emulated_version',
+          dartName: 'desiredEmulatedVersion',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'String',
@@ -54794,6 +54815,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'enable_tpu',
           dartName: 'enableTpu',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'ignore_node_count_changes',
+          dartName: 'ignoreNodeCountChanges',
           kind: MigrateSlotKind.scalar,
           required: false,
           dartType: 'bool',
@@ -54905,6 +54933,13 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'Map<String, String>',
         ),
         MigrateSlot(
+          tfName: 'skip_node_pool_refresh',
+          dartName: 'skipNodePoolRefresh',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'subnetwork',
           dartName: 'subnetwork',
           kind: MigrateSlotKind.reference,
@@ -54915,303 +54950,371 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'addons_config',
           dartName: 'addonsConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfig',
         ),
         MigrateSlot(
           tfName: 'anonymous_authentication_config',
           dartName: 'anonymousAuthenticationConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterAnonymousAuthenticationConfig',
         ),
         MigrateSlot(
           tfName: 'authenticator_groups_config',
           dartName: 'authenticatorGroupsConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterAuthenticatorGroupsConfig',
         ),
         MigrateSlot(
           tfName: 'autopilot_cluster_policy_config',
           dartName: 'autopilotClusterPolicyConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterAutopilotClusterPolicyConfig',
         ),
         MigrateSlot(
           tfName: 'binary_authorization',
           dartName: 'binaryAuthorization',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterBinaryAuthorization',
         ),
         MigrateSlot(
           tfName: 'cluster_autoscaling',
           dartName: 'clusterAutoscaling',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterClusterAutoscaling',
         ),
         MigrateSlot(
           tfName: 'confidential_nodes',
           dartName: 'confidentialNodes',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterConfidentialNodes',
         ),
         MigrateSlot(
           tfName: 'control_plane_endpoints_config',
           dartName: 'controlPlaneEndpointsConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterControlPlaneEndpointsConfig',
         ),
         MigrateSlot(
           tfName: 'cost_management_config',
           dartName: 'costManagementConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterCostManagementConfig',
         ),
         MigrateSlot(
           tfName: 'database_encryption',
           dartName: 'databaseEncryption',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterDatabaseEncryption',
         ),
         MigrateSlot(
           tfName: 'default_snat_status',
           dartName: 'defaultSnatStatus',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterDefaultSnatStatus',
         ),
         MigrateSlot(
           tfName: 'dns_config',
           dartName: 'dnsConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterDnsConfig',
         ),
         MigrateSlot(
           tfName: 'enable_k8s_beta_apis',
           dartName: 'enableK8sBetaApis',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterEnableK8sBetaApis',
         ),
         MigrateSlot(
           tfName: 'enterprise_config',
           dartName: 'enterpriseConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterEnterpriseConfig',
         ),
         MigrateSlot(
           tfName: 'fleet',
           dartName: 'fleet',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterFleet',
         ),
         MigrateSlot(
           tfName: 'gateway_api_config',
           dartName: 'gatewayApiConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterGatewayApiConfig',
         ),
         MigrateSlot(
           tfName: 'gke_auto_upgrade_config',
           dartName: 'gkeAutoUpgradeConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterGkeAutoUpgradeConfig',
         ),
         MigrateSlot(
           tfName: 'identity_service_config',
           dartName: 'identityServiceConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterIdentityServiceConfig',
         ),
         MigrateSlot(
           tfName: 'ip_allocation_policy',
           dartName: 'ipAllocationPolicy',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterIpAllocationPolicy',
         ),
         MigrateSlot(
           tfName: 'logging_config',
           dartName: 'loggingConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterLoggingConfig',
         ),
         MigrateSlot(
           tfName: 'maintenance_policy',
           dartName: 'maintenancePolicy',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterMaintenancePolicy',
         ),
         MigrateSlot(
           tfName: 'master_auth',
           dartName: 'masterAuth',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterMasterAuth',
         ),
         MigrateSlot(
           tfName: 'master_authorized_networks_config',
           dartName: 'masterAuthorizedNetworksConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterMasterAuthorizedNetworksConfig',
         ),
         MigrateSlot(
           tfName: 'mesh_certificates',
           dartName: 'meshCertificates',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterMeshCertificates',
         ),
         MigrateSlot(
           tfName: 'monitoring_config',
           dartName: 'monitoringConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterMonitoringConfig',
         ),
         MigrateSlot(
           tfName: 'network_performance_config',
           dartName: 'networkPerformanceConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterNetworkPerformanceConfig',
         ),
         MigrateSlot(
           tfName: 'network_policy',
           dartName: 'networkPolicy',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterNetworkPolicy',
         ),
         MigrateSlot(
           tfName: 'node_config',
           dartName: 'nodeConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfig',
+        ),
+        MigrateSlot(
+          tfName: 'node_creation_config',
+          dartName: 'nodeCreationConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeCreationConfig',
         ),
         MigrateSlot(
           tfName: 'node_pool',
           dartName: 'nodePool',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'List<Map<String, dynamic>>',
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterNodePool',
         ),
         MigrateSlot(
           tfName: 'node_pool_auto_config',
           dartName: 'nodePoolAutoConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolAutoConfig',
         ),
         MigrateSlot(
           tfName: 'node_pool_defaults',
           dartName: 'nodePoolDefaults',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolDefaults',
         ),
         MigrateSlot(
           tfName: 'notification_config',
           dartName: 'notificationConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterNotificationConfig',
         ),
         MigrateSlot(
           tfName: 'pod_autoscaling',
           dartName: 'podAutoscaling',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterPodAutoscaling',
         ),
         MigrateSlot(
           tfName: 'private_cluster_config',
           dartName: 'privateClusterConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterPrivateClusterConfig',
         ),
         MigrateSlot(
           tfName: 'rbac_binding_config',
           dartName: 'rbacBindingConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterRbacBindingConfig',
         ),
         MigrateSlot(
           tfName: 'release_channel',
           dartName: 'releaseChannel',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterReleaseChannel',
         ),
         MigrateSlot(
           tfName: 'resource_usage_export_config',
           dartName: 'resourceUsageExportConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterResourceUsageExportConfig',
+        ),
+        MigrateSlot(
+          tfName: 'rollback_safe_upgrade',
+          dartName: 'rollbackSafeUpgrade',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterRollbackSafeUpgrade',
         ),
         MigrateSlot(
           tfName: 'secret_manager_config',
           dartName: 'secretManagerConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterSecretManagerConfig',
+        ),
+        MigrateSlot(
+          tfName: 'secret_sync_config',
+          dartName: 'secretSyncConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterSecretSyncConfig',
         ),
         MigrateSlot(
           tfName: 'security_posture_config',
           dartName: 'securityPostureConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterSecurityPostureConfig',
         ),
         MigrateSlot(
           tfName: 'service_external_ips_config',
           dartName: 'serviceExternalIpsConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterServiceExternalIpsConfig',
         ),
         MigrateSlot(
           tfName: 'user_managed_keys_config',
           dartName: 'userManagedKeysConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterUserManagedKeysConfig',
         ),
         MigrateSlot(
           tfName: 'vertical_pod_autoscaling',
           dartName: 'verticalPodAutoscaling',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterVerticalPodAutoscaling',
         ),
         MigrateSlot(
           tfName: 'workload_identity_config',
           dartName: 'workloadIdentityConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerClusterWorkloadIdentityConfig',
         ),
       ],
       getters: <MigrateGetter>[
@@ -55843,6 +55946,20 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
           dartType: 'String',
         ),
         MigrateSlot(
+          tfName: 'deletion_policy',
+          dartName: 'deletionPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'ignore_node_count_changes',
+          dartName: 'ignoreNodeCountChanges',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
           tfName: 'initial_node_count',
           dartName: 'initialNodeCount',
           kind: MigrateSlotKind.scalar,
@@ -55908,58 +56025,76 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         MigrateSlot(
           tfName: 'autoscaling',
           dartName: 'autoscaling',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerNodePoolAutoscaling',
+        ),
+        MigrateSlot(
+          tfName: 'maintenance_policy',
+          dartName: 'maintenancePolicy',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerNodePoolMaintenancePolicy',
         ),
         MigrateSlot(
           tfName: 'management',
           dartName: 'management',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerNodePoolManagement',
         ),
         MigrateSlot(
           tfName: 'network_config',
           dartName: 'networkConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerNodePoolNetworkConfig',
         ),
         MigrateSlot(
           tfName: 'node_config',
           dartName: 'nodeConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfig',
         ),
         MigrateSlot(
           tfName: 'node_drain_config',
           dartName: 'nodeDrainConfig',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'List<Map<String, dynamic>>',
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeDrainConfig',
         ),
         MigrateSlot(
           tfName: 'placement_policy',
           dartName: 'placementPolicy',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerNodePoolPlacementPolicy',
         ),
         MigrateSlot(
           tfName: 'queued_provisioning',
           dartName: 'queuedProvisioning',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerNodePoolQueuedProvisioning',
         ),
         MigrateSlot(
           tfName: 'upgrade_settings',
           dartName: 'upgradeSettings',
-          kind: MigrateSlotKind.passthrough,
+          kind: MigrateSlotKind.helper,
           required: false,
-          dartType: 'Map<String, dynamic>',
+          wrapped: false,
+          helper: 'ContainerNodePoolUpgradeSettings',
         ),
       ],
       getters: <MigrateGetter>[
@@ -196758,6 +196893,8633 @@ const MigrateManifest googleMigrateManifest = MigrateManifest(
         ),
       ],
     ),
+    'ContainerClusterAddonsConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'agent_sandbox_config',
+          dartName: 'agentSandboxConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigAgentSandboxConfig',
+        ),
+        MigrateSlot(
+          tfName: 'cloudrun_config',
+          dartName: 'cloudrunConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigCloudrunConfig',
+        ),
+        MigrateSlot(
+          tfName: 'config_connector_config',
+          dartName: 'configConnectorConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigConfigConnectorConfig',
+        ),
+        MigrateSlot(
+          tfName: 'dns_cache_config',
+          dartName: 'dnsCacheConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigDnsCacheConfig',
+        ),
+        MigrateSlot(
+          tfName: 'gce_persistent_disk_csi_driver_config',
+          dartName: 'gcePersistentDiskCsiDriverConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterAddonsConfigGcePersistentDiskCsiDriverConfig',
+        ),
+        MigrateSlot(
+          tfName: 'gcp_filestore_csi_driver_config',
+          dartName: 'gcpFilestoreCsiDriverConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigGcpFilestoreCsiDriverConfig',
+        ),
+        MigrateSlot(
+          tfName: 'gcs_fuse_csi_driver_config',
+          dartName: 'gcsFuseCsiDriverConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigGcsFuseCsiDriverConfig',
+        ),
+        MigrateSlot(
+          tfName: 'gke_backup_agent_config',
+          dartName: 'gkeBackupAgentConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigGkeBackupAgentConfig',
+        ),
+        MigrateSlot(
+          tfName: 'high_scale_checkpointing_config',
+          dartName: 'highScaleCheckpointingConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigHighScaleCheckpointingConfig',
+        ),
+        MigrateSlot(
+          tfName: 'horizontal_pod_autoscaling',
+          dartName: 'horizontalPodAutoscaling',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigHorizontalPodAutoscaling',
+        ),
+        MigrateSlot(
+          tfName: 'http_load_balancing',
+          dartName: 'httpLoadBalancing',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigHttpLoadBalancing',
+        ),
+        MigrateSlot(
+          tfName: 'lustre_csi_driver_config',
+          dartName: 'lustreCsiDriverConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigLustreCsiDriverConfig',
+        ),
+        MigrateSlot(
+          tfName: 'network_policy_config',
+          dartName: 'networkPolicyConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigNetworkPolicyConfig',
+        ),
+        MigrateSlot(
+          tfName: 'node_readiness_config',
+          dartName: 'nodeReadinessConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigNodeReadinessConfig',
+        ),
+        MigrateSlot(
+          tfName: 'parallelstore_csi_driver_config',
+          dartName: 'parallelstoreCsiDriverConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigParallelstoreCsiDriverConfig',
+        ),
+        MigrateSlot(
+          tfName: 'pod_snapshot_config',
+          dartName: 'podSnapshotConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigPodSnapshotConfig',
+        ),
+        MigrateSlot(
+          tfName: 'ray_operator_config',
+          dartName: 'rayOperatorConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigRayOperatorConfig',
+        ),
+        MigrateSlot(
+          tfName: 'slice_controller_config',
+          dartName: 'sliceControllerConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigSliceControllerConfig',
+        ),
+        MigrateSlot(
+          tfName: 'slurm_operator_config',
+          dartName: 'slurmOperatorConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigSlurmOperatorConfig',
+        ),
+        MigrateSlot(
+          tfName: 'stateful_ha_config',
+          dartName: 'statefulHaConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterAddonsConfigStatefulHaConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigAgentSandboxConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigAgentSandboxConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigCloudrunConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigCloudrunConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disabled',
+          dartName: 'disabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'load_balancer_type',
+          dartName: 'loadBalancerType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigConfigConnectorConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigConfigConnectorConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigDnsCacheConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigDnsCacheConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigGcePersistentDiskCsiDriverConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterAddonsConfigGcePersistentDiskCsiDriverConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enabled',
+              dartName: 'enabled',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterAddonsConfigGcpFilestoreCsiDriverConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigGcpFilestoreCsiDriverConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigGcsFuseCsiDriverConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigGcsFuseCsiDriverConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigGkeBackupAgentConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigGkeBackupAgentConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigHighScaleCheckpointingConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigHighScaleCheckpointingConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigHorizontalPodAutoscaling': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigHorizontalPodAutoscaling',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disabled',
+          dartName: 'disabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigHttpLoadBalancing': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigHttpLoadBalancing',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disabled',
+          dartName: 'disabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigLustreCsiDriverConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigLustreCsiDriverConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disable_multi_nic',
+          dartName: 'disableMultiNic',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'enable_legacy_lustre_port',
+          dartName: 'enableLegacyLustrePort',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigNetworkPolicyConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigNetworkPolicyConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disabled',
+          dartName: 'disabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigNodeReadinessConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigNodeReadinessConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigParallelstoreCsiDriverConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigParallelstoreCsiDriverConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigPodSnapshotConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigPodSnapshotConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigRayOperatorConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigRayOperatorConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'ray_cluster_logging_config',
+          dartName: 'rayClusterLoggingConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterAddonsConfigRayOperatorConfigRayClusterLoggingConfig',
+        ),
+        MigrateSlot(
+          tfName: 'ray_cluster_monitoring_config',
+          dartName: 'rayClusterMonitoringConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterAddonsConfigRayOperatorConfigRayClusterMonitoringConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigRayOperatorConfigRayClusterLoggingConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterAddonsConfigRayOperatorConfigRayClusterLoggingConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enabled',
+              dartName: 'enabled',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterAddonsConfigRayOperatorConfigRayClusterMonitoringConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterAddonsConfigRayOperatorConfigRayClusterMonitoringConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enabled',
+              dartName: 'enabled',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterAddonsConfigSliceControllerConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigSliceControllerConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigSlurmOperatorConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigSlurmOperatorConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAddonsConfigStatefulHaConfig': MigrateHelper(
+      className: 'ContainerClusterAddonsConfigStatefulHaConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterAnonymousAuthenticationConfig': MigrateHelper(
+      className: 'ContainerClusterAnonymousAuthenticationConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mode',
+          dartName: 'mode',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterAuthenticatorGroupsConfig': MigrateHelper(
+      className: 'ContainerClusterAuthenticatorGroupsConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'security_group',
+          dartName: 'securityGroup',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterAutopilotClusterPolicyConfig': MigrateHelper(
+      className: 'ContainerClusterAutopilotClusterPolicyConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'no_standard_node_pools',
+          dartName: 'noStandardNodePools',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'no_system_impersonation',
+          dartName: 'noSystemImpersonation',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'no_system_mutation',
+          dartName: 'noSystemMutation',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'no_unsafe_webhooks',
+          dartName: 'noUnsafeWebhooks',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterBinaryAuthorization': MigrateHelper(
+      className: 'ContainerClusterBinaryAuthorization',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'evaluation_mode',
+          dartName: 'evaluationMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterClusterAutoscaling': MigrateHelper(
+      className: 'ContainerClusterClusterAutoscaling',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'auto_provisioning_locations',
+          dartName: 'autoProvisioningLocations',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'autoscaling_profile',
+          dartName: 'autoscalingProfile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'default_compute_class_enabled',
+          dartName: 'defaultComputeClassEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'auto_provisioning_defaults',
+          dartName: 'autoProvisioningDefaults',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterClusterAutoscalingAutoProvisioningDefaults',
+        ),
+        MigrateSlot(
+          tfName: 'resource_limits',
+          dartName: 'resourceLimits',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterClusterAutoscalingResourceLimits',
+        ),
+      ],
+    ),
+    'ContainerClusterClusterAutoscalingAutoProvisioningDefaults': MigrateHelper(
+      className: 'ContainerClusterClusterAutoscalingAutoProvisioningDefaults',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'boot_disk_kms_key',
+          dartName: 'bootDiskKmsKey',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'disk_size',
+          dartName: 'diskSize',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'disk_type',
+          dartName: 'diskType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'image_type',
+          dartName: 'imageType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'min_cpu_platform',
+          dartName: 'minCpuPlatform',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'oauth_scopes',
+          dartName: 'oauthScopes',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'service_account',
+          dartName: 'serviceAccount',
+          kind: MigrateSlotKind.reference,
+          required: false,
+          dartType: 'GoogleServiceAccount',
+          attribute: 'email',
+        ),
+        MigrateSlot(
+          tfName: 'management',
+          dartName: 'management',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsManagement',
+        ),
+        MigrateSlot(
+          tfName: 'shielded_instance_config',
+          dartName: 'shieldedInstanceConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsShieldedInstanceConfig',
+        ),
+        MigrateSlot(
+          tfName: 'upgrade_settings',
+          dartName: 'upgradeSettings',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettings',
+        ),
+      ],
+    ),
+    'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsManagement':
+        MigrateHelper(
+          className:
+              'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsManagement',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'auto_repair',
+              dartName: 'autoRepair',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'auto_upgrade',
+              dartName: 'autoUpgrade',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsShieldedInstanceConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsShieldedInstanceConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enable_integrity_monitoring',
+              dartName: 'enableIntegrityMonitoring',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'enable_secure_boot',
+              dartName: 'enableSecureBoot',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettings':
+        MigrateHelper(
+          className:
+              'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettings',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'max_surge',
+              dartName: 'maxSurge',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'max_unavailable',
+              dartName: 'maxUnavailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'strategy',
+              dartName: 'strategy',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'blue_green_settings',
+              dartName: 'blueGreenSettings',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              wrapped: false,
+              helper:
+                  'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettingsBlueGreenSettings',
+            ),
+          ],
+        ),
+    'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettingsBlueGreenSettings':
+        MigrateHelper(
+          className:
+              'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettingsBlueGreenSettings',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'node_pool_soak_duration',
+              dartName: 'nodePoolSoakDuration',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'standard_rollout_policy',
+              dartName: 'standardRolloutPolicy',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              wrapped: false,
+              helper:
+                  'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy',
+            ),
+          ],
+        ),
+    'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy':
+        MigrateHelper(
+          className:
+              'ContainerClusterClusterAutoscalingAutoProvisioningDefaultsUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'batch_node_count',
+              dartName: 'batchNodeCount',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'batch_percentage',
+              dartName: 'batchPercentage',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'batch_soak_duration',
+              dartName: 'batchSoakDuration',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterClusterAutoscalingResourceLimits': MigrateHelper(
+      className: 'ContainerClusterClusterAutoscalingResourceLimits',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'maximum',
+          dartName: 'maximum',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'minimum',
+          dartName: 'minimum',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'resource_type',
+          dartName: 'resourceType',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterConfidentialNodes': MigrateHelper(
+      className: 'ContainerClusterConfidentialNodes',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'confidential_instance_type',
+          dartName: 'confidentialInstanceType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterControlPlaneEndpointsConfig': MigrateHelper(
+      className: 'ContainerClusterControlPlaneEndpointsConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'dns_endpoint_config',
+          dartName: 'dnsEndpointConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterControlPlaneEndpointsConfigDnsEndpointConfig',
+        ),
+        MigrateSlot(
+          tfName: 'ip_endpoints_config',
+          dartName: 'ipEndpointsConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterControlPlaneEndpointsConfigIpEndpointsConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterControlPlaneEndpointsConfigDnsEndpointConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterControlPlaneEndpointsConfigDnsEndpointConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'allow_external_traffic',
+              dartName: 'allowExternalTraffic',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'enable_k8s_certs_via_dns',
+              dartName: 'enableK8sCertsViaDns',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'enable_k8s_tokens_via_dns',
+              dartName: 'enableK8sTokensViaDns',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'endpoint',
+              dartName: 'endpoint',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterControlPlaneEndpointsConfigIpEndpointsConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterControlPlaneEndpointsConfigIpEndpointsConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enabled',
+              dartName: 'enabled',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterCostManagementConfig': MigrateHelper(
+      className: 'ContainerClusterCostManagementConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterDatabaseEncryption': MigrateHelper(
+      className: 'ContainerClusterDatabaseEncryption',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'key_name',
+          dartName: 'keyName',
+          kind: MigrateSlotKind.reference,
+          required: false,
+          dartType: 'GoogleKmsCryptoKey',
+          attribute: 'id',
+        ),
+        MigrateSlot(
+          tfName: 'state',
+          dartName: 'state',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterDefaultSnatStatus': MigrateHelper(
+      className: 'ContainerClusterDefaultSnatStatus',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disabled',
+          dartName: 'disabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterDnsConfig': MigrateHelper(
+      className: 'ContainerClusterDnsConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'additive_vpc_scope_dns_domain',
+          dartName: 'additiveVpcScopeDnsDomain',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'cluster_dns',
+          dartName: 'clusterDns',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'cluster_dns_domain',
+          dartName: 'clusterDnsDomain',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'cluster_dns_scope',
+          dartName: 'clusterDnsScope',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterEnableK8sBetaApis': MigrateHelper(
+      className: 'ContainerClusterEnableK8sBetaApis',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled_apis',
+          dartName: 'enabledApis',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<Object?>',
+        ),
+      ],
+    ),
+    'ContainerClusterEnterpriseConfig': MigrateHelper(
+      className: 'ContainerClusterEnterpriseConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'desired_tier',
+          dartName: 'desiredTier',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterFleet': MigrateHelper(
+      className: 'ContainerClusterFleet',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'membership_type',
+          dartName: 'membershipType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'project',
+          dartName: 'project',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterGatewayApiConfig': MigrateHelper(
+      className: 'ContainerClusterGatewayApiConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'channel',
+          dartName: 'channel',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterGkeAutoUpgradeConfig': MigrateHelper(
+      className: 'ContainerClusterGkeAutoUpgradeConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'patch_mode',
+          dartName: 'patchMode',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterIdentityServiceConfig': MigrateHelper(
+      className: 'ContainerClusterIdentityServiceConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterIpAllocationPolicy': MigrateHelper(
+      className: 'ContainerClusterIpAllocationPolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cluster_ipv4_cidr_block',
+          dartName: 'clusterIpv4CidrBlock',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'cluster_secondary_range_name',
+          dartName: 'clusterSecondaryRangeName',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'services_ipv4_cidr_block',
+          dartName: 'servicesIpv4CidrBlock',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'services_secondary_range_name',
+          dartName: 'servicesSecondaryRangeName',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'stack_type',
+          dartName: 'stackType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'additional_ip_ranges_config',
+          dartName: 'additionalIpRangesConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterIpAllocationPolicyAdditionalIpRangesConfig',
+        ),
+        MigrateSlot(
+          tfName: 'additional_pod_ranges_config',
+          dartName: 'additionalPodRangesConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterIpAllocationPolicyAdditionalPodRangesConfig',
+        ),
+        MigrateSlot(
+          tfName: 'auto_ipam_config',
+          dartName: 'autoIpamConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterIpAllocationPolicyAutoIpamConfig',
+        ),
+        MigrateSlot(
+          tfName: 'network_tier_config',
+          dartName: 'networkTierConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterIpAllocationPolicyNetworkTierConfig',
+        ),
+        MigrateSlot(
+          tfName: 'pod_cidr_overprovision_config',
+          dartName: 'podCidrOverprovisionConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterIpAllocationPolicyPodCidrOverprovisionConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterIpAllocationPolicyAdditionalIpRangesConfig': MigrateHelper(
+      className: 'ContainerClusterIpAllocationPolicyAdditionalIpRangesConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'pod_ipv4_range_names',
+          dartName: 'podIpv4RangeNames',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'status',
+          dartName: 'status',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'subnetwork',
+          dartName: 'subnetwork',
+          kind: MigrateSlotKind.reference,
+          required: true,
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'id',
+        ),
+      ],
+    ),
+    'ContainerClusterIpAllocationPolicyAdditionalPodRangesConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterIpAllocationPolicyAdditionalPodRangesConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'pod_range_names',
+              dartName: 'podRangeNames',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<Object?>',
+            ),
+          ],
+        ),
+    'ContainerClusterIpAllocationPolicyAutoIpamConfig': MigrateHelper(
+      className: 'ContainerClusterIpAllocationPolicyAutoIpamConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterIpAllocationPolicyNetworkTierConfig': MigrateHelper(
+      className: 'ContainerClusterIpAllocationPolicyNetworkTierConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'network_tier',
+          dartName: 'networkTier',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterIpAllocationPolicyPodCidrOverprovisionConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterIpAllocationPolicyPodCidrOverprovisionConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'disabled',
+              dartName: 'disabled',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterLoggingConfig': MigrateHelper(
+      className: 'ContainerClusterLoggingConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enable_components',
+          dartName: 'enableComponents',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<Object?>',
+        ),
+      ],
+    ),
+    'ContainerClusterMaintenancePolicy': MigrateHelper(
+      className: 'ContainerClusterMaintenancePolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'daily_maintenance_window',
+          dartName: 'dailyMaintenanceWindow',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterMaintenancePolicyDailyMaintenanceWindow',
+        ),
+        MigrateSlot(
+          tfName: 'disruption_budget',
+          dartName: 'disruptionBudget',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterMaintenancePolicyDisruptionBudget',
+        ),
+        MigrateSlot(
+          tfName: 'maintenance_exclusion',
+          dartName: 'maintenanceExclusion',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterMaintenancePolicyMaintenanceExclusion',
+        ),
+        MigrateSlot(
+          tfName: 'recurring_maintenance_window',
+          dartName: 'recurringMaintenanceWindow',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterMaintenancePolicyRecurringMaintenanceWindow',
+        ),
+        MigrateSlot(
+          tfName: 'recurring_window',
+          dartName: 'recurringWindow',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterMaintenancePolicyRecurringWindow',
+        ),
+      ],
+    ),
+    'ContainerClusterMaintenancePolicyDailyMaintenanceWindow': MigrateHelper(
+      className: 'ContainerClusterMaintenancePolicyDailyMaintenanceWindow',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'start_time',
+          dartName: 'startTime',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterMaintenancePolicyDisruptionBudget': MigrateHelper(
+      className: 'ContainerClusterMaintenancePolicyDisruptionBudget',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'minor_version_disruption_interval',
+          dartName: 'minorVersionDisruptionInterval',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'patch_version_disruption_interval',
+          dartName: 'patchVersionDisruptionInterval',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterMaintenancePolicyMaintenanceExclusion': MigrateHelper(
+      className: 'ContainerClusterMaintenancePolicyMaintenanceExclusion',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'end_time',
+          dartName: 'endTime',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'exclusion_name',
+          dartName: 'exclusionName',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'start_time',
+          dartName: 'startTime',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'exclusion_options',
+          dartName: 'exclusionOptions',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterMaintenancePolicyMaintenanceExclusionExclusionOptions',
+        ),
+      ],
+    ),
+    'ContainerClusterMaintenancePolicyMaintenanceExclusionExclusionOptions':
+        MigrateHelper(
+          className:
+              'ContainerClusterMaintenancePolicyMaintenanceExclusionExclusionOptions',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'end_time_behavior',
+              dartName: 'endTimeBehavior',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'scope',
+              dartName: 'scope',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterMaintenancePolicyRecurringMaintenanceWindow': MigrateHelper(
+      className: 'ContainerClusterMaintenancePolicyRecurringMaintenanceWindow',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'recurrence',
+          dartName: 'recurrence',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'window_duration',
+          dartName: 'windowDuration',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'delay_until',
+          dartName: 'delayUntil',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterMaintenancePolicyRecurringMaintenanceWindowDelayUntil',
+        ),
+        MigrateSlot(
+          tfName: 'window_start_time',
+          dartName: 'windowStartTime',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterMaintenancePolicyRecurringMaintenanceWindowWindowStartTime',
+        ),
+      ],
+    ),
+    'ContainerClusterMaintenancePolicyRecurringMaintenanceWindowDelayUntil':
+        MigrateHelper(
+          className:
+              'ContainerClusterMaintenancePolicyRecurringMaintenanceWindowDelayUntil',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'day',
+              dartName: 'day',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'month',
+              dartName: 'month',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'year',
+              dartName: 'year',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerClusterMaintenancePolicyRecurringMaintenanceWindowWindowStartTime':
+        MigrateHelper(
+          className:
+              'ContainerClusterMaintenancePolicyRecurringMaintenanceWindowWindowStartTime',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'hours',
+              dartName: 'hours',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'minutes',
+              dartName: 'minutes',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'seconds',
+              dartName: 'seconds',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerClusterMaintenancePolicyRecurringWindow': MigrateHelper(
+      className: 'ContainerClusterMaintenancePolicyRecurringWindow',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'end_time',
+          dartName: 'endTime',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'recurrence',
+          dartName: 'recurrence',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'start_time',
+          dartName: 'startTime',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterMasterAuth': MigrateHelper(
+      className: 'ContainerClusterMasterAuth',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'client_certificate_config',
+          dartName: 'clientCertificateConfig',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ContainerClusterMasterAuthClientCertificateConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterMasterAuthClientCertificateConfig': MigrateHelper(
+      className: 'ContainerClusterMasterAuthClientCertificateConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'issue_client_certificate',
+          dartName: 'issueClientCertificate',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterMasterAuthorizedNetworksConfig': MigrateHelper(
+      className: 'ContainerClusterMasterAuthorizedNetworksConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'gcp_public_cidrs_access_enabled',
+          dartName: 'gcpPublicCidrsAccessEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'private_endpoint_enforcement_enabled',
+          dartName: 'privateEndpointEnforcementEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'cidr_blocks',
+          dartName: 'cidrBlocks',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterMasterAuthorizedNetworksConfigCidrBlocks',
+        ),
+      ],
+    ),
+    'ContainerClusterMasterAuthorizedNetworksConfigCidrBlocks': MigrateHelper(
+      className: 'ContainerClusterMasterAuthorizedNetworksConfigCidrBlocks',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cidr_block',
+          dartName: 'cidrBlock',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'display_name',
+          dartName: 'displayName',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterMeshCertificates': MigrateHelper(
+      className: 'ContainerClusterMeshCertificates',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enable_certificates',
+          dartName: 'enableCertificates',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterMonitoringConfig': MigrateHelper(
+      className: 'ContainerClusterMonitoringConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enable_components',
+          dartName: 'enableComponents',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'advanced_datapath_observability_config',
+          dartName: 'advancedDatapathObservabilityConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterMonitoringConfigAdvancedDatapathObservabilityConfig',
+        ),
+        MigrateSlot(
+          tfName: 'managed_prometheus',
+          dartName: 'managedPrometheus',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterMonitoringConfigManagedPrometheus',
+        ),
+      ],
+    ),
+    'ContainerClusterMonitoringConfigAdvancedDatapathObservabilityConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterMonitoringConfigAdvancedDatapathObservabilityConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enable_metrics',
+              dartName: 'enableMetrics',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'enable_relay',
+              dartName: 'enableRelay',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterMonitoringConfigManagedPrometheus': MigrateHelper(
+      className: 'ContainerClusterMonitoringConfigManagedPrometheus',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'auto_monitoring_config',
+          dartName: 'autoMonitoringConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterMonitoringConfigManagedPrometheusAutoMonitoringConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterMonitoringConfigManagedPrometheusAutoMonitoringConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterMonitoringConfigManagedPrometheusAutoMonitoringConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'scope',
+              dartName: 'scope',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNetworkPerformanceConfig': MigrateHelper(
+      className: 'ContainerClusterNetworkPerformanceConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'total_egress_bandwidth_tier',
+          dartName: 'totalEgressBandwidthTier',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNetworkPolicy': MigrateHelper(
+      className: 'ContainerClusterNetworkPolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'provider',
+          dartName: 'provider',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'boot_disk_kms_key',
+          dartName: 'bootDiskKmsKey',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'disk_size_gb',
+          dartName: 'diskSizeGb',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'disk_type',
+          dartName: 'diskType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'enable_confidential_storage',
+          dartName: 'enableConfidentialStorage',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'flex_start',
+          dartName: 'flexStart',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'gpudirect_strategy',
+          dartName: 'gpudirectStrategy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'image_type',
+          dartName: 'imageType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'labels',
+          dartName: 'labels',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'local_ssd_count',
+          dartName: 'localSsdCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'local_ssd_encryption_mode',
+          dartName: 'localSsdEncryptionMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'logging_variant',
+          dartName: 'loggingVariant',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'machine_type',
+          dartName: 'machineType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_run_duration',
+          dartName: 'maxRunDuration',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'metadata',
+          dartName: 'metadata',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'min_cpu_platform',
+          dartName: 'minCpuPlatform',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'node_group',
+          dartName: 'nodeGroup',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'oauth_scopes',
+          dartName: 'oauthScopes',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'preemptible',
+          dartName: 'preemptible',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'resource_labels',
+          dartName: 'resourceLabels',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'resource_manager_tags',
+          dartName: 'resourceManagerTags',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'service_account',
+          dartName: 'serviceAccount',
+          kind: MigrateSlotKind.reference,
+          required: false,
+          dartType: 'GoogleServiceAccount',
+          attribute: 'email',
+        ),
+        MigrateSlot(
+          tfName: 'spot',
+          dartName: 'spot',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'storage_pools',
+          dartName: 'storagePools',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'tags',
+          dartName: 'tags',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'advanced_machine_features',
+          dartName: 'advancedMachineFeatures',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigAdvancedMachineFeatures',
+        ),
+        MigrateSlot(
+          tfName: 'boot_disk',
+          dartName: 'bootDisk',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigBootDisk',
+        ),
+        MigrateSlot(
+          tfName: 'confidential_nodes',
+          dartName: 'confidentialNodes',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigConfidentialNodes',
+        ),
+        MigrateSlot(
+          tfName: 'containerd_config',
+          dartName: 'containerdConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigContainerdConfig',
+        ),
+        MigrateSlot(
+          tfName: 'ephemeral_storage_local_ssd_config',
+          dartName: 'ephemeralStorageLocalSsdConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigEphemeralStorageLocalSsdConfig',
+        ),
+        MigrateSlot(
+          tfName: 'fast_socket',
+          dartName: 'fastSocket',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigFastSocket',
+        ),
+        MigrateSlot(
+          tfName: 'gcfs_config',
+          dartName: 'gcfsConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigGcfsConfig',
+        ),
+        MigrateSlot(
+          tfName: 'guest_accelerator',
+          dartName: 'guestAccelerator',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigGuestAccelerator',
+        ),
+        MigrateSlot(
+          tfName: 'gvnic',
+          dartName: 'gvnic',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigGvnic',
+        ),
+        MigrateSlot(
+          tfName: 'kubelet_config',
+          dartName: 'kubeletConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigKubeletConfig',
+        ),
+        MigrateSlot(
+          tfName: 'linux_node_config',
+          dartName: 'linuxNodeConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigLinuxNodeConfig',
+        ),
+        MigrateSlot(
+          tfName: 'local_nvme_ssd_block_config',
+          dartName: 'localNvmeSsdBlockConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigLocalNvmeSsdBlockConfig',
+        ),
+        MigrateSlot(
+          tfName: 'node_image_config',
+          dartName: 'nodeImageConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigNodeImageConfig',
+        ),
+        MigrateSlot(
+          tfName: 'reservation_affinity',
+          dartName: 'reservationAffinity',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigReservationAffinity',
+        ),
+        MigrateSlot(
+          tfName: 'sandbox_config',
+          dartName: 'sandboxConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigSandboxConfig',
+        ),
+        MigrateSlot(
+          tfName: 'secondary_boot_disks',
+          dartName: 'secondaryBootDisks',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigSecondaryBootDisks',
+        ),
+        MigrateSlot(
+          tfName: 'shielded_instance_config',
+          dartName: 'shieldedInstanceConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigShieldedInstanceConfig',
+        ),
+        MigrateSlot(
+          tfName: 'sole_tenant_config',
+          dartName: 'soleTenantConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigSoleTenantConfig',
+        ),
+        MigrateSlot(
+          tfName: 'taint',
+          dartName: 'taint',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigTaint',
+        ),
+        MigrateSlot(
+          tfName: 'taint_config',
+          dartName: 'taintConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigTaintConfig',
+        ),
+        MigrateSlot(
+          tfName: 'windows_node_config',
+          dartName: 'windowsNodeConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigWindowsNodeConfig',
+        ),
+        MigrateSlot(
+          tfName: 'workload_metadata_config',
+          dartName: 'workloadMetadataConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigWorkloadMetadataConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigAdvancedMachineFeatures': MigrateHelper(
+      className: 'ContainerClusterNodeConfigAdvancedMachineFeatures',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enable_nested_virtualization',
+          dartName: 'enableNestedVirtualization',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'performance_monitoring_unit',
+          dartName: 'performanceMonitoringUnit',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'threads_per_core',
+          dartName: 'threadsPerCore',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigBootDisk': MigrateHelper(
+      className: 'ContainerClusterNodeConfigBootDisk',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disk_type',
+          dartName: 'diskType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'provisioned_iops',
+          dartName: 'provisionedIops',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'provisioned_throughput',
+          dartName: 'provisionedThroughput',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'size_gb',
+          dartName: 'sizeGb',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigConfidentialNodes': MigrateHelper(
+      className: 'ContainerClusterNodeConfigConfidentialNodes',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'confidential_instance_type',
+          dartName: 'confidentialInstanceType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigContainerdConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigContainerdConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'private_registry_access_config',
+          dartName: 'privateRegistryAccessConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfig',
+        ),
+        MigrateSlot(
+          tfName: 'registry_hosts',
+          dartName: 'registryHosts',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigContainerdConfigRegistryHosts',
+        ),
+        MigrateSlot(
+          tfName: 'writable_cgroups',
+          dartName: 'writableCgroups',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigContainerdConfigWritableCgroups',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enabled',
+              dartName: 'enabled',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'certificate_authority_domain_config',
+              dartName: 'certificateAuthorityDomainConfig',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              wrapped: false,
+              helper:
+                  'ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'fqdns',
+              dartName: 'fqdns',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<Object?>',
+            ),
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_certificate_config',
+              dartName: 'gcpSecretManagerCertificateConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'secret_uri',
+              dartName: 'secretUri',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigContainerdConfigRegistryHosts': MigrateHelper(
+      className: 'ContainerClusterNodeConfigContainerdConfigRegistryHosts',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'server',
+          dartName: 'server',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'hosts',
+          dartName: 'hosts',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigContainerdConfigRegistryHostsHosts',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigContainerdConfigRegistryHostsHosts': MigrateHelper(
+      className: 'ContainerClusterNodeConfigContainerdConfigRegistryHostsHosts',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'capabilities',
+          dartName: 'capabilities',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'dial_timeout',
+          dartName: 'dialTimeout',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'host',
+          dartName: 'host',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'override_path',
+          dartName: 'overridePath',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'ca',
+          dartName: 'ca',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsCa',
+        ),
+        MigrateSlot(
+          tfName: 'client',
+          dartName: 'client',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClient',
+        ),
+        MigrateSlot(
+          tfName: 'header',
+          dartName: 'header',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsHeader',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsCa':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsCa',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClient': MigrateHelper(
+      className:
+          'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClient',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cert',
+          dartName: 'cert',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClientCert',
+        ),
+        MigrateSlot(
+          tfName: 'key',
+          dartName: 'key',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClientKey',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClientCert':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClientCert',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClientKey':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsClientKey',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsHeader':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigContainerdConfigRegistryHostsHostsHeader',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'key',
+              dartName: 'key',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'value',
+              dartName: 'value',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<Object?>',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigContainerdConfigWritableCgroups': MigrateHelper(
+      className: 'ContainerClusterNodeConfigContainerdConfigWritableCgroups',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigEphemeralStorageLocalSsdConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigEphemeralStorageLocalSsdConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'data_cache_count',
+          dartName: 'dataCacheCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'local_ssd_count',
+          dartName: 'localSsdCount',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigFastSocket': MigrateHelper(
+      className: 'ContainerClusterNodeConfigFastSocket',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigGcfsConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigGcfsConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigGuestAccelerator': MigrateHelper(
+      className: 'ContainerClusterNodeConfigGuestAccelerator',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'count',
+          dartName: 'count',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'gpu_partition_size',
+          dartName: 'gpuPartitionSize',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'gpu_driver_installation_config',
+          dartName: 'gpuDriverInstallationConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigGuestAcceleratorGpuDriverInstallationConfig',
+        ),
+        MigrateSlot(
+          tfName: 'gpu_sharing_config',
+          dartName: 'gpuSharingConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigGuestAcceleratorGpuSharingConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigGuestAcceleratorGpuDriverInstallationConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigGuestAcceleratorGpuDriverInstallationConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gpu_driver_version',
+              dartName: 'gpuDriverVersion',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigGuestAcceleratorGpuSharingConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigGuestAcceleratorGpuSharingConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'gpu_sharing_strategy',
+          dartName: 'gpuSharingStrategy',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_shared_clients_per_gpu',
+          dartName: 'maxSharedClientsPerGpu',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigGvnic': MigrateHelper(
+      className: 'ContainerClusterNodeConfigGvnic',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigKubeletConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigKubeletConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'allowed_unsafe_sysctls',
+          dartName: 'allowedUnsafeSysctls',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'container_log_max_files',
+          dartName: 'containerLogMaxFiles',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'container_log_max_size',
+          dartName: 'containerLogMaxSize',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'cpu_cfs_quota',
+          dartName: 'cpuCfsQuota',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'cpu_cfs_quota_period',
+          dartName: 'cpuCfsQuotaPeriod',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'cpu_manager_policy',
+          dartName: 'cpuManagerPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'eviction_max_pod_grace_period_seconds',
+          dartName: 'evictionMaxPodGracePeriodSeconds',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'image_gc_high_threshold_percent',
+          dartName: 'imageGcHighThresholdPercent',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'image_gc_low_threshold_percent',
+          dartName: 'imageGcLowThresholdPercent',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'image_maximum_gc_age',
+          dartName: 'imageMaximumGcAge',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'image_minimum_gc_age',
+          dartName: 'imageMinimumGcAge',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'insecure_kubelet_readonly_port_enabled',
+          dartName: 'insecureKubeletReadonlyPortEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_parallel_image_pulls',
+          dartName: 'maxParallelImagePulls',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'pod_pids_limit',
+          dartName: 'podPidsLimit',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'shutdown_grace_period_critical_pods_seconds',
+          dartName: 'shutdownGracePeriodCriticalPodsSeconds',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'shutdown_grace_period_seconds',
+          dartName: 'shutdownGracePeriodSeconds',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'single_process_oom_kill',
+          dartName: 'singleProcessOomKill',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'crash_loop_back_off',
+          dartName: 'crashLoopBackOff',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigKubeletConfigCrashLoopBackOff',
+        ),
+        MigrateSlot(
+          tfName: 'eviction_minimum_reclaim',
+          dartName: 'evictionMinimumReclaim',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigKubeletConfigEvictionMinimumReclaim',
+        ),
+        MigrateSlot(
+          tfName: 'eviction_soft',
+          dartName: 'evictionSoft',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigKubeletConfigEvictionSoft',
+        ),
+        MigrateSlot(
+          tfName: 'eviction_soft_grace_period',
+          dartName: 'evictionSoftGracePeriod',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigKubeletConfigEvictionSoftGracePeriod',
+        ),
+        MigrateSlot(
+          tfName: 'memory_manager',
+          dartName: 'memoryManager',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigKubeletConfigMemoryManager',
+        ),
+        MigrateSlot(
+          tfName: 'topology_manager',
+          dartName: 'topologyManager',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigKubeletConfigTopologyManager',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigKubeletConfigCrashLoopBackOff': MigrateHelper(
+      className: 'ContainerClusterNodeConfigKubeletConfigCrashLoopBackOff',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_container_restart_period',
+          dartName: 'maxContainerRestartPeriod',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigKubeletConfigEvictionMinimumReclaim':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigKubeletConfigEvictionMinimumReclaim',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'imagefs_available',
+              dartName: 'imagefsAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'imagefs_inodes_free',
+              dartName: 'imagefsInodesFree',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'memory_available',
+              dartName: 'memoryAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'nodefs_available',
+              dartName: 'nodefsAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'nodefs_inodes_free',
+              dartName: 'nodefsInodesFree',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'pid_available',
+              dartName: 'pidAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigKubeletConfigEvictionSoft': MigrateHelper(
+      className: 'ContainerClusterNodeConfigKubeletConfigEvictionSoft',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'imagefs_available',
+          dartName: 'imagefsAvailable',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'imagefs_inodes_free',
+          dartName: 'imagefsInodesFree',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'memory_available',
+          dartName: 'memoryAvailable',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'nodefs_available',
+          dartName: 'nodefsAvailable',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'nodefs_inodes_free',
+          dartName: 'nodefsInodesFree',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'pid_available',
+          dartName: 'pidAvailable',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigKubeletConfigEvictionSoftGracePeriod':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigKubeletConfigEvictionSoftGracePeriod',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'imagefs_available',
+              dartName: 'imagefsAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'imagefs_inodes_free',
+              dartName: 'imagefsInodesFree',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'memory_available',
+              dartName: 'memoryAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'nodefs_available',
+              dartName: 'nodefsAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'nodefs_inodes_free',
+              dartName: 'nodefsInodesFree',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'pid_available',
+              dartName: 'pidAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigKubeletConfigMemoryManager': MigrateHelper(
+      className: 'ContainerClusterNodeConfigKubeletConfigMemoryManager',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'policy',
+          dartName: 'policy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigKubeletConfigTopologyManager': MigrateHelper(
+      className: 'ContainerClusterNodeConfigKubeletConfigTopologyManager',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'policy',
+          dartName: 'policy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'scope',
+          dartName: 'scope',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigLinuxNodeConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigLinuxNodeConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cgroup_mode',
+          dartName: 'cgroupMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'sysctls',
+          dartName: 'sysctls',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'transparent_hugepage_defrag',
+          dartName: 'transparentHugepageDefrag',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'transparent_hugepage_enabled',
+          dartName: 'transparentHugepageEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'accurate_time_config',
+          dartName: 'accurateTimeConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigLinuxNodeConfigAccurateTimeConfig',
+        ),
+        MigrateSlot(
+          tfName: 'custom_node_init',
+          dartName: 'customNodeInit',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigLinuxNodeConfigCustomNodeInit',
+        ),
+        MigrateSlot(
+          tfName: 'hugepages_config',
+          dartName: 'hugepagesConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigLinuxNodeConfigHugepagesConfig',
+        ),
+        MigrateSlot(
+          tfName: 'node_kernel_module_loading',
+          dartName: 'nodeKernelModuleLoading',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigLinuxNodeConfigNodeKernelModuleLoading',
+        ),
+        MigrateSlot(
+          tfName: 'swap_config',
+          dartName: 'swapConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigLinuxNodeConfigSwapConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigLinuxNodeConfigAccurateTimeConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigLinuxNodeConfigAccurateTimeConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enable_ptp_kvm_time_sync',
+              dartName: 'enablePtpKvmTimeSync',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigLinuxNodeConfigCustomNodeInit': MigrateHelper(
+      className: 'ContainerClusterNodeConfigLinuxNodeConfigCustomNodeInit',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'init_script',
+          dartName: 'initScript',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigLinuxNodeConfigCustomNodeInitInitScript',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigLinuxNodeConfigCustomNodeInitInitScript':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigLinuxNodeConfigCustomNodeInitInitScript',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'gcs_generation',
+              dartName: 'gcsGeneration',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'gcs_uri',
+              dartName: 'gcsUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigLinuxNodeConfigHugepagesConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigLinuxNodeConfigHugepagesConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'hugepage_size_1g',
+          dartName: 'hugepageSize1g',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'hugepage_size_2m',
+          dartName: 'hugepageSize2m',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigLinuxNodeConfigNodeKernelModuleLoading':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigLinuxNodeConfigNodeKernelModuleLoading',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'policy',
+              dartName: 'policy',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigLinuxNodeConfigSwapConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigLinuxNodeConfigSwapConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'boot_disk_profile',
+          dartName: 'bootDiskProfile',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile',
+        ),
+        MigrateSlot(
+          tfName: 'dedicated_local_ssd_profile',
+          dartName: 'dedicatedLocalSsdProfile',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile',
+        ),
+        MigrateSlot(
+          tfName: 'encryption_config',
+          dartName: 'encryptionConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig',
+        ),
+        MigrateSlot(
+          tfName: 'ephemeral_local_ssd_profile',
+          dartName: 'ephemeralLocalSsdProfile',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'swap_size_gib',
+              dartName: 'swapSizeGib',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'swap_size_percent',
+              dartName: 'swapSizePercent',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'disk_count',
+              dartName: 'diskCount',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'disabled',
+              dartName: 'disabled',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'swap_size_gib',
+              dartName: 'swapSizeGib',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'swap_size_percent',
+              dartName: 'swapSizePercent',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerClusterNodeConfigLocalNvmeSsdBlockConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigLocalNvmeSsdBlockConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'local_ssd_count',
+          dartName: 'localSsdCount',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigNodeImageConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigNodeImageConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'image',
+          dartName: 'image',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'image_project',
+          dartName: 'imageProject',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigReservationAffinity': MigrateHelper(
+      className: 'ContainerClusterNodeConfigReservationAffinity',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consume_reservation_type',
+          dartName: 'consumeReservationType',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'key',
+          dartName: 'key',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'values',
+          dartName: 'values',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigSandboxConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigSandboxConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigSecondaryBootDisks': MigrateHelper(
+      className: 'ContainerClusterNodeConfigSecondaryBootDisks',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disk_image',
+          dartName: 'diskImage',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'mode',
+          dartName: 'mode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigShieldedInstanceConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigShieldedInstanceConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enable_integrity_monitoring',
+          dartName: 'enableIntegrityMonitoring',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'enable_secure_boot',
+          dartName: 'enableSecureBoot',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigSoleTenantConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigSoleTenantConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'min_node_cpus',
+          dartName: 'minNodeCpus',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'node_affinity',
+          dartName: 'nodeAffinity',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterNodeConfigSoleTenantConfigNodeAffinity',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigSoleTenantConfigNodeAffinity': MigrateHelper(
+      className: 'ContainerClusterNodeConfigSoleTenantConfigNodeAffinity',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'key',
+          dartName: 'key',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'operator',
+          dartName: 'operator',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'values',
+          dartName: 'values',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<Object?>',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigTaint': MigrateHelper(
+      className: 'ContainerClusterNodeConfigTaint',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'effect',
+          dartName: 'effect',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'key',
+          dartName: 'key',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigTaintConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigTaintConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'architecture_taint_behavior',
+          dartName: 'architectureTaintBehavior',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigWindowsNodeConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigWindowsNodeConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'osversion',
+          dartName: 'osversion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeConfigWorkloadMetadataConfig': MigrateHelper(
+      className: 'ContainerClusterNodeConfigWorkloadMetadataConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mode',
+          dartName: 'mode',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodeCreationConfig': MigrateHelper(
+      className: 'ContainerClusterNodeCreationConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'node_creation_mode',
+          dartName: 'nodeCreationMode',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePool': MigrateHelper(
+      className: 'ContainerClusterNodePool',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'ignore_node_count_changes',
+          dartName: 'ignoreNodeCountChanges',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'initial_node_count',
+          dartName: 'initialNodeCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'max_pods_per_node',
+          dartName: 'maxPodsPerNode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'name',
+          dartName: 'name',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'name_prefix',
+          dartName: 'namePrefix',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'node_count',
+          dartName: 'nodeCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'node_locations',
+          dartName: 'nodeLocations',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'version',
+          dartName: 'version',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'autoscaling',
+          dartName: 'autoscaling',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolAutoscaling',
+        ),
+        MigrateSlot(
+          tfName: 'maintenance_policy',
+          dartName: 'maintenancePolicy',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolMaintenancePolicy',
+        ),
+        MigrateSlot(
+          tfName: 'management',
+          dartName: 'management',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolManagement',
+        ),
+        MigrateSlot(
+          tfName: 'network_config',
+          dartName: 'networkConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNetworkConfig',
+        ),
+        MigrateSlot(
+          tfName: 'node_config',
+          dartName: 'nodeConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfig',
+        ),
+        MigrateSlot(
+          tfName: 'node_drain_config',
+          dartName: 'nodeDrainConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeDrainConfig',
+        ),
+        MigrateSlot(
+          tfName: 'placement_policy',
+          dartName: 'placementPolicy',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolPlacementPolicy',
+        ),
+        MigrateSlot(
+          tfName: 'queued_provisioning',
+          dartName: 'queuedProvisioning',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolQueuedProvisioning',
+        ),
+        MigrateSlot(
+          tfName: 'upgrade_settings',
+          dartName: 'upgradeSettings',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolUpgradeSettings',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolAutoConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolAutoConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'resource_manager_tags',
+          dartName: 'resourceManagerTags',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'linux_node_config',
+          dartName: 'linuxNodeConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolAutoConfigLinuxNodeConfig',
+        ),
+        MigrateSlot(
+          tfName: 'network_tags',
+          dartName: 'networkTags',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolAutoConfigNetworkTags',
+        ),
+        MigrateSlot(
+          tfName: 'node_kubelet_config',
+          dartName: 'nodeKubeletConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolAutoConfigNodeKubeletConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolAutoConfigLinuxNodeConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolAutoConfigLinuxNodeConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cgroup_mode',
+          dartName: 'cgroupMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'node_kernel_module_loading',
+          dartName: 'nodeKernelModuleLoading',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolAutoConfigLinuxNodeConfigNodeKernelModuleLoading',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolAutoConfigLinuxNodeConfigNodeKernelModuleLoading':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolAutoConfigLinuxNodeConfigNodeKernelModuleLoading',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'policy',
+              dartName: 'policy',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolAutoConfigNetworkTags': MigrateHelper(
+      className: 'ContainerClusterNodePoolAutoConfigNetworkTags',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'tags',
+          dartName: 'tags',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolAutoConfigNodeKubeletConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolAutoConfigNodeKubeletConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'insecure_kubelet_readonly_port_enabled',
+          dartName: 'insecureKubeletReadonlyPortEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolAutoscaling': MigrateHelper(
+      className: 'ContainerClusterNodePoolAutoscaling',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'location_policy',
+          dartName: 'locationPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_node_count',
+          dartName: 'maxNodeCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'min_node_count',
+          dartName: 'minNodeCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'total_max_node_count',
+          dartName: 'totalMaxNodeCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'total_min_node_count',
+          dartName: 'totalMinNodeCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolDefaults': MigrateHelper(
+      className: 'ContainerClusterNodePoolDefaults',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'node_config_defaults',
+          dartName: 'nodeConfigDefaults',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolDefaultsNodeConfigDefaults',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolDefaultsNodeConfigDefaults': MigrateHelper(
+      className: 'ContainerClusterNodePoolDefaultsNodeConfigDefaults',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'insecure_kubelet_readonly_port_enabled',
+          dartName: 'insecureKubeletReadonlyPortEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'logging_variant',
+          dartName: 'loggingVariant',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'containerd_config',
+          dartName: 'containerdConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfig',
+        ),
+        MigrateSlot(
+          tfName: 'gcfs_config',
+          dartName: 'gcfsConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsGcfsConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfig': MigrateHelper(
+      className:
+          'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'private_registry_access_config',
+          dartName: 'privateRegistryAccessConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfig',
+        ),
+        MigrateSlot(
+          tfName: 'registry_hosts',
+          dartName: 'registryHosts',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHosts',
+        ),
+        MigrateSlot(
+          tfName: 'writable_cgroups',
+          dartName: 'writableCgroups',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigWritableCgroups',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enabled',
+              dartName: 'enabled',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'certificate_authority_domain_config',
+              dartName: 'certificateAuthorityDomainConfig',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              wrapped: false,
+              helper:
+                  'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'fqdns',
+              dartName: 'fqdns',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<Object?>',
+            ),
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_certificate_config',
+              dartName: 'gcpSecretManagerCertificateConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'secret_uri',
+              dartName: 'secretUri',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHosts':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHosts',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'server',
+              dartName: 'server',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'hosts',
+              dartName: 'hosts',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              wrapped: false,
+              helper:
+                  'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHosts',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHosts': MigrateHelper(
+      className:
+          'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHosts',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'capabilities',
+          dartName: 'capabilities',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'dial_timeout',
+          dartName: 'dialTimeout',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'host',
+          dartName: 'host',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'override_path',
+          dartName: 'overridePath',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'ca',
+          dartName: 'ca',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsCa',
+        ),
+        MigrateSlot(
+          tfName: 'client',
+          dartName: 'client',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClient',
+        ),
+        MigrateSlot(
+          tfName: 'header',
+          dartName: 'header',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsHeader',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsCa':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsCa',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClient':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClient',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'cert',
+              dartName: 'cert',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClientCert',
+            ),
+            MigrateSlot(
+              tfName: 'key',
+              dartName: 'key',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              wrapped: false,
+              helper:
+                  'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClientKey',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClientCert':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClientCert',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClientKey':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsClientKey',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsHeader':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigRegistryHostsHostsHeader',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'key',
+              dartName: 'key',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'value',
+              dartName: 'value',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<Object?>',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigWritableCgroups':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsContainerdConfigWritableCgroups',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enabled',
+              dartName: 'enabled',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolDefaultsNodeConfigDefaultsGcfsConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolDefaultsNodeConfigDefaultsGcfsConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enabled',
+              dartName: 'enabled',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolMaintenancePolicy': MigrateHelper(
+      className: 'ContainerClusterNodePoolMaintenancePolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'exclusion_until_end_of_support',
+          dartName: 'exclusionUntilEndOfSupport',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolMaintenancePolicyExclusionUntilEndOfSupport',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolMaintenancePolicyExclusionUntilEndOfSupport':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolMaintenancePolicyExclusionUntilEndOfSupport',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enabled',
+              dartName: 'enabled',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolManagement': MigrateHelper(
+      className: 'ContainerClusterNodePoolManagement',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'auto_repair',
+          dartName: 'autoRepair',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'auto_upgrade',
+          dartName: 'autoUpgrade',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNetworkConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNetworkConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'accelerator_network_profile',
+          dartName: 'acceleratorNetworkProfile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'create_pod_range',
+          dartName: 'createPodRange',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'enable_private_nodes',
+          dartName: 'enablePrivateNodes',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'pod_ipv4_cidr_block',
+          dartName: 'podIpv4CidrBlock',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'pod_range',
+          dartName: 'podRange',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'subnetwork',
+          dartName: 'subnetwork',
+          kind: MigrateSlotKind.reference,
+          required: false,
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'id',
+        ),
+        MigrateSlot(
+          tfName: 'additional_node_network_configs',
+          dartName: 'additionalNodeNetworkConfigs',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNetworkConfigAdditionalNodeNetworkConfigs',
+        ),
+        MigrateSlot(
+          tfName: 'additional_pod_network_configs',
+          dartName: 'additionalPodNetworkConfigs',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNetworkConfigAdditionalPodNetworkConfigs',
+        ),
+        MigrateSlot(
+          tfName: 'network_performance_config',
+          dartName: 'networkPerformanceConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNetworkConfigNetworkPerformanceConfig',
+        ),
+        MigrateSlot(
+          tfName: 'pod_cidr_overprovision_config',
+          dartName: 'podCidrOverprovisionConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNetworkConfigPodCidrOverprovisionConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNetworkConfigAdditionalNodeNetworkConfigs':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNetworkConfigAdditionalNodeNetworkConfigs',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'network',
+              dartName: 'network',
+              kind: MigrateSlotKind.reference,
+              required: false,
+              dartType: 'GoogleComputeNetwork',
+              attribute: 'name',
+            ),
+            MigrateSlot(
+              tfName: 'subnetwork',
+              dartName: 'subnetwork',
+              kind: MigrateSlotKind.reference,
+              required: false,
+              dartType: 'GoogleComputeSubnetwork',
+              attribute: 'name',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNetworkConfigAdditionalPodNetworkConfigs':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNetworkConfigAdditionalPodNetworkConfigs',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'max_pods_per_node',
+              dartName: 'maxPodsPerNode',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'secondary_pod_range',
+              dartName: 'secondaryPodRange',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'subnetwork',
+              dartName: 'subnetwork',
+              kind: MigrateSlotKind.reference,
+              required: false,
+              dartType: 'GoogleComputeSubnetwork',
+              attribute: 'name',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNetworkConfigNetworkPerformanceConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNetworkConfigNetworkPerformanceConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'total_egress_bandwidth_tier',
+              dartName: 'totalEgressBandwidthTier',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNetworkConfigPodCidrOverprovisionConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNetworkConfigPodCidrOverprovisionConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'disabled',
+              dartName: 'disabled',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'boot_disk_kms_key',
+          dartName: 'bootDiskKmsKey',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'disk_size_gb',
+          dartName: 'diskSizeGb',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'disk_type',
+          dartName: 'diskType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'enable_confidential_storage',
+          dartName: 'enableConfidentialStorage',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'flex_start',
+          dartName: 'flexStart',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'gpudirect_strategy',
+          dartName: 'gpudirectStrategy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'image_type',
+          dartName: 'imageType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'labels',
+          dartName: 'labels',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'local_ssd_count',
+          dartName: 'localSsdCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'local_ssd_encryption_mode',
+          dartName: 'localSsdEncryptionMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'logging_variant',
+          dartName: 'loggingVariant',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'machine_type',
+          dartName: 'machineType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_run_duration',
+          dartName: 'maxRunDuration',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'metadata',
+          dartName: 'metadata',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'min_cpu_platform',
+          dartName: 'minCpuPlatform',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'node_group',
+          dartName: 'nodeGroup',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'oauth_scopes',
+          dartName: 'oauthScopes',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'preemptible',
+          dartName: 'preemptible',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'resource_labels',
+          dartName: 'resourceLabels',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'resource_manager_tags',
+          dartName: 'resourceManagerTags',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'service_account',
+          dartName: 'serviceAccount',
+          kind: MigrateSlotKind.reference,
+          required: false,
+          dartType: 'GoogleServiceAccount',
+          attribute: 'email',
+        ),
+        MigrateSlot(
+          tfName: 'spot',
+          dartName: 'spot',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'storage_pools',
+          dartName: 'storagePools',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'tags',
+          dartName: 'tags',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'advanced_machine_features',
+          dartName: 'advancedMachineFeatures',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigAdvancedMachineFeatures',
+        ),
+        MigrateSlot(
+          tfName: 'boot_disk',
+          dartName: 'bootDisk',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigBootDisk',
+        ),
+        MigrateSlot(
+          tfName: 'confidential_nodes',
+          dartName: 'confidentialNodes',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigConfidentialNodes',
+        ),
+        MigrateSlot(
+          tfName: 'containerd_config',
+          dartName: 'containerdConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigContainerdConfig',
+        ),
+        MigrateSlot(
+          tfName: 'ephemeral_storage_local_ssd_config',
+          dartName: 'ephemeralStorageLocalSsdConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigEphemeralStorageLocalSsdConfig',
+        ),
+        MigrateSlot(
+          tfName: 'fast_socket',
+          dartName: 'fastSocket',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigFastSocket',
+        ),
+        MigrateSlot(
+          tfName: 'gcfs_config',
+          dartName: 'gcfsConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigGcfsConfig',
+        ),
+        MigrateSlot(
+          tfName: 'guest_accelerator',
+          dartName: 'guestAccelerator',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigGuestAccelerator',
+        ),
+        MigrateSlot(
+          tfName: 'gvnic',
+          dartName: 'gvnic',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigGvnic',
+        ),
+        MigrateSlot(
+          tfName: 'kubelet_config',
+          dartName: 'kubeletConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigKubeletConfig',
+        ),
+        MigrateSlot(
+          tfName: 'linux_node_config',
+          dartName: 'linuxNodeConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigLinuxNodeConfig',
+        ),
+        MigrateSlot(
+          tfName: 'local_nvme_ssd_block_config',
+          dartName: 'localNvmeSsdBlockConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigLocalNvmeSsdBlockConfig',
+        ),
+        MigrateSlot(
+          tfName: 'node_image_config',
+          dartName: 'nodeImageConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigNodeImageConfig',
+        ),
+        MigrateSlot(
+          tfName: 'reservation_affinity',
+          dartName: 'reservationAffinity',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigReservationAffinity',
+        ),
+        MigrateSlot(
+          tfName: 'sandbox_config',
+          dartName: 'sandboxConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigSandboxConfig',
+        ),
+        MigrateSlot(
+          tfName: 'secondary_boot_disks',
+          dartName: 'secondaryBootDisks',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigSecondaryBootDisks',
+        ),
+        MigrateSlot(
+          tfName: 'shielded_instance_config',
+          dartName: 'shieldedInstanceConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigShieldedInstanceConfig',
+        ),
+        MigrateSlot(
+          tfName: 'sole_tenant_config',
+          dartName: 'soleTenantConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigSoleTenantConfig',
+        ),
+        MigrateSlot(
+          tfName: 'taint',
+          dartName: 'taint',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigTaint',
+        ),
+        MigrateSlot(
+          tfName: 'taint_config',
+          dartName: 'taintConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigTaintConfig',
+        ),
+        MigrateSlot(
+          tfName: 'windows_node_config',
+          dartName: 'windowsNodeConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigWindowsNodeConfig',
+        ),
+        MigrateSlot(
+          tfName: 'workload_metadata_config',
+          dartName: 'workloadMetadataConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigWorkloadMetadataConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigAdvancedMachineFeatures': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigAdvancedMachineFeatures',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enable_nested_virtualization',
+          dartName: 'enableNestedVirtualization',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'performance_monitoring_unit',
+          dartName: 'performanceMonitoringUnit',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'threads_per_core',
+          dartName: 'threadsPerCore',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigBootDisk': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigBootDisk',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disk_type',
+          dartName: 'diskType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'provisioned_iops',
+          dartName: 'provisionedIops',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'provisioned_throughput',
+          dartName: 'provisionedThroughput',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'size_gb',
+          dartName: 'sizeGb',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigConfidentialNodes': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigConfidentialNodes',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'confidential_instance_type',
+          dartName: 'confidentialInstanceType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigContainerdConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigContainerdConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'private_registry_access_config',
+          dartName: 'privateRegistryAccessConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfig',
+        ),
+        MigrateSlot(
+          tfName: 'registry_hosts',
+          dartName: 'registryHosts',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHosts',
+        ),
+        MigrateSlot(
+          tfName: 'writable_cgroups',
+          dartName: 'writableCgroups',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigWritableCgroups',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enabled',
+              dartName: 'enabled',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'certificate_authority_domain_config',
+              dartName: 'certificateAuthorityDomainConfig',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              wrapped: false,
+              helper:
+                  'ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'fqdns',
+              dartName: 'fqdns',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<Object?>',
+            ),
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_certificate_config',
+              dartName: 'gcpSecretManagerCertificateConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'secret_uri',
+              dartName: 'secretUri',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHosts':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHosts',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'server',
+              dartName: 'server',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'hosts',
+              dartName: 'hosts',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              wrapped: false,
+              helper:
+                  'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHosts',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHosts': MigrateHelper(
+      className:
+          'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHosts',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'capabilities',
+          dartName: 'capabilities',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'dial_timeout',
+          dartName: 'dialTimeout',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'host',
+          dartName: 'host',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'override_path',
+          dartName: 'overridePath',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'ca',
+          dartName: 'ca',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsCa',
+        ),
+        MigrateSlot(
+          tfName: 'client',
+          dartName: 'client',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClient',
+        ),
+        MigrateSlot(
+          tfName: 'header',
+          dartName: 'header',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsHeader',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsCa':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsCa',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClient':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClient',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'cert',
+              dartName: 'cert',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientCert',
+            ),
+            MigrateSlot(
+              tfName: 'key',
+              dartName: 'key',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              wrapped: false,
+              helper:
+                  'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientKey',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientCert':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientCert',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientKey':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientKey',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsHeader':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigRegistryHostsHostsHeader',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'key',
+              dartName: 'key',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'value',
+              dartName: 'value',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<Object?>',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigContainerdConfigWritableCgroups':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigContainerdConfigWritableCgroups',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enabled',
+              dartName: 'enabled',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigEphemeralStorageLocalSsdConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigEphemeralStorageLocalSsdConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'data_cache_count',
+              dartName: 'dataCacheCount',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'local_ssd_count',
+              dartName: 'localSsdCount',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigFastSocket': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigFastSocket',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigGcfsConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigGcfsConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigGuestAccelerator': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigGuestAccelerator',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'count',
+          dartName: 'count',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'gpu_partition_size',
+          dartName: 'gpuPartitionSize',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'gpu_driver_installation_config',
+          dartName: 'gpuDriverInstallationConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigGuestAcceleratorGpuDriverInstallationConfig',
+        ),
+        MigrateSlot(
+          tfName: 'gpu_sharing_config',
+          dartName: 'gpuSharingConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigGuestAcceleratorGpuSharingConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigGuestAcceleratorGpuDriverInstallationConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigGuestAcceleratorGpuDriverInstallationConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gpu_driver_version',
+              dartName: 'gpuDriverVersion',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigGuestAcceleratorGpuSharingConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigGuestAcceleratorGpuSharingConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gpu_sharing_strategy',
+              dartName: 'gpuSharingStrategy',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'max_shared_clients_per_gpu',
+              dartName: 'maxSharedClientsPerGpu',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigGvnic': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigGvnic',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigKubeletConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigKubeletConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'allowed_unsafe_sysctls',
+          dartName: 'allowedUnsafeSysctls',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'container_log_max_files',
+          dartName: 'containerLogMaxFiles',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'container_log_max_size',
+          dartName: 'containerLogMaxSize',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'cpu_cfs_quota',
+          dartName: 'cpuCfsQuota',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'cpu_cfs_quota_period',
+          dartName: 'cpuCfsQuotaPeriod',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'cpu_manager_policy',
+          dartName: 'cpuManagerPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'eviction_max_pod_grace_period_seconds',
+          dartName: 'evictionMaxPodGracePeriodSeconds',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'image_gc_high_threshold_percent',
+          dartName: 'imageGcHighThresholdPercent',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'image_gc_low_threshold_percent',
+          dartName: 'imageGcLowThresholdPercent',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'image_maximum_gc_age',
+          dartName: 'imageMaximumGcAge',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'image_minimum_gc_age',
+          dartName: 'imageMinimumGcAge',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'insecure_kubelet_readonly_port_enabled',
+          dartName: 'insecureKubeletReadonlyPortEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_parallel_image_pulls',
+          dartName: 'maxParallelImagePulls',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'pod_pids_limit',
+          dartName: 'podPidsLimit',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'shutdown_grace_period_critical_pods_seconds',
+          dartName: 'shutdownGracePeriodCriticalPodsSeconds',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'shutdown_grace_period_seconds',
+          dartName: 'shutdownGracePeriodSeconds',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'single_process_oom_kill',
+          dartName: 'singleProcessOomKill',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'crash_loop_back_off',
+          dartName: 'crashLoopBackOff',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigKubeletConfigCrashLoopBackOff',
+        ),
+        MigrateSlot(
+          tfName: 'eviction_minimum_reclaim',
+          dartName: 'evictionMinimumReclaim',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigKubeletConfigEvictionMinimumReclaim',
+        ),
+        MigrateSlot(
+          tfName: 'eviction_soft',
+          dartName: 'evictionSoft',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigKubeletConfigEvictionSoft',
+        ),
+        MigrateSlot(
+          tfName: 'eviction_soft_grace_period',
+          dartName: 'evictionSoftGracePeriod',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigKubeletConfigEvictionSoftGracePeriod',
+        ),
+        MigrateSlot(
+          tfName: 'memory_manager',
+          dartName: 'memoryManager',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigKubeletConfigMemoryManager',
+        ),
+        MigrateSlot(
+          tfName: 'topology_manager',
+          dartName: 'topologyManager',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigKubeletConfigTopologyManager',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigKubeletConfigCrashLoopBackOff':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigKubeletConfigCrashLoopBackOff',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'max_container_restart_period',
+              dartName: 'maxContainerRestartPeriod',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigKubeletConfigEvictionMinimumReclaim':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigKubeletConfigEvictionMinimumReclaim',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'imagefs_available',
+              dartName: 'imagefsAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'imagefs_inodes_free',
+              dartName: 'imagefsInodesFree',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'memory_available',
+              dartName: 'memoryAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'nodefs_available',
+              dartName: 'nodefsAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'nodefs_inodes_free',
+              dartName: 'nodefsInodesFree',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'pid_available',
+              dartName: 'pidAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigKubeletConfigEvictionSoft':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigKubeletConfigEvictionSoft',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'imagefs_available',
+              dartName: 'imagefsAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'imagefs_inodes_free',
+              dartName: 'imagefsInodesFree',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'memory_available',
+              dartName: 'memoryAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'nodefs_available',
+              dartName: 'nodefsAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'nodefs_inodes_free',
+              dartName: 'nodefsInodesFree',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'pid_available',
+              dartName: 'pidAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigKubeletConfigEvictionSoftGracePeriod':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigKubeletConfigEvictionSoftGracePeriod',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'imagefs_available',
+              dartName: 'imagefsAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'imagefs_inodes_free',
+              dartName: 'imagefsInodesFree',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'memory_available',
+              dartName: 'memoryAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'nodefs_available',
+              dartName: 'nodefsAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'nodefs_inodes_free',
+              dartName: 'nodefsInodesFree',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'pid_available',
+              dartName: 'pidAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigKubeletConfigMemoryManager':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigKubeletConfigMemoryManager',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'policy',
+              dartName: 'policy',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigKubeletConfigTopologyManager':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigKubeletConfigTopologyManager',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'policy',
+              dartName: 'policy',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'scope',
+              dartName: 'scope',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigLinuxNodeConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigLinuxNodeConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cgroup_mode',
+          dartName: 'cgroupMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'sysctls',
+          dartName: 'sysctls',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'transparent_hugepage_defrag',
+          dartName: 'transparentHugepageDefrag',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'transparent_hugepage_enabled',
+          dartName: 'transparentHugepageEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'accurate_time_config',
+          dartName: 'accurateTimeConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigAccurateTimeConfig',
+        ),
+        MigrateSlot(
+          tfName: 'custom_node_init',
+          dartName: 'customNodeInit',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigCustomNodeInit',
+        ),
+        MigrateSlot(
+          tfName: 'hugepages_config',
+          dartName: 'hugepagesConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigHugepagesConfig',
+        ),
+        MigrateSlot(
+          tfName: 'node_kernel_module_loading',
+          dartName: 'nodeKernelModuleLoading',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigNodeKernelModuleLoading',
+        ),
+        MigrateSlot(
+          tfName: 'swap_config',
+          dartName: 'swapConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigLinuxNodeConfigAccurateTimeConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigAccurateTimeConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enable_ptp_kvm_time_sync',
+              dartName: 'enablePtpKvmTimeSync',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigLinuxNodeConfigCustomNodeInit':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigCustomNodeInit',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'init_script',
+              dartName: 'initScript',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              wrapped: false,
+              helper:
+                  'ContainerClusterNodePoolNodeConfigLinuxNodeConfigCustomNodeInitInitScript',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigLinuxNodeConfigCustomNodeInitInitScript':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigCustomNodeInitInitScript',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'gcs_generation',
+              dartName: 'gcsGeneration',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'gcs_uri',
+              dartName: 'gcsUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigLinuxNodeConfigHugepagesConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigHugepagesConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'hugepage_size_1g',
+              dartName: 'hugepageSize1g',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'hugepage_size_2m',
+              dartName: 'hugepageSize2m',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigLinuxNodeConfigNodeKernelModuleLoading':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigNodeKernelModuleLoading',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'policy',
+              dartName: 'policy',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'boot_disk_profile',
+          dartName: 'bootDiskProfile',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile',
+        ),
+        MigrateSlot(
+          tfName: 'dedicated_local_ssd_profile',
+          dartName: 'dedicatedLocalSsdProfile',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile',
+        ),
+        MigrateSlot(
+          tfName: 'encryption_config',
+          dartName: 'encryptionConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig',
+        ),
+        MigrateSlot(
+          tfName: 'ephemeral_local_ssd_profile',
+          dartName: 'ephemeralLocalSsdProfile',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'swap_size_gib',
+              dartName: 'swapSizeGib',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'swap_size_percent',
+              dartName: 'swapSizePercent',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'disk_count',
+              dartName: 'diskCount',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'disabled',
+              dartName: 'disabled',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'swap_size_gib',
+              dartName: 'swapSizeGib',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'swap_size_percent',
+              dartName: 'swapSizePercent',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigLocalNvmeSsdBlockConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigLocalNvmeSsdBlockConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'local_ssd_count',
+          dartName: 'localSsdCount',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigNodeImageConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigNodeImageConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'image',
+          dartName: 'image',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'image_project',
+          dartName: 'imageProject',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigReservationAffinity': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigReservationAffinity',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consume_reservation_type',
+          dartName: 'consumeReservationType',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'key',
+          dartName: 'key',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'values',
+          dartName: 'values',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigSandboxConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigSandboxConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigSecondaryBootDisks': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigSecondaryBootDisks',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disk_image',
+          dartName: 'diskImage',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'mode',
+          dartName: 'mode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigShieldedInstanceConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigShieldedInstanceConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enable_integrity_monitoring',
+          dartName: 'enableIntegrityMonitoring',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'enable_secure_boot',
+          dartName: 'enableSecureBoot',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigSoleTenantConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigSoleTenantConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'min_node_cpus',
+          dartName: 'minNodeCpus',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'node_affinity',
+          dartName: 'nodeAffinity',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolNodeConfigSoleTenantConfigNodeAffinity',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigSoleTenantConfigNodeAffinity':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolNodeConfigSoleTenantConfigNodeAffinity',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'key',
+              dartName: 'key',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'operator',
+              dartName: 'operator',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'values',
+              dartName: 'values',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<Object?>',
+            ),
+          ],
+        ),
+    'ContainerClusterNodePoolNodeConfigTaint': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigTaint',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'effect',
+          dartName: 'effect',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'key',
+          dartName: 'key',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigTaintConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigTaintConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'architecture_taint_behavior',
+          dartName: 'architectureTaintBehavior',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigWindowsNodeConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigWindowsNodeConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'osversion',
+          dartName: 'osversion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeConfigWorkloadMetadataConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeConfigWorkloadMetadataConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mode',
+          dartName: 'mode',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolNodeDrainConfig': MigrateHelper(
+      className: 'ContainerClusterNodePoolNodeDrainConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'grace_termination_duration',
+          dartName: 'graceTerminationDuration',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'pdb_timeout_duration',
+          dartName: 'pdbTimeoutDuration',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'respect_pdb_during_node_pool_deletion',
+          dartName: 'respectPdbDuringNodePoolDeletion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolPlacementPolicy': MigrateHelper(
+      className: 'ContainerClusterNodePoolPlacementPolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'policy_name',
+          dartName: 'policyName',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'tpu_topology',
+          dartName: 'tpuTopology',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolQueuedProvisioning': MigrateHelper(
+      className: 'ContainerClusterNodePoolQueuedProvisioning',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolUpgradeSettings': MigrateHelper(
+      className: 'ContainerClusterNodePoolUpgradeSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_surge',
+          dartName: 'maxSurge',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'max_unavailable',
+          dartName: 'maxUnavailable',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'strategy',
+          dartName: 'strategy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'blue_green_settings',
+          dartName: 'blueGreenSettings',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNodePoolUpgradeSettingsBlueGreenSettings',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolUpgradeSettingsBlueGreenSettings': MigrateHelper(
+      className: 'ContainerClusterNodePoolUpgradeSettingsBlueGreenSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'node_pool_soak_duration',
+          dartName: 'nodePoolSoakDuration',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'standard_rollout_policy',
+          dartName: 'standardRolloutPolicy',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterNodePoolUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy',
+        ),
+      ],
+    ),
+    'ContainerClusterNodePoolUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy':
+        MigrateHelper(
+          className:
+              'ContainerClusterNodePoolUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'batch_node_count',
+              dartName: 'batchNodeCount',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'batch_percentage',
+              dartName: 'batchPercentage',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'batch_soak_duration',
+              dartName: 'batchSoakDuration',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerClusterNotificationConfig': MigrateHelper(
+      className: 'ContainerClusterNotificationConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'pubsub',
+          dartName: 'pubsub',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper: 'ContainerClusterNotificationConfigPubsub',
+        ),
+      ],
+    ),
+    'ContainerClusterNotificationConfigPubsub': MigrateHelper(
+      className: 'ContainerClusterNotificationConfigPubsub',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'topic',
+          dartName: 'topic',
+          kind: MigrateSlotKind.reference,
+          required: false,
+          dartType: 'GooglePubsubTopic',
+          attribute: 'id',
+        ),
+        MigrateSlot(
+          tfName: 'filter',
+          dartName: 'filter',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterNotificationConfigPubsubFilter',
+        ),
+      ],
+    ),
+    'ContainerClusterNotificationConfigPubsubFilter': MigrateHelper(
+      className: 'ContainerClusterNotificationConfigPubsubFilter',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'event_type',
+          dartName: 'eventType',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<Object?>',
+        ),
+      ],
+    ),
+    'ContainerClusterPodAutoscaling': MigrateHelper(
+      className: 'ContainerClusterPodAutoscaling',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'hpa_profile',
+          dartName: 'hpaProfile',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterPrivateClusterConfig': MigrateHelper(
+      className: 'ContainerClusterPrivateClusterConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enable_private_endpoint',
+          dartName: 'enablePrivateEndpoint',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'enable_private_nodes',
+          dartName: 'enablePrivateNodes',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'master_ipv4_cidr_block',
+          dartName: 'masterIpv4CidrBlock',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'private_endpoint_subnetwork',
+          dartName: 'privateEndpointSubnetwork',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'master_global_access_config',
+          dartName: 'masterGlobalAccessConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerClusterPrivateClusterConfigMasterGlobalAccessConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterPrivateClusterConfigMasterGlobalAccessConfig':
+        MigrateHelper(
+          className:
+              'ContainerClusterPrivateClusterConfigMasterGlobalAccessConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enabled',
+              dartName: 'enabled',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerClusterRbacBindingConfig': MigrateHelper(
+      className: 'ContainerClusterRbacBindingConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enable_insecure_binding_system_authenticated',
+          dartName: 'enableInsecureBindingSystemAuthenticated',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'enable_insecure_binding_system_unauthenticated',
+          dartName: 'enableInsecureBindingSystemUnauthenticated',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterReleaseChannel': MigrateHelper(
+      className: 'ContainerClusterReleaseChannel',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'channel',
+          dartName: 'channel',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterResourceUsageExportConfig': MigrateHelper(
+      className: 'ContainerClusterResourceUsageExportConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enable_network_egress_metering',
+          dartName: 'enableNetworkEgressMetering',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'enable_resource_consumption_metering',
+          dartName: 'enableResourceConsumptionMetering',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'bigquery_destination',
+          dartName: 'bigqueryDestination',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper:
+              'ContainerClusterResourceUsageExportConfigBigqueryDestination',
+        ),
+      ],
+    ),
+    'ContainerClusterResourceUsageExportConfigBigqueryDestination':
+        MigrateHelper(
+          className:
+              'ContainerClusterResourceUsageExportConfigBigqueryDestination',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'dataset_id',
+              dartName: 'datasetId',
+              kind: MigrateSlotKind.reference,
+              required: true,
+              dartType: 'GoogleBigqueryDataset',
+              attribute: 'dataset_id',
+            ),
+          ],
+        ),
+    'ContainerClusterRollbackSafeUpgrade': MigrateHelper(
+      className: 'ContainerClusterRollbackSafeUpgrade',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'control_plane_soak_duration',
+          dartName: 'controlPlaneSoakDuration',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterSecretManagerConfig': MigrateHelper(
+      className: 'ContainerClusterSecretManagerConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'rotation_config',
+          dartName: 'rotationConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterSecretManagerConfigRotationConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterSecretManagerConfigRotationConfig': MigrateHelper(
+      className: 'ContainerClusterSecretManagerConfigRotationConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'rotation_interval',
+          dartName: 'rotationInterval',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterSecretSyncConfig': MigrateHelper(
+      className: 'ContainerClusterSecretSyncConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'rotation_config',
+          dartName: 'rotationConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerClusterSecretSyncConfigRotationConfig',
+        ),
+      ],
+    ),
+    'ContainerClusterSecretSyncConfigRotationConfig': MigrateHelper(
+      className: 'ContainerClusterSecretSyncConfigRotationConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'rotation_interval',
+          dartName: 'rotationInterval',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterSecurityPostureConfig': MigrateHelper(
+      className: 'ContainerClusterSecurityPostureConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mode',
+          dartName: 'mode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'vulnerability_mode',
+          dartName: 'vulnerabilityMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerClusterServiceExternalIpsConfig': MigrateHelper(
+      className: 'ContainerClusterServiceExternalIpsConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterUserManagedKeysConfig': MigrateHelper(
+      className: 'ContainerClusterUserManagedKeysConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'aggregation_ca',
+          dartName: 'aggregationCa',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'cluster_ca',
+          dartName: 'clusterCa',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'control_plane_disk_encryption_key',
+          dartName: 'controlPlaneDiskEncryptionKey',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'etcd_api_ca',
+          dartName: 'etcdApiCa',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'etcd_peer_ca',
+          dartName: 'etcdPeerCa',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'gkeops_etcd_backup_encryption_key',
+          dartName: 'gkeopsEtcdBackupEncryptionKey',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'service_account_signing_keys',
+          dartName: 'serviceAccountSigningKeys',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'service_account_verification_keys',
+          dartName: 'serviceAccountVerificationKeys',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+      ],
+    ),
+    'ContainerClusterVerticalPodAutoscaling': MigrateHelper(
+      className: 'ContainerClusterVerticalPodAutoscaling',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerClusterWorkloadIdentityConfig': MigrateHelper(
+      className: 'ContainerClusterWorkloadIdentityConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'workload_pool',
+          dartName: 'workloadPool',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerNodePoolAutoscaling': MigrateHelper(
+      className: 'ContainerNodePoolAutoscaling',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'location_policy',
+          dartName: 'locationPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_node_count',
+          dartName: 'maxNodeCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'min_node_count',
+          dartName: 'minNodeCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'total_max_node_count',
+          dartName: 'totalMaxNodeCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'total_min_node_count',
+          dartName: 'totalMinNodeCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerNodePoolMaintenancePolicy': MigrateHelper(
+      className: 'ContainerNodePoolMaintenancePolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'exclusion_until_end_of_support',
+          dartName: 'exclusionUntilEndOfSupport',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolMaintenancePolicyExclusionUntilEndOfSupport',
+        ),
+      ],
+    ),
+    'ContainerNodePoolMaintenancePolicyExclusionUntilEndOfSupport':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolMaintenancePolicyExclusionUntilEndOfSupport',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enabled',
+              dartName: 'enabled',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerNodePoolManagement': MigrateHelper(
+      className: 'ContainerNodePoolManagement',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'auto_repair',
+          dartName: 'autoRepair',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'auto_upgrade',
+          dartName: 'autoUpgrade',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNetworkConfig': MigrateHelper(
+      className: 'ContainerNodePoolNetworkConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'accelerator_network_profile',
+          dartName: 'acceleratorNetworkProfile',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'create_pod_range',
+          dartName: 'createPodRange',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'enable_private_nodes',
+          dartName: 'enablePrivateNodes',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'pod_ipv4_cidr_block',
+          dartName: 'podIpv4CidrBlock',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'pod_range',
+          dartName: 'podRange',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'subnetwork',
+          dartName: 'subnetwork',
+          kind: MigrateSlotKind.reference,
+          required: false,
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'id',
+        ),
+        MigrateSlot(
+          tfName: 'additional_node_network_configs',
+          dartName: 'additionalNodeNetworkConfigs',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerNodePoolNetworkConfigAdditionalNodeNetworkConfigs',
+        ),
+        MigrateSlot(
+          tfName: 'additional_pod_network_configs',
+          dartName: 'additionalPodNetworkConfigs',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerNodePoolNetworkConfigAdditionalPodNetworkConfigs',
+        ),
+        MigrateSlot(
+          tfName: 'network_performance_config',
+          dartName: 'networkPerformanceConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNetworkConfigNetworkPerformanceConfig',
+        ),
+        MigrateSlot(
+          tfName: 'pod_cidr_overprovision_config',
+          dartName: 'podCidrOverprovisionConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNetworkConfigPodCidrOverprovisionConfig',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNetworkConfigAdditionalNodeNetworkConfigs': MigrateHelper(
+      className: 'ContainerNodePoolNetworkConfigAdditionalNodeNetworkConfigs',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'network',
+          dartName: 'network',
+          kind: MigrateSlotKind.reference,
+          required: false,
+          dartType: 'GoogleComputeNetwork',
+          attribute: 'name',
+        ),
+        MigrateSlot(
+          tfName: 'subnetwork',
+          dartName: 'subnetwork',
+          kind: MigrateSlotKind.reference,
+          required: false,
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'name',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNetworkConfigAdditionalPodNetworkConfigs': MigrateHelper(
+      className: 'ContainerNodePoolNetworkConfigAdditionalPodNetworkConfigs',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_pods_per_node',
+          dartName: 'maxPodsPerNode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'secondary_pod_range',
+          dartName: 'secondaryPodRange',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'subnetwork',
+          dartName: 'subnetwork',
+          kind: MigrateSlotKind.reference,
+          required: false,
+          dartType: 'GoogleComputeSubnetwork',
+          attribute: 'name',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNetworkConfigNetworkPerformanceConfig': MigrateHelper(
+      className: 'ContainerNodePoolNetworkConfigNetworkPerformanceConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'total_egress_bandwidth_tier',
+          dartName: 'totalEgressBandwidthTier',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNetworkConfigPodCidrOverprovisionConfig': MigrateHelper(
+      className: 'ContainerNodePoolNetworkConfigPodCidrOverprovisionConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disabled',
+          dartName: 'disabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'boot_disk_kms_key',
+          dartName: 'bootDiskKmsKey',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'disk_size_gb',
+          dartName: 'diskSizeGb',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'disk_type',
+          dartName: 'diskType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'enable_confidential_storage',
+          dartName: 'enableConfidentialStorage',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'flex_start',
+          dartName: 'flexStart',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'gpudirect_strategy',
+          dartName: 'gpudirectStrategy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'image_type',
+          dartName: 'imageType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'labels',
+          dartName: 'labels',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'local_ssd_count',
+          dartName: 'localSsdCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'local_ssd_encryption_mode',
+          dartName: 'localSsdEncryptionMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'logging_variant',
+          dartName: 'loggingVariant',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'machine_type',
+          dartName: 'machineType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_run_duration',
+          dartName: 'maxRunDuration',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'metadata',
+          dartName: 'metadata',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'min_cpu_platform',
+          dartName: 'minCpuPlatform',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'node_group',
+          dartName: 'nodeGroup',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'oauth_scopes',
+          dartName: 'oauthScopes',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'preemptible',
+          dartName: 'preemptible',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'resource_labels',
+          dartName: 'resourceLabels',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'resource_manager_tags',
+          dartName: 'resourceManagerTags',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'service_account',
+          dartName: 'serviceAccount',
+          kind: MigrateSlotKind.reference,
+          required: false,
+          dartType: 'GoogleServiceAccount',
+          attribute: 'email',
+        ),
+        MigrateSlot(
+          tfName: 'spot',
+          dartName: 'spot',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'storage_pools',
+          dartName: 'storagePools',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'tags',
+          dartName: 'tags',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'advanced_machine_features',
+          dartName: 'advancedMachineFeatures',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigAdvancedMachineFeatures',
+        ),
+        MigrateSlot(
+          tfName: 'boot_disk',
+          dartName: 'bootDisk',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigBootDisk',
+        ),
+        MigrateSlot(
+          tfName: 'confidential_nodes',
+          dartName: 'confidentialNodes',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigConfidentialNodes',
+        ),
+        MigrateSlot(
+          tfName: 'containerd_config',
+          dartName: 'containerdConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigContainerdConfig',
+        ),
+        MigrateSlot(
+          tfName: 'ephemeral_storage_local_ssd_config',
+          dartName: 'ephemeralStorageLocalSsdConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigEphemeralStorageLocalSsdConfig',
+        ),
+        MigrateSlot(
+          tfName: 'fast_socket',
+          dartName: 'fastSocket',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigFastSocket',
+        ),
+        MigrateSlot(
+          tfName: 'gcfs_config',
+          dartName: 'gcfsConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigGcfsConfig',
+        ),
+        MigrateSlot(
+          tfName: 'guest_accelerator',
+          dartName: 'guestAccelerator',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigGuestAccelerator',
+        ),
+        MigrateSlot(
+          tfName: 'gvnic',
+          dartName: 'gvnic',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigGvnic',
+        ),
+        MigrateSlot(
+          tfName: 'kubelet_config',
+          dartName: 'kubeletConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigKubeletConfig',
+        ),
+        MigrateSlot(
+          tfName: 'linux_node_config',
+          dartName: 'linuxNodeConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigLinuxNodeConfig',
+        ),
+        MigrateSlot(
+          tfName: 'local_nvme_ssd_block_config',
+          dartName: 'localNvmeSsdBlockConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigLocalNvmeSsdBlockConfig',
+        ),
+        MigrateSlot(
+          tfName: 'node_image_config',
+          dartName: 'nodeImageConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigNodeImageConfig',
+        ),
+        MigrateSlot(
+          tfName: 'reservation_affinity',
+          dartName: 'reservationAffinity',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigReservationAffinity',
+        ),
+        MigrateSlot(
+          tfName: 'sandbox_config',
+          dartName: 'sandboxConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigSandboxConfig',
+        ),
+        MigrateSlot(
+          tfName: 'secondary_boot_disks',
+          dartName: 'secondaryBootDisks',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigSecondaryBootDisks',
+        ),
+        MigrateSlot(
+          tfName: 'shielded_instance_config',
+          dartName: 'shieldedInstanceConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigShieldedInstanceConfig',
+        ),
+        MigrateSlot(
+          tfName: 'sole_tenant_config',
+          dartName: 'soleTenantConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigSoleTenantConfig',
+        ),
+        MigrateSlot(
+          tfName: 'taint',
+          dartName: 'taint',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigTaint',
+        ),
+        MigrateSlot(
+          tfName: 'taint_config',
+          dartName: 'taintConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigTaintConfig',
+        ),
+        MigrateSlot(
+          tfName: 'windows_node_config',
+          dartName: 'windowsNodeConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigWindowsNodeConfig',
+        ),
+        MigrateSlot(
+          tfName: 'workload_metadata_config',
+          dartName: 'workloadMetadataConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigWorkloadMetadataConfig',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigAdvancedMachineFeatures': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigAdvancedMachineFeatures',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enable_nested_virtualization',
+          dartName: 'enableNestedVirtualization',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'performance_monitoring_unit',
+          dartName: 'performanceMonitoringUnit',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'threads_per_core',
+          dartName: 'threadsPerCore',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigBootDisk': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigBootDisk',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disk_type',
+          dartName: 'diskType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'provisioned_iops',
+          dartName: 'provisionedIops',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'provisioned_throughput',
+          dartName: 'provisionedThroughput',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'size_gb',
+          dartName: 'sizeGb',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigConfidentialNodes': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigConfidentialNodes',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'confidential_instance_type',
+          dartName: 'confidentialInstanceType',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigContainerdConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigContainerdConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'private_registry_access_config',
+          dartName: 'privateRegistryAccessConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfig',
+        ),
+        MigrateSlot(
+          tfName: 'registry_hosts',
+          dartName: 'registryHosts',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigContainerdConfigRegistryHosts',
+        ),
+        MigrateSlot(
+          tfName: 'writable_cgroups',
+          dartName: 'writableCgroups',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigContainerdConfigWritableCgroups',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfig':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enabled',
+              dartName: 'enabled',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'bool',
+            ),
+            MigrateSlot(
+              tfName: 'certificate_authority_domain_config',
+              dartName: 'certificateAuthorityDomainConfig',
+              kind: MigrateSlotKind.helper,
+              required: false,
+              repeated: true,
+              wrapped: false,
+              helper:
+                  'ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'fqdns',
+              dartName: 'fqdns',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<Object?>',
+            ),
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_certificate_config',
+              dartName: 'gcpSecretManagerCertificateConfig',
+              kind: MigrateSlotKind.helper,
+              required: true,
+              wrapped: false,
+              helper:
+                  'ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigContainerdConfigPrivateRegistryAccessConfigCertificateAuthorityDomainConfigGcpSecretManagerCertificateConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'secret_uri',
+              dartName: 'secretUri',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigContainerdConfigRegistryHosts': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigContainerdConfigRegistryHosts',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'server',
+          dartName: 'server',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'hosts',
+          dartName: 'hosts',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHosts',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHosts': MigrateHelper(
+      className:
+          'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHosts',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'capabilities',
+          dartName: 'capabilities',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'dial_timeout',
+          dartName: 'dialTimeout',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'host',
+          dartName: 'host',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'override_path',
+          dartName: 'overridePath',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'ca',
+          dartName: 'ca',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsCa',
+        ),
+        MigrateSlot(
+          tfName: 'client',
+          dartName: 'client',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClient',
+        ),
+        MigrateSlot(
+          tfName: 'header',
+          dartName: 'header',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          repeated: true,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsHeader',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsCa':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsCa',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClient': MigrateHelper(
+      className:
+          'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClient',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cert',
+          dartName: 'cert',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientCert',
+        ),
+        MigrateSlot(
+          tfName: 'key',
+          dartName: 'key',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientKey',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientCert':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientCert',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientKey':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsClientKey',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsHeader':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigContainerdConfigRegistryHostsHostsHeader',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'key',
+              dartName: 'key',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'value',
+              dartName: 'value',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'List<Object?>',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigContainerdConfigWritableCgroups': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigContainerdConfigWritableCgroups',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigEphemeralStorageLocalSsdConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigEphemeralStorageLocalSsdConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'data_cache_count',
+          dartName: 'dataCacheCount',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'local_ssd_count',
+          dartName: 'localSsdCount',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigFastSocket': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigFastSocket',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigGcfsConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigGcfsConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigGuestAccelerator': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigGuestAccelerator',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'count',
+          dartName: 'count',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'gpu_partition_size',
+          dartName: 'gpuPartitionSize',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'gpu_driver_installation_config',
+          dartName: 'gpuDriverInstallationConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigGuestAcceleratorGpuDriverInstallationConfig',
+        ),
+        MigrateSlot(
+          tfName: 'gpu_sharing_config',
+          dartName: 'gpuSharingConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigGuestAcceleratorGpuSharingConfig',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigGuestAcceleratorGpuDriverInstallationConfig':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigGuestAcceleratorGpuDriverInstallationConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gpu_driver_version',
+              dartName: 'gpuDriverVersion',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigGuestAcceleratorGpuSharingConfig':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigGuestAcceleratorGpuSharingConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gpu_sharing_strategy',
+              dartName: 'gpuSharingStrategy',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'max_shared_clients_per_gpu',
+              dartName: 'maxSharedClientsPerGpu',
+              kind: MigrateSlotKind.scalar,
+              required: true,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigGvnic': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigGvnic',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigKubeletConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigKubeletConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'allowed_unsafe_sysctls',
+          dartName: 'allowedUnsafeSysctls',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+        MigrateSlot(
+          tfName: 'container_log_max_files',
+          dartName: 'containerLogMaxFiles',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'container_log_max_size',
+          dartName: 'containerLogMaxSize',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'cpu_cfs_quota',
+          dartName: 'cpuCfsQuota',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'cpu_cfs_quota_period',
+          dartName: 'cpuCfsQuotaPeriod',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'cpu_manager_policy',
+          dartName: 'cpuManagerPolicy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'eviction_max_pod_grace_period_seconds',
+          dartName: 'evictionMaxPodGracePeriodSeconds',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'image_gc_high_threshold_percent',
+          dartName: 'imageGcHighThresholdPercent',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'image_gc_low_threshold_percent',
+          dartName: 'imageGcLowThresholdPercent',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'image_maximum_gc_age',
+          dartName: 'imageMaximumGcAge',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'image_minimum_gc_age',
+          dartName: 'imageMinimumGcAge',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'insecure_kubelet_readonly_port_enabled',
+          dartName: 'insecureKubeletReadonlyPortEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'max_parallel_image_pulls',
+          dartName: 'maxParallelImagePulls',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'pod_pids_limit',
+          dartName: 'podPidsLimit',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'shutdown_grace_period_critical_pods_seconds',
+          dartName: 'shutdownGracePeriodCriticalPodsSeconds',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'shutdown_grace_period_seconds',
+          dartName: 'shutdownGracePeriodSeconds',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'single_process_oom_kill',
+          dartName: 'singleProcessOomKill',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'crash_loop_back_off',
+          dartName: 'crashLoopBackOff',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigKubeletConfigCrashLoopBackOff',
+        ),
+        MigrateSlot(
+          tfName: 'eviction_minimum_reclaim',
+          dartName: 'evictionMinimumReclaim',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigKubeletConfigEvictionMinimumReclaim',
+        ),
+        MigrateSlot(
+          tfName: 'eviction_soft',
+          dartName: 'evictionSoft',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigKubeletConfigEvictionSoft',
+        ),
+        MigrateSlot(
+          tfName: 'eviction_soft_grace_period',
+          dartName: 'evictionSoftGracePeriod',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigKubeletConfigEvictionSoftGracePeriod',
+        ),
+        MigrateSlot(
+          tfName: 'memory_manager',
+          dartName: 'memoryManager',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigKubeletConfigMemoryManager',
+        ),
+        MigrateSlot(
+          tfName: 'topology_manager',
+          dartName: 'topologyManager',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigKubeletConfigTopologyManager',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigKubeletConfigCrashLoopBackOff': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigKubeletConfigCrashLoopBackOff',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_container_restart_period',
+          dartName: 'maxContainerRestartPeriod',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigKubeletConfigEvictionMinimumReclaim':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigKubeletConfigEvictionMinimumReclaim',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'imagefs_available',
+              dartName: 'imagefsAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'imagefs_inodes_free',
+              dartName: 'imagefsInodesFree',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'memory_available',
+              dartName: 'memoryAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'nodefs_available',
+              dartName: 'nodefsAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'nodefs_inodes_free',
+              dartName: 'nodefsInodesFree',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'pid_available',
+              dartName: 'pidAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigKubeletConfigEvictionSoft': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigKubeletConfigEvictionSoft',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'imagefs_available',
+          dartName: 'imagefsAvailable',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'imagefs_inodes_free',
+          dartName: 'imagefsInodesFree',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'memory_available',
+          dartName: 'memoryAvailable',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'nodefs_available',
+          dartName: 'nodefsAvailable',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'nodefs_inodes_free',
+          dartName: 'nodefsInodesFree',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'pid_available',
+          dartName: 'pidAvailable',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigKubeletConfigEvictionSoftGracePeriod':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigKubeletConfigEvictionSoftGracePeriod',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'imagefs_available',
+              dartName: 'imagefsAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'imagefs_inodes_free',
+              dartName: 'imagefsInodesFree',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'memory_available',
+              dartName: 'memoryAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'nodefs_available',
+              dartName: 'nodefsAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'nodefs_inodes_free',
+              dartName: 'nodefsInodesFree',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'pid_available',
+              dartName: 'pidAvailable',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigKubeletConfigMemoryManager': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigKubeletConfigMemoryManager',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'policy',
+          dartName: 'policy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigKubeletConfigTopologyManager': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigKubeletConfigTopologyManager',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'policy',
+          dartName: 'policy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'scope',
+          dartName: 'scope',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigLinuxNodeConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigLinuxNodeConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'cgroup_mode',
+          dartName: 'cgroupMode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'sysctls',
+          dartName: 'sysctls',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'Map<String, String>',
+        ),
+        MigrateSlot(
+          tfName: 'transparent_hugepage_defrag',
+          dartName: 'transparentHugepageDefrag',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'transparent_hugepage_enabled',
+          dartName: 'transparentHugepageEnabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'accurate_time_config',
+          dartName: 'accurateTimeConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigLinuxNodeConfigAccurateTimeConfig',
+        ),
+        MigrateSlot(
+          tfName: 'custom_node_init',
+          dartName: 'customNodeInit',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigLinuxNodeConfigCustomNodeInit',
+        ),
+        MigrateSlot(
+          tfName: 'hugepages_config',
+          dartName: 'hugepagesConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigLinuxNodeConfigHugepagesConfig',
+        ),
+        MigrateSlot(
+          tfName: 'node_kernel_module_loading',
+          dartName: 'nodeKernelModuleLoading',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigLinuxNodeConfigNodeKernelModuleLoading',
+        ),
+        MigrateSlot(
+          tfName: 'swap_config',
+          dartName: 'swapConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfig',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigLinuxNodeConfigAccurateTimeConfig':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigLinuxNodeConfigAccurateTimeConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'enable_ptp_kvm_time_sync',
+              dartName: 'enablePtpKvmTimeSync',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigLinuxNodeConfigCustomNodeInit': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigLinuxNodeConfigCustomNodeInit',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'init_script',
+          dartName: 'initScript',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigLinuxNodeConfigCustomNodeInitInitScript',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigLinuxNodeConfigCustomNodeInitInitScript':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigLinuxNodeConfigCustomNodeInitInitScript',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'gcp_secret_manager_secret_uri',
+              dartName: 'gcpSecretManagerSecretUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+            MigrateSlot(
+              tfName: 'gcs_generation',
+              dartName: 'gcsGeneration',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'gcs_uri',
+              dartName: 'gcsUri',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigLinuxNodeConfigHugepagesConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigLinuxNodeConfigHugepagesConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'hugepage_size_1g',
+          dartName: 'hugepageSize1g',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'hugepage_size_2m',
+          dartName: 'hugepageSize2m',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigLinuxNodeConfigNodeKernelModuleLoading':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigLinuxNodeConfigNodeKernelModuleLoading',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'policy',
+              dartName: 'policy',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'boot_disk_profile',
+          dartName: 'bootDiskProfile',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile',
+        ),
+        MigrateSlot(
+          tfName: 'dedicated_local_ssd_profile',
+          dartName: 'dedicatedLocalSsdProfile',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile',
+        ),
+        MigrateSlot(
+          tfName: 'encryption_config',
+          dartName: 'encryptionConfig',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig',
+        ),
+        MigrateSlot(
+          tfName: 'ephemeral_local_ssd_profile',
+          dartName: 'ephemeralLocalSsdProfile',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigBootDiskProfile',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'swap_size_gib',
+              dartName: 'swapSizeGib',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'swap_size_percent',
+              dartName: 'swapSizePercent',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigDedicatedLocalSsdProfile',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'disk_count',
+              dartName: 'diskCount',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigEncryptionConfig',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'disabled',
+              dartName: 'disabled',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'bool',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolNodeConfigLinuxNodeConfigSwapConfigEphemeralLocalSsdProfile',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'swap_size_gib',
+              dartName: 'swapSizeGib',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'swap_size_percent',
+              dartName: 'swapSizePercent',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+          ],
+        ),
+    'ContainerNodePoolNodeConfigLocalNvmeSsdBlockConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigLocalNvmeSsdBlockConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'local_ssd_count',
+          dartName: 'localSsdCount',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'num',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigNodeImageConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigNodeImageConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'image',
+          dartName: 'image',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'image_project',
+          dartName: 'imageProject',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigReservationAffinity': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigReservationAffinity',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'consume_reservation_type',
+          dartName: 'consumeReservationType',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'key',
+          dartName: 'key',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'values',
+          dartName: 'values',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'List<Object?>',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigSandboxConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigSandboxConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigSecondaryBootDisks': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigSecondaryBootDisks',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'disk_image',
+          dartName: 'diskImage',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'mode',
+          dartName: 'mode',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigShieldedInstanceConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigShieldedInstanceConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enable_integrity_monitoring',
+          dartName: 'enableIntegrityMonitoring',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+        MigrateSlot(
+          tfName: 'enable_secure_boot',
+          dartName: 'enableSecureBoot',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigSoleTenantConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigSoleTenantConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'min_node_cpus',
+          dartName: 'minNodeCpus',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'node_affinity',
+          dartName: 'nodeAffinity',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          repeated: true,
+          wrapped: false,
+          helper: 'ContainerNodePoolNodeConfigSoleTenantConfigNodeAffinity',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigSoleTenantConfigNodeAffinity': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigSoleTenantConfigNodeAffinity',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'key',
+          dartName: 'key',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'operator',
+          dartName: 'operator',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'values',
+          dartName: 'values',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'List<Object?>',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigTaint': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigTaint',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'effect',
+          dartName: 'effect',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'key',
+          dartName: 'key',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'value',
+          dartName: 'value',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigTaintConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigTaintConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'architecture_taint_behavior',
+          dartName: 'architectureTaintBehavior',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigWindowsNodeConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigWindowsNodeConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'osversion',
+          dartName: 'osversion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeConfigWorkloadMetadataConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeConfigWorkloadMetadataConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'mode',
+          dartName: 'mode',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerNodePoolNodeDrainConfig': MigrateHelper(
+      className: 'ContainerNodePoolNodeDrainConfig',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'grace_termination_duration',
+          dartName: 'graceTerminationDuration',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'pdb_timeout_duration',
+          dartName: 'pdbTimeoutDuration',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'respect_pdb_during_node_pool_deletion',
+          dartName: 'respectPdbDuringNodePoolDeletion',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerNodePoolPlacementPolicy': MigrateHelper(
+      className: 'ContainerNodePoolPlacementPolicy',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'policy_name',
+          dartName: 'policyName',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'tpu_topology',
+          dartName: 'tpuTopology',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'type',
+          dartName: 'type',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'String',
+        ),
+      ],
+    ),
+    'ContainerNodePoolQueuedProvisioning': MigrateHelper(
+      className: 'ContainerNodePoolQueuedProvisioning',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'enabled',
+          dartName: 'enabled',
+          kind: MigrateSlotKind.scalar,
+          required: true,
+          dartType: 'bool',
+        ),
+      ],
+    ),
+    'ContainerNodePoolUpgradeSettings': MigrateHelper(
+      className: 'ContainerNodePoolUpgradeSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'max_surge',
+          dartName: 'maxSurge',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'max_unavailable',
+          dartName: 'maxUnavailable',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'num',
+        ),
+        MigrateSlot(
+          tfName: 'strategy',
+          dartName: 'strategy',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'blue_green_settings',
+          dartName: 'blueGreenSettings',
+          kind: MigrateSlotKind.helper,
+          required: false,
+          wrapped: false,
+          helper: 'ContainerNodePoolUpgradeSettingsBlueGreenSettings',
+        ),
+      ],
+    ),
+    'ContainerNodePoolUpgradeSettingsBlueGreenSettings': MigrateHelper(
+      className: 'ContainerNodePoolUpgradeSettingsBlueGreenSettings',
+      slots: <MigrateSlot>[
+        MigrateSlot(
+          tfName: 'node_pool_soak_duration',
+          dartName: 'nodePoolSoakDuration',
+          kind: MigrateSlotKind.scalar,
+          required: false,
+          dartType: 'String',
+        ),
+        MigrateSlot(
+          tfName: 'standard_rollout_policy',
+          dartName: 'standardRolloutPolicy',
+          kind: MigrateSlotKind.helper,
+          required: true,
+          wrapped: false,
+          helper:
+              'ContainerNodePoolUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy',
+        ),
+      ],
+    ),
+    'ContainerNodePoolUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy':
+        MigrateHelper(
+          className:
+              'ContainerNodePoolUpgradeSettingsBlueGreenSettingsStandardRolloutPolicy',
+          slots: <MigrateSlot>[
+            MigrateSlot(
+              tfName: 'batch_node_count',
+              dartName: 'batchNodeCount',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'batch_percentage',
+              dartName: 'batchPercentage',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'num',
+            ),
+            MigrateSlot(
+              tfName: 'batch_soak_duration',
+              dartName: 'batchSoakDuration',
+              kind: MigrateSlotKind.scalar,
+              required: false,
+              dartType: 'String',
+            ),
+          ],
+        ),
     'DataCatalogEntryCustomType': MigrateHelper(
       className: 'DataCatalogEntryCustomType',
       slots: <MigrateSlot>[
