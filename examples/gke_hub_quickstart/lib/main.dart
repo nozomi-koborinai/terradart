@@ -54,7 +54,7 @@ final class FleetStack extends Stack {
       ),
     );
 
-    // Fleet-wide Kubernetes RBAC on the scope. `user` is a K8s principal
+    // Fleet-wide Kubernetes RBAC on the scope. The `.user` principal is a K8s
     // name (not a GCP IAM member), so a demo email is enough — the official
     // provider sample uses the same pattern. `VIEW` is the least-privilege
     // predefined role; custom roles need rbacrolebindingactuation.
@@ -63,7 +63,7 @@ final class FleetStack extends Stack {
         localName: 'team_view',
         scopeId: .literal('terradart-scope'),
         scopeRbacRoleBindingId: .literal('terradart-scope-rbac'),
-        user: .literal('terradart-fleet-rbac@example.com'),
+        principal: .user(.literal('terradart-fleet-rbac@example.com')),
         role: .predefinedRole(.literal(.view)),
         dependsOn: [ResourceDependency(scope)],
       ),

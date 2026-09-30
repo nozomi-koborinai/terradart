@@ -1487,6 +1487,15 @@ Newly exposed inputs: `GoogleContainerCluster` `dataplaneOptimizationMode`,
 `secretSyncConfig`; `GoogleContainerNodePool` `deletionPolicy`,
 `ignoreNodeCountChanges`, `maintenancePolicy`.
 
+`GoogleGkeHubScopeRbacRoleBinding` took only `user`; the Magic Modules
+`user` / `group` exactly-one group is now the required sealed argument
+`principal`, so a Google Group can be bound too. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `user: .literal('alice@example.com')` | `principal: .user(.literal('alice@example.com'))` |
+| *(not available)* | `principal: .group(.literal('team@example.com'))` |
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it

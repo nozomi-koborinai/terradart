@@ -9,10 +9,8 @@ curatedDoc: |-
   /// GKE Hub **scope RBAC role binding** — a fleet-wide Kubernetes RBAC
   /// binding on a [GoogleGkeHubScope] (no cluster membership required).
   ///
-  /// Pass [user] as a Kubernetes principal (`alice@example.com`). [group]
-  /// is the other half of the MM `exactly_one_of` and is omitted from this
-  /// constructor — use [user] (a Google Group cannot be created via
-  /// Terraform). [role] must set either `predefinedRole` (`VIEW` / `EDIT`
+  /// [principal] is exactly one Kubernetes principal: `.user(...)`
+  /// (`alice@example.com`) or `.group(...)` (a Google Group email). [role] must set either `predefinedRole` (`VIEW` / `EDIT`
   /// / `ADMIN`) or `customRole` (needs the `rbacrolebindingactuation`
   /// feature). Prefer `VIEW` for smoke stacks.
   ///
@@ -26,21 +24,19 @@ curatedDoc: |-
   ///   localName: 'team_view',
   ///   scopeId: TfArg.literal('terradart-scope'),
   ///   scopeRbacRoleBindingId: TfArg.literal('terradart-scope-rbac'),
-  ///   user: TfArg.literal('terradart-fleet-rbac@example.com'),
-  ///   role: GkeHubScopeRbacRoleBindingRole(
-  ///     predefinedRole: TfArg.literal(
-  ///       GkeHubScopeRbacRoleBindingRolePredefinedRole.view,
-  ///     ),
-  ///   ),
+  ///   principal: .user(.literal('terradart-fleet-rbac@example.com')),
+  ///   role: .predefinedRole(.literal(.view)),
   /// );
   /// ```
 
-# List only `user` (not `group`) so lint-override's
-# exactly-one-paramorder-fanout does not require a sealed principal slot.
+sealedNames:
+  "user, group": principal
+
 paramOrder:
   - scope_id
   - scope_rbac_role_binding_id
   - user
+  - group
   - role
   - labels
   - deletion_policy
