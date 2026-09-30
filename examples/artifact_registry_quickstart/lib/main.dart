@@ -111,7 +111,5 @@ final class ArtifactRegistryStack extends Stack {
       'AR_PROJECT_CONFIG_NAME',
       ResourceIdExport(projectConfig.nameRef, emitTerraformOutput: true),
     );
-
-    setAppExportsOutputPath('lib/generated/artifact_registry_stack.app.dart');
   }
 }

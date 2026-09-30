@@ -19,8 +19,9 @@ class SynthResult {
   final Map<String, dynamic> tfJson;
 
   /// Generated Dart source for the `<stack>.app.dart` constants file.
-  /// `null` when no AppExports produced Dart constants (i.e. all exports
-  /// were Terraform-output-only or the stack registered none).
+  /// Rendered whenever [Stack.appExportsOutputPath] is set (an empty class
+  /// when no export resolved to a constant); otherwise `null` unless some
+  /// export produced a constant.
   final String? dartConstants;
 
   /// Output path hint for the Dart constants file (read from
@@ -77,9 +78,11 @@ class StackSynth {
     if (moved != null) tfJson['moved'] = moved;
     if (outputs != null) tfJson['output'] = outputs;
 
-    // 6. Dart constants file.
+    // 6. Dart constants file. With an output path set it is rendered even
+    // when empty, so a constant that stopped resolving to a literal leaves
+    // no stale value behind for the app to compile against.
     String? dartConstants;
-    if (pass2.dartConstants.isNotEmpty) {
+    if (pass2.dartConstants.isNotEmpty || stack.appExportsOutputPath != null) {
       final resolvedName = stackName ?? _stackClassName(stack);
       dartConstants = DartConstantsEmitter.emit(
         stackName: _toPascalCase(resolvedName),

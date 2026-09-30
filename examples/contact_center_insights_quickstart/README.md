@@ -16,7 +16,6 @@ conversation view (`medium="PHONE_CALL"`), and a customer-defined QA scorecard.
 examples/contact_center_insights_quickstart/
 ├── lib/main.dart       # ContactCenterInsightsStack
 ├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
-├── lib/generated/      # (created on synth)
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml
 ```
