@@ -1682,6 +1682,7 @@ Newly exposed inputs: `params` (resource manager tags) on
 `GoogleComputeInterconnect.macsec`, `GoogleComputeVpnTunnel.cipherSuite`,
 `GoogleComputeZoneVmExtensionPolicy.instanceSelectors`, and `condition`
 on the two network firewall policy IAM members.
+
 ### Remaining data, analytics and storage blocks use derived helper types
 
 **Breaking (`terradart_google`)** — every BigQuery, BigLake, Dataplex,
