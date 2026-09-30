@@ -119,6 +119,7 @@ export 'src/dataproc/google_dataproc_gdc_application_environment.dart'
 export 'src/dataproc/google_dataproc_gdc_service_instance.dart'
     show
         DataprocGdcServiceInstanceGdceCluster,
+        DataprocGdcServiceInstanceSparkServiceInstanceConfig,
         GoogleDataprocGdcServiceInstance;
 export 'src/dataproc/google_dataproc_gdc_spark_application.dart'
     show

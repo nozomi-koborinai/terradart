@@ -134,25 +134,34 @@ final class MetastoreStack extends Stack {
         location: .literal(
           'gs://$icebergBucketName/terradart_ns/terradart_iceberg_orders',
         ),
-        schema: .literal(<String, Object?>{
-          'type': 'struct',
-          'fields': [
-            {
-              'id': 1,
-              'name': 'id',
-              'type': 'long',
-              'required': true,
-              'doc': 'The ID of the record',
-            },
-            {'id': 2, 'name': 'name', 'type': 'string', 'required': false},
+        schema: BiglakeIcebergTableSchema(
+          type: .literal('struct'),
+          fields: [
+            BiglakeIcebergTableSchemaFields(
+              id: .literal(1),
+              name: .literal('id'),
+              type: .literal('long'),
+              required: .literal(true),
+              doc: .literal('The ID of the record'),
+            ),
+            BiglakeIcebergTableSchemaFields(
+              id: .literal(2),
+              name: .literal('name'),
+              type: .literal('string'),
+              required: .literal(false),
+            ),
           ],
-          'identifier_field_ids': [1],
-        }),
-        partitionSpec: .literal(<String, Object?>{
-          'fields': [
-            {'name': 'id_partition', 'source_id': 1, 'transform': 'identity'},
+          identifierFieldIds: .literal([1]),
+        ),
+        partitionSpec: BiglakeIcebergTablePartitionSpec(
+          fields: [
+            BiglakeIcebergTablePartitionSpecFields(
+              name: .literal('id_partition'),
+              sourceId: .literal(1),
+              transform: .literal('identity'),
+            ),
           ],
-        }),
+        ),
         dependsOn: [ResourceDependency(icebergNamespace)],
       ),
     );

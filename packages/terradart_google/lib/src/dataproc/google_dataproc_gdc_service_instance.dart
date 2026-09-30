@@ -20,6 +20,15 @@ final class DataprocGdcServiceInstanceGdceCluster {
   Map<String, Object?> encode() => {'gdce_cluster': gdceCluster.toTfJson()};
 }
 
+/// Typed helper for the `spark_service_instance_config` block of
+/// `google_dataproc_gdc_service_instance` (derived from provider schema).
+@immutable
+final class DataprocGdcServiceInstanceSparkServiceInstanceConfig {
+  const DataprocGdcServiceInstanceSparkServiceInstanceConfig();
+
+  Map<String, Object?> encode() => {};
+}
+
 /// Factory wrapper for `google_dataproc_gdc_service_instance`.
 ///
 /// A service instance is an instance of the Dataproc operator running on a GDC
@@ -50,7 +59,8 @@ final class GoogleDataprocGdcServiceInstance extends Resource {
     DataprocGdcServiceInstanceGdceCluster? gdceCluster,
     TfArg<String>? displayName,
     RefTo<GoogleServiceAccount>? serviceAccount,
-    TfArg<Map<String, dynamic>>? sparkServiceInstanceConfig,
+    DataprocGdcServiceInstanceSparkServiceInstanceConfig?
+    sparkServiceInstanceConfig,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -67,7 +77,10 @@ final class GoogleDataprocGdcServiceInstance extends Resource {
              'gdce_cluster': TfArg.literal(gdceCluster.encode()),
            'display_name': ?displayName,
            'service_account': ?serviceAccount?.encodeAs('email'),
-           'spark_service_instance_config': ?sparkServiceInstanceConfig,
+           if (sparkServiceInstanceConfig != null)
+             'spark_service_instance_config': TfArg.literal(
+               sparkServiceInstanceConfig.encode(),
+             ),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

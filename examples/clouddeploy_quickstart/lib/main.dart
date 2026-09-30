@@ -213,19 +213,21 @@ final class DeployStack extends Stack {
         localName: 'freeze',
         name: .literal('terradart-deploy-policy'),
         location: .literal('us-central1'),
-        selectors: .literal([
-          {
-            'delivery_pipeline': {'id': 'terradart-pipeline'},
-          },
-        ]),
-        rules: .literal([
-          {
-            'rollout_restriction': {
-              'id': 'no-automation',
-              'invokers': ['DEPLOY_AUTOMATION'],
-            },
-          },
-        ]),
+        selectors: [
+          ClouddeployDeployPolicySelectors(
+            deliveryPipeline: ClouddeployDeployPolicySelectorsDeliveryPipeline(
+              id: .literal('terradart-pipeline'),
+            ),
+          ),
+        ],
+        rules: [
+          ClouddeployDeployPolicyRules(
+            rolloutRestriction: ClouddeployDeployPolicyRulesRolloutRestriction(
+              id: .literal('no-automation'),
+              invokers: [.literal(.deployAutomation)],
+            ),
+          ),
+        ],
         dependsOn: [
           ResourceDependency(apiClouddeploy),
           ResourceDependency(pipeline),
