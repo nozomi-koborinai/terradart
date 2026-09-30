@@ -8,22 +8,22 @@ const Set<String> _googleEventarcPipelineIamBindingSensitive = <String>{};
 
 /// Factory wrapper for `google_eventarc_pipeline_iam_binding`.
 ///
-/// Authoritative IAM binding for a single `role`.
+/// Authoritative IAM binding for a single `role` on an Eventarc pipeline.
 ///
 /// Replaces the entire member list for that role, overwriting grants
-/// made outside this stack. Prefer the additive
-/// `google_eventarc_pipeline_iam_member` for single grants.
+/// made outside this stack. Prefer [GoogleEventarcPipelineIamMember] for
+/// additive grants.
 final class GoogleEventarcPipelineIamBinding extends Resource {
   static const String tfType = 'google_eventarc_pipeline_iam_binding';
 
   GoogleEventarcPipelineIamBinding({
     required super.localName,
-    TfArg<String>? location,
-    required TfArg<List<String>> members,
     required TfArg<String> pipelineId,
-    TfArg<String>? project,
     required TfArg<String> role,
+    required TfArg<List<String>> members,
     TfArg<Map<String, dynamic>>? condition,
+    TfArg<String>? location,
+    TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -31,12 +31,12 @@ final class GoogleEventarcPipelineIamBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'location': ?location,
-           'members': members,
            'pipeline_id': pipelineId,
-           'project': ?project,
            'role': role,
+           'members': members,
            'condition': ?condition,
+           'location': ?location,
+           'project': ?project,
          },
        );
 
@@ -46,4 +46,10 @@ final class GoogleEventarcPipelineIamBinding extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleEventarcPipelineIamBinding>`.
   RefTo<GoogleEventarcPipelineIamBinding> get ref => RefTo.of(this);
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }
