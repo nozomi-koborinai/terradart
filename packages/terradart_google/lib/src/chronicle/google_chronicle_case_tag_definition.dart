@@ -35,22 +35,27 @@ enum ChronicleCaseTagDefinitionMatchCriteria implements TerraformEnum {
 /// Factory wrapper for `google_chronicle_case_tag_definition`.
 ///
 /// A CaseTagDefinition is used to classify and tag cases based on criteria.
+///
+/// A Chronicle (Google SecOps) case tag rule: cases matching `value`
+/// by `matchCriteria` / `comparisonType` get the `displayName` tag.
+/// `propertyName` applies only with `matchCriteria:
+/// .literal(.byEntityPropertyName)`.
 final class GoogleChronicleCaseTagDefinition extends Resource {
   static const String tfType = 'google_chronicle_case_tag_definition';
 
   GoogleChronicleCaseTagDefinition({
     required super.localName,
-    required TfArg<bool> canBeCaseTitle,
-    required TfArg<ChronicleCaseTagDefinitionComparisonType> comparisonType,
-    TfArg<String>? deletionPolicy,
-    required TfArg<String> displayName,
-    required TfArg<String> instance,
     required TfArg<String> location,
+    required TfArg<String> instance,
+    required TfArg<String> displayName,
     required TfArg<ChronicleCaseTagDefinitionMatchCriteria> matchCriteria,
-    required TfArg<num> priority,
-    TfArg<String>? project,
-    TfArg<String>? propertyName,
+    required TfArg<ChronicleCaseTagDefinitionComparisonType> comparisonType,
     required TfArg<String> value,
+    TfArg<String>? propertyName,
+    required TfArg<num> priority,
+    required TfArg<bool> canBeCaseTitle,
+    TfArg<String>? deletionPolicy,
+    TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -58,17 +63,17 @@ final class GoogleChronicleCaseTagDefinition extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'can_be_case_title': canBeCaseTitle,
-           'comparison_type': comparisonType,
-           'deletion_policy': ?deletionPolicy,
-           'display_name': displayName,
-           'instance': instance,
            'location': location,
+           'instance': instance,
+           'display_name': displayName,
            'match_criteria': matchCriteria,
-           'priority': priority,
-           'project': ?project,
-           'property_name': ?propertyName,
+           'comparison_type': comparisonType,
            'value': value,
+           'property_name': ?propertyName,
+           'priority': priority,
+           'can_be_case_title': canBeCaseTitle,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 
@@ -78,4 +83,14 @@ final class GoogleChronicleCaseTagDefinition extends Resource {
   /// A reference to this resource, for arguments typed
   /// `RefTo<GoogleChronicleCaseTagDefinition>`.
   RefTo<GoogleChronicleCaseTagDefinition> get ref => RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `case_tag_definition_id` attribute.
+  TfRef<String> get caseTagDefinitionId =>
+      TfRef.attribute<String>(this, 'case_tag_definition_id');
 }
