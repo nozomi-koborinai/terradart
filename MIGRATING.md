@@ -79,7 +79,10 @@ What changes in behavior:
   `<Stack>Outputs.fromEnvironment(Platform.environment)`. With `appExports`
   set, an output name whose getter would not be a Dart identifier
   (`class`), or that shares its getter or variable with another output
-  (`topic_id` / `topic-id`), throws; rename it.
+  (`topic_id` / `topic-id`), throws; rename it. A Cloud Run `env` list that
+  hand-copies output values (`name: .literal('DB_INSTANCE'), source:
+  .value(.ref(sql.connectionName))`) can become `addOutput('db_instance',
+  ...)` plus a loop over `outputEnvironment()`.
 - `DartConstantsEmitter`, `LiteralResolver` and the `OutputEmitter` types are
   no longer exported from `package:terradart_core/terradart_core.dart`; they
   were synth internals.

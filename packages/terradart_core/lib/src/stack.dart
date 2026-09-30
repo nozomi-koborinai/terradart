@@ -14,6 +14,7 @@ import 'tf_moved.dart';
 import 'tf_output.dart';
 import 'tf_ref.dart';
 import 'tf_variable.dart';
+import 'synth/app_exports_emitter.dart';
 import 'synth/stack_synth.dart';
 
 /// Lightweight backend hook. Core ships `GcsBackend`, `S3Backend`, and
@@ -243,6 +244,71 @@ abstract base class Stack {
       value,
       description: description,
       sensitive: sensitive,
+    );
+  }
+
+  /// The environment of an app that reads this Stack's outputs with the
+  /// generated reader's `fromEnvironment`: the variable of each
+  /// non-sensitive output registered so far (or of each output in [only]),
+  /// in registration order, and its value — the output's value for a
+  /// `String` output, its JSON for any other.
+  ///
+  /// ```dart
+  /// addOutput('orders_topic_id', .ref(topic.id));
+  /// final service = add(GoogleCloudRunV2Service(
+  ///   // ...
+  ///   template: CloudRunV2ServiceTemplate(containers: [
+  ///     CloudRunV2ServiceTemplateContainers(
+  ///       image: .literal(image),
+  ///       env: [
+  ///         for (final MapEntry(:key, :value) in outputEnvironment().entries)
+  ///           CloudRunV2ServiceTemplateContainersEnv(
+  ///             name: .literal(key),
+  ///             source: .value(value),
+  ///           ),
+  ///       ],
+  ///     ),
+  ///   ]),
+  /// ));
+  /// addOutput('service_uri', .ref(service.uri));
+  /// ```
+  ///
+  /// Register the outputs that read the service itself after the call: a
+  /// resource whose environment references its own attributes is a
+  /// Terraform cycle.
+  ///
+  /// Throws [StateError] when the Stack has no [appExports] file (no reader
+  /// reads the environment), and [ArgumentError] when a name in [only] is
+  /// not a registered non-sensitive output, or an output has no environment
+  /// value (a `null` literal, or a non-`String` output whose JSON is not one
+  /// interpolation).
+  Map<String, TfArg<String>> outputEnvironment({Iterable<String>? only}) {
+    if (appExports == null) {
+      throw StateError(
+        'outputEnvironment() is read by the generated reader: pass '
+        "appExports: AppExports('lib/generated/<stack>.g.dart') to the "
+        'Stack constructor.',
+      );
+    }
+    final names = only?.toList() ??
+        [
+          for (final MapEntry(:key, :value) in _outputs.entries)
+            if (!value.sensitive) key,
+        ];
+    for (final name in names) {
+      final o = _outputs[name];
+      if (o == null || o.sensitive) {
+        throw ArgumentError.value(
+          name,
+          'only',
+          o == null
+              ? 'Output "$name" is not registered on this Stack (yet).'
+              : 'Output "$name" is sensitive; read it from its secret store.',
+        );
+      }
+    }
+    return Map.fromEntries(
+      names.map((name) => AppExportsEmitter.environmentEntry(this, name)),
     );
   }
 

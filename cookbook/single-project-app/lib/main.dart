@@ -63,11 +63,25 @@ final class SingleProjectAppStack extends Stack {
     add(buildSecretIamMember(dbPasswordSecret, runSa));
 
     // ===== Tier 5 — Cloud Run v2 service ==================================
+    // The service gets the outputs registered so far as environment
+    // variables (`DB_INSTANCE`, `DB_NAME`), which the app reads with the
+    // generated `SingleProjectAppOutputs.fromEnvironment(Platform.environment)`.
+    // Outputs that read the service itself come after it: its environment
+    // cannot reference its own attributes.
+    addOutput(
+      'db_instance',
+      .ref(sqlInstance.connectionName),
+      description: 'Cloud SQL connection name (project:region:instance).',
+    );
+    addOutput(
+      'db_name',
+      .ref(sqlDatabase.nameRef),
+      description: 'Cloud SQL database the service connects to.',
+    );
     final coffeeService = add(
       buildCloudRunService(
         runSa: runSa,
-        sqlInstance: sqlInstance,
-        sqlDatabase: sqlDatabase,
+        outputEnvironment: outputEnvironment(),
         dbPasswordSecret: dbPasswordSecret,
       ),
     );

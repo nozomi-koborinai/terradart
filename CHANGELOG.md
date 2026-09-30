@@ -17,6 +17,13 @@ Per-package changelogs live alongside each package and are the system of record 
   and variable when a value is missing or mistyped. With `appExports` set,
   `addOutput` rejects a name whose getter is not a usable identifier or
   whose getter or variable another output has.
+- **`Stack.outputEnvironment()`** (`terradart_core`, cookbook) — the
+  variables that reader's `fromEnvironment` reads, as a
+  `Map<String, TfArg<String>>` of the non-sensitive outputs registered so far
+  (`only:` picks some): a `String` output as is, any other as
+  `jsonencode(...)`. Pass it to a Cloud Run service's `env` and the app reads
+  the outputs without a variable name written twice; the `single-project-app`
+  recipe passes its Cloud SQL outputs this way.
 - **Typed resource references, part 2** (`terradart_codegen`,
   `terradart_migrate`, `tool/`) — `tool/reference_targets.yaml` lists which
   string inputs name another resource: name patterns per referenced type
