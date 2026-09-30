@@ -144,26 +144,73 @@ final class CesDeploymentChannelProfileWhatsappConfig {
 @immutable
 final class CesDeploymentInstagramCredentials {
   const CesDeploymentInstagramCredentials({
-    this.authCode,
-    this.authCodeWo,
+    required this.authCode,
     this.authCodeWoVersion,
     this.conversationProfileId,
   });
 
-  final TfArg<String>? authCode;
-
-  final TfArg<String>? authCodeWo;
+  final CesDeploymentInstagramCredentialsAuthCode authCode;
 
   final TfArg<String>? authCodeWoVersion;
 
   final TfArg<String>? conversationProfileId;
 
   Map<String, Object?> encode() => {
-    'auth_code': ?authCode?.toTfJson(),
-    'auth_code_wo': ?authCodeWo?.toTfJson(),
+    ...authCode.encode(),
     'auth_code_wo_version': ?authCodeWoVersion?.toTfJson(),
     'conversation_profile_id': ?conversationProfileId?.toTfJson(),
   };
+}
+
+/// Exactly one of `auth_code`, `auth_code_wo` on the `instagram_credentials` block of `google_ces_deployment`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.authCode(...)`.
+sealed class CesDeploymentInstagramCredentialsAuthCode {
+  const CesDeploymentInstagramCredentialsAuthCode();
+
+  /// Sets `auth_code`.
+  const factory CesDeploymentInstagramCredentialsAuthCode.authCode(
+    TfArg<String> authCode,
+  ) = CesDeploymentInstagramCredentialsAuthCodeChoice;
+
+  /// Sets `auth_code_wo`.
+  const factory CesDeploymentInstagramCredentialsAuthCode.authCodeWo(
+    TfArg<String> authCodeWo,
+  ) = CesDeploymentInstagramCredentialsAuthCodeWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [CesDeploymentInstagramCredentialsAuthCode.authCode] choice: sets `auth_code`.
+final class CesDeploymentInstagramCredentialsAuthCodeChoice
+    extends CesDeploymentInstagramCredentialsAuthCode {
+  const CesDeploymentInstagramCredentialsAuthCodeChoice(this.authCode);
+
+  final TfArg<String> authCode;
+
+  @override
+  String get blockKey => 'auth_code';
+
+  @override
+  Map<String, Object?> encode() => {'auth_code': authCode.toTfJson()};
+}
+
+/// The [CesDeploymentInstagramCredentialsAuthCode.authCodeWo] choice: sets `auth_code_wo`.
+final class CesDeploymentInstagramCredentialsAuthCodeWo
+    extends CesDeploymentInstagramCredentialsAuthCode {
+  const CesDeploymentInstagramCredentialsAuthCodeWo(this.authCodeWo);
+
+  final TfArg<String> authCodeWo;
+
+  @override
+  String get blockKey => 'auth_code_wo';
+
+  @override
+  Map<String, Object?> encode() => {'auth_code_wo': authCodeWo.toTfJson()};
 }
 
 /// Typed helper for the `whatsapp_credentials` block of
@@ -171,21 +218,17 @@ final class CesDeploymentInstagramCredentials {
 @immutable
 final class CesDeploymentWhatsappCredentials {
   const CesDeploymentWhatsappCredentials({
-    this.authCode,
-    this.authCodeWo,
+    required this.authCode,
     this.authCodeWoVersion,
     required this.businessAccountId,
     this.conversationProfileId,
     required this.phoneNumber,
-    this.pin,
-    this.pinWo,
+    required this.pin,
     this.pinWoVersion,
     required this.wabaId,
   });
 
-  final TfArg<String>? authCode;
-
-  final TfArg<String>? authCodeWo;
+  final CesDeploymentWhatsappCredentialsAuthCode authCode;
 
   final TfArg<String>? authCodeWoVersion;
 
@@ -195,26 +238,122 @@ final class CesDeploymentWhatsappCredentials {
 
   final TfArg<String> phoneNumber;
 
-  final TfArg<String>? pin;
-
-  final TfArg<String>? pinWo;
+  final CesDeploymentWhatsappCredentialsPin pin;
 
   final TfArg<String>? pinWoVersion;
 
   final TfArg<String> wabaId;
 
   Map<String, Object?> encode() => {
-    'auth_code': ?authCode?.toTfJson(),
-    'auth_code_wo': ?authCodeWo?.toTfJson(),
+    ...authCode.encode(),
     'auth_code_wo_version': ?authCodeWoVersion?.toTfJson(),
     'business_account_id': businessAccountId.toTfJson(),
     'conversation_profile_id': ?conversationProfileId?.toTfJson(),
     'phone_number': phoneNumber.toTfJson(),
-    'pin': ?pin?.toTfJson(),
-    'pin_wo': ?pinWo?.toTfJson(),
+    ...pin.encode(),
     'pin_wo_version': ?pinWoVersion?.toTfJson(),
     'waba_id': wabaId.toTfJson(),
   };
+}
+
+/// Exactly one of `auth_code`, `auth_code_wo` on the `whatsapp_credentials` block of `google_ces_deployment`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.authCode(...)`.
+sealed class CesDeploymentWhatsappCredentialsAuthCode {
+  const CesDeploymentWhatsappCredentialsAuthCode();
+
+  /// Sets `auth_code`.
+  const factory CesDeploymentWhatsappCredentialsAuthCode.authCode(
+    TfArg<String> authCode,
+  ) = CesDeploymentWhatsappCredentialsAuthCodeChoice;
+
+  /// Sets `auth_code_wo`.
+  const factory CesDeploymentWhatsappCredentialsAuthCode.authCodeWo(
+    TfArg<String> authCodeWo,
+  ) = CesDeploymentWhatsappCredentialsAuthCodeWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [CesDeploymentWhatsappCredentialsAuthCode.authCode] choice: sets `auth_code`.
+final class CesDeploymentWhatsappCredentialsAuthCodeChoice
+    extends CesDeploymentWhatsappCredentialsAuthCode {
+  const CesDeploymentWhatsappCredentialsAuthCodeChoice(this.authCode);
+
+  final TfArg<String> authCode;
+
+  @override
+  String get blockKey => 'auth_code';
+
+  @override
+  Map<String, Object?> encode() => {'auth_code': authCode.toTfJson()};
+}
+
+/// The [CesDeploymentWhatsappCredentialsAuthCode.authCodeWo] choice: sets `auth_code_wo`.
+final class CesDeploymentWhatsappCredentialsAuthCodeWo
+    extends CesDeploymentWhatsappCredentialsAuthCode {
+  const CesDeploymentWhatsappCredentialsAuthCodeWo(this.authCodeWo);
+
+  final TfArg<String> authCodeWo;
+
+  @override
+  String get blockKey => 'auth_code_wo';
+
+  @override
+  Map<String, Object?> encode() => {'auth_code_wo': authCodeWo.toTfJson()};
+}
+
+/// Exactly one of `pin`, `pin_wo` on the `whatsapp_credentials` block of `google_ces_deployment`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.pin(...)`.
+sealed class CesDeploymentWhatsappCredentialsPin {
+  const CesDeploymentWhatsappCredentialsPin();
+
+  /// Sets `pin`.
+  const factory CesDeploymentWhatsappCredentialsPin.pin(TfArg<String> pin) =
+      CesDeploymentWhatsappCredentialsPinChoice;
+
+  /// Sets `pin_wo`.
+  const factory CesDeploymentWhatsappCredentialsPin.pinWo(TfArg<String> pinWo) =
+      CesDeploymentWhatsappCredentialsPinWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [CesDeploymentWhatsappCredentialsPin.pin] choice: sets `pin`.
+final class CesDeploymentWhatsappCredentialsPinChoice
+    extends CesDeploymentWhatsappCredentialsPin {
+  const CesDeploymentWhatsappCredentialsPinChoice(this.pin);
+
+  final TfArg<String> pin;
+
+  @override
+  String get blockKey => 'pin';
+
+  @override
+  Map<String, Object?> encode() => {'pin': pin.toTfJson()};
+}
+
+/// The [CesDeploymentWhatsappCredentialsPin.pinWo] choice: sets `pin_wo`.
+final class CesDeploymentWhatsappCredentialsPinWo
+    extends CesDeploymentWhatsappCredentialsPin {
+  const CesDeploymentWhatsappCredentialsPinWo(this.pinWo);
+
+  final TfArg<String> pinWo;
+
+  @override
+  String get blockKey => 'pin_wo';
+
+  @override
+  Map<String, Object?> encode() => {'pin_wo': pinWo.toTfJson()};
 }
 
 /// Factory wrapper for `google_ces_deployment`.

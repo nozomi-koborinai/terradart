@@ -1,10 +1,26 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_observability_bucket`.
 const Set<String> _googleObservabilityBucketSensitive = <String>{};
+
+/// Typed helper for the `cmek_settings` block of
+/// `google_observability_bucket` (derived from provider schema).
+@immutable
+final class ObservabilityBucketCmekSettings {
+  const ObservabilityBucketCmekSettings({this.kmsKey});
+
+  final RefTo<GoogleKmsCryptoKey>? kmsKey;
+
+  Map<String, Object?> encode() => {
+    'kms_key': ?kmsKey?.encodeAs('id').toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_observability_bucket`.
 ///
@@ -19,7 +35,7 @@ final class GoogleObservabilityBucket extends Resource {
     TfArg<String>? displayName,
     required TfArg<String> location,
     TfArg<String>? project,
-    TfArg<Map<String, dynamic>>? cmekSettings,
+    ObservabilityBucketCmekSettings? cmekSettings,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -32,7 +48,8 @@ final class GoogleObservabilityBucket extends Resource {
            'display_name': ?displayName,
            'location': location,
            'project': ?project,
-           'cmek_settings': ?cmekSettings,
+           if (cmekSettings != null)
+             'cmek_settings': TfArg.literal(cmekSettings.encode()),
          },
        );
 

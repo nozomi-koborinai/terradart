@@ -114,7 +114,6 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth {
     this.authorizationUrl,
     this.clientId,
     this.clientSecret,
-    this.clientSecretWo,
     this.clientSecretWoVersion,
     this.defaultContinueUri,
     this.enablePkce,
@@ -125,9 +124,8 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth {
 
   final TfArg<String>? clientId;
 
-  final TfArg<String>? clientSecret;
-
-  final TfArg<String>? clientSecretWo;
+  final AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret?
+  clientSecret;
 
   final TfArg<String>? clientSecretWoVersion;
 
@@ -140,12 +138,71 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauth {
   Map<String, Object?> encode() => {
     'authorization_url': ?authorizationUrl?.toTfJson(),
     'client_id': ?clientId?.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_wo': ?clientSecretWo?.toTfJson(),
+    ...?clientSecret?.encode(),
     'client_secret_wo_version': ?clientSecretWoVersion?.toTfJson(),
     'default_continue_uri': ?defaultContinueUri?.toTfJson(),
     'enable_pkce': ?enablePkce?.toTfJson(),
     'token_url': ?tokenUrl?.toTfJson(),
+  };
+}
+
+/// At most one of `client_secret`, `client_secret_wo` on the `auth_provider_type_params.three_legged_oauth` block of `google_agent_identity_auth_provider`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret {
+  const AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret();
+
+  /// Sets `client_secret`.
+  const factory AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret.clientSecret(
+    TfArg<String> clientSecret,
+  ) = AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretChoice;
+
+  /// Sets `client_secret_wo`.
+  const factory AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret.clientSecretWo(
+    TfArg<String> clientSecretWo,
+  ) = AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret.clientSecret] choice: sets `client_secret`.
+final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretChoice
+    extends
+        AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret {
+  const AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretChoice(
+    this.clientSecret,
+  );
+
+  final TfArg<String> clientSecret;
+
+  @override
+  String get blockKey => 'client_secret';
+
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret.clientSecretWo] choice: sets `client_secret_wo`.
+final class AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretWo
+    extends
+        AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecret {
+  const AgentIdentityAuthProviderAuthProviderTypeParamsThreeLeggedOauthClientSecretWo(
+    this.clientSecretWo,
+  );
+
+  final TfArg<String> clientSecretWo;
+
+  @override
+  String get blockKey => 'client_secret_wo';
+
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_wo': clientSecretWo.toTfJson(),
   };
 }
 
@@ -156,16 +213,14 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth {
   const AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth({
     this.clientId,
     this.clientSecret,
-    this.clientSecretWo,
     this.clientSecretWoVersion,
     this.tokenUrl,
   });
 
   final TfArg<String>? clientId;
 
-  final TfArg<String>? clientSecret;
-
-  final TfArg<String>? clientSecretWo;
+  final AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret?
+  clientSecret;
 
   final TfArg<String>? clientSecretWoVersion;
 
@@ -173,10 +228,69 @@ final class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauth {
 
   Map<String, Object?> encode() => {
     'client_id': ?clientId?.toTfJson(),
-    'client_secret': ?clientSecret?.toTfJson(),
-    'client_secret_wo': ?clientSecretWo?.toTfJson(),
+    ...?clientSecret?.encode(),
     'client_secret_wo_version': ?clientSecretWoVersion?.toTfJson(),
     'token_url': ?tokenUrl?.toTfJson(),
+  };
+}
+
+/// At most one of `client_secret`, `client_secret_wo` on the `auth_provider_type_params.two_legged_oauth` block of `google_agent_identity_auth_provider`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.clientSecret(...)`.
+sealed class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret {
+  const AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret();
+
+  /// Sets `client_secret`.
+  const factory AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret.clientSecret(
+    TfArg<String> clientSecret,
+  ) = AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretChoice;
+
+  /// Sets `client_secret_wo`.
+  const factory AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret.clientSecretWo(
+    TfArg<String> clientSecretWo,
+  ) = AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret.clientSecret] choice: sets `client_secret`.
+final class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretChoice
+    extends
+        AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret {
+  const AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretChoice(
+    this.clientSecret,
+  );
+
+  final TfArg<String> clientSecret;
+
+  @override
+  String get blockKey => 'client_secret';
+
+  @override
+  Map<String, Object?> encode() => {'client_secret': clientSecret.toTfJson()};
+}
+
+/// The [AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret.clientSecretWo] choice: sets `client_secret_wo`.
+final class AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretWo
+    extends
+        AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecret {
+  const AgentIdentityAuthProviderAuthProviderTypeParamsTwoLeggedOauthClientSecretWo(
+    this.clientSecretWo,
+  );
+
+  final TfArg<String> clientSecretWo;
+
+  @override
+  String get blockKey => 'client_secret_wo';
+
+  @override
+  Map<String, Object?> encode() => {
+    'client_secret_wo': clientSecretWo.toTfJson(),
   };
 }
 

@@ -80,6 +80,9 @@ export 'src/access_context_manager/google_access_context_manager_gcp_user_access
         AccessContextManagerGcpUserAccessBindingScopedAccessSettingsScopeClientScopeRestrictedClientApplication,
         AccessContextManagerGcpUserAccessBindingSessionSettings,
         AccessContextManagerGcpUserAccessBindingSessionSettingsSessionReauthMethod,
+        AccessContextManagerGcpUserAccessBindingSubject,
+        AccessContextManagerGcpUserAccessBindingSubjectGroupKey,
+        AccessContextManagerGcpUserAccessBindingSubjectPrincipal,
         GoogleAccessContextManagerGcpUserAccessBinding;
 export 'src/access_context_manager/google_access_context_manager_ingress_policy.dart'
     show GoogleAccessContextManagerIngressPolicy;

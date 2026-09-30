@@ -171,7 +171,7 @@ final class ComputeLbStack extends Stack {
         localName: 'self_managed_cert',
         name: .literal('app-self-managed-cert'),
         certificate: TfArg.variable('lb_self_managed_certificate'),
-        privateKey: TfArg.variable('lb_self_managed_private_key'),
+        privateKey: .privateKey(TfArg.variable('lb_self_managed_private_key')),
       ),
     );
 
@@ -257,16 +257,27 @@ final class ComputeLbStack extends Stack {
       pool: .ref(cmCaPool.id),
       location: .literal(region),
       config: PrivatecaCertificateAuthorityConfig(
-        subjectConfig: PrivatecaCertificateAuthoritySubjectConfig(
-          subject: PrivatecaCertificateAuthoritySubject(
+        subjectConfig: PrivatecaCertificateAuthorityConfigSubjectConfig(
+          subject: PrivatecaCertificateAuthorityConfigSubjectConfigSubject(
             commonName: .literal('app.example.com'),
           ),
         ),
-        x509Config: PrivatecaCertificateAuthorityX509Config.rootCa(),
+        x509Config: PrivatecaCertificateAuthorityConfigX509Config(
+          caOptions: PrivatecaCertificateAuthorityConfigX509ConfigCaOptions(
+            isCa: .literal(true),
+          ),
+          keyUsage: PrivatecaCertificateAuthorityConfigX509ConfigKeyUsage(
+            baseKeyUsage:
+                PrivatecaCertificateAuthorityConfigX509ConfigKeyUsageBaseKeyUsage(
+                  certSign: .literal(true),
+                  crlSign: .literal(true),
+                ),
+            extendedKeyUsage:
+                PrivatecaCertificateAuthorityConfigX509ConfigKeyUsageExtendedKeyUsage(),
+          ),
+        ),
       ),
-      keySpec: PrivatecaCertificateAuthorityKeySpec(
-        algorithm: .literal(.rsaPkcs14096Sha256),
-      ),
+      keySpec: .algorithm(.literal(.rsaPkcs14096Sha256)),
       dependsOn: [ResourceDependency(cmCaPool)],
     );
     add(cmRootCa);
@@ -331,8 +342,10 @@ final class ComputeLbStack extends Stack {
       localName: 'cm_cert',
       name: .literal('app-cm-cert'),
       provisioning: .managed(
-        domains: ['app.example.com'],
-        dnsAuthorizations: [.ref(cmDnsAuth.id)],
+        CertificateManagerCertificateManaged(
+          domains: .literal(['app.example.com']),
+          dnsAuthorizations: .literal([cmDnsAuth.id.interpolation]),
+        ),
       ),
       dependsOn: [ResourceDependency(cmDnsAuth)],
     );
@@ -649,7 +662,7 @@ final class ComputeLbStack extends Stack {
         name: .literal('app-regional-cert'),
         region: .literal(region),
         certificate: TfArg.variable('lb_regional_certificate'),
-        privateKey: TfArg.variable('lb_regional_private_key'),
+        privateKey: .privateKey(TfArg.variable('lb_regional_private_key')),
       ),
     );
 
@@ -751,9 +764,10 @@ final class ComputeLbStack extends Stack {
             subnetwork: lbSubnet.ref,
           ),
         ],
-        networkPerformanceConfig: ComputeInstanceTemplateNetworkPerformanceConfig(
-          totalEgressBandwidthTier: .literal(.tier1),
-        ),
+        networkPerformanceConfig:
+            ComputeInstanceTemplateNetworkPerformanceConfig(
+              totalEgressBandwidthTier: .literal(.tier1),
+            ),
       ),
     );
 

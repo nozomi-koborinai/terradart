@@ -3,14 +3,22 @@ outputDir: certificate_manager
 deriveClassDoc: true
 deriveExactlyOne: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+
+sealedNames:
+  "managed, self_managed": provisioning
+  "self_managed.certificate_pem, self_managed.pem_certificate": certificate
+  "self_managed.pem_private_key, self_managed.pem_private_key_wo, self_managed.private_key_pem": private_key
 
 paramOrder:
   - name
-  - provisioning
+  - managed
+  - self_managed
   - description
   - location
   - scope
   - labels
+  - project
 
 dartTypeOverrides:
   scope: CertificateManagerCertificateScope
@@ -20,7 +28,7 @@ curatedDoc: |-
   /// self-managed (user-uploaded PEM).
   ///
   /// The managed path pairs with [GoogleCertificateManagerDnsAuthorization]
-  /// via [CertificateManagerCertificateManagedProvisioning.dnsAuthorizations].
+  /// via [CertificateManagerCertificateManaged.dnsAuthorizations].
   /// Attach issued certs to a load balancer either directly
   /// (`certificate_manager_certificates` on internal HTTPS proxies) or via a
   /// [GoogleCertificateManagerCertificateMap] + map entry on external HTTPS
@@ -29,17 +37,19 @@ curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name.
   /// - [name]: certificate ID.
-  /// - [provisioning]: sealed [CertificateManagerCertificateProvisioningSource]
-  ///   — exactly one of managed or self-managed.
+  /// - `provisioning`: sealed [CertificateManagerCertificateProvisioning]
+  ///   — exactly one of `.managed(...)` or `.selfManaged(...)`.
   ///
   /// Example (managed + DNS authorization):
   /// ```dart
   /// GoogleCertificateManagerCertificate(
   ///   localName: 'app_cert',
-  ///   name: TfArg.literal('app-cert'),
-  ///   provisioning: CertificateManagerCertificateManagedProvisioning(
-  ///     domains: ['app.example.com'],
-  ///     dnsAuthorizations: [TfArg.ref(dnsAuth.id)],
+  ///   name: .literal('app-cert'),
+  ///   provisioning: .managed(
+  ///     CertificateManagerCertificateManaged(
+  ///       domains: .literal(['app.example.com']),
+  ///       dnsAuthorizations: .literal([dnsAuth.id.interpolation]),
+  ///     ),
   ///   ),
   /// );
   /// ```
@@ -57,85 +67,3 @@ prelude: |
     @override
     final String terraformValue;
   }
-
-  /// Provisioning mode for [GoogleCertificateManagerCertificate]. Sealed so
-  /// the API `managed` / `self_managed` exactly-one constraint is enforced
-  /// at compile time.
-  sealed class CertificateManagerCertificateProvisioningSource {
-    const CertificateManagerCertificateProvisioningSource();
-
-    /// Google-managed certificate — auto-provisioned and renewed while DNS authorization remains valid.
-    const factory CertificateManagerCertificateProvisioningSource.managed({
-      List<String>? domains,
-      List<TfArg<String>>? dnsAuthorizations,
-      TfArg<String>? issuanceConfig,
-    }) = CertificateManagerCertificateManagedProvisioning;
-
-    /// User-uploaded PEM certificate + private key.
-    const factory CertificateManagerCertificateProvisioningSource.selfManaged({
-      TfArg<String>? pemCertificate,
-      TfArg<String>? pemPrivateKey,
-    }) = CertificateManagerCertificateSelfManagedProvisioning;
-
-    String get blockKey;
-    Map<String, Object?> encode();
-  }
-
-  /// Google-managed certificate — auto-provisioned and renewed while
-  /// DNS authorization remains valid.
-  final class CertificateManagerCertificateManagedProvisioning
-      extends CertificateManagerCertificateProvisioningSource {
-    const CertificateManagerCertificateManagedProvisioning({
-      this.domains,
-      this.dnsAuthorizations,
-      this.issuanceConfig,
-    });
-
-    @override
-    String get blockKey => 'managed';
-
-    /// Domains on the certificate. Wildcards require DNS authorization.
-    final List<String>? domains;
-
-    /// Full resource names of [GoogleCertificateManagerDnsAuthorization]
-    /// resources. Mutually exclusive with [issuanceConfig].
-    final List<TfArg<String>>? dnsAuthorizations;
-
-    /// Private PKI issuance config resource name. Mutually exclusive with
-    /// [dnsAuthorizations].
-    final TfArg<String>? issuanceConfig;
-
-    @override
-    Map<String, Object?> encode() => {
-      if (domains != null) 'domains': domains,
-      if (dnsAuthorizations != null)
-        'dns_authorizations': dnsAuthorizations!.map((a) => a.toTfJson()).toList(),
-      if (issuanceConfig != null) 'issuance_config': issuanceConfig!.toTfJson(),
-    };
-  }
-
-  /// User-uploaded PEM certificate + private key.
-  final class CertificateManagerCertificateSelfManagedProvisioning
-      extends CertificateManagerCertificateProvisioningSource {
-    const CertificateManagerCertificateSelfManagedProvisioning({
-      this.pemCertificate,
-      this.pemPrivateKey,
-    });
-
-    @override
-    String get blockKey => 'self_managed';
-
-    final TfArg<String>? pemCertificate;
-    final TfArg<String>? pemPrivateKey;
-
-    @override
-    Map<String, Object?> encode() => {
-      if (pemCertificate != null) 'pem_certificate': pemCertificate!.toTfJson(),
-      if (pemPrivateKey != null) 'pem_private_key': pemPrivateKey!.toTfJson(),
-    };
-  }
-
-customSlots:
-  provisioning:
-    paramDeclaration: 'required CertificateManagerCertificateProvisioningSource provisioning'
-    argMapEntry: "provisioning.blockKey: TfArg.literal([provisioning.encode()]),"

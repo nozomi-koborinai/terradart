@@ -7,7 +7,7 @@ void main() {
     final s = GoogleSecretManagerSecret(
       localName: 'api_key',
       secretId: TfArg.literal('api'),
-      replication: SecretManagerSecretReplication.auto(),
+      replication: const .auto(SecretManagerSecretReplicationAuto()),
     );
     final iam = GoogleSecretManagerSecretIamMember(
       localName: 'api_key_reader',

@@ -1,10 +1,45 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_logging_project_bucket_config`.
 const Set<String> _googleLoggingProjectBucketConfigSensitive = <String>{};
+
+/// Typed helper for the `cmek_settings` block of
+/// `google_logging_project_bucket_config` (derived from provider schema).
+@immutable
+final class LoggingProjectBucketConfigCmekSettings {
+  const LoggingProjectBucketConfigCmekSettings({required this.kmsKeyName});
+
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
+
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
+}
+
+/// Typed helper for the `index_configs` block of
+/// `google_logging_project_bucket_config` (derived from provider schema).
+@immutable
+final class LoggingProjectBucketConfigIndexConfigs {
+  const LoggingProjectBucketConfigIndexConfigs({
+    required this.fieldPath,
+    required this.type,
+  });
+
+  final TfArg<String> fieldPath;
+
+  final TfArg<String> type;
+
+  Map<String, Object?> encode() => {
+    'field_path': fieldPath.toTfJson(),
+    'type': type.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_logging_project_bucket_config`.
 ///
@@ -15,10 +50,11 @@ const Set<String> _googleLoggingProjectBucketConfigSensitive = <String>{};
 /// ```dart
 /// final auditBucket = GoogleLoggingProjectBucketConfig(
 ///   localName: 'audit_bucket',
-///   bucketId: TfArg.literal('audit-logs'),
-///   location: TfArg.literal('global'),
-///   retentionDays: TfArg.literal(30),
-///   enableAnalytics: TfArg.literal(true),
+///   project: .literal('my-project'),
+///   bucketId: .literal('audit-logs'),
+///   location: .literal('global'),
+///   retentionDays: .literal(30),
+///   enableAnalytics: .literal(true),
 /// );
 /// ```
 final class GoogleLoggingProjectBucketConfig extends Resource {
@@ -33,6 +69,8 @@ final class GoogleLoggingProjectBucketConfig extends Resource {
     TfArg<bool>? enableAnalytics,
     TfArg<num>? retentionDays,
     TfArg<bool>? locked,
+    LoggingProjectBucketConfigCmekSettings? cmekSettings,
+    List<LoggingProjectBucketConfigIndexConfigs>? indexConfigs,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -47,6 +85,12 @@ final class GoogleLoggingProjectBucketConfig extends Resource {
            'enable_analytics': ?enableAnalytics,
            'retention_days': ?retentionDays,
            'locked': ?locked,
+           if (cmekSettings != null)
+             'cmek_settings': TfArg.literal(cmekSettings.encode()),
+           if (indexConfigs != null)
+             'index_configs': TfArg.literal([
+               for (final e in indexConfigs) e.encode(),
+             ]),
          },
        );
 

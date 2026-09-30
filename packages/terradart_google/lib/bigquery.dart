@@ -107,6 +107,9 @@ export 'src/bigquery/google_bigquery_data_transfer_config.dart'
         BigqueryDataTransferConfigEncryptionConfiguration,
         BigqueryDataTransferConfigScheduleOptions,
         BigqueryDataTransferConfigSensitiveParams,
+        BigqueryDataTransferConfigSensitiveParamsSecretAccessKey,
+        BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyChoice,
+        BigqueryDataTransferConfigSensitiveParamsSecretAccessKeyWo,
         GoogleBigqueryDataTransferConfig;
 export 'src/bigquery/google_bigquery_data_transfer_data_source_enrollment.dart'
     show GoogleBigqueryDataTransferDataSourceEnrollment;

@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_monitoring_uptime_check_config`.
@@ -172,183 +173,289 @@ enum MonitoringUptimeCheckResourceType implements TerraformEnum {
   final String terraformValue;
 }
 
-// ===========================================================================
-// MonitoringUptimeCheckConfigTarget — sealed (monitored_resource | resource_group | synthetic_monitor)
-// ===========================================================================
-
+/// Exactly one of `monitored_resource`, `resource_group`, `synthetic_monitor` on `google_monitoring_uptime_check_config`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.monitoredResource(...)`.
 sealed class MonitoringUptimeCheckConfigTarget {
   const MonitoringUptimeCheckConfigTarget();
 
-  /// `monitored_resource` block (max=1).
-  const factory MonitoringUptimeCheckConfigTarget.monitoredResource({
-    required TfArg<String> type,
-    required Map<String, String> labels,
-  }) = MonitoringUptimeCheckConfigMonitoredResource;
+  /// Sets `monitored_resource`.
+  const factory MonitoringUptimeCheckConfigTarget.monitoredResource(
+    MonitoringUptimeCheckConfigMonitoredResource monitoredResource,
+  ) = MonitoringUptimeCheckConfigTargetMonitoredResource;
 
-  /// `resource_group` block (max=1).
-  const factory MonitoringUptimeCheckConfigTarget.resourceGroup({
-    TfArg<String>? groupId,
-    MonitoringUptimeCheckResourceType? resourceType,
-  }) = MonitoringUptimeCheckConfigResourceGroup;
+  /// Sets `resource_group`.
+  const factory MonitoringUptimeCheckConfigTarget.resourceGroup(
+    MonitoringUptimeCheckConfigResourceGroup resourceGroup,
+  ) = MonitoringUptimeCheckConfigTargetResourceGroup;
 
-  /// `synthetic_monitor` block (max=1).
-  const factory MonitoringUptimeCheckConfigTarget.syntheticMonitor({
-    required MonitoringUptimeCheckConfigCloudFunctionV2 cloudFunctionV2,
-  }) = MonitoringUptimeCheckConfigSyntheticMonitor;
+  /// Sets `synthetic_monitor`.
+  const factory MonitoringUptimeCheckConfigTarget.syntheticMonitor(
+    MonitoringUptimeCheckConfigSyntheticMonitor syntheticMonitor,
+  ) = MonitoringUptimeCheckConfigTargetSyntheticMonitor;
 
+  /// The Terraform argument this choice sets.
   String get blockKey;
 
-  List<Map<String, Object?>> encode();
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
 }
 
-// ===========================================================================
-// monitored_resource + resource_group (mutually exclusive target descriptors)
-// ===========================================================================
-
-/// `monitored_resource` block (max=1). Directly target a single monitored
-/// resource (e.g. an `uptime_url` against a public hostname, or a
-/// `gce_instance`). Mutually exclusive with [MonitoringUptimeCheckConfigResourceGroup].
-final class MonitoringUptimeCheckConfigMonitoredResource
+/// The [MonitoringUptimeCheckConfigTarget.monitoredResource] choice: sets `monitored_resource`.
+final class MonitoringUptimeCheckConfigTargetMonitoredResource
     extends MonitoringUptimeCheckConfigTarget {
-  const MonitoringUptimeCheckConfigMonitoredResource({
-    required this.type,
-    required this.labels,
-  });
+  const MonitoringUptimeCheckConfigTargetMonitoredResource(
+    this.monitoredResource,
+  );
 
-  /// Monitored-resource type, e.g. `'uptime_url'`, `'gce_instance'`,
-  /// `'gae_app'`, `'aws_ec2_instance'`, `'k8s_service'`,
-  /// `'servicedirectory_service'`.
-  final TfArg<String> type;
-
-  /// Values for every label declared by the monitored-resource
-  /// descriptor (e.g. `{'host': 'api.example.com', 'project_id': '...'}`
-  /// for `uptime_url`).
-  final Map<String, String> labels;
-
-  Map<String, Object?> toArgMap() => {
-    'type': type.toTfJson(),
-    'labels': labels,
-  };
+  final MonitoringUptimeCheckConfigMonitoredResource monitoredResource;
 
   @override
   String get blockKey => 'monitored_resource';
 
   @override
-  List<Map<String, Object?>> encode() => [toArgMap()];
+  Map<String, Object?> encode() => {
+    'monitored_resource': monitoredResource.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'monitored_resource': TfArg.literal(monitoredResource.encode()),
+  };
 }
 
-/// `resource_group` block (max=1). Target every member of a Cloud
-/// Monitoring group resource. Mutually exclusive with
-/// [MonitoringUptimeCheckConfigMonitoredResource].
-final class MonitoringUptimeCheckConfigResourceGroup
+/// The [MonitoringUptimeCheckConfigTarget.resourceGroup] choice: sets `resource_group`.
+final class MonitoringUptimeCheckConfigTargetResourceGroup
     extends MonitoringUptimeCheckConfigTarget {
-  const MonitoringUptimeCheckConfigResourceGroup({
-    this.groupId,
-    this.resourceType,
-  });
+  const MonitoringUptimeCheckConfigTargetResourceGroup(this.resourceGroup);
 
-  /// The `name` of a `google_monitoring_group` resource.
-  final TfArg<String>? groupId;
-
-  /// Member-resource type filter applied within the group.
-  final MonitoringUptimeCheckResourceType? resourceType;
-
-  Map<String, Object?> toArgMap() => {
-    if (groupId != null) 'group_id': groupId!.toTfJson(),
-    if (resourceType != null) 'resource_type': resourceType!.terraformValue,
-  };
+  final MonitoringUptimeCheckConfigResourceGroup resourceGroup;
 
   @override
   String get blockKey => 'resource_group';
 
   @override
-  List<Map<String, Object?>> encode() => [toArgMap()];
-}
+  Map<String, Object?> encode() => {'resource_group': resourceGroup.encode()};
 
-// ===========================================================================
-// http_check + nested helpers (auth_info, ping_config,
-// accepted_response_status_codes, service_agent_authentication)
-// ===========================================================================
-
-/// `http_check.auth_info` block (max=1) — Basic-auth username/password
-/// pair. `password` is **schema-flagged sensitive** and is automatically
-/// masked on synth (see `extraSensitiveFields` in this resource's
-/// wrapper override). Do not use alongside
-/// [MonitoringUptimeCheckConfigServiceAgentAuthentication].
-class MonitoringUptimeCheckConfigHttpAuthInfo {
-  const MonitoringUptimeCheckConfigHttpAuthInfo({
-    required this.username,
-    required this.password,
-  });
-
-  final TfArg<String> username;
-
-  /// Exactly one of [MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword]
-  /// and [MonitoringUptimeCheckConfigHttpAuthPlaintextPassword].
-  final MonitoringUptimeCheckConfigHttpAuthPassword password;
-
-  Map<String, Object?> toArgMap() => {
-    'username': username.toTfJson(),
-    ...password.encode(),
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'resource_group': TfArg.literal(resourceGroup.encode()),
   };
 }
 
-/// `http_check.auth_info.password` / `password_wo`. Sealed so the
-/// provider's ExactlyOneOf (8.0) holds at compile time.
-sealed class MonitoringUptimeCheckConfigHttpAuthPassword {
-  const MonitoringUptimeCheckConfigHttpAuthPassword();
+/// The [MonitoringUptimeCheckConfigTarget.syntheticMonitor] choice: sets `synthetic_monitor`.
+final class MonitoringUptimeCheckConfigTargetSyntheticMonitor
+    extends MonitoringUptimeCheckConfigTarget {
+  const MonitoringUptimeCheckConfigTargetSyntheticMonitor(
+    this.syntheticMonitor,
+  );
 
-  /// Write-only password (Terraform 1.11+): the provider sends [passwordWo] but never stores it in Terraform state.
-  const factory MonitoringUptimeCheckConfigHttpAuthPassword.writeOnly({
-    required TfArg<String> passwordWo,
-    TfArg<String>? passwordWoVersion,
-  }) = MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword;
+  final MonitoringUptimeCheckConfigSyntheticMonitor syntheticMonitor;
 
-  /// **Sensitive.** Plaintext password — masked in rendered Terraform JSON but stored in Terraform state; prefer [MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword].
-  const factory MonitoringUptimeCheckConfigHttpAuthPassword.plaintext({
-    required TfArg<String> password,
-  }) = MonitoringUptimeCheckConfigHttpAuthPlaintextPassword;
+  @override
+  String get blockKey => 'synthetic_monitor';
 
-  /// The key that tells the variants apart.
+  @override
+  Map<String, Object?> encode() => {
+    'synthetic_monitor': syntheticMonitor.encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'synthetic_monitor': TfArg.literal(syntheticMonitor.encode()),
+  };
+}
+
+/// Typed helper for the `content_matchers` block of
+/// `google_monitoring_uptime_check_config` (derived from provider schema).
+@immutable
+final class MonitoringUptimeCheckConfigContentMatchers {
+  const MonitoringUptimeCheckConfigContentMatchers({
+    required this.content,
+    this.matcher,
+    this.jsonPathMatcher,
+  });
+
+  final TfArg<String> content;
+
+  final TfArg<MonitoringUptimeCheckMatcher>? matcher;
+
+  final MonitoringUptimeCheckConfigContentMatchersJsonPathMatcher?
+  jsonPathMatcher;
+
+  Map<String, Object?> encode() => {
+    'content': content.toTfJson(),
+    'matcher': ?matcher?.toTfJson(),
+    'json_path_matcher': ?jsonPathMatcher?.encode(),
+  };
+}
+
+/// Typed helper for the `content_matchers.json_path_matcher` block of
+/// `google_monitoring_uptime_check_config` (derived from provider schema).
+@immutable
+final class MonitoringUptimeCheckConfigContentMatchersJsonPathMatcher {
+  const MonitoringUptimeCheckConfigContentMatchersJsonPathMatcher({
+    this.jsonMatcher,
+    required this.jsonPath,
+  });
+
+  final TfArg<MonitoringUptimeCheckJsonMatcher>? jsonMatcher;
+
+  final TfArg<String> jsonPath;
+
+  Map<String, Object?> encode() => {
+    'json_matcher': ?jsonMatcher?.toTfJson(),
+    'json_path': jsonPath.toTfJson(),
+  };
+}
+
+/// Typed helper for the `http_check` block of
+/// `google_monitoring_uptime_check_config` (derived from provider schema).
+@immutable
+final class MonitoringUptimeCheckConfigHttpCheck {
+  const MonitoringUptimeCheckConfigHttpCheck({
+    this.body,
+    this.contentType,
+    this.customContentType,
+    this.headers,
+    this.maskHeaders,
+    this.path,
+    this.port,
+    this.requestMethod,
+    this.useSsl,
+    this.validateSsl,
+    this.acceptedResponseStatusCodes,
+    this.authInfo,
+    this.pingConfig,
+    this.serviceAgentAuthentication,
+  });
+
+  final TfArg<String>? body;
+
+  final TfArg<MonitoringUptimeCheckContentType>? contentType;
+
+  final TfArg<String>? customContentType;
+
+  final TfArg<Map<String, String>>? headers;
+
+  final TfArg<bool>? maskHeaders;
+
+  final TfArg<String>? path;
+
+  final TfArg<num>? port;
+
+  final TfArg<MonitoringUptimeCheckHttpMethod>? requestMethod;
+
+  final TfArg<bool>? useSsl;
+
+  final TfArg<bool>? validateSsl;
+
+  final List<MonitoringUptimeCheckConfigHttpCheckAcceptedResponseStatusCodes>?
+  acceptedResponseStatusCodes;
+
+  final MonitoringUptimeCheckConfigHttpCheckAuthInfo? authInfo;
+
+  final MonitoringUptimeCheckConfigHttpCheckPingConfig? pingConfig;
+
+  final MonitoringUptimeCheckConfigHttpCheckServiceAgentAuthentication?
+  serviceAgentAuthentication;
+
+  Map<String, Object?> encode() => {
+    'body': ?body?.toTfJson(),
+    'content_type': ?contentType?.toTfJson(),
+    'custom_content_type': ?customContentType?.toTfJson(),
+    'headers': ?headers?.toTfJson(),
+    'mask_headers': ?maskHeaders?.toTfJson(),
+    'path': ?path?.toTfJson(),
+    'port': ?port?.toTfJson(),
+    'request_method': ?requestMethod?.toTfJson(),
+    'use_ssl': ?useSsl?.toTfJson(),
+    'validate_ssl': ?validateSsl?.toTfJson(),
+    if (acceptedResponseStatusCodes != null)
+      'accepted_response_status_codes': [
+        for (final e in acceptedResponseStatusCodes!) e.encode(),
+      ],
+    'auth_info': ?authInfo?.encode(),
+    'ping_config': ?pingConfig?.encode(),
+    'service_agent_authentication': ?serviceAgentAuthentication?.encode(),
+  };
+}
+
+/// Typed helper for the `http_check.accepted_response_status_codes` block of
+/// `google_monitoring_uptime_check_config` (derived from provider schema).
+@immutable
+final class MonitoringUptimeCheckConfigHttpCheckAcceptedResponseStatusCodes {
+  const MonitoringUptimeCheckConfigHttpCheckAcceptedResponseStatusCodes({
+    this.statusClass,
+    this.statusValue,
+  });
+
+  final TfArg<MonitoringUptimeCheckStatusClass>? statusClass;
+
+  final TfArg<num>? statusValue;
+
+  Map<String, Object?> encode() => {
+    'status_class': ?statusClass?.toTfJson(),
+    'status_value': ?statusValue?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `http_check.auth_info` block of
+/// `google_monitoring_uptime_check_config` (derived from provider schema).
+@immutable
+final class MonitoringUptimeCheckConfigHttpCheckAuthInfo {
+  const MonitoringUptimeCheckConfigHttpCheckAuthInfo({
+    required this.password,
+    this.passwordWoVersion,
+    required this.username,
+  });
+
+  final MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword password;
+
+  final TfArg<String>? passwordWoVersion;
+
+  final TfArg<String> username;
+
+  Map<String, Object?> encode() => {
+    ...password.encode(),
+    'password_wo_version': ?passwordWoVersion?.toTfJson(),
+    'username': username.toTfJson(),
+  };
+}
+
+/// Exactly one of `password`, `password_wo` on the `http_check.auth_info` block of `google_monitoring_uptime_check_config`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.password(...)`.
+sealed class MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword {
+  const MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword();
+
+  /// Sets `password`.
+  const factory MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword.password(
+    TfArg<String> password,
+  ) = MonitoringUptimeCheckConfigHttpCheckAuthInfoPasswordChoice;
+
+  /// Sets `password_wo`.
+  const factory MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword.passwordWo(
+    TfArg<String> passwordWo,
+  ) = MonitoringUptimeCheckConfigHttpCheckAuthInfoPasswordWo;
+
+  /// The Terraform argument this choice sets.
   String get blockKey;
 
   Map<String, Object?> encode();
 }
 
-/// Write-only password (Terraform 1.11+): the provider sends
-/// [passwordWo] but never stores it in Terraform state. Bump
-/// [passwordWoVersion] whenever [passwordWo] changes so Terraform
-/// recognizes the rotation.
-final class MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword
-    extends MonitoringUptimeCheckConfigHttpAuthPassword {
-  const MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword({
-    required this.passwordWo,
-    this.passwordWoVersion,
-  });
-
-  final TfArg<String> passwordWo;
-
-  final TfArg<String>? passwordWoVersion;
-
-  @override
-  String get blockKey => 'password_wo';
-
-  @override
-  Map<String, Object?> encode() => {
-    'password_wo': passwordWo.toTfJson(),
-    if (passwordWoVersion != null)
-      'password_wo_version': passwordWoVersion!.toTfJson(),
-  };
-}
-
-/// **Sensitive.** Plaintext password — masked in rendered Terraform JSON
-/// but stored in Terraform state; prefer
-/// [MonitoringUptimeCheckConfigHttpAuthWriteOnlyPassword].
-final class MonitoringUptimeCheckConfigHttpAuthPlaintextPassword
-    extends MonitoringUptimeCheckConfigHttpAuthPassword {
-  const MonitoringUptimeCheckConfigHttpAuthPlaintextPassword({
-    required this.password,
-  });
+/// The [MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword.password] choice: sets `password`.
+final class MonitoringUptimeCheckConfigHttpCheckAuthInfoPasswordChoice
+    extends MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword {
+  const MonitoringUptimeCheckConfigHttpCheckAuthInfoPasswordChoice(
+    this.password,
+  );
 
   final TfArg<String> password;
 
@@ -359,265 +466,143 @@ final class MonitoringUptimeCheckConfigHttpAuthPlaintextPassword
   Map<String, Object?> encode() => {'password': password.toTfJson()};
 }
 
-/// `http_check.ping_config` / `tcp_check.ping_config` block (max=1) —
-/// configures ICMP pings emitted alongside the main probe (max 3 pings).
-class MonitoringUptimeCheckConfigPingConfig {
-  const MonitoringUptimeCheckConfigPingConfig({required this.pingsCount});
+/// The [MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword.passwordWo] choice: sets `password_wo`.
+final class MonitoringUptimeCheckConfigHttpCheckAuthInfoPasswordWo
+    extends MonitoringUptimeCheckConfigHttpCheckAuthInfoPassword {
+  const MonitoringUptimeCheckConfigHttpCheckAuthInfoPasswordWo(this.passwordWo);
 
-  /// Number of ICMP pings (max 3).
-  final TfArg<int> pingsCount;
+  final TfArg<String> passwordWo;
 
-  Map<String, Object?> toArgMap() => {'pings_count': pingsCount.toTfJson()};
+  @override
+  String get blockKey => 'password_wo';
+
+  @override
+  Map<String, Object?> encode() => {'password_wo': passwordWo.toTfJson()};
 }
 
-/// `http_check.accepted_response_status_codes[]` entry. Either
-/// [statusClass] (a code range bucket) or [statusValue] (a literal
-/// status code) should be set per entry. When the list is empty,
-/// the API accepts the default 200-299 range.
-class MonitoringUptimeCheckConfigAcceptedResponseStatus {
-  const MonitoringUptimeCheckConfigAcceptedResponseStatus({
-    this.statusClass,
-    this.statusValue,
+/// Typed helper for the `http_check.ping_config` block of
+/// `google_monitoring_uptime_check_config` (derived from provider schema).
+@immutable
+final class MonitoringUptimeCheckConfigHttpCheckPingConfig {
+  const MonitoringUptimeCheckConfigHttpCheckPingConfig({
+    required this.pingsCount,
   });
 
-  final MonitoringUptimeCheckStatusClass? statusClass;
-  final TfArg<int>? statusValue;
+  final TfArg<num> pingsCount;
 
-  Map<String, Object?> toArgMap() => {
-    if (statusClass != null) 'status_class': statusClass!.terraformValue,
-    if (statusValue != null) 'status_value': statusValue!.toTfJson(),
-  };
+  Map<String, Object?> encode() => {'pings_count': pingsCount.toTfJson()};
 }
 
-/// `http_check.service_agent_authentication` block (max=1) — emit an
-/// OIDC token signed by the Monitoring service agent on the probe
-/// request. Mutually exclusive with [MonitoringUptimeCheckConfigHttpAuthInfo].
-class MonitoringUptimeCheckConfigServiceAgentAuthentication {
-  const MonitoringUptimeCheckConfigServiceAgentAuthentication({this.type});
-
-  final MonitoringUptimeCheckServiceAgentAuthType? type;
-
-  Map<String, Object?> toArgMap() => {
-    if (type != null) 'type': type!.terraformValue,
-  };
-}
-
-/// `http_check` block (max=1). Mutually exclusive with [tcpCheck] and
-/// [syntheticMonitor] on the parent resource — the Terraform provider
-/// enforces the `exactly_one_of` contract at apply time.
-class MonitoringUptimeCheckConfigHttpCheck {
-  const MonitoringUptimeCheckConfigHttpCheck({
-    this.requestMethod,
-    this.contentType,
-    this.customContentType,
-    this.port,
-    this.path,
-    this.useSsl,
-    this.validateSsl,
-    this.maskHeaders,
-    this.headers,
-    this.body,
-    this.authInfo,
-    this.serviceAgentAuthentication,
-    this.acceptedResponseStatusCodes,
-    this.pingConfig,
+/// Typed helper for the `http_check.service_agent_authentication` block of
+/// `google_monitoring_uptime_check_config` (derived from provider schema).
+@immutable
+final class MonitoringUptimeCheckConfigHttpCheckServiceAgentAuthentication {
+  const MonitoringUptimeCheckConfigHttpCheckServiceAgentAuthentication({
+    this.type,
   });
 
-  /// HTTP method to issue. Defaults to
-  /// [MonitoringUptimeCheckHttpMethod.get] when unset.
-  final MonitoringUptimeCheckHttpMethod? requestMethod;
+  final TfArg<MonitoringUptimeCheckServiceAgentAuthType>? type;
 
-  /// `Content-Type` header strategy.
-  final MonitoringUptimeCheckContentType? contentType;
+  Map<String, Object?> encode() => {'type': ?type?.toTfJson()};
+}
 
-  /// Literal Content-Type header value. Required when [contentType] is
-  /// [MonitoringUptimeCheckContentType.userProvided]; must be left
-  /// unset when [contentType] is
-  /// [MonitoringUptimeCheckContentType.urlEncoded].
-  final TfArg<String>? customContentType;
+/// Typed helper for the `monitored_resource` block of
+/// `google_monitoring_uptime_check_config` (derived from provider schema).
+@immutable
+final class MonitoringUptimeCheckConfigMonitoredResource {
+  const MonitoringUptimeCheckConfigMonitoredResource({
+    required this.labels,
+    required this.type,
+  });
 
-  /// TCP port. Defaults to 80 when [useSsl] is false, 443 when true.
-  final TfArg<int>? port;
+  final TfArg<Map<String, String>> labels;
 
-  /// Request path. Defaults to `'/'`. A leading `/` is auto-prepended
-  /// when missing.
-  final TfArg<String>? path;
+  final TfArg<String> type;
 
-  /// `true` switches the probe to HTTPS.
-  final TfArg<bool>? useSsl;
-
-  /// Validate the SSL certificate chain (only meaningful when [useSsl]
-  /// is true and [monitoredResource] type is `'uptime_url'`).
-  final TfArg<bool>? validateSsl;
-
-  /// Encrypt header values in stored configs; on Get/List the server
-  /// returns `'******'` for masked headers.
-  final TfArg<bool>? maskHeaders;
-
-  /// Extra request headers (max 100 entries). Duplicate keys are
-  /// rejected by the API — comma-join duplicates as a single value.
-  final Map<String, String>? headers;
-
-  /// Request body. Base64-encoded over the wire — pass the raw bytes
-  /// here; the codegen layer handles encoding. Required to be empty
-  /// when [requestMethod] is [MonitoringUptimeCheckHttpMethod.get].
-  final TfArg<String>? body;
-
-  /// Basic auth credentials. Mutually exclusive with
-  /// [serviceAgentAuthentication].
-  final MonitoringUptimeCheckConfigHttpAuthInfo? authInfo;
-
-  /// Service Agent OIDC authentication. Mutually exclusive with
-  /// [authInfo]. Requires [useSsl] = true.
-  final MonitoringUptimeCheckConfigServiceAgentAuthentication?
-  serviceAgentAuthentication;
-
-  /// Custom set of HTTP status codes to treat as healthy. When unset,
-  /// the API accepts 200-299.
-  final List<MonitoringUptimeCheckConfigAcceptedResponseStatus>?
-  acceptedResponseStatusCodes;
-
-  /// Optional companion ICMP ping configuration.
-  final MonitoringUptimeCheckConfigPingConfig? pingConfig;
-
-  Map<String, Object?> toArgMap() => {
-    if (requestMethod != null) 'request_method': requestMethod!.terraformValue,
-    if (contentType != null) 'content_type': contentType!.terraformValue,
-    if (customContentType != null)
-      'custom_content_type': customContentType!.toTfJson(),
-    if (port != null) 'port': port!.toTfJson(),
-    if (path != null) 'path': path!.toTfJson(),
-    if (useSsl != null) 'use_ssl': useSsl!.toTfJson(),
-    if (validateSsl != null) 'validate_ssl': validateSsl!.toTfJson(),
-    if (maskHeaders != null) 'mask_headers': maskHeaders!.toTfJson(),
-    if (headers != null) 'headers': headers,
-    if (body != null) 'body': body!.toTfJson(),
-    if (authInfo != null) 'auth_info': [authInfo!.toArgMap()],
-    if (serviceAgentAuthentication != null)
-      'service_agent_authentication': [serviceAgentAuthentication!.toArgMap()],
-    if (acceptedResponseStatusCodes != null)
-      'accepted_response_status_codes': acceptedResponseStatusCodes!
-          .map((s) => s.toArgMap())
-          .toList(),
-    if (pingConfig != null) 'ping_config': [pingConfig!.toArgMap()],
+  Map<String, Object?> encode() => {
+    'labels': labels.toTfJson(),
+    'type': type.toTfJson(),
   };
 }
 
-// ===========================================================================
-// tcp_check
-// ===========================================================================
+/// Typed helper for the `resource_group` block of
+/// `google_monitoring_uptime_check_config` (derived from provider schema).
+@immutable
+final class MonitoringUptimeCheckConfigResourceGroup {
+  const MonitoringUptimeCheckConfigResourceGroup({
+    this.groupId,
+    this.resourceType,
+  });
 
-/// `tcp_check` block (max=1). Mutually exclusive with [httpCheck] and
-/// [syntheticMonitor] on the parent resource.
-class MonitoringUptimeCheckConfigTcpCheck {
+  final TfArg<String>? groupId;
+
+  final TfArg<MonitoringUptimeCheckResourceType>? resourceType;
+
+  Map<String, Object?> encode() => {
+    'group_id': ?groupId?.toTfJson(),
+    'resource_type': ?resourceType?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `synthetic_monitor` block of
+/// `google_monitoring_uptime_check_config` (derived from provider schema).
+@immutable
+final class MonitoringUptimeCheckConfigSyntheticMonitor {
+  const MonitoringUptimeCheckConfigSyntheticMonitor({
+    required this.cloudFunctionV2,
+  });
+
+  final MonitoringUptimeCheckConfigSyntheticMonitorCloudFunctionV2
+  cloudFunctionV2;
+
+  Map<String, Object?> encode() => {
+    'cloud_function_v2': cloudFunctionV2.encode(),
+  };
+}
+
+/// Typed helper for the `synthetic_monitor.cloud_function_v2` block of
+/// `google_monitoring_uptime_check_config` (derived from provider schema).
+@immutable
+final class MonitoringUptimeCheckConfigSyntheticMonitorCloudFunctionV2 {
+  const MonitoringUptimeCheckConfigSyntheticMonitorCloudFunctionV2({
+    required this.name,
+  });
+
+  final TfArg<String> name;
+
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+}
+
+/// Typed helper for the `tcp_check` block of
+/// `google_monitoring_uptime_check_config` (derived from provider schema).
+@immutable
+final class MonitoringUptimeCheckConfigTcpCheck {
   const MonitoringUptimeCheckConfigTcpCheck({
     required this.port,
     this.pingConfig,
   });
 
-  /// TCP port to connect to (combined with the host derived from
-  /// [monitoredResource]).
-  final TfArg<int> port;
+  final TfArg<num> port;
 
-  /// Optional companion ICMP ping configuration.
-  final MonitoringUptimeCheckConfigPingConfig? pingConfig;
+  final MonitoringUptimeCheckConfigTcpCheckPingConfig? pingConfig;
 
-  Map<String, Object?> toArgMap() => {
+  Map<String, Object?> encode() => {
     'port': port.toTfJson(),
-    if (pingConfig != null) 'ping_config': [pingConfig!.toArgMap()],
+    'ping_config': ?pingConfig?.encode(),
   };
 }
 
-// ===========================================================================
-// synthetic_monitor + cloud_function_v2
-// ===========================================================================
-
-/// `synthetic_monitor.cloud_function_v2` block (min=1, max=1) — target
-/// Cloud Functions V2 instance that implements the probe logic.
-class MonitoringUptimeCheckConfigCloudFunctionV2 {
-  const MonitoringUptimeCheckConfigCloudFunctionV2({required this.name});
-
-  /// Fully-qualified Cloud Functions V2 function name, e.g.
-  /// `'projects/p/locations/us-central1/functions/my-probe'`.
-  final TfArg<String> name;
-
-  Map<String, Object?> toArgMap() => {'name': name.toTfJson()};
-}
-
-/// `synthetic_monitor` block (max=1). Mutually exclusive with
-/// [httpCheck] and [tcpCheck] on the parent resource.
-final class MonitoringUptimeCheckConfigSyntheticMonitor
-    extends MonitoringUptimeCheckConfigTarget {
-  const MonitoringUptimeCheckConfigSyntheticMonitor({
-    required this.cloudFunctionV2,
+/// Typed helper for the `tcp_check.ping_config` block of
+/// `google_monitoring_uptime_check_config` (derived from provider schema).
+@immutable
+final class MonitoringUptimeCheckConfigTcpCheckPingConfig {
+  const MonitoringUptimeCheckConfigTcpCheckPingConfig({
+    required this.pingsCount,
   });
 
-  final MonitoringUptimeCheckConfigCloudFunctionV2 cloudFunctionV2;
+  final TfArg<num> pingsCount;
 
-  Map<String, Object?> toArgMap() => {
-    'cloud_function_v2': [cloudFunctionV2.toArgMap()],
-  };
-
-  @override
-  String get blockKey => 'synthetic_monitor';
-
-  @override
-  List<Map<String, Object?>> encode() => [toArgMap()];
-}
-
-// ===========================================================================
-// content_matchers + json_path_matcher
-// ===========================================================================
-
-/// `content_matchers[].json_path_matcher` block (max=1). Used by the
-/// `MATCHES_JSON_PATH` / `NOT_MATCHES_JSON_PATH` parent matchers.
-class MonitoringUptimeCheckConfigJsonPathMatcher {
-  const MonitoringUptimeCheckConfigJsonPathMatcher({
-    required this.jsonPath,
-    this.jsonMatcher,
-  });
-
-  /// JSONPath expression to resolve before applying the [jsonMatcher].
-  final TfArg<String> jsonPath;
-  final MonitoringUptimeCheckJsonMatcher? jsonMatcher;
-
-  Map<String, Object?> toArgMap() => {
-    'json_path': jsonPath.toTfJson(),
-    if (jsonMatcher != null) 'json_matcher': jsonMatcher!.terraformValue,
-  };
-}
-
-/// One entry in `google_monitoring_uptime_check_config.content_matchers`.
-///
-/// Only the first entry is currently honored by the GCP API — the
-/// schema reserves the list shape for future expansion.
-class MonitoringUptimeCheckConfigContentMatcher {
-  const MonitoringUptimeCheckConfigContentMatcher({
-    required this.content,
-    this.matcher,
-    this.jsonPathMatcher,
-  });
-
-  /// Content to match (max 1024 bytes). Interpretation depends on
-  /// [matcher] — literal substring for `CONTAINS_*`, regex for
-  /// `MATCHES_REGEX*`, etc.
-  final TfArg<String> content;
-
-  /// Match mode. Defaults to
-  /// [MonitoringUptimeCheckMatcher.containsString] on the API side.
-  final MonitoringUptimeCheckMatcher? matcher;
-
-  /// Required when [matcher] is
-  /// [MonitoringUptimeCheckMatcher.matchesJsonPath] or
-  /// [MonitoringUptimeCheckMatcher.notMatchesJsonPath].
-  final MonitoringUptimeCheckConfigJsonPathMatcher? jsonPathMatcher;
-
-  Map<String, Object?> toArgMap() => {
-    'content': content.toTfJson(),
-    if (matcher != null) 'matcher': matcher!.terraformValue,
-    if (jsonPathMatcher != null)
-      'json_path_matcher': [jsonPathMatcher!.toArgMap()],
-  };
+  Map<String, Object?> encode() => {'pings_count': pingsCount.toTfJson()};
 }
 
 /// Factory wrapper for `google_monitoring_uptime_check_config`.
@@ -674,21 +659,23 @@ class MonitoringUptimeCheckConfigContentMatcher {
 ///   displayName: TfArg.literal('Public API healthz'),
 ///   timeout: TfArg.literal('10s'),
 ///   period: TfArg.literal('60s'),
-///   httpCheck: const MonitoringUptimeCheckConfigHttpCheck(
-///     path: '/healthz',
-///     port: 443,
-///     useSsl: true,
-///     validateSsl: true,
-///     requestMethod: MonitoringUptimeCheckHttpMethod.get,
+///   httpCheck: MonitoringUptimeCheckConfigHttpCheck(
+///     path: .literal('/healthz'),
+///     port: .literal(443),
+///     useSsl: .literal(true),
+///     validateSsl: .literal(true),
+///     requestMethod: .literal(.get),
 ///   ),
-///   target: MonitoringUptimeCheckConfigMonitoredResource(
-///     type: TfArg.literal('uptime_url'),
-///     labels: {'host': 'api.example.com', 'project_id': 'my-project'},
+///   target: .monitoredResource(
+///     MonitoringUptimeCheckConfigMonitoredResource(
+///       type: .literal('uptime_url'),
+///       labels: .literal({'host': 'api.example.com', 'project_id': 'my-project'}),
+///     ),
 ///   ),
-///   contentMatchers: const [
-///     MonitoringUptimeCheckConfigContentMatcher(
-///       content: '"status":"ok"',
-///       matcher: MonitoringUptimeCheckMatcher.containsString,
+///   contentMatchers: [
+///     MonitoringUptimeCheckConfigContentMatchers(
+///       content: .literal('"status":"ok"'),
+///       matcher: .literal(.containsString),
 ///     ),
 ///   ],
 ///   selectedRegions: [
@@ -711,7 +698,7 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
     required MonitoringUptimeCheckConfigTarget target,
     MonitoringUptimeCheckConfigHttpCheck? httpCheck,
     MonitoringUptimeCheckConfigTcpCheck? tcpCheck,
-    List<MonitoringUptimeCheckConfigContentMatcher>? contentMatchers,
+    List<MonitoringUptimeCheckConfigContentMatchers>? contentMatchers,
     TfArg<bool>? logCheckFailures,
     TfArg<Map<String, String>>? userLabels,
     TfArg<String>? project,
@@ -731,17 +718,16 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
              ),
            'checker_type': ?checkerType,
            if (httpCheck != null)
-             'http_check': TfArg.literal([httpCheck.toArgMap()]),
-           if (tcpCheck != null)
-             'tcp_check': TfArg.literal([tcpCheck.toArgMap()]),
+             'http_check': TfArg.literal(httpCheck.encode()),
+           if (tcpCheck != null) 'tcp_check': TfArg.literal(tcpCheck.encode()),
            if (contentMatchers != null)
-             'content_matchers': TfArg.literal(
-               contentMatchers.map((c) => c.toArgMap()).toList(),
-             ),
+             'content_matchers': TfArg.literal([
+               for (final e in contentMatchers) e.encode(),
+             ]),
            'log_check_failures': ?logCheckFailures,
            'user_labels': ?userLabels,
            'project': ?project,
-           target.blockKey: TfArg.literal(target.encode()),
+           ...target.argMap,
          },
        );
 

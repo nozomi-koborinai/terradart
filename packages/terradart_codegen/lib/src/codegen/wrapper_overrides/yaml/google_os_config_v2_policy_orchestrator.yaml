@@ -5,15 +5,6 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
-# `resources` (exec/file/pkg/repository specs) is the same deep subtree
-# excluded on `google_os_config_os_policy_assignment` — keep it opaque so
-# wrap does not emit ~18 extra classes. Shallower payload blocks
-# (`os_policies`, `instance_filter`, `rollout`) stay typed.
-nestedTypeExcludes:
-  - orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources
-
-extraImports:
-  - "import 'package:meta/meta.dart';"
 
 curatedDoc: |-
   /// OS Config v2 **policy orchestrator** — stores a project-scoped recipe
@@ -44,16 +35,17 @@ curatedDoc: |-
   ///           mode: TfArg.literal('VALIDATION'),
   ///           resourceGroups: [
   ///             OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups(
-  ///               resources: TfArg.literal([
-  ///                 {
-  ///                   'id': 'resource-tf',
-  ///                   'file': {
-  ///                     'content': 'file-content-tf',
-  ///                     'path': 'file-path-tf-1',
-  ///                     'state': 'PRESENT',
-  ///                   },
-  ///                 },
-  ///               ]),
+  ///               resources: [
+  ///                 OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResources(
+  ///                   id: .literal('resource-tf'),
+  ///                   file:
+  ///                       OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsResourcesFile(
+  ///                     content: .literal('file-content-tf'),
+  ///                     path: .literal('file-path-tf-1'),
+  ///                     state: .literal('PRESENT'),
+  ///                   ),
+  ///                 ),
+  ///               ],
   ///             ),
   ///           ],
   ///         ),

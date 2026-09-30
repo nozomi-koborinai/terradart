@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_monitoring_notification_channel`.
@@ -10,88 +11,170 @@ const Set<String> _googleMonitoringNotificationChannelSensitive = <String>{
   'sensitive_labels.service_key',
 };
 
-// ===========================================================================
-// sensitive_labels nested block (max=1)
-// ===========================================================================
-
-/// `sensitive_labels` block (max=1) — credential slots for notification
-/// channel types that need an out-of-band secret. Each transport uses a
-/// different subset:
-///
-/// - `slack` → [authToken] (or [authTokenWo] + [authTokenWoVersion] for
-///   the write-only API).
-/// - `webhook_basicauth` → [password] (or [passwordWo] +
-///   [passwordWoVersion]).
-/// - `webhook_tokenauth` → [authToken] / [authTokenWo].
-/// - `pagerduty` → [serviceKey] (or [serviceKeyWo] +
-///   [serviceKeyWoVersion]).
-///
-/// The plaintext slots ([authToken], [password], [serviceKey]) are
-/// schema-flagged sensitive and round-trip through the wrapper's
-/// `sensitiveFields` set — synth masks them in plan output. Prefer the
-/// write-only variants (`*Wo` + `*WoVersion`) on Terraform 1.11+: the
-/// plaintext never enters Terraform state, and bumping the integer
-/// `*WoVersion` slot forces a credential rotation on next apply.
-///
-/// Credentials must NOT also be supplied via [GoogleMonitoringNotificationChannel.labels]
-/// — the provider rejects configurations that double-specify the same
-/// logical secret.
-class MonitoringNotificationChannelSensitiveLabels {
+/// Typed helper for the `sensitive_labels` block of
+/// `google_monitoring_notification_channel` (derived from provider schema).
+@immutable
+final class MonitoringNotificationChannelSensitiveLabels {
   const MonitoringNotificationChannelSensitiveLabels({
-    this.authToken,
-    this.authTokenWo,
+    required this.credential,
     this.authTokenWoVersion,
-    this.password,
-    this.passwordWo,
     this.passwordWoVersion,
-    this.serviceKey,
-    this.serviceKeyWo,
     this.serviceKeyWoVersion,
   });
 
-  /// Slack bot OAuth token / webhook bearer token. Sensitive — masked
-  /// from plan output and surfaced in `sensitiveFields`.
-  final TfArg<String>? authToken;
+  final MonitoringNotificationChannelSensitiveLabelsCredential credential;
 
-  /// Write-only sibling of [authToken] (Terraform 1.11+). Bump
-  /// [authTokenWoVersion] to rotate.
-  final TfArg<String>? authTokenWo;
-
-  /// Monotonic counter that triggers a rotation of [authTokenWo].
   final TfArg<String>? authTokenWoVersion;
 
-  /// Basic-auth password for `webhook_basicauth` channels. Sensitive.
-  final TfArg<String>? password;
-
-  /// Write-only sibling of [password] (Terraform 1.11+).
-  final TfArg<String>? passwordWo;
-
-  /// Monotonic counter that triggers a rotation of [passwordWo].
   final TfArg<String>? passwordWoVersion;
 
-  /// PagerDuty integration service key. Sensitive.
-  final TfArg<String>? serviceKey;
-
-  /// Write-only sibling of [serviceKey] (Terraform 1.11+).
-  final TfArg<String>? serviceKeyWo;
-
-  /// Monotonic counter that triggers a rotation of [serviceKeyWo].
   final TfArg<String>? serviceKeyWoVersion;
 
-  Map<String, Object?> toArgMap() => {
-    if (authToken != null) 'auth_token': authToken!.toTfJson(),
-    if (authTokenWo != null) 'auth_token_wo': authTokenWo!.toTfJson(),
-    if (authTokenWoVersion != null)
-      'auth_token_wo_version': authTokenWoVersion!.toTfJson(),
-    if (password != null) 'password': password!.toTfJson(),
-    if (passwordWo != null) 'password_wo': passwordWo!.toTfJson(),
-    if (passwordWoVersion != null)
-      'password_wo_version': passwordWoVersion!.toTfJson(),
-    if (serviceKey != null) 'service_key': serviceKey!.toTfJson(),
-    if (serviceKeyWo != null) 'service_key_wo': serviceKeyWo!.toTfJson(),
-    if (serviceKeyWoVersion != null)
-      'service_key_wo_version': serviceKeyWoVersion!.toTfJson(),
+  Map<String, Object?> encode() => {
+    ...credential.encode(),
+    'auth_token_wo_version': ?authTokenWoVersion?.toTfJson(),
+    'password_wo_version': ?passwordWoVersion?.toTfJson(),
+    'service_key_wo_version': ?serviceKeyWoVersion?.toTfJson(),
   };
+}
+
+/// Exactly one of `auth_token`, `auth_token_wo`, `password`, `password_wo`, `service_key`, `service_key_wo` on the `sensitive_labels` block of `google_monitoring_notification_channel`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.authToken(...)`.
+sealed class MonitoringNotificationChannelSensitiveLabelsCredential {
+  const MonitoringNotificationChannelSensitiveLabelsCredential();
+
+  /// Sets `auth_token`.
+  const factory MonitoringNotificationChannelSensitiveLabelsCredential.authToken(
+    TfArg<String> authToken,
+  ) = MonitoringNotificationChannelSensitiveLabelsCredentialAuthToken;
+
+  /// Sets `auth_token_wo`.
+  const factory MonitoringNotificationChannelSensitiveLabelsCredential.authTokenWo(
+    TfArg<String> authTokenWo,
+  ) = MonitoringNotificationChannelSensitiveLabelsCredentialAuthTokenWo;
+
+  /// Sets `password`.
+  const factory MonitoringNotificationChannelSensitiveLabelsCredential.password(
+    TfArg<String> password,
+  ) = MonitoringNotificationChannelSensitiveLabelsCredentialPassword;
+
+  /// Sets `password_wo`.
+  const factory MonitoringNotificationChannelSensitiveLabelsCredential.passwordWo(
+    TfArg<String> passwordWo,
+  ) = MonitoringNotificationChannelSensitiveLabelsCredentialPasswordWo;
+
+  /// Sets `service_key`.
+  const factory MonitoringNotificationChannelSensitiveLabelsCredential.serviceKey(
+    TfArg<String> serviceKey,
+  ) = MonitoringNotificationChannelSensitiveLabelsCredentialServiceKey;
+
+  /// Sets `service_key_wo`.
+  const factory MonitoringNotificationChannelSensitiveLabelsCredential.serviceKeyWo(
+    TfArg<String> serviceKeyWo,
+  ) = MonitoringNotificationChannelSensitiveLabelsCredentialServiceKeyWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [MonitoringNotificationChannelSensitiveLabelsCredential.authToken] choice: sets `auth_token`.
+final class MonitoringNotificationChannelSensitiveLabelsCredentialAuthToken
+    extends MonitoringNotificationChannelSensitiveLabelsCredential {
+  const MonitoringNotificationChannelSensitiveLabelsCredentialAuthToken(
+    this.authToken,
+  );
+
+  final TfArg<String> authToken;
+
+  @override
+  String get blockKey => 'auth_token';
+
+  @override
+  Map<String, Object?> encode() => {'auth_token': authToken.toTfJson()};
+}
+
+/// The [MonitoringNotificationChannelSensitiveLabelsCredential.authTokenWo] choice: sets `auth_token_wo`.
+final class MonitoringNotificationChannelSensitiveLabelsCredentialAuthTokenWo
+    extends MonitoringNotificationChannelSensitiveLabelsCredential {
+  const MonitoringNotificationChannelSensitiveLabelsCredentialAuthTokenWo(
+    this.authTokenWo,
+  );
+
+  final TfArg<String> authTokenWo;
+
+  @override
+  String get blockKey => 'auth_token_wo';
+
+  @override
+  Map<String, Object?> encode() => {'auth_token_wo': authTokenWo.toTfJson()};
+}
+
+/// The [MonitoringNotificationChannelSensitiveLabelsCredential.password] choice: sets `password`.
+final class MonitoringNotificationChannelSensitiveLabelsCredentialPassword
+    extends MonitoringNotificationChannelSensitiveLabelsCredential {
+  const MonitoringNotificationChannelSensitiveLabelsCredentialPassword(
+    this.password,
+  );
+
+  final TfArg<String> password;
+
+  @override
+  String get blockKey => 'password';
+
+  @override
+  Map<String, Object?> encode() => {'password': password.toTfJson()};
+}
+
+/// The [MonitoringNotificationChannelSensitiveLabelsCredential.passwordWo] choice: sets `password_wo`.
+final class MonitoringNotificationChannelSensitiveLabelsCredentialPasswordWo
+    extends MonitoringNotificationChannelSensitiveLabelsCredential {
+  const MonitoringNotificationChannelSensitiveLabelsCredentialPasswordWo(
+    this.passwordWo,
+  );
+
+  final TfArg<String> passwordWo;
+
+  @override
+  String get blockKey => 'password_wo';
+
+  @override
+  Map<String, Object?> encode() => {'password_wo': passwordWo.toTfJson()};
+}
+
+/// The [MonitoringNotificationChannelSensitiveLabelsCredential.serviceKey] choice: sets `service_key`.
+final class MonitoringNotificationChannelSensitiveLabelsCredentialServiceKey
+    extends MonitoringNotificationChannelSensitiveLabelsCredential {
+  const MonitoringNotificationChannelSensitiveLabelsCredentialServiceKey(
+    this.serviceKey,
+  );
+
+  final TfArg<String> serviceKey;
+
+  @override
+  String get blockKey => 'service_key';
+
+  @override
+  Map<String, Object?> encode() => {'service_key': serviceKey.toTfJson()};
+}
+
+/// The [MonitoringNotificationChannelSensitiveLabelsCredential.serviceKeyWo] choice: sets `service_key_wo`.
+final class MonitoringNotificationChannelSensitiveLabelsCredentialServiceKeyWo
+    extends MonitoringNotificationChannelSensitiveLabelsCredential {
+  const MonitoringNotificationChannelSensitiveLabelsCredentialServiceKeyWo(
+    this.serviceKeyWo,
+  );
+
+  final TfArg<String> serviceKeyWo;
+
+  @override
+  String get blockKey => 'service_key_wo';
+
+  @override
+  Map<String, Object?> encode() => {'service_key_wo': serviceKeyWo.toTfJson()};
 }
 
 /// Factory wrapper for `google_monitoring_notification_channel`.
@@ -130,16 +213,16 @@ class MonitoringNotificationChannelSensitiveLabels {
 /// - `"email"` — `labels: {'email_address': 'oncall@example.com'}`.
 /// - `"slack"` — `labels: {'channel_name': '#alerts',
 ///   'team': 'T01234ABCD'}`. The bot OAuth token goes in
-///   [sensitiveLabels].`authToken` (NOT in `labels`).
+///   `sensitiveLabels` as `credential: .authToken(...)` (NOT in `labels`).
 /// - `"pagerduty"` — `labels: {'service_name': 'prod-oncall'}`. The
-///   integration service key goes in [sensitiveLabels].`serviceKey`.
+///   integration service key goes in `credential: .serviceKey(...)`.
 /// - `"sms"` — `labels: {'number': '+15551234567'}` (E.164 format,
 ///   pre-verified phone numbers only).
 /// - `"webhook_basicauth"` — `labels: {'url': 'https://...'}` +
-///   [sensitiveLabels].`password` (with the basic-auth username embedded
+///   `credential: .password(...)` (with the basic-auth username embedded
 ///   in the URL or in `labels`).
 /// - `"webhook_tokenauth"` — `labels: {'url': 'https://...'}` +
-///   [sensitiveLabels].`authToken` for the bearer token.
+///   `credential: .authToken(...)` for the bearer token.
 /// - `"pubsub"` — `labels: {'topic': 'projects/<p>/topics/<t>'}`. The
 ///   service account that posts to the topic is managed via IAM, not
 ///   via this resource.
@@ -149,13 +232,13 @@ class MonitoringNotificationChannelSensitiveLabels {
 /// be placed in [sensitiveLabels] rather than [labels]. The provider
 /// rejects configurations that supply the same logical secret in both
 /// places, and only [sensitiveLabels] entries are masked from plan
-/// output. The 3 plaintext slots (`authToken`, `password`, `serviceKey`)
-/// are flagged sensitive by the provider schema and also enumerated in
-/// [extraSensitiveFields] (belt-and-suspenders); the 6
-/// write-only-API siblings (`*_wo` + `*_wo_version`) keep the plaintext
-/// out of Terraform state entirely on Terraform 1.11+ — prefer them
-/// when your CLI version supports it, bumping the `*_wo_version` int to
-/// force rotation.
+/// output. `sensitiveLabels.credential` is sealed — exactly one of the
+/// 3 plaintext variants (`.authToken`, `.password`, `.serviceKey`, flagged
+/// sensitive by the provider schema) or their write-only siblings
+/// (`.authTokenWo`, `.passwordWo`, `.serviceKeyWo`), which keep the
+/// plaintext out of Terraform state entirely on Terraform 1.11+ — prefer
+/// them when your CLI version supports it, bumping the matching
+/// `*WoVersion` field to force rotation.
 ///
 /// Verification: [verificationStatus] reflects whether the channel has
 /// passed Google's out-of-band verification step (e.g. clicking a link
@@ -169,17 +252,17 @@ class MonitoringNotificationChannelSensitiveLabels {
 /// ```dart
 /// final slack = GoogleMonitoringNotificationChannel(
 ///   localName: 'oncall_slack',
-///   displayName: TfArg.literal('#oncall alerts'),
-///   type: TfArg.literal('slack'),
-///   labels: TfArg.literal(const {
+///   displayName: .literal('#oncall alerts'),
+///   type: .literal('slack'),
+///   labels: .literal(const {
 ///     'channel_name': '#oncall',
 ///     'team': 'T01234ABCD',
 ///   }),
 ///   sensitiveLabels: MonitoringNotificationChannelSensitiveLabels(
-///     authTokenWo: TfArg.ref(slackBotTokenSecret.versionRef),
-///     authTokenWoVersion: TfArg.literal('1'),
+///     credential: .authTokenWo(.ref(slackBotTokenSecret.versionRef)),
+///     authTokenWoVersion: .literal('1'),
 ///   ),
-///   userLabels: TfArg.literal(const {'team': 'platform'}),
+///   userLabels: .literal(const {'team': 'platform'}),
 /// );
 /// ```
 final class GoogleMonitoringNotificationChannel extends Resource {
@@ -207,7 +290,7 @@ final class GoogleMonitoringNotificationChannel extends Resource {
            'type': type,
            'labels': ?labels,
            if (sensitiveLabels != null)
-             'sensitive_labels': TfArg.literal([sensitiveLabels.toArgMap()]),
+             'sensitive_labels': TfArg.literal(sensitiveLabels.encode()),
            'user_labels': ?userLabels,
            'description': ?description,
            'enabled': ?enabled,

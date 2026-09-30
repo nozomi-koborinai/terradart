@@ -4,124 +4,168 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
+
 /// Sensitive field paths for `google_secret_manager_secret`.
 const Set<String> _googleSecretManagerSecretSensitive = <String>{};
 
-// ===========================================================================
-// SecretManagerSecretReplication (sealed: Auto | UserManaged) + nested helpers
-// ===========================================================================
-
-/// `replication` block on `google_secret_manager_secret`. Sealed so the
-/// constructor exposes only valid replication choices.
+/// Exactly one of `user_managed`, `auto` on the `replication` block of `google_secret_manager_secret`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.userManaged(...)`.
 sealed class SecretManagerSecretReplication {
   const SecretManagerSecretReplication();
 
-  /// Auto replication. Optionally pin a CMEK.
-  factory SecretManagerSecretReplication.auto({
-    SecretManagerSecretCustomerManagedEncryption? customerManagedEncryption,
-  }) = SecretManagerSecretAutoReplication;
+  /// Sets `user_managed`.
+  const factory SecretManagerSecretReplication.userManaged(
+    SecretManagerSecretReplicationUserManaged userManaged,
+  ) = SecretManagerSecretReplicationUserManagedChoice;
 
-  /// User-managed replication across explicit replicas.
-  factory SecretManagerSecretReplication.userManaged(
-    List<SecretManagerSecretReplica> replicas,
-  ) = SecretManagerSecretUserManagedReplication;
+  /// Sets `auto`.
+  const factory SecretManagerSecretReplication.auto(
+    SecretManagerSecretReplicationAuto auto,
+  ) = SecretManagerSecretReplicationAutoChoice;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
 
   Map<String, Object?> encode();
 }
 
-@immutable
-final class SecretManagerSecretAutoReplication
+/// The [SecretManagerSecretReplication.userManaged] choice: sets `user_managed`.
+final class SecretManagerSecretReplicationUserManagedChoice
     extends SecretManagerSecretReplication {
-  const SecretManagerSecretAutoReplication({this.customerManagedEncryption});
+  const SecretManagerSecretReplicationUserManagedChoice(this.userManaged);
 
-  final SecretManagerSecretCustomerManagedEncryption? customerManagedEncryption;
+  final SecretManagerSecretReplicationUserManaged userManaged;
 
   @override
+  String get blockKey => 'user_managed';
+
+  @override
+  Map<String, Object?> encode() => {'user_managed': userManaged.encode()};
+}
+
+/// The [SecretManagerSecretReplication.auto] choice: sets `auto`.
+final class SecretManagerSecretReplicationAutoChoice
+    extends SecretManagerSecretReplication {
+  const SecretManagerSecretReplicationAutoChoice(this.auto);
+
+  final SecretManagerSecretReplicationAuto auto;
+
+  @override
+  String get blockKey => 'auto';
+
+  @override
+  Map<String, Object?> encode() => {'auto': auto.encode()};
+}
+
+/// Typed helper for the `replication.auto` block of
+/// `google_secret_manager_secret` (derived from provider schema).
+@immutable
+final class SecretManagerSecretReplicationAuto {
+  const SecretManagerSecretReplicationAuto({this.customerManagedEncryption});
+
+  final SecretManagerSecretReplicationAutoCustomerManagedEncryption?
+  customerManagedEncryption;
+
   Map<String, Object?> encode() => {
-    'auto': <String, Object?>{
-      if (customerManagedEncryption != null)
-        'customer_managed_encryption': customerManagedEncryption!.encode(),
-    },
+    'customer_managed_encryption': ?customerManagedEncryption?.encode(),
   };
 }
 
+/// Typed helper for the `replication.auto.customer_managed_encryption` block of
+/// `google_secret_manager_secret` (derived from provider schema).
 @immutable
-final class SecretManagerSecretUserManagedReplication
-    extends SecretManagerSecretReplication {
-  const SecretManagerSecretUserManagedReplication(this.replicas);
-
-  final List<SecretManagerSecretReplica> replicas;
-
-  @override
-  Map<String, Object?> encode() => {
-    'user_managed': <String, Object?>{
-      'replicas': replicas.map((r) => r.encode()).toList(),
-    },
-  };
-}
-
-/// `customer_managed_encryption` nested block (CMEK).
-@immutable
-class SecretManagerSecretCustomerManagedEncryption {
-  const SecretManagerSecretCustomerManagedEncryption({
+final class SecretManagerSecretReplicationAutoCustomerManagedEncryption {
+  const SecretManagerSecretReplicationAutoCustomerManagedEncryption({
     required this.kmsKeyName,
   });
 
-  final TfArg<String> kmsKeyName;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
-  Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
 }
 
-/// One entry in `user_managed.replicas`.
+/// Typed helper for the `replication.user_managed` block of
+/// `google_secret_manager_secret` (derived from provider schema).
 @immutable
-class SecretManagerSecretReplica {
-  const SecretManagerSecretReplica({
+final class SecretManagerSecretReplicationUserManaged {
+  const SecretManagerSecretReplicationUserManaged({required this.replicas});
+
+  final List<SecretManagerSecretReplicationUserManagedReplicas> replicas;
+
+  Map<String, Object?> encode() => {
+    'replicas': [for (final e in replicas) e.encode()],
+  };
+}
+
+/// Typed helper for the `replication.user_managed.replicas` block of
+/// `google_secret_manager_secret` (derived from provider schema).
+@immutable
+final class SecretManagerSecretReplicationUserManagedReplicas {
+  const SecretManagerSecretReplicationUserManagedReplicas({
     required this.location,
     this.customerManagedEncryption,
   });
 
   final TfArg<String> location;
-  final SecretManagerSecretCustomerManagedEncryption? customerManagedEncryption;
+
+  final SecretManagerSecretReplicationUserManagedReplicasCustomerManagedEncryption?
+  customerManagedEncryption;
 
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),
-    if (customerManagedEncryption != null)
-      'customer_managed_encryption': customerManagedEncryption!.encode(),
+    'customer_managed_encryption': ?customerManagedEncryption?.encode(),
   };
 }
 
-/// Pub/Sub `topics` entry under `google_secret_manager_secret.topics`.
+/// Typed helper for the `replication.user_managed.replicas.customer_managed_encryption` block of
+/// `google_secret_manager_secret` (derived from provider schema).
 @immutable
-class SecretManagerSecretSecretTopic {
-  const SecretManagerSecretSecretTopic({required this.name});
+final class SecretManagerSecretReplicationUserManagedReplicasCustomerManagedEncryption {
+  const SecretManagerSecretReplicationUserManagedReplicasCustomerManagedEncryption({
+    required this.kmsKeyName,
+  });
 
-  /// Topic resource path, e.g. `TfArg.ref(notifyTopic.id)`.
-  final TfArg<String> name;
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
 
-  Map<String, Object?> encode() => {'name': name.toTfJson()};
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
 }
 
-/// `rotation` nested block.
+/// Typed helper for the `rotation` block of
+/// `google_secret_manager_secret` (derived from provider schema).
 @immutable
-class SecretManagerSecretRotation {
+final class SecretManagerSecretRotation {
   const SecretManagerSecretRotation({
     this.nextRotationTime,
     this.rotationPeriod,
   });
 
   final TfArg<String>? nextRotationTime;
+
   final TfArg<String>? rotationPeriod;
 
   Map<String, Object?> encode() => {
-    if (nextRotationTime != null)
-      'next_rotation_time': nextRotationTime!.toTfJson(),
-    if (rotationPeriod != null) 'rotation_period': rotationPeriod!.toTfJson(),
+    'next_rotation_time': ?nextRotationTime?.toTfJson(),
+    'rotation_period': ?rotationPeriod?.toTfJson(),
   };
 }
 
-// ===========================================================================
-// Factory
-// ===========================================================================
+/// Typed helper for the `topics` block of
+/// `google_secret_manager_secret` (derived from provider schema).
+@immutable
+final class SecretManagerSecretTopics {
+  const SecretManagerSecretTopics({required this.name});
+
+  final TfArg<String> name;
+
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+}
 
 /// Factory wrapper for `google_secret_manager_secret`.
 ///
@@ -137,13 +181,14 @@ final class GoogleSecretManagerSecret extends Resource {
     TfArg<Map<String, String>>? annotations,
     TfArg<Map<String, String>>? versionAliases,
     TfArg<String>? versionDestroyTtl,
-    List<SecretManagerSecretSecretTopic>? topics,
+    List<SecretManagerSecretTopics>? topics,
     TfArg<String>? expireTime,
     TfArg<String>? ttl,
     SecretManagerSecretRotation? rotation,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? project,
     TfArg<bool>? deletionProtection,
+    TfArg<String>? secretType,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -158,13 +203,14 @@ final class GoogleSecretManagerSecret extends Resource {
            'version_aliases': ?versionAliases,
            'version_destroy_ttl': ?versionDestroyTtl,
            if (topics != null)
-             'topics': TfArg.literal(topics.map((t) => t.encode()).toList()),
+             'topics': TfArg.literal([for (final e in topics) e.encode()]),
            'expire_time': ?expireTime,
            'ttl': ?ttl,
            if (rotation != null) 'rotation': TfArg.literal(rotation.encode()),
            'tags': ?tags,
            'project': ?project,
            'deletion_protection': ?deletionProtection,
+           'secret_type': ?secretType,
          },
        );
 

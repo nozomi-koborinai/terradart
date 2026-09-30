@@ -1188,9 +1188,9 @@ bucket, topic) on `RefTo<R>`.
 
 - `BigqueryDataTransferConfigSensitiveParams` is derived too: the
   `BigqueryDataTransferConfigSecretAccessKey` sealed type and its
-  `WriteOnly` / `Plaintext` variants are gone, and the key is set with the
-  `secretAccessKeyWo` / `secretAccessKeyWoVersion` (or deprecated
-  `secretAccessKey`) fields directly.
+  `WriteOnly` / `Plaintext` variants are replaced by the derived
+  `secretAccessKey: .secretAccessKeyWo(...)` (or `.secretAccessKey(...)`),
+  with `secretAccessKeyWoVersion` beside it.
 - `GoogleBigqueryDataset` and `GoogleBigqueryDatasetAccess` keep their
   hand-written `access` grantee types; the `datasetId` of their view,
   dataset and routine references takes `RefTo<GoogleBigqueryDataset>`.
@@ -1329,6 +1329,111 @@ Synth output changes in two ways, both accepted by the provider: a
 `repository_event_config.push`, `logging_config`, ...) is an object, and a
 Cloud Functions build config the example left without an update policy
 emits `automatic_update_policy {}`, the provider's default.
+
+### Security and operations nested blocks use derived helper types
+
+**Breaking (`terradart_google`)** — the Certificate Manager, Private CA,
+Secret Manager, IAM workload / workforce identity, Sensitive Data
+Protection (DLP), Cloud Monitoring, Cloud Logging, OS Config, Network
+Security TLS policy, Identity Platform, Access Context Manager and
+Chronicle factories below drop their hand-written helper classes and
+`TfArg<Map>` blocks for helpers derived from the provider schema, as the
+serverless factories did. Every Magic Modules exactly-one / at-most-one
+group inside them becomes a sealed type. Top-level argument names are
+unchanged; what changes is the helper a sealed variant takes.
+
+- Helper classes are named `<Resource><BlockPath>`. The renames most
+  callers meet:
+
+  | Before | After |
+  |--------|-------|
+  | `MonitoringAlertPolicyAlertCondition` | `MonitoringAlertPolicyConditions` |
+  | `MonitoringAlertPolicyConditionThreshold` / `Aggregation` | `MonitoringAlertPolicyConditionsConditionThreshold` / `ConditionsConditionThresholdAggregations` (likewise the other `Condition*` blocks) |
+  | `MonitoringAlertPolicyNotificationRateLimit` / `DocumentationLink` | `MonitoringAlertPolicyAlertStrategyNotificationRateLimit` / `DocumentationLinks` |
+  | `MonitoringSloGoodTotalRatio` | `MonitoringSloRequestBasedSliGoodTotalRatio` |
+  | `MonitoringUptimeCheckConfigContentMatcher` / `AcceptedResponseStatus` | `MonitoringUptimeCheckConfigContentMatchers` / `HttpCheckAcceptedResponseStatusCodes` |
+  | `MonitoringUptimeCheckConfigHttpAuthInfo` | `MonitoringUptimeCheckConfigHttpCheckAuthInfo` |
+  | `SecretManagerSecretReplica` / `SecretTopic` | `SecretManagerSecretReplicationUserManagedReplicas` / `SecretManagerSecretTopics` |
+  | `PrivatecaCertificateAuthoritySubjectConfig` / `Subject` / `X509Config` | `PrivatecaCertificateAuthorityConfigSubjectConfig` / `ConfigSubjectConfigSubject` / `ConfigX509Config` |
+  | `IamWorkloadIdentityPoolProvider{Aws,Oidc,Saml,X509}Trust` | `IamWorkloadIdentityPoolProvider{Aws,Oidc,Saml,X509}` |
+  | `IamWorkforcePoolProvider{Oidc,Saml}Trust` | `IamWorkforcePoolProvider{Oidc,Saml}` |
+  | `CertificateManagerCertificateManagedProvisioning` / `SelfManagedProvisioning` | `CertificateManagerCertificateManaged` / `SelfManaged` |
+
+  Each helper's doc names the block it models.
+- Helper fields are `TfArg<T>` (`TfArg<Enum>` for enums), so they take dot
+  shorthands: `perSeriesAligner: .literal(.alignNextOlder)`,
+  `requestMethod: .literal(.get)`. A list of strings is one
+  `TfArg<List<String>>` (`allowedAudiences: .literal([...])`).
+- A hand-sealed variant used to take the member's fields inline; a derived
+  variant takes the member's helper: `.regex(pattern: ...)` is
+  `.regex(DataLossPreventionStoredInfoTypeRegex(pattern: ...))`,
+  `SecretManagerSecretReplication.userManaged([...])` is
+  `.userManaged(SecretManagerSecretReplicationUserManaged(replicas: [...]))`.
+  Presets the hand helpers carried are gone:
+  `PrivatecaCertificateAuthorityX509Config.rootCa()` is spelled out as
+  `caOptions` + `keyUsage`.
+- A write-only input and its plaintext sibling are one sealed argument,
+  named after the plaintext input: `password: .passwordWo(...)`
+  (`GoogleAlloydbUser`, `GoogleAlloydbCluster` `initialUser`),
+  `privateKey: .privateKey(...)` / `.privateKeyWo(...)`
+  (`GoogleComputeSslCertificate`, `GoogleComputeRegionSslCertificate`, the
+  Certificate Manager self-managed block), `credential: .authTokenWo(...)`
+  (`MonitoringNotificationChannelSensitiveLabels`),
+  `secretAccessKey: .secretAccessKeyWo(...)`
+  (`BigqueryDataTransferConfigSensitiveParams`). The provider rejects
+  setting both.
+- New sealed arguments (the variant is the member name):
+
+  | Factory or helper | Argument | Members |
+  |-------------------|----------|---------|
+  | `GoogleDataLossPreventionDeidentifyTemplate` | `deidentifyConfig` (was a `TfArg<Map>`) | `infoTypeTransformations`, `recordTransformations`, `imageTransformations` |
+  | `DataLossPreventionJobTriggerInspectJob…CloudStorageOptions` | `fileSet` | `url`, `regexFileSet` |
+  | `GoogleMonitoringSlo` request- and windows-based SLIs | `requestBasedSli` (the block is the sealed type); windows `criterion` | `goodTotalRatio`, `distributionCut`; `goodBadMetricFilter`, `goodTotalRatioThreshold`, `metricMeanInRange`, `metricSumInRange` |
+  | `MonitoringAlertPolicyConditionsConditionSql` | `schedule`, `test` | `minutes`, `hourly`, `daily`; `rowCountTest`, `booleanTest` |
+  | `GoogleOsConfigPatchDeployment` | `schedule` (unchanged name); a recurring schedule's `monthly`; each pre / post step `script` | `oneTimeSchedule`, `recurringSchedule`; `weekDayOfMonth`, `monthDay`; `localPath`, `gcsObject` |
+  | `GoogleLoggingSavedQuery` | `definition` (unchanged name); a logging query's summary field | `loggingQuery`, `opsAnalyticsQuery`; `summaryFieldStart`, `summaryFieldEnd` |
+  | `GoogleAccessContextManagerGcpUserAccessBinding` | `subject` (was `groupKey`, a nullable string) | `groupKey`, `principal` |
+  | `GoogleNetworkSecurityClientTlsPolicy`, `…ServerTlsPolicy` | `clientCertificate`, `serverCertificate`; each validation CA | `certificateProviderInstance`, `grpcEndpoint` |
+  | `GoogleIdentityPlatformConfig` | `smsRegionConfig` (the block is the sealed type) | `allowByDefault`, `allowlistOnly` |
+  | `GooglePrivatecaCertificateAuthority` | `keySpec` (the block is the sealed type, was a helper class); `subordinateConfig` | `algorithm`, `cloudKmsKeyVersion`; `certificateAuthority`, `pemIssuerChain` |
+
+- Newly exposed inputs, among them: `GoogleSecretManagerSecret`
+  `secretType`; `GoogleIdentityPlatformConfig` `signIn`, `mfa`,
+  `blockingFunctions`, `client`, `monitoring`, `multiTenant`, `quota`,
+  `smsRegionConfig`; `GooglePrivatecaCertificateAuthority` `lifetime`,
+  `gcsBucket`, `subordinateConfig`, `pemCaCertificate`,
+  `userDefinedAccessUrls`;
+  `GoogleAccessContextManagerGcpUserAccessBinding` `dryRunAccessLevels`;
+  `GoogleSecretManagerRegionalSecret`
+  `customerManagedEncryption`, `rotation`, `topics`;
+  `GoogleIamWorkloadIdentityPool` `inlineCertificateIssuanceConfig`,
+  `inlineTrustConfig`; `GoogleIamWorkforcePoolProvider`
+  `detailedAuditLogging`, `scimUsage`, `extendedAttributesOauth2Client`,
+  `extraAttributesOauth2Client`; `GoogleLoggingProjectBucketConfig`
+  `cmekSettings`, `indexConfigs`; `GoogleObservabilityBucket`
+  `cmekSettings`; the OS Config `exec` / `file` / `pkg` / `repository`
+  resource blocks, which `GoogleOsConfigOsPolicyAssignment` and
+  `GoogleOsConfigV2PolicyOrchestrator` took as `TfArg<List<Map>>`.
+
+| Before | After |
+|--------|-------|
+| `replication: SecretManagerSecretReplication.auto()` | `replication: const .auto(SecretManagerSecretReplicationAuto())` |
+| `sli: .requestBasedSli(goodTotalRatio: MonitoringSloGoodTotalRatio(goodServiceFilter: ..., totalServiceFilter: ...))` | `sli: .requestBasedSli(.goodTotalRatio(MonitoringSloRequestBasedSliGoodTotalRatio(goodServiceFilter: ..., totalServiceFilter: ...)))` |
+| `conditions: [MonitoringAlertPolicyAlertCondition(conditionThreshold: MonitoringAlertPolicyConditionThreshold(aggregations: [MonitoringAlertPolicyAggregation(perSeriesAligner: Aligner.percentile95)]))]` | `conditions: [MonitoringAlertPolicyConditions(conditionThreshold: MonitoringAlertPolicyConditionsConditionThreshold(aggregations: [MonitoringAlertPolicyConditionsConditionThresholdAggregations(perSeriesAligner: .literal(.percentile95))]))]` |
+| `target: .monitoredResource(type: .literal('uptime_url'), labels: {...})` | `target: .monitoredResource(MonitoringUptimeCheckConfigMonitoredResource(type: .literal('uptime_url'), labels: .literal({...})))` |
+| `trustSource: .oidc(issuerUri: ..., allowedAudiences: [.literal('aud')])` | `trustSource: .oidc(IamWorkloadIdentityPoolProviderOidc(issuerUri: ..., allowedAudiences: .literal(['aud'])))` |
+| `provisioning: .managed(domains: ['app.example.com'], dnsAuthorizations: [.ref(auth.id)])` | `provisioning: .managed(CertificateManagerCertificateManaged(domains: .literal(['app.example.com']), dnsAuthorizations: .literal([auth.id.interpolation])))` |
+| `GoogleAlloydbUser(passwordWo: .literal(pw), ...)` | `GoogleAlloydbUser(password: .passwordWo(.literal(pw)), ...)` |
+| `GoogleComputeSslCertificate(privateKey: TfArg.variable('key'), ...)` | `GoogleComputeSslCertificate(privateKey: .privateKey(TfArg.variable('key')), ...)` |
+| `GoogleDataLossPreventionStoredInfoType(definition: .regex(pattern: .literal(r'\d{4}')))` | `GoogleDataLossPreventionStoredInfoType(definition: .regex(DataLossPreventionStoredInfoTypeRegex(pattern: .literal(r'\d{4}'))))` |
+| `GoogleDataLossPreventionJobTrigger(inspectJob: .literal({...}), triggers: .literal([...]))` | `GoogleDataLossPreventionJobTrigger(inspectJob: DataLossPreventionJobTriggerInspectJob(...), triggers: [DataLossPreventionJobTriggerTriggers(...)])` |
+
+Synth output changes in one way, accepted by the provider: a
+`max_items = 1` block the hand helpers emitted as a one-element list
+(`managed`, `config`, `key_spec`, `regex`, `oidc`, `alert_strategy`,
+`condition_threshold`, `request_based_sli`, `http_check`,
+`monitored_resource`, `logging_query`, `one_time_schedule`, ...) is an
+object.
 
 ## 0.29.x → 0.30.0
 

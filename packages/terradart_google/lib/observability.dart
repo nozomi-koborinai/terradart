@@ -5,7 +5,7 @@
 library;
 
 export 'src/observability/google_observability_bucket.dart'
-    show GoogleObservabilityBucket;
+    show GoogleObservabilityBucket, ObservabilityBucketCmekSettings;
 export 'src/observability/google_observability_folder_settings.dart'
     show GoogleObservabilityFolderSettings;
 export 'src/observability/google_observability_link.dart'

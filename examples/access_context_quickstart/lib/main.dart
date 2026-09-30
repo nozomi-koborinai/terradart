@@ -359,7 +359,7 @@ final class AccessControlsStack extends Stack {
       GoogleAccessContextManagerGcpUserAccessBinding(
         localName: 'group_binding',
         organizationId: TfArg.expression('\${var.ops_organization_id}'),
-        groupKey: .literal('00abcde12345678'),
+        subject: .groupKey(.literal('00abcde12345678')),
         accessLevels: .literal([usOnly.nameRef.interpolation]),
         deletionPolicy: .literal('DELETE'),
         dependsOn: [ResourceDependency(usOnly)],

@@ -15,21 +15,69 @@ const Set<String> _googleFirebaseAiLogicConfigSensitive = <String>{
 final class FirebaseAiLogicConfigGenerativeLanguageConfig {
   const FirebaseAiLogicConfigGenerativeLanguageConfig({
     this.apiKey,
-    this.apiKeyWo,
     this.apiKeyWoVersion,
   });
 
-  final TfArg<String>? apiKey;
-
-  final TfArg<String>? apiKeyWo;
+  final FirebaseAiLogicConfigGenerativeLanguageConfigApiKey? apiKey;
 
   final TfArg<String>? apiKeyWoVersion;
 
   Map<String, Object?> encode() => {
-    'api_key': ?apiKey?.toTfJson(),
-    'api_key_wo': ?apiKeyWo?.toTfJson(),
+    ...?apiKey?.encode(),
     'api_key_wo_version': ?apiKeyWoVersion?.toTfJson(),
   };
+}
+
+/// At most one of `api_key`, `api_key_wo` on the `generative_language_config` block of `google_firebase_ai_logic_config`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.apiKey(...)`.
+sealed class FirebaseAiLogicConfigGenerativeLanguageConfigApiKey {
+  const FirebaseAiLogicConfigGenerativeLanguageConfigApiKey();
+
+  /// Sets `api_key`.
+  const factory FirebaseAiLogicConfigGenerativeLanguageConfigApiKey.apiKey(
+    TfArg<String> apiKey,
+  ) = FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyChoice;
+
+  /// Sets `api_key_wo`.
+  const factory FirebaseAiLogicConfigGenerativeLanguageConfigApiKey.apiKeyWo(
+    TfArg<String> apiKeyWo,
+  ) = FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [FirebaseAiLogicConfigGenerativeLanguageConfigApiKey.apiKey] choice: sets `api_key`.
+final class FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyChoice
+    extends FirebaseAiLogicConfigGenerativeLanguageConfigApiKey {
+  const FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyChoice(this.apiKey);
+
+  final TfArg<String> apiKey;
+
+  @override
+  String get blockKey => 'api_key';
+
+  @override
+  Map<String, Object?> encode() => {'api_key': apiKey.toTfJson()};
+}
+
+/// The [FirebaseAiLogicConfigGenerativeLanguageConfigApiKey.apiKeyWo] choice: sets `api_key_wo`.
+final class FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyWo
+    extends FirebaseAiLogicConfigGenerativeLanguageConfigApiKey {
+  const FirebaseAiLogicConfigGenerativeLanguageConfigApiKeyWo(this.apiKeyWo);
+
+  final TfArg<String> apiKeyWo;
+
+  @override
+  String get blockKey => 'api_key_wo';
+
+  @override
+  Map<String, Object?> encode() => {'api_key_wo': apiKeyWo.toTfJson()};
 }
 
 /// Typed helper for the `telemetry_config` block of

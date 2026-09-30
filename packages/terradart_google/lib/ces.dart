@@ -76,7 +76,16 @@ export 'src/ces/google_ces_deployment.dart'
         CesDeploymentChannelProfileWebWidgetConfigSecuritySettings,
         CesDeploymentChannelProfileWhatsappConfig,
         CesDeploymentInstagramCredentials,
+        CesDeploymentInstagramCredentialsAuthCode,
+        CesDeploymentInstagramCredentialsAuthCodeChoice,
+        CesDeploymentInstagramCredentialsAuthCodeWo,
         CesDeploymentWhatsappCredentials,
+        CesDeploymentWhatsappCredentialsAuthCode,
+        CesDeploymentWhatsappCredentialsAuthCodeChoice,
+        CesDeploymentWhatsappCredentialsAuthCodeWo,
+        CesDeploymentWhatsappCredentialsPin,
+        CesDeploymentWhatsappCredentialsPinChoice,
+        CesDeploymentWhatsappCredentialsPinWo,
         GoogleCesDeployment;
 export 'src/ces/google_ces_example.dart'
     show

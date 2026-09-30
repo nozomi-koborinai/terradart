@@ -581,35 +581,141 @@ final class ComputeBackendServiceIap {
   const ComputeBackendServiceIap({
     required this.enabled,
     this.oauth2ClientId,
-    this.oauth2ClientIdWo,
     this.oauth2ClientIdWoVersion,
     this.oauth2ClientSecret,
-    this.oauth2ClientSecretWo,
     this.oauth2ClientSecretWoVersion,
   });
 
   final TfArg<bool> enabled;
 
-  final TfArg<String>? oauth2ClientId;
-
-  final TfArg<String>? oauth2ClientIdWo;
+  final ComputeBackendServiceIapOauth2ClientId? oauth2ClientId;
 
   final TfArg<String>? oauth2ClientIdWoVersion;
 
-  final TfArg<String>? oauth2ClientSecret;
-
-  final TfArg<String>? oauth2ClientSecretWo;
+  final ComputeBackendServiceIapOauth2ClientSecret? oauth2ClientSecret;
 
   final TfArg<String>? oauth2ClientSecretWoVersion;
 
   Map<String, Object?> encode() => {
     'enabled': enabled.toTfJson(),
-    'oauth2_client_id': ?oauth2ClientId?.toTfJson(),
-    'oauth2_client_id_wo': ?oauth2ClientIdWo?.toTfJson(),
+    ...?oauth2ClientId?.encode(),
     'oauth2_client_id_wo_version': ?oauth2ClientIdWoVersion?.toTfJson(),
-    'oauth2_client_secret': ?oauth2ClientSecret?.toTfJson(),
-    'oauth2_client_secret_wo': ?oauth2ClientSecretWo?.toTfJson(),
+    ...?oauth2ClientSecret?.encode(),
     'oauth2_client_secret_wo_version': ?oauth2ClientSecretWoVersion?.toTfJson(),
+  };
+}
+
+/// At most one of `oauth2_client_id`, `oauth2_client_id_wo` on the `iap` block of `google_compute_backend_service`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.oauth2ClientId(...)`.
+sealed class ComputeBackendServiceIapOauth2ClientId {
+  const ComputeBackendServiceIapOauth2ClientId();
+
+  /// Sets `oauth2_client_id`.
+  const factory ComputeBackendServiceIapOauth2ClientId.oauth2ClientId(
+    TfArg<String> oauth2ClientId,
+  ) = ComputeBackendServiceIapOauth2ClientIdChoice;
+
+  /// Sets `oauth2_client_id_wo`.
+  const factory ComputeBackendServiceIapOauth2ClientId.oauth2ClientIdWo(
+    TfArg<String> oauth2ClientIdWo,
+  ) = ComputeBackendServiceIapOauth2ClientIdWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [ComputeBackendServiceIapOauth2ClientId.oauth2ClientId] choice: sets `oauth2_client_id`.
+final class ComputeBackendServiceIapOauth2ClientIdChoice
+    extends ComputeBackendServiceIapOauth2ClientId {
+  const ComputeBackendServiceIapOauth2ClientIdChoice(this.oauth2ClientId);
+
+  final TfArg<String> oauth2ClientId;
+
+  @override
+  String get blockKey => 'oauth2_client_id';
+
+  @override
+  Map<String, Object?> encode() => {
+    'oauth2_client_id': oauth2ClientId.toTfJson(),
+  };
+}
+
+/// The [ComputeBackendServiceIapOauth2ClientId.oauth2ClientIdWo] choice: sets `oauth2_client_id_wo`.
+final class ComputeBackendServiceIapOauth2ClientIdWo
+    extends ComputeBackendServiceIapOauth2ClientId {
+  const ComputeBackendServiceIapOauth2ClientIdWo(this.oauth2ClientIdWo);
+
+  final TfArg<String> oauth2ClientIdWo;
+
+  @override
+  String get blockKey => 'oauth2_client_id_wo';
+
+  @override
+  Map<String, Object?> encode() => {
+    'oauth2_client_id_wo': oauth2ClientIdWo.toTfJson(),
+  };
+}
+
+/// At most one of `oauth2_client_secret`, `oauth2_client_secret_wo` on the `iap` block of `google_compute_backend_service`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.oauth2ClientSecret(...)`.
+sealed class ComputeBackendServiceIapOauth2ClientSecret {
+  const ComputeBackendServiceIapOauth2ClientSecret();
+
+  /// Sets `oauth2_client_secret`.
+  const factory ComputeBackendServiceIapOauth2ClientSecret.oauth2ClientSecret(
+    TfArg<String> oauth2ClientSecret,
+  ) = ComputeBackendServiceIapOauth2ClientSecretChoice;
+
+  /// Sets `oauth2_client_secret_wo`.
+  const factory ComputeBackendServiceIapOauth2ClientSecret.oauth2ClientSecretWo(
+    TfArg<String> oauth2ClientSecretWo,
+  ) = ComputeBackendServiceIapOauth2ClientSecretWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [ComputeBackendServiceIapOauth2ClientSecret.oauth2ClientSecret] choice: sets `oauth2_client_secret`.
+final class ComputeBackendServiceIapOauth2ClientSecretChoice
+    extends ComputeBackendServiceIapOauth2ClientSecret {
+  const ComputeBackendServiceIapOauth2ClientSecretChoice(
+    this.oauth2ClientSecret,
+  );
+
+  final TfArg<String> oauth2ClientSecret;
+
+  @override
+  String get blockKey => 'oauth2_client_secret';
+
+  @override
+  Map<String, Object?> encode() => {
+    'oauth2_client_secret': oauth2ClientSecret.toTfJson(),
+  };
+}
+
+/// The [ComputeBackendServiceIapOauth2ClientSecret.oauth2ClientSecretWo] choice: sets `oauth2_client_secret_wo`.
+final class ComputeBackendServiceIapOauth2ClientSecretWo
+    extends ComputeBackendServiceIapOauth2ClientSecret {
+  const ComputeBackendServiceIapOauth2ClientSecretWo(this.oauth2ClientSecretWo);
+
+  final TfArg<String> oauth2ClientSecretWo;
+
+  @override
+  String get blockKey => 'oauth2_client_secret_wo';
+
+  @override
+  Map<String, Object?> encode() => {
+    'oauth2_client_secret_wo': oauth2ClientSecretWo.toTfJson(),
   };
 }
 

@@ -64,7 +64,7 @@ curatedDoc: |-
   ///   ),
   ///   initialUser: AlloydbClusterInitialUser(
   ///     user: .literal('postgres'),
-  ///     passwordWo: .literal(dbPassword),
+  ///     password: .passwordWo(.literal(dbPassword)),
   ///     passwordWoVersion: .literal('1'),
   ///   ),
   ///   dependsOn: [ResourceDependency(psaConnection)],

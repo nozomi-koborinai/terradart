@@ -10,6 +10,8 @@ paramOrder:
   - description
   - region
   - project
+  - private_key_wo
+  - private_key_wo_version
 
 curatedDoc: |-
   /// Regional self-managed SSL certificate for regional HTTPS load balancers.
@@ -21,7 +23,7 @@ curatedDoc: |-
   ///   localName: 'regional_cert',
   ///   name: TfArg.literal('regional-cert'),
   ///   certificate: TfArg.literal(pemCertificate),
-  ///   privateKey: TfArg.literal(pemPrivateKey),
+  ///   privateKey: .privateKey(.literal(pemPrivateKey)),
   ///   region: TfArg.literal('asia-northeast1'),
   /// );
   /// ```

@@ -1,10 +1,58 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
+
+import '../kms/google_kms_crypto_key.dart' show GoogleKmsCryptoKey;
 
 /// Sensitive field paths for `google_secret_manager_regional_secret`.
 const Set<String> _googleSecretManagerRegionalSecretSensitive = <String>{};
+
+/// Typed helper for the `customer_managed_encryption` block of
+/// `google_secret_manager_regional_secret` (derived from provider schema).
+@immutable
+final class SecretManagerRegionalSecretCustomerManagedEncryption {
+  const SecretManagerRegionalSecretCustomerManagedEncryption({
+    required this.kmsKeyName,
+  });
+
+  final RefTo<GoogleKmsCryptoKey> kmsKeyName;
+
+  Map<String, Object?> encode() => {
+    'kms_key_name': kmsKeyName.encodeAs('id').toTfJson(),
+  };
+}
+
+/// Typed helper for the `rotation` block of
+/// `google_secret_manager_regional_secret` (derived from provider schema).
+@immutable
+final class SecretManagerRegionalSecretRotation {
+  const SecretManagerRegionalSecretRotation({
+    this.nextRotationTime,
+    this.rotationPeriod,
+  });
+
+  final TfArg<String>? nextRotationTime;
+
+  final TfArg<String>? rotationPeriod;
+
+  Map<String, Object?> encode() => {
+    'next_rotation_time': ?nextRotationTime?.toTfJson(),
+    'rotation_period': ?rotationPeriod?.toTfJson(),
+  };
+}
+
+/// Typed helper for the `topics` block of
+/// `google_secret_manager_regional_secret` (derived from provider schema).
+@immutable
+final class SecretManagerRegionalSecretTopics {
+  const SecretManagerRegionalSecretTopics({required this.name});
+
+  final TfArg<String> name;
+
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+}
 
 /// Factory wrapper for `google_secret_manager_regional_secret`.
 ///
@@ -26,6 +74,12 @@ final class GoogleSecretManagerRegionalSecret extends Resource {
     TfArg<Map<String, String>>? tags,
     TfArg<bool>? deletionProtection,
     TfArg<String>? project,
+    TfArg<String>? secretType,
+    SecretManagerRegionalSecretCustomerManagedEncryption?
+    customerManagedEncryption,
+    SecretManagerRegionalSecretRotation? rotation,
+    List<SecretManagerRegionalSecretTopics>? topics,
+    TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -44,6 +98,15 @@ final class GoogleSecretManagerRegionalSecret extends Resource {
            'tags': ?tags,
            'deletion_protection': ?deletionProtection,
            'project': ?project,
+           'secret_type': ?secretType,
+           if (customerManagedEncryption != null)
+             'customer_managed_encryption': TfArg.literal(
+               customerManagedEncryption.encode(),
+             ),
+           if (rotation != null) 'rotation': TfArg.literal(rotation.encode()),
+           if (topics != null)
+             'topics': TfArg.literal([for (final e in topics) e.encode()]),
+           'deletion_policy': ?deletionPolicy,
          },
        );
 

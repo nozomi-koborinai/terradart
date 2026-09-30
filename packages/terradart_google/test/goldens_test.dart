@@ -137,7 +137,7 @@ void main() {
         GoogleSecretManagerSecret(
           localName: 'api_key',
           secretId: TfArg.literal('orders-api-key'),
-          replication: SecretManagerSecretReplication.auto(),
+          replication: const .auto(SecretManagerSecretReplicationAuto()),
         ),
       );
 
@@ -157,7 +157,7 @@ void main() {
         GoogleSecretManagerSecret(
           localName: 'api_key',
           secretId: TfArg.literal('orders-api-key'),
-          replication: SecretManagerSecretReplication.auto(),
+          replication: const .auto(SecretManagerSecretReplicationAuto()),
         ),
       );
       stack.add(
@@ -190,7 +190,7 @@ void main() {
       GoogleSecretManagerSecret(
         localName: 'api_key',
         secretId: TfArg.literal('orders-api-key'),
-        replication: SecretManagerSecretReplication.auto(),
+        replication: const .auto(SecretManagerSecretReplicationAuto()),
       ),
     );
     stack.add(

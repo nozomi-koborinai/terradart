@@ -1,10 +1,228 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_network_security_server_tls_policy`.
 const Set<String> _googleNetworkSecurityServerTlsPolicySensitive = <String>{};
+
+/// Typed helper for the `mtls_policy` block of
+/// `google_network_security_server_tls_policy` (derived from provider schema).
+@immutable
+final class NetworkSecurityServerTlsPolicyMtlsPolicy {
+  const NetworkSecurityServerTlsPolicyMtlsPolicy({
+    this.clientValidationMode,
+    this.clientValidationTrustConfig,
+    this.clientValidationCa,
+  });
+
+  final TfArg<NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationMode>?
+  clientValidationMode;
+
+  final TfArg<String>? clientValidationTrustConfig;
+
+  final List<NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCa>?
+  clientValidationCa;
+
+  Map<String, Object?> encode() => {
+    'client_validation_mode': ?clientValidationMode?.toTfJson(),
+    'client_validation_trust_config': ?clientValidationTrustConfig?.toTfJson(),
+    if (clientValidationCa != null)
+      'client_validation_ca': [for (final e in clientValidationCa!) e.encode()],
+  };
+}
+
+/// `client_validation_mode` — derived from the provider schema description.
+enum NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationMode
+    implements TerraformEnum {
+  clientValidationModeUnspecified('CLIENT_VALIDATION_MODE_UNSPECIFIED'),
+  allowInvalidOrMissingClientCert('ALLOW_INVALID_OR_MISSING_CLIENT_CERT'),
+  rejectInvalid('REJECT_INVALID');
+
+  const NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationMode(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Exactly one of `grpc_endpoint`, `certificate_provider_instance` on the `mtls_policy.client_validation_ca` block of `google_network_security_server_tls_policy`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.grpcEndpoint(...)`.
+sealed class NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCa {
+  const NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCa();
+
+  /// Sets `grpc_endpoint`.
+  const factory NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCa.grpcEndpoint(
+    NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaGrpcEndpoint
+    grpcEndpoint,
+  ) = NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaGrpcEndpointChoice;
+
+  /// Sets `certificate_provider_instance`.
+  const factory NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCa.certificateProviderInstance(
+    NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaCertificateProviderInstance
+    certificateProviderInstance,
+  ) = NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaCertificateProviderInstanceChoice;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCa.grpcEndpoint] choice: sets `grpc_endpoint`.
+final class NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaGrpcEndpointChoice
+    extends NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCa {
+  const NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaGrpcEndpointChoice(
+    this.grpcEndpoint,
+  );
+
+  final NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaGrpcEndpoint
+  grpcEndpoint;
+
+  @override
+  String get blockKey => 'grpc_endpoint';
+
+  @override
+  Map<String, Object?> encode() => {'grpc_endpoint': grpcEndpoint.encode()};
+}
+
+/// The [NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCa.certificateProviderInstance] choice: sets `certificate_provider_instance`.
+final class NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaCertificateProviderInstanceChoice
+    extends NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCa {
+  const NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaCertificateProviderInstanceChoice(
+    this.certificateProviderInstance,
+  );
+
+  final NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaCertificateProviderInstance
+  certificateProviderInstance;
+
+  @override
+  String get blockKey => 'certificate_provider_instance';
+
+  @override
+  Map<String, Object?> encode() => {
+    'certificate_provider_instance': certificateProviderInstance.encode(),
+  };
+}
+
+/// Typed helper for the `mtls_policy.client_validation_ca.certificate_provider_instance` block of
+/// `google_network_security_server_tls_policy` (derived from provider schema).
+@immutable
+final class NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaCertificateProviderInstance {
+  const NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaCertificateProviderInstance({
+    required this.pluginInstance,
+  });
+
+  final TfArg<String> pluginInstance;
+
+  Map<String, Object?> encode() => {
+    'plugin_instance': pluginInstance.toTfJson(),
+  };
+}
+
+/// Typed helper for the `mtls_policy.client_validation_ca.grpc_endpoint` block of
+/// `google_network_security_server_tls_policy` (derived from provider schema).
+@immutable
+final class NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaGrpcEndpoint {
+  const NetworkSecurityServerTlsPolicyMtlsPolicyClientValidationCaGrpcEndpoint({
+    required this.targetUri,
+  });
+
+  final TfArg<String> targetUri;
+
+  Map<String, Object?> encode() => {'target_uri': targetUri.toTfJson()};
+}
+
+/// Exactly one of `grpc_endpoint`, `certificate_provider_instance` on the `server_certificate` block of `google_network_security_server_tls_policy`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.grpcEndpoint(...)`.
+sealed class NetworkSecurityServerTlsPolicyServerCertificate {
+  const NetworkSecurityServerTlsPolicyServerCertificate();
+
+  /// Sets `grpc_endpoint`.
+  const factory NetworkSecurityServerTlsPolicyServerCertificate.grpcEndpoint(
+    NetworkSecurityServerTlsPolicyServerCertificateGrpcEndpoint grpcEndpoint,
+  ) = NetworkSecurityServerTlsPolicyServerCertificateGrpcEndpointChoice;
+
+  /// Sets `certificate_provider_instance`.
+  const factory NetworkSecurityServerTlsPolicyServerCertificate.certificateProviderInstance(
+    NetworkSecurityServerTlsPolicyServerCertificateCertificateProviderInstance
+    certificateProviderInstance,
+  ) = NetworkSecurityServerTlsPolicyServerCertificateProviderInstance;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [NetworkSecurityServerTlsPolicyServerCertificate.grpcEndpoint] choice: sets `grpc_endpoint`.
+final class NetworkSecurityServerTlsPolicyServerCertificateGrpcEndpointChoice
+    extends NetworkSecurityServerTlsPolicyServerCertificate {
+  const NetworkSecurityServerTlsPolicyServerCertificateGrpcEndpointChoice(
+    this.grpcEndpoint,
+  );
+
+  final NetworkSecurityServerTlsPolicyServerCertificateGrpcEndpoint
+  grpcEndpoint;
+
+  @override
+  String get blockKey => 'grpc_endpoint';
+
+  @override
+  Map<String, Object?> encode() => {'grpc_endpoint': grpcEndpoint.encode()};
+}
+
+/// The [NetworkSecurityServerTlsPolicyServerCertificate.certificateProviderInstance] choice: sets `certificate_provider_instance`.
+final class NetworkSecurityServerTlsPolicyServerCertificateProviderInstance
+    extends NetworkSecurityServerTlsPolicyServerCertificate {
+  const NetworkSecurityServerTlsPolicyServerCertificateProviderInstance(
+    this.certificateProviderInstance,
+  );
+
+  final NetworkSecurityServerTlsPolicyServerCertificateCertificateProviderInstance
+  certificateProviderInstance;
+
+  @override
+  String get blockKey => 'certificate_provider_instance';
+
+  @override
+  Map<String, Object?> encode() => {
+    'certificate_provider_instance': certificateProviderInstance.encode(),
+  };
+}
+
+/// Typed helper for the `server_certificate.certificate_provider_instance` block of
+/// `google_network_security_server_tls_policy` (derived from provider schema).
+@immutable
+final class NetworkSecurityServerTlsPolicyServerCertificateCertificateProviderInstance {
+  const NetworkSecurityServerTlsPolicyServerCertificateCertificateProviderInstance({
+    required this.pluginInstance,
+  });
+
+  final TfArg<String> pluginInstance;
+
+  Map<String, Object?> encode() => {
+    'plugin_instance': pluginInstance.toTfJson(),
+  };
+}
+
+/// Typed helper for the `server_certificate.grpc_endpoint` block of
+/// `google_network_security_server_tls_policy` (derived from provider schema).
+@immutable
+final class NetworkSecurityServerTlsPolicyServerCertificateGrpcEndpoint {
+  const NetworkSecurityServerTlsPolicyServerCertificateGrpcEndpoint({
+    required this.targetUri,
+  });
+
+  final TfArg<String> targetUri;
+
+  Map<String, Object?> encode() => {'target_uri': targetUri.toTfJson()};
+}
 
 /// Factory wrapper for `google_network_security_server_tls_policy`.
 ///
@@ -42,8 +260,8 @@ final class GoogleNetworkSecurityServerTlsPolicy extends Resource {
     TfArg<String>? location,
     TfArg<String>? description,
     TfArg<bool>? allowOpen,
-    TfArg<Map<String, dynamic>>? serverCertificate,
-    TfArg<Map<String, dynamic>>? mtlsPolicy,
+    NetworkSecurityServerTlsPolicyServerCertificate? serverCertificate,
+    NetworkSecurityServerTlsPolicyMtlsPolicy? mtlsPolicy,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
@@ -58,8 +276,10 @@ final class GoogleNetworkSecurityServerTlsPolicy extends Resource {
            'location': ?location,
            'description': ?description,
            'allow_open': ?allowOpen,
-           'server_certificate': ?serverCertificate,
-           'mtls_policy': ?mtlsPolicy,
+           if (serverCertificate != null)
+             'server_certificate': TfArg.literal(serverCertificate.encode()),
+           if (mtlsPolicy != null)
+             'mtls_policy': TfArg.literal(mtlsPolicy.encode()),
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,

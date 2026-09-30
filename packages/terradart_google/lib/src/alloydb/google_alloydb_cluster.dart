@@ -448,25 +448,73 @@ final class AlloydbClusterEncryptionConfig {
 final class AlloydbClusterInitialUser {
   const AlloydbClusterInitialUser({
     this.password,
-    this.passwordWo,
     this.passwordWoVersion,
     this.user,
   });
 
-  final TfArg<String>? password;
-
-  final TfArg<String>? passwordWo;
+  final AlloydbClusterInitialUserPassword? password;
 
   final TfArg<String>? passwordWoVersion;
 
   final TfArg<String>? user;
 
   Map<String, Object?> encode() => {
-    'password': ?password?.toTfJson(),
-    'password_wo': ?passwordWo?.toTfJson(),
+    ...?password?.encode(),
     'password_wo_version': ?passwordWoVersion?.toTfJson(),
     'user': ?user?.toTfJson(),
   };
+}
+
+/// At most one of `password`, `password_wo` on the `initial_user` block of `google_alloydb_cluster`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.password(...)`.
+sealed class AlloydbClusterInitialUserPassword {
+  const AlloydbClusterInitialUserPassword();
+
+  /// Sets `password`.
+  const factory AlloydbClusterInitialUserPassword.password(
+    TfArg<String> password,
+  ) = AlloydbClusterInitialUserPasswordChoice;
+
+  /// Sets `password_wo`.
+  const factory AlloydbClusterInitialUserPassword.passwordWo(
+    TfArg<String> passwordWo,
+  ) = AlloydbClusterInitialUserPasswordWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [AlloydbClusterInitialUserPassword.password] choice: sets `password`.
+final class AlloydbClusterInitialUserPasswordChoice
+    extends AlloydbClusterInitialUserPassword {
+  const AlloydbClusterInitialUserPasswordChoice(this.password);
+
+  final TfArg<String> password;
+
+  @override
+  String get blockKey => 'password';
+
+  @override
+  Map<String, Object?> encode() => {'password': password.toTfJson()};
+}
+
+/// The [AlloydbClusterInitialUserPassword.passwordWo] choice: sets `password_wo`.
+final class AlloydbClusterInitialUserPasswordWo
+    extends AlloydbClusterInitialUserPassword {
+  const AlloydbClusterInitialUserPasswordWo(this.passwordWo);
+
+  final TfArg<String> passwordWo;
+
+  @override
+  String get blockKey => 'password_wo';
+
+  @override
+  Map<String, Object?> encode() => {'password_wo': passwordWo.toTfJson()};
 }
 
 /// Typed helper for the `maintenance_update_policy` block of
@@ -662,7 +710,7 @@ final class AlloydbClusterSecondaryConfig {
 ///   ),
 ///   initialUser: AlloydbClusterInitialUser(
 ///     user: .literal('postgres'),
-///     passwordWo: .literal(dbPassword),
+///     password: .passwordWo(.literal(dbPassword)),
 ///     passwordWoVersion: .literal('1'),
 ///   ),
 ///   dependsOn: [ResourceDependency(psaConnection)],

@@ -9,6 +9,67 @@ const Set<String> _googleComputeSslCertificateSensitive = <String>{
   'private_key',
 };
 
+/// Exactly one of `private_key`, `private_key_wo` on `google_compute_ssl_certificate`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.privateKey(...)`.
+sealed class ComputeSslCertificatePrivateKey {
+  const ComputeSslCertificatePrivateKey();
+
+  /// Sets `private_key`.
+  const factory ComputeSslCertificatePrivateKey.privateKey(
+    TfArg<String> privateKey,
+  ) = ComputeSslCertificatePrivateKeyChoice;
+
+  /// Sets `private_key_wo`.
+  const factory ComputeSslCertificatePrivateKey.privateKeyWo(
+    TfArg<String> privateKeyWo,
+  ) = ComputeSslCertificatePrivateKeyWo;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [ComputeSslCertificatePrivateKey.privateKey] choice: sets `private_key`.
+final class ComputeSslCertificatePrivateKeyChoice
+    extends ComputeSslCertificatePrivateKey {
+  const ComputeSslCertificatePrivateKeyChoice(this.privateKey);
+
+  final TfArg<String> privateKey;
+
+  @override
+  String get blockKey => 'private_key';
+
+  @override
+  Map<String, Object?> encode() => {'private_key': privateKey.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'private_key': privateKey};
+}
+
+/// The [ComputeSslCertificatePrivateKey.privateKeyWo] choice: sets `private_key_wo`.
+final class ComputeSslCertificatePrivateKeyWo
+    extends ComputeSslCertificatePrivateKey {
+  const ComputeSslCertificatePrivateKeyWo(this.privateKeyWo);
+
+  final TfArg<String> privateKeyWo;
+
+  @override
+  String get blockKey => 'private_key_wo';
+
+  @override
+  Map<String, Object?> encode() => {'private_key_wo': privateKeyWo.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'private_key_wo': privateKeyWo};
+}
+
 /// Factory wrapper for `google_compute_ssl_certificate`.
 ///
 /// An SslCertificate resource, used for HTTPS load balancing. This resource
@@ -34,11 +95,11 @@ const Set<String> _googleComputeSslCertificateSensitive = <String>{
 ///   shorter suffix and so are more collision-prone. Conflicts with
 ///   `name`.
 ///
-/// Private key — choose one path:
-/// - `privateKey`: PEM-encoded key, stored in Terraform state. Schema-
-///   flagged sensitive; prefer a secret-management source via
-///   `TfArg.ref(...)` rather than embedding the PEM as a literal.
-/// - `privateKeyWo` + `privateKeyWoVersion`: write-only variant
+/// Private key — `privateKey` is sealed, exactly one of:
+/// - `.privateKey(...)`: PEM-encoded key, stored in Terraform state.
+///   Schema-flagged sensitive; prefer a secret-management source via
+///   `.ref(...)` rather than embedding the PEM as a literal.
+/// - `.privateKeyWo(...)` + `privateKeyWoVersion`: write-only variant
 ///   (Terraform 1.11+). The key never enters state — bump
 ///   `privateKeyWoVersion` to force rotation.
 ///
@@ -51,7 +112,7 @@ const Set<String> _googleComputeSslCertificateSensitive = <String>{
 ///   localName: 'lb_cert',
 ///   namePrefix: TfArg.literal('lb-cert-'),
 ///   certificate: TfArg.literal(certPem),
-///   privateKey: TfArg.literal(keyPem),
+///   privateKey: .privateKey(.literal(keyPem)),
 /// );
 /// ```
 ///
@@ -61,8 +122,8 @@ const Set<String> _googleComputeSslCertificateSensitive = <String>{
 ///   localName: 'lb_cert',
 ///   name: TfArg.literal('lb-cert'),
 ///   certificate: TfArg.ref(certVar),
-///   privateKeyWo: TfArg.ref(secretVersion.secretData),
-///   privateKeyWoVersion: TfArg.literal('1'),
+///   privateKey: .privateKeyWo(.ref(secretVersion.secretData)),
+///   privateKeyWoVersion: .literal('1'),
 /// );
 /// ```
 final class GoogleComputeSslCertificate extends Resource {
@@ -73,8 +134,7 @@ final class GoogleComputeSslCertificate extends Resource {
     TfArg<String>? name,
     TfArg<String>? namePrefix,
     required TfArg<String> certificate,
-    TfArg<String>? privateKey,
-    TfArg<String>? privateKeyWo,
+    required ComputeSslCertificatePrivateKey privateKey,
     TfArg<String>? privateKeyWoVersion,
     TfArg<String>? description,
     TfArg<String>? project,
@@ -88,8 +148,7 @@ final class GoogleComputeSslCertificate extends Resource {
            'name': ?name,
            'name_prefix': ?namePrefix,
            'certificate': certificate,
-           'private_key': ?privateKey,
-           'private_key_wo': ?privateKeyWo,
+           ...privateKey.argMap,
            'private_key_wo_version': ?privateKeyWoVersion,
            'description': ?description,
            'project': ?project,

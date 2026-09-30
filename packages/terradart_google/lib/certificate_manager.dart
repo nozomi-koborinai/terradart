@@ -6,10 +6,19 @@ library;
 
 export 'src/certificate_manager/google_certificate_manager_certificate.dart'
     show
-        CertificateManagerCertificateManagedProvisioning,
-        CertificateManagerCertificateProvisioningSource,
+        CertificateManagerCertificateManaged,
+        CertificateManagerCertificateProvisioning,
+        CertificateManagerCertificateProvisioningManaged,
+        CertificateManagerCertificateProvisioningSelfManaged,
         CertificateManagerCertificateScope,
-        CertificateManagerCertificateSelfManagedProvisioning,
+        CertificateManagerCertificateSelfManaged,
+        CertificateManagerCertificateSelfManagedCertificate,
+        CertificateManagerCertificateSelfManagedCertificatePem,
+        CertificateManagerCertificateSelfManagedCertificatePemCertificate,
+        CertificateManagerCertificateSelfManagedPrivateKey,
+        CertificateManagerCertificateSelfManagedPrivateKeyPem,
+        CertificateManagerCertificateSelfManagedPrivateKeyPemPrivateKey,
+        CertificateManagerCertificateSelfManagedPrivateKeyPemPrivateKeyWo,
         GoogleCertificateManagerCertificate;
 export 'src/certificate_manager/google_certificate_manager_certificate_issuance_config.dart'
     show
@@ -21,9 +30,9 @@ export 'src/certificate_manager/google_certificate_manager_certificate_map.dart'
     show GoogleCertificateManagerCertificateMap;
 export 'src/certificate_manager/google_certificate_manager_certificate_map_entry.dart'
     show
-        CertificateManagerCertificateMapEntryHostname,
         CertificateManagerCertificateMapEntryMatch,
-        CertificateManagerCertificateMapEntryMatcher,
+        CertificateManagerCertificateMapEntryMatchHostname,
+        CertificateManagerCertificateMapEntryMatchMatcher,
         GoogleCertificateManagerCertificateMapEntry;
 export 'src/certificate_manager/google_certificate_manager_dns_authorization.dart'
     show

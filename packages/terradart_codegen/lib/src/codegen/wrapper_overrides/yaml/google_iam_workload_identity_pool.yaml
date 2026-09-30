@@ -2,6 +2,7 @@ outputDir: iam
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
 
 curatedDoc: |-
   /// This wrapper covers the pool resource itself. Pair with
@@ -34,6 +35,9 @@ curatedDoc: |-
   /// Composition pattern: extends `Resource`
   /// for runtime behavior.
 
+sealedNames:
+  "inline_certificate_issuance_config.ca_pools, inline_certificate_issuance_config.use_default_shared_ca": ca
+
 paramOrder:
   - workload_identity_pool_id
   - display_name
@@ -41,6 +45,9 @@ paramOrder:
   - disabled
   - mode
   - project
+  - attestation_rules
+  - inline_certificate_issuance_config
+  - inline_trust_config
 
 extraGetters: |2
     /// Reference to `id` attribute (full path
