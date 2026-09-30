@@ -22,114 +22,6 @@ enum EdgecontainerClusterReleaseChannel implements TerraformEnum {
   final String terraformValue;
 }
 
-// ===========================================================================
-// EdgecontainerClusterControlPlane — sealed (Remote | Local)
-// ===========================================================================
-
-/// Control-plane placement for [GoogleEdgecontainerCluster]. Sealed so the
-/// MM `exactly_one_of` under `control_plane` (`remote` / `local`) is
-/// exhaustive at the type level.
-sealed class EdgecontainerClusterControlPlane {
-  const EdgecontainerClusterControlPlane();
-
-  /// `remote` control plane — node location only.
-  const factory EdgecontainerClusterControlPlane.remote({
-    TfArg<String>? nodeLocation,
-  }) = EdgecontainerClusterControlPlaneRemote;
-
-  /// `local` control plane — optional node count (1 or 3), filter, policy.
-  const factory EdgecontainerClusterControlPlane.local({
-    TfArg<String>? nodeLocation,
-    TfArg<int>? nodeCount,
-    TfArg<String>? machineFilter,
-    TfArg<EdgecontainerClusterSharedDeploymentPolicy>? sharedDeploymentPolicy,
-  }) = EdgecontainerClusterControlPlaneLocal;
-
-  /// Inner block key under `control_plane` (`remote` or `local`).
-  String get planeKey;
-
-  /// Encodes as `control_plane` list max 1: `[{ <planeKey>: [{…}] }]`.
-  List<Map<String, Object?>> encode();
-}
-
-/// `remote` control plane — node location only.
-@immutable
-final class EdgecontainerClusterControlPlaneRemote
-    extends EdgecontainerClusterControlPlane {
-  const EdgecontainerClusterControlPlaneRemote({this.nodeLocation});
-
-  final TfArg<String>? nodeLocation;
-
-  @override
-  String get planeKey => 'remote';
-
-  @override
-  List<Map<String, Object?>> encode() => [
-    {
-      planeKey: [
-        {if (nodeLocation != null) 'node_location': nodeLocation!.toTfJson()},
-      ],
-    },
-  ];
-}
-
-/// `local` control plane — optional node count (1 or 3), filter, policy.
-@immutable
-final class EdgecontainerClusterControlPlaneLocal
-    extends EdgecontainerClusterControlPlane {
-  const EdgecontainerClusterControlPlaneLocal({
-    this.nodeLocation,
-    this.nodeCount,
-    this.machineFilter,
-    this.sharedDeploymentPolicy,
-  });
-
-  final TfArg<String>? nodeLocation;
-  final TfArg<int>? nodeCount;
-  final TfArg<String>? machineFilter;
-  final TfArg<EdgecontainerClusterSharedDeploymentPolicy>?
-  sharedDeploymentPolicy;
-
-  @override
-  String get planeKey => 'local';
-
-  @override
-  List<Map<String, Object?>> encode() => [
-    {
-      planeKey: [
-        {
-          if (nodeLocation != null) 'node_location': nodeLocation!.toTfJson(),
-          if (nodeCount != null) 'node_count': nodeCount!.toTfJson(),
-          if (machineFilter != null)
-            'machine_filter': machineFilter!.toTfJson(),
-          if (sharedDeploymentPolicy != null)
-            'shared_deployment_policy': sharedDeploymentPolicy!.toTfJson(),
-        },
-      ],
-    },
-  ];
-}
-
-/// Policy for deploying user apps onto local control-plane nodes.
-enum EdgecontainerClusterSharedDeploymentPolicy implements TerraformEnum {
-  sharedDeploymentPolicyUnspecified,
-  allowed,
-  disallowed;
-
-  @override
-  String get terraformValue {
-    switch (this) {
-      case EdgecontainerClusterSharedDeploymentPolicy
-          .sharedDeploymentPolicyUnspecified:
-        return 'SHARED_DEPLOYMENT_POLICY_UNSPECIFIED';
-      case EdgecontainerClusterSharedDeploymentPolicy.allowed:
-        return 'ALLOWED';
-      case EdgecontainerClusterSharedDeploymentPolicy.disallowed:
-        return 'DISALLOWED';
-    }
-  }
-}
-
 /// Typed helper for the `authorization` block of
 /// `google_edgecontainer_cluster` (derived from provider schema).
 @immutable
@@ -150,6 +42,110 @@ final class EdgecontainerClusterAuthorizationAdminUsers {
   final TfArg<String> username;
 
   Map<String, Object?> encode() => {'username': username.toTfJson()};
+}
+
+/// Exactly one of `remote`, `local` on the `control_plane` block of `google_edgecontainer_cluster`: the provider rejects
+/// none and more than one, so each variant sets one of them.
+///
+/// Pick one with a dot shorthand: `.remote(...)`.
+sealed class EdgecontainerClusterControlPlane {
+  const EdgecontainerClusterControlPlane();
+
+  /// Sets `remote`.
+  const factory EdgecontainerClusterControlPlane.remote(
+    EdgecontainerClusterControlPlaneRemote remote,
+  ) = EdgecontainerClusterControlPlaneRemoteChoice;
+
+  /// Sets `local`.
+  const factory EdgecontainerClusterControlPlane.local(
+    EdgecontainerClusterControlPlaneLocal local,
+  ) = EdgecontainerClusterControlPlaneLocalChoice;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// The [EdgecontainerClusterControlPlane.remote] choice: sets `remote`.
+final class EdgecontainerClusterControlPlaneRemoteChoice
+    extends EdgecontainerClusterControlPlane {
+  const EdgecontainerClusterControlPlaneRemoteChoice(this.remote);
+
+  final EdgecontainerClusterControlPlaneRemote remote;
+
+  @override
+  String get blockKey => 'remote';
+
+  @override
+  Map<String, Object?> encode() => {'remote': remote.encode()};
+}
+
+/// The [EdgecontainerClusterControlPlane.local] choice: sets `local`.
+final class EdgecontainerClusterControlPlaneLocalChoice
+    extends EdgecontainerClusterControlPlane {
+  const EdgecontainerClusterControlPlaneLocalChoice(this.local);
+
+  final EdgecontainerClusterControlPlaneLocal local;
+
+  @override
+  String get blockKey => 'local';
+
+  @override
+  Map<String, Object?> encode() => {'local': local.encode()};
+}
+
+/// Typed helper for the `control_plane.local` block of
+/// `google_edgecontainer_cluster` (derived from provider schema).
+@immutable
+final class EdgecontainerClusterControlPlaneLocal {
+  const EdgecontainerClusterControlPlaneLocal({
+    this.machineFilter,
+    this.nodeCount,
+    this.nodeLocation,
+    this.sharedDeploymentPolicy,
+  });
+
+  final TfArg<String>? machineFilter;
+
+  final TfArg<num>? nodeCount;
+
+  final TfArg<String>? nodeLocation;
+
+  final TfArg<EdgecontainerClusterControlPlaneLocalSharedDeploymentPolicy>?
+  sharedDeploymentPolicy;
+
+  Map<String, Object?> encode() => {
+    'machine_filter': ?machineFilter?.toTfJson(),
+    'node_count': ?nodeCount?.toTfJson(),
+    'node_location': ?nodeLocation?.toTfJson(),
+    'shared_deployment_policy': ?sharedDeploymentPolicy?.toTfJson(),
+  };
+}
+
+/// `shared_deployment_policy` — derived from the provider schema description.
+enum EdgecontainerClusterControlPlaneLocalSharedDeploymentPolicy
+    implements TerraformEnum {
+  sharedDeploymentPolicyUnspecified('SHARED_DEPLOYMENT_POLICY_UNSPECIFIED'),
+  allowed('ALLOWED'),
+  disallowed('DISALLOWED');
+
+  const EdgecontainerClusterControlPlaneLocalSharedDeploymentPolicy(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `control_plane.remote` block of
+/// `google_edgecontainer_cluster` (derived from provider schema).
+@immutable
+final class EdgecontainerClusterControlPlaneRemote {
+  const EdgecontainerClusterControlPlaneRemote({this.nodeLocation});
+
+  final TfArg<String>? nodeLocation;
+
+  Map<String, Object?> encode() => {'node_location': ?nodeLocation?.toTfJson()};
 }
 
 /// Typed helper for the `control_plane_encryption` block of
@@ -358,10 +354,8 @@ final class EdgecontainerClusterSystemAddonsConfigIngress {
 /// Google Distributed Cloud Edge **cluster** — Kubernetes control plane on
 /// edge hardware (GDCE).
 ///
-/// Choose exactly one [EdgecontainerClusterControlPlane]:
-/// - [EdgecontainerClusterControlPlaneRemote] — remote control plane.
-/// - [EdgecontainerClusterControlPlaneLocal] — local control plane
-///   (node count 1 or 3).
+/// [controlPlane] is exactly one placement: `.remote(...)` or
+/// `.local(...)` (node count 1 or 3).
 ///
 /// **Cost:** Google Distributed Cloud Edge `8A2D-5CB1-345B` bills
 /// connected / edge server hardware+SW commitments (e.g. Connected Server
@@ -391,8 +385,10 @@ final class EdgecontainerClusterSystemAddonsConfigIngress {
 ///       username: TfArg.literal('admin@example.com'),
 ///     ),
 ///   ),
-///   controlPlane: EdgecontainerClusterControlPlaneRemote(
-///     nodeLocation: TfArg.literal('us-central1-edge-customer-a'),
+///   controlPlane: .remote(
+///     EdgecontainerClusterControlPlaneRemote(
+///       nodeLocation: .literal('us-central1-edge-customer-a'),
+///     ),
 ///   ),
 /// );
 /// ```
@@ -406,7 +402,7 @@ final class GoogleEdgecontainerCluster extends Resource {
     required EdgecontainerClusterNetworking networking,
     required EdgecontainerClusterFleet fleet,
     required EdgecontainerClusterAuthorization authorization,
-    required EdgecontainerClusterControlPlane controlPlane,
+    EdgecontainerClusterControlPlane? controlPlane,
     EdgecontainerClusterControlPlaneEncryption? controlPlaneEncryption,
     EdgecontainerClusterMaintenancePolicy? maintenancePolicy,
     EdgecontainerClusterSystemAddonsConfig? systemAddonsConfig,
@@ -443,7 +439,8 @@ final class GoogleEdgecontainerCluster extends Resource {
            'labels': ?labels,
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
-           'control_plane': TfArg.literal(controlPlane.encode()),
+           if (controlPlane != null)
+             'control_plane': TfArg.literal(controlPlane.encode()),
          },
        );
 

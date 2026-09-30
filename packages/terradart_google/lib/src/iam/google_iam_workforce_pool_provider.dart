@@ -87,6 +87,79 @@ final class IamWorkforcePoolProviderTrustSourceOidc
   };
 }
 
+/// At most one of `extended_attributes_oauth2_client`, `scim_usage` on `google_iam_workforce_pool_provider`: the provider rejects
+/// more than one, so each variant sets one of them and a
+/// null choice sets none.
+///
+/// Pick one with a dot shorthand: `.extendedAttributesOauth2Client(...)`.
+sealed class IamWorkforcePoolProviderGroupSource {
+  const IamWorkforcePoolProviderGroupSource();
+
+  /// Sets `extended_attributes_oauth2_client`.
+  const factory IamWorkforcePoolProviderGroupSource.extendedAttributesOauth2Client(
+    IamWorkforcePoolProviderExtendedAttributesOauth2Client
+    extendedAttributesOauth2Client,
+  ) = IamWorkforcePoolProviderGroupSourceExtendedAttributesOauth2Client;
+
+  /// Sets `scim_usage`.
+  const factory IamWorkforcePoolProviderGroupSource.scimUsage(
+    TfArg<IamWorkforcePoolProviderScimUsage> scimUsage,
+  ) = IamWorkforcePoolProviderGroupSourceScimUsage;
+
+  /// The Terraform argument this choice sets.
+  String get blockKey;
+
+  Map<String, Object?> encode();
+
+  /// The resource arguments behind [encode], as the caller's
+  /// [TfArg]s.
+  Map<String, TfArg<Object?>> get argMap;
+}
+
+/// The [IamWorkforcePoolProviderGroupSource.extendedAttributesOauth2Client] choice: sets `extended_attributes_oauth2_client`.
+final class IamWorkforcePoolProviderGroupSourceExtendedAttributesOauth2Client
+    extends IamWorkforcePoolProviderGroupSource {
+  const IamWorkforcePoolProviderGroupSourceExtendedAttributesOauth2Client(
+    this.extendedAttributesOauth2Client,
+  );
+
+  final IamWorkforcePoolProviderExtendedAttributesOauth2Client
+  extendedAttributesOauth2Client;
+
+  @override
+  String get blockKey => 'extended_attributes_oauth2_client';
+
+  @override
+  Map<String, Object?> encode() => {
+    'extended_attributes_oauth2_client': extendedAttributesOauth2Client
+        .encode(),
+  };
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {
+    'extended_attributes_oauth2_client': TfArg.literal(
+      extendedAttributesOauth2Client.encode(),
+    ),
+  };
+}
+
+/// The [IamWorkforcePoolProviderGroupSource.scimUsage] choice: sets `scim_usage`.
+final class IamWorkforcePoolProviderGroupSourceScimUsage
+    extends IamWorkforcePoolProviderGroupSource {
+  const IamWorkforcePoolProviderGroupSourceScimUsage(this.scimUsage);
+
+  final TfArg<IamWorkforcePoolProviderScimUsage> scimUsage;
+
+  @override
+  String get blockKey => 'scim_usage';
+
+  @override
+  Map<String, Object?> encode() => {'scim_usage': scimUsage.toTfJson()};
+
+  @override
+  Map<String, TfArg<Object?>> get argMap => {'scim_usage': scimUsage};
+}
+
 /// Typed helper for the `extended_attributes_oauth2_client` block of
 /// `google_iam_workforce_pool_provider` (derived from provider schema).
 @immutable
@@ -597,12 +670,10 @@ final class GoogleIamWorkforcePoolProvider extends Resource {
     TfArg<String>? attributeCondition,
     required IamWorkforcePoolProviderTrustSource trustSource,
     TfArg<String>? deletionPolicy,
-    IamWorkforcePoolProviderExtendedAttributesOauth2Client?
-    extendedAttributesOauth2Client,
+    IamWorkforcePoolProviderGroupSource? groupSource,
     IamWorkforcePoolProviderExtraAttributesOauth2Client?
     extraAttributesOauth2Client,
     TfArg<bool>? detailedAuditLogging,
-    TfArg<IamWorkforcePoolProviderScimUsage>? scimUsage,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -620,16 +691,12 @@ final class GoogleIamWorkforcePoolProvider extends Resource {
            'attribute_condition': ?attributeCondition,
            'deletion_policy': ?deletionPolicy,
            ...trustSource.argMap,
-           if (extendedAttributesOauth2Client != null)
-             'extended_attributes_oauth2_client': TfArg.literal(
-               extendedAttributesOauth2Client.encode(),
-             ),
+           ...?groupSource?.argMap,
            if (extraAttributesOauth2Client != null)
              'extra_attributes_oauth2_client': TfArg.literal(
                extraAttributesOauth2Client.encode(),
              ),
            'detailed_audit_logging': ?detailedAuditLogging,
-           'scim_usage': ?scimUsage,
          },
        );
 

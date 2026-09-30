@@ -30,14 +30,11 @@ import 'package:terradart_google/agent.dart';
 import 'package:terradart_google/app.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/bigtable.dart';
-import 'package:terradart_google/config.dart';
 import 'package:terradart_google/dataplex.dart';
 import 'package:terradart_google/dataproc.dart';
 import 'package:terradart_google/spanner.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/data_catalog.dart';
-import 'package:terradart_google/edgecontainer.dart';
-import 'package:terradart_google/firebase_app_hosting.dart';
 import 'package:terradart_google/firestore.dart';
 import 'package:terradart_google/network.dart';
 import 'package:terradart_google/secret_manager.dart';
@@ -268,14 +265,6 @@ final Map<String, Object Function()> _syntheticInstances = {
     asset: BigqueryConnectionConfigurationAsset(database: TfArg.literal('db')),
   ),
 
-  // --- ConfigDeploymentBlueprintSource (2) — google_config_deployment ------
-  'ConfigDeploymentBlueprintFromGcs': () => ConfigDeploymentBlueprintFromGcs(
-    gcsSource: TfArg.literal('gs://mock-bucket/blueprint.zip'),
-  ),
-  'ConfigDeploymentBlueprintFromGit': () => ConfigDeploymentBlueprintFromGit(
-    repo: TfArg.literal('https://github.com/example/terraform-blueprint'),
-  ),
-
   // --- DataplexDatascanSpec (4) — google_dataplex_datascan -----------------
   'DataplexDatascanDataProfileSpec': () =>
       const DataplexDatascanDataProfileSpec(),
@@ -305,12 +294,6 @@ final Map<String, Object Function()> _syntheticInstances = {
   'SpannerBackupScheduleIncrementalBackupSpec': () =>
       const SpannerBackupScheduleIncrementalBackupSpec(),
 
-  // --- EdgecontainerClusterControlPlane (2) — edgecontainer_cluster --------
-  'EdgecontainerClusterControlPlaneRemote': () =>
-      const EdgecontainerClusterControlPlaneRemote(),
-  'EdgecontainerClusterControlPlaneLocal': () =>
-      const EdgecontainerClusterControlPlaneLocal(),
-
   // --- SecretManagerSecretVersionPayload (2) — secret_manager_secret_version
   'SecretManagerSecretVersionWriteOnlyPayload': () =>
       SecretManagerSecretVersionWriteOnlyPayload(
@@ -320,14 +303,6 @@ final Map<String, Object Function()> _syntheticInstances = {
   'SecretManagerSecretVersionPlaintextPayload': () =>
       SecretManagerSecretVersionPlaintextPayload(
         secretData: TfArg.literal('mock-secret'),
-      ),
-
-  // --- AppHostingBuildSource (2) — firebase_app_hosting_build --------------
-  'FirebaseAppHostingBuildSourceCodebase': () =>
-      const FirebaseAppHostingBuildSourceCodebase(),
-  'FirebaseAppHostingBuildSourceContainer': () =>
-      FirebaseAppHostingBuildSourceContainer(
-        image: TfArg.literal('us-central1-docker.pkg.dev/p/r/web:1.0.0'),
       ),
 
   // --- BackupRecurrence (2) — firestore_backup_schedule --------------------
@@ -401,51 +376,6 @@ final Map<String, Object Function()> _syntheticInstances = {
         ),
       ),
 
-  // --- NetworkConnectivitySpokeAttachment (6) — network_connectivity_spoke -
-  'NetworkConnectivitySpokeLinkedVpcNetwork': () =>
-      NetworkConnectivitySpokeLinkedVpcNetwork(
-        uri: TfArg.literal('projects/p/global/networks/net'),
-      ),
-  'NetworkConnectivitySpokeLinkedVpnTunnels': () =>
-      NetworkConnectivitySpokeLinkedVpnTunnels(
-        uris: TfArg.literal(['projects/p/regions/us-central1/vpnTunnels/t1']),
-        siteToSiteDataTransfer: TfArg.literal(false),
-      ),
-  'NetworkConnectivitySpokeLinkedInterconnectAttachments': () =>
-      NetworkConnectivitySpokeLinkedInterconnectAttachments(
-        uris: TfArg.literal([
-          'projects/p/regions/us-central1/interconnectAttachments/a1',
-        ]),
-        siteToSiteDataTransfer: TfArg.literal(false),
-      ),
-  'NetworkConnectivitySpokeLinkedRouterApplianceInstances': () =>
-      NetworkConnectivitySpokeLinkedRouterApplianceInstances(
-        instances: [
-          NetworkConnectivitySpokeRouterApplianceInstance(
-            virtualMachine: TfArg.literal(
-              'projects/p/zones/us-central1-a/instances/vm',
-            ),
-            ipAddress: TfArg.literal('10.0.0.2'),
-          ),
-        ],
-        siteToSiteDataTransfer: TfArg.literal(false),
-      ),
-  'NetworkConnectivitySpokeLinkedProducerVpcNetwork': () =>
-      NetworkConnectivitySpokeLinkedProducerVpcNetwork(
-        network: TfArg.literal('projects/p/global/networks/consumer'),
-        peering: TfArg.literal('producer-peering'),
-      ),
-  'NetworkConnectivitySpokeGateway': () => NetworkConnectivitySpokeGateway(
-    capacity: TfArg.literal(
-      NetworkConnectivitySpokeGatewayCapacity.capacity1Gbps,
-    ),
-    ipRangeReservations: [
-      NetworkConnectivitySpokeGatewayIpRangeReservation(
-        ipRange: TfArg.literal('10.1.2.0/23'),
-      ),
-    ],
-  ),
-
   // --- NetworkSecurityMirroringEndpointGroupDeploymentLink (2) — OOB ------
   'NetworkSecurityMirroringEndpointGroupDirectDeploymentLink': () =>
       NetworkSecurityMirroringEndpointGroupDirectDeploymentLink(
@@ -471,12 +401,6 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
   'VertexAiFeatureOnlineStoreOptimized': () =>
       const VertexAiFeatureOnlineStoreOptimized(),
-
-  // --- VertexAiRagEngineConfigManagedDbTier (3) — rag_engine_config --------
-  'VertexAiRagEngineConfigBasic': () => const VertexAiRagEngineConfigBasic(),
-  'VertexAiRagEngineConfigScaled': () => const VertexAiRagEngineConfigScaled(),
-  'VertexAiRagEngineConfigUnprovisioned': () =>
-      const VertexAiRagEngineConfigUnprovisioned(),
 
   // --- VertexAiEndpointWithModelGardenDeploymentModel (2) — model garden ---
   'VertexAiEndpointWithModelGardenDeploymentPublisherModel': () =>
