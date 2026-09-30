@@ -66,6 +66,7 @@ paramOrder:
   - service_id
   - target_resource
   - enforcement_mode
+  - deletion_policy
   - project
 
 extraGetters: |2

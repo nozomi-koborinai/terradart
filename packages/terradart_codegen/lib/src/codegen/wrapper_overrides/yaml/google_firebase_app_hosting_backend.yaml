@@ -58,6 +58,7 @@ paramOrder:
   - display_name
   - annotations
   - labels
+  - deletion_policy
   - project
 
 extraImports:

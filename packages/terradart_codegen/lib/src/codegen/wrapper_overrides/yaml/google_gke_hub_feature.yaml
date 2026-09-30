@@ -4,12 +4,6 @@ deriveExactlyOne: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 
-# Keep fleet_default_member_config / spec as thin Maps for this smoke Wave —
-# MCS Discovery needs only name + location.
-nestedTypeExcludes:
-  - fleet_default_member_config
-  - spec
-
 curatedDoc: |-
   /// GKE Hub **feature** — enables a fleet-level Feature such as
   /// Multi-Cluster Service Discovery, Service Mesh, or Config Management.
@@ -36,5 +30,7 @@ paramOrder:
   - name
   - location
   - labels
+  - fleet_default_member_config
+  - spec
   - project
   - deletion_policy

@@ -127,7 +127,7 @@ void main() {
           'test/golden/google_cloud_tasks_queue_iam_member.factory.expected.dart.golden',
     ),
     'google_service_account': (
-      schemaFile: 'google_service_account_v7.schema.json',
+      schemaFile: 'google_service_account_v8.schema.json',
       golden: 'test/golden/google_service_account.factory.expected.dart.golden',
     ),
     'google_secret_manager_secret_version': (

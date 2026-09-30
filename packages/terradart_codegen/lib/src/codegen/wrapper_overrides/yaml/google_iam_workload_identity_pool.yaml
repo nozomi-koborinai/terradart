@@ -44,6 +44,7 @@ paramOrder:
   - description
   - disabled
   - mode
+  - deletion_policy
   - project
   - attestation_rules
   - inline_certificate_issuance_config

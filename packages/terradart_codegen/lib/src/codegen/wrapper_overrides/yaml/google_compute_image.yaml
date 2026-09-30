@@ -6,22 +6,11 @@ deriveOutputGetters: true
 deriveEnums: true
 deriveNestedTypes: true
 
-# Thin curation: seal scalar sources only. Freeze nested blocks (guest OS
-# features, raw_disk GCS import, encryption keys, shielded state, params)
-# until a follow-up types them.
-nestedTypeExcludes:
-  - guest_os_features
-  - raw_disk
-  - shielded_instance_initial_state
-  - params
-
 curatedDoc: |-
   /// An Image must have exactly one [ComputeImageSource]:
-  /// [ComputeImageSourceDisk], [ComputeImageSourceImage], or
-  /// [ComputeImageSourceSnapshot].
-  ///
-  /// GCS `raw_disk` import is not modeled yet — use the Terraform provider
-  /// directly (or request curation) when importing a tarball from Cloud Storage.
+  /// [ComputeImageSourceDisk], [ComputeImageSourceImage],
+  /// [ComputeImageSourceSnapshot], or [ComputeImageSourceRawDisk] (a tarball
+  /// imported from Cloud Storage).
   ///
   /// Prefer [ComputeImageSourceSnapshot] when promoting a PD Snapshot into a
   /// reusable image; use [ComputeImageSourceDisk] for a live disk.
@@ -31,8 +20,8 @@ extraImports:
 
 prelude: |
   /// Image source for [GoogleComputeImage]. Sealed so callers pick exactly
-  /// one of `source_disk` / `source_image` / `source_snapshot` at the type
-  /// level (MM documents mutual exclusion in prose; there is no
+  /// one of `source_disk` / `source_image` / `source_snapshot` / `raw_disk`
+  /// at the type level (MM documents mutual exclusion in prose; there is no
   /// `exactly_one_of` metadata on this resource).
   sealed class ComputeImageSource {
     const ComputeImageSource();
@@ -52,12 +41,16 @@ prelude: |
       required TfArg<String> sourceSnapshot,
     }) = ComputeImageSourceSnapshot;
 
-    /// Terraform attribute name (`source_disk`, `source_image`, or
-    /// `source_snapshot`).
+    /// Import the image from a tarball in Cloud Storage (`raw_disk`).
+    const factory ComputeImageSource.rawDisk(ComputeImageRawDisk rawDisk) =
+        ComputeImageSourceRawDisk;
+
+    /// Terraform attribute name (`source_disk`, `source_image`,
+    /// `source_snapshot`, or `raw_disk`).
     String get blockKey;
 
-    /// Scalar value written under [blockKey].
-    TfArg<String> get value;
+    /// Value written under [blockKey].
+    TfArg<Object?> get value;
 
     Map<String, Object?> encode() => {blockKey: value.toTfJson()};
   }
@@ -104,6 +97,20 @@ prelude: |
     TfArg<String> get value => sourceSnapshot;
   }
 
+  /// Import the image from a tarball in Cloud Storage (`raw_disk`).
+  @immutable
+  final class ComputeImageSourceRawDisk extends ComputeImageSource {
+    const ComputeImageSourceRawDisk(this.rawDisk);
+
+    final ComputeImageRawDisk rawDisk;
+
+    @override
+    String get blockKey => 'raw_disk';
+
+    @override
+    TfArg<Object?> get value => TfArg.literal(rawDisk.encode());
+  }
+
 paramOrder:
   - name
   - source
@@ -114,6 +121,9 @@ paramOrder:
   - storage_locations
   - disk_size_gb
   - deletion_policy
+  - guest_os_features
+  - params
+  - shielded_instance_initial_state
   - project
   - image_encryption_key
   - source_disk_encryption_key
@@ -129,6 +139,9 @@ argMapOrder:
   - storage_locations
   - disk_size_gb
   - deletion_policy
+  - guest_os_features
+  - params
+  - shielded_instance_initial_state
   - project
   - source
   - image_encryption_key

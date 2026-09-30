@@ -51,6 +51,7 @@ paramOrder:
   - location
   - domain_id
   - serve
+  - deletion_policy
   - project
 
 extraImports:

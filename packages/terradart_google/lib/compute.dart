@@ -246,12 +246,22 @@ export 'src/compute/google_compute_https_health_check.dart'
     show GoogleComputeHttpsHealthCheck;
 export 'src/compute/google_compute_image.dart'
     show
+        ComputeImageGuestOsFeatures,
+        ComputeImageGuestOsFeaturesType,
         ComputeImageImageEncryptionKey,
+        ComputeImageParams,
+        ComputeImageRawDisk,
+        ComputeImageShieldedInstanceInitialState,
+        ComputeImageShieldedInstanceInitialStateDbs,
+        ComputeImageShieldedInstanceInitialStateDbxs,
+        ComputeImageShieldedInstanceInitialStateKeks,
+        ComputeImageShieldedInstanceInitialStatePk,
         ComputeImageSource,
         ComputeImageSourceDisk,
         ComputeImageSourceDiskEncryptionKey,
         ComputeImageSourceImage,
         ComputeImageSourceImageEncryptionKey,
+        ComputeImageSourceRawDisk,
         ComputeImageSourceSnapshot,
         ComputeImageSourceSnapshotEncryptionKey,
         GoogleComputeImage;
