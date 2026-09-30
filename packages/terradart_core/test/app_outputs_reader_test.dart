@@ -217,7 +217,9 @@ void main() {
   final o = OrdersOutputs.fromEnvironment(${jsonEncode(environment)});
   print(jsonEncode([o.region, o.replicas, o.ratio, o.zones, o.limits, o.maybe]));
 ''');
-      expect(lines, ['["us-central1",3,2.5,["a","b"],{"cpu":1,"memory":2},null]']);
+      expect(lines, [
+        '["us-central1",3,2.5,["a","b"],{"cpu":1,"memory":2},null]',
+      ]);
     });
 
     test('covers the outputs registered so far', () {

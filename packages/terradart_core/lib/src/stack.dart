@@ -290,7 +290,8 @@ abstract base class Stack {
         'Stack constructor.',
       );
     }
-    final names = only?.toList() ??
+    final names =
+        only?.toList() ??
         [
           for (final MapEntry(:key, :value) in _outputs.entries)
             if (!value.sensitive) key,
