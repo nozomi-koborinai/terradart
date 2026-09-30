@@ -290,6 +290,31 @@ properties:
       ]);
     });
 
+    test('an object of output fields is an output, unless it may be empty', () {
+      final result = const MmYamlParser().parseString('''
+properties:
+  - name: failureDetails
+    type: NestedObject
+    properties:
+      - name: errorCode
+        output: true
+  - name: onDeployUpdatePolicy
+    type: NestedObject
+    allow_empty_object: true
+    properties:
+      - name: runtimeVersion
+        output: true
+''');
+      expect(
+        result.outputPaths,
+        {
+          'failure_details',
+          'failure_details.error_code',
+          'on_deploy_update_policy.runtime_version',
+        },
+      );
+    });
+
     test('names the _wo sibling after the Terraform name, not api_name', () {
       final result = const MmYamlParser().parseString('''
 properties:

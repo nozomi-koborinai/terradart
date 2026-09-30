@@ -5773,15 +5773,6 @@ final class ChronicleFeedDetailsWorkspaceUsersSettingsAuthenticationRsCredential
   Map<String, Object?> encode() => {'private_key': ?privateKey?.toTfJson()};
 }
 
-/// Typed helper for the `failure_details` block of
-/// `google_chronicle_feed` (derived from provider schema).
-@immutable
-final class ChronicleFeedFailureDetails {
-  const ChronicleFeedFailureDetails();
-
-  Map<String, Object?> encode() => {};
-}
-
 /// Factory wrapper for `google_chronicle_feed`.
 ///
 /// The FeedsService is responsible for configuring and managing the ingestion

@@ -122,15 +122,6 @@ final class CesAppClientCertificateSettings {
   };
 }
 
-/// Typed helper for the `data_store_settings` block of
-/// `google_ces_app` (derived from provider schema).
-@immutable
-final class CesAppDataStoreSettings {
-  const CesAppDataStoreSettings();
-
-  Map<String, Object?> encode() => {};
-}
-
 /// Typed helper for the `default_channel_profile` block of
 /// `google_ces_app` (derived from provider schema).
 @immutable
@@ -830,7 +821,6 @@ final class GoogleCesApp extends Resource {
     CesAppAudioProcessingConfig? audioProcessingConfig,
     CesAppLoggingSettings? loggingSettings,
     CesAppClientCertificateSettings? clientCertificateSettings,
-    CesAppDataStoreSettings? dataStoreSettings,
     CesAppDefaultChannelProfile? defaultChannelProfile,
     CesAppEvaluationMetricsThresholds? evaluationMetricsThresholds,
     List<CesAppVariableDeclarations>? variableDeclarations,
@@ -872,8 +862,6 @@ final class GoogleCesApp extends Resource {
              'client_certificate_settings': TfArg.literal(
                clientCertificateSettings.encode(),
              ),
-           if (dataStoreSettings != null)
-             'data_store_settings': TfArg.literal(dataStoreSettings.encode()),
            if (defaultChannelProfile != null)
              'default_channel_profile': TfArg.literal(
                defaultChannelProfile.encode(),
