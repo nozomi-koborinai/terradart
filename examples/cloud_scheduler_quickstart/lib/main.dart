@@ -72,7 +72,5 @@ final class NightlyCleanupStack extends Stack {
       'NIGHTLY_TOPIC_ID',
       ResourceIdExport(topic.id, emitTerraformOutput: true),
     );
-
-    setAppExportsOutputPath('lib/generated/nightly_cleanup_stack.app.dart');
   }
 }

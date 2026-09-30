@@ -171,7 +171,5 @@ final class AppEngineStack extends Stack {
       'APP_ENGINE_APP_ID',
       ResourceIdExport(app.id, emitTerraformOutput: true),
     );
-
-    setAppExportsOutputPath('lib/generated/app_engine_stack.app.dart');
   }
 }

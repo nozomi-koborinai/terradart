@@ -252,6 +252,20 @@ Per-package changelogs live alongside each package and are the system of record 
   with the google-beta ride-along. Synth output is unchanged; see
   [MIGRATING.md](MIGRATING.md).
 
+### Fixed
+
+- **No stale AppExport constants** (`terradart_core`) — with
+  `setAppExportsOutputPath` set, `writeTo` rewrites the constants file on
+  every synth, as an empty class when no export resolves to a constant.
+  Before, a constant that stopped resolving (a `.literal` name changed to
+  `.variable`) left the old file behind and the app compiled against the
+  old value.
+- **Terraform output name collisions** (`terradart_core`) — `addExport`
+  throws `ArgumentError` when a second export would emit the same `output`
+  name (`terraformOutputName ?? name`); the later one used to overwrite the
+  earlier one silently. The missing-output-path `StateError` now names the
+  exports concerned.
+
 ## [0.30.0] - 2026-09-28
 
 Lockstep release across the workspace. `terradart_hcl` and `terradart_migrate` ship on pub.dev for the first time; `terradart-migrate` installs with `dart pub global activate terradart_migrate`. **Breaking** — `terradart_google` / `terradart_google_beta` move to `hashicorp/google` 8.x (22 removed factories, 16 beta → GA promotions, sealed write-only secrets; existing root modules need `terraform init -upgrade`, and removed types must leave state first), Cloudflare follows 5.26.0, and Cloudflare, Appwrite and AWS inputs with a fixed value set become enums; AWS exactly-one groups are sealed. `terradart-coverage` is retired and four `terradart-migrate` flags are gone. Read the upgrade steps in [MIGRATING.md](MIGRATING.md) before bumping. The `terradart_google` catalog is **1359 curated resource factories + 468 data sources** (1827 entries).

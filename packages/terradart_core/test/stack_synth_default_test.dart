@@ -3,6 +3,9 @@ import 'dart:io';
 
 import 'package:terradart_core/src/app_export.dart';
 import 'package:terradart_core/src/stack.dart';
+import 'package:terradart_core/src/tf_arg.dart';
+import 'package:terradart_core/src/tf_ref.dart';
+import 'package:terradart_core/src/tf_variable.dart';
 import 'package:test/test.dart';
 
 import 'helpers/fake_resources.dart';
@@ -154,6 +157,123 @@ void main() {
 
       final dartSource = await File(constantsPath).readAsString();
       expect(dartSource, contains("r'bar'"));
+    });
+
+    test('rewrites the constants file when no export resolves to a constant '
+        'any more, so a stale value cannot survive', () async {
+      final constantsPath = '${tempDir.path}/gen/exports.app.dart';
+      TestStack stackWith(TfArg<String> name) {
+        final stack = TestStack(
+          providers: const [
+            FakeStackProvider(
+              providerName: 'google',
+              source: 'hashicorp/google',
+              versionConstraint: '~> 7.0',
+            ),
+          ],
+        );
+        final topic = stack.add(
+          FakePubsubTopic(localName: 'orders', argMap: {'name': name}),
+        );
+        stack.addExport(
+          'topicName',
+          ResourceIdExport(TfRef.attribute<String>(topic, 'name')),
+        );
+        stack.setAppExportsOutputPath(constantsPath);
+        return stack;
+      }
+
+      await stackWith(TfArg.literal('orders-prod')).writeTo(tempDir.path);
+      expect(await File(constantsPath).readAsString(), contains('topicName'));
+
+      final second = stackWith(TfArg.variable('topic_name'))
+        ..addVariable('topic_name', const TfVariable(type: 'string'));
+      await second.writeTo(tempDir.path);
+
+      final source = await File(constantsPath).readAsString();
+      expect(source, contains('abstract final class TestStackExports'));
+      expect(source, isNot(contains('topicName')));
+      expect(source, isNot(contains('orders-prod')));
+    });
+
+    test('StateError names the exports that need an output path', () async {
+      await expectLater(
+        () async => _StackWithUnsetExportPath().writeTo(tempDir.path),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            contains('"FOO"'),
+          ),
+        ),
+      );
+    });
+  });
+
+  group('Stack.addExport', () {
+    TestStack newStack() => TestStack(
+      providers: const [
+        FakeStackProvider(
+          providerName: 'google',
+          source: 'hashicorp/google',
+          versionConstraint: '~> 7.0',
+        ),
+      ],
+    );
+
+    test('rejects a second export emitting the same Terraform output', () {
+      final stack = newStack();
+      final a = stack.add(
+        FakePubsubTopic(
+          localName: 'a',
+          argMap: const {'name': TfArgLiteral<String>('a')},
+        ),
+      );
+      final b = stack.add(
+        FakePubsubTopic(
+          localName: 'b',
+          argMap: const {'name': TfArgLiteral<String>('b')},
+        ),
+      );
+      stack.addExport(
+        'x',
+        ResourceIdExport(TfRef.attribute<String>(a, 'name')),
+      );
+      expect(
+        () => stack.addExport(
+          'y',
+          ResourceIdExport(
+            TfRef.attribute<String>(b, 'name'),
+            terraformOutputName: 'x',
+          ),
+        ),
+        throwsA(
+          isA<ArgumentError>().having(
+            (e) => e.message,
+            'message',
+            allOf(contains('"x"'), contains('terraformOutputName')),
+          ),
+        ),
+      );
+    });
+
+    test('a Dart-only export does not claim a Terraform output name', () {
+      final stack = newStack();
+      final a = stack.add(
+        FakePubsubTopic(
+          localName: 'a',
+          argMap: const {'name': TfArgLiteral<String>('a')},
+        ),
+      );
+      stack.addExport('x', StringExport('v'));
+      stack.addExport(
+        'y',
+        ResourceIdExport(
+          TfRef.attribute<String>(a, 'name'),
+          terraformOutputName: 'x',
+        ),
+      );
+      expect(stack.appExports.keys, ['x', 'y']);
     });
   });
 

@@ -18,7 +18,6 @@ repo (`google_tags_location_tag_binding`). Enables
 examples/artifact_registry_quickstart/
 ├── lib/main.dart       # ArtifactRegistryStack (API + config + repo + rule + tag)
 ├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
-├── lib/generated/      # (created on synth) artifact_registry_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
 └── pubspec.yaml
 ```

@@ -174,9 +174,5 @@ final class ContactCenterInsightsStack extends Stack {
       'CCI_AUTO_LABELING_RULE_ID',
       ResourceIdExport(autoLabel.id, emitTerraformOutput: true),
     );
-
-    setAppExportsOutputPath(
-      'lib/generated/contact_center_insights_stack.app.dart',
-    );
   }
 }

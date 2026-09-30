@@ -144,13 +144,12 @@ Runnable end-to-end example: [`examples/pubsub_quickstart/`](examples/pubsub_qui
 
 ### The boundary: type-safe handoff to your runtime code
 
-**the boundary** = the place where infrastructure values (topic IDs, queue names, secret refs, IAM members) flow into runtime Dart code. Today that boundary is held together by string literals on both sides:
+**the boundary** = the place where infrastructure values (topic names, queue names, service URLs) flow into runtime Dart code. Today that boundary is held together by string literals on both sides:
 
 - A Pub/Sub topic name is hand-typed in HCL and again as a string literal in a Cloud Function.
-- A renamed secret silently breaks runtime resolution because the reference is a string.
-- IAM binding members drift between modules with no compiler visibility.
+- A renamed topic or secret silently breaks runtime resolution because the reference is a string.
 
-TerraDart makes this boundary a first-class artifact. When synth runs (`stack.writeTo(...)`), literal-resolvable exports are emitted as typed Dart constants in `<stack>.app.dart` that your app/function code imports directly — while computed exports become standard Terraform outputs. `dart analyze` catches drift the moment it happens.
+TerraDart makes this boundary a first-class artifact. When synth runs (`stack.writeTo(...)`), exports whose value is a literal in the Stack are emitted as typed Dart constants in `<stack>.app.dart` that your app/function code imports directly — while values only known after apply (IDs, URLs) become standard Terraform outputs.
 
 ```dart
 // infra/lib/orders_stack.dart
@@ -184,7 +183,7 @@ Future<void> handle(PubsubEvent event) async {
 }
 ```
 
-Rename `orders-prod` in the Stack and the handler will not compile until the reference is fixed.
+Rename `orders-prod` in the Stack and the handler follows on the next synth — there is no second copy of the string to update. Rename or remove the export and the handler stops compiling.
 
 ### Typed enums for every fixed-value field
 
