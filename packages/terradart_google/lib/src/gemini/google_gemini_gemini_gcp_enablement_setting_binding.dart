@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gemini/google_gemini_gemini_gcp_enablement_setting.dart'
+    show GoogleGeminiGeminiGcpEnablementSetting;
+
 /// Sensitive field paths for `google_gemini_gemini_gcp_enablement_setting_binding`.
 const Set<String> _googleGeminiGeminiGcpEnablementSettingBindingSensitive =
     <String>{};
@@ -41,7 +44,8 @@ final class GoogleGeminiGeminiGcpEnablementSettingBinding extends Resource {
 
   GoogleGeminiGeminiGcpEnablementSettingBinding({
     required super.localName,
-    required TfArg<String> geminiGcpEnablementSettingId,
+    required RefTo<GoogleGeminiGeminiGcpEnablementSetting>
+    geminiGcpEnablementSettingId,
     required TfArg<String> settingBindingId,
     required TfArg<String> target,
     TfArg<String>? location,
@@ -56,7 +60,8 @@ final class GoogleGeminiGeminiGcpEnablementSettingBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'gemini_gcp_enablement_setting_id': geminiGcpEnablementSettingId,
+           'gemini_gcp_enablement_setting_id': geminiGcpEnablementSettingId
+               .encodeAs('gemini_gcp_enablement_setting_id'),
            'setting_binding_id': settingBindingId,
            'target': target,
            'location': ?location,

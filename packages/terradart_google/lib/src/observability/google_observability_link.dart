@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../observability/google_observability_bucket.dart'
+    show GoogleObservabilityBucket;
+
 /// Sensitive field paths for `google_observability_link`.
 const Set<String> _googleObservabilityLinkSensitive = <String>{};
 
@@ -16,7 +19,7 @@ final class GoogleObservabilityLink extends Resource {
     required super.localName,
     required TfArg<String> linkId,
     required TfArg<String> location,
-    required TfArg<String> bucket,
+    required RefTo<GoogleObservabilityBucket> bucket,
     required TfArg<String> dataset,
     TfArg<String>? displayName,
     TfArg<String>? description,
@@ -31,7 +34,7 @@ final class GoogleObservabilityLink extends Resource {
          argMap: {
            'link_id': linkId,
            'location': location,
-           'bucket': bucket,
+           'bucket': bucket.encodeAs('bucket_id'),
            'dataset': dataset,
            'display_name': ?displayName,
            'description': ?description,

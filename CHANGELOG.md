@@ -95,6 +95,16 @@ Per-package changelogs live alongside each package and are the system of record 
   (`DartConstantsEmitter`, `LiteralResolver`, `OutputEmitter`) are removed;
   see [MIGRATING.md](MIGRATING.md).
 
+- **Gemini setting bindings and the Observability link take `RefTo<R>`**
+  (**breaking**; `terradart_google`) — `tool/reference_targets.yaml` gains
+  rules for the parent setting id of the seven Gemini setting bindings, the
+  Code Repository Index and Repository Group ids of `google_gemini_repository_group`
+  and its IAM adjuncts, and the `bucket` of `google_observability_link`
+  (an Observability bucket's `bucket_id`): 17 more typed inputs. Pass
+  `setting.ref`; `.literal('id')` still compiles. Synth output changes only
+  where an example now wires the parent: `gemini_quickstart` and
+  `deferred_leftover_quickstart` emit the parent's id attribute instead of
+  the same literal. See `MIGRATING.md`.
 - **`terradart-migrate` writes dot shorthands** (`terradart_migrate`) —
   wherever the argument has a static type, a migrated Stack reads like the
   examples: `name: .literal('orders')`, `instance: .ref(db.nameRef)`,
