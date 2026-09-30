@@ -2,6 +2,11 @@ outputDir: compute
 
 deriveClassDoc: true
 deriveExactlyOne: true
+deriveNestedTypes: true
+nestedTypeExcludes:
+  - app_engine
+  - cloud_function
+  - cloud_run
 
 curatedDoc: |-
   /// Slots into the L7 Application LB chain as the backend leaf:
@@ -67,6 +72,7 @@ paramOrder:
   - cloud_function
   - app_engine
   - psc_target_service
+  - psc_data
   - network
   - subnetwork
   - description

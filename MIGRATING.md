@@ -1821,6 +1821,49 @@ Newly exposed inputs: `params` on `GoogleComputeFirewall`,
 `predefinedValues`, `GoogleSqlUser.passwordPolicy` and
 `GoogleStorageBucketObject.contexts`.
 
+### Hidden and mis-modelled blocks on hand-curated Google factories
+
+**Breaking (`terradart_google`)** — hand-written overrides that hid
+provider inputs, or modelled them wrongly, now expose every input:
+
+- `GoogleBigtableAppProfile.routing` used to be one sealed choice of
+  single-cluster routing, standard isolation and Data Boost isolation, so
+  multi-cluster routing could not be set and isolation could not be
+  combined with routing. It is now two Magic Modules groups: `routing`
+  (`.singleClusterRouting(...)` or `.multiClusterRoutingUseAny(...)`, with
+  `multiClusterRoutingClusterIds`) and the optional `isolation`
+  (`.standardIsolation(...)` or `.dataBoostIsolationReadOnly(...)`).
+  `single_cluster_routing` is emitted as an object instead of a
+  one-element list; Terraform reads both the same.
+- `GooglePrivatecaCaPool` takes `issuancePolicy`, `publishingOptions`,
+  `encryptionSpec`, `deletionPolicy` and `project`. The hand
+  `PrivatecaCaPoolEllipticCurveKeyType` (which no input took) is gone; its
+  derived counterpart is
+  `PrivatecaCaPoolIssuancePolicyAllowedKeyTypesEllipticCurve`.
+- `GooglePrivatecaCertificate`'s inline config takes derived helpers named
+  after their block path, and the certificate takes `deletionPolicy` and
+  `project`.
+- `GoogleComputeHealthCheck` / `GoogleComputeRegionHealthCheck` `protocol`
+  gains a `.grpcTls(...)` variant for `grpc_tls_health_check`.
+- `GoogleComputeRegionNetworkEndpointGroup` takes `pscData`, and
+  `GoogleBigqueryDatasetAccess` takes `condition`
+  (`BigqueryDatasetAccessCondition`, the same helper as
+  `GoogleBigqueryDataset`'s access entries).
+
+| Before | After |
+|--------|-------|
+| `routing: .singleClusterRouting(clusterId: .literal('c1'))` | `routing: .singleClusterRouting(BigtableAppProfileSingleClusterRouting(clusterId: .literal('c1')))` |
+| `routing: .standardIsolation(priority: .literal(.priorityHigh))` | `routing: ..., isolation: .standardIsolation(BigtableAppProfileStandardIsolation(priority: .literal(.priorityHigh)))` |
+| `routing: .dataBoostIsolation(computeBillingOwner: .literal(.hostPays))` | `routing: ..., isolation: .dataBoostIsolationReadOnly(BigtableAppProfileDataBoostIsolationReadOnly(computeBillingOwner: .literal(.hostPays)))` |
+| `PrivatecaCertificateSubjectConfig(subject: PrivatecaCertificateSubject(...))` | `PrivatecaCertificateConfigSubjectConfig(subject: PrivatecaCertificateConfigSubjectConfigSubject(...))` |
+| `PrivatecaCertificateX509Config(keyUsage: PrivatecaCertificateKeyUsage(...))` | `PrivatecaCertificateConfigX509Config(keyUsage: PrivatecaCertificateConfigX509ConfigKeyUsage(...))` |
+| `PrivatecaCertificatePublicKey(format: .literal(.pem))` | `PrivatecaCertificateConfigPublicKey(format: .literal(.pem))` |
+
+`BigtableAppProfileIsolationPriority` is now
+`BigtableAppProfileStandardIsolationPriority`, and
+`PrivatecaCertificatePublicKeyFormat` is
+`PrivatecaCertificateConfigPublicKeyFormat`.
+
 ## 0.29.x → 0.30.0
 
 0.30.0 is a breaking release for every provider package, and for Google it

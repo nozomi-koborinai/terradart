@@ -133,4 +133,26 @@ void main() {
       );
     });
   });
+
+  test('GoogleBigqueryDatasetAccess takes an access condition', () {
+    final access = GoogleBigqueryDatasetAccess(
+      localName: 'conditional_reader',
+      datasetId: RefTo.literal('analytics'),
+      role: TfArg.literal('READER'),
+      grantee: .groupByEmail(TfArg.literal('analysts@example.com')),
+      condition: BigqueryDatasetAccessCondition(
+        expression: TfArg.literal(
+          'request.time < timestamp("2027-01-01T00:00:00Z")',
+        ),
+        title: TfArg.literal('expires'),
+      ),
+    );
+    expect(
+      access.argMap['condition']!.toTfJson(),
+      equals({
+        'expression': 'request.time < timestamp("2027-01-01T00:00:00Z")',
+        'title': 'expires',
+      }),
+    );
+  });
 }

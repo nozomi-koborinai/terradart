@@ -228,6 +228,7 @@ export 'src/compute/google_compute_ha_vpn_gateway.dart'
 export 'src/compute/google_compute_health_check.dart'
     show
         ComputeHealthCheckGrpcHealthCheckConfig,
+        ComputeHealthCheckGrpcTlsHealthCheckConfig,
         ComputeHealthCheckHealthCheckLogConfig,
         ComputeHealthCheckHttp2HealthCheckConfig,
         ComputeHealthCheckHttpHealthCheckConfig,
@@ -715,6 +716,7 @@ export 'src/compute/google_compute_region_health_aggregation_policy.dart'
 export 'src/compute/google_compute_region_health_check.dart'
     show
         ComputeRegionHealthCheckGrpcHealthCheckConfig,
+        ComputeRegionHealthCheckGrpcTlsHealthCheckConfig,
         ComputeRegionHealthCheckHttp2HealthCheckConfig,
         ComputeRegionHealthCheckHttpHealthCheckConfig,
         ComputeRegionHealthCheckHttpsHealthCheckConfig,
@@ -797,6 +799,7 @@ export 'src/compute/google_compute_region_network_endpoint.dart'
     show GoogleComputeRegionNetworkEndpoint;
 export 'src/compute/google_compute_region_network_endpoint_group.dart'
     show
+        ComputeRegionNetworkEndpointGroupPscData,
         ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine,
         ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction,
         ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun,
