@@ -1065,6 +1065,22 @@ has no input for. Synth output is unchanged.
 |--------|-------|
 | `GoogleComputeRegionNetworkEndpointGroup(cloudRun: ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(service: ...), ...)` | `GoogleComputeRegionNetworkEndpointGroup(serverless: .cloudRun(ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(service: ...)), ...)` |
 
+### `GoogleStorageFtpServer` `config` uses derived helper types
+
+**Breaking (`terradart_google`)** — the hand-written `StorageFtpServerConfig`
+from 0.30.0 is replaced by the sealed argument `terradart wrap` derives from
+the Magic Modules `internal_config` / `external_config` group. The argument
+keeps its name, `config`; its variants are named after the members and take
+the derived block helpers. The consumer-list entry classes are renamed, and
+`allowedCidrBlocks` is a `TfArg<List<Object?>>`. Synth output is unchanged.
+
+| Before | After |
+|--------|-------|
+| `config: StorageFtpServerConfig.internal(consumerAcceptList: [...], consumerRejectList: [...])` | `config: .internalConfig(StorageFtpServerInternalConfig(consumerAcceptList: [...], consumerRejectList: [...]))` |
+| `config: StorageFtpServerConfig.external(allowedCidrBlocks: ...)` | `config: .externalConfig(StorageFtpServerExternalConfig(allowedCidrBlocks: ...))` |
+| `StorageFtpServerConsumerAccept(project: ..., connectionLimit: ...)` | `StorageFtpServerInternalConfigConsumerAcceptList(project: ..., connectionLimit: ...)` |
+| `StorageFtpServerConsumerReject(project: ...)` | `StorageFtpServerInternalConfigConsumerRejectList(project: ...)` |
+
 ### Compute nested blocks use derived helper types
 
 **Breaking (`terradart_google`)** — the Compute Engine factories below no

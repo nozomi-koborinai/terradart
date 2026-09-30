@@ -87,17 +87,17 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
 
   GoogleNetworkServicesAgentConnectivityTemplate({
     required super.localName,
+    required TfArg<String> agentConnectivityTemplateId,
+    required TfArg<String> location,
     required TfArg<NetworkServicesAgentConnectivityTemplateAccessPath>
     accessPath,
     TfArg<List<String>>? accessTypes,
-    required TfArg<String> agentConnectivityTemplateId,
-    TfArg<String>? deletionPolicy,
-    TfArg<String>? description,
-    TfArg<Map<String, String>>? labels,
-    required TfArg<String> location,
-    TfArg<String>? project,
     NetworkServicesAgentConnectivityTemplateEgressNetworkConfig?
     egressNetworkConfig,
+    TfArg<String>? description,
+    TfArg<Map<String, String>>? labels,
+    TfArg<String>? deletionPolicy,
+    TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -105,18 +105,18 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
+           'agent_connectivity_template_id': agentConnectivityTemplateId,
+           'location': location,
            'access_path': accessPath,
            'access_types': ?accessTypes,
-           'agent_connectivity_template_id': agentConnectivityTemplateId,
-           'deletion_policy': ?deletionPolicy,
-           'description': ?description,
-           'labels': ?labels,
-           'location': location,
-           'project': ?project,
            if (egressNetworkConfig != null)
              'egress_network_config': TfArg.literal(
                egressNetworkConfig.encode(),
              ),
+           'description': ?description,
+           'labels': ?labels,
+           'deletion_policy': ?deletionPolicy,
+           'project': ?project,
          },
        );
 
@@ -128,4 +128,27 @@ final class GoogleNetworkServicesAgentConnectivityTemplate extends Resource {
   /// `RefTo<GoogleNetworkServicesAgentConnectivityTemplate>`.
   RefTo<GoogleNetworkServicesAgentConnectivityTemplate> get ref =>
       RefTo.of(this);
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }
