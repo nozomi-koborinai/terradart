@@ -185,6 +185,8 @@ Future<void> handle(PubsubEvent event) async {
 }
 ```
 
+Values known only after apply are typed too: the same file holds `OrdersStackOutputs`, with a getter per output (`ordersTopicId`), built from `terraform output -json` (`OrdersStackOutputs.fromTerraformJson(...)`) or the service's environment (`OrdersStackOutputs.fromEnvironment(Platform.environment)`, reading `ORDERS_TOPIC_ID`).
+
 Rename `orders-prod` in the Stack and the handler follows on the next synth — there is no second copy of the string to update. Rename or remove the constant and the handler stops compiling.
 
 ### Typed enums for every fixed-value field
