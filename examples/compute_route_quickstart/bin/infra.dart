@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/network_route_stack.app.dart`
-/// (literal exports such as `DEMO_VPC_NAME`). Computed exports like
-/// `DEMO_ROUTE_ID` appear as Terraform outputs only.
+/// (with `NetworkRouteStackConstants.demoVpcName`). Computed values such as
+/// `demo_route_id` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

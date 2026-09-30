@@ -18,15 +18,15 @@ final class LunchHistoryRepository {
   Future<Connection> _openAndPrepare() async {
     stderr.writeln(
       'opening postgres connection to 127.0.0.1:5432/'
-      '${LunchStackExports.DATABASE_NAME} as ${LunchStackExports.DATABASE_USER}',
+      '${LunchStackConstants.databaseName} as ${LunchStackConstants.databaseUser}',
     );
     final connection = await _withRetry(
       () => Connection.open(
         Endpoint(
           host: '127.0.0.1',
           port: 5432,
-          database: LunchStackExports.DATABASE_NAME,
-          username: LunchStackExports.DATABASE_USER,
+          database: LunchStackConstants.databaseName,
+          username: LunchStackConstants.databaseUser,
         ),
         settings: const ConnectionSettings(sslMode: SslMode.disable),
       ),

@@ -1,12 +1,36 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../iam/google_service_account.dart' show GoogleServiceAccount;
 
 /// Sensitive field paths for `google_service_account_iam_binding`.
 const Set<String> _googleServiceAccountIamBindingSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_service_account_iam_binding` (derived from provider schema).
+@immutable
+final class ServiceAccountIamBindingCondition {
+  const ServiceAccountIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_service_account_iam_binding`.
 ///
@@ -23,7 +47,7 @@ final class GoogleServiceAccountIamBinding extends Resource {
     required RefTo<GoogleServiceAccount> serviceAccountId,
     required TfArg<String> role,
     required TfArg<List<String>> members,
-    TfArg<Map<String, dynamic>>? condition,
+    ServiceAccountIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -34,7 +58,8 @@ final class GoogleServiceAccountIamBinding extends Resource {
            'service_account_id': serviceAccountId.encodeAs('name'),
            'role': role,
            'members': members,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
          },
        );
 

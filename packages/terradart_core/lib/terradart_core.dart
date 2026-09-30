@@ -1,13 +1,9 @@
 /// terradart — Dart-first IaC runtime.
 library;
 
-export 'src/app_export.dart'
-    show
-        AppExport,
-        EnvBackedExport,
-        ResourceAttributeExport,
-        ResourceIdExport,
-        StringExport;
+export 'src/app_constant.dart'
+    show AppConstant, EnvironmentConstant, RefConstant, ValueConstant;
+export 'src/app_exports.dart' show AppExports;
 export 'src/backends.dart' show GcsBackend, LocalBackend, S3Backend;
 export 'src/data.dart' show Data;
 export 'src/duplicate_resource_error.dart' show DuplicateResourceError;
@@ -18,15 +14,7 @@ export 'src/module_call.dart' show DuplicateModuleError, ModuleCall;
 export 'src/ref_to.dart' show RefTo, RefToList;
 export 'src/resource.dart' show Resource, ResourceKind;
 export 'src/stack.dart' show Stack, StackBackend, StackProvider;
-export 'src/synth/dart_constants_emitter.dart' show DartConstantsEmitter;
 export 'src/synth/json_encoder.dart' show TfJsonEncoder;
-export 'src/synth/literal_resolver.dart' show LiteralResolver;
-export 'src/synth/output_emitter.dart'
-    show
-        DartConstantSpec,
-        OutputEmissionResult,
-        OutputEmitter,
-        TerraformOutputSpec;
 export 'src/synth/sensitive_literal_error.dart' show SensitiveLiteralError;
 export 'src/synth/stack_synth.dart' show SynthResult;
 export 'src/tf_arg.dart'
@@ -39,6 +27,7 @@ export 'src/tf_arg.dart'
         TfArgVariable;
 export 'src/tf_template.dart' show hasTemplateSequence, templateVariableNames;
 export 'src/tf_moved.dart' show TfMoved;
+export 'src/tf_output.dart' show TfOutput;
 export 'src/tf_variable.dart' show TfVariable;
 export 'src/tf_timeouts.dart' show TfTimeouts;
 export 'src/tf_ref.dart'

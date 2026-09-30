@@ -25,9 +25,9 @@ export 'src/spanner/google_spanner_database.dart'
         SpannerDatabaseEncryptionConfigKmsKeyName,
         SpannerDatabaseEncryptionConfigKmsKeyNames;
 export 'src/spanner/google_spanner_database_iam_binding.dart'
-    show GoogleSpannerDatabaseIamBinding;
+    show GoogleSpannerDatabaseIamBinding, SpannerDatabaseIamBindingCondition;
 export 'src/spanner/google_spanner_database_iam_member.dart'
-    show GoogleSpannerDatabaseIamMember;
+    show GoogleSpannerDatabaseIamMember, SpannerDatabaseIamMemberCondition;
 export 'src/spanner/google_spanner_database_iam_policy.dart'
     show GoogleSpannerDatabaseIamPolicy;
 export 'src/spanner/google_spanner_instance.dart'
@@ -62,9 +62,9 @@ export 'src/spanner/google_spanner_instance_config.dart'
         SpannerInstanceConfigReplicas,
         SpannerInstanceConfigReplicasType;
 export 'src/spanner/google_spanner_instance_iam_binding.dart'
-    show GoogleSpannerInstanceIamBinding;
+    show GoogleSpannerInstanceIamBinding, SpannerInstanceIamBindingCondition;
 export 'src/spanner/google_spanner_instance_iam_member.dart'
-    show GoogleSpannerInstanceIamMember;
+    show GoogleSpannerInstanceIamMember, SpannerInstanceIamMemberCondition;
 export 'src/spanner/google_spanner_instance_iam_policy.dart'
     show GoogleSpannerInstanceIamPolicy;
 export 'src/spanner/google_spanner_instance_partition.dart'

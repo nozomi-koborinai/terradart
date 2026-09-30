@@ -1,5 +1,6 @@
 outputDir: bigquery
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 

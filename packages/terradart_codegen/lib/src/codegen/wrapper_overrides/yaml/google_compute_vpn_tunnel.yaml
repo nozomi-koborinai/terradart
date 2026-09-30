@@ -1,5 +1,6 @@
 outputDir: compute
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 
@@ -26,5 +27,7 @@ paramOrder:
   - local_traffic_selector
   - remote_traffic_selector
   - labels
+  - cipher_suite
+  - params
   - deletion_policy
   - project

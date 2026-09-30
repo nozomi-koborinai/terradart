@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_dataproc_cluster_iam_binding`.
 const Set<String> _googleDataprocClusterIamBindingSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_dataproc_cluster_iam_binding` (derived from provider schema).
+@immutable
+final class DataprocClusterIamBindingCondition {
+  const DataprocClusterIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_dataproc_cluster_iam_binding`.
 ///
@@ -23,7 +47,7 @@ final class GoogleDataprocClusterIamBinding extends Resource {
     required TfArg<List<String>> members,
     TfArg<String>? region,
     TfArg<String>? project,
-    TfArg<Map<String, dynamic>>? condition,
+    DataprocClusterIamBindingCondition? condition,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -36,7 +60,8 @@ final class GoogleDataprocClusterIamBinding extends Resource {
            'members': members,
            'region': ?region,
            'project': ?project,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
          },
        );
 

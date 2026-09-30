@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_iap_web_backend_service_iam_binding`.
 const Set<String> _googleIapWebBackendServiceIamBindingSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_iap_web_backend_service_iam_binding` (derived from provider schema).
+@immutable
+final class IapWebBackendServiceIamBindingCondition {
+  const IapWebBackendServiceIamBindingCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_iap_web_backend_service_iam_binding`.
 ///
@@ -40,7 +64,7 @@ final class GoogleIapWebBackendServiceIamBinding extends Resource {
     required TfArg<String> webBackendService,
     required TfArg<String> role,
     required TfArg<List<String>> members,
-    TfArg<Map<String, dynamic>>? condition,
+    IapWebBackendServiceIamBindingCondition? condition,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -52,7 +76,8 @@ final class GoogleIapWebBackendServiceIamBinding extends Resource {
            'web_backend_service': webBackendService,
            'role': role,
            'members': members,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
            'project': ?project,
          },
        );

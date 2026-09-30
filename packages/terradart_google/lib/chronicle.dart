@@ -349,7 +349,6 @@ export 'src/chronicle/google_chronicle_feed.dart'
         ChronicleFeedDetailsWorkspaceUsersSettingsAuthentication,
         ChronicleFeedDetailsWorkspaceUsersSettingsAuthenticationClaims,
         ChronicleFeedDetailsWorkspaceUsersSettingsAuthenticationRsCredentials,
-        ChronicleFeedFailureDetails,
         GoogleChronicleFeed;
 export 'src/chronicle/google_chronicle_findings_refinement.dart'
     show

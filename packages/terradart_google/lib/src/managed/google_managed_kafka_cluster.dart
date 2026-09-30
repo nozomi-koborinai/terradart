@@ -194,7 +194,7 @@ final class ManagedKafkaClusterTlsConfigTrustConfigCasConfigs {
 ///     accessConfig: ManagedKafkaClusterGcpConfigAccessConfig(
 ///       networkConfigs: [
 ///         ManagedKafkaClusterGcpConfigAccessConfigNetworkConfigs(
-///           subnet: TfArg.ref(subnet.id),
+///           subnet: subnet.ref,
 ///         ),
 ///       ],
 ///     ),

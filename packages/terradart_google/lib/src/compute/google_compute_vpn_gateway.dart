@@ -1,12 +1,26 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 import '../compute/google_compute_network.dart' show GoogleComputeNetwork;
 
 /// Sensitive field paths for `google_compute_vpn_gateway`.
 const Set<String> _googleComputeVpnGatewaySensitive = <String>{};
+
+/// Typed helper for the `params` block of
+/// `google_compute_vpn_gateway` (derived from provider schema).
+@immutable
+final class ComputeVpnGatewayParams {
+  const ComputeVpnGatewayParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_compute_vpn_gateway`.
 ///
@@ -21,6 +35,7 @@ final class GoogleComputeVpnGateway extends Resource {
     required RefTo<GoogleComputeNetwork> network,
     TfArg<String>? region,
     TfArg<String>? description,
+    ComputeVpnGatewayParams? params,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -34,6 +49,7 @@ final class GoogleComputeVpnGateway extends Resource {
            'network': network.encodeAs('id'),
            'region': ?region,
            'description': ?description,
+           if (params != null) 'params': TfArg.literal(params.encode()),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },

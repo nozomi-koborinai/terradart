@@ -1,5 +1,6 @@
 outputDir: compute
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 deriveEnums: true
@@ -13,6 +14,7 @@ paramOrder:
   - redundancy_type
   - labels
   - interface
+  - params
   - project
 
 extraGetters: |2

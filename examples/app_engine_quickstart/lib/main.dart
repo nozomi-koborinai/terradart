@@ -171,9 +171,6 @@ final class AppEngineStack extends Stack {
       ),
     );
 
-    addExport(
-      'APP_ENGINE_APP_ID',
-      ResourceIdExport(app.id, emitTerraformOutput: true),
-    );
+    addOutput('app_engine_app_id', .ref(app.id));
   }
 }

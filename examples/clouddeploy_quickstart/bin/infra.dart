@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/deploy_stack.app.dart`
-/// (literal exports such as `PIPELINE_NAME`). Computed exports like
-/// `PIPELINE_ID` appear as Terraform outputs only.
+/// (with `DeployStackConstants.pipelineName`). Computed values such as
+/// `run_target_id` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

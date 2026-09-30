@@ -1,5 +1,6 @@
 outputDir: dataplex
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 
@@ -9,5 +10,6 @@ paramOrder:
   - display_name
   - description
   - labels
+  - metastore
   - deletion_policy
   - project

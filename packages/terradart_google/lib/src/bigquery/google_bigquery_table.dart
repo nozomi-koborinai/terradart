@@ -821,7 +821,7 @@ final class BigqueryTableView {
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_bigquery_table.`).
 /// - `datasetId`: parent BigQuery dataset id. Typically
-///   `TfArg.ref(dataset.datasetIdRef)` where `dataset` is a
+///   `dataset.ref` where `dataset` is a
 ///   `GoogleBigqueryDataset`.
 /// - `tableId`: BigQuery table id. Letters/digits/underscores, up to 1024
 ///   chars. Immutable after create.
@@ -840,7 +840,7 @@ final class BigqueryTableView {
 /// ```dart
 /// final events = GoogleBigqueryTable(
 ///   localName: 'events',
-///   datasetId: TfArg.ref(dataset.datasetIdRef),
+///   datasetId: dataset.ref,
 ///   tableId: TfArg.literal('events_v1'),
 ///   friendlyName: TfArg.literal('Click events'),
 ///   description: TfArg.literal('Raw click events partitioned by day.'),

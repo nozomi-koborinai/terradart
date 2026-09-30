@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/fleet_stack.app.dart`
-/// (literal exports such as `FLEET_SCOPE_ID`). Computed exports like
-/// `FLEET_SCOPE_NAME` appear as Terraform outputs only.
+/// (with `FleetStackConstants.fleetScopeId`). Computed values such as
+/// `fleet_scope_name` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

@@ -2,6 +2,7 @@ outputDir: pubsub
 deriveEnums: true
 deriveOutputGetters: true
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 
 curatedDoc: |-

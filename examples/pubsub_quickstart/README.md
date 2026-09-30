@@ -48,7 +48,7 @@ terraform apply
 - A Pub/Sub topic `orders-prod` with 7-day retention.
 - A push subscription `orders-push` targeting `https://app.example.com/push` (replace with your real endpoint).
 - An IAM grant of `roles/pubsub.publisher` to a publisher service account.
-- Terraform outputs for computed IDs; Dart constant `OrdersStackExports.ORDERS_TOPIC_NAME` for the literal topic name.
+- The Terraform output `orders_topic_id` for the computed topic ID, and the Dart constant `OrdersStackConstants.ordersTopicName` for the literal topic name.
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 
@@ -67,13 +67,12 @@ terraform apply
     }
   },
   "output": {
-    "ORDERS_TOPIC_NAME": { "value": "orders-prod" },
-    "ORDERS_TOPIC_ID": { "value": "${google_pubsub_topic.orders.id}" }
+    "orders_topic_id": { "value": "${google_pubsub_topic.orders.id}" }
   }
 }
 ```
 
-The seam: `lib/generated/orders_stack.app.dart` contains `OrdersStackExports.ORDERS_TOPIC_NAME` — import it from app code (see `lib/subscriber_stub.dart`) instead of hand-typing `"orders-prod"`.
+The seam: `lib/generated/orders_stack.app.dart` contains `OrdersStackConstants.ordersTopicName`, read from the topic's `name` literal — import it from app code (see `lib/subscriber_stub.dart`) instead of hand-typing `"orders-prod"`.
 
 ## Next steps
 

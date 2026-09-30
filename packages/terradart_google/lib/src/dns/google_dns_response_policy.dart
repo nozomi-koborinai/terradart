@@ -1,10 +1,35 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_dns_response_policy`.
 const Set<String> _googleDnsResponsePolicySensitive = <String>{};
+
+/// Typed helper for the `gke_clusters` block of
+/// `google_dns_response_policy` (derived from provider schema).
+@immutable
+final class DnsResponsePolicyGkeClusters {
+  const DnsResponsePolicyGkeClusters({required this.gkeClusterName});
+
+  final TfArg<String> gkeClusterName;
+
+  Map<String, Object?> encode() => {
+    'gke_cluster_name': gkeClusterName.toTfJson(),
+  };
+}
+
+/// Typed helper for the `networks` block of
+/// `google_dns_response_policy` (derived from provider schema).
+@immutable
+final class DnsResponsePolicyNetworks {
+  const DnsResponsePolicyNetworks({required this.networkUrl});
+
+  final TfArg<String> networkUrl;
+
+  Map<String, Object?> encode() => {'network_url': networkUrl.toTfJson()};
+}
 
 /// Factory wrapper for `google_dns_response_policy`.
 ///
@@ -18,8 +43,8 @@ final class GoogleDnsResponsePolicy extends Resource {
     required TfArg<String> responsePolicyName,
     TfArg<String>? description,
     TfArg<String>? project,
-    TfArg<List<Map<String, dynamic>>>? networks,
-    TfArg<List<Map<String, dynamic>>>? gkeClusters,
+    List<DnsResponsePolicyNetworks>? networks,
+    List<DnsResponsePolicyGkeClusters>? gkeClusters,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -30,8 +55,12 @@ final class GoogleDnsResponsePolicy extends Resource {
            'response_policy_name': responsePolicyName,
            'description': ?description,
            'project': ?project,
-           'networks': ?networks,
-           'gke_clusters': ?gkeClusters,
+           if (networks != null)
+             'networks': TfArg.literal([for (final e in networks) e.encode()]),
+           if (gkeClusters != null)
+             'gke_clusters': TfArg.literal([
+               for (final e in gkeClusters) e.encode(),
+             ]),
          },
        );
 

@@ -12,8 +12,10 @@ export 'src/folder/google_folder_access_approval_settings.dart'
         GoogleFolderAccessApprovalSettings;
 export 'src/folder/google_folder_iam_audit_config.dart'
     show FolderIamAuditConfigAuditLogConfig, GoogleFolderIamAuditConfig;
-export 'src/folder/google_folder_iam_binding.dart' show GoogleFolderIamBinding;
-export 'src/folder/google_folder_iam_member.dart' show GoogleFolderIamMember;
+export 'src/folder/google_folder_iam_binding.dart'
+    show FolderIamBindingCondition, GoogleFolderIamBinding;
+export 'src/folder/google_folder_iam_member.dart'
+    show FolderIamMemberCondition, GoogleFolderIamMember;
 export 'src/folder/google_folder_iam_policy.dart' show GoogleFolderIamPolicy;
 export 'src/folder/google_folder_organization_policy.dart'
     show

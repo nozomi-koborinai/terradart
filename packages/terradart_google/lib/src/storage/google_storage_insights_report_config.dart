@@ -257,11 +257,11 @@ final class StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters
 ///     metadataFields: TfArg.literal(['name', 'size']),
 ///     storageDestinationOptions:
 ///         StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions(
-///       bucket: TfArg.ref(reports.nameRef),
+///       bucket: reports.ref,
 ///     ),
 ///     storageFilters:
 ///         StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters(
-///       bucket: TfArg.ref(source.nameRef),
+///       bucket: source.ref,
 ///     ),
 ///   ),
 /// );

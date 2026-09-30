@@ -3,6 +3,9 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
+import '../gemini/google_gemini_code_tools_setting.dart'
+    show GoogleGeminiCodeToolsSetting;
+
 /// Sensitive field paths for `google_gemini_code_tools_setting_binding`.
 const Set<String> _googleGeminiCodeToolsSettingBindingSensitive = <String>{};
 
@@ -34,7 +37,7 @@ final class GoogleGeminiCodeToolsSettingBinding extends Resource {
 
   GoogleGeminiCodeToolsSettingBinding({
     required super.localName,
-    required TfArg<String> codeToolsSettingId,
+    required RefTo<GoogleGeminiCodeToolsSetting> codeToolsSettingId,
     required TfArg<String> settingBindingId,
     required TfArg<String> target,
     TfArg<String>? location,
@@ -49,7 +52,9 @@ final class GoogleGeminiCodeToolsSettingBinding extends Resource {
   }) : super(
          terraformType: tfType,
          argMap: {
-           'code_tools_setting_id': codeToolsSettingId,
+           'code_tools_setting_id': codeToolsSettingId.encodeAs(
+             'code_tools_setting_id',
+           ),
            'setting_binding_id': settingBindingId,
            'target': target,
            'location': ?location,

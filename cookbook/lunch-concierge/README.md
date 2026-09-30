@@ -30,7 +30,7 @@ removes that boundary in two concrete places:
   the wire contract is compiled, not stringly-typed.
 - **infra → app** — the TerraDart Stack *generates* the values it owns
   (project id, region, database name, database user, Cloud SQL connection
-  name) into `shared/` as `LunchStackExports`. The server imports them as
+  name) into `shared/` as `LunchStackConstants`. The server imports them as
   constants. No `.env` file re-typing what Terraform already knows.
 
 That second boundary is the point of the recipe: infrastructure is not a
@@ -45,7 +45,7 @@ values to the rest of the codebase.
 infra/  (TerraDart Stack, Dart)
   │  dart run bin/infra.dart  (synth)
   ├──► tf-out/main.tf.json ──► terraform apply ──► Google Cloud
-  └──► shared/lib/generated/lunch_stack.app.dart   (LunchStackExports)
+  └──► shared/lib/generated/lunch_stack.app.dart   (LunchStackConstants)
                     ▲
                     │ imported as typed constants
 shared/  (schemantic types: LunchRequest / LunchResponse)
@@ -91,7 +91,7 @@ eight `terradart_google` barrels:
 cookbook/lunch-concierge/
 ├── client/   # Flutter Web (app / lunch_page / theme / widgets)
 ├── server/   # shelf app (routes, optional IAP JWT, Genkit, postgres)
-├── shared/   # schemantic schemas + generated LunchStackExports
+├── shared/   # schemantic schemas + generated LunchStackConstants
 ├── infra/    # TerraDart Stack
 └── docs/     # architecture diagram for this README
 ```
@@ -108,15 +108,23 @@ the image.
 The Stack declares the values it owns and the file to generate:
 
 ```dart
-stack
-  ..addExport('PROJECT_ID', StringExport(projectId))
-  ..addExport('REGION', StringExport(region))
-  ..addExport('DATABASE_NAME', StringExport(databaseName))
-  ..addExport('DATABASE_USER', StringExport(database.databaseUser))
-  ..setAppExportsOutputPath('../shared/lib/generated/lunch_stack.app.dart');
+final class LunchStack extends Stack {
+  LunchStack(/* ... */)
+    : super(
+        providers: [/* ... */],
+        appExports: AppExports('../shared/lib/generated/lunch_stack.app.dart'),
+      ) {
+    // ...
+    this
+      ..addConstant('projectId', .value(projectId))
+      ..addConstant('region', const .value(region))
+      ..addConstant('databaseName', const .value(databaseName))
+      ..addConstant('databaseUser', .value(database.databaseUser));
+  }
+}
 ```
 
-Synth writes `LunchStackExports`, and the server imports it — the database
+Synth writes `LunchStackConstants`, and the server imports it — the database
 name and user are never re-typed:
 
 ```dart
@@ -124,16 +132,16 @@ import 'package:lunch_concierge_shared/generated/lunch_stack.app.dart';
 
 // Point Genkit at Agent Platform for the infra-owned project/region.
 vertexAI(
-  projectId: LunchStackExports.PROJECT_ID,
-  location: LunchStackExports.REGION,
+  projectId: LunchStackConstants.projectId,
+  location: LunchStackConstants.region,
 );
 
 // The postgres client dials the cloud-sql-proxy sidecar as the IAM user.
 Endpoint(
   host: '127.0.0.1',
   port: 5432,
-  database: LunchStackExports.DATABASE_NAME,
-  username: LunchStackExports.DATABASE_USER,
+  database: LunchStackConstants.databaseName,
+  username: LunchStackConstants.databaseUser,
 );
 ```
 

@@ -73,13 +73,13 @@ final class ComputeVpnGatewayStack extends Stack {
         name: .literal('terradart-external-vpn-gw'),
         description: .literal('External peer gateway shell (TEST-NET-3)'),
         redundancyType: .literal(.singleIpInternallyRedundant),
-        interface: .literal([
-          {
-            'id': 0,
+        interface: [
+          ComputeExternalVpnGatewayInterface(
+            id: .literal(0),
             // RFC 5737 TEST-NET-3 — documentation peer only; no tunnel attached.
-            'ip_address': '203.0.113.1',
-          },
-        ]),
+            ipAddress: .literal('203.0.113.1'),
+          ),
+        ],
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );

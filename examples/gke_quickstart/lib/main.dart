@@ -207,14 +207,11 @@ final class GkeQuickstartStack extends Stack {
         // restore mode for those resources to be set, otherwise the API
         // rejects creation with MISSING_NAMESPACED_RESOURCE_RESTORE_MODE.
         restoreConfig: GkeBackupRestorePlanRestoreConfig(
-          allNamespaces: .literal(true),
-          namespacedResourceRestoreMode:
-              GkeBackupRestorePlanNamespacedResourceRestoreMode
-                  .deleteAndRestore,
+          namespaces: .allNamespaces(.literal(true)),
+          namespacedResourceRestoreMode: .literal(.deleteAndRestore),
           // Required whenever namespaced resources are selected; this demo has
           // no persistent volumes to restore.
-          volumeDataRestorePolicy: GkeBackupRestorePlanVolumeDataRestorePolicy
-              .noVolumeDataRestoration,
+          volumeDataRestorePolicy: .literal(.noVolumeDataRestoration),
         ),
         dependsOn: [
           ResourceDependency(apiGkeBackup),

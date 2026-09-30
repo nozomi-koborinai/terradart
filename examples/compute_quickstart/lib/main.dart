@@ -643,9 +643,11 @@ final class NetworkStack extends Stack {
         localName: 'bulk_workers_cfg',
         instanceGroupManager: .ref(bulkWorkersMig.nameRef),
         zone: .literal('asia-northeast1-a'),
-        instances: .literal([
-          {'name': 'bulk-worker-1'},
-        ]),
+        instances: [
+          ComputeBulkPerInstanceConfigInstances(
+            name: .literal('bulk-worker-1'),
+          ),
+        ],
         dependsOn: [ResourceDependency(bulkWorkersMig)],
       ),
     );
@@ -1077,7 +1079,9 @@ final class NetworkStack extends Stack {
       GoogleComputeDiskAsyncReplication(
         localName: 'async_replication',
         primaryDisk: .ref(asyncPrimary.id),
-        secondaryDisk: .literal({'disk': asyncSecondary.id.interpolation}),
+        secondaryDisk: ComputeDiskAsyncReplicationSecondaryDisk(
+          disk: .ref(asyncSecondary.id),
+        ),
         dependsOn: [
           ResourceDependency(asyncPrimary),
           ResourceDependency(asyncSecondary),
@@ -1228,9 +1232,12 @@ final class NetworkStack extends Stack {
         localName: 'ops_agent_zone_policy',
         name: .literal('ops-agent-zone-policy'),
         zone: .literal('asia-northeast1-a'),
-        extensionPolicies: .literal([
-          {'extension_name': 'ops-agent', 'pinned_version': '2.66.0'},
-        ]),
+        extensionPolicies: [
+          ComputeZoneVmExtensionPolicyExtensionPolicies(
+            extensionName: .literal('ops-agent'),
+            pinnedVersion: .literal('2.66.0'),
+          ),
+        ],
         description: .literal('Zonal Ops Agent extension policy (demo)'),
         dependsOn: apiDeps,
       ),

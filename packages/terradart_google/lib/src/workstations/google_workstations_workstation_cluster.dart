@@ -62,8 +62,8 @@ final class WorkstationsWorkstationClusterPrivateClusterConfig {
 ///   localName: 'ws',
 ///   workstationClusterId: TfArg.literal('terradart-ws'),
 ///   location: TfArg.literal('us-central1'),
-///   network: TfArg.ref(vpc.id),
-///   subnetwork: TfArg.ref(subnet.id),
+///   network: vpc.ref,
+///   subnetwork: subnet.ref,
 /// );
 /// ```
 final class GoogleWorkstationsWorkstationCluster extends Resource {

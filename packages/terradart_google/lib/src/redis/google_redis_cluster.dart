@@ -518,7 +518,7 @@ enum RedisClusterZoneDistributionConfigMode implements TerraformEnum {
 ///   replicaCount: TfArg.literal(0),
 ///   nodeType: TfArg.literal(RedisClusterNodeType.redisSharedCoreNano),
 ///   pscConfigs: [
-///     RedisClusterPscConfigs(network: TfArg.ref(network.id)),
+///     RedisClusterPscConfigs(network: network.ref),
 ///   ],
 ///   deletionProtectionEnabled: TfArg.literal(false),
 /// );

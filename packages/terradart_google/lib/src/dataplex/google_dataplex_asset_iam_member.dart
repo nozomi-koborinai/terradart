@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_dataplex_asset_iam_member`.
 const Set<String> _googleDataplexAssetIamMemberSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_dataplex_asset_iam_member` (derived from provider schema).
+@immutable
+final class DataplexAssetIamMemberCondition {
+  const DataplexAssetIamMemberCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_dataplex_asset_iam_member`.
 final class GoogleDataplexAssetIamMember extends Resource {
@@ -17,7 +41,7 @@ final class GoogleDataplexAssetIamMember extends Resource {
     required TfArg<String> lake,
     required TfArg<String> role,
     required TfArg<String> member,
-    TfArg<Map<String, dynamic>>? condition,
+    DataplexAssetIamMemberCondition? condition,
     TfArg<String>? location,
     TfArg<String>? project,
     super.lifecycle,
@@ -32,7 +56,8 @@ final class GoogleDataplexAssetIamMember extends Resource {
            'lake': lake,
            'role': role,
            'member': member,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
            'location': ?location,
            'project': ?project,
          },

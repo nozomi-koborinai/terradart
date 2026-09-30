@@ -189,7 +189,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'AccessContextManagerAccessPolicyIamBindingCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_access_context_manager_access_policy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an Access Context\nManager access policy.\n\nReplaces the entire member list for that role. Prefer\n[GoogleAccessContextManagerAccessPolicyIamMember] for additive grants.',
@@ -208,7 +210,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['AccessContextManagerAccessPolicyIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_access_context_manager_access_policy_iam_member`.',
@@ -1909,7 +1911,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_apigee_organization`.\n\nAn `Organization` is the top-level container in Apigee.\n\nApigee **organization** — project-bound Apigee control plane\n(subscription / evaluation org).\n\n**Cost:** Cloud Billing Catalog service `1C2D-8C78-EC58` bills Apigee\nPAYG environment and gateway usage once the org is active (e.g.\nGateway Node Hours SKU `0136-18C1-DD41` **\$1.025/h**; Active\nIntermediate Environment Usage Hours `421B-D6C0-52A2` **\$2/h**;\nActive Comprehensive Environment Usage Hours `01C8-CFFA-106E`\n**\$4.7/h**). Creating an organization is the gateway to that\nbilling surface. Too expensive for apply-smoke — factories ship\nwithout a quickstart.\n\nRequires [projectId]. Typically also set [analyticsRegion] and\n[authorizedNetwork] (VPC peering). Enable `apigee.googleapis.com`\nvia [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleApigeeOrganization(\n  localName: \'org\',\n  projectId: TfArg.literal(projectId),\n  analyticsRegion: TfArg.literal(\'us-central1\'),\n  authorizedNetwork: TfArg.ref(network.id),\n  runtimeType: TfArg.literal(ApigeeOrganizationRuntimeType.cloud),\n);\n```',
+        'Factory wrapper for `google_apigee_organization`.\n\nAn `Organization` is the top-level container in Apigee.\n\nApigee **organization** — project-bound Apigee control plane\n(subscription / evaluation org).\n\n**Cost:** Cloud Billing Catalog service `1C2D-8C78-EC58` bills Apigee\nPAYG environment and gateway usage once the org is active (e.g.\nGateway Node Hours SKU `0136-18C1-DD41` **\$1.025/h**; Active\nIntermediate Environment Usage Hours `421B-D6C0-52A2` **\$2/h**;\nActive Comprehensive Environment Usage Hours `01C8-CFFA-106E`\n**\$4.7/h**). Creating an organization is the gateway to that\nbilling surface. Too expensive for apply-smoke — factories ship\nwithout a quickstart.\n\nRequires [projectId]. Typically also set [analyticsRegion] and\n[authorizedNetwork] (VPC peering). Enable `apigee.googleapis.com`\nvia [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleApigeeOrganization(\n  localName: \'org\',\n  projectId: TfArg.literal(projectId),\n  analyticsRegion: TfArg.literal(\'us-central1\'),\n  authorizedNetwork: network.ref,\n  runtimeType: TfArg.literal(ApigeeOrganizationRuntimeType.cloud),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_apigee_security_action',
@@ -2282,7 +2284,15 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'serviceAccountEmail',
       'checkExistingUsage',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ApikeysKeyRestrictions',
+      'ApikeysKeyRestrictionsAndroidKeyRestrictions',
+      'ApikeysKeyRestrictionsAndroidKeyRestrictionsAllowedApplications',
+      'ApikeysKeyRestrictionsApiTargets',
+      'ApikeysKeyRestrictionsBrowserKeyRestrictions',
+      'ApikeysKeyRestrictionsIosKeyRestrictions',
+      'ApikeysKeyRestrictionsServerKeyRestrictions',
+    ],
     sensitiveFields: <String>['key_string'],
     docComment:
         'Factory wrapper for `google_apikeys_key`.\n\nAPI Keys key — restricts which Google Cloud APIs can be called with a\ngenerated API key.\n\nEnable `apikeys.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleApikeysKey(\n  localName: \'maps_browser\',\n  name: TfArg.literal(\'maps-browser-key\'),\n  displayName: TfArg.literal(\'Browser Maps key\'),\n);\n```',
@@ -3572,7 +3582,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_backup_dr_management_server`.\n\nA Backup and DR Management Server (Also referred as Management Console)\n\nBackup and DR Service **management server** — the control-plane\nappliance for Backup and DR in a project/region.\n\n**Cost:** provisioning a management server attaches BackupDR\nmanagement + underlying Compute/networking. Cloud Billing Catalog\nservice `3DAD-299B-0D94` bills protected-resource management (e.g.\nGCE VM management SKU `0456-5BF2-438E` **\$0.02/GiBy·mo**) once\nworkloads are protected; the server itself is too heavy for\napply-smoke. Factories ship without a quickstart.\n\nEnable `backupdr.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleBackupDrManagementServer(\n  localName: \'ms\',\n  name: TfArg.literal(\'terradart-bdr-ms\'),\n  location: TfArg.literal(\'us-central1\'),\n  type: TfArg.literal(BackupDrManagementServerType.backupRestore),\n  networks: [\n    BackupDrManagementServerNetworks(\n      network: TfArg.ref(network.id),\n      peeringMode: TfArg.literal(\'PRIVATE_SERVICE_ACCESS\'),\n    ),\n  ],\n);\n```',
+        'Factory wrapper for `google_backup_dr_management_server`.\n\nA Backup and DR Management Server (Also referred as Management Console)\n\nBackup and DR Service **management server** — the control-plane\nappliance for Backup and DR in a project/region.\n\n**Cost:** provisioning a management server attaches BackupDR\nmanagement + underlying Compute/networking. Cloud Billing Catalog\nservice `3DAD-299B-0D94` bills protected-resource management (e.g.\nGCE VM management SKU `0456-5BF2-438E` **\$0.02/GiBy·mo**) once\nworkloads are protected; the server itself is too heavy for\napply-smoke. Factories ship without a quickstart.\n\nEnable `backupdr.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleBackupDrManagementServer(\n  localName: \'ms\',\n  name: TfArg.literal(\'terradart-bdr-ms\'),\n  location: TfArg.literal(\'us-central1\'),\n  type: TfArg.literal(BackupDrManagementServerType.backupRestore),\n  networks: [\n    BackupDrManagementServerNetworks(\n      network: network.ref,\n      peeringMode: TfArg.literal(\'PRIVATE_SERVICE_ACCESS\'),\n    ),\n  ],\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_backup_dr_management_server',
@@ -3805,7 +3815,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'BeyondcorpSecurityGatewayApplicationIamBindingCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_beyondcorp_security_gateway_application_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BeyondCorp Security Gateway application.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleBeyondcorpSecurityGatewayApplicationIamMember] for additive grants.',
@@ -3826,7 +3838,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'BeyondcorpSecurityGatewayApplicationIamMemberCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_beyondcorp_security_gateway_application_iam_member`.',
@@ -3884,7 +3898,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BeyondcorpSecurityGatewayIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_beyondcorp_security_gateway_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BeyondCorp Security Gateway.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleBeyondcorpSecurityGatewayIamMember] for additive grants.',
@@ -3905,7 +3919,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BeyondcorpSecurityGatewayIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_beyondcorp_security_gateway_iam_member`.',
@@ -3979,7 +3993,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'hiveOptions',
       'deletionPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BiglakeDatabaseHiveOptions'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_database`.\n\nDatabases are containers of tables.',
@@ -4018,7 +4032,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BiglakeHiveCatalogIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_hive_catalog_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Biglake Hive Catalog.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBiglakeHiveCatalogIamMember] for additive grants.',
@@ -4037,7 +4051,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BiglakeHiveCatalogIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_biglake_hive_catalog_iam_member`.',
   ),
@@ -4101,7 +4115,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BiglakeHiveDatabaseIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_hive_database_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Biglake Hive Database.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBiglakeHiveDatabaseIamMember] for additive grants.',
@@ -4121,7 +4135,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BiglakeHiveDatabaseIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_hive_database_iam_member`.',
@@ -4207,7 +4221,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BiglakeHiveTableIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_hive_table_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Biglake Hive Table.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBiglakeHiveTableIamMember] for additive grants.',
@@ -4228,7 +4242,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BiglakeHiveTableIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_biglake_hive_table_iam_member`.',
   ),
@@ -4308,7 +4322,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BiglakeIcebergCatalogIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_iceberg_catalog_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigLake Iceberg\nREST catalog.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleBiglakeIcebergCatalogIamMember] for\nadditive grants.',
@@ -4327,7 +4341,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BiglakeIcebergCatalogIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_iceberg_catalog_iam_member`.',
@@ -4391,7 +4405,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BiglakeIcebergNamespaceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_iceberg_namespace_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigLake Iceberg\nnamespace.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleBiglakeIcebergNamespaceIamMember] for\nadditive grants.',
@@ -4412,7 +4426,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BiglakeIcebergNamespaceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_iceberg_namespace_iam_member`.',
@@ -4494,7 +4508,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BiglakeIcebergTableIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_iceberg_table_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigLake Iceberg\ntable.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleBiglakeIcebergTableIamMember] for\nadditive grants.',
@@ -4515,7 +4529,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BiglakeIcebergTableIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_iceberg_table_iam_member`.',
@@ -4571,7 +4585,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'hiveOptions',
       'deletionPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'BiglakeTableHiveOptions',
+      'BiglakeTableHiveOptionsStorageDescriptor',
+      'BiglakeTableHiveOptionsStorageDescriptorSerdeInfo',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_table`.\n\nRepresents a table.',
@@ -4625,7 +4643,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'BigqueryAnalyticsHubDataExchangeIamBindingCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_analytics_hub_data_exchange_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery Analytics Hub\ndata exchange.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBigqueryAnalyticsHubDataExchangeIamMember] for additive grants.',
@@ -4646,7 +4666,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryAnalyticsHubDataExchangeIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_analytics_hub_data_exchange_iam_member`.',
@@ -4751,7 +4771,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryAnalyticsHubListingIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_analytics_hub_listing_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery Analytics Hub\nlisting.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBigqueryAnalyticsHubListingIamMember] for additive grants.',
@@ -4773,7 +4793,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryAnalyticsHubListingIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_analytics_hub_listing_iam_member`.',
@@ -4984,7 +5004,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryConnectionIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_connection_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery connection.\n\nReplaces the entire member list for that role on the connection. Prefer\n[GoogleBigqueryConnectionIamMember] when adding one principal without\ntouching existing bindings.',
@@ -5004,7 +5024,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryConnectionIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_bigquery_connection_iam_member`.',
   ),
@@ -5141,7 +5161,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryDatapolicyDataPolicyIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_datapolicy_data_policy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery data policy.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBigqueryDatapolicyDataPolicyIamMember] for additive grants.',
@@ -5162,7 +5182,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryDatapolicyDataPolicyIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_datapolicy_data_policy_iam_member`.',
@@ -5247,7 +5267,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryDatapolicyv2DataPolicyIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_datapolicyv2_data_policy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery Data Policy\nV2 resource.\n\nReplaces the entire member list for that role on the data policy. Prefer\n[GoogleBigqueryDatapolicyv2DataPolicyIamMember] when adding one principal\nwithout touching existing bindings.',
@@ -5268,7 +5288,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryDatapolicyv2DataPolicyIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_datapolicyv2_data_policy_iam_member`.\n\nAdditive IAM grant on a [GoogleBigqueryDatapolicyv2DataPolicy]. Prefer\nthis over binding/policy when adding one (`role`, `member`) tuple.\n\nExample:\n```dart\nGoogleBigqueryDatapolicyv2DataPolicyIamMember(\n  localName: \'raw_reader\',\n  dataPolicyId: TfArg.literal(\'raw-access\'),\n  location: TfArg.literal(\'us-central1\'),\n  role: TfArg.literal(\'roles/bigquerydatapolicy.maskedReader\'),\n  member: TfArg.ref(reader.iamMember),\n);\n```',
@@ -5422,7 +5442,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryDatasetIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_dataset_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery dataset.\n\nReplaces the entire member list for that role on the dataset. Prefer\n[GoogleBigqueryDatasetIamMember] when adding one principal without\ntouching existing bindings.',
@@ -5441,7 +5461,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryDatasetIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_bigquery_dataset_iam_member`.',
   ),
@@ -5661,7 +5681,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_bigquery_routine`.\n\nA user-defined function or a stored procedure that belongs to a Dataset\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_bigquery_routine.`).\n- `datasetId`: parent BigQuery dataset id. Typically\n  `TfArg.ref(dataset.datasetIdRef)` where `dataset` is a\n  `GoogleBigqueryDataset`.\n- `routineId`: routine id. Letters/digits/underscores only, up to 256\n  chars. Immutable after create.\n- `routineType`: one of [BigqueryRoutineType] — `SCALAR_FUNCTION`,\n  `PROCEDURE`, or `TABLE_VALUED_FUNCTION`.\n- `definitionBody`: SQL/JS/Python/Java/Scala source. For\n  `language = SQL`, this is the expression inside (but excluding) the\n  `AS (...)` parentheses.\n\n`returnType` and `returnTableType` expect JSON-encoded BigQuery type\nstrings (e.g. `jsonEncode({\'typeKind\': \'INT64\'})`). The provider\nsurfaces any byte-level reordering as a diff — pass the type exactly\nas the API returns it to avoid recurring plan churn.\n\nThe `arguments` block is repeatable: each entry is a\n[BigqueryRoutineArgument] with `name`, `argumentKind`, `mode`, and\n`dataType` (JSON-encoded). Procedures use `mode` (`IN`/`OUT`/`INOUT`);\nscalar/TVF functions leave it null.\n\n`remoteFunctionOptions` (max=1) configures a BigQuery Remote Function\nbacked by a Cloud Function / Cloud Run service via `connection`.\n`sparkOptions` (max=1) configures a Spark stored procedure for\n`language` = `PYTHON` / `JAVA` / `SCALA`.\n\nExample:\n```dart\nfinal addOne = GoogleBigqueryRoutine(\n  localName: \'add_one\',\n  datasetId: TfArg.ref(dataset.datasetIdRef),\n  routineId: TfArg.literal(\'add_one\'),\n  routineType: TfArg.literal(BigqueryRoutineType.scalarFunction.terraformValue),\n  definitionBody: TfArg.literal(\'x + 1\'),\n  language: TfArg.literal(BigqueryRoutineLanguage.sql.terraformValue),\n  arguments: const [\n    BigqueryRoutineArgument(\n      name: \'x\',\n      dataType: \'{"typeKind":"INT64"}\',\n    ),\n  ],\n  returnType: TfArg.literal(\'{"typeKind":"INT64"}\'),\n);\n```',
+        'Factory wrapper for `google_bigquery_routine`.\n\nA user-defined function or a stored procedure that belongs to a Dataset\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_bigquery_routine.`).\n- `datasetId`: parent BigQuery dataset id. Typically\n  `dataset.ref` where `dataset` is a\n  `GoogleBigqueryDataset`.\n- `routineId`: routine id. Letters/digits/underscores only, up to 256\n  chars. Immutable after create.\n- `routineType`: one of [BigqueryRoutineType] — `SCALAR_FUNCTION`,\n  `PROCEDURE`, or `TABLE_VALUED_FUNCTION`.\n- `definitionBody`: SQL/JS/Python/Java/Scala source. For\n  `language = SQL`, this is the expression inside (but excluding) the\n  `AS (...)` parentheses.\n\n`returnType` and `returnTableType` expect JSON-encoded BigQuery type\nstrings (e.g. `jsonEncode({\'typeKind\': \'INT64\'})`). The provider\nsurfaces any byte-level reordering as a diff — pass the type exactly\nas the API returns it to avoid recurring plan churn.\n\nThe `arguments` block is repeatable: each entry is a\n[BigqueryRoutineArgument] with `name`, `argumentKind`, `mode`, and\n`dataType` (JSON-encoded). Procedures use `mode` (`IN`/`OUT`/`INOUT`);\nscalar/TVF functions leave it null.\n\n`remoteFunctionOptions` (max=1) configures a BigQuery Remote Function\nbacked by a Cloud Function / Cloud Run service via `connection`.\n`sparkOptions` (max=1) configures a Spark stored procedure for\n`language` = `PYTHON` / `JAVA` / `SCALA`.\n\nExample:\n```dart\nfinal addOne = GoogleBigqueryRoutine(\n  localName: \'add_one\',\n  datasetId: dataset.ref,\n  routineId: TfArg.literal(\'add_one\'),\n  routineType: TfArg.literal(BigqueryRoutineType.scalarFunction.terraformValue),\n  definitionBody: TfArg.literal(\'x + 1\'),\n  language: TfArg.literal(BigqueryRoutineLanguage.sql.terraformValue),\n  arguments: const [\n    BigqueryRoutineArgument(\n      name: \'x\',\n      dataType: \'{"typeKind":"INT64"}\',\n    ),\n  ],\n  returnType: TfArg.literal(\'{"typeKind":"INT64"}\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_routine_iam_binding',
@@ -5678,7 +5698,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryRoutineIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_routine_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery routine.\n\nReplaces the entire member list for that role on the routine. Prefer\n[GoogleBigqueryRoutineIamMember] when adding one principal without\ntouching existing bindings.',
@@ -5698,7 +5718,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryRoutineIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_bigquery_routine_iam_member`.',
   ),
@@ -5831,7 +5851,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_bigquery_table`.\n\nA Table that belongs to a Dataset\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_bigquery_table.`).\n- `datasetId`: parent BigQuery dataset id. Typically\n  `TfArg.ref(dataset.datasetIdRef)` where `dataset` is a\n  `GoogleBigqueryDataset`.\n- `tableId`: BigQuery table id. Letters/digits/underscores, up to 1024\n  chars. Immutable after create.\n\nThe `schema` slot is a `TfArg<String>?` — pass a JSON-encoded column\ndefinition string. Most callers will use `jsonEncode([...])` from\n`dart:convert` to assemble the schema at call site. Modeling the\ncolumn-level schema as Dart is out of scope for v0.0.x.\n\nPartitioning blocks are mutually exclusive at the API level: pass at\nmost one of `timePartitioning` / `rangePartitioning`. The wrapper does\nnot enforce this — passing both surfaces as a Terraform validation\nerror at plan time.\n\nExample:\n```dart\nfinal events = GoogleBigqueryTable(\n  localName: \'events\',\n  datasetId: TfArg.ref(dataset.datasetIdRef),\n  tableId: TfArg.literal(\'events_v1\'),\n  friendlyName: TfArg.literal(\'Click events\'),\n  description: TfArg.literal(\'Raw click events partitioned by day.\'),\n  timePartitioning: const BigqueryTableTimePartitioning(\n    type: TimePartitioningType.day,\n    field: \'event_time\',\n  ),\n  clustering: TfArg.literal(const [\'user_id\', \'campaign_id\']),\n  deletionProtection: TfArg.literal(false),\n);\n```',
+        'Factory wrapper for `google_bigquery_table`.\n\nA Table that belongs to a Dataset\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_bigquery_table.`).\n- `datasetId`: parent BigQuery dataset id. Typically\n  `dataset.ref` where `dataset` is a\n  `GoogleBigqueryDataset`.\n- `tableId`: BigQuery table id. Letters/digits/underscores, up to 1024\n  chars. Immutable after create.\n\nThe `schema` slot is a `TfArg<String>?` — pass a JSON-encoded column\ndefinition string. Most callers will use `jsonEncode([...])` from\n`dart:convert` to assemble the schema at call site. Modeling the\ncolumn-level schema as Dart is out of scope for v0.0.x.\n\nPartitioning blocks are mutually exclusive at the API level: pass at\nmost one of `timePartitioning` / `rangePartitioning`. The wrapper does\nnot enforce this — passing both surfaces as a Terraform validation\nerror at plan time.\n\nExample:\n```dart\nfinal events = GoogleBigqueryTable(\n  localName: \'events\',\n  datasetId: dataset.ref,\n  tableId: TfArg.literal(\'events_v1\'),\n  friendlyName: TfArg.literal(\'Click events\'),\n  description: TfArg.literal(\'Raw click events partitioned by day.\'),\n  timePartitioning: const BigqueryTableTimePartitioning(\n    type: TimePartitioningType.day,\n    field: \'event_time\',\n  ),\n  clustering: TfArg.literal(const [\'user_id\', \'campaign_id\']),\n  deletionProtection: TfArg.literal(false),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_table',
@@ -5860,7 +5880,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryTableIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_table_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery table.\n\nReplaces the entire member list for that role on the table. Prefer\n[GoogleBigqueryTableIamMember] when adding one principal without\ntouching existing bindings.',
@@ -5880,7 +5900,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigqueryTableIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_bigquery_table_iam_member`.',
   ),
@@ -6048,7 +6068,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigtableInstanceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigtable_instance_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Bigtable instance.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBigtableInstanceIamMember] for additive grants.',
@@ -6067,7 +6087,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigtableInstanceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_bigtable_instance_iam_member`.',
   ),
@@ -6197,7 +6217,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigtableTableIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigtable_table_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Bigtable table.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBigtableTableIamMember] for additive grants.',
@@ -6217,7 +6237,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BigtableTableIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_bigtable_table_iam_member`.',
   ),
@@ -6287,7 +6307,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BillingAccountIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_billing_account_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Billing account.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleBillingAccountIamMember] for additive grants.',
@@ -6305,7 +6325,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BillingAccountIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_billing_account_iam_member`.',
   ),
@@ -6418,7 +6438,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'deletionPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'BinaryAuthorizationAttestorAttestationAuthorityNote',
+      'BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeys',
+      'BinaryAuthorizationAttestorAttestationAuthorityNotePublicKeysPkixPublicKey',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_binary_authorization_attestor`.\n\nAn attestor that attests to container image artifacts.\n\nBinary Authorization attestor — a trusted authority that signs container\nimages for admission decisions.\n\nEnable `binaryauthorization.googleapis.com` before apply. The\n`attestation_authority_note` block holds the PGP public key material\n(or a Container Analysis note reference) used to verify signatures.\n\nExample:\n```dart\nGoogleBinaryAuthorizationAttestor(\n  localName: \'ci_attestor\',\n  name: TfArg.literal(\'ci-attestor\'),\n  attestationAuthorityNote: BinaryAuthorizationAttestorAttestationAuthorityNote(\n    noteReference: TfArg.literal(\n      \'projects/\$projectId/notes/ci-attestor\',\n    ),\n  ),\n);\n```',
@@ -6438,7 +6462,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BinaryAuthorizationAttestorIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_binary_authorization_attestor_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Binary Authorization\nattestor.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBinaryAuthorizationAttestorIamMember] for additive grants.',
@@ -6458,7 +6482,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['BinaryAuthorizationAttestorIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_binary_authorization_attestor_iam_member`.\n\nIAM member on a Binary Authorization attestor (`roles/binaryauthorization.attestorViewer`\nor `roles/binaryauthorization.attestorEditor`).\n\nExample:\n```dart\nGoogleBinaryAuthorizationAttestorIamMember(\n  localName: \'attestor_viewer\',\n  attestor: TfArg.ref(attestor.nameRef),\n  role: TfArg.literal(\'roles/binaryauthorization.attestorViewer\'),\n  member: TfArg.literal(\'serviceAccount:ci@\$projectId.iam.gserviceaccount.com\'),\n);\n```',
@@ -6830,7 +6854,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'audioProcessingConfig',
       'loggingSettings',
       'clientCertificateSettings',
-      'dataStoreSettings',
       'defaultChannelProfile',
       'evaluationMetricsThresholds',
       'variableDeclarations',
@@ -6846,7 +6869,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'CesAppAudioProcessingConfigBargeInConfig',
       'CesAppAudioProcessingConfigSynthesizeSpeechConfigs',
       'CesAppClientCertificateSettings',
-      'CesAppDataStoreSettings',
       'CesAppDefaultChannelProfile',
       'CesAppDefaultChannelProfilePersonaProperty',
       'CesAppDefaultChannelProfileWebWidgetConfig',
@@ -7805,7 +7827,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ChronicleFeedDetailsWorkspaceUsersSettingsAuthentication',
       'ChronicleFeedDetailsWorkspaceUsersSettingsAuthenticationClaims',
       'ChronicleFeedDetailsWorkspaceUsersSettingsAuthenticationRsCredentials',
-      'ChronicleFeedFailureDetails',
     ],
     sensitiveFields: <String>[
       'details.amazon_s3_settings.authentication.refresh_uri',
@@ -8275,7 +8296,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_cloud_asset_project_feed`.\n\nDescribes a Cloud Asset Inventory feed used to to listen to asset updates.\n\nCloud Asset Inventory **project feed** — publishes matching asset\nupdates to a Pub/Sub topic.\n\nCreating a feed does not scan or export existing resources. Messages\nfire only when matching assets change. Specify [assetTypes] and/or\n[assetNames].\n\n[feedOutputConfig] `pubsub_destination.topic` must be the **full**\ntopic path (`projects/{project}/topics/{name}`). Pass\n`TfArg.ref(topic.id)` against a sibling [GooglePubsubTopic].\n\nGrant `roles/pubsub.publisher` on that topic to\n`service-{PROJECT_NUMBER}@gcp-sa-cloudasset.iam.gserviceaccount.com`\n(created when `cloudasset.googleapis.com` is enabled) and\n`dependsOn` the IAM member.\n\nEnable `cloudasset.googleapis.com` and `pubsub.googleapis.com` via\n[GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleCloudAssetProjectFeed(\n  localName: \'project_feed\',\n  feedId: TfArg.literal(\'terradart-project-feed\'),\n  assetTypes: TfArg.literal(const [\n    \'cloudresourcemanager.googleapis.com/Project\',\n  ]),\n  contentType: TfArg.literal(CloudAssetProjectFeedContentType.resource),\n  feedOutputConfig: CloudAssetProjectFeedFeedOutputConfig(\n    pubsubDestination: CloudAssetProjectFeedFeedOutputConfigPubsubDestination(\n      topic: TfArg.ref(topic.id),\n    ),\n  ),\n);\n```',
+        'Factory wrapper for `google_cloud_asset_project_feed`.\n\nDescribes a Cloud Asset Inventory feed used to to listen to asset updates.\n\nCloud Asset Inventory **project feed** — publishes matching asset\nupdates to a Pub/Sub topic.\n\nCreating a feed does not scan or export existing resources. Messages\nfire only when matching assets change. Specify [assetTypes] and/or\n[assetNames].\n\n[feedOutputConfig] `pubsub_destination.topic` must be the **full**\ntopic path (`projects/{project}/topics/{name}`). Pass\n`topic.ref` against a sibling [GooglePubsubTopic]; it emits the topic `id`.\n\nGrant `roles/pubsub.publisher` on that topic to\n`service-{PROJECT_NUMBER}@gcp-sa-cloudasset.iam.gserviceaccount.com`\n(created when `cloudasset.googleapis.com` is enabled) and\n`dependsOn` the IAM member.\n\nEnable `cloudasset.googleapis.com` and `pubsub.googleapis.com` via\n[GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleCloudAssetProjectFeed(\n  localName: \'project_feed\',\n  feedId: TfArg.literal(\'terradart-project-feed\'),\n  assetTypes: TfArg.literal(const [\n    \'cloudresourcemanager.googleapis.com/Project\',\n  ]),\n  contentType: TfArg.literal(CloudAssetProjectFeedContentType.resource),\n  feedOutputConfig: CloudAssetProjectFeedFeedOutputConfig(\n    pubsubDestination: CloudAssetProjectFeedFeedOutputConfigPubsubDestination(\n      topic: topic.ref,\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_cloud_asset_search_all_resources',
@@ -8320,7 +8341,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `google_cloud_identity_group_lookup`.',
     constructorParams: <String>['localName', 'groupKey'],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataCloudIdentityGroupLookupGroupKey'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_cloud_identity_group_lookup`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
@@ -11333,7 +11354,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeBulkPerInstanceConfigInstances'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_bulk_per_instance_config`.',
@@ -11434,7 +11455,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'secondaryDisk',
       'deletionPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeDiskAsyncReplicationSecondaryDisk'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_disk_async_replication`.\n\nStarts asynchronous replication between a primary zonal/regional disk\nand a secondary disk in another region. Both disks must already exist;\nthis resource only manages the replication relationship.\n\nRequired:\n- [primaryDisk]: self-link or id of the primary disk.\n- [secondaryDisk]: nested block with the secondary disk self-link\n  (`disk`) and optional `customer_encryption_key`.',
@@ -11454,7 +11475,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeDiskIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_disk_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Compute Engine disk.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeDiskIamMember] for additive grants.',
@@ -11474,7 +11495,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeDiskIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_compute_disk_iam_member`.',
   ),
@@ -11541,9 +11562,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'redundancyType',
       'labels',
       'interface',
+      'params',
       'project',
     ],
-    nestedTypes: <String>['ComputeExternalVpnGatewayRedundancyType'],
+    nestedTypes: <String>[
+      'ComputeExternalVpnGatewayRedundancyType',
+      'ComputeExternalVpnGatewayInterface',
+      'ComputeExternalVpnGatewayParams',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_external_vpn_gateway`.\n\nRepresents a VPN gateway managed outside of GCP.',
@@ -11585,7 +11611,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_compute_firewall`.\n\nEach network has its own firewall controlling access to and from the\ninstances.\n\nAll traffic to instances, even from other instances, is blocked by the\nfirewall unless firewall rules are created to allow it.\n\nThe default network has automatically created firewall rules that are shown\nin default firewall rules. No manually created network has automatically\ncreated firewall rules except for a default "allow" rule for outgoing\ntraffic and a default "deny" for incoming traffic. For all networks except\nthe default network, you must create any firewall rules you need.\n\nThis resource models a VPC firewall rule.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_firewall.`).\n- `name`: GCP firewall rule name.\n- `network`: VPC network this rule attaches to. Typically\n  `TfArg.ref(vpc.selfLink)` where `vpc` is a `GoogleComputeNetwork`.\n\nChoose exactly one [ComputeFirewallRulePolicy]:\n- [ComputeFirewallAllowPolicy] — permit matching traffic.\n- [ComputeFirewallDenyPolicy] — block matching traffic.\n\nExample:\n```dart\nfinal allowSsh = GoogleComputeFirewall(\n  localName: \'allow_ssh\',\n  name: TfArg.literal(\'allow-ssh\'),\n  network: TfArg.ref(vpc.selfLink),\n  direction: TfArg.literal(FirewallDirection.ingress),\n  priority: TfArg.literal(1000),\n  rulePolicy: ComputeFirewallAllowPolicy(\n    protocol: TfArg.literal(\'tcp\'),\n    ports: [\'22\'],\n  ),\n  sourceRanges: TfArg.literal([\'10.0.0.0/8\']),\n);\n```\n\nComposition pattern: extends `Resource` for runtime behavior. The\n`allow` / `deny` list-typed blocks and the single `log_config` block\nare modeled as helper classes in the `prelude` below.',
+        'Factory wrapper for `google_compute_firewall`.\n\nEach network has its own firewall controlling access to and from the\ninstances.\n\nAll traffic to instances, even from other instances, is blocked by the\nfirewall unless firewall rules are created to allow it.\n\nThe default network has automatically created firewall rules that are shown\nin default firewall rules. No manually created network has automatically\ncreated firewall rules except for a default "allow" rule for outgoing\ntraffic and a default "deny" for incoming traffic. For all networks except\nthe default network, you must create any firewall rules you need.\n\nThis resource models a VPC firewall rule.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_firewall.`).\n- `name`: GCP firewall rule name.\n- `network`: VPC network this rule attaches to. Typically\n  `vpc.ref` where `vpc` is a `GoogleComputeNetwork`.\n\nChoose exactly one [ComputeFirewallRulePolicy]:\n- [ComputeFirewallAllowPolicy] — permit matching traffic.\n- [ComputeFirewallDenyPolicy] — block matching traffic.\n\nExample:\n```dart\nfinal allowSsh = GoogleComputeFirewall(\n  localName: \'allow_ssh\',\n  name: TfArg.literal(\'allow-ssh\'),\n  network: vpc.ref,\n  direction: TfArg.literal(FirewallDirection.ingress),\n  priority: TfArg.literal(1000),\n  rulePolicy: ComputeFirewallAllowPolicy(\n    protocol: TfArg.literal(\'tcp\'),\n    ports: [\'22\'],\n  ),\n  sourceRanges: TfArg.literal([\'10.0.0.0/8\']),\n);\n```\n\nComposition pattern: extends `Resource` for runtime behavior. The\n`allow` / `deny` list-typed blocks and the single `log_config` block\nare modeled as helper classes in the `prelude` below.',
   ),
   CatalogEntry(
     tfType: 'google_compute_firewall_policy',
@@ -11638,7 +11664,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeFirewallPolicyIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_firewall_policy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a hierarchical\nfirewall policy.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeFirewallPolicyIamMember] for additive grants. Deferred\nwith the org-scoped policy (no apply-smoke quickstart).',
@@ -11656,7 +11682,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeFirewallPolicyIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_firewall_policy_iam_member`.\n\nNon-authoritative IAM member on a hierarchical firewall policy.\n\nRequires an org/folder [GoogleComputeFirewallPolicy] parent — deferred\nwith the org-scoped policy (no apply-smoke quickstart).',
@@ -11791,7 +11817,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_compute_forwarding_rule`.\n\nA ForwardingRule resource. A ForwardingRule resource specifies which pool of\ntarget virtual machines to forward a packet to if it matches the given\n[IPAddress, IPProtocol, portRange] tuple.\n\nThe entry point ("frontend") of a GCP **regional** load balancer. A\nregional forwarding rule binds a VIP + port range (or port list) to\neither a regional target proxy (HTTP / HTTPS / TCP / SSL) for L7 /\nproxy-based balancing, or to a `region_backend_service` for L4\npassthrough balancing.\n\nThe typical Regional Internal Application LB (L7 ILB) chain looks like:\n\n```\ngoogle_compute_forwarding_rule              (this resource)\n  → google_compute_region_target_https_proxy\n    → google_compute_region_url_map\n      → google_compute_region_backend_service\n```\n\nThe L4 Internal Network LB chain instead routes traffic directly:\n\n```\ngoogle_compute_forwarding_rule\n  → google_compute_region_backend_service     (via backendService)\n```\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_forwarding_rule.`).\n- `name`: GCP forwarding rule resource name. 1-63 chars, RFC1035.\n\nStrongly recommended:\n- `region`: GCP region the rule lives in. Schema marks the field\n  `Optional + Computed` (provider falls back to the provider\'s default\n  region), but production callers almost always pin it explicitly so\n  the chain composes deterministically with sibling regional targets,\n  subnetworks, and backend services.\n- `target` **or** `backendService` (exactly one):\n  - `target`: self-link of an upstream regional target proxy. Required\n    for proxy / Application Load Balancers. Typical L7 callers pass\n    `TfArg.ref(regionTargetHttpsProxy.selfLink)`.\n  - `backendService`: self-link of a regional backend service.\n    Required for **Internal TCP/UDP Load Balancing** and Network Load\n    Balancing; **must be omitted** for all other LB types. Wave 6\n    focuses on the L7 path, so the dominant production pattern is\n    `target`-only.\n- `loadBalancingScheme`: the dominant production setting for Regional\n  Internal Application Load Balancers is\n  [ForwardingRuleLoadBalancingScheme.internalManaged]. The legacy\n  `EXTERNAL` value (default when unset) targets the older Regional\n  external passthrough / proxy NLB family. `INTERNAL` is the L4 ILB\n  passthrough scheme. `EXTERNAL_MANAGED` is the modern Regional\n  external Application Load Balancer.\n- `ipAddress`: self-link or literal IP of a reserved\n  [GoogleComputeAddress] (the regional sibling of\n  [GoogleComputeGlobalAddress]). When omitted GCP allocates an\n  ephemeral IP — surprising in CI, set explicitly for stable VIPs.\n- `portRange`: a single port (e.g. `\'443\'`) or a range (e.g.\n  `\'80-443\'`). Required for proxy / Application LBs.\n\nFor Internal forwarding rules (`loadBalancingScheme: INTERNAL` or\n`INTERNAL_MANAGED`):\n- `network`: self-link of the VPC the rule\'s VIP belongs to.\n- `subnetwork`: self-link of the subnet the VIP is allocated from.\nBoth are required by the API for internal schemes; the schema marks\nthem `Optional + Computed` only because external rules omit them.\n\nMutual exclusivity:\n- `target` vs `backendService`: exactly one. Setting both is rejected\n  at apply time.\n- `portRange`, `ports`, `allPorts`: pairwise mutually exclusive. Pick\n  one. Application LBs use `portRange`. L4 internal passthrough LBs\n  typically use `ports` (a discrete list, up to 5) or `allPorts`.\n\n`networkTier` accepts both `PREMIUM` and `STANDARD` for regional\nrules (unlike global rules, which only accept `PREMIUM`). When\n`ipAddress` is set, the network tier must match the address\'s tier.\nLeave `null` for the provider default (`PREMIUM`).\n\n[ipAddressRef] is the output reference to `ip_address` — populated\nwith the actual VIP after apply. Useful when [ipAddress] was left\nunset and GCP allocated an ephemeral IP, or when downstream DNS\nrecords need the resolved address. (`ip_address` is\n`optional + computed`; the derive gate skips it, so [ipAddressRef]\nis the sole reference accessor.)\n\n[pscConnectionId] is populated only for Private Service Connect\nconsumer forwarding rules; empty otherwise. [pscConnectionStatus]\nvalues: `STATUS_UNSPECIFIED` / `PENDING` / `ACCEPTED` / `REJECTED` /\n`CLOSED`. [baseForwardingRule] is set when this rule has\n`source_ip_ranges` and shares an `[ip, protocol, port]` tuple with a\nsibling rule without source ranges. [serviceName] is the internal\nfully qualified service name; populated only for `INTERNAL` load\nbalancing rules that set [serviceLabel].\n\nExample (Regional Internal Application LB frontend):\n```dart\nfinal ilbFwd = GoogleComputeForwardingRule(\n  localName: \'ilb\',\n  name: TfArg.literal(\'ilb-https-frontend\'),\n  region: TfArg.literal(\'us-central1\'),\n  target: TfArg.ref(regionTargetHttpsProxy.selfLink),\n  network: TfArg.ref(vpc.selfLink),\n  subnetwork: TfArg.ref(ilbSubnet.selfLink),\n  ipAddress: TfArg.ref(ilbVip.selfLink),\n  ipProtocol: TfArg.literal(ForwardingRuleIpProtocol.tcp),\n  portRange: TfArg.literal(\'443\'),\n  loadBalancingScheme:\n      TfArg.literal(ForwardingRuleLoadBalancingScheme.internalManaged),\n);\n```\n\nComposition pattern: extends `Resource`\nfor runtime behavior.',
+        'Factory wrapper for `google_compute_forwarding_rule`.\n\nA ForwardingRule resource. A ForwardingRule resource specifies which pool of\ntarget virtual machines to forward a packet to if it matches the given\n[IPAddress, IPProtocol, portRange] tuple.\n\nThe entry point ("frontend") of a GCP **regional** load balancer. A\nregional forwarding rule binds a VIP + port range (or port list) to\neither a regional target proxy (HTTP / HTTPS / TCP / SSL) for L7 /\nproxy-based balancing, or to a `region_backend_service` for L4\npassthrough balancing.\n\nThe typical Regional Internal Application LB (L7 ILB) chain looks like:\n\n```\ngoogle_compute_forwarding_rule              (this resource)\n  → google_compute_region_target_https_proxy\n    → google_compute_region_url_map\n      → google_compute_region_backend_service\n```\n\nThe L4 Internal Network LB chain instead routes traffic directly:\n\n```\ngoogle_compute_forwarding_rule\n  → google_compute_region_backend_service     (via backendService)\n```\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_forwarding_rule.`).\n- `name`: GCP forwarding rule resource name. 1-63 chars, RFC1035.\n\nStrongly recommended:\n- `region`: GCP region the rule lives in. Schema marks the field\n  `Optional + Computed` (provider falls back to the provider\'s default\n  region), but production callers almost always pin it explicitly so\n  the chain composes deterministically with sibling regional targets,\n  subnetworks, and backend services.\n- `target` **or** `backendService` (exactly one):\n  - `target`: self-link of an upstream regional target proxy. Required\n    for proxy / Application Load Balancers. Typical L7 callers pass\n    `TfArg.ref(regionTargetHttpsProxy.selfLink)`.\n  - `backendService`: self-link of a regional backend service.\n    Required for **Internal TCP/UDP Load Balancing** and Network Load\n    Balancing; **must be omitted** for all other LB types. Wave 6\n    focuses on the L7 path, so the dominant production pattern is\n    `target`-only.\n- `loadBalancingScheme`: the dominant production setting for Regional\n  Internal Application Load Balancers is\n  [ForwardingRuleLoadBalancingScheme.internalManaged]. The legacy\n  `EXTERNAL` value (default when unset) targets the older Regional\n  external passthrough / proxy NLB family. `INTERNAL` is the L4 ILB\n  passthrough scheme. `EXTERNAL_MANAGED` is the modern Regional\n  external Application Load Balancer.\n- `ipAddress`: self-link or literal IP of a reserved\n  [GoogleComputeAddress] (the regional sibling of\n  [GoogleComputeGlobalAddress]). When omitted GCP allocates an\n  ephemeral IP — surprising in CI, set explicitly for stable VIPs.\n- `portRange`: a single port (e.g. `\'443\'`) or a range (e.g.\n  `\'80-443\'`). Required for proxy / Application LBs.\n\nFor Internal forwarding rules (`loadBalancingScheme: INTERNAL` or\n`INTERNAL_MANAGED`):\n- `network`: self-link of the VPC the rule\'s VIP belongs to.\n- `subnetwork`: self-link of the subnet the VIP is allocated from.\nBoth are required by the API for internal schemes; the schema marks\nthem `Optional + Computed` only because external rules omit them.\n\nMutual exclusivity:\n- `target` vs `backendService`: exactly one. Setting both is rejected\n  at apply time.\n- `portRange`, `ports`, `allPorts`: pairwise mutually exclusive. Pick\n  one. Application LBs use `portRange`. L4 internal passthrough LBs\n  typically use `ports` (a discrete list, up to 5) or `allPorts`.\n\n`networkTier` accepts both `PREMIUM` and `STANDARD` for regional\nrules (unlike global rules, which only accept `PREMIUM`). When\n`ipAddress` is set, the network tier must match the address\'s tier.\nLeave `null` for the provider default (`PREMIUM`).\n\n[ipAddressRef] is the output reference to `ip_address` — populated\nwith the actual VIP after apply. Useful when [ipAddress] was left\nunset and GCP allocated an ephemeral IP, or when downstream DNS\nrecords need the resolved address. (`ip_address` is\n`optional + computed`; the derive gate skips it, so [ipAddressRef]\nis the sole reference accessor.)\n\n[pscConnectionId] is populated only for Private Service Connect\nconsumer forwarding rules; empty otherwise. [pscConnectionStatus]\nvalues: `STATUS_UNSPECIFIED` / `PENDING` / `ACCEPTED` / `REJECTED` /\n`CLOSED`. [baseForwardingRule] is set when this rule has\n`source_ip_ranges` and shares an `[ip, protocol, port]` tuple with a\nsibling rule without source ranges. [serviceName] is the internal\nfully qualified service name; populated only for `INTERNAL` load\nbalancing rules that set [serviceLabel].\n\nExample (Regional Internal Application LB frontend):\n```dart\nfinal ilbFwd = GoogleComputeForwardingRule(\n  localName: \'ilb\',\n  name: TfArg.literal(\'ilb-https-frontend\'),\n  region: TfArg.literal(\'us-central1\'),\n  target: TfArg.ref(regionTargetHttpsProxy.selfLink),\n  network: vpc.ref,\n  subnetwork: ilbSubnet.ref,\n  ipAddress: TfArg.ref(ilbVip.selfLink),\n  ipProtocol: TfArg.literal(ForwardingRuleIpProtocol.tcp),\n  portRange: TfArg.literal(\'443\'),\n  loadBalancingScheme:\n      TfArg.literal(ForwardingRuleLoadBalancingScheme.internalManaged),\n);\n```\n\nComposition pattern: extends `Resource`\nfor runtime behavior.',
   ),
   CatalogEntry(
     tfType: 'google_compute_forwarding_rule',
@@ -11843,7 +11869,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_compute_global_address`.\n\nRepresents a Global Address resource. Global addresses are used for HTTP(S)\nload balancing.\n\nReserves a global (regionless) IP range. Two complementary use cases:\n\n1. **HTTP(S) LB VIP** — `addressType: GlobalAddressType.external`,\n   `purpose` unset. Allocates a single anycast IPv4 (or IPv6) routed\n   across Google\'s edge.\n2. **Private-services peering range** — `addressType: internal`,\n   `purpose: GlobalAddressPurpose.vpcPeering`, `network` pointing at a\n   [GoogleComputeNetwork]. Reserves an internal CIDR that\n   [GoogleServiceNetworkingConnection] peers with Google\'s service\n   producer VPC (Cloud SQL private IP, Memorystore, etc.).\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_global_address.`).\n- `name`: GCP-internal address resource name. Forces replacement when\n  changed.\n\nExample (Cloud SQL private-IP peering range): see also\n[GoogleServiceNetworkingConnection].\n```dart\nfinal psaRange = GoogleComputeGlobalAddress(\n  localName: \'psa_range\',\n  name: TfArg.literal(\'cloudsql-psa-range\'),\n  addressType: TfArg.literal(GlobalAddressType.internal),\n  purpose: TfArg.literal(GlobalAddressPurpose.vpcPeering),\n  prefixLength: TfArg.literal(16),\n  network: TfArg.ref(vpc.selfLink),\n);\n```\n\nExample (external LB VIP):\n```dart\nfinal lbVip = GoogleComputeGlobalAddress(\n  localName: \'lb_vip\',\n  name: TfArg.literal(\'global-lb-vip\'),\n  addressType: TfArg.literal(GlobalAddressType.external),\n  ipVersion: TfArg.literal(GlobalAddressIpVersion.ipv4),\n);\n```',
+        'Factory wrapper for `google_compute_global_address`.\n\nRepresents a Global Address resource. Global addresses are used for HTTP(S)\nload balancing.\n\nReserves a global (regionless) IP range. Two complementary use cases:\n\n1. **HTTP(S) LB VIP** — `addressType: GlobalAddressType.external`,\n   `purpose` unset. Allocates a single anycast IPv4 (or IPv6) routed\n   across Google\'s edge.\n2. **Private-services peering range** — `addressType: internal`,\n   `purpose: GlobalAddressPurpose.vpcPeering`, `network` pointing at a\n   [GoogleComputeNetwork]. Reserves an internal CIDR that\n   [GoogleServiceNetworkingConnection] peers with Google\'s service\n   producer VPC (Cloud SQL private IP, Memorystore, etc.).\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_global_address.`).\n- `name`: GCP-internal address resource name. Forces replacement when\n  changed.\n\nExample (Cloud SQL private-IP peering range): see also\n[GoogleServiceNetworkingConnection].\n```dart\nfinal psaRange = GoogleComputeGlobalAddress(\n  localName: \'psa_range\',\n  name: TfArg.literal(\'cloudsql-psa-range\'),\n  addressType: TfArg.literal(GlobalAddressType.internal),\n  purpose: TfArg.literal(GlobalAddressPurpose.vpcPeering),\n  prefixLength: TfArg.literal(16),\n  network: vpc.ref,\n);\n```\n\nExample (external LB VIP):\n```dart\nfinal lbVip = GoogleComputeGlobalAddress(\n  localName: \'lb_vip\',\n  name: TfArg.literal(\'global-lb-vip\'),\n  addressType: TfArg.literal(GlobalAddressType.external),\n  ipVersion: TfArg.literal(GlobalAddressIpVersion.ipv4),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_compute_global_address',
@@ -11997,12 +12023,16 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'gatewayIpVersion',
       'stackType',
       'labels',
+      'params',
+      'vpnInterfaces',
       'deletionPolicy',
       'project',
     ],
     nestedTypes: <String>[
       'ComputeHaVpnGatewayGatewayIpVersion',
       'ComputeHaVpnGatewayStackType',
+      'ComputeHaVpnGatewayParams',
+      'ComputeHaVpnGatewayVpnInterfaces',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -12197,7 +12227,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeImageIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_image_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Compute Engine image.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleComputeImageIamMember] for additive grants.',
@@ -12216,7 +12246,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeImageIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_compute_image_iam_member`.',
   ),
@@ -12472,7 +12502,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeInstanceGroupNamedPort'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_instance_group`.\n\nRepresents an Instance Group resource. Instance groups are self-managed and\ncan contain identical or different instances. Instance groups do not use an\ninstance template. Unlike managed instance groups, you must create and add\ninstances to an instance group manually.\n\nAn **unmanaged** zonal instance group. Members are attached explicitly\n(via [instances] or `google_compute_instance_group_membership`); the\ngroup does not recreate VMs. For managed fleets use\n`google_compute_instance_group_manager`.\n\nRequired:\n- [name]: group name.\n- Prefer setting [network] (or rely on the first instance\'s network)\n  and [zone] explicitly for cross-resource composition.',
@@ -12654,7 +12684,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeInstanceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_instance_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Compute Engine\ninstance.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeInstanceIamMember] for additive grants.',
@@ -12674,7 +12704,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeInstanceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_compute_instance_iam_member`.',
   ),
@@ -12858,7 +12888,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeInstanceTemplateIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_instance_template_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Compute Engine instance template.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleComputeInstanceTemplateIamMember] for additive grants.',
@@ -12878,7 +12908,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeInstanceTemplateIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_instance_template_iam_member`.',
@@ -12921,11 +12951,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'sourceDisk',
       'description',
       'labels',
+      'params',
       'deletionPolicy',
       'zone',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeInstantSnapshotParams'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_instant_snapshot`.\n\nRepresents an instant snapshot resource.\n\nAn instant snapshot is an in-place backup of a disk that can be used to\nrapidly create a new disk in minutes.\n\nInstant snapshots capture data at a specific point in time. They are\noptimized for rapidly restoring captured data to a new disk. Use instant\nsnapshots to quickly recover data in cases where the zone and disk are still\nintact but the data on the disk has been lost or corrupted',
@@ -12946,7 +12977,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeInstantSnapshotIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_instant_snapshot_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Compute Engine instant snapshot.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleComputeInstantSnapshotIamMember] for additive grants.',
@@ -12967,7 +12998,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeInstantSnapshotIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_instant_snapshot_iam_member`.',
@@ -13025,6 +13056,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'remoteLocation',
       'requestedFeatures',
       'labels',
+      'macsec',
+      'params',
       'deletionPolicy',
       'project',
     ],
@@ -13033,6 +13066,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeInterconnectLinkType',
       'ComputeInterconnectOperationalStatus',
       'ComputeInterconnectState',
+      'ComputeInterconnectMacsec',
+      'ComputeInterconnectMacsecPreSharedKeys',
+      'ComputeInterconnectParams',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -13352,7 +13388,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['NetworkEndpointGroupType'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_compute_network_endpoint_group`.\n\nNetwork endpoint groups (NEGs) are zonal resources that represent\ncollections of IP address and port combinations for GCP resources within a\nsingle subnet. Each IP address and port combination is called a network\nendpoint.\n\nNetwork endpoint groups can be used as backends in backend services for\nHTTP(S), TCP proxy, and SSL proxy load balancers. You cannot use NEGs as a\nbackend with internal load balancers. Because NEG backends allow you to\nspecify IP addresses and ports, you can distribute traffic in a granular\nfashion among applications or containers running within VM instances.\n\nRecreating a network endpoint group that\'s in use by another resource will\ngive a `resourceInUseByAnotherResource` error. Use\n`lifecycle.create_before_destroy` to avoid this type of error.\n\nDominant L7 LB pattern: zonal VM-IP+port endpoints in a single subnet,\nattached to a backend service. For internet-fronted (hybrid) endpoints\nwith no GCP backing VM, see `GoogleComputeGlobalNetworkEndpointGroup`.\nFor regional Serverless / PSC NEGs, see\n`GoogleComputeRegionNetworkEndpointGroup`.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: GCP-internal NEG resource name. Must comply with RFC1035.\n- `zone`: the zone the NEG (and its member endpoints) lives in.\n- `network`: self-link of the VPC the endpoints belong to. Pass\n  `TfArg.ref(vpc.selfLink)`.\n\nWhen renaming or recreating an in-use NEG, detaching it from the backend\nservice first avoids the `create_before_destroy` cascade to dependents.\n\nExample (zonal VM-IP+port NEG fronting a regional internal L7 LB):\n```dart\nfinal neg = GoogleComputeNetworkEndpointGroup(\n  localName: \'app_neg\',\n  name: TfArg.literal(\'app-neg-usc1a\'),\n  zone: TfArg.literal(\'us-central1-a\'),\n  network: TfArg.ref(vpc.selfLink),\n  subnetwork: TfArg.ref(subnet.selfLink),\n  networkEndpointType:\n      TfArg.literal(NetworkEndpointGroupType.gceVmIpPort),\n  defaultPort: TfArg.literal(8080),\n);\n```',
+        'Factory wrapper for `google_compute_network_endpoint_group`.\n\nNetwork endpoint groups (NEGs) are zonal resources that represent\ncollections of IP address and port combinations for GCP resources within a\nsingle subnet. Each IP address and port combination is called a network\nendpoint.\n\nNetwork endpoint groups can be used as backends in backend services for\nHTTP(S), TCP proxy, and SSL proxy load balancers. You cannot use NEGs as a\nbackend with internal load balancers. Because NEG backends allow you to\nspecify IP addresses and ports, you can distribute traffic in a granular\nfashion among applications or containers running within VM instances.\n\nRecreating a network endpoint group that\'s in use by another resource will\ngive a `resourceInUseByAnotherResource` error. Use\n`lifecycle.create_before_destroy` to avoid this type of error.\n\nDominant L7 LB pattern: zonal VM-IP+port endpoints in a single subnet,\nattached to a backend service. For internet-fronted (hybrid) endpoints\nwith no GCP backing VM, see `GoogleComputeGlobalNetworkEndpointGroup`.\nFor regional Serverless / PSC NEGs, see\n`GoogleComputeRegionNetworkEndpointGroup`.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: GCP-internal NEG resource name. Must comply with RFC1035.\n- `zone`: the zone the NEG (and its member endpoints) lives in.\n- `network`: the VPC the endpoints belong to. Pass `vpc.ref`.\n\nWhen renaming or recreating an in-use NEG, detaching it from the backend\nservice first avoids the `create_before_destroy` cascade to dependents.\n\nExample (zonal VM-IP+port NEG fronting a regional internal L7 LB):\n```dart\nfinal neg = GoogleComputeNetworkEndpointGroup(\n  localName: \'app_neg\',\n  name: TfArg.literal(\'app-neg-usc1a\'),\n  zone: TfArg.literal(\'us-central1-a\'),\n  network: vpc.ref,\n  subnetwork: subnet.ref,\n  networkEndpointType:\n      TfArg.literal(NetworkEndpointGroupType.gceVmIpPort),\n  defaultPort: TfArg.literal(8080),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_compute_network_endpoint_group',
@@ -13456,7 +13492,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeNetworkFirewallPolicyIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_network_firewall_policy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a global network\nfirewall policy.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeNetworkFirewallPolicyIamMember] for additive grants.',
@@ -13473,9 +13509,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'name',
       'role',
       'member',
+      'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeNetworkFirewallPolicyIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_network_firewall_policy_iam_member`.',
@@ -14264,7 +14301,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeRegionDiskIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_disk_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Compute Engine regional disk.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleComputeRegionDiskIamMember] for additive grants.',
@@ -14284,7 +14321,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeRegionDiskIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_compute_region_disk_iam_member`.',
   ),
@@ -14651,7 +14688,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeRegionInstantSnapshotIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_instant_snapshot_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a regional instant\nsnapshot.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeRegionInstantSnapshotIamMember] for additive grants.',
@@ -14672,7 +14709,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeRegionInstantSnapshotIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_instant_snapshot_iam_member`.',
@@ -14840,7 +14877,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ComputeRegionNetworkFirewallPolicyIamBindingCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_network_firewall_policy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a regional network\nfirewall policy.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeRegionNetworkFirewallPolicyIamMember] for additive grants.',
@@ -14858,9 +14897,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'role',
       'member',
       'region',
+      'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ComputeRegionNetworkFirewallPolicyIamMemberCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_network_firewall_policy_iam_member`.',
@@ -16182,7 +16224,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeSnapshotIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_snapshot_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Compute Engine snapshot.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleComputeSnapshotIamMember] for additive grants.',
@@ -16201,7 +16243,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeSnapshotIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_compute_snapshot_iam_member`.',
   ),
@@ -16373,7 +16415,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeStoragePoolIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_storage_pool_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Compute Engine storage pool.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleComputeStoragePoolIamMember] for additive grants.',
@@ -16393,7 +16435,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeStoragePoolIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_compute_storage_pool_iam_member`.',
   ),
@@ -16487,7 +16529,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_compute_subnetwork`.\n\nA VPC network is a virtual version of the traditional physical networks that\nexist within and between physical data centers. A VPC network provides\nconnectivity for your Compute Engine virtual machine (VM) instances,\nContainer Engine containers, App Engine Flex services, and other\nnetwork-related resources.\n\nEach GCP project contains one or more VPC networks. Each VPC network is a\nglobal entity spanning all GCP regions. This global VPC network allows VM\ninstances and other resources to communicate with each other via internal,\nprivate IP addresses.\n\nEach VPC network is subdivided into subnets, and each subnet is contained\nwithin a single region. You can have more than one subnet in a region for a\ngiven VPC network. Each subnet has a contiguous private RFC1918 IP space.\nYou create instances, containers, and the like in these subnets. When you\ncreate an instance, you must create it in a subnet, and the instance draws\nits internal IP address from that subnet.\n\nVirtual machine (VM) instances in a VPC network can communicate with\ninstances in all other subnets of the same VPC network, regardless of\nregion, using their RFC1918 private IP addresses. You can isolate portions\nof the network, even entire subnets, using firewall rules.\n\nThis resource models a regional subnetwork within a VPC.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: GCP subnetwork name. Pass `TfArg.literal(\'main-subnet\')` or\n  `TfArg.ref(otherSubnet.nameRef)`.\n- `network`: full self-link of the parent VPC. Pass\n  `TfArg.ref(vpc.selfLink)` so the value resolves to\n  `\${google_compute_network.<localName>.self_link}`.\n\nSecondary ranges ([secondaryIpRange]) define alias IP ranges consumed by\nGKE pods/services. Flow logs are configured via [logConfig]; not supported\nwhen `purpose` is `REGIONAL_MANAGED_PROXY` or `GLOBAL_MANAGED_PROXY`.\nEnable `privateIpGoogleAccess` to allow VMs without external IPs to reach\nGoogle APIs.\n\nExample:\n```dart\nfinal vpc = GoogleComputeNetwork(\n  localName: \'main\',\n  name: TfArg.literal(\'main-vpc\'),\n  autoCreateSubnetworks: TfArg.literal(false),\n);\nfinal subnet = GoogleComputeSubnetwork(\n  localName: \'main_subnet\',\n  name: TfArg.literal(\'main-subnet\'),\n  region: TfArg.literal(\'us-central1\'),\n  network: TfArg.ref(vpc.selfLink),\n  ipCidrRange: TfArg.literal(\'10.0.0.0/16\'),\n  privateIpGoogleAccess: TfArg.literal(true),\n);\n```',
+        'Factory wrapper for `google_compute_subnetwork`.\n\nA VPC network is a virtual version of the traditional physical networks that\nexist within and between physical data centers. A VPC network provides\nconnectivity for your Compute Engine virtual machine (VM) instances,\nContainer Engine containers, App Engine Flex services, and other\nnetwork-related resources.\n\nEach GCP project contains one or more VPC networks. Each VPC network is a\nglobal entity spanning all GCP regions. This global VPC network allows VM\ninstances and other resources to communicate with each other via internal,\nprivate IP addresses.\n\nEach VPC network is subdivided into subnets, and each subnet is contained\nwithin a single region. You can have more than one subnet in a region for a\ngiven VPC network. Each subnet has a contiguous private RFC1918 IP space.\nYou create instances, containers, and the like in these subnets. When you\ncreate an instance, you must create it in a subnet, and the instance draws\nits internal IP address from that subnet.\n\nVirtual machine (VM) instances in a VPC network can communicate with\ninstances in all other subnets of the same VPC network, regardless of\nregion, using their RFC1918 private IP addresses. You can isolate portions\nof the network, even entire subnets, using firewall rules.\n\nThis resource models a regional subnetwork within a VPC.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: GCP subnetwork name. Pass `TfArg.literal(\'main-subnet\')` or\n  `TfArg.ref(otherSubnet.nameRef)`.\n- `network`: the parent VPC. Pass `vpc.ref` so the value resolves to\n  `\${google_compute_network.<localName>.id}`.\n\nSecondary ranges ([secondaryIpRange]) define alias IP ranges consumed by\nGKE pods/services. Flow logs are configured via [logConfig]; not supported\nwhen `purpose` is `REGIONAL_MANAGED_PROXY` or `GLOBAL_MANAGED_PROXY`.\nEnable `privateIpGoogleAccess` to allow VMs without external IPs to reach\nGoogle APIs.\n\nExample:\n```dart\nfinal vpc = GoogleComputeNetwork(\n  localName: \'main\',\n  name: TfArg.literal(\'main-vpc\'),\n  autoCreateSubnetworks: TfArg.literal(false),\n);\nfinal subnet = GoogleComputeSubnetwork(\n  localName: \'main_subnet\',\n  name: TfArg.literal(\'main-subnet\'),\n  region: TfArg.literal(\'us-central1\'),\n  network: vpc.ref,\n  ipCidrRange: TfArg.literal(\'10.0.0.0/16\'),\n  privateIpGoogleAccess: TfArg.literal(true),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_compute_subnetwork',
@@ -16522,7 +16564,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeSubnetworkIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_subnetwork_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Compute Engine\nsubnetwork.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeSubnetworkIamMember] for additive grants.',
@@ -16542,7 +16584,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeSubnetworkIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_compute_subnetwork_iam_member`.',
   ),
@@ -16946,10 +16988,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'network',
       'region',
       'description',
+      'params',
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ComputeVpnGatewayParams'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_vpn_gateway`.\n\nRepresents a VPN gateway running in GCP. This virtual device is managed by\nGoogle, but used only by you.',
@@ -16990,6 +17033,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'localTrafficSelector',
       'remoteTrafficSelector',
       'labels',
+      'cipherSuite',
+      'params',
       'deletionPolicy',
       'project',
     ],
@@ -17000,6 +17045,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeVpnTunnelPeer',
       'ComputeVpnTunnelPeerExternalGateway',
       'ComputeVpnTunnelPeerGcpGateway',
+      'ComputeVpnTunnelCipherSuite',
+      'ComputeVpnTunnelCipherSuitePhase1',
+      'ComputeVpnTunnelCipherSuitePhase2',
+      'ComputeVpnTunnelParams',
     ],
     sensitiveFields: <String>['shared_secret'],
     docComment:
@@ -17043,9 +17092,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'extensionPolicies',
       'description',
+      'instanceSelectors',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ComputeZoneVmExtensionPolicyExtensionPolicies',
+      'ComputeZoneVmExtensionPolicyInstanceSelectors',
+      'ComputeZoneVmExtensionPolicyInstanceSelectorsLabelSelector',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_zone_vm_extension_policy`.',
@@ -17088,15 +17142,16 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'ConfigDeploymentDeletionPolicy',
       'ConfigDeploymentQuotaValidation',
-      'ConfigDeploymentInputValue',
-      'ConfigDeploymentBlueprintSource',
-      'ConfigDeploymentBlueprintFromGcs',
-      'ConfigDeploymentBlueprintFromGit',
       'ConfigDeploymentTerraformBlueprint',
+      'ConfigDeploymentTerraformBlueprintSource',
+      'ConfigDeploymentTerraformBlueprintSourceGcsSource',
+      'ConfigDeploymentTerraformBlueprintSourceGitSource',
+      'ConfigDeploymentTerraformBlueprintGitSource',
+      'ConfigDeploymentTerraformBlueprintInputValues',
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_config_deployment`.\n\nA group of Google Cloud resources described by a Terraform blueprint.\n\nInfrastructure Manager deployment — actuates a Terraform blueprint from\nGCS or a public Git repository using a dedicated service account.\n\nEnable `config.googleapis.com` via [GoogleProjectService] before apply.\nThe actuation service account needs `roles/config.agent` (and any roles\nrequired by resources in the blueprint).\n\nExample (Git blueprint):\n```dart\nGoogleConfigDeployment(\n  localName: \'vpc\',\n  name: TfArg.literal(\'my-vpc-deployment\'),\n  location: TfArg.literal(\'us-central1\'),\n  serviceAccount: TfArg.literal(\n    \'projects/my-project/serviceAccounts/im-sa@my-project.iam.gserviceaccount.com\',\n  ),\n  terraformBlueprint: ConfigDeploymentTerraformBlueprint(\n    source: ConfigDeploymentBlueprintFromGit(\n      repo: TfArg.literal(\n        \'https://github.com/terraform-google-modules/terraform-google-network\',\n      ),\n      directory: TfArg.literal(\'modules/vpc\'),\n      ref: TfArg.literal(\'main\'),\n    ),\n    inputValues: [\n      ConfigDeploymentInputValue(\n        variableName: TfArg.literal(\'project_id\'),\n        inputValue: TfArg.literal(\'"my-project"\'),\n      ),\n    ],\n  ),\n);\n```',
+        'Factory wrapper for `google_config_deployment`.\n\nA group of Google Cloud resources described by a Terraform blueprint.\n\nInfrastructure Manager deployment — actuates a Terraform blueprint from\nGCS or a public Git repository using a dedicated service account.\n\nEnable `config.googleapis.com` via [GoogleProjectService] before apply.\nThe actuation service account needs `roles/config.agent` (and any roles\nrequired by resources in the blueprint).\n\nExample (Git blueprint):\n```dart\nGoogleConfigDeployment(\n  localName: \'vpc\',\n  name: TfArg.literal(\'my-vpc-deployment\'),\n  location: TfArg.literal(\'us-central1\'),\n  serviceAccount: TfArg.literal(\n    \'projects/my-project/serviceAccounts/im-sa@my-project.iam.gserviceaccount.com\',\n  ),\n  terraformBlueprint: ConfigDeploymentTerraformBlueprint(\n    source: .gitSource(\n      ConfigDeploymentTerraformBlueprintGitSource(\n        repo: .literal(\n          \'https://github.com/terraform-google-modules/terraform-google-network\',\n        ),\n        directory: .literal(\'modules/vpc\'),\n        ref: .literal(\'main\'),\n      ),\n    ),\n    inputValues: [\n      ConfigDeploymentTerraformBlueprintInputValues(\n        variableName: .literal(\'project_id\'),\n        inputValue: .literal(\'"my-project"\'),\n      ),\n    ],\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_contact_center_insights_analysis_rule',
@@ -17188,7 +17243,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_contact_center_insights_encryption_spec`.\n\nInitializes a location-level encryption key specification.\n\nLocation-level CMEK for Contact Center AI Insights.\n\nEnable `contactcenterinsights.googleapis.com` via [GoogleProjectService]\nbefore apply. The [kmsKey] must live in the same region as [location].\n\nExample:\n```dart\nGoogleContactCenterInsightsEncryptionSpec(\n  localName: \'insights_cmek\',\n  location: TfArg.literal(\'asia-northeast1\'),\n  kmsKey: TfArg.ref(paymentsKey.id),\n);\n```',
+        'Factory wrapper for `google_contact_center_insights_encryption_spec`.\n\nInitializes a location-level encryption key specification.\n\nLocation-level CMEK for Contact Center AI Insights.\n\nEnable `contactcenterinsights.googleapis.com` via [GoogleProjectService]\nbefore apply. The [kmsKey] must live in the same region as [location].\n\nExample:\n```dart\nGoogleContactCenterInsightsEncryptionSpec(\n  localName: \'insights_cmek\',\n  location: TfArg.literal(\'asia-northeast1\'),\n  kmsKey: paymentsKey.ref,\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_contact_center_insights_qa_question',
@@ -18005,7 +18060,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>['master_auth.client_key'],
     docComment:
-        'Factory wrapper for `google_container_cluster`.\n\nContainer Cluster\n\nExample (GKE Standard on an existing VPC / subnetwork):\n```dart\nfinal cluster = GoogleContainerCluster(\n  localName: \'main\',\n  name: TfArg.literal(\'main-gke\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  initialNodeCount: TfArg.literal(1),\n  removeDefaultNodePool: TfArg.literal(true),\n  network: TfArg.ref(vpc.nameRef),\n  subnetwork: TfArg.ref(subnet.nameRef),\n);\n```\n\nPair with [GoogleContainerNodePool] when `removeDefaultNodePool` is\ntrue — the default pool is deleted after cluster creation.',
+        'Factory wrapper for `google_container_cluster`.\n\nContainer Cluster\n\nExample (GKE Standard on an existing VPC / subnetwork):\n```dart\nfinal cluster = GoogleContainerCluster(\n  localName: \'main\',\n  name: TfArg.literal(\'main-gke\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  initialNodeCount: TfArg.literal(1),\n  removeDefaultNodePool: TfArg.literal(true),\n  network: vpc.ref,\n  subnetwork: subnet.ref,\n);\n```\n\nPair with [GoogleContainerNodePool] when `removeDefaultNodePool` is\ntrue — the default pool is deleted after cluster creation.',
   ),
   CatalogEntry(
     tfType: 'google_container_cluster',
@@ -18248,7 +18303,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataCatalogEntryGroupIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_data_catalog_entry_group_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Data Catalog entry\ngroup.\n\nReplaces the entire member list for that role on the entry group. Prefer\n[GoogleDataCatalogEntryGroupIamMember] when adding one principal without\ntouching existing bindings.',
@@ -18269,7 +18324,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataCatalogEntryGroupIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_data_catalog_entry_group_iam_member`.\n\nAdditive IAM grant on a [GoogleDataCatalogEntryGroup]. Prefer this over\nbinding/policy when adding one (`role`, `member`) tuple.',
@@ -18339,7 +18394,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataCatalogPolicyTagIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_data_catalog_policy_tag_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Data Catalog policy tag.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleDataCatalogPolicyTagIamMember] for additive grants.',
@@ -18357,7 +18412,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataCatalogPolicyTagIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_data_catalog_policy_tag_iam_member`.',
@@ -18457,7 +18512,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataCatalogTagTemplateIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_data_catalog_tag_template_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Data Catalog tag template.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleDataCatalogTagTemplateIamMember] for additive grants.',
@@ -18478,7 +18533,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataCatalogTagTemplateIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_data_catalog_tag_template_iam_member`.',
@@ -18572,7 +18627,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataCatalogTaxonomyIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_data_catalog_taxonomy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Data Catalog taxonomy.\n\nReplaces the entire member list for that role on the taxonomy. Prefer\n[GoogleDataCatalogTaxonomyIamMember] when adding one principal without\ntouching existing bindings.',
@@ -18592,7 +18647,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataCatalogTaxonomyIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_data_catalog_taxonomy_iam_member`.\n\nAdditive IAM grant on a [GoogleDataCatalogTaxonomy]. Prefer this over\nbinding/policy when adding one (`role`, `member`) tuple.',
@@ -18694,7 +18749,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataFusionInstanceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_data_fusion_instance_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Data Fusion instance.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleDataFusionInstanceIamMember] for additive grants.',
@@ -18714,7 +18769,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataFusionInstanceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_data_fusion_instance_iam_member`.',
   ),
@@ -19761,7 +19816,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataformRepositoryIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataform_repository_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataform repository.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleDataformRepositoryIamMember] for\nadditive grants.',
@@ -19781,7 +19836,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataformRepositoryIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataform_repository_iam_member`.\n\nAdditive IAM grant of one `role` to one `member` on a Dataform\nrepository.\n\nLeaves grants made outside Terraform in place — prefer this over\n[GoogleDataformRepositoryIamBinding] and\n[GoogleDataformRepositoryIamPolicy] unless you need authoritative\nupdates.',
@@ -19871,7 +19926,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexAspectTypeIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_aspect_type_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataplex aspect type.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataplexAspectTypeIamMember] for additive grants.',
@@ -19891,7 +19946,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexAspectTypeIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_dataplex_aspect_type_iam_member`.',
   ),
@@ -19978,7 +20033,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexAssetIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_asset_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataplex asset.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataplexAssetIamMember] for additive grants.',
@@ -20000,7 +20055,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexAssetIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_dataplex_asset_iam_member`.',
   ),
@@ -20088,7 +20143,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexDataProductDataAssetAccessGroupConfigs'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_data_product_data_asset`.\n\nA data asset resource that can be packaged and shared via a data product.',
@@ -20108,7 +20163,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexDataProductIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_data_product_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataplex data product.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataplexDataProductIamMember] for additive grants.',
@@ -20128,7 +20183,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexDataProductIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_data_product_iam_member`.',
@@ -20251,7 +20306,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexDatascanIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_datascan_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataplex data scan.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataplexDatascanIamMember] for additive grants.',
@@ -20271,7 +20326,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexDatascanIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_dataplex_datascan_iam_member`.',
   ),
@@ -20329,7 +20384,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataplexEntryAspects',
+      'DataplexEntryAspectsAspect',
+      'DataplexEntryEntrySource',
+      'DataplexEntryEntrySourceAncestors',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_entry`.\n\nAn entry represents a data asset for which you capture metadata, such as a\nBigQuery table. The primary constituents of an entry are aspects, which\nprovide thematically coherent information. Examples include a table\'s\nschema, sensitive data protection profile, data quality information, or a\nsimple tag.\n\n**Important Considerations:**\n\n* There is a limit of 99 aspects per entry. * The entry resource has to use\nproject numbers and not project IDs. Therefore, if a dependency was already\nprovisioned using project ID, it needs to be referenced explicitly as a\nresource name containing the project number.',
@@ -20369,7 +20429,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexEntryGroupIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_entry_group_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataplex entry group.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataplexEntryGroupIamMember] for additive grants.',
@@ -20389,7 +20449,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexEntryGroupIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_dataplex_entry_group_iam_member`.',
   ),
@@ -20470,10 +20530,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'platform',
       'system',
       'typeAliases',
+      'requiredAspects',
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexEntryTypeRequiredAspects'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_entry_type`.\n\nAn Entry Type is a template for creating Entries.',
@@ -20493,7 +20554,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexEntryTypeIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_entry_type_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataplex entry type.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataplexEntryTypeIamMember] for additive grants.',
@@ -20513,7 +20574,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexEntryTypeIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_dataplex_entry_type_iam_member`.',
   ),
@@ -20610,7 +20671,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexGlossaryIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_glossary_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataplex glossary.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataplexGlossaryIamMember] for additive grants.',
@@ -20630,7 +20691,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexGlossaryIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_dataplex_glossary_iam_member`.',
   ),
@@ -20704,10 +20765,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'displayName',
       'description',
       'labels',
+      'metastore',
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexLakeMetastore'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_lake`.\n\nOnly used to generate IAM resources',
@@ -20727,7 +20789,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexLakeIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_lake_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataplex lake.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataplexLakeIamMember] for additive grants.',
@@ -20747,7 +20809,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexLakeIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_dataplex_lake_iam_member`.',
   ),
@@ -20876,7 +20938,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexTaskIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_task_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataplex lake task.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataplexTaskIamMember] for additive grants.',
@@ -20897,7 +20959,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexTaskIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_dataplex_task_iam_member`.',
   ),
@@ -20986,7 +21048,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexZoneIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_zone_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataplex zone.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataplexZoneIamMember] for additive grants.',
@@ -21007,7 +21069,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexZoneIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_dataplex_zone_iam_member`.',
   ),
@@ -21090,7 +21152,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataprocAutoscalingPolicyIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_autoscaling_policy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataproc autoscaling policy.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleDataprocAutoscalingPolicyIamMember] for additive grants.',
@@ -21111,7 +21173,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataprocAutoscalingPolicyIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_autoscaling_policy_iam_member`.',
@@ -21284,7 +21346,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataprocClusterIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_cluster_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataproc cluster.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataprocClusterIamMember] for additive grants. Deferred with\nthe never_apply Dataproc cluster (no apply-smoke quickstart).',
@@ -21304,7 +21366,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataprocClusterIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_cluster_iam_member`.\n\nNon-authoritative IAM member on a Dataproc cluster.\n\nDeferred with the never_apply Dataproc cluster (no apply-smoke\nquickstart).',
@@ -21490,7 +21552,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataprocJobIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_job_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataproc job.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleDataprocJobIamMember] for additive grants.',
@@ -21510,7 +21572,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataprocJobIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_dataproc_job_iam_member`.',
   ),
@@ -21561,7 +21623,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataprocMetastoreDatabaseIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_metastore_database_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataproc Metastore database.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleDataprocMetastoreDatabaseIamMember] for additive grants.',
@@ -21583,7 +21645,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataprocMetastoreDatabaseIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_metastore_database_iam_member`.',
@@ -21669,7 +21731,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataprocMetastoreFederationIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_metastore_federation_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataproc Metastore\nfederation.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataprocMetastoreFederationIamMember] for additive grants.',
@@ -21690,7 +21752,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataprocMetastoreFederationIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_metastore_federation_iam_member`.\n\nAdds a single IAM `role` → `member` binding on a Dataproc Metastore federation.\n\nSet [federationId] to the federation id (path segment).',
@@ -21828,7 +21890,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataprocMetastoreServiceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_metastore_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataproc Metastore\nservice.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataprocMetastoreServiceIamMember] for additive grants.',
@@ -21849,7 +21911,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataprocMetastoreServiceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_metastore_service_iam_member`.\n\nAdds a single IAM `role` → `member` binding on a Dataproc Metastore service.\n\nSet [serviceId] to the metastore service id (path segment), not the full\nresource name.',
@@ -21909,7 +21971,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataprocMetastoreTableIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_metastore_table_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataproc Metastore table.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleDataprocMetastoreTableIamMember] for additive grants.',
@@ -21932,7 +21994,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataprocMetastoreTableIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_metastore_table_iam_member`.',
@@ -23871,7 +23933,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DiscoveryEngineSearchEngineIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_discovery_engine_search_engine_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Vertex AI Search\nengine.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDiscoveryEngineSearchEngineIamMember] for additive grants.',
@@ -23893,7 +23955,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DiscoveryEngineSearchEngineIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_discovery_engine_search_engine_iam_member`.',
@@ -24145,7 +24207,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DnsManagedZoneIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dns_managed_zone_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud DNS managed\nzone.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDnsManagedZoneIamMember] for additive grants.',
@@ -24164,7 +24226,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DnsManagedZoneIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dns_managed_zone_iam_member`.\n\nGrants a single (`role`, `member`) IAM binding **on a Cloud DNS\nmanaged zone** — i.e. who can read or change the records inside this\none zone. Zone-scoped IAM is the right granularity when different\nteams own different subdomains: grant `roles/dns.admin` on\n`team-a.example.com.` to team A\'s SRE group while keeping\n`team-b.example.com.` locked down. For read-only inspectors prefer\n`roles/dns.reader`.\n\nPicking the right `*_iam_*` variant:\n\n- `*_iam_member` (this resource) — **additive**: grants ONE\n  (role, member) tuple. Does not touch other principals\' bindings.\n  Safe in 95% of cases; prefer this unless you have a concrete reason\n  to use one of the authoritative variants below.\n- `*_iam_binding` — **authoritative per role**: takes a list of\n  members and *replaces* the entire member list for that role. Will\n  silently erase any other principal previously bound to that role\n  on this managed zone.\n- `*_iam_policy` — **authoritative for the entire resource**: replaces\n  the zone\'s whole IAM policy. Will erase **all** existing bindings.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `managedZone`: the target zone\'s `name` attribute (the short zone\n  name, *not* the DNS name with trailing dot — e.g. `\'internal-corp\'`,\n  not `\'internal.corp.\'`). Pass `TfArg.ref(zone.nameRef)`.\n- `role`: role name, e.g. `\'roles/dns.admin\'` (full record CRUD) or\n  `\'roles/dns.reader\'` (read-only inspection).\n- `member`: principal in IAM v1 string form.\n\n`project` is optional and defaults to the provider project.\n\nOptional `condition` is a single IAM Condition block (CEL\n`expression`, `title`, optional `description`).\n\nExample:\n```dart\nfinal zoneAdmin = GoogleDnsManagedZoneIamMember(\n  localName: \'zone_admin\',\n  managedZone: TfArg.ref(zone.nameRef),\n  role: TfArg.literal(\'roles/dns.admin\'),\n  member: TfArg.literal(\'group:sre-team-a@example.com\'),\n);\n```',
@@ -24315,7 +24377,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'networks',
       'gkeClusters',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DnsResponsePolicyGkeClusters',
+      'DnsResponsePolicyNetworks',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dns_response_policy`.\n\nA Response Policy is a collection of selectors that apply to queries made\nagainst one or more Virtual Private Cloud networks.',
@@ -24488,12 +24553,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'EdgecontainerClusterReleaseChannel',
-      'EdgecontainerClusterControlPlane',
-      'EdgecontainerClusterControlPlaneRemote',
-      'EdgecontainerClusterControlPlaneLocal',
-      'EdgecontainerClusterSharedDeploymentPolicy',
       'EdgecontainerClusterAuthorization',
       'EdgecontainerClusterAuthorizationAdminUsers',
+      'EdgecontainerClusterControlPlane',
+      'EdgecontainerClusterControlPlaneRemoteChoice',
+      'EdgecontainerClusterControlPlaneLocalChoice',
+      'EdgecontainerClusterControlPlaneLocal',
+      'EdgecontainerClusterControlPlaneLocalSharedDeploymentPolicy',
+      'EdgecontainerClusterControlPlaneRemote',
       'EdgecontainerClusterControlPlaneEncryption',
       'EdgecontainerClusterFleet',
       'EdgecontainerClusterMaintenancePolicy',
@@ -24508,7 +24575,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>['cluster_ca_certificate'],
     docComment:
-        'Factory wrapper for `google_edgecontainer_cluster`.\n\nCluster contains information about a Google Distributed Cloud Edge\nKubernetes cluster.\n\nGoogle Distributed Cloud Edge **cluster** — Kubernetes control plane on\nedge hardware (GDCE).\n\nChoose exactly one [EdgecontainerClusterControlPlane]:\n- [EdgecontainerClusterControlPlaneRemote] — remote control plane.\n- [EdgecontainerClusterControlPlaneLocal] — local control plane\n  (node count 1 or 3).\n\n**Cost:** Google Distributed Cloud Edge `8A2D-5CB1-345B` bills\nconnected / edge server hardware+SW commitments (e.g. Connected Server\nGen1 64vCPU FI 6mo SKU `007E-2D86-E472` **\$3600/mo**). Requires physical\nGDCE machines absent on `terradart-validate` — ships without a\nquickstart (`tool/example_debt.yaml`).\n\nEnable `edgecontainer.googleapis.com` via [GoogleProjectService] before\napply. [networking], [fleet], and [authorization] are required by the\nprovider.\n\nExample (remote control plane):\n```dart\nGoogleEdgecontainerCluster(\n  localName: \'edge\',\n  name: TfArg.literal(\'terradart-edge\'),\n  location: TfArg.literal(\'us-central1\'),\n  networking: EdgecontainerClusterNetworking(\n    clusterIpv4CidrBlocks: [TfArg.literal(\'10.96.0.0/17\')],\n    servicesIpv4CidrBlocks: [TfArg.literal(\'10.200.0.0/20\')],\n  ),\n  fleet: EdgecontainerClusterFleet(\n    project: TfArg.literal(\'projects/\$projectNumber\'),\n  ),\n  authorization: EdgecontainerClusterAuthorization(\n    adminUsers: EdgecontainerClusterAuthorizationAdminUsers(\n      username: TfArg.literal(\'admin@example.com\'),\n    ),\n  ),\n  controlPlane: EdgecontainerClusterControlPlaneRemote(\n    nodeLocation: TfArg.literal(\'us-central1-edge-customer-a\'),\n  ),\n);\n```',
+        'Factory wrapper for `google_edgecontainer_cluster`.\n\nCluster contains information about a Google Distributed Cloud Edge\nKubernetes cluster.\n\nGoogle Distributed Cloud Edge **cluster** — Kubernetes control plane on\nedge hardware (GDCE).\n\n[controlPlane] is exactly one placement: `.remote(...)` or\n`.local(...)` (node count 1 or 3).\n\n**Cost:** Google Distributed Cloud Edge `8A2D-5CB1-345B` bills\nconnected / edge server hardware+SW commitments (e.g. Connected Server\nGen1 64vCPU FI 6mo SKU `007E-2D86-E472` **\$3600/mo**). Requires physical\nGDCE machines absent on `terradart-validate` — ships without a\nquickstart (`tool/example_debt.yaml`).\n\nEnable `edgecontainer.googleapis.com` via [GoogleProjectService] before\napply. [networking], [fleet], and [authorization] are required by the\nprovider.\n\nExample (remote control plane):\n```dart\nGoogleEdgecontainerCluster(\n  localName: \'edge\',\n  name: TfArg.literal(\'terradart-edge\'),\n  location: TfArg.literal(\'us-central1\'),\n  networking: EdgecontainerClusterNetworking(\n    clusterIpv4CidrBlocks: [TfArg.literal(\'10.96.0.0/17\')],\n    servicesIpv4CidrBlocks: [TfArg.literal(\'10.200.0.0/20\')],\n  ),\n  fleet: EdgecontainerClusterFleet(\n    project: TfArg.literal(\'projects/\$projectNumber\'),\n  ),\n  authorization: EdgecontainerClusterAuthorization(\n    adminUsers: EdgecontainerClusterAuthorizationAdminUsers(\n      username: TfArg.literal(\'admin@example.com\'),\n    ),\n  ),\n  controlPlane: .remote(\n    EdgecontainerClusterControlPlaneRemote(\n      nodeLocation: .literal(\'us-central1-edge-customer-a\'),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_edgecontainer_node_pool',
@@ -25337,7 +25404,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_firebase_app_hosting_backend`.\n\nA Backend is the primary resource of App Hosting.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_firebase_app_hosting_backend.`).\n- `backend_id`: Stable identifier of the backend. Used both as the\n  Cloud Run service ID and as a segment of the default `.hosted.app`\n  domain. Lower-case alphanumerics + hyphens.\n- `location`: GCP region (e.g. `\'us-central1\'`).\n- `app_id`: Firebase Web App ID this backend is bound to. See the\n  `app_id` field on\n  https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects.webApps.\n- `service_account`: Service account email Cloud Build and Cloud Run\n  run as. Must have `roles/firebaseapphosting.computeRunner` or\n  equivalent.\n- `serving_locality`: Either [AppHostingServingLocality.regionalStrict]\n  (single-region) or [AppHostingServingLocality.globalAccess] (global\n  App Hosting fleet). Immutable -- changing forces replacement.\n\nExample (regional backend bound to a Developer Connect repo):\n```dart\nfinal backend = GoogleFirebaseAppHostingBackend(\n  localName: \'web\',\n  backendId: TfArg.literal(\'web-backend\'),\n  location: TfArg.literal(\'us-central1\'),\n  appId: TfArg.literal(\'1:1234567890:web:abcdef\'),\n  serviceAccount: TfArg.ref(sa.email),\n  servingLocality: TfArg.literal(AppHostingServingLocality.regionalStrict),\n  codebase: FirebaseAppHostingBackendAppHostingBackendCodebase(\n    repository: TfArg.literal(\n      \'projects/p/locations/us-central1/connections/c/gitRepositoryLinks/r\',\n    ),\n    rootDirectory: TfArg.literal(\'/\'),\n  ),\n  displayName: TfArg.literal(\'Production web backend\'),\n);\n```\n\nManages a Firebase App Hosting backend. App Hosting is Cloud Run-backed:\nthe backend orchestrates a Cloud Build step (per [GoogleFirebaseAppHostingBuild])\nfollowed by a Cloud Run service deployment, with Firebase-side identity\nintegration via [appId]. The single `codebase` block links the backend to\na Developer Connect-managed git repository.',
+        'Factory wrapper for `google_firebase_app_hosting_backend`.\n\nA Backend is the primary resource of App Hosting.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_firebase_app_hosting_backend.`).\n- `backend_id`: Stable identifier of the backend. Used both as the\n  Cloud Run service ID and as a segment of the default `.hosted.app`\n  domain. Lower-case alphanumerics + hyphens.\n- `location`: GCP region (e.g. `\'us-central1\'`).\n- `app_id`: Firebase Web App ID this backend is bound to. See the\n  `app_id` field on\n  https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects.webApps.\n- `service_account`: Service account email Cloud Build and Cloud Run\n  run as. Must have `roles/firebaseapphosting.computeRunner` or\n  equivalent.\n- `serving_locality`: Either [AppHostingServingLocality.regionalStrict]\n  (single-region) or [AppHostingServingLocality.globalAccess] (global\n  App Hosting fleet). Immutable -- changing forces replacement.\n\nExample (regional backend bound to a Developer Connect repo):\n```dart\nfinal backend = GoogleFirebaseAppHostingBackend(\n  localName: \'web\',\n  backendId: TfArg.literal(\'web-backend\'),\n  location: TfArg.literal(\'us-central1\'),\n  appId: TfArg.literal(\'1:1234567890:web:abcdef\'),\n  serviceAccount: sa.ref,\n  servingLocality: TfArg.literal(AppHostingServingLocality.regionalStrict),\n  codebase: FirebaseAppHostingBackendAppHostingBackendCodebase(\n    repository: TfArg.literal(\n      \'projects/p/locations/us-central1/connections/c/gitRepositoryLinks/r\',\n    ),\n    rootDirectory: TfArg.literal(\'/\'),\n  ),\n  displayName: TfArg.literal(\'Production web backend\'),\n);\n```\n\nManages a Firebase App Hosting backend. App Hosting is Cloud Run-backed:\nthe backend orchestrates a Cloud Build step (per [GoogleFirebaseAppHostingBuild])\nfollowed by a Cloud Run service deployment, with Firebase-side identity\nintegration via [appId]. The single `codebase` block links the backend to\na Developer Connect-managed git repository.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_app_hosting_build',
@@ -25358,12 +25425,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'FirebaseAppHostingBuildSource',
+      'FirebaseAppHostingBuildSourceContainerChoice',
+      'FirebaseAppHostingBuildSourceCodebaseChoice',
       'FirebaseAppHostingBuildSourceCodebase',
       'FirebaseAppHostingBuildSourceContainer',
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_firebase_app_hosting_build`.\n\nA single build for a backend, at a specific point codebase reference tag and\npoint in time. Encapsulates several resources, including an Artifact\nRegistry container image, a Cloud Build invocation that built the image, and\nthe Cloud Run revision that uses that image.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_firebase_app_hosting_build.`).\n- `backend`: ID of the backend this build belongs to. Typically\n  `TfArg.ref(backend.backendIdRef)` where `backend` is a\n  [GoogleFirebaseAppHostingBackend].\n- `location`: GCP region of the backend.\n- `build_id`: Stable user-chosen identifier of this build.\n- `source`: required [FirebaseAppHostingBuildSource]. Pick exactly one of\n  [FirebaseAppHostingBuildSourceCodebase] (commit ref into the configured\n  Developer Connect repository) or [FirebaseAppHostingBuildSourceContainer]\n  (point at a prebuilt Artifact Registry image, skipping the Cloud\n  Build step).\n\nExample (build from a git branch HEAD):\n```dart\nfinal build = GoogleFirebaseAppHostingBuild(\n  localName: \'v1\',\n  backend: TfArg.ref(backend.backendIdRef),\n  location: TfArg.literal(\'us-central1\'),\n  buildId: TfArg.literal(\'v1\'),\n  source: FirebaseAppHostingBuildSourceCodebase(\n    branch: TfArg.literal(\'main\'),\n  ),\n  displayName: TfArg.literal(\'First release\'),\n);\n```\n\nExample (build from a prebuilt image):\n```dart\nfinal build = GoogleFirebaseAppHostingBuild(\n  localName: \'v1\',\n  backend: TfArg.ref(backend.backendIdRef),\n  location: TfArg.literal(\'us-central1\'),\n  buildId: TfArg.literal(\'v1\'),\n  source: FirebaseAppHostingBuildSourceContainer(\n    image: TfArg.literal(\n      \'us-central1-docker.pkg.dev/p/r/web:1.2.3\',\n    ),\n  ),\n);\n```\n\nManages a single immutable App Hosting build. Builds are the artifact\nreferenced by [GoogleFirebaseAppHostingTraffic.target] when shaping\ntraffic across revisions. Schema-side `state` and `error_source`\n(computed) carry enum-like wire values; they are exposed as raw\n`TfRef<String>` getters rather than typed enums because they are read-\nonly and the wire values are best consumed as-is.',
+        'Factory wrapper for `google_firebase_app_hosting_build`.\n\nA single build for a backend, at a specific point codebase reference tag and\npoint in time. Encapsulates several resources, including an Artifact\nRegistry container image, a Cloud Build invocation that built the image, and\nthe Cloud Run revision that uses that image.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_firebase_app_hosting_build.`).\n- `backend`: ID of the backend this build belongs to. Typically\n  `TfArg.ref(backend.backendIdRef)` where `backend` is a\n  [GoogleFirebaseAppHostingBackend].\n- `location`: GCP region of the backend.\n- `build_id`: Stable user-chosen identifier of this build.\n- `source`: exactly one of `.codebase(...)` (commit ref into the\n  configured Developer Connect repository) or `.container(...)` (point\n  at a prebuilt Artifact Registry image, skipping the Cloud Build step).\n\nExample (build from a git branch HEAD):\n```dart\nfinal build = GoogleFirebaseAppHostingBuild(\n  localName: \'v1\',\n  backend: TfArg.ref(backend.backendIdRef),\n  location: TfArg.literal(\'us-central1\'),\n  buildId: TfArg.literal(\'v1\'),\n  source: .codebase(\n    FirebaseAppHostingBuildSourceCodebase(branch: .literal(\'main\')),\n  ),\n  displayName: TfArg.literal(\'First release\'),\n);\n```\n\nExample (build from a prebuilt image):\n```dart\nfinal build = GoogleFirebaseAppHostingBuild(\n  localName: \'v1\',\n  backend: TfArg.ref(backend.backendIdRef),\n  location: TfArg.literal(\'us-central1\'),\n  buildId: TfArg.literal(\'v1\'),\n  source: .container(\n    FirebaseAppHostingBuildSourceContainer(\n      image: .literal(\'us-central1-docker.pkg.dev/p/r/web:1.2.3\'),\n    ),\n  ),\n);\n```\n\nManages a single immutable App Hosting build. Builds are the artifact\nreferenced by [GoogleFirebaseAppHostingTraffic.target] when shaping\ntraffic across revisions. Schema-side `state` and `error_source`\n(computed) carry enum-like wire values; they are exposed as raw\n`TfRef<String>` getters rather than typed enums because they are read-\nonly and the wire values are best consumed as-is.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_app_hosting_default_domain',
@@ -25806,7 +25875,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['FolderIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_folder_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a GCP folder.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleFolderIamMember] for additive grants.',
@@ -25824,7 +25893,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['FolderIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_folder_iam_member`.',
   ),
@@ -26504,14 +26573,38 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
     ],
     nestedTypes: <String>[
-      'GkeBackupRestorePlanClusterResourceConflictPolicy',
-      'GkeBackupRestorePlanNamespacedResourceRestoreMode',
-      'GkeBackupRestorePlanVolumeDataRestorePolicy',
-      'GkeBackupRestorePlanTransformationFieldActionOp',
-      'GkeBackupRestorePlanTransformationFieldAction',
-      'GkeBackupRestorePlanTransformationRule',
-      'GkeBackupRestorePlanVolumeDataRestorePolicyBinding',
       'GkeBackupRestorePlanRestoreConfig',
+      'GkeBackupRestorePlanRestoreConfigNamespaces',
+      'GkeBackupRestorePlanRestoreConfigNamespacesAllNamespaces',
+      'GkeBackupRestorePlanRestoreConfigNamespacesExcludedNamespaces',
+      'GkeBackupRestorePlanRestoreConfigNamespacesSelectedNamespaces',
+      'GkeBackupRestorePlanRestoreConfigNamespacesSelectedApplications',
+      'GkeBackupRestorePlanRestoreConfigNamespacesNoNamespaces',
+      'GkeBackupRestorePlanRestoreConfigClusterResourceConflictPolicy',
+      'GkeBackupRestorePlanRestoreConfigNamespacedResourceRestoreMode',
+      'GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicy',
+      'GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScope',
+      'GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeAllGroupKinds',
+      'GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeExcludedGroupKindsChoice',
+      'GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeSelectedGroupKindsChoice',
+      'GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeNoGroupKinds',
+      'GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeExcludedGroupKinds',
+      'GkeBackupRestorePlanRestoreConfigClusterResourceRestoreScopeSelectedGroupKinds',
+      'GkeBackupRestorePlanRestoreConfigExcludedNamespaces',
+      'GkeBackupRestorePlanRestoreConfigRestoreOrder',
+      'GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependencies',
+      'GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependenciesRequiring',
+      'GkeBackupRestorePlanRestoreConfigRestoreOrderGroupKindDependenciesSatisfying',
+      'GkeBackupRestorePlanRestoreConfigSelectedApplications',
+      'GkeBackupRestorePlanRestoreConfigSelectedApplicationsNamespacedNames',
+      'GkeBackupRestorePlanRestoreConfigSelectedNamespaces',
+      'GkeBackupRestorePlanRestoreConfigTransformationRules',
+      'GkeBackupRestorePlanRestoreConfigTransformationRulesFieldActions',
+      'GkeBackupRestorePlanRestoreConfigTransformationRulesFieldActionsOp',
+      'GkeBackupRestorePlanRestoreConfigTransformationRulesResourceFilter',
+      'GkeBackupRestorePlanRestoreConfigTransformationRulesResourceFilterGroupKinds',
+      'GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicyBindings',
+      'GkeBackupRestorePlanRestoreConfigVolumeDataRestorePolicyBindingsPolicy',
     ],
     sensitiveFields: <String>[],
     docComment:
@@ -27465,7 +27558,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['HealthcareConsentStoreIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_healthcare_consent_store_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Healthcare\nConsent Store.\n\nReplaces the entire member list for that role. Prefer\n[GoogleHealthcareConsentStoreIamMember] for additive grants.',
@@ -27485,7 +27578,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['HealthcareConsentStoreIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_healthcare_consent_store_iam_member`.',
@@ -27553,7 +27646,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['HealthcareDatasetIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_healthcare_dataset_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Healthcare\ndataset.\n\nReplaces the entire member list for that role. Prefer\n[GoogleHealthcareDatasetIamMember] for additive grants.',
@@ -27571,7 +27664,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['HealthcareDatasetIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_healthcare_dataset_iam_member`.',
   ),
@@ -27630,7 +27723,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['HealthcareDicomStoreIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_healthcare_dicom_store_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Healthcare DICOM\nstore.\n\nReplaces the entire member list for that role. Prefer\n[GoogleHealthcareDicomStoreIamMember] for additive grants.',
@@ -27648,7 +27741,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['HealthcareDicomStoreIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_healthcare_dicom_store_iam_member`.',
@@ -27731,7 +27824,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['HealthcareFhirStoreIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_healthcare_fhir_store_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Healthcare FHIR\nstore.\n\nReplaces the entire member list for that role. Prefer\n[GoogleHealthcareFhirStoreIamMember] for additive grants.',
@@ -27742,8 +27835,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'healthcare',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_healthcare_fhir_store_iam_member`.',
-    constructorParams: <String>['localName', 'fhirStoreId', 'role', 'member'],
-    nestedTypes: <String>[],
+    constructorParams: <String>[
+      'localName',
+      'fhirStoreId',
+      'role',
+      'member',
+      'condition',
+    ],
+    nestedTypes: <String>['HealthcareFhirStoreIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_healthcare_fhir_store_iam_member`.\n\nAdditive IAM member on a [GoogleHealthcareFhirStore].\n\nPrefer [GoogleHealthcareFhirStoreIamMember] over binding/policy adjuncts —\nthose overwrite grants made outside Terraform.',
@@ -27812,7 +27911,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['HealthcareHl7V2StoreIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_healthcare_hl7_v2_store_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Healthcare\nHL7v2 Store.\n\nReplaces the entire member list for that role. Prefer\n[GoogleHealthcareHl7V2StoreIamMember] for additive grants.',
@@ -27830,7 +27929,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['HealthcareHl7V2StoreIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_healthcare_hl7_v2_store_iam_member`.',
@@ -28179,7 +28278,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `google_iam_policy`.',
     constructorParams: <String>['localName', 'auditConfig', 'binding'],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'DataIamPolicyAuditConfig',
+      'DataIamPolicyAuditConfigAuditLogConfigs',
+      'DataIamPolicyBinding',
+      'DataIamPolicyBindingCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iam_policy`.\n\nRead-only data source on the apply-excluded leftover path\n(synth + `terraform validate` only). Do not apply.',
@@ -28332,7 +28436,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IamWorkforcePoolIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iam_workforce_pool_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Workforce Identity Federation pool.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIamWorkforcePoolIamMember] for additive grants.',
@@ -28351,7 +28455,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IamWorkforcePoolIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_iam_workforce_pool_iam_member`.',
   ),
@@ -28402,16 +28506,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'attributeCondition',
       'trustSource',
       'deletionPolicy',
-      'extendedAttributesOauth2Client',
+      'groupSource',
       'extraAttributesOauth2Client',
       'detailedAuditLogging',
-      'scimUsage',
     ],
     nestedTypes: <String>[
       'IamWorkforcePoolProviderScimUsage',
       'IamWorkforcePoolProviderTrustSource',
       'IamWorkforcePoolProviderTrustSourceSaml',
       'IamWorkforcePoolProviderTrustSourceOidc',
+      'IamWorkforcePoolProviderGroupSource',
+      'IamWorkforcePoolProviderGroupSourceExtendedAttributesOauth2Client',
+      'IamWorkforcePoolProviderGroupSourceScimUsage',
       'IamWorkforcePoolProviderExtendedAttributesOauth2Client',
       'IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecret',
       'IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValue',
@@ -28581,7 +28687,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IamWorkloadIdentityPoolIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iam_workload_identity_pool_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Workload Identity Federation pool.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIamWorkloadIdentityPoolIamMember] for additive grants.',
@@ -28601,7 +28707,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IamWorkloadIdentityPoolIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iam_workload_identity_pool_iam_member`.',
@@ -28659,7 +28765,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'IamWorkloadIdentityPoolManagedIdentityAttestationRules',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iam_workload_identity_pool_managed_identity`.\n\nRepresents a managed identity for a workload identity pool namespace.\n\nWorkload Identity Federation **managed identity** — a named identity\nunder a [GoogleIamWorkloadIdentityPoolNamespace] in a trust-domain\npool. Optional `attestationRules` are structured maps (resource\nnames of Compute / GKE workloads allowed to receive this identity).\n\n**Cost:** gcp-cost: no Cloud Billing Catalog SKU for IAM Workload\nIdentity Federation managed identities after list_services /\nlist_skus. billing-behavior: identity metadata is free config;\ncreating one does not issue tokens or attach compute.\n\nExample:\n```dart\nGoogleIamWorkloadIdentityPoolManagedIdentity(\n  localName: \'runner\',\n  workloadIdentityPoolId: TfArg.literal(\'terradart-trust\'),\n  workloadIdentityPoolNamespaceId: TfArg.literal(\'terradart-apps\'),\n  workloadIdentityPoolManagedIdentityId:\n      TfArg.literal(\'terradart-runner\'),\n);\n```',
@@ -28769,7 +28877,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryAgentIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_agent_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP Agent Registry\n**agent**.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAgentRegistryAgentIamMember] for additive grants. Deferred\nwith the Agent Identity registry agent parent (skip-noted).',
@@ -28790,7 +28898,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryAgentIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_agent_iam_member`.\n\nNon-authoritative IAM member on an Identity-Aware Proxy Agent Registry\n**agent**.\n\nRequires an Agent Identity registry agent parent\n(`google_agent_registry_*` — skip-noted); not standalone-project\napplyable on terradart-validate.',
@@ -28843,7 +28951,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryEndpointIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_endpoint_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP Agent Registry\n**endpoint**.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAgentRegistryEndpointIamMember] for additive grants. Deferred\nwith the Agent Identity registry endpoint parent (skip-noted).',
@@ -28864,7 +28972,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryEndpointIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_endpoint_iam_member`.\n\nNon-authoritative IAM member on an Identity-Aware Proxy Agent Registry\n**endpoint**.\n\nRequires an Agent Identity registry endpoint parent\n(`google_agent_registry_*` — skip-noted); not standalone-project\napplyable on terradart-validate.',
@@ -28920,7 +29028,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on the Identity-Aware\nProxy **Agent Registry** at a regional location.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAgentRegistryIamMember] for additive grants.',
@@ -28939,7 +29047,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on the **Agent\nRegistry** at a regional location.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [location]: regional location (e.g. `\'us-central1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGoogleIapAgentRegistryIamMember(\n  localName: \'agent_registry_invoker\',\n  location: TfArg.literal(\'us-central1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
@@ -28989,7 +29097,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryMcpServerIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_mcp_server_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP Agent Registry\n**MCP server**.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAgentRegistryMcpServerIamMember] for additive grants. Deferred\nwith the Agent Identity registry MCP server parent (skip-noted).',
@@ -29010,7 +29118,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAgentRegistryMcpServerIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_mcp_server_iam_member`.\n\nNon-authoritative IAM member on an Identity-Aware Proxy Agent Registry\n**MCP server**.\n\nRequires an Agent Identity registry MCP server parent\n(`google_agent_registry_*` — skip-noted); not standalone-project\napplyable on terradart-validate.',
@@ -29067,7 +29175,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAppEngineServiceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_app_engine_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP App Engine\nservice.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAppEngineServiceIamMember] for additive grants.',
@@ -29087,7 +29195,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAppEngineServiceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_app_engine_service_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on one App Engine\n**service**.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [appId]: App Engine application ID (usually the GCP project ID).\n- [service]: App Engine service name (e.g. `\'default\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGoogleIapAppEngineServiceIamMember(\n  localName: \'default_invoker\',\n  appId: TfArg.literal(projectId),\n  service: TfArg.literal(\'default\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
@@ -29138,7 +29246,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAppEngineVersionIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_app_engine_version_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP App Engine\nversion.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAppEngineVersionIamMember] for additive grants.',
@@ -29159,7 +29267,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapAppEngineVersionIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_app_engine_version_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on one App Engine\n**version** within a service.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [appId]: App Engine application ID (usually the GCP project ID).\n- [service]: App Engine service name (e.g. `\'default\'`).\n- [versionId]: version ID within the service (e.g. `\'v1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal string.\n\nExample:\n```dart\nGoogleIapAppEngineVersionIamMember(\n  localName: \'v1_invoker\',\n  appId: TfArg.literal(projectId),\n  service: TfArg.literal(\'default\'),\n  versionId: TfArg.literal(\'v1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
@@ -29215,7 +29323,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapLocationWebIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_location_web_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on IAP **web resources**\nat a regional location.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapLocationWebIamMember] for additive grants.',
@@ -29234,7 +29342,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapLocationWebIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_location_web_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on **web\nresources** at a regional location.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [location]: regional location (e.g. `\'us-central1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGoogleIapLocationWebIamMember(\n  localName: \'location_web_invoker\',\n  location: TfArg.literal(\'us-central1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
@@ -29340,7 +29448,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapTunnelDestGroupIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_tunnel_dest_group_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a IAP TCP-forwarding destination group.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapTunnelDestGroupIamMember] for additive grants.',
@@ -29360,7 +29468,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapTunnelDestGroupIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_tunnel_dest_group_iam_member`.',
@@ -29408,7 +29516,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapTunnelIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_tunnel_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on IAP TCP forwarding\nat **project scope** (`iap.tunnel`).\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapTunnelIamMember] for additive grants.',
@@ -29426,7 +29534,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapTunnelIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_iap_tunnel_iam_member`.',
   ),
@@ -29469,7 +29577,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapTunnelInstanceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_tunnel_instance_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on IAP TCP forwarding to a\nCompute Engine instance (`iap.tunnel.instances.<instance>`).\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapTunnelInstanceIamMember] for additive grants.',
@@ -29489,7 +29597,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'zone',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapTunnelInstanceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_iap_tunnel_instance_iam_member`.',
   ),
@@ -29538,7 +29646,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebBackendServiceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_backend_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an **external HTTPS\nload balancer backend service** protected by Identity-Aware Proxy (IAP).\n\nGrants `roles/iap.httpsResourceAccessor` (or another IAP role) to the\nlisted `members` and **replaces** the entire member list for that role\non the backend service. Prefer [GoogleIapWebBackendServiceIamMember]\nwhen you only need to add one principal without touching existing\nbindings.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `webBackendService`: short backend service name (e.g.\n  `\'koborin-ai-dev-backend\'`). Pass `TfArg.ref(backend.nameRef)` from\n  [GoogleComputeBackendService].\n- `role`: typically `\'roles/iap.httpsResourceAccessor\'`.\n- `members`: IAM principal strings (`user:…`, `group:…`, `domain:…`).\n\n`project` is optional and defaults to the provider project.\n\nOptional `condition` is a single IAM Condition block (CEL\n`expression`, `title`, optional `description`).\n\nPair with IAP enabled on the backend service itself via\n[GoogleComputeBackendService]\'s `iap` block (OAuth client ID/secret).',
@@ -29557,7 +29665,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'webBackendService',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebBackendServiceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_backend_service_iam_member`.',
@@ -29607,7 +29715,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebCloudRunServiceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_cloud_run_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP-protected\nCloud Run service (`iap.web.services.<service>`).\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebCloudRunServiceIamMember] for additive grants.',
@@ -29628,7 +29736,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebCloudRunServiceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_cloud_run_service_iam_member`.',
@@ -29685,7 +29793,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebForwardingRuleServiceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_forwarding_rule_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP-protected\nglobal/regional forwarding rule service.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebForwardingRuleServiceIamMember] for additive grants.',
@@ -29705,7 +29813,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebForwardingRuleServiceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_forwarding_rule_service_iam_member`.',
@@ -29758,7 +29866,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on IAP-protected HTTPS\nresources at **project scope** (`iap.web`).\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebIamMember] for additive grants.',
@@ -29776,7 +29884,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_iap_web_iam_member`.',
   ),
@@ -29820,7 +29928,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebRegionBackendServiceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_region_backend_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP-protected\nregional backend service.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebRegionBackendServiceIamMember] for additive grants.',
@@ -29841,7 +29949,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebRegionBackendServiceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_region_backend_service_iam_member`.',
@@ -29899,7 +30007,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'IapWebRegionForwardingRuleServiceIamBindingCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_region_forwarding_rule_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP-protected\nregional forwarding rule service.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebRegionForwardingRuleServiceIamMember] for additive grants.',
@@ -29920,7 +30030,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'region',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'IapWebRegionForwardingRuleServiceIamMemberCondition',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_region_forwarding_rule_service_iam_member`.',
@@ -29977,7 +30089,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebTypeAppEngineIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_type_app_engine_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on IAP App Engine at\nproject scope (all services/versions).\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapWebTypeAppEngineIamMember] for additive grants.',
@@ -29996,7 +30108,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebTypeAppEngineIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_type_app_engine_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access to the App Engine\napplication at **project scope** (all services/versions).\n\nRequired identity:\n- [localName]: Terraform local name.\n- [appId]: App Engine application ID (usually the GCP project ID).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal string.\n\nExample:\n```dart\nGoogleIapWebTypeAppEngineIamMember(\n  localName: \'app_invoker\',\n  appId: TfArg.literal(projectId),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
@@ -30038,7 +30150,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebTypeComputeIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_type_compute_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on IAP Compute Engine\nbackends at **project scope** (`iap.web.type.compute`).\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebTypeComputeIamMember] for additive grants.',
@@ -30056,7 +30168,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['IapWebTypeComputeIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_iap_web_type_compute_iam_member`.',
   ),
@@ -30584,7 +30696,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['KmsCryptoKeyIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_kms_crypto_key_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud KMS crypto key.\n\nReplaces the entire member list for that role. Prefer\n[GoogleKmsCryptoKeyIamMember] for additive grants.',
@@ -30602,7 +30714,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['KmsCryptoKeyIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_kms_crypto_key_iam_member`.',
   ),
@@ -30652,7 +30764,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['KmsCryptoKeyVersionState'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_kms_crypto_key_version`.\n\nA `CryptoKeyVersion` represents an individual cryptographic key, and the\nassociated key material.\n\nDestroying a cryptoKeyVersion will not delete the resource from the project.\n\nManages a [GoogleKmsCryptoKey] version (rotation / destroy lifecycle).\nPass `cryptoKey` as the parent key id path or `TfArg.ref(key.id)`.\n\nExample:\n```dart\nGoogleKmsCryptoKeyVersion(\n  localName: \'v1\',\n  cryptoKey: TfArg.ref(ringKey.id),\n);\n```',
+        'Factory wrapper for `google_kms_crypto_key_version`.\n\nA `CryptoKeyVersion` represents an individual cryptographic key, and the\nassociated key material.\n\nDestroying a cryptoKeyVersion will not delete the resource from the project.\n\nManages a [GoogleKmsCryptoKey] version (rotation / destroy lifecycle).\nPass `cryptoKey` as the parent key (`key.ref`) or its id path.\n\nExample:\n```dart\nGoogleKmsCryptoKeyVersion(\n  localName: \'v1\',\n  cryptoKey: ringKey.ref,\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_kms_crypto_key_version',
@@ -30730,7 +30842,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['KmsEkmConnectionIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_kms_ekm_connection_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud KMS EKM\nconnection.\n\nReplaces the entire member list for that role. Prefer\n[GoogleKmsEkmConnectionIamMember] for additive grants.',
@@ -30750,7 +30862,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['KmsEkmConnectionIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_kms_ekm_connection_iam_member`.',
   ),
@@ -30868,7 +30980,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['KmsKeyRingIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_kms_key_ring_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud KMS key ring.\n\nReplaces the entire member list for that role. Prefer\n[GoogleKmsKeyRingIamMember] for additive grants.',
@@ -30886,7 +30998,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['KmsKeyRingIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_kms_key_ring_iam_member`.',
   ),
@@ -31014,7 +31126,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>['additional_authenticated_data', 'plaintext'],
     docComment:
-        'Factory wrapper for `google_kms_secret_ciphertext`.\n\nEncrypts secret data with Google Cloud KMS and provides access to the\nciphertext.\n\n~> **NOTE:** Using this resource will allow you to conceal secret data\nwithin your resource definitions, but it does not take care of protecting\nthat data in the logging output, plan output, or state output. Please take\ncare to secure your secret data outside of resource definitions.\n\nEncrypts [plaintext] with a [GoogleKmsCryptoKey] and exposes the\nresulting base64 [ciphertext] attribute.\n\nUseful for embedding ciphertext in other resources without storing\nplaintext in Terraform config forever — but **plan/state still see\n[plaintext]** (schema-sensitive). Prefer Secret Manager for long-lived\nsecrets.\n\nTerraform cannot delete the ciphertext resource from GCP (`exclude_delete`);\ndestroy removes it from state only.\n\nExample:\n```dart\nGoogleKmsSecretCiphertext(\n  localName: \'db_password\',\n  cryptoKey: TfArg.ref(paymentsKey.id),\n  plaintext: TfArg.literal(\'change-me\'),\n);\n```',
+        'Factory wrapper for `google_kms_secret_ciphertext`.\n\nEncrypts secret data with Google Cloud KMS and provides access to the\nciphertext.\n\n~> **NOTE:** Using this resource will allow you to conceal secret data\nwithin your resource definitions, but it does not take care of protecting\nthat data in the logging output, plan output, or state output. Please take\ncare to secure your secret data outside of resource definitions.\n\nEncrypts [plaintext] with a [GoogleKmsCryptoKey] and exposes the\nresulting base64 [ciphertext] attribute.\n\nUseful for embedding ciphertext in other resources without storing\nplaintext in Terraform config forever — but **plan/state still see\n[plaintext]** (schema-sensitive). Prefer Secret Manager for long-lived\nsecrets.\n\nTerraform cannot delete the ciphertext resource from GCP (`exclude_delete`);\ndestroy removes it from state only.\n\nExample:\n```dart\nGoogleKmsSecretCiphertext(\n  localName: \'db_password\',\n  cryptoKey: paymentsKey.ref,\n  plaintext: TfArg.literal(\'change-me\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_kms_secret_ciphertext',
@@ -31801,7 +31913,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_managed_kafka_cluster`.\n\nA Managed Service for Apache Kafka cluster. Apache Kafka is a trademark\nowned by the Apache Software Foundation.\n\nManaged Service for Apache Kafka **cluster** — regional Kafka with\nprovisioned vCPU / memory (Data Compute Units).\n\n**Cost:** Cloud Billing Catalog service `9544-7B1C-811D` bills **Data\nCompute Units** (us-central1 SKU `2837-8C0C-F431` **\$0.09/h**) plus\nlocal storage (SKU `1533-0F96-68AD` **\$0.17/GiBy·mo**) while the\ncluster exists. Destroy stops compute charges. Too expensive for\napply-smoke — factories ship without a quickstart.\n\nRequires [capacityConfig] (vCPU + memory) and [gcpConfig] (VPC subnet\nunder `access_config.network_configs`). Enable\n`managedkafka.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleManagedKafkaCluster(\n  localName: \'mk\',\n  clusterId: TfArg.literal(\'terradart-mk\'),\n  location: TfArg.literal(\'us-central1\'),\n  capacityConfig: ManagedKafkaClusterCapacityConfig(\n    vcpuCount: TfArg.literal(3),\n    memoryBytes: TfArg.literal(3221225472), // 3 GiB\n  ),\n  gcpConfig: ManagedKafkaClusterGcpConfig(\n    accessConfig: ManagedKafkaClusterGcpConfigAccessConfig(\n      networkConfigs: [\n        ManagedKafkaClusterGcpConfigAccessConfigNetworkConfigs(\n          subnet: TfArg.ref(subnet.id),\n        ),\n      ],\n    ),\n  ),\n);\n```',
+        'Factory wrapper for `google_managed_kafka_cluster`.\n\nA Managed Service for Apache Kafka cluster. Apache Kafka is a trademark\nowned by the Apache Software Foundation.\n\nManaged Service for Apache Kafka **cluster** — regional Kafka with\nprovisioned vCPU / memory (Data Compute Units).\n\n**Cost:** Cloud Billing Catalog service `9544-7B1C-811D` bills **Data\nCompute Units** (us-central1 SKU `2837-8C0C-F431` **\$0.09/h**) plus\nlocal storage (SKU `1533-0F96-68AD` **\$0.17/GiBy·mo**) while the\ncluster exists. Destroy stops compute charges. Too expensive for\napply-smoke — factories ship without a quickstart.\n\nRequires [capacityConfig] (vCPU + memory) and [gcpConfig] (VPC subnet\nunder `access_config.network_configs`). Enable\n`managedkafka.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleManagedKafkaCluster(\n  localName: \'mk\',\n  clusterId: TfArg.literal(\'terradart-mk\'),\n  location: TfArg.literal(\'us-central1\'),\n  capacityConfig: ManagedKafkaClusterCapacityConfig(\n    vcpuCount: TfArg.literal(3),\n    memoryBytes: TfArg.literal(3221225472), // 3 GiB\n  ),\n  gcpConfig: ManagedKafkaClusterGcpConfig(\n    accessConfig: ManagedKafkaClusterGcpConfigAccessConfig(\n      networkConfigs: [\n        ManagedKafkaClusterGcpConfigAccessConfigNetworkConfigs(\n          subnet: subnet.ref,\n        ),\n      ],\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_managed_kafka_connect_cluster',
@@ -32012,7 +32124,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_memorystore_instance`.\n\nA Google Cloud Memorystore instance.\n\nMemorystore for Valkey **instance** — sharded Valkey with PSC\nnetworking (`memorystore.googleapis.com`).\n\n**Cost:** Cloud Billing Catalog service `A2B5-E0F1-B0F3` bills **per\nnode-hour** while the instance exists (us-central1 Shared Core Nano\nSKU `1E97-7EC7-226D` **\$0.0318/h**; Standard Small `7054-E9DE-8B60`\n**\$0.1425/h**) × shards × (1 + replicas). Destroy stops node charges.\nToo expensive for apply-smoke — factories ship without a quickstart.\n\nRequires [instanceId], [location], and [shardCount]. Prefer\n[desiredAutoCreatedEndpoints] (or the sibling\n[GoogleMemorystoreInstanceDesiredUserCreatedEndpoints]) over the\ndeprecated `psc_auto_connections` / `discovery_endpoints` outputs.\nEnable `memorystore.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleMemorystoreInstance(\n  localName: \'valkey\',\n  instanceId: TfArg.literal(\'terradart-valkey\'),\n  location: TfArg.literal(\'us-central1\'),\n  shardCount: TfArg.literal(1),\n  replicaCount: TfArg.literal(0),\n  nodeType: TfArg.literal(\'SHARED_CORE_NANO\'),\n  desiredAutoCreatedEndpoints: [\n    MemorystoreInstanceDesiredAutoCreatedEndpoints(\n      network: TfArg.ref(network.id),\n      projectId: TfArg.literal(projectId),\n    ),\n  ],\n  deletionProtectionEnabled: TfArg.literal(false),\n);\n```',
+        'Factory wrapper for `google_memorystore_instance`.\n\nA Google Cloud Memorystore instance.\n\nMemorystore for Valkey **instance** — sharded Valkey with PSC\nnetworking (`memorystore.googleapis.com`).\n\n**Cost:** Cloud Billing Catalog service `A2B5-E0F1-B0F3` bills **per\nnode-hour** while the instance exists (us-central1 Shared Core Nano\nSKU `1E97-7EC7-226D` **\$0.0318/h**; Standard Small `7054-E9DE-8B60`\n**\$0.1425/h**) × shards × (1 + replicas). Destroy stops node charges.\nToo expensive for apply-smoke — factories ship without a quickstart.\n\nRequires [instanceId], [location], and [shardCount]. Prefer\n[desiredAutoCreatedEndpoints] (or the sibling\n[GoogleMemorystoreInstanceDesiredUserCreatedEndpoints]) over the\ndeprecated `psc_auto_connections` / `discovery_endpoints` outputs.\nEnable `memorystore.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleMemorystoreInstance(\n  localName: \'valkey\',\n  instanceId: TfArg.literal(\'terradart-valkey\'),\n  location: TfArg.literal(\'us-central1\'),\n  shardCount: TfArg.literal(1),\n  replicaCount: TfArg.literal(0),\n  nodeType: TfArg.literal(\'SHARED_CORE_NANO\'),\n  desiredAutoCreatedEndpoints: [\n    MemorystoreInstanceDesiredAutoCreatedEndpoints(\n      network: network.ref,\n      projectId: TfArg.literal(projectId),\n    ),\n  ],\n  deletionProtectionEnabled: TfArg.literal(false),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_memorystore_instance',
@@ -33006,7 +33118,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_netapp_storage_pool`.\n\nStorage pools act as containers for volumes. All volumes in a storage pool\nshare the following information: * Location * Service level * Virtual\nPrivate Cloud (VPC) network * Active Directory policy * LDAP use for NFS\nvolumes, if applicable * Customer-managed encryption key (CMEK) policy\n\nThe capacity of the pool can be split up and assigned to volumes within the\npool. Storage pools are a billable component of NetApp Volumes. Billing is\nbased on the location, service level, and capacity allocated to a pool\nindependent of consumption at the volume level.\n\nStorage pools of service level Flex are available as zonal (single zone) or\nregional (two zones in same region) pools. Zonal and regional pools are\nhigh-available within the zone. On top of that, regional pools have\n`replica_zone` as hot standby zone. All volume access is served from the\n`zone`. If `zone` fails, `replica_zone` automatically becomes the active\nzone. This will cause state drift in your configuration. If a zone switch\n(manual or automatic) is triggered outside of Terraform, you need to adjust\nthe `zone` and `replica_zone` values to reflect the current state, or\nTerraform will initiate a zone switch when running the next apply. You can\ntrigger a manual [zone\nswitch](https://cloud.google.com/netapp/volumes/docs/configure-and-use/storage-pools/edit-or-delete-storage-pool#switch_active_and_replica_zones)\nvia Terraform by swapping the value of the `zone` and `replica_zone`\nparameters in your HCL code.\n\nGoogle Cloud **NetApp Volumes** storage pool — provisioned capacity\nthat volumes draw from.\n\n**Cost:** Cloud Billing Catalog service `FC86-5113-7C81` bills pool\ncapacity while the pool exists (us-central1 Standard SKU\n`C2DF-4710-FFE1` **\$0.2/GiBy·mo**; Flex Zonal `211D-EBE1-87C9`\n**\$0.2/GiBy·mo**; Premium `5BCD-5BCB-41A3` **~\$0.29/GiBy·mo**).\nTypical minimum sizes are large (TiB-scale) → too expensive for\napply-smoke. Factories ship without a quickstart.\n\nEnable `netapp.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleNetappStoragePool(\n  localName: \'pool\',\n  name: TfArg.literal(\'terradart-pool\'),\n  location: TfArg.literal(\'us-central1\'),\n  network: TfArg.ref(vpc.id),\n  serviceLevel: TfArg.literal(NetappStoragePoolServiceLevel.standard),\n  capacityGib: TfArg.literal(2048),\n);\n```',
+        'Factory wrapper for `google_netapp_storage_pool`.\n\nStorage pools act as containers for volumes. All volumes in a storage pool\nshare the following information: * Location * Service level * Virtual\nPrivate Cloud (VPC) network * Active Directory policy * LDAP use for NFS\nvolumes, if applicable * Customer-managed encryption key (CMEK) policy\n\nThe capacity of the pool can be split up and assigned to volumes within the\npool. Storage pools are a billable component of NetApp Volumes. Billing is\nbased on the location, service level, and capacity allocated to a pool\nindependent of consumption at the volume level.\n\nStorage pools of service level Flex are available as zonal (single zone) or\nregional (two zones in same region) pools. Zonal and regional pools are\nhigh-available within the zone. On top of that, regional pools have\n`replica_zone` as hot standby zone. All volume access is served from the\n`zone`. If `zone` fails, `replica_zone` automatically becomes the active\nzone. This will cause state drift in your configuration. If a zone switch\n(manual or automatic) is triggered outside of Terraform, you need to adjust\nthe `zone` and `replica_zone` values to reflect the current state, or\nTerraform will initiate a zone switch when running the next apply. You can\ntrigger a manual [zone\nswitch](https://cloud.google.com/netapp/volumes/docs/configure-and-use/storage-pools/edit-or-delete-storage-pool#switch_active_and_replica_zones)\nvia Terraform by swapping the value of the `zone` and `replica_zone`\nparameters in your HCL code.\n\nGoogle Cloud **NetApp Volumes** storage pool — provisioned capacity\nthat volumes draw from.\n\n**Cost:** Cloud Billing Catalog service `FC86-5113-7C81` bills pool\ncapacity while the pool exists (us-central1 Standard SKU\n`C2DF-4710-FFE1` **\$0.2/GiBy·mo**; Flex Zonal `211D-EBE1-87C9`\n**\$0.2/GiBy·mo**; Premium `5BCD-5BCB-41A3` **~\$0.29/GiBy·mo**).\nTypical minimum sizes are large (TiB-scale) → too expensive for\napply-smoke. Factories ship without a quickstart.\n\nEnable `netapp.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleNetappStoragePool(\n  localName: \'pool\',\n  name: TfArg.literal(\'terradart-pool\'),\n  location: TfArg.literal(\'us-central1\'),\n  network: vpc.ref,\n  serviceLevel: TfArg.literal(NetappStoragePoolServiceLevel.standard),\n  capacityGib: TfArg.literal(2048),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_netapp_volume',
@@ -33275,7 +33387,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['NetworkConnectivityHubIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_network_connectivity_hub_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Network Connectivity\nCenter hub.\n\nReplaces the entire member list for that role. Prefer\n[GoogleNetworkConnectivityHubIamMember] for additive grants.',
@@ -33295,7 +33407,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['NetworkConnectivityHubIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_network_connectivity_hub_iam_member`.',
@@ -33356,7 +33468,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_network_connectivity_internal_range`.\n\nNetwork Connectivity **internal range** — reserves or allocates a CIDR\ninside a VPC for NCC / PSC / migration use.\n\nPass either [ipCidrRange] or [prefixLength] (auto-allocation).\nWhen using [prefixLength], optionally set [allocationOptions].\n\nExample:\n```dart\nGoogleNetworkConnectivityInternalRange(\n  localName: \'reserved\',\n  name: TfArg.literal(\'terradart-ir\'),\n  network: TfArg.ref(vpc.id),\n  usage: TfArg.literal(NetworkConnectivityInternalRangeUsage.forVpc),\n  peering: TfArg.literal(NetworkConnectivityInternalRangePeering.forSelf),\n  ipCidrRange: TfArg.literal(\'10.9.0.0/24\'),\n);\n```',
+        'Factory wrapper for `google_network_connectivity_internal_range`.\n\nNetwork Connectivity **internal range** — reserves or allocates a CIDR\ninside a VPC for NCC / PSC / migration use.\n\nPass either [ipCidrRange] or [prefixLength] (auto-allocation).\nWhen using [prefixLength], optionally set [allocationOptions].\n\nExample:\n```dart\nGoogleNetworkConnectivityInternalRange(\n  localName: \'reserved\',\n  name: TfArg.literal(\'terradart-ir\'),\n  network: vpc.ref,\n  usage: TfArg.literal(NetworkConnectivityInternalRangeUsage.forVpc),\n  peering: TfArg.literal(NetworkConnectivityInternalRangePeering.forSelf),\n  ipCidrRange: TfArg.literal(\'10.9.0.0/24\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_network_connectivity_multicloud_data_transfer_config',
@@ -33417,7 +33529,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_network_connectivity_policy_based_route`.\n\nPolicy-based Routes are more powerful routes that route L4 network traffic\nbased on not just destination IP, but also source IP, protocol and more. A\nPolicy-based Route always take precedence when it conflicts with other types\nof routes.\n\nNetwork Connectivity **policy-based route** — L4 route that matches on\nsource/dest IP and protocol (not just destination), and always wins\nover ordinary VPC routes when it matches.\n\nPass exactly one [nextHop] variant (`ilbIp` or `otherRoutes`). Scope\ninstallation with at most one of VM tags or an interconnect attachment\n([scope]).\n\n**Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU for PBR\n(Network Connectivity Center `7BEB-7A51-4223` `list_skus` keywords\npolicy/route → 0; catalog only lists Partner CCI Managed Transport\nhourly SKUs). billing-behavior: routing metadata — no existence/hourly\ncharge. Ships in [`ncc_hub_quickstart`] with\n`nextHop.otherRoutes(DEFAULT_ROUTING)` + VM tags.\n\nExample:\n```dart\nGoogleNetworkConnectivityPolicyBasedRoute(\n  localName: \'default_pbr\',\n  name: TfArg.literal(\'terradart-pbr\'),\n  network: TfArg.ref(vpc.id),\n  filter: NetworkConnectivityPolicyBasedRouteFilter(\n    protocolVersion: TfArg.literal(\n      NetworkConnectivityPolicyBasedRouteFilterProtocolVersion.ipv4,\n    ),\n  ),\n  nextHop: NetworkConnectivityPolicyBasedRouteNextHop.otherRoutes(\n    TfArg.literal(\n      NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,\n    ),\n  ),\n  scope: .virtualMachine(\n    NetworkConnectivityPolicyBasedRouteVirtualMachine(\n      tags: TfArg.literal([\'terradart-pbr\']),\n    ),\n  ),\n);\n```',
+        'Factory wrapper for `google_network_connectivity_policy_based_route`.\n\nPolicy-based Routes are more powerful routes that route L4 network traffic\nbased on not just destination IP, but also source IP, protocol and more. A\nPolicy-based Route always take precedence when it conflicts with other types\nof routes.\n\nNetwork Connectivity **policy-based route** — L4 route that matches on\nsource/dest IP and protocol (not just destination), and always wins\nover ordinary VPC routes when it matches.\n\nPass exactly one [nextHop] variant (`ilbIp` or `otherRoutes`). Scope\ninstallation with at most one of VM tags or an interconnect attachment\n([scope]).\n\n**Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU for PBR\n(Network Connectivity Center `7BEB-7A51-4223` `list_skus` keywords\npolicy/route → 0; catalog only lists Partner CCI Managed Transport\nhourly SKUs). billing-behavior: routing metadata — no existence/hourly\ncharge. Ships in [`ncc_hub_quickstart`] with\n`nextHop.otherRoutes(DEFAULT_ROUTING)` + VM tags.\n\nExample:\n```dart\nGoogleNetworkConnectivityPolicyBasedRoute(\n  localName: \'default_pbr\',\n  name: TfArg.literal(\'terradart-pbr\'),\n  network: vpc.ref,\n  filter: NetworkConnectivityPolicyBasedRouteFilter(\n    protocolVersion: TfArg.literal(\n      NetworkConnectivityPolicyBasedRouteFilterProtocolVersion.ipv4,\n    ),\n  ),\n  nextHop: NetworkConnectivityPolicyBasedRouteNextHop.otherRoutes(\n    TfArg.literal(\n      NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,\n    ),\n  ),\n  scope: .virtualMachine(\n    NetworkConnectivityPolicyBasedRouteVirtualMachine(\n      tags: TfArg.literal([\'terradart-pbr\']),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_network_connectivity_regional_endpoint',
@@ -33442,7 +33554,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['NetworkConnectivityRegionalEndpointAccessType'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_network_connectivity_regional_endpoint`.\n\nRegional Private Service Connect (PSC) endpoint resource.\n\nNetwork Connectivity **regional endpoint** — private PSC endpoint for a\nGoogle API (`{service}.{region}.rep.googleapis.com`).\n\nExample:\n```dart\nGoogleNetworkConnectivityRegionalEndpoint(\n  localName: \'storage_rep\',\n  name: TfArg.literal(\'terradart-storage-rep\'),\n  location: TfArg.literal(\'us-central1\'),\n  targetGoogleApi: TfArg.literal(\'storage.us-central1.rep.googleapis.com\'),\n  accessType: TfArg.literal(\n    NetworkConnectivityRegionalEndpointAccessType.regional,\n  ),\n  network: TfArg.ref(vpc.id),\n  subnetwork: TfArg.ref(subnet.id),\n);\n```',
+        'Factory wrapper for `google_network_connectivity_regional_endpoint`.\n\nRegional Private Service Connect (PSC) endpoint resource.\n\nNetwork Connectivity **regional endpoint** — private PSC endpoint for a\nGoogle API (`{service}.{region}.rep.googleapis.com`).\n\nExample:\n```dart\nGoogleNetworkConnectivityRegionalEndpoint(\n  localName: \'storage_rep\',\n  name: TfArg.literal(\'terradart-storage-rep\'),\n  location: TfArg.literal(\'us-central1\'),\n  targetGoogleApi: TfArg.literal(\'storage.us-central1.rep.googleapis.com\'),\n  accessType: TfArg.literal(\n    NetworkConnectivityRegionalEndpointAccessType.regional,\n  ),\n  network: vpc.ref,\n  subnetwork: subnet.ref,\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_network_connectivity_service_connection_policy',
@@ -33491,19 +33603,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'NetworkConnectivitySpokeAttachment',
+      'NetworkConnectivitySpokeAttachmentGateway',
+      'NetworkConnectivitySpokeAttachmentLinkedInterconnectAttachments',
+      'NetworkConnectivitySpokeAttachmentLinkedProducerVpcNetwork',
+      'NetworkConnectivitySpokeAttachmentLinkedRouterApplianceInstances',
+      'NetworkConnectivitySpokeAttachmentLinkedVpcNetwork',
+      'NetworkConnectivitySpokeAttachmentLinkedVpnTunnels',
+      'NetworkConnectivitySpokeGateway',
+      'NetworkConnectivitySpokeGatewayCapacity',
+      'NetworkConnectivitySpokeGatewayIpRangeReservations',
+      'NetworkConnectivitySpokeLinkedInterconnectAttachments',
+      'NetworkConnectivitySpokeLinkedProducerVpcNetwork',
+      'NetworkConnectivitySpokeLinkedRouterApplianceInstances',
+      'NetworkConnectivitySpokeLinkedRouterApplianceInstancesInstances',
       'NetworkConnectivitySpokeLinkedVpcNetwork',
       'NetworkConnectivitySpokeLinkedVpnTunnels',
-      'NetworkConnectivitySpokeLinkedInterconnectAttachments',
-      'NetworkConnectivitySpokeRouterApplianceInstance',
-      'NetworkConnectivitySpokeLinkedRouterApplianceInstances',
-      'NetworkConnectivitySpokeLinkedProducerVpcNetwork',
-      'NetworkConnectivitySpokeGatewayCapacity',
-      'NetworkConnectivitySpokeGatewayIpRangeReservation',
-      'NetworkConnectivitySpokeGateway',
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_network_connectivity_spoke`.\n\nThe NetworkConnectivity Spoke resource\n\nNetwork Connectivity Center **spoke** attached to a\n[GoogleNetworkConnectivityHub]. Provide exactly one [attachment]\nvariant (VPC, VPN tunnels, interconnect, router appliance, producer VPC,\nor NCC gateway).\n\nExample (VPC spoke):\n```dart\nGoogleNetworkConnectivitySpoke(\n  localName: \'vpc_spoke\',\n  name: TfArg.literal(\'vpc-spoke\'),\n  location: TfArg.literal(\'global\'),\n  hub: TfArg.ref(hub.id),\n  attachment: NetworkConnectivitySpokeLinkedVpcNetwork(\n    uri: TfArg.ref(vpc.id),\n  ),\n);\n```',
+        'Factory wrapper for `google_network_connectivity_spoke`.\n\nThe NetworkConnectivity Spoke resource\n\nNetwork Connectivity Center **spoke** attached to a\n[GoogleNetworkConnectivityHub]. Provide exactly one [attachment]\nvariant (VPC, VPN tunnels, interconnect, router appliance, producer VPC,\nor NCC gateway).\n\nExample (VPC spoke):\n```dart\nGoogleNetworkConnectivitySpoke(\n  localName: \'vpc_spoke\',\n  name: .literal(\'vpc-spoke\'),\n  location: .literal(\'global\'),\n  hub: .ref(hub.id),\n  attachment: .linkedVpcNetwork(\n    NetworkConnectivitySpokeLinkedVpcNetwork(uri: .ref(vpc.id)),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_network_connectivity_transport',
@@ -33534,7 +33652,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_network_connectivity_transport`.\n\nThe Transport resource is a top-level resource used by customers to control\nPartner Cross-Cloud Interconnect (CCI) connections.\n\nPartner Cross-Cloud Interconnect (CCI) transport for Network Connectivity.\n\nEnable `networkconnectivity.googleapis.com` via [GoogleProjectService]\nbefore apply. [network] must reference an existing VPC; [remoteProfile]\nis the full URL of a `remoteTransportProfiles` resource in the same region.\n\nExample:\n```dart\nGoogleNetworkConnectivityTransport(\n  localName: \'aws_cci\',\n  name: TfArg.literal(\'my-transport\'),\n  region: TfArg.literal(\'us-east4\'),\n  network: TfArg.ref(vpc.nameRef),\n  remoteProfile: TfArg.literal(\n    \'https://networkconnectivity.googleapis.com/v1/projects/my-project/locations/us-east4/remoteTransportProfiles/aws-us-east-1\',\n  ),\n  bandwidth: TfArg.literal(\'BPS_1G\'),\n);\n```',
+        'Factory wrapper for `google_network_connectivity_transport`.\n\nThe Transport resource is a top-level resource used by customers to control\nPartner Cross-Cloud Interconnect (CCI) connections.\n\nPartner Cross-Cloud Interconnect (CCI) transport for Network Connectivity.\n\nEnable `networkconnectivity.googleapis.com` via [GoogleProjectService]\nbefore apply. [network] must reference an existing VPC; [remoteProfile]\nis the full URL of a `remoteTransportProfiles` resource in the same region.\n\nExample:\n```dart\nGoogleNetworkConnectivityTransport(\n  localName: \'aws_cci\',\n  name: TfArg.literal(\'my-transport\'),\n  region: TfArg.literal(\'us-east4\'),\n  network: vpc.ref,\n  remoteProfile: TfArg.literal(\n    \'https://networkconnectivity.googleapis.com/v1/projects/my-project/locations/us-east4/remoteTransportProfiles/aws-us-east-1\',\n  ),\n  bandwidth: TfArg.literal(\'BPS_1G\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_network_management_connectivity_test',
@@ -33716,7 +33834,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['NetworkSecurityAddressGroupIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_network_security_address_group_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Network Security address group.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleNetworkSecurityAddressGroupIamMember] for additive grants.',
@@ -33737,7 +33855,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['NetworkSecurityAddressGroupIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_network_security_address_group_iam_member`.',
@@ -36154,7 +36272,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['OrganizationIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_organization_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a GCP organization.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleOrganizationIamMember] for additive grants.',
@@ -36217,7 +36335,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['OrganizationIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_organization_iam_member`.',
   ),
@@ -36965,7 +37083,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PrivatecaCaPoolIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_privateca_ca_pool_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Private CA pool.\n\nReplaces the entire member list for that role. Prefer\n[GooglePrivatecaCaPoolIamMember] for additive grants.',
@@ -36983,7 +37101,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PrivatecaCaPoolIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_privateca_ca_pool_iam_member`.\n\nAdditive IAM member on a [GooglePrivatecaCaPool] (Certificate Authority Service).\n\nRequired identity:\n- [localName]: Terraform local name.\n- [caPool]: pool ID — `TfArg.ref(pool.id)` from [GooglePrivatecaCaPool].\n- [role]: CAS role (e.g. `roles/privateca.auditor`).\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGooglePrivatecaCaPoolIamMember(\n  localName: \'pool_auditor\',\n  caPool: TfArg.ref(caPool.id),\n  role: TfArg.literal(\'roles/privateca.auditor\'),\n  member: TfArg.literal(\'group:security@example.com\'),\n);\n```',
@@ -37165,7 +37283,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PrivatecaCertificateTemplateIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_privateca_certificate_template_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Private CA certificate template.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GooglePrivatecaCertificateTemplateIamMember] for additive grants.',
@@ -37186,7 +37304,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PrivatecaCertificateTemplateIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_privateca_certificate_template_iam_member`.',
@@ -37381,7 +37499,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ProjectIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_project_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a GCP project.\n\nReplaces the entire member list for that role on the project. Prefer\n[GoogleProjectIamMember] for additive grants.',
@@ -37443,7 +37561,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ProjectIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_project_iam_member`.\n\nGrants a single (`role`, `member`) IAM binding on a GCP project. This\nis the **safe additive** form: it adds the tuple without touching any\nother bindings on the project.\n\nPicking the right `*_iam_*` variant:\n\n- `*_iam_member` (this resource) — **additive**: grants ONE\n  (role, member) tuple. Does not touch other principals\' bindings.\n  Safe in 95% of cases; prefer this unless you have a concrete reason\n  to use one of the authoritative variants below.\n- `*_iam_binding` — **authoritative per role**: takes a list of\n  members and *replaces* the entire member list for that role. Will\n  silently erase any other principal previously bound to that role\n  (including ones created out-of-band).\n- `*_iam_policy` — **authoritative for the entire resource**: replaces\n  the resource\'s whole IAM policy. Will erase **all** existing\n  bindings on the project. Use only when you intend to fully own the\n  policy from Terraform.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_project_iam_member.`).\n- `project`: target project (ID or number).\n- `role`: role name, e.g. `\'roles/storage.objectViewer\'` or the full\n  path to a project-level custom role (`projects/<id>/roles/<role_id>`).\n- `member`: principal in IAM v1 string form, e.g.\n  `\'serviceAccount:foo@<project>.iam.gserviceaccount.com\'`,\n  `\'user:alice@example.com\'`, `\'group:eng@example.com\'`. The\n  `serviceAccount:` prefix is best sourced from\n  [GoogleServiceAccount.member] to avoid manual concatenation.\n\nOptional `condition` is a single IAM Condition block (CEL `expression`,\n`title`, optional `description`). Conditioned bindings count as a\ndistinct tuple from the same role+member without the condition — the\ntwo coexist.',
@@ -37569,7 +37687,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_project_usage_export_bucket`.\n\nProject-level **Compute Engine usage export** — points daily usage\nreports at a GCS [bucketName] (optional [prefix]).\n\nThis resource is free project metadata. Report objects written to the\nbucket incur normal Cloud Storage charges if/when GCE emits them; empty\nsmoke stacks typically write nothing.\n\nEnable `compute.googleapis.com` and `storage.googleapis.com` via\n[GoogleProjectService] before apply. Prefer a dedicated bucket with\n`forceDestroy: true` in smoke stacks so teardown can empty it.\n\nExample:\n```dart\nfinal reports = GoogleStorageBucket(\n  localName: \'usage_reports\',\n  name: TfArg.literal(\'my-usage-reports\'),\n  location: TfArg.literal(\'US\'),\n  forceDestroy: TfArg.literal(true),\n);\nGoogleProjectUsageExportBucket(\n  localName: \'usage_export\',\n  bucketName: TfArg.ref(reports.nameRef),\n  prefix: TfArg.literal(\'gce-usage\'),\n);\n```',
+        'Factory wrapper for `google_project_usage_export_bucket`.\n\nProject-level **Compute Engine usage export** — points daily usage\nreports at a GCS [bucketName] (optional [prefix]).\n\nThis resource is free project metadata. Report objects written to the\nbucket incur normal Cloud Storage charges if/when GCE emits them; empty\nsmoke stacks typically write nothing.\n\nEnable `compute.googleapis.com` and `storage.googleapis.com` via\n[GoogleProjectService] before apply. Prefer a dedicated bucket with\n`forceDestroy: true` in smoke stacks so teardown can empty it.\n\nExample:\n```dart\nfinal reports = GoogleStorageBucket(\n  localName: \'usage_reports\',\n  name: TfArg.literal(\'my-usage-reports\'),\n  location: TfArg.literal(\'US\'),\n  forceDestroy: TfArg.literal(true),\n);\nGoogleProjectUsageExportBucket(\n  localName: \'usage_export\',\n  bucketName: reports.ref,\n  prefix: TfArg.literal(\'gce-usage\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_projects',
@@ -37702,7 +37820,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PubsubSchemaIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_pubsub_schema_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Pub/Sub schema.\n\nReplaces the entire member list for that role. Prefer\n[GooglePubsubSchemaIamMember] for additive grants.',
@@ -37721,7 +37839,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PubsubSchemaIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_pubsub_schema_iam_member`.',
   ),
@@ -37799,7 +37917,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_pubsub_subscription`.\n\nA named resource representing the stream of messages from a single, specific\ntopic, to be delivered to the subscribing application.\n\nPass `topic` as the full topic path via `TfArg.ref(otherTopic.id)`\n(NOT `topic.nameRef`) so it resolves to\n`projects/{project}/topics/{name}`.\n\nExample (push subscription):\n```dart\nfinal push = GooglePubsubSubscription(\n  localName: \'orders_push\',\n  name: .literal(\'orders-push\'),\n  topic: .of(orders),\n  delivery: .pushConfig(\n    PubsubSubscriptionPushConfig(\n      pushEndpoint: .literal(\'https://app.example.com/push\'),\n    ),\n  ),\n);\n```',
+        'Factory wrapper for `google_pubsub_subscription`.\n\nA named resource representing the stream of messages from a single, specific\ntopic, to be delivered to the subscribing application.\n\nPass `topic` as `otherTopic.ref`: it emits the topic `id`, the full\npath `projects/{project}/topics/{name}`.\n\nExample (push subscription):\n```dart\nfinal push = GooglePubsubSubscription(\n  localName: \'orders_push\',\n  name: .literal(\'orders-push\'),\n  topic: .of(orders),\n  delivery: .pushConfig(\n    PubsubSubscriptionPushConfig(\n      pushEndpoint: .literal(\'https://app.example.com/push\'),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_pubsub_subscription',
@@ -37827,7 +37945,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PubsubSubscriptionIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_pubsub_subscription_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Pub/Sub subscription.\n\nReplaces the entire member list for that role. Prefer\n[GooglePubsubSubscriptionIamMember] for additive grants.',
@@ -37846,7 +37964,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PubsubSubscriptionIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_pubsub_subscription_iam_member`.\n\nPub/Sub Subscription IAM is part of the curated surface. (Cloud\nScheduler IAM is not in the curated surface -- open an issue to request\ncuration.)',
@@ -37959,7 +38077,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PubsubTopicIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_pubsub_topic_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Pub/Sub topic.\n\nReplaces the entire member list for that role. Prefer\n[GooglePubsubTopicIamMember] for additive grants.',
@@ -37978,7 +38096,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['PubsubTopicIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_pubsub_topic_iam_member`.\n\nAdds a single IAM `role` -> `member` binding on a topic. Prefer\n[GooglePubsubTopicIamBinding] when replacing the full member list for\na role, or [GooglePubsubTopicIamPolicy] for the entire policy.',
@@ -38111,7 +38229,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_redis_cluster`.\n\nA Google Cloud Redis Cluster instance.\n\nMemorystore for Redis **Cluster** — sharded Redis with PSC networking.\n\n**Cost:** Cloud Billing Catalog service `5AF5-2C11-D467` bills **per\nnode-hour** while the cluster exists (us-central1 Shared Core Nano\nSKU `B4D9-BD1A-3BBC` **\$0.0318/h**; Standard Small `02F6-0CB2-BDE1`\n**\$0.1425/h**; Default 13 GB `8513-DCBC-92D7` **\$0.1923/h**) ×\nshards × (1 + replicas). Destroy stops node charges. Too expensive\nfor apply-smoke — factories ship without a quickstart.\n\nRequires [shardCount] and typically [pscConfigs] (consumer VPC\nnetwork). Enable `redis.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleRedisCluster(\n  localName: \'rc\',\n  name: TfArg.literal(\'terradart-rc\'),\n  region: TfArg.literal(\'us-central1\'),\n  shardCount: TfArg.literal(1),\n  replicaCount: TfArg.literal(0),\n  nodeType: TfArg.literal(RedisClusterNodeType.redisSharedCoreNano),\n  pscConfigs: [\n    RedisClusterPscConfigs(network: TfArg.ref(network.id)),\n  ],\n  deletionProtectionEnabled: TfArg.literal(false),\n);\n```',
+        'Factory wrapper for `google_redis_cluster`.\n\nA Google Cloud Redis Cluster instance.\n\nMemorystore for Redis **Cluster** — sharded Redis with PSC networking.\n\n**Cost:** Cloud Billing Catalog service `5AF5-2C11-D467` bills **per\nnode-hour** while the cluster exists (us-central1 Shared Core Nano\nSKU `B4D9-BD1A-3BBC` **\$0.0318/h**; Standard Small `02F6-0CB2-BDE1`\n**\$0.1425/h**; Default 13 GB `8513-DCBC-92D7` **\$0.1923/h**) ×\nshards × (1 + replicas). Destroy stops node charges. Too expensive\nfor apply-smoke — factories ship without a quickstart.\n\nRequires [shardCount] and typically [pscConfigs] (consumer VPC\nnetwork). Enable `redis.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleRedisCluster(\n  localName: \'rc\',\n  name: TfArg.literal(\'terradart-rc\'),\n  region: TfArg.literal(\'us-central1\'),\n  shardCount: TfArg.literal(1),\n  replicaCount: TfArg.literal(0),\n  nodeType: TfArg.literal(RedisClusterNodeType.redisSharedCoreNano),\n  pscConfigs: [\n    RedisClusterPscConfigs(network: network.ref),\n  ],\n  deletionProtectionEnabled: TfArg.literal(false),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_redis_cluster',
@@ -38685,7 +38803,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SccSourceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_scc_source_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Security Command Center source.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleSccSourceIamMember] for additive grants.',
@@ -38704,7 +38822,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SccSourceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_scc_source_iam_member`.',
   ),
@@ -38921,7 +39039,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SccV2OrganizationSourceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_scc_v2_organization_source_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Security Command Center v2 organization source.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleSccV2OrganizationSourceIamMember] for additive grants.',
@@ -38941,7 +39059,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SccV2OrganizationSourceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_scc_v2_organization_source_iam_member`.',
@@ -39017,7 +39135,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['SccV2ProjectNotificationConfigStreamingConfig'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_scc_v2_project_notification_config`.\n\nThis is a continuous export that exports findings to a Pub/Sub topic.\n\nSecurity Command Center v2 **project notification config** — a continuous\nexport that streams findings to a Pub/Sub topic.\n\n[pubsubTopic] must be a fully-qualified topic path\n(`projects/{project}/topics/{topic}`). Pass [GooglePubsubTopic.id] from a\nsibling topic (not the bare topic name).\n\n[streamingConfig].`filter` is required by the schema; use `""` to match\nall findings, or a CEL-style expression such as\n`state = "ACTIVE"`. See\n[Filtering notifications](https://cloud.google.com/security-command-center/docs/how-to-api-filter-notifications).\n\nAfter create, [serviceAccount] is the identity that needs\n`roles/pubsub.publisher` on the destination topic (grant via\n[GooglePubsubTopicIamMember] when delivery must succeed).\n\nEnable `securitycenter.googleapis.com` (and `pubsub.googleapis.com` when\ncreating the topic in-stack) via [GoogleProjectService] before apply.\n\nExample:\n```dart\nfinal topic = GooglePubsubTopic(\n  localName: \'scc_findings\',\n  name: TfArg.literal(\'scc-findings\'),\n);\nGoogleSccV2ProjectNotificationConfig(\n  localName: \'findings_export\',\n  configId: TfArg.literal(\'terradart-findings\'),\n  description: TfArg.literal(\'Export ACTIVE findings to Pub/Sub\'),\n  pubsubTopic: TfArg.ref(topic.id),\n  streamingConfig: SccV2ProjectNotificationConfigStreamingConfig(\n    filter: TfArg.literal(\'state = "ACTIVE"\'),\n  ),\n);\n```',
+        'Factory wrapper for `google_scc_v2_project_notification_config`.\n\nThis is a continuous export that exports findings to a Pub/Sub topic.\n\nSecurity Command Center v2 **project notification config** — a continuous\nexport that streams findings to a Pub/Sub topic.\n\n[pubsubTopic] must be a fully-qualified topic path\n(`projects/{project}/topics/{topic}`). Pass [GooglePubsubTopic.id] from a\nsibling topic (not the bare topic name).\n\n[streamingConfig].`filter` is required by the schema; use `""` to match\nall findings, or a CEL-style expression such as\n`state = "ACTIVE"`. See\n[Filtering notifications](https://cloud.google.com/security-command-center/docs/how-to-api-filter-notifications).\n\nAfter create, [serviceAccount] is the identity that needs\n`roles/pubsub.publisher` on the destination topic (grant via\n[GooglePubsubTopicIamMember] when delivery must succeed).\n\nEnable `securitycenter.googleapis.com` (and `pubsub.googleapis.com` when\ncreating the topic in-stack) via [GoogleProjectService] before apply.\n\nExample:\n```dart\nfinal topic = GooglePubsubTopic(\n  localName: \'scc_findings\',\n  name: TfArg.literal(\'scc-findings\'),\n);\nGoogleSccV2ProjectNotificationConfig(\n  localName: \'findings_export\',\n  configId: TfArg.literal(\'terradart-findings\'),\n  description: TfArg.literal(\'Export ACTIVE findings to Pub/Sub\'),\n  pubsubTopic: topic.ref,\n  streamingConfig: SccV2ProjectNotificationConfigStreamingConfig(\n    filter: TfArg.literal(\'state = "ACTIVE"\'),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_scc_v2_project_scc_big_query_export',
@@ -39103,7 +39221,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecretManagerRegionalSecretIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secret_manager_regional_secret_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a regional Secret\nManager secret.\n\nReplaces the entire member list for that role. Prefer\n[GoogleSecretManagerRegionalSecretIamMember] for additive grants.',
@@ -39124,7 +39242,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecretManagerRegionalSecretIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secret_manager_regional_secret_iam_member`.',
@@ -39298,7 +39416,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecretManagerSecretIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secret_manager_secret_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Secret Manager\nsecret.\n\nReplaces the entire member list for that role. Prefer\n[GoogleSecretManagerSecretIamMember] for additive grants.',
@@ -39317,7 +39435,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'condition',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecretManagerSecretIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secret_manager_secret_iam_member`.',
@@ -39521,7 +39639,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecureSourceManagerInstanceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secure_source_manager_instance_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Secure Source Manager\ninstance.\n\nReplaces the entire member list for that role. Prefer\n[GoogleSecureSourceManagerInstanceIamMember] for additive grants.\nDeferred with the never_apply SSM instance (no apply-smoke quickstart).',
@@ -39542,7 +39660,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecureSourceManagerInstanceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secure_source_manager_instance_iam_member`.\n\nNon-authoritative IAM member on a Secure Source Manager instance.\n\n[instanceId] is the short instance id (path segment), not the full\nresource name.',
@@ -39627,7 +39745,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecureSourceManagerRepositoryIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secure_source_manager_repository_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Secure Source Manager\nrepository.\n\nReplaces the entire member list for that role. Prefer\n[GoogleSecureSourceManagerRepositoryIamMember] for additive grants.\nDeferred with the never_apply SSM instance (no apply-smoke quickstart).',
@@ -39648,7 +39766,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecureSourceManagerRepositoryIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secure_source_manager_repository_iam_member`.\n\nNon-authoritative IAM member on a Secure Source Manager repository.\n\n[repositoryId] is the short repository id (path segment). Location and\nproject identify the parent when not taken from the provider default.',
@@ -39823,7 +39941,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ServiceAccountIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_service_account_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a service account\nresource (who can impersonate / mint tokens for this SA).\n\nReplaces the entire member list for that role. Prefer\n[GoogleServiceAccountIamMember] for additive grants.',
@@ -39841,10 +39959,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ServiceAccountIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_service_account_iam_member`.\n\nGrants a single (`role`, `member`) IAM binding **on a service\naccount resource** — i.e. who can impersonate / generate tokens / sign\nblobs for this SA. This is distinct from `google_project_iam_member`\n(which grants the SA *itself* a role on a project).\n\nPicking the right `*_iam_*` variant:\n\n- `*_iam_member` (this resource) — **additive**: grants ONE\n  (role, member) tuple. Does not touch other principals\' bindings.\n  Safe in 95% of cases; prefer this unless you have a concrete reason\n  to use one of the authoritative variants below.\n- `*_iam_binding` — **authoritative per role**: takes a list of\n  members and *replaces* the entire member list for that role. Will\n  silently erase any other principal previously bound to that role\n  on this service account.\n- `*_iam_policy` — **authoritative for the entire resource**: replaces\n  the SA\'s whole IAM policy. Will erase **all** existing bindings.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `serviceAccountId`: the **fully-qualified resource path** of the\n  target SA, i.e. `projects/{project}/serviceAccounts/{email}`. Pass\n  `TfArg.ref(sa.id)` (or `sa.name`, same value) rather than the bare\n  email — short forms are rejected by the API.\n- `role`: role name, typically `\'roles/iam.serviceAccountUser\'`\n  (impersonation) or `\'roles/iam.serviceAccountTokenCreator\'`\n  (generate access tokens).\n- `member`: principal in IAM v1 string form.\n\nOptional `condition` is a single IAM Condition block (CEL\n`expression`, `title`, optional `description`).',
+        'Factory wrapper for `google_service_account_iam_member`.\n\nGrants a single (`role`, `member`) IAM binding **on a service\naccount resource** — i.e. who can impersonate / generate tokens / sign\nblobs for this SA. This is distinct from `google_project_iam_member`\n(which grants the SA *itself* a role on a project).\n\nPicking the right `*_iam_*` variant:\n\n- `*_iam_member` (this resource) — **additive**: grants ONE\n  (role, member) tuple. Does not touch other principals\' bindings.\n  Safe in 95% of cases; prefer this unless you have a concrete reason\n  to use one of the authoritative variants below.\n- `*_iam_binding` — **authoritative per role**: takes a list of\n  members and *replaces* the entire member list for that role. Will\n  silently erase any other principal previously bound to that role\n  on this service account.\n- `*_iam_policy` — **authoritative for the entire resource**: replaces\n  the SA\'s whole IAM policy. Will erase **all** existing bindings.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `serviceAccountId`: the **fully-qualified resource path** of the\n  target SA, i.e. `projects/{project}/serviceAccounts/{email}`. Pass\n  `sa.ref`, which emits the SA\'s `name` (that path), rather than the\n  bare email — short forms are rejected by the API.\n- `role`: role name, typically `\'roles/iam.serviceAccountUser\'`\n  (impersonation) or `\'roles/iam.serviceAccountTokenCreator\'`\n  (generate access tokens).\n- `member`: principal in IAM v1 string form.\n\nOptional `condition` is a single IAM Condition block (CEL\n`expression`, `title`, optional `description`).',
   ),
   CatalogEntry(
     tfType: 'google_service_account_iam_policy',
@@ -39924,7 +40042,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['KeyAlgorithm', 'PrivateKeyType', 'PublicKeyType'],
     sensitiveFields: <String>['private_key'],
     docComment:
-        'Factory wrapper for `google_service_account_key`.\n\nGenerates a long-lived JSON service account key for a given SA. The\nresulting private key material is exposed via the computed\n`private_key` attribute — Terraform marks it **sensitive** and the\nemitted [GoogleServiceAccountKey] adds it to `sensitiveFields` so\nstack synth masks it from any rendered Terraform JSON / app constants.\n\n**Security note**: long-lived SA keys are a recurring source of\ncredential leaks. Prefer Workload Identity Federation\n([GoogleIamWorkloadIdentityPool] + a provider) or Workload Identity\n(GKE) wherever possible. Reach for `service_account_key` only when\nintegrating with a legacy system that cannot accept short-lived\ntokens.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `serviceAccountId`: the parent SA. Accepts either the bare account\n  email/uniqueId (project is inferred from the provider) or the full\n  `projects/{project}/serviceAccounts/{email}` path. Passing\n  `TfArg.ref(sa.name)` is the canonical form.\n\nOptional knobs:\n- `keyAlgorithm`: signing algorithm ([KeyAlgorithm]).\n- `privateKeyType`: output format for the emitted private key\n  ([PrivateKeyType]).\n- `publicKeyType`: output format for the public key half\n  ([PublicKeyType]).\n- `publicKeyData`: when set, **upload** an existing public key\n  (base64-encoded X509 PEM) instead of having GCP generate the keypair.\n  In that mode the `private_key` output is empty.\n- `keepers`: arbitrary map whose value changes trigger key rotation.\n  Typical pattern: `keepers: TfArg.literal({\'rotation\': timestamp})`\n  refreshed by an external scheduler.',
+        'Factory wrapper for `google_service_account_key`.\n\nGenerates a long-lived JSON service account key for a given SA. The\nresulting private key material is exposed via the computed\n`private_key` attribute — Terraform marks it **sensitive** and the\nemitted [GoogleServiceAccountKey] adds it to `sensitiveFields` so\nstack synth masks it from any rendered Terraform JSON / app constants.\n\n**Security note**: long-lived SA keys are a recurring source of\ncredential leaks. Prefer Workload Identity Federation\n([GoogleIamWorkloadIdentityPool] + a provider) or Workload Identity\n(GKE) wherever possible. Reach for `service_account_key` only when\nintegrating with a legacy system that cannot accept short-lived\ntokens.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `serviceAccountId`: the parent SA. Accepts either the bare account\n  email/uniqueId (project is inferred from the provider) or the full\n  `projects/{project}/serviceAccounts/{email}` path. Passing\n  `sa.ref` (it emits the SA\'s `name`) is the canonical form.\n\nOptional knobs:\n- `keyAlgorithm`: signing algorithm ([KeyAlgorithm]).\n- `privateKeyType`: output format for the emitted private key\n  ([PrivateKeyType]).\n- `publicKeyType`: output format for the public key half\n  ([PublicKeyType]).\n- `publicKeyData`: when set, **upload** an existing public key\n  (base64-encoded X509 PEM) instead of having GCP generate the keypair.\n  In that mode the `private_key` output is empty.\n- `keepers`: arbitrary map whose value changes trigger key rotation.\n  Typical pattern: `keepers: TfArg.literal({\'rotation\': timestamp})`\n  refreshed by an external scheduler.',
   ),
   CatalogEntry(
     tfType: 'google_service_account_key',
@@ -40153,7 +40271,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_service_networking_connection`.\n\nCreates a private services peering connection between the user\'s VPC\nnetwork and one of Google\'s service producer VPCs. This is the\n"private connectivity" hop required for managed services (Cloud SQL\nprivate IP, Memorystore private IP, AlloyDB, etc) to be reachable\nonly from inside the consumer VPC.\n\nThe pipeline is a three-resource chain:\n\n1. [GoogleComputeNetwork] — the consumer VPC.\n2. [GoogleComputeGlobalAddress] with `purpose: vpcPeering` —\n   pre-reserves an internal CIDR on that VPC for Google\'s services\n   to peer into.\n3. [GoogleServiceNetworkingConnection] (this resource) — peers\n   Google\'s `servicenetworking.googleapis.com` producer VPC into the\n   consumer VPC against the reserved range(s).\n\nOnce apply succeeds, downstream resources like\n[GoogleSqlDatabaseInstance] can set\n`settings.ip_configuration.private_network` to the same network and\nreceive a private-only IP allocated from the reserved range.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_service_networking_connection.`).\n- `network`: full self_link of a [GoogleComputeNetwork]\n  (`TfArg.ref(vpc.selfLink)`). The provider rejects short network\n  names here.\n- `service`: the producer service ID. The only documented value at\n  the time of writing is `\'servicenetworking.googleapis.com\'`; passed\n  as a plain string so callers can target other producer services\n  should Google introduce them.\n- `reservedPeeringRanges`: one or more `name` values from\n  [GoogleComputeGlobalAddress] resources with\n  `purpose: vpcPeering`. The provider rejects full self_links here —\n  pass `TfArg.ref(psaRange.nameRef)`.\n\nExample (full Cloud SQL private-IP chain — see also the\n`cloud_sql_quickstart` example):\n```dart\nfinal psaPeering = GoogleServiceNetworkingConnection(\n  localName: \'psa\',\n  network: TfArg.ref(vpc.selfLink),\n  service: TfArg.literal(\'servicenetworking.googleapis.com\'),\n  reservedPeeringRanges: TfArg.literal([\n    \'\\\${google_compute_global_address.psa_range.name}\',\n  ]),\n);\n```',
+        'Factory wrapper for `google_service_networking_connection`.\n\nCreates a private services peering connection between the user\'s VPC\nnetwork and one of Google\'s service producer VPCs. This is the\n"private connectivity" hop required for managed services (Cloud SQL\nprivate IP, Memorystore private IP, AlloyDB, etc) to be reachable\nonly from inside the consumer VPC.\n\nThe pipeline is a three-resource chain:\n\n1. [GoogleComputeNetwork] — the consumer VPC.\n2. [GoogleComputeGlobalAddress] with `purpose: vpcPeering` —\n   pre-reserves an internal CIDR on that VPC for Google\'s services\n   to peer into.\n3. [GoogleServiceNetworkingConnection] (this resource) — peers\n   Google\'s `servicenetworking.googleapis.com` producer VPC into the\n   consumer VPC against the reserved range(s).\n\nOnce apply succeeds, downstream resources like\n[GoogleSqlDatabaseInstance] can set\n`settings.ip_configuration.private_network` to the same network and\nreceive a private-only IP allocated from the reserved range.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_service_networking_connection.`).\n- `network`: a [GoogleComputeNetwork] (`vpc.ref`, which emits its\n  full `id` path). The provider rejects short network names here.\n- `service`: the producer service ID. The only documented value at\n  the time of writing is `\'servicenetworking.googleapis.com\'`; passed\n  as a plain string so callers can target other producer services\n  should Google introduce them.\n- `reservedPeeringRanges`: one or more `name` values from\n  [GoogleComputeGlobalAddress] resources with\n  `purpose: vpcPeering`. The provider rejects full self_links here —\n  pass `TfArg.ref(psaRange.nameRef)`.\n\nExample (full Cloud SQL private-IP chain — see also the\n`cloud_sql_quickstart` example):\n```dart\nfinal psaPeering = GoogleServiceNetworkingConnection(\n  localName: \'psa\',\n  network: vpc.ref,\n  service: TfArg.literal(\'servicenetworking.googleapis.com\'),\n  reservedPeeringRanges: TfArg.literal([\n    \'\\\${google_compute_global_address.psa_range.name}\',\n  ]),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_service_networking_peered_dns_domain',
@@ -40461,7 +40579,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SpannerDatabaseIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_spanner_database_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Spanner database.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleSpannerDatabaseIamMember] for additive grants.',
@@ -40481,7 +40599,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SpannerDatabaseIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_spanner_database_iam_member`.',
   ),
@@ -40621,7 +40739,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SpannerInstanceIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_spanner_instance_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Spanner instance.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleSpannerInstanceIamMember] for additive grants.',
@@ -40640,7 +40758,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SpannerInstanceIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_spanner_instance_iam_member`.',
   ),
@@ -41154,7 +41272,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['StorageBucketAccessControlRole'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_storage_bucket_access_control`.\n\nBucket ACLs can be managed authoritatively using the\n[`storage_bucket_acl`](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_acl)\nresource. Do not use these two resources in conjunction to manage the same\nbucket.\n\nThe BucketAccessControls resource manages the Access Control List (ACLs) for\na single entity/role pairing on a bucket. ACLs let you specify who has\naccess to your data and to what extent.\n\nThere are three roles that can be assigned to an entity:\n\nREADERs can get the bucket, though no acl property will be returned, and\nlist the bucket\'s objects. WRITERs are READERs, and they can insert objects\ninto the bucket and delete the bucket\'s objects. OWNERs are WRITERs, and\nthey can get the acl property of a bucket, update a bucket, and call all\nBucketAccessControls methods on the bucket. For more information, see Access\nControl, with the caveat that this API uses READER, WRITER, and OWNER\ninstead of READ, WRITE, and FULL_CONTROL.\n\nFine-grained **bucket ACL** entry (one entity + optional role). Requires a\nbucket with uniform bucket-level access **disabled** — HNS buckets cannot\nuse this resource. Prefer IAM ([GoogleStorageBucketIamMember]) on modern\nbuckets.\n\nExample:\n```dart\nGoogleStorageBucketAccessControl(\n  localName: \'legacy_reader\',\n  bucket: TfArg.ref(legacy.nameRef),\n  entity: TfArg.ref(reader.iamMember),\n  role: TfArg.literal(StorageBucketAccessControlRole.reader),\n);\n```',
+        'Factory wrapper for `google_storage_bucket_access_control`.\n\nBucket ACLs can be managed authoritatively using the\n[`storage_bucket_acl`](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_acl)\nresource. Do not use these two resources in conjunction to manage the same\nbucket.\n\nThe BucketAccessControls resource manages the Access Control List (ACLs) for\na single entity/role pairing on a bucket. ACLs let you specify who has\naccess to your data and to what extent.\n\nThere are three roles that can be assigned to an entity:\n\nREADERs can get the bucket, though no acl property will be returned, and\nlist the bucket\'s objects. WRITERs are READERs, and they can insert objects\ninto the bucket and delete the bucket\'s objects. OWNERs are WRITERs, and\nthey can get the acl property of a bucket, update a bucket, and call all\nBucketAccessControls methods on the bucket. For more information, see Access\nControl, with the caveat that this API uses READER, WRITER, and OWNER\ninstead of READ, WRITE, and FULL_CONTROL.\n\nFine-grained **bucket ACL** entry (one entity + optional role). Requires a\nbucket with uniform bucket-level access **disabled** — HNS buckets cannot\nuse this resource. Prefer IAM ([GoogleStorageBucketIamMember]) on modern\nbuckets.\n\nExample:\n```dart\nGoogleStorageBucketAccessControl(\n  localName: \'legacy_reader\',\n  bucket: legacy.ref,\n  entity: TfArg.ref(reader.iamMember),\n  role: TfArg.literal(StorageBucketAccessControlRole.reader),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_bucket_acl',
@@ -41173,7 +41291,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_storage_bucket_acl`.\n\nAuthoritative **bucket ACL** (the full role/entity list or a canned\n[predefinedAcl]). Requires uniform bucket-level access **disabled**.\nPrefer IAM ([GoogleStorageBucketIamMember]) on modern buckets. Do not\nmix with [GoogleStorageBucketAccessControl] on the same bucket —\nthis resource replaces the whole ACL.\n\n**Cost:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` list_skus\nkeyword=ACL → 0; Class A ops `4DBF-185F-A415` **\$0.005/count after\n5k**. billing-behavior: ACL metadata — not existence-billed.\n\nExample:\n```dart\nGoogleStorageBucketAcl(\n  localName: \'legacy_acl\',\n  bucket: TfArg.ref(legacy.nameRef),\n  predefinedAcl: TfArg.literal(\'private\'),\n);\n```',
+        'Factory wrapper for `google_storage_bucket_acl`.\n\nAuthoritative **bucket ACL** (the full role/entity list or a canned\n[predefinedAcl]). Requires uniform bucket-level access **disabled**.\nPrefer IAM ([GoogleStorageBucketIamMember]) on modern buckets. Do not\nmix with [GoogleStorageBucketAccessControl] on the same bucket —\nthis resource replaces the whole ACL.\n\n**Cost:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` list_skus\nkeyword=ACL → 0; Class A ops `4DBF-185F-A415` **\$0.005/count after\n5k**. billing-behavior: ACL metadata — not existence-billed.\n\nExample:\n```dart\nGoogleStorageBucketAcl(\n  localName: \'legacy_acl\',\n  bucket: legacy.ref,\n  predefinedAcl: TfArg.literal(\'private\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_bucket_iam_binding',
@@ -41188,7 +41306,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['StorageBucketIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_storage_bucket_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Storage bucket.\n\nReplaces the entire member list for that role on the bucket. Prefer\n[GoogleStorageBucketIamMember] when adding one principal without\ntouching existing bindings.',
@@ -41206,7 +41324,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['StorageBucketIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_storage_bucket_iam_member`.',
   ),
@@ -41272,7 +41390,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>['content', 'customer_encryption.encryption_key'],
     docComment:
-        'Factory wrapper for `google_storage_bucket_object`.\n\nPass `TfArg.ref(bucket.nameRef)` for `bucket` — NOT `bucket.id`\n(`id` is `{bucket-name}` for buckets but the API wants just the name).\n\n`body`: object payload — choose exactly one of:\n- [StorageBucketObjectBodySource] — upload from a local file path.\n- [StorageBucketObjectBodyContent] — inline string payload.\nThe sealed [StorageBucketObjectBody] type makes the `source` / `content`\n`exactly_one_of` constraint exhaustive at the type level.\n\nExample (inline content):\n```dart\nfinal assets = GoogleStorageBucket(\n  localName: \'assets\',\n  name: TfArg.literal(\'my-app-assets-prod\'),\n  location: TfArg.literal(\'ASIA-NORTHEAST1\'),\n);\nfinal config = GoogleStorageBucketObject(\n  localName: \'config\',\n  bucket: TfArg.ref(assets.nameRef),\n  name: TfArg.literal(\'config/app.json\'),\n  body: StorageBucketObjectBodyContent(\n    content: TfArg.literal(\'{"feature_x": true}\'),\n  ),\n  contentType: TfArg.literal(\'application/json\'),\n  storageClass: TfArg.literal(BucketObjectStorageClass.standard),\n);\n```\n\nExample (file upload):\n```dart\nfinal logo = GoogleStorageBucketObject(\n  localName: \'logo\',\n  bucket: TfArg.ref(assets.nameRef),\n  name: TfArg.literal(\'static/logo.png\'),\n  body: StorageBucketObjectBodySource(source: TfArg.literal(\'./assets/logo.png\')),\n  contentType: TfArg.literal(\'image/png\'),\n);\n```',
+        'Factory wrapper for `google_storage_bucket_object`.\n\nPass `bucket.ref` for `bucket`; it emits the bucket name the API wants.\n\n`body`: object payload — choose exactly one of:\n- [StorageBucketObjectBodySource] — upload from a local file path.\n- [StorageBucketObjectBodyContent] — inline string payload.\nThe sealed [StorageBucketObjectBody] type makes the `source` / `content`\n`exactly_one_of` constraint exhaustive at the type level.\n\nExample (inline content):\n```dart\nfinal assets = GoogleStorageBucket(\n  localName: \'assets\',\n  name: TfArg.literal(\'my-app-assets-prod\'),\n  location: TfArg.literal(\'ASIA-NORTHEAST1\'),\n);\nfinal config = GoogleStorageBucketObject(\n  localName: \'config\',\n  bucket: assets.ref,\n  name: TfArg.literal(\'config/app.json\'),\n  body: StorageBucketObjectBodyContent(\n    content: TfArg.literal(\'{"feature_x": true}\'),\n  ),\n  contentType: TfArg.literal(\'application/json\'),\n  storageClass: TfArg.literal(BucketObjectStorageClass.standard),\n);\n```\n\nExample (file upload):\n```dart\nfinal logo = GoogleStorageBucketObject(\n  localName: \'logo\',\n  bucket: assets.ref,\n  name: TfArg.literal(\'static/logo.png\'),\n  body: StorageBucketObjectBodySource(source: TfArg.literal(\'./assets/logo.png\')),\n  contentType: TfArg.literal(\'image/png\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_bucket_object',
@@ -41599,7 +41717,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['StorageDefaultObjectAccessControlRole'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_storage_default_object_access_control`.\n\nThe DefaultObjectAccessControls resources represent the Access Control Lists\n(ACLs) applied to a new object within a Google Cloud Storage bucket when no\nACL was provided for that object. ACLs let you specify who has access to\nyour bucket contents and to what extent.\n\nThere are two roles that can be assigned to an entity:\n\nREADERs can get an object, though the acl property will not be revealed.\nOWNERs are READERs, and they can get the acl property, update an object, and\ncall all objectAccessControls methods on the object. The owner of an object\nis always an OWNER. For more information, see Access Control, with the\ncaveat that this API uses READER and OWNER instead of READ and FULL_CONTROL.\n\nDefault **object ACL** applied to new objects in a bucket. Requires\nuniform bucket-level access **disabled**. Prefer IAM on modern buckets.\n\nExample:\n```dart\nGoogleStorageDefaultObjectAccessControl(\n  localName: \'default_reader\',\n  bucket: TfArg.ref(legacy.nameRef),\n  entity: TfArg.ref(reader.iamMember),\n  role: TfArg.literal(StorageDefaultObjectAccessControlRole.reader),\n);\n```',
+        'Factory wrapper for `google_storage_default_object_access_control`.\n\nThe DefaultObjectAccessControls resources represent the Access Control Lists\n(ACLs) applied to a new object within a Google Cloud Storage bucket when no\nACL was provided for that object. ACLs let you specify who has access to\nyour bucket contents and to what extent.\n\nThere are two roles that can be assigned to an entity:\n\nREADERs can get an object, though the acl property will not be revealed.\nOWNERs are READERs, and they can get the acl property, update an object, and\ncall all objectAccessControls methods on the object. The owner of an object\nis always an OWNER. For more information, see Access Control, with the\ncaveat that this API uses READER and OWNER instead of READ and FULL_CONTROL.\n\nDefault **object ACL** applied to new objects in a bucket. Requires\nuniform bucket-level access **disabled**. Prefer IAM on modern buckets.\n\nExample:\n```dart\nGoogleStorageDefaultObjectAccessControl(\n  localName: \'default_reader\',\n  bucket: legacy.ref,\n  entity: TfArg.ref(reader.iamMember),\n  role: TfArg.literal(StorageDefaultObjectAccessControlRole.reader),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_default_object_acl',
@@ -41616,7 +41734,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_storage_default_object_acl`.\n\nAuthoritative **default object ACL** for new objects in a bucket.\nRequires uniform bucket-level access **disabled**. Prefer IAM on\nmodern buckets. Do not mix with\n[GoogleStorageDefaultObjectAccessControl] on the same bucket.\n\n**Cost:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` list_skus\nkeyword=ACL → 0; Class A ops `4DBF-185F-A415` **\$0.005/count after\n5k**. billing-behavior: ACL metadata — not existence-billed.\n\nExample:\n```dart\nGoogleStorageDefaultObjectAcl(\n  localName: \'legacy_default\',\n  bucket: TfArg.ref(legacy.nameRef),\n  roleEntity: TfArg.literal([\n    \'OWNER:project-owners-\\\${current.number}\',\n  ]),\n);\n```',
+        'Factory wrapper for `google_storage_default_object_acl`.\n\nAuthoritative **default object ACL** for new objects in a bucket.\nRequires uniform bucket-level access **disabled**. Prefer IAM on\nmodern buckets. Do not mix with\n[GoogleStorageDefaultObjectAccessControl] on the same bucket.\n\n**Cost:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` list_skus\nkeyword=ACL → 0; Class A ops `4DBF-185F-A415` **\$0.005/count after\n5k**. billing-behavior: ACL metadata — not existence-billed.\n\nExample:\n```dart\nGoogleStorageDefaultObjectAcl(\n  localName: \'legacy_default\',\n  bucket: legacy.ref,\n  roleEntity: TfArg.literal([\n    \'OWNER:project-owners-\\\${current.number}\',\n  ]),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_folder',
@@ -41634,7 +41752,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_storage_folder`.\n\nA Google Cloud Storage Folder.\n\nThe Folder resource represents a folder in a Cloud Storage bucket with\nhierarchical namespace enabled\n\nHierarchical-namespace **folder** in a Cloud Storage bucket. The parent\nbucket must have `hierarchical_namespace.enabled = true` (and therefore\nuniform bucket-level access). Folder [name] is a path and must end with\n`/` (e.g. `reports/2024/`).\n\nPrefer this over [GoogleStorageManagedFolder] when you want the Folders\nAPI (create / list / rename) rather than the managed-folder IAM surface.\n\nExample:\n```dart\nGoogleStorageFolder(\n  localName: \'reports\',\n  bucket: TfArg.ref(assets.nameRef),\n  name: TfArg.literal(\'reports/\'),\n  forceDestroy: TfArg.literal(true),\n);\n```',
+        'Factory wrapper for `google_storage_folder`.\n\nA Google Cloud Storage Folder.\n\nThe Folder resource represents a folder in a Cloud Storage bucket with\nhierarchical namespace enabled\n\nHierarchical-namespace **folder** in a Cloud Storage bucket. The parent\nbucket must have `hierarchical_namespace.enabled = true` (and therefore\nuniform bucket-level access). Folder [name] is a path and must end with\n`/` (e.g. `reports/2024/`).\n\nPrefer this over [GoogleStorageManagedFolder] when you want the Folders\nAPI (create / list / rename) rather than the managed-folder IAM surface.\n\nExample:\n```dart\nGoogleStorageFolder(\n  localName: \'reports\',\n  bucket: assets.ref,\n  name: TfArg.literal(\'reports/\'),\n  forceDestroy: TfArg.literal(true),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_ftp_server',
@@ -41709,7 +41827,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['StorageHmacKeyState'],
     sensitiveFields: <String>['secret'],
     docComment:
-        'Factory wrapper for `google_storage_hmac_key`.\n\nThe hmacKeys resource represents an HMAC key within Cloud Storage. The\nresource consists of a secret and HMAC key metadata. HMAC keys can be used\nas credentials for service accounts.\n\nHMAC key for S3-compatible interop access to GCS. Bind to a service\naccount email; the secret is available only at create time via the\n`secret` output attribute.\n\nExample:\n```dart\nGoogleStorageHmacKey(\n  localName: \'backup_hmac\',\n  serviceAccountEmail: TfArg.ref(sa.emailRef),\n);\n```',
+        'Factory wrapper for `google_storage_hmac_key`.\n\nThe hmacKeys resource represents an HMAC key within Cloud Storage. The\nresource consists of a secret and HMAC key metadata. HMAC keys can be used\nas credentials for service accounts.\n\nHMAC key for S3-compatible interop access to GCS. Bind to a service\naccount email; the secret is available only at create time via the\n`secret` output attribute.\n\nExample:\n```dart\nGoogleStorageHmacKey(\n  localName: \'backup_hmac\',\n  serviceAccountEmail: sa.ref,\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_insights_dataset_config',
@@ -41806,7 +41924,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_storage_insights_report_config`.\n\nRepresents an inventory report configuration.\n\nCloud Storage **inventory report** config — periodic CSV or Parquet\nobject-metadata dumps into a destination bucket. Pick exactly one\n[StorageInsightsReportConfigFormat].\n\n**Cost:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` list_skus\nkeyword=inventory → 0; Class A ops `4DBF-185F-A415` **\$0.005/count\nafter 5k**. billing-behavior: the config is free metadata; report\nobjects (if generated) are usage-metered Standard Storage + Class A.\nUse a future [frequencyOptions] start date in smoke so no files land.\nSet [forceDestroy] so Terraform can delete leftover report objects.\n\nExample:\n```dart\nGoogleStorageInsightsReportConfig(\n  localName: \'inventory\',\n  location: TfArg.literal(\'asia-northeast1\'),\n  displayName: TfArg.literal(\'terradart-inventory\'),\n  forceDestroy: TfArg.literal(true),\n  format: const StorageInsightsReportConfigCsvFormat(),\n  frequencyOptions: StorageInsightsReportConfigFrequencyOptions(\n    frequency: TfArg.literal(\n      StorageInsightsReportConfigFrequencyOptionsFrequency.weekly,\n    ),\n    startDate: StorageInsightsReportConfigFrequencyOptionsStartDate(\n      year: TfArg.literal(2099),\n      month: TfArg.literal(1),\n      day: TfArg.literal(1),\n    ),\n    endDate: StorageInsightsReportConfigFrequencyOptionsEndDate(\n      year: TfArg.literal(2099),\n      month: TfArg.literal(12),\n      day: TfArg.literal(31),\n    ),\n  ),\n  objectMetadataReportOptions:\n      StorageInsightsReportConfigObjectMetadataReportOptions(\n    metadataFields: TfArg.literal([\'name\', \'size\']),\n    storageDestinationOptions:\n        StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions(\n      bucket: TfArg.ref(reports.nameRef),\n    ),\n    storageFilters:\n        StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters(\n      bucket: TfArg.ref(source.nameRef),\n    ),\n  ),\n);\n```',
+        'Factory wrapper for `google_storage_insights_report_config`.\n\nRepresents an inventory report configuration.\n\nCloud Storage **inventory report** config — periodic CSV or Parquet\nobject-metadata dumps into a destination bucket. Pick exactly one\n[StorageInsightsReportConfigFormat].\n\n**Cost:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` list_skus\nkeyword=inventory → 0; Class A ops `4DBF-185F-A415` **\$0.005/count\nafter 5k**. billing-behavior: the config is free metadata; report\nobjects (if generated) are usage-metered Standard Storage + Class A.\nUse a future [frequencyOptions] start date in smoke so no files land.\nSet [forceDestroy] so Terraform can delete leftover report objects.\n\nExample:\n```dart\nGoogleStorageInsightsReportConfig(\n  localName: \'inventory\',\n  location: TfArg.literal(\'asia-northeast1\'),\n  displayName: TfArg.literal(\'terradart-inventory\'),\n  forceDestroy: TfArg.literal(true),\n  format: const StorageInsightsReportConfigCsvFormat(),\n  frequencyOptions: StorageInsightsReportConfigFrequencyOptions(\n    frequency: TfArg.literal(\n      StorageInsightsReportConfigFrequencyOptionsFrequency.weekly,\n    ),\n    startDate: StorageInsightsReportConfigFrequencyOptionsStartDate(\n      year: TfArg.literal(2099),\n      month: TfArg.literal(1),\n      day: TfArg.literal(1),\n    ),\n    endDate: StorageInsightsReportConfigFrequencyOptionsEndDate(\n      year: TfArg.literal(2099),\n      month: TfArg.literal(12),\n      day: TfArg.literal(31),\n    ),\n  ),\n  objectMetadataReportOptions:\n      StorageInsightsReportConfigObjectMetadataReportOptions(\n    metadataFields: TfArg.literal([\'name\', \'size\']),\n    storageDestinationOptions:\n        StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions(\n      bucket: reports.ref,\n    ),\n    storageFilters:\n        StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters(\n      bucket: source.ref,\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_managed_folder',
@@ -41834,7 +41952,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['StorageManagedFolderIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_storage_managed_folder_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Storage\nmanaged folder.\n\nReplaces the entire member list for that role on the managed folder.\nPrefer [GoogleStorageManagedFolderIamMember] when adding one principal\nwithout touching existing bindings.',
@@ -41853,10 +41971,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['StorageManagedFolderIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_storage_managed_folder_iam_member`.\n\nAdditive IAM grant on a [GoogleStorageManagedFolder]. Prefer this over\nbinding/policy when you only need to add one (`role`, `member`) tuple.\n\nExample:\n```dart\nGoogleStorageManagedFolderIamMember(\n  localName: \'folder_viewer\',\n  bucket: TfArg.ref(assets.nameRef),\n  managedFolder: TfArg.ref(folder.nameRef),\n  role: TfArg.literal(\'roles/storage.objectViewer\'),\n  member: TfArg.ref(reader.iamMember),\n);\n```',
+        'Factory wrapper for `google_storage_managed_folder_iam_member`.\n\nAdditive IAM grant on a [GoogleStorageManagedFolder]. Prefer this over\nbinding/policy when you only need to add one (`role`, `member`) tuple.\n\nExample:\n```dart\nGoogleStorageManagedFolderIamMember(\n  localName: \'folder_viewer\',\n  bucket: assets.ref,\n  managedFolder: TfArg.ref(folder.nameRef),\n  role: TfArg.literal(\'roles/storage.objectViewer\'),\n  member: TfArg.ref(reader.iamMember),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_managed_folder_iam_policy',
@@ -41908,7 +42026,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_storage_notification`.\n\nCreates a new notification configuration on a specified bucket, establishing\na flow of event notifications from GCS to a Cloud Pub/Sub topic.\n\n### IAM precondition\nBefore applying this resource, the GCS service account\n(`service-{PROJECT_NUMBER}@gs-project-accounts.iam.gserviceaccount.com`)\nMUST hold the `roles/pubsub.publisher` role on the destination\n[topic]. The provider does NOT manage this binding for you — wire\nit up via a sibling `google_pubsub_topic_iam_member` (or the\n`google_storage_project_service_account` data source feeding into\nthe IAM binding) and add it to the resource\'s `dependsOn`.\n\n`topic` must be a **fully-qualified** Pub/Sub topic resource path\n`\'projects/{project_id}/topics/{topic_name}\'`. The provider rejects\na bare topic name. Pass `TfArg.ref(topic.id)` against a sibling\n`GooglePubsubTopic` (the `id` getter exposes the full path), or\nbuild the literal yourself.\n\n### Example — full-fidelity notifications on a sibling bucket,\nscoped to object writes under `incoming/`:\n```dart\nfinal ingestTopic = GooglePubsubTopic(\n  localName: \'ingest\',\n  name: TfArg.literal(\'gcs-ingest\'),\n);\nfinal assets = GoogleStorageBucket(\n  localName: \'assets\',\n  name: TfArg.literal(\'my-app-assets-prod\'),\n  location: TfArg.literal(\'ASIA-NORTHEAST1\'),\n);\nfinal notif = GoogleStorageNotification(\n  localName: \'assets_ingest\',\n  bucket: TfArg.ref(assets.nameRef),\n  // `ingestTopic.id` resolves to\n  // `projects/{project}/topics/gcs-ingest` — the full path the API\n  // expects. Passing `ingestTopic.nameRef` (just `gcs-ingest`)\n  // would fail at apply.\n  topic: TfArg.ref(ingestTopic.id),\n  payloadFormat: TfArg.literal(\n    StorageNotificationPayloadFormat.jsonApiV1,\n  ),\n  eventTypes: const [\n    StorageNotificationEventType.objectFinalize,\n    StorageNotificationEventType.objectMetadataUpdate,\n  ],\n  objectNamePrefix: TfArg.literal(\'incoming/\'),\n  customAttributes: TfArg.literal(const {\'source\': \'gcs-ingest\'}),\n);\n```\n\n### Example — pre-built literal topic path (e.g. when the topic\nlives in another project / is provisioned outside Terraform):\n```dart\nfinal notif = GoogleStorageNotification(\n  localName: \'audit\',\n  bucket: TfArg.literal(\'my-bucket\'),\n  topic: TfArg.literal(\'projects/my-proj/topics/my-topic\'),\n  payloadFormat: TfArg.literal(\n    StorageNotificationPayloadFormat.jsonApiV1,\n  ),\n);\n```',
+        'Factory wrapper for `google_storage_notification`.\n\nCreates a new notification configuration on a specified bucket, establishing\na flow of event notifications from GCS to a Cloud Pub/Sub topic.\n\n### IAM precondition\nBefore applying this resource, the GCS service account\n(`service-{PROJECT_NUMBER}@gs-project-accounts.iam.gserviceaccount.com`)\nMUST hold the `roles/pubsub.publisher` role on the destination\n[topic]. The provider does NOT manage this binding for you — wire\nit up via a sibling `google_pubsub_topic_iam_member` (or the\n`google_storage_project_service_account` data source feeding into\nthe IAM binding) and add it to the resource\'s `dependsOn`.\n\n`topic` must be a **fully-qualified** Pub/Sub topic resource path\n`\'projects/{project_id}/topics/{topic_name}\'`. The provider rejects\na bare topic name. Pass `topic.ref` against a sibling\n`GooglePubsubTopic` (it emits the topic `id`, the full path), or\nbuild the literal yourself.\n\n### Example — full-fidelity notifications on a sibling bucket,\nscoped to object writes under `incoming/`:\n```dart\nfinal ingestTopic = GooglePubsubTopic(\n  localName: \'ingest\',\n  name: TfArg.literal(\'gcs-ingest\'),\n);\nfinal assets = GoogleStorageBucket(\n  localName: \'assets\',\n  name: TfArg.literal(\'my-app-assets-prod\'),\n  location: TfArg.literal(\'ASIA-NORTHEAST1\'),\n);\nfinal notif = GoogleStorageNotification(\n  localName: \'assets_ingest\',\n  bucket: assets.ref,\n  // Emits the topic `id`, `projects/{project}/topics/gcs-ingest` —\n  // the full path the API expects.\n  topic: ingestTopic.ref,\n  payloadFormat: TfArg.literal(\n    StorageNotificationPayloadFormat.jsonApiV1,\n  ),\n  eventTypes: const [\n    StorageNotificationEventType.objectFinalize,\n    StorageNotificationEventType.objectMetadataUpdate,\n  ],\n  objectNamePrefix: TfArg.literal(\'incoming/\'),\n  customAttributes: TfArg.literal(const {\'source\': \'gcs-ingest\'}),\n);\n```\n\n### Example — pre-built literal topic path (e.g. when the topic\nlives in another project / is provisioned outside Terraform):\n```dart\nfinal notif = GoogleStorageNotification(\n  localName: \'audit\',\n  bucket: TfArg.literal(\'my-bucket\'),\n  topic: TfArg.literal(\'projects/my-proj/topics/my-topic\'),\n  payloadFormat: TfArg.literal(\n    StorageNotificationPayloadFormat.jsonApiV1,\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_object_access_control',
@@ -41927,7 +42045,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['StorageObjectAccessControlRole'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_storage_object_access_control`.\n\nThe ObjectAccessControls resources represent the Access Control Lists (ACLs)\nfor objects within Google Cloud Storage. ACLs let you specify who has access\nto your data and to what extent.\n\nThere are two roles that can be assigned to an entity:\n\nREADERs can get an object, though the acl property will not be revealed.\nOWNERs are READERs, and they can get the acl property, update an object, and\ncall all objectAccessControls methods on the object. The owner of an object\nis always an OWNER. For more information, see Access Control, with the\ncaveat that this API uses READER and OWNER instead of READ and FULL_CONTROL.\n\nFine-grained **object ACL** entry on one object. Requires a bucket with\nuniform bucket-level access **disabled**. Prefer IAM on modern buckets.\n\nExample:\n```dart\nGoogleStorageObjectAccessControl(\n  localName: \'object_reader\',\n  bucket: TfArg.ref(legacy.nameRef),\n  object: TfArg.literal(\'config/app.json\'),\n  entity: TfArg.ref(reader.iamMember),\n  role: TfArg.literal(StorageObjectAccessControlRole.reader),\n);\n```',
+        'Factory wrapper for `google_storage_object_access_control`.\n\nThe ObjectAccessControls resources represent the Access Control Lists (ACLs)\nfor objects within Google Cloud Storage. ACLs let you specify who has access\nto your data and to what extent.\n\nThere are two roles that can be assigned to an entity:\n\nREADERs can get an object, though the acl property will not be revealed.\nOWNERs are READERs, and they can get the acl property, update an object, and\ncall all objectAccessControls methods on the object. The owner of an object\nis always an OWNER. For more information, see Access Control, with the\ncaveat that this API uses READER and OWNER instead of READ and FULL_CONTROL.\n\nFine-grained **object ACL** entry on one object. Requires a bucket with\nuniform bucket-level access **disabled**. Prefer IAM on modern buckets.\n\nExample:\n```dart\nGoogleStorageObjectAccessControl(\n  localName: \'object_reader\',\n  bucket: legacy.ref,\n  object: TfArg.literal(\'config/app.json\'),\n  entity: TfArg.ref(reader.iamMember),\n  role: TfArg.literal(StorageObjectAccessControlRole.reader),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_object_acl',
@@ -41946,7 +42064,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_storage_object_acl`.\n\nAuthoritative **object ACL** (the full role/entity list or a canned\n[predefinedAcl]). Requires uniform bucket-level access **disabled**.\nPrefer IAM on modern buckets. Do not mix with\n[GoogleStorageObjectAccessControl] on the same object — this resource\nreplaces the whole ACL.\n\n**Cost:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` list_skus\nkeyword=ACL → 0; Class A ops `4DBF-185F-A415` **\$0.005/count after\n5k**. billing-behavior: ACL metadata — not existence-billed.\n\nExample:\n```dart\nGoogleStorageObjectAcl(\n  localName: \'legacy_object_acl\',\n  bucket: TfArg.ref(legacy.nameRef),\n  object: TfArg.literal(\'acl-marker.txt\'),\n  predefinedAcl: TfArg.literal(\'private\'),\n);\n```',
+        'Factory wrapper for `google_storage_object_acl`.\n\nAuthoritative **object ACL** (the full role/entity list or a canned\n[predefinedAcl]). Requires uniform bucket-level access **disabled**.\nPrefer IAM on modern buckets. Do not mix with\n[GoogleStorageObjectAccessControl] on the same object — this resource\nreplaces the whole ACL.\n\n**Cost:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` list_skus\nkeyword=ACL → 0; Class A ops `4DBF-185F-A415` **\$0.005/count after\n5k**. billing-behavior: ACL metadata — not existence-billed.\n\nExample:\n```dart\nGoogleStorageObjectAcl(\n  localName: \'legacy_object_acl\',\n  bucket: legacy.ref,\n  object: TfArg.literal(\'acl-marker.txt\'),\n  predefinedAcl: TfArg.literal(\'private\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_object_signed_url',
@@ -42066,7 +42184,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'transfer_spec.azure_blob_storage_data_source.federated_identity_config.tenant_id',
     ],
     docComment:
-        'Factory wrapper for `google_storage_transfer_job`.\n\nStorage Transfer Service **job** — a transfer or replication spec plus\nan optional schedule. Set [status] to `DISABLED` in smoke so the job\nnever runs.\n\n**Cost:** gcp-cost: Transfer Service `D961-88BE-4D2D` SKUs are\nS3-private-network / on-prem data-moved (`DC3D-7464-4764`\n**\$0.0125/GiBy**); GCS↔GCS is Cloud Storage Class A ops\n`4DBF-185F-A415` **\$0.005/count after 5k**. billing-behavior: the job\nrecord is free metadata; bytes move only when ENABLED and a run\nstarts. Destroy deletes the job.\n\nExample (disabled GCS→GCS, no bytes moved):\n```dart\nGoogleStorageTransferJob(\n  localName: \'copy\',\n  description: TfArg.literal(\'terradart disabled gcs copy\'),\n  status: TfArg.literal(\'DISABLED\'),\n  transferSpec: StorageTransferJobTransferSpec(\n    gcsDataSource: StorageTransferJobTransferSpecGcsDataSource(\n      bucketName: TfArg.ref(src.nameRef),\n    ),\n    gcsDataSink: StorageTransferJobTransferSpecGcsDataSink(\n      bucketName: TfArg.ref(dst.nameRef),\n    ),\n  ),\n);\n```',
+        'Factory wrapper for `google_storage_transfer_job`.\n\nStorage Transfer Service **job** — a transfer or replication spec plus\nan optional schedule. Set [status] to `DISABLED` in smoke so the job\nnever runs.\n\n**Cost:** gcp-cost: Transfer Service `D961-88BE-4D2D` SKUs are\nS3-private-network / on-prem data-moved (`DC3D-7464-4764`\n**\$0.0125/GiBy**); GCS↔GCS is Cloud Storage Class A ops\n`4DBF-185F-A415` **\$0.005/count after 5k**. billing-behavior: the job\nrecord is free metadata; bytes move only when ENABLED and a run\nstarts. Destroy deletes the job.\n\nExample (disabled GCS→GCS, no bytes moved):\n```dart\nGoogleStorageTransferJob(\n  localName: \'copy\',\n  description: TfArg.literal(\'terradart disabled gcs copy\'),\n  status: TfArg.literal(\'DISABLED\'),\n  transferSpec: StorageTransferJobTransferSpec(\n    gcsDataSource: StorageTransferJobTransferSpecGcsDataSource(\n      bucketName: src.ref,\n    ),\n    gcsDataSink: StorageTransferJobTransferSpecGcsDataSink(\n      bucketName: dst.ref,\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_transfer_project_service_account',
@@ -42157,7 +42275,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['TagsTagKeyIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_tags_tag_key_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Resource Manager\ntag key.\n\nReplaces the entire member list for that role. Prefer\n[GoogleTagsTagKeyIamMember] for additive grants.',
@@ -42175,7 +42293,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['TagsTagKeyIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_tags_tag_key_iam_member`.',
   ),
@@ -42258,7 +42376,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'members',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['TagsTagValueIamBindingCondition'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_tags_tag_value_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Resource Manager\ntag value.\n\nReplaces the entire member list for that role. Prefer\n[GoogleTagsTagValueIamMember] for additive grants.',
@@ -42276,7 +42394,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'member',
       'condition',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['TagsTagValueIamMemberCondition'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_tags_tag_value_iam_member`.',
   ),
@@ -43068,14 +43186,17 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
     ],
     nestedTypes: <String>[
-      'VertexAiRagEngineConfigManagedDbTier',
-      'VertexAiRagEngineConfigBasic',
-      'VertexAiRagEngineConfigScaled',
-      'VertexAiRagEngineConfigUnprovisioned',
+      'VertexAiRagEngineConfigRagManagedDbConfig',
+      'VertexAiRagEngineConfigRagManagedDbConfigScaledChoice',
+      'VertexAiRagEngineConfigRagManagedDbConfigBasicChoice',
+      'VertexAiRagEngineConfigRagManagedDbConfigUnprovisionedChoice',
+      'VertexAiRagEngineConfigRagManagedDbConfigBasic',
+      'VertexAiRagEngineConfigRagManagedDbConfigScaled',
+      'VertexAiRagEngineConfigRagManagedDbConfigUnprovisioned',
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_vertex_ai_rag_engine_config`.\n\nVertex AI RAG Engine lets you scale your RagManagedDb instance based on your\nusage and performance requirements using a choice of two tiers, and\noptionally, lets you delete your Vertex AI RAG Engine data using a third\ntier. The tier is a project-level setting that\'s available in the\nRagEngineConfig resource that impacts all RAG corpora using RagManagedDb.\nThe following tiers are available in RagEngineConfig: Basic, Scaled and\nUnprovisioned.\n\nVertex AI **RAG Engine config** — project/location singleton that sets\nthe RagManagedDb compute tier for Vertex AI RAG Engine.\n\nChoose exactly one [VertexAiRagEngineConfigManagedDbTier]:\n- [VertexAiRagEngineConfigBasic] — default low-compute tier.\n- [VertexAiRagEngineConfigScaled] — production autoscaling tier.\n- [VertexAiRagEngineConfigUnprovisioned] — disables RAG Engine and\n  deletes managed data (halts billing; data is not recoverable).\n\n**Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` has **no\nRagManagedDb / RAG Engine SKU** after MCP `list_skus` (keywords\n`RagManaged` / `RAG Engine` → 0). Scaled is documented as\nproduction-grade compute; unprovisioned deletes data. Deferred\nwithout an apply-smoke quickstart.\n\nEnable `aiplatform.googleapis.com` via [GoogleProjectService] before\napply. At most one config exists per `(project, region)`.\n\nExample:\n```dart\nGoogleVertexAiRagEngineConfig(\n  localName: \'rag\',\n  region: TfArg.literal(\'us-central1\'),\n  ragManagedDbConfig: const VertexAiRagEngineConfigBasic(),\n);\n```',
+        'Factory wrapper for `google_vertex_ai_rag_engine_config`.\n\nVertex AI RAG Engine lets you scale your RagManagedDb instance based on your\nusage and performance requirements using a choice of two tiers, and\noptionally, lets you delete your Vertex AI RAG Engine data using a third\ntier. The tier is a project-level setting that\'s available in the\nRagEngineConfig resource that impacts all RAG corpora using RagManagedDb.\nThe following tiers are available in RagEngineConfig: Basic, Scaled and\nUnprovisioned.\n\nVertex AI **RAG Engine config** — project/location singleton that sets\nthe RagManagedDb compute tier for Vertex AI RAG Engine.\n\n[ragManagedDbConfig] is exactly one tier:\n- `.basic(...)` — default low-compute tier.\n- `.scaled(...)` — production autoscaling tier.\n- `.unprovisioned(...)` — disables RAG Engine and deletes managed data\n  (halts billing; data is not recoverable).\n\n**Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` has **no\nRagManagedDb / RAG Engine SKU** after MCP `list_skus` (keywords\n`RagManaged` / `RAG Engine` → 0). Scaled is documented as\nproduction-grade compute; unprovisioned deletes data. Deferred\nwithout an apply-smoke quickstart.\n\nEnable `aiplatform.googleapis.com` via [GoogleProjectService] before\napply. At most one config exists per `(project, region)`.\n\nExample:\n```dart\nGoogleVertexAiRagEngineConfig(\n  localName: \'rag\',\n  region: TfArg.literal(\'us-central1\'),\n  ragManagedDbConfig: const .basic(\n    VertexAiRagEngineConfigRagManagedDbConfigBasic(),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_vertex_ai_reasoning_engine',
@@ -43986,7 +44107,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_workstations_workstation_cluster`.\n\nA grouping of workstation configurations and the associated workstations in\nthat region.\n\nCloud Workstations **cluster** — VPC-attached control plane for\nworkstation configs and instances.\n\n**Cost:** Cloud Billing Catalog service `4528-FDD0-A2A0` bills a\n**control plane fee** while the cluster exists (us-central1 SKU\n`61C4-0757-3151` **\$0.2/h**). Destroy stops the fee. Too expensive\nfor apply-smoke — factories ship without a quickstart.\n\nEnable `workstations.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleWorkstationsWorkstationCluster(\n  localName: \'ws\',\n  workstationClusterId: TfArg.literal(\'terradart-ws\'),\n  location: TfArg.literal(\'us-central1\'),\n  network: TfArg.ref(vpc.id),\n  subnetwork: TfArg.ref(subnet.id),\n);\n```',
+        'Factory wrapper for `google_workstations_workstation_cluster`.\n\nA grouping of workstation configurations and the associated workstations in\nthat region.\n\nCloud Workstations **cluster** — VPC-attached control plane for\nworkstation configs and instances.\n\n**Cost:** Cloud Billing Catalog service `4528-FDD0-A2A0` bills a\n**control plane fee** while the cluster exists (us-central1 SKU\n`61C4-0757-3151` **\$0.2/h**). Destroy stops the fee. Too expensive\nfor apply-smoke — factories ship without a quickstart.\n\nEnable `workstations.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleWorkstationsWorkstationCluster(\n  localName: \'ws\',\n  workstationClusterId: TfArg.literal(\'terradart-ws\'),\n  location: TfArg.literal(\'us-central1\'),\n  network: vpc.ref,\n  subnetwork: subnet.ref,\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_workstations_workstation_config',

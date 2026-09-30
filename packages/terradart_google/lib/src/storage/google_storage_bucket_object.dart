@@ -173,8 +173,7 @@ class StorageBucketObjectBucketObjectRetention {
 
 /// Factory wrapper for `google_storage_bucket_object`.
 ///
-/// Pass `TfArg.ref(bucket.nameRef)` for `bucket` — NOT `bucket.id`
-/// (`id` is `{bucket-name}` for buckets but the API wants just the name).
+/// Pass `bucket.ref` for `bucket`; it emits the bucket name the API wants.
 ///
 /// `body`: object payload — choose exactly one of:
 /// - [StorageBucketObjectBodySource] — upload from a local file path.
@@ -191,7 +190,7 @@ class StorageBucketObjectBucketObjectRetention {
 /// );
 /// final config = GoogleStorageBucketObject(
 ///   localName: 'config',
-///   bucket: TfArg.ref(assets.nameRef),
+///   bucket: assets.ref,
 ///   name: TfArg.literal('config/app.json'),
 ///   body: StorageBucketObjectBodyContent(
 ///     content: TfArg.literal('{"feature_x": true}'),
@@ -205,7 +204,7 @@ class StorageBucketObjectBucketObjectRetention {
 /// ```dart
 /// final logo = GoogleStorageBucketObject(
 ///   localName: 'logo',
-///   bucket: TfArg.ref(assets.nameRef),
+///   bucket: assets.ref,
 ///   name: TfArg.literal('static/logo.png'),
 ///   body: StorageBucketObjectBodySource(source: TfArg.literal('./assets/logo.png')),
 ///   contentType: TfArg.literal('image/png'),

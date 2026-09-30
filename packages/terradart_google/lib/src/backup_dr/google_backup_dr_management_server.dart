@@ -62,7 +62,7 @@ final class BackupDrManagementServerNetworks {
 ///   type: TfArg.literal(BackupDrManagementServerType.backupRestore),
 ///   networks: [
 ///     BackupDrManagementServerNetworks(
-///       network: TfArg.ref(network.id),
+///       network: network.ref,
 ///       peeringMode: TfArg.literal('PRIVATE_SERVICE_ACCESS'),
 ///     ),
 ///   ],

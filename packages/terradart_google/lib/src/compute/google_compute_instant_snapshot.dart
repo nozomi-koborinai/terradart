@@ -1,10 +1,24 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_instant_snapshot`.
 const Set<String> _googleComputeInstantSnapshotSensitive = <String>{};
+
+/// Typed helper for the `params` block of
+/// `google_compute_instant_snapshot` (derived from provider schema).
+@immutable
+final class ComputeInstantSnapshotParams {
+  const ComputeInstantSnapshotParams({this.resourceManagerTags});
+
+  final TfArg<Map<String, String>>? resourceManagerTags;
+
+  Map<String, Object?> encode() => {
+    'resource_manager_tags': ?resourceManagerTags?.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_compute_instant_snapshot`.
 ///
@@ -26,6 +40,7 @@ final class GoogleComputeInstantSnapshot extends Resource {
     required TfArg<String> sourceDisk,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
+    ComputeInstantSnapshotParams? params,
     TfArg<String>? deletionPolicy,
     TfArg<String>? zone,
     TfArg<String>? project,
@@ -40,6 +55,7 @@ final class GoogleComputeInstantSnapshot extends Resource {
            'source_disk': sourceDisk,
            'description': ?description,
            'labels': ?labels,
+           if (params != null) 'params': TfArg.literal(params.encode()),
            'deletion_policy': ?deletionPolicy,
            'zone': ?zone,
            'project': ?project,

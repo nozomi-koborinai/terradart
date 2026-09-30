@@ -108,7 +108,7 @@ enum NetappStoragePoolType implements TerraformEnum {
 ///   localName: 'pool',
 ///   name: TfArg.literal('terradart-pool'),
 ///   location: TfArg.literal('us-central1'),
-///   network: TfArg.ref(vpc.id),
+///   network: vpc.ref,
 ///   serviceLevel: TfArg.literal(NetappStoragePoolServiceLevel.standard),
 ///   capacityGib: TfArg.literal(2048),
 /// );

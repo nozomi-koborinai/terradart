@@ -12,7 +12,7 @@
 /// Datasets and stores are free (you are billed for stored data / operations),
 /// so the stack creates and destroys cleanly in a single project.
 ///
-/// Exports the dataset name as a typed Dart constant via `Stack.addExport`.
+/// Exports the dataset name as a typed Dart constant via `Stack.addConstant`.
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
@@ -27,6 +27,7 @@ final class HealthcareStack extends Stack {
   HealthcareStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/healthcare_stack.app.dart'),
       ) {
     final apiHealthcare = add(
       GoogleProjectService(
@@ -154,14 +155,9 @@ final class HealthcareStack extends Stack {
     );
 
     // Literal dataset name -- emitted as a Dart constant at synth time.
-    addExport('HEALTHCARE_DATASET_NAME', StringExport('terradart-records'));
+    addConstant('healthcareDatasetName', .ref(dataset.nameRef));
 
     // Full dataset resource id -- Terraform output only (computed).
-    addExport(
-      'HEALTHCARE_DATASET_ID',
-      ResourceIdExport(dataset.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/healthcare_stack.app.dart');
+    addOutput('healthcare_dataset_id', .ref(dataset.id));
   }
 }

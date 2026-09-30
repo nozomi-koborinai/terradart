@@ -15,17 +15,25 @@ export 'src/data_catalog/google_data_catalog_entry.dart'
 export 'src/data_catalog/google_data_catalog_entry_group.dart'
     show GoogleDataCatalogEntryGroup;
 export 'src/data_catalog/google_data_catalog_entry_group_iam_binding.dart'
-    show GoogleDataCatalogEntryGroupIamBinding;
+    show
+        DataCatalogEntryGroupIamBindingCondition,
+        GoogleDataCatalogEntryGroupIamBinding;
 export 'src/data_catalog/google_data_catalog_entry_group_iam_member.dart'
-    show GoogleDataCatalogEntryGroupIamMember;
+    show
+        DataCatalogEntryGroupIamMemberCondition,
+        GoogleDataCatalogEntryGroupIamMember;
 export 'src/data_catalog/google_data_catalog_entry_group_iam_policy.dart'
     show GoogleDataCatalogEntryGroupIamPolicy;
 export 'src/data_catalog/google_data_catalog_policy_tag.dart'
     show GoogleDataCatalogPolicyTag;
 export 'src/data_catalog/google_data_catalog_policy_tag_iam_binding.dart'
-    show GoogleDataCatalogPolicyTagIamBinding;
+    show
+        DataCatalogPolicyTagIamBindingCondition,
+        GoogleDataCatalogPolicyTagIamBinding;
 export 'src/data_catalog/google_data_catalog_policy_tag_iam_member.dart'
-    show GoogleDataCatalogPolicyTagIamMember;
+    show
+        DataCatalogPolicyTagIamMemberCondition,
+        GoogleDataCatalogPolicyTagIamMember;
 export 'src/data_catalog/google_data_catalog_policy_tag_iam_policy.dart'
     show GoogleDataCatalogPolicyTagIamPolicy;
 export 'src/data_catalog/google_data_catalog_tag.dart'
@@ -48,16 +56,24 @@ export 'src/data_catalog/google_data_catalog_tag_template.dart'
         DataCatalogTagTemplatePrimitiveType,
         GoogleDataCatalogTagTemplate;
 export 'src/data_catalog/google_data_catalog_tag_template_iam_binding.dart'
-    show GoogleDataCatalogTagTemplateIamBinding;
+    show
+        DataCatalogTagTemplateIamBindingCondition,
+        GoogleDataCatalogTagTemplateIamBinding;
 export 'src/data_catalog/google_data_catalog_tag_template_iam_member.dart'
-    show GoogleDataCatalogTagTemplateIamMember;
+    show
+        DataCatalogTagTemplateIamMemberCondition,
+        GoogleDataCatalogTagTemplateIamMember;
 export 'src/data_catalog/google_data_catalog_tag_template_iam_policy.dart'
     show GoogleDataCatalogTagTemplateIamPolicy;
 export 'src/data_catalog/google_data_catalog_taxonomy.dart'
     show GoogleDataCatalogTaxonomy;
 export 'src/data_catalog/google_data_catalog_taxonomy_iam_binding.dart'
-    show GoogleDataCatalogTaxonomyIamBinding;
+    show
+        DataCatalogTaxonomyIamBindingCondition,
+        GoogleDataCatalogTaxonomyIamBinding;
 export 'src/data_catalog/google_data_catalog_taxonomy_iam_member.dart'
-    show GoogleDataCatalogTaxonomyIamMember;
+    show
+        DataCatalogTaxonomyIamMemberCondition,
+        GoogleDataCatalogTaxonomyIamMember;
 export 'src/data_catalog/google_data_catalog_taxonomy_iam_policy.dart'
     show GoogleDataCatalogTaxonomyIamPolicy;

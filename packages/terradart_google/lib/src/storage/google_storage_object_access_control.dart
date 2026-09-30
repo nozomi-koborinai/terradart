@@ -39,7 +39,7 @@ enum StorageObjectAccessControlRole implements TerraformEnum {
 /// ```dart
 /// GoogleStorageObjectAccessControl(
 ///   localName: 'object_reader',
-///   bucket: TfArg.ref(legacy.nameRef),
+///   bucket: legacy.ref,
 ///   object: TfArg.literal('config/app.json'),
 ///   entity: TfArg.ref(reader.iamMember),
 ///   role: TfArg.literal(StorageObjectAccessControlRole.reader),
