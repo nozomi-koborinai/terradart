@@ -6,6 +6,8 @@
 - `RefTo<R>` — a reference to a resource of type `R`, for arguments that name another resource. An extension type over a record, so `R` is checked at compile time and erased at run time. A generated `ref` getter returns one (`RefTo.of`), the argument that takes it picks the attribute it emits (`encodeAs('self_link')`), `pinned('id')` keeps a given attribute, and `RefTo.literal` / `RefTo.variable` / `RefTo.expression` / `RefTo.arg` carry values from outside the Stack (dot shorthands: `.literal('...')`). No argument takes one yet.
 - **Breaking** — requires Dart 3.10 (`sdk: ^3.10.0`, was `^3.6.0`). Source is formatted in the Dart 3.7+ tall style.
 - Dartdoc on `TfAddressed.tfAddress` and `Resource.tfAddress`, which every factory inherits. No API changes.
+- **Fixed** — with `setAppExportsOutputPath` set, `writeTo` rewrites the constants file on every synth (an empty class when no export resolves to a constant), so a constant that stopped resolving no longer survives as a stale value.
+- **Fixed** — `addExport` throws `ArgumentError` when a second export would emit the same Terraform `output` name; it used to overwrite the first silently. The missing-output-path `StateError` names the exports concerned.
 
 ## 0.30.0 - 2026-09-28
 

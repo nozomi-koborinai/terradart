@@ -596,7 +596,5 @@ final class IamShowcaseStack extends Stack {
       'CUSTOM_ROLE_NAME',
       ResourceIdExport(customRole.nameRef, emitTerraformOutput: true),
     );
-
-    setAppExportsOutputPath('lib/generated/iam_showcase_stack.app.dart');
   }
 }

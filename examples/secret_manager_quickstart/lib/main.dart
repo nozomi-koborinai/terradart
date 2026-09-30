@@ -188,14 +188,13 @@ final class DbCredentialsStack extends Stack {
       ),
     );
 
-    // Export the secret's resource path as a typed Dart constant. The
-    // application reads the live value at runtime via the Secret Manager
-    // client library -- the constant is the lookup key, not the secret.
+    // Export the secret's resource path (computed at apply, so a Terraform
+    // output). The application reads the live value at runtime via the
+    // Secret Manager client library -- the path is the lookup key, not the
+    // secret.
     addExport(
       'DB_PASSWORD_SECRET_ID',
       ResourceIdExport(secret.id, emitTerraformOutput: true),
     );
-
-    setAppExportsOutputPath('lib/generated/db_credentials_stack.app.dart');
   }
 }

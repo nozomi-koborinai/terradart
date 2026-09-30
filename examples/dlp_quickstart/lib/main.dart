@@ -212,7 +212,5 @@ final class DlpStack extends Stack {
       'DLP_JOB_TRIGGER_ID',
       ResourceIdExport(trigger.id, emitTerraformOutput: true),
     );
-
-    setAppExportsOutputPath('lib/generated/dlp_stack.app.dart');
   }
 }
