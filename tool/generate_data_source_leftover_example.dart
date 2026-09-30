@@ -151,6 +151,14 @@ void main() {
   out.writeln('}');
 
   File(_outPath).writeAsStringSync(out.toString());
+  final fmt = Process.runSync(Platform.resolvedExecutable, [
+    'format',
+    _outPath,
+  ]);
+  if (fmt.exitCode != 0) {
+    stderr.writeln('dart format failed on $_outPath:\n${fmt.stderr}');
+    exit(fmt.exitCode);
+  }
   print('wrote $_outPath (${calls.length} data sources)');
 }
 

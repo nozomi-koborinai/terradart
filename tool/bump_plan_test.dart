@@ -59,7 +59,62 @@ void main() {
       google['ride_along_schema_dir'],
       'packages/terradart_codegen/test/fixtures/wrap/source_beta',
     );
-    expect(google['example_generator'], '');
+    expect(
+      google['example_generator'],
+      'tool/generate_data_source_leftover_example.dart',
+    );
+  });
+
+  test('which new factories each lane example generator covers', () {
+    final covers = {for (final l in lanes) l.lane.name: l.exampleCovers};
+    expect(covers['google'], {'dataSource'});
+    expect(covers['cloudflare'], {'resource', 'dataSource'});
+    expect(covers['aws'], {'resource', 'dataSource'});
+  });
+
+  group('bump.exampleCovers', () {
+    String lane(String bump) =>
+        '''
+providers:
+  x:
+    source: a/x
+    schemaDir: s
+    outputPackage: o
+    overridesRoot: r
+    barrelsManifest: b
+    migrateManifest: m
+    bump: {mode: auto, cron: '0 0 * * 0', refresh: dump, scaffold: lane$bump}
+''';
+
+    test('defaults to every kind with a generator, none without', () {
+      expect(
+        parseBumpLanes(lane(', exampleGenerator: g.dart')).single.exampleCovers,
+        {'resource', 'dataSource'},
+      );
+      expect(parseBumpLanes(lane('')).single.exampleCovers, isEmpty);
+    });
+
+    test('dataSources covers data sources only', () {
+      expect(
+        parseBumpLanes(
+          lane(', exampleGenerator: g.dart, exampleCovers: dataSources'),
+        ).single.exampleCovers,
+        {'dataSource'},
+      );
+    });
+
+    test('an unknown value or a missing generator is rejected', () {
+      expect(
+        () => parseBumpLanes(
+          lane(', exampleGenerator: g.dart, exampleCovers: resources'),
+        ),
+        throwsFormatException,
+      );
+      expect(
+        () => parseBumpLanes(lane(', exampleCovers: dataSources')),
+        throwsFormatException,
+      );
+    });
   });
 
   test('cloudflare is pr-only and extracts every type', () {

@@ -157,6 +157,47 @@ void main() {
     expect(buildReport(i), contains('## ✅ Auto-merge enabled'));
   });
 
+  group('example coverage of new factories', () {
+    Map<String, dynamic> factory(String kind, {required bool covered}) => {
+      'tf_type': 'google_foo',
+      'class_name': kind == 'resource' ? 'GoogleFoo' : 'DataGoogleFoo',
+      'kind': kind,
+      'example_covered': covered,
+    };
+    String section(List<Map<String, dynamic>> factories) =>
+        buildNewResourceSection(
+          inputs(
+            added: ['google_foo'],
+            newFactories: {
+              'example_generator':
+                  'tool/generate_data_source_leftover_example.dart',
+              'factories': factories,
+            },
+          ),
+        );
+
+    test('every factory covered: the generator covers it', () {
+      final s = section([factory('dataSource', covered: true)]);
+      expect(s, contains('example generator covers it in an example'));
+      expect(s, isNot(contains('awaiting-example:')));
+    });
+
+    test('a generator covering data sources only: counts both', () {
+      final s = section([
+        factory('resource', covered: false),
+        factory('dataSource', covered: true),
+      ]);
+      expect(s, contains('example generator covers 1 of them'));
+      expect(s, contains('for the other 1 an `awaiting-example:` line'));
+    });
+
+    test('no factory covered: awaiting-example only', () {
+      final s = section([factory('resource', covered: false)]);
+      expect(s, contains('an `awaiting-example:` line'));
+      expect(s, isNot(contains('generator covers')));
+    });
+  });
+
   test('a failed scaffold blocks auto-merge and shows its log', () {
     final i = inputs(
       added: ['google_foo'],
