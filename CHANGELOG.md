@@ -161,6 +161,13 @@ Per-package changelogs live alongside each package and are the system of record 
   `ContainerCluster*` / `ContainerNodePool*` helpers for every block.
   A `max_items = 1` block a hand helper emitted as a one-element list is an
   object. See `MIGRATING.md`.
+- **Hand-curated Google overrides derive their remaining blocks**
+  (**breaking**; `terradart_google`) — 122 overrides with hand helpers or
+  `customSlots` set `deriveNestedTypes`: 21 `TfArg<Map>` inputs on 15
+  factories (the Oracle Database `properties` blocks among them) take
+  derived helpers, 15 inputs a hand `paramOrder` hid are exposed, and the
+  Oracle and Migration Center hand enums type the derived fields. Hand
+  helpers are unchanged. Synth output is unchanged. See `MIGRATING.md`.
 - **The last hand-written Google sealed helpers are derived**
   (**breaking**; `terradart_google`) — `GoogleConfigDeployment`,
   `GoogleEdgecontainerCluster`, `GoogleFirebaseAppHostingBuild`,
