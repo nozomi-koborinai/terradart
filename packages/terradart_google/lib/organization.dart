@@ -28,11 +28,11 @@ export 'src/organization/google_organization_iam_audit_config.dart'
         GoogleOrganizationIamAuditConfig,
         OrganizationIamAuditConfigAuditLogConfig;
 export 'src/organization/google_organization_iam_binding.dart'
-    show GoogleOrganizationIamBinding;
+    show GoogleOrganizationIamBinding, OrganizationIamBindingCondition;
 export 'src/organization/google_organization_iam_custom_role.dart'
     show GoogleOrganizationIamCustomRole;
 export 'src/organization/google_organization_iam_member.dart'
-    show GoogleOrganizationIamMember;
+    show GoogleOrganizationIamMember, OrganizationIamMemberCondition;
 export 'src/organization/google_organization_iam_policy.dart'
     show GoogleOrganizationIamPolicy;
 export 'src/organization/google_organization_policy.dart'

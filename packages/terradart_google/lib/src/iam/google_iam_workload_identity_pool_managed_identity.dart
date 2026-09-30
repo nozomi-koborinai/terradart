@@ -1,11 +1,27 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_iam_workload_identity_pool_managed_identity`.
 const Set<String> _googleIamWorkloadIdentityPoolManagedIdentitySensitive =
     <String>{};
+
+/// Typed helper for the `attestation_rules` block of
+/// `google_iam_workload_identity_pool_managed_identity` (derived from provider schema).
+@immutable
+final class IamWorkloadIdentityPoolManagedIdentityAttestationRules {
+  const IamWorkloadIdentityPoolManagedIdentityAttestationRules({
+    required this.googleCloudResource,
+  });
+
+  final TfArg<String> googleCloudResource;
+
+  Map<String, Object?> encode() => {
+    'google_cloud_resource': googleCloudResource.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_iam_workload_identity_pool_managed_identity`.
 ///
@@ -42,7 +58,8 @@ final class GoogleIamWorkloadIdentityPoolManagedIdentity extends Resource {
     required TfArg<String> workloadIdentityPoolManagedIdentityId,
     TfArg<String>? description,
     TfArg<bool>? disabled,
-    TfArg<List<Map<String, dynamic>>>? attestationRules,
+    List<IamWorkloadIdentityPoolManagedIdentityAttestationRules>?
+    attestationRules,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -59,7 +76,10 @@ final class GoogleIamWorkloadIdentityPoolManagedIdentity extends Resource {
                workloadIdentityPoolManagedIdentityId,
            'description': ?description,
            'disabled': ?disabled,
-           'attestation_rules': ?attestationRules,
+           if (attestationRules != null)
+             'attestation_rules': TfArg.literal([
+               for (final e in attestationRules) e.encode(),
+             ]),
            'deletion_policy': ?deletionPolicy,
            'project': ?project,
          },

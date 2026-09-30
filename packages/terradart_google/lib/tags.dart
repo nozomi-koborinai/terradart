@@ -10,15 +10,15 @@ export 'src/tags/google_tags_tag_binding.dart' show GoogleTagsTagBinding;
 export 'src/tags/google_tags_tag_key.dart'
     show GoogleTagsTagKey, TagsTagKeyPurpose;
 export 'src/tags/google_tags_tag_key_iam_binding.dart'
-    show GoogleTagsTagKeyIamBinding;
+    show GoogleTagsTagKeyIamBinding, TagsTagKeyIamBindingCondition;
 export 'src/tags/google_tags_tag_key_iam_member.dart'
-    show GoogleTagsTagKeyIamMember;
+    show GoogleTagsTagKeyIamMember, TagsTagKeyIamMemberCondition;
 export 'src/tags/google_tags_tag_key_iam_policy.dart'
     show GoogleTagsTagKeyIamPolicy;
 export 'src/tags/google_tags_tag_value.dart' show GoogleTagsTagValue;
 export 'src/tags/google_tags_tag_value_iam_binding.dart'
-    show GoogleTagsTagValueIamBinding;
+    show GoogleTagsTagValueIamBinding, TagsTagValueIamBindingCondition;
 export 'src/tags/google_tags_tag_value_iam_member.dart'
-    show GoogleTagsTagValueIamMember;
+    show GoogleTagsTagValueIamMember, TagsTagValueIamMemberCondition;
 export 'src/tags/google_tags_tag_value_iam_policy.dart'
     show GoogleTagsTagValueIamPolicy;

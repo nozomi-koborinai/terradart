@@ -1,10 +1,34 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_kms_key_ring_iam_member`.
 const Set<String> _googleKmsKeyRingIamMemberSensitive = <String>{};
+
+/// Typed helper for the `condition` block of
+/// `google_kms_key_ring_iam_member` (derived from provider schema).
+@immutable
+final class KmsKeyRingIamMemberCondition {
+  const KmsKeyRingIamMemberCondition({
+    this.description,
+    required this.expression,
+    required this.title,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> expression;
+
+  final TfArg<String> title;
+
+  Map<String, Object?> encode() => {
+    'description': ?description?.toTfJson(),
+    'expression': expression.toTfJson(),
+    'title': title.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_kms_key_ring_iam_member`.
 final class GoogleKmsKeyRingIamMember extends Resource {
@@ -15,7 +39,7 @@ final class GoogleKmsKeyRingIamMember extends Resource {
     required TfArg<String> keyRingId,
     required TfArg<String> role,
     required TfArg<String> member,
-    TfArg<Map<String, dynamic>>? condition,
+    KmsKeyRingIamMemberCondition? condition,
     super.lifecycle,
     super.dependsOn,
     super.provider,
@@ -26,7 +50,8 @@ final class GoogleKmsKeyRingIamMember extends Resource {
            'key_ring_id': keyRingId,
            'role': role,
            'member': member,
-           'condition': ?condition,
+           if (condition != null)
+             'condition': TfArg.literal(condition.encode()),
          },
        );
 

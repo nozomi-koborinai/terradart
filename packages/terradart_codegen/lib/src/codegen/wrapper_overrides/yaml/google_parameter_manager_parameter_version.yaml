@@ -1,5 +1,6 @@
 outputDir: parameter_manager
 deriveClassDoc: true
+deriveNestedTypes: true
 deriveExactlyOne: true
 deriveOutputGetters: true
 
