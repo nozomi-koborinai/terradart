@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/metastore_stack.app.dart`
-/// (literal exports such as `CATALOG_NAME`). Computed exports like
-/// `CATALOG_ID` appear as Terraform outputs only.
+/// (with `MetastoreStackConstants.catalogName`). Computed values such as
+/// `catalog_id` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

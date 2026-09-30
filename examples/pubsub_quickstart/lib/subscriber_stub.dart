@@ -7,4 +7,4 @@ import 'generated/orders_stack.app.dart';
 
 /// Example handler shape (not wired to a real Pub/Sub runtime).
 bool acceptsTopic(String eventTopic) =>
-    eventTopic == OrdersStackExports.ORDERS_TOPIC_NAME;
+    eventTopic == OrdersStackConstants.ordersTopicName;

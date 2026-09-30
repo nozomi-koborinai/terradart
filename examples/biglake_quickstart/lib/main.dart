@@ -27,6 +27,7 @@ final class MetastoreStack extends Stack {
   MetastoreStack({required String projectId})
     : super(
         providers: [GoogleProvider(project: projectId, region: 'us-central1')],
+        appExports: AppExports('lib/generated/metastore_stack.app.dart'),
       ) {
     final warehouse = 'gs://$projectId-terradart-biglake';
     // Globally unique GCS bucket name (= Iceberg catalog name).
@@ -207,14 +208,9 @@ final class MetastoreStack extends Stack {
     );
 
     // Literal catalog name -- emitted as a Dart constant at synth time.
-    addExport('CATALOG_NAME', StringExport('terradart_catalog'));
+    addConstant('catalogName', .ref(catalog.nameRef));
 
     // Full catalog resource id -- Terraform output only (computed).
-    addExport(
-      'CATALOG_ID',
-      ResourceIdExport(catalog.id, emitTerraformOutput: true),
-    );
-
-    setAppExportsOutputPath('lib/generated/metastore_stack.app.dart');
+    addOutput('catalog_id', .ref(catalog.id));
   }
 }

@@ -30,6 +30,7 @@ final class SingleProjectAppStack extends Stack {
            GoogleProvider(project: projectId, region: 'asia-northeast1'),
          ],
          backend: const LocalBackend(),
+         appExports: AppExports('lib/generated/single_project_app.app.dart'),
          devMode: true,
        ) {
     // ===== Tier 1 — API enablement (8 services) ===========================
@@ -85,41 +86,37 @@ final class SingleProjectAppStack extends Stack {
     add(buildUptimeCheck(coffeeService));
     add(buildDownAlert(emailChannel));
 
-    // ===== AppExports — IaC ↔ application seam =============================
+    // ===== Outputs and constants — IaC ↔ application seam =================
     // `coffee_service_uri` is apply-time known (Cloud Run assigns the URL),
     // so it surfaces as a Terraform output that the README's smoke recipe
     // consumes via `terraform output -raw coffee_service_uri`.
     //
-    // `SERVICE_NAME` and `REGION` are synth-time literals — `setAppExports`
-    // materialises them as `const` declarations in
-    // `lib/generated/single_project_app.app.dart`, giving any consumer that
-    // depends on this package typed (rename-safe) access without duplicating
-    // the string literals across the codebase.
-    addExport(
+    // `serviceName` and `region` read the service's literal `name` and
+    // `location` at synth into `static const`s of
+    // `lib/generated/single_project_app.app.dart`, so any consumer that
+    // depends on this package gets typed (rename-safe) access without a
+    // second copy of the string literals.
+    addOutput(
       'coffee_service_uri',
-      ResourceIdExport(
-        coffeeService.uri,
-        emitTerraformOutput: true,
-        description:
-            'URL of the Cloud Run v2 service. Populated after terraform apply.',
-      ),
+      .ref(coffeeService.uri),
+      description:
+          'URL of the Cloud Run v2 service. Populated after terraform apply.',
     );
-    addExport(
-      'SERVICE_NAME',
-      StringExport(
-        'coffee-shop',
+    addConstant(
+      'serviceName',
+      .ref(
+        coffeeService.nameRef,
         description:
             'Cloud Run v2 service name. Matches the Terraform resource name.',
       ),
     );
-    addExport(
-      'REGION',
-      StringExport(
-        'asia-northeast1',
+    addConstant(
+      'region',
+      .ref(
+        coffeeService.locationRef,
         description: 'GCP region this recipe deploys into.',
       ),
     );
-    setAppExportsOutputPath('lib/generated/single_project_app.app.dart');
   }
 
   final String projectId;

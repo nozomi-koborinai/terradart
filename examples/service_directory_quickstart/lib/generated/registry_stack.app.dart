@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class RegistryStackExports {
-  RegistryStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class RegistryStackConstants {
+  RegistryStackConstants._();
 
-  static const String REGISTRY_NAMESPACE_ID = r'terradart-registry';
+  static const String registryNamespaceId = r'terradart-registry';
 }

@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/healthcare_stack.app.dart`
-/// (literal exports such as `HEALTHCARE_DATASET_NAME`). Computed exports like
-/// `HEALTHCARE_DATASET_ID` appear as Terraform outputs only.
+/// (with `HealthcareStackConstants.healthcareDatasetName`). Computed values such as
+/// `healthcare_dataset_id` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

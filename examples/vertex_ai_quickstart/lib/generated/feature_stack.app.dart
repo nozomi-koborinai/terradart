@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class FeatureStackExports {
-  FeatureStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class FeatureStackConstants {
+  FeatureStackConstants._();
 
-  static const String FEATURE_GROUP_NAME = r'terradart_customer_features';
+  static const String featureGroupName = r'terradart_customer_features';
 }

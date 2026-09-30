@@ -3,21 +3,26 @@ import 'package:terradart_core/terradart_core.dart';
 import 'constants.dart';
 import 'database.dart';
 
-void addLunchExports({
+/// The generated file the server imports; relative to `infra/`, where
+/// `bin/infra.dart` runs.
+final lunchAppExports = AppExports(
+  '../shared/lib/generated/lunch_stack.app.dart',
+);
+
+void addLunchConstants({
   required Stack stack,
   required String projectId,
   required LunchDatabase database,
 }) {
   stack
-    ..addExport('REGION', StringExport(region))
-    ..addExport('PROJECT_ID', StringExport(projectId))
-    ..addExport('SERVICE_NAME', StringExport(serviceName))
-    ..addExport('DATABASE_NAME', StringExport(databaseName))
-    ..addExport('DATABASE_USER', StringExport(database.databaseUser))
-    ..addExport('DATABASE_URL', StringExport(database.databaseUrl))
-    ..addExport(
-      'CLOUD_SQL_INSTANCE_CONNECTION_NAME',
-      StringExport(database.instanceConnectionName),
-    )
-    ..setAppExportsOutputPath('../shared/lib/generated/lunch_stack.app.dart');
+    ..addConstant('region', const .value(region))
+    ..addConstant('projectId', .value(projectId))
+    ..addConstant('serviceName', const .value(serviceName))
+    ..addConstant('databaseName', const .value(databaseName))
+    ..addConstant('databaseUser', .value(database.databaseUser))
+    ..addConstant('databaseUrl', .value(database.databaseUrl))
+    ..addConstant(
+      'cloudSqlInstanceConnectionName',
+      .value(database.instanceConnectionName),
+    );
 }

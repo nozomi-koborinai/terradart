@@ -3,8 +3,9 @@
 // dart format off
 // ignore_for_file: type=lint
 
-abstract final class DocAiStackExports {
-  DocAiStackExports._();
+/// The constants of the stack, known when synth ran.
+abstract final class DocAiStackConstants {
+  DocAiStackConstants._();
 
-  static const String OCR_PROCESSOR_DISPLAY_NAME = r'terradart-ocr';
+  static const String ocrProcessorDisplayName = r'terradart-ocr';
 }

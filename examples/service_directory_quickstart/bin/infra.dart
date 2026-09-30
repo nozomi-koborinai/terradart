@@ -2,8 +2,8 @@
 /// `tf-out/main.tf.json`.
 ///
 /// Writes `tf-out/main.tf.json` and `lib/generated/registry_stack.app.dart`
-/// (literal exports such as `REGISTRY_NAMESPACE_ID`). Computed exports like
-/// `REGISTRY_SERVICE_ID` appear as Terraform outputs only.
+/// (with `RegistryStackConstants.registryNamespaceId`). Computed values such as
+/// `registry_service_id` are Terraform outputs.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;
